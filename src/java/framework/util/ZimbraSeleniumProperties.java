@@ -1,14 +1,15 @@
+//helper class for retrieving properties
 package framework.util;
 
 import java.io.File;
+
 import java.util.Locale;
-import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 import org.apache.commons.configuration.PropertiesConfiguration;
 
 public class ZimbraSeleniumProperties {
 	private static ZimbraSeleniumProperties instance = new ZimbraSeleniumProperties();
-
+	private final String configPropName = "config.properties";
 	private PropertiesConfiguration configProp;
 	
 	public static ZimbraSeleniumProperties getInstance() {
@@ -24,35 +25,37 @@ public class ZimbraSeleniumProperties {
 	}
 
 	private void init() {
-		File dir = new File("");
-
-		final String configProperties = "config.properties";
-
-		File file = new File(dir.getAbsolutePath() + File.separator + "conf"
-				+ File.separator + configProperties);
-
-		if (!file.exists()) {
-			file = findFile(dir.getAbsolutePath(), configProperties);
-		}
-
-		if (!file.exists() || !file.getName().contains(configProperties)) {
-			ZimbraSeleniumLogger.mLog.error(configProperties
-					+ " does not exist!");
-			configProp = createDefaultProperties();
-		}
+		File dir = new File(".");
 
 		try {
+			File file = new File(dir.getCanonicalPath() + File.separator
+					+ "conf" + File.separator + configPropName);
+
+			if (!file.exists()) {
+				File[] files = FileFinder.listFilesAsArray(dir, configPropName,
+						true);
+				if (files != null && files.length > 0) {
+					file = files[0];
+				}
+				if (!file.exists() || !file.getName().contains(configPropName)) {
+					ZimbraSeleniumLogger.mLog.error(configPropName
+							+ " does not exist!");
+					configProp = createDefaultProperties();
+				}
+			}
+
 			if (null == configProp)
 				configProp = new PropertiesConfiguration(file);
-		} catch (Exception e) {
-			ZimbraSeleniumLogger.mLog.error("Exception is: " + e);
+
+		} catch (Exception ex) {
+			ZimbraSeleniumLogger.mLog.error("Exception : " + ex);
 		}
 
 		String locale = configProp.getString("locale");
-		
+
 		configProp.setProperty("zmMsg", ResourceBundle.getBundle(
-				"framework.locale.ZmMsg", new Locale(locale)));
-		
+				"framework.tmp.ZmMsg", new Locale(locale)));
+
 		configProp.setProperty("zhMsg", ResourceBundle.getBundle(
 				"framework.locale.ZhMsg", new Locale(locale)));
 
@@ -71,7 +74,7 @@ public class ZimbraSeleniumProperties {
 		PropertiesConfiguration defaultProp = new PropertiesConfiguration();
 
 		defaultProp.setProperty("browser", "FF3");
-		
+
 		defaultProp.setProperty("runMode", "DEBUG");
 
 		defaultProp.setProperty("product", "zcs");
@@ -115,8 +118,8 @@ public class ZimbraSeleniumProperties {
 		defaultProp.setProperty("very_long_wait", "10000");
 
 		defaultProp.setProperty("zmMsg", ResourceBundle.getBundle(
-				"framework.locale.ZmMsg", new Locale("en_US")));
-		
+				"framework.locale.ZhMsg", new Locale("en_US")));
+
 		defaultProp.setProperty("zhMsg", ResourceBundle.getBundle(
 				"framework.locale.ZhMsg", new Locale("en_US")));
 
@@ -132,50 +135,21 @@ public class ZimbraSeleniumProperties {
 		return defaultProp;
 	}
 
-	private File findFile(String dir, String name) {
-		File file = new File(dir);
-		String[] filenames = file.list();
-		String filename = "";
-		File myfile = null;
-
-		if (null != filenames) {
-			for (int i = 0; i < filenames.length; i++) {
-				filename = filenames[i];
-				if (filename.endsWith(name)) {
-					myfile = new File(dir + File.separator + filename);
-					break;
-				} else {
-					myfile = new File(dir + File.separator + filename);
-					if (myfile.isDirectory()) {
-						myfile = findFile(myfile.getAbsolutePath(), name);
-					}
-					if (myfile != null && myfile.getName().endsWith(name)
-							&& myfile.exists()) {
-						break;
-					}
-				}
-			}
-		}
-		return myfile;
-	}
-
-	// FileFilter fileFilter = new FileFilter() {
-	// public boolean accept(File file) {
-	// return file.isDirectory();
-	// }
-	// };
-	// File[] fl = file.listFiles(fileFilter);;
-
-	// FilenameFilter filenameFilter = new FilenameFilter() {
-	// public boolean accept(File file, String fname) {
-	// return fname.contains(".");
-	// }
-	// };
-	// String[] fnl = file.list(filenameFilter);
-
-	public static class CurClassGetter extends SecurityManager {
-		public Class<?> getCurrentClass() {
+	private static class CurClassGetter extends SecurityManager {
+		private Class<?> getCurrentClass() {
 			return getClassContext()[1];
 		}
+	}
+
+	public static void main(String[] args) {
+		ZimbraSeleniumLogger.setmLog(new CurClassGetter().getCurrentClass());
+		
+		String br = (String) ZimbraSeleniumProperties.getInstance().getConfigProperties().getProperty("browser");
+		System.out.println(br);
+		ZimbraSeleniumLogger.mLog.debug(br);
+		
+		ResourceBundle zmMsg = (ResourceBundle) ZimbraSeleniumProperties.getInstance().getConfigProperties().getProperty("zmMsg");
+		System.out.println(zmMsg.getLocale());
+		ZimbraSeleniumLogger.mLog.debug(zmMsg.getLocale());
 	}
 }
