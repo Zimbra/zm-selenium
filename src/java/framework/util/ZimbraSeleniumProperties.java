@@ -54,7 +54,7 @@ public class ZimbraSeleniumProperties {
 		String locale = configProp.getString("locale");
 
 		configProp.setProperty("zmMsg", ResourceBundle.getBundle(
-				"framework.tmp.ZmMsg", new Locale(locale)));
+				"framework.locale.ZmMsg", new Locale(locale)));
 
 		configProp.setProperty("zhMsg", ResourceBundle.getBundle(
 				"framework.locale.ZhMsg", new Locale(locale)));
