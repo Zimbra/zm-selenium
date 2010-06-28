@@ -13,8 +13,8 @@ public class ZimbraSeleniumLogger {
 		mLog = LogManager.getLogger(clazz);
 	}
 
-	public static class GetCurClass extends SecurityManager {
-		public Class<?> getCurrentClass() {
+	private static class GetCurClass extends SecurityManager {
+		private Class<?> getCurrentClass() {
 			return getClassContext()[1];
 		}
 	}
