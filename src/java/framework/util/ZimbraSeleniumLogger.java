@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 
 public class ZimbraSeleniumLogger {
 
-	static Logger mLog = Logger.getLogger(new GetCurClass().getCurrentClass());
+	public static Logger mLog = Logger.getLogger(new GetCurClass().getCurrentClass());
 
 	public static <T> void setmLog (Class <T> clazz) {
 		if(clazz!=null)
