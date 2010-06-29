@@ -83,7 +83,7 @@ public class FileFinder {
 		}
 	}
 
-	public static void main(String[] args) {
+	private static void main(String[] args) {
 		ZimbraSeleniumLogger.setmLog(new CurClassGetter().getCurrentClass());
 		
 		File dir = new File("."), f = new File(".");

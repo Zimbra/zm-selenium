@@ -141,7 +141,7 @@ public class ZimbraSeleniumProperties {
 		}
 	}
 
-	public static void main(String[] args) {
+	private static void main(String[] args) {
 		ZimbraSeleniumLogger.setmLog(new CurClassGetter().getCurrentClass());
 		
 		String br = (String) ZimbraSeleniumProperties.getInstance().getConfigProperties().getProperty("browser");
