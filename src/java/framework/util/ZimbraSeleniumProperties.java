@@ -2,6 +2,7 @@
 package framework.util;
 
 import java.io.File;
+import java.lang.reflect.Field;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -11,6 +12,8 @@ public class ZimbraSeleniumProperties {
 	private static ZimbraSeleniumProperties instance = new ZimbraSeleniumProperties();
 	private final String configPropName = "config.properties";
 	private PropertiesConfiguration configProp;
+	private File dir;
+	private String curDir = ".";
 	
 	public static ZimbraSeleniumProperties getInstance() {
 		return instance;
@@ -25,9 +28,22 @@ public class ZimbraSeleniumProperties {
 	}
 
 	private void init() {
-		File dir = new File(".");
-
 		try {
+			StackTraceElement[] stearr = new Throwable().getStackTrace();
+			//assigning default value 
+			String clname = "projects.html.bin.ExecuteTests";
+			if (stearr != null) {
+				for(StackTraceElement ste : stearr){
+					clname = ste.getClassName();
+					if(clname.contains("ExecuteTests"))
+						break;
+				}				
+				Field field = Class.forName(clname).getDeclaredField("WorkingDirectory");
+				curDir = (String) field.get("WorkingDirectory");
+			}
+
+			dir = new File(curDir);
+
 			File file = new File(dir.getCanonicalPath() + File.separator
 					+ "conf" + File.separator + configPropName);
 
@@ -141,14 +157,17 @@ public class ZimbraSeleniumProperties {
 		}
 	}
 
+	// for unit test need to change access to public
 	private static void main(String[] args) {
 		ZimbraSeleniumLogger.setmLog(new CurClassGetter().getCurrentClass());
-		
-		String br = (String) ZimbraSeleniumProperties.getInstance().getConfigProperties().getProperty("browser");
+
+		String br = (String) ZimbraSeleniumProperties.getInstance()
+				.getConfigProperties().getProperty("browser");
 		System.out.println(br);
 		ZimbraSeleniumLogger.mLog.debug(br);
-		
-		ResourceBundle zmMsg = (ResourceBundle) ZimbraSeleniumProperties.getInstance().getConfigProperties().getProperty("zmMsg");
+
+		ResourceBundle zmMsg = (ResourceBundle) ZimbraSeleniumProperties
+				.getInstance().getConfigProperties().getProperty("zmMsg");
 		System.out.println(zmMsg.getLocale());
 		ZimbraSeleniumLogger.mLog.debug(zmMsg.getLocale());
 	}

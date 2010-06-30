@@ -82,7 +82,8 @@ public class FileFinder {
 			return getClassContext()[1];
 		}
 	}
-
+	
+	//for unit test need to change access to public
 	private static void main(String[] args) {
 		ZimbraSeleniumLogger.setmLog(new CurClassGetter().getCurrentClass());
 		
