@@ -11,14 +11,14 @@ import java.util.Vector;
 public class PathFinder {
 	private static String filter = "";
 
-	public static File[] listFilesAsArray(File directory, String fltr,
+	static File[] listFilesAsArray(File directory, String fltr,
 			boolean recurse) {
 		Collection<File> files = listFiles(directory, fltr, recurse);
 		File[] arr = new File[files.size()];
 		return files.toArray(arr);
 	}
 
-	public static File findFileInCurrentDir(String dir, String name)
+	static File findFileInCurrentDir(String dir, String name)
 			throws Exception {
 		File file = new File(dir);
 		String[] filenames = file.list();
@@ -49,7 +49,7 @@ public class PathFinder {
 		return myfile;
 	}
 
-	protected static String findWorkingDir() {
+	static String findWorkingDir() {
 		String value = null;
 		
 		try {
