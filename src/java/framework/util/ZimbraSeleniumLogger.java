@@ -15,7 +15,7 @@ public class ZimbraSeleniumLogger {
 
 	private static class GetCurClass extends SecurityManager {
 		private Class<?> getCurrentClass() {
-			return getClassContext()[1];
+			return getClassContext()[2];
 		}
 	}
 }
