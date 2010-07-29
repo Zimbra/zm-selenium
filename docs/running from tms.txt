@@ -1,3 +1,5 @@
+TODO: Update this doc with the new infrastructure/browser strings
+
 1. Go to 'tms.lab.zimbra.com'
 2. Click on 'Anthill' link
 3. Click on 'Build' link for any branch e.g. TestToolsFranklin
