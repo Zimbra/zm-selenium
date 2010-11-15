@@ -2,16 +2,7 @@
  * 
  */
 package framework.items;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.lang.StringEscapeUtils;
-
 import com.zimbra.common.soap.Element;
-
-import framework.items.ContactItem.GenerateItemType;
-import framework.items.RecipientItem.RecipientType;
 import framework.util.HarnessException;
 import framework.util.ZimbraAccount;
 import framework.util.ZimbraSeleniumProperties;
@@ -88,7 +79,7 @@ public class DocumentItem extends ZimbraItem implements IItem {
 		docName = "name" + ZimbraSeleniumProperties.getUniqueString();
 		docText = "text" + ZimbraSeleniumProperties.getUniqueString();
 	    filePath_1 = "data/public/other/testtextfile.txt";
-	    filePath_2 = "data/public/other/testwordfile.doc";
+	    filePath_2 = "data/public/other/structure.jpg";
 	}
 	
 	/**
@@ -181,7 +172,7 @@ public class DocumentItem extends ZimbraItem implements IItem {
 	@Override
 	public void importFromSOAP(ZimbraAccount account, String query) throws HarnessException {
 		try {	
-			Element search =
+			//Element search =
 			account.soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='document'>" +
 						"<query>" + query + "</query>" +
@@ -191,7 +182,8 @@ public class DocumentItem extends ZimbraItem implements IItem {
 			if (results.length != 1)
 				throw new HarnessException("Query should return 1 result, not "+ results.length);
 	
-			String id = account.soapSelectValue("//mail:SearchResponse/mail:doc","id");
+			//String id = 
+				account.soapSelectValue("//mail:SearchResponse/mail:doc","id");
 			
 			/*
 			account.soapSend(
