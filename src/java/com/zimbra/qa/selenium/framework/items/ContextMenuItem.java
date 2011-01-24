@@ -67,8 +67,8 @@ public class ContextMenuItem {
 		 
 		   //verify image, text, and shortcut 		   
 		   if (! (ClientSessionFactory.session().selenium().isElementPresent(cssLocator + "_left_icon" + "'] " +cmi.image) 
-		    	||	ClientSessionFactory.session().selenium().isElementPresent(cssLocator + "_title" + "']:contains('" +cmi.text + "')") 
-		    	||	ClientSessionFactory.session().selenium().isElementPresent(cssLocator + "_dropdown" +"']" +cmi.shortcut) 
+		    	&&	ClientSessionFactory.session().selenium().isElementPresent(cssLocator + "_title" + "']:contains('" +cmi.text + "')") 
+		    	&&	ClientSessionFactory.session().selenium().isElementPresent(cssLocator + "_dropdown" +"']" +cmi.shortcut) 
 		         )) 
 		   {
 			   logger.debug("Cannot find either" + cssLocator + "_left_icon" + "'] " +cmi.image 
