@@ -53,11 +53,12 @@ public class ContextMenu extends AbsDisplay {
 		        		 throw new HarnessException("cannot find " +  cssLocator + "_left_icon" + "'] " +cmi.image);
 		        	 }
 				
-		        	 if (! this.sIsElementPresent(cssLocator + "_title" + "']:contains('" +cmi.text + "')")) 
+		        	/* TODO locale
+		        	 * if (! this.sIsElementPresent(cssLocator + "_title" + "']:contains('" +cmi.text + "')")) 
 		        	 {
 		        		 throw new HarnessException("cannot find " +  cssLocator + "_title" + "']:contains('" +cmi.text + "')");
 		        	 }
-				
+				    */   
 		        	 if (! this.sIsElementPresent(cssLocator + "_dropdown" +"']" +cmi.shortcut))
 		        	 {
 		        		 throw new HarnessException("cannot find " + cssLocator + "_dropdown" +"']" +cmi.shortcut);

@@ -96,12 +96,9 @@ public class ContactContextMenu extends AjaxCommonTest  {
 		
 		ContactItem contactItem = createSelectAContactItem();
 		
-    	// Right click on the item to show the menu
-        app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, contactItem.fileAs); // contactItem.fileAs);
-        SleepUtil.sleepMedium();
-            
+    	    
         //select delete option
-        app.zPageAddressbook.zContextMenu(PageAddressbook.CONTEXT_MENU.CONTACT_DELETE);
+        app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Action.A_DELETE, contactItem.fileAs);
         SleepUtil.sleepSmall();
         
         //verify toasted message 1 contact moved to Trash
@@ -127,13 +124,9 @@ public class ContactContextMenu extends AjaxCommonTest  {
 	public void ClickMoveOnContextMenu() throws HarnessException {
 		
 		ContactItem contactItem = createSelectAContactItem();
-		
-    	// Right click on the item to show the menu
-        app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, contactItem.fileAs); // contactItem.fileAs);
-        SleepUtil.sleepMedium();
-            
+		            
         //select move option
-        DialogContactMove dialogContactMove = (DialogContactMove) app.zPageAddressbook.zContextMenu(PageAddressbook.CONTEXT_MENU.CONTACT_MOVE);
+        DialogContactMove dialogContactMove = (DialogContactMove) app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Action.A_MOVE, contactItem.fileAs);
         SleepUtil.sleepSmall();
         
         //enter the moved folder
