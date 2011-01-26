@@ -22,7 +22,21 @@ import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
 public class PageAddressbook extends AbsTab {
 
-
+	public static class CONTEXT_MENU {
+		public static final String LOCATOR		= "id='zm__Contacts'";
+		
+		//contact's context menu	
+		public static final ContextMenuItem CONTACT_SEARCH = new ContextMenuItem("zmi__Contacts__SEARCH","Find Emails From Contact","div[class='ImgSearch']","");	
+		public static final ContextMenuItem CONTACT_ADVANCED_SEARCH = new ContextMenuItem("zmi__Contacts__BROWSE","Advanced Search","div[class='ImgSearchBuilder']","");	
+		public static final ContextMenuItem CONTACT_NEW_EMAIL = new ContextMenuItem("zmi__Contacts__NEW_MESSAGE","New Email","div[class='ImgNewMessage']",":contains('nm')");  	
+		public static final ContextMenuItem CONTACT_EDIT = new ContextMenuItem("zmi__Contacts__CONTACT","Edit Contact","div[class='ImgEdit']","");	
+		public static final ContextMenuItem CONTACT_FORWARD = new ContextMenuItem("zmi__Contacts__SEND_CONTACTS_IN_EMAIL","Forward Contact","div[class='ImgMsgStatusSent']","");	
+		public static final ContextMenuItem CONTACT_TAG = new ContextMenuItem("zmi__Contacts__TAG_MENU","Tag Contact","div[class='ImgTag']"," div[class='ImgCascade']");	
+		public static final ContextMenuItem CONTACT_DELETE = new ContextMenuItem("zmi__Contacts__DELETE","Delete","div[class='ImgDelete']",":contains('Del')");
+		public static final ContextMenuItem CONTACT_MOVE = new ContextMenuItem("zmi__Contacts__MOVE","Move","div[class='ImgMoveToFolder']","");
+		public static final ContextMenuItem CONTACT_PRINT = new ContextMenuItem("zmi__Contacts__PRINT_CONTACT","Print","div[class='ImgPrint']",":contains('p')");
+	   		
+	}
 
 
 	public PageAddressbook(AbsApplication application) {
@@ -129,15 +143,15 @@ public class PageAddressbook extends AbsTab {
 		logger.info(myPageName() + " zContextMenu"+ " (" + cmi.text  + ")");
 	
 		//ensure only contacts' context menu items 
-	    if (! ( cmi == ContextMenuItem.C_CONTACT_SEARCH || 	    		
-	    		cmi == ContextMenuItem.C_CONTACT_ADVANCED_SEARCH ||
-	    		cmi == ContextMenuItem.C_CONTACT_DELETE ||
-	    		cmi == ContextMenuItem.C_CONTACT_EDIT ||
-	    		cmi == ContextMenuItem.C_CONTACT_FORWARD ||
-	    		cmi == ContextMenuItem.C_CONTACT_MOVE ||
-	    		cmi == ContextMenuItem.C_CONTACT_NEW_EMAIL ||
-	    		cmi == ContextMenuItem.C_CONTACT_PRINT ||
-	    		cmi == ContextMenuItem.C_CONTACT_TAG ||
+	    if (! ( cmi == CONTEXT_MENU.CONTACT_SEARCH || 	    		
+	    		cmi == CONTEXT_MENU.CONTACT_ADVANCED_SEARCH ||
+	    		cmi == CONTEXT_MENU.CONTACT_DELETE ||
+	    		cmi == CONTEXT_MENU.CONTACT_EDIT ||
+	    		cmi == CONTEXT_MENU.CONTACT_FORWARD ||
+	    		cmi == CONTEXT_MENU.CONTACT_MOVE ||
+	    		cmi == CONTEXT_MENU.CONTACT_NEW_EMAIL ||
+	    		cmi == CONTEXT_MENU.CONTACT_PRINT ||
+	    		cmi == CONTEXT_MENU.CONTACT_TAG ||
 	    		cmi == ContextMenuItem.C_SEPARATOR 
 	         )){
 	    	throw new HarnessException("Not allow to call with non-contact contex-menu item "+ cmi.text );
@@ -157,11 +171,11 @@ public class PageAddressbook extends AbsTab {
 
 		locator = "id="+ id;
 
-		if (cmi == ContextMenuItem.C_CONTACT_MOVE) {				
+		if (cmi == CONTEXT_MENU.CONTACT_MOVE) {				
 			page = new DialogContactMove(MyApplication);
 					
 		}
-		else if (cmi == ContextMenuItem.C_CONTACT_EDIT) {				
+		else if (cmi == CONTEXT_MENU.CONTACT_EDIT) {				
 			page = new FormContactNew(MyApplication);								
 		}
 	    // TODO other options
