@@ -52,7 +52,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 	
 	
 	@Test(	description = "Right click a contact to show a menu",
-			groups = { "smokey" })
+			groups = { "smoke" })
 	public void ShowContextMenu() throws HarnessException {
 		
 		ContactItem contactItem = createSelectAContactItem();
@@ -63,9 +63,6 @@ public class ContactContextMenu extends AjaxCommonTest  {
         
         ArrayList <ContextMenuItem> list = contextMenu.zListGetContextMenuItems(PageAddressbook.CONTEXT_MENU.class);
         
-        for (ContextMenuItem l: list){
-        	System.out.println("....." + l.locator);
-        }
         //verify all items in the context menu list
         ZAssert.assertTrue(list.contains(PageAddressbook.CONTEXT_MENU.CONTACT_SEARCH),"Verify contact search in context menu");
         ZAssert.assertTrue(list.contains(PageAddressbook.CONTEXT_MENU.CONTACT_ADVANCED_SEARCH),"Verify advanced search in context menu");
