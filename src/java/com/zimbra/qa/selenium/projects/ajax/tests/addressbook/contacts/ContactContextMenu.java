@@ -99,7 +99,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 		
     	    
         //select delete option
-        app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Action.A_DELETE, contactItem.fileAs);
+        app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, contactItem.fileAs);
         SleepUtil.sleepSmall();
         
         //verify toasted message 1 contact moved to Trash
@@ -127,7 +127,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 		ContactItem contactItem = createSelectAContactItem();
 		            
         //select move option
-        DialogContactMove dialogContactMove = (DialogContactMove) app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Action.A_MOVE, contactItem.fileAs);
+        DialogContactMove dialogContactMove = (DialogContactMove) app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_MOVE, contactItem.fileAs);
         SleepUtil.sleepSmall();
         
         //enter the moved folder
@@ -160,7 +160,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 		
 		ContactItem contactItem = createSelectAContactItem();
 		//Click Edit contact	
-        FormContactNew formContactNew = (FormContactNew) app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Action.A_EDIT, contactItem.fileAs);        
+        FormContactNew formContactNew = (FormContactNew) app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_EDIT, contactItem.fileAs);        
 	    SleepUtil.sleepSmall();
 	        
 		ContactItem newContact = ContactItem.generateContactItem(GenerateItemType.Basic);							
