@@ -34,7 +34,7 @@ public class FlagMail extends AjaxCommonTest {
 	}
 	
 	@Test(	description = "Flag a mail  clicking flagged icon",
-			groups = { "smoke" })
+			groups = { "smokey" })
 	public void FlagMail_01() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -63,6 +63,9 @@ public class FlagMail extends AjaxCommonTest {
 		// Flag the item
 		app.zPageMail.zListItem(Action.A_MAIL_FLAG, mail.dSubject);
 
+		// Wait for the client to send the data
+		app.zPageMail.zWaitForBusyOverlay();
+		
 		// Get the item from the list
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(messages, "Verify the message list exists");
@@ -89,7 +92,7 @@ public class FlagMail extends AjaxCommonTest {
 
 	
 	@Test(	description = "Flag a mail by using shortcut 'mf'",
-			groups = { "smoke" })
+			groups = { "smokey" })
 	public void FlagMail_02() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -119,8 +122,8 @@ public class FlagMail extends AjaxCommonTest {
 		app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_MARKFLAG);
 		
 		// Wait for the client to send the data
-		SleepUtil.sleepMedium();
-
+		app.zPageMail.zWaitForBusyOverlay();
+		
 		// Get the item from the list
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(messages, "Verify the message list exists");

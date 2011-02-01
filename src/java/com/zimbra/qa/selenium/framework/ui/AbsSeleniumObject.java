@@ -263,6 +263,31 @@ public abstract class AbsSeleniumObject {
 	}
 
 	/**
+	 * zIsBusyOverlay()
+	 */
+	public boolean zIsBusyOverlay() {
+		boolean isBusyOverlay = (ClientSessionFactory.session().selenium().getEval("this.browserbot.getUserWindow().appCtxt.getShell().getBusy()").equals("true"));
+
+		logger.info("isBusyOverlay(" + ") = " + isBusyOverlay);
+		return (isBusyOverlay);
+	}
+
+
+	/**
+	 * zWaitForBusyOverlay()
+	 */
+
+	public void zWaitForBusyOverlay() throws HarnessException {
+        for (int i = 0; i < 15; i++) {
+              if ( !this.zIsBusyOverlay() )
+                    return;
+              com.zimbra.qa.selenium.framework.util.SleepUtil.sleepSmall();
+        }
+        throw new HarnessException("Busy Overlay never disappeared!");
+    }
+
+        
+	/**
 	 * DefaultSelenium.isChecked()
 	 */
 	public boolean sIsChecked(String locator) {
