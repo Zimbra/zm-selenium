@@ -64,9 +64,6 @@ public class FlagUnFlagMail extends AjaxCommonTest {
 		
 		// Flag the item
 		app.zPageMail.zListItem(Action.A_MAIL_UNFLAG, mail.dSubject);
-
-		// Wait 
-		app.zPageMail.zWaitForBusyOverlay();
 		
 		// Get the item from the list
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
@@ -127,9 +124,6 @@ public class FlagUnFlagMail extends AjaxCommonTest {
 		
 		// Flag the item
 		app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_MARKFLAG);
-		
-		// Wait for the client to send the data
-		app.zPageMail.zWaitForBusyOverlay();
 		
 		// Get the item from the list
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
