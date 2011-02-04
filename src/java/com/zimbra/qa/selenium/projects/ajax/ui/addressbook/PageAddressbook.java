@@ -212,7 +212,8 @@ public class PageAddressbook extends AbsTab {
 
 		// Click it
 		this.zClick(locator);
-		SleepUtil.sleepSmall();
+		zWaitForBusyOverlay();
+	
 		
 		if ( page != null ) {
 			page.zWaitForActive();
@@ -266,7 +267,7 @@ public class PageAddressbook extends AbsTab {
 			}
 			
 			this.zClick(pulldownLocator);
-			SleepUtil.sleepSmall();
+			zWaitForBusyOverlay();
 			
 			if ( optionLocator != null ) {
 
@@ -276,7 +277,7 @@ public class PageAddressbook extends AbsTab {
 				}
 				
 				this.zClick(optionLocator);
-				SleepUtil.sleepSmall();
+				zWaitForBusyOverlay();
 
 			}
 			
@@ -381,7 +382,7 @@ public class PageAddressbook extends AbsTab {
 				
 		// Click option
 		this.zClick(locator);
-        SleepUtil.sleepSmall();
+		zWaitForBusyOverlay();
 		
 		
 		if ( page != null ) {
@@ -400,14 +401,14 @@ public class PageAddressbook extends AbsTab {
 		if ( action == Action.A_LEFTCLICK ) {
 			//click
 			this.zClick(contactLocator);
-			SleepUtil.sleepSmall();
+			zWaitForBusyOverlay();
 			return (new DisplayContact(MyApplication)); 
 			
 		}
 		else if (action == Action.A_RIGHTCLICK ) {
 			
             this.zRightClick(contactLocator);
-        	SleepUtil.sleepSmall();
+        	zWaitForBusyOverlay();
     		return (new ContextMenu(MyApplication));			
 		}
 			
