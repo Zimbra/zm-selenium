@@ -12,7 +12,7 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew*;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
 public class PageAddressbook extends AbsTab {
 
@@ -360,7 +360,7 @@ public class PageAddressbook extends AbsTab {
 
 			else if (option == Button.B_NEW) {
 				cmi=CONTEXT_MENU.CONTACT_NEW_EMAIL;
-			//	page = new FormMailNew(MyApplication);	
+				page = new FormMailNew(MyApplication);	
 			}
 
 			id = cmi.locator;
