@@ -26,7 +26,7 @@ public class PageAddressbook extends AbsTab {
 		public static final String LOCATOR		= "id='zm__Contacts'";
 		
 		//contact's context menu	
-		public static final ContextMenuItem CONTACT_SEARCH = new ContextMenuItem("zmi__Contacts__SEARCH","Find Emails From Contact","div[class='ImgSearch']","");	
+		public static final ContextMenuItem CONTACT_SEARCH = new ContextMenuItem("zmi__Contacts__SEARCH_MENU","Find Emails...","div[class='ImgSearch']"," div[class='ImgCascade']");	
 		public static final ContextMenuItem CONTACT_ADVANCED_SEARCH = new ContextMenuItem("zmi__Contacts__BROWSE","Advanced Search","div[class='ImgSearchBuilder']","");	
 		public static final ContextMenuItem CONTACT_NEW_EMAIL = new ContextMenuItem("zmi__Contacts__NEW_MESSAGE","New Email","div[class='ImgNewMessage']",":contains('nm')");  	
 		public static final ContextMenuItem CONTACT_EDIT = new ContextMenuItem("zmi__Contacts__CONTACT","Edit Contact","div[class='ImgEdit']","");	
@@ -407,8 +407,8 @@ public class PageAddressbook extends AbsTab {
 		}
 		else if (action == Action.A_RIGHTCLICK ) {
 			
-            this.zRightClick(contactLocator);
-        	zWaitForBusyOverlay();
+            this.zRightClick(contactLocator); 
+            zWaitForBusyOverlay();
     		return (new ContextMenu(MyApplication));			
 		}
 			
