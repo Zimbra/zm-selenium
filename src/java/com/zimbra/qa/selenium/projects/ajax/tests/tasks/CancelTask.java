@@ -1,6 +1,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
 
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+
 import java.util.List;
 
 import org.testng.annotations.Test;
@@ -25,33 +26,46 @@ public class CancelTask extends AjaxCommonTest {
 
 		super.startingAccountPreferences = null;
 	}
-
-	@Test(description = "Create Simple task through GUI - verify through GUI", groups = { "sanity" })
+	/**
+	 * Note: While running CancelTask test through selenium and click on cancel button then
+	 * some times Warning dialog doesn't appear 
+	 * so i have used 2 wait statement and explicitly goes into Task folder.
+	 * @throws HarnessException
+	 */
+	@Test(description = "Cancel composing of new task through GUI", groups = { "functional" })
 	public void CancelTask_01() throws HarnessException {
 
 		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "taskbody" + ZimbraSeleniumProperties.getUniqueString();
 
-		GeneralUtility.waitForElementPresent(app.zPageTasks,
-				PageTasks.Locators.zTasks, 2000);
-		app.zPageTasks.zClick("zb__App__Tasks");
-		GeneralUtility.waitForElementPresent(app.zPageTasks,
-				PageTasks.Locators.zNewTask, 20000);
-		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks
-				.zToolbarPressButton(Button.B_NEW);
+		GeneralUtility.waitForElementPresent(app.zPageTasks,PageTasks.Locators.zTasksTab, 2000);
+		
+		app.zPageTasks.zClick(PageTasks.Locators.zTasksTab);
+		
+		GeneralUtility.waitForElementPresent(app.zPageTasks,PageTasks.Locators.zNewTask, 20000);
+		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
+		
 		taskNew.zFillField(Field.Subject, subject);
 		taskNew.zFillField(Field.Body, body);
 
-		AbsDialog warning = (AbsDialog) taskNew
-				.zToolbarPressButton(Button.B_CANCEL);
-		logger.info(warning);
-
+		AbsDialog warning = (AbsDialog) taskNew.zToolbarPressButton(Button.B_CANCEL);
 		ZAssert.assertNotNull(warning, "Verify the dialog is returned");
+		
 		warning.zClickButton(Button.B_NO);
-
-		// Get the list of tasks in the view
+		
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
-		ZAssert.assertNull(tasks, "Verify the list of tasks doesn't exists");
-
+		
+		TaskItem found = null;
+		for (TaskItem t : tasks) {
+			logger.info("Subject: looking for " + subject + " found: "
+					+ t.gSubject);
+			if (subject.equals(t.gSubject)) {
+				found = t;
+				break;
+			}
+		}
+		
+		ZAssert.assertNull(found, "Verify the task is no longer present in task list");
+		
 	}
 }
