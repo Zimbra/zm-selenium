@@ -1,5 +1,7 @@
 package com.zimbra.qa.selenium.framework.ui;
 
+import java.awt.event.KeyEvent;
+
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
@@ -36,6 +38,10 @@ public abstract class AbsToaster extends AbsSeleniumObject {
 		
 		this.zWaitForElementVisible(locator);
     	text=sGetText(locator);
+    	    
+    	//make the toasted message invisible if it contains "Undo" link
+    	this.sKeyPressNative(String.valueOf(KeyEvent.VK_ESCAPE));
+    	    	
     	this.zWaitForElementInvisible(locator);
 		return text;					
 	}
