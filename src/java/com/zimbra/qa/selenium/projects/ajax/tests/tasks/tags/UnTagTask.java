@@ -13,7 +13,7 @@ public class UnTagTask extends AjaxCommonTest {
 	public UnTagTask() {
 		logger.info("New " + UnTagTask.class.getCanonicalName());
 
-		// All tests start at the Briefcase page
+		// All tests start at the task page
 		super.startingPage = app.zPageTasks;
 
 		super.startingAccountPreferences = null;
@@ -90,7 +90,7 @@ public class UnTagTask extends AjaxCommonTest {
 		// refresh briefcase page
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
-		// Click on tagged document
+		// Click on tagged task
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Click Remove Tag
