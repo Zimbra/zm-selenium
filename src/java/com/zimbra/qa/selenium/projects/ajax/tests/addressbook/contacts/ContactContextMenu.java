@@ -405,12 +405,13 @@ public class ContactContextMenu extends AjaxCommonTest  {
 	}
 	
 	@Test(	description = "Right click then  click Find Emails->Sent To contact",
-			groups = { "smoke" })
+			groups = { "smokey" })
 	public void FindEmailsSentToContact() throws HarnessException {
 
 			
 	    //Create  email sent to this contacts	
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String lastName = "lastname " + ZimbraSeleniumProperties.getUniqueString();
 		
 		// Send the message from AccountA to the ZWC user
 		ZimbraAccount.AccountA().soapSend(
@@ -425,7 +426,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 					"</SendMsgRequest>");
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
-		ContactItem contactItem = createSelectAContactItem(app.zGetActiveAccount().DisplayName, app.zGetActiveAccount().clientAccountName, app.zGetActiveAccount().EmailAddress);
+		ContactItem contactItem = createSelectAContactItem(app.zGetActiveAccount().DisplayName, lastName, app.zGetActiveAccount().EmailAddress);
 		GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());		
 		
 		//Click Find Emails->Sent To Contact
@@ -441,11 +442,12 @@ public class ContactContextMenu extends AjaxCommonTest  {
 	}
 	
 	@Test(	description = "Right click then  click Find Emails->Received From contact",
-				groups = { "smoke" })
+				groups = { "smokey" })
 	public void FindEmailsReceivedFromContact() throws HarnessException {
 		
 	    //Create  email sent to this contacts	
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String lastName = "lastname " + ZimbraSeleniumProperties.getUniqueString();
 		
 		// Send the message from AccountB to the ZWC user
 		ZimbraAccount.AccountB().soapSend(
@@ -461,7 +463,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 
 		MailItem mail = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ subject +")");
 
-		ContactItem contactItem = createSelectAContactItem(ZimbraAccount.AccountB().DisplayName, ZimbraAccount.AccountB().clientAccountName, ZimbraAccount.AccountB().EmailAddress);
+		ContactItem contactItem = createSelectAContactItem(app.zGetActiveAccount().DisplayName,lastName, ZimbraAccount.AccountB().EmailAddress);
 		GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
 		
 		
