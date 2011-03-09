@@ -92,7 +92,7 @@ public class FlagUnFlagMail extends AjaxCommonTest {
 	}
 
 	@Test(	description = "Un-Flag a mail by using shortcut 'mf'",
-			groups = { "smoke" })
+			groups = { "functional" })
 	public void UnFlagMail_02() throws HarnessException {
 		
 		// Create the message data to be sent
