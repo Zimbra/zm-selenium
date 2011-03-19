@@ -3,6 +3,10 @@ package com.zimbra.qa.selenium.framework.core;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.*;
+
+
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.SeleniumException;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -18,10 +22,29 @@ public class ZimbraSelenium extends DefaultSelenium {
 	private static Logger logger = LogManager.getLogger(ZimbraSelenium.class);
 
 	public String doubleQuote = "\"";
-
+    public WebDriver webDriver = null;
+	
+  /*  public ZimbraSelenium(WebDriver webDriver, String browserURL) {
+    
+    	super(webDriver, browserURL);
+    	this.webDriver = webDriver;
+    	this.open(browserURL);
+    	
+    	WebDriverBackedSelenium wd = ((WebDriverBackedSelenium) super);
+		wd.getUnderlyingWebDriver();
+		 = new WebDriverBackedSelenium(new HtmlUnitDriver(), browserURL);
+		
+		webDriver = ((WebDriverBackedSelenium) super).getUnderlyingWebDriver();
+    
+}
+	*/    	
+	
+    	
 	public ZimbraSelenium(String serverHost, int serverPort,
 			String browserStartCommand, String browserURL) {
+						
 		super(serverHost, serverPort, browserStartCommand, browserURL);
+		
 	}
 	
 	public boolean isElementPresent(String locator){		
