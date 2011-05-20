@@ -16,7 +16,7 @@ import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
-import com.zimbra.qa.selenium.projects.desktop.ui.mail.PageMail.PageMailView;
+
 
 
 
@@ -513,6 +513,13 @@ public class PageMail extends AbsTab {
 			optionLocator = "//td[contains(@id,'_left_icon')]/div[contains(@class,'ImgNewFolder')]";
 
 			page = new DialogCreateFolder(this.MyApplication, this);
+
+		} else if ((pulldown == Button.B_SIGNATURE)&& (option == Button.O_ADD_SIGNATURE)) {
+
+			pulldownLocator = "css=td[id$='_ADD_SIGNATURE_dropdown']>div[class='ImgSelectPullDownArrow']";
+			//optionLocator = "//td[contains(@id,'_title') and contains (text(),'sigName')]";
+
+			page = null;
 
 		} else {
 			throw new HarnessException("no logic defined for pulldown/option "
