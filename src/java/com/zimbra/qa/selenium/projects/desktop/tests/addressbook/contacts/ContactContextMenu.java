@@ -409,7 +409,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 	}
 	
 	@Test(	description = "Right click then  click Find Emails->Sent To contact",
-			groups = { "smokey" })
+			groups = { "smoke" })
 	public void FindEmailsSentToContact() throws HarnessException {
 
 			
@@ -447,7 +447,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 	}
 	
 	@Test(	description = "Right click then  click Find Emails->Received From contact",
-				groups = { "smokey" })
+				groups = { "smoke" })
 	public void FindEmailsReceivedFromContact() throws HarnessException {
 
 	    //Create  email sent to this contacts	
