@@ -137,7 +137,7 @@ public class TreeContacts extends AbsTree {
 		} else if (action == Action.A_RIGHTCLICK) {
 
 			actionLocator = "zti__main_Contacts__" + t.getId() + "_textCell";				
-			zRightClick(actionLocator);
+			zRightClickAt(actionLocator,"0,0");
          } else {
 			throw new HarnessException("Action " + action
 					+ " not yet implemented");

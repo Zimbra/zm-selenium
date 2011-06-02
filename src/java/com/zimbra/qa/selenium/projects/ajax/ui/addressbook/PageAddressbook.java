@@ -442,6 +442,7 @@ public class PageAddressbook extends AbsTab {
 				throw new HarnessException("Button "+ pulldown +" option "+ option +" pulldownLocator "+ pulldownLocator +" not present!");
 			}
 
+			/*
 			//IE 9 browser
 			if (ClientSessionFactory.session().isBrowserIE(ClientSessionFactory.session().IE9))
 			{ 
@@ -455,8 +456,11 @@ public class PageAddressbook extends AbsTab {
 			}
 			
 			else {
-			  zClickAt(pulldownLocator,"0,0");
-			}
+			*/
+			sClickAt(pulldownLocator,"0,0");
+			
+			zClickAt(pulldownLocator,"0,0");
+			//}
 			
 			zWaitForBusyOverlay();
 			
@@ -609,7 +613,7 @@ public class PageAddressbook extends AbsTab {
 		    ContextMenuItem sub_cmi = null;
 		    zClick(contactLocator);
 		    //zKeyboard.zTypeCharacters(Shortcut.S_RIGHTCLICK.getKeys());
-			zRightClick(contactLocator);
+			zRightClickAt(contactLocator,"0,0");
 			
 			
 			if (option == Button.B_TAG) {
@@ -712,7 +716,8 @@ public class PageAddressbook extends AbsTab {
 		if ( action == Action.A_RIGHTCLICK ) {
 			ContextMenuItem cmi=null;
 								
-		    zRightClick(contactLocator);
+		    zRightClickAt(contactLocator,"0,0");
+		    
 		
 			if (option == Button.B_DELETE){
                 cmi=CONTEXT_MENU.CONTACT_DELETE;				
@@ -762,8 +767,9 @@ public class PageAddressbook extends AbsTab {
 		}
 		
 				
-		// Click option
-		zClick(locator);
+		// Click option		
+		zClickAt(locator,"0,0");
+		
 		zWaitForBusyOverlay();
 		
 		
@@ -828,7 +834,7 @@ public class PageAddressbook extends AbsTab {
 		}
 		else if (action == Action.A_RIGHTCLICK ) {
 			
-            this.zRightClick(contactLocator); 
+            zRightClickAt(contactLocator,"0,0"); 
             //zWaitForBusyOverlay();
     		return (new ContextMenu(MyApplication));			
 		}
