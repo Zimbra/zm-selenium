@@ -27,6 +27,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 
 		super.startingAccountPreferences = new HashMap<String, String>() {{
          put("zimbraPrefGroupMailBy", "conversation");
+         put("zimbraPrefReadingPaneLocation", "bottom");
      }};		
 		
 	}
@@ -408,7 +409,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 	}
 	
 	@Test(	description = "Right click then  click Find Emails->Sent To contact",
-			groups = { "smoke" })
+			groups = { "smokey" })
 	public void FindEmailsSentToContact() throws HarnessException {
 
 			
@@ -446,7 +447,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 	}
 	
 	@Test(	description = "Right click then  click Find Emails->Received From contact",
-				groups = { "smoke" })
+				groups = { "smokey" })
 	public void FindEmailsReceivedFromContact() throws HarnessException {
 
 	    //Create  email sent to this contacts	
