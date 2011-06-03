@@ -256,9 +256,9 @@ public class PageAddressbook extends AbsTab {
        	   //page = ???
 	    }
 
-       zWaitForBusyOverlay();
+      
 
-	   if ( locator == null )
+	    if ( locator == null )
 			throw new HarnessException("locator was null for button "+ button);
 
 		// Default behavior, process the locator by clicking on it
@@ -269,11 +269,11 @@ public class PageAddressbook extends AbsTab {
 			throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
 
 		// Click it
-		this.zClickAt(locator,"0,0");
+		zClickAt(locator,"0,0");
 		
 		if (isAlphabetButton(button)) {
  		  //for addressbook alphabet button only
-		  this.sClick(locator);
+		  sClick(locator);
 		}
 		zWaitForBusyOverlay();
 	
@@ -316,7 +316,10 @@ public class PageAddressbook extends AbsTab {
 		if ( (shortcut == Shortcut.S_NEWTAG) ){
 			page = new DialogTag(MyApplication,((AppAjaxClient) MyApplication).zPageAddressbook);	
 		}
-
+		else if ( (shortcut == Shortcut.S_MOVE) ){
+			page = new DialogMove(MyApplication, this);	
+			
+		} 
 		// Click it
 		zKeyboardTypeString(shortcut.getKeys());	
 		
