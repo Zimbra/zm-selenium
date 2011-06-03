@@ -95,7 +95,7 @@ public class DisplayContactGroup extends AbsDisplay {
 			 throw new HarnessException("Unable to find the field = "+ field +" using locator = "+ locator);
 		
 		   // Get the element value
-		    value += this.sGetText(locator).trim();		
+		    value += " " + this.sGetText(locator).trim();		
 		}
 		
 		logger.info("DisplayContactGroup.zGetContactProperty(" + field + ") = " + value);
@@ -111,11 +111,13 @@ public class DisplayContactGroup extends AbsDisplay {
 	
 
     private void getAllLocators(ArrayList<String> array, String postfix) {
-  	   String css= "css=div[id$='_content'][class='ZmContactInfoView'] table:nth-of-type(2) tbody tr";
+       String css= "css=div[id$='_content'][class='ZmContactInfoView'] table:nth-child(2) tbody tr";          
        int count= this.sGetCssCount(css);
 
        for (int i=1; i<=count; i++) {
-	     array.add( css + ":nth-of-type(" + i + ")" + " td[id$='_" + postfix + "']");
+    	  array.add( css + ":nth-child(" + i + ")" + " td[id$='_" + postfix + "']");
+       	
+    	    
        }
     }
 

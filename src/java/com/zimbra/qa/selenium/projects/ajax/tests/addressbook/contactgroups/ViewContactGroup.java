@@ -44,7 +44,7 @@ public class ViewContactGroup extends AjaxCommonTest  {
 	
     
 	@Test(	description = "View a contact group created via soap",
-			groups = { "functional" })
+			groups = { "functionaly" })
 	public void DisplayContactGroup_01() throws HarnessException {
 		         		
 	    // Create a contact group via Soap then select
@@ -54,9 +54,11 @@ public class ViewContactGroup extends AjaxCommonTest  {
 		DisplayContactGroup groupView = (DisplayContactGroup) app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.fileAs);
 	  
 		ZAssert.assertStringContains(groupView.zGetContactProperty(DisplayContactGroup.Field.Company), group.fileAs  , "Verify contact group email (" + group.fileAs + ") displayed");	
-		
+		    
+		String emails=groupView.zGetContactProperty(DisplayContactGroup.Field.Email);
+	    
 		for (int i=0; i<group.dlist.size(); i++) {
-	       ZAssert.assertStringContains(groupView.zGetContactProperty(DisplayContactGroup.Field.Email), group.dlist.get(i), "Verify contact group email (" + group.dlist.get(i) + ") displayed");	
+	       ZAssert.assertStringContains(emails, group.dlist.get(i), "Verify contact group email (" + group.dlist.get(i) + ") displayed");	
 		}            
    	}
 
