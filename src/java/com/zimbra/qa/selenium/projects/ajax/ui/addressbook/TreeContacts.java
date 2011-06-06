@@ -177,7 +177,7 @@ public class TreeContacts extends AbsTree {
 		}
 		else {
  		  // Default behavior. Click the locator
-		  zClick(optionLocator);
+		  zClickAt(optionLocator,"0,0");
 		}
 
 		
