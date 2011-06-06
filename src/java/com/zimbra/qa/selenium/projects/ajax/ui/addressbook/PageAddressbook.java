@@ -445,25 +445,14 @@ public class PageAddressbook extends AbsTab {
 				throw new HarnessException("Button "+ pulldown +" option "+ option +" pulldownLocator "+ pulldownLocator +" not present!");
 			}
 
-			/*
-			//IE 9 browser
-			if (ClientSessionFactory.session().isBrowserIE(ClientSessionFactory.session().IE9))
-			{ 
-			  sClick(pulldownLocator);
-			 	
+			if (ClientSessionFactory.session().currentBrowserName().contains("IE")) {
+				//IE			
+				sClickAt(pulldownLocator,"0,0");
 			}
-			//IE 8 browser
-			if (ClientSessionFactory.session().isBrowserIE(ClientSessionFactory.session().IE9)) {				
-			  sMouseDown(pulldownLocator);
-		      sMouseUp(pulldownLocator);					
-			}
-			
 			else {
-			*/
-			sClickAt(pulldownLocator,"0,0");
-			
-			zClickAt(pulldownLocator,"0,0");
-			//}
+			    //others
+			    zClickAt(pulldownLocator,"0,0");
+			}
 			
 			zWaitForBusyOverlay();
 			
@@ -695,7 +684,8 @@ public class PageAddressbook extends AbsTab {
 			
         
 		// Click option
-		zClick(locator);
+        zClickAt(locator,"0,0");
+		
 		zWaitForBusyOverlay();
 		
 		
