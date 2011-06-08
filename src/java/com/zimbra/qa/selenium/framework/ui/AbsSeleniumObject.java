@@ -360,6 +360,19 @@ public abstract class AbsSeleniumObject {
 		logger.info("sGetNextSiblingId( " + id + ") = " + sibLingid);
 		return (sibLingid);
 	}
+	
+	/**
+	 * getPreviousSiblingId()
+	 * 
+	 * @param
+	 */
+	public String sGetPreviousSiblingId(String id) {
+		String sibLingid = ClientSessionFactory.session().selenium().getEval(
+				"this.browserbot.getUserWindow().document.getElementById('"
+						+ id + "')" + ".previousSibling.id");
+		logger.info("sGetPreviousSiblingId( " + id + ") = " + sibLingid);
+		return (sibLingid);
+	}
 
 	/**
 	 * DefaultSelenium.getSelectedId()
