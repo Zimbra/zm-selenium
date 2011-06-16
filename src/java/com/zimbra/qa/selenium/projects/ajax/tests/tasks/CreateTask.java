@@ -16,11 +16,8 @@ public class CreateTask extends AjaxCommonTest {
 
 	@SuppressWarnings("serial")
 	public CreateTask() {
-		// logger.info("New " + CreateDocument.class.getCanonicalName());
 		logger.info("New " + CreateTask.class.getCanonicalName());
-
 		super.startingPage = app.zPageTasks;
-
 		super.startingAccountPreferences = new HashMap<String , String>() {{
 			put("zimbraPrefComposeFormat", "html");
 		}};
@@ -31,7 +28,7 @@ public class CreateTask extends AjaxCommonTest {
 			public void CreateTask_01() throws HarnessException {
 
 		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "taskbody" + ZimbraSeleniumProperties.getUniqueString();
+		String body = "taskbody"+ ZimbraSeleniumProperties.getUniqueString();
 
 		// Click NEW button
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
@@ -42,11 +39,8 @@ public class CreateTask extends AjaxCommonTest {
 		taskNew.zSubmit();
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
-		logger.info(task.getName());
-		logger.info(task.gettaskBody());		
-
-		ZAssert.assertNotNull(task.getName(), "Verify the task subject is created");
-		ZAssert.assertNotNull(task.gettaskBody(), "Verify the task body");
+		ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
+		ZAssert.assertEquals(task.gettaskBody().trim(), body.trim(), "Verify the task body");
 
 	}
 
