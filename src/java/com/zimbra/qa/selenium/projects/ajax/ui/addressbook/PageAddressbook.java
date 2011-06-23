@@ -1,5 +1,6 @@
 package  com.zimbra.qa.selenium.projects.ajax.ui.addressbook;
 
+import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -406,7 +407,7 @@ public class PageAddressbook extends AbsTab {
 
 	   } else if ( pulldown == Button.B_NEW ) {
 		   pulldownLocator = "css=div#zb__CNS__NEW_MENU td#zb__CNS__NEW_MENU_dropdown";
-
+		   
 		   if ( option == Button.O_NEW_CONTACT ) {
 
 			    // TODO: Bug 58365 for Desktop
@@ -445,13 +446,15 @@ public class PageAddressbook extends AbsTab {
 				throw new HarnessException("Button "+ pulldown +" option "+ option +" pulldownLocator "+ pulldownLocator +" not present!");
 			}
 
-			if (ClientSessionFactory.session().currentBrowserName().contains("IE")) {
-				//IE			
-				sClickAt(pulldownLocator,"0,0");
+			//central coordinate "x,y" 
+			String center= sGetElementWidth(pulldownLocator)/2 + "," + sGetElementHeight(pulldownLocator)/2;
+			if (ClientSessionFactory.session().currentBrowserName().contains("MSIE")) {
+				//IE							
+				sClickAt(pulldownLocator,center);
 			}
 			else {
 			    //others
-			    zClickAt(pulldownLocator,"0,0");
+			    zClickAt(pulldownLocator,center);
 			}
 			
 			zWaitForBusyOverlay();
@@ -615,13 +618,39 @@ public class PageAddressbook extends AbsTab {
 				if (subOption == Button.O_TAG_NEWTAG) {
 					sub_cmi = CONTEXT_SUB_MENU.CONTACT_SUB_NEW_TAG;
 					page = new DialogTag(this.MyApplication, this);
+					
 				}
 				
 				else if (subOption == Button.O_TAG_REMOVETAG) {
 					sub_cmi = CONTEXT_SUB_MENU.CONTACT_SUB_REMOVE_TAG;
 					page = null;	
 				}
+		
+				this.sMouseMove(cmi.locator);
+				SleepUtil.sleepMedium();
 				
+				this.sMouseMoveAt(cmi.locator, "0,0");
+				SleepUtil.sleepMedium();
+				
+				this.sFireEvent(cmi.locator, "onblur");
+				this.sFireEvent(cmi.locator, "onclick");
+				try {
+				Robot robot = new Robot();
+                robot.mouseMove(this.sGetElementPositionTop(cmi.locator) + 5,
+                		this.sGetElementPositionLeft(cmi.locator) + 5);
+                robot.keyPress(KeyEvent.VK_DOWN);
+                robot.keyRelease(KeyEvent.VK_DOWN);
+                robot.keyPress(KeyEvent.VK_DOWN);
+                robot.keyRelease(KeyEvent.VK_DOWN);
+                robot.keyPress(KeyEvent.VK_DOWN);
+                robot.keyRelease(KeyEvent.VK_DOWN);
+                robot.keyPress(KeyEvent.VK_DOWN);
+                robot.keyRelease(KeyEvent.VK_DOWN);
+                
+				}
+				catch (Exception e) {
+					 logger.info(e.getMessage());
+				}
 				//For Chrome and Safari only
 				// as an alternative for sMouseOver(locator) 
 				zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
@@ -669,6 +698,7 @@ public class PageAddressbook extends AbsTab {
 			// Mouse over the option
 			sFocus(locator);
 			sMouseOver(locator);
+			
 	
 			id = sub_cmi.locator;
 			locator = "id="+ id;
