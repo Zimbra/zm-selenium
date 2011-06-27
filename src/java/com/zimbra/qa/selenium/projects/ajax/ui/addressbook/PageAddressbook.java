@@ -406,8 +406,11 @@ public class PageAddressbook extends AbsTab {
 	      }
 
 	   } else if ( pulldown == Button.B_NEW ) {
-		   pulldownLocator = "css=div#zb__CNS__NEW_MENU td#zb__CNS__NEW_MENU_dropdown";
-		   
+		   //the following locator fails to be clicked in IE on wdc machine zqa-089, 
+		   //probably due to complicated css??
+		   //pulldownLocator = "css=div#zb__CNS__NEW_MENU td#zb__CNS__NEW_MENU_dropdown";
+           		   
+		   pulldownLocator = "css=td#zb__CNS__NEW_MENU_dropdown";
 		   if ( option == Button.O_NEW_CONTACT ) {
 
 			    // TODO: Bug 58365 for Desktop
@@ -458,6 +461,7 @@ public class PageAddressbook extends AbsTab {
 			}
 			
 			zWaitForBusyOverlay();
+
 			
 			if ( optionLocator != null ) {
                 
