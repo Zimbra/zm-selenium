@@ -277,8 +277,12 @@ public class PageMail extends AbsTab {
 
 		} else if ( button == Button.B_GETMAIL || button == Button.B_LOADFEED ) {
 
-			locator = "css=td#CHECK_MAIL_left_icon";
-			
+			if ( zGetPropMailView() == PageMailView.BY_MESSAGE ) {
+				locator = "id="+ Locators.zGetMailIconBtnTVID;
+			} else {
+				locator = "id="+ Locators.zGetMailIconBtnCLVID;
+			}
+
 		} else if ( button == Button.B_DELETE ) {
 
 			String id;
