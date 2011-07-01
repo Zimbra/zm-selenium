@@ -559,7 +559,6 @@ public class PageAddressbook extends AbsTab {
 		String listLocator = "div#zv__CNS";				
 		String rowLocator = "div[id^='zli__CNS__']";
 		
-		
 	    ArrayList<String> arrayList = new ArrayList<String>();
 		
 		if ( !sIsElementPresent("css=" + listLocator) )
@@ -742,9 +741,7 @@ public class PageAddressbook extends AbsTab {
 
 		if ( action == Action.A_RIGHTCLICK ) {
 			ContextMenuItem cmi=null;
-								
-		    zRightClickAt(contactLocator,"0,0");
-		    
+					
 		
 			if (option == Button.B_DELETE){
                 cmi=CONTEXT_MENU.CONTACT_DELETE;				
@@ -756,7 +753,9 @@ public class PageAddressbook extends AbsTab {
             
 			else if (option == Button.B_EDIT) {
 				cmi=CONTEXT_MENU.CONTACT_EDIT;				 
-				page = newFormSelected();	
+				page = newFormSelected();
+				//click to select the only item 
+				zClickAt(contactLocator,"0,0");			    
 			}
 
 			else if (option == Button.B_NEW) {
@@ -779,7 +778,9 @@ public class PageAddressbook extends AbsTab {
 			else {
 				throw new HarnessException("option " + option + " not supported");
 			}
-			
+
+		    zRightClickAt(contactLocator,"0,0");
+
 			id = cmi.locator;
 			locator = "id="+ id;
 
@@ -875,7 +876,7 @@ public class PageAddressbook extends AbsTab {
 
 	private AbsPage newFormSelected() throws HarnessException {
 	    AbsPage page = null;
-		ArrayList<String> selectedContactArrayList=getSelectedContactLocator();
+		ArrayList<String> selectedContactArrayList = getSelectedContactLocator();
 	
 	    if (selectedContactArrayList.size() == 0) {
 		  throw new HarnessException("No selected contact/contact group ");				
