@@ -64,8 +64,9 @@ public class TreeContacts extends AbsTree {
 				throw new HarnessException("Unable to locator folder in tree "+ locator);
 			}
 
-			this.zClick(locator);
-			SleepUtil.sleepSmall();
+			zClick(locator);
+			zWaitForBusyOverlay();
+			
 			page = null;
 		}  
 		else if ( action == Action.A_RIGHTCLICK ) {
