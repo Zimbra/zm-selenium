@@ -145,14 +145,14 @@ public class PageAddressbook extends AbsTab {
 
 		// Get each contact's data from the table list
 		for (int i = 1; i <= count; i++) {
-			String commonLocator = "css=div[id='zv__CNS'] div:nth-child("+ i +")";
+			String commonLocator = "css=div[id='zv__CNS']>div:nth-child("+ i +")";
 
 			String contactType = getContactType(commonLocator);
 		    
 			ContactItem ci=null;
 			String contactDisplayedLocator = commonLocator + " table tbody tr td:nth-child(3)";
 			String fileAs = ClientSessionFactory.session().selenium().getText(contactDisplayedLocator);
-			
+			logger.info(" Found " + fileAs);
 			//check if it is a contact or a contactgroup item
 			if ( contactType.equals(ContactGroupItem.IMAGE_CLASS)) {
                 ci=new ContactGroupItem(fileAs);
