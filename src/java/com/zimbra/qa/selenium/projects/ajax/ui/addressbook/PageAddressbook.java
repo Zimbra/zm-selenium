@@ -629,49 +629,54 @@ public class PageAddressbook extends AbsTab {
 					page = null;	
 				}
 		
-				this.sMouseMove(cmi.locator);
-				SleepUtil.sleepMedium();
+		//		if (ClientSessionFactory.session().currentBrowserName().contains("AppleWebKit")) {
+					// as an alternative for sMouseOver(locator) 
+					zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+					zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+					zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+					
+					ArrayList<String> selectedContactArrayList=getSelectedContactLocator();			
+			        String contactType = getContactType(selectedContactArrayList.get(0));
 				
-				this.sMouseMoveAt(cmi.locator, "0,0");
-				SleepUtil.sleepMedium();
+			        //check if it is a contact 
+	                if (  contactType.equals(ContactItem.IMAGE_CLASS) ) {
+	    				zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+	    				zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+	    				zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+				    }
+					
+					zKeyboard.zTypeKeyEvent(KeyEvent.VK_RIGHT);					
+			//	}
+				/*else {
+			    sMouseMove(cmi.locator);
+			  SleepUtil.sleepMedium();
 				
-				this.sFireEvent(cmi.locator, "onblur");
-				this.sFireEvent(cmi.locator, "onclick");
-				try {
-				Robot robot = new Robot();
-                robot.mouseMove(this.sGetElementPositionTop(cmi.locator) + 5,
-                		this.sGetElementPositionLeft(cmi.locator) + 5);
-                robot.keyPress(KeyEvent.VK_DOWN);
-                robot.keyRelease(KeyEvent.VK_DOWN);
-                robot.keyPress(KeyEvent.VK_DOWN);
-                robot.keyRelease(KeyEvent.VK_DOWN);
-                robot.keyPress(KeyEvent.VK_DOWN);
-                robot.keyRelease(KeyEvent.VK_DOWN);
-                robot.keyPress(KeyEvent.VK_DOWN);
-                robot.keyRelease(KeyEvent.VK_DOWN);
-                
-				}
-				catch (Exception e) {
-					 logger.info(e.getMessage());
-				}
-				//For Chrome and Safari only
-				// as an alternative for sMouseOver(locator) 
-				zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
-				zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
-				zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+				sMouseMoveAt(cmi.locator, "0,0");
+				  SleepUtil.sleepMedium();
 				
-				ArrayList<String> selectedContactArrayList=getSelectedContactLocator();			
-		        String contactType = getContactType(selectedContactArrayList.get(0));
-			
-		        //check if it is a contact 
-                if (  contactType.equals(ContactItem.IMAGE_CLASS) ) {
-    				zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
-    				zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
-    				zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
-			    }
-				
-				zKeyboard.zTypeKeyEvent(KeyEvent.VK_RIGHT);
-				
+				  sFireEvent(cmi.locator, "onblur");
+				  sFireEvent(cmi.locator, "onclick");
+				  
+				  try {
+				    Robot robot = new Robot();
+                    robot.mouseMove(sGetElementPositionTop(cmi.locator) + 5,
+                		            sGetElementPositionLeft(cmi.locator) + 5);
+                    robot.keyPress(KeyEvent.VK_DOWN);
+                    robot.keyRelease(KeyEvent.VK_DOWN);
+	                robot.keyPress(KeyEvent.VK_DOWN);
+	                robot.keyRelease(KeyEvent.VK_DOWN);
+	                robot.keyPress(KeyEvent.VK_DOWN);
+	                robot.keyRelease(KeyEvent.VK_DOWN);
+	                robot.keyPress(KeyEvent.VK_DOWN);
+	                robot.keyRelease(KeyEvent.VK_DOWN);
+	                
+				  }
+				  catch (Exception e) {
+					logger.info(e.getMessage());
+				  }
+				//}
+				// */	
+				 
 			}
 			else if (option == Button.B_SEARCH) {
 				cmi=CONTEXT_MENU.CONTACT_SEARCH;
