@@ -507,12 +507,12 @@ public class PageMail extends AbsTab {
 			
 			if (option == Button.O_NEW_TAG) {
 				
-				optionLocator = "css=td[id$='__NEW_MENU_NEW_TAG_left_icon']>div[class='ImgNewTag']";
+				optionLocator = "css=tr[id='POPUP_NEW_TAG'] div[class='ImgNewTag']";
 				page = new DialogTag(this.MyApplication, this);
 				
 			} else if (option == Button.O_NEW_FOLDER) {
 				
-				optionLocator = "css=td[id$='__NEW_MENU_NEW_FOLDER_left_icon']>div[class='ImgNewFolder']";
+				optionLocator = "css=tr[id='POPUP_NEW_FOLDER'] div[class='ImgNewFolder']";
 				page = new DialogCreateFolder(this.MyApplication, this);
 
 			}
