@@ -319,7 +319,7 @@ public abstract class AbsPage extends AbsSeleniumObject {
 
 		    public void type(String characters) {
 		    	logger.info("type("+ characters +")");
-		    	if (characters.equals("<DEL>")) {
+		    	if (characters.equals("<Delete>")) {
 		    	   doType(KeyEvent.VK_DELETE);
 		    	} else {
 		    	   for (char c : characters.toCharArray()) {
