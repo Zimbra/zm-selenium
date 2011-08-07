@@ -147,7 +147,8 @@ public class PageAddressbook extends AbsTab {
 		for (int i = 1; i <= count; i++) {
 			String commonLocator = "css=div[id='zv__CNS']>div:nth-child("+ i +")";
 
-			String contactType = getContactType(commonLocator +  ">table>tbody>tr>td:nth-child(2)>center");
+			//String contactType = getContactType(commonLocator +  ">table>tbody>tr>td:nth-child(2)>center");
+			String contactType = getContactType(commonLocator);
 		    
 			ContactItem ci=null;
 			String contactDisplayedLocator = commonLocator + ">table>tbody>tr>td:nth-child(3)";
