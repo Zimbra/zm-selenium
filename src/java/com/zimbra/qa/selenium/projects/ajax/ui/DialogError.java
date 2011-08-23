@@ -21,6 +21,11 @@ public class DialogError extends DialogWarning {
 		 */
 		public static DialogErrorID Zimbra = new DialogErrorID("ErrorDialog");
 
+		/**
+		 * http://wiki.zimbra.com/wiki/File:ZimbraSeleniumScreenshotPopups1.jpeg
+		 */
+		public static DialogErrorID ZmMsgDialog = new DialogErrorID("ZmMsgDialog");
+
 		protected DialogErrorID(String id) {
 			super(id);
 		}
