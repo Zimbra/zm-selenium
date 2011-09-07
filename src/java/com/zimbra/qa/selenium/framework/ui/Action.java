@@ -40,7 +40,6 @@ public class Action {
 	public static final Action A_DOUBLECLICK = new Action("A_DOUBLECLICK");
 	public static final Action A_CHECKBOX = new Action("A_CHECK");
 
-
 	// Mail page actions
 	public static final Action A_MAIL_CHECKBOX = new Action("A_MAIL_CHECKBOX");
 	public static final Action A_MAIL_UNCHECKBOX = new Action("A_MAIL_UNCHECKBOX");
