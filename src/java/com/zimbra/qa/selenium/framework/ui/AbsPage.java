@@ -321,6 +321,8 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		    	logger.info("type("+ characters +")");
 		    	if (characters.equals("<Delete>")) {
 		    	   doType(KeyEvent.VK_DELETE);
+		    	} else if (characters.equals("<ESC>")) {
+		    	   doType(KeyEvent.VK_ESCAPE);
 		    	} else {
 		    	   for (char c : characters.toCharArray()) {
 		    	      type(c);
