@@ -316,6 +316,9 @@ public class GeneralUtility {
    public static void syncDesktopToZcsWithSoap(ZimbraAccount account)
    throws HarnessException {
       if (ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP) {
+         Stafpostqueue sp = new Stafpostqueue();
+         sp.waitForPostqueue();
+
          String request =
                "<SyncRequest xmlns=\"urn:zimbraOffline\"/>";
 
@@ -323,7 +326,6 @@ public class GeneralUtility {
                SOAP_DESTINATION_HOST_TYPE.CLIENT,
                account.EmailAddress);
 
-         Stafpostqueue sp = new Stafpostqueue();
          sp.waitForPostqueue();
 
       }
