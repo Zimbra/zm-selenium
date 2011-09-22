@@ -69,6 +69,7 @@ public class CreateFolder extends AjaxCommonTest {
 
 	   // Force-sync
       GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
+      app.zPageMain.zWaitForDesktopLoadingSpinner(5000);
       
       // Make sure the folder was created on the Desktop Server
       FolderItem desktopFolder = FolderItem.importFromSOAP(app
@@ -76,14 +77,15 @@ public class CreateFolder extends AjaxCommonTest {
             SOAP_DESTINATION_HOST_TYPE.CLIENT,
             app.zGetActiveAccount().EmailAddress);
 
-      ZAssert.assertNotNull(desktopFolder, "Verify the new form opened");
+      ZAssert.assertNotNull(desktopFolder, "Verify the folder is created on ZD Client");
       ZAssert.assertEquals(desktopFolder.getName(), _folderName,
       "Verify the server and client folder names match");
 
       // Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),
 		      _folderName);
-		ZAssert.assertNotNull(folder, "Verify the new folder was created");
+
+      ZAssert.assertNotNull(folder, "Verify the new folder was created");
 
 		ZAssert.assertEquals(folder.getName(), _folderName,
 				"Verify the server and client folder names match");
@@ -115,7 +117,7 @@ public class CreateFolder extends AjaxCommonTest {
 		      SOAP_DESTINATION_HOST_TYPE.CLIENT,
 		      app.zGetActiveAccount().EmailAddress);
 		
-		ZAssert.assertNotNull(desktopFolder, "Verify the new form opened");
+		ZAssert.assertNotNull(desktopFolder, "Verify the folder is created on ZD Client");
 		ZAssert.assertEquals(desktopFolder.getName(), _folderName,
 		"Verify the server and client folder names match");
 
@@ -147,14 +149,15 @@ public class CreateFolder extends AjaxCommonTest {
 
       // Force-sync
       GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
-      
+      app.zPageMain.zWaitForDesktopLoadingSpinner(5000);
+
       // Make sure the folder was created on the Desktop Server
       FolderItem desktopFolder = FolderItem.importFromSOAP(app
             .zGetActiveAccount(), _folderName,
             SOAP_DESTINATION_HOST_TYPE.CLIENT,
             app.zGetActiveAccount().EmailAddress);
       
-      ZAssert.assertNotNull(desktopFolder, "Verify the new form opened");
+      ZAssert.assertNotNull(desktopFolder, "Verify the folder is created on ZD Client");
       ZAssert.assertEquals(desktopFolder.getName(), _folderName,
       "Verify the server and client folder names match");
 
@@ -274,7 +277,7 @@ public class CreateFolder extends AjaxCommonTest {
             SOAP_DESTINATION_HOST_TYPE.CLIENT,
             app.zGetActiveAccount().EmailAddress);
 
-      ZAssert.assertNotNull(desktopFolder, "Verify the new form opened");
+      ZAssert.assertNotNull(desktopFolder, "Verify the folder is created on ZD Client");
       ZAssert.assertEquals(desktopFolder.getName(), _folderName,
       "Verify the server and client folder names match");
 
@@ -282,9 +285,21 @@ public class CreateFolder extends AjaxCommonTest {
       FolderItem folder = FolderItem.importFromSOAP(zcsAccount,
             _folderName);
 
+      // The reason why not using folderItem variable as it has been created above is
+      // because the ID in ZD might be different than ID in ZCS, thus capturing different object
+      // specifally for ZCS server (for example ID in 8.x is different than ID in 7.x and before)
+      FolderItem zcsParentFolderItem = FolderItem.importFromSOAP(zcsAccount,
+            FolderItem.SystemFolder.Inbox);
+
       ZAssert.assertNotNull(folder, "Verify the new form opened");
       ZAssert.assertEquals(folder.getName(), _folderName,
             "Verify the server and client folder names match");
+      ZAssert.assertEquals(folder.getParentId(), zcsParentFolderItem.getId(),
+            "Verify the parent folder ID on ZCS server matches");
+      ZAssert.assertEquals(folder.getParentFolder(zcsAccount,
+            SOAP_DESTINATION_HOST_TYPE.SERVER, null).getName(),
+            zcsParentFolderItem.getName(),
+            "Verify the parent folder on ZCS server matches");
 	}
 
 	@Test(description = "Create Inbox's subfolder for POP Zimbra Account through ZD", groups = { "functional" })
@@ -333,7 +348,7 @@ public class CreateFolder extends AjaxCommonTest {
 	         SOAP_DESTINATION_HOST_TYPE.CLIENT,
 	         app.zGetActiveAccount().EmailAddress);
 
-	   ZAssert.assertNotNull(desktopFolder, "Verify the new form opened");
+	   ZAssert.assertNotNull(desktopFolder, "Verify the folder is created on ZD Client");
 	   ZAssert.assertEquals(desktopFolder.getName(), _folderName,
 	         "Verify the server and client folder names match");
 
@@ -351,7 +366,7 @@ public class CreateFolder extends AjaxCommonTest {
 	   ZAssert.assertNull(folder, "Verify the folder in ZCS server is not created");
 	}
 
-	@Test(description = "Create mail folder for IMAP Zimbra Account through ZD", groups = { "functional2" })
+	@Test(description = "Create mail folder for IMAP Zimbra Account through ZD", groups = { "functional" })
 	public void CreateMailFolderImapZimbraAccountThroughZD()
 	throws HarnessException {
 	   app.zPageLogin.zNavigateTo();
@@ -397,7 +412,7 @@ public class CreateFolder extends AjaxCommonTest {
 	         SOAP_DESTINATION_HOST_TYPE.CLIENT,
 	         app.zGetActiveAccount().EmailAddress);
 
-	   ZAssert.assertNotNull(desktopFolder, "Verify the new form opened");
+	   ZAssert.assertNotNull(desktopFolder, "Verify the folder is created on ZD Client");
 	   ZAssert.assertEquals(desktopFolder.getName(), _folderName,
 	         "Verify the server and client folder names match");
 
@@ -405,12 +420,24 @@ public class CreateFolder extends AjaxCommonTest {
 	   FolderItem folder = FolderItem.importFromSOAP(zcsAccount,
 	         _folderName);
 
+	   // The reason why not using folderItem variable as it has been created above is
+	   // because the ID in ZD might be different than ID in ZCS, thus capturing different object
+	   // specifally for ZCS server (for example ID in 8.x is different than ID in 7.x and before)
+	   FolderItem zcsParentFolderItem = FolderItem.importFromSOAP(zcsAccount,
+            FolderItem.SystemFolder.UserRoot);
+
 	   ZAssert.assertNotNull(folder, "Verify the new form opened");
 	   ZAssert.assertEquals(folder.getName(), _folderName,
 	         "Verify the server and client folder names match");
+	   ZAssert.assertEquals(folder.getParentId(), zcsParentFolderItem.getId(),
+	         "Verify the parent folder ID on ZCS server matches");
+	   ZAssert.assertEquals(folder.getParentFolder(zcsAccount,
+	         SOAP_DESTINATION_HOST_TYPE.SERVER, null).getName(),
+	         zcsParentFolderItem.getName(),
+            "Verify the parent folder on ZCS server matches");
 	}
 
-	@Test(description = "Create mail folder for POP Zimbra Account through ZD", groups = { "functional2" })
+	@Test(description = "Create mail folder for POP Zimbra Account through ZD", groups = { "functional" })
 	public void CreateMailFolderPopZimbraAccountThroughZD()
 	throws HarnessException {
 	   app.zPageLogin.zNavigateTo();
@@ -456,7 +483,7 @@ public class CreateFolder extends AjaxCommonTest {
 	         SOAP_DESTINATION_HOST_TYPE.CLIENT,
 	         app.zGetActiveAccount().EmailAddress);
 
-	   ZAssert.assertNotNull(desktopFolder, "Verify the new form opened");
+	   ZAssert.assertNotNull(desktopFolder, "Verify the folder is created on ZD Client");
 	   ZAssert.assertEquals(desktopFolder.getName(), _folderName,
 	         "Verify the server and client folder names match");
 
