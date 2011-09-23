@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
- * 
+ *
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011 VMware, Inc.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.3 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
- * 
+ *
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.desktop.tests.mail.folders;
@@ -70,7 +70,7 @@ public class CreateFolder extends AjaxCommonTest {
 	   // Force-sync
       GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
       app.zPageMain.zWaitForDesktopLoadingSpinner(5000);
-      
+
       // Make sure the folder was created on the Desktop Server
       FolderItem desktopFolder = FolderItem.importFromSOAP(app
             .zGetActiveAccount(), _folderName,
@@ -110,13 +110,13 @@ public class CreateFolder extends AjaxCommonTest {
 		// Force-sync
 		GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
 		app.zPageMain.zWaitForDesktopLoadingSpinner(5000);
-		
+
 		// Make sure the folder was created on the Desktop Server
 		FolderItem desktopFolder = FolderItem.importFromSOAP(app
 		      .zGetActiveAccount(), _folderName,
 		      SOAP_DESTINATION_HOST_TYPE.CLIENT,
 		      app.zGetActiveAccount().EmailAddress);
-		
+
 		ZAssert.assertNotNull(desktopFolder, "Verify the folder is created on ZD Client");
 		ZAssert.assertEquals(desktopFolder.getName(), _folderName,
 		"Verify the server and client folder names match");
@@ -156,26 +156,26 @@ public class CreateFolder extends AjaxCommonTest {
             .zGetActiveAccount(), _folderName,
             SOAP_DESTINATION_HOST_TYPE.CLIENT,
             app.zGetActiveAccount().EmailAddress);
-      
+
       ZAssert.assertNotNull(desktopFolder, "Verify the folder is created on ZD Client");
       ZAssert.assertEquals(desktopFolder.getName(), _folderName,
-      "Verify the server and client folder names match");
+            "Verify the server and client folder names match");
 
-      // Make sure the folder was created on the server
-		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),_folderName);
-		ZAssert.assertNotNull(folder, "Verify the new folder was created");
+      // Make sure the folder was created on the ZCS server
+	  FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),_folderName);
+	  ZAssert.assertNotNull(folder, "Verify the new folder was created");
 
-		ZAssert.assertEquals(folder.getName(), _folderName,
-				"Verify the server and client folder names match");
+	  ZAssert.assertEquals(folder.getName(), _folderName,
+	        "Verify the server and client folder names match");
 
 	}
 
 
 	@Test(description = "Create a new folder for RSS/ATOM feeds", groups = { "functional" })
-	public void CreateRSSFolder_05() throws HarnessException {
+	public void CreateRSSFolder_05() throws HarnessException, MalformedURLException {
 
 	   Shortcut shortcut = Shortcut.S_NEWFOLDER;
-	   String rssurl="http://feeds.feedburner.com/zimbra";
+	   String rssUrl="http://feeds.feedburner.com/zimbra";
 	   // Set the new folder name
 	   _folderName = "folderRSS" + ZimbraSeleniumProperties.getUniqueString();
 
@@ -187,12 +187,7 @@ public class CreateFolder extends AjaxCommonTest {
 	   // TODO: does a folder in the tree need to be selected?
 	   dialog.zEnterFolderName(_folderName);
 	   dialog.zClickSubscribeFeed(true);
-	   try{ 
-	      dialog.zEnterFeedURL(new URL(rssurl));
-	   } catch(MalformedURLException e) {
-	      logger.info("Incorrect URL specified" +e);
-	   }
-
+	   dialog.zEnterFeedURL(new URL(rssUrl));
 	   dialog.zClickButton(Button.B_OK);
 
 	   // Force-sync
@@ -207,6 +202,10 @@ public class CreateFolder extends AjaxCommonTest {
 
 	   ZAssert.assertNotNull(desktopFolder, "Verify the new RSS folder got created");
 
+	   //Make sure the folder was created on the Desktop Server from UI perspective
+	   System.out.println(app.zPageMail.zGetFolderLocator(_folderName));
+	   ZAssert.assertEquals(app.zPageMail.sIsElementPresent(app.zPageMail.zGetFolderLocator(_folderName)), true, "Verify meeting is deleted from organizer's calendar");
+
 	   // Make sure the folder was created on the ZCS server
 	   FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), _folderName);
 	   ZAssert.assertNotNull(folder, "Verify the new RSS folder was created");
@@ -219,7 +218,7 @@ public class CreateFolder extends AjaxCommonTest {
 	   String url = app.zGetActiveAccount().soapSelectValue("//mail:folder[@name='" + folder.getName() + "']", "url");
 
 	   // Only RSS folder has url attribute , so if its equal , it asserts the RSS folder creation
-	   ZAssert.assertEquals(url,rssurl, "Verify the url of the rss folder correct");
+	   ZAssert.assertEquals(url,rssUrl, "Verify the url of the rss folder correct");
 	}
 
 	private void _nonZimbraAccountSetup(ZimbraAccount account) throws HarnessException {
