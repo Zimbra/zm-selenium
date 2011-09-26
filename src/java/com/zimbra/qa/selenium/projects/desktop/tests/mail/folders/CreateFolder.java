@@ -501,7 +501,7 @@ public class CreateFolder extends AjaxCommonTest {
 	   ZAssert.assertNull(folder, "Verify the folder in ZCS server is not created");
 	}
 
-	@Test(description = "Create Inbox's subfolder for IMAP Zimbra Account through ZD", groups = { "functional2" })
+	@Test(description = "Create Inbox's subfolder for IMAP Zimbra Account through ZD", groups = { "functional" })
 	public void CreateInboxSubfolderImapZimbraAccountThroughZCS()
 	throws HarnessException {
 	   app.zPageLogin.zNavigateTo();
@@ -567,7 +567,7 @@ public class CreateFolder extends AjaxCommonTest {
 	         inboxZD.getName(), "Verify the parent folder on ZD server matches");
 	}
 
-	@Test(description = "Create mail folder for IMAP Zimbra Account through ZCS", groups = { "functional2" })
+	@Test(description = "Create mail folder for IMAP Zimbra Account through ZCS", groups = { "functional" })
 	public void CreateMailFolderImapZimbraAccountThroughZCS()
 	throws HarnessException {
 	   app.zPageLogin.zNavigateTo();
