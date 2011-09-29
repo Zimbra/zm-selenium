@@ -29,6 +29,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount.SOAP_DESTINATION_HOST_TYPE;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
 import com.zimbra.qa.selenium.projects.desktop.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.desktop.ui.PageMain;
 import com.zimbra.qa.selenium.projects.desktop.ui.mail.DialogCreateFolder;
 
 public class CreateFolder extends AjaxCommonTest {
@@ -53,12 +54,10 @@ public class CreateFolder extends AjaxCommonTest {
 
 	@Test(description = "Create a new folder using keyboard shortcuts", groups = { "functional" })
 	public void CreateFolder_02() throws HarnessException {
-
 		Shortcut shortcut = Shortcut.S_NEWFOLDER;
 
 		// Set the new folder name
 		_folderName = "folder" + ZimbraSeleniumProperties.getUniqueString();
-
 		DialogCreateFolder dialog = (DialogCreateFolder) app.zPageMail
 				.zKeyboardShortcut(shortcut);
 		ZAssert.assertNotNull(dialog, "Verify the new dialog opened");
@@ -77,35 +76,29 @@ public class CreateFolder extends AjaxCommonTest {
             .zGetActiveAccount(), _folderName,
             SOAP_DESTINATION_HOST_TYPE.CLIENT,
             app.zGetActiveAccount().EmailAddress);
-
-      ZAssert.assertNotNull(desktopFolder, "Verify the folder is created on ZD Client");
+	  ZAssert.assertNotNull(desktopFolder, "Verify the folder is created on ZD Client");
       ZAssert.assertEquals(desktopFolder.getName(), _folderName,
       "Verify the server and client folder names match");
 
       // Make sure the folder was created on the ZCS server
-		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),
+      FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),
 		      _folderName);
-
-      ZAssert.assertNotNull(folder, "Verify the new folder was created");
-
-		ZAssert.assertEquals(folder.getName(), _folderName,
+	  ZAssert.assertNotNull(folder, "Verify the new folder was created");
+      ZAssert.assertEquals(folder.getName(), _folderName,
 				"Verify the server and client folder names match");
 	}
 
 	@Test(description = "Create a new folder using context menu from root folder", groups = { "functional" })
 	public void CreateFolder_03() throws HarnessException {
 		_folderName = "folder" + ZimbraSeleniumProperties.getUniqueString();
-
 		FolderItem folderItem = FolderItem.importFromSOAP(app
 				.zGetActiveAccount(), FolderItem.SystemFolder.UserRoot,
 				_soapDestination, app.zGetActiveAccount().EmailAddress);
 		DialogCreateFolder createFolderDialog = (DialogCreateFolder) app.zPageMail
 				.zListItem(Action.A_RIGHTCLICK, Button.B_TREE_NEWFOLDER,
 						folderItem);
-
 		createFolderDialog.zEnterFolderName(_folderName);
 		createFolderDialog.zClickButton(Button.B_OK);
-
 		_folderIsCreated = true;
 
 		// Force-sync
@@ -117,14 +110,12 @@ public class CreateFolder extends AjaxCommonTest {
 		      .zGetActiveAccount(), _folderName,
 		      SOAP_DESTINATION_HOST_TYPE.CLIENT,
 		      app.zGetActiveAccount().EmailAddress);
-
 		ZAssert.assertNotNull(desktopFolder, "Verify the folder is created on ZD Client");
 		ZAssert.assertEquals(desktopFolder.getName(), _folderName,
 		"Verify the server and client folder names match");
 
 		// Make sure the folder was created on the ZCS server
-		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),
-				_folderName);
+		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), _folderName);
 		ZAssert.assertNotNull(folder, "Verify the new form opened");
 		ZAssert.assertEquals(folder.getName(), _folderName,
 				"Verify the server and client folder names match");
@@ -132,7 +123,6 @@ public class CreateFolder extends AjaxCommonTest {
 
 	@Test(description = "Create a new folder using mail app New -> New Folder", groups = { "sanity" })
 	public void CreateFolder_04() throws HarnessException {
-
 		// Set the new folder name
 	   _folderName = "folder" + ZimbraSeleniumProperties.getUniqueString();
 
@@ -145,7 +135,6 @@ public class CreateFolder extends AjaxCommonTest {
 		// TODO: does a folder in the tree need to be selected?
 		dialog.zEnterFolderName(_folderName);
 		dialog.zClickButton(Button.B_OK);
-
 		_folderIsCreated = true;
 
       // Force-sync
@@ -157,7 +146,6 @@ public class CreateFolder extends AjaxCommonTest {
             .zGetActiveAccount(), _folderName,
             SOAP_DESTINATION_HOST_TYPE.CLIENT,
             app.zGetActiveAccount().EmailAddress);
-
       ZAssert.assertNotNull(desktopFolder, "Verify the folder is created on ZD Client");
       ZAssert.assertEquals(desktopFolder.getName(), _folderName,
             "Verify the server and client folder names match");
@@ -165,62 +153,59 @@ public class CreateFolder extends AjaxCommonTest {
       // Make sure the folder was created on the ZCS server
 	  FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),_folderName);
 	  ZAssert.assertNotNull(folder, "Verify the new folder was created");
-
 	  ZAssert.assertEquals(folder.getName(), _folderName,
 	        "Verify the server and client folder names match");
-
 	}
 
 
 	@Test(description = "Create a new folder for RSS/ATOM feeds", groups = { "functional" })
-	public void CreateRSSFolder_05() throws HarnessException, MalformedURLException {
+		public void CreateRSSFolder_05() throws HarnessException {
+		Shortcut shortcut = Shortcut.S_NEWFOLDER;
+			// get feeds about latest builds for QA
+			String rssUrl="http://zqa-099.eng.vmware.com:8080/rssLatests";
+			// Set the new folder name
+			_folderName = "folderRSS" + ZimbraSeleniumProperties.getUniqueString();
+			DialogCreateFolder dialog = (DialogCreateFolder) app.zPageMail.zKeyboardShortcut(shortcut);
+			ZAssert.assertNotNull(dialog, "Verify the new dialog opened");
 
-	   Shortcut shortcut = Shortcut.S_NEWFOLDER;
-	   String rssUrl="http://feeds.feedburner.com/zimbra";
-	   // Set the new folder name
-	   _folderName = "folderRSS" + ZimbraSeleniumProperties.getUniqueString();
+			// Fill out the form with the basic details
+			// TODO: does a folder in the tree need to be selected?
+			dialog.zEnterFolderName(_folderName);
+			dialog.zClickSubscribeFeed(true);
+			try {
+				dialog.zEnterFeedURL(new URL(rssUrl));
+			} catch (MalformedURLException e) {
+				throw new HarnessException("Unable to build URL", e);
+			}
+			dialog.zClickButton(Button.B_OK);
 
-	   DialogCreateFolder dialog = (DialogCreateFolder) app.zPageMail
-	         .zKeyboardShortcut(shortcut);
-	   ZAssert.assertNotNull(dialog, "Verify the new dialog opened");
+		   // Force-sync
+	        GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
+			app.zPageMail.zWaitForDesktopLoadingSpinner(5000);
 
-	   // Fill out the form with the basic details
-	   // TODO: does a folder in the tree need to be selected?
-	   dialog.zEnterFolderName(_folderName);
-	   dialog.zClickSubscribeFeed(true);
-	   dialog.zEnterFeedURL(new URL(rssUrl));
-	   dialog.zClickButton(Button.B_OK);
-
-	   // Force-sync
-	   GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
-	   app.zPageMail.zWaitForDesktopLoadingSpinner(5000);
-
-	   // Make sure the folder was created on the Desktop Server
-	   FolderItem desktopFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),
-	         _folderName,
-	         SOAP_DESTINATION_HOST_TYPE.CLIENT,
-	         app.zGetActiveAccount().EmailAddress);
-
-	   ZAssert.assertNotNull(desktopFolder, "Verify the new RSS folder got created");
-
-	   //Make sure the folder was created on the Desktop Server from UI perspective
-	   System.out.println(app.zPageMail.zGetFolderLocator(_folderName));
-	   ZAssert.assertEquals(app.zPageMail.sIsElementPresent(app.zPageMail.zGetFolderLocator(_folderName)), true, "Verify meeting is deleted from organizer's calendar");
-
-	   // Make sure the folder was created on the ZCS server
-	   FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), _folderName);
-	   ZAssert.assertNotNull(folder, "Verify the new RSS folder was created");
-	   ZAssert.assertEquals(folder.getName(), _folderName,"Verify the server and client RSS folder names match");
-	   app.zGetActiveAccount().soapSend(
-	         "<GetFolderRequest xmlns='urn:zimbraMail'>"
-	         +		"<folder id='" + folder.getId() + "'/>"
+	      //Make sure the folder was created on the Desktop Server
+	        FolderItem desktopFolder = FolderItem.importFromSOAP(app
+	        .zGetActiveAccount(), _folderName,
+	        SOAP_DESTINATION_HOST_TYPE.CLIENT,
+	        app.zGetActiveAccount().EmailAddress);
+	        ZAssert.assertNotNull(desktopFolder, "Verify the new RSS folder got created");
+	        
+	        //Make sure the folder was created on the Desktop Server from UI perspective
+	        String folderLocator = PageMain.Locators.rssFolders.replace("<FOLDER_NAME>", _folderName);
+	        ZAssert.assertEquals(app.zPageMail.sIsElementPresent(folderLocator), true, "Verify RSS folder is created with the correct name");
+	        
+	      // Make sure the folder was created on the ZCS server
+			FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), _folderName);
+			ZAssert.assertNotNull(folder, "Verify the new RSS folder was created");
+			ZAssert.assertEquals(folder.getName(), _folderName, "Verify the server and client RSS folder names match");
+			app.zGetActiveAccount().soapSend(
+					"<GetFolderRequest xmlns='urn:zimbraMail'>"
+				+		"<folder id='" + folder.getId() + "'/>"
 				+	"</GetFolderRequest>");
-
-	   String url = app.zGetActiveAccount().soapSelectValue("//mail:folder[@name='" + folder.getName() + "']", "url");
-
-	   // Only RSS folder has url attribute , so if its equal , it asserts the RSS folder creation
-	   ZAssert.assertEquals(url,rssUrl, "Verify the url of the rss folder correct");
-	}
+			String url = app.zGetActiveAccount().soapSelectValue("//mail:folder[@name='" + folder.getName() + "']", "url");
+			// Only RSS folder has url attribute , so if its equal , it asserts the RSS folder creation
+			ZAssert.assertEquals(url, rssUrl, "Verify the url of the rss folder correct");
+		}
 
 	private void _nonZimbraAccountSetup(ZimbraAccount account) throws HarnessException {
 	   account.authenticateToMailClientHost();
@@ -230,6 +215,7 @@ public class CreateFolder extends AjaxCommonTest {
       app.zTreeMail.zExpandAll();
       app.zPageMain.zWaitForDesktopLoadingSpinner(5000);
 	}
+
 
 	@Test(description = "Create Inbox's subfolder for IMAP Zimbra Account through ZD", groups = { "smoke" })
 	public void CreateInboxSubfolderImapZimbraAccountThroughZD()
@@ -530,7 +516,7 @@ public class CreateFolder extends AjaxCommonTest {
 
 	   zcsAccount.soapSend(
             "<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-            "<folder name='"+ _folderName +"' l='"+ inbox.getId() +"'/>" +
+            "<folder name='"+ _folderName + "' l='"+ inbox.getId() + "'/>" +
             "</CreateFolderRequest>");
 
 	   // Make sure the folder was created on the ZCS server
@@ -593,7 +579,7 @@ public class CreateFolder extends AjaxCommonTest {
 
       zcsAccount.soapSend(
             "<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-            "<folder name='"+ _folderName +"' l='"+ inbox.getId() +"'/>" +
+            "<folder name='"+ _folderName + "' l='"+ inbox.getId() + "'/>" +
             "</CreateFolderRequest>");
 
       // Make sure the folder was created on the ZCS server
@@ -661,7 +647,7 @@ public class CreateFolder extends AjaxCommonTest {
 
 	   zcsAccount.soapSend(
 	         "<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-	         "<folder name='"+ _folderName +"' l='"+ userRoot.getId() +"'/>" +
+	         "<folder name='"+ _folderName + "' l='"+ userRoot.getId() + "'/>" +
 	         "</CreateFolderRequest>");
 
 	   // Make sure the folder was created on the ZCS server
@@ -724,7 +710,7 @@ public class CreateFolder extends AjaxCommonTest {
 
       zcsAccount.soapSend(
             "<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-            "<folder name='"+ _folderName +"' l='"+ userRoot.getId() +"'/>" +
+            "<folder name='"+ _folderName + "' l='"+ userRoot.getId() + "'/>" +
             "</CreateFolderRequest>");
 
       // Make sure the folder was created on the ZCS server

@@ -40,7 +40,7 @@ public class PageMain extends AbsTab {
 		public static final String zAppbarTasks			= "id=zb__App__Tasks_title";
 		public static final String zAppbarBriefcase		= "css=td[id='zb__App__Briefcase_left_icon']";
 		public static final String zAppbarPreferences	= "id=zb__App__Options_title";
-
+		public static final String rssFolders = "css=div[id$='main_Mail-parent-FOLDER'] div[class='DwtTreeItemLevel1ChildDiv'] div td:contains('<FOLDER_NAME>')";
 		// For Social tab, see Zimlet classes
 		
 	}
