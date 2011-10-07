@@ -753,7 +753,7 @@ public class CreateFolder extends AjaxCommonTest {
       ZAssert.assertNull(desktopFolder, "Verify the folder in ZD server is not created");
    }
 
-   @Test(description = "Create a new local folder using context menu", groups = { "functional" })
+   @Test(description = "Create a new local folder using context menu", groups = { "smoke" })
    public void createLocalMailFolderThroughContextMenu() throws HarnessException {
       _folderName = "folder" + ZimbraSeleniumProperties.getUniqueString();
 
@@ -786,7 +786,7 @@ public class CreateFolder extends AjaxCommonTest {
 
    }
 
-   @Test(description = "Create a new local subfolder using context menu", groups = { "functional" })
+   @Test(description = "Create a new local subfolder using context menu", groups = { "smoke" })
    public void createLocalMailSubfolderThroughContextMenu() throws HarnessException {
       _folderName = "folder" + ZimbraSeleniumProperties.getUniqueString();
 
@@ -835,7 +835,7 @@ public class CreateFolder extends AjaxCommonTest {
 
    }
 
-   @Test(description = "Create a new local folder through SOAP to ZD Client", groups = { "functional" })
+   @Test(description = "Create a new local folder through SOAP to ZD Client", groups = { "smoke" })
    public void createLocalMailFolderThroughSOAP() throws HarnessException {
       _folderName = "folder" + ZimbraSeleniumProperties.getUniqueString();
 
@@ -870,7 +870,7 @@ public class CreateFolder extends AjaxCommonTest {
 
    }
 
-   @Test(description = "Create a new local subfolder using SOAP request to ZD client", groups = { "functional" })
+   @Test(description = "Create a new local subfolder using SOAP request to ZD client", groups = { "smoke" })
    public void createLocalMailSubfolderThroughSOAP() throws HarnessException {
       _folderName = "folder" + ZimbraSeleniumProperties.getUniqueString();
 
