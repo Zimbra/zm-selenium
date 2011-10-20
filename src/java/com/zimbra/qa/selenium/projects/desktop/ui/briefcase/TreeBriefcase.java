@@ -5,16 +5,13 @@ package com.zimbra.qa.selenium.projects.desktop.ui.briefcase;
 
 import java.util.*;
 
-import org.openqa.selenium.remote.server.handler.interactions.MouseDown;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
+import com.zimbra.qa.selenium.projects.desktop.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.desktop.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.desktop.ui.briefcase.DialogCreateBriefcaseFolder;
-import com.zimbra.qa.selenium.projects.desktop.ui.briefcase.TreeBriefcase.Locators;
 import com.zimbra.qa.selenium.projects.desktop.ui.*;
 
 /**
