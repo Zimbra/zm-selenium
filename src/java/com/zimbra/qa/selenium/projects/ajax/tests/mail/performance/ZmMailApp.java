@@ -57,7 +57,6 @@ public class ZmMailApp extends AjaxCommonTest {
 		// Wait for the app to load
 		app.zPageMain.zWaitForActive();
 		
-		app.zPageMain.zLogout();
 		
 	}
 
