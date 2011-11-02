@@ -504,4 +504,15 @@ public class AjaxCommonTest {
 		logger.info("commonTestAfterMethod: finish");
 	}
 
+   /**
+    * Performance test after method
+    */
+   @AfterMethod(groups={"performance"})
+   public void performanceTestAfterMethod() {
+
+      // Resetting the account to flush after each performance test method,
+      // so that the next test is running with new account
+      ZimbraAccount.ResetAccountZWC();
+
+   }
 }
