@@ -120,12 +120,6 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 	
 	private STAFResult parseExecute(STAFCommandParseResult request, ExecuteHarnessMain harness) {
 		
-		// If specified, load the log4j property file first
-		// so that we start logging immediately
-		if (request.optionTimes(argLog4j) > 0 ) {
-        	PropertyConfigurator.configure(request.optionValue(argLog4j));
-		}
-		        
 
         // Convert the args to variables
         String valueServer = request.optionValue(argServer);
@@ -134,7 +128,8 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
         String valuePattern = request.optionValue(argPattern);
         String valueURL = request.optionValue(argDesktopURL);
         String valueLog = request.optionValue(argLog);
-        
+        harness.setTestOutputFolderName(valueLog);
+
         mLog.info("valueServer="+ valueServer);
         mLog.info("valueRoot="+ valueRoot);
         mLog.info("valueJarfile="+ valueJarfile);
@@ -142,6 +137,12 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
         mLog.info("valueURL="+ valueURL);
         mLog.info("valueLog="+ valueLog);
         
+		// If specified, load the log4j property file first
+		// so that we start logging immediately
+		if (request.optionTimes(argLog4j) > 0 ) {
+        	PropertyConfigurator.configure(request.optionValue(argLog4j));
+		}
+		        
         // Since multiple GROUP arguments can be specified, process each one
         ArrayList<String> valueGroup = new ArrayList<String>();
         for (int i = 1; i <= request.optionTimes(argGroup); i++) {
@@ -210,7 +211,6 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
         harness.jarfilename = valueJarfile;
         harness.classfilter = valuePattern;
         harness.groups = valueGroup;
-        harness.setTestOutputFolderName(valueLog);
 
 
 		// Done!
