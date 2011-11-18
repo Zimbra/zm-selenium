@@ -31,18 +31,22 @@ public class DialogCreateBriefcaseFolder extends AbsDialog {
 
 	public static class Locators {
 
-		public static final String zDialogId = "CreateNewFolderDialog";
+		public static final String zDialogId = "ChooseFolderDialog";
 
-		public static final String zTitleId = "CreateNewFolderDialog_title";
+		public static final String zTitleId = "ChooseFolderDialog_title";
 
-		public static final String zDialogContentId = "CreateNewFolderDialog_content";
+		public static final String zDialogContentId = "ChooseFolderDialog_content";
 
 		// TODO: Tree
-		public static final String zDialogInputId = "CreateNewFolderDialog_name";
-		public static final String zDialogInputLocator = "css=div[id='"
-				+ zDialogId + "'] input[id='" + zDialogInputId + "']";
-
-		public static final String zDialogButtonsId = "CreateNewFolderDialog_buttons";
+		public static final String zDialogInputId = "ChooseFolderDialog_inputDivId";
+		public static final String zDialogInputLocator = "css=div[id^=CreateNewFolderDialog]:contains(Create New Briefcase Folder) td>input.Field";
+	
+		// Textfields
+		public static final String zNameField = "css=div[id^=CreateNewFolderDialog]:contains(Create New Briefcase Folder) td>input.Field";
+		// Dialog buttons
+		public static final String zOkButton = "css=td[id^=OK] td[id^=CreateNewFolderDialog]:contains(OK)";									
+		public static final String zCancelButton = "css=td[id^=Cancel] td[id^=CreateNewFolderDialog]:contains(Cancel)";
+		public static final String zDialogButtonsId = "ChooseFolderDialog_buttons";
 
 	}
 
@@ -93,16 +97,16 @@ public class DialogCreateBriefcaseFolder extends AbsDialog {
 		String locator = null;
 
 		if (button == Button.B_OK) {
-
+	      locator = Locators.zOkButton;
 			// TODO: L10N this
-			locator = "//div[@id='" + Locators.zDialogId + "']//div[@id='"
-					+ Locators.zDialogButtonsId + "']//td[text()='OK']";
+			//locator = "//div[@id='" + Locators.zDialogId + "']//div[@id='"
+			//		+ Locators.zDialogButtonsId + "']//td[text()='OK']";
 
 		} else if (button == Button.B_CANCEL) {
-
+	        locator = Locators.zCancelButton;
 			// TODO: L10N this
-			locator = "//div[@id='" + Locators.zDialogId + "']//div[@id='"
-					+ Locators.zDialogButtonsId + "']//td[text()='Cancel']";
+			//locator = "//div[@id='" + Locators.zDialogId + "']//div[@id='"
+			//		+ Locators.zDialogButtonsId + "']//td[text()='Cancel']";
 
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
@@ -179,7 +183,7 @@ public class DialogCreateBriefcaseFolder extends AbsDialog {
 
 		if (folder == null)
 			throw new HarnessException("folder must not be null");
-
+		this.zWaitForBusyOverlay();
 		String locator = Locators.zDialogInputLocator;
 
 		if (!this.sIsElementPresent(locator))
