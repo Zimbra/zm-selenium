@@ -905,17 +905,19 @@ public class PageTasks extends AbsTab {
 	 */
 	public TaskItem findTask(String subject) throws HarnessException {
 	   Object[] params = {subject};
-	   return (TaskItem)GeneralUtility.waitFor(null, this, false, "browseTask", params,
-	         WAIT_FOR_OPERAND.NEQ, null, 30000, 1000);
+	   return (TaskItem)GeneralUtility.waitFor(null, this, false, "browseTask", params, WAIT_FOR_OPERAND.NEQ, null, 30000, 1000);
 	}
 	
 	public String  GetShowOrigBodyText(String EmailAddress, String calItemId) throws HarnessException{
 
 		try{
-			sOpenWindow(ZimbraSeleniumProperties.getBaseURL() + "/home/" + EmailAddress + "/Tasks/?id=" + calItemId + "&mime=text/plain&noAttach=1","ShowOrignal");
+		    String port = ZimbraDesktopProperties.getInstance().getConnectionPort();
+		    String host = ZimbraSeleniumProperties.getStringProperty("desktop.server.host", "localhost");
+			String ShowOriURL = "http://" + host + ":" + port + "/home/" + EmailAddress + "/Tasks/?id=" + calItemId + "&mime=text/plain&noAttach=1";
+			sOpenWindow(ShowOriURL, "ShowOrignal");
 			sWaitForPopUp("ShowOrignal", "3000");
 			sSelectWindow("ShowOrignal");
-			String showOrigBody=sGetBodyText().replaceAll("\\n", "").trim().replaceAll(" ", "");
+			String showOrigBody = sGetBodyText().replaceAll("\\n", "").trim().replaceAll(" ", "");
 			sClose();
 			return showOrigBody;
 
