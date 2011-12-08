@@ -64,8 +64,8 @@ public class CreateAccount extends AjaxCommonTest {
       stafzmtlsctl.setServerAccess(SERVER_ACCESS.BOTH);
       _sslIsModified = true;
 
-      DesktopAccountItem desktopAccountItem = app.zPageAddNewAccount.zAddZimbraAccountThruUI(ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password, true, "443");
+      DesktopAccountItem desktopAccountItem = app.zPageAddNewAccount.zAddZimbraAccountThruUI(ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password, true, "443");
 
       String message = app.zPageLogin.zGetMessage();
       ZAssert.assertStringContains(message, "Account added: " + desktopAccountItem.accountName, "Verify Account added message");
@@ -97,8 +97,8 @@ public class CreateAccount extends AjaxCommonTest {
       stafzmtlsctl.setServerAccess(SERVER_ACCESS.BOTH);
       _sslIsModified = true;
 
-      DesktopAccountItem desktopAccountItem = app.zPageAddNewAccount.zAddZimbraAccountThruUI(ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password, true, "443");
+      DesktopAccountItem desktopAccountItem = app.zPageAddNewAccount.zAddZimbraAccountThruUI(ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password, true, "443");
 
       String message = app.zPageLogin.zGetMessage();
       ZAssert.assertStringContains(message, "Account added: " + desktopAccountItem.accountName, "Verify Account added message");
@@ -123,8 +123,8 @@ public class CreateAccount extends AjaxCommonTest {
    @Test(description="Create Multiple Accounts (Zimbra) - Non SSL", groups = { "functional" })
    public void CreateMultipleZimbraAccountNonSSL() throws HarnessException {
 
-      DesktopAccountItem desktopAccountItem = app.zPageAddNewAccount.zAddZimbraAccountThruUI(ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password, false, "80");
+      DesktopAccountItem desktopAccountItem = app.zPageAddNewAccount.zAddZimbraAccountThruUI(ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password, false, "80");
 
       String message = app.zPageLogin.zGetMessage();
       ZAssert.assertStringContains(message, "Account added: " + desktopAccountItem.accountName, "Verify Account added message");
@@ -152,7 +152,7 @@ public class CreateAccount extends AjaxCommonTest {
       String wrongEmailAddress = ZimbraSeleniumProperties.getUniqueString();
       DesktopAccountItem desktopAccountItem = DesktopAccountItem.generateDesktopZimbraAccountItem(
             wrongEmailAddress,
-            ZimbraAccount.AccountZWC().Password,
+            ZimbraAccount.AccountZDC().Password,
             ZimbraSeleniumProperties.getStringProperty("server.port", "80"),
             false);
 
@@ -183,7 +183,7 @@ public class CreateAccount extends AjaxCommonTest {
       String wrongEmailAddress = ZimbraSeleniumProperties.getUniqueString() + "@";
       DesktopAccountItem desktopAccountItem = DesktopAccountItem.generateDesktopZimbraAccountItem(
             wrongEmailAddress,
-            ZimbraAccount.AccountZWC().Password,
+            ZimbraAccount.AccountZDC().Password,
             ZimbraSeleniumProperties.getStringProperty("server.port", "80"),
             false);
 
@@ -214,7 +214,7 @@ public class CreateAccount extends AjaxCommonTest {
       String wrongEmailAddress = ZimbraSeleniumProperties.getUniqueString() + "@testdomain.com";
       DesktopAccountItem desktopAccountItem = DesktopAccountItem.generateDesktopZimbraAccountItem(
             wrongEmailAddress,
-            ZimbraAccount.AccountZWC().Password,
+            ZimbraAccount.AccountZDC().Password,
             ZimbraSeleniumProperties.getStringProperty("server.port", "80"),
             false);
 
@@ -244,7 +244,7 @@ public class CreateAccount extends AjaxCommonTest {
 
       String wrongPassword = ZimbraSeleniumProperties.getUniqueString();
       DesktopAccountItem desktopAccountItem = DesktopAccountItem.generateDesktopZimbraAccountItem(
-            ZimbraAccount.AccountZWC().EmailAddress,
+            ZimbraAccount.AccountZDC().EmailAddress,
             wrongPassword,
             ZimbraSeleniumProperties.getStringProperty("server.port", "80"),
             false);
@@ -275,8 +275,8 @@ public class CreateAccount extends AjaxCommonTest {
 
       String wrongServer = "1.1.1.1";
       DesktopAccountItem desktopAccountItem = DesktopAccountItem.generateDesktopZimbraAccountItem(
-            ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password,
+            ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password,
             ZimbraSeleniumProperties.getStringProperty("server.port", "80"),
             wrongServer,
             false);
@@ -307,8 +307,8 @@ public class CreateAccount extends AjaxCommonTest {
    public void wrongNonSSLPortZimbraAccount() throws HarnessException {
       String nonSSLPort = "111";
       DesktopAccountItem desktopAccountItem = DesktopAccountItem.generateDesktopZimbraAccountItem(
-            ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password,
+            ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password,
             nonSSLPort,
             false);
 
@@ -338,8 +338,8 @@ public class CreateAccount extends AjaxCommonTest {
    public void wrongSSLPortZimbraAccount() throws HarnessException {
       String sslPort = "111";
       DesktopAccountItem desktopAccountItem = DesktopAccountItem.generateDesktopZimbraAccountItem(
-            ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password,
+            ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password,
             sslPort,
             true);
 
@@ -614,8 +614,8 @@ public class CreateAccount extends AjaxCommonTest {
       stafzmtlsctl.setServerAccess(SERVER_ACCESS.BOTH);
       _sslIsModified = true;
 
-      DesktopAccountItem desktopAccountItem = app.zPageAddNewAccount.zAddZimbraImapAccountThruUI(ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password,
+      DesktopAccountItem desktopAccountItem = app.zPageAddNewAccount.zAddZimbraImapAccountThruUI(ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password,
             ZimbraSeleniumProperties.getStringProperty("server.host", "localhost"),
             true,
             "465");
@@ -635,8 +635,8 @@ public class CreateAccount extends AjaxCommonTest {
       stafzmtlsctl.setServerAccess(SERVER_ACCESS.BOTH);
       _sslIsModified = true;
 
-      DesktopAccountItem desktopAccountItem = app.zPageAddNewAccount.zAddZimbraImapAccountThruUI(ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password,
+      DesktopAccountItem desktopAccountItem = app.zPageAddNewAccount.zAddZimbraImapAccountThruUI(ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password,
             ZimbraSeleniumProperties.getStringProperty("server.host", "localhost"),
             false,
             "25");
@@ -655,17 +655,17 @@ public class CreateAccount extends AjaxCommonTest {
    public void addZimbraImapNonSslAccount() throws HarnessException {
 
       DesktopAccountItem desktopAccountItem = DesktopAccountItem.generateDesktopImapAccountItem(
-            ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password,
+            ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password,
             ZimbraSeleniumProperties.getStringProperty("server.host", "localhost"),
             SECURITY_TYPE.NONE,
             null,
             ZimbraSeleniumProperties.getStringProperty("server.host", "localhost"),
             false,
             null,
-            ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password);
+            ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password);
 
       FormAddImapAccount accountForm = (FormAddImapAccount)app.
             zPageAddNewAccount.zDropDownListSelect(DROP_DOWN_OPTION.IMAP);
@@ -1121,8 +1121,8 @@ public class CreateAccount extends AjaxCommonTest {
    public void addDuplicatedZimbraImapAccount() throws HarnessException {
       // Adding the Zimbra IMAP account
       DesktopAccountItem desktopAccountItem = app.zPageAddNewAccount.zAddZimbraImapAccountThruUI(
-            ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password,
+            ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password,
             ZimbraSeleniumProperties.getStringProperty("server.host", "localhost"),
             true,
             "465");
@@ -1238,8 +1238,8 @@ public class CreateAccount extends AjaxCommonTest {
       stafzmtlsctl.setServerAccess(SERVER_ACCESS.BOTH);
       _sslIsModified = true;
 
-      DesktopAccountItem desktopAccountItem = app.zPageAddNewAccount.zAddZimbraPopAccountThruUI(ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password,
+      DesktopAccountItem desktopAccountItem = app.zPageAddNewAccount.zAddZimbraPopAccountThruUI(ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password,
             ZimbraSeleniumProperties.getStringProperty("server.host", "localhost"),
             true,
             "465");
@@ -1259,8 +1259,8 @@ public class CreateAccount extends AjaxCommonTest {
       stafzmtlsctl.setServerAccess(SERVER_ACCESS.BOTH);
       _sslIsModified = true;
 
-      DesktopAccountItem desktopAccountItem = app.zPageAddNewAccount.zAddZimbraPopAccountThruUI(ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password,
+      DesktopAccountItem desktopAccountItem = app.zPageAddNewAccount.zAddZimbraPopAccountThruUI(ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password,
             ZimbraSeleniumProperties.getStringProperty("server.host", "localhost"),
             false,
             "25");
@@ -1279,17 +1279,17 @@ public class CreateAccount extends AjaxCommonTest {
    public void addZimbraPopNonSslAccount() throws HarnessException {
 
       DesktopAccountItem desktopAccountItem = DesktopAccountItem.generateDesktopPopAccountItem(
-            ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password,
+            ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password,
             ZimbraSeleniumProperties.getStringProperty("server.host", "localhost"),
             SECURITY_TYPE.NONE,
             null,
             ZimbraSeleniumProperties.getStringProperty("server.host", "localhost"),
             false,
             null,
-            ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password);
+            ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password);
 
       FormAddPopAccount accountForm = (FormAddPopAccount)app.
             zPageAddNewAccount.zDropDownListSelect(DROP_DOWN_OPTION.POP);
@@ -1406,8 +1406,8 @@ public class CreateAccount extends AjaxCommonTest {
    public void addDuplicatedZimbraPopAccount() throws HarnessException {
       // Adding the Zimbra POP account
       DesktopAccountItem desktopAccountItem = app.zPageAddNewAccount.zAddZimbraPopAccountThruUI(
-            ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password,
+            ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password,
             ZimbraSeleniumProperties.getStringProperty("server.host", "localhost"),
             true,
             "465");
@@ -1708,7 +1708,7 @@ public class CreateAccount extends AjaxCommonTest {
          stafzmtlsctl.setServerAccess(SERVER_ACCESS.BOTH);
       }
 
-      ZimbraAccount.ResetAccountZWC();
+      ZimbraAccount.ResetAccountZDC();
       app.zPageLogin.zNavigateTo();
    }
 }

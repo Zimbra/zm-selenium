@@ -271,6 +271,6 @@ public class EditFile extends AjaxCommonTest {
       // if account is not reset, ZCS will be confused, and the next
       // uploaded file
       // will be deleted per previous command.
-      ZimbraAccount.ResetAccountZWC();
+      ZimbraAccount.ResetAccountZDC();
    }
 }

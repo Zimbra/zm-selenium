@@ -57,7 +57,7 @@ public class Bug21415 extends AjaxCommonTest {
 		String endingContent = "Esta mensagem";
 
 		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug21415";
-		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
+		LmtpInject.injectFile(ZimbraAccount.AccountZDC().EmailAddress, new File(MimeFolder));
 
 		
 		// Click Get Mail button
@@ -85,7 +85,7 @@ public class Bug21415 extends AjaxCommonTest {
 		String endingContent = "SkinResources.java";
 
 		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug21415";
-		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
+		LmtpInject.injectFile(ZimbraAccount.AccountZDC().EmailAddress, new File(MimeFolder));
 
 		
 		// Click Get Mail button

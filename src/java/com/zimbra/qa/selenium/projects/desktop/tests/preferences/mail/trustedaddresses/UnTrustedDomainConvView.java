@@ -91,6 +91,6 @@ public class UnTrustedDomainConvView extends AjaxCommonTest {
 
    @AfterMethod(alwaysRun=true)
    public void cleanUp() {
-      ZimbraAccount.ResetAccountZWC();
+      ZimbraAccount.ResetAccountZDC();
    }
 }

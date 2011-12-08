@@ -227,12 +227,12 @@ public class CreateFolder extends AjaxCommonTest {
 	throws HarnessException {
 	   app.zPageLogin.zNavigateTo();
 	   app.zPageLogin.zRemoveAccount();
-	   ZimbraAccount zcsAccount = ZimbraAccount.AccountZWC();
+	   ZimbraAccount zcsAccount = ZimbraAccount.AccountZDC();
 
 	   DesktopAccountItem accountItem = app.zPageAddNewAccount.zAddZimbraImapAccountThruUI(
 	         AjaxCommonTest.defaultAccountName,
-	         ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password,
+	         ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password,
             ZimbraSeleniumProperties.getStringProperty("server.host", "localhost"),
             true,
             "465");
@@ -298,12 +298,12 @@ public class CreateFolder extends AjaxCommonTest {
 	throws HarnessException {
 	   app.zPageLogin.zNavigateTo();
 	   app.zPageLogin.zRemoveAccount();
-	   ZimbraAccount zcsAccount = ZimbraAccount.AccountZWC();
+	   ZimbraAccount zcsAccount = ZimbraAccount.AccountZDC();
 
 	   DesktopAccountItem accountItem = app.zPageAddNewAccount.zAddZimbraPopAccountThruUI(
 	         AjaxCommonTest.defaultAccountName,
-	         ZimbraAccount.AccountZWC().EmailAddress,
-	         ZimbraAccount.AccountZWC().Password,
+	         ZimbraAccount.AccountZDC().EmailAddress,
+	         ZimbraAccount.AccountZDC().Password,
 	         ZimbraSeleniumProperties.getStringProperty("server.host", "localhost"),
 	         true,
 	         "465");
@@ -362,12 +362,12 @@ public class CreateFolder extends AjaxCommonTest {
 	throws HarnessException {
 	   app.zPageLogin.zNavigateTo();
 	   app.zPageLogin.zRemoveAccount();
-	   ZimbraAccount zcsAccount = ZimbraAccount.AccountZWC();
+	   ZimbraAccount zcsAccount = ZimbraAccount.AccountZDC();
 
 	   DesktopAccountItem accountItem = app.zPageAddNewAccount.zAddZimbraImapAccountThruUI(
 	         AjaxCommonTest.defaultAccountName,
-	         ZimbraAccount.AccountZWC().EmailAddress,
-	         ZimbraAccount.AccountZWC().Password,
+	         ZimbraAccount.AccountZDC().EmailAddress,
+	         ZimbraAccount.AccountZDC().Password,
 	         ZimbraSeleniumProperties.getStringProperty("server.host", "localhost"),
 	         true,
 	         "465");
@@ -433,12 +433,12 @@ public class CreateFolder extends AjaxCommonTest {
 	throws HarnessException {
 	   app.zPageLogin.zNavigateTo();
 	   app.zPageLogin.zRemoveAccount();
-	   ZimbraAccount zcsAccount = ZimbraAccount.AccountZWC();
+	   ZimbraAccount zcsAccount = ZimbraAccount.AccountZDC();
 
 	   DesktopAccountItem accountItem = app.zPageAddNewAccount.zAddZimbraPopAccountThruUI(
 	         AjaxCommonTest.defaultAccountName,
-	         ZimbraAccount.AccountZWC().EmailAddress,
-	         ZimbraAccount.AccountZWC().Password,
+	         ZimbraAccount.AccountZDC().EmailAddress,
+	         ZimbraAccount.AccountZDC().Password,
 	         ZimbraSeleniumProperties.getStringProperty("server.host", "localhost"),
 	         true,
 	         "465");
@@ -497,12 +497,12 @@ public class CreateFolder extends AjaxCommonTest {
 	throws HarnessException {
 	   app.zPageLogin.zNavigateTo();
 	   app.zPageLogin.zRemoveAccount();
-	   ZimbraAccount zcsAccount = ZimbraAccount.AccountZWC();
+	   ZimbraAccount zcsAccount = ZimbraAccount.AccountZDC();
 
 	   DesktopAccountItem accountItem = app.zPageAddNewAccount.zAddZimbraImapAccountThruUI(
 	         AjaxCommonTest.defaultAccountName,
-	         ZimbraAccount.AccountZWC().EmailAddress,
-	         ZimbraAccount.AccountZWC().Password,
+	         ZimbraAccount.AccountZDC().EmailAddress,
+	         ZimbraAccount.AccountZDC().Password,
 	         ZimbraSeleniumProperties.getStringProperty("server.host", "localhost"),
 	         true,
 	         "465");
@@ -563,12 +563,12 @@ public class CreateFolder extends AjaxCommonTest {
    throws HarnessException {
       app.zPageLogin.zNavigateTo();
       app.zPageLogin.zRemoveAccount();
-      ZimbraAccount zcsAccount = ZimbraAccount.AccountZWC();
+      ZimbraAccount zcsAccount = ZimbraAccount.AccountZDC();
 
       DesktopAccountItem accountItem = app.zPageAddNewAccount.zAddZimbraPopAccountThruUI(
             AjaxCommonTest.defaultAccountName,
-            ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password,
+            ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password,
             ZimbraSeleniumProperties.getStringProperty("server.host", "localhost"),
             true,
             "465");
@@ -628,12 +628,12 @@ public class CreateFolder extends AjaxCommonTest {
 	throws HarnessException {
 	   app.zPageLogin.zNavigateTo();
 	   app.zPageLogin.zRemoveAccount();
-	   ZimbraAccount zcsAccount = ZimbraAccount.AccountZWC();
+	   ZimbraAccount zcsAccount = ZimbraAccount.AccountZDC();
 
 	   DesktopAccountItem accountItem = app.zPageAddNewAccount.zAddZimbraImapAccountThruUI(
 	         AjaxCommonTest.defaultAccountName,
-	         ZimbraAccount.AccountZWC().EmailAddress,
-	         ZimbraAccount.AccountZWC().Password,
+	         ZimbraAccount.AccountZDC().EmailAddress,
+	         ZimbraAccount.AccountZDC().Password,
 	         ZimbraSeleniumProperties.getStringProperty("server.host", "localhost"),
 	         true,
 	         "465");
@@ -694,12 +694,12 @@ public class CreateFolder extends AjaxCommonTest {
    throws HarnessException {
       app.zPageLogin.zNavigateTo();
       app.zPageLogin.zRemoveAccount();
-      ZimbraAccount zcsAccount = ZimbraAccount.AccountZWC();
+      ZimbraAccount zcsAccount = ZimbraAccount.AccountZDC();
 
       DesktopAccountItem accountItem = app.zPageAddNewAccount.zAddZimbraPopAccountThruUI(
             AjaxCommonTest.defaultAccountName,
-            ZimbraAccount.AccountZWC().EmailAddress,
-            ZimbraAccount.AccountZWC().Password,
+            ZimbraAccount.AccountZDC().EmailAddress,
+            ZimbraAccount.AccountZDC().Password,
             ZimbraSeleniumProperties.getStringProperty("server.host", "localhost"),
             true,
             "465");

@@ -69,7 +69,7 @@ public class DesktopAccountItem implements IItem {
       desktopAccountItem.emailAddress = emailAddress;
       desktopAccountItem.password = password;
       desktopAccountItem.incomingServer = (incomingServer == null) ?
-            ZimbraAccount.AccountZWC().ZimbraMailHost : incomingServer;
+            ZimbraAccount.AccountZDC().ZimbraMailHost : incomingServer;
       desktopAccountItem.port = port;
       desktopAccountItem.ssl = ssl;
 
