@@ -145,7 +145,6 @@ public class DeleteFolder extends AjaxCommonTest {
             + "</CreateFolderRequest>",
             SOAP_DESTINATION_HOST_TYPE.CLIENT,
             ZimbraAccount.clientAccountName);
-
       FolderItem briefcaseSubFolder = FolderItem.importFromSOAP(
             account,
             briefcaseSubFolderName,
@@ -169,8 +168,7 @@ public class DeleteFolder extends AjaxCommonTest {
  
       ZAssert.assertNotNull(briefcaseSubFolder, "Verify the subfolder is again available");
       ZAssert.assertEquals(trash.getId(), briefcaseSubFolder.getParentId(), "Verify the subfolder's parent is now the trash folder ID");
-   }
-
+   } 
    @Test(description = "Delete a local top level briefcase folder - Right click, Delete", groups = { "smoke" })
    public void DeleteLocalTopFolderThroughContextMenu() throws HarnessException {
       ZimbraAccount account = app.zGetActiveAccount();
@@ -229,5 +227,51 @@ public class DeleteFolder extends AjaxCommonTest {
             "Verify the briefcase top level folder is still available in ZD Client");
       ZAssert.assertEquals(trash.getId(), briefcaseTopLevelFolder.getParentId(),
             "Verify the deleted briefcase top level folder's parent is now the trash folder ID");
-   }
+   }   
+   @Test(description = "Delete a briefcase sub-folder -DnD to Trash Folder under same account", groups = { "functional" })
+	public void DeleteSubFolderByDnDTrash() throws HarnessException {
+		ZimbraAccount account = app.zGetActiveAccount();
+		FolderItem briefcaseRootFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase,
+				SOAP_DESTINATION_HOST_TYPE.CLIENT,account.EmailAddress);
+		ZAssert.assertNotNull(briefcaseRootFolder,
+				"Verify the Briefcase root folder is available");
+		// Create two briefcase sub-folders:One folder to Drag & Another folder to drop into
+		String briefcaseFolderName = "folder1"
+				+ ZimbraSeleniumProperties.getUniqueString();
+		account.soapSend("<CreateFolderRequest xmlns='urn:zimbraMail'>"
+				+ "<folder name='" + briefcaseFolderName + "' l='"
+				+ briefcaseRootFolder.getId() + "'/>"
+				+ "</CreateFolderRequest>");
+		GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
+		app.zPageMain.zWaitForDesktopLoadingSpinner(5000);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, briefcaseFolderName,
+				SOAP_DESTINATION_HOST_TYPE.CLIENT, account.EmailAddress);
+		FolderItem trash = FolderItem.importFromSOAP(
+	            app.zGetActiveAccount(),
+	            SystemFolder.Trash,
+	            SOAP_DESTINATION_HOST_TYPE.CLIENT,
+	            ZimbraAccount.clientAccountName);
+		ZAssert.assertNotNull(trash, "Verify the trash is available");
+		ZAssert.assertNotNull(briefcaseFolderName,
+				"Verify the first subfolder is available");
+		// refresh the Briefcase tree folder list
+		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder,
+				false);
+		// Perform DND action
+		String sourcelocator = "css=div[id='zovc__main_Briefcase'] div[class='DwtTreeItemLevel1ChildDiv'] div[id$='main_Briefcase__BRIEFCASE'] td[id$='" + briefcaseFolder.getId() +"_textCell']:contains('" + briefcaseFolder.getName() + "')";
+		String TrashLocator = "css=div[id='zovc__main_Briefcase'] div[class='DwtTreeItemLevel1ChildDiv'] div[id$='main_Briefcase__BRIEFCASE'] td[id$='" + trash.getId() + "_textCell']:contains('" + trash.getName() + "')";
+	    app.zPageBriefcase.zDragAndDrop(sourcelocator , TrashLocator) ;
+	    GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
+	    app.zPageMain.zWaitForDesktopLoadingSpinner(5000);
+	    // Verify the folder is now in the other sub-folder in ZD client 
+		briefcaseFolder = FolderItem.importFromSOAP(account,
+				briefcaseFolderName);
+		ZAssert.assertEquals(trash.getId(), briefcaseFolder.getParentId(),
+        "Verify  in ZD client the deleted briefcase top level folder's parent is now the trash folder ID");
+		 // Verify the folder is now in the other sub-folder in ZCS  server 
+		FolderItem zcsTrash = FolderItem.importFromSOAP(account, SystemFolder.Trash);
+		FolderItem zcsBriefcaseFolder = FolderItem.importFromSOAP(account, briefcaseFolderName);
+		ZAssert.assertEquals(zcsTrash.getId(), zcsBriefcaseFolder.getParentId(),
+        "Verify in ZCS the deleted briefcase top level folder's parent is now the trash folder ID");
+	}
 }
