@@ -375,34 +375,22 @@ public class PageBriefcase extends AbsTab {
 		if (pulldown == Button.B_NEW) {
 			pulldownLocator = Locators.zNewMenuArrowBtn.locator;
 			if (option == Button.O_NEW_BRIEFCASE) {
-				if (ZimbraSeleniumProperties.zimbraGetVersionString().contains(
-						"7.1."))
-					optionLocator = "css=tr[id=POPUP_NEW_BRIEFCASE]";
-				else
-					optionLocator = "css=div#zb__BDLV__NEW_MENU_NEW_BRIEFCASE";
-
+				optionLocator = "css=tr[id=POPUP_NEW_BRIEFCASE]";
+		
 				page = new DialogCreateBriefcaseFolder(this.MyApplication,((AppAjaxClient) MyApplication).zPageBriefcase);
 
 				// FALL THROUGH
 			} else if (option == Button.O_NEW_DOCUMENT) {
-				if (ZimbraSeleniumProperties.zimbraGetVersionString().contains(
-						"7.1."))
-					optionLocator = "css=tr[id=POPUP_NEW_DOC]";
-				else
-					optionLocator = "css=div#zb__BDLV__NEW_MENU_NEW_DOC";
-
+				optionLocator = "css=tr[id=POPUP_NEW_DOC]";
+			
 				page = new DocumentBriefcaseNew(this.MyApplication);
 
 				// FALL THROUGH
 			} else if (option == Button.O_NEW_FOLDER) {
 				throw new HarnessException("implement me!");
 			} else if (option == Button.O_NEW_TAG) {
-				if (ZimbraSeleniumProperties.zimbraGetVersionString().contains(
-						"7.1."))
-					optionLocator = "css=tr[id=POPUP_NEW_TAG]>td[id$=_title]:contains(Tag)";
-				else
-					optionLocator = "css=div#zb__BDLV__NEW_MENU_NEW_TAG";
-
+				optionLocator = "css=tr[id=POPUP_NEW_TAG]>td[id$=_title]:contains(Tag)";
+				
 				page = new DialogTag(this.MyApplication, this);
 
 				// FALL THROUGH

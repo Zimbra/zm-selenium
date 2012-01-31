@@ -80,15 +80,10 @@ public class OpenFile extends AjaxCommonTest {
 	
 		DocumentBriefcaseOpen file;
 		
-		if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("7.1."))
-			file = (DocumentBriefcaseOpen)app.zPageBriefcase
+		file = (DocumentBriefcaseOpen)app.zPageBriefcase
 					.zToolbarPressButton(Button.B_OPEN_IN_SEPARATE_WINDOW,
 							fileItem);
-		else
-			file = (DocumentBriefcaseOpen)app.zPageBriefcase
-					.zToolbarPressPulldown(Button.B_ACTIONS,
-							Button.B_LAUNCH_IN_SEPARATE_WINDOW,fileItem);
-
+		
 		app.zPageBriefcase.isOpenFileLoaded(fileName, fileText);
 
 		String text = "";

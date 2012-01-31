@@ -74,13 +74,9 @@ public class SendFileAttachment extends AjaxCommonTest {
 
 		// Click on Send as attachment
 		FormMailNew mailform;
-		if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("7.1."))
-			mailform = (FormMailNew) app.zPageBriefcase.zToolbarPressPulldown(
+		mailform = (FormMailNew) app.zPageBriefcase.zToolbarPressPulldown(
 					Button.B_SEND, Button.O_SEND_AS_ATTACHMENT, fileItem);
-		else
-			mailform = (FormMailNew) app.zPageBriefcase.zToolbarPressPulldown(
-					Button.B_ACTIONS, Button.O_SEND_AS_ATTACHMENT, fileItem);
-
+	
 		// Verify the new mail form has attachment
 		ZAssert.assertTrue(app.zPageBriefcase
 				.sIsElementPresent(FormMailNew.Locators.zAttachmentText
