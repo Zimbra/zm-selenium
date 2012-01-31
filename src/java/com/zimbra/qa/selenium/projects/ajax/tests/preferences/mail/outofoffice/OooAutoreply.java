@@ -14,11 +14,10 @@
  * 
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.bugs;
+package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.outofoffice;
 
 import java.util.HashMap;
 import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -27,17 +26,15 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DialogOOOAlert;
 
-public class PromptToTurnOffAutoreply extends AjaxCommonTest {
+public class OooAutoreply extends AjaxCommonTest {
 	final String autoreplyMessage = "OOO";
 
-	public PromptToTurnOffAutoreply() {
-		logger.info("New " + PromptToTurnOffAutoreply.class.getCanonicalName());
+	public OooAutoreply() {
+		logger.info("New " + OooAutoreply.class.getCanonicalName());
 
-		// test starts in the Briefcase tab
-		super.startingPage = app.zPageBriefcase;
+		// test starts in the Mail tab
+		super.startingPage = app.zPageMail;
 
 		// use an account with OOO auto-reply enabled
 		super.startingAccountPreferences = new HashMap<String, String>() {
@@ -49,22 +46,9 @@ public class PromptToTurnOffAutoreply extends AjaxCommonTest {
 		};
 	}
 
-	@Bugs(ids = "51990")
-	@Test(description = "Enable auto-reply message - Verify after login  alert dialog promts to turn off auto-reply", groups = { "functional" })
-	public void PromptToTurnOffAutoreply_01() throws HarnessException {
+	@Test(description = "Enable auto-reply feature - Verify auto-reply message", groups = { "functional" })
+	public void OooAutoreply_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
-
-		if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("8.0.")) {
-			DialogOOOAlert alert = new DialogOOOAlert(app,
-					((AppAjaxClient) app).zPageBriefcase);
-
-			ZAssert.assertTrue(alert.zIsActive(),
-					"Verify turn off auto-reply alert dialog is displayed");
-
-			alert.zCheckboxSet(true);
-			
-			alert.zClickButton(Button.B_NO);
-		}
 
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
@@ -81,7 +65,7 @@ public class PromptToTurnOffAutoreply extends AjaxCommonTest {
 		app.zPageMain.zClickAt("id=zb__App__Mail_title", "0,0");
 
 		// Click Get Mail button to view folder in list
-		// app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
 
 		SleepUtil.sleepMedium();
 
