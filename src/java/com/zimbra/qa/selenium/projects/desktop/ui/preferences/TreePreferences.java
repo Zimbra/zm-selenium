@@ -159,11 +159,11 @@ public class TreePreferences extends AbsTree {
       Map<TreeItem, String> map = new HashMap<TreeItem, String>();
       
       map.put(TreeItem.General, "id=" + Locators.zGeneralTextID_Desktop);
-      map.put(TreeItem.Mail, null);
+      map.put(TreeItem.Mail, "css=td[id$='main_Options__PREF_PAGE_COMPOSING_textCell']");
       map.put(TreeItem.MailComposing, null);
       map.put(TreeItem.MailSignatures, "id=" + Locators.zSignatureTextID_Desktop);
       map.put(TreeItem.MailAccounts, null);
-      map.put(TreeItem.MailFilters, null);
+      map.put(TreeItem.MailFilters, "css=td[id$='main_Options__PREF_PAGE_FILTERS_textCell']");
       map.put(TreeItem.MailTrustedAddresses, null);
       map.put(TreeItem.AddressBook, null);
       map.put(TreeItem.Calendar, null);

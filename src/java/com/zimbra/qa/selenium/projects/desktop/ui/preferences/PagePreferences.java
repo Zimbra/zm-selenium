@@ -277,6 +277,11 @@ public class PagePreferences extends AbsTab {
 			locator = "id="+ Locators.zToolbarCancelID;
 			page = null;
 						
+		} else if ( button == Button.B_NEW_FILTER ) {
+			
+			locator = "css=div.ImgPlus";
+			page = new DialogEditFilter(MyApplication,((AppAjaxClient) MyApplication).zPagePreferences);
+	
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
