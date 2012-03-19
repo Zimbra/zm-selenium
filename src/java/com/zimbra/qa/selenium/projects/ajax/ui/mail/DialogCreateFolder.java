@@ -22,9 +22,12 @@ package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 import java.net.URL;
 
 import com.zimbra.qa.selenium.framework.items.FolderItem;
-import com.zimbra.qa.selenium.framework.ui.*;
+import com.zimbra.qa.selenium.framework.ui.AbsApplication;
+import com.zimbra.qa.selenium.framework.ui.AbsDialog;
+import com.zimbra.qa.selenium.framework.ui.AbsPage;
+import com.zimbra.qa.selenium.framework.ui.AbsTab;
+import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 
 /**
@@ -42,11 +45,11 @@ public class DialogCreateFolder extends AbsDialog {
 	   public static final String zDialogId = "css=div[class*='DwtDialog WindowOuterContainer']";
 
       // Textfields
-      public static final String zNameField = "css=input[id$='_name'][class*='Field']";
+      public static final String zNameField = "css=div[id='CreateNewFolderDialog'] div[id='CreateNewFolderDialog_content'] input[id='CreateNewFolderDialog_name']";
 
       // Buttons
-      public static final String zOkButton = "css=tr>td>div[id*='button2']";
-      public static final String zCancelButton = "css=tr>td>div[id*='button1']";
+      public static final String zOkButton = "css=div[id='CreateNewFolderDialog'] div[id='CreateNewFolderDialog_buttons'] td[id^='OK_']";
+      public static final String zCancelButton = "css=div[id='CreateNewFolderDialog'] div[id='CreateNewFolderDialog_buttons'] td[id^='Cancel_']";
 	}
 	
 	
