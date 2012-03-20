@@ -175,7 +175,7 @@ public class FormContactGroupNew extends AbsForm {
 	      int count=1;
 	      
 	      while (true) {
-	    	  String cssCommon="css=div#zl__GRP__rows>div:nth-child(" + count + ")>table>tbody>tr>";
+	    	  String cssCommon="css=div[id^=zl__][id$=__rows]>div:nth-child(" + count + ")>table>tbody>tr>";
 		      String cssName = cssCommon + "td:nth-child(2)"; 	
 		      String cssEmail= cssCommon + "td:nth-child(3)";
 		      
