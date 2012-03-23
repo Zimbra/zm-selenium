@@ -48,8 +48,8 @@ public class DialogCreateFolder extends AbsDialog {
       public static final String zNameField = "css=div[id='CreateNewFolderDialog'] div[id='CreateNewFolderDialog_content'] input[id='CreateNewFolderDialog_name']";
 
       // Buttons
-      public static final String zOkButton = "css=div[id='CreateNewFolderDialog'] div[id='CreateNewFolderDialog_buttons'] td[id^='OK_']";
-      public static final String zCancelButton = "css=div[id='CreateNewFolderDialog'] div[id='CreateNewFolderDialog_buttons'] td[id^='Cancel_']";
+      public static final String zOkButton = "css=div[id='CreateNewFolderDialog'] div[id='CreateNewFolderDialog_buttons'] td[id^='OK_'] td[id$='_title']";
+      public static final String zCancelButton = "css=div[id='CreateNewFolderDialog'] div[id='CreateNewFolderDialog_buttons'] td[id^='Cancel_'] td[id$='_title']";
 	}
 	
 	
