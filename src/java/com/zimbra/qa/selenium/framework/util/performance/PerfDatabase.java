@@ -293,7 +293,7 @@ public class PerfDatabase {
 	protected int getBrowserID() throws HarnessException {
 		getBrowserTable();
 		
-		String browser = ZimbraSeleniumProperties.getStringProperty("CalculatedBrowser", "unknown");
+		String browser = ZimbraSeleniumProperties.getCalculatedBrowser();
 
 		if (!browserTable.containsKey(browser)) {
 			insertBrowser(browser);
