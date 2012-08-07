@@ -28,7 +28,6 @@ import com.zimbra.qa.selenium.framework.items.RecipientItem;
 import com.zimbra.qa.selenium.framework.items.RecipientItem.RecipientType;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
-import com.zimbra.qa.selenium.framework.util.GeneralUtility;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
@@ -136,13 +135,13 @@ public class ZimbraPrefIncludeTrashInSearch extends AjaxCommonTest {
 		boolean found1 = false;
 		boolean found2 = false;
 		for (ConversationItem c : items) {
-			if ( c.subject.equals(message1.dSubject) ) {
+			if ( message1.dSubject.equals(c.gSubject) ) {
 				found1 = true;
 				break;
 			}
 		}
 		for (ConversationItem c : items) {
-			if ( c.subject.equals(message2.dSubject) ) {
+			if ( message2.dSubject.equals(c.gSubject) ) {
 				found2 = true;
 				break;
 			}
