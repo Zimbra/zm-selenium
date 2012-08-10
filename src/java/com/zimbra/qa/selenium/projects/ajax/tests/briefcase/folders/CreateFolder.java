@@ -69,7 +69,7 @@ public class CreateFolder extends AjaxCommonTest {
 				"Verify the server and client folder names match");
 	}
 
-	@Test(description = "Create a new folder using 'nf' keyboard shortcut", groups = { "functional" })
+	@Test(description = "Create a new folder using 'nf' keyboard shortcut", groups = { "deprecated" })
 	public void CreateFolder_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 

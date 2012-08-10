@@ -259,7 +259,7 @@ public class TreeBriefcase extends AbsTree {
 
 		if (button == Button.B_TREE_NEWBRIEFCASE) {
 
-			locator = "css=div[id=ztih__main_Briefcase__BRIEFCASE] div[class^=ImgNewFolder ZWidget]";
+			locator = "css=div[id=ztih__main_Briefcase__BRIEFCASE] div[class*='ImgNewFolder ZWidget']";
 			page = new DialogCreateBriefcaseFolder(MyApplication,
 					((AppAjaxClient) MyApplication).zPageBriefcase);
 
@@ -276,7 +276,7 @@ public class TreeBriefcase extends AbsTree {
 
 		} else if (button == Button.B_TREE_NEWTAG) {
 
-			locator = "css=div[class^=ImgNewTag ZWidget]";
+			locator = "css=div[class*='ImgNewTag ZWidget']";
 
 			if (!this.sIsElementPresent(locator)) {
 				throw new HarnessException("Unable to locate folder in tree "
