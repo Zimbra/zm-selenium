@@ -41,6 +41,7 @@ public class ZimbraSelenium extends DefaultSelenium {
 	}
 	
 	public void open(String url) {
+		LogManager.getLogger(com.zimbra.qa.selenium.framework.util.CodeCoverage.class).info("selenium.open(" + url + ")", new Exception());
 	    logger.info("selenium.open(" + url + ")");
 	    super.open(url);
 	}
