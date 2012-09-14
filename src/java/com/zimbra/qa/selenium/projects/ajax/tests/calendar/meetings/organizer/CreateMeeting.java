@@ -2,7 +2,9 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer;
 
 import java.util.Calendar;
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
+import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
@@ -46,7 +48,7 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		apptForm.sTypeKeys(locator, "13");
 		
 		apptForm.zSubmit();
-			
+		
 		// Verify appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
@@ -54,6 +56,20 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");
 		ZAssert.assertEquals(actual.getOptional(), appt.getOptional(), "Optional: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
+
+		// Verify the attendee receives the meeting
+		AppointmentItem received = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
+		ZAssert.assertNotNull(received, "Verify the new appointment is created");
+		ZAssert.assertEquals(received.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
+		ZAssert.assertEquals(received.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");
+		ZAssert.assertEquals(received.getOptional(), appt.getOptional(), "Optional: Verify the appointment data");
+		ZAssert.assertEquals(received.getContent(), appt.getContent(), "Content: Verify the appointment data");
+
+		// Verify the attendee receives the invitation
+		MailItem invite = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ appt.getSubject() +")");
+		ZAssert.assertNotNull(invite, "Verify the invite is received");
+		ZAssert.assertEquals(invite.dSubject, appt.getSubject(), "Subject: Verify the appointment data");
+
 	}
 
 	@Test(description = "Create simple meeting with attendee and optional",
@@ -92,7 +108,7 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		apptForm.sTypeKeys(locator, "13");
 		
 		apptForm.zSubmit();
-			
+		
 		// Verify appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
@@ -100,6 +116,24 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");
 		ZAssert.assertEquals(actual.getOptional(), apptOptional1, "Optional: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
+
+		// Verify the attendee receives the meeting
+		AppointmentItem received = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
+		ZAssert.assertNotNull(received, "Verify the new appointment is created");
+
+		// Verify the attendee receives the invitation
+		MailItem invite = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ appt.getSubject() +")");
+		ZAssert.assertNotNull(invite, "Verify the invite is received");
+
+		// Verify the optional receives the meeting
+		received = AppointmentItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
+		ZAssert.assertNotNull(received, "Verify the new appointment is created");
+
+		// Verify the optional receives the invitation
+		invite = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ appt.getSubject() +")");
+		ZAssert.assertNotNull(invite, "Verify the invite is received");
+
+
 	}
 
 
