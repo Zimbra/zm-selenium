@@ -179,6 +179,13 @@ public class FormApptNew extends AbsForm {
 			page = null;
 
 			// FALL THROUGH
+		
+		} else if (button == Button.B_CLOSE) {
+
+			locator = Locators.Button_Close;
+			page = null;
+
+			// FALL THROUGH
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
@@ -295,8 +302,10 @@ public class FormApptNew extends AbsForm {
 		String stringFormat;
 
 		if (field == Field.StartDate || field == Field.EndDate) {
+			// TODO: need INTL
 			stringFormat = value.toMM_DD_YYYY();
 		} else if (field == Field.StartTime || field == Field.EndTime) {
+			// TODO: need INTL
 			stringFormat = value.tohh_mm_aa();
 		} else {
 			throw new HarnessException(
@@ -572,7 +581,10 @@ public class FormApptNew extends AbsForm {
 			this.sClickAt(locator, "");
 			zRecurringOptions(locator, value, isRepeat);
 		} else {
-			this.sType(locator, value);
+		    if(ZimbraSeleniumProperties.isWebDriver()){
+			this.clearField(locator);
+		    }
+		    this.sType(locator, value);
 		}
 		this.zWaitForBusyOverlay();
 
@@ -599,6 +611,7 @@ public class FormApptNew extends AbsForm {
 		// Attendees
 		if (appt.getAttendees() != null) {
 			zFillField(Field.Attendees, appt.getAttendees());
+			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		}
 		
@@ -606,12 +619,14 @@ public class FormApptNew extends AbsForm {
 		if (appt.getOptional() != null) {
 			this.sClickAt(Locators.ShowOptionalLink, "");
 			zFillField(Field.Optional, appt.getOptional());
+			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		}
 		
 		// Location
 		if (appt.getLocation() != null) {
 			zFillField(Field.Location, appt.getLocation());
+			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		}
 		
@@ -619,6 +634,7 @@ public class FormApptNew extends AbsForm {
 		if (appt.getEquipment() != null) {
 			this.sClickAt(Locators.ShowEquipmentLink, "");
 			zFillField(Field.Equipment, appt.getEquipment());
+			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		}
 		
