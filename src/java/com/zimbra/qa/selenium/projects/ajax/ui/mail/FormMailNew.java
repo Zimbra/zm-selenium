@@ -45,6 +45,9 @@ public class FormMailNew extends AbsForm {
 		public static final String zCancelIconBtn		= "css=[id^=zb__COMPOSE][id$=__CANCEL_title]";
 		public static final String zSaveDraftIconBtn	= "css=[id^=zb__COMPOSE][id$=__SAVE_DRAFT_title]";
 		public static final String zSpellCheckIconBtn	= "css=[id^=zb__COMPOSE][id$=__SPELL_CHECK_title]";
+		
+		public static final String zOptionsButton	= "css=div[id^='ztb__COMPOSE'] td[id$='__COMPOSE_OPTIONS_title']";
+		public static final String zIncludeOriginalAsAttachmentMenu	= "css=div[id$='_CAL_REPLY']:contains('Include Original As Attachment')";		
 
 		public static final String zToField				= "css=div>input[id^=zv__COMPOSE][id$=_to_control]";
 		public static final String zCcField				= "css=[id^=zv__COMPOSE][id$=_cc_control]";
@@ -197,7 +200,8 @@ public class FormMailNew extends AbsForm {
 			
 		} else if ( button == Button.B_OPTIONS ) {
 
-			throw new HarnessException("use zToolbarPressPulldown to attach signature");
+			locator = Locators.zOptionsButton;
+			page = this;
 			
 		} else if ( button == Button.B_TO ) {
 			
@@ -808,14 +812,24 @@ public class FormMailNew extends AbsForm {
 		}
 		
 		if ( mail.dBodyText != null ) {
-			
+		    if(ZimbraSeleniumProperties.isWebDriver()){
+			String textBody = "css=textarea[id*=content]";
+			sType(textBody, mail.dBodyText);
+			sFireEvent(textBody, "keyup");
+		    }else{
 			zFillField(Field.Body, mail.dBodyText);
-			
+		    }
 		}
 		if ( mail.dBodyHtml != null ) {
-			
+		    if(ZimbraSeleniumProperties.isWebDriver()){
+			//String bodyLocator = "css=body[id=tinymce]";
+			String bodyLocator = "css=iframe[id*=ifr]";
+			zWaitForElementPresent(bodyLocator, "10000");
+			sClickAt(bodyLocator,"");
+			zTypeFormattedText(bodyLocator, mail.dBodyHtml);
+		    }else{
 			zFillField(Field.Body, mail.dBodyHtml);
-			
+		    }
 		}
 		
 		
