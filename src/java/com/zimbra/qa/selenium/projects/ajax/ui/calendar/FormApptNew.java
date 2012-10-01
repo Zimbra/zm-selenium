@@ -54,6 +54,14 @@ public class FormApptNew extends AbsForm {
 		public static final String RepeatEnabled = "css=div[id$='_repeatDesc']div[class='FakeAnchor']";
 		public static final String RepeatDisabled = "css=div[id$='_repeatDesc']div[class='DisabledText']";
 		
+		public static final String DeleteZimletContextMenu = "css=div[id^='POPUP_'] td[id='DELETE_title']";
+		public static final String EditZimletContextMenu = "css=div[id^='POPUP_'] td[id='EDIT_title']";
+		public static final String ExpandZimletContextMenu = "css=div[id^='POPUP_'] td[id='EXPAND_title']";
+		public static final String AddToContactsZimletContextMenu = "css=div[id^='POPUP_'] td[id='CONTACT_title']";
+		
+		public static final String SendUpdatesToAddedRemovedRadioButton = "css=div[class='DwtDialog'] div[id$='_content'] td:contains('Send updates only to added or removed attendees')";
+		public static final String SendUpdatesToAllRadioButton = "css=div[class='DwtDialog'] div[id$='_content'] td:contains('Send updates to all attendees')";
+		
 	}
 
 	public static class Field {
@@ -72,7 +80,7 @@ public class FormApptNew extends AbsForm {
 		public static final Field Display = new Field("Display");
 		public static final Field CalendarFolder = new Field("CalendarFolder");
 		public static final Field Private = new Field("Private");
-		public static final Field Remdinder = new Field("Remdinder");
+		public static final Field Reminder = new Field("Reminder");
 		public static final Field Body = new Field("Body");
 
 		private String field;
@@ -123,7 +131,74 @@ public class FormApptNew extends AbsForm {
 		}
 
 		this.zWaitForBusyOverlay();
-
+		
+		// Wait for the message to be delivered
+		Stafpostqueue sp = new Stafpostqueue();
+		sp.waitForPostqueue();
+	}
+	
+	public void zAddRequiredAttendeeFromScheduler(String attendee) throws HarnessException {
+		zToolbarPressButton(Button.B_SHOW);
+		SleepUtil.sleepSmall();
+		this.zType("css=td[id$='_scheduler'] td[id$='_NAME_'] input", attendee);
+		SleepUtil.sleepSmall();
+	}
+	
+	public void zAddOptionalAttendeeFromScheduler(String attendee) throws HarnessException {
+		zToolbarPressButton(Button.B_SHOW);
+		SleepUtil.sleepSmall();
+		this.zClickAt("css=td[id$='_scheduler'] td[id$='_SELECT_'] td[id$='_dropdown']", "");
+		this.zClickAt("css=div[class='DwtMenu ZHasIcon'] td[id$='_title']:contains('Optional Attendee')", "");		
+		this.zType("css=td[id$='_scheduler'] td[id$='_NAME_'] input", attendee);
+		SleepUtil.sleepSmall();
+	}
+	
+	public void zAddLocationFromScheduler(String location) throws HarnessException {
+		zToolbarPressButton(Button.B_SHOW);
+		SleepUtil.sleepSmall();
+		this.zClickAt("css=td[id$='_scheduler'] td[id$='_SELECT_'] td[id$='_dropdown']", "");
+		this.zClickAt("css=div[class='DwtMenu ZHasIcon'] td[id$='_title']:contains('Location')", "");
+		this.zType("css=td[id$='_scheduler'] td[id$='_NAME_'] input", location);
+		SleepUtil.sleepSmall();
+	}
+	
+	public void zAddEquipmentFromScheduler(String equipment) throws HarnessException {
+		zToolbarPressButton(Button.B_SHOW);
+		SleepUtil.sleepSmall();
+		this.zClickAt("css=td[id$='_scheduler'] td[id$='_SELECT_'] td[id$='_dropdown']", "");
+		this.zClickAt("css=div[class='DwtMenu ZHasIcon'] td[id$='_title']:contains('Equipment')", "");
+		this.zType("css=td[id$='_scheduler'] td[id$='_NAME_'] input", equipment);
+		SleepUtil.sleepSmall();
+	}
+	
+	public Boolean zVerifyRequiredAttendee(String attendee) throws HarnessException {
+		return sIsElementPresent("css=td[id$='_person'] span:contains('" + attendee + "')");
+	}
+	
+	public Boolean zVerifyOptionalAttendee(String attendee) throws HarnessException {
+		return sIsElementPresent("css=td[id$='_optional'] span:contains('" + attendee + "')");
+	}
+	
+	public Boolean zVerifyLocation(String location) throws HarnessException {
+		return sIsElementPresent("css=td[id$='_location'] span:contains('" + location + "')");
+	}
+	
+	public Boolean zVerifyEquipment(String equipment) throws HarnessException {
+		return sIsElementPresent("css=td[id$='_resourcesData'] span:contains('" + equipment + "')");
+	}
+	
+	public void zRemoveAttendee(String attendee) throws HarnessException {
+		SleepUtil.sleepSmall(); //let free/busy UI draw and then we take UI actions
+		this.zRightClickAt("css=td[id$='_person'] span:contains('" + attendee + "')", "");
+		SleepUtil.sleepSmall();
+		this.zClickAt(Locators.DeleteZimletContextMenu, "");
+	}
+	
+	public void zRemoveLocation(String location) throws HarnessException {
+		SleepUtil.sleepSmall(); //let free/busy UI draw and then we take UI actions
+		this.zRightClickAt("css=td[id$='_location'] span:contains('" + location + "')", "");
+		SleepUtil.sleepSmall();
+		this.zClickAt(Locators.DeleteZimletContextMenu, "");
 	}
 
 	/**
@@ -156,11 +231,6 @@ public class FormApptNew extends AbsForm {
 
 			this.zWaitForBusyOverlay();
 
-			// TODO: would be good to remove this sleep.  Not sure why
-			// it is required.  Maybe the busy overlay isn't active?
-			SleepUtil.sleepMedium(); //test fails without sleep
-
-
 			// Wait for the message to be delivered
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
@@ -184,6 +254,19 @@ public class FormApptNew extends AbsForm {
 
 			locator = Locators.Button_Close;
 			page = null;
+
+			// FALL THROUGH
+			
+		} else if (button == Button.B_SHOW) {
+
+			locator = Locators.ShowSchedulerLink;
+			page = null;
+			
+			this.sClick(locator);
+
+			this.zWaitForBusyOverlay();
+		
+			return (page);
 
 			// FALL THROUGH
 
@@ -210,10 +293,6 @@ public class FormApptNew extends AbsForm {
 			page.zWaitForActive();
 
 		}
-
-		// TODO: would be good to remove this sleep.  Not sure why
-		// it is required.
-		SleepUtil.sleepMedium();
 
 		// Return the page, if specified
 		return (page);
@@ -426,7 +505,13 @@ public class FormApptNew extends AbsForm {
 		// calendar folder 
 		} else if (field == Field.CalendarFolder) {
 
-			locator = "css=td[id$='_folderSelect'] input";
+			locator = "css=td[id$='_folderSelect'] td[id$='_select_container']";
+			this.sClickAt(locator, "");
+			
+			value = "css=div[id*='_Menu_'] td[id$='_title']:contains('" + value + "')";
+			this.sClickAt(value, "");			
+			
+			return;
 
 			
 		// repeat
@@ -443,18 +528,22 @@ public class FormApptNew extends AbsForm {
 			logger.info("Body: # of frames: " + frames);
 			String browser = SeleniumService.getInstance().getSeleniumBrowser();
 
-			if (browser.equalsIgnoreCase("iexplore")) {
+			if (browser.contains("iexplore")) {
 				if (frames == 1) {
 					// //
 					// Text compose
 					// //
 
-					locator = "css=textarea[id*='textarea_']";
+					locator = "css=textarea[id*=_content]";
 
 					if (!this.sIsElementPresent(locator))
 						throw new HarnessException(
 								"Unable to locate compose body");
-
+					if(ZimbraSeleniumProperties.isWebDriver()){
+					    this.sClickAt(locator, "");
+					    this.clearField(locator);
+					    this.sClickAt(locator, "");
+					}
 					this.sFocus(locator);
 					this.zClick(locator);
 					this.zWaitForBusyOverlay();
@@ -582,7 +671,9 @@ public class FormApptNew extends AbsForm {
 			zRecurringOptions(locator, value, isRepeat);
 		} else {
 		    if(ZimbraSeleniumProperties.isWebDriver()){
+			this.sClickAt(locator, "");
 			this.clearField(locator);
+			this.sClickAt(locator, "");
 		    }
 		    this.sType(locator, value);
 		}
