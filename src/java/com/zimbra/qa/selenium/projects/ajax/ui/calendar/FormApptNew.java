@@ -449,7 +449,7 @@ public class FormApptNew extends AbsForm {
 					// Text compose
 					// //
 
-					locator = "css=textarea[id*='textarea_']";
+					locator = "css=textarea[id*='_content']";
 
 					if (!this.sIsElementPresent(locator))
 						throw new HarnessException(
