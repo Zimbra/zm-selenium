@@ -27,8 +27,8 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 	
 	
 	
-	@Bugs(ids = "69132")
-	@Test(description = "Cancel an meeting using Delete toolbar button",
+	@Bugs(ids = "69132,77548")
+	@Test(description = "Cancel meeting using Delete toolbar button",
 			groups = { "smoke" })
 	public void CancelMeeting_01() throws HarnessException {
 		
@@ -99,7 +99,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "69132")
-	@Test(description = "Cancel an meeting using context menu",
+	@Test(description = "Cancel meeting using context menu",
 			groups = { "functional" })
 	public void CancelMeeting_02() throws HarnessException {
 		
@@ -177,7 +177,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 	}
 
 	@Bugs(ids = "69132")
-	@Test(description = "Cancel an meeting using keyboard shortcuts Del & Backspace",
+	@Test(description = "Cancel meeting using keyboard shortcuts Del & Backspace",
 			groups = { "functional" },
 			dataProvider = "DataProviderShortcutKeys")
 	public void CancelMeeting_03(String name, int keyEvent) throws HarnessException {
@@ -252,7 +252,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "69132")
-	@Test(description = "Don't cancel an meeting (press Cancel button in meeting cancellation dialog)",
+	@Test(description = "Don't cancel the meeting (press Cancel button from cancellation dialog)",
 			groups = { "functional" })
 	public void CancelMeeting_04() throws HarnessException {
 		
@@ -319,7 +319,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 	
 	
 	@Bugs(ids = "69132")
-	@Test(description = "Verify sending the editted cancelation message immediately (without changing) sends the cancellation message to attendees",
+	@Test(description = "Cancel appointment without modifying cancellation message content",
 			groups = { "functional" })
 	public void CancelMeeting_05() throws HarnessException {
 		
@@ -386,6 +386,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		//-- Verification
 		
 		// Verify the appointment does not appear in the organizers calendar
+		SleepUtil.sleepSmall(); //test fails without sleep
 		ZAssert.assertEquals(app.zPageCalendar.sIsElementPresent(app.zPageCalendar.zGetApptLocator(apptSubject)), false, "Verify meeting is deleted from organizer's calendar");
 		
 		// Verify meeting is deleted from attendee's calendar && receive meeting cancellation message
@@ -399,7 +400,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Bugs(ids = "69132")
+	@Bugs(ids = "69132,77548")
 	@Test(description = "Modify meeting cancellation message while cancelling appointment",
 			groups = { "functional" })
 	public void CancelMeeting_06() throws HarnessException {
