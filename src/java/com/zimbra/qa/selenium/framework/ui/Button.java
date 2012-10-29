@@ -48,6 +48,7 @@ public class Button {
 	public static final Button B_USER_NAME = new Button("B_USER_NAME");
 
 	public static final Button O_NEW = new Button("O_NEW");
+	public static final Button O_NEW_ADMIN = new Button("O_NEW_ADMIN");
 	public static final Button O_NEW_MESSAGE = new Button("O_NEW_MESSAGE");
 	public static final Button O_NEW_CONTACT = new Button("O_NEW_CONTACT");
 	public static final Button O_NEW_CONTACTGROUP = new Button("O_NEW_CONTACTGROUP");
@@ -159,12 +160,17 @@ public class Button {
 	public static final Button O_OPTION_FORMAT_AS_HTML = new Button("O_OPTION_FORMAT_AS_HTML");
 	public static final Button O_OPTION_FORMAT_AS_TEXT = new Button("O_OPTION_FORMAT_AS_TEXT");
 	public static final Button O_OPTION_REQUEST_READ_RECEIPT = new Button("O_OPTION_REQUEST_READ_RECEIPT");
+	public static final Button O_INCLUDE_ORIGINAL_AS_ATTACHMENT = new Button("O_INCLUDE_ORIGINAL_AS_ATTACHMENT");
 	public static final Button O_PRIORITY_HIGH = new Button("O_PRIORITY_HIGH");
 	public static final Button O_PRIORITY_NORMAL = new Button("O_PRIORITY_NORMAL");
 	public static final Button O_PRIORITY_LOW = new Button("O_PRIORITY_LOW");
 	public static final Button O_CONTACTS = new Button("O_CONTACTS");
 	public static final Button O_PERSONAL_AND_SHARED_CONTACTS = new Button("O_PERSONAL_AND_SHARED_CONTACTS");
 	public static final Button O_GLOBAL_ADDRESS_LIST = new Button("O_GLOBAL_ADDRESS_LIST");
+	public static final Button O_ADD_FWD_SIGNATURE = new Button("O_ADD_FWD_SIGNATURE");
+	public static final Button O_ADD_Reply_SIGNATURE = new Button("O_ADD_Reply_SIGNATURE");
+	public static final Button O_ADD_ReplyAll_SIGNATURE = new Button("O_ADD_ReplyAll_SIGNATURE");
+
 
 	// Dumpster dialog
 	public static final Button B_RECOVER_DELETED_ITEMS = new Button("B_RECOVER_DELETED_ITEMS");
@@ -373,8 +379,16 @@ public class Button {
 	public static final Button B_QUICK_REPLY_MORE = new Button("B_QUICK_REPLY_MORE");
 
 	// Calendar
+	public static final Button B_SHOW = new Button("B_SHOW");
 	public static final Button B_SAVEANDCLOSE = new Button("B_SAVEANDCLOSE");
 	public static final Button B_REFRESH = new Button("B_REFRESH");
+	public static final Button B_SUGGESTATIME = new Button("B_SUGGESTATIME");
+	public static final Button B_SUGGESTALOCATION = new Button("B_SUGGESTALOCATION");
+	public static final Button B_10AM = new Button("B_10AM");
+	public static final Button B_SelectLocationBySuggestingTime_11AM = new Button("B_SelectLocationBySuggestingTime_11AM");	
+	public static final Button B_SUGGESTEDLOCATION = new Button("B_SUGGESTEDLOCATION");
+	public static final Button B_TAGAPPOINTMENTMENU = new Button("B_TAGAPPOINTMENTMENU");
+	public static final Button B_LOCATIONMENU = new Button("B_LOCATIONMENU");
 	
 	public static final Button B_VIEW = new Button("B_VIEWTOOLBAR");
 	public static final Button O_LISTVIEW_DAY = new Button("O_LISTVIEW_DAY");
@@ -384,6 +398,9 @@ public class Button {
 	public static final Button O_LISTVIEW_LIST = new Button("O_LISTVIEW_LIST");
 	public static final Button O_LISTVIEW_SCHEDULE = new Button("O_LISTVIEW_SCHEDULE");
 	public static final Button O_LISTVIEW_FREEBUSY = new Button("O_LISTVIEW_FREEBUSY");
+	public static final Button O_LISTVIEW_TAG = new Button("O_LISTVIEW_TAG");
+	public static final Button O_LISTVIEW_NEWTAG = new Button("O_LISTVIEW_NEWTAG");
+	public static final Button O_LISTVIEW_REMOVETAG = new Button("O_LISTVIEW_REMOVETAG");
 	
 	public static final Button O_VIEW_DAY_MENU = new Button("O_VIEW_DAY_MENU");
 	public static final Button O_VIEW_WORK_WEEK_MENU = new Button("O_VIEW_WORK_WEEK_MENU");
@@ -442,6 +459,9 @@ public class Button {
 	public static final Button B_EDIT_CANCELLATION = new Button("B_EDIT_CANCELLATION");
 	public static final Button B_NOTIFY_ORGANIZER = new Button("B_NOTIFY_ORGANIZER");
 	public static final Button B_DONT_NOTIFY_ORGANIZER = new Button("B_DONT_NOTIFY_ORGANIZER");
+	
+	public static final Button B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES = new Button("B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES");
+	public static final Button B_SEND_UPDATES_TO_ALL_ATTENDEES = new Button("B_SEND_UPDATES_TO_ALL_ATTENDEES");
 
 	// Calendar tree
 	public static final Button B_RELOAD = new Button("B_RELOAD");
@@ -452,6 +472,17 @@ public class Button {
 	public static final Button B_NEW_QUICK_COMMAND		= new Button("B_NEW_QUICK_COMMAND");
 	public static final Button B_EDIT_QUICK_COMMAND		= new Button("B_EDIT_QUICK_COMMAND");
 	public static final Button B_DELETE_QUICK_COMMAND	= new Button("B_DELETE_QUICK_COMMAND");
+	
+	// Calendar preferences
+	public static final Button R_CUSTOM_WORK_HOURS		= new Button("R_CUSTOM_WORK_HOURS");
+	public static final Button B_CUSTOMIZE				= new Button("B_CUSTOMIZE");
+	public static final Button C_SUNDAY_WORK_HOUR		= new Button("C_SUNDAY_WORK_HOUR");
+	public static final Button C_MONDAY_WORK_HOUR		= new Button("C_MONDAY_WORK_HOUR");
+	public static final Button C_TUESDAY_WORK_HOUR		= new Button("C_TUESDAY_WORK_HOUR");
+	public static final Button C_WEDNESDAY_WORK_HOUR	= new Button("C_WEDNESDAY_WORK_HOUR");
+	public static final Button C_THURSDAY_WORK_HOUR		= new Button("C_THURSDAY_WORK_HOUR");
+	public static final Button C_FRIDAY_WORK_HOUR		= new Button("C_FRIDAY_WORK_HOUR");
+	public static final Button C_SATURDAY_WORK_HOUR		= new Button("C_SATURDAY_WORK_HOUR");
 
 
 	//// Admin Console
