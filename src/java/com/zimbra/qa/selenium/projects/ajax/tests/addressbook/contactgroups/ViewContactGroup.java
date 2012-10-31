@@ -14,6 +14,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.DisplayContactGroup;
 
 
 public class ViewContactGroup extends AjaxCommonTest  {
+	
 	public ViewContactGroup() {
 		logger.info("New "+ ViewContactGroup.class.getCanonicalName());
 		
@@ -23,10 +24,12 @@ public class ViewContactGroup extends AjaxCommonTest  {
 		super.startingAccountPreferences = null;		
 		
 	}
-	
-	
-	@Test(	description = "View a contact group",
-			groups = { "smoke" })
+
+
+	@Test(
+			description = "View a contact group", 
+			groups = { "smoke" }
+			)
 	public void DisplayContactGroupInfo() throws HarnessException {
 		         		
 		
@@ -47,8 +50,11 @@ public class ViewContactGroup extends AjaxCommonTest  {
 		//-- Verification
 		
 		// verify groupname
-		ZAssert.assertStringContains(groupView.zGetContactProperty(DisplayContactGroup.Field.Company), group.fileAs  , "Verify contact group email (" + group.fileAs + ") displayed");	
-		
+		ZAssert.assertStringContains(
+				group.getName(),
+				groupView.zGetContactProperty(DisplayContactGroup.Field.Company).replaceAll("“", "").replaceAll("”", ""),
+				"Verify contact group email (" + group.getName() + ") displayed");	
+
 		// verify group members
 		for (ContactGroupItem.MemberItem m : group.getMemberList()) {
 			
@@ -60,7 +66,7 @@ public class ViewContactGroup extends AjaxCommonTest  {
 			
 			boolean visible = app.zPageAddressbook.zIsVisiblePerPosition(locator, 0, 0);
 			ZAssert.assertTrue(visible, "Verify the member "+ email +" is visible");
-					
+			
 		}
 		
 
