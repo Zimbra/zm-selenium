@@ -20,10 +20,10 @@ import java.io.*;
 import java.util.StringTokenizer;
 
 import org.apache.log4j.*;
-import org.dom4j.DocumentException;
 
 import com.ibm.staf.*;
 import com.ibm.staf.service.*;
+import com.zimbra.common.soap.XmlParseException;
 
 
 public class ResultsStaf implements STAFServiceInterfaceLevel30 {
@@ -146,7 +146,7 @@ public class ResultsStaf implements STAFServiceInterfaceLevel30 {
 
 		} catch (IOException e) {
 			return (new STAFResult(STAFResult.JavaError, e.getMessage()));
-		} catch (DocumentException e) {
+		} catch (XmlParseException e) {
 			return (new STAFResult(STAFResult.JavaError, e.getMessage()));
 		}
 

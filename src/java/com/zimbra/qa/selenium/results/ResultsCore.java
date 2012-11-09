@@ -20,8 +20,8 @@ import java.io.*;
 import java.util.*;
 
 import org.apache.log4j.*;
-import org.dom4j.DocumentException;
 
+import com.zimbra.common.soap.XmlParseException;
 import com.zimbra.qa.selenium.results.BugStatus.BugState;
 
 public class ResultsCore {
@@ -271,7 +271,7 @@ public class ResultsCore {
 	}
 	
 	
-	public void execute(File testngRoot) throws UnsupportedEncodingException, IOException, DocumentException {
+	public void execute(File testngRoot) throws UnsupportedEncodingException, IOException, XmlParseException {
 		
 		
 		/*

@@ -20,9 +20,9 @@ import java.io.*;
 import java.util.*;
 
 import org.apache.log4j.*;
-import org.dom4j.DocumentException;
 
 import com.zimbra.common.soap.Element;
+import com.zimbra.common.soap.XmlParseException;
 import com.zimbra.common.util.ByteUtil;
 
 public class TestCaseData {
@@ -36,7 +36,7 @@ public class TestCaseData {
 	 * @throws IOException
 	 * @throws DocumentException 
 	 */
-	public static Map<String, Boolean> getStatusData(File root) throws IOException, DocumentException {
+	public static Map<String, Boolean> getStatusData(File root) throws IOException, XmlParseException {
 
 		TestCaseData engine = new TestCaseData();
 		return (engine.getData(root));
@@ -98,7 +98,7 @@ public class TestCaseData {
 	 * @throws IOException
 	 * @throws DocumentException
 	 */
-	private Map<String, Boolean> getData(File root) throws UnsupportedEncodingException, IOException, DocumentException {
+	private Map<String, Boolean> getData(File root) throws UnsupportedEncodingException, IOException, XmlParseException {
 		if ( root == null )
 			throw new NullPointerException("root folder was null");
 		
