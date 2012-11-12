@@ -23,10 +23,10 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning.DialogWarningID;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.*;
 
-
 @SuppressWarnings("unused")
 public class DeleteAppointment extends CalendarWorkWeekTest {
-
+	java.util.GregorianCalendar cal = new java.util.GregorianCalendar();
+	
 	public DeleteAppointment() {
 		logger.info("New "+ DeleteAppointment.class.getCanonicalName());
 		
@@ -82,8 +82,10 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		
 		
 		//-- Verification
-		
-		ZAssert.assertEquals(app.zPageCalendar.sIsElementPresent(app.zPageCalendar.zGetAllDayApptLocator(apptSubject)), false, "Verify all-day appointment is deleted");
+		if (cal.get(java.util.Calendar.DAY_OF_WEEK) == 1 || cal.get(java.util.Calendar.DAY_OF_WEEK) == 7) {
+			app.zPageCalendar.zToolbarPressButton(Button.O_LISTVIEW_WEEK);
+			ZAssert.assertEquals(app.zPageCalendar.sIsElementPresent(app.zPageCalendar.zGetAllDayApptLocator(apptSubject)), false, "Verify all-day appointment is deleted");
+		}	
 	}
 	
 	@Bugs(ids = "69132")
@@ -134,8 +136,10 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		
 		
 		//-- Verification
-		
-		ZAssert.assertEquals(app.zPageCalendar.sIsElementPresent(app.zPageCalendar.zGetAllDayApptLocator(apptSubject)), false, "Verify all-day appointment is deleted");
+		if (cal.get(java.util.Calendar.DAY_OF_WEEK) == 1 || cal.get(java.util.Calendar.DAY_OF_WEEK) == 7) {
+			app.zPageCalendar.zToolbarPressButton(Button.O_LISTVIEW_WEEK);
+			ZAssert.assertEquals(app.zPageCalendar.sIsElementPresent(app.zPageCalendar.zGetAllDayApptLocator(apptSubject)), false, "Verify all-day appointment is deleted");
+		}	
 	}
 	
 	@DataProvider(name = "DataProviderShortcutKeys")

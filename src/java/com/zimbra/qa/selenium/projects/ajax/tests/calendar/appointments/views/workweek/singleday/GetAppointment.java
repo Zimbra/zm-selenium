@@ -12,7 +12,7 @@ import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 
 
 public class GetAppointment extends CalendarWorkWeekTest {
-
+	java.util.GregorianCalendar cal = new java.util.GregorianCalendar();
 	
 	public GetAppointment() {
 		logger.info("New "+ GetAppointment.class.getCanonicalName());
@@ -65,19 +65,22 @@ public class GetAppointment extends CalendarWorkWeekTest {
 		
 		
 		//-- Verification
-		
-	    //verify appt displayed in workweek view
-		boolean found = false;
-		List<AppointmentItem> items = app.zPageCalendar.zListGetAppointments();
-		for (AppointmentItem item : items ) {
-			if ( subject.equals(item.getSubject()) ) {
-				found = true;
-				break;
+
+		if (cal.get(java.util.Calendar.DAY_OF_WEEK) == 1 || cal.get(java.util.Calendar.DAY_OF_WEEK) == 7) {
+			app.zPageCalendar.zToolbarPressButton(Button.O_LISTVIEW_WEEK);
+			
+			boolean found = false;
+			List<AppointmentItem> items = app.zPageCalendar.zListGetAppointments();
+			for (AppointmentItem item : items ) {
+				if ( subject.equals(item.getSubject()) ) {
+					found = true;
+					break;
+				}
 			}
+			
+			ZAssert.assertTrue(found, "Verify appt gets displayed in work week view");
 		}
 		
-		ZAssert.assertTrue(found, "Verify appt gets displayed in work week view");
-	    
 	}
 
 

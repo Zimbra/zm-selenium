@@ -12,7 +12,7 @@ import com.zimbra.qa.selenium.projects.ajax.core.*;
 
 
 public class DragAndDropAppointment extends CalendarWorkWeekTest {
-
+	java.util.GregorianCalendar cal = new java.util.GregorianCalendar();
 	
 	public DragAndDropAppointment() {
 		logger.info("New "+ DragAndDropAppointment.class.getCanonicalName());
