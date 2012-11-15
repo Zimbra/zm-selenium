@@ -9,7 +9,6 @@ import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 
 public class CreateAppointment extends CalendarWorkWeekTest {
-	java.util.GregorianCalendar cal = new java.util.GregorianCalendar();
 	
 	public CreateAppointment() {
 		logger.info("New "+ CreateAppointment.class.getCanonicalName());
@@ -27,6 +26,8 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		AppointmentItem appt = new AppointmentItem();
 		
 		appt.setSubject(apptSubject);
+		appt.setStartTime(new ZDate(this.calendarWeekDayUTC));
+		appt.setEndTime(new ZDate(this.calendarWeekDayUTC));
 		appt.setContent("content" + ZimbraSeleniumProperties.getUniqueString());
 		appt.setAttendees(ZimbraAccount.AccountA().EmailAddress);
 		appt.setIsAllDay(true);
@@ -46,10 +47,16 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(app.zGetActiveAccount().soapMatch("//mail:GetAppointmentResponse//mail:comp", "allDay", "1"), true, "");
 		
 		// Verify in UI
-		if (cal.get(java.util.Calendar.DAY_OF_WEEK) == 1 || cal.get(java.util.Calendar.DAY_OF_WEEK) == 7) {
-			app.zPageCalendar.zToolbarPressButton(Button.O_LISTVIEW_WEEK);
-			ZAssert.assertEquals(app.zPageCalendar.sIsElementPresent(app.zPageCalendar.zGetAllDayApptLocator(apptSubject)), true, "Verify all-day appointment present in UI");
+
+		boolean found = false;
+		for (AppointmentItem a : app.zPageCalendar.zListGetAppointments()) {
+			if ( apptSubject.equals(a.getSubject()) ) {
+				found = true;
+				break;
+			}
 		}
+		
+		ZAssert.assertTrue(found, "Verify the new apointment appears");
 
 	}
 	
