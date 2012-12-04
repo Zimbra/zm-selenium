@@ -446,14 +446,16 @@ public class GetTask extends AjaxCommonTest {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		
 		
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "atask"+ ZimbraSeleniumProperties.getUniqueString();
 		String content = "content"+ ZimbraSeleniumProperties.getUniqueString();
+		ZDate dueDate  = new ZDate(2015, 1, 17, 12, 0, 0);
 						
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
 					"<m >" +
 			        	"<inv>" +
 			        		"<comp name='"+ subject +"'>" +
+			        		"<e d='"+ dueDate.toYYYYMMDD() +"'/>" +
 			        			"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 			        		"</comp>" +
 			        	"</inv>" +
@@ -485,6 +487,8 @@ public class GetTask extends AjaxCommonTest {
 		
 		//Click Filter By Drop down and select To-Do List menu item
 		app.zPageTasks.zToolbarPressPulldown(Button.B_TASK_FILTERBY, Button.O_TASK_TODOLIST);
+		
+		
 		
 		//Verify the task is no longer present for Mark as completed Tasks"		
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
