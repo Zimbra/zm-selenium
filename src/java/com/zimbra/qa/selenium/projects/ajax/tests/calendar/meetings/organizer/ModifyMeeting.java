@@ -18,7 +18,7 @@ public class ModifyMeeting extends CalendarWorkWeekTest {
 
 	public ModifyMeeting() {
 		logger.info("New "+ ModifyMeeting.class.getCanonicalName());
-		
+		super.startingPage = app.zPageCalendar;
 	}
 	
 	@Bugs(ids = "69132")

@@ -15,7 +15,7 @@ public class ResendMeeting extends CalendarWorkWeekTest {
 	
 	public ResendMeeting() {
 		logger.info("New "+ ResendMeeting.class.getCanonicalName());
-		
+		super.startingPage = app.zPageCalendar;
 	}
 	
 	

@@ -2,25 +2,23 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer;
 
 import java.util.Calendar;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators;
 
 public class CreateMeeting extends CalendarWorkWeekTest {
 
 	public CreateMeeting() {
 		logger.info("New "+ CreateMeeting.class.getCanonicalName());
-		
+		super.startingPage = app.zPageCalendar;
 	}
 	
 	@Test(description = "Create a basic meeting with attendee",
-			groups = { "sanity" })
+			groups = { "smoke" })
 	public void CreateMeeting_01() throws HarnessException {
 		
 		// Create appointment data
