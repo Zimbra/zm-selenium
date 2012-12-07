@@ -13,7 +13,7 @@ public class MeetingResponse extends PrefGroupMailByMessageTest {
 
 	public MeetingResponse() {
 		logger.info("New "+ MeetingResponse.class.getCanonicalName());
-		
+		super.startingPage = app.zPageMail;
 
 	}
 	

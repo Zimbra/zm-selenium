@@ -22,7 +22,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 	
 	public CancelMeeting() {
 		logger.info("New "+ CancelMeeting.class.getCanonicalName());
-		super.startingPage = app.zPageMail;
+		super.startingPage = app.zPageCalendar;
 	}
 	
 	
