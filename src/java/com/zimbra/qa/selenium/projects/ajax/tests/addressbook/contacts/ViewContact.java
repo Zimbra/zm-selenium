@@ -21,6 +21,8 @@ package com.zimbra.qa.selenium.projects.ajax.tests.addressbook.contacts;
 import java.util.List;
 
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.ContactItem.GenerateItemType;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -59,8 +61,10 @@ public class ViewContact extends AjaxCommonTest  {
 		}
 		
 	
+	// See http://bugzilla.zimbra.com/show_bug.cgi?id=58516 ... WONTFIX
+	@Bugs(ids = "58516")
 	@Test(	description = "View a contact  created via soap",
-			groups = { "functional" })
+			groups = { "deprecated" })
 	public void DisplayContactInfo_FileAsEmail() throws HarnessException {
 		         		
 	    // Create a contact via Soap then select
