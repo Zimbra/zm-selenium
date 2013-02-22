@@ -26,6 +26,7 @@ import com.zimbra.qa.selenium.framework.items.ContextMenuItem.CONTEXT_MENU_ITEM_
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.GeneralUtility;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.framework.util.GeneralUtility.WAIT_FOR_OPERAND;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
@@ -1020,15 +1021,19 @@ public class PageMail extends AbsTab {
 		if (treeItemLocator == null) throw new HarnessException("treeItemLocator is null, please check!");
 
 		GeneralUtility.waitForElementPresent(this, treeItemLocator);
+		
+		SleepUtil.sleepSmall();
 
 		if ( action == Action.A_RIGHTCLICK ) {
-
+			
 			if (option == Button.B_TREE_NEWFOLDER) {
 				ContextMenu contextMenu = (ContextMenu)((AppAjaxClient)MyApplication).zTreeMail.zTreeItem(
 						action, treeItemLocator);
 				page = contextMenu.zSelect(CONTEXT_MENU_ITEM_NAME.NEW_FOLDER);
-			}
-			else {
+				
+				SleepUtil.sleepSmall();
+				
+			} else {
 				throw new HarnessException("implement action:"+ action +" option:"+ option);
 			}
 		} else if (action == Action.A_LEFTCLICK) {
