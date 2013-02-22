@@ -836,7 +836,9 @@ public class PageTasks extends AbsTab {
 	}
 	@Override
 	public AbsPage zKeyboardShortcut(Shortcut shortcut) throws HarnessException {
-
+		
+		SleepUtil.sleepSmall();
+		
 		if (shortcut == null)
 			throw new HarnessException("Shortcut cannot be null");
 
@@ -855,12 +857,15 @@ public class PageTasks extends AbsTab {
 
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
+		SleepUtil.sleepSmall();
 
 		// If a page is specified, wait for it to become active
 		if ( page != null ) {
 			page.zWaitForActive();	// This method throws a HarnessException if never active
 		}
 		return (page);
+		
+		
 	}
 
 	/**

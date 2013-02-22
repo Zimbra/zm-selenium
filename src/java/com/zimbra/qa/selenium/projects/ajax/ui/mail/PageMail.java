@@ -266,6 +266,9 @@ public class PageMail extends AbsTab {
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
+		
+		SleepUtil.sleepSmall();
+		
 		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
 
 		tracer.trace("Press the "+ button +" button");
@@ -375,7 +378,7 @@ public class PageMail extends AbsTab {
 			}
 
 		} else if ( button == Button.B_FORWARD ) {
-
+			
 			page = new FormMailNew(this.MyApplication);;
 			locator = "css=div[id$='__FORWARD']";
 
@@ -458,6 +461,7 @@ public class PageMail extends AbsTab {
 
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
+		SleepUtil.sleepSmall();
 
 		if (ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP &&
 				button == Button.B_GETMAIL) {
@@ -474,7 +478,6 @@ public class PageMail extends AbsTab {
 			page.zWaitForActive();
 
 		}
-
 
 		return (page);
 	}
@@ -828,6 +831,8 @@ public class PageMail extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, String subject) throws HarnessException {
+		SleepUtil.sleepSmall();
+		
 		logger.info(myPageName() + " zListItem("+ action +", "+ subject +")");
 
 		tracer.trace(action +" on subject = "+ subject);
@@ -973,7 +978,8 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("implement me!  action = "+ action);
 		}
 
-
+		SleepUtil.sleepSmall();
+		
 		if ( page != null ) {
 			page.zWaitForActive();
 		}
@@ -1022,7 +1028,7 @@ public class PageMail extends AbsTab {
 
 		GeneralUtility.waitForElementPresent(this, treeItemLocator);
 		
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 
 		if ( action == Action.A_RIGHTCLICK ) {
 			
@@ -1272,6 +1278,7 @@ public class PageMail extends AbsTab {
 
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
+		SleepUtil.sleepSmall();
 
 		// If a page is specified, wait for it to become active
 		if ( page != null ) {
