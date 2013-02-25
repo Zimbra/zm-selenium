@@ -100,9 +100,6 @@ public class GetAppointment extends AjaxCommonTest {
 			ZAssert.assertTrue(view.isApptExist(appt), "Verify appt gets displayed in work week view");	
 		
 		}
-		
-		//wait for the appointment displayed in the view
-		
 	    
 	}
 
