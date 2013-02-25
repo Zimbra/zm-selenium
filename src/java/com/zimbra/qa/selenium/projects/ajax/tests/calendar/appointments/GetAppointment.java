@@ -24,6 +24,7 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.ApptWeekView;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.ApptWorkWeekView;
 
 
@@ -43,7 +44,7 @@ public class GetAppointment extends AjaxCommonTest {
 	}
 	
 	@Test(	description = "View a basic appointment in the default view",
-			groups = { "smoke" })
+			groups = { "sanity" })
 	public void GetAppointment_01() throws HarnessException {
 		
 		// Create the appointment on the server
@@ -86,13 +87,22 @@ public class GetAppointment extends AjaxCommonTest {
 
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		
-	    //verify appt displayed in workweek view
-		ApptWorkWeekView view = (ApptWorkWeekView) app.zPageCalendar.zToolbarPressPulldown(Button.B_LISTVIEW, Button.O_LISTVIEW_WORKWEEK);
+		if ( now.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || now.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+			
+			ApptWeekView view = (ApptWeekView) app.zPageCalendar.zToolbarPressPulldown(Button.B_LISTVIEW, Button.O_LISTVIEW_WEEK);
+			app.zPageCalendar.zWaitForElementPresent("css=div[id*=__zli__CLW__]");
+			ZAssert.assertTrue(view.isApptExist(appt), "Verify appt gets displayed in week view");
+			
+		} else {
+			
+			ApptWorkWeekView view = (ApptWorkWeekView) app.zPageCalendar.zToolbarPressPulldown(Button.B_LISTVIEW, Button.O_LISTVIEW_WORKWEEK);
+			app.zPageCalendar.zWaitForElementPresent("css=div[id*=__zli__CLWW__]");
+			ZAssert.assertTrue(view.isApptExist(appt), "Verify appt gets displayed in work week view");	
+		
+		}
 		
 		//wait for the appointment displayed in the view
-		app.zPageCalendar.zWaitForElementPresent("css=div[id*=__zli__CLWW__]");
 		
-		ZAssert.assertTrue(view.isApptExist(appt), "Verify appt gets displayed in work week view");
 	    
 	}
 

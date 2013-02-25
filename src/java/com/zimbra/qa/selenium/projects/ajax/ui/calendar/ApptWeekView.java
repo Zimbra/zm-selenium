@@ -16,10 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
 
-
-
-
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
@@ -48,18 +44,20 @@ public class ApptWeekView extends ApptView {
 	}
 	
 	public boolean isApptExist(AppointmentItem appt) throws HarnessException {
-		 return super.isApptExist(appt);
+		String text= sGetText("css=div[id*=__zli__CLW__]");
+		return ( text.contains(appt.getLocation()) &&
+				 text.contains(appt.getSubject()) );	
 	}
+	
 	@Override
 	public boolean zIsActive() throws HarnessException {
-        return 
+		return 
         (
          //TODO
         //( sGetCssCount("css=div.ZmCalViewMgr>div.div.calendar_heading div.calendar_heading_day") == 0)
         //&&		
         (sGetCssCount("css=div.calendar_heading>div.calendar_heading_day_today") >= 1)
-        );
-						
+        );						
 	}
 	
 }
