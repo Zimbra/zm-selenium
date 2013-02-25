@@ -831,7 +831,6 @@ public class PageMail extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, String subject) throws HarnessException {
-		SleepUtil.sleepSmall();
 		
 		logger.info(myPageName() + " zListItem("+ action +", "+ subject +")");
 
@@ -977,8 +976,6 @@ public class PageMail extends AbsTab {
 		} else {
 			throw new HarnessException("implement me!  action = "+ action);
 		}
-
-		SleepUtil.sleepSmall();
 		
 		if ( page != null ) {
 			page.zWaitForActive();
