@@ -194,8 +194,10 @@ public class DeleteTask extends AjaxCommonTest {
 		
 		// Click delete keyboard
 		logger.info("Typing shortcut key "+ name + " KeyEvent: "+ keyEvent);
-		app.zPageMail.zKeyboardKeyEvent(keyEvent);
 		
+		SleepUtil.sleepSmall();
+		app.zPageMail.zKeyboardKeyEvent(keyEvent);
+		SleepUtil.sleepMedium();
 		
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
 		ZAssert.assertNotNull(tasks, "Verify the task list exists");
