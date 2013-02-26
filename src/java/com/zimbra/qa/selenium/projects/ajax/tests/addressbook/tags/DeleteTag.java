@@ -53,8 +53,10 @@ public class DeleteTag extends AjaxCommonTest {
 		ZAssert.assertNotNull(tag, "Verify the tag was created");
 				
 		 // Refresh the view, to pick up the new tag
-	    FolderItem contactFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), "Contacts");	      
+	    FolderItem contactFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), "Contacts");
+	    SleepUtil.sleepSmall();
 	    app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, contactFolder);
+	    SleepUtil.sleepSmall(); //test fails here
 	
 		// Delete the tag using context menu
 		DialogWarning dialog = (DialogWarning) app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_DELETE, tag);
