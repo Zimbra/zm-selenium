@@ -191,6 +191,8 @@ public class PageAddressbook extends AbsTab {
 				
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
+		SleepUtil.sleepSmall();
+		
 		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
 
 		tracer.trace("Press the "+ button +" button");
