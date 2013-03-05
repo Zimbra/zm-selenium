@@ -169,9 +169,11 @@ public class DeleteMail extends AjaxCommonTest {
 		
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		SleepUtil.sleepSmall();
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
+		SleepUtil.sleepMedium();
 		
 		// Click delete
 		logger.info("Typing shortcut key "+ name + " KeyEvent: "+ keyEvent);
