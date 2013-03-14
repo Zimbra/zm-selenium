@@ -16,10 +16,10 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
 public class AutoCompleteQuickCompleteKeys extends PrefGroupMailByMessageTest {
 
-	private String FirstName = null;
-	private String LastName = null;
-	private ZimbraAccount SampleAccount = null;
-	
+
+	private static String FirstName = "James" + ZimbraSeleniumProperties.getUniqueString();
+	private static String LastName = "Smith" + ZimbraSeleniumProperties.getUniqueString();
+	private static ZimbraAccount SampleAccount = null;
 	
 	public AutoCompleteQuickCompleteKeys() throws HarnessException {
 		logger.info("New "+ AutoCompleteQuickCompleteKeys.class.getCanonicalName());
@@ -28,12 +28,6 @@ public class AutoCompleteQuickCompleteKeys extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefGalAutoCompleteEnabled", "TRUE");
 		super.startingAccountPreferences.put("zimbraPrefAutoCompleteQuickCompletionOnComma", "TRUE");
 
-		FirstName = "James" + ZimbraSeleniumProperties.getUniqueString();
-		LastName = "Smith" + ZimbraSeleniumProperties.getUniqueString();
-		SampleAccount = new ZimbraAccount();
-		SampleAccount.setPref("displayName", FirstName + " " + LastName);
-		SampleAccount.provision();
-		SampleAccount.authenticate();
 
 	}
 	
@@ -41,6 +35,16 @@ public class AutoCompleteQuickCompleteKeys extends PrefGroupMailByMessageTest {
 			groups = { "functional" })
 	public void AutoCompleteQuickCompleteKeys_01() throws HarnessException {
 		
+		if ( SampleAccount == null ) {
+			
+			ZimbraAccount SampleAccount = new ZimbraAccount();
+			SampleAccount.setPref("displayName", FirstName + " " + LastName);
+			SampleAccount.provision();
+			SampleAccount.authenticate();
+			
+		}
+
+
 		// Message properties
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
@@ -77,6 +81,16 @@ public class AutoCompleteQuickCompleteKeys extends PrefGroupMailByMessageTest {
 			groups = { "functional" })
 	public void AutoCompleteQuickCompleteKeys_02() throws HarnessException {
 		
+		if ( SampleAccount == null ) {
+			
+			ZimbraAccount SampleAccount = new ZimbraAccount();
+			SampleAccount.setPref("displayName", FirstName + " " + LastName);
+			SampleAccount.provision();
+			SampleAccount.authenticate();
+			
+		}
+
+
 		// Message properties
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
@@ -113,6 +127,16 @@ public class AutoCompleteQuickCompleteKeys extends PrefGroupMailByMessageTest {
 			groups = { "functional" })
 	public void AutoCompleteQuickCompleteKeys_03() throws HarnessException {
 		
+		if ( SampleAccount == null ) {
+			
+			ZimbraAccount SampleAccount = new ZimbraAccount();
+			SampleAccount.setPref("displayName", FirstName + " " + LastName);
+			SampleAccount.provision();
+			SampleAccount.authenticate();
+			
+		}
+
+
 		// Message properties
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
