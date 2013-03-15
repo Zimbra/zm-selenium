@@ -37,7 +37,7 @@ public class AutoCompleteQuickCompleteKeys extends PrefGroupMailByMessageTest {
 		
 		if ( SampleAccount == null ) {
 			
-			ZimbraAccount SampleAccount = new ZimbraAccount();
+			SampleAccount = new ZimbraAccount();
 			SampleAccount.setPref("displayName", FirstName + " " + LastName);
 			SampleAccount.provision();
 			SampleAccount.authenticate();
@@ -83,7 +83,7 @@ public class AutoCompleteQuickCompleteKeys extends PrefGroupMailByMessageTest {
 		
 		if ( SampleAccount == null ) {
 			
-			ZimbraAccount SampleAccount = new ZimbraAccount();
+			SampleAccount = new ZimbraAccount();
 			SampleAccount.setPref("displayName", FirstName + " " + LastName);
 			SampleAccount.provision();
 			SampleAccount.authenticate();
@@ -129,7 +129,7 @@ public class AutoCompleteQuickCompleteKeys extends PrefGroupMailByMessageTest {
 		
 		if ( SampleAccount == null ) {
 			
-			ZimbraAccount SampleAccount = new ZimbraAccount();
+			SampleAccount = new ZimbraAccount();
 			SampleAccount.setPref("displayName", FirstName + " " + LastName);
 			SampleAccount.provision();
 			SampleAccount.authenticate();
