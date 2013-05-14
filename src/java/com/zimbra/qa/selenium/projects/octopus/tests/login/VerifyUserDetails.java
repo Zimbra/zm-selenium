@@ -16,13 +16,9 @@
  */
 package com.zimbra.qa.selenium.projects.octopus.tests.login;
 
-import junit.framework.Assert;
-
-import mx4j.tools.config.DefaultConfigurationBuilder.New;
 
 import org.testng.annotations.Test;
 
-import com.zimbra.qa.QA.Bug;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
