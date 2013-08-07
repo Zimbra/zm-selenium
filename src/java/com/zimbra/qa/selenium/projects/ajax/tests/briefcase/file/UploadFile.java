@@ -56,7 +56,7 @@ public class UploadFile extends FeatureBriefcaseTest {
 
 		// Create file item
 		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
-		+ "/data/public/other/testsoundfile.wav";
+		+ "/data/public/other/testtextfile.txt";
 		
 		FileItem file = new FileItem(filePath);
 
@@ -104,7 +104,7 @@ public class UploadFile extends FeatureBriefcaseTest {
 
 		// Create file item
 		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
-		+ "/data/public/other/putty.log";
+		+ "/data/public/other/testtextfile.txt";
 		
 		FileItem fileItem = new FileItem(filePath);
 

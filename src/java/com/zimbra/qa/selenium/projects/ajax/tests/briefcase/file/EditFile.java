@@ -59,7 +59,7 @@ public class EditFile extends FeatureBriefcaseTest {
 
 		// Create file item
 		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
-				+ "/data/public/other/putty.log";
+				+ "/data/public/other/testtextfile.txt";
 
 		IItem fileItem = new FileItem(filePath);
 
@@ -116,7 +116,7 @@ public class EditFile extends FeatureBriefcaseTest {
 
 		// Create file item
 		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
-				+ "/data/public/other/putty.log";
+				+ "/data/public/other/testtextfile.txt";
 
 		FileItem fileItem = new FileItem(filePath);
 
@@ -175,7 +175,7 @@ public class EditFile extends FeatureBriefcaseTest {
 
 		// Create file item
 		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
-				+ "/data/public/other/putty.log";
+				+ "/data/public/other/testtextfile.txt";
 
 		IItem fileItem = new FileItem(filePath);
 
@@ -226,7 +226,7 @@ public class EditFile extends FeatureBriefcaseTest {
 
 		// Create file item
 		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
-				+ "/data/public/other/putty.log";
+				+ "/data/public/other/testtextfile.txt";
 
 		IItem fileItem = new FileItem(filePath);
 
