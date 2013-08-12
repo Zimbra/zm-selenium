@@ -399,9 +399,81 @@ public class FormMailNew extends AbsForm {
 			//
 			SleepUtil.sleepLong();
 
+			
+			locator = "css=div[id^='zv__COMPOSE'] iframe.DwtHtmlEditorIFrame[id^='iframe']";
+			if ( this.sIsElementPresent(locator) && this.zIsVisiblePerPosition(locator, 0, 0) ) {
+				
+				logger.info("FormMailNew.zFillField: Html Compose");
+			
+				
+				try {
+
+					this.sSelectFrame("css=iframe.DwtHtmlEditorIFrame[id^='iframe']"); // iframe index is 0 based
+
+					locator = "css=html body";
+
+					if (!this.sIsElementPresent(locator))
+						throw new HarnessException("Unable to locate compose body");
+
+					this.sFocus(locator);
+					this.zClick(locator);
+					this.sType(locator, value);
+
+				} finally {
+					// Make sure to go back to the original iframe
+					this.sSelectFrame("relative=top");
+
+				}
+
+				// Is this requried?
+				this.zWaitForBusyOverlay();
+
+				return;
+
+			}
+
+			locator = "css=div[id^='zv__COMPOSE'] textarea.DwtHtmlEditorTextArea";
+			if ( this.sIsElementPresent(locator) && this.zIsVisiblePerPosition(locator, 0, 0) ) {
+				
+				logger.info("FormMailNew.zFillField: Text Compose");
+
+				/**
+
+  <div id="zv__COMPOSE-1" style="position: absolute; overflow: hidden; left: 0px; top: 100px; width: 996px; height: 533px; z-index: 300;" class="ZmComposeView" parentid="z_shell">
+    <table id="zv__COMPOSE-1_header" width="100%" cellspacing="6" class="ZPropertySheet">
+	...
+    </table>
+    <div id="DWT52" style="position: relative; overflow: visible; display: block;" class="ZmHtmlEditor" parentid="zv__COMPOSE-1">
+      <textarea id="DWT52_content" name="DWT52_content" class="DwtHtmlEditorTextArea" style="height: 413px;">
+      </textarea>
+    </div>
+  </div>
+				  
+				 **/
+				
+				this.sFocus(locator);
+				this.zClick(locator);
+				this.zWaitForBusyOverlay();
+				this.sType(locator, value);
+
+				return;
+
+			}
+			
+			
+			/**
+			 * 7/2/2013: Matt
+			 * Below is the OLD code to handle compose.  It handled IE and other
+			 * browser implementations, which may not be required for webdriver.
+			 * 
+			 * Maybe remove if not being used? 
+			 **/
+			
+			
+
 			int frames = this.sGetXpathCount("//iframe");
 			logger.debug("Body: # of frames: "+ frames);
-
+			
 			if ( frames == 0 ) {
 				////
 				// Text compose
@@ -453,6 +525,7 @@ public class FormMailNew extends AbsForm {
 				throw new HarnessException("Compose //iframe count was "+ frames);
 			}
 			
+
 
 		} else {
 			throw new HarnessException("not implemented for field "+ field);
