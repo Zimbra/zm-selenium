@@ -482,6 +482,8 @@ public class PageMail extends AbsTab {
 
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
+		SleepUtil.sleepSmall();
+		
 		logger.info(myPageName() + " zToolbarPressButtonWithPulldown("+ pulldown +", "+ option +")");
 		tracer.trace("Click pulldown "+ pulldown +" then "+ option);
 		if (pulldown == null)
@@ -588,6 +590,7 @@ public class PageMail extends AbsTab {
 			}
 		}
 		// Return the specified page, or null if not set
+		SleepUtil.sleepMedium();
 		return (page);
 
 	}
