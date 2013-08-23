@@ -816,6 +816,8 @@ public class FormApptNew extends AbsForm {
 		    SleepUtil.sleepSmall();
 		    
 		    if (field == Field.Attendees || field == Field.Optional || field == Field.Location || field == Field.Equipment) {
+		    	this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+		    	SleepUtil.sleepSmall();
 		    	this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 		    }
 		}
