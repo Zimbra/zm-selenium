@@ -333,7 +333,7 @@ public class FormApptNew extends AbsForm {
 				
 				return;
 				
-			} else if ( frames == 1 ) {
+			} else if ( frames >= 1 ) {
 				////
 				// HTML compose
 				////
