@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 
 
-@SuppressWarnings("unused")
 public class ModifyMeeting extends CalendarWorkWeekTest {
 
 	public ModifyMeeting() {
@@ -41,7 +40,6 @@ public class ModifyMeeting extends CalendarWorkWeekTest {
 	public void ModifyMeeting_01() throws HarnessException {
 		
 		// Creating object for meeting data
-		AppointmentItem appt = new AppointmentItem();
 		String tz, apptSubject, apptBody, apptAttendee1, editApptSubject, editApptBody, editApptAttendee1;
 		tz = ZTimeZone.TimeZoneEST.getID();
 		apptSubject = ZimbraSeleniumProperties.getUniqueString();
