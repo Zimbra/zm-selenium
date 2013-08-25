@@ -99,7 +99,20 @@ public class MarkUnSpamMail extends PrefGroupMailByMessageTest {
 		
 		// Get the mail item for the new message
 		// Need 'is:anywhere' to include the spam folder
-		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:("+ subject +")");
+		MailItem mail = null;
+				
+		try{
+		    for(int i = 0; i < 10; i++){
+		    	mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:("+ subject +")");
+			if(mail !=null){
+			    break;
+			}
+			SleepUtil.sleepSmall();
+		    }
+		}catch(Exception ex){
+		    logger.error(ex);
+		}
+				
 		ZAssert.assertNotNull(mail, "Make sure the mail is found");
 
 		ZAssert.assertEquals(mail.dFolderId, inbox.getId(), "Verify the message is in the inbox folder");
