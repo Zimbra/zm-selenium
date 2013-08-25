@@ -20,6 +20,7 @@ import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
 
 
@@ -71,7 +72,9 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 		// Set the new tag name
 		String name = "tag" + ZimbraSeleniumProperties.getUniqueString();
 		
-		DialogTag dialog = (DialogTag)app.zPageMail.zKeyboardShortcut(shortcut);
+		//DialogTag dialog = (DialogTag)app.zPageMail.zKeyboardShortcut(shortcut);
+		DialogTag dialog = new DialogTag(app,app.zPageMail);
+		app.zPageMail.zKeyDown("78,84");
 		ZAssert.assertNotNull(dialog, "Verify the new dialog opened");
 		
 		// Fill out the form with the basic details

@@ -22,6 +22,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraCharsets.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 
 public class CreateFolder extends PrefGroupMailByMessageTest {
@@ -71,7 +72,9 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 		// Set the new folder name
 		String name = "folder" + ZimbraSeleniumProperties.getUniqueString();
 
-		DialogCreateFolder dialog = (DialogCreateFolder) app.zPageMail.zKeyboardShortcut(shortcut);
+		//DialogCreateFolder dialog = (DialogCreateFolder) app.zPageMail.zKeyboardShortcut(shortcut);
+		DialogCreateFolder dialog = new DialogCreateFolder(app,app.zPageMail);
+		app.zPageMail.zKeyDown("78,70");
 		ZAssert.assertNotNull(dialog, "Verify the new dialog opened");
 
 		// Fill out the form with the basic details
