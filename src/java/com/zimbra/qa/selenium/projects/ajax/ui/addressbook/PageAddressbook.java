@@ -1282,9 +1282,12 @@ public class PageAddressbook extends AbsTab {
 			
 			}
 			else if (option == Button.B_CONTACTGROUP) {
+				if (zIsInSearchView()) {
+					optionLocator = "css=div[id^=zm__Contacts__DWT] div[id^='CONTACTGROUP_MENU'] td[id$='_title']";
+				} else {
+					optionLocator = "css=div#zm__Contacts div[id^='CONTACTGROUP_MENU'] td[id$='_title']";
+				}	
 				
-				optionLocator = "css=div#zm__Contacts div[id^='CONTACTGROUP_MENU'] td[id$='_title']";
-
 				if ( item instanceof ContactGroupItem) {
 					itemLocator = "css=div[id^='CONTACTGROUP_MENU'] td[id$='_title']:contains('"+ item.getName() +"')";
 				}				
