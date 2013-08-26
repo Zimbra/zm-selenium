@@ -226,6 +226,7 @@ public class ContactGroup extends AjaxCommonTest  {
 		form.zFillField(Field.FreeFormAddress, member1);
 		form.zFillField(Field.FreeFormAddress, member2);
 		form.zSubmit();
+		SleepUtil.sleepLong();
 		ContactGroupItem groupItem = ContactGroupItem.importFromSOAP(account, groupName);
 		// search for a GAL
 		app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_GAL); 		

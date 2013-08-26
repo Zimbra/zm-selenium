@@ -158,7 +158,9 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 	{
 
 
-		DialogCreateFolder dialog = (DialogCreateFolder) app.zPageMail.zKeyboardShortcut(Shortcut.S_NEWFOLDER);
+		//DialogCreateFolder dialog = (DialogCreateFolder) app.zPageMail.zKeyboardShortcut(Shortcut.S_NEWFOLDER);
+		DialogCreateFolder dialog = new DialogCreateFolder(app,app.zPageMail);
+			app.zPageMail.zKeyDown("78,70");
 		ZAssert.assertNotNull(dialog, "Verify the new dialog opened");
 
 		// Fill out the form with the basic details

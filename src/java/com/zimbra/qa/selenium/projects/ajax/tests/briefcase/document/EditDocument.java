@@ -186,6 +186,7 @@ public class EditDocument extends FeatureBriefcaseTest {
 
 			// Save and close
 			documentBriefcaseEdit.zSubmit();
+			SleepUtil.sleepMedium();
 		} catch (Exception ex) {
 			throw new HarnessException("error in editing document "
 					+ docItem1.getName(), ex);
