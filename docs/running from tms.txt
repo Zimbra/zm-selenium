@@ -52,11 +52,11 @@ qa33-vista-qtp2.liquidsys.com (temporarily hosted on qa33.liquidsys.com vmWorkst
 username: zimbra
 pwd: test123
 
-browserperf1 is a XP VMWARE machine on qa61.lab.zimbra.com (also a windows machine)
+browserperf1 is a XP vm machine on qa61.lab.zimbra.com (also a windows machine)
 username: zimbra
 pwd: test123
 
-browserperf2 is a XP VMWARE machine on qa61.lab.zimbra.com (also a windows machine)
+browserperf2 is a XP vm machine on qa61.lab.zimbra.com (also a windows machine)
 username: zimbra
 pwd: test123
 
