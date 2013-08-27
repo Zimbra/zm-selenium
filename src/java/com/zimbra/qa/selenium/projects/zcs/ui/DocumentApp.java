@@ -22,7 +22,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
  * zSelectPageAndClickDelete() etc. It also has static-final variables that
  * holds ids of icons on the Documents-toolbar(like zEditPageIconBtn,
  * zDeletePageIconBtn etc).If you are dealing with the toolbar buttons, use
- * these icons since in vmware resolutions and in some languages button-labels
+ * these icons since in vm resolution and in some languages button-labels
  * are not displayed(but just their icons)
  * 
  * @author Prashant Jaiswal

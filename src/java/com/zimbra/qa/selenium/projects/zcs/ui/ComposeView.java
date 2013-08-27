@@ -35,7 +35,7 @@ import com.zimbra.qa.selenium.framework.util.staf.Stafzmprov;
  * mail's contents. e.g: zNavigateToMailCompose, zEnterComposeValues etc It also
  * has static-final variables that holds ids of icons on the
  * compose-toolbar(like zSendIconBtn, zSaveDraftsIconBtn etc). If you are
- * dealing with the toolbar buttons, use these icons since in vmware resolutions
+ * dealing with the toolbar buttons, use these icons since in vm resolution
  * and in some languages button-labels are not displayed(but just their icons)
  * 
  * @author Raja Rao DV

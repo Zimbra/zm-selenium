@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
  * zClickContact,zDoubleClickContact,zDeleteContact etc.It also has static-final
  * variables that holds ids of icons on the AB-toolbar(like
  * zNewContactMenuIconBtn, zEditContactIconBtn etc). If you are dealing with the
- * toolbar buttons, use these icons since in vmware resolutions and in some
+ * toolbar buttons, use these icons since in vm resolution and in some
  * languages button-labels are not displayed(but just their icons)
  * 
  * @author Prashant Jaiswal

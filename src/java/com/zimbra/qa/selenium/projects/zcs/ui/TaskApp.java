@@ -27,7 +27,7 @@ import com.zimbra.qa.selenium.framework.util.staf.Stafzmprov;
  * This Class has UI-level methods related creating a task and other task
  * related functionalities e.g delete and modify Has static-final variables that
  * holds ids of icons on the toolbar(like zTasksNewBtn etc). If you are dealing
- * with the toolbar buttons, use these icons since in vmware resolutions and in
+ * with the toolbar buttons, use these icons since in vm resolution and in
  * some languages button-labels are not displayed(but just their icons)
  * 
  * @author Krishna Kumar Sure

@@ -24,7 +24,7 @@ import junit.framework.Assert;
 
 /**
  * This Class have UI-level methods related calendar compose. If you are dealing
- * with the toolbar buttons, use these icons since in vmware resolutions and in
+ * with the toolbar buttons, use these icons since in vm resolution and in
  * some languages button-labels are not displayed(but just their icons)
  * 
  * @author Krishna Kumar Sure

@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 
 /**
  * This Class have UI-level methods related calendar application. If you are
- * dealing with the toolbar buttons, use these icons since in vmware resolutions
+ * dealing with the toolbar buttons, use these icons since in vm resolution
  * and in some languages button-labels are not displayed(but just their icons)
  * 
  * @author Krishna Kumar Sure
