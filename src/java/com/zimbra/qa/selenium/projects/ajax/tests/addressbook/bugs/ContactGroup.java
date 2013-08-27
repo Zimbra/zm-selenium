@@ -207,7 +207,7 @@ public class ContactGroup extends AjaxCommonTest  {
 		ZimbraAccount account = app.zGetActiveAccount(); 
 		ZimbraAccount accountB = ZimbraAccount.AccountB(); 
 		String galName = accountB.EmailAddress.substring(0,accountB.EmailAddress.indexOf('@'));
-		String groupName = "group" + ZimbraSeleniumProperties.getUniqueString();
+		String groupName = "g" + ZimbraSeleniumProperties.getUniqueString().substring(4);
 		String member1 = "m" + ZimbraSeleniumProperties.getUniqueString() + "@example.com";
 		String member2 = "m" + ZimbraSeleniumProperties.getUniqueString() + "@example.com";
 				
