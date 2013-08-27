@@ -107,7 +107,7 @@ public class StafAbstract {
 
             	if ( StafResult.rc == STAFResult.AccessDenied ) {
             		// Common error in WDC.  Log a helper message.
-            		logger.error("On the server, use: staf local trust set machine *.eng.vmware.com level 5");
+            		logger.error("On the server, use: staf local trust set machine *.eng.server.com level 5");
             	}
 
             	if ( StafResult.rc != STAFResult.Ok ) {

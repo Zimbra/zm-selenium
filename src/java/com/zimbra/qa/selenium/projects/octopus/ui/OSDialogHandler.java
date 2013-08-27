@@ -99,7 +99,7 @@ public class OSDialogHandler {
 				if(win[j].contains(browser)){
 					logger.info("Window Name: "+win[j]);
 					// Get the specific instance of browser window opened for octopus
-					if(win[j].contains("VMware Octopus")){
+					if(win[j].contains("Octopus")){
 						// set the new window name
 						l1.setWindowName(win[j]);
 						//get object list under required browser window instance.

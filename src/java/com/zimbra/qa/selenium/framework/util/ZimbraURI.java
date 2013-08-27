@@ -222,8 +222,8 @@ public class ZimbraURI {
 
 	/**
 	 * Get the 'base' URL being used for this test run.  For example,
-	 * https://zqa-001.eng.vmware.com.  Or, for performance test run,
-	 * https://zqa-001.eng.vmware.com?perfMetric=1
+	 * https://server.com.  Or, for performance test run,
+	 * https://server.com?perfMetric=1
 	 * @return
 	 * @throws URLSyntaxException
 	 */

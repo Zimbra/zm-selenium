@@ -111,13 +111,13 @@ public class DisplayFileComments extends AbsDisplay {
 	}
 
 	/**
-	 * <div tabindex="-1" id="sc2553" class="comments-list-item" style=""><div class="comment-container"><div class="comment-header"><div class="profile-img-container"><img src="/profile/vmwen1@zqa-394.eng.vmware.com/image?v=0" data-handlebars-id="2555" class="profile-image" width="32" height="32"></div><div class="comment-creator"><span tabindex="-1" id="sc2558" class="" style=""></span>
+	 * <div tabindex="-1" id="sc2553" class="comments-list-item" style=""><div class="comment-container"><div class="comment-header"><div class="profile-img-container"><img src="/profile/acc@server/image?v=0" data-handlebars-id="2555" class="profile-image" width="32" height="32"></div><div class="comment-creator"><span tabindex="-1" id="sc2558" class="" style=""></span>
                 <span tabindex="-1" id="sc2561" class="" style="">
                 <span class="comment-delete">x</span>
                 </span>
             </div><div class="comment-time">
                 <span tabindex="-1" id="sc2563" class="" style="">1 hour ago</span>
-            </div></div><div class="comment-body">more comments</div></div></div><div tabindex="-1" id="sc2567" class="comments-list-item" style=""><div class="comment-container"><div class="comment-header"><div class="profile-img-container"><img src="/profile/vmwen2@zqa-394.eng.vmware.com/image?v=0" data-handlebars-id="2569" class="profile-image" width="32" height="32"></div><div class="comment-creator"><span tabindex="-1" id="sc2572" class="" style=""></span>
+            </div></div><div class="comment-body">more comments</div></div></div><div tabindex="-1" id="sc2567" class="comments-list-item" style=""><div class="comment-container"><div class="comment-header"><div class="profile-img-container"><img src="/profile/acc@server/image?v=0" data-handlebars-id="2569" class="profile-image" width="32" height="32"></div><div class="comment-creator"><span tabindex="-1" id="sc2572" class="" style=""></span>
                 <span tabindex="-1" id="sc2575" class="" style=""></span>
             </div><div class="comment-time">
                 <span tabindex="-1" id="sc2577" class="" style="">1 hour ago</span>

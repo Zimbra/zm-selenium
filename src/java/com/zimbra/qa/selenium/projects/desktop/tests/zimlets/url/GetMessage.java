@@ -141,7 +141,7 @@ public class GetMessage extends AjaxCommonTest {
 		final String subject = "subject12955323015009";
 		final String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/url01/valid_url.txt";
 		final String url1 = "http://www.zimbra.com";
-		final String url2 = "https://www.vmware.com";
+		final String url2 = "https://www.google.com";
 		
 		// Inject the example message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
