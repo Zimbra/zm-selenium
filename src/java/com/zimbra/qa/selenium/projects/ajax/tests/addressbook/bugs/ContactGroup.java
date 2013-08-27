@@ -93,9 +93,9 @@ public class ContactGroup extends AjaxCommonTest  {
 		ZAssert.assertTrue(found, "Verify contact " + contact.getName() + " populated");
 
 		// Try to close out the window
-		formGroup.zToolbarPressButton(Button.B_CONTACTGROUP_ADD_ADDRESS);
+		//formGroup.zToolbarPressButton(Button.B_CONTACTGROUP_ADD_ADDRESS);
 		
-		formGroup.zToolbarPressButton(Button.B_SAVE);
+		//group137756059578165formGroup.zToolbarPressButton(Button.B_SAVE);
 		
 
 		
@@ -220,13 +220,13 @@ public class ContactGroup extends AjaxCommonTest  {
 		    
 		// fill in group name and email addresses
 		//form.zFillField(Field.GroupName, groupName);
-		String locator = "css=div[class=ZmContactView] input[id$='_groupName']";
+		String locator = "css=div[class*=ZmContactView][style*='100px'] input[id*=_groupName]";
 		form.sType(locator,"");
 		form.sType(locator,groupName);
 		form.zFillField(Field.FreeFormAddress, member1);
 		form.zFillField(Field.FreeFormAddress, member2);
 		form.zSubmit();
-		SleepUtil.sleepLong();
+		SleepUtil.sleepSmall();
 		ContactGroupItem groupItem = ContactGroupItem.importFromSOAP(account, groupName);
 		// search for a GAL
 		app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_GAL); 		
