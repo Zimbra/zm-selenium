@@ -41,7 +41,7 @@ public class CreateFeed extends AjaxCommonTest {
 
 		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
 
-		// feed.rss=http://zqa-tms.eng.vmware.com/files/Service/RSS/Basic/basic.xml
+		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
 		String feed = ZimbraSeleniumProperties.getStringProperty("feed.rss");
 
 
