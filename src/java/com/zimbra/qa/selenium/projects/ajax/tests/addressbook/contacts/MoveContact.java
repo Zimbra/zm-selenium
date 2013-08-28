@@ -15,6 +15,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.addressbook.contacts;
 
 
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.items.*;
@@ -35,6 +36,19 @@ public class MoveContact extends AjaxCommonTest  {
 
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "FALSE");		
 		
+	}
+
+	/**
+	 * @throws HarnessException
+	 */
+	@BeforeClass( groups = { "always" } )
+	public void MoveContactBeforeClass() throws HarnessException {
+		logger.info("MoveContactBeforeClass: start");
+		
+		// Rest the ZWC user
+		ZimbraAccount.ResetAccountZWC();
+		
+		logger.info("MoveContactBeforeClass: finish");
 	}
 
 	@Test(	description = "Move a contact item to sub addressbook by click tool bar Move",
