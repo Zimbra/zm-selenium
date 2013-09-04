@@ -42,7 +42,7 @@ public class Bug25624 extends PrefGroupMailByMessageTest {
 	}
 
 	@Test(	description = "Verify bug 25624",
-			groups = { "functional" })
+			groups = { "deprecated" })
 	public void Bug_25624() throws HarnessException {
 
 		String subject = "subject13001430504373";

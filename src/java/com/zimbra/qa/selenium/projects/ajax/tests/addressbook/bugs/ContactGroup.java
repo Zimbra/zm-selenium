@@ -141,7 +141,7 @@ public class ContactGroup extends AjaxCommonTest  {
 	
 	//Due to the bug 77968 the New Contact Group Context menu is disabled for GAL search result
 	@Test( description="create a new contact group from GAL search result",
-		   groups= { "depricated"  } )
+		   groups= { "deprecated"  } )
 	public void Bug66623_AddingAGALToAContactGroup() throws HarnessException{
 		String email=ZimbraAccount.AccountB().EmailAddress.substring(0,ZimbraAccount.AccountB().EmailAddress.indexOf('@'));
 		
