@@ -135,10 +135,10 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	  };
 	}
 	
-	@Test(	description = "Delete a mail by selecting and typing 'delete' keyboard",
-			groups = { "functional" },
-			dataProvider = "DataProviderDeleteKeys")
-	public void DeleteMail_03(String name, int keyEvent) throws HarnessException {
+	@Test(	description = "Delete a mail by selecting and typing 'Delete' key",
+			groups = { "functional" })
+			//dataProvider = "DataProviderDeleteKeys")
+	public void DeleteMail_03() throws HarnessException {
 		
 		// Create the message data to be sent
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
@@ -163,9 +163,10 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 		
 		// Click delete
-		logger.info("Typing shortcut key "+ name + " KeyEvent: "+ keyEvent);
-		app.zPageMail.zKeyboardKeyEvent(keyEvent);
-				
+		logger.info("Typing shortcut key Delete");
+		app.zPageMail.zKeyDown("46");
+		SleepUtil.sleepLong();	
+		
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(messages, "Verify the message list exists");
 
@@ -353,6 +354,52 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	
 	}
 
+	@Test(	description = "Delete a mail by selecting and typing 'Backspace' key",
+			groups = { "functional" })			
+	public void DeleteMail_07() throws HarnessException {
+		
+		// Create the message data to be sent
+		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+				
+		ZimbraAccount.AccountA().soapSend(
+					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+						"<m>" +
+							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+							"<su>"+ subject +"</su>" +
+							"<mp ct='text/plain'>" +
+								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"</mp>" +
+						"</m>" +
+					"</SendMsgRequest>");
+
+		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
+		
+		// Click Get Mail button
+		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+				
+		// Check the item
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
+		
+		// Click delete
+		logger.info("Typing shortcut key Backspace");
+		app.zPageMail.zKeyDown("8");
+		SleepUtil.sleepLong();
+		
+		List<MailItem> messages = app.zPageMail.zListGetMessages();
+		ZAssert.assertNotNull(messages, "Verify the message list exists");
+
+		MailItem found = null;
+		for (MailItem m : messages) {
+			logger.info("Subject: looking for "+ mail.dSubject +" found: "+ m.gSubject);
+			if ( mail.dSubject.equals(m.gSubject) ) {
+				found = m;
+				break;
+			}
+		}
+		ZAssert.assertNull(found, "Verify the message is no longer in the inbox");
+
+		
+	}
 
 	@Bugs(	ids = "53564")
 	@Test(	description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut",
