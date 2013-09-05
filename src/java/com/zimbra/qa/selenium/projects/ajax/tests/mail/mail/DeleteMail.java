@@ -210,8 +210,10 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 		
 		// Click delete
-		app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_MOVETOTRASH);
-				
+		//app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_MOVETOTRASH);
+		app.zPageMail.zKeyDown("190,84");
+		SleepUtil.sleepLong();
+		
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(messages, "Verify the message list exists");
 
