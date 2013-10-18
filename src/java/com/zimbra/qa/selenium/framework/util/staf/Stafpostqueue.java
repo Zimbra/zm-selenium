@@ -30,6 +30,14 @@ public class Stafpostqueue extends StafServicePROCESS {
 	private static List<String> zimbraMtaServers =  new ArrayList<String>();
 	private String StafAdminServer = null;
 
+	public String getStafAdminServer() {
+		return StafAdminServer;
+	}
+
+	public void setStafAdminServer(String stafAdminServer) {
+		StafAdminServer = stafAdminServer;
+	}
+
 	/**
 	 * Wait for messages for the current test account to be delivered
 	 * @throws HarnessException
@@ -201,7 +209,7 @@ public class Stafpostqueue extends StafServicePROCESS {
 		StafService = "PROCESS";
 		String server = ZimbraSeleniumProperties.getStringProperty("adminName", "local");
 		if(!server.equals("local")){
-			StafAdminServer = server.split("@")[1];
+			setStafAdminServer(server.split("@")[1]);
 		}
 	}
 

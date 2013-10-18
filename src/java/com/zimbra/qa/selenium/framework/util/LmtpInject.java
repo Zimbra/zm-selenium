@@ -31,7 +31,7 @@ import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
  */
 public class LmtpInject {
 	protected static Logger logger = LogManager.getLogger(LmtpInject.class);
-
+	private static Stafpostqueue sp = new Stafpostqueue();
 	/**
 	 * Inject a mime file to an email addresses
 	 * @param recipient an email addresses
@@ -80,8 +80,7 @@ public class LmtpInject {
 				injectFolder(recipients, sender, mime);
 
 			} finally {
-
-				Stafpostqueue sp = new Stafpostqueue();
+				
 				sp.waitForPostqueue();
 
 			}
@@ -139,8 +138,8 @@ public class LmtpInject {
 		LmtpClient lmtp = null;
 		try {
 
-			lmtp = new LmtpClient( 
-					ZimbraSeleniumProperties.getStringProperty("server.host"),
+			lmtp = new LmtpClient(
+					sp.getStafAdminServer(),
 					7025);
 
 			lmtp.sendMessage(new FileInputStream(mime), recipients.toArray(new String[recipients.size()]), sender, "Selenium", length);
