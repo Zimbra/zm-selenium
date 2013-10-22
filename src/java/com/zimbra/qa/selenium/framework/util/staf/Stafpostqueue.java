@@ -44,6 +44,13 @@ public class Stafpostqueue extends StafServicePROCESS {
 	 */
 	@SuppressWarnings("unchecked")
 	public void waitForPostqueue() throws HarnessException {
+		List<String> servers = null;
+				
+		if(zimbraMtaServers == null || zimbraMtaServers.isEmpty()){
+			servers = getMtaServers(StafAdminServer);
+		}else{
+			servers = zimbraMtaServers;
+		}
 		
 		// Start: Dev env hack
 		if ( "false".equalsIgnoreCase(ZimbraSeleniumProperties.getStringProperty("postqueue.use.staf", "true")) ) {
@@ -69,26 +76,36 @@ public class Stafpostqueue extends StafServicePROCESS {
 		for (int i = 0; i < max; i += interval) {
 			
 			// Check the server queue if it is empty
-			if (execute(command)) {
+			for(int y = 0; y < servers.size(); y++){
+				if (execute(command, servers.get(y))) {
 				
-				logger.debug("looking for "+ emailaddress +" in "+ this.StafResponse);
+					logger.debug("looking for "+ emailaddress +" in "+ this.StafResponse);
 
-				if ( this.StafResponse.contains(MailQueueIsEmpty)) {
-					// Queue is empty
-					return;
-				}
+					if (this.StafResponse.contains(MailQueueIsEmpty) ) {
+						// Queue is empty
+						if(y == servers.size()-1){
+							return;
+						}else{
+							continue;
+						}
+					} 
 				
-				if (!this.StafResponse.contains(emailaddress)) {
-					// Queue does not contain any messages for the test account
-					return;
-				}
+					if (!this.StafResponse.contains(emailaddress)) {						
+						if(y == servers.size()-1){
+							return;		
+						}
+					}else{
+						// Queue contains messages for the test account
+						break;
+					}
 				
-				if ( this.StafResponse.contains(MailQueueIsUnavailable)) {
-					throw new HarnessException("Unable to check message queue.  MTA is down.  "+ this.StafResponse);
-				}
+					if ( this.StafResponse.contains(MailQueueIsUnavailable)) {
+						throw new HarnessException("Unable to check message queue.  MTA is down.  "+ this.StafResponse);
+					}
 				
-			}
-
+				}	
+			}		
+			
 			// Wait a bit for the message to be delivered
 			SleepUtil.sleep(interval);			
 
@@ -213,17 +230,9 @@ public class Stafpostqueue extends StafServicePROCESS {
 		}
 	}
 
-	public boolean execute(String command) throws HarnessException {
+	public boolean execute(String command, String server) throws HarnessException {
 		setCommand(command);
-		List<String> servers = null;
-		String emailaddress = ClientSessionFactory.session().currentUserName().toLowerCase().trim();
-		
-		if(zimbraMtaServers == null || zimbraMtaServers.isEmpty()){
-			servers = getMtaServers(StafAdminServer);
-		}else{
-			servers = zimbraMtaServers;
-		}
-		
+				
 		STAFHandle handle = null;
 		
 		try
@@ -236,46 +245,41 @@ public class Stafpostqueue extends StafServicePROCESS {
 	        	
 	        	logger.info("STAF Command example: " + getStafCommand());
 	        	
-	        	for(String str:servers){
-	        		logger.info("executing on: " + str);
+	        	logger.info("executing on: " + server);
 	        		
-	        		StafResult = handle.submit2(str, StafService, StafParms);
+	        	StafResult = handle.submit2(server, StafService, StafParms);
 	            
-	        		if (StafResult == null){
-	        			throw new HarnessException("StafResult was null");
-	        		}
-	        		
-	        		logger.info("STAF Response Code: "+ StafResult.rc);
-
-	        		if ( StafResult.rc == STAFResult.AccessDenied ) {
-	        			// Common error in WDC.  Log a helper message.
-	        			logger.error("On the server, use: staf local trust set machine *.eng.server.com level 5");
-	        		}
-
-	        		if ( StafResult.rc != STAFResult.Ok ) {
-	        			throw new HarnessException("Invalid STAF response code ("+ StafResult.rc +"): "+ StafResult.result);
-	        		}
-
-	            	if ( (StafResult.result != null) && (!StafResult.result.trim().equals("")) ) {
-	            	
-	            		//logger.info(StafResult.result);
-	            		        	
-	            		if ( STAFMarshallingContext.isMarshalledData(StafResult.result) ){
-	            				STAFMarshallingContext mc = STAFMarshallingContext.unmarshall(StafResult.result);
-	            		
-	            				// Get the entire response
-	            				StafResponse = STAFMarshallingContext.formatObject(mc);	            				
-	            		}else{
-	            			StafResponse = StafResult.result;
-	            		}
-	            		logger.info(StafResponse);	            		
-	            	}
-	            	
-	            	if (StafResponse.contains(emailaddress)) {
-						// Queue contains messages for the test account
-						break;						
-					}
+	        	if (StafResult == null){
+	        		throw new HarnessException("StafResult was null");
 	        	}
+	        	
+	        	logger.info("STAF Response Code: "+ StafResult.rc);
+
+	        	if ( StafResult.rc == STAFResult.AccessDenied ) {
+	        		// Common error in WDC.  Log a helper message.
+	        		logger.error("On the server, use: staf local trust set machine *.eng.server.com level 5");
+	        	}
+
+	        	if ( StafResult.rc != STAFResult.Ok ) {
+	        		throw new HarnessException("Invalid STAF response code ("+ StafResult.rc +"): "+ StafResult.result);
+	        	}
+
+	            if ( (StafResult.result != null) && (!StafResult.result.trim().equals("")) ) {
+	            	
+	            	//logger.info(StafResult.result);
+	            		        	
+	            	if ( STAFMarshallingContext.isMarshalledData(StafResult.result) ){
+	            		STAFMarshallingContext mc = STAFMarshallingContext.unmarshall(StafResult.result);
+	            		
+	            		// Get the entire response
+	            		StafResponse = STAFMarshallingContext.formatObject(mc);	            				
+	            	}else{
+	            		StafResponse = StafResult.result;
+	            	}
+	            
+	            	logger.debug(StafResponse);	            		
+	            }
+	            	        	
 	            return (StafResult.rc == STAFResult.Ok);
  
 			} finally {
@@ -328,7 +332,9 @@ public class Stafpostqueue extends StafServicePROCESS {
             		logger.warn("STAF return code: " + stafResult.rc);
 	            	
 	            	// Fall back to the mailbox host
-            		zimbraMtaServers.add(mailboxServer);
+            		if(!zimbraMtaServers.contains(mailboxServer)){
+            			zimbraMtaServers.add(mailboxServer);
+            		}
             	   	return (zimbraMtaServers);	            	
 
 	            }	            
@@ -350,10 +356,11 @@ public class Stafpostqueue extends StafServicePROCESS {
             		logger.info("zmprov:\n" + processOut);
             		
             		String[] servers = processOut.trim().split("zimbraSmtpHostname:");
-            		
+            		String server = null;
             		for(String str:servers){
-            			if(!str.trim().isEmpty())
-            			zimbraMtaServers.add(str.trim());
+            			server = str.trim();
+            			if(!server.isEmpty() && !zimbraMtaServers.contains(server))
+            			zimbraMtaServers.add(server);
             		}
             		         		
             		return (zimbraMtaServers);
