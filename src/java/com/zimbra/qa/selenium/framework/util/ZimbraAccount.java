@@ -455,17 +455,7 @@ public class ZimbraAccount {
 				soapClient.setAuthToken(MyAuthToken);
 				break;
 			case CLIENT:
-				String username = clientAccountName;
-				String password = ZimbraDesktopProperties.getInstance().getSerialNumber();
-				soapSend(
-						"<AuthRequest xmlns='urn:zimbraAccount'>" +
-						"<account by='name'>"+ username + "</account>" +
-						"<password>"+ password +"</password>" +
-						"</AuthRequest>",
-						destinationType);
-				MyClientAuthToken = soapSelectValue("//acct:authToken", null);
-				soapClient.setClientAuthToken(MyClientAuthToken);
-				break;
+				throw new HarnessException("destinationType = CLIENT not supported");
 			}
 		} catch (HarnessException e) {
 			logger.error("Unable to authenticate "+ EmailAddress, e);
@@ -1442,8 +1432,7 @@ public class ZimbraAccount {
 				 }
 				 break;
 			 case CLIENT:
-				 port = Integer.parseInt(ZimbraDesktopProperties.getInstance().getConnectionPort());
-				 break;
+				throw new HarnessException("destinationType = CLIENT not supported");
 			 }
 
 			 try {
