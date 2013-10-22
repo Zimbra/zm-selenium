@@ -178,8 +178,8 @@
 				<include name="htmlcleaner-2.2.jar" />
 				<include name="json-lib-2.3-jdk15.jar" />
 				<include name="ocutil-2.4.2.jar" />
-				<include name="selenium-java-2.20.0.jar" />
-				<include name="selenium-server-standalone-2.20.0.jar" />
+				<include name="selenium-java-2.31.0.jar" />
+				<include name="selenium-server-standalone-2.31.0.jar" />
 				<include name="testng-5.12.1.jar" />
 				<include name="xalan.jar" />
 				<include name="ws-commons-util-1.0.2.jar" />
