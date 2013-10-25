@@ -32,7 +32,6 @@ import org.testng.annotations.BeforeSuite;
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.SeleniumException;
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
-import com.zimbra.qa.selenium.framework.core.Repository;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
@@ -61,7 +60,6 @@ public class MobileCommonTest {
 	 */
 	protected AbsTab startingPage = null;
 	protected ZimbraAccount startingAccount = null;
-	private Repository _repository = new Repository();
 
 	protected MobileCommonTest() {
 		logger.info("New "+ MobileCommonTest.class.getCanonicalName());
@@ -86,41 +84,6 @@ public class MobileCommonTest {
 	public void commonTestBeforeSuite() throws HarnessException {
 		logger.info("commonTestBeforeSuite: start");
 
-      //Racetrack
-      String DbHostURL = ZimbraSeleniumProperties.getStringProperty("racetrack.dbUrl");
-      String buildNumber = ZimbraSeleniumProperties.getStringProperty("racetrack.buildNumber",
-            "000000");
-      String userName = ZimbraSeleniumProperties.getStringProperty("racetrack.username",
-            "anonymous");
-      String product = ZimbraSeleniumProperties.getStringProperty("racetrack.product",
-            "mobile");
-      String description = ZimbraSeleniumProperties.getStringProperty("racetrack.description",
-            "mobile description");
-      String branch = ZimbraSeleniumProperties.getStringProperty("racetrack.branch",
-            "Please specify the branch");
-      String buildType = ZimbraSeleniumProperties.getStringProperty("racetrack.buildType",
-            "beta");
-      String testType = ZimbraSeleniumProperties.getStringProperty("racetrack.testType",
-            "functional");
-      String recordToRacetrack = ZimbraSeleniumProperties.getStringProperty("racetrack.recordToRacetrack",
-            "false");
-      String appendToExisting = ZimbraSeleniumProperties.getStringProperty("racetrack.appendToExisting",
-            "false");
-      String resultId = ZimbraSeleniumProperties.getStringProperty("racetrack.resultId",
-            "");
-
-      _repository.connectingToRacetrack(DbHostURL);
-      _repository.beginTestSet(
-            buildNumber,
-            userName,
-            product,
-            description,
-            branch,
-            buildType,
-            testType,
-            Boolean.parseBoolean(recordToRacetrack),
-            Boolean.parseBoolean(appendToExisting),
-            resultId);
 
       // Make sure there is a new default account
 		ZimbraAccount.ResetAccountZMC();
@@ -171,13 +134,9 @@ public class MobileCommonTest {
 	public void commonTestBeforeMethod(Method method, ITestContext testContext) throws HarnessException {
 		logger.info("commonTestBeforeMethod: start");
 
-		String packageName = method.getDeclaringClass().getPackage().getName();
-		String methodName = method.getName();
-
 		// Get the test description
 		// By default, the test description is set to method's name
 		// if it is set, then change it to the specified one
-		String testDescription = methodName;
 		for (ITestNGMethod ngMethod : testContext.getAllTestMethods()) {
 		   String methodClass = ngMethod.getRealClass().getSimpleName();
 		   if (methodClass.equals(method.getDeclaringClass().getSimpleName())
@@ -188,13 +147,11 @@ public class MobileCommonTest {
 		               + "." + ngMethod.getMethodName());
 		         logger.info("Description: " + ngMethod.getDescription());
 		         logger.info("----------------------------------------");
-		         testDescription = ngMethod.getDescription();
 		      }
 		      break;
 		   }
 		}
 
-		Repository.testCaseBegin(methodName, packageName, testDescription);
 
 	      // If a startinAccount is defined, then make sure we are authenticated as that user
 		if ( startingAccount != null ) {
@@ -245,7 +202,6 @@ public class MobileCommonTest {
 		logger.info("commonTestAfterSuite: start");
 		
 		ClientSessionFactory.session().selenium().stop();
-		_repository.endRepository();
 
 		logger.info("commonTestAfterSuite: finish");
 
@@ -273,8 +229,6 @@ public class MobileCommonTest {
 	throws HarnessException {
 		logger.info("commonTestAfterMethod: start");
 
-		String testCaseResult = String.valueOf(testResult.getStatus());
-      Repository.testCaseEnd(testCaseResult);
 
       logger.info("commonTestAfterMethod: finish");
 	}
