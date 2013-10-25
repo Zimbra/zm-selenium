@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.Shortcut;
-import com.zimbra.qa.selenium.framework.util.GeneralUtility;
+
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
@@ -62,7 +62,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		// Send the message
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
 		mailform.zToolbarPressButton(Button.B_CANCEL);
-		GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
+		
 		
 		// Get the message from the server
       MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(),

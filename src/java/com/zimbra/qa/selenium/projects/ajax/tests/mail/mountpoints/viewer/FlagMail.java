@@ -108,7 +108,7 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 		dialog.zClickButton(Button.B_OK);
 		
 		// Sync any changes
-		GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
+		
 
 		// Make sure the server does not show "flagged" for the owner
 		mail = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
@@ -190,7 +190,7 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 		dialog.zClickButton(Button.B_OK);
 
 		
-		GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
+		
 		
 		// Make sure the server does not show "flagged" for the owner
 		mail = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");

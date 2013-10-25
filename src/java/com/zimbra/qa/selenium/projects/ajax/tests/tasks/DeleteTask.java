@@ -73,7 +73,7 @@ public class DeleteTask extends AjaxCommonTest {
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
 
-		GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
+		
 
 		// Refresh the tasks view
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
@@ -124,7 +124,7 @@ public class DeleteTask extends AjaxCommonTest {
 					"</m>" +
 				"</CreateTaskRequest>");
 
-		GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
+		
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
@@ -187,7 +187,7 @@ public class DeleteTask extends AjaxCommonTest {
 					"</m>" +
 				"</CreateTaskRequest>");
 
-		GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
+		
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
@@ -244,7 +244,7 @@ public class DeleteTask extends AjaxCommonTest {
 					"</m>" +
 				"</CreateTaskRequest>");
 
-		GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
+		
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
@@ -332,7 +332,7 @@ public class DeleteTask extends AjaxCommonTest {
 					"</m>" +
 				"</CreateTaskRequest>");
 
-		GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
+		
 
 		// Import each message into MailItem objects
 		TaskItem task1 = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject1);
@@ -406,7 +406,7 @@ public class DeleteTask extends AjaxCommonTest {
 					"</m>" +
 				"</CreateTaskRequest>");
 
-		GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
+		
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
@@ -463,7 +463,7 @@ public class DeleteTask extends AjaxCommonTest {
 					"</m>" +
 				"</CreateTaskRequest>");
 
-		GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
+		
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
@@ -632,7 +632,7 @@ public class DeleteTask extends AjaxCommonTest {
 					"</m>" +
 				"</CreateTaskRequest>");
 
-		GeneralUtility.syncDesktopToZcsWithSoap(app.zGetActiveAccount());
+		
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
