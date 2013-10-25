@@ -24,7 +24,6 @@ import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
-import com.zimbra.qa.selenium.framework.util.ZimbraAccount.SOAP_DESTINATION_HOST_TYPE;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatureNew;
@@ -52,7 +51,7 @@ public class DeleteHtmlSignature extends AjaxCommonTest {
 	@BeforeClass(groups = { "always" })
 	public void CreateHtmlSignature() throws HarnessException {
 
-		ZimbraAccount.AccountZWC().authenticate(SOAP_DESTINATION_HOST_TYPE.SERVER);
+		ZimbraAccount.AccountZWC().authenticate();
 		ZimbraAccount.AccountZWC().soapSend(
 				"<CreateSignatureRequest xmlns='urn:zimbraAccount'>"
 				+ "<signature name='" + this.sigHtmlName + "' >"
