@@ -17,7 +17,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.addressbook.contactgroups;
 
 
 import java.util.List;
-
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.ContactItem.GenerateItemType;
@@ -36,6 +36,19 @@ public class ViewContactGroup extends AjaxCommonTest  {
 
 		super.startingAccountPreferences = null;		
 		
+	}
+	
+	/**
+	 * @throws HarnessException
+	 */
+	@BeforeClass( groups = { "always" } )
+	public void ViewContactGroupBeforeClass() throws HarnessException {
+		logger.info("ViewContactGroupBeforeClass: start");
+		
+		// Reset the ZWC user
+		ZimbraAccount.ResetAccountZWC();
+		
+		logger.info("ViewContactGroupBeforeClass: finish");
 	}
 	
 	private ContactGroupItem createContactGroup(String firstLetterOfGroupName) throws HarnessException {
