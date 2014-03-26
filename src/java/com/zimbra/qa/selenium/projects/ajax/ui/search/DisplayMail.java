@@ -37,13 +37,13 @@ public class DisplayMail extends com.zimbra.qa.selenium.projects.ajax.ui.mail.Di
 		// Use this 'top' css for all subsequent parsing
 		// zv__TV-SR-Mail-1__MSG
 		
-		if ( this.zIsVisiblePerPosition("css=div[id^='zv__TV-SR-Mail-'][id$='__MSG']", 0, 0) ) {
+		if ( this.zIsVisiblePerPosition("css=div[id^='zv__TV-SR-'][id$='__MSG']", 0, 0) ) {
 			
-			int count = this.sGetCssCount("css=div[id^='zv__TV-SR-Mail-'][id$='__MSG']");
+			int count = this.sGetCssCount("css=div[id^='zv__TV-SR-'][id$='__MSG']");
 			if ( count > 1 ) {
 				throw new HarnessException("Too many message views open: "+ count);
 			}
-			ContainerLocator = "css=div#" + this.sGetAttribute("css=div[id^='zv__TV-SR-Mail-'][id$='__MSG']" + "@id");
+			ContainerLocator = "css=div#" + this.sGetAttribute("css=div[id^='zv__TV-SR-'][id$='__MSG']" + "@id");
 			
 //		} else if ( this.zIsVisiblePerPosition("css=div[id^='zv__TV-SR-Mail']", 0, 0)) {
 //			

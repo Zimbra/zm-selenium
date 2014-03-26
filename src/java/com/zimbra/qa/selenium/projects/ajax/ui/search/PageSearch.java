@@ -178,9 +178,9 @@ public class PageSearch extends AbsTab {
 		} else if ( (button == Button.B_DELETE) ) {
 			
 			if (zGetPropMailView() == SearchView.BY_MESSAGE) {
-				locator = "css=div[id^='ztb__TV-SR-Mail-'] div[id$='__DELETE'] td[id$='_title']";
+				locator = "css=div[id^='ztb__TV-SR-'] div[id$='__DELETE'] td[id$='_title']";
 			} else {
-				locator = "css=div[id^='ztb__CLV-SR-Mail-'] div[id$='__DELETE'] td[id$='_title']";
+				locator = "css=div[id^='ztb__CLV-SR-'] div[id$='__DELETE'] td[id$='_title']";
 			}
 			page = null;
 			
@@ -349,11 +349,11 @@ public class PageSearch extends AbsTab {
 
 			// Check if we are CLV or MV
 			if (zGetPropMailView() == SearchView.BY_MESSAGE) {
-				pulldownLocator = "css=div[id^='ztb__TV-SR-Mail'] div[id$='__MOVE_MENU'] td[id$='_dropdown']>div";
-				optionLocator = "css=td[id^='zti__ZmFolderChooser_MailTV-SR-Mail'][id$='" + folder.getId() +"_textCell']";
+				pulldownLocator = "css=div[id^='ztb__TV-SR'] div[id$='__MOVE_MENU'] td[id$='_dropdown']>div";
+				optionLocator = "css=td[id^='zti__ZmFolderChooser_MailTV-SR'][id$='" + folder.getId() +"_textCell']";
 			} else {
-				pulldownLocator = "css=div[id^='ztb__CLV-SR-Mail'] div[id$='__MOVE_MENU'] td[id$='_dropdown']>div";
-				optionLocator = "css=td[id^='zti__ZmFolderChooser_MailCLV-SR-Mail'][id$='" + folder.getId() +"_textCell']";
+				pulldownLocator = "css=div[id^='ztb__CLV-SR'] div[id$='__MOVE_MENU'] td[id$='_dropdown']>div";
+				optionLocator = "css=td[id^='zti__ZmFolderChooser_MailCLV-SR'][id$='" + folder.getId() +"_textCell']";
 			}
 
 
@@ -448,11 +448,11 @@ public class PageSearch extends AbsTab {
 		//
 
 		if (zGetPropMailView() == SearchView.BY_MESSAGE) {
-			listLocator = "css=ul[id^='zl__TV-SR-Mail']";
-			rowLocator = "li[id^='zli__TV-SR-Mail-']";
+			listLocator = "css=ul[id^='zl__TV-SR']";
+			rowLocator = "li[id^='zli__TV-SR-']";
 		} else {
-			listLocator = "css=ul[id^='zl__CLV-SR-Mail-']";
-			rowLocator = "li[id^='zli__CLV-SR-Mail-']";
+			listLocator = "css=ul[id^='zl__CLV-SR-']";
+			rowLocator = "li[id^='zli__CLV-SR-']";
 		}
 
 		// TODO: how to handle both messages and conversations, maybe check the view first?
@@ -689,11 +689,11 @@ public class PageSearch extends AbsTab {
 		String listLocator = null;
 		String rowLocator = null;
 		if (zGetPropMailView() == SearchView.BY_MESSAGE) {
-			listLocator = "css=ul[id^='zl__TV-SR-Mail']";
-			rowLocator = "li[id^='zli__TV-SR-Mail-']";
+			listLocator = "css=ul[id^='zl__TV-SR']";
+			rowLocator = "li[id^='zli__TV-SR-']";
 		} else {
-			listLocator = "css=ul[id^='zl__CLV-SR-Mail-']";
-			rowLocator = "li[id^='zli__CLV-SR-Mail-']";
+			listLocator = "css=ul[id^='zl__CLV-SR-']";
+			rowLocator = "li[id^='zli__CLV-SR-']";
 		}
 
 		// Make sure the button exists
@@ -725,9 +725,9 @@ public class PageSearch extends AbsTab {
 
 
 	public SearchView zGetPropMailView() throws HarnessException {
-		if ( this.zIsVisiblePerPosition("css=ul[id^='zl__CLV-SR-Mail-']", 0, 0) ) {
+		if ( this.zIsVisiblePerPosition("css=ul[id^='zl__CLV-SR-']", 0, 0) ) {
 			return (SearchView.BY_CONVERSATION);
-		} else if ( this.zIsVisiblePerPosition("css=ul[id^='zl__TV-SR-Mail']", 0, 0) ) {
+		} else if ( this.zIsVisiblePerPosition("css=ul[id^='zl__TV-SR']", 0, 0) ) {
 			return (SearchView.BY_MESSAGE);
 		}
 
