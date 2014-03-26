@@ -154,7 +154,7 @@ public class DialogMove extends AbsDialog {
 		   if (ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP) {
 		      locator = "css=div[id='" + Locators.zDialogId+ "'] td[id^='zti__" +
 		            MyApplication.zGetActiveAccount().EmailAddress +
-		            ":ZmChooseFolderDialog_Mail__'][id$=':" +
+		            ":ZmChooseFolderDialog_Mail___'][id$=':" +
 		            folder.getId() +
 		            "_textCell']"; 
 		   } else {
@@ -170,14 +170,14 @@ public class DialogMove extends AbsDialog {
 	            + folder.getId() + "_textCell']";
 			   } else {
 	   			locator = "css=div[id='" + Locators.zDialogId
-	   			+ "'] td[id='zti__ZmChooseFolderDialog_Contacts__"
+	   			+ "'] td[id='zti__ZmChooseFolderDialog_Contacts___"
 	   			+ folder.getId() + "_textCell']";
 			   }
 
 		} else if (MyTab instanceof PageCalendar) {
 
 			locator = String.format(
-					"css=div[id='%s'] td[id='zti__ZmChooseFolderDialog_Calendar__%s_textCell']", 
+					"css=div[id='%s'] td[id='zti__ZmChooseFolderDialog_Calendar___%s_textCell']", 
 					Locators.zDialogId, 
 					folder.getId());
 
@@ -185,7 +185,7 @@ public class DialogMove extends AbsDialog {
 			if (ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP) {
 			   locator = "css=div[id='" + Locators.zDialogId + "'] td[id^='zti__" +
 			         MyApplication.zGetActiveAccount().EmailAddress +
-			         ":ZmChooseFolderDialog_Tasks__'][id$='" +
+			         ":ZmChooseFolderDialog_Tasks___'][id$='" +
 			         folder.getId() +
 			         "_textCell']";
 			} else {
@@ -196,7 +196,7 @@ public class DialogMove extends AbsDialog {
 			if (ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP) {
 			   locator = "css=div[id='" + Locators.zDialogId + "'] td[id='zti__"+
 			         MyApplication.zGetActiveAccount().EmailAddress +
-			         ":ZmChooseFolderDialog_Briefcase__'][id$='" +
+			         ":ZmChooseFolderDialog_Briefcase___'][id$='" +
 			         folder.getId() +
 			         "_textCell']";
 			} else {
