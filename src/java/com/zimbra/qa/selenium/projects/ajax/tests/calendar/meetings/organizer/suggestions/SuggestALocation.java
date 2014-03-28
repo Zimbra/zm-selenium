@@ -16,6 +16,8 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 
 import java.util.Calendar;
 import org.testng.annotations.*;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -29,6 +31,7 @@ public class SuggestALocation extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
+	@Bugs(ids = "73966,88287")
 	@Test(description = "Suggest a free location while creating appointment",
 			groups = { "smoke" })
 	public void SuggestALocation_01() throws HarnessException {

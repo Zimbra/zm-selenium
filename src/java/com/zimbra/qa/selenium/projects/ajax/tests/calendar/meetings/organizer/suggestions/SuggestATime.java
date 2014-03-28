@@ -31,7 +31,7 @@ public class SuggestATime extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "73966")
+	@Bugs(ids = "73966,88287")
 	@Test(description = "Suggest a free time while creating appointment",
 			groups = { "smoke" })
 	public void SuggestATime_01() throws HarnessException {
