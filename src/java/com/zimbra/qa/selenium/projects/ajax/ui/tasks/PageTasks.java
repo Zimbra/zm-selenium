@@ -78,7 +78,7 @@ public class PageTasks extends AbsTab{
 		public static final String zAttachmentsLabel = "css=div[id='zv__TKL-main'] div[class='ZmMailMsgView'] td[class='LabelColName']:contains('Attachments')";
 		public static final String zEditButton= "css=div[id^='ztb__TKL'] tr[id^='ztb__TKL'] td[id$='_title']:contains('Edit')";
 		public static final String zEditAttachmentCheckbox="css=div[class='ZmTaskEditView'] tr[id$='_attachment_container'] input[type='checkbox']";
-		
+		public static final String zCheckboxenable ="css=div[class='ImgCheckboxChecked']";
 		
 	}
 
