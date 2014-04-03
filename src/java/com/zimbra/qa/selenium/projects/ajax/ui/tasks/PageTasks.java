@@ -405,6 +405,7 @@ public class PageTasks extends AbsTab{
 
 			// Right-Click on the item
 			this.zRightClickAt(itemLocator,"");
+			SleepUtil.sleepMedium();
 
 			// Now the ContextMenu is opened
 			// Click on the specified option
@@ -453,6 +454,7 @@ public class PageTasks extends AbsTab{
 
 			// click on the option
 			this.zClickAt(optionLocator,"");
+			SleepUtil.sleepMedium();
 
 			this.zWaitForBusyOverlay();
 

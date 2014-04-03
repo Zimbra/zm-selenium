@@ -189,7 +189,7 @@ public class DialogMove extends AbsDialog {
 			         folder.getId() +
 			         "_textCell']";
 			} else {
-			   locator = "css=div[id='" + Locators.zDialogId + "'] td[id='zti__ZmChooseFolderDialog_Tasks__"+ folder.getId() + "_textCell']";
+			   locator = "css=div[id='" + Locators.zDialogId + "'] div[class='DwtTreeItemLevel1ChildDiv'] td[id='zti__ZmChooseFolderDialog_Tasks___"+ folder.getId() + "_textCell']";
 			}
 
 		}else if (MyTab instanceof PageBriefcase ) {
@@ -209,7 +209,7 @@ public class DialogMove extends AbsDialog {
 
 		// For some reason, the text doesn't get entered on the first try
 
-		this.zClick(locator);
+		this.zClickAt(locator,"");
 
 		this.zWaitForBusyOverlay(); // This method call seems to be missing from
 		// the briefcase function
