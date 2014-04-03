@@ -26,6 +26,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
+import com.zimbra.qa.selenium.projects.ajax.ui.tasks.PageTasks;
 
 
 public class DeleteTask extends AjaxCommonTest {
@@ -124,9 +125,9 @@ public class DeleteTask extends AjaxCommonTest {
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
-		// Select the item
-		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
-
+		if(!app.zPageTasks.sIsElementPresent(PageTasks.Locators.zCheckboxenable)){
+			app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
+		}
 		// Click delete
 		app.zPageTasks.zToolbarPressButton(Button.B_DELETE);
 
@@ -180,8 +181,9 @@ public class DeleteTask extends AjaxCommonTest {
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
-		// Select the item
-		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
+		if(!app.zPageTasks.sIsElementPresent(PageTasks.Locators.zCheckboxenable)){
+			app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
+		}
 
 
 		// Click delete keyboard
@@ -230,8 +232,9 @@ public class DeleteTask extends AjaxCommonTest {
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
-		// Select the item
-		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
+		if(!app.zPageTasks.sIsElementPresent(PageTasks.Locators.zCheckboxenable)){
+			app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
+		}
 
 
 		// Use Delete Keyboard Shortcut
@@ -319,6 +322,7 @@ public class DeleteTask extends AjaxCommonTest {
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		// Select the items
+		app.zPageTasks.zListItem(Action.A_MAIL_UNCHECKBOX, subject3);
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject1);
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject2);
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject3);
@@ -368,8 +372,9 @@ public class DeleteTask extends AjaxCommonTest {
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
-		// Select the item
-		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
+		if(!app.zPageTasks.sIsElementPresent(PageTasks.Locators.zCheckboxenable)){
+			app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
+		}
 
 
 		// Right click the item, select delete
@@ -417,8 +422,9 @@ public class DeleteTask extends AjaxCommonTest {
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
-		// Select the item
-		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
+		if(!app.zPageTasks.sIsElementPresent(PageTasks.Locators.zCheckboxenable)){
+			app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
+		}
 
 		// Use Backspace Keyboard Shortcut
 		app.zPageTasks.zKeyboardShortcut(Shortcut.S_BACKSPACE);
