@@ -109,9 +109,9 @@ public class PageCalendar extends AbsTab {
 		public static final String NeedsActionButton_ViewAppt = "css=div[id^='DWT'] td[id$='_responseActionSelectCell'] td[id$='_select_container'] td[id$='_title']";
 		public static final String NeedsActionValue_ViewAppt = "css=td[id$='_responseActionSelectCell'] td[id$='_select_container'] td[id$='_title']";
 		public static final String NeedsActionMenu_ViewAppt = "css=div[id*='_Menu_'] div[id^='AC'] td[id^='AC']:contains('Needs Action')";
-		public static final String AcceptedMenu_ViewAppt = "css=div[id*='_Menu_'] div[id^='AC'] td[id^='AC']:contains('Accepted')";
-		public static final String TentativeMenu_ViewAppt = "css=div[id*='_Menu_'] div[id^='TE'] td[id^='TE']:contains('Tentative')";
-		public static final String DeclinedMenu_ViewAppt = "css=div[id*='_Menu_'] div[id^='DE'] td[id^='DE']:contains('Declined')";
+		public static final String AcceptedMenu_ViewAppt = "css=div[id*='_Menu_'] td[id^='ZmNeedActionOption_AC']:contains('Accepted')";
+		public static final String TentativeMenu_ViewAppt = "css=div[id*='_Menu_'] td[id^='ZmNeedActionOption_TE']:contains('Tentative')";
+		public static final String DeclinedMenu_ViewAppt = "css=div[id*='_Menu_'] td[id^='ZmNeedActionOption_DE']:contains('Declined')";
 		public static final String DeclinedMenu3_ViewAppt = "css=div[id$='_Menu_3'] div[id^='DE_3'] td[id='DE_3_title']:contains('Declined')";
 		public static final String TagButton_ViewAppt = "css=div[id^='ztb__APPTRO'] td[id$='TAG_MENU_dropdown']";
 		public static final String NewTagMenu_ViewAppt = "css=div[id$='TAG_MENU|MENU'] td[id$='TAG_MENU|MENU|NEWTAG_title']";
@@ -140,14 +140,14 @@ public class PageCalendar extends AbsTab {
 		public static final String CalendarViewScheduleDivID	= "zv__CLS";
 		public static final String CalendarViewFreeBusyDivID	= "zv__CLFB";
 
-		public static final String CalendarViewListCSS			= "css=div#"+ CalendarViewListDivID;
+		public static final String CalendarViewListCSS			= "css=div[id^='" + CalendarViewListDivID + "']";
 		public static final String CalendarViewDayCSS			= "css=div#"+ CalendarViewDayDivID;
 		public static final String CalendarViewWeekCSS			= "css=div#"+ CalendarViewWeekDivID;
 		public static final String CalendarViewWorkWeekCSS		= "css=div#"+ CalendarViewWorkWeekDivID;
 		public static final String CalendarViewMonthCSS			= "css=div#"+ CalendarViewMonthDivID;
 		public static final String CalendarViewScheduleCSS		= "css=div#"+ CalendarViewScheduleDivID;
 		public static final String CalendarViewFreeBusyCSS		= "css=div#"+ CalendarViewFreeBusyDivID;
-		public static final String CalendarWorkWeekViewApptCount	= "css=div[class='calendar_body'] div[id^='zli__CLWW__']";
+		public static final String CalendarWorkWeekViewApptCount= "css=div[class='calendar_body'] div[id^='zli__CLWW__']";
 		
 		public static final String CalendarViewDayItemCSS		= CalendarViewDayCSS + " div[id^='zli__CLD__']>table[id^='zli__CLD__']";
 		public static final String CalendarViewWeekItemCSS		= CalendarViewWeekCSS + " div[id^='zli__CLW__']>table[id^='zli__CLW__']";
@@ -1647,6 +1647,7 @@ public class PageCalendar extends AbsTab {
 		if (button == Button.B_REFRESH) {
 			
 			return (((AppAjaxClient)this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
+			
 
 		} else if (button == Button.B_NEW) {
 
@@ -2581,19 +2582,19 @@ public class PageCalendar extends AbsTab {
 	public List<AppointmentItem> zListGetAppointments() throws HarnessException {
 
 		if ( this.zIsVisiblePerPosition(Locators.CalendarViewListCSS, 0, 0) ) {
-			return (zListGetAppointmentsListView());								// LIST
+			return (zListGetAppointmentsListView());											// LIST
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewDayCSS, 0, 0) ) {
-			return (zListGetAppointmentsGeneral(Locators.CalendarViewDayItemCSS));			// DAY
+			return (zListGetAppointmentsGeneral(Locators.CalendarViewDayItemCSS));				// DAY
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewWeekCSS, 0, 0) ) {
-			return (zListGetAppointmentsGeneral(Locators.CalendarViewWeekItemCSS));		// WEEK
+			return (zListGetAppointmentsGeneral(Locators.CalendarViewWeekItemCSS));				// WEEK
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewWorkWeekCSS, 0, 0) ) {
-			return (zListGetAppointmentsGeneral(Locators.CalendarViewWorkWeekItemCSS));	// WORK WEEK
+			return (zListGetAppointmentsGeneral(Locators.CalendarViewWorkWeekItemCSS));			// WORK WEEK
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewMonthCSS, 0, 0) ) {
-			return (zListGetAppointmentsMonthView());								// MONTH
+			return (zListGetAppointmentsMonthView());											// MONTH
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewScheduleCSS, 0, 0) ) {
-			return (zListGetAppointmentsScheduleView());							// SCHEDULE
+			return (zListGetAppointmentsScheduleView());										// SCHEDULE
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewFreeBusyCSS, 0, 0) ) {
-			return (zListGetAppointmentsFreeBusyView());							// FREE/BUSY
+			return (zListGetAppointmentsFreeBusyView());										// FREE/BUSY
 		} else {
 			throw new HarnessException("Unknown calendar view");
 		}
