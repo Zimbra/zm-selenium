@@ -419,7 +419,7 @@ public class PageMail extends AbsTab {
 			// The test case must create the page dialog object.
 			//
 			page = null;
-			locator = "css=div[id$='__ARCHIVE_ZIMLET_BUTTON_ID'] td[id$='_title']";
+			locator = "css=div[id$='zb__TV-main__ARCHIVE'] td[id$='_title']";
 
 			if ( !this.sIsElementPresent(locator) ) {
 				throw new HarnessException("Archive icon not present "+ button);
@@ -1264,7 +1264,7 @@ public class PageMail extends AbsTab {
 			if ( !this.sIsElementPresent(selectlocator) )
 				throw new HarnessException("Checkbox locator is not present "+ selectlocator);
 
-			String image = this.sGetAttribute(selectlocator +"@class");
+			String image = this.sGetAttribute(selectlocator +">div@class");
 			if ( image.equals("ImgNodeExpanded") )
 				throw new HarnessException("Trying to expand, but conversation was alread expanded");
 
@@ -1991,6 +1991,20 @@ public class PageMail extends AbsTab {
 		} else {
 			throw new HarnessException("no logic defined  ");
 		}
+		
+	/*	if(document.createEventObject){ var body_locator="css=html>body"; var body=
+				selenium.browserbot.findElement(body_locator); var evObj = body.document.createEventObject();
+				evObj.keyCode=78;evObj.repeat = false;body.focus(); body.fireEvent("onkeydown",evObj);}
+		else{
+			if(window.KeyEvent) {
+			var evObj = document.createEvent('KeyEvents'); evObj.initKeyEvent(
+				'keydown', true, true, window, false, false, false, false,78, 0 );}
+		else {var evObj =
+				document.createEvent('HTMLEvents'); evObj.initEvent( 'keydown', true, true, window, 1 );
+				evObj.keyCode = 78;}
+			var x = selenium.browserbot.findElementOrNull('css=html>body');
+				x.focus(); x.dispatchEvent(evObj);
+				}*/
 	}
 
 
