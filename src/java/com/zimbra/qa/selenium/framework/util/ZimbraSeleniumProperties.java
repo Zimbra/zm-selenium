@@ -214,12 +214,32 @@ public class ZimbraSeleniumProperties {
 	 * method to check whether WebDriver mode is enabled
 	 * in the configuration settings
 	 */
+	private static boolean _isWebDriver = false;
 	public static boolean isWebDriver() {
-		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".seleniumDriver",ZimbraSeleniumProperties.getStringProperty("seleniumDriver")) != null 
-				&& ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".seleniumDriver",ZimbraSeleniumProperties.getStringProperty("seleniumDriver")).contentEquals("WebDriver"))
-			return true;
-		else
-			return false;
+		
+		// If we have already determined that _isWebdriver is true, skip testing again
+		if ( _isWebDriver != true ) {
+					
+			_isWebDriver = 
+				(
+						ZimbraSeleniumProperties.getStringProperty(
+								ZimbraSeleniumProperties.getLocalHost() + ".seleniumDriver",
+								ZimbraSeleniumProperties.getStringProperty("seleniumDriver")) != null 
+						&& 
+						ZimbraSeleniumProperties.getStringProperty(
+								ZimbraSeleniumProperties.getLocalHost() + ".seleniumDriver",
+								ZimbraSeleniumProperties.getStringProperty("seleniumDriver")).contentEquals("WebDriver")
+				);
+				
+		
+			if ( _isWebDriver == true ) {
+				logger.warn("isWebDriver = "+ _isWebDriver);
+			}
+			
+		}
+		
+		return (_isWebDriver);
+		
 	}
 	
 	/**
@@ -227,11 +247,27 @@ public class ZimbraSeleniumProperties {
 	 * method to check whether WebDriverBackedSelenium mode is enabled
 	 * in the configuration settings
 	 */
+	private static boolean _isWebDriverBackedSelenium = false;
 	public static boolean isWebDriverBackedSelenium() {
-		if (ZimbraSeleniumProperties.getStringProperty("seleniumDriver") != null && ZimbraSeleniumProperties.getStringProperty("seleniumDriver").contentEquals("WebDriverBackedSelenium"))
-			return true;
-		else
-			return false;
+		
+		// If we have already determined that _isWebDriverBackedSelenium is true, skip testing again
+		if ( _isWebDriverBackedSelenium != true ) {
+
+			_isWebDriverBackedSelenium =
+				(
+						ZimbraSeleniumProperties.getStringProperty("seleniumDriver") != null 
+						&&
+						ZimbraSeleniumProperties.getStringProperty("seleniumDriver").contentEquals("WebDriverBackedSelenium")
+				);
+		
+			if ( _isWebDriverBackedSelenium == true ) {
+				logger.warn("isWebdriverBackedSelenium = "+ _isWebDriverBackedSelenium);
+			}
+			
+		}
+		
+		return (_isWebDriverBackedSelenium);
+
 	}
 
 	/**
