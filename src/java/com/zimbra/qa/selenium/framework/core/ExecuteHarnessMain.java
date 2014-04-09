@@ -876,16 +876,24 @@ public class ExecuteHarnessMain {
 			String filename = getScreenCaptureFilename(result.getMethod().getMethod());
 			logger.warn("Creating screenshot: "+ filename);
 			if (ZimbraSeleniumProperties.isWebDriver()||ZimbraSeleniumProperties.isWebDriverBackedSelenium()){
+				//File scrFile = ((TakesScreenshot)ClientSessionFactory.session().webDriver()).getScreenshotAs(OutputType.FILE);
+				//FileUtils.copyFile(scrFile, new File(filename));
 				try {
-					//File scrFile = ((TakesScreenshot)ClientSessionFactory.session().webDriver()).getScreenshotAs(OutputType.FILE);
-					//FileUtils.copyFile(scrFile, new File(filename));
 					BufferedImage image = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
 				    ImageIO.write(image, "png", new File(filename));
-				} catch (Exception ex) {
-					logger.error(ex);
+				} catch (HeadlessException e) {
+					logger.error("Unable to create Robot to create screenshot", e);
+				} catch (AWTException e) {
+					logger.error("Unable to create Robot to create screenshot", e);
+				} catch (IOException e) {
+					logger.error("Unable to create PNG file at "+ filename, e);
 				}
 			}else{
-				ClientSessionFactory.session().selenium().captureScreenshot(filename);
+				try {
+					ClientSessionFactory.session().selenium().captureScreenshot(filename);
+				} catch (Exception e) {
+					logger.error("Unable to create PNG file at "+ filename, e);
+				}
 			}
 		}
 		
