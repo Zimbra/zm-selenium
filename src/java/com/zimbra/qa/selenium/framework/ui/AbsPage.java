@@ -102,24 +102,14 @@ public abstract class AbsPage extends AbsSeleniumObject {
 	 */
 	public void zWaitForActive(long millis) throws HarnessException {
 		
-		if ( zIsActive() ) {
-			return; // Page became active
-		}
-		
-		do {
-			SleepUtil.sleep(SleepUtil.SleepGranularity);
-			millis = millis - SleepUtil.SleepGranularity;
+		for (int time = 0; time <= millis; time += SleepUtil.SleepGranularity) {
 			if ( zIsActive() ) {
 				return; // Page became active
 			}
-		} while (millis > SleepUtil.SleepGranularity);
-		
-		SleepUtil.sleep(millis);
-		if ( zIsActive() ) {
-			return;	// Page became active
+			SleepUtil.sleep(SleepUtil.SleepGranularity);
 		}
 
-		throw new HarnessException("Page never became active");
+		throw new HarnessException("Page never became active: msec="+ millis);
 	}
 	
 	/**
