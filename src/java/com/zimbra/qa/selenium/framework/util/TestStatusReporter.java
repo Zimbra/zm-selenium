@@ -118,7 +118,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 					furthestReadLong  = raf.getFilePointer();
 				}
 				catch (IOException e) {
-					logger.warn(e);
+					logger.warn(e,e);
 				}
 			}
 			else {
@@ -158,7 +158,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 					furthestReadLong  = raf.getFilePointer();
 				}
 				catch (IOException e) {
-					logger.warn(e);
+					logger.warn(e,e);
 				}
 			}
 			else {
@@ -438,7 +438,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 			try {
 				f.createNewFile();
 			} catch (IOException e) {
-				logger.warn(e);
+				logger.warn(e,e);
 			}
 			try {
 
@@ -454,6 +454,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 				srcChannel.close();
 				dstChannel.close();
 			} catch (IOException e) {
+				logger.warn(e,e);
 			}
 
 	}
@@ -632,7 +633,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 				}
 			}
 		} catch (IOException e) {
-			logger.warn(e);
+			logger.warn(e,e);
 		}
 
 
