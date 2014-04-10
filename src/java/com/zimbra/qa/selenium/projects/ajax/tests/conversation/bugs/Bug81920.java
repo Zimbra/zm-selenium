@@ -287,8 +287,9 @@ public class Bug81920 extends PrefGroupMailByConversationTest {
 		//-- Verification
 		
 		
-		// From the test account, check the sent folder for the reply
-		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "not content:("+ body + ") in:sent subject:("+ c.getSubject() +") ");
+		// From the test account, check the sent folder for the reply		
+		MailItem sent = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "not content:("+ body + ") in:sent subject:("+ c.getSubject() +") ");
+
 		ZAssert.assertNotNull(sent, "Verify the sent message in the sent folder");
 		
 		// Verify the draft body does not appear in the reply
