@@ -120,7 +120,7 @@ public class SendAs extends PrefGroupMailByMessageTest {
 
 	@Test(	description = "Forward a mail with attachment as a delegate - Verify attachment sent",
 			groups = { "functional" })
-	public void SendAs_04() throws HarnessException {
+	public void SendAs_02() throws HarnessException {
 		
 		ZimbraAccount grantor = null;
 		grantor = new ZimbraAccount();
@@ -165,7 +165,7 @@ public class SendAs extends PrefGroupMailByMessageTest {
 		// Send the message
 		mailform.zSubmit();
 
-
+		SleepUtil.sleepSmall();
 
 		//-- Verification
 		
