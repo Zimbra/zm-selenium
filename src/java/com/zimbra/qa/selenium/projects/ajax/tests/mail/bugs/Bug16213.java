@@ -51,11 +51,11 @@ public class Bug16213 extends AjaxCommonTest {
 	}
 	
 	@Test(	description = "Verify bug 16213 - Message display should show From=Unknown",
-			groups = { "functional" })
+			groups = { "zfunctional" })
 	public void Bug_16213MV() throws HarnessException {
 
 		String subject = "Encoding test";
-		String from = "";
+		String from = "Unknown";
 
 		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug16213";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
