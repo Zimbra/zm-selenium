@@ -807,11 +807,11 @@ public class PageSearch extends AbsTab {
 			locator2 = "css=ul[id^='zl__TV-SR-2']";
 		} else if (this.sIsElementPresent("css=ul[id^='zl__TV-SR-1']")) {
 			locator2 = "css=ul[id^='zl__TV-SR-1']";
-		}
+		}			
 		
-		if ( this.zIsVisiblePerPosition(locator1, 0, 0) ) {
+		if ( locator1 != null && this.zIsVisiblePerPosition(locator1, 0, 0) ) {
 			return (SearchView.BY_CONVERSATION);
-		} else if ( this.zIsVisiblePerPosition(locator2, 0, 0) ) {
+		} else if ( locator2 != null && this.zIsVisiblePerPosition(locator2, 0, 0) ) {
 			return (SearchView.BY_MESSAGE);
 		}
 
