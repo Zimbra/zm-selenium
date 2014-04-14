@@ -51,7 +51,7 @@ public class Bug16213 extends AjaxCommonTest {
 	}
 	
 	@Test(	description = "Verify bug 16213 - Message display should show From=Unknown",
-			groups = { "zfunctional" })
+			groups = { "functional" })
 	public void Bug_16213MV() throws HarnessException {
 
 		String subject = "Encoding test";
