@@ -151,7 +151,7 @@ public class DialogAddToBriefcase extends AbsDialog {
 		if ( folderID == null ) 
 			throw new HarnessException("folder must not be null");
 		
-		String locator = Locators.DialogDivLocatorCSS + " td[id='zti__ZmChooseFolderDialog_Briefcase__" + folderID + "_textCell']";
+		String locator = Locators.DialogDivLocatorCSS + " td[id='zti__ZmChooseFolderDialog_Briefcase___" + folderID + "_textCell']";
 		
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("unable to find folder in tree "+ locator);
