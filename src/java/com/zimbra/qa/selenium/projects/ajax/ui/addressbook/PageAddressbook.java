@@ -880,8 +880,8 @@ public class PageAddressbook extends AbsTab {
 		
 		//actually this is a search view
 		if (zIsInSearchView()) {
-			listLocator= "div[id=zv__CNS-SR-Contacts-1]";	
-		   	rowLocator= "li[id^=zli__CNS-SR-Contacts-1__]";
+			listLocator= "div[id=zv__CNS-SR-1]";	
+		   	rowLocator= "li[id^=zli__CNS-SR-1__]";
 		}
 		
 		if (!this.sIsElementPresent("css=" + listLocator + " " + rowLocator)) {
@@ -1542,6 +1542,6 @@ public class PageAddressbook extends AbsTab {
 	}
 	
 	private boolean zIsInSearchView() throws HarnessException {
-		return zIsVisiblePerPosition("css=div#z_filterPanel__SR-Contacts-1",0,0);		 
+		return zIsVisiblePerPosition("css=div#z_filterPanel__SR-1",0,0);		 
 	}
 }
