@@ -137,8 +137,8 @@ public class SendAs extends PrefGroupMailByMessageTest {
 		this.startingPage.zNavigateTo();
 		
 		//-- DATA
-		final String mimeSubject = "subject03431362517016470";
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email09/mime.txt";
+		final String mimeSubject = "subject13977785775182543";
+		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email14/mime.txt";
 		final String mimeAttachmentName = "screenshot.JPG";
 
 		// Send the message to the test account
