@@ -1,8 +1,6 @@
 Date: Tue, 5 Mar 2013 12:56:56 -0800 (PST)
 From: foo@example.com
 To: bar@example.com
-Message-ID: <1474748869.540343.1362517016470.JavaMail.root@zimbra.com>
-In-Reply-To: <748870681.540330.1362517013598.JavaMail.root@zimbra.com>
 Subject: subject13977785775182543
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 
