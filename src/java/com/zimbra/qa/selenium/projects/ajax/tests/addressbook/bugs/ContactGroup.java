@@ -141,7 +141,7 @@ public class ContactGroup extends AjaxCommonTest  {
 	@Test( description="create a new contact group from GAL search result",
 		   groups= { "functional"  } )
 	public void Bug66623_AddingAGALToAContactGroup() throws HarnessException{
-		String email=ZimbraAccount.AccountB().EmailAddress.substring(0,ZimbraAccount.AccountB().EmailAddress.indexOf('@'));
+		String email=ZimbraAccount.AccountA().EmailAddress.substring(0,ZimbraAccount.AccountA().EmailAddress.indexOf('@'));
 
 		// search for a GAL
 		app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_GAL); 		
@@ -167,7 +167,7 @@ public class ContactGroup extends AjaxCommonTest  {
 
 		//Create a contact item
 		ContactItem contactItem = new ContactItem(email);
-		contactItem.email = ZimbraAccount.AccountB().EmailAddress;	 
+		contactItem.email = ZimbraAccount.AccountA().EmailAddress;	 
 
 		//Add the member to the group	 
 		newGroup.addDListMember(contactItem);
