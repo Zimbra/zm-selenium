@@ -12,18 +12,18 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.archive.mail;
+package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.archive.conversation;
 
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
 
-public class SetArchiveFolder extends PrefGroupMailByMessageTest {
+public class SetArchiveFolder extends PrefGroupMailByConversationTest {
 
 	
 	public SetArchiveFolder() {

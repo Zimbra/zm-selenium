@@ -12,18 +12,18 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.archive.newwindow;
+package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.archive.mail.newwindow;
 
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.tests.zimlets.archive.mail.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 
 
-public class ArchiveMessage extends PrefGroupMailByMessageTest {
+public class ArchiveMessage extends ArchiveZimletByMessageTest {
 
 	
 	public ArchiveMessage() {
@@ -46,9 +46,7 @@ public class ArchiveMessage extends PrefGroupMailByMessageTest {
 		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String foldername = "archive" + ZimbraSeleniumProperties.getUniqueString();
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
-		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.UserRoot);
 		
 		// Add a message to the inbox
 		app.zGetActiveAccount().soapSend(
@@ -66,35 +64,12 @@ public class ArchiveMessage extends PrefGroupMailByMessageTest {
             	+		"</m>"
 				+	"</AddMsgRequest>");
 
-		// Create the destination archive folder
-		app.zGetActiveAccount().soapSend(
-				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-                	"<folder name='"+ foldername +"' l='"+ root.getId() +"'/>" +
-                "</CreateFolderRequest>");
-		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
-
-		// Configure the Archive feature
-		// It may be difficult to keep these meta data in sync with the app.  If there
-		// is a better way to set up archive, please update the test case.
-		app.zGetActiveAccount().soapSend(
-				"<SetMailboxMetadataRequest xmlns='urn:zimbraMail'>" +
-					"<meta section='zwc:archiveZimlet'>" +
-						"<a n='hideDeleteButton'>false</a>" +
-						"<a n='showSendAndArchive'>false</a>" +
-						"<a n='archivedFolder'>"+ subfolder.getId() +"</a>" +
-					"</meta>" +
-				"</SetMailboxMetadataRequest>");
 
 
 
 		
 		//-- GUI steps
 		
-		// Logout and login to pick up the new archive zimlet settings
-		ZimbraAccount a = app.zGetActiveAccount();
-		app.zPageLogin.zNavigateTo();
-		app.zPageLogin.zLogin(a);
-		app.zPageMail.zNavigateTo();
 		
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
@@ -141,7 +116,7 @@ public class ArchiveMessage extends PrefGroupMailByMessageTest {
 		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(message, "Verify the archived message still exists in the mailbox");
-		ZAssert.assertEquals(message.dFolderId, subfolder.getId(), "Verify the archived message is moved to the archive folder");
+		ZAssert.assertEquals(message.dFolderId, this.MyArchiveFolder.getId(), "Verify the archived message is moved to the archive folder");
 		
 
 	}

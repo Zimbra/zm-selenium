@@ -12,18 +12,16 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.archive;
+package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.archive.mail;
 
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
 
-public class ArchiveMessage extends PrefGroupMailByMessageTest {
+public class ArchiveMessage extends ArchiveZimletByMessageTest {
 
 	
 	public ArchiveMessage() {
@@ -44,9 +42,7 @@ public class ArchiveMessage extends PrefGroupMailByMessageTest {
 		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String foldername = "archive" + ZimbraSeleniumProperties.getUniqueString();
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
-		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.UserRoot);
 		
 		// Add a message to the inbox
 		app.zGetActiveAccount().soapSend(
@@ -64,13 +60,6 @@ public class ArchiveMessage extends PrefGroupMailByMessageTest {
             	+		"</m>"
 				+	"</AddMsgRequest>");
 
-		// Create the destination archive folder
-		app.zGetActiveAccount().soapSend(
-				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-                	"<folder name='"+ foldername +"' l='"+ root.getId() +"'/>" +
-                "</CreateFolderRequest>");
-		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
-
 		
 
 		
@@ -85,20 +74,12 @@ public class ArchiveMessage extends PrefGroupMailByMessageTest {
 		// Click Archive
 		app.zPageMail.zToolbarPressButton(Button.B_ARCHIVE);
 		
-		// If the archive zimlet is uninitialized, a choose folder dialog will appear
-		// A choose folder dialog will pop up
-		DialogMove dialog = new DialogMove(app, ((AppAjaxClient)app).zPageMail);
-		if ( dialog.zIsActive() ) {
-			dialog.zClickTreeFolder(subfolder);
-			dialog.zClickButton(Button.B_OK);
-		}
-
 
 		//-- VERIFICATION
 		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(message, "Verify the archived message still exists in the mailbox");
-		ZAssert.assertEquals(message.dFolderId, subfolder.getId(), "Verify the archived message is moved to the archive folder");
+		ZAssert.assertEquals(message.dFolderId, this.MyArchiveFolder.getId(), "Verify the archived message is moved to the archive folder");
 		
 
 	}
