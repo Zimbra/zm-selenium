@@ -419,10 +419,22 @@ public class PageMail extends AbsTab {
 			// The test case must create the page dialog object.
 			//
 			page = null;
-			locator = "css=div[id$='zb__TV-main__ARCHIVE'] td[id$='_title']";
-
-			if ( !this.sIsElementPresent(locator) ) {
+			
+			if ( this.sIsElementPresent("css=div[id$='zb__TV-main__ARCHIVE'] td[id$='_title']") ) {
+				
+				// try the message view first
+				locator = "css=div[id$='zb__TV-main__ARCHIVE'] td[id$='_title']";
+				
+			} else if ( this.sIsElementPresent("css=div[id$='zb__CLV-main__ARCHIVE'] td[id$='_title']") ) {
+				
+				// try the conversation view next
+				locator = "css=div[id$='zb__CLV-main__ARCHIVE'] td[id$='_title']";
+				
+			} else {
+				
+				// Give up
 				throw new HarnessException("Archive icon not present "+ button);
+				
 			}
 
 			// FALL THROUGH
