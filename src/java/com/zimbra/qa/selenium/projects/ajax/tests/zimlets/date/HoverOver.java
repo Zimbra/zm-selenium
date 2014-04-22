@@ -14,15 +14,19 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.date;
 
-import org.openqa.selenium.WebElement;
-import org.testng.annotations.Test;
+import java.util.*;
 
-import com.zimbra.qa.selenium.framework.items.FolderItem;
+import org.openqa.selenium.*;
+import org.testng.annotations.*;
+
+import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.TooltipContact;
+import com.zimbra.qa.selenium.projects.ajax.core.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.*;
 
 
 public class HoverOver extends PrefGroupMailByMessageTest {
@@ -88,6 +92,71 @@ public class HoverOver extends PrefGroupMailByMessageTest {
 		
 	}
 	
+	@Test(	description = "Hovor over a date string in the body, such as today, tomorrow, last night, etc.",
+			groups = { "functional" })
+	public void HoverOver_11() throws HarnessException {
+		String newline = String.format("%n");
+		
+
+		List<String> values = Arrays.asList("today,tonight,this morning,tomorrow night,tomorrow morning,tomorrow,last night,yesterday morning,yesterday,this Monday,next Monday,Last Monday,first Monday in April,third Monday".split(","));
+		
+		// Create the message content, with one term on each line
+		StringBuffer content = new StringBuffer(ZimbraSeleniumProperties.getUniqueString()).append(newline);
+		for (String s : values) {
+			content.append(s).append(newline);
+		}
+		String subject = "subject " + ZimbraSeleniumProperties.getUniqueString();
+
+		// Send the message from AccountA to the ZWC user
+		ZimbraAccount.AccountA().soapSend(
+					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+						"<m>" +
+							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+							"<su>"+ subject +"</su>" +
+							"<mp ct='text/plain'>" +
+								"<content>"+ content.toString() +"</content>" +
+							"</mp>" +
+						"</m>" +
+					"</SendMsgRequest>");
+
+		
+		
+		// GUI Actions
+		
+		// Click Get Mail button
+		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+
+		// Select the message so that it shows in the reading pane
+		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+
+		HtmlElement bodyElement = display.zGetMailPropertyAsHtml(Field.Body);
+
+
+		// VERIFICATION
+		//
+		for (String value : values) {
+
+			// Verify the data is present
+			HtmlElement.evaluate(bodyElement, "//span//span", null, value, 1);
+
+			// Hover over the email address
+			String locator = "css=span[id$='_com_zimbra_date']:contains("+ value + ")";
+			app.zPageMail.sMouseOver(locator, (WebElement[]) null);
+			
+			// Verify the contact tool tip opens
+			TooltipContact tooltip = new TooltipContact(app);
+			tooltip.zWaitForActive();
+			
+			ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
+		
+			// Clear the tooltip
+			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+			
+		}
+		
+
+	}
+
 
 
 }
