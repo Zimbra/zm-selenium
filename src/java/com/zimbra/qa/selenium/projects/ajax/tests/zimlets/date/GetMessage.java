@@ -242,4 +242,96 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
+	@Test(	description = "Receive a mail with a date string, such as today, tomorrow, last night, etc.",
+			groups = { "functional" })
+	public void GetMessage_11() throws HarnessException {
+		String newline = String.format("%n");
+		
+
+		/**
+		 * 
+		 
+		  From Zimlet/src/zimlet/com_zimbra_date/com_zimbra_date.properties:
+		 
+format1.pattern = (today|tonight|this morning)
+format1.rule = now
+
+format2.pattern = (tomorrow night|tomorrow morning|tomorrow)
+format2.rule = now +1 day
+
+format3.pattern = (last night|yesterday morning|yesterday)
+format3.rule = now -1 day
+
+# e.g. next Thursday
+format4.pattern = (this|next) {dayname}
+format4.rule = now +1 {dayname}
+
+# e.g. last Thursday
+format5.pattern = last {dayname}
+format5.rule = now -1 {dayname}
+
+# e.g. first Wed in April
+format6.pattern = {weekord} {dayname} (of|in) {monthname}
+format6.rule = now date=1 +1 {monthname} week={weekord},{dayname}
+
+# e.g. third Monday
+format7.pattern = {weekord} {dayname}
+format7.rule = now week={weekord},{dayname}
+
+		 */
+		List<String> values = Arrays.asList("today,tonight,this morning,tomorrow night,tomorrow morning,tomorrow,last night,yesterday morning,yesterday,this Monday,next Monday,Last Monday,first Monday in April,third Monday".split(","));
+		
+		// Create the message content, with one term on each line
+		StringBuffer content = new StringBuffer(ZimbraSeleniumProperties.getUniqueString()).append(newline);
+		for (String s : values) {
+			content.append(s).append(newline);
+		}
+		String subject = "subject " + ZimbraSeleniumProperties.getUniqueString();
+
+		// Send the message from AccountA to the ZWC user
+		ZimbraAccount.AccountA().soapSend(
+					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+						"<m>" +
+							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+							"<su>"+ subject +"</su>" +
+							"<mp ct='text/plain'>" +
+								"<content>"+ content.toString() +"</content>" +
+							"</mp>" +
+						"</m>" +
+					"</SendMsgRequest>");
+
+		// Click Get Mail button
+		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+
+		// Get all the messages in the inbox
+		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+		
+		// Wait for a bit so the zimlet can take affect
+		SleepUtil.sleep(5000);
+		
+		// Get the HTML of the body
+		HtmlElement bodyElement = display.zGetMailPropertyAsHtml(Field.Body);
+		
+		// Verify that the phone zimlet has been applied
+		//
+		//	<span id="OBJ_PREFIX_DWT47_com_zimbra_date" class="Object">
+		//		<span id="OBJ_PREFIX_DWT52_com_zimbra_date" class="Object">last night</span>
+		//	</span>
+		//	<br style="" />
+		//
+		//	<span id="OBJ_PREFIX_DWT48_com_zimbra_date" class="Object">
+		//		<span id="OBJ_PREFIX_DWT53_com_zimbra_date" class="Object">this morning</span>
+		//	</span>
+		//	<br style="" />
+		//
+		for (String value : values) {
+
+			HtmlElement.evaluate(bodyElement, "//span//span", null, value, 1);
+		
+		}
+		
+
+	}
+
+
 }
