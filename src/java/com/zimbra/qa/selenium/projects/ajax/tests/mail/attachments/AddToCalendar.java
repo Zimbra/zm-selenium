@@ -181,10 +181,13 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	
 	
 	@Test(description = "Bug 51442 - Js error (ZmNewCalendarDialog is not defined) while pressing New Calendar from new window and can't open new calendar dialog",
-			groups = { "functional" })
+			groups = { "zfunctional" })
 			
 	public void AddToCalendar_NewWindow_02() throws HarnessException {
-
+		
+		// Login
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		
 		// -- Data Setup
 		String subject = "new window invite ics attachment";
 		String apptSubject = "new window invite ics";
@@ -194,8 +197,10 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
 		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email08/mime06.txt";
 		
+		
+		
 		// Inject the message
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(mimeFile));
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		SleepUtil.sleepMedium();
 
@@ -233,7 +238,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 			}
 			
 			// Make sure the folder was created on the server
-			FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),foldername);
+			FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountZWC(),foldername);
 			dialog.zChooseCalendarFolder(folder.getId());
 			dialog.zClickButton(Button.B_OK);
 			SleepUtil.sleepLong(); //sometime client takes longer time to add the appointment
@@ -251,13 +256,13 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 			+		"<query>"+ "in:" + foldername + " " + apptSubject +"</query>"
 			+	"</SearchRequest>");
 		
-		String organizerInvId = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
+		String organizerInvId = ZimbraAccount.AccountZWC().soapSelectValue("//mail:appt", "invId");
 		
 		// Get the appointment details
 		app.zGetActiveAccount().soapSend(
 					"<GetAppointmentRequest xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
 		
-		String apptName = app.zGetActiveAccount().soapSelectValue("//mail:comp", "name");
+		String apptName = ZimbraAccount.AccountZWC().soapSelectValue("//mail:comp", "name");
 		ZAssert.assertEquals(apptName, apptSubject, "Verify correct appointment returned'");
 	
 	}
