@@ -2,12 +2,12 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
@@ -23,26 +23,26 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 
 /**
  * Used to define a Zimbra All Item Types Search Results
- * 
+ *
  * @author Matt Rhoades
  *
  */
 public class AllItemTypesItem implements IItem {
 	protected static Logger logger = LogManager.getLogger(IItem.class);
-	
-	public String tag = null;	
+
+	public String tag = null;
 	public String imageType = null;
 	public String from = null;
 	public String attachment = null; //boolean??
 	public String subject = null;
 	public String date = null;
-	
-			
+
+
 	public AllItemTypesItem() {
 		super();
 	}
 
-	
+
 	public AllItemTypesItem(String tag, String imageType, String from,String attachment, String subject, String date) {
 		this.tag       =tag;
 		this.imageType =imageType;
@@ -50,18 +50,16 @@ public class AllItemTypesItem implements IItem {
 		this.attachment=attachment;
 		this.subject   =subject;
 		this.date      =date;
-		
+
 	}
 
 	@Override
     public String getName() {
     	return "AllItemTypes: " + subject;
     }
-	
+
 	@Override
 	public void createUsingSOAP(ZimbraAccount account) throws HarnessException {
-		// TODO Auto-generated method stub
-
 	}
 
 	private String myId;
@@ -71,16 +69,16 @@ public class AllItemTypesItem implements IItem {
 	public void setId(String id) {
 		myId=id;
 	}
-	
+
 
 	@Override
 	public String prettyPrint() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(AllItemTypesItem.class.getSimpleName()).append('\n');
-		
+
 		sb.append(String.format("Tag:(%s)\n Image Type:(%s)\n From:(%s)\n Attachment:(%s)\n Subject:(%s)\n Date:(%s)\n",
 				                 tag, imageType, from, attachment, subject,date));
-		
+
 		return (sb.toString());
 	}
 

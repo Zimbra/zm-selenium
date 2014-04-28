@@ -2,12 +2,12 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
@@ -81,7 +81,7 @@ public class SignatureItem implements IItem {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see framework.items.IItem#CreateSOAP(framework.util.ZimbraAccount)
 	 */
 	@Override
@@ -90,7 +90,7 @@ public class SignatureItem implements IItem {
 	}
 
 	public static SignatureItem importFromSOAP(Element sig) throws HarnessException {
-		
+
 		if ( sig == null )
 			throw new HarnessException("Element cannot be null");
 
@@ -112,7 +112,7 @@ public class SignatureItem implements IItem {
 			item.setId(t.getAttribute("id", null));
 			// Set tag name
 			item.setName(t.getAttribute("name", null));
-			
+
 			Element contentBodyHtml = ZimbraAccount.SoapClient.selectNode(sig, "//acct:content[@type='text/html']");
 			Element contentBodyText = ZimbraAccount.SoapClient.selectNode(sig, "//acct:content[@type='text/plain']");
 			if ( contentBodyHtml != null ) {
@@ -159,7 +159,6 @@ public class SignatureItem implements IItem {
 
 	@Override
 	public String prettyPrint() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

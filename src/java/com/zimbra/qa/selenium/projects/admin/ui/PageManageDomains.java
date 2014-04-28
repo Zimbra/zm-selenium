@@ -2,18 +2,18 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
 /**
- * 
+ *
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
@@ -36,7 +36,7 @@ import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
  *
  */
 public class PageManageDomains extends AbsTab {
-	
+
 	public static class Locators {
 		public static final String CONFIGURE_ICON="css=div.ImgAdministration";
 		public static final String DOMAINS="zti__AppAdmin__CONFIGURATION__DOMAINS_textCell";
@@ -51,15 +51,15 @@ public class PageManageDomains extends AbsTab {
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgEdit']";
 	}
-	
+
 	public static class TypeOfObject {
 		public static final String DOMAIN = "Domain";
 		public static final String DOMAIN_ALIAS = "Domain Alias";
 
 	}
-	
+
 	public String typeOfObject = "Domain";
-	
+
 
 	public String getType() {
 		return typeOfObject;
@@ -156,9 +156,9 @@ public class PageManageDomains extends AbsTab {
 			locator = accountLocator +  " table tr td:nth-child(2)" ;
 
 
-			if(this.sIsElementPresent(locator)) 
+			if(this.sIsElementPresent(locator))
 			{
-				if(this.sGetText(locator).trim().equalsIgnoreCase(item)) 
+				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
 				{
 					if(action == Action.A_LEFTCLICK) {
 						zClick(locator);
@@ -169,7 +169,7 @@ public class PageManageDomains extends AbsTab {
 					}
 
 				}
-				
+
 			}
 		}
 		return page;
@@ -178,16 +178,14 @@ public class PageManageDomains extends AbsTab {
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item)
 			throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
 			throws HarnessException {
-		// TODO Auto-generated method stub
-		return null;	
+		return null;
 	}
-	
+
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 
@@ -219,16 +217,16 @@ public class PageManageDomains extends AbsTab {
 
 		} else if(button == Button.B_TREE_DELETE) {
 			locator = Locators.RIGHT_CLICK_MENU_DELETE_BUTTON;
-			
+
 			page = new DialogForDeleteOperationDomain(this.MyApplication,null);
-			
+
 		} else if(button == Button.B_TREE_EDIT) {
 			locator = Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
 
-			if (typeOfObject.equals(TypeOfObject.DOMAIN)) 
+			if (typeOfObject.equals(TypeOfObject.DOMAIN))
 				page=new FormEditDomain(this.MyApplication);
 			else if (typeOfObject.equals(TypeOfObject.DOMAIN_ALIAS))
-				page=new WizardCreateDomainAlias(this);	
+				page=new WizardCreateDomainAlias(this);
 
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
@@ -241,8 +239,8 @@ public class PageManageDomains extends AbsTab {
 		// Default behavior, process the locator by clicking on it
 		//
 		this.zClickAt(locator,"");
-		
-		
+
+
 
 		// If page was specified, make sure it is active
 		if ( page != null ) {
@@ -273,7 +271,7 @@ public class PageManageDomains extends AbsTab {
 		AbsPage page = null; // If set, this page will be returned
 
 		if (pulldown == Button.B_GEAR_BOX) {
-			pulldownLocator = Locators.GEAR_ICON; 
+			pulldownLocator = Locators.GEAR_ICON;
 
 			if (option == Button.O_NEW) {
 
@@ -285,22 +283,22 @@ public class PageManageDomains extends AbsTab {
 
 			} else if(option == Button.O_ADD_DOMAIN_ALIAS) {
 				optionLocator = Locators.ADD_DOMAIN_ALIAS;
-				
+
 				page = new WizardCreateDomainAlias(this);
-				
+
 			} else if(option == Button.O_DELETE) {
 				optionLocator = Locators.DELETE_BUTTON;
-				
+
 				page = new DialogForDeleteOperationDomain(this.MyApplication,null);
-				
+
 			} else if(option == Button.O_EDIT) {
 				optionLocator = Locators.EDIT_BUTTON;
-				
-				if (typeOfObject.equals(TypeOfObject.DOMAIN)) 
+
+				if (typeOfObject.equals(TypeOfObject.DOMAIN))
 					page=new FormEditDomain(this.MyApplication);
 				else if (typeOfObject.equals(TypeOfObject.DOMAIN_ALIAS))
-					page=new WizardCreateDomainAlias(this);	
-				
+					page=new WizardCreateDomainAlias(this);
+
 			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
@@ -342,7 +340,7 @@ public class PageManageDomains extends AbsTab {
 		return (page);
 
 	}
-	
+
 	public boolean zVerifyHeader (String header) throws HarnessException {
 		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
@@ -352,8 +350,8 @@ public class PageManageDomains extends AbsTab {
 	/**
 	 * Return a list of all domain entries in the current view
 	 * @return
-	 * @throws HarnessException 
-	 * @throws HarnessException 
+	 * @throws HarnessException
+	 * @throws HarnessException
 	 */
 	public List<DomainItem> zListGetDomainList() throws HarnessException {
 
@@ -396,5 +394,5 @@ public class PageManageDomains extends AbsTab {
 		// Return the list of items
 		return (items);
 	}
-	
+
 }

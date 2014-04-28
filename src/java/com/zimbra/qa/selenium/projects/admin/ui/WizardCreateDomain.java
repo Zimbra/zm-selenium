@@ -2,18 +2,18 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
 /**
- * 
+ *
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
@@ -58,20 +58,20 @@ public class WizardCreateDomain extends AbsWizard {
 
 		/**
 		 * If you use normal type method domain is taken as default domain name.
-		 * Below line of code is not grid friendly but this is only solution working currently. 
+		 * Below line of code is not grid friendly but this is only solution working currently.
 		 */
 		zType(Locators.zdlg_DOMAIN_NAME,"");
 		this.zKeyboard.zTypeCharacters(domainName);
 
 		clickNext(AbsWizard.Locators.DOMAIN_DIALOG);
-		
+
 		//sClickAt(Locators.ADD_A_GAL_ACCOUNT_BUTTON,"");
 		sClickAt(Locators.MAIL_SERVER_DROPDOWN, "");
 		sClickAt(Locators.MAIL_SERVER_DROPDOWN_TABLE+" div:contains('"+
 					ZimbraSeleniumProperties.getStringProperty("server.host")+
 					"')", "");
-		
-		
+
+
 		clickFinish(AbsWizard.Locators.DOMAIN_DIALOG);
 
 		return (domain);
@@ -81,13 +81,11 @@ public class WizardCreateDomain extends AbsWizard {
 
 	@Override
 	public String myPageName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

@@ -2,18 +2,18 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
 /**
- * 
+ *
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
@@ -45,7 +45,7 @@ public class PageManageDistributionLists extends AbsTab {
 		public static final String HOME="Home";
 		public static final String MANAGE="Manage";
 		public static final String DISTRIBUTION_LIST="Distribution Lists";
-		public static final String DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";		
+		public static final String DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgEdit']";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgEdit']";
@@ -135,9 +135,9 @@ public class PageManageDistributionLists extends AbsTab {
 			locator = accountLocator + " td[id^='dl_data_emailaddress']";
 
 
-			if(this.sIsElementPresent(locator)) 
+			if(this.sIsElementPresent(locator))
 			{
-				if(this.sGetText(locator).trim().equalsIgnoreCase(item)) 
+				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
 				{
 					if(action == Action.A_LEFTCLICK) {
 						zClick(locator);
@@ -148,7 +148,7 @@ public class PageManageDistributionLists extends AbsTab {
 					}
 
 				}
-				
+
 			}
 		}
 		return page;
@@ -157,14 +157,12 @@ public class PageManageDistributionLists extends AbsTab {
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item)
 	throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
 	throws HarnessException {
-		// TODO Auto-generated method stub
-		return null;	
+		return null;
 	}
 
 
@@ -224,7 +222,7 @@ public class PageManageDistributionLists extends AbsTab {
 			SleepUtil.sleepMedium();
 		}
 
-		
+
 		return (page);
 
 	}
@@ -280,10 +278,10 @@ public class PageManageDistributionLists extends AbsTab {
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
-			
-			if(ZimbraSeleniumProperties.isWebDriver()) 
+
+			if(ZimbraSeleniumProperties.isWebDriver())
 				SleepUtil.sleepSmall();
-			
+
 			this.sClickAt(pulldownLocator,"0,0");
 			SleepUtil.sleepMedium();
 
@@ -309,12 +307,12 @@ public class PageManageDistributionLists extends AbsTab {
 		// Return the specified page, or null if not set
 		return (page);
 	}
-	
+
 	/**
 	 * Return a list of all accounts in the current view
 	 * @return
-	 * @throws HarnessException 
-	 * @throws HarnessException 
+	 * @throws HarnessException
+	 * @throws HarnessException
 	 */
 	public List<AccountItem> zListGetAccounts() throws HarnessException {
 

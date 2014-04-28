@@ -2,18 +2,18 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
 /**
- * 
+ *
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
@@ -38,7 +38,7 @@ public class PageManageSoftwareUpdates extends AbsTab {
 		public static final String TOOLS_AND_MIGRATION="Tools and Migration";
 		public static final String SOFTWARE_UPDATES="Software Updates";
 	}
-	
+
 	public PageManageSoftwareUpdates(AbsApplication application) {
 		super(application);
 	}
@@ -84,7 +84,7 @@ public class PageManageSoftwareUpdates extends AbsTab {
 
 		if ( zIsActive() ) {
 			// This page is already active.
-			
+
 			return;
 		}
 
@@ -92,43 +92,38 @@ public class PageManageSoftwareUpdates extends AbsTab {
 		zClickAt(Locators.TOOLS_AND_MIGRATION_ICON,"");
 		if(sIsElementPresent(Locators.SOFTWAREUPDATES));
 		sClickAt(Locators.SOFTWAREUPDATES, "");
-		
+
 		zWaitForActive();
 	}
 
 	@Override
 	public AbsPage zListItem(Action action, String item)
 			throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item)
 			throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
 			throws HarnessException {
-		// TODO Auto-generated method stub
-		return null;	
+		return null;
 	}
-	
+
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
 			throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	public boolean zVerifyHeader (String header) throws HarnessException {
 		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;

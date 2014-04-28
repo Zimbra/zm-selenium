@@ -2,18 +2,18 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
 /**
- * 
+ *
  */
 package com.zimbra.qa.selenium.projects.mobile.ui;
 
@@ -32,29 +32,29 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 public class PageMain extends AbsTab {
 
 	public static class Locators {
-	
+
 		public static final String zBtnLogout = "css=[id='_logout']";
-		
+
 		public static final String zMainCopyright = "css=div#copyright_notice";
 		public static final String zMainCopyrightText = zMainCopyright +" a";
-		
+
 		public static final String zAppbar = "css=div#appbar";
 		public static final String zAppbarMail = zAppbar +" a#mail";
 		public static final String zAppbarContact = zAppbar +" a#contact";
 		public static final String zAppbarCal = zAppbar +" a#cal";
 		public static final String zAppbarDocs = zAppbar +" a#docs";
 		public static final String zAppbarSearch = zAppbar +" a#search";
-		
+
 		public static final String zBtnCompose = "//a[@href='zmain?st=newmail']";
-		
+
 		public static final String zPreferences = "css=a[href='?st=prefs']";
-	
+
 	}
-	
-	
+
+
 	public PageMain(AbsApplication application) {
 		super(application);
-		
+
 		logger.info("new " + PageMain.class.getCanonicalName());
 
 	}
@@ -68,7 +68,7 @@ public class PageMain extends AbsTab {
 		// Make sure the Mobile Client is loaded in the browser
 		if ( !MyApplication.zIsLoaded() )
 			throw new HarnessException("Admin Console application is not active!");
-		
+
 
 		// Look for the Logout button
 		boolean present = sIsElementPresent(Locators.zBtnLogout);
@@ -76,7 +76,7 @@ public class PageMain extends AbsTab {
 			logger.debug("isActive() present = "+ present);
 			return (false);
 		}
-		
+
 		logger.debug("isActive() = "+ true);
 		return (true);
 
@@ -101,8 +101,8 @@ public class PageMain extends AbsTab {
 			// This page is already active
 			return;
 		}
-		
-		
+
+
 		// 1. Logout
 		// 2. Login as the default account
 		if ( !((AppMobileClient)MyApplication).zPageLogin.zIsActive() ) {
@@ -111,7 +111,7 @@ public class PageMain extends AbsTab {
 		((AppMobileClient)MyApplication).zPageLogin.zLogin();
 
 		zWaitForActive();
-		
+
 	}
 
 	/**
@@ -120,18 +120,18 @@ public class PageMain extends AbsTab {
 	 */
 	public void zLogout() throws HarnessException {
 		logger.debug("zLogout()");
-		
+
 		zNavigateTo();
 
 		if ( !sIsElementPresent(Locators.zBtnLogout) ) {
 			throw new HarnessException("The logoff button is not present " + Locators.zBtnLogout);
 		}
-				
+
 		// Click on logout
 		sClick(Locators.zBtnLogout);
-				
+
 		((AppMobileClient)MyApplication).zPageLogin.zWaitForActive();
-		
+
 		((AppMobileClient)MyApplication).zSetActiveAcount(null);
 
 	}
@@ -139,14 +139,12 @@ public class PageMain extends AbsTab {
 	@Override
 	public AbsPage zListItem(Action action, String item)
 			throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item)
 			throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -154,20 +152,18 @@ public class PageMain extends AbsTab {
 	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
 			throws HarnessException {
 		throw new HarnessException("Mobile page does not have context menu");
-	}	
-	
+	}
+
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
 			throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 
 }

@@ -2,12 +2,12 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
@@ -41,7 +41,7 @@ public class DialogMove extends AbsDialog {
 
 	public DialogMove(AbsApplication application,AbsTab page) {
 		super(application,page);
-		
+
 		logger.info("new "+ DialogMove.class.getCanonicalName());
 	}
 
@@ -90,7 +90,6 @@ public class DialogMove extends AbsDialog {
 
 	@Override
 	public String zGetDisplayedText(String locator) throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -100,37 +99,37 @@ public class DialogMove extends AbsDialog {
 		logger.info(myPageName() + " zIsActive()");
 
 		String locator = "css=div[id='"+ Locators.zDialogId +"']";
-		
+
 		if ( !this.sIsElementPresent(locator) ) {
 			return (false); // Not even present
 		}
-		
+
 		if ( !this.zIsVisiblePerPosition(locator, 0, 0) ) {
 			return (false);	// Not visible per position
 		}
-	
+
 		// Yes, visible
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 
 	}
-	
+
 	/**
 	 * Enter text into the move message dialog folder name field
 	 * @param folder
 	 */
 	public void zEnterFolderName(String folder) throws HarnessException {
 		String locator = "css=div[id='ChooseFolderDialog_inputDivId']>div>input";
-		
+
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("unable to find folder name field "+ locator);
-		
+
 		this.zClick(locator);
 		zKeyboard.zTypeCharacters(folder);
-		
+
 		// SleepUtil.sleepSmall();
-		this.zWaitForBusyOverlay(); 
-			
+		this.zWaitForBusyOverlay();
+
 	}
 
 
@@ -156,7 +155,7 @@ public class DialogMove extends AbsDialog {
 		            MyApplication.zGetActiveAccount().EmailAddress +
 		            ":ZmChooseFolderDialog_Mail___'][id$=':" +
 		            folder.getId() +
-		            "_textCell']"; 
+		            "_textCell']";
 		   } else {
 		      locator = "css=div[id='" + Locators.zDialogId+ "'] td[id='zti__ZmChooseFolderDialog_Mail___"+ folder.getId() + "_textCell']";
 		   }
@@ -177,8 +176,8 @@ public class DialogMove extends AbsDialog {
 		} else if (MyTab instanceof PageCalendar) {
 
 			locator = String.format(
-					"css=div[id='%s'] td[id='zti__ZmChooseFolderDialog_Calendar___%s_textCell']", 
-					Locators.zDialogId, 
+					"css=div[id='%s'] td[id='zti__ZmChooseFolderDialog_Calendar___%s_textCell']",
+					Locators.zDialogId,
 					folder.getId());
 
 		}else if (MyTab instanceof PageTasks){

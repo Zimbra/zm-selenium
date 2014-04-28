@@ -2,12 +2,12 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
@@ -32,7 +32,6 @@ public class WizardCreateDL extends AbsWizard {
 
 	public WizardCreateDL(AbsTab page) {
 		super(page);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -55,7 +54,7 @@ public class WizardCreateDL extends AbsWizard {
 		//this.clearField(Locators.zdlg_DOMAIN_NAME);
 		zType(Locators.zdlg_DOMAIN_NAME, "");
 		zType(Locators.zdlg_DOMAIN_NAME, domain);
-		
+
 		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		clickFinish(AbsWizard.Locators.DL_DIALOG);
 
@@ -64,19 +63,15 @@ public class WizardCreateDL extends AbsWizard {
 
 	@Override
 	public String myPageName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	public void zComplete(DistributionListItem dl) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

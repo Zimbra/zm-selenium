@@ -2,12 +2,12 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
@@ -52,7 +52,7 @@ public class AppointmentItem implements IItem {
 	protected String gFragment = null;
 	protected String gOrganizer = null;
 	protected String gAttendees = null;
-	protected String gOptionals = null;	
+	protected String gOptionals = null;
 	protected String gLocation = null;
 	protected String gEquipment = null;
 	protected String gStartDate = null;
@@ -74,9 +74,9 @@ public class AppointmentItem implements IItem {
 	protected String TheLocator = null;
 	protected String dAttendeeName = null;
 
-	public AppointmentItem() {	
+	public AppointmentItem() {
 	}
-	
+
 	@Override
 	public String getName() {
 		return (getSubject());
@@ -85,50 +85,50 @@ public class AppointmentItem implements IItem {
 	public String getLocator() {
 		return (TheLocator);
 	}
-	
+
 	public void setLocator(String locator) {
 		TheLocator = locator;
 	}
-	
+
 public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) throws HarnessException {
-	
-		
+
+
 		if ( GetAppointmentResponse == null )
 			throw new HarnessException("Element cannot be null");
-		
-			
+
+
 		AppointmentItem appt = null;
-		
+
 		try {
 
 			// Make sure we only have the GetMsgResponse part
 			Element getAppointmentResponse = ZimbraAccount.SoapClient.selectNode(GetAppointmentResponse, "//mail:GetAppointmentResponse");
 			if ( getAppointmentResponse == null )
 				throw new HarnessException("Element does not contain GetAppointmentResponse");
-	
+
 			Element m = ZimbraAccount.SoapClient.selectNode(getAppointmentResponse, "//mail:appt");
 			if ( m == null )
 				throw new HarnessException("Element does not contain an appt element");
-			
+
 			// Create the object
 			appt = new AppointmentItem();
-			
+
 			if (m != null ) {
-				
+
 				// Appointment id
 				appt.dApptID = m.getAttribute("id");
 			}
-						
+
 			String parentFolder = m.getAttribute("l");
 			if ( parentFolder != null ) {
-				
+
 				// Parent folder
 				appt.dFolder = parentFolder;
 			}
-			
+
 			Element sElement = ZimbraAccount.SoapClient.selectNode(m, "//mail:s");
 			if ( sElement != null ) {
-				
+
 				// Start time
 				appt.dStartTime = new ZDate(sElement);
 
@@ -136,7 +136,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 
 			Element eElement = ZimbraAccount.SoapClient.selectNode(m, "//mail:e");
 			if ( eElement != null ) {
-				
+
 				// End time
 				appt.dEndTime = new ZDate(eElement);
 
@@ -147,24 +147,24 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 
 				// Subject
 				appt.dSubject = compElement.getAttribute("name");
-				
+
 				// Location
 				appt.dLocation = compElement.getAttribute("loc");
-				
+
 				// Display
 				appt.dDisplay = compElement.getAttribute("fb");
 			}
-			
+
 			Element oElement = ZimbraAccount.SoapClient.selectNode(m, "//mail:or");
 			if ( oElement != null ) {
-				
+
 				// Organizer
 				appt.dOrganizer = oElement.getAttribute("a");
-				
+
 			}
 			Element mpElement = ZimbraAccount.SoapClient.selectNode(m, "//mail:mp");
 			if ( mpElement != null ) {
-				
+
 				// Get multipart
 				appt.dMultipart = mpElement;
 			}
@@ -177,7 +177,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 			if ( attendees.size() > 0 ) {
 				appt.dAttendees = AppointmentItem.StringListToCommaSeparated(attendees);
 			}
-			
+
 			// Parse the optional attendees
 			ArrayList<String> optionals = new ArrayList<String>();
 			Element[] optionalElements = ZimbraAccount.SoapClient.selectNodes(m, "//mail:at[@role='OPT']");
@@ -187,44 +187,44 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 			if ( optionals.size() > 0 ) {
 				appt.dOptionals = AppointmentItem.StringListToCommaSeparated(optionals);
 			}
-			
+
 			if (appt.dLocation == "") {
-				
+
 				Element equipElement = ZimbraAccount.SoapClient.selectNode(m, "//mail:at[@cutype='RES']");
 				if ( equipElement != null ) {
-				
+
 					// Equipment
 					appt.dEquipment = equipElement.getAttribute("a");
-			
+
 				}
-				
+
 			} else if (appt.dLocation != null) {
-				
+
 				Element equipElement = ZimbraAccount.SoapClient.selectNode(m, "//mail:at[@cutype='RES'][2]");
 				if ( equipElement != null ) {
-				
+
 					// Equipment
 					appt.dEquipment = equipElement.getAttribute("a");
-			
+
 				}
 			}
-			
+
 			Element descElement = ZimbraAccount.SoapClient.selectNode(m, "//mail:fr");
 			if ( descElement != null ) {
-				
+
 				// Body
 				appt.dContent = descElement.getTextTrim();
-				
+
 			}
 
 			return (appt);
-			
+
 		} catch (Exception e) {
 			throw new HarnessException("Could not parse GetMsgResponse: "+ GetAppointmentResponse.prettyPrint(), e);
 		} finally {
 			if ( appt != null )	logger.info(appt.prettyPrint());
 		}
-		
+
 	}
 
 	/**
@@ -251,38 +251,36 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	 * @throws HarnessException
 	 */
 	public static AppointmentItem importFromSOAP(ZimbraAccount account, String query, ZDate start, ZDate end) throws HarnessException {
-		
+
 		try {
 			account.soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ start.toMillis() +"' calExpandInstEnd='"+ end.toMillis() +"'>" +
 						"<query>"+ query +"</query>" +
 					"</SearchRequest>");
-			
+
 			Element[] results = account.soapSelectNodes("//mail:SearchResponse/mail:appt");
 			if (results.length != 1)
 				//throw new HarnessException("Query should return 1 result, not "+ results.length);
 				return null;
-			
+
 			String id = account.soapSelectValue("//mail:appt", "id");
-			
+
 			account.soapSend(
 					"<GetAppointmentRequest xmlns='urn:zimbraMail' id='"+ id +"' includeContent='1'>" +
 	                "</GetAppointmentRequest>");
 			Element getAppointmentResponse = account.soapSelectNode("//mail:GetAppointmentResponse", 1);
-			
+
 			// Using the response, create this item
 			return (importFromSOAP(getAppointmentResponse));
-			
+
 		} catch (Exception e) {
 			throw new HarnessException("Unable to import using SOAP query("+ query +") and account("+ account.EmailAddress +")", e);
 		}
 	}
-	
+
 
 	@Override
 	public void createUsingSOAP(ZimbraAccount account) throws HarnessException {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -304,7 +302,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 		sb.append("Optional: ").append(dOptionals).append('\n');
 		sb.append("Location: ").append(dLocation).append('\n');
 		sb.append("Equipment: ").append(dEquipment).append('\n');
-		sb.append("Start Time: ").append(dStartTime).append('\n');	
+		sb.append("Start Time: ").append(dStartTime).append('\n');
 		sb.append("End Time: ").append(dEndTime).append('\n');
 		sb.append("Display: ").append(dDisplay).append('\n');
 		sb.append("Calendar: ").append(dFolder).append('\n');
@@ -314,7 +312,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 		sb.append("Is Allday: ").append(dIsAllDay).append('\n');
 		sb.append("Is Private: ").append(dIsPrivate).append('\n');
 		sb.append("Is Tagged: ").append(dIsTagged).append('\n');
-		sb.append("Is Recurring: ").append(dRecurring).append('\n');		
+		sb.append("Is Recurring: ").append(dRecurring).append('\n');
 		sb.append("Has Attachments: ").append(dHasAttachments).append('\n');
 		sb.append("Multipart: ").append(dMultipart).append('\n');
 		return (sb.toString());
@@ -328,7 +326,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 		sb.append("Attendees: ").append(gAttendees).append('\n');
 		sb.append("Optional: ").append(gOptionals).append('\n');
 		sb.append("Location: ").append(gLocation).append('\n');
-		sb.append("Equipment: ").append(gEquipment).append('\n');		
+		sb.append("Equipment: ").append(gEquipment).append('\n');
 		sb.append("Start Time: ").append(gStartTime).append('\n');
 		sb.append("End Time: ").append(gEndTime).append('\n');
 		sb.append("Display: ").append(gDisplay).append('\n');
@@ -339,7 +337,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 		sb.append("Is Allday: ").append(gIsAllDay).append('\n');
 		sb.append("Is Private: ").append(gIsPrivate).append('\n');
 		sb.append("Is Tagged: ").append(gIsTagged).append('\n');
-		sb.append("Is Recurring: ").append(gIsRecurring).append('\n');		
+		sb.append("Is Recurring: ").append(gIsRecurring).append('\n');
 		sb.append("Has Attachments: ").append(gHasAttachments).append('\n');
 		sb.append("Multipart: ").append(dMultipart).append('\n');
 		return (sb.toString());
@@ -349,47 +347,47 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	public String getSubject() {
 		return (dSubject);
 	}
-	
+
 	public void setSubject(String subject) {
 		dSubject = subject;
 	}
-	
+
 	public String getFragment() {
 		return (dFragment);
 	}
-	
+
 	public void setFragment(String subject) {
 		dFragment = subject;
 	}
-	
+
 	public String getOrganizer() {
 		return (dOrganizer);
 	}
-	
+
 	public String getAttendees() {
 		return (dAttendees);
 	}
-	
+
 	public void setAttendees(String attendees) {
 		dAttendees = attendees;
 	}
-	
+
 	public String getOptional() {
 		return (dOptionals);
 	}
-	
+
 	public void setOptional(String optional) {
 		dOptionals = optional;
 	}
-	
+
 	public String getLocation() {
 		return (dLocation);
 	}
-	
+
 	public void setLocation(String location) {
 		dLocation = location;
 	}
-	
+
 	public String getEquipment() {
 		return (dEquipment);
 	}
@@ -397,7 +395,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	public void setEquipment(String equipment) {
 		dEquipment = equipment;
 	}
-	
+
 	public String getContent() {
 		return (dContent);
 	}
@@ -405,7 +403,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	public void setContent(String content) {
 		dContent = content;
 	}
-	
+
 	public ZDate getStartTime() {
 		return (dStartTime);
 	}
@@ -413,11 +411,11 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	public void setStartTime(ZDate date) {
 		dStartTime = date;
 	}
-	
+
 	public ZDate getEndTime() {
 		return (dEndTime);
 	}
-	
+
 	public void setEndTime(ZDate date) {
 		dEndTime = date;
 	}
@@ -433,7 +431,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	public void setFolder(String id) {
 		dFolder = id;
 	}
-	
+
 	public String getReminder() {
 		return (dReminder);
 	}
@@ -441,43 +439,43 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	public void setReminder(String reminder) {
 		dReminder = reminder;
 	}
-	
+
 	public boolean getIsAllDay() {
 		return (dIsAllDay);
 	}
-	
+
 	public boolean setIsAllDay(boolean isAllDay) {
 		dIsAllDay = true;
 		return (dIsAllDay);
 	}
-	
+
 	public String getRecurring() {
 		return (dRecurring);
 	}
-	
+
 	public String setRecurring(String recurringType, String endBy) {
 		dRecurring = recurringType + "," + endBy;
 		return dRecurring;
 	}
-	
+
 	public String setRecurring(String recurringType, int noOfOccurrences) {
 		dRecurring = recurringType + "," + noOfOccurrences;
 		return dRecurring;
 	}
-	
+
 	public boolean getIsPrivate() {
 		return (dIsPrivate);
 	}
-	
+
 	public boolean setIsPrivate(boolean isPrivate) {
 		dIsPrivate = isPrivate;
 		return (dIsPrivate);
 	}
-	
+
 	public boolean getIsChecked() {
 		return (dIsChecked);
 	}
-	
+
 	public boolean setIsChecked() {
 		return (dIsChecked);
 	}
@@ -485,7 +483,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	public boolean getIsTagged() {
 		return (dIsTagged);
 	}
-	
+
 	public boolean setIsTagged() {
 		return (dIsTagged);
 	}
@@ -493,7 +491,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	public boolean getHasAttachments() {
 		return (dHasAttachments);
 	}
-	
+
 	public boolean setHasAttachments() {
 		return (dHasAttachments);
 	}
@@ -502,91 +500,91 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	public String getGSubject() {
 		return (gSubject);
 	}
-	
+
 	public void setGSubject(String subject) {
 		gSubject = subject;
 	}
-	
+
 	public String getGFragment() {
 		return (gFragment);
 	}
-	
+
 	public void setGFragment(String subject) {
 		gFragment = subject;
 	}
-	
+
 	public String getGAttendees() {
 		return (gAttendees);
 	}
-	
+
 	public void setGAttendees(String attendees) {
 		gAttendees = attendees;
 	}
-	
+
 	public String getGOptional() {
 		return (gOptionals);
 	}
-	
+
 	public void setGOptional(String optional) {
 		gOptionals = optional;
 	}
-	
+
 	public String getGLocation() {
 		return (gLocation);
 	}
-	
+
 	public void setGLocation(String location) {
 		gLocation = location;
 	}
-	
+
 	public String getGEquipment() {
 		return (gEquipment);
 	}
-	
+
 	public void setGEquipment(String equipment) {
 		gEquipment = equipment;
 	}
-	
+
 	public String getGContent() {
 		return (gContent);
 	}
-	
+
 	public void setGContent(String content) {
 		gContent = content;
 	}
-	
+
 	public String getGStartDate() {
 		return (gStartDate);
 	}
-	
+
 	public void setGStartDate(String string) {
 		gStartDate = string;
 	}
-	
+
 	public String getGEndDate() {
 		return (gEndDate);
 	}
-	
+
 	public void setGEndDate(String string) {
 		gEndDate = string;
 	}
-	
+
 	public ZDate getGStartTime() {
 		return (gStartTime);
 	}
-	
+
 	public void setGStartTime(ZDate date) {
 		gStartTime = date;
 	}
-	
+
 	public ZDate getGEndTime() {
 		return (gEndTime);
 	}
-	
+
 	public void setGEndTime(ZDate date) {
 		gEndTime = date;
 	}
-	
+
 	public String getGDisplay() {
 		return (gDisplay);
 	}
@@ -594,7 +592,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	public void setGDisplay(String display) {
 		gDisplay = display;
 	}
-	
+
 	public String getGFolder() {
 		return (gFolder);
 	}
@@ -602,7 +600,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	public void setGFolder(String folder) {
 		gFolder = folder;
 	}
-	
+
 	public String getGReminder() {
 		return (gReminder);
 	}
@@ -610,31 +608,31 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	public void setGReminder(String reminder) {
 		gReminder = reminder;
 	}
-	
+
 	public boolean getGIsAllDay() {
 		return (gIsAllDay);
 	}
-	
+
 	public boolean setGIsAllDay() {
 		return (gIsAllDay);
 	}
-	
+
 	public boolean getGIsRecurring() {
 		return (gIsRecurring);
 	}
-	
+
 	public boolean setGIsRecurring(boolean b) {
 		return (gIsRecurring);
 	}
-	
+
 	public boolean getGIsPrivate() {
 		return (gIsPrivate);
 	}
-	
+
 	public boolean setGIsPrivate() {
 		return (gIsPrivate);
 	}
-	
+
 	public boolean getGIsChecked() {
 		return (gIsChecked);
 	}
@@ -642,7 +640,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	public boolean setGIsChecked(boolean b) {
 		return (gIsChecked);
 	}
-	
+
 	public boolean getGIsTagged() {
 		return (gIsTagged);
 	}
@@ -650,15 +648,15 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	public boolean setGIsTagged() {
 		return (gIsTagged);
 	}
-	
+
 	public boolean getGHasAttachments() {
 		return (gHasAttachments);
 	}
-	
+
 	public boolean setGHasAttachments(boolean b) {
 		return (gHasAttachments);
 	}
-	
+
 	public String getFolder() {
 		return (dFolder);
 	}
@@ -668,7 +666,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	}
 
 	public void setGIsTagged(boolean tagged) {
-		gIsTagged = tagged;		
+		gIsTagged = tagged;
 	}
 
 	public void setGHasAttachment(boolean hasAttachment) {
@@ -686,24 +684,24 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	public String getGStatus() {
 		return (gStatus);
 	}
-	
+
 	public void setGAttachmentId(Element AttachmentId) {
 		dMultipart = AttachmentId;
 	}
 	public Element getGMultipart() {
 		return (dMultipart);
 	}
-	
+
 	public String getAttendeeName() {
 		return (dAttendeeName);
 	}
-	
+
 	public void setAttendeeName(String AttendeeName) {
 		dAttendeeName = AttendeeName;
 	}
 	/**
 	 * Create a single-day appointment on the server
-	 * 
+	 *
 	 * @param account Appointment Organizer
 	 * @param start Start time of the appointment, which will be rounded to the nearest hour
 	 * @param duration Duration of the appointment, in minutes
@@ -717,18 +715,18 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	 */
 	public static AppointmentItem createAppointmentSingleDay(ZimbraAccount account, Calendar start, int duration, TimeZone tz, String subject, String content, String location, List<ZimbraAccount> attendees)
 	throws HarnessException {
-		
+
 		// If location is null, don't specify the loc attribute
 		String loc = (location == null ? "" : "loc='"+ location + "'");
 
 		// TODO: determine the timezone
 		String timezoneString = ZTimeZone.TimeZoneEST.getID();
 
-		
+
 		// Convert the calendar to a ZDate
 		ZDate beginning = new ZDate(start.get(Calendar.YEAR), start.get(Calendar.MONTH) + 1, start.get(Calendar.DAY_OF_MONTH), start.get(Calendar.HOUR_OF_DAY), 0, 0);
 		ZDate ending = beginning.addMinutes(duration);
-		
+
 		account.soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
 			+		"<m l='10'>"
@@ -752,10 +750,10 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 
 
 	}
-	
+
 	/**
 	 * Create an all-day appointment on the server
-	 * 
+	 *
 	 * @param account The appointment organizer
 	 * @param date The appointment start date
 	 * @param duration The appointment duration (in days)
@@ -771,7 +769,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 
 		// If location is null, don't specify the loc attribute
 		String loc = (location == null ? "" : "loc='"+ location + "'");
-		
+
 		// Convert the calendar to a ZDate
 		ZDate start = new ZDate(date.get(Calendar.YEAR), date.get(Calendar.MONTH) + 1, date.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 
@@ -798,7 +796,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 
 	}
 
-	
+
 	private static String StringListToCommaSeparated(List<String> strings) {
 		StringBuilder sb = new StringBuilder("");
 		String delimiter = ""; // First entry does not get a comma

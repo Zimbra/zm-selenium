@@ -2,18 +2,18 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
 /**
- * 
+ *
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
@@ -132,9 +132,9 @@ public class PageManageCOS extends AbsTab {
 			locator = accountLocator + " td[id^='cos_data_name']";
 
 
-			if(this.sIsElementPresent(locator)) 
+			if(this.sIsElementPresent(locator))
 			{
-				if(this.sGetText(locator).trim().equalsIgnoreCase(item)) 
+				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
 				{
 					if(action == Action.A_LEFTCLICK) {
 						zClick(locator);
@@ -145,7 +145,7 @@ public class PageManageCOS extends AbsTab {
 					}
 
 				}
-				
+
 			}
 		}
 		return page;
@@ -154,14 +154,12 @@ public class PageManageCOS extends AbsTab {
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item)
 	throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
 	throws HarnessException {
-		// TODO Auto-generated method stub
-		return null;	
+		return null;
 	}
 
 
@@ -198,12 +196,12 @@ public class PageManageCOS extends AbsTab {
 			locator=Locators.RIGHT_CLICK_MENU_DELETE_BUTTON;
 
 			page = new DialogForDeleteOperationCos(this.MyApplication, null);
-				
+
 		} else if(button == Button.B_TREE_EDIT) {
 
 			locator=Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
 
-			page=new FormEditCos(this.MyApplication);	
+			page=new FormEditCos(this.MyApplication);
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
@@ -244,7 +242,7 @@ public class PageManageCOS extends AbsTab {
 		AbsPage page = null; // If set, this page will be returned
 
 		if (pulldown == Button.B_GEAR_BOX) {
-			pulldownLocator = Locators.GEAR_ICON; 
+			pulldownLocator = Locators.GEAR_ICON;
 
 			if (option == Button.O_NEW) {
 
@@ -258,13 +256,13 @@ public class PageManageCOS extends AbsTab {
 
 				optionLocator = Locators.DELETE_BUTTON;
 
-				page = new DialogForDeleteOperationCos(this.MyApplication,null);				
+				page = new DialogForDeleteOperationCos(this.MyApplication,null);
 
 			}  else if(option == Button.O_EDIT) {
 
 				optionLocator = Locators.EDIT_BUTTON;
 
-				page=new FormEditCos(this.MyApplication);	
+				page=new FormEditCos(this.MyApplication);
 
 			}  else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
@@ -307,17 +305,17 @@ public class PageManageCOS extends AbsTab {
 		return (page);
 
 	}
-	
+
 	/**
 	 * Return a list of all cos entries in the current view
 	 * @return
-	 * @throws HarnessException 
-	 * @throws HarnessException 
+	 * @throws HarnessException
+	 * @throws HarnessException
 	 */
 	public List<CosItem> zListGetCos() throws HarnessException {
 
 		List<CosItem> items = new ArrayList<CosItem>();
-		
+
 		// Make sure the button exists
 		if ( !this.sIsElementPresent("css=div[id='zl__COS_MANAGE'] div[id$='__rows']") )
 			throw new HarnessException("Account Rows is not present");
@@ -355,7 +353,7 @@ public class PageManageCOS extends AbsTab {
 		return (items);
 	}
 
-	
+
 	public boolean zVerifyHeader (String header) throws HarnessException {
 		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;

@@ -2,18 +2,18 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
 /**
- * 
+ *
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
@@ -62,25 +62,25 @@ public class WizardCreateResource extends AbsWizard {
 
 		String CN = resource.getLocalName();
 		String domain = resource.getDomainName();
-		
-		
+
+
 		sType(Locators.zdlg_RESOURCE_NAME, CN);
 		sType(Locators.zdlg_RESOURCE_LOCAL_NAME, CN);
 
 		/**
 		 * If you use normal type method domain is taken as default domain name.
-		 * Below line of code is not grid friendly but this is only solution working currently. 
+		 * Below line of code is not grid friendly but this is only solution working currently.
 		 */
 		if(ZimbraSeleniumProperties.isWebDriver()) {
 			SleepUtil.sleepSmall();
-			this.clearField(Locators.zdlg_RESOURCE_DOMAIN_NAME);	
+			this.clearField(Locators.zdlg_RESOURCE_DOMAIN_NAME);
 		}
 		zType(Locators.zdlg_RESOURCE_DOMAIN_NAME,"");
 		zType(Locators.zdlg_RESOURCE_DOMAIN_NAME,domain);
-		
+
 		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 
-		
+
 		if(resourceType!="") {
 			sClick(Locators.zdlg_RESOURCE_TYPE);
 			if(resourceType.equals(Locators.LOCATION)) {
@@ -97,13 +97,11 @@ public class WizardCreateResource extends AbsWizard {
 
 	@Override
 	public String myPageName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

@@ -2,12 +2,12 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
@@ -33,7 +33,6 @@ public class FormSignatureNew extends AbsForm {
 
 	public FormSignatureNew(AbsApplication application) {
 		super(application);
-		// TODO Auto-generated constructor stub
 	}
 
 	public static class Locators {
@@ -70,19 +69,15 @@ public class FormSignatureNew extends AbsForm {
 
 	@Override
 	public String myPageName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void zFill(IItem item) throws HarnessException {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void zSubmit() throws HarnessException {
-		// TODO Auto-generated method stub
 		zToolbarPressButton(Button.B_SAVE);
 		this.zWaitForBusyOverlay();
 	}
@@ -112,7 +107,7 @@ public class FormSignatureNew extends AbsForm {
 
 			locator = "id=" + Locators.zToolbarCancelID;
 			page = new DialogWarning(DialogWarning.DialogWarningID.SaveSignatureChangeMessage, this.MyApplication, ((AppAjaxClient)this.MyApplication).zPageSignature);
-			
+
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
@@ -138,13 +133,12 @@ public class FormSignatureNew extends AbsForm {
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	/**
 	 * Fill in the form field with the specified text
-	 * 
+	 *
 	 * @param field
 	 * @param value
 	 * @throws HarnessException
@@ -174,7 +168,7 @@ public class FormSignatureNew extends AbsForm {
 			//locator = Locators.zHtmlBodyField;
 		    if(ZimbraSeleniumProperties.isWebDriver()){
 			sClickAt("//div[contains(@class,'ZmHtmlEditor')]","");
-			zTypeFormattedText("css=iframe[id*=ifr]", value);					
+			zTypeFormattedText("css=iframe[id*=ifr]", value);
 		    }else{
 			locator = "css=body[id='tinymce']";
 			try{
@@ -187,7 +181,7 @@ public class FormSignatureNew extends AbsForm {
 					zRobot.keyPress(KeyEvent.VK_CONTROL);
 					zRobot.keyPress(KeyEvent.VK_A);
 					zRobot.keyRelease(KeyEvent.VK_CONTROL);
-					zRobot.keyRelease(KeyEvent.VK_A);				
+					zRobot.keyRelease(KeyEvent.VK_A);
 				} catch (AWTException e) {
 					e.printStackTrace();
 				}

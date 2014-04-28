@@ -2,12 +2,12 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2012, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
@@ -31,7 +31,7 @@ public class FormEditDistributionList extends AbsForm {
 		public static final String PREFERENCES="Preferences";
 		public static final String ACL="ACL";
 	}
-	
+
 	public static class Locators {
 		public static final String NAME_TEXT_BOX="css=input#ztabv__UNDEFINE_";
 		public static final String SAVE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__SAVE']";
@@ -40,7 +40,7 @@ public class FormEditDistributionList extends AbsForm {
 
 	public FormEditDistributionList(AbsApplication application) {
 		super(application);
-		
+
 		logger.info("new " + myPageName());
 
 	}
@@ -52,19 +52,19 @@ public class FormEditDistributionList extends AbsForm {
 		if ( !MyApplication.zIsLoaded() )
 			throw new HarnessException("Admin Console application is not active!");
 
-		
+
 		boolean present = sIsElementPresent("");
 		if ( !present ) {
 			return (false);
 		}
-		
+
 		String attrs = sGetAttribute("");
 		if ( !attrs.contains("ZSelected") ) {
 			return (false);
 		}
 
 		return (true);
-		
+
 	}
 
 	@Override
@@ -74,8 +74,6 @@ public class FormEditDistributionList extends AbsForm {
 
 	@Override
 	public void zFill(IItem item) throws HarnessException {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -83,11 +81,11 @@ public class FormEditDistributionList extends AbsForm {
 		sClickAt(Locators.SAVE_BUTTON,"");
 		sClickAt(Locators.CLOSE_BUTTON,"");
 	}
-	
+
 	public void zClickTreeItem(String treeItem) throws HarnessException {
 		sClickAt("css=td:contains('" + treeItem + "')", "");
 	}
-	
+
 	public void setName(String name) throws HarnessException {
 		for(int i=10;i>=2;i--) {
 			if(sIsElementPresent(Locators.NAME_TEXT_BOX+i+"_name_2")) {

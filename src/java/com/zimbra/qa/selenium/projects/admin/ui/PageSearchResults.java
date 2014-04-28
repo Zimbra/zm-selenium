@@ -2,12 +2,12 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
@@ -41,7 +41,7 @@ public class PageSearchResults extends AbsTab {
 		public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP']  div[class='ImgEdit']";
 		public static final String GEAR_ICON="css=div.ImgConfigure";
 	}
-	
+
 	public static class TypeOfObject {
 		public static final String ACCOUNT = "Account";
 		public static final String ALIAS = "ALIAS";
@@ -51,9 +51,9 @@ public class PageSearchResults extends AbsTab {
 		public static final String DOMAIN = "Domain";
 		public static final String DOMAIN_ALIAS="Domain Alias";
 	}
-	
+
 	public String typeOfObject = "";
-	
+
 
 	public String getType() {
 		return typeOfObject;
@@ -85,7 +85,7 @@ public class PageSearchResults extends AbsTab {
 	/**
 	 * Enter text into the query string field
 	 * @param query
-	 * @throws HarnessException 
+	 * @throws HarnessException
 	 */
 	public void zAddSearchQuery(String query) throws HarnessException {
 		logger.info(myPageName() + " zAddSearchQuery("+ query +")");
@@ -118,9 +118,9 @@ public class PageSearchResults extends AbsTab {
 			locator = accountLocator + " td[id^='SEARCH_MANAGE_data_emailaddress']";
 
 
-			if(this.sIsElementPresent(locator)) 
+			if(this.sIsElementPresent(locator))
 			{
-				if(this.sGetText(locator).trim().equalsIgnoreCase(entity)) 
+				if(this.sGetText(locator).trim().equalsIgnoreCase(entity))
 				{
 					if(action == Action.A_LEFTCLICK) {
 						zClick(locator);
@@ -140,14 +140,13 @@ public class PageSearchResults extends AbsTab {
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item)
 	throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
+
 	@Override
 	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
 	throws HarnessException {
-		// TODO Auto-generated method stub
-		return null;	
+		return null;
 	}
 
 	@Override
@@ -190,7 +189,7 @@ public class PageSearchResults extends AbsTab {
 			// FALL THROUGH
 		} else if(button == Button.B_TREE_EDIT) {
 			locator = Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
-			
+
 			if(typeOfObject.equals(TypeOfObject.DISTRIBUTION_LIST))
 				page=new FormEditDistributionList(this.MyApplication);
 			else if(typeOfObject.equals(TypeOfObject.ACCOUNT))
@@ -205,7 +204,7 @@ public class PageSearchResults extends AbsTab {
 				page=new FormEditDomain(this.MyApplication);
 			else if (typeOfObject.equals(TypeOfObject.DOMAIN_ALIAS))
 				page=new WizardCreateDomainAlias(this);
-	
+
 			// Make sure the button exists
 			if ( !this.sIsElementPresent(locator) )
 				throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
@@ -339,8 +338,8 @@ public class PageSearchResults extends AbsTab {
 	/**
 	 * Return a list of all accounts in the current view
 	 * @return
-	 * @throws HarnessException 
-	 * @throws HarnessException 
+	 * @throws HarnessException
+	 * @throws HarnessException
 	 */
 	public List<AccountItem> zListGetAccounts() throws HarnessException {
 

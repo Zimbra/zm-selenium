@@ -2,18 +2,18 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
 /**
- * 
+ *
  */
 package com.zimbra.qa.selenium.projects.touch.ui.addressbook;
 
@@ -37,15 +37,15 @@ public class TagContactView extends AbsTree {
 		public static final String EXPAND_NODE  = "ImgNodeExpanded";
 		public static final String COLLAPSE_NODE= "ImgNodeCollapsed";
 	}
-	
-		
-	
+
+
+
 	public TagContactView(AbsApplication application) {
 		super(application);
 		logger.info("new " + TagContactView.class.getCanonicalName());
 	}
-	
-	
+
+
 	/* (non-Javadoc)
 	 * @see framework.ui.AbsTree#zTreeItem(framework.ui.Action, framework.items.FolderItem)
 	 */
@@ -62,30 +62,30 @@ public class TagContactView extends AbsTree {
 			tag = (TagItem) addressbook;
 			//throw new HarnessException("Must use FolderItem as argument, but was "+ addressbook.getClass());
 		}else{
-		
+
 			folder = (FolderItem)addressbook;
 		}
 		AbsPage page = null;
 		String locator = null;
-		
+
 		if ( action == Action.A_LEFTCLICK ) {
-			
+
 			// choose target addressbook to move contact to (done for TouchPad)
 			locator = "css=div[id^='ext-tagview'] div[id^='ext-simplelistitem'] div[id^='ext-element']:contains('"+ tag.getName()+"')";
 			page = null;
-		}  
+		}
 		else if ( action == Action.A_RIGHTCLICK ) {
-				
-			locator = "id=zti__main_Contacts__"+ folder.getId() +"_textCell";				
+
+			locator = "id=zti__main_Contacts__"+ folder.getId() +"_textCell";
 			if (!this.sIsElementPresent(locator) ) {
 					throw new HarnessException("Unable to locator folder in tree "+ locator);
 			}
-			
+
 			this.zRightClickAt(locator, "");
 			zWaitForBusyOverlay();
 
 			return (null);
-			
+
 		} else {
 			throw new HarnessException("Action "+ action +" not yet implemented");
 		}
@@ -97,18 +97,18 @@ public class TagContactView extends AbsTree {
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("Unable to locator folder in tree "+ locator);
 	    }
-	
+
 		// By default, left click at locator
 		zClick(locator);
-		zWaitForBusyOverlay();									
+		zWaitForBusyOverlay();
 
 		if ( page != null ) {
 			page.zWaitForActive();
 		}
-		
+
 		return (page);
 	}
-	
+
 	@Override
 	public AbsPage zTreeItem(Action action, Button option, IItem folder) throws HarnessException {
 
@@ -122,7 +122,7 @@ public class TagContactView extends AbsTree {
 		if ( folder instanceof FolderMountpointItem ) {
 			return (zTreeItem(action, option, (FolderMountpointItem)folder));
 		} else if ( folder instanceof SavedSearchFolderItem ) {
-			return (zTreeItem(action, option, (SavedSearchFolderItem)folder));
+			return (zTreeItem(action, option, folder));
 		//} else if ( folder instanceof ZimletItem ) {
 		//	return (zTreeItem(action, option, (ZimletItem)folder));
 		}else if ( folder instanceof TagItem ) {
@@ -134,8 +134,8 @@ public class TagContactView extends AbsTree {
 		throw new HarnessException("Must use TagItem FolderItem or SavedSearchFolderItem or ZimletItem as argument, but was "+ folder.getClass());
 	}
 
-	protected AbsPage zTreeItem(Action action, Button option, FolderMountpointItem folderItem) 
-	throws HarnessException 
+	protected AbsPage zTreeItem(Action action, Button option, FolderMountpointItem folderItem)
+	throws HarnessException
 	{
 		logger.info(myPageName() + " zTreeItem("+ action +", "+ option + "," + folderItem.getName() +")");
 		tracer.trace(action +" then "+ option +" on Folder Item = "+ folderItem.getName());
@@ -147,48 +147,48 @@ public class TagContactView extends AbsTree {
 		if ((action == null) || (option == null) || (folderItem == null)) {
 			throw new HarnessException("Must define an action, option, and addressbook");
 		}
-		
-		
 
-	
+
+
+
 		if (folderItem.getName().equals("USER_ROOT")) {
 			actionLocator = "css=div#ztih__main_Contacts__ADDRBOOK_div";
 		} else {
-			actionLocator = "css=div#zti__main_Contacts__" + folderItem.getId() +"_div";			
+			actionLocator = "css=div#zti__main_Contacts__" + folderItem.getId() +"_div";
 		}
-		
-		
-		if ( action == Action.A_RIGHTCLICK ) {
-			
-			
-			optionLocator = "css=div[id='ZmActionMenu_contacts_ADDRBOOK']";
-			
-			if (option == Button.B_TREE_NEWFOLDER) {
-				
-				optionLocator += " div[id='NEW_ADDRBOOK'] td[id$='_title']";
-				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageAddressbook);			    
 
-			}			
+
+		if ( action == Action.A_RIGHTCLICK ) {
+
+
+			optionLocator = "css=div[id='ZmActionMenu_contacts_ADDRBOOK']";
+
+			if (option == Button.B_TREE_NEWFOLDER) {
+
+				optionLocator += " div[id='NEW_ADDRBOOK'] td[id$='_title']";
+				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageAddressbook);
+
+			}
 			else if (option == Button.B_DELETE) {
-				
+
 				optionLocator += " div[id='DELETE_WITHOUT_SHORTCUT'] td[id$='_title']";
 				page = null;
-				
-		    } 
+
+		    }
 			else if (option == Button.B_RENAME) {
-				
+
 				optionLocator += " div[id='RENAME_FOLDER'] td[id$='_title']";
 			    page = new DialogRenameFolder(MyApplication,((AppAjaxClient) MyApplication).zPageAddressbook);
 
-			}   			
+			}
 			else if (option == Button.B_TREE_EDIT) {
 
 				optionLocator += " div[id='EDIT_PROPS'] td[id$='_title']";
 			    page = new DialogEditFolder(MyApplication,((AppAjaxClient) MyApplication).zPageAddressbook);
 
-			} 
+			}
 			else if (option == Button.B_TREE_FOLDER_EMPTY) {
-				
+
 				optionLocator += " div[id='EMPTY_FOLDER'] td[id$='_title']";
 				page = new DialogWarning(DialogWarning.DialogWarningID.EmptyFolderWarningMessage,
 						MyApplication, ((AppAjaxClient) MyApplication).zPageAddressbook);
@@ -197,7 +197,7 @@ public class TagContactView extends AbsTree {
 			else {
 				throw new HarnessException("implement action:"+ action +" option:"+ option);
 			}
-			
+
 			// Default right-click behavior
 			zRightClickAt(actionLocator,"0,0");
 			zWaitForBusyOverlay();
@@ -208,16 +208,16 @@ public class TagContactView extends AbsTree {
 			if ( page != null ) {
 				page.zWaitForActive();
 			}
-			
+
 			return (page);
-			
+
 		} else {
 			throw new HarnessException("implement action:"+ action +" option:"+ option);
 		}
 
 
 	}
-	
+
 	protected AbsPage zTreeItem(Action action, Button option, FolderItem folderItem)
 	throws HarnessException {
 
@@ -228,94 +228,94 @@ public class TagContactView extends AbsTree {
 		if ((action == null) || (option == null) || (folderItem == null)) {
 			throw new HarnessException("Must define an action, option, and addressbook");
 		}
-		
-		
+
+
 		logger.info(myPageName() + " zTreeItem("+ action +", "+ option + "," + folderItem.getName() +")");
 		tracer.trace(action +" then "+ option +" on Folder Item = "+ folderItem.getName());
 
-	
+
 		if (folderItem.getName().equals("USER_ROOT")) {
 			actionLocator = "css=div#ztih__main_Contacts__ADDRBOOK_div";
 		} else {
-			actionLocator = "css=div#zti__main_Contacts__" + folderItem.getId() +"_div";			
+			actionLocator = "css=div#zti__main_Contacts__" + folderItem.getId() +"_div";
 		}
-		
-		
+
+
 		if ( action == Action.A_RIGHTCLICK ) {
-			
-				
+
+
 			if (option == Button.B_TREE_NEWFOLDER) {
-				
+
 				optionLocator = "css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='NEW_ADDRBOOK'] td[id$='_title']";
 				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageAddressbook);
-				
-			}			
-			else if (option == Button.B_DELETE) {												
-				
+
+			}
+			else if (option == Button.B_DELETE) {
+
 				optionLocator = "css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='DELETE_WITHOUT_SHORTCUT'] td[id$='_title']";
 				page = null;
-				
-		    } 
+
+		    }
 			else if (option == Button.B_RENAME) {
 
-				optionLocator="css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='RENAME_FOLDER'] td[id$='_title']";				
+				optionLocator="css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='RENAME_FOLDER'] td[id$='_title']";
 			    page = new DialogRenameFolder(MyApplication,((AppAjaxClient) MyApplication).zPageAddressbook);
 
-			}   			
+			}
 			else if (option == Button.B_TREE_EDIT) {
-				
-				optionLocator="css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='EDIT_PROPS'] td[id$='_title']";				
+
+				optionLocator="css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='EDIT_PROPS'] td[id$='_title']";
 			    page = new DialogEditFolder(MyApplication,((AppAjaxClient) MyApplication).zPageAddressbook);
-			    
-			} 
+
+			}
 			else if (option == Button.B_TREE_FOLDER_EMPTY) {
-				
+
 				optionLocator = "css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='EMPTY_FOLDER'] td[id$='_title']";
 				page = new DialogWarning(DialogWarning.DialogWarningID.EmptyFolderWarningMessage,
 						MyApplication, ((AppAjaxClient) MyApplication).zPageAddressbook);
 
 			}
 			else if (option == Button.B_SHARE) {
-				
+
 				optionLocator = "css=div[id='ZmActionMenu_contacts_ADDRBOOK'] div[id='SHARE_ADDRBOOK'] td[id$='_title']";
 				page = new DialogShare(MyApplication,((AppAjaxClient) MyApplication).zPageAddressbook);
-				
+
 			}
 			else {
 				throw new HarnessException("implement action:"+ action +" option:"+ option);
 			}
-			
+
 			if ( actionLocator != null ) {
 
 				zRightClickAt(actionLocator,"0,0");
 				zWaitForBusyOverlay();
 
 			}
-			
+
 			if ( optionLocator != null ) {
-				
-				zClickAt(optionLocator,"0,0");				
-				zWaitForBusyOverlay();						
+
+				zClickAt(optionLocator,"0,0");
+				zWaitForBusyOverlay();
 
 			}
 
 			if ( page != null ) {
 				page.zWaitForActive();
 			}
-			
+
 			return page;
 
 		} else if (action == Action.A_LEFTCLICK) {
-			
+
 			if (option == Button.B_TREE_NEWFOLDER) {
-				
+
 				zClickAt("css=div[class^=ImgNewContactsFolder][class*=ZWidget]","0,0");
 				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageAddressbook);
-			      				
+
 			} else {
 				throw new HarnessException("implement action:"+ action +" option:"+ option);
 			}
-			
+
 		} else {
 			throw new HarnessException("implement action:"+ action +" option:"+ option);
 		}
@@ -323,11 +323,11 @@ public class TagContactView extends AbsTree {
 		if ( page != null ) {
 			page.zWaitForActive();
 		}
-		
+
 		return page;
 	}
-	
-	
+
+
 	protected AbsPage zTreeItem(Action action, Button option, TagItem t)
 	throws HarnessException {
 
@@ -349,7 +349,7 @@ public class TagContactView extends AbsTree {
 
 			actionLocator = "css=td[id^='zti__main_Contacts__']:contains('"+ t.getName() +"')";
 			this.zRightClickAt(actionLocator,"");
-			
+
 			this.zWaitForBusyOverlay();
 
 
@@ -358,7 +358,7 @@ public class TagContactView extends AbsTree {
 			throw new HarnessException("Action " + action
 					+ " not yet implemented");
 		}
-		
+
 
 		if (option == Button.B_TREE_NEWTAG) {
 
@@ -369,7 +369,7 @@ public class TagContactView extends AbsTree {
 
 			page = new DialogTag(MyApplication,
 					((AppAjaxClient) MyApplication).zPageMail);
-						
+
 		} else if (option == Button.B_DELETE) {
 
 			// optionLocator = Locators.zDeleteTreeMenuItem;
@@ -391,7 +391,7 @@ public class TagContactView extends AbsTree {
 			throw new HarnessException("button " + option
 					+ " not yet implemented");
 		}
-		
+
 		if (actionLocator == null)
 			throw new HarnessException("locator is null for action " + action);
 		if (optionLocator == null)
@@ -412,7 +412,7 @@ public class TagContactView extends AbsTree {
 		return (page);
 
 	}
-	
+
 	public AbsPage zTreeItem(Action action, String locator) throws HarnessException {
 		AbsPage page = null;
 
@@ -442,7 +442,7 @@ public class TagContactView extends AbsTree {
 
 		return (page);
 	}
-	
+
 
 	@Override
 	public AbsPage zPressButton(Button button) throws HarnessException {
@@ -450,57 +450,57 @@ public class TagContactView extends AbsTree {
 
 		if ( button == null )
 			throw new HarnessException("Button cannot be null");
-			
+
 		AbsPage page = null;
 		String locator = null;
 		String subLocator = null;
 		if ( button == Button.B_TREE_NEWADDRESSBOOK ) {
-			
+
 			locator = "css=div[id=main_Contacts-parent-ADDRBOOK] div[class*=ImgContextMenu]";
 		    subLocator ="css=div#ZmActionMenu_contacts_ADDRBOOK td#NEW_ADDRBOOK_title";
-			page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageAddressbook);			    
-			
-		
-		} else if ( button == Button.B_TREE_NEWTAG ) { 			
+			page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageAddressbook);
+
+
+		} else if ( button == Button.B_TREE_NEWTAG ) {
 			//locator = zNewTagIcon;
 			locator = "css=div[id=main_Contacts-parent-TAG] div[class*=ImgContextMenu]"; //td#ztih__main_Contacts__TAG_optCell";
             subLocator ="css=div#ZmActionMenu_contacts_TAG td#NEW_TAG_title";
 			page = new DialogTag(MyApplication,((AppAjaxClient) MyApplication).zPageAddressbook);
-				
+
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
-	
-		
+
+
 		// Default behavior, process the locator by clicking on it
 		//
-		
+
 		// Make sure the button exists
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
-		
+
 		// Click it
 		this.zClickAt(locator,"");
-		
+
 		// If the app is busy, wait for that to finish
 		this.zWaitForBusyOverlay();
-		
+
 		// Make sure the subLocator exists
 		if ( !this.sIsElementPresent(subLocator) )
 			throw new HarnessException("Button is not present locator="+ subLocator );
-		
+
 		this.zClick(subLocator);
-		
+
 		// If the app is busy, wait for that to finish
 		this.zWaitForBusyOverlay();
-		
+
 		// If page was specified, make sure it is active
 		if ( page != null ) {
-			
+
 			// This function (default) throws an exception if never active
 			page.zWaitForActive();
-			
+
 		}
 
 		return (page);
@@ -509,7 +509,7 @@ public class TagContactView extends AbsTree {
 
 	//expand the folder to show folder's children
 	public void zExpand(FolderItem folderItem) throws HarnessException{
-		
+
 	    String locator="css=td#zti__main_Contacts__" + folderItem.getId() +"_nodeCell" + ">div." ;
 		//already expanded or not have sub folders
 	    if (!sIsElementPresent(locator+ Locators.COLLAPSE_NODE)) {
@@ -533,7 +533,6 @@ public class TagContactView extends AbsTree {
 	// (done for TouchPad)
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		// TODO Auto-generated method stub
 				boolean present = sIsElementPresent("css=div[id^='ext-tagview']");
 				if ( !present ) {
 					logger.debug("Settings button present = "+ present);
@@ -545,6 +544,6 @@ public class TagContactView extends AbsTree {
 	}
 
 
-	
+
 
 }

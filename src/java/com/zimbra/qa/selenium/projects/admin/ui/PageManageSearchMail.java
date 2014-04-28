@@ -2,18 +2,18 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
 /**
- * 
+ *
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
@@ -30,7 +30,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
  *
  */
 public class PageManageSearchMail extends AbsTab {
-	
+
 	public static class Locators {
 		public static final String TOOLS_AND_MIGRATION_ICON="css=div.ImgToolsAndMigration";
 		public static final String SEARCHMAIL="css=div[id^='zti__AppAdmin__magHV__xmbSearch'][id$='div']";
@@ -38,7 +38,7 @@ public class PageManageSearchMail extends AbsTab {
 		public static final String TOOLS_AND_MIGRATION="Tools and Migration";
 		public static final String SEARCH_MAIL="Search Mail";
 	}
-	
+
 	public PageManageSearchMail(AbsApplication application) {
 		super(application);
 	}
@@ -84,7 +84,7 @@ public class PageManageSearchMail extends AbsTab {
 
 		if ( zIsActive() ) {
 			// This page is already active.
-			
+
 			return;
 		}
 
@@ -92,40 +92,35 @@ public class PageManageSearchMail extends AbsTab {
 		zClickAt(Locators.TOOLS_AND_MIGRATION_ICON,"");
 		if(sIsElementPresent(Locators.SEARCHMAIL));
 		sClickAt(Locators.SEARCHMAIL, "");
-		
+
 		zWaitForActive();
 	}
 
 	@Override
 	public AbsPage zListItem(Action action, String item)
 			throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item)
 			throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
 			throws HarnessException {
-		// TODO Auto-generated method stub
-		return null;	
+		return null;
 	}
-	
+
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
 			throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

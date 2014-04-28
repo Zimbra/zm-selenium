@@ -2,18 +2,18 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
 /**
- * 
+ *
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
@@ -60,21 +60,21 @@ public class WizardCreateAccount extends AbsWizard {
 		String domain = account.getDomainName();
 
 		zType(Locators.zdlg_ACCT_NAME, CN);
-		
+
 
 		/**
 		 * If you use normal type method domain is taken as default domain name.
-		 * Below line of code is not grid friendly but this is only solution working currently. 
+		 * Below line of code is not grid friendly but this is only solution working currently.
 		 */
-		if(ZimbraSeleniumProperties.isWebDriver()) 
+		if(ZimbraSeleniumProperties.isWebDriver())
 			this.clearField(Locators.zdlg_DOMAIN_NAME);
-		
+
 		zType(Locators.zdlg_DOMAIN_NAME,"");
 		zType(Locators.zdlg_DOMAIN_NAME,domain);
-		
+
 		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-	
-		
+
+
 		for (String key : account.getAccountAttrs().keySet()) {
 
 			// TODO: Handle Previous/Next to find the input field, if necessary
@@ -120,7 +120,6 @@ public class WizardCreateAccount extends AbsWizard {
 
 	@Override
 	public String myPageName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

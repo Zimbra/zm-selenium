@@ -2,12 +2,12 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2012, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
@@ -28,15 +28,13 @@ public class DialogForDeleteOperationDomain extends AbsDialog {
 		public static final String YES_BUTTON="zdlg__MSG__CTR_DMLV_removeConfirm_button5_title";
 		public static final String NO_BUTTON="zdlg__MSG__CTR_DMLV_removeConfirm_button4_title";
 	}
-	
+
 	public DialogForDeleteOperationDomain(AbsApplication application, AbsTab page) {
 		super(application, page);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String myPageName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -47,9 +45,9 @@ public class DialogForDeleteOperationDomain extends AbsDialog {
 		tracer.trace("Click dialog button " + button);
 		if ( button == null )
 			throw new HarnessException("button cannot be null");
-	
+
 		String locator = null;
-		AbsPage page = null; 
+		AbsPage page = null;
 
 		if (button == Button.B_YES) {
 			locator = Locators.YES_BUTTON;
@@ -79,13 +77,13 @@ public class DialogForDeleteOperationDomain extends AbsDialog {
 
 		// If the app is busy, wait for it to become active
 		//this.zWaitForBusyOverlay();
-		
+
 		// If page was specified, make sure it is active
 		if ( page != null ) {
-			
+
 			// This function (default) throws an exception if never active
 			page.zWaitForActive();
-			
+
 		}
 
 		return (page);
@@ -93,13 +91,11 @@ public class DialogForDeleteOperationDomain extends AbsDialog {
 
 	@Override
 	public String zGetDisplayedText(String locator) throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

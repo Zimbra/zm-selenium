@@ -2,18 +2,18 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
 /**
- * 
+ *
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
@@ -36,7 +36,7 @@ import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
  *
  */
 public class PageManageResources extends AbsTab {
-	
+
 	public static class Locators {
 		// ** OverviewTreePanel -> Manage -> Resources
 		public static final String MANAGE_ACCOUNTS_ICON="css=div.ImgManageAccounts";
@@ -138,9 +138,9 @@ public class PageManageResources extends AbsTab {
 			locator = accountLocator + " td[id^='calresource_data_emailaddress']";
 
 
-			if(this.sIsElementPresent(locator)) 
+			if(this.sIsElementPresent(locator))
 			{
-				if(this.sGetText(locator).trim().equalsIgnoreCase(item)) 
+				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
 				{
 					if(action == Action.A_LEFTCLICK) {
 						zClick(locator);
@@ -159,17 +159,16 @@ public class PageManageResources extends AbsTab {
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item)
 	throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
+
 	@Override
 	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
 	throws HarnessException {
-		// TODO Auto-generated method stub
-		return null;	
+		return null;
 	}
 
-	
+
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 
 		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
@@ -193,7 +192,7 @@ public class PageManageResources extends AbsTab {
 			// New button
 			locator = Locators.RESOURCES;
 
-			 
+
 			// Create the page
 			page = new WizardCreateResource(this);
 
@@ -214,7 +213,7 @@ public class PageManageResources extends AbsTab {
 			locator=Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
 
 			page = new FormEditResource(this.MyApplication);
-		} 
+		}
 		else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
@@ -295,11 +294,11 @@ public class PageManageResources extends AbsTab {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			if(ZimbraSeleniumProperties.isWebDriver()) 
+			if(ZimbraSeleniumProperties.isWebDriver())
 				SleepUtil.sleepMedium();
 			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepMedium();
-			
+
 
 			// If the app is busy, wait for it to become active
 			//zWaitForBusyOverlay();
@@ -325,12 +324,12 @@ public class PageManageResources extends AbsTab {
 
 
 	}
-	
+
 	/**
 	 * Return a list of all accounts in the current view
 	 * @return
-	 * @throws HarnessException 
-	 * @throws HarnessException 
+	 * @throws HarnessException
+	 * @throws HarnessException
 	 */
 	public List<AccountItem> zListGetAccounts() throws HarnessException {
 

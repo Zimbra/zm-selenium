@@ -2,18 +2,18 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
 /**
- * 
+ *
  */
 package com.zimbra.qa.selenium.framework.items;
 
@@ -24,9 +24,9 @@ import com.zimbra.qa.selenium.framework.util.*;
 
 /**
  * This class represents a mail message
- * 
+ *
  * @author Matt Rhoades
- * 
+ *
  */
 public class TaskItem implements IItem {
 
@@ -65,21 +65,21 @@ public class TaskItem implements IItem {
 	public TaskItem() {
 		populateTaskData();
 	}
-	
+
 	public void setName(String name) {
 		gSubject=name;
 	}
 	public String getName() {
 		return (gSubject);
 	}
-	
+
 	public void setPriority(String p) {
 		gPriority=p;
 	}
 	public String getPriority() {
 		return (gPriority);
 	}
-	
+
 
 	public String gettaskBody() {
 
@@ -98,7 +98,6 @@ public class TaskItem implements IItem {
 		gtaskHtmlBody = taskHtmlBody;
 	}
 	public void populateTaskData() {
-		// TODO Auto-generated method stub
 		//taskSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		//taskBody = "Body" + ZimbraSeleniumProperties.getUniqueString();
 	}
@@ -122,7 +121,7 @@ public class TaskItem implements IItem {
 			// Make sure we only have the GetMsgResponse part
 			Element getMsgResponse = ZimbraAccount.SoapClient.selectNode(
 					GetMsgResponse, "//mail:GetMsgResponse");
-			
+
 			if (getMsgResponse == null)
 				throw new HarnessException(
 						"Element does not contain GetMsgResponse");

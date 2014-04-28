@@ -2,18 +2,18 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2012, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
 /**
- * 
+ *
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
@@ -64,7 +64,7 @@ public class WizardCreateDomainAlias extends AbsWizard {
 		}
 		return alias;
 	}
-	
+
 	public IItem zSetTargetDomain(IItem item) throws HarnessException {
 
 		if ( !(item instanceof DomainItem) )
@@ -73,7 +73,7 @@ public class WizardCreateDomainAlias extends AbsWizard {
 		DomainItem alias = (DomainItem)item;
 
 		String targetDomain = ZimbraSeleniumProperties.getStringProperty("server.host");
-		
+
 		for(int i=10;i>=1;i--) {
 			if(sIsElementPresent("zdlgv__UNDEFINE"+i+Locators.TARGET_DOMAIN_NAME)) {
 				sType("zdlgv__UNDEFINE"+i+Locators.TARGET_DOMAIN_NAME, targetDomain);
@@ -81,7 +81,7 @@ public class WizardCreateDomainAlias extends AbsWizard {
 				break;
 			}
 		}
-		
+
 
 		return alias;
 	}
@@ -89,7 +89,6 @@ public class WizardCreateDomainAlias extends AbsWizard {
 
 	@Override
 	public String myPageName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

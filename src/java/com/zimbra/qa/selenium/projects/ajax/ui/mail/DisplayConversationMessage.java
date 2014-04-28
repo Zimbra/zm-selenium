@@ -2,18 +2,18 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2012, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
 /**
- * 
+ *
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
@@ -31,7 +31,7 @@ import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 public class DisplayConversationMessage extends DisplayMail {
 
 	private String itemId = null;
-	
+
 	protected DisplayConversationMessage(AbsApplication application) {
 		super(application);
 
@@ -56,7 +56,7 @@ public class DisplayConversationMessage extends DisplayMail {
 
 	public AbsPage zPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zDisplayPressButton("+ button +")");
-				
+
 		tracer.trace("Click "+ button);
 
 		AbsPage page = this;
@@ -64,23 +64,23 @@ public class DisplayConversationMessage extends DisplayMail {
 		boolean doPostfixCheck = false;
 
 		if ( button == Button.B_QUICK_REPLY_REPLY ) {
-			
+
 			locator = "css=div#"+ this.itemId + " a[id$='__footer_reply']";
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
-			
+
 			return (null);
 
 		} else if ( button == Button.B_QUICK_REPLY_REPLY_ALL ) {
-			
+
 			locator = "css=div#"+ this.itemId + " a[id$='__footer_replyAll']";
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
-			
+
 			return (null);
 
 		} else if ( button == Button.B_QUICK_REPLY_FORWARD ) {
-			
+
 			locator = "css=div#"+ this.itemId + " a[id$='__footer_forward']";
 			page = new FormMailNew(this.MyApplication);
 
@@ -88,15 +88,15 @@ public class DisplayConversationMessage extends DisplayMail {
 			this.zWaitForBusyOverlay();
 
 			page.zWaitForActive();
-			
+
 			return (page);
 
 		} else if ( button == Button.B_QUICK_REPLY_MORE_ACTIONS ) {
-			
+
 			locator = "css=div#"+ this.itemId + " a[id$='__footer_moreActions']";
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
-			
+
 			return (null);
 
 		} else if ( button == Button.B_QUICK_REPLY_SEND ) {
@@ -126,18 +126,18 @@ public class DisplayConversationMessage extends DisplayMail {
 
 		if ( locator == null )
 			throw new HarnessException("no locator defined for button "+ button);
-		
+
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("locator is not present for button "+ button +" : "+ locator);
-		
+
 		this.zClick(locator);
-		
+
 		this.zWaitForBusyOverlay();
 
 		if ( page != null ) {
 			page.zWaitForActive();
 		}
-		
+
 		if ( doPostfixCheck ) {
 			// Make sure the response is delivered before proceeding
 			Stafpostqueue sp = new Stafpostqueue();
@@ -150,36 +150,36 @@ public class DisplayConversationMessage extends DisplayMail {
 	/**
 	 * Set the "Quick Reply" content
 	 * @param reply The text to set the content area as
-	 * @throws HarnessException 
+	 * @throws HarnessException
 	 */
 	public void zFillField(Field field, String value) throws HarnessException {
-		
+
 		tracer.trace("Set "+ field +" to "+ value);
 
 		String locator = null;
-		
+
 		if ( field == Field.Body ) {
 
 			locator = "css=div#zv__CLV-main textarea[id$='_replyInput']";
-				
+
 		} else {
-			
+
 			throw new HarnessException("not implemented for field " + field);
 //			super.zFillField(field, value);
 //			return;
 		}
-		
+
 		if ( locator == null ) {
 			throw new HarnessException("locator was null for field "+ field);
 		}
-		
+
 		// Default behavior, enter value into locator field
 		//
-		
+
 		// Make sure the button exists
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
-		
+
 		// Seems that the client can't handle filling out the new mail form too quickly
 		// Click in the "To" fields, etc, to make sure the client is ready
 		this.sFocus(locator);
@@ -188,14 +188,14 @@ public class DisplayConversationMessage extends DisplayMail {
 
 		// Enter text
 		this.sType(locator, value);
-		
+
 		this.zWaitForBusyOverlay();
 
 	}
-	
+
 	public List<AttachmentItem> zListGetAttachments() throws HarnessException {
 		logger.info(myPageName() + " zListGetAttachments()");
-		
+
 		List<AttachmentItem> items = new ArrayList<AttachmentItem>();
 
 		String listLocator = "css=div#"+ this.itemId + " table[id$='_attLinks_table']";
@@ -223,7 +223,7 @@ public class DisplayConversationMessage extends DisplayMail {
 
 		return (items);
 	}
-	
+
 	public String prettyPrint() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(itemId);
@@ -232,7 +232,6 @@ public class DisplayConversationMessage extends DisplayMail {
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

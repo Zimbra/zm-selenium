@@ -2,18 +2,18 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2012, 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
 /**
- * 
+ *
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
@@ -51,10 +51,10 @@ public class WizardCreateAdminAccount extends AbsWizard {
 		super(page);
 		logger.info("New "+ WizardCreateAdminAccount.class.getName());
 	}
-	
+
 	public String adminType="";
 	public static boolean IsGlobalAdmin=false;
-		
+
 	public static boolean isGlobalAdmin() {
 		return IsGlobalAdmin;
 	}
@@ -67,10 +67,10 @@ public class WizardCreateAdminAccount extends AbsWizard {
 					sCheck(Locators.GLOBAL_ADMIN_CHECK_BOX+i+"_zimbraIsAdminAccount");
 					return;
 				}
-			}	
+			}
 			sCheck(Locators.GLOBAL_ADMIN_CHECK_BOX+"zimbraIsAdminAccount");
 		}
-	}	
+	}
 
 	public String getAdminType() {
 		return adminType;
@@ -98,7 +98,7 @@ public class WizardCreateAdminAccount extends AbsWizard {
 
 		if ( !(item instanceof AccountItem) )
 			throw new HarnessException("item must be an AccountItem, was "+ item.getClass().getCanonicalName());
-		
+
 		AccountItem account = (AccountItem)item;
 
 		String CN = account.getLocalName();
@@ -108,7 +108,7 @@ public class WizardCreateAdminAccount extends AbsWizard {
 			zType(Locators.zdlg_ACCT_NAME, CN);
 			if(ZimbraSeleniumProperties.isWebDriver()) {
 				SleepUtil.sleepSmall();
-				this.clearField(Locators.zdlg_DOMAIN_NAME);	
+				this.clearField(Locators.zdlg_DOMAIN_NAME);
 			}
 			zType(Locators.zdlg_DOMAIN_NAME,"");
 			zType(Locators.zdlg_DOMAIN_NAME,domain);
@@ -129,7 +129,7 @@ public class WizardCreateAdminAccount extends AbsWizard {
 		return (account);
 	}
 
-	
+
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -148,7 +148,6 @@ public class WizardCreateAdminAccount extends AbsWizard {
 
 	@Override
 	public String myPageName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

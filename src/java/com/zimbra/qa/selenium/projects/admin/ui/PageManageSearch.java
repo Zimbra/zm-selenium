@@ -2,18 +2,18 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2013 Zimbra Software, LLC.
- * 
+ *
  * The contents of this file are subject to the Zimbra Public License
  * Version 1.4 ("License"); you may not use this file except in
  * compliance with the License.  You may obtain a copy of the License at
  * http://www.zimbra.com/license.
- * 
+ *
  * Software distributed under the License is distributed on an "AS IS"
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
  * ***** END LICENSE BLOCK *****
  */
 /**
- * 
+ *
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
@@ -31,7 +31,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
  *
  */
 public class PageManageSearch extends AbsTab {
-	
+
 	public static class Locators {
 		public static final String SEARCH_MENU="zti__AppAdmin__Home__searchHV_table";
 		public static final String HOME="Home";
@@ -51,7 +51,7 @@ public class PageManageSearch extends AbsTab {
 		public static final String ACCOUNTS="Accounts";
 		public static final String DOMAINS="Domains";
 		public static final String DISTRIBUTION_LISTS="Distribution Lists";
-		
+
 		//Search Options
 		public static final String SEARCH_OPTIONS="Search Options";
 		public static final String BASIC_ATTRIBUTES="Basic Attributes";
@@ -60,7 +60,7 @@ public class PageManageSearch extends AbsTab {
 		public static final String EXTERNAL_EMAIL_ADDRESS="External Email Address";
 		public static final String COS="COS";
 		public static final String SERVER="Server";
-		
+
 		//Saved Searches
 		public static final String SAVED_SEARCHES="Saved Searches";
 		public static final String INACTIVE_ACCOUNTS_90="Inactive Accounts (90 days)";
@@ -73,7 +73,7 @@ public class PageManageSearch extends AbsTab {
 		public static final String MAINTENANCE_ACCOUNTS="Maintenance Accounts";
 	}
 
-	
+
 	public PageManageSearch(AbsApplication application) {
 		super(application);
 	}
@@ -121,54 +121,49 @@ public class PageManageSearch extends AbsTab {
 
 		if ( zIsActive() ) {
 			// This page is already active.
-			
+
 			return;
 		}
 
 		// Click on Search
 		zClickAt(Locators.SEARCH_MENU,"");
-		
+
 		zWaitForActive();
 	}
 
 	@Override
 	public AbsPage zListItem(Action action, String item)
 			throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item)
 			throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
 			throws HarnessException {
-		// TODO Auto-generated method stub
-		return null;	
+		return null;
 	}
-	
+
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
 			throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	public void zClickTreeItemOfSearch(String treeItem) throws HarnessException {
 		sClickAt(treeItem, "");
 		SleepUtil.sleepMedium();
 	}
-	
+
 	public void zClickTreeItem(String treeItem) throws HarnessException {
 		sClickAt("css=td:contains('" + treeItem + "')", "");
 		SleepUtil.sleepMedium();
