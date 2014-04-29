@@ -181,7 +181,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	
 	
 	@Test(description = "Bug 51442 - Js error (ZmNewCalendarDialog is not defined) while pressing New Calendar from new window and can't open new calendar dialog",
-			groups = { "zfunctional" })
+			groups = { "functional" })
 			
 	public void AddToCalendar_NewWindow_02() throws HarnessException {
 		
@@ -324,7 +324,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test(description = "Bug 77131 - Cannot 'add to calendar' an ics into a shared calendar",
-			groups = { "functional" })
+			groups = { "zfunctional" })
 			
 	public void AddToCalendar_SharedCalendar_01() throws HarnessException {
 		
