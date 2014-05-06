@@ -443,21 +443,23 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 		if ( pulldown == Button.B_PRIORITY ) {
 			
-			pulldownLocator = "css=td[id$='___priority_dropdown']>div";
-
+			
+			pulldownLocator = "css=[id$=__COMPOSE_OPTIONS_title]";
+			
 			if ( option == Button.O_PRIORITY_HIGH ) {
 				
-				optionLocator = "css=td[id$='_left_icon']>div[class='ImgPriorityHigh_list']";
+				optionLocator = "css=div[id=PRIORITY_HIGH]";
+				
 				page = null;
 
 			} else if ( option == Button.O_PRIORITY_NORMAL ) {
 				
-				optionLocator = "css=td[id$='_left_icon']>div[class='ImgPriorityNormal_list']";
+				optionLocator = "css=div[id=PRIORITY_NORMAL]";
 				page = null;
 
 			} else if ( option == Button.O_PRIORITY_LOW ) {
 				
-				optionLocator = "css=td[id$='_left_icon']>div[class='ImgPriorityLow_list']";
+				optionLocator = "css=div[id=PRIORITY_LOW]";
 				page = null;
 
 			} else {
