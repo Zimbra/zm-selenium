@@ -605,19 +605,17 @@ public class PageCalendar extends AbsTab {
 			
 			this.sDoubleClick(locator);
 			this.zWaitForBusyOverlay();
-			SleepUtil.sleepMedium();
-			
-			page = new FormApptNew(this.MyApplication);
-			if ( page.zIsActive() ) {
-				return (page);
-			}
+			SleepUtil.sleepLong();
 			
 			page = new DialogOpenRecurringItem(Confirmation.OPENRECURRINGITEM, MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
 			
-			SleepUtil.sleepMedium();
+			page = new FormApptNew(this.MyApplication);
+			if ( page.zIsActive() ) {
+				return (page);
+			}
 
 			// FALL THROUGH
 			
