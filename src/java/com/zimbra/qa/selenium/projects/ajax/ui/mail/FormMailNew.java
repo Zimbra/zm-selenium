@@ -239,7 +239,13 @@ public class FormMailNew extends AbsForm {
 
 			page = this;
 			// locator = "xpath=//div[contains(@id,'zv__COMPOSE')]//a[contains(@id,'_toggle_bcc')]";
-			locator = "css=div[id^='zv__COMPOSE'] a[id$='_toggle_bcc']";
+			
+			//Show Bcc is under option drop-down menu			
+			 String optionLocator = "css=[id$=__COMPOSE_OPTIONS_title]";
+			 this.zClick(optionLocator);
+						
+			 locator =  "css=div[id=SHOW_BCC]";;
+			 //locator = "css=div[id^='zv__COMPOSE'] a[id$='_toggle_bcc']";
 
 			if ( zBccIsActive() )
 				return (this);
@@ -249,7 +255,7 @@ public class FormMailNew extends AbsForm {
 			////
 			
 			// Click it
-			this.sClick(locator);
+			this.zClick(locator);
 			
 			this.zWaitForBusyOverlay();
 
@@ -578,7 +584,7 @@ public class FormMailNew extends AbsForm {
 			return;
 						
 		} else if ( field == Field.Bcc ) {
-			
+		
 			locator = Locators.zBccField;
 			
 			// Make sure the BCC field is showing
@@ -1145,7 +1151,7 @@ public class FormMailNew extends AbsForm {
 		    clearField(locator);
 		    sType(locator, value);
 		}else{
-		    if(value.length() > 0){
+		    if(value.length() > 0){ 
 			sType(locator, value.substring(0, value.length()-1));
 			sFireEvent(locator, "keyup");
 		    }
