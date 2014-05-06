@@ -334,29 +334,28 @@ public class FormMailNew extends AbsForm {
 
 		} else if ( pulldown == Button.B_PRIORITY ) {
 			
+			pulldownLocator = "css=[id$=__COMPOSE_OPTIONS_title]";
+			
 			if ( option == Button.O_PRIORITY_HIGH ) {
 				
 				// TODO
-				pulldownLocator = Locators.zPriorityPulldown;
-
+		
             // Have to use xpath because there is no unique identifier to select the text "High" and by using xpath, it selects the text "high" through the sibling relationship.
             // When using the css to point to the icon, it clicks on the outside of the drop down menu
             // , therefore it ends up closing and selecting nothing
-            optionLocator = "//div[@class='ImgPriorityHigh_list']/../../td[@class='ZWidgetTitle']";
+				optionLocator = "css=div[id=PRIORITY_HIGH]";          
 				page = this;
 
 			} else if ( option == Button.O_PRIORITY_NORMAL ) {
 				
 				// TODO
-				pulldownLocator = Locators.zPriorityPulldown;
-				optionLocator = "css=[class='ImgPriorityNormal_list']";
+				optionLocator = "css=div[id=PRIORITY_NORMAL]";			
 				page = this;
 
 			} else if ( option == Button.O_PRIORITY_LOW ) {
 				
 				// TODO
-				pulldownLocator = Locators.zPriorityPulldown;
-				optionLocator = "css=[class='ImgPriorityLow_list']";
+				optionLocator = "css=div[id=PRIORITY_LOW]";
 				page = this;
 
 			} else {
