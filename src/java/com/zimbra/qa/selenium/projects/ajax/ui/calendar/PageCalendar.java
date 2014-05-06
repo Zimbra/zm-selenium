@@ -605,6 +605,7 @@ public class PageCalendar extends AbsTab {
 			
 			this.sDoubleClick(locator);
 			this.zWaitForBusyOverlay();
+			SleepUtil.sleepMedium();
 			
 			page = new FormApptNew(this.MyApplication);
 			if ( page.zIsActive() ) {
