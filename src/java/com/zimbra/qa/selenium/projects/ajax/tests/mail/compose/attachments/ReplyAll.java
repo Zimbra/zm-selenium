@@ -41,8 +41,8 @@ public class ReplyAll extends PrefGroupMailByMessageTest {
 		
 
 		//-- DATA
-		final String mimeSubject = "subject03431362517016470";
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email09/mime.txt";
+		final String mimeSubject = "subject1397778577518254677";
+		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email15/mime.txt";
 
 		final String subject = "subject13625192398933";
 
