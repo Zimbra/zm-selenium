@@ -113,7 +113,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		}
 		mailform.zKeyDown(keyCode);
 		mailform.zWaitForActive();
-		boolean present = mailform.zWaitForElementPresent("css=textarea[id*='DWT'][class='DwtHtmlEditorTextArea']","30000");
+		boolean present = mailform.zWaitForElementPresent("css=textarea[id*='ZmHtmlEditor'][class='ZmHtmlEditorTextArea']","30000");
 		ZAssert.assertTrue(present, "Verify the new form opened");
 		
 		

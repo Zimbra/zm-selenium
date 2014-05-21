@@ -947,7 +947,7 @@ public class FormMailNew extends AbsForm {
 		
 		if ( mail.dBodyText != null ) {
 			if(ZimbraSeleniumProperties.isWebDriver()){
-				String textBody = "css=textarea[id*=content]";
+				String textBody = "css=textarea[id*=ZmHtmlEditor]";
 				sType(textBody, mail.dBodyText);
 				sFireEvent(textBody, "keyup");
 			}else{
