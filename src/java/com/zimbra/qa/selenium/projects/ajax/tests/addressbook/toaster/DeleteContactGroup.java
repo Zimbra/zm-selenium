@@ -205,7 +205,7 @@ public class DeleteContactGroup extends AjaxCommonTest {
 
 		// Select the contact group
 		// By default newly created contact will be checked.
-		//app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact.getName());
+		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact.getName());
 		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, group.getName());
 		
 

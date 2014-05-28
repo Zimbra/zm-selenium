@@ -237,7 +237,7 @@ public class DeleteContact extends AjaxCommonTest {
 
 		// Select the item
 		// By default newly created contact will be checked.
-		//app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact3.fileAs);
+		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact3.fileAs);
 		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact1.fileAs);
 		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact2.fileAs);
 		
