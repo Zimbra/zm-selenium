@@ -456,11 +456,15 @@ public class FormApptNew extends AbsForm {
 			SleepUtil.sleepMedium();
 			locator = Locators.SuggestATime10AM;
 			
-			if (this.sIsElementPresent(locator) == false) {
+			if (this.sIsElementPresent(locator) == true) {
+				this.sClickAt(locator, "");
+			} else if (this.sIsElementPresent(Locators.ShowTimesAnywayLink) == true) {
 				this.sClickAt(Locators.ShowTimesAnywayLink, "");
-				return null;
+			} else if (this.sIsElementPresent("css=div[id='zv__CSTP']  table[id^='zli__CSTP__'] td:nth-child(2)") == true) {
+				this.sClickAt("css=div[id='zv__CSTP']  table[id^='zli__CSTP__'] td:nth-child(2)", "");
 			}
-
+			return null;
+			
 			// FALL THROUGH
 
 		} else if (button == Button.B_SUGGESTALOCATION) {
