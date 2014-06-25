@@ -977,7 +977,7 @@ public class ZimbraAccount {
 				 ZAuthToken zat = new ZAuthToken(null, token, null);
 				 if ( sessionId == null )
 				 {
-					 requestContext = SoapUtil.toCtxt(mSoapProto, zat);
+					 requestContext = SoapUtil.toCtxt(mSoapProto, zat, null);
 				 }
 				 else 
 				 {
