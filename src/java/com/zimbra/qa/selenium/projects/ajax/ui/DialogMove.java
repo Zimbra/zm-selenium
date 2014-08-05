@@ -159,7 +159,7 @@ public class DialogMove extends AbsDialog {
 		            folder.getId() +
 		            "_textCell']";
 		   } else {
-		      locator = "css=div[id='" + Locators.zDialogId+ "'] td[id='zti__ZmChooseFolderDialog_Mail___"+ folder.getId() + "_textCell']";
+		      locator = "css=div[id='" + Locators.zDialogId+ "'] td[id='zti__ZmChooseFolderDialog_Mail_FOLDER___"+ folder.getId() + "_textCell']";
 		   }
 
 		} else if (MyTab instanceof PageAddressbook) {
