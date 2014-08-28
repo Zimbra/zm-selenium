@@ -49,6 +49,7 @@ public class ZimbraURI {
 	 * Check if the current URL does not match the 'default' URL.  For instance,
 	 * if the test case adds query parameters, then the URL needs to be reloaded.
 	 * @return true if a reload is required
+	 * @throws UnsupportedEncodingException 
 	 */
 	public static boolean needsReload() {
 		
@@ -235,6 +236,8 @@ public class ZimbraURI {
 	 * https://server.  Or, for performance test run,
 	 * https://server?perfMetric=1
 	 * @return
+	 * @throws NumberFormatException 
+	 * @throws UnsupportedEncodingException 
 	 * @throws URLSyntaxException
 	 */
 	public static URI getBaseURI() {
@@ -296,7 +299,7 @@ public class ZimbraURI {
 		
 		if ( ZimbraSeleniumProperties.getAppType() == AppType.TOUCH ) {
 
-			path ="/t/";
+			path = "";
 			
 		}
 
@@ -309,18 +312,19 @@ public class ZimbraURI {
 
 		}
 
-		if ( ZimbraSeleniumProperties.getAppType() == AppType.OCTOPUS ) {
-			
-			// FALL THROUGH
-
-		}
-	
 		String query = buildQueryFromMap(queryMap);
 		
 		try {
-			URI uri = new URI(scheme, userinfo, host, Integer.parseInt(port), path, query, fragment);
+			URI uri;
+			if ( ZimbraSeleniumProperties.getAppType() == AppType.TOUCH ) {
+				uri = new URI(scheme, userinfo, host, Integer.parseInt(port), path, "client=touch", fragment);
+			} else {
+				uri = new URI(scheme, userinfo, host, Integer.parseInt(port), path, query, fragment);
+			}
 			logger.info("Base uri: "+ uri.toString());
 			return (uri);
+			
+			
 		} catch (URISyntaxException e) {
 			logger.error("unalbe to parse uri", e);
 			return (ZimbraURI.defaultURI());
@@ -351,7 +355,6 @@ public class ZimbraURI {
 			}
 		}
 		String query = ( sb == null ? null : sb.toString());
-		
 		return query;
 	}
 	
