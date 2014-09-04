@@ -50,6 +50,8 @@ public class EditCos extends AdminCommonTest {
 	 * 5. Verify cos is edited using SOAP.
 	 * @throws HarnessException
 	 */
+	
+	
 	@Test(	description = "Edit Cos name  - Manage Cos View",
 			groups = { "functional" })
 			public void EditCos_01() throws HarnessException {
@@ -163,6 +165,8 @@ public class EditCos extends AdminCommonTest {
 				+			"<name>" + cosName + "</name>"
 				+		"</CreateCosRequest>");
 	
+		
+
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(cosName);
 	
@@ -203,9 +207,13 @@ public class EditCos extends AdminCommonTest {
 	 * 3. Verify cos name is changed using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test(	description = "Edit cos name -- right click",
 			groups = { "functional" })
 			public void EditCos_04() throws HarnessException {
+		
+		this.startingPage = app.zPageManageCOS;
+		
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
@@ -215,17 +223,21 @@ public class EditCos extends AdminCommonTest {
 				+			"<name>" + cosName + "</name>"
 				+		"</CreateCosRequest>");
 	
+
+		// Refresh the account list
+		 app.zPageSearchResults.zSelectSearchObject(app.zPageSearchResults.S_COS);
+		
 		// Enter the search string to find the account
+		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
 		app.zPageSearchResults.zAddSearchQuery(cosName);
 	
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
-		
+
 		// Click on cos to be deleted.
 		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, cos.getName());
 	
 		// Click on Edit button
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
 		FormEditCos form = (FormEditCos) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 		
 		//Click on General Information tab.
@@ -244,7 +256,6 @@ public class EditCos extends AdminCommonTest {
 		                     "<cos by='name'>"+editedName+"</cos>"+
 		                   "</GetCosRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
-		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=79304");
+		ZAssert.assertNotNull(response, "Verify the cos is edited successfully");
 	}
-
 }
