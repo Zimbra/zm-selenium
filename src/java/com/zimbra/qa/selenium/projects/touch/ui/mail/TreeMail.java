@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.touch.ui.mail;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.items.SavedSearchFolderItem;
@@ -31,34 +30,26 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogShareFind;
-import com.zimbra.qa.selenium.projects.ajax.ui.FormRecoverDeletedItems;
-import com.zimbra.qa.selenium.projects.ajax.ui.TooltipFolder;
+import com.zimbra.qa.selenium.projects.touch.ui.AppTouchClient;
 import com.zimbra.qa.selenium.projects.touch.ui.*;
 
-/**
- * @author zimbra
- *
- */
 public class TreeMail extends AbsTree {
-	public final static String stringToReplace = "<TREE_ITEM_NAME>";
+	
 	public static class Locators {
-		// For desktop, Bug 56273:
-		public final static String zTreeItems = new StringBuffer("//td[text()='").
-		append(stringToReplace).append("']").toString();
-
+		
+		public static final String zNewFolderButton = "css=div[class='x-dock x-dock-vertical x-sized'] span[class='x-button-label']:contains('New Folder')";
+		public static final String zNewTagButton = "css=div[class='x-dock x-dock-vertical x-sized'] span[class='x-button-label']:contains('New Tag')";
+		
+		public static final String zOrganizerButton = "css=div[id='ext-button-1'] span[class='x-button-icon x-shown organizer']";
+		public static final String zEditButton = "css=div[class='x-dock x-dock-vertical x-sized'] span[class='x-button-label']:contains('Edit')";
+		
 		public static final String createNewFolderButton = "css=div[id='zov__main_Mail'] td[id='ztih__main_Mail__FOLDER_optCell'] td[id$='_title']";
 		public static final String ztih__main_Mail__ZIMLET_ID = "ztih__main_Mail__ZIMLET";
 		public static final String ztih__main_Mail__ZIMLET_ID_Desktop = "zt__main_Mail_zimlets__ZIMLET";
 		public static final String ztih__main_Mail__ZIMLET_nodeCell_ID = "ztih__main_Mail__ZIMLET_nodeCell";
-		public static final String ztih_main_Mail__FOLDER_ITEM_ID = new StringBuffer("ztih__main_Mail__").
-		append(stringToReplace).append("_textCell").toString();
+	
 		public static final String zNewTagIcon = "//td[contains(@class,'overviewHeader-Text FakeAnchor')]/div[contains(@class,'ImgNewTag')]";
 		public static final String zShowRemainingFolders = "css=td#zti__main_Mail__-3_textCell";
-
-		// TODO: Implement for Desktop after bug 56273 is fixed
-		public static final String treeExpandCollapseButton = "css=div[id='ztih__main_Mail__FOLDER_div'] div[class^='ImgNode']";
 
 		public static final String zDeleteTreeMenuItem = "//div[contains(@class,'ZMenuItem')]//tbody//td[contains(@id,'_left_icon')]/div[contains(@class,'ImgDelete')]";
 		public static final String zRenameTreeMenuItem = "//div[contains(@class,'ZMenuItem')]//tbody//td[contains(@id,'_left_icon')]/div[contains(@class,'ImgRename')]";
@@ -148,14 +139,6 @@ public class TreeMail extends AbsTree {
 				//page = new DialogMove(MyApplication,((AppTouchClient) MyApplication).zPageMail);
 
 				// FALL THROUGH
-
-			} else if (option == Button.B_SHARE) {
-				
-				optionLocator += " div[id^='SHARE_FOLDER'] td[id$='_title']";
-				page = new DialogShare(MyApplication,((AppTouchClient) MyApplication).zPageMail);
-
-				// FALL THROUGH
-
 			
 			} else if (option == Button.B_TREE_FOLDER_EXPANDALL) {
 
@@ -169,32 +152,11 @@ public class TreeMail extends AbsTree {
 				optionLocator += " div[id^='SYNC'] td[id$='_title']";
 				page = null;
 
-				// FALL THROUGH
-
-//			} else if (option == Button.B_TREE_FOLDER_SYNC_ALL) {
-//
-//				optionLocator += " div[id^='SYNC_ALL'] td[id$='_title']";
-//				page = null;
-//
-//				// FALL THROUGH
-//
-//			} else if (option == Button.B_TREE_FOLDER_SYNC_OFFLINE) {
-//
-//				optionLocator += " div[id^='SYNC_OFFLINE_FOLDER'] td[id$='_title']";
-//				page = null;
-//
-//				// FALL THROUGH
-//
 			} else if (option == Button.B_TREE_FOLDER_EMPTY) {
 				
 				optionLocator += " div[id^='EMPTY_FOLDER'] td[id$='_title']";
 				//page = new DialogWarning(DialogWarning.DialogWarningID.EmptyFolderWarningMessage,
 				//		MyApplication, ((AppTouchClient) MyApplication).zPageMail);
-
-			} else if (option == Button.B_RECOVER_DELETED_ITEMS) {
-
-				optionLocator += " div[id^='RECOVER_DELETED_ITEMS'] td[id$='_title']";
-				page = new FormRecoverDeletedItems(MyApplication);
 
 			} else {
 				throw new HarnessException("button " + option + " not yet implemented");
@@ -205,25 +167,11 @@ public class TreeMail extends AbsTree {
 			throw new HarnessException("Action " + action+ " not yet implemented");
 		}
 
-
-
-		if (actionLocator == null)
-			throw new HarnessException("locator is null for action " + action);
-		if (optionLocator == null)
-			throw new HarnessException("locator is null for option " + option);
-
 		// Default behavior. Click the locator
 		zClickAt(optionLocator,"");
 
 		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
-
-		if (page != null) {
-
-			// Wait for the page to become active, if it was specified
-			page.zWaitForActive();
-
-		}
 
 		return page;
 	}
@@ -285,8 +233,6 @@ public class TreeMail extends AbsTree {
 
 		}
 
-		if (actionLocator == null)
-			throw new HarnessException("locator is null for action " + action);
 		if (optionLocator == null)
 			throw new HarnessException("locator is null for option " + option);
 
@@ -296,11 +242,6 @@ public class TreeMail extends AbsTree {
 		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
 
-		if (page != null) {
-
-			// Wait for the page to become active, if it was specified
-			page.zWaitForActive();
-		}
 		return page;
 	}
 
@@ -406,22 +347,12 @@ public class TreeMail extends AbsTree {
 			throw new HarnessException("button " + option
 					+ " not yet implemented");
 		}
-		if (actionLocator == null)
-			throw new HarnessException("locator is null for action " + action);
-		if (optionLocator == null)
-			throw new HarnessException("locator is null for option " + option);
-
+		
 		// Default behavior. Click the locator
 		zClickAt(optionLocator,"");
 
 		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
-
-		if (page != null) {
-
-			// Wait for the page to become active, if it was specified
-			page.zWaitForActive();
-		}
 
 		return (page);
 
@@ -483,62 +414,16 @@ public class TreeMail extends AbsTree {
 
 			// No page to return
 			return (null);
-
-		} else if ( action == Action.A_HOVEROVER ) {
-			
-			locator = "css=td[id='zti__main_Mail__"+ tag.getId() +"_textCell']";
-			page = new TooltipFolder(MyApplication);
-			
-			// If another tooltip is active, sometimes it takes a few seconds for the new text to show
-			// So, wait if the tooltip is already active
-			// Don't wait if the tooltip is not active
-			//
-			
-			if (page.zIsActive()) {
-				
-				// Mouse over
-				this.sMouseOver(locator);
-				this.zWaitForBusyOverlay();
-				
-				// Wait for the new text
-				SleepUtil.sleep(5000);
-				
-				// Make sure the tooltip is active
-				page.zWaitForActive();
-
-			} else {
-				
-				// Mouse over
-				this.sMouseOver(locator);
-				this.zWaitForBusyOverlay();
-
-				// Make sure the tooltip is active
-				page.zWaitForActive();
-
-			}
-						
-			return (page);
 			
 		} else {
 			throw new HarnessException("Action "+ action +" not yet implemented");
 		}
-
-
-		if ( locator == null )
-			throw new HarnessException("locator is null for action "+ action);
-
 
 		// Default behavior.  Click the locator
 		zClickAt(locator,"");
 
 		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
-
-		if ( page != null ) {
-
-			// Wait for the page to become active, if it was specified
-			page.zWaitForActive();
-		}
 
 		return (page);
 
@@ -559,39 +444,16 @@ public class TreeMail extends AbsTree {
 			throw new HarnessException("Action "+ action +" not yet implemented");
 		}
 
-		if ( locator == null )
-			throw new HarnessException("locator is null for action "+ action);
-
 		// Default behavior.  Click the locator
 		sClickAt(locator, "");
 
 		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
 
-		if ( page != null ) {
-
-			// Wait for the page to become active, if it was specified
-			page.zWaitForActive();
-		}
-
 		SleepUtil.sleepLong();
 		
 		return (page);
 
-	}
-
-	/**
-	 * To get whether the tree is collapsed or not
-	 * @return true if tree is collapsed, otherwise false
-	 * @throws HarnessException 
-	 */
-	public boolean isCollapsed() throws HarnessException {
-		if (sIsElementPresent(Locators.treeExpandCollapseButton.replace(
-				"ImgNode", "ImgNodeCollapsed"))) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	protected AbsPage zTreeItem(Action action, SavedSearchFolderItem savedSearch) throws HarnessException {
@@ -601,7 +463,6 @@ public class TreeMail extends AbsTree {
 		if ( action != Action.A_LEFTCLICK ) 
 			throw new HarnessException("No implementation for Action = "+ action);
 
-		// TODO: implement me!
 		locator = "css=td#zti__main_Mail__"+ savedSearch.getId() + "_textCell";
 
 		// Default behavior.  Click the locator
@@ -609,12 +470,6 @@ public class TreeMail extends AbsTree {
 
 		// If the app is busy, wait until it is ready again
 		this.zWaitForBusyOverlay();
-
-		if ( page != null ) {
-
-			// Wait for the page to become active, if it was specified
-			page.zWaitForActive();
-		}
 
 		return (page);
 	}
@@ -706,99 +561,55 @@ public class TreeMail extends AbsTree {
 				zWaitForBusyOverlay();
 			}
 
-			// If we click on pulldown/option and the page is specified, then
-			// wait for the page to go active
-			if (page != null) {
-				page.zWaitForActive();
-			}
 		}
 		
 		
 		// Return the specified page, or null if not set
 		return (page);
+	}	
 
-
-	}
-	/* (non-Javadoc)
-	 * @see com.zimbra.qa.selenium.framework.ui.AbsTree#zPressButton(com.zimbra.qa.selenium.framework.ui.Button)
-	 */
 	@Override
 	public AbsPage zPressButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zPressButton("+ button +")");
-
-		tracer.trace("Click "+ button);
-
-		if ( button == null )
-			throw new HarnessException("Button cannot be null");
+		SleepUtil.sleepMedium();
+		
+		logger.info(myPageName() + " zClickButton("+ button +")");
+		tracer.trace("Click page button "+ button);
 
 		AbsPage page = null;
 		String locator = null;
-
-		if ( button == Button.B_TREE_NEWFOLDER ) {
+		
+		if ( button == Button.B_NEW_FOLDER ) {
+			locator = Locators.zNewFolderButton;		
+			page = new PageCreateFolder(MyApplication, ((AppTouchClient)MyApplication).zPageMail);
 			
-			// 8.0 behavior - new Pulldown menu
-			return (zPressPulldown(Button.B_TREE_FOLDERS_OPTIONS, Button.B_TREE_NEWFOLDER));
-
-		}else if (button == Button.B_TREE_NEWTAG) {
-
-			return (zPressPulldown(Button.B_TREE_TAGS_OPTIONS, Button.B_TREE_NEWTAG));
-
-		} else if ( button == Button.B_TREE_FIND_SHARES ) {
-
-			locator = "css=a[id$='_addshare_link']";
-			if (!this.sIsElementPresent(locator)) {
-				throw new HarnessException("Unable to locator folder in tree " + locator);
-			}
-
-			page = new DialogShareFind(MyApplication,((AppTouchClient) MyApplication).zPageMail);
-
-			// Use sClick, not default zClick
-			this.sClick(locator);
-
-			// If the app is busy, wait for that to finish
-			this.zWaitForBusyOverlay();
-
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-
-			return (page);
-
-		}else if (button == Button.B_TREE_SHOW_REMAINING_FOLDERS ) {
-
-			locator = Locators.zShowRemainingFolders;
-			page = null;
-
-			if (!this.sIsElementPresent(locator)) {
-				throw new HarnessException("Unable to find 'show remaining folders' in tree " + locator);
-			}
-
-			// FALL THROUGH
-
+		} else if ( button == Button.B_NEW_TAG ) {
+			locator = Locators.zNewTagButton;
+			page = new PageCreateFolder(MyApplication, ((AppTouchClient)MyApplication).zPageMail);
+			
 		} else {
-			throw new HarnessException("no logic defined for button "+ button);
+			throw new HarnessException("Button "+ button +" not implemented");
 		}
 
+		// Make sure the locator was set
 		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
+			throw new HarnessException("Button "+ button +" not implemented");
 		}
 
-		// Default behavior, process the locator by clicking on it
-		//
-
-		// Click it
-		this.zClick(locator);
-
-		// If the app is busy, wait for that to finish
-		this.zWaitForBusyOverlay();
-
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-
+		// Click to organizer icon
+		this.sClickAt(Locators.zOrganizerButton, "");
+		SleepUtil.sleepSmall();
+		
+		this.sClickAt(Locators.zEditButton, "");
+		SleepUtil.sleepSmall();
+		
+		// Make sure the locator exists
+		if ( !this.sIsElementPresent(locator) ) {
+			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
 		}
-
+		
+		this.sClickAt(locator, "");
+		SleepUtil.sleepMedium();
+		
 		return (page);
 
 	}
@@ -915,8 +726,6 @@ public class TreeMail extends AbsTree {
 			item.gSetIsSelected("DwtTreeItem-selected".equals(sGetAttribute(locator + "@class")));
 		}
 
-		// TODO: color
-
 		return (item);
 	}
 
@@ -952,7 +761,6 @@ public class TreeMail extends AbsTree {
 			}
 
 			// Set the locator
-			// TODO: This could probably be made safer, to make sure the id matches an int pattern
 			String id = identifier.replace("zti__main_Mail__", "");
 
 			FolderItem item = this.parseFolderRow(id);
@@ -1004,7 +812,6 @@ public class TreeMail extends AbsTree {
 			SavedSearchFolderItem item = new SavedSearchFolderItem();
 
 			// Set the locator
-			// TODO: This could probably be made safer, to make sure the id matches an int pattern
 			item.setId(id.replace("zti__" + ((AppTouchClient)MyApplication).zGetActiveAccount().EmailAddress +
 					":main_Mail__", ""));
 
@@ -1063,8 +870,6 @@ public class TreeMail extends AbsTree {
 
 
 		List<TagItem> items = new ArrayList<TagItem>();
-
-		// TODO: implement me!
 
 		// Return the list of items
 		return (items);
@@ -1194,10 +999,6 @@ public class TreeMail extends AbsTree {
 		this.zClick(locator);
 
 		this.zWaitForBusyOverlay();
-
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
 
 		return (page);
 	}
