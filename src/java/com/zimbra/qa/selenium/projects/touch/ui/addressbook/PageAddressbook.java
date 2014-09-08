@@ -16,7 +16,6 @@
  */
 package  com.zimbra.qa.selenium.projects.touch.ui.addressbook;
 
-
 import java.awt.event.KeyEvent;
 import java.util.*;
 
@@ -32,18 +31,13 @@ import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.touch.ui.AppTouchClient;
 import com.zimbra.qa.selenium.projects.touch.ui.PageMain;
-import com.zimbra.qa.selenium.projects.touch.ui.PageMain.Locators;;
-
 
 public class PageAddressbook extends AbsTab {
 
-	
 	public static class Locators {
-		
 		public static final String PlusIcon		= "css=span[class$='x-button-icon x-shown add']";
 		public static final String EditIcon		= "css=div[id='ext-appview-2'] div[id^='ext-lefttitlebar'] div[id^='ext-button'] span[class$='x-button-icon x-shown edit']";
 		public static final String MenuIcon     = "css=div[id='ext-appview-2'] div[id^='ext-lefttitlebar'] div[id^='ext-button'] span[class$='x-button-icon x-shown arrow_down']";
-		
 	}	
 	
 	public static class CONTEXT_MENU {
@@ -192,8 +186,17 @@ public class PageAddressbook extends AbsTab {
 		//((AppTouchClient)this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH);
 		((AppTouchClient)this.MyApplication).zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);
 		
-		((AppTouchClient)this.MyApplication).zPageMain.zClick(PageMain.Locators.zAppsIcon);
+		((AppTouchClient)this.MyApplication).zPageMain.zClick(PageMain.Locators.zAppsButton);
 		((AppTouchClient)this.MyApplication).zPageMain.zClick("css=div[id='ext-simplelistitem-12']");
+	}
+	
+	public String zGetContactLocator(String contact) throws HarnessException {
+		SleepUtil.sleepSmall();
+		if (sIsElementPresent("css=div[id^='ext-contactslistview'] div[class='zcs-contactList-name']:contains('"+ contact +"')") == true) {
+			return "css=div[id^='ext-contactslistview'] div[class='zcs-contactList-name']:contains('"+ contact +"')";
+		} else {
+			throw new HarnessException("Unable to locate subject: "+ contact);
+		}
 	}
 	
 	//get subFolders
@@ -220,8 +223,6 @@ public class PageAddressbook extends AbsTab {
 	}
 	
 	public boolean zIsContactDisplayed(ContactItem contactItem) throws HarnessException {
-        boolean isContactFound = false;
-        
         String setslocator = "css=div[id^='ext-contactsitemview'] div[class='zcs-contactview-fieldSets']";
         if (!this.sIsElementPresent(setslocator)) {
 			throw new HarnessException(setslocator);
@@ -229,7 +230,7 @@ public class PageAddressbook extends AbsTab {
         WebElement we = this.getElement(setslocator);
         String setLocator = "css=div[class='zcs-contactview-fieldSet']";
         List<WebElement> wes = we.findElements(By.cssSelector(setLocator));
-        Iterator itr = wes.iterator();
+        Iterator<WebElement> itr = wes.iterator();
         while(itr.hasNext()){
         	String labelLocator = "css=div[class='zcs-contactview-label']";
         	String valueLocator = "css=div[class='zcs-contactview-field']";
@@ -242,59 +243,11 @@ public class PageAddressbook extends AbsTab {
         }
         
         return true;
-        //ensure it is in Addressbook main page
-/*		zNavigateTo();
-		
-        //assume that this is a list view
-		String listLocator = "div[id='zv__CNS-main']";		
-		String rowLocator  = "li[id^='zli__CNS-main__']";
-	    String noResultLocator = "td.NoResults";		
-		String fileAsLocator = " td[id^=zlif__CNS-main__][id$=__fileas]";
-		
-		//actually this is a search view
-		if (zIsInSearchView()) {
-			listLocator= "div[id=zv__CNS-SR-Contacts-1]";	
-		   	rowLocator= "li[id^=zli__CNS-SR-Contacts-1__]";
-		   	fileAsLocator=" td[id^=zlif__CNS-SR-Contacts-1__][id$=__fileas]";
-		}
-
-		// if there is no result
-		if (sIsElementPresent("css=" + listLocator + " " + noResultLocator)) {
-           return false;
-		}
-		
-		if (!this.sIsElementPresent("css=" + listLocator + " " + rowLocator)) {
-			throw new HarnessException("css=" + listLocator + " " + rowLocator + " not present");
-		}
-		
-		//Get the number of contacts (String) 
-		int count = this.sGetCssCount("css=" + listLocator + " " + rowLocator);
-
-		logger.info(myPageName() + " zIsContactDisplayed: number of contacts: "+ count);
-
-		// Get each contact's data from the table list
-		for (int i = 1; i <= count && !isContactFound; i++) {
-			String commonLocator = "css=" + listLocator + " li:nth-child(" + i +")";
-														
-			String contactType = getContactType(commonLocator);
-		    
-			String contactDisplayedLocator = commonLocator + fileAsLocator;
-			String fileAs = sGetText(contactDisplayedLocator);
-			logger.info("...found "+ contactType + " - " + fileAs );
-			isContactFound = ((contactType.equals(ContactGroupItem.IMAGE_CLASS) &&  contactItem instanceof ContactGroupItem) ||
-				  (contactType.equals(ContactItem.IMAGE_CLASS) &&  contactItem instanceof ContactItem)) &&
-				  (contactItem.fileAs.equals(fileAs.trim()));
-			
-				    	      
-		}
-
-
-		return isContactFound;		*/
 	}
 
 	public boolean zIsSlectedContactDisplayedonMainframe(ContactItem contactItem) throws HarnessException {
         boolean isContactFound = false;
-        //ensure it is in Addressbook main page
+        // Ensure it is in Address book main page
 		zNavigateTo();
 		
         //assume that this is a list view
@@ -1386,11 +1339,6 @@ public class PageAddressbook extends AbsTab {
 			
         } 
 
-             
-        if ( page != null ) {
-        	page.zWaitForActive();
-        }
-        
         return (page);
     
 	}
@@ -1590,18 +1538,6 @@ public class PageAddressbook extends AbsTab {
 	    return page;
 	
 	}
-
-	private boolean isAlphabetButton(Button button) {
-	  return (button == Button.B_AB_ALL) || (button == Button.B_AB_123) 
-		|| (button == Button.B_AB_A) || (button == Button.B_AB_B) || (button == Button.B_AB_C) || (button == Button.B_AB_D) 
-	    || (button == Button.B_AB_E) || (button == Button.B_AB_F) || (button == Button.B_AB_G) || (button == Button.B_AB_H)
-	    || (button == Button.B_AB_I) || (button == Button.B_AB_J) || (button == Button.B_AB_K) || (button == Button.B_AB_L)
-	    || (button == Button.B_AB_M) || (button == Button.B_AB_N) || (button == Button.B_AB_O) || (button == Button.B_AB_P)
-	    || (button == Button.B_AB_Q) || (button == Button.B_AB_R) || (button == Button.B_AB_S) || (button == Button.B_AB_T)
-	    || (button == Button.B_AB_U) || (button == Button.B_AB_V) || (button == Button.B_AB_W) || (button == Button.B_AB_X)
-	    || (button == Button.B_AB_Y) || (button == Button.B_AB_Z);
-	}
-	
 	private boolean zIsInSearchView() throws HarnessException {
 		return zIsVisiblePerPosition("css=div#z_filterPanel__SR-Contacts-1",0,0);		 
 	}
