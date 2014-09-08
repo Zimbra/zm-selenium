@@ -104,7 +104,7 @@ public class TouchCommonTest {
 	 */
 	protected AbsTab startingPage = null;
 	protected Map<String, String> startingAccountPreferences = null;
-	protected Map<String, String> startingUserPreferences = null;		// TODO:
+	protected Map<String, String> startingUserPreferences = null;
 	protected Map<String, String> startingUserZimletPreferences = null;
 
 	
@@ -181,14 +181,14 @@ public class TouchCommonTest {
 						.webDriverBackedSelenium();
 				_webDriverBackedSelenium.windowMaximize();
 				_webDriverBackedSelenium.windowFocus();
-				_webDriverBackedSelenium.setTimeout("30000");// Use 30 second timeout for
+				_webDriverBackedSelenium.setTimeout("50000");// Use 50 second timeout for
 			} else {
 				_selenium = ClientSessionFactory.session().selenium();
 				_selenium.start();
 				_selenium.windowMaximize();
 				_selenium.windowFocus();
 				_selenium.allowNativeXpath("true");
-				_selenium.setTimeout("30000");// Use 30 second timeout for opening the browser
+				_selenium.setTimeout("50000");// Use 50 second timeout for opening the browser
 			}
 			// Dynamic wait for App to be ready
 			int maxRetry = 10;
@@ -318,8 +318,9 @@ public class TouchCommonTest {
 					if ( !app.zPageLogin.zIsActive()) {
 						logger.error("Login page is not active ", ex);
 
-						app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());            
-						app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
+						/* Commenting below code because touch client always asks for navigate away */
+						//app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());            
+						//app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
 					}
 				}							
 		}
@@ -339,9 +340,6 @@ public class TouchCommonTest {
 			}
 
 		}
-
-		// Make sure any extra compose tabs are closed
-		app.zPageMain.zCloseComposeTabs();
 
 		logger.info("commonTestBeforeMethod: finish");
 
@@ -415,8 +413,10 @@ public class TouchCommonTest {
 		if ( ZimbraURI.needsReload() ) {
             logger.error("The URL does not match the base URL.  Reload app.");
             // app.zPageLogin.sDeleteAllVisibleCookies();
-            app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());            
-            app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
+            
+            /* Commenting below code because touch client always asks for navigate away */
+            //app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());            
+            //app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
 		}
 
 		// If neither the main page or login page are active, then
@@ -427,8 +427,10 @@ public class TouchCommonTest {
 		if ( (!app.zPageMain.zIsActive()) && (!app.zPageLogin.zIsActive()) ) {
             logger.error("Neither login page nor main page were active.  Reload app.", new Exception());
             // app.zPageLogin.sDeleteAllVisibleCookies();
-            app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());            
-            app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
+            
+            /* Commenting below code because touch client always asks for navigate away */
+            //app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());            
+            //app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
         }
 		
 		logger.info("commonTestAfterMethod: finish");

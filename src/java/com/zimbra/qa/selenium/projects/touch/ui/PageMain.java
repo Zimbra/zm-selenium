@@ -20,33 +20,23 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.ui.mail.*;
 
-
-/**
- * @author Matt Rhoades
- *
- */
 public class PageMain extends AbsTab {
 
 	public static class Locators {
 		
-		public static final String zNavigationIcon	= "css=span[class='x-button-icon x-shown organizer']";
-		public static final String zAppsIcon		= "css=span[class='x-button-icon x-shown apps']";
+		public static final String zNavigationButton	= "css=span[class='x-button-icon x-shown organizer']";
+		public static final String zAppsButton			= "css=span[class='x-button-icon x-shown apps']";
+		public static final String zSignOutButton		= "css=div[id^='ext-appsmenu-1'] div[class='zcs-menu-label']:contains('Sign Out')";
 		
-		public static final String zSignOutMenu		= "css=div[class='zcs-menu-label']:contains('Sign Out')";
-		
-		public static final String zMailTab			= "css=div[id='ext-tab-1']";
-		public static final String zContactsTab		= "css=div[id='ext-tab-2']";
-		public static final String zCalendarTab		= "css=div[id='ext-tab-3']";
+		public static final String zMailApp				= "css=div[id^='ext-appsmenu'] div[class='zcs-menu-label']:contains('Mail')";
+		public static final String zContactsApp			= "css=div[id^='ext-appsmenu'] div[class='zcs-menu-label']:contains('Contacts')";
+		public static final String zCalendarApp			= "css=div[id^='ext-appsmenu'] div[class='zcs-menu-label']:contains('Calendar')";
 
-		public static final String ButtonRefreshLocatorCSS = "css=div[id='CHECK_MAIL'] td[id='CHECK_MAIL_left_icon']>div";
 	}
-	
 	
 	public PageMain(AbsApplication application) {
 		super(application);
-		
 		logger.info("new " + PageMain.class.getCanonicalName());
-
 	}
 	
 	public Toaster zGetToaster() throws HarnessException {
@@ -56,34 +46,14 @@ public class PageMain extends AbsTab {
 		return (toaster);
 	}
 	
-	
-
-
-
-	public boolean zIsZimletLoaded() throws HarnessException {
-		if (ZimbraSeleniumProperties.isWebDriver())
-			return ("true".equals(sGetEval("return top.appCtxt.getZimletMgr().loaded")));
-		else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium())
-			return ("true".equals(sGetEval("selenium.browserbot.getCurrentWindow().top.appCtxt.getZimletMgr().loaded")));
-		else
-			return ("true".equals(sGetEval("this.browserbot.getUserWindow().top.appCtxt.getZimletMgr().loaded")));
-	}
-	
-	public boolean zIsMinicalLoaded() throws HarnessException {
-		return ("true".equals(sGetEval("this.browserbot.getUserWindow().top.appCtxt.getAppViewMgr().getCurrentViewComponent(this.browserbot.getUserWindow().top.ZmAppViewMgr.C_TREE_FOOTER) != null")));
-	}
-	
-	/* (non-Javadoc)
-	 * @see projects.admin.ui.AbsPage#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
-
-		// Look for the Logout button 
-		// check if zimlet + minical loaded
-		boolean present = sIsElementPresent(Locators.zNavigationIcon);
+		
+		SleepUtil.sleepSmall();
+		boolean present = sIsElementPresent(Locators.zNavigationButton);
 		if ( !present ) {
 			logger.debug("Settings button present = "+ present);
+			SleepUtil.sleepSmall();
 			return (false);
 		}
 
@@ -92,17 +62,12 @@ public class PageMain extends AbsTab {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see projects.admin.ui.AbsPage#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/* (non-Javadoc)
-	 * @see projects.admin.ui.AbsPage#navigateTo()
-	 */
+
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
@@ -141,45 +106,28 @@ public class PageMain extends AbsTab {
 		zNavigateTo();
 
 		if (ZimbraSeleniumProperties.isWebDriver()) {
-			// Click on logout pulldown
-			getElement("css=div[class=DwtLinkButtonDropDownArrow]").click();			
-		}else{
-		
-			if ( !sIsElementPresent(Locators.zNavigationIcon) ) {
-				throw new HarnessException("The logoff button is not present " + Locators.zNavigationIcon);
-			}
-
-			// Click on logout pulldown
-			zClickAt(Locators.zNavigationIcon, "0,0");
+			getElement("css=div[class=DwtLinkButtonDropDownArrow]").click();
+		} else if ( !sIsElementPresent(Locators.zNavigationButton) ) {
+			throw new HarnessException("The app navigation button is not present " + Locators.zNavigationButton);
 		}
-		
-		this.zWaitForBusyOverlay();
+
+		sClickAt(Locators.zNavigationButton, "0,0");
+		SleepUtil.sleepSmall();
 		
 		if (ZimbraSeleniumProperties.isWebDriver()) {
-			// Click on logout pulldown
-			getElement("css=tr[id=POPUP_logOff]>td[id=logOff_title]").click();			
-		}else{
-			if ( !sIsElementPresent(Locators.zSignOutMenu) ) {
-				throw new HarnessException("The logoff button is not present " + Locators.zSignOutMenu);
-			}
-
-			// Click on logout pulldown
-			zClick(Locators.zNavigationIcon);
-			SleepUtil.sleepSmall();
-			zClick(Locators.zAppsIcon);
-			SleepUtil.sleepSmall();
-			zClick(Locators.zSignOutMenu);
-			SleepUtil.sleepSmall();
+			getElement("css=tr[id=POPUP_logOff]>td[id=logOff_title]").click();	
+		} else if ( !sIsElementPresent(Locators.zAppsButton) ) {
+			throw new HarnessException("The application button is not present " + Locators.zAppsButton);
 		}
+
+		sClickAt(Locators.zAppsButton, "0,0");
+		SleepUtil.sleepSmall();
 		
-		this.zWaitForBusyOverlay();
-
-		/* TODO: ... debugging to be removed */
-		//sWaitForPageToLoad();
+		sClickAt(Locators.zSignOutButton, "0,0");
+		SleepUtil.sleepSmall();
+		
 		((AppTouchClient)MyApplication).zPageLogin.zWaitForActive();
-
 		((AppTouchClient)MyApplication).zSetActiveAcount(null);
-
 	}
 
 	@SuppressWarnings("unused")
@@ -200,7 +148,7 @@ public class PageMain extends AbsTab {
 
 		if (button == Button.B_REFRESH) {
 			
-			locator = Locators.ButtonRefreshLocatorCSS;
+			//locator = Locators.ButtonRefreshLocatorCSS;
 			page = null;
 			
 		} else {
@@ -349,26 +297,7 @@ public class PageMain extends AbsTab {
 			throws HarnessException {
 		throw new HarnessException("Main page does not have lists");
 	}	
-	/**
-	 * Close any extra compose tabs
-	 */
-	public void zCloseComposeTabs() throws HarnessException {
-		
-		String locator = "css=td[id^='ztb_appChooser_item_'] div[id^='zb__App__tab_COMPOSE']";
-		if ( sIsElementPresent(locator) ) {
-			logger.debug("Found compose tabs");
-			
-			int count = this.sGetCssCount(locator);
-			for (int i = 1; i <= count; i++) {
-				final String composeLocator = locator + ":nth-child("+i+") td[id$='_left_icon']";
-				if ( !sIsElementPresent(composeLocator) ) 
-					throw new HarnessException("Unable to find compose tab close icon "+ composeLocator);
-				this.zClick(composeLocator);
-				this.zWaitForBusyOverlay();
-			}
-		}
-	}
-
+	
 	/**
 	 * Change the URL (and reload) to access deep-link pages
 	 * @param uri The URL to access (e.g. ?to=foo@foo.com&body=MsgContent&subject=MsgSubject&view=compose)
