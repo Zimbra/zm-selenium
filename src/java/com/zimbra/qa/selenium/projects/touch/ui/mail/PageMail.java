@@ -223,7 +223,7 @@ public class PageMail extends AbsTab {
 
 		tracer.trace("Navigate to "+ this.myPageName());
 
-		this.zClick(PageMain.Locators.zMailTab);
+		this.zClick(PageMain.Locators.zMailApp);
 
 		this.zWaitForBusyOverlay();
 
