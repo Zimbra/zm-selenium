@@ -14,49 +14,35 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.touch.tests.addressbook.contacts;
-
-
-import java.awt.event.KeyEvent;
-import java.util.HashMap;
+package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-
 import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;
-import com.zimbra.qa.selenium.projects.touch.ui.addressbook.MoveContactView;
-
-
+import com.zimbra.qa.selenium.projects.touch.ui.contacts.MoveContactView;
 
 public class MoveContact extends TouchCommonTest  {
 	
-	
-	
 	public MoveContact() {
 		logger.info("New "+ MoveContact.class.getCanonicalName());
-		
-		// All tests start at the Address page
 		super.startingPage = app.zPageAddressbook;
-			
-		
 	}
 	
 	@Test(	description = "Move a contact item to EmailedContacts Address Book",
 			groups = { "sanity" })
-	public void MoveContact() throws HarnessException {
+	
+	public void MoveContact_01() throws HarnessException {
 
 		//-- Data
 		
 		// fetch info of EmailedContacts AddressBook
 		FolderItem emailedcontacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.EmailedContacts);
 		
-		
-		// create a contact item
+		// Create a contact item
 		ContactItem contact = new ContactItem();
 		contact.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
 		contact.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
@@ -71,28 +57,26 @@ public class MoveContact extends TouchCommonTest  {
                 			"</cn>" +
 	                "</CreateContactRequest>");
 
-
 		//-- GUI
 		
 		// Refresh to get the contact into the client
 		app.zPageAddressbook.zRefresh();	
 		SleepUtil.sleepSmall();
 		
-		// select the contact from Contacts AddressBook
+		// Select the contact from Contacts AddressBook
 		String nameInList = contact.lastName + ", " + contact.firstName;
 		String locator = "css=div[id^='ext-contactslistview'] div[class='zcs-contactList-name']:contains('"+nameInList+"')";
 		app.zPageAddressbook.zClick(locator);
 		
-        // choose move button from action menu
+        // Choose move button from action menu
 		MoveContactView mcv = (MoveContactView)app.zPageAddressbook.zToolbarPressPulldown(Button.B_ACTIONS,Button.B_MOVE);
         
-		// choose EmailedContact as target AddressBook which you move the contact to
+		// Choose EmailedContact as target AddressBook which you move the contact to
         mcv.zTreeItem(Action.A_LEFTCLICK, emailedcontacts);
 		
-        
         //-- Verification
         
-        // verify contact moved from Contacts AddressBook
+        // Verify contact moved from Contacts AddressBook
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "in:contacts AND #firstname:"+ contact.firstName);
         ZAssert.assertNull(actual, "Verify the contact is deleted from the addressbook");
         

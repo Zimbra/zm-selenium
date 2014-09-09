@@ -14,36 +14,23 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.touch.tests.addressbook.contacts;
-
-
+package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts;
 
 import org.testng.annotations.Test;
-
-import com.zimbra.common.soap.Element;
-import com.zimbra.qa.selenium.framework.items.ContactItem;
-import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;
-import com.zimbra.qa.selenium.projects.touch.ui.AppTouchClient;
-import com.zimbra.qa.selenium.projects.touch.ui.PageMain;
-import com.zimbra.qa.selenium.projects.touch.ui.PageMain.Locators;
 
-
-public class ShowContact extends TouchCommonTest  {
-	public ShowContact() {
-		logger.info("New "+ ShowContact.class.getCanonicalName());
-
-		// All tests start at the Address page
+public class ViewContact extends TouchCommonTest  {
+	
+	public ViewContact() {
+		logger.info("New "+ ViewContact.class.getCanonicalName());
 		super.startingPage = app.zPageAddressbook;
-
 	}
 
-
-	//First Last 
 	@Test(	description = "View a contact",
 			groups = { "sanity" })
-	public void ShowContact() throws HarnessException {		         		
+	
+	public void ViewContact_01() throws HarnessException {		         		
 
 		//-- Data
 		
@@ -96,16 +83,14 @@ public class ShowContact extends TouchCommonTest  {
 
 		//-- GUI
 
-		// refresh to get the contact into the client
+		// Refresh to get the contact into the client
 		app.zPageAddressbook.zRefresh();
 		SleepUtil.sleepVeryLong();
 		
-		// select the contact
+		// Select the contact
 		String nameInList = lastname + ", " + firstname;
 		String locator = "css=div[id^='ext-contactslistview'] div[class='zcs-contactList-name']:contains('"+nameInList+"')";
 		app.zPageAddressbook.zClick(locator);
-		
-		
 		
 		//-- Verification
 		
@@ -117,25 +102,18 @@ public class ShowContact extends TouchCommonTest  {
 	
 		ZAssert.assertNotNull(contactId, "Verify the contact is returned in the search");
 	
-		Element GetCreateResponse = app.zGetActiveAccount().soapSend(
-			"<GetContactsRequest xmlns='urn:zimbraMail'>"
-		+		"<cn id='"+ contactId +"'/>"
-		+	"</GetContactsRequest>");
-		
-		
 		String expectedContactname = prefix+" "+firstname+" "+middleName+" ("+maidenName+") "+lastname+", "+suffix+" \""+nickname+"\"";
 		Boolean foundContactname = app.zPageAddressbook.sIsElementPresent("css=div[id^='ext-contactsitemview'] span[name='contactname']:contains('"+expectedContactname+"'");
 		Boolean foundCompany = app.zPageAddressbook.sIsElementPresent("css=div[id^='ext-contactsitemview'] span:contains('"+company+"'");
 		Boolean foundJobtitle = app.zPageAddressbook.sIsElementPresent("css=div[id^='ext-contactsitemview'] span:contains('"+jobTitle+"'");
-		// TODO check only some basic attributes for now. maybe implment below to check other fields as well
+		
+		// TODO check only some basic attributes for now. maybe implement below to check other fields as well
 		//ContactItem ci = ContactItem.importFromSOAP(GetCreateResponse);
 		//Boolean otherAttributes = app.zPageAddressbook.zIsContactDisplayed(ci);
 
 		ZAssert.assertTrue(foundContactname, "Verify contact (" + expectedContactname + ") displayed");
 		ZAssert.assertTrue(foundCompany, "Verify contact (" + company + ") displayed ");
 		ZAssert.assertTrue(foundJobtitle, "Verify contact (" + jobTitle + ") displayed ");
-
 	}
 
 }
-
