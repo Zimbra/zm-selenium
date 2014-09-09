@@ -14,19 +14,19 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.touch.ui.addressbook;
+package com.zimbra.qa.selenium.projects.touch.ui.contacts;
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import java.util.*;
 
 
-public class DisplayContactGroup extends AbsDisplay {
+public class DisplayDList extends AbsDisplay {
 	public static String ALPHABET_PREFIX = "css=table[id$='alphabet'] td[_idx=";
 	public static String ALPHABET_POSTFIX = "]";
 
 	/**
-	 * Defines Selenium locators for various objects in {@link DisplayContactGroup}
+	 * Defines Selenium locators for various objects in {@link DisplayDList}
 	 */
 	public static class Locators {
 		public static final String zLocator = "xpath=//div[@class='ZmContactInfoView']";
@@ -37,9 +37,9 @@ public class DisplayContactGroup extends AbsDisplay {
 	 * The various displayed fields 
 	 */
 	public static enum Field {
-     FileAs,
-     Company,
-     Email    
+     DisplayName,
+     Message,
+     Member
 	}
 	
 
@@ -49,10 +49,10 @@ public class DisplayContactGroup extends AbsDisplay {
 	 * 
 	 * @param application
 	 */
-	protected DisplayContactGroup(AbsApplication application) {
+	protected DisplayDList(AbsApplication application) {
 		super(application);
 		
-		logger.info("new " + DisplayContactGroup.class.getCanonicalName());
+		logger.info("new " + DisplayDList.class.getCanonicalName());
 	   
 	}
 	
@@ -83,15 +83,15 @@ public class DisplayContactGroup extends AbsDisplay {
 		ArrayList<String> locatorArray = new ArrayList<String>();
 	
 
-		if ( field == Field.FileAs ) {			
+		if ( field == Field.DisplayName ) {			
 		  //locator = "xpath=//table[@class='contactHeaderTable NoneBg']/div[@class='contactHeader']";
-		  locatorArray.add("css=table[class*='contactHeaderTable'] div[class*='contactHeader']");
+		  locatorArray.add("css=table[class^='contactHeaderTable'][class$='ZPropertySheet'] div[class*='contactHeader']");
 		}
-		if ( field == Field.Company ) {			
-			  locatorArray.add("css=table[class*='contactHeaderTable'] div[class*='companyName']");
-			}		
-		else if ( field == Field.Email ) {					   			
-			getAllLocators(locatorArray,Field.Email);
+		else if ( field == Field.Message ) {			
+			  locatorArray.add("css=table[class^='contactHeaderTable'] td[id$='_subscriptionMsg']");
+			}
+		else if ( field == Field.Member ) {					   			
+			getAllLocators(locatorArray);
 		} 
 		else {			
 		  throw new HarnessException("no logic defined for field "+ field);			
@@ -106,6 +106,7 @@ public class DisplayContactGroup extends AbsDisplay {
 		   if ( locator == null )
 			  throw new HarnessException("locator was null for field = "+ field);
 		
+		   //SleepUtil.sleep(123456789);
 		   // Make sure the element is present
 		   if ( !sIsElementPresent(locator) )
 			 throw new HarnessException("Unable to find the field = "+ field +" using locator = "+ locator);
@@ -126,22 +127,18 @@ public class DisplayContactGroup extends AbsDisplay {
 	}
 	
 
-    private void getAllLocators(ArrayList<String> array, Field field) throws HarnessException {
-  	   //String css= "css=div[id$='_content'][class='ZmContactInfoView'] table:nth-of-type(2) tbody tr";
-  	   String css= "css=div[id$='_content'][class='ZmContactInfoView']>div.DwtComposite>table";
+    private void getAllLocators(ArrayList<String> array) throws HarnessException {
+  	   String css= "css=table[class='contactGroupTable'] tr";
  
   	   int count= this.sGetCssCount(css);
 
-       if (field == Field.Email) {
     	   for (int i=2; i<=count; i++) {
-    		   //String tdLocator=  css + ":nth-of-type(" + i + ")" + " td[id$='_" + postfix + "']";  
-    		   String tdLocator=  css + ":nth-of-type(" + i + ")" + " div[style='float: left; padding-right: 5px;']";
+    		   String tdLocator=  css + ":nth-of-type(" + i + ")" + " span[id^='OBJ_PREFIX_DWT'][id$='_com_zimbra_emai']";
     		   if (sIsElementPresent(tdLocator)) {
     			   logger.info(tdLocator + " has text " + sGetText(tdLocator).trim());
     			   array.add(tdLocator);	    	 
     		   }
     	   }
-       }
     }
 
 }

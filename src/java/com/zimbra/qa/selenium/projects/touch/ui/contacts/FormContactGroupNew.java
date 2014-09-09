@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.touch.ui.addressbook;
+package com.zimbra.qa.selenium.projects.touch.ui.contacts;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;

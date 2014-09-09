@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.touch.ui.addressbook;
+package com.zimbra.qa.selenium.projects.touch.ui.contacts;
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -22,19 +22,10 @@ import java.util.Map.Entry;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.touch.ui.AppTouchClient;
-import com.zimbra.qa.selenium.projects.touch.ui.mail.FormMailNew.Locators;
 
-
-
-/**
- * @author zimbra
- *
- */
 public class FormContactNew extends AbsForm {
 
-	
 	public static class Locators {
 		
 		public static final String zSaveButton = "css=div[id^='ext-contactpanel'] span[class='x-button-label']:contains('Save')";
@@ -59,7 +50,6 @@ public class FormContactNew extends AbsForm {
 		public static String zRemoveImageLink = "id=EDITCONTACTFORM_REMOVE_IMAGE";
 		public static String zContactsFolder_NewUI = "id=EDITCONTACTFORM_FOLDER_left_icon";
 		public static String zContactDetailsIconBtn = "id=EDITCONTACTFORM_DETAILS";
-        // TODO need fixed id for email
 		public static String zEmail1EditField = "css=input[id^=EDITCONTACTFORM_EMAIL_]";
 		public static String zWorkEmail1EditField = "css=div#EDITCONTACTFORM_EMAIL_1 input[id^=EDITCONTACTFORM_EMAIL_DWT]";
 		public static String zPhone1EditField = "css=div#EDITCONTACTFORM_PHONE_0 input";
@@ -91,7 +81,6 @@ public class FormContactNew extends AbsForm {
 		public static final String zSuffixCheckbox = "td.ZWidgetTitle:contains('Suffix')";
 		public static final String zNicknameCheckbox = "td.ZWidgetTitle:contains('Nickname')";
 		public static final String zDepartmentCheckbox = "td.ZWidgetTitle:contains('Department')";
-
 		 
 	}
 
@@ -249,7 +238,7 @@ public class FormContactNew extends AbsForm {
 		locators.add("css=div[class='contact-form-add-field-button-text']:contains('Add Physical Address')");
 		locators.add("css=div[class='contact-form-add-field-button-text']:contains('Add Website URL')");
 	    
-		Iterator iter = locators.iterator();
+		Iterator<String> iter = locators.iterator();
 		while( iter.hasNext() ){
 			
 			String lctr = (String) iter.next();
@@ -724,13 +713,6 @@ public class FormContactNew extends AbsForm {
 
 		// if the app is busy, wait for it to become active again
 		this.zWaitForBusyOverlay();
-		
-		if ( page != null ) {
-			
-			// Make sure the page becomes active
-			page.zWaitForActive();
-			
-		}
 		
 		// Return the page, if specified
 		return (page);

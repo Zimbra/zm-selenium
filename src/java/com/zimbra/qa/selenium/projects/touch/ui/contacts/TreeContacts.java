@@ -1,7 +1,7 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2014 Zimbra, Inc.
+ * Copyright (C) 2013, 2014 Zimbra, Inc.
  * 
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
@@ -17,7 +17,7 @@
 /**
  *
  */
-package com.zimbra.qa.selenium.projects.touch.ui.addressbook;
+package com.zimbra.qa.selenium.projects.touch.ui.contacts;
 
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -32,7 +32,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.*;
  * @author zimbra
  *
  */
-public class TagContactView extends AbsTree {
+public class TreeContacts extends AbsTree {
     public static final String NEW_FOLDER="css=#ztih__main_Contacts__ADDRBOOK_table tbody tr td:nth-child(4)";
     public static final String COLLAPSE_TREE="css#ztih__main_Contacts__ADDRBOOK_nodeCell";
 	public static class Locators {
@@ -42,9 +42,9 @@ public class TagContactView extends AbsTree {
 
 
 
-	public TagContactView(AbsApplication application) {
+	public TreeContacts(AbsApplication application) {
 		super(application);
-		logger.info("new " + TagContactView.class.getCanonicalName());
+		logger.info("new " + TreeContacts.class.getCanonicalName());
 	}
 
 
@@ -58,22 +58,19 @@ public class TagContactView extends AbsTree {
 		if ( (action == null) || (addressbook == null) ) {
 			throw new HarnessException("Must define an action and addressbook");
 		}
-		FolderItem folder = null;
-		TagItem tag = null;
-		if ( !(addressbook instanceof FolderItem) ) {
-			tag = (TagItem) addressbook;
-			//throw new HarnessException("Must use FolderItem as argument, but was "+ addressbook.getClass());
-		}else{
 
-			folder = (FolderItem)addressbook;
+		if ( !(addressbook instanceof FolderItem) ) {
+			throw new HarnessException("Must use FolderItem as argument, but was "+ addressbook.getClass());
 		}
+
+		FolderItem folder = (FolderItem)addressbook;
+
 		AbsPage page = null;
 		String locator = null;
 
 		if ( action == Action.A_LEFTCLICK ) {
 
-			// choose target addressbook to move contact to (done for TouchPad)
-			locator = "css=div[id^='ext-tagview'] div[id^='ext-simplelistitem'] div[id^='ext-element']:contains('"+ tag.getName()+"')";
+			locator = "id=zti__main_Contacts__"+ folder.getId() +"_textCell";
 			page = null;
 		}
 		else if ( action == Action.A_RIGHTCLICK ) {
@@ -532,17 +529,9 @@ public class TagContactView extends AbsTree {
 		return (this.getClass().getName());
 	}
 
-	// (done for TouchPad)
 	@Override
 	public boolean zIsActive() throws HarnessException {
-				boolean present = sIsElementPresent("css=div[id^='ext-tagview']");
-				if ( !present ) {
-					logger.debug("Settings button present = "+ present);
-					return (false);
-				}
-
-				logger.debug("isActive() = "+ true);
-				return (true);
+		return false;
 	}
 
 

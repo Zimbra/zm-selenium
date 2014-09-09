@@ -17,7 +17,7 @@
 /**
  * 
  */
-package com.zimbra.qa.selenium.projects.touch.ui.addressbook;
+package com.zimbra.qa.selenium.projects.touch.ui.contacts;
 
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;

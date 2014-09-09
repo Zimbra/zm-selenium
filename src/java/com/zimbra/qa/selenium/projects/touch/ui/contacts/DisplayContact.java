@@ -14,19 +14,20 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.touch.ui.addressbook;
+package com.zimbra.qa.selenium.projects.touch.ui.contacts;
+
+import java.util.ArrayList;
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import java.util.*;
 
 
-public class DisplayDList extends AbsDisplay {
+public class DisplayContact extends  AbsDisplay {
 	public static String ALPHABET_PREFIX = "css=table[id$='alphabet'] td[_idx=";
 	public static String ALPHABET_POSTFIX = "]";
 
 	/**
-	 * Defines Selenium locators for various objects in {@link DisplayDList}
+	 * Defines Selenium locators for various objects in {@link DisplayContact}
 	 */
 	public static class Locators {
 		public static final String zLocator = "xpath=//div[@class='ZmContactInfoView']";
@@ -37,9 +38,14 @@ public class DisplayDList extends AbsDisplay {
 	 * The various displayed fields 
 	 */
 	public static enum Field {
-     DisplayName,
-     Message,
-     Member
+     FirstName,
+     LastName,
+     FileAs,
+     Location,
+	 JobTitle,
+     Company,
+     Email
+     //others
 	}
 	
 
@@ -49,11 +55,15 @@ public class DisplayDList extends AbsDisplay {
 	 * 
 	 * @param application
 	 */
-	protected DisplayDList(AbsApplication application) {
+	protected DisplayContact(AbsApplication application) {
 		super(application);
 		
-		logger.info("new " + DisplayDList.class.getCanonicalName());
-	   
+		logger.info("new " + DisplayContact.class.getCanonicalName());
+		
+		// Let the reading pane load
+		//SleepUtil.sleepLong();
+
+
 	}
 	
 	@Override
@@ -66,11 +76,11 @@ public class DisplayDList extends AbsDisplay {
 		logger.info(myPageName() + " zDisplayPressButton("+ button +")");
 		
 		tracer.trace("Click "+ button);
+
+		throw new HarnessException("no logic defined for button: "+ button);
 		
-       	throw new HarnessException("implement me");
 	}
 	
-
 
 	/**
 	 * Get the string value of the specified field
@@ -78,22 +88,25 @@ public class DisplayDList extends AbsDisplay {
 	 * @throws HarnessException
 	 */
 	public String zGetContactProperty(Field field) throws HarnessException {
-		logger.info("DisplayContactGroup.zGetContactProperty(" + field + ")");
+		logger.info("DisplayContact.zGetContactProperty(" + field + ")");
 
 		ArrayList<String> locatorArray = new ArrayList<String>();
-	
+		
 
-		if ( field == Field.DisplayName ) {			
-		  //locator = "xpath=//table[@class='contactHeaderTable NoneBg']/div[@class='contactHeader']";
-		  locatorArray.add("css=table[class^='contactHeaderTable'][class$='ZPropertySheet'] div[class*='contactHeader']");
+		if ( field == Field.FileAs ) {			
+		    locatorArray.add("css=table[class*='contactHeaderTable'] div[class*='contactHeader']");
 		}
-		else if ( field == Field.Message ) {			
-			  locatorArray.add("css=table[class^='contactHeaderTable'] td[id$='_subscriptionMsg']");
-			}
-		else if ( field == Field.Member ) {					   			
-			getAllLocators(locatorArray);
+		else if ( field == Field.JobTitle ) {					   			
+		    locatorArray.add("css=table[class*='contactHeaderTable'] div[class='companyName']:nth-of-type(1)");
 		} 
-		else {			
+		else if ( field == Field.Company ) {					   						
+		    locatorArray.add("css=table[class*='contactHeaderTable'] div[class='companyName']:nth-of-type(2)");		}
+		else if ( field == Field.Email ) {					   			
+			getAllLocators(locatorArray,"email");
+		}
+		//TODO
+		//add more fields
+		else {						
 		  throw new HarnessException("no logic defined for field "+ field);			
 		}
 		
@@ -106,16 +119,15 @@ public class DisplayDList extends AbsDisplay {
 		   if ( locator == null )
 			  throw new HarnessException("locator was null for field = "+ field);
 		
-		   //SleepUtil.sleep(123456789);
 		   // Make sure the element is present
-		   if ( !sIsElementPresent(locator) )
+		   if ( !this.sIsElementPresent(locator) )
 			 throw new HarnessException("Unable to find the field = "+ field +" using locator = "+ locator);
 		
 		   // Get the element value
-		    value += sGetText(locator).trim();		
+		    value += this.sGetText(locator).trim();		
 		}
 		
-		logger.info("DisplayContactGroup.zGetContactProperty(" + field + ") = " + value);
+		logger.info("DisplayContact.zGetContactProperty(" + field + ") = " + value);
 		return(value);
 
 		
@@ -125,20 +137,17 @@ public class DisplayDList extends AbsDisplay {
 	public boolean zIsActive() throws HarnessException {
 		return sIsElementPresent("css=div#zv__CNS-main");
 	}
-	
 
-    private void getAllLocators(ArrayList<String> array) throws HarnessException {
-  	   String css= "css=table[class='contactGroupTable'] tr";
- 
-  	   int count= this.sGetCssCount(css);
 
-    	   for (int i=2; i<=count; i++) {
-    		   String tdLocator=  css + ":nth-of-type(" + i + ")" + " span[id^='OBJ_PREFIX_DWT'][id$='_com_zimbra_emai']";
-    		   if (sIsElementPresent(tdLocator)) {
-    			   logger.info(tdLocator + " has text " + sGetText(tdLocator).trim());
-    			   array.add(tdLocator);	    	 
-    		   }
-    	   }
-    }
+	private void getAllLocators(ArrayList<String> array, String postfix) throws HarnessException {
+	  	   String css= "css=div[id$='_content'][class='ZmContactInfoView'] table:nth-of-type(2) tbody tr";
+	       int count= this.sGetCssCount(css);
+
+	       for (int i=1; i<=count; i++) {
+		     array.add( css + ":nth-of-type(" + i + ")" + " td[id$='_" + postfix + "']");
+	       }
+	    }
+
+
 
 }
