@@ -31,6 +31,7 @@ import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.ui.AppTouchClient;
+import com.thoughtworks.selenium.webdriven.*;
 
 /**
  * The <code>AjaxCommonTest</code> class is the base test case class
