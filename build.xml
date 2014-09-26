@@ -230,7 +230,7 @@
 	<target name="Run-ExecuteHarnessMain" depends="jar" description="Run all tests per specified arguments">
 		<property name="jarfile" value="${dist.lib.dir}/zimbraselenium.jar"/>
 		<property name="pattern" value="ajax.tests"/>
-		<property name="groups" value="always,sanity22"/>
+		<property name="groups" value="always,sanity"/>
 		<property name="exclude_groups" value="skip"/>
 		<echo>Executing ...</echo>
 		<java classname="com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain"          classpathref="class.path"          fork="true" failonerror="true">
