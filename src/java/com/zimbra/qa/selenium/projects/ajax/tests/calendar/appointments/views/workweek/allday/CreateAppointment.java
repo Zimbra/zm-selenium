@@ -31,7 +31,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Bugs(ids = "69132")
+	@Bugs(ids = "69132,95899,95900")
 	@Test(	description = "Create simple all day appointment",
 			groups = { "smoke" }
 	)

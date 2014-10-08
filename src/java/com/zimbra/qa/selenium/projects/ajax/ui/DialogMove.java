@@ -2,11 +2,11 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -178,7 +178,7 @@ public class DialogMove extends AbsDialog {
 		} else if (MyTab instanceof PageCalendar) {
 
 			locator = String.format(
-					"css=div[id='%s'] td[id='zti__ZmChooseFolderDialog_Calendar___%s_textCell']",
+					"css=div[id='%s'] td[id='zti__ZmChooseFolderDialog_Calendar_CALENDAR___%s_textCell']",
 					Locators.zDialogId,
 					folder.getId());
 
@@ -210,7 +210,7 @@ public class DialogMove extends AbsDialog {
 
 		// For some reason, the text doesn't get entered on the first try
 
-		this.zClickAt(locator,"");
+		this.sClickAt(locator,"0,0");
 
 		this.zWaitForBusyOverlay(); // This method call seems to be missing from
 		// the briefcase function
