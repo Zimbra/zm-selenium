@@ -398,7 +398,7 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 						
 		// Select the items
-		app.zPageTasks.zListItem(Action.A_MAIL_UNCHECKBOX, subject3);
+	//	app.zPageTasks.zListItem(Action.A_MAIL_UNCHECKBOX, subject3);
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject1);
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject2);
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject3);
