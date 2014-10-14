@@ -17,7 +17,10 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.recurring.series;
 
 import java.util.*;
+
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
@@ -31,8 +34,10 @@ public class Delete extends CalendarWorkWeekTest {
 		super.startingAccountPreferences = null;
 	}
 	
+	@Bugs(ids = "95961")
 	@Test(description = "Rt-click to appointment from the calendar app and delete the meeting invite (Series)", 
 			groups = { "smoke" })
+	
 	public void DeleteMeeting_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
