@@ -17,7 +17,10 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.recurring.series;
 
 import java.util.Calendar;
+
 import org.testng.annotations.*;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -33,6 +36,7 @@ public class Move extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
+	@Bugs(ids = "95961")
 	@Test(description = "Move entire series to different calendar folder",
 			groups = { "smoke" })
 			
