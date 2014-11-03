@@ -27,6 +27,7 @@ public class ZTimeZone {
 	public static final TimeZone TimeZoneMST = TimeZone.getTimeZone("America/Denver");
 	public static final TimeZone TimeZoneCST = TimeZone.getTimeZone("America/Chicago");
 	public static final TimeZone TimeZoneEST = TimeZone.getTimeZone("America/New_York");
+	public static final TimeZone TimeZoneIndia = TimeZone.getTimeZone("Asia/Kolkata");
 
 	/**
 	 * Convert a timezone string identifier to a TimeZone object
