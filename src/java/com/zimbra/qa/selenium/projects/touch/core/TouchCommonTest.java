@@ -20,12 +20,14 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.*;
+
 import org.apache.log4j.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.testng.*;
 import org.testng.annotations.*;
 import org.xml.sax.SAXException;
+
 import com.thoughtworks.selenium.*;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -470,5 +472,17 @@ public class TouchCommonTest {
 				+		"<id>"+ string +"</id>"
 				+		settings.toString()
 				+	"</ModifyAccountRequest>");
+	}
+	
+	@SuppressWarnings("deprecation")
+	public boolean zVerifyToastMessage(String toastMessage) throws HarnessException {
+		SleepUtil.sleepMedium();
+		Boolean elementPresent = false;
+		if (ClientSessionFactory.session().selenium().isElementPresent("css=div[class='zcs-toast-message-text']:contains('" + toastMessage + "')") == true) {
+			elementPresent = true;
+		} else {
+			elementPresent = false;
+		}
+		return elementPresent;
 	}
 }

@@ -14,8 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts;
-import org.testng.annotations.Test;import com.zimbra.qa.selenium.framework.ui.Button;import com.zimbra.qa.selenium.framework.util.*;
+package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts;import org.testng.annotations.Test;import com.zimbra.qa.selenium.framework.ui.Button;import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.ui.contacts.FormContactNew;
 import com.zimbra.qa.selenium.projects.touch.ui.contacts.FormContactNew.Field;
 import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;

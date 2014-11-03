@@ -236,7 +236,7 @@ public class PageMail extends AbsTab {
 		tracer.trace("Press the "+ button +" button");
 		
 		SleepUtil.sleepMedium();
-
+		
 		if ( button == null )
 			throw new HarnessException("Button cannot be null!");
 

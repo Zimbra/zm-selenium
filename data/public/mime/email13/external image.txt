@@ -1,17 +1,17 @@
-Date: Thu, 19 Sep 2013 05:00:11 -0700 (PDT)
+Date: Mon, 3 Nov 2014 01:45:50 -0800 (PST)
 From: uwm01@zqa-062.eng.vmware.com
 To: uwm02 <uwm02@zqa-062.eng.vmware.com>
-In-Reply-To: <53960523.127.1379592010687.JavaMail.zimbra@zqa-062.eng.vmware.com>
+Message-ID: <496126020.226.1415007950478.JavaMail.zimbra@zqa-062.eng.vmware.com>
 Subject: external image testing
 MIME-Version: 1.0
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_130_1091948629.1379592011968"
-X-Originating-IP: [10.112.205.36]
-X-Mailer: Zimbra 8.5.0_BETA1_2153 (ZimbraWebClient - FF12 (Win)/8.5.0_BETA1_2153)
+	boundary="----=_Part_225_226992912.1415007950477"
+X-Originating-IP: [10.137.244.62]
+X-Mailer: Zimbra 8.6.0_BETA2_1087 (ZimbraWebClient - FF32 (Win)/8.6.0_BETA2_1087)
 Thread-Topic: external image testing
-Thread-Index: m7GJfZpJGiUkELLN2YFSUv8YbIE+fg==
+Thread-Index: V89PciolP6Z0tO7LPbhuvRa5lRJMrA==
 
-------=_Part_130_1091948629.1379592011968
+------=_Part_225_226992912.1415007950477
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
@@ -21,10 +21,13 @@ body of the image starts..
 
 body of the image ends.. 
 
-
-------=_Part_130_1091948629.1379592011968
+------=_Part_225_226992912.1415007950477
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
-<html><body><div>body of the image starts..</div><div><br></div><div><span class="Object" id="OBJ_PREFIX_DWT213_com_zimbra_url"><a href="http://www.zimbra.com" target="_blank" data-mce-href="http://www.zimbra.com"><img src="http://www.zimbra.com/products/zimbra_desktop/nav-zimbra.png" data-mce-src="http://www.zimbra.com/products/zimbra_desktop/nav-zimbra.png" border="0"></a></span><br data-mce-bogus="1"></div><div><br></div><div><div>body of the image ends..</div><br></div></body></html>
-------=_Part_130_1091948629.1379592011968--
+<html><body><div style="font-family: arial, helvetica, sans-serif; font-size: 12pt; color: #000000"><div><span style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; display: inline !important; float: none; background-color: rgb(255, 255, 255);">body of the image starts..<br><br></span><br><div style="height: 330px;" class="equal-height sized-images">
+										<div class="">
+											<img src="http://fileswwwzimbracom.s3.amazonaws.com/_res/images/try/Try-Page-Collab-8-5.png" alt="screen-2" height="325" width="445">
+										</div>
+									</div><br class="Apple-interchange-newline"><span style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; display: inline !important; float: none; background-color: rgb(255, 255, 255);">body of the image ends..</span></div></div></body></html>
+------=_Part_225_226992912.1415007950477--
