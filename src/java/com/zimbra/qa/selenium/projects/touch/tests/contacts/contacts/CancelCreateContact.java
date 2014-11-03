@@ -14,9 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts;
-import org.testng.annotations.Test;import com.zimbra.qa.selenium.framework.ui.Button;import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.ui.contacts.DialogWarning;
+package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts;import org.testng.annotations.Test;import com.zimbra.qa.selenium.framework.ui.Button;import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.ui.contacts.FormContactNew;
 import com.zimbra.qa.selenium.projects.touch.ui.contacts.FormContactNew.Field;
 import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;
@@ -41,8 +39,8 @@ public class CancelCreateContact extends TouchCommonTest  {
 		formContactNew.zFillField(Field.LastName, contactLast);
 		formContactNew.zFillField(Field.Company, contactCompany);
 		// Click cancel button and confirm to discard the form data
-		DialogWarning dw = (DialogWarning) formContactNew.zToolbarPressButton(Button.B_CANCEL);
-		dw.zClickButton(Button.B_NO);
+		formContactNew.zToolbarPressButton(Button.B_CANCEL);
+		//dw.zClickButton(Button.B_NO);
 		//-- Data Verification		// Search the data stored in Zimbra server
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='contact'>"

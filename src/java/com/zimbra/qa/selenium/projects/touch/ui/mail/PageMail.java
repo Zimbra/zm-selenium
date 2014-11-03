@@ -29,10 +29,16 @@ import com.zimbra.qa.selenium.projects.touch.ui.*;
  */
 public class PageMail extends AbsTab {
 
-
 	public static class Locators {
-		
+			
 		public static final String FolderTreeIcon		= "css=span[class='x-button-icon x-shown organizer']";
+		
+		public static final String InboxFolder			= "css=div[class^='zcs-menu-label']:contains('Inbox')";
+		public static final String SentFolder			= "css=div[class^='zcs-menu-label']:contains('Sent')";
+		public static final String DraftsFolder			= "css=div[class^='zcs-menu-label']:contains('Drafts')";
+		public static final String JunkFolder			= "css=div[class^='zcs-menu-label']:contains('Junk')";
+		public static final String TrashFolder			= "css=div[class^='zcs-menu-label']:contains('Trash')";
+		
 		public static final String ReplyForwardDropdown	= "css=span[class='x-button-icon x-shown reply']";
 		
 		public static final String ReplyMenu			= "css=div[id^='ext-listitem-'] div[class='x-innerhtml']:contains('Reply')";
@@ -124,6 +130,17 @@ public class PageMail extends AbsTab {
 		return elementPresent;
 	}
 	
+	public boolean zVerifyMessageExists(String subject) throws HarnessException {
+		SleepUtil.sleepMedium();
+		Boolean elementPresent = false;
+		if (sIsElementPresent("css=div[class='zcs-mail-list-entry'] div[class^='zcs-mail-subject']:contains('" + subject + "')") == true) {
+			elementPresent = true;
+		} else {
+			elementPresent = false;
+		}
+		return elementPresent;
+	}
+	
 	public boolean zVerifyInlineImageInReadingPane() throws HarnessException {
 		SleepUtil.sleepMedium();
 		Boolean elementPresent = false;
@@ -168,25 +185,7 @@ public class PageMail extends AbsTab {
 		String locator;
 		boolean loaded, visible;
 
-
-		/**
-		 * http://bugzilla.zimbra.com/show_bug.cgi?id=70068 ... new menu is same for all apps
-		 * Instead of the new menu, key off the conv/msg view pulldown
-		 * <div id="zb__CLV-main__VIEW_MENU" .../>
-		 * <div id="zb__TV-main__VIEW_MENU" .../>
-		 * 
-		 * Pre-Feb 2012 ...
-		 * 8.0
-		 * MLV:
-		 * <div id="zb__TV-main__NEW_MENU" style="position: absolute; overflow: visible; z-index: 300; left: 5px; top: 78px; width: 159px; height: 24px;" class="ZToolbarButton ZWidget   ZHasDropDown       ZHasLeftIcon ZHasText" parentid="z_shell">
-		 * CLV:
-		 * <div id="zb__CLV-main__NEW_MENU" style="position: absolute; overflow: visible; z-index: 300; left: 5px; top: 78px; width: 159px; height: 24px;" class="ZToolbarButton ZWidget   ZHasDropDown       ZHasLeftIcon ZHasText" parentid="z_shell">
-		 * 
-		 */
-
-		// If the "NEW" button is visible, then the app is visible
-
-		locator = "css=span[class='x-button-icon x-shown settings']";
+		locator = Locators.FolderTreeIcon;
 
 		loaded = this.sIsElementPresent(locator);
 		visible = this.zIsVisiblePerPosition(locator, 4, 74);
@@ -223,7 +222,7 @@ public class PageMail extends AbsTab {
 
 		tracer.trace("Navigate to "+ this.myPageName());
 
-		this.zClick(PageMain.Locators.zMailApp);
+		//this.sClickAt(PageMain.Locators.zMailApp, "0,0");
 
 		this.zWaitForBusyOverlay();
 
@@ -237,7 +236,7 @@ public class PageMail extends AbsTab {
 		tracer.trace("Press the "+ button +" button");
 		
 		SleepUtil.sleepMedium();
-
+		
 		if ( button == null )
 			throw new HarnessException("Button cannot be null!");
 
@@ -794,22 +793,18 @@ public class PageMail extends AbsTab {
 		AbsPage page = null;
 		String itemlocator = null;
 
-		itemlocator = "css=div[class^='x-list-item'] div[class^='zcs-mail-subject-unread']";
+		itemlocator = "css=div[class='zcs-mail-list-entry'] div[class^='zcs-mail-subject']:contains('" + subject + "')";
 			
 		if ( action == Action.A_LEFTCLICK ) {
 
 			this.sClickAt(itemlocator,"");
 			
-			SleepUtil.sleepLong();
+			SleepUtil.sleepMedium();
 
-			this.zWaitForBusyOverlay();
+			page = new DisplayMail(this.MyApplication); 
 
 		} else {
 			throw new HarnessException("implement me!  action = "+ action);
-		}
-
-		if ( page != null ) {
-			page.zWaitForActive();
 		}
 
 		// default return command
@@ -1037,10 +1032,6 @@ public class PageMail extends AbsTab {
 
 			}
 
-			if ( page != null ) {
-				page.zWaitForActive();
-			}
-			
 			return page;
 		}
 
@@ -1216,12 +1207,6 @@ public class PageMail extends AbsTab {
 				zWaitForBusyOverlay();
 			}
 
-			// If we click on pulldown/option and the page is specified, then
-			// wait for the page to go active
-			if (page != null) {
-				page.zWaitForActive();
-			}
-
 		}
 
 		// Return the specified page, or null if not set
@@ -1321,12 +1306,6 @@ public class PageMail extends AbsTab {
 				zWaitForBusyOverlay();
 			}
 
-			// If we click on pulldown/option and the page is specified, then
-			// wait for the page to go active
-			if (page != null) {
-				page.zWaitForActive();
-			}
-
 		}
 
 
@@ -1336,5 +1315,13 @@ public class PageMail extends AbsTab {
 
 
 
+	}
+	
+	public void zRefresh() throws HarnessException {
+		SleepUtil.sleepSmall();
+		sClickAt(Locators.FolderTreeIcon, "0,0");
+		SleepUtil.sleepSmall();
+		sClickAt(Locators.InboxFolder, "0,0");
+		SleepUtil.sleepMedium();
 	}
 }
