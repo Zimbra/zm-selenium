@@ -252,6 +252,7 @@ public class ZDate {
 	public String toMM_DD_YYYY() throws HarnessException {
 		return (format("MM/dd/yyyy"));
 	}
+	
 
 	/**
 	 * hh:mm aa (i.e. 04:30 PM)
@@ -262,13 +263,16 @@ public class ZDate {
 		return (format("hh:mm aa"));
 	}
 
+	public String toDD() throws HarnessException {
+		return (format("dd"));
+	}
 
 	public String toYYYYMMDD() throws HarnessException {
 		return (format("yyyyMMdd"));
 	}
 
 	public String toYYYYMMDDHHMMSSZ() throws HarnessException {
-		return (format("yyyyMMddHHmmss'Z'"));
+		return (format("yyyyMMdd'T'HHmmss'Z'"));
 	}
 	
 	public String toyyyyMMddTHHmmss() throws HarnessException {
@@ -281,6 +285,10 @@ public class ZDate {
 	
 	public String toMMM_dC_yyyy() throws HarnessException {
 		return (format("MMM d, yyyy"));
+	}
+	
+	public String toMMDDYYYYhmmss() throws HarnessException {
+		return (format("MM/dd/yyyy, h:mm:ss"));
 	}
 	
 	public String toMMMMM_dC() throws HarnessException {
@@ -327,7 +335,7 @@ public class ZDate {
 			throw new HarnessException("Unable to format date: "+ calendar, e);
 		}
 	}
-
+	
 	/**
 	 * Return a new ZDate object with the adjusted offset (+/-)
 	 * @param amount
