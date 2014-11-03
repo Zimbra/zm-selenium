@@ -46,7 +46,8 @@ public class PageManageCOS extends AbsTab {
 		public static final String CONFIGURE="Configure";
 		public static final String CLASS_OS_SERVICE="Class of Service";
 		public static final String DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
-		public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgProperties']";
+		//public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgProperties']";
+		public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] td[class='ZWidgetTitle']:contains('Edit')";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgProperties']";
 	}
@@ -295,7 +296,7 @@ public class PageManageCOS extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.sClickAt(optionLocator,"");
+				this.sClick(optionLocator);
 
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();
