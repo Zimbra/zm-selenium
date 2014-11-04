@@ -472,4 +472,17 @@ public class TouchCommonTest {
 				+		settings.toString()
 				+	"</ModifyAccountRequest>");
 	}
+
+	@SuppressWarnings("deprecation")
+	public boolean zVerifyToastMessage(String toastMessage) throws HarnessException {
+		SleepUtil.sleepMedium();
+		Boolean elementPresent = false;
+		if (ClientSessionFactory.session().selenium().isElementPresent("css=div[class='zcs-toast-message-text']:contains('" + toastMessage + "')") == true) {
+			elementPresent = true;
+		} else {
+			elementPresent = false;
+		}
+		return elementPresent;
+	}
+
 }
