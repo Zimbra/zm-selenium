@@ -39,7 +39,6 @@ public class ForwardHtmlMail extends TouchCommonTest {
 			
 	public void ForwardHtmlMail_01() throws HarnessException {
 		
-		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "text <strong>bold"+ ZimbraSeleniumProperties.getUniqueString() +"</strong> text";
 		String modifiedContent = "modified body" + ZimbraSeleniumProperties.getUniqueString();
@@ -69,7 +68,7 @@ public class ForwardHtmlMail extends TouchCommonTest {
 		
 		// Select the mail from inbox
 		app.zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);
-		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, "Inbox");
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		// Forward the mail

@@ -38,8 +38,6 @@ public class ReplyAllMail extends TouchCommonTest {
 			groups = { "sanity" })
 			
 	public void ReplyAllMail_01() throws HarnessException {
-
-		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "text <strong>bold"+ ZimbraSeleniumProperties.getUniqueString() +"</strong> text";
@@ -70,7 +68,7 @@ public class ReplyAllMail extends TouchCommonTest {
 				"</SendMsgRequest>");
 		
 		app.zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);
-		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, "Inbox");
 		
 		// Select the mail
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -105,7 +103,6 @@ public class ReplyAllMail extends TouchCommonTest {
 		ZAssert.assertEquals(tosubject, "Re: " + subject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(tobody, body, "Verify the body content");
 		ZAssert.assertStringContains(tobody.trim(), modifiedContent.trim(), "Verify the modified content");
-		ZAssert.assertStringContains(tobody, "----- Original Message -----", "Verify the body content");
 		
 		// Cc user1 verification
 		ZimbraAccount.AccountB().soapSend(
@@ -132,7 +129,6 @@ public class ReplyAllMail extends TouchCommonTest {
 		ZAssert.assertEquals(tosubject, "Re: " + subject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(tobody, body, "Verify the body content");
 		ZAssert.assertStringContains(tobody.trim(), modifiedContent.trim(), "Verify the modified content");
-		ZAssert.assertStringContains(tobody, "----- Original Message -----", "Verify the body content");
 		
 		// Cc user2 verification
 		ZimbraAccount.AccountC().soapSend(
@@ -159,7 +155,6 @@ public class ReplyAllMail extends TouchCommonTest {
 		ZAssert.assertEquals(tosubject, "Re: " + subject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(tobody, body, "Verify the body content");
 		ZAssert.assertStringContains(tobody.trim(), modifiedContent.trim(), "Verify the modified content");
-		ZAssert.assertStringContains(tobody, "----- Original Message -----", "Verify the body content");
 
 	}
 	

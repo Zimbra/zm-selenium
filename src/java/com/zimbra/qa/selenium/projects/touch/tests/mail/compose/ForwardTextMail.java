@@ -39,7 +39,6 @@ public class ForwardTextMail extends TouchCommonTest {
 			
 	public void ForwardTextMail_01() throws HarnessException {
 		
-		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
 		String modifiedContent = "modified body" + ZimbraSeleniumProperties.getUniqueString();
@@ -58,7 +57,7 @@ public class ForwardTextMail extends TouchCommonTest {
 		
 		// Select the mail from inbox
 		app.zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);
-		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, "Inbox");
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		// Forward the mail
@@ -93,7 +92,6 @@ public class ForwardTextMail extends TouchCommonTest {
 			
 	public void ForwardTextMail_02() throws HarnessException {
 		
-		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
 		String modifiedContent = "modified body" + ZimbraSeleniumProperties.getUniqueString();
@@ -112,7 +110,7 @@ public class ForwardTextMail extends TouchCommonTest {
 		
 		// Select the mail from inbox
 		app.zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);
-		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, "Inbox");
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		// Forward the mail
