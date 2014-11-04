@@ -18,21 +18,20 @@ package com.zimbra.qa.selenium.projects.touch.ui.contacts;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
-
 import org.apache.log4j.LogManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
-import com.zimbra.qa.selenium.projects.touch.ui.*;
 import com.zimbra.qa.selenium.projects.touch.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.touch.ui.AppTouchClient;
 import com.zimbra.qa.selenium.projects.touch.ui.PageMain;
 
 public class PageAddressbook extends AbsTab {
+	
+	public boolean activeFlag = false;
 
 	public static class Locators {
 		public static final String PlusIcon		= "css=span[class$='x-button-icon x-shown add']";
@@ -124,19 +123,18 @@ public class PageAddressbook extends AbsTab {
 	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
-
-		// Make sure the main page is active
-		if ( !((AppTouchClient)MyApplication).zPageMain.zIsActive() ) {
-			((AppTouchClient)MyApplication).zPageMain.zNavigateTo();
-		}
 		
-		String locator = "css=span[class='x-button-icon x-shown add']";
-		boolean active=sIsElementPresent(locator);
+		// Make sure the main page is active
+		if (!((AppTouchClient) MyApplication).zPageMain.zIsActive()) {
+			((AppTouchClient) MyApplication).zPageMain.zNavigateTo();
+			zNavigateTo();
+		}
 
-
-
-        active &= this.sIsElementPresent(locator);		   
-		return (active);
+		if (activeFlag == true) {
+			return (true);
+		} else {
+			return false;
+		}
 
 	}
 
@@ -155,26 +153,34 @@ public class PageAddressbook extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		// Check if this page is already active.
-		if ( zIsActive() ) {
+		if (zIsActive()) {
 			return;
 		}
 
-
-		if ( !((AppTouchClient)MyApplication).zPageMain.zIsActive() ) {
-			((AppTouchClient)MyApplication).zPageMain.zNavigateTo();
+		// Make sure we are logged in
+		if (!((AppTouchClient) MyApplication).zPageMain.zIsActive()) {
+			((AppTouchClient) MyApplication).zPageMain.zNavigateTo();
 		}
 
-		tracer.trace("Navigate to "+ this.myPageName());
-
-		//if (!GeneralUtility.waitForElementPresent(this,PageMain.Locators.zAppbarContact))  {
-		//	throw new HarnessException("Can't locate addressbook icon");
-		//}
-
+		tracer.trace("Navigate to " + this.myPageName());
 		
-		// Click on Addressbook icon
-		//zClickAt(PageMain.Locators.zAppbarContact,"0,0");
+		SleepUtil.sleepMedium();
+		sClickAt(PageMain.Locators.zNavigationButton, "0,0");
+		SleepUtil.sleepSmall();
+		
+		sClickAt(PageMain.Locators.zAppsButton, "0,0");
+		SleepUtil.sleepSmall();
+		
+		sClickAt(PageMain.Locators.zContactsApp, "0,0");
+		SleepUtil.sleepSmall();
 
-		zWaitForActive();
+		if (!this.sIsElementPresent("css=span[class='x-button-icon x-shown add']")) {
+			throw new HarnessException("Unable to determine locator : " + "css=span[class='x-button-icon x-shown add']");
+		}
+		
+		this.zWaitForBusyOverlay();
+		
+		activeFlag = true;
 
 	}
 
@@ -469,12 +475,8 @@ public class PageAddressbook extends AbsTab {
  	    	locator = "css=div[id^=zb__CN][id$=__CANCEL]" ;
 		    if (zIsElementDisabled(locator)) {
 				throw new HarnessException("Tried clicking on "+ locator +" but it was disabled ");
-		    }		    			
-
-		    		
-	    } 
-
-      
+		    }		
+	    }
 
 	    if ( locator == null )
 			throw new HarnessException("locator was null for button "+ button);
@@ -497,56 +499,11 @@ public class PageAddressbook extends AbsTab {
 		return (page);
 	}
 
-	
-	public AbsPage zKeyboardShortcut(Shortcut shortcut) throws HarnessException {
-		logger.info(myPageName() + " zKeyboardShortcut("+ shortcut.getKeys() +")");
-
-		tracer.trace("Click the shortcut "+ shortcut.getKeys() );
-		
-
-		// Default behavior variables
-		AbsPage page = null;	// If set, this page will be returned
-		
-		if ( shortcut == Shortcut.S_NEWTAG) {
-			page = null;	
-		}
-		else if (shortcut == Shortcut.S_MOVE) {
-			page = null;
-			zKeyDown("77");
-			zWaitForBusyOverlay();
-			page.zWaitForActive();
-			return (page);
-		} 
-		else if ( shortcut == Shortcut.S_ASSISTANT ) {			
-			page = null;
-		}
-		else if ( shortcut == Shortcut.S_MAIL_REMOVETAG ) {			
-			page = null;
-		}
-	    else {		
-		   throw new HarnessException("No logic for shortcut : "+ shortcut);
-	    }
-		
-		// Click it
-		//zKeyboardTypeString(shortcut.getKeys());	
-		zKeyboard.zTypeCharacters(shortcut.getKeys());
-		
-		zWaitForBusyOverlay();
-		
-		
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
-		return (page);
-	}
-
 	public void clickDistributionListsFolder(AppTouchClient app) throws HarnessException {	     
 	      FolderItem contactFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), "Distribution Lists");
 	      app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, contactFolder);	    		
 	}
 	
-
-		
 
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {

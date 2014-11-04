@@ -707,10 +707,10 @@ public class FormContactNew extends AbsForm {
 		//
 		
 		// Click it
-		zClickAt(locator, "0,0");
+		sClickAt(locator, "0,0");
 
 		// if the app is busy, wait for it to become active again
-		this.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
 		
 		// Return the page, if specified
 		return (page);
