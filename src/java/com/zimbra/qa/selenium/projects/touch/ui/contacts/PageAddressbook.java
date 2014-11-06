@@ -189,20 +189,10 @@ public class PageAddressbook extends AbsTab {
 	 */
 	public void zRefresh() throws HarnessException {
 		
-		//((AppTouchClient)this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH);
-		((AppTouchClient)this.MyApplication).zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);
+		((AppTouchClient)this.MyApplication).zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);		
+		((AppTouchClient)this.MyApplication).zPageMain.sClickAt(PageMain.Locators.zContactsApp, "0,1");
 		
-		((AppTouchClient)this.MyApplication).zPageMain.zClick(PageMain.Locators.zAppsButton);
-		((AppTouchClient)this.MyApplication).zPageMain.zClick("css=div[id='ext-simplelistitem-12']");
-	}
-	
-	public String zGetContactLocator(String contact) throws HarnessException {
-		SleepUtil.sleepSmall();
-		if (sIsElementPresent("css=div[id^='ext-contactslistview'] div[class='zcs-contactList-name']:contains('"+ contact +"')") == true) {
-			return "css=div[id^='ext-contactslistview'] div[class='zcs-contactList-name']:contains('"+ contact +"')";
-		} else {
-			throw new HarnessException("Unable to locate subject: "+ contact);
-		}
+		SleepUtil.sleepLong();
 	}
 	
 	//get subFolders
@@ -514,13 +504,13 @@ public class PageAddressbook extends AbsTab {
 		if ( pulldown == null )
 			throw new HarnessException("Button cannot be null!");
 
-
-		// Default behavior variables
-		//
+		SleepUtil.sleepSmall();
+		
 		String pulldownLocator = null;	// If set, this will be expanded
 		String optionLocator = null;	// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
-	   if ( pulldown == Button.B_TAG ) {
+	   
+		if ( pulldown == Button.B_TAG ) {
 		
 	      if ( option == Button.O_TAG_NEWTAG ) {
 
@@ -641,6 +631,20 @@ public class PageAddressbook extends AbsTab {
 	    return page;
 	}
 
+	public AbsPage zSelectContact(String contact) throws HarnessException {
+		logger.info(myPageName() + " zSelectContact("+ contact +")");
+
+		if ( contact == null )
+			throw new HarnessException("Contact cannot be null!");
+
+		AbsPage page = null;
+		
+		this.sClickAt("css=div[id^='ext-contactslistview'] div[class='zcs-contactList-name']:contains('"+ contact +"')", "0,0");
+		
+		SleepUtil.sleepMedium();
+		
+	    return page;
+	}
 	
 	public AbsPage zToolbarPressPulldown(Button pulldown, IItem item) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButtonWithPulldown("+ pulldown +", "+ item +")");

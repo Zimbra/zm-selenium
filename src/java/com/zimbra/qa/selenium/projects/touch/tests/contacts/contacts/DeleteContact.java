@@ -55,11 +55,10 @@ public class DeleteContact extends TouchCommonTest  {
 		
 		// Refresh to get the contact into the client
 		app.zPageAddressbook.zRefresh();
-		SleepUtil.sleepSmall();
 		
 		// Select the contact from contact list
 		String locator = contact.lastName + ", " + contact.firstName;
-		app.zPageAddressbook.zClick(app.zPageAddressbook.zGetContactLocator(locator));
+		app.zPageAddressbook.zSelectContact(locator);
 		
         // Click delete button from action menu
         app.zPageAddressbook.zToolbarPressPulldown(Button.B_ACTIONS,Button.B_DELETE);

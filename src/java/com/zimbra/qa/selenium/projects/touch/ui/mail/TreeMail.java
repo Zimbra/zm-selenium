@@ -438,7 +438,7 @@ public class TreeMail extends AbsTree {
 
 		if ( action == Action.A_LEFTCLICK ) {
 			
-			locator = "css=div[id^='ext-simplelistitem-'] div[class='zcs-menu-label']";
+			locator = "css=div[class='zcs-menu-label']:contains('" + folder + "')";
 
 		} else {
 			throw new HarnessException("Action "+ action +" not yet implemented");
@@ -614,34 +614,26 @@ public class TreeMail extends AbsTree {
 
 	}
 
-	protected AbsPage zTreeItem(Action action, String locator) throws HarnessException {
+	public AbsPage zTreeItem(Action action, String folder) throws HarnessException {
 		AbsPage page = null;
+		String locator = null;
 
-
-		if ( locator == null )
+		if ( folder == null )
 			throw new HarnessException("locator is null for action "+ action);
 
-		if ( !this.sIsElementPresent(locator) )
-			throw new HarnessException("Unable to locator folder in tree "+ locator);
-
 		if ( action == Action.A_LEFTCLICK ) {
-
-			// FALL THROUGH
-		} else if ( action == Action.A_RIGHTCLICK ) {
-
-			// Select the folder
-			this.zRightClick(locator);
-
-			// return a context menu
-			//return (new ContextMenu(MyApplication));
+			
+			locator = "css=div[class='zcs-menu-label']:contains('" + folder + "')";
 
 		} else {
 			throw new HarnessException("Action "+ action +" not yet implemented");
 		}
 
 		// Default behavior.  Click the locator
-		zClick(locator);
-
+		sClickAt(locator, "");
+		
+		SleepUtil.sleepMedium();
+				
 		return (page);
 	}
 

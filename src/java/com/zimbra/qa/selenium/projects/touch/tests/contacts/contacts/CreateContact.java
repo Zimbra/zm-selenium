@@ -152,7 +152,7 @@ public class CreateContact extends TouchCommonTest  {
 		String otherstate = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='otherState']", null);
 		String othercountry = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='otherCountry']", null);
 		String otherzipcode = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='otherPostalCode']", null);
-		String workurl = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='workUrl']", null);
+		String workurl = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='workURL']", null);
 		//-- Data Verification
 		// Make sure those are equal to one you created from GUI
 		ZAssert.assertEquals(lastname, contactLast, "Verify the last name was saved correctly");

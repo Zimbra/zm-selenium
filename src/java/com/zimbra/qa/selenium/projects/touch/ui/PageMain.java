@@ -26,11 +26,11 @@ public class PageMain extends AbsTab {
 		
 		public static final String zNavigationButton	= "css=span[class='x-button-icon x-shown organizer']";
 		public static final String zAppsButton			= "css=span[class='x-button-icon x-shown apps']";
-		public static final String zSignOutButton		= "css=div[id^='ext-appsmenu-1'] div[class='zcs-menu-label']:contains('Sign Out')";
+		public static final String zSignOutButton		= "css=div[class='zcs-menu-label']:contains('Sign Out')";
 		
-		public static final String zMailApp				= "css=div[id^='ext-appsmenu'] div[class='zcs-menu-label']:contains('Mail')";
-		public static final String zContactsApp			= "css=div[id^='ext-appsmenu'] div[class='zcs-menu-label']:contains('Contacts')";
-		public static final String zCalendarApp			= "css=div[id^='ext-appsmenu'] div[class='zcs-menu-label']:contains('Calendar')";
+		public static final String zMailApp				= "css=div[class='zcs-menu-label']:contains('Mail')";
+		public static final String zContactsApp			= "css=div[class='zcs-menu-label']:contains('Contacts')";
+		public static final String zCalendarApp			= "css=div[class='zcs-menu-label']:contains('Calendar')";
 
 	}
 	

@@ -17,6 +17,7 @@
 package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts;
 
 import org.testng.annotations.*;
+
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -59,13 +60,11 @@ public class TagContact extends TouchCommonTest  {
 		//-- GUI
 		
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();		
-		SleepUtil.sleepSmall();
+		app.zPageAddressbook.zRefresh();
 
-		// Select the contact
-		String nameInList = contact.lastName + ", " + contact.firstName;
-		String locator = "css=div[id^='ext-contactslistview'] div[class='zcs-contactList-name']:contains('"+nameInList+"')";
-		app.zPageAddressbook.zClick(locator);
+		// Select the contact from contact list
+		String locator = contact.lastName + ", " + contact.firstName;
+		app.zPageAddressbook.zSelectContact(locator);
 		
         // Choose tag action from action menu
         TagContactView tcv = (TagContactView)app.zPageAddressbook.zToolbarPressPulldown(Button.B_ACTIONS,Button.B_TAG);

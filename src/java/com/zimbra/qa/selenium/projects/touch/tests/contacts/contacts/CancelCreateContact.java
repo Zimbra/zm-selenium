@@ -40,7 +40,7 @@ public class CancelCreateContact extends TouchCommonTest  {
 		formContactNew.zFillField(Field.Company, contactCompany);
 		// Click cancel button and confirm to discard the form data
 		formContactNew.zToolbarPressButton(Button.B_CANCEL);
-		//dw.zClickButton(Button.B_NO);
+		formContactNew.zPressButton(Button.B_NO);
 		//-- Data Verification		// Search the data stored in Zimbra server
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='contact'>"

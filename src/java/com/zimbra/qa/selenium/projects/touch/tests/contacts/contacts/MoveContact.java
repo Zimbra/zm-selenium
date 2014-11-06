@@ -18,8 +18,6 @@ package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts;
 
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
-import com.zimbra.qa.selenium.framework.items.FolderItem;
-import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;
@@ -39,9 +37,6 @@ public class MoveContact extends TouchCommonTest  {
 
 		//-- Data
 		
-		// fetch info of EmailedContacts AddressBook
-		FolderItem emailedcontacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.EmailedContacts);
-		
 		// Create a contact item
 		ContactItem contact = new ContactItem();
 		contact.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
@@ -60,19 +55,17 @@ public class MoveContact extends TouchCommonTest  {
 		//-- GUI
 		
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();	
-		SleepUtil.sleepSmall();
+		app.zPageAddressbook.zRefresh();
 		
-		// Select the contact from Contacts AddressBook
-		String nameInList = contact.lastName + ", " + contact.firstName;
-		String locator = "css=div[id^='ext-contactslistview'] div[class='zcs-contactList-name']:contains('"+nameInList+"')";
-		app.zPageAddressbook.zClick(locator);
+		// Select the contact from contact list
+		String locator = contact.lastName + ", " + contact.firstName;
+		app.zPageAddressbook.zSelectContact(locator);
 		
         // Choose move button from action menu
 		MoveContactView mcv = (MoveContactView)app.zPageAddressbook.zToolbarPressPulldown(Button.B_ACTIONS,Button.B_MOVE);
         
 		// Choose EmailedContact as target AddressBook which you move the contact to
-        mcv.zTreeItem(Action.A_LEFTCLICK, emailedcontacts);
+        mcv.zTreeItem(Action.A_LEFTCLICK, "Emailed Contacts");
 		
         //-- Verification
         

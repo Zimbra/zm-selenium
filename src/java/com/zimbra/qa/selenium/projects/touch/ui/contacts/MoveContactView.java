@@ -22,17 +22,7 @@ package com.zimbra.qa.selenium.projects.touch.ui.contacts;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.ui.*;
-import com.zimbra.qa.selenium.projects.touch.ui.PageMain.Locators;
 
-
-
-
-
-/**
- * @author zimbra
- *
- */
 public class MoveContactView extends AbsTree {
     public static final String NEW_FOLDER="css=#ztih__main_Contacts__ADDRBOOK_table tbody tr td:nth-child(4)";
     public static final String COLLAPSE_TREE="css#ztih__main_Contacts__ADDRBOOK_nodeCell";
@@ -40,8 +30,6 @@ public class MoveContactView extends AbsTree {
 		public static final String EXPAND_NODE  = "ImgNodeExpanded";
 		public static final String COLLAPSE_NODE= "ImgNodeCollapsed";
 	}
-	
-		
 	
 	public MoveContactView(AbsApplication application) {
 		super(application);
@@ -63,36 +51,18 @@ public class MoveContactView extends AbsTree {
 		if ( !(addressbook instanceof FolderItem) ) {
 			throw new HarnessException("Must use FolderItem as argument, but was "+ addressbook.getClass());
 		}
-		
-		FolderItem folder = (FolderItem)addressbook;
-		
+				
 		AbsPage page = null;
 		String locator = null;
 		
 		if ( action == Action.A_LEFTCLICK ) {
 			
 			// choose target addressbook to move contact to (done for TP)
-			locator = "css=div[id^='ext-moveview'] div[id^='ext-simplelistitem'] div[class='zcs-menu-label']:contains('"+addressbook.getName()+"')";
+			locator = "css=div[class='zcs-menu-label']:contains('"+addressbook.getName()+"')";
 			page = null;
-		}  
-		else if ( action == Action.A_RIGHTCLICK ) {
-				
-			locator = "id=zti__main_Contacts__"+ folder.getId() +"_textCell";				
-			if (!this.sIsElementPresent(locator) ) {
-					throw new HarnessException("Unable to locator folder in tree "+ locator);
-			}
-			
-			this.zRightClickAt(locator, "");
-			zWaitForBusyOverlay();
-
-			return (null);
-			
+		
 		} else {
 			throw new HarnessException("Action "+ action +" not yet implemented");
-		}
-
-		if ( locator == null ) {
-			throw new HarnessException("no locator defined for action: "+ action);
 		}
 
 		if ( !this.sIsElementPresent(locator) ) {
@@ -103,10 +73,6 @@ public class MoveContactView extends AbsTree {
 		zClick(locator);
 		zWaitForBusyOverlay();									
 
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
-		
 		return (page);
 	}
 	
@@ -205,10 +171,6 @@ public class MoveContactView extends AbsTree {
 			zClickAt(optionLocator, "0,0");
 			zWaitForBusyOverlay();
 
-			if ( page != null ) {
-				page.zWaitForActive();
-			}
-			
 			return (page);
 			
 		} else {
@@ -298,10 +260,6 @@ public class MoveContactView extends AbsTree {
 
 			}
 
-			if ( page != null ) {
-				page.zWaitForActive();
-			}
-			
 			return page;
 
 		} else if (action == Action.A_LEFTCLICK) {
@@ -319,10 +277,6 @@ public class MoveContactView extends AbsTree {
 			throw new HarnessException("implement action:"+ action +" option:"+ option);
 		}
 
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
-		
 		return page;
 	}
 	
@@ -387,53 +341,34 @@ public class MoveContactView extends AbsTree {
 					+ " not yet implemented");
 		}
 		
-		if (actionLocator == null)
-			throw new HarnessException("locator is null for action " + action);
-		if (optionLocator == null)
-			throw new HarnessException("locator is null for option " + option);
-
 		// Default behavior. Click the locator
-		zClickAt(optionLocator,"");
+		sClickAt(optionLocator, "0,0");
 
 		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
-
-		if (page != null) {
-
-			// Wait for the page to become active, if it was specified
-			page.zWaitForActive();
-		}
 
 		return (page);
 
 	}
 	
-	public AbsPage zTreeItem(Action action, String locator) throws HarnessException {
+	public AbsPage zTreeItem(Action action, String folderName) throws HarnessException {
+		
 		AbsPage page = null;
+		String locator;
 
-
-		if ( locator == null )
+		if ( folderName == null )
 			throw new HarnessException("locator is null for action "+ action);
 
-		if ( !this.sIsElementPresent(locator) )
-			throw new HarnessException("Unable to locator folder in tree "+ locator);
-
 		if ( action == Action.A_LEFTCLICK ) {
-
-			// FALL THROUGH
-		} else if ( action == Action.A_RIGHTCLICK ) {
-
-			// Select the folder
-			zRightClickAt(locator,"0,0");
-            zWaitForBusyOverlay();
-			// return a context menu
-            page = null;
-
+			locator = "css=div[class='zcs-menu-label']:contains('"+ folderName +"')";
+			
 		} else {
 			throw new HarnessException("Action "+ action +" not yet implemented");
 		}
 
-		zClickAt(locator,"0,0");
+		sClickAt(locator,"0,0");
+		
+		SleepUtil.sleepMedium();
 
 		return (page);
 	}
@@ -490,14 +425,6 @@ public class MoveContactView extends AbsTree {
 		// If the app is busy, wait for that to finish
 		this.zWaitForBusyOverlay();
 		
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-			
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-			
-		}
-
 		return (page);
 
 	}

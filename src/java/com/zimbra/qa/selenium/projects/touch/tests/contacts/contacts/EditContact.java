@@ -17,6 +17,7 @@
 package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts;
 
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -48,12 +49,10 @@ public class EditContact extends TouchCommonTest  {
 		
 		// Refresh to get the contact into the client
 		app.zPageAddressbook.zRefresh();
-		SleepUtil.sleepSmall();
 		
-		// Select the contact
-		String nameInList = contact.lastName + ", " + contact.firstName;
-		String locator = "css=div[id^='ext-contactslistview'] div[class='zcs-contactList-name']:contains('"+nameInList+"')";
-		app.zPageAddressbook.zClick(locator);
+		// Select the contact from contact list
+		String locator = contact.lastName + ", " + contact.firstName;
+		app.zPageAddressbook.zSelectContact(locator);
 				
 		// Click "Edit" from the toolbar
         FormContactNew form = (FormContactNew) app.zPageAddressbook.zToolbarPressButton(Button.B_EDIT);

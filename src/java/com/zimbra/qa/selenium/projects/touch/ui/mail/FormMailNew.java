@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.touch.ui.mail;
 
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.List;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -29,7 +28,6 @@ import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 
 /**
@@ -292,8 +290,6 @@ public class FormMailNew extends AbsForm {
 			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_SPACE);
 			SleepUtil.sleepSmall();
-			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_BACK_SPACE); //temporary work around
-			SleepUtil.sleepSmall();
 
 			return;
 
@@ -313,8 +309,6 @@ public class FormMailNew extends AbsForm {
 			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_SPACE);
 			SleepUtil.sleepSmall();
-			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_BACK_SPACE); //temporary work around
-			SleepUtil.sleepSmall();
 
 			return;
 						
@@ -329,8 +323,6 @@ public class FormMailNew extends AbsForm {
 			this.sType(locator, value);
 			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_SPACE);
-			SleepUtil.sleepSmall();
-			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_BACK_SPACE); //temporary work around
 			SleepUtil.sleepSmall();
 
 			return;
@@ -353,7 +345,7 @@ public class FormMailNew extends AbsForm {
 			
 			this.sClickAt(locator, "");
 			this.sFocus(locator);
-			this.zMouseClick(230, 230);
+			this.zMouseClick(320, 320);
 			
 			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeCharacters(value);
