@@ -66,7 +66,6 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 		ZAssert.assertEquals(actual.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");
-		ZAssert.assertEquals(actual.getOptional(), appt.getOptional(), "Optional: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
 
 		// Verify the attendee receives the meeting
@@ -74,7 +73,6 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(received, "Verify the new appointment is created");
 		ZAssert.assertEquals(received.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 		ZAssert.assertEquals(received.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");
-		ZAssert.assertEquals(received.getOptional(), appt.getOptional(), "Optional: Verify the appointment data");
 		ZAssert.assertEquals(received.getContent(), appt.getContent(), "Content: Verify the appointment data");
 
 		// Verify the attendee receives the invitation
