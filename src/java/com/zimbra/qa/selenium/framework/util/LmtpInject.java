@@ -2,11 +2,11 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -16,14 +16,19 @@
  */
 package com.zimbra.qa.selenium.framework.util;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
-import org.apache.log4j.*;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
-import com.zimbra.common.util.ByteUtil;
 import com.zimbra.common.lmtp.LmtpClient;
+import com.zimbra.common.lmtp.LmtpClientException;
 import com.zimbra.common.lmtp.LmtpProtocolException;
+import com.zimbra.common.util.ByteUtil;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 
@@ -60,8 +65,8 @@ public class LmtpInject {
 
 		// Use default sender
 		injectFile(
-				recipients, 
-				"foo@example.com", 
+				recipients,
+				"foo@example.com",
 				mime);
 
 	}
@@ -76,7 +81,7 @@ public class LmtpInject {
 	public static void injectFile(List<String> recipients, String sender, File mime) throws HarnessException  {
 
 		try {
-			
+
 			try {
 
 				injectFolder(recipients, sender, mime);
@@ -87,18 +92,20 @@ public class LmtpInject {
 				sp.waitForPostqueue();
 
 			}
-			
+
 		} catch (IOException e) {
 			throw new HarnessException("Unable to read mime file "+ mime.getAbsolutePath(), e);
 		} catch (LmtpProtocolException e) {
 			throw new HarnessException("Unable to inject mime file "+ mime.getAbsolutePath(), e);
-		}
+		} catch (LmtpClientException e) {
+            throw new HarnessException("Unable to inject mime file "+ mime.getAbsolutePath(), e);
+        }
 
 	}
 
-	protected static void injectFolder(List<String> recipients, String sender, File mime) throws IOException, LmtpProtocolException {
+	protected static void injectFolder(List<String> recipients, String sender, File mime) throws IOException, LmtpProtocolException, LmtpClientException {
 
-		if ( mime.isFile() ) { 
+		if ( mime.isFile() ) {
 
 			// Inject a single file
 			inject(recipients, sender, mime);
@@ -119,9 +126,9 @@ public class LmtpInject {
 		}
 
 	}
-	
-	
-	protected static void inject(List<String> recipients, String sender, File mime) throws IOException, LmtpProtocolException {
+
+
+	protected static void inject(List<String> recipients, String sender, File mime) throws IOException, LmtpProtocolException, LmtpClientException {
 		logger.info("LMTP: to: "+ recipients.toString());
 		logger.info("LMTP: from: "+ sender);
 		logger.info("LMTP: filename: "+ mime.getAbsolutePath());
@@ -132,7 +139,7 @@ public class LmtpInject {
 
 		LogManager.getLogger(ExecuteHarnessMain.TraceLoggerName).trace(
 				"Inject using LMTP: " +
-				" to:"+ recipients.toString() + 
+				" to:"+ recipients.toString() +
 				" from:"+ sender +
 				" filename:"+ mime.getAbsolutePath()
 		);
@@ -141,7 +148,7 @@ public class LmtpInject {
 		LmtpClient lmtp = null;
 		try {
 
-			lmtp = new LmtpClient( 
+			lmtp = new LmtpClient(
 					ZimbraSeleniumProperties.getStringProperty("server.host"),
 					7025);
 
