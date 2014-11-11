@@ -56,15 +56,15 @@ public class PageCalendar extends AbsTab {
 		
 		public static final String OpenMenu = "id=VIEW_APPOINTMENT_title";
 		public static final String PrintMenu = "css=div[id='zm__Calendar'] tr[id='POPUP_PRINT']";
-		public static final String AcceptMenu = "id=REPLY_ACCEPT_title";
-		public static final String TentativeMenu = "id=REPLY_TENTATIVE_title";
-		public static final String DeclineMenu = "id=REPLY_DECLINE_title";
-		public static final String EditReplyMenu = "id=INVITE_REPLY_MENU_title";
-		public static final String EditReplyAcceptSubMenu = "id=EDIT_REPLY_ACCEPT_title";
-		public static final String EditReplyTentativeSubMenu = "id=EDIT_REPLY_TENTATIVE_title";
-		public static final String EditReplyDeclineSubMenu = "id=EDIT_REPLY_DECLINE_title";
-		public static final String ProposeNewTimeMenu = "id=PROPOSE_NEW_TIME_title";
-		public static final String CreateACopyMenu = "id=DUPLICATE_APPT_title";
+		public static final String AcceptMenu = "id=zmi__Calendar__REPLY_ACCEPT_title";
+		public static final String TentativeMenu = "id=zmi__Calendar__REPLY_TENTATIVE_title";
+		public static final String DeclineMenu = "id=zmi__Calendar__REPLY_DECLINE_title";
+		public static final String EditReplyMenu = "id=zmi__Calendar__INVITE_REPLY_MENU_title";
+		public static final String EditReplyAcceptSubMenu = "id=zmi__Calendar__EDIT_REPLY_ACCEPT_title";
+		public static final String EditReplyTentativeSubMenu = "id=zmi__Calendar__EDIT_REPLY_TENTATIVE_title";
+		public static final String EditReplyDeclineSubMenu = "id=zmi__Calendar__EDIT_REPLY_DECLINE_title";
+		public static final String ProposeNewTimeMenu = "id=zmi__Calendar__PROPOSE_NEW_TIME_title";
+		public static final String CreateACopyMenu = "id=zmi__Calendar__DUPLICATE_APPT_title";
 		public static final String ReplyMenu = "css=div[id='zm__Calendar'] tr[id='POPUP_REPLY']";
 		public static final String ReplyToAllMenu = "css=div[id='zm__Calendar'] tr[id='POPUP_REPLY_ALL']";
 		public static final String ForwardMenu = "css=div[id='zm__Calendar'] tr[id='POPUP_FORWARD_APPT']";
@@ -1479,14 +1479,19 @@ public class PageCalendar extends AbsTab {
 		
 		if ( this.zIsVisiblePerPosition(Locators.CalendarViewListCSS, 0, 0) ) {
 			itemsLocator = Locators.CalendarViewListCSS;									// LIST
+		
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewDayCSS, 0, 0) ) {
 			itemsLocator = Locators.CalendarViewDayItemCSS;									// DAY
+		
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewWorkWeekCSS, 0, 0) ) {
 			itemsLocator = Locators.CalendarViewWorkWeekItemCSS;							// WORKWEEK
+		
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewWeekCSS, 0, 0) ) {
 			itemsLocator = Locators.CalendarViewWeekItemCSS;								// WEEK
+		
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewMonthCSS, 0, 0) ) {
 			itemsLocator = Locators.CalendarViewMonthCSS;									// MONTH
+		
 		} else {
 			throw new HarnessException("Unknown calendar view");
 		}
@@ -1565,7 +1570,7 @@ public class PageCalendar extends AbsTab {
 				throw new HarnessException("implement action:"+ action +" option:"+ option +" suboption:" + subOption);
 			}
 			
-			this.zClickAt(subOptionLocator, "");
+			this.sClickAt(subOptionLocator, "");
 			this.zWaitForBusyOverlay();
 
 			// Since we are not going to "wait for active", insert
@@ -1853,6 +1858,8 @@ public class PageCalendar extends AbsTab {
 		// Default behavior, process the locator by clicking on it
 		//
 		this.sClickAt(locator, "");
+		
+		this.sClickAt(locator, "0,0");
 		
 		// Wait for the message to be delivered (if any)
 		Stafpostqueue sp = new Stafpostqueue();

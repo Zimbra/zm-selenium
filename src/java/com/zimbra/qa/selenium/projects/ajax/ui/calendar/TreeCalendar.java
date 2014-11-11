@@ -63,9 +63,11 @@ public class TreeCalendar extends AbsTree {
 	}
 
 	protected AbsPage zTreeItem(Action action, Button option, FolderItem folder) throws HarnessException {
+		
 		if ( (action == null) || (option == null) || (folder == null) ) {
 			throw new HarnessException("Must define an action, option, and addressbook");
 		}
+		
 		tracer.trace("processing " + folder.getName());
 
 		String actionLocator = String.format("css=div[id='zti__main_Calendar__%s'] td[id$='_textCell']", folder.getId());
@@ -184,8 +186,6 @@ public class TreeCalendar extends AbsTree {
 
 		if (actionLocator == null)
 			throw new HarnessException("locator is null for action " + action);
-		if (optionLocator == null)
-			throw new HarnessException("locator is null for option " + option);
 
 		// Default behavior. Click the locator
 		this.zClickAt(optionLocator,"");
@@ -201,31 +201,14 @@ public class TreeCalendar extends AbsTree {
 	}
 
 	protected AbsPage zTreeItem(Action action, Button option, SavedSearchFolderItem folder) throws HarnessException {
+		
 		if ( (action == null) || (option == null) || (folder == null) ) {
 			throw new HarnessException("Must define an action, option, and addressbook");
 		}
+		
 		tracer.trace("processing " + folder.getName());
 
-		AbsPage page = null;
-		String actionLocator = null;
-		String optionLocator = null;
-
-		if (actionLocator == null)
-			throw new HarnessException("locator is null for action " + action);
-		if (optionLocator == null)
-			throw new HarnessException("locator is null for option " + option);
-
-		// Default behavior. Click the locator
-		zClickAt(actionLocator,"");
-		this.zWaitForBusyOverlay();
-		zClickAt(optionLocator,"");
-		this.zWaitForBusyOverlay();
-
-		if (page != null) {
-			page.zWaitForActive();
-		}
-		
-		return page;
+		throw new HarnessException("locator is null for action " + action);
 	}
 
 	protected AbsPage zTreeItem(Action action, Button option, ZimletItem zimlet) throws HarnessException {
@@ -233,16 +216,15 @@ public class TreeCalendar extends AbsTree {
 	}
 	
 	protected AbsPage zTreeItem(Action action, Button option, TagItem folder) throws HarnessException {
+		
 		if ( (action == null) || (option == null) || (folder == null) ) {
 			throw new HarnessException("Must define an action, option, and calendar");
 		}
+		
 		tracer.trace("processing " + folder.getName());
 		
 		String optionLocator = null;
 		optionLocator = "css=div[id='ztih__main_Calendar__TAG'] td[id*='zti__main_Calendar__']:contains('" + folder.getName() + "')";
-
-		if (optionLocator == null)
-			throw new HarnessException("option locator is null for option " + option);
 
 		if ( action == Action.A_LEFTCLICK ) {
 
@@ -275,49 +257,25 @@ public class TreeCalendar extends AbsTree {
 	}
 
 	protected AbsPage zTreeItem(Action action, FolderItem folder) throws HarnessException {
+		
 		if ( (action == null) || (folder == null) ) {
 			throw new HarnessException("Must define an action, option, and addressbook");
 		}
+		
 		tracer.trace("processing " + folder.getName());
 
-		AbsPage page = null;
-		String actionLocator = null;
-
-		if (actionLocator == null)
-			throw new HarnessException("locator is null for action " + action);
-
-		// Default behavior. Click the locator
-		zClickAt(actionLocator,"");
-		this.zWaitForBusyOverlay();
-
-		if (page != null) {
-			page.zWaitForActive();
-		}
-		
-		return page;
+		throw new HarnessException("locator is null for action " + action);
 	}
 
 	protected AbsPage zTreeItem(Action action, SavedSearchFolderItem folder) throws HarnessException {
+		
 		if ( (action == null) || (folder == null) ) {
 			throw new HarnessException("Must define an action, option, and addressbook");
 		}
+		
 		tracer.trace("processing " + folder.getName());
 
-		AbsPage page = null;
-		String actionLocator = null;
-
-		if (actionLocator == null)
-			throw new HarnessException("locator is null for action " + action);
-
-		// Default behavior. Click the locator
-		zClickAt(actionLocator,"");
-		this.zWaitForBusyOverlay();
-
-		if (page != null) {
-			page.zWaitForActive();
-		}
-		
-		return page;
+		throw new HarnessException("locator is null for action " + action);
 	}
 
 	protected AbsPage zTreeItem(Action action, ZimletItem zimlet) throws HarnessException {
@@ -493,26 +451,11 @@ public class TreeCalendar extends AbsTree {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
-		}
-
-		// Default behavior, process the locator by clicking on it
-		//
-
 		// Click it
 		this.zClick(locator);
 
 		// If the app is busy, wait for that to finish
 		this.zWaitForBusyOverlay();
-
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-
-		}
 
 		return (page);
 
@@ -521,9 +464,6 @@ public class TreeCalendar extends AbsTree {
 	public AbsPage zTreeItem(Action action, String locator) throws HarnessException {
 		
 		locator = "css=td[id^='zti__main_Calendar']:contains('" + locator + "')";
-
-		if ( locator == null )
-			throw new HarnessException("locator is null for action "+ action);
 
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("Unable to find tag in tree "+ locator);
@@ -579,7 +519,7 @@ public class TreeCalendar extends AbsTree {
 		
 		SleepUtil.sleepSmall();
 		this.sClickAt("css=div[id='main_Calendar-parent-CALENDAR'] div[id^='zti__main_Calendar__'] td[id$='_textCell']:contains('" + folderName + "')", "");
-		this.sClickAt("css=div[id='main_Calendar-parent-CALENDAR'] div[id^='zti__main_Calendar__'][class^='DwtTreeItem-selected'] td[id$='_checkboxCell'] div[class='ImgMenuCheck']", "");
+		this.sClickAt("css=div[id='main_Calendar-parent-CALENDAR'] div[class^='DwtTreeItem DwtTreeItem-selected'] td[id$='_checkboxCell'] div[class='ImgMenuCheck']", "");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepLong(); //Let calendar UI refresh
 	}
@@ -590,7 +530,7 @@ public class TreeCalendar extends AbsTree {
 		
 		SleepUtil.sleepSmall();
 		this.sClickAt("css=div[id='main_Calendar-parent-CALENDAR'] div[id^='zti__main_Calendar__'] td[id$='_textCell']:contains('" + folderName + "')", "");
-		this.sClickAt("css=div[id='main_Calendar-parent-CALENDAR'] div[id^='zti__main_Calendar__'][class^='DwtTreeItem-selected'] td[id$='_checkboxCell'] div[class='ImgMenuCheck']", "");
+		this.sClickAt("css=div[id='main_Calendar-parent-CALENDAR'] div[class^='DwtTreeItem DwtTreeItem-selected'] td[id$='_checkboxCell'] div[class='ImgMenuCheck']", "");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium(); //Let calendar UI refresh
 	}
