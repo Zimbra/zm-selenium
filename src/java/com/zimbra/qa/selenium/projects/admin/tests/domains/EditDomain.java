@@ -74,7 +74,7 @@ public class EditDomain extends AdminCommonTest {
 		//Click on General Information tab.
 		form.zClickTreeItem(FormEditDomain.TreeItem.GENERAL_INFORMATION);
 
-		//Edit the name.
+		//Edit the description.
 		String description = "editeddomain_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(description);
 		
@@ -127,7 +127,7 @@ public class EditDomain extends AdminCommonTest {
 		//Click on General Information tab.
 		form.zClickTreeItem(FormEditDomain.TreeItem.GENERAL_INFORMATION);
 
-		//Edit the name.
+		//Edit the description.
 		String description = "editeddomain_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(description);
 		
@@ -183,7 +183,7 @@ public class EditDomain extends AdminCommonTest {
 		//Click on General Information tab.
 		form.zClickTreeItem(FormEditDomain.TreeItem.GENERAL_INFORMATION);
 
-		//Edit the name.
+		//Edit the description.
 		String description = "editeddomain_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(description);
 		
@@ -216,13 +216,18 @@ public class EditDomain extends AdminCommonTest {
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
 		String domainName=domain.getName();
-
+		this.startingPage = app.zPageManageDomains;
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
 		+			"<name>" + domainName + "</name>"
 		+		"</CreateDomainRequest>");
 
+		
+		// Refresh the account list
+		 app.zPageSearchResults.zSelectSearchObject(app.zPageSearchResults.S_DOMAIN);
+		
 		// Enter the search string to find the account
+			app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.DOMAIN);
 		app.zPageSearchResults.zAddSearchQuery(domainName);
 
 		// Click search
@@ -238,9 +243,9 @@ public class EditDomain extends AdminCommonTest {
 		//Click on General Information tab.
 		form.zClickTreeItem(FormEditDomain.TreeItem.GENERAL_INFORMATION);
 
-		//Edit the name.
-		String editedName = "editeddomain_" + ZimbraSeleniumProperties.getUniqueString();
-		form.setName(editedName);
+		//Edit the description.
+		String description = "editeddomain_" + ZimbraSeleniumProperties.getUniqueString();
+		form.setName(description);
 		
 		//Submit the form.
 		form.zSubmit();
@@ -252,8 +257,9 @@ public class EditDomain extends AdminCommonTest {
 				+	"</GetDomainRequest>");
 
 
-		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDomainResponse/admin:domain", 1);
-		ZAssert.assertNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=79304");
+		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDomainResponse/admin:domain/admin:a[@n='description']", 1);
+		ZAssert.assertStringContains(response.toString(), description, "Verify description is edited correctly");
+		
 	}
 
 }

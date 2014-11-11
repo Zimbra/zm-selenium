@@ -330,7 +330,7 @@ public class PageManageDomains extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.sClickAt(optionLocator,"");
+				this.sClick(optionLocator);
 
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();

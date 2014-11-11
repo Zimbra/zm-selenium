@@ -44,6 +44,7 @@ public class PageSearchResults extends AbsTab {
 		public static final String GEAR_ICON="css=div.ImgConfigure";
 		public static final String zArrowSelectSearchObject		="css=td[id*='dropdown'] div[class='ImgSelectPullDownArrow']";
 		public static final String zCosSearchObject = "css=div[id='zmi__SEARCH_COSES'] td[id='zmi__SEARCH_COSES_title']";
+		public static final String zDomainSearchObject = "css=div[id='zmi__SEARCH_DOMAINS'] td[id='zmi__SEARCH_DOMAINS_title']";
 	}
 
 	public static class TypeOfObject {
@@ -336,7 +337,7 @@ public class PageSearchResults extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator,"");
+				this.zClick(optionLocator);
 
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();
@@ -421,6 +422,12 @@ public void zSelectSearchObject(String object)throws HarnessException{
 			
 			this.sClickAt(Locators.zArrowSelectSearchObject, "");
 			this.sClickAt(Locators.zCosSearchObject, "");
+		
+		
+		}else if(object==S_DOMAIN){
+			
+			this.sClickAt(Locators.zArrowSelectSearchObject, "");
+			this.sClickAt(Locators.zDomainSearchObject, "");
 		
 		
 		}else{
