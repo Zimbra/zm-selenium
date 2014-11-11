@@ -149,6 +149,9 @@ public class DeleteDomain extends AdminCommonTest {
 				+	"<domain by='name'>" + targetDomain + "</domain>"
 				+	"</GetDomainRequest>");
 
+		// Refresh the domain list
+		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+
 		String targetDomainID=ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetDomainResponse/admin:domain", "id").toString();
 		
 		
@@ -261,7 +264,7 @@ public class DeleteDomain extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Verify delete domain operation --  Search List View",
-			groups = { "smoke" })
+			groups = { "obsolete" })
 			public void DeleteDomain_05() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP
@@ -314,7 +317,7 @@ public class DeleteDomain extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Verify delete domain operation",
-			groups = { "functional" })
+			groups = { "obsolete" })
 			public void DeleteDomain_06() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP
@@ -366,7 +369,7 @@ public class DeleteDomain extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Verify delete domain alias operation - Search list view",
-			groups = { "functional" })
+			groups = { "obsolete" })
 			public void DeleteDomain_07() throws HarnessException {
 		
 		
@@ -432,7 +435,7 @@ public class DeleteDomain extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Verify delete domain alias operation - Search list view",
-			groups = { "functional" })
+			groups = { "obsolete" })
 			public void DeleteDomain_08() throws HarnessException {
 		
 		
