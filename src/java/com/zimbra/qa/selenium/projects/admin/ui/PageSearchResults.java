@@ -57,8 +57,8 @@ public class PageSearchResults extends AbsTab {
 	}
 
 	public String typeOfObject = "";
-	
-	//  Search Object from the dropdown in search panel
+
+//  Search Object from the dropdown in search panel
 	
 	public String S_ACCOUNT = "Account";
 	public String S_ALIAS = "ALIAS";
@@ -67,7 +67,7 @@ public class PageSearchResults extends AbsTab {
 	public String S_COS = "Cos";
 	public String S_DOMAIN = "Domain";
 	public String S_ALL_OBJECTS="All Objects";
-
+	
 	public String getType() {
 		return typeOfObject;
 	}
@@ -415,7 +415,7 @@ public class PageSearchResults extends AbsTab {
 
 	}
 	
-	public void zSelectSearchObject(String object)throws HarnessException{
+public void zSelectSearchObject(String object)throws HarnessException{
 		
 		if(object==S_COS){
 			

@@ -50,8 +50,6 @@ public class EditCos extends AdminCommonTest {
 	 * 5. Verify cos is edited using SOAP.
 	 * @throws HarnessException
 	 */
-	
-	
 	@Test(	description = "Edit Cos name  - Manage Cos View",
 			groups = { "functional" })
 			public void EditCos_01() throws HarnessException {
@@ -165,8 +163,6 @@ public class EditCos extends AdminCommonTest {
 				+			"<name>" + cosName + "</name>"
 				+		"</CreateCosRequest>");
 	
-		
-
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(cosName);
 	
@@ -207,7 +203,6 @@ public class EditCos extends AdminCommonTest {
 	 * 3. Verify cos name is changed using SOAP.
 	 * @throws HarnessException
 	 */
-
 	@Test(	description = "Edit cos name -- right click",
 			groups = { "functional" })
 			public void EditCos_04() throws HarnessException {
