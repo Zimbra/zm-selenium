@@ -49,7 +49,7 @@ public class PageManageResources extends AbsTab {
 		public static final String RESOURCE="Resources";
 		public static final String NEW_MENU="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgResource']";
 		public static final String DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
-		public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgEdit']";
+		public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] td[id='zmi__zb_currentApp__EDIT_title']";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id^='zm__ACLV__MENU_POP'] div[class='ImgDelete']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id^='zm__ACLV__MENU_POP'] div[class='ImgEdit']";
 	}
@@ -141,18 +141,27 @@ public class PageManageResources extends AbsTab {
 
 
 			if(this.sIsElementPresent(locator))
-			{
-				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
+			{    String listItem = this.sGetText(locator).trim();
+				if(listItem.equalsIgnoreCase(item))
 				{
 					if(action == Action.A_LEFTCLICK) {
-						zClick(locator);
-						break;
+						zClickAt(locator,"");
+						page = new FormEditResource(this.MyApplication);
+						return page;
+						
 					} else if(action == Action.A_RIGHTCLICK) {
+						page = new FormEditResource(this.MyApplication);
 						zRightClick(locator);
-						break;
+						
+					}else if(action == Action.A_DOUBLECLICK) {
+						page = new FormEditResource(this.MyApplication);
+						sDoubleClick(locator);
+						return page;
 					}
 
 				}
+			}else{
+				throw new HarnessException("Action is not implemented!");
 			}
 		}
 		return page;
@@ -298,7 +307,7 @@ public class PageManageResources extends AbsTab {
 
 			if(ZimbraSeleniumProperties.isWebDriver())
 				SleepUtil.sleepMedium();
-			this.sClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator, "" );
 			SleepUtil.sleepMedium();
 
 
@@ -312,7 +321,7 @@ public class PageManageResources extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.sClickAt(optionLocator,"");
+				this.sClick(optionLocator);
 
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();
