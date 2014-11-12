@@ -74,7 +74,7 @@ public class DownloadsIndex extends AdminCommonTest {
 
 
 	@Test(	description = "Verify the Downloads Index opens",
-			groups = { "functional" })
+			groups = { "functional"  })
 	public void DownloadsIndex_01() throws HarnessException {
 
 
@@ -103,7 +103,7 @@ public class DownloadsIndex extends AdminCommonTest {
 	}
 
 	@Test(	description = "Verify the Downloads Tab contains the correct FOSS vs NETWORK links",
-			groups = { "functional" })
+			groups = { "functional"  })
 	public void DownloadsIndex_02() throws HarnessException {
 	
 		String windowTitle = "Zimbra Collaboration Suite :: Downloads";
@@ -145,7 +145,7 @@ public class DownloadsIndex extends AdminCommonTest {
 	
 
 	@Test(	description = "Verify the downloads links return 200 rather than 404",
-			groups = { "functional" })
+			groups = { "functional"  })
 	public void DownloadsIndex_03() throws HarnessException {
 
 		String windowTitle = "Zimbra Collaboration Suite :: Downloads";
@@ -178,13 +178,10 @@ public class DownloadsIndex extends AdminCommonTest {
 			try {
 				
 				URL url = new URL(page);
-				connection = (HttpURLConnection )url.openConnection();
-				connection.setRequestMethod("HEAD");
-		        int code = connection.getResponseCode();
-		        
-		        // TODO: why is 400 returned for the PDF links?
-		        // 200 and 400 are acceptable
-		        ZAssert.assertStringContains("200 400", ""+code, "Verify the download URL is valid: "+ url.toString());
+				int authResponse = app.zPageDownloads.getAuthResponse(url);
+
+		        // 200 and 400 are acceptabl
+		        ZAssert.assertStringContains("200 400", ""+authResponse, "Verify the download URL is valid: "+ url.toString());
 		        
 			} catch (MalformedURLException e) {
 				throw new HarnessException(e);
