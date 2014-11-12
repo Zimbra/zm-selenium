@@ -80,7 +80,8 @@ public class WizardCreateResource extends AbsWizard {
 		zType(Locators.zdlg_RESOURCE_DOMAIN_NAME,"");
 		zType(Locators.zdlg_RESOURCE_DOMAIN_NAME,domain);
 
-		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
+		sType(Locators.zdlg_RESOURCE_LOCAL_NAME, CN);
 
 
 		if(resourceType!="") {
@@ -90,6 +91,9 @@ public class WizardCreateResource extends AbsWizard {
 			} else if(resourceType.equals(Locators.EQUIPMENT)) {
 				sClick(Locators.zdlg_RESOURCE_TYPE_EQUIPMENT);
 			}
+		}else{
+			zClickAt(Locators.zdlg_RESOURCE_TYPE,"");
+
 		}
 
 		clickFinish(AbsWizard.Locators.RESOURCE_DIALOG);
