@@ -48,7 +48,8 @@ public class PageManageDistributionLists extends AbsTab {
 		public static final String MANAGE="Manage";
 		public static final String DISTRIBUTION_LIST="Distribution Lists";
 		public static final String DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
-		public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgEdit']";
+	//	public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgEdit']";
+		public static final String EDIT_BUTTON="css=td[id='zmi__zb_currentApp__EDIT_title']";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgEdit']";
 	}
@@ -284,7 +285,7 @@ public class PageManageDistributionLists extends AbsTab {
 			if(ZimbraSeleniumProperties.isWebDriver())
 				SleepUtil.sleepSmall();
 
-			this.sClickAt(pulldownLocator,"0,0");
+			this.sClick(pulldownLocator);
 			SleepUtil.sleepMedium();
 
 			// If the app is busy, wait for it to become active
@@ -297,7 +298,7 @@ public class PageManageDistributionLists extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.sClickAt(optionLocator,"0,0");
+				this.sClick(optionLocator);
 				SleepUtil.sleepMedium();
 
 				// If the app is busy, wait for it to become active
