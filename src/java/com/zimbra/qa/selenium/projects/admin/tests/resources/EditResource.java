@@ -107,27 +107,38 @@ public class EditResource extends AdminCommonTest {
 			groups = { "functional" })
 			public void EditResource_02() throws HarnessException {
 
-		// Create a new Resource in the Admin Console using SOAP
-		ResourceItem resource = new ResourceItem();
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-		 		+ "<name>" + resource.getEmailAddress() + "</name>"
-		 		+ "<a n=\"displayName\">" + resource.getName() + "</a>"
-		 		+ "<a n=\"zimbraCalResType\">" + "Equipment" + "</a>"
-		 		+ "<password>test123</password>"
-		 		+ "</CreateCalendarResourceRequest>");
+		// Create a new resource in the Admin Console using SOAP
+				ResourceItem resource = new ResourceItem();
+				
+				ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+								"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
+						 		+ "<name>" + resource.getEmailAddress() + "</name>"
+						 		+ "<a n=\"displayName\">" + resource.getName() + "</a>"
+						 		+ "<a n=\"zimbraCalResType\">" + "Location" + "</a>"
+						 		+ "<password>test123</password>"
+						 		+ "</CreateCalendarResourceRequest>");
+				
+				
+				// Verify the resource exists in the ZCS
+						ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+								"<GetCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
+								+ 		"<calresource by='name'>" +  resource.getEmailAddress() + "</calresource>"  
+								+		"</GetCalendarResourceRequest>");
 
+						Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCalendarResourceResponse/admin:calresource", 1);
+						
+						
 		// Refresh the Resource list
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 		
 		// Click on Resource to be Edited.
-		app.zPageManageResources.zListItem(Action.A_LEFTCLICK, resource.getEmailAddress());
+		FormEditResource form = (FormEditResource) app.zPageManageResources.zListItem(Action.A_LEFTCLICK, resource.getEmailAddress());
 		
 		// Click on Edit button
-		FormEditResource form = (FormEditResource) app.zPageManageResources.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
+		 form = (FormEditResource) app.zPageManageResources.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 		
 		//Click on General Information tab.
-		form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
+		//form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		//Edit the name.
 		String editedName = "editedResource_" + ZimbraSeleniumProperties.getUniqueString();
@@ -142,7 +153,7 @@ public class EditResource extends AdminCommonTest {
 				+ 		"<calresource by='name'>" +  editedName+"@"+resource.getDomainName() + "</calresource>"  
 				+		"</GetCalendarResourceRequest>");
 		
-		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCalendarResourceResponse/admin:calresource", 1); 
+		 response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCalendarResourceResponse/admin:calresource", 1); 
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=74487");
 	}
 

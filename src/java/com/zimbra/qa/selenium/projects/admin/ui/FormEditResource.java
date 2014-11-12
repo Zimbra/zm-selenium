@@ -79,7 +79,7 @@ public class FormEditResource extends AbsForm {
 	}
 
 	public void zClickTreeItem(String treeItem) throws HarnessException {
-		sClickAt("css=td:contains('" + treeItem + "')", "");
+		sClick("css=td:contains('" + treeItem + "')");
 	}
 
 	public void setName(String name) throws HarnessException {
