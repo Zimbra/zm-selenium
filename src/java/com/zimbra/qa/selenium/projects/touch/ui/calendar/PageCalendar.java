@@ -973,7 +973,7 @@ public class PageCalendar extends AbsTab {
 				
 				optionLocator = Locators.OpenSeriesMenu;
 				this.sClickAt(optionLocator, "");
-				SleepUtil.sleepLong();
+				SleepUtil.sleepMedium();
 				
 				this.sClickAt(Locators.ActionsButton, "");
 				SleepUtil.sleepSmall();
@@ -1001,7 +1001,7 @@ public class PageCalendar extends AbsTab {
 					
 				optionLocator = Locators.OpenInstanceMenu;
 				this.sClickAt(optionLocator, "");
-				SleepUtil.sleepLong();
+				SleepUtil.sleepMedium();
 				
 				this.sClickAt(Locators.ActionsButton, "");
 				SleepUtil.sleepSmall();
@@ -1850,11 +1850,6 @@ public class PageCalendar extends AbsTab {
 	
 	@Override
 	public void zNavigateTo() throws HarnessException {
-
-		// Check if this page is already active.
-		if (zIsActive()) {
-			return;
-		}
 
 		// Make sure we are logged in
 		if (!((AppTouchClient) MyApplication).zPageMain.zIsActive()) {

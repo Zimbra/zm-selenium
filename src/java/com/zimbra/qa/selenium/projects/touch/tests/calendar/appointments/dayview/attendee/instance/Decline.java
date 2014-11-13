@@ -20,6 +20,7 @@ import java.util.*;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -32,6 +33,7 @@ public class Decline extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
+	@Bugs(ids = "96437")
 	@Test(	description = "Decline a instance using view appointment options", 
 			groups = { "functional" })
 	
@@ -61,7 +63,7 @@ public class Decline extends CalendarWorkWeekTest {
 							"<at role='REQ' ptst='NE' rsvp='1' a='" + app.zGetActiveAccount().EmailAddress + "'/>" +
 							"<recur>" +
 								"<add>" +
-									"<rule freq='YEA'>" +
+									"<rule freq='DAI'>" +
 										"<interval ival='5'/>" +
 									"</rule>" +
 								"</add>" +
