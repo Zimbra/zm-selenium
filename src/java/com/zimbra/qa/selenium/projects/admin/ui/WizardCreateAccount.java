@@ -74,7 +74,9 @@ public class WizardCreateAccount extends AbsWizard {
 		zType(Locators.zdlg_DOMAIN_NAME,"");
 		zType(Locators.zdlg_DOMAIN_NAME,domain);
 
-		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
+		zType(Locators.zdlg_ACCT_NAME, CN);
+
 
 
 		for (String key : account.getAccountAttrs().keySet()) {
