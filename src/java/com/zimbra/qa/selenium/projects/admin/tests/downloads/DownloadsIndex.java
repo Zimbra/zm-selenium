@@ -84,10 +84,10 @@ public class DownloadsIndex extends AdminCommonTest {
 			
 			// Open a new window pointing at http://server.com/zimbra/downloads/index.html
 			app.zPageDownloads.zOpenIndexHTML();
-		
+			SleepUtil.sleep(1000);
 			// This method throws an exception if the page doesn't open
 			app.zPageDownloads.zSeparateWindowFocus(windowTitle);
-
+			SleepUtil.sleep(1000);
 			// If we get here (i.e. no exception thrown), then pass
 			ZAssert.assertTrue(true, "Verify that the page opened correctly");
 			
@@ -108,10 +108,10 @@ public class DownloadsIndex extends AdminCommonTest {
 	
 		String windowTitle = "Zimbra Collaboration Suite :: Downloads";
 		app.zPageDownloads.zOpenIndexHTML();
-		
+		SleepUtil.sleep(10000);
 		// This method throws an exception if the page doesn't open
 		app.zPageDownloads.zSeparateWindowFocus(windowTitle);
-
+		SleepUtil.sleep(10000);
 		
 		// If NETWORK, make sure NETWORK-only links appear and FOSS-only links do not appear
 		// If FOSS, make sure FOSS-only links appear and NETWORK-only links do not appear
@@ -150,10 +150,10 @@ public class DownloadsIndex extends AdminCommonTest {
 
 		String windowTitle = "Zimbra Collaboration Suite :: Downloads";
 		app.zPageDownloads.zOpenIndexHTML();
-		
+		SleepUtil.sleep(10000);
 		// This method throws an exception if the page doesn't open
 		app.zPageDownloads.zSeparateWindowFocus(windowTitle);
-
+		SleepUtil.sleep(10000);
 		
 		// Determine which links should be present
 		List<String> locators = new ArrayList<String>();
