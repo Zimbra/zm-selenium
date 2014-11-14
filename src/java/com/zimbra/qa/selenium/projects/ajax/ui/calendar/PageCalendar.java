@@ -84,13 +84,18 @@ public class PageCalendar extends AbsTab {
 		public static final String OpenInstanceMenu = "id=OPEN_APPT_INSTANCE_title";
 		public static final String OpenSeriesMenu = "id=OPEN_APPT_SERIES_title";
 		
-		public static final String AcceptRecurringMenu = "css=div[id^='zm__Calendar__DWT'] td[id^='REPLY_ACCEPT'][id$='title']";
-		public static final String DeclineRecurringMenu = "css=div[id^='zm__Calendar__DWT'] td[id^='REPLY_DECLINE'][id$='title']";
-		public static final String CreateACopyRecurringMenu = "css=div[id^='zm__Calendar__DWT'] td[id^='DUPLICATE_APPT'][id$='title']";
-		public static final String ForwardInstanceMenu = "id=FORWARD_APPT_INSTANCE_title";
-		public static final String ForwardSeriesMenu = "id=FORWARD_APPT_SERIES_title";
-		public static final String DeleteInstanceMenu = "id=DELETE_INSTANCE_title";
-		public static final String DeleteSeriesMenu = "id=DELETE_SERIES_title";
+		public static final String AcceptSeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__REPLY_ACCEPT_title']";
+		public static final String DeclineSeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__REPLY_DECLINE_title']";
+		public static final String CreateACopySeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__DUPLICATE_APPT_title']";
+		public static final String ForwardSeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__FORWARD_APPT_SERIES_title']";
+		public static final String DeleteSeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__DELETE_SERIES_title']";
+		public static final String MoveSeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__MOVE_title']";
+		
+		public static final String AcceptInstanceMenu = "css=div[id='zm__Calendar_VIEW_APPT_INSTANCE'] td[id='zmi__Calendar_VIEW_APPT_INSTANCE__REPLY_ACCEPT_title']";
+		public static final String DeclineInstanceMenu = "css=div[id='zm__Calendar_VIEW_APPT_INSTANCE'] td[id='zmi__Calendar_VIEW_APPT_INSTANCE__REPLY_DECLINE_title']";
+		public static final String CreateACopyInstanceMenu = "css=div[id='zm__Calendar_VIEW_APPT_INSTANCE'] td[id='zmi__Calendar_VIEW_APPT_INSTANCE__DUPLICATE_APPT_title']";
+		public static final String ForwardInstanceMenu = "css=div[id='zm__Calendar_VIEW_APPT_INSTANCE'] td[id='zmi__Calendar_VIEW_APPT_INSTANCE__FORWARD_APPT_INSTANCE_title']";
+		public static final String DeleteInstanceMenu = "css=div[id='zm__Calendar_VIEW_APPT_INSTANCE'] td[id='zmi__Calendar_VIEW_APPT_INSTANCE__DELETE_INSTANCE_title']";
 		
 		public static final String NewAppointmentMenu = "id=NEW_APPT_title";
 		public static final String NewAllDayAppointmentMenu = "id=NEW_ALLDAY_APPT_title";
@@ -1520,42 +1525,46 @@ public class PageCalendar extends AbsTab {
 		
 		if (action == Action.A_RIGHTCLICK) {
 			
-			if ( subOption == Button.O_ACCEPT_MENU ) {
-				subOptionLocator = Locators.AcceptRecurringMenu;
-			
-			} else if ( subOption == Button.O_DECLINE_MENU ) {
-				subOptionLocator = Locators.DeclineRecurringMenu;
-				
-			}
-			
 			if (option == Button.O_SERIES_MENU) {
 				optionLocator = Locators.SeriesMenu;
 				
-				if ( subOption == Button.O_FORWARD_MENU ) {
-					subOptionLocator = Locators.ForwardSeriesMenu;
+				if ( subOption == Button.O_ACCEPT_MENU ) {
+					subOptionLocator = Locators.AcceptSeriesMenu;
+					
+				} else if ( subOption == Button.O_DECLINE_MENU ) {
+					subOptionLocator = Locators.DeclineSeriesMenu;
 				
+				} else if ( subOption == Button.O_FORWARD_MENU ) {
+					subOptionLocator = Locators.ForwardSeriesMenu;
+					
 				} else if ( subOption == Button.O_DELETE_MENU ) {
 					subOptionLocator = Locators.DeleteSeriesMenu;
 				
 				} else if ( subOption == Button.O_CREATE_A_COPY_MENU) {
-					subOptionLocator = Locators.CreateACopyRecurringMenu;
+					subOptionLocator = Locators.CreateACopySeriesMenu;
 				
 				} else if ( subOption == Button.O_MOVE_MENU) {
-					subOptionLocator = Locators.MoveMenu;
+					subOptionLocator = Locators.MoveSeriesMenu;
 					
 				}
 				
 			} else if (option == Button.O_INSTANCE_MENU) {
 				optionLocator = Locators.InstanceMenu;
 				
-				if ( subOption == Button.O_FORWARD_MENU ) {
+				if ( subOption == Button.O_ACCEPT_MENU ) {
+					subOptionLocator = Locators.AcceptInstanceMenu;
+					
+				} else if ( subOption == Button.O_DECLINE_MENU ) {
+					subOptionLocator = Locators.DeclineInstanceMenu;
+				
+				} else if ( subOption == Button.O_FORWARD_MENU ) {
 					subOptionLocator = Locators.ForwardInstanceMenu;
 				
 				} else if ( subOption == Button.O_DELETE_MENU ) {
 					subOptionLocator = Locators.DeleteInstanceMenu;
 				
 				} else if ( subOption == Button.O_CREATE_A_COPY_MENU) {
-					subOptionLocator = Locators.CreateACopyRecurringMenu;
+					subOptionLocator = Locators.CreateACopyInstanceMenu;
 				}
 			}
 

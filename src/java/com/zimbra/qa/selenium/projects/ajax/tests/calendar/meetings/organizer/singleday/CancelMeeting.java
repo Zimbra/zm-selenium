@@ -100,6 +100,9 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		// Verify meeting disappears from the view
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify meeting is deleted from organizer's calendar");
 		
+		MailItem canceledApptMail = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + (char)34 + "Cancelled " + apptSubject + (char)34 + ")");
+		ZAssert.assertNotNull(canceledApptMail, "Verify meeting cancellation message received to attendee");
+		
 		// Verify meeting is deleted from attendee's calendar
 		AppointmentItem canceledAppt = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ apptSubject +")");
 		ZAssert.assertNull(canceledAppt, "Verify meeting is deleted from attendee's calendar");
