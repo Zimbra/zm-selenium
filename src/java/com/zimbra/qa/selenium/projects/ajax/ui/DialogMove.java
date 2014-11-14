@@ -75,14 +75,6 @@ public class DialogMove extends AbsDialog {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Default behavior, click the locator
-		//
-
-		// Make sure the locator was set
-		if (locator == null) {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
 		this.zClick(locator);
 
 		this.zWaitForBusyOverlay();
@@ -178,7 +170,7 @@ public class DialogMove extends AbsDialog {
 		} else if (MyTab instanceof PageCalendar) {
 
 			locator = String.format(
-					"css=div[id='%s'] td[id='zti__ZmChooseFolderDialog_Calendar_CALENDAR___%s_textCell']",
+					"css=div[id='%s'] td[id='zti__ZmChooseFolderDialog_Calendar___%s_textCell']",
 					Locators.zDialogId,
 					folder.getId());
 

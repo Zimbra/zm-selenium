@@ -575,13 +575,6 @@ public class FormApptNew extends AbsForm {
 		// if the app is busy, wait for it to become active again
 		this.zWaitForBusyOverlay();
 
-		if (page != null) {
-
-			// Make sure the page becomes active
-			page.zWaitForActive();
-
-		}
-
 		// Return the page, if specified
 		SleepUtil.sleepSmall();
 		return (page);
@@ -626,11 +619,6 @@ public class FormApptNew extends AbsForm {
 									// value in field
 
 		this.zWaitForBusyOverlay();
-
-		if (page != null) {
-			page.zWaitForActive();
-
-		}
 
 		return (page);
 
@@ -769,12 +757,6 @@ public class FormApptNew extends AbsForm {
 
 			}
 
-			// If we click on pulldown/option and the page is specified, then
-			// wait for the page to go active
-			if (page != null) {
-				page.zWaitForActive();
-			}
-
 		}
 
 		// Return the specified page, or null if not set
@@ -816,10 +798,6 @@ public class FormApptNew extends AbsForm {
 
 		} else {
 			throw new HarnessException("not implemented for field " + field);
-		}
-
-		if (locator == null) {
-			throw new HarnessException("locator was null for field " + field);
 		}
 
 		// Make sure the element exists
@@ -1034,6 +1012,7 @@ public class FormApptNew extends AbsForm {
 		if (isRepeat != null) {
 			this.sClickAt(locator, "");
 			zRecurringOptions(locator, value, isRepeat);
+			
 		} else {
 			if (ZimbraSeleniumProperties.isWebDriver()) {
 				this.sClickAt(locator, "");
@@ -1045,15 +1024,12 @@ public class FormApptNew extends AbsForm {
 					|| field == Field.StartTime || field == Field.EndTime) {
 				this.zKeyboard.zSelectAll();
 				this.sTypeDateTime(locator, value);
+				
 			} else {
-				this.sType(locator, value);				
-			}
-
-			if (field == Field.Attendees || field == Field.Optional
-					|| field == Field.Location || field == Field.Equipment) {
-				SleepUtil.sleepMedium();
-				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
+				this.sType(locator, value);
+				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 				SleepUtil.sleepSmall();
+				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 			}
 		}
 		SleepUtil.sleepSmall();
@@ -1081,39 +1057,23 @@ public class FormApptNew extends AbsForm {
 		// Attendees
 		if (appt.getAttendees() != null) {
 			zFillField(Field.Attendees, appt.getAttendees());
-			SleepUtil.sleepSmall();
-			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-			SleepUtil.sleepSmall();
-			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 		}
 
 		// Optional
 		if (appt.getOptional() != null) {
 			this.sClickAt(Locators.ShowOptionalLink, "");
 			zFillField(Field.Optional, appt.getOptional());
-			SleepUtil.sleepSmall();
-			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-			SleepUtil.sleepSmall();
 		}
 
 		// Location
 		if (appt.getLocation() != null) {
 			zFillField(Field.Location, appt.getLocation());
-			SleepUtil.sleepSmall();
-			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-			SleepUtil.sleepSmall();
-			this.sClickAt("css= input[id$='_location_input']", "");
-			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
-			
 		}
 
 		// Equipment
 		if (appt.getEquipment() != null) {
 			this.sClickAt(Locators.ShowEquipmentLink, "");
 			zFillField(Field.Equipment, appt.getEquipment());
-			SleepUtil.sleepSmall();
-			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-			SleepUtil.sleepSmall();
 		}
 
 		// Start date-time
