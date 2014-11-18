@@ -16,7 +16,10 @@
  */
 package com.zimbra.qa.selenium.framework.ui;
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -678,7 +681,7 @@ public abstract class AbsSeleniumObject {
 				*/
 			}			
 		}else{
-			for (String kc : keyCode.split(",")) {
+			/*for (String kc : keyCode.split(",")) {
 				sGetEval("if(document.createEventObject){var body_locator=\"css=html>body\"; "
 					+ "var body=selenium.browserbot.findElement(body_locator);"
 					+ "var evObj = body.document.createEventObject();"
@@ -696,7 +699,73 @@ public abstract class AbsSeleniumObject {
 					+ ";}var x = selenium.browserbot.findElementOrNull('"
 					+ "css=html>body"
 					+ "');x.focus(); x.dispatchEvent(evObj);}");
+			}*/
+
+
+			SleepUtil.sleepMedium();
+			String[] kc = keyCode.split(",");
+			int keycode1 = 0;
+			int keycode2 = 0;
+
+			if (kc.length >= 2) {
+				if (Integer.parseInt(kc[0]) == 16
+						&& Integer.parseInt(kc[1]) == 46) {
+
+					keycode1 = KeyEvent.VK_SHIFT;
+					keycode2 = KeyEvent.VK_DELETE;
+
+				} else if (Integer.parseInt(kc[0]) == 78
+						&& Integer.parseInt(kc[1]) == 84) {
+					keycode1 = KeyEvent.VK_N;
+					keycode2 = KeyEvent.VK_T;
+
+				} else if (Integer.parseInt(kc[0]) == 78
+						&& Integer.parseInt(kc[1]) == 75) {
+					keycode1 = KeyEvent.VK_N;
+					keycode2 = KeyEvent.VK_K;
+
+				} else {
+					throw new HarnessException("implement shortcut: " + keyCode);
+
+				}
+				Robot zRobot;
+				try {
+					zRobot = new Robot();
+					zRobot.keyPress(keycode1);
+					zRobot.keyPress(keycode2);
+					zRobot.keyRelease(keycode1);
+					zRobot.keyRelease(keycode2);
+
+				} catch (AWTException e) {
+					e.printStackTrace();
+				}
+
+			} else {
+
+				logger.info(Integer.parseInt(kc[0]));
+				if (Integer.parseInt(kc[0]) == 27) {
+					keycode1 = KeyEvent.VK_ESCAPE;
+				}else if (Integer.parseInt(kc[0]) == 77) {
+					keycode1 = KeyEvent.VK_M;
+				} else if (Integer.parseInt(kc[0]) == 8) {
+					keycode1 = KeyEvent.VK_BACK_SPACE;
+				} else if (Integer.parseInt(kc[0]) == 80) {
+					keycode1 = KeyEvent.VK_P;
+				} else {
+
+					throw new HarnessException("implement shortcut: " + keyCode);
+				}
+
+				Robot zRobot;
+				try {
+					zRobot = new Robot();
+					zRobot.keyPress(keycode1);
+					zRobot.keyRelease(keycode1);
+				} catch (AWTException e) {
+					e.printStackTrace();
+				}
 			}
+
 		}
 		
 	}
