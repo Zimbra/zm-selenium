@@ -1494,7 +1494,7 @@ public class PageMail extends AbsTab {
 
 			} else if ( option == Button.O_CREATE_TASK ) {
 
-				optionLocator += " div[id^='CREATE_TASK'] td[id$='_title']";
+				optionLocator += " div[id^='zmi__TV-main__CREATE_TASK'] td[id$='_title']";
 				page = null;
 
 				// FALLTHROUGH
