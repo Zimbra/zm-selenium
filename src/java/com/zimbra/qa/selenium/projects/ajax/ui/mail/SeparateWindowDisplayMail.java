@@ -358,7 +358,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 			} else if (option == Button.B_REDIRECT) {
 				
-				optionLocator = containerActionMenu + " div[id='REDIRECT'] td[id$='_title']";
+				optionLocator = containerActionMenu + " div[id*='REDIRECT'] td[id$='_title']";
 				page = new SeparateWindowDialogRedirect(this.MyApplication, this);
 
 				// FALL THROUGH

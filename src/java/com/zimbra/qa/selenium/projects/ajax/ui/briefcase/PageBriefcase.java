@@ -459,7 +459,7 @@ public class PageBriefcase extends AbsTab {
 
 			if (option == Button.B_LAUNCH_IN_SEPARATE_WINDOW) {
 
-				optionLocator = "css=div[id=NEW_BRIEFCASE_WIN] td[id*=NEW_BRIEFCASE_WIN_title]:contains(Launch in Separate Window)";
+				optionLocator = "css=div[id*=NEW_BRIEFCASE_WIN] td[id*=NEW_BRIEFCASE_WIN_title]:contains(Launch in Separate Window)";
 
 				page = new DocumentBriefcaseOpen(this.MyApplication, item);
 
@@ -1139,7 +1139,7 @@ public class PageBriefcase extends AbsTab {
 
 			if (option == Button.O_TAG_FILE) {
 
-				optionLocator = "css=div[id=zm__Briefcase] tr[id=POPUP_TAG_MENU]>td[id^=TAG_MENU_dropdown]>div[class=ImgCascade]";
+				optionLocator = "css=div[id=zm__Briefcase] tr[id*=Briefcase__TAG_MENU]>td[id*=TAG_MENU_title]";
 
 			} else {
 				throw new HarnessException("implement action: " + action
@@ -1155,7 +1155,7 @@ public class PageBriefcase extends AbsTab {
 			// Now the ContextMenu option is opened
 			// Click on the specified sub option
 			//String subOptionLocator = "css=div[id='TAG_MENU|MENU'] [class=ZWidgetTitle]:contains(" + subOption + ")";
-			String subOptionLocator = "//div[@id='TAG_MENU|MENU']"
+			String subOptionLocator = "//div[@id='zmi__Briefcase__TAG_MENU|MENU']"
 					+"//*[contains(@class,'ZWidgetTitle') and contains(text(),'" 
 					+ subOption + "')]";
 			
