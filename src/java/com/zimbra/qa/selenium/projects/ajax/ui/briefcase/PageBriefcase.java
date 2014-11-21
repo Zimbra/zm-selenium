@@ -465,14 +465,14 @@ public class PageBriefcase extends AbsTab {
 
 			} else if (option == Button.O_SEND_AS_ATTACHMENT) {
 
-				optionLocator = "css=div[id=SEND_FILE_AS_ATT] td[id*=SEND_FILE_AS_ATT_title]:contains('Send as attachment')";
+				optionLocator = "css=div[id*=SEND_FILE_AS_ATT] td[id*=SEND_FILE_AS_ATT_title]:contains('Send as attachment')";
 
 				page = new FormMailNew(this.MyApplication);
 
 				// FALL THROUGH
 			} else if (option == Button.O_SEND_LINK) {
 
-				optionLocator = "css=div[id=SEND_FILE] td[id*=SEND_FILE_title]:contains('Send link')";
+				optionLocator = "css=div[id*=SEND_FILE] td[id*=SEND_FILE_title]:contains('Send link')";
 
 				page = new DialogConfirm(DialogConfirm.Confirmation.SENDLINK,
 						this.MyApplication, this);
@@ -975,7 +975,7 @@ public class PageBriefcase extends AbsTab {
 
 			if (option == Button.B_RENAME) {
 
-				optionLocator = "css=div[id=zm__Briefcase] div[id^=RENAME_FILE__] tr[id^=POPUP_RENAME_FILE]>td[id^=RENAME_FILE]:contains(Rename)";
+				optionLocator = "css=div[id=zm__Briefcase] div[id$=RENAME_FILE] tr[id$=RENAME_FILE]>td[id$=RENAME_FILE_title]:contains(Rename)";
 
 				page = null;
 
@@ -990,8 +990,10 @@ public class PageBriefcase extends AbsTab {
 					page = null;
 
 			} else if (option == Button.O_OPEN) {
+				
 
-				optionLocator = "css=td#OPEN_FILE_title:contains(Open)";
+				optionLocator = "css=td#zmi__Briefcase__OPEN_FILE_title:contains(Open)";
+				
 
 				if (item instanceof DocumentItem) {
 					page = new DocumentBriefcaseOpen(MyApplication,
@@ -1001,14 +1003,14 @@ public class PageBriefcase extends AbsTab {
 
 			} else if (option == Button.O_SEND_LINK) {
 
-				optionLocator = "css=tr[id^=POPUP_SEND_FILE]>td[id^=SEND_FILE__]:contains('Send link(s)')";
+				optionLocator = "css=tr[id$=Briefcase__SEND_FILE]>td[id$=SEND_FILE_title]:contains('Send link(s)')";
 
 				page = new DialogConfirm(DialogConfirm.Confirmation.SENDLINK,
 						this.MyApplication, this);
 
 			} else if (option == Button.O_SEND_AS_ATTACHMENT) {
 
-				optionLocator = "css=div[id^=SEND_FILE_AS_ATT__DWT]";
+				optionLocator = "css=div[id$=SEND_FILE_AS_ATT]";
 
 				page = new FormMailNew(this.MyApplication);
 
@@ -1021,7 +1023,7 @@ public class PageBriefcase extends AbsTab {
 
 			} else if (option == Button.O_MOVE) {
 
-				optionLocator = "css=div[id=zm__Briefcase] tr[id=POPUP_MOVE]";
+				optionLocator = "css=div[id=zmi__Briefcase__MOVE] tr[id=POPUP_zmi__Briefcase__MOVE]";
 
 				page = new DialogMove(MyApplication, this);
 			} else if (option == Button.O_TAG_FILE) {
@@ -1031,12 +1033,12 @@ public class PageBriefcase extends AbsTab {
 				page = new DialogMove(MyApplication, this);
 			} else if (option == Button.O_CHECK_IN_FILE) {
 
-				optionLocator = "css=tr[id^=POPUP_CHECKIN]>td[id^=CHECKIN__]:contains('Check In File')";
+				optionLocator = "css=tr[id$=CHECKIN] td[id$=CHECKIN_title]:contains('Check In File')";
 
 				page = new DialogCheckInFile(MyApplication, this);
 			} else if (option == Button.O_DISCARD_CHECK_OUT) {
 
-				optionLocator = "css=tr[id^=POPUP_DISCARD_CHECKOUT]>td[id^=DISCARD_CHECKOUT__]:contains(Discard Check Out)";
+				optionLocator = "css=tr[id$=DISCARD_CHECKOUT] td[id$=DISCARD_CHECKOUT_title]:contains(Discard Check Out)";
 
 				page = null;
 			} else {

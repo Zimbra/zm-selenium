@@ -26,7 +26,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import com.zimbra.common.lmtp.LmtpClient;
-import com.zimbra.common.lmtp.LmtpClientException;
+//import com.zimbra.common.lmtp.LmtpClientException;
 import com.zimbra.common.lmtp.LmtpProtocolException;
 import com.zimbra.common.util.ByteUtil;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
@@ -97,13 +97,11 @@ public class LmtpInject {
 			throw new HarnessException("Unable to read mime file "+ mime.getAbsolutePath(), e);
 		} catch (LmtpProtocolException e) {
 			throw new HarnessException("Unable to inject mime file "+ mime.getAbsolutePath(), e);
-		} catch (LmtpClientException e) {
-            throw new HarnessException("Unable to inject mime file "+ mime.getAbsolutePath(), e);
-        }
+		}
 
 	}
 
-	protected static void injectFolder(List<String> recipients, String sender, File mime) throws IOException, LmtpProtocolException, LmtpClientException {
+	protected static void injectFolder(List<String> recipients, String sender, File mime) throws IOException, LmtpProtocolException {
 
 		if ( mime.isFile() ) {
 
@@ -128,7 +126,7 @@ public class LmtpInject {
 	}
 
 
-	protected static void inject(List<String> recipients, String sender, File mime) throws IOException, LmtpProtocolException, LmtpClientException {
+	protected static void inject(List<String> recipients, String sender, File mime) throws IOException, LmtpProtocolException {
 		logger.info("LMTP: to: "+ recipients.toString());
 		logger.info("LMTP: from: "+ sender);
 		logger.info("LMTP: filename: "+ mime.getAbsolutePath());
