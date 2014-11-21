@@ -71,7 +71,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 
 	}
 	
-	@Bugs(ids = "69132")
+	@Bugs(ids = "69132,96556")
 	@Test(
 			description = "Accept a meeting using Accept button from invitation message", 
 			groups = { "sanity" })
@@ -165,7 +165,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 
 	}
 
-	@Bugs(ids = "69132")
+	@Bugs(ids = "69132,96556")
 	@Test(
 			description = "Accept meeting - Verify organizer gets notification message", 
 			groups = { "functional" })
@@ -217,7 +217,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 
 	}
 
-	@Bugs(ids = "69132")
+	@Bugs(ids = "69132,96556")
 	@Test(
 			description = "Accept meeting using 'Accept -> Notify Organizer'", 
 			groups = { "functional" })
@@ -324,7 +324,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Bugs(ids = "69132")
+	@Bugs(ids = "69132,96556")
 	@Test(
 			description = "Accept meeting using 'Accept -> Edit Reply' and verify modified content", 
 			groups = { "functional" })
@@ -429,7 +429,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 
 	}
 	
-	@Bugs(ids = "69132,65356")
+	@Bugs(ids = "69132,65356,96556")
 	@Test(
 			description = "Accept meeting using 'Accept -> Don't Notify Organizer'", 
 			groups = { "functional" })

@@ -34,7 +34,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 	}
 	
 	@Test(description = "Modify series from every day to every week", 
-			groups = { "test" })
+			groups = { "functional" })
 	public void ModifySeries_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------

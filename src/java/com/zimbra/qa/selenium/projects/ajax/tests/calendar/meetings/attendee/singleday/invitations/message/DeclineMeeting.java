@@ -71,7 +71,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 	}
 	
-	@Bugs(ids = "69132")
+	@Bugs(ids = "69132,96556")
 	@Test(
 			description = "Decline a meeting using Decline button from invitation message", 
 			groups = { "smoke" })
@@ -167,7 +167,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 	}
 
-	@Bugs(ids = "69132")
+	@Bugs(ids = "69132,96556")
 	@Test(
 			description = "Decline meeting - Verify organizer gets notification message", 
 			groups = { "functional" })
@@ -226,7 +226,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 	}
 
-	@Bugs(ids = "69132")
+	@Bugs(ids = "69132,96556")
 	@Test(
 			description = "Decline meeting using 'Decline -> Notify Organizer'", 
 			groups = { "functional" })
@@ -333,7 +333,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Bugs(ids = "69132")
+	@Bugs(ids = "69132,96556")
 	@Test(
 			description = "Decline meeting using 'Decline -> Edit Reply' and verify modified content", 
 			groups = { "functional" })
@@ -436,7 +436,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Bugs(ids = "69132,65356")
+	@Bugs(ids = "69132,65356,96556")
 	@Test(
 			description = "Decline meeting using 'Decline -> Don't Notify Organizer'", 
 			groups = { "functional" })
