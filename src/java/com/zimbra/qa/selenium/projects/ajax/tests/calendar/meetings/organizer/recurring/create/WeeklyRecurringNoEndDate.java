@@ -16,8 +16,13 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.recurring.create;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -39,7 +44,6 @@ public class WeeklyRecurringNoEndDate extends CalendarWorkWeekTest {
 		
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();
-		String tz = ZTimeZone.TimeZoneEST.getID();
 		String apptSubject, apptAttendee, apptContent, apptLocation;
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		
@@ -64,7 +68,7 @@ public class WeeklyRecurringNoEndDate extends CalendarWorkWeekTest {
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, Button.B_NO_END_DATE_RADIO_BUTTON);
-		ZAssert.assertEquals(app.zPageCalendar.zGetRecurringLink(), "Every " + startUTC.getCurrentDay() + " No end date Effective " + startUTC.toTimeZone(tz).toMMM_dC_yyyy(), "Recurring link: Verify the appointment data");
+		ZAssert.assertEquals(app.zPageCalendar.zGetRecurringLink(), "Every " + getInviteDay() + " No end date Effective " + getInviteMonthDateYear(), "Recurring link: Verify the appointment data");
 				
 		apptForm.zSubmit();
 		SleepUtil.sleepLong(); //SOAP gives wrong response
@@ -132,6 +136,38 @@ public class WeeklyRecurringNoEndDate extends CalendarWorkWeekTest {
 		SleepUtil.sleepMedium(); //Let UI draw first and important for calendar testcases reliability
 		ZAssert.assertEquals(app.zPageCalendar.zGetApptCountWorkWeekView(), 2, "Verify correct no. of recurring instances are present in calendar view");
 		
+	}
+	
+	public String getInviteDay() {
+		if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY ) {
+			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, -1);
+		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ) {
+			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, -2);
+		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ) {
+			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 2);
+		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY ) {
+			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
+		}
+		
+	    Date inviteDate = calendarWeekDayUTC.getTime();
+	    DateFormat dateFormat = new SimpleDateFormat("EEEE");
+	    return dateFormat.format(inviteDate);
+	}
+	
+	public String getInviteMonthDateYear() {
+		if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY ) {
+			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, -1);
+		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ) {
+			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, -2);
+		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ) {
+			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 2);
+		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY ) {
+			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
+		}
+		
+	    Date inviteDate = calendarWeekDayUTC.getTime();
+	    DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
+	    return dateFormat.format(inviteDate);
 	}
 
 }

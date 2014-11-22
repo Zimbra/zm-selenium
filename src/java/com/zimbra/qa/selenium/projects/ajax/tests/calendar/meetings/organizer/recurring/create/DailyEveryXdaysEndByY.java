@@ -16,8 +16,14 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.recurring.create;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -32,14 +38,14 @@ public class DailyEveryXdaysEndByY extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
+	@Bugs(ids = "96566")
 	@Test(description = "Create daily recurring invite with attendee and location with every day & end by particular date",
-			groups = { "smoke" })
+			groups = { "functional" })
 			
 	public void DailyEveryXdaysEndByY_01() throws HarnessException {
 		
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();
-		String tz = ZTimeZone.TimeZoneEST.getID();
 		String apptSubject, apptAttendee, apptContent, apptLocation;
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		
@@ -64,7 +70,7 @@ public class DailyEveryXdaysEndByY extends CalendarWorkWeekTest {
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 		apptForm.zRepeat(Button.O_EVERY_DAY_MENU, Button.B_EVERY_X_DAYS_RADIO_BUTTON, "1", Button.B_END_BY_DATE_RADIO_BUTTON, "01/01/2020");
-		ZAssert.assertEquals(app.zPageCalendar.zGetRecurringLink(), "Every day End by Jan 1, 2020 Effective " + startUTC.toTimeZone(tz).toMMM_dC_yyyy(), "Recurring link: Verify the appointment data");
+		ZAssert.assertEquals(app.zPageCalendar.zGetRecurringLink(), "Every day End by Jan 1, 2020 Effective " + getInviteDate(), "Recurring link: Verify the appointment data");
 				
 		apptForm.zSubmit();
 		SleepUtil.sleepLong(); //SOAP gives wrong response
@@ -88,7 +94,7 @@ public class DailyEveryXdaysEndByY extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getAttendees(), apptAttendee, "Attendees: Verify the appointment data");
 		ZAssert.assertEquals(actual.getLocation(), apptLocation, "Location: Verify the appointment data");
 		ZAssert.assertEquals(ruleFrequency, "DAI", "Repeat frequency: Verify the appointment data");
-		ZAssert.assertEquals(freqUntil, "20200102T075959Z", "Recurrence until: Verify the appointment data");
+		ZAssert.assertEquals(freqUntil, "20200101T182959Z", "Recurrence until: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
 		
@@ -115,7 +121,7 @@ public class DailyEveryXdaysEndByY extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(received.getAttendees(), apptAttendee, "Attendees: Verify the appointment data");
 		ZAssert.assertEquals(received.getLocation(), apptLocation, "Location: Verify the appointment data");
 		ZAssert.assertEquals(ruleFrequency, "DAI", "Repeat frequency: Verify the appointment data");
-		ZAssert.assertEquals(freqUntil, "20200102T075959Z", "Recurrence until: Verify the appointment data");
+		ZAssert.assertEquals(freqUntil, "20200101T182959Z", "Recurrence until: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
 		ZAssert.assertEquals(received.getContent(), appt.getContent(), "Content: Verify the appointment data");
 
@@ -136,6 +142,22 @@ public class DailyEveryXdaysEndByY extends CalendarWorkWeekTest {
 		SleepUtil.sleepMedium(); //Let UI draw first and important for calendar testcases reliability
 		ZAssert.assertEquals(app.zPageCalendar.zGetApptCountWorkWeekView(), 10, "Verify correct no. of recurring instances are present in calendar view");
 		
+	}
+	
+	public String getInviteDate() {
+		if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY ) {
+			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, -1);
+		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ) {
+			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, -2);
+		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ) {
+			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 2);
+		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY ) {
+			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
+		}
+		
+	    Date inviteDate = calendarWeekDayUTC.getTime();
+	    DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
+	    return dateFormat.format(inviteDate);
 	}
 
 }
