@@ -80,7 +80,7 @@ public class WeeklyEveryXdayEndByY extends CalendarWorkWeekTest {
 		String until = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:until", "d");
 		String interval = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:interval", "ival");
 		String weekday = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:wkday", "day");
-
+		
 		// Verify appointment exists on server meeting with correct recurring details
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
@@ -88,7 +88,7 @@ public class WeeklyEveryXdayEndByY extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getAttendees(), apptAttendee, "Attendees: Verify the appointment data");
 		ZAssert.assertEquals(actual.getLocation(), apptLocation, "Location: Verify the appointment data");
 		ZAssert.assertEquals(ruleFrequency, "WEE", "Repeat frequency: Verify the appointment data");
-		ZAssert.assertEquals(until, "20200102T075959Z", "Recurrence until: Verify the appointment data");
+		ZAssert.assertEquals(until, "20200101T182959Z", "Recurrence until: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
 		ZAssert.assertEquals(weekday, "TU", "Weekday: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
@@ -117,7 +117,7 @@ public class WeeklyEveryXdayEndByY extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(received.getAttendees(), apptAttendee, "Attendees: Verify the appointment data");
 		ZAssert.assertEquals(received.getLocation(), apptLocation, "Location: Verify the appointment data");
 		ZAssert.assertEquals(ruleFrequency, "WEE", "Repeat frequency: Verify the appointment data");
-		ZAssert.assertEquals(until, "20200102T075959Z", "Recurrence until: Verify the appointment data");
+		ZAssert.assertEquals(until, "20200101T182959Z", "Recurrence until: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
 		ZAssert.assertEquals(weekday, "TU", "Weekday: Verify the appointment data");
 		ZAssert.assertEquals(received.getContent(), appt.getContent(), "Content: Verify the appointment data");
@@ -137,5 +137,4 @@ public class WeeklyEveryXdayEndByY extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(app.zPageCalendar.zGetApptCountWorkWeekView(), 2, "Verify correct no. of recurring instances are present in calendar view");
 		
 	}
-
 }
