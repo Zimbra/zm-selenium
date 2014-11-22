@@ -1022,10 +1022,16 @@ public class FormApptNew extends AbsForm {
 			
 			if (field == Field.StartDate || field == Field.EndDate
 					|| field == Field.StartTime || field == Field.EndTime) {
+				this.sFocus(locator);
 				this.zKeyboard.zSelectAll();
 				this.sTypeDateTime(locator, value);
 				
+			} else if (field == Field.Subject) {
+				this.sFocus(locator);
+				this.sType(locator, value);
+				
 			} else {
+				this.sFocus(locator);
 				this.sType(locator, value);
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 				SleepUtil.sleepSmall();
@@ -1033,7 +1039,6 @@ public class FormApptNew extends AbsForm {
 			}
 		}
 		SleepUtil.sleepSmall();
-		this.zWaitForBusyOverlay();
 	}
 
 	@Override

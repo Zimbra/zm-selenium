@@ -54,43 +54,60 @@ public class PageCalendar extends AbsTab {
 		
 		public static final String MonthButton = "css=td[id='zb__CLD__MONTH_VIEW_title']";
 		
-		public static final String OpenMenu = "id=VIEW_APPOINTMENT_title";
-		public static final String PrintMenu = "css=div[id='zm__Calendar'] tr[id='POPUP_PRINT']";
-		public static final String AcceptMenu = "id=zmi__Calendar__REPLY_ACCEPT_title";
-		public static final String TentativeMenu = "id=zmi__Calendar__REPLY_TENTATIVE_title";
-		public static final String DeclineMenu = "id=zmi__Calendar__REPLY_DECLINE_title";
-		public static final String EditReplyMenu = "id=zmi__Calendar__INVITE_REPLY_MENU_title";
-		public static final String EditReplyAcceptSubMenu = "id=zmi__Calendar__EDIT_REPLY_ACCEPT_title";
-		public static final String EditReplyTentativeSubMenu = "id=zmi__Calendar__EDIT_REPLY_TENTATIVE_title";
-		public static final String EditReplyDeclineSubMenu = "id=zmi__Calendar__EDIT_REPLY_DECLINE_title";
-		public static final String ProposeNewTimeMenu = "id=zmi__Calendar__PROPOSE_NEW_TIME_title";
-		public static final String CreateACopyMenu = "id=zmi__Calendar__DUPLICATE_APPT_title";
-		public static final String ReplyMenu = "css=div[id='zm__Calendar'] tr[id='POPUP_REPLY']";
-		public static final String ReplyToAllMenu = "css=div[id='zm__Calendar'] tr[id='POPUP_REPLY_ALL']";
-		public static final String ForwardMenu = "css=div[id='zm__Calendar'] tr[id='POPUP_FORWARD_APPT']";
-		public static final String DeleteMenu = "css=div[id='zm__Calendar'] tr[id='POPUP_DELETE']";
-		public static final String CancelMenu = "css=div#zm__Calendar div#DELETE td[id$='_title']";
-		public static final String MoveMenu = "css=div[id^='zm__Calendar__'] td[id^='MOVE__DWT'][id$='_title']";
-		public static final String TagAppointmentMenu = "css=div[id='zm__Calendar'] tr[id='POPUP_TAG_MENU']";
+		public static final String OpenMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__VIEW_APPOINTMENT_title']";
+		public static final String PrintMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__PRINT_title']";
+		public static final String AcceptMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__REPLY_ACCEPT_title']";
+		public static final String TentativeMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__REPLY_TENTATIVE_title']";
+		public static final String DeclineMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__REPLY_DECLINE_title']";
+		public static final String EditReplyMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__INVITE_REPLY_MENU_title']";
+		public static final String EditReplyAcceptSubMenu = "css=div[id^='POPUP_DWT'] div[id='EDIT_REPLY_ACCEPT'] td[id='EDIT_REPLY_ACCEPT_title']";
+		public static final String EditReplyTentativeSubMenu = "css=div[id^='POPUP_DWT'] div[id='EDIT_REPLY_TENTATIVE'] td[id='EDIT_REPLY_TENTATIVE_title']";
+		public static final String EditReplyDeclineSubMenu = "css=div[id^='POPUP_DWT'] div[id='EDIT_REPLY_DECLINE'] td[id='EDIT_REPLY_DECLINE_title']";
+		public static final String ProposeNewTimeMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__PROPOSE_NEW_TIME_left_icon']";
+		public static final String ReinvitesAttendeesMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__REINVITE_ATTENDEES_left_icon']";
+		public static final String CreateACopyMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__DUPLICATE_APPT_left_icon']";
+		public static final String ReplyMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__REPLY_title']";
+		public static final String ReplyToAllMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__REPLY_ALL_title']";
+		public static final String ForwardMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__FORWARD_APPT_title']";
+		public static final String DeleteMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__DELETE_title']";
+		public static final String CancelMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__CANCEL_title']";
+		public static final String MoveMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__MOVE_title']";
+		public static final String TagAppointmentMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__TAG_MENU_title']";
 		public static final String TagAppointmentNewTagSubMenu = "id=calendar_newtag_title";
-		public static final String TagAppointmentRemoveTagSubMenu = "css=div[id^='TAG_MENU'] div[id^='calendar_removetag'] td[id^='calendar_removetag'][class='ZWidgetTitle']";
-		public static final String ShowOriginalMenu = "css=div[id='zm__Calendar'] tr[id^='POPUP_SHOW_ORIG']";
-		public static final String ShowOriginalMenuOrg = "css=div[id='zm__Calendar'] tr[id='POPUP_SHOW_ORIG']";
+		public static final String TagAppointmentRemoveTagSubMenu = "id=calendar_removetag_title";
+		public static final String ShowOriginalMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__SHOW_ORIG_title']";
 		public static final String QuickCommandsMenu = "css=div[id='zm__Calendar'] tr[id='POPUP_QUICK_COMMANDS']";
+		
+		public static final String NeedsActionButton_ViewAppt = "css=div[id^='DWT'] td[id$='_responseActionSelectCell'] td[id$='_select_container'] td[id$='_title']";
+		public static final String NeedsActionValue_ViewAppt = "css=td[id$='_responseActionSelectCell'] td[id$='_select_container'] td[id$='_title']";
+		public static final String NeedsActionMenu_ViewAppt = "css=div[id*='_Menu_'] div[id^='AC'] td[id^='AC']:contains('Needs Action')";
+		public static final String AcceptedMenu_ViewAppt = "css=div[id*='_Menu_'] td[id^='ZmNeedActionOption_AC']:contains('Accepted')";
+		public static final String TentativeMenu_ViewAppt = "css=div[id*='_Menu_'] td[id^='ZmNeedActionOption_TE']:contains('Tentative')";
+		public static final String DeclinedMenu_ViewAppt = "css=div[id*='_Menu_'] td[id^='ZmNeedActionOption_DE']:contains('Declined')";
+		public static final String DeclinedMenu3_ViewAppt = "css=div[id$='_Menu_3'] div[id^='DE_3'] td[id='DE_3_title']:contains('Declined')";
+		public static final String TagButton_ViewAppt = "css=div[id^='ztb__APPTRO'] td[id$='TAG_MENU_dropdown']";
+		public static final String NewTagMenu_ViewAppt = "css=div[id$='__TAG_MENU|MENU'] td[id='viewAppointment_newtag_title']";
+		public static final String RemoveTagMenu_ViewAppt = "css=div[id$='__TAG_MENU|MENU'] td[id='viewAppointment_removetag_title']";
+		public static final String ActionsButton_ViewAppt = "css=div[id^='ztb__APPTRO'] td[id$='ACTIONS_MENU_title']";
+		public static final String EditMenu_ViewAppt = "css=div[id^='zm__APPTRO'] td[id$='EDIT_title']";
+		public static final String CreateACopyMenu_ViewAppt = "css=div[id^='zmi__APPTRO'] td[id$='DUPLICATE_APPT_title']";
+		public static final String ReplyMenu_ViewAppt = "css=div[id^='zmi__APPTRO'] td[id$='REPLY_title']";
+		public static final String ReplyToAllMenu_ViewAppt = "css=div[id^='zmi__APPTRO'] td[id$='REPLY_ALL_title']";
+		public static final String ForwardMenu_ViewAppt = "css=div[id^='zm__APPTRO'] td[id$='FORWARD_APPT_title']";
+		public static final String ProposeNewTimeMenu_ViewAppt = "css=div[id^='zm__APPTRO'] td[id$='PROPOSE_NEW_TIME_title']";
+		public static final String DeleteMenu_ViewAppt = "css=div[id^='zm__APPTRO'] td[id$='DELETE_title']";
+		public static final String ShowOriginalMenu_ViewAppt = "css=div[id^='zm__APPTRO'] td[id$='SHOW_ORIG_title']";
 		
 		public static final String InstanceMenu = "id=VIEW_APPT_INSTANCE_title";
 		public static final String SeriesMenu = "id=VIEW_APPT_SERIES_title";
-		
 		public static final String OpenInstanceMenu = "id=OPEN_APPT_INSTANCE_title";
 		public static final String OpenSeriesMenu = "id=OPEN_APPT_SERIES_title";
-		
 		public static final String AcceptSeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__REPLY_ACCEPT_title']";
 		public static final String DeclineSeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__REPLY_DECLINE_title']";
 		public static final String CreateACopySeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__DUPLICATE_APPT_title']";
 		public static final String ForwardSeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__FORWARD_APPT_SERIES_title']";
 		public static final String DeleteSeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__DELETE_SERIES_title']";
 		public static final String MoveSeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__MOVE_title']";
-		
 		public static final String AcceptInstanceMenu = "css=div[id='zm__Calendar_VIEW_APPT_INSTANCE'] td[id='zmi__Calendar_VIEW_APPT_INSTANCE__REPLY_ACCEPT_title']";
 		public static final String DeclineInstanceMenu = "css=div[id='zm__Calendar_VIEW_APPT_INSTANCE'] td[id='zmi__Calendar_VIEW_APPT_INSTANCE__REPLY_DECLINE_title']";
 		public static final String CreateACopyInstanceMenu = "css=div[id='zm__Calendar_VIEW_APPT_INSTANCE'] td[id='zmi__Calendar_VIEW_APPT_INSTANCE__DUPLICATE_APPT_title']";
@@ -112,26 +129,6 @@ public class PageCalendar extends AbsTab {
 		public static final String EditMessageButton = "id=CNF_DEL_SENDEDIT_button5_title";
 		public static final String CancelButton_ConfirmDelete = "id=CNF_DEL_SENDEDIT_button1_title";
 		public static final String ForwardToTextArea = "css=input[id='APPT_COMPOSE_1_to_control_input']";
-		
-		public static final String NeedsActionButton_ViewAppt = "css=div[id^='DWT'] td[id$='_responseActionSelectCell'] td[id$='_select_container'] td[id$='_title']";
-		public static final String NeedsActionValue_ViewAppt = "css=td[id$='_responseActionSelectCell'] td[id$='_select_container'] td[id$='_title']";
-		public static final String NeedsActionMenu_ViewAppt = "css=div[id*='_Menu_'] div[id^='AC'] td[id^='AC']:contains('Needs Action')";
-		public static final String AcceptedMenu_ViewAppt = "css=div[id*='_Menu_'] td[id^='ZmNeedActionOption_AC']:contains('Accepted')";
-		public static final String TentativeMenu_ViewAppt = "css=div[id*='_Menu_'] td[id^='ZmNeedActionOption_TE']:contains('Tentative')";
-		public static final String DeclinedMenu_ViewAppt = "css=div[id*='_Menu_'] td[id^='ZmNeedActionOption_DE']:contains('Declined')";
-		public static final String DeclinedMenu3_ViewAppt = "css=div[id$='_Menu_3'] div[id^='DE_3'] td[id='DE_3_title']:contains('Declined')";
-		public static final String TagButton_ViewAppt = "css=div[id^='ztb__APPTRO'] td[id$='TAG_MENU_dropdown']";
-		public static final String NewTagMenu_ViewAppt = "css=div[id$='TAG_MENU|MENU'] td[id$='TAG_MENU|MENU|NEWTAG_title']";
-		public static final String RemoveTagMenu_ViewAppt = "css=div[id$='TAG_MENU|MENU'] td[id$='TAG_MENU|MENU|REMOVETAG_title']";
-		public static final String ActionsButton_ViewAppt = "css=div[id^='ztb__APPTRO'] td[id$='ACTIONS_MENU_title']";
-		public static final String EditMenu_ViewAppt = "css=div[id^='zm__APPTRO'] td[id^='EDIT_title']";
-		public static final String CreateACopyMenu_ViewAppt = "css=div[id^='zm__APPTRO'] td[id^='DUPLICATE_APPT_title']";
-		public static final String ReplyMenu_ViewAppt = "css=div[id^='zm__APPTRO'] td[id^='REPLY'][id$='_title']";
-		public static final String ReplyToAllMenu_ViewAppt = "css=div[id^='zm__APPTRO'] td[id^='REPLY_ALL'][id$='_title']";
-		public static final String ForwardMenu_ViewAppt = "css=div[id^='zm__APPTRO'] td[id^='FORWARD_APPT_title']";
-		public static final String ProposeNewTimeMenu_ViewAppt = "css=div[id^='zm__APPTRO'] td[id^='PROPOSE_NEW_TIME_title']";
-		public static final String DeleteMenu_ViewAppt = "css=div[id^='zm__APPTRO'] td[id^='DELETE_title']";
-		public static final String ShowOriginalMenu_ViewAppt = "css=div[id^='zm__APPTRO'] td[id^='SHOW_ORIG'][id$='_title']";
 		
 		// Radio buttons
 		public static final String OpenThisInstanceRadioButton = "css=td input[id*='_defaultRadio']";
@@ -893,16 +890,22 @@ public class PageCalendar extends AbsTab {
 
 		if ( this.zIsVisiblePerPosition(Locators.CalendarViewListCSS, 0, 0) ) {
 			return (zListItemListView(action, option, subject));									// LIST
+		
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewDayCSS, 0, 0) ) {
 			return (zListItemGeneral(Locators.CalendarViewDayItemCSS, action, option, subject));	// DAY
+		
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewWorkWeekCSS, 0, 0) ) {
 			return (zListItemGeneral(Locators.CalendarViewWorkWeekItemCSS, action, option, subject));	// WORKWEEK
+		
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewWeekCSS, 0, 0) ) {
 			return (zListItemGeneral(Locators.CalendarViewWeekItemCSS, action, option, subject));	// WEEK
+		
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewMonthCSS, 0, 0) ) {
 			return (zListItemMonthView(action, option, subject));									// MONTH
+		
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewScheduleCSS, 0, 0) ) {
 			return (zListItemGeneral("TODO", action, option, subject));								// SCHEDULE
+		
 		} else {
 			throw new HarnessException("Unknown calendar view");
 		}
@@ -1157,7 +1160,7 @@ public class PageCalendar extends AbsTab {
 				
 			} else if ( option == Button.O_REINVITE ) {
 				
-				optionLocator = "css=div#zm__Calendar div#REINVITE_ATTENDEES td[id$='_title']";
+				optionLocator = Locators.ReinvitesAttendeesMenu;
 				
 				if ( optionLocator != null ) {
 
@@ -1171,7 +1174,7 @@ public class PageCalendar extends AbsTab {
 				
 			} else if ( option == Button.O_REINVITE ) {
 				
-				optionLocator = "css=div#zm__Calendar div#REINVITE_ATTENDEES td[id$='_title']";
+				optionLocator = Locators.ReinvitesAttendeesMenu;
 				
 				if ( optionLocator != null ) {
 
@@ -2678,7 +2681,7 @@ public class PageCalendar extends AbsTab {
 	
 	public void zWaitForElementAppear(String locator) throws HarnessException {
 		boolean isElementPresent = false;
-		for (int i=0; i<=50; i++) {
+		for (int i=0; i<=10; i++) {
 			isElementPresent = this.sIsElementPresent(locator);
 			if (isElementPresent == false) {
 				SleepUtil.sleepMedium();

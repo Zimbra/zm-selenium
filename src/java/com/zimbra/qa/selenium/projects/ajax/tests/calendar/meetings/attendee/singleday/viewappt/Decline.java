@@ -18,6 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.si
 
 import java.util.*;
 import org.testng.annotations.Test;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -139,6 +140,7 @@ public class Decline extends CalendarWorkWeekTest {
 
 	}
 	
+	@Bugs(ids = "96565")
 	@Test(description = "View meeting invite by opening it and Decline the invitation by selecting 'Notify organizer'", 
 			groups = { "functional" })
 			
