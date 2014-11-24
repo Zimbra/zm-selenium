@@ -58,8 +58,8 @@ public class PageTasks extends AbsTab{
 		public static String zMarkAsCompletedId = null;
 		public static final String zNewTaskMenuItem ="css=div[id='zb__NEW_MENU_NEW_TASK'] td[id$='_title']";
 		public static final String zNewTaskFolderMenuItem ="css=div[id='zb__NEW_MENU_NEW_TASK_FOLDER'] tr[id^='POPUP_'] td[id$='_title']";
-		public static final String zDeleteTaskMenuItem ="css=div[id='zm__Tasks'] tr[id='POPUP_DELETE']";
-		public static final String zMoveTaskMenuItem ="css=div[id='zm__Tasks'] tr[id='POPUP_MOVE']";
+		public static final String zDeleteTaskMenuItem ="css=div[id='zm__Tasks'] tr[id='POPUP_zmi__Tasks__DELETE']";
+		public static final String zMoveTaskMenuItem ="css=div[id='zm__Tasks'] tr[id='POPUP_zmi__Tasks__MOVE']";
 		public static final String zNewTaskListMenuItem="css=div[id$='NEWFOLDER']";
 		//public static final String zMoveTaskDropDown="css=td#zb__TKL-main__MOVE_MENU_dropdown>div";
 		//public static final String zMoveTaskDropDown="css=td#zcs5_dropdown>div";
@@ -70,8 +70,8 @@ public class PageTasks extends AbsTab{
 		public static final String zFilterByTaskDropDown="css=tr[id='ztb__TKL-main_items'] div[id='zb__TKL-main__VIEW_MENU'] td[id='zb__TKL-main__VIEW_MENU_dropdown']>div";
 		//	public static final String zToDoListTaskMenuItem ="css=div[id^='POPUP_DWT'] div[id^='DWT'] tr[id='POPUP_TKVT']";
 		public static final String zToDoListTaskMenuItem ="css=div[id='TKVT'] tr[id='POPUP_TKVT']";
-		public static final String zShowOrigTaskMenuItem ="css=div[id='zm__Tasks'] tr[id^='POPUP_SHOW_ORIG'] td[id$='_title']";
-		public static final String zPrintTaskMenuItem ="css=div[id='zm__Tasks'] tr[id^='POPUP_PRINT_TASK'] td[id$='_title']";
+		public static final String zShowOrigTaskMenuItem ="css=div[id='zm__Tasks'] tr[id='POPUP_zmi__Tasks__SHOW_ORIG'] td[id$='_title']";
+		public static final String zPrintTaskMenuItem ="css=div[id='zm__Tasks'] tr[id='POPUP_zmi__Tasks__PRINT_TASK'] td[id$='_title']";
 		public static String zPrintTaskDropDownId = null;
 		//public static final String zPrintTaskDropDown="css=td#zcs8_dropdown>div";
 		public static final String zPrintTaskFolder ="css=tr[id='POPUP_PRINT_TASKFOLDER'] td[id$='_title']";
