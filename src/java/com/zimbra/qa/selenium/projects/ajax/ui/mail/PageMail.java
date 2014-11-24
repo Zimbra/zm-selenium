@@ -743,7 +743,7 @@ public class PageMail extends AbsTab {
 				// 8.0: http://bugzilla.zimbra.com/show_bug.cgi?id=73721
 				// 				return (this.zToolbarPressButton(Button.B_NEWWINDOW));
 				
-				optionLocator += " div[id^='DETACH'] td[id$='_title']";
+				optionLocator += " div[id*='DETACH'] td[id$='_title']";
 				page = new SeparateWindowDisplayMail(this.MyApplication);
 
 				// We don't know the window title at this point (However, the test case should.)
@@ -1494,7 +1494,7 @@ public class PageMail extends AbsTab {
 
 			} else if ( option == Button.O_CREATE_TASK ) {
 
-				optionLocator += " div[id^='CREATE_TASK'] td[id$='_title']";
+				optionLocator += " div[id^='zmi__TV-main__CREATE_TASK'] td[id$='_title']";
 				page = null;
 
 				// FALLTHROUGH
