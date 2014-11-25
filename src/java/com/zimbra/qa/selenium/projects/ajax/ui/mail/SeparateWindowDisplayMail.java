@@ -337,14 +337,14 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 				
 			} else if (option == Button.O_MARK_AS_READ) {
 				
-				optionLocator = containerActionMenu + " div[id='MARK_READ'] td[id$='_title']";
+				optionLocator = containerActionMenu + " div[id$='MARK_READ'] td[id$='_title']";
 				page = null;
 				
 				// FALL THROUGH
 				
 			} else if (option == Button.O_MARK_AS_UNREAD) {
 				
-				optionLocator = containerActionMenu + " div[id='MARK_UNREAD'] td[id$='_title']";
+				optionLocator = containerActionMenu + " div[id$='MARK_UNREAD'] td[id$='_title']";
 				page = null;
 				
 				// FALL THROUGH

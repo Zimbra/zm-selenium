@@ -638,16 +638,6 @@ public class PageMail extends AbsTab {
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
 
-
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-
-		}
-
-
 		return (page);
 	}
 
