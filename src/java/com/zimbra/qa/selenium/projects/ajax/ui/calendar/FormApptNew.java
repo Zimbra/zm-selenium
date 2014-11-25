@@ -453,18 +453,18 @@ public class FormApptNew extends AbsForm {
 
 			// FALL THROUGH
 
-		} else if (button == Button.B_10AM) {
+		} else if (button == Button.B_FIRST_TIME_SUGGESTION) {
 
 			SleepUtil.sleepMedium();
-			locator = Locators.SuggestATime10AM;
 			
-			if (this.sIsElementPresent(locator) == true) {
-				this.sClickAt(locator, "");
+			if (this.sIsElementPresent(Locators.SelectFirstFreeTimeFromSuggestTimePane) == true) {
+				this.sClickAt(Locators.SelectFirstFreeTimeFromSuggestTimePane, "");
+				
 			} else if (this.sIsElementPresent(Locators.ShowTimesAnywayLink) == true) {
 				this.sClickAt(Locators.ShowTimesAnywayLink, "");
-			} else if (this.sIsElementPresent("css=div[id='zv__CSTP']  table[id^='zli__CSTP__'] td:nth-child(2)") == true) {
-				this.sClickAt("css=div[id='zv__CSTP']  table[id^='zli__CSTP__'] td:nth-child(2)", "");
+				this.sClickAt(Locators.SelectFirstFreeTimeFromSuggestTimePane, "");
 			}
+			
 			return null;
 			
 			// FALL THROUGH
@@ -477,17 +477,10 @@ public class FormApptNew extends AbsForm {
 
 			// FALL THROUGH
 
-		} else if (button == Button.B_SELECT_FIRST_FREE_TIME_FROM_SUGGEST_PANE) {
+		} else if (button == Button.B_10AM) {
 			
 			SleepUtil.sleepMedium();
-			locator = Locators.SelectFirstFreeTimeFromSuggestTimePane;
-			
-			if (this.sIsElementPresent(locator) == false) {
-				this.sClickAt(Locators.ShowTimesAnywayLink, "");
-				return null;
-			
-			}
-			
+			locator = Locators.SuggestATime10AM;
 			page = null;
 
 		} else if (button == Button.B_SHOW) {
@@ -583,6 +576,7 @@ public class FormApptNew extends AbsForm {
 
 	public AbsPage zPressButton(Button button, String value)
 			throws HarnessException {
+		
 		logger.info(myPageName() + " zPressButton(" + button + ")");
 		SleepUtil.sleepMedium();
 
@@ -614,10 +608,12 @@ public class FormApptNew extends AbsForm {
 		if (locator == null)
 			throw new HarnessException("locator was null for button " + button);
 
+		this.sClickAt("css=div[id$='_suggest_view'] table:nth-child(2) tbody tr td:nth-child(3) span", "0,0");
+		SleepUtil.sleepSmall();
+		
 		this.sClickAt(locator, "");
-		SleepUtil.sleepMedium(); // Let location bubble gets ready and adds
-									// value in field
-
+		SleepUtil.sleepMedium();
+		
 		this.zWaitForBusyOverlay();
 
 		return (page);

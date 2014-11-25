@@ -30,20 +30,17 @@ public class MoveCalendar extends AjaxCommonTest {
 
 	public MoveCalendar() {
 		logger.info("New "+ MoveCalendar.class.getCanonicalName());
-		
-		// All tests start at the login page
 		super.startingPage = app.zPageCalendar;
 		super.startingAccountPreferences = null;
-		
 	}
 	
 	@Test(	description = "Move a calendar - Right click, Move",
 			groups = { "smoke" })
+	
 	public void MoveCalendar_01() throws HarnessException {
 		
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
 		ZAssert.assertNotNull(root, "Verify the inbox is available");
-		
 		
 		// Create two subfolders in the inbox
 		// One folder to move
@@ -67,8 +64,6 @@ public class MoveCalendar extends AjaxCommonTest {
 		FolderItem subfolder2 = FolderItem.importFromSOAP(app.zGetActiveAccount(), name2);
 		ZAssert.assertNotNull(subfolder2, "Verify the second subfolder is available");
 		
-		
-		
 		// Click on Get Mail to refresh the folder list
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
@@ -77,17 +72,9 @@ public class MoveCalendar extends AjaxCommonTest {
 		dialog.zClickTreeFolder(subfolder2);
 		dialog.zClickButton(Button.B_OK);
 		
-		
-		
 		// Verify the folder is now in the other subfolder
 		subfolder1 = FolderItem.importFromSOAP(app.zGetActiveAccount(), name1);
 		ZAssert.assertNotNull(subfolder1, "Verify the subfolder is again available");
 		ZAssert.assertEquals(subfolder2.getId(), subfolder1.getParentId(), "Verify the subfolder's parent is now the other subfolder");
-
-		
 	}
-
-	
-
-
 }

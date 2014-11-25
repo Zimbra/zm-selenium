@@ -16,24 +16,15 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 
-import java.awt.event.KeyEvent;
 import java.util.Calendar;
-
 import org.testng.annotations.*;
-
-import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmDeleteOrganizer;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-@SuppressWarnings("unused")
 public class RemoveLocation extends CalendarWorkWeekTest {	
 	
 	public RemoveLocation() {
@@ -41,9 +32,10 @@ public class RemoveLocation extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "77588")
+	@Bugs(ids = "77588,96593")
 	@Test(description = "Remove location from existing appointment and verify F/B",
 			groups = { "smoke" })
+	
 	public void RemoveLocation_01() throws HarnessException {
 		
 		// Create a meeting
@@ -83,7 +75,7 @@ public class RemoveLocation extends CalendarWorkWeekTest {
         // Remove location and resend the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zRemoveLocation(apptLocation);
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
  
         // Verify that location doesn't present in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
