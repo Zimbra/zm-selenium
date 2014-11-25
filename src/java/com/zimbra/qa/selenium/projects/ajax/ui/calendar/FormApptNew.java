@@ -1033,6 +1033,7 @@ public class FormApptNew extends AbsForm {
 			} else {
 				this.sFocus(locator);
 				this.sType(locator, value);
+				this.sFocus(locator);
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 				SleepUtil.sleepSmall();
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);

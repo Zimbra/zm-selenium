@@ -16,29 +16,17 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.calendar;
 
-import java.util.Calendar;
-import java.util.HashMap;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
-import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZDate;
-import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmDeleteAppointment;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-@SuppressWarnings("unused")
 public class zimbraPrefCalendarWorkingHours extends AjaxCommonTest {
 
 	public zimbraPrefCalendarWorkingHours() {
@@ -47,12 +35,13 @@ public class zimbraPrefCalendarWorkingHours extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	// Need to skip this test till bug 77465 get fixed otherwise automation may stuck at browser navigate away dialog 
+	// Need to skip this test completely till bug 77465 get fixed otherwise automation may stuck at browser navigate away dialog 
 	@Bugs(ids = "77465")
 	@Test(
 			description = "Set calendar custom working hours and verify accordingly", 
-			groups = { "bug" })
-	public void zimbraPrefCalendarWorkingHours() throws HarnessException {
+			groups = { "functional" })
+	
+	public void zimbraPrefCalendarWorkingHours_01() throws HarnessException {
 		
 		// Modify the test account
 		ZimbraAdminAccount.GlobalAdmin().soapSend(

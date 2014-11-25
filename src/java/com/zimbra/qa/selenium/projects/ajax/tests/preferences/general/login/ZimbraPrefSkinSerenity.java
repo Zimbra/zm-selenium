@@ -52,13 +52,7 @@ public class ZimbraPrefSkinSerenity extends AjaxCommonTest {
 				
 		// Go to "General"
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.General);
-		
-		// Click on the "Theme:" pulldown
-		// changing condition from true to false to let test fail in natural way rather than explicitly throw an exception
-		if ( false ) {
-			throw new HarnessException("see bug 75438");
-		}
-		
+				
 		// Click on the "Bare" theme
 		String locator = "css=td[id='bare_2_title']";
 	

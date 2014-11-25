@@ -30,7 +30,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.PageMain;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.PageBriefcase;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail;
 
 public class OpenLinkToMessage extends FeatureBriefcaseTest {
 	String url;

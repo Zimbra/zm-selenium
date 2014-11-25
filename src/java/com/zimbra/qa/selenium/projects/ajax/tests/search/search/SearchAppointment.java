@@ -40,7 +40,6 @@ public class SearchAppointment extends CalendarWorkWeekTest {
 	public void SearchAppointment_01() throws HarnessException {
 		
 		// Create a meeting
-		AppointmentItem appt = new AppointmentItem();
 		String subject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
 		AppointmentItem.createAppointmentSingleDay(
 				app.zGetActiveAccount(),
