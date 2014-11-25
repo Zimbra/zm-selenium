@@ -36,6 +36,7 @@ public class BookLocationBySuggestingTime extends CalendarWorkWeekTest {
 	@Bugs(ids = "73966,88287")
 	@Test(description = "Suggest a free time and book location for selected time while creating new appointment",
 			groups = { "smoke" })
+	
 	public void BookLocationBySuggestingTime_01() throws HarnessException {
 		
 		// Create a meeting
@@ -69,12 +70,12 @@ public class BookLocationBySuggestingTime extends CalendarWorkWeekTest {
                "</CreateAppointmentRequest>");
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
         
-        // Suggest a time, pickup 10AM and send the appointment
+        // Suggest a time, pickup the time and send the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zToolbarPressButton(Button.B_SUGGESTATIME);
-        apptForm.zToolbarPressButton(Button.B_SELECT_FIRST_FREE_TIME_FROM_SUGGEST_PANE);
+        apptForm.zToolbarPressButton(Button.B_FIRST_TIME_SUGGESTION);
         apptForm.zPressButton(Button.B_LOCATIONMENU, apptLocation);
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
         SleepUtil.sleepLong(); // test fails while checking location free/busy status, waitForPostqueue is not sufficient here
         // Tried sleepMedium() as well but although fails so using sleepLong()
 

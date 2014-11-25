@@ -460,7 +460,7 @@ public class FormApptNew extends AbsForm {
 
 			// FALL THROUGH
 
-		} else if (button == Button.B_SELECT_FIRST_FREE_TIME_FROM_SUGGEST_PANE) {
+		} else if (button == Button.B_FIRST_TIME_SUGGESTION) {
 			
 			SleepUtil.sleepMedium();
 			locator = Locators.SelectFirstFreeTimeFromSuggestTimePane;
@@ -1015,7 +1015,6 @@ public class FormApptNew extends AbsForm {
 		boolean exists = this.sIsElementPresent("css=span[class='zcs-auto-complete-email']:contains(" + value + ")");
 		System.out.println(exists);
 		this.sClickAt("css=div[id^='ext-listitem'] span[class='zcs-auto-complete-email']:contains(" + value + ")", "0,0");
-		boolean jitesh;
 	}
 	
 	public void zFillField(Field field, ZDate value) throws HarnessException {

@@ -2768,7 +2768,7 @@ public abstract class AbsSeleniumObject {
 			throw new HarnessException("locator (destination) cannot be found: "+ locatorDestination);
 		}
 		
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 		
 		// Get the coordinates for the locators
 		Coordinate source = new Coordinate(
@@ -2798,11 +2798,13 @@ public abstract class AbsSeleniumObject {
 		    .build().perform();
 		    (new Actions(webDriver())).release(sourceElement).build().perform();
 		}else{
-		    ClientSessionFactory.session().selenium().dragAndDrop(locatorSource,relative.toString());
+		    ClientSessionFactory.session().selenium().dragAndDrop(locatorSource, relative.toString());
+		    SleepUtil.sleepLong();
+		    ClientSessionFactory.session().selenium().dragAndDrop(locatorSource, relative.toString());
 		}
 		
 		// Wait for the client to come back
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 	
 		this.zWaitForBusyOverlay();
 	}

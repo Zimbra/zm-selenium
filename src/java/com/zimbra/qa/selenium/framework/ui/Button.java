@@ -440,7 +440,7 @@ public class Button {
 	public static final Button B_SHOW_TIMES_ANYWAY = new Button("B_SHOW_TIMES_ANYWAY");
 	public static final Button O_SUGGESTION_PREFERENCES = new Button("O_SUGGESTION_PREFERENCES");
 	public static final Button B_10AM = new Button("B_10AM");
-	public static final Button B_SELECT_FIRST_FREE_TIME_FROM_SUGGEST_PANE = new Button("B_SELECT_FIRST_FREE_TIME_FROM_SUGGEST_PANE");
+	public static final Button B_FIRST_TIME_SUGGESTION = new Button("B_FIRST_TIME_SUGGESTION");
 	public static final Button B_SUGGESTEDLOCATION = new Button("B_SUGGESTEDLOCATION");
 	public static final Button B_ONLY_INCLUDE_MY_WORKING_HOURS = new Button("B_ONLY_INCLUDE_MY_WORKING_HOURS");
 	public static final Button B_ONLY_INCLUDE_OTHER_ATTENDEES_WORKING_HOURS = new Button("B_ONLY_INCLUDE_OTHER_ATTENDEES_WORKING_HOURS");

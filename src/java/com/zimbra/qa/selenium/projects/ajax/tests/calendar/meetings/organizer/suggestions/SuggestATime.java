@@ -17,6 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.suggestions;
 
 import java.util.Calendar;
+
 import org.testng.annotations.*;
 
 import com.zimbra.qa.selenium.framework.core.Bugs;
@@ -36,6 +37,7 @@ public class SuggestATime extends CalendarWorkWeekTest {
 	@Bugs(ids = "73966,88287")
 	@Test(description = "Suggest a free time while creating appointment",
 			groups = { "smoke" })
+	
 	public void SuggestATime_01() throws HarnessException {
 		
 		// Create a meeting
@@ -70,11 +72,9 @@ public class SuggestATime extends CalendarWorkWeekTest {
         // Suggest a time, pickup 10AM and send the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zToolbarPressButton(Button.B_SUGGESTATIME);
-        // apptForm.zVerifySpecificTimeNotExists("6:00 AM,7:00 AM,7:30 AM");
-        // apptForm.zVerifySpecificTimeExists("8:00 AM,8:30 AM,9:00 AM,3:00 PM,3:30 PM,4:00 PM");
-        apptForm.zToolbarPressButton(Button.B_10AM);
-        apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepLong(); //importFromSOAP gives wrong response without sleep sometime
+        apptForm.zToolbarPressButton(Button.B_FIRST_TIME_SUGGESTION);
+        apptForm.zSubmit();SleepUtil.sleepLong(); // test fails while checking location free/busy status, waitForPostqueue is not sufficient here
+        // Tried sleepMedium() as well but although fails so using sleepLong()
 
         // Verify appointment start time and end time
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
