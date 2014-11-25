@@ -16,11 +16,8 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 
-import java.awt.event.KeyEvent;
 import java.util.Calendar;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;

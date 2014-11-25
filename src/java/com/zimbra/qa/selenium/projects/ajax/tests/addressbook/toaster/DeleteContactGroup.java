@@ -93,8 +93,7 @@ public class DeleteContactGroup extends AjaxCommonTest {
 	@Test(description = "Delete a contact group selected by checkbox by click Delete button on toolbar and verify toast msg", groups = { "functional" })
 	public void DeleteContactGroupToastMsg_03()throws HarnessException {
 		
-		// Create a contact group
-		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
+		ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
 		// -- GUI
 

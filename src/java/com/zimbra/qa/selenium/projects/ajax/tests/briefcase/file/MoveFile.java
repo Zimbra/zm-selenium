@@ -16,10 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.file;
 
-import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FileItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -29,10 +26,8 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
-
 import org.testng.annotations.AfterMethod;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;

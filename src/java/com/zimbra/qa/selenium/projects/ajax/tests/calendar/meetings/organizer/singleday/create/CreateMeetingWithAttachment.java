@@ -18,14 +18,11 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 
 import java.util.Calendar;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
-import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
 
 public class CreateMeetingWithAttachment extends CalendarWorkWeekTest {

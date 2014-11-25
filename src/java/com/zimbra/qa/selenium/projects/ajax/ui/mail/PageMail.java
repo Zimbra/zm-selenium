@@ -1784,12 +1784,6 @@ public class PageMail extends AbsTab {
 				zWaitForBusyOverlay();
 			}
 
-			// If we click on pulldown/option and the page is specified, then
-			// wait for the page to go active
-			if (page != null) {
-				page.zWaitForActive();
-			}
-
 		}
 
 		// Return the specified page, or null if not set
@@ -1887,12 +1881,6 @@ public class PageMail extends AbsTab {
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
-			}
-
-			// If we click on pulldown/option and the page is specified, then
-			// wait for the page to go active
-			if (page != null) {
-				page.zWaitForActive();
 			}
 
 		}

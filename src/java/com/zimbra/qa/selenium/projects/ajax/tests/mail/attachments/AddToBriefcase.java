@@ -18,19 +18,15 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.attachments;
 
 import java.io.File;
 import java.util.List;
-
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
-import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogCreateCalendarFolder;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 
 public class AddToBriefcase extends PrefGroupMailByMessageTest {

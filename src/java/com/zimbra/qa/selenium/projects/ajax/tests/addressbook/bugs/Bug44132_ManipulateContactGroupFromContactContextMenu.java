@@ -213,14 +213,10 @@ public class Bug44132_ManipulateContactGroupFromContactContextMenu extends AjaxC
 		ContactItem contact1 = ContactItem.createContactItem(app.zGetActiveAccount());		
 		ContactItem contact2 = ContactItem.createContactItem(app.zGetActiveAccount());
 		ContactItem contact3 = ContactItem.createContactItem(app.zGetActiveAccount());
-		ContactItem contact4 = ContactItem.createContactItem(app.zGetActiveAccount());
-		
+		ContactItem.createContactItem(app.zGetActiveAccount());
 		
 		// Create a contact group
 		String groupname = "group"+ ZimbraSeleniumProperties.getUniqueString();
-		
-		
-
 		
 		//-- GUI
 		

@@ -19,7 +19,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.bugs;
 import java.util.Calendar;
 import java.util.HashMap;
 import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -28,7 +27,6 @@ import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 
 public class Bug50432 extends CalendarWorkWeekTest {
 
@@ -64,7 +62,6 @@ public class Bug50432 extends CalendarWorkWeekTest {
 		this.startingPage.zNavigateTo();
 
 		// Creating object for appointment data
-		AppointmentItem appt = new AppointmentItem();
 		String tz, apptSubject, apptBody;
 		tz = ZTimeZone.TimeZoneEST.getID();
 		apptSubject = ZimbraSeleniumProperties.getUniqueString();
@@ -90,12 +87,10 @@ public class Bug50432 extends CalendarWorkWeekTest {
                                "</m>" +
                          "</CreateAppointmentRequest>");
 
-        String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
         // Open appointment & close it
         app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-		FormApptNew apptForm = (FormApptNew) new FormApptNew(app).zToolbarPressButton(Button.B_CLOSE);
 		// if logout stucks then assume that browser dialog appeared
 		app.zPageMain.zLogout();
 	}

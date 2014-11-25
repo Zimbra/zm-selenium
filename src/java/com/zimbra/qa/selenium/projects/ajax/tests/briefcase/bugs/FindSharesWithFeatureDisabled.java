@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DialogFindShares;
 
 public class FindSharesWithFeatureDisabled extends FeatureBriefcaseTest {
@@ -53,7 +52,7 @@ public class FindSharesWithFeatureDisabled extends FeatureBriefcaseTest {
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
 				SystemFolder.Briefcase);
 
-		LinkItem link = new LinkItem();
+		new LinkItem();
 
 		// refresh briefcase page
 		app.zTreeBriefcase

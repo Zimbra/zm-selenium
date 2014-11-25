@@ -18,8 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.addresspicker;
 
 
 import org.testng.annotations.Test;
-
-import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.ResultListener;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -30,7 +28,6 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormAddressPicker;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
-
 
 public class AddTo extends PrefGroupMailByMessageTest {
 

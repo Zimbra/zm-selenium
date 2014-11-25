@@ -17,21 +17,15 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.delegates;
 
 import java.io.File;
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
-import com.zimbra.qa.selenium.framework.items.AttachmentItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
-
 
 public class SendAs extends PrefGroupMailByMessageTest {
 
