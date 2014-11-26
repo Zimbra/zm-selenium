@@ -90,18 +90,19 @@ public class CreateAlias extends AdminCommonTest {
 		alias.setTargetAccountEmail(target.getEmailAddress());
 
 
-
+	
 		// Click "New"
 		WizardCreateAlias wizard = 
 			(WizardCreateAlias)app.zPageManageAliases.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_NEW);
 		
 		// Fill out the wizard	
+		
 		wizard.zCompleteWizard(alias);
 
 		// Verify the alias exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<account by='name'>"+ alias.getEmailAddress() +"</account>"
+				+			"<account by='name'>"+ alias.getTargetAccountEmail() +"</account>"
 				+		"</GetAccountRequest>");
 		String email = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:account", "name");
 		ZAssert.assertEquals(email, target.getEmailAddress(), "Verify the alias is associated with the correct account");
