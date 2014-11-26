@@ -20,6 +20,7 @@ import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 
@@ -44,7 +45,8 @@ public class LoggedInUsername extends AdminCommonTest {
 
 		// Check that the displayed name is contained in the email
 		String displayed = app.zPageMain.sGetText(PageMain.Locators.zSkinContainerUsername);
-		ZAssert.assertStringContains("globaladmi...", displayed.split("@")[0], "Verify the correct account display name is shown");
+		ZimbraAccount actual = app.zGetActiveAccount();
+		ZAssert.assertStringContains(actual.EmailAddress, displayed.split("@")[0], "Verify the correct account display name is shown");
 		
 	}
 

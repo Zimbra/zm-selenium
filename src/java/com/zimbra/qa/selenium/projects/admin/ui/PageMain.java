@@ -34,7 +34,7 @@ public class PageMain extends AbsTab {
 
 	public static class Locators {
 		public static final String zSkinContainerLogo		= "xpath=//*[@id='skin_container_logo']";
-		public static final String zSkinContainerUsername	= "xpath=//*[@id='skin_container_username']";
+		public static final String zSkinContainerUsername	= "css=div[id='skin_container_username']";
 		//public static final String zSkinContainerLogoff		= "css=table[class='skin_table'] span[onclick='ZaZimbraAdmin.logOff();']";
 		public static final String zLogoffDropDownArrow		="css=div.ImgNodeExpandedWhite";
 		public static final String zLogOff = "zmi__ZA_LOGOFF__LOGOFF_title";
