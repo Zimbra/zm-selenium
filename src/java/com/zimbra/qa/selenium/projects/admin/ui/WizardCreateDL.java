@@ -25,6 +25,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.admin.items.DistributionListItem;
+import com.zimbra.qa.selenium.projects.admin.ui.WizardCreateResource.Locators;
 
 public class WizardCreateDL extends AbsWizard {
 	public static class Locators {
@@ -57,7 +58,9 @@ public class WizardCreateDL extends AbsWizard {
 		zType(Locators.zdlg_DOMAIN_NAME, "");
 		zType(Locators.zdlg_DOMAIN_NAME, domain);
 
-		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
+		zType(Locators.zdlg_DL_NAME, CN);
+
 		clickFinish(AbsWizard.Locators.DL_DIALOG);
 
 		return (dl);
