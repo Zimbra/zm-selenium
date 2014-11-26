@@ -37,7 +37,7 @@ import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 public class WizardCreateAdminAccount extends AbsWizard {
 	public static class Locators {
 		public static final String zdlg_NEW_ACCT = "zdlg__NEW_ACCT";
-		public static final String zdlg_ACCT_NAME = "zdlgv__NEW_ADMIN_name_5";
+		public static final String zdlg_ACCT_NAME = "zdlgv__NEW_ADMIN_name_2";
 		public static final String zdlg_DOMAIN_NAME="zdlgv__NEW_ADMIN_name_3_display";
 		public static final String zdlg_DL_NAME = "zdlgv__NEW_ADMIN_name_5";
 		public static final String zdlg_DL_DOMAIN_NAME="zdlgv__NEW_ADMIN_name_6_display";
@@ -126,7 +126,7 @@ public class WizardCreateAdminAccount extends AbsWizard {
 			}
 			zType(Locators.zdlg_DL_DOMAIN_NAME,"");
 			zType(Locators.zdlg_DL_DOMAIN_NAME,domain);
-			zType(Locators.zdlg_ACCT_NAME, CN);
+			zType(Locators.zdlg_DL_NAME, CN);
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 			clickFinish(AbsWizard.Locators.ADMIN_DIALOG);
 		}
