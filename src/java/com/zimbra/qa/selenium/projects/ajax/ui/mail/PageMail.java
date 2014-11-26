@@ -1415,14 +1415,14 @@ public class PageMail extends AbsTab {
 
 			if ( option == Button.O_MARK_AS_READ ) {
 
-				optionLocator += " div[id^='MARK_READ'] td[id$='_title']";
+				optionLocator += " div[id*S='MARK_READ'] td[id$='_title']";
 				page = null;
 
 				// FALLTHROUGH
 
 			} else if ( option == Button.O_MARK_AS_UNREAD ) {
 
-				optionLocator += " div[id^='MARK_UNREAD'] td[id$='_title']";
+				optionLocator += " div[id*='MARK_UNREAD'] td[id$='_title']";
 				page = null;
 
 				// FALLTHROUGH
