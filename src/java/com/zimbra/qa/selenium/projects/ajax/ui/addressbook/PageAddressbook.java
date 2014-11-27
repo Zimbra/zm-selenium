@@ -37,20 +37,20 @@ public class PageAddressbook extends AbsTab {
 		public static final String LOCATOR		= "id='zm__Contacts'";
 		
 		//contact's context menu	
-		public static final ContextMenuItem CONTACT_SEARCH = new ContextMenuItem("POPUP_SEARCH_MENU","Find Emails...","div[class*='ImgSearch']"," div[class*='ImgCascade']");	
-		public static final ContextMenuItem CONTACT_NEW_EMAIL = new ContextMenuItem("POPUP_NEW_MESSAGE","New Email","div[class*='ImgNewMessage']",":contains('nm')");  	
+		public static final ContextMenuItem CONTACT_SEARCH = new ContextMenuItem("POPUP_zmi__Contacts__SEARCH_MENU","Find Emails...","div[class*='ImgSearch']"," div[class*='ImgCascade']");	
+		public static final ContextMenuItem CONTACT_NEW_EMAIL = new ContextMenuItem("POPUP_zmi__Contacts__NEW_MESSAGE","New Email","div[class*='ImgNewMessage']",":contains('nm')");  	
     
 		//TODO: contact group: "Edit Group" instead of "Edit Contact"
-		public static final ContextMenuItem CONTACT_EDIT = new ContextMenuItem("POPUP_CONTACT","Edit Contact","","");	
-		public static final ContextMenuItem CONTACT_FORWARD = new ContextMenuItem("POPUP_SEND_CONTACTS_IN_EMAIL","Forward Contact","","");	
+		public static final ContextMenuItem CONTACT_EDIT = new ContextMenuItem("POPUP_zmi__Contacts__CONTACT","Edit Contact","","");	
+		public static final ContextMenuItem CONTACT_FORWARD = new ContextMenuItem("POPUP_zmi__Contacts__SEND_CONTACTS_IN_EMAIL","Forward Contact","","");	
 		
 		//TODO: contact group: "Tag Group" instead of "Tag Contact"
-		public static final ContextMenuItem CONTACT_TAG = new ContextMenuItem("POPUP_TAG_MENU","Tag Contact","div[class*='ImgTag']"," div[class='ImgCascade']");	
-		public static final ContextMenuItem CONTACT_DELETE = new ContextMenuItem("POPUP_DELETE","Delete","div[class*='ImgDelete']",":contains('Del')");
-		public static final ContextMenuItem CONTACT_MOVE = new ContextMenuItem("POPUP_MOVE","Move","div[class*='ImgMoveToFolder']","");
-		public static final ContextMenuItem CONTACT_PRINT = new ContextMenuItem("POPUP_PRINT_CONTACT","Print","div[class*='ImgPrint']",":contains('p')");
+		public static final ContextMenuItem CONTACT_TAG = new ContextMenuItem("POPUP_zmi__Contacts__TAG_MENU","Tag Contact","div[class*='ImgTag']"," div[class='ImgCascade']");	
+		public static final ContextMenuItem CONTACT_DELETE = new ContextMenuItem("POPUP_zmi__Contacts__DELETE","Delete","div[class*='ImgDelete']",":contains('Del')");
+		public static final ContextMenuItem CONTACT_MOVE = new ContextMenuItem("POPUP_zmi__Contacts__MOVE","Move","div[class*='ImgMoveToFolder']","");
+		public static final ContextMenuItem CONTACT_PRINT = new ContextMenuItem("POPUP_zmi__Contacts__PRINT_CONTACT","Print","div[class*='ImgPrint']",":contains('p')");
 	 		
-		public static final ContextMenuItem CONTACT_GROUP = new ContextMenuItem("POPUP_CONTACTGROUP_MENU","Contact Group","div[class*='ImgGroup']","");
+		public static final ContextMenuItem CONTACT_GROUP = new ContextMenuItem("POPUP_zmi__Contacts__CONTACTGROUP_MENU","Contact Group","div[class*='ImgGroup']","");
 		public static final ContextMenuItem CONTACT_QUICK_COMMAND =  new ContextMenuItem("POPUP_QUICK_COMMANDS","Quick Commands","div[class='ImgQuickCommand']","");
 		
 	}
@@ -66,7 +66,7 @@ public class PageAddressbook extends AbsTab {
 		public static final ContextMenuItem CONTACT_SUB_RECEIVED_FROM_CONTACT = new ContextMenuItem("tr[id^=SEARCH__DWT]","Received From Contact","div[class='ImgSearch']","");
 	    public static final ContextMenuItem CONTACT_SUB_SENT_TO_CONTACT = new ContextMenuItem("tr[id^=SEARCH_TO__DWT]","Sent To Contact","div[class='ImgSearch']","");
 	
-	    public static final ContextMenuItem CONTACT_SUB_NEW_CONTACT_GROUP = new ContextMenuItem("div[id^='CONTACTGROUP_MENU__DWT'][id$='|GROUP_MENU|NEWGROUP']","New Contact Group","div[class='ImgNewGroup']","");
+	    public static final ContextMenuItem CONTACT_SUB_NEW_CONTACT_GROUP = new ContextMenuItem("div[id^='zmi__Contacts__CONTACTGROUP_MENU'][id$='|GROUP_MENU|NEWGROUP']","New Contact Group","div[class='ImgNewGroup']","");
 	    
 	}
 	
@@ -1000,7 +1000,7 @@ public class PageAddressbook extends AbsTab {
 				else if (subOption == Button.O_TAG_REMOVETAG) {
 					sub_cmi = CONTEXT_SUB_MENU.CONTACT_SUB_REMOVE_TAG;					
 					//parentLocator= "div[id^=TAG_MENU__DWT][id$=|MENU]";
-					parentLocator= "div[id='TAG_MENU|MENU']";
+					parentLocator= "div[id^='zmi__Contacts__TAG_MENU']";
 					
 					page = null;	
 				}											    
@@ -1202,9 +1202,9 @@ public class PageAddressbook extends AbsTab {
 					String tagName = (String)choice;
 					
 
-					String tagContactLocator = "css=div[id^='zm__Contacts'] div[id^='TAG_MENU'] td[id$='_title']";
-					String removeTagLocator = "css=div[id^='TAG_MENU|MENU'] div[id^='contacts_removetag'] td[id$='_title']";
-					locator = "css=div[id='REMOVE_TAG_MENU_TAG_MENU|MENU'] td[id=^Remove_tag_][id$=_title]:contains('" +  tagName + "')";														    							
+					String tagContactLocator = "css=div[id^='zm__Contacts'] div[id^='zmi__Contacts__TAG_MENU'] td[id$='_title']";
+					String removeTagLocator = "css=div[id^='zmi__Contacts__TAG_MENU|MENU'] div[id^='contacts_removetag'] td[id$='_title']";
+					locator = "css=div[id='REMOVE_TAG_MENU_zmi__Contacts__TAG_MENU|MENU'] td[id=^Remove_tag_][id$=_title]:contains('" +  tagName + "')";														    							
 
 				    // Right click on contact
 				    zRightClickAt(contactLocator,"0,0");
@@ -1228,7 +1228,7 @@ public class PageAddressbook extends AbsTab {
 					   
 					 */
 
-					if ( this.sIsElementPresent("css=div[id^='TAG_MENU|MENU'] div[id^='contacts_removetag'].ZHasDropDown") ) {
+					if ( this.sIsElementPresent("css=div[id^='zmi__Contacts__TAG_MENU'] div[id^='contacts_removetag'].ZHasDropDown") ) {
 						
 					    // Has sub menu
 						// Mouse over "remove tag", then Left Click "<tag name>"
