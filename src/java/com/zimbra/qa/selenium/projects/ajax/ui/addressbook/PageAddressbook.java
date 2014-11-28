@@ -1273,22 +1273,22 @@ public class PageAddressbook extends AbsTab {
 			if (option == Button.B_TAG) {		        
 						
 				// Hover over the context menu "tags" item
-				optionLocator = "css=div#zm__Contacts div#TAG_MENU td[id$='_title']";
+				optionLocator = "css=div#zm__Contacts div#zmi__Contacts__TAG_MENU td[id$='_title']";
 
 				if (item instanceof TagItem) {
 					
 					// Left click the existing tag
-					itemLocator = "css=div[id^='TAG_MENU|MENU'] td[id$='_title']:contains('" + item.getName() + "')";
+					itemLocator = "css=div[id^='zmi__Contacts__TAG_MENU|MENU'] td[id$='_title']:contains('" + item.getName() + "')";
 					
 				}
 			
 			}
 			else if (option == Button.B_CONTACTGROUP) {
 				
-				optionLocator = "css=div#zm__Contacts div[id^='CONTACTGROUP_MENU'] td[id$='_title']";
+				optionLocator = "css=div#zm__Contacts div[id^='zmi__Contacts__CONTACTGROUP_MENU'] td[id$='_title']";
 
 				if ( item instanceof ContactGroupItem) {
-					itemLocator = "css=div[id^='CONTACTGROUP_MENU'] td[id$='_title']:contains('"+ item.getName() +"')";
+					itemLocator = "css=div[id^='zmi__Contacts__CONTACTGROUP_MENU'] td[id$='_title']:contains('"+ item.getName() +"')";
 				}				
 
 			}
