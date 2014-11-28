@@ -64,7 +64,7 @@ public class PageTasks extends AbsTab{
 		//public static final String zMoveTaskDropDown="css=td#zb__TKL-main__MOVE_MENU_dropdown>div";
 		//public static final String zMoveTaskDropDown="css=td#zcs5_dropdown>div";
 		public static String zMoveTaskDropDownId = null;
-		public static final String zEditTaskMenuItem ="css=div[id='zm__Tasks'] tr[id='POPUP_EDIT']";
+		public static final String zEditTaskMenuItem ="css=div[id='zm__Tasks'] tr[id='POPUP_zmi__Tasks__EDIT']";
 		//public static final String zFilterByTaskDropDown="css=tr[id='ztb__TKL-main_items'] div[id='zb__TKL-main__SORTBY_MENU'] td[id='zb__TKL-main__SORTBY_MENU_dropdown']>div";
 		public static String zFilterByTaskDropDownId = null;
 		public static final String zFilterByTaskDropDown="css=tr[id='ztb__TKL-main_items'] div[id='zb__TKL-main__VIEW_MENU'] td[id='zb__TKL-main__VIEW_MENU_dropdown']>div";
@@ -607,6 +607,7 @@ public class PageTasks extends AbsTab{
 
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
 
 		// If page was specified, make sure it is active
 		if (page != null) {
