@@ -77,7 +77,7 @@ public class DisplayConversation extends DisplayMail {
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 
-			String locator = listLocator + ">" + rowLocator +":nth-child("+ i +")";
+			String locator = listLocator + ">" + rowLocator +">"+ rowLocator+":nth-child("+ i +")";
 
 			try {
 				
