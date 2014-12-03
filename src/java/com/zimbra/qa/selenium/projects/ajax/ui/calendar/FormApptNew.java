@@ -959,8 +959,8 @@ public class FormApptNew extends AbsForm {
 						if (this.sIsElementPresent("css=iframe[id$='ZmHtmlEditor1_body_ifr']")) {
 							locator = "css=html body";
 							this.sSelectFrame("css=iframe[id$='ZmHtmlEditor1_body_ifr']"); // iframe index is 0 based
-							this.sFocus(locator);
-							this.zClick(locator);
+							this.sFocus("css=html body[id='tinymce']");
+							this.sClickAt(locator, "0,0");
 							//this.sType(locator, value);
 							this.zKeyboard.zTypeCharacters(value);
 
@@ -1025,9 +1025,17 @@ public class FormApptNew extends AbsForm {
 			} else if (field == Field.Subject) {
 				this.sFocus(locator);
 				this.sType(locator, value);
+				SleepUtil.sleepSmall();
+				if (sIsElementPresent("css=td[id='zb__App__tab_COMPOSE-1_right_icon']")) {
+					sClickAt("css=td[id='zb__App__tab_COMPOSE-1_right_icon']", "0,0");
+				}
 				
 			} else {
+				if (sIsElementPresent("css=td[id='zb__App__tab_COMPOSE-1_right_icon']")) {
+					sClickAt("css=td[id='zb__App__tab_COMPOSE-1_right_icon']", "0,0");
+				}
 				this.sFocus(locator);
+				SleepUtil.sleepSmall();
 				this.sType(locator, value);
 				this.sFocus(locator);
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
