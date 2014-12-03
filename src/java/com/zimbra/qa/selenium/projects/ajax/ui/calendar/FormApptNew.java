@@ -955,12 +955,12 @@ public class FormApptNew extends AbsForm {
 					// HTML compose
 
 					try {
-
+							
 						if (this.sIsElementPresent("css=iframe[id$='ZmHtmlEditor1_body_ifr']")) {
-							locator = "css=html body";
-							this.sSelectFrame("css=iframe[id$='ZmHtmlEditor1_body_ifr']"); // iframe index is 0 based
-							this.sFocus("css=html body[id='tinymce']");
+							locator = "css=body[id='tinymce']";
+							this.sSelectFrame("css=div[class='ZmApptComposeView'] div[id$='_notes'] iframe[id$='_body_ifr']"); // iframe index is 0 based
 							this.sClickAt(locator, "0,0");
+							this.sFocus(locator);
 							//this.sType(locator, value);
 							this.zKeyboard.zTypeCharacters(value);
 
