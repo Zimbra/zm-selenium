@@ -1644,7 +1644,7 @@ public class PageMail extends AbsTab {
 			
 			//pulldownLocator = "css=td[id$='_ADD_SIGNATURE_dropdown']>div[class='ImgSelectPullDownArrow']";
 			pulldownLocator="css=[id^=zb__COMPOSE][id$=__COMPOSE_OPTIONS_dropdown]";
-			optionLocator="css=div[id='ADD_SIGNATURE'] tr[id='POPUP_ADD_SIGNATURE']> td[id='ADD_SIGNATURE_dropdown']>div[class='ImgCascade']";
+			optionLocator="css=div[id$='ADD_SIGNATURE'] tr[id='POPUP_zmi__COMPOSE-1_NEW_MESSAGE__ADD_SIGNATURE']> td[id='zmi__COMPOSE-1_NEW_MESSAGE__ADD_SIGNATURE_dropdown']>div[class='ImgCascade']";
 			dynamicLocator ="css=td[id$='_title']:contains('"+ name + "')";
 			page = null;
 
@@ -1658,7 +1658,7 @@ public class PageMail extends AbsTab {
 			
 			//pulldownLocator = "css=td[id$='_ADD_SIGNATURE_dropdown']>div[class='ImgSelectPullDownArrow']";
 			pulldownLocator="css=[id^=zb__COMPOSE][id$=__COMPOSE_OPTIONS_dropdown]";
-			optionLocator="css=div[id$='_FORWARD_ATT'] div[id^='ADD_SIGNATURE'] tr[id^='POPUP_ADD_SIGNATURE']>td[id$='_dropdown']>div[class='ImgCascade']";
+			optionLocator="css=div[id$='_FORWARD_ATT'] div[id$='ADD_SIGNATURE'] tr[id='POPUP_zmi__COMPOSE-1_FORWARD_ATT__ADD_SIGNATURE']>td[id$='_dropdown']>div[class='ImgCascade']";
 			dynamicLocator ="css=td[id$='_title']:contains('"+ name + "')";
 			page = null;
 
@@ -1669,7 +1669,7 @@ public class PageMail extends AbsTab {
 
 			String name = (String)dynamic;
 			pulldownLocator="css=[id^=zb__COMPOSE][id$=__COMPOSE_OPTIONS_dropdown]";
-			optionLocator="css=div[id$='_REPLY'] div[id^='ADD_SIGNATURE'] tr[id^='POPUP_ADD_SIGNATURE']>td[id$='_dropdown']>div[class='ImgCascade']";
+			optionLocator="css=div[id$='_REPLY'] div[id$='ADD_SIGNATURE'] tr[id='POPUP_zmi__COMPOSE-1_REPLY__ADD_SIGNATURE']>td[id$='_dropdown']>div[class='ImgCascade']";
 			dynamicLocator ="css=td[id$='_title']:contains('"+ name + "')";
 			page = null;
 
