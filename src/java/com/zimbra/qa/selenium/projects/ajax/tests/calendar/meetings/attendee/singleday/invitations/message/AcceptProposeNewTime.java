@@ -45,7 +45,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "69132,96556")
 	@Test(description = "Receive meeting invite -> Propose New Time to organizer and organizer accepts the new time using message view", 
-			groups = { "functional" })
+			groups = { "test" })
 	public void AcceptProposeNewTime_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -144,7 +144,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		apptForm.zFill(appt);
 		apptForm.zSubmit();
 		
-		// Logout to organizer and login as attendee to accept new time
+		// Login as attendee to accept new time
 		app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(apptAttendee1);
 		display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, modifiedSubject);

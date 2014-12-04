@@ -36,7 +36,7 @@ public class DeclineProposeNewTime extends CalendarWorkWeekTest {
 	}
 	
 	@Test(description = "Receive meeting invite -> Propose New Time to organizer and organizer declines the new time using conversation view", 
-			groups = { "functional" })
+			groups = { "test" })
 	public void DeclineProposeNewTime_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -129,7 +129,7 @@ public class DeclineProposeNewTime extends CalendarWorkWeekTest {
 		ZAssert.assertNull(proposeNewTimeMsg, "Attendee2 shouldn't receive any mail if Attendee1 proposes new time to Organizer");
 		
 
-		// Logout to attendee and login as organizer to decline proposed new time
+		// Login as organizer to decline proposed new time
 		app.zPageMain.zLogout();
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAdmin'>"
