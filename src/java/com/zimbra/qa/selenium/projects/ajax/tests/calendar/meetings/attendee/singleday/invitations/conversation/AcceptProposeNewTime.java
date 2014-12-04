@@ -19,6 +19,8 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.si
 import java.util.*;
 
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -35,8 +37,9 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		super.startingAccountPreferences = null;
 	}
 	
+	@Bugs(ids = "69132,96556,96748")
 	@Test(description = "Receive meeting invite -> Propose New Time to organizer and organizer accepts the new time using conversation view", 
-			groups = { "functional" })
+			groups = { "test" })
 	public void AcceptProposeNewTime_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -150,7 +153,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		apptForm.zFill(appt);
 		apptForm.zSubmit();
 		
-		// Logout to organizer and login as attendee to accept new time
+		// Login as attendee to accept proposed new time
 		app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(apptAttendee1);
 		display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, modifiedSubject);
@@ -170,6 +173,18 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(organizer.soapSelectValue("//mail:s", "d"), modifiedStartUTC.toyyyyMMddTHHmmss(), "Verify modified start time of the appointment");
 		ZAssert.assertEquals(organizer.soapSelectValue("//mail:e", "d"), modifiedEndUTC.toyyyyMMddTHHmmss(), "Verify modified end time of the appointment");
 		ZAssert.assertEquals(attendeeStatus, "AC", "Verify that the attendee shows as 'ACCEPTED' for organizer");
+		
+		organizer.soapSend(
+				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
+				+		"<query>" + "subject:(" + "Accept.*" + ")" + " " + "content:(" + "Yes, I will attend." +")" + "</query>"
+			+	"</SearchRequest>");
+		messageId = organizer.soapSelectValue("//mail:m", "id");
+
+		organizer.soapSend(
+				"<GetMsgRequest  xmlns='urn:zimbraMail'>"
+			+		"<m id='"+ messageId +"'/>"
+			+	"</GetMsgRequest>");
+		ZAssert.assertNotNull(messageId, "Organizer should get message from the attendee for accepted invite");
 		
 		// ------ Attendee1 ------
 		
