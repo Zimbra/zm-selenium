@@ -17,7 +17,10 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.invitations.conversation;
 
 import java.util.*;
+
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -35,8 +38,9 @@ public class DeclineProposeNewTime extends CalendarWorkWeekTest {
 		super.startingAccountPreferences = null;
 	}
 	
+	@Bugs(ids = "69132,96556,96748")
 	@Test(description = "Receive meeting invite -> Propose New Time to organizer and organizer declines the new time using conversation view", 
-			groups = { "test" })
+			groups = { "functional" })
 	public void DeclineProposeNewTime_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
