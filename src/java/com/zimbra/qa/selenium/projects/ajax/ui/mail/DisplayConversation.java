@@ -77,7 +77,9 @@ public class DisplayConversation extends DisplayMail {
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 
-			String locator = listLocator + ">" + rowLocator +">"+ rowLocator+":nth-child("+ i +")";
+			//String locator = listLocator + ">" + rowLocator +">"+ rowLocator+":nth-child("+ i +")";
+			String locator = listLocator + ">" + rowLocator +":nth-child("+ i +")";
+
 
 			try {
 				
@@ -85,7 +87,7 @@ public class DisplayConversation extends DisplayMail {
 					continue;
 				}
 				
-				String clazz = this.sGetAttribute(locator + "@class");
+				String clazz = this.sGetAttribute(locator + ">"+  rowLocator +"@class");
 				if ( (clazz == null) || (!clazz.contains("ZmMailMsgCapsuleView")) ) {
 					continue;
 				}
@@ -94,7 +96,7 @@ public class DisplayConversation extends DisplayMail {
 				continue;
 			}
 			
-			DisplayConversationMessage item = parseMessageRow(locator);
+			DisplayConversationMessage item = parseMessageRow(locator + ">"+  rowLocator);
 			items.add(item);
 			logger.info(item.prettyPrint());
 			

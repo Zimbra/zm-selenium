@@ -67,7 +67,7 @@ public class DisplayConversationMessage extends DisplayMail {
 
 		if ( button == Button.B_QUICK_REPLY_REPLY ) {
 
-			locator = "css=div#"+ this.itemId + " a[id$='__footer_reply']";
+			locator = "css=div#"+ this.itemId +"__footer"+ " a[id$='__footer_reply']";
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
@@ -75,7 +75,7 @@ public class DisplayConversationMessage extends DisplayMail {
 
 		} else if ( button == Button.B_QUICK_REPLY_REPLY_ALL ) {
 
-			locator = "css=div#"+ this.itemId + " a[id$='__footer_replyAll']";
+			locator = "css=div#"+ this.itemId + "__footer" +" a[id$='__footer_replyAll']";
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
