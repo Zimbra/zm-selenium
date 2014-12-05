@@ -1037,11 +1037,8 @@ public class TreeMail extends AbsTree {
 		
 		for ( int i = 1; i <= count; i++) {
 			String itemLocator = searchLocator + ":nth-child("+i+")";
-			
-			
-			if ( !this.sIsElementPresent(itemLocator) ) {
-				if(this.sIsElementPresent("css=div[class='vSpace']"))
-					count++;
+
+			if ( !this.sIsElementPresent(itemLocator) ) {				
 				continue;
 			}
 
