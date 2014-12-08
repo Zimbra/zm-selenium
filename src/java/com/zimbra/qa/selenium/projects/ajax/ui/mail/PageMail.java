@@ -301,7 +301,7 @@ public class PageMail extends AbsTab {
 				optionLocator = "css=div[id='zm__TV-main']";
 			}
 			
-			optionLocator += " div[id^='DETACH'] td[id$='_title']";
+			optionLocator += " div[id*='DETACH'] td[id$='_title']";
 			page = new SeparateWindow(this.MyApplication);
 			((SeparateWindow)page).zInitializeWindowNames();
 			

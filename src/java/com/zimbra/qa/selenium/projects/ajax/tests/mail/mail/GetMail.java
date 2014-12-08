@@ -133,7 +133,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test(	description = "Receive an html mail - verify mail contents",
-			groups = { "zsmoke" })
+			groups = { "smoke" })
 	public void GetMail_03() throws HarnessException {
 
 		

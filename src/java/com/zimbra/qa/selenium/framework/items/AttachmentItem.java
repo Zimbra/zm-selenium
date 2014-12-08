@@ -25,6 +25,7 @@ public class AttachmentItem {
 	public enum AttachmentIcon {
 		ImgGenericDoc,
 		ImgImageDoc,
+		ImgDoc,
 		ImgMSWordDoc,
 		ImgMSExcelDoc,
 	}

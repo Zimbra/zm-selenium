@@ -60,7 +60,7 @@ public class AttachmentIcons extends PrefGroupMailByMessageTest {
 		// Verify the icon appears
 		boolean found = false;
 		for ( AttachmentItem i : display.zListGetAttachments() ) {
-			if ( i.getAttachmentIcon().equals(AttachmentItem.AttachmentIcon.ImgGenericDoc) ) {
+			if ( i.getAttachmentIcon().equals(AttachmentItem.AttachmentIcon.ImgDoc) ) {
 				found = true;
 				break;
 			}
