@@ -176,6 +176,11 @@ public class CreateHtmlTask extends AjaxCommonTest {
 		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
 		//String taskHtmlbody = "task<b>bold"+ ZimbraSeleniumProperties.getUniqueString() + "</b>task";
 		String taskHtmlbody = "body" + ZimbraSeleniumProperties.getUniqueString();
+		
+		//Explicitly cliking of Task folder to refresh view
+		ZimbraAccount account = app.zGetActiveAccount();
+		FolderItem taskFolder = FolderItem.importFromSOAP(account,SystemFolder.Tasks);
+		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		//Click NEW Task shortcut "NK"
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zKeyboardShortcut(shortcut);
