@@ -1031,10 +1031,10 @@ public class TreeMail extends AbsTree {
 		logger.debug(myPageName() + " zListGetFolders: number of folders: "+ count);
 		
 		if (ZimbraSeleniumProperties.zimbraGetVersionString().contains(
-				"8.5.")) {
+				"8.6.")) {
 				count++; // temp-fix -- This is required because find share section removed			
 			}
-		
+
 		for ( int i = 1; i <= count; i++) {
 			String itemLocator = searchLocator + ":nth-child("+i+")";
 
