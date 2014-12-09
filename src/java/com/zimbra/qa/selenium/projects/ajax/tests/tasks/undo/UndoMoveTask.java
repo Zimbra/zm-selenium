@@ -18,7 +18,10 @@ package com.zimbra.qa.selenium.projects.ajax.tests.tasks.undo;
 
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -42,7 +45,7 @@ public class UndoMoveTask extends AjaxCommonTest {
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 		}};
 	}
-
+	@Bugs(	ids = "96832")
 	@Test(description = "Undo moved task", groups = { "smoke" })
 	public void UndoMoveTask_01() throws HarnessException {
 
@@ -111,7 +114,7 @@ public class UndoMoveTask extends AjaxCommonTest {
 			}
 		}
 
-		ZAssert.assertNotNull(found,"Verify the  task is come back to Task folder");
+		ZAssert.assertNotNull(found,"Verify the  task is come back to Task folder @Bugs96832");
 
 
 	}

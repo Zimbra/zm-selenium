@@ -20,6 +20,8 @@ import java.util.HashMap;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.TaskItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -47,6 +49,7 @@ public class TagTask extends AjaxCommonTest{
 		}};
 	}
 
+	@Bugs(	ids = "96832")
 	@Test(description = "Tag a Task using Toolbar -> Tag -> New Tag", groups = { "smoke" })
 	public void TagTask_01() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -112,7 +115,7 @@ public class TagTask extends AjaxCommonTest{
 		String id = app.zGetActiveAccount().soapSelectValue(
 				"//mail:SearchResponse//mail:task", "t");
 
-		ZAssert.assertEquals(id, tagID,"Verify the tag was attached to the task");
+		ZAssert.assertEquals(id, tagID,"Verify the tag was attached to the task see bug 96832 ");
 
 	}
 
