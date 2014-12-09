@@ -770,7 +770,7 @@ public class PageMail extends AbsTab {
 
 			} else if ( option == Button.B_REDIRECT ) {
 				
-				optionLocator += " div[id^='REDIRECT'] td[id$='_title']";
+				optionLocator += " div[id*='REDIRECT'] td[id$='_title']";
 				page = new DialogRedirect(this.MyApplication, this);
 				
 				// FALL THROUGH
@@ -1457,7 +1457,7 @@ public class PageMail extends AbsTab {
 
 			} else if ( option == Button.B_REDIRECT ) {
 
-				optionLocator += " div[id^='REDIRECT'] td[id$='_title']";
+				optionLocator += " div[id*='REDIRECT'] td[id$='_title']";
 
 				page = new DialogRedirect(this.MyApplication, this);
 
