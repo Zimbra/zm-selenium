@@ -1429,7 +1429,7 @@ public class PageMail extends AbsTab {
 
 			} else if (option == Button.B_DELETE) {
 
-				optionLocator += " div[id^='DELETE'] td[id$='_title']";
+				optionLocator += " div[id*='DELETE'] td[id$='_title']";
 				page = null;
 
 				// FALLTHROUGH
