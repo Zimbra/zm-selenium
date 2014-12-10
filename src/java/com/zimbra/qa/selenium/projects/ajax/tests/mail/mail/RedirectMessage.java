@@ -85,9 +85,10 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 
 	}
 
+	//TODO: Remove x from groups to enable when feature is implemented  
 	@Bugs( ids = "62170")
 	@Test(	description = "Redirect message, using 'Redirect' shortcut key",
-			groups = { "functional" })
+			groups = { "xfunctional" })
 	public void RedirectMessage_02() throws HarnessException {
 		throw new HarnessException("See bug https://bugzilla.zimbra.com/show_bug.cgi?id=62170");
 	}
