@@ -246,7 +246,7 @@ public class FormMailNew extends AbsForm {
 			 String optionLocator = "css=[id$=__COMPOSE_OPTIONS_title]";
 			 this.zClick(optionLocator);
 						
-			 locator =  "css=div[id=SHOW_BCC]";;
+			 locator =  "css=div[id$=SHOW_BCC]";;
 			 //locator = "css=div[id^='zv__COMPOSE'] a[id$='_toggle_bcc']";
 
 			if ( zBccIsActive() )
