@@ -89,7 +89,7 @@ public class PrintTask extends AjaxCommonTest {
 				
 			// Right click the item, select Show Original
 			window = (SeparateWindowPrintPreview)app.zPageTasks.zListItem(Action.A_RIGHTCLICK, Button.O_PRINT_MENU, subject);
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepLong();
 			
 			//Press esc from keyboard
 			app.zPageTasks.sKeyPressNative("27");
@@ -155,7 +155,8 @@ public class PrintTask extends AjaxCommonTest {
 			
 			//Press keyboard shortcut p
 			window = (SeparateWindowPrintPreview)app.zPageTasks.zKeyboardShortcut(Shortcut.S_PRINTTASK);
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepLong();
+			
 			
 			//Press esc from keyboard
 			app.zPageTasks.sKeyPressNative("27");
@@ -255,7 +256,7 @@ public class PrintTask extends AjaxCommonTest {
 			
 			//Pull down Print button and select Print Task folder.
 			window = (SeparateWindowPrintPreview)app.zPageTasks.zToolbarPressPulldown(Button.B_PRINT, Button.O_PRINT_TASKFOLDER);
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepLong();
 			
 			//Press esc from keyboard
 			app.zPageTasks.sKeyPressNative("27");
