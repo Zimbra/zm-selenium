@@ -784,7 +784,7 @@ public class PageMail extends AbsTab {
 
 			} else if ( option == Button.O_EDIT_AS_NEW ) {
 				
-				optionLocator += " div[id^='EDIT_AS_NEW'] td[id$='_title']";
+				optionLocator += " div[id*='EDIT_AS_NEW'] td[id$='_title']";
 				page = new FormMailNew(this.MyApplication);
 				
 				// FALL THROUGH
@@ -1472,7 +1472,7 @@ public class PageMail extends AbsTab {
 
 			} else if ( option == Button.O_EDIT_AS_NEW ) {
 
-				optionLocator += " div[id^='EDIT_AS_NEW'] td[id$='_title']";
+				optionLocator += " div[id*='EDIT_AS_NEW'] td[id$='_title']";
 				page = new FormMailNew(this.MyApplication);
 
 				// FALLTHROUGH
