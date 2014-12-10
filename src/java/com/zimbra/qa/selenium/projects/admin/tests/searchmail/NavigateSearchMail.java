@@ -18,9 +18,9 @@ package com.zimbra.qa.selenium.projects.admin.tests.searchmail;
 
 import org.testng.annotations.Test;
 
-import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.ui.PageManageBackups.Locators;
 import com.zimbra.qa.selenium.projects.admin.ui.PageManageSearchMail;
 
 public class NavigateSearchMail extends AdminCommonTest {
@@ -45,6 +45,9 @@ public class NavigateSearchMail extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Tools and Migraton --> Search Mail"
 		 */
+		app.zPageManageSearchMail.zClickAt(Locators.TOOLS_AND_MIGRATION_ICON, "");
+		SleepUtil.sleep(10000);
+		app.zPageManageSearchMail.sClickAt(PageManageSearchMail.Locators.SEARCHMAIL, "");
 		ZAssert.assertTrue(app.zPageManageSearchMail.zVerifyHeader(PageManageSearchMail.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearchMail.zVerifyHeader(PageManageSearchMail.Locators.TOOLS_AND_MIGRATION), "Verfiy the \"Tools and Migration\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearchMail.zVerifyHeader(PageManageSearchMail.Locators.SEARCH_MAIL), "Verfiy the \"Search Mail\" text exists in navigation path");
