@@ -25,14 +25,14 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.RecipientItem;
 import com.zimbra.qa.selenium.framework.items.SignatureItem;
-
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
 public class ComposeMsgWithTextSignature extends AjaxCommonTest {
@@ -95,6 +95,12 @@ public class ComposeMsgWithTextSignature extends AjaxCommonTest {
 		mailform.zFill(mail);
 		 //click Signature drop down and add signature
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_ADD_SIGNATURE,this.sigName);
+		
+		DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning,app,((AppAjaxClient) app).zPageMail);
+		if(dialog.zIsActive()){
+		//ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
+		dialog.zClickButton(Button.B_OK);
+		}
 	
 		// Send the message
 		mailform.zSubmit();
