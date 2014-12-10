@@ -122,7 +122,7 @@ public class FormRecoverDeletedItems extends AbsForm {
 
 		} else if ( button == Button.B_RECOVER_TO ) {
 
-			locator = "css=td#zb__dumpsterMail__MOVE_left_icon div.ImgMoveToFolder";
+			locator = "css=td#zb__dumpsterMail__MOVE_left_icon";
 			page = new DialogMove(this.MyApplication, ((AppAjaxClient)this.MyApplication).zPageMail);
 			
 			// FALL THROUGH
