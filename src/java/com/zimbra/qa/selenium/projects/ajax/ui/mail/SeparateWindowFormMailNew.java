@@ -450,18 +450,18 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			
 			if ( option == Button.O_PRIORITY_HIGH ) {
 				
-				optionLocator = "css=div[id=PRIORITY_HIGH]";
+				optionLocator = "css=div[id$=PRIORITY_HIGH]";
 				
 				page = null;
 
 			} else if ( option == Button.O_PRIORITY_NORMAL ) {
 				
-				optionLocator = "css=div[id=PRIORITY_NORMAL]";
+				optionLocator = "css=div[id$=PRIORITY_NORMAL]";
 				page = null;
 
 			} else if ( option == Button.O_PRIORITY_LOW ) {
 				
-				optionLocator = "css=div[id=PRIORITY_LOW]";
+				optionLocator = "css=div[id$=PRIORITY_LOW]";
 				page = null;
 
 			} else {
