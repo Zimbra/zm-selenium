@@ -585,7 +585,6 @@ public class FormApptNew extends AbsForm {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		// Fallthrough objects
 		AbsPage page = null;
 		String locator = null;
 
@@ -597,9 +596,11 @@ public class FormApptNew extends AbsForm {
 		} else if (button == Button.B_LOCATIONMENU) {
 
 			locator = zGetLocationVaueFromPopUp(value);
+			
+			this.sClickAt("css=div[id$='_suggest_view'] table:nth-child(2) tbody tr td:nth-child(3) span", "0,0");
+			SleepUtil.sleepSmall();
+			
 			page = null;
-
-			// FALL THROUGH
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
@@ -608,16 +609,12 @@ public class FormApptNew extends AbsForm {
 		if (locator == null)
 			throw new HarnessException("locator was null for button " + button);
 
-		this.sClickAt("css=div[id$='_suggest_view'] table:nth-child(2) tbody tr td:nth-child(3) span", "0,0");
-		SleepUtil.sleepSmall();
-		
 		this.sClickAt(locator, "");
 		SleepUtil.sleepMedium();
 		
 		this.zWaitForBusyOverlay();
 
 		return (page);
-
 	}
 
 	public void zVerifySpecificTimeNotExists(String time)

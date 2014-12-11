@@ -135,7 +135,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		ZAssert.assertNull(proposeNewTimeMsg, "Attendee2 shouldn't receive any mail if Attendee1 proposes new time to Organizer");
 		
 
-		// Logout to attendee and login as organizer to accept proposed new time
+		// Login as organizer to accept proposed new time
 		app.zPageMain.zLogout();
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAdmin'>"
@@ -153,7 +153,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		apptForm.zFill(appt);
 		apptForm.zSubmit();
 		
-		// Login as attendee to accept proposed new time
+		// Login as attendee to accept new time
 		app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(apptAttendee1);
 		display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, modifiedSubject);

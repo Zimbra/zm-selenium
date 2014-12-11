@@ -39,7 +39,7 @@ public class Bug62137 extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Bugs( ids = "62137")
+	@Bugs( ids = "62137,96868")
 	@Test(
 			description = "Bug 62137 - 'http://<server>?app=calendar' broken with/without login to zcs", 
 			groups = { "functional" })
