@@ -126,7 +126,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		String  apptAttendee1InvId= apptAttendee1.soapSelectValue("//mail:appt", "invId");
 		ZAssert.assertNotNull(apptAttendee1InvId, "Original invite body shouldn't be changed for attendee");
 
-		// Logout to attendee and login as organizer to accept proposed new time
+		// Login as organizer to accept proposed new time
 		app.zPageMain.zLogout();
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAdmin'>"

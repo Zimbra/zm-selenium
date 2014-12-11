@@ -363,17 +363,17 @@ public class PageCalendar extends AbsTab {
 			return sIsElementPresent("css=div[id='ZmActionMenu_calendar_CALENDAR'] div[id='SHARE_CALENDAR'].ZDisabled");	
 		
 		} else if (buttonName.equals(Button.O_REINVITE_ATTENDEES_DISABLED)) {
-			return sIsElementPresent("css=div[id='zm__Calendar'] div[id='REINVITE_ATTENDEES'].ZDisabled");
+			return sIsElementPresent("css=div[id='zm__Calendar'] div[id='zmi__Calendar__REINVITE_ATTENDEES'].ZDisabled");
 		} else if (buttonName.equals(Button.O_FORWARD_DISABLED)) {
-			return sIsElementPresent("css=div[id='zm__Calendar'] div[id^='FORWARD_APPT'].ZDisabled");
+			return sIsElementPresent("css=div[id='zm__Calendar'] div[id='zmi__Calendar__FORWARD_APPT'].ZDisabled");
 		} else if (buttonName.equals(Button.O_DELETE_DISABLED)) {
-			return sIsElementPresent("css=div[id='zm__Calendar'] div[id='DELETE'].ZDisabled");
+			return sIsElementPresent("css=div[id='zm__Calendar'] div[id='zmi__Calendar__DELETE'].ZDisabled");
 		} else if (buttonName.equals(Button.O_MOVE_DISABLED)) {
-			return sIsElementPresent("css=div[id='zm__Calendar'] div[id^='MOVE'].ZDisabled");
+			return sIsElementPresent("css=div[id='zm__Calendar'] div[id='zmi__Calendar__MOVE'].ZDisabled");
 		} else if (buttonName.equals(Button.O_TAG_APPOINTMENT_DISABLED)) {
-			return sIsElementPresent("css=div[id='zm__Calendar'] div[id='TAG_MENU'].ZDisabled");
+			return sIsElementPresent("css=div[id='zm__Calendar'] div[id='zmi__Calendar__TAG_MENU'].ZDisabled");
 		} else if (buttonName.equals(Button.O_REPLY_DISABLED)) {
-			return sIsElementPresent("css=div[id='zm__Calendar'] div[id^='REPLY'].ZDisabled");	
+			return sIsElementPresent("css=div[id='zm__Calendar'] div[id='zmi__Calendar__REPLY'].ZDisabled");	
 		
 		} else if (buttonName.equals(Button.B_TAG_APPOINTMENT_DISABLED_READONLY_APPT)) {
 			return sIsElementPresent("css=div[id='ztb__APPTRO-1'] div[id^='zb__APPTRO-1'][id$='TAG_MENU'].ZDisabled");
@@ -383,15 +383,13 @@ public class PageCalendar extends AbsTab {
 			return sIsElementPresent("css=div[class='ZmMailMsgView'] td[id$='_responseActionSelectCell'] div.ZDisabled");	
 			
 		} else if (buttonName.equals(Button.O_EDIT_DISABLED_READONLY_APPT)) {
-			return sIsElementPresent("css=div[id='zm__APPTRO-1'] div[id='EDIT'].ZDisabled");
+			return sIsElementPresent("css=div[id='zm__APPTRO-1'] div[id='zmi__APPTRO-1__EDIT'].ZDisabled");
 		} else if (buttonName.equals(Button.O_FORWARD_DISABLED_READONLY_APPT)) {
-			return sIsElementPresent("css=div[id='zm__APPTRO-1'] div[id^='FORWARD_APPT__'].ZDisabled");
+			return sIsElementPresent("css=div[id='zm__APPTRO-1'] div[id='zmi__APPTRO-1__FORWARD_APPT'].ZDisabled");
 		} else if (buttonName.equals(Button.O_PROPOSE_NEW_TIME_DISABLED_READONLY_APPT)) {
-			return sIsElementPresent("css=div[id='zm__APPTRO-1'] div[id^='PROPOSE_NEW_TIME__'].ZDisabled");
+			return sIsElementPresent("css=div[id='zm__APPTRO-1'] div[id='zmi__APPTRO-1__PROPOSE_NEW_TIME'].ZDisabled");
 		} else if (buttonName.equals(Button.O_DELETE_DISABLED_READONLY_APPT)) {
-			return sIsElementPresent("css=div[id='zm__APPTRO-1'] div[id^='DELETE__'].ZDisabled");
-		} else if (buttonName.equals(Button.O_DELETE_DISABLED_READONLY_APPT)) {
-			return sIsElementPresent("css=div[id='zm__APPTRO-1'] div[id^='DELETE__'].ZDisabled");
+			return sIsElementPresent("css=div[id='zm__APPTRO-1'] div[id='zmi__APPTRO-1__DELETE'].ZDisabled");
 		
 		} else {
 			return false;
@@ -992,7 +990,12 @@ public class PageCalendar extends AbsTab {
 						
 			if ( (option == Button.O_DELETE) || (option == Button.O_CANCEL_MENU) ) {
 				
-				optionLocator = Locators.CancelMenu;
+				if (option == Button.O_DELETE) {
+					optionLocator = Locators.DeleteMenu;
+					
+				} else if (option == Button.O_CANCEL_MENU) {
+					optionLocator = Locators.CancelMenu;
+				}
 				
 				if ( optionLocator != null ) {
 					this.zClickAt(optionLocator, "");
@@ -1228,7 +1231,7 @@ public class PageCalendar extends AbsTab {
 			} else if ( option == Button.B_MOVE ) {
 				
 				// Use default actionLocator
-				optionLocator = "css=td[id='MOVE_title']";
+				optionLocator = Locators.MoveMenu;
 				
 				page = new DialogMove(MyApplication,((AppAjaxClient) MyApplication).zPageCalendar);
 
@@ -2653,7 +2656,7 @@ public class PageCalendar extends AbsTab {
 
 		logger.info(myPageName() + " zTagContextMenuListView(" + tagName +")");
 		
-		locator = "css=div[id='TAG_MENU|MENU'] td[id$='_title']:contains('" + tagName + "')";
+		locator = "css=div[id='zmi__Calendar__TAG_MENU|MENU'] td[id$='_title']:contains('" + tagName + "')";
 		System.out.println(locator);
 		AbsPage page = null;
 
