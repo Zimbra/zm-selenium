@@ -50,6 +50,7 @@ public class WizardCreateCos extends AbsWizard {
 		 */
 		zType(Locators.zdlg_COS_NAME,"");
 		this.zKeyboard.zTypeCharacters(cosName);
+		zType(Locators.zdlg_COS_NAME,cosName);
 
 		clickFinish(AbsWizard.Locators.COS_DIALOG);
 
