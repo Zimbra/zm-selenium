@@ -212,8 +212,9 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
 			// Verify that the icon is not disabled
+			window. zToolbarPressButton(Button.B_ACTIONS);
 			SleepUtil.sleep(10000);
-			ZAssert.assertFalse(window.sIsElementPresent("css=div[id$='__MARK_UNREAD'][class~='ZHasText']"), "Verify that the icon is not disabled");
+			ZAssert.assertTrue(window.sIsElementPresent("css=tr[id$='__MARK_UNREAD'] td[id$='__MARK_UNREAD_title']"), "Verify that the icon is not disabled");
 
 		} finally {
 			

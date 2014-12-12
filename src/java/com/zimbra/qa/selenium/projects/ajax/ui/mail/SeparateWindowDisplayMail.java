@@ -215,6 +215,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		//
 		String container = "css=div[id^='ztb__MSG']";
 		String locator = null;			// If set, this will be clicked
+		String containerToolbar = "css=div[id^='ztb__MSG']";		
 		AbsPage page = null;	// If set, this page will be returned
 
 		// Based on the button specified, take the appropriate action(s)
@@ -272,10 +273,14 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 			// FALL THROUGH
 
-		} else {
-			
+	   } else if ( button == Button.B_ACTIONS ) {
+
+		   locator = containerToolbar + " div[id$='__ACTIONS_MENU'] td[id$='_dropdown']>div";
+		   page = null;
+
+	   }else {
+
 			throw new HarnessException("no logic defined for button "+ button);
-			
 		}
 
 		if ( locator == null ) {
