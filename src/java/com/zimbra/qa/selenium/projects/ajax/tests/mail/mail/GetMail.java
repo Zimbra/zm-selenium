@@ -179,7 +179,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(	actual.zGetMailProperty(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
 		ZAssert.assertEquals(	actual.zGetMailProperty(Field.Cc), ZimbraAccount.AccountB().EmailAddress, "Verify the Cc matches");
 		ZAssert.assertEquals(	actual.zGetMailProperty(Field.To), app.zGetActiveAccount().EmailAddress, "Verify the To matches");
-		ZAssert.assertEquals(	actual.zGetMailProperty(Field.Body), bodyHTML, "Verify the body matches");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), bodyHTML, "Verify the body content matches");
 		
 	}
 
