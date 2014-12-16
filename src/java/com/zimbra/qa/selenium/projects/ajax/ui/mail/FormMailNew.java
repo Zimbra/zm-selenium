@@ -325,7 +325,7 @@ public class FormMailNew extends AbsForm {
 			if ( option == Button.O_OPTION_REQUEST_READ_RECEIPT ) {
 				
 				pulldownLocator = "css=div[id^='ztb__COMPOSE'] div[id$='__COMPOSE_OPTIONS'] td[id$='_dropdown']";
-	            optionLocator = "css=div[id^='zm__COMPOSE'] div[id='REQUEST_READ_RECEIPT'] td[id$='_title']";
+	            optionLocator = "css=div[id^='zm__COMPOSE'] div[id*='REQUEST_READ_RECEIPT'] td[id$='_title']";
 	            page = null;
 	            
 	            // FALL THROUGH
@@ -345,19 +345,19 @@ public class FormMailNew extends AbsForm {
             // Have to use xpath because there is no unique identifier to select the text "High" and by using xpath, it selects the text "high" through the sibling relationship.
             // When using the css to point to the icon, it clicks on the outside of the drop down menu
             // , therefore it ends up closing and selecting nothing
-				optionLocator = "css=div[id=PRIORITY_HIGH]";          
+				optionLocator = "css=div[id$=PRIORITY_HIGH]";          
 				page = this;
 
 			} else if ( option == Button.O_PRIORITY_NORMAL ) {
 				
 				// TODO
-				optionLocator = "css=div[id=PRIORITY_NORMAL]";			
+				optionLocator = "css=div[id$=PRIORITY_NORMAL]";			
 				page = this;
 
 			} else if ( option == Button.O_PRIORITY_LOW ) {
 				
 				// TODO
-				optionLocator = "css=div[id=PRIORITY_LOW]";
+				optionLocator = "css=div[id$=PRIORITY_LOW]";
 				page = this;
 
 			} else {
