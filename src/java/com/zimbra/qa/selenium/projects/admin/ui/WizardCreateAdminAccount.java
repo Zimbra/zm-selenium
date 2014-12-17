@@ -126,7 +126,7 @@ public class WizardCreateAdminAccount extends AbsWizard {
 			}
 			zType(Locators.zdlg_DL_DOMAIN_NAME,"");
 			zType(Locators.zdlg_DL_DOMAIN_NAME,domain);
-			zType(Locators.zdlg_ACCT_NAME, CN);
+			zType(Locators.zdlg_DL_NAME, CN);
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 			clickFinish(AbsWizard.Locators.ADMIN_DIALOG);
 		}
