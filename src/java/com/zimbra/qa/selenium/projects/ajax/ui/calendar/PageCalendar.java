@@ -70,7 +70,7 @@ public class PageCalendar extends AbsTab {
 		public static final String ReplyToAllMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__REPLY_ALL_title']";
 		public static final String ForwardMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__FORWARD_APPT_title']";
 		public static final String DeleteMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__DELETE_title']";
-		public static final String CancelMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__CANCEL_title']";
+		public static final String CancelMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__DELETE_title']";
 		public static final String MoveMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__MOVE_title']";
 		public static final String TagAppointmentMenu = "css=div[id='zm__Calendar'] td[id='zmi__Calendar__TAG_MENU_title']";
 		public static final String TagAppointmentNewTagSubMenu = "id=calendar_newtag_title";
@@ -994,7 +994,7 @@ public class PageCalendar extends AbsTab {
 					optionLocator = Locators.DeleteMenu;
 					
 				} else if (option == Button.O_CANCEL_MENU) {
-					optionLocator = Locators.DeleteMenu;
+					optionLocator = Locators.CancelMenu;
 				}
 				
 				if ( optionLocator != null ) {
