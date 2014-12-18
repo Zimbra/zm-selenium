@@ -994,7 +994,7 @@ public class PageCalendar extends AbsTab {
 					optionLocator = Locators.DeleteMenu;
 					
 				} else if (option == Button.O_CANCEL_MENU) {
-					optionLocator = Locators.CancelMenu;
+					optionLocator = Locators.DeleteMenu;
 				}
 				
 				if ( optionLocator != null ) {
