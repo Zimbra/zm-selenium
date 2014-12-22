@@ -301,7 +301,7 @@ public class PageMail extends AbsTab {
 				optionLocator = "css=div[id='zm__TV-main']";
 			}
 			
-			optionLocator += " div[id^='DETACH'] td[id$='_title']";
+			optionLocator += " div[id*='DETACH'] td[id$='_title']";
 			page = new SeparateWindow(this.MyApplication);
 			((SeparateWindow)page).zInitializeWindowNames();
 			
@@ -1478,8 +1478,7 @@ public class PageMail extends AbsTab {
 				// FALLTHROUGH
 			
 			} else if ( option == Button.O_CREATE_APPOINTMENT ) {
-
-				optionLocator += " div[id^='CREATE_APPT'] td[id^='CREATE_APPT__']['_title']";
+				optionLocator += " div[id^='zmi__CLV-main__CREATE_APPT'] td[id^='zmi__CLV-main__CREATE_APPT']['_title']";
 				page = new DialogAddAttendees(this.MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 
 			} else if ( option == Button.O_CREATE_TASK ) {
