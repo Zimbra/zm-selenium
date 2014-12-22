@@ -1478,8 +1478,7 @@ public class PageMail extends AbsTab {
 				// FALLTHROUGH
 			
 			} else if ( option == Button.O_CREATE_APPOINTMENT ) {
-
-				optionLocator += " div[id^='CREATE_APPT'] td[id^='CREATE_APPT__']['_title']";
+				optionLocator += " div[id^='zmi__CLV-main__CREATE_APPT'] td[id^='zmi__CLV-main__CREATE_APPT']['_title']";
 				page = new DialogAddAttendees(this.MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 
 			} else if ( option == Button.O_CREATE_TASK ) {
