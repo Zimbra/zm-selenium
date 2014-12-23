@@ -285,7 +285,7 @@ public class PageManageDistributionLists extends AbsTab {
 			if(ZimbraSeleniumProperties.isWebDriver())
 				SleepUtil.sleepSmall();
 
-			this.sClick(pulldownLocator);
+			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepMedium();
 
 			// If the app is busy, wait for it to become active
@@ -298,7 +298,7 @@ public class PageManageDistributionLists extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.sClick(optionLocator);
+				this.sClickAt(optionLocator,"");
 				SleepUtil.sleepMedium();
 
 				// If the app is busy, wait for it to become active
