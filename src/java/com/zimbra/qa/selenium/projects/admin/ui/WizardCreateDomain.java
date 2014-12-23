@@ -68,7 +68,7 @@ public class WizardCreateDomain extends AbsWizard {
 		clickNext(AbsWizard.Locators.DOMAIN_DIALOG);
 
 		//sClickAt(Locators.ADD_A_GAL_ACCOUNT_BUTTON,"");
-		sClickAt(Locators.MAIL_SERVER_DROPDOWN, "");
+		sClick(Locators.MAIL_SERVER_DROPDOWN);
 		sClickAt(Locators.MAIL_SERVER_DROPDOWN_TABLE+" div:contains('"+
 					ZimbraSeleniumProperties.getStringProperty("server.host")+
 					"')", "");
