@@ -109,21 +109,12 @@ public class DuplicateCos extends AdminCommonTest {
 
 		// Refresh the account list
 		app.zPageManageCOS.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-
-		// Enter the search string to find the account
-			//	app.zPageSearchResults.zAddSearchQuery(cosname);
-			
-		// Click search
-			//	app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
-				
+		
 		// Click on account to be Duplicated.
 		app.zPageManageCOS.zListItem(Action.A_RIGHTCLICK, cosname);
 		
-		// Click on Edit button
+		// Click on Duplicate  button
 		WizardCreateCos form = (WizardCreateCos) app.zPageManageCOS.zToolbarPressButton(Button.O_DUPLICATE_COS);
-				
-		// Click "New"
-		//WizardCreateCos cosDialog = (WizardCreateCos) app.zPageManageCOS.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DUPLICATE_COS);
 		
 		CosItem dupCos = new CosItem();
 		dupCos.setCosName("On rightclick Duplicate of "+cosname);
@@ -132,11 +123,12 @@ public class DuplicateCos extends AdminCommonTest {
 		
 		form.zCompleteWizard(dupCos);
 		
-		// Verify the cos exists in the ZCS
+		// Verify the duplicate cos exists in the ZCS
 				ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetCosRequest xmlns='urn:zimbraAdmin'>" +
 				                     "<cos by='name'>"+dupCos.getName()+"</cos>"+
 				                   "</GetCosRequest>");
+				
 				Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
 				ZAssert.assertNotNull(response, "Verify the duplicate cos is created successfully");
 	}
