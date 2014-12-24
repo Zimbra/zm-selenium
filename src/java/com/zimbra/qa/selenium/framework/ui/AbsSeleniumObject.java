@@ -2799,8 +2799,8 @@ public abstract class AbsSeleniumObject {
 		    (new Actions(webDriver())).release(sourceElement).build().perform();
 		}else{
 		    ClientSessionFactory.session().selenium().dragAndDrop(locatorSource, relative.toString());
-		    SleepUtil.sleepLong();
-		    ClientSessionFactory.session().selenium().dragAndDrop(locatorSource, relative.toString());
+		 //   SleepUtil.sleepLong();
+		   // ClientSessionFactory.session().selenium().dragAndDrop(locatorSource, relative.toString());
 		}
 		
 		// Wait for the client to come back

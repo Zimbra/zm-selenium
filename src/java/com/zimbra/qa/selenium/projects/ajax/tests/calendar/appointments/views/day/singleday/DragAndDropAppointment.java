@@ -186,7 +186,7 @@ public class DragAndDropAppointment extends AjaxCommonTest {
         	String sourceLocator = "css=div[id^='zli__CLD__"+ apptId +"']";
         	String destinationLocator = "css=div[id^='zli__CLD__"+ otherApptId +"']";
 
-        	app.zPageCalendar.zDragAndDropBy(sourceLocator,destinationLocator,0,10);
+        	app.zPageCalendar.zDragAndDropBy(sourceLocator,destinationLocator,0,5);
         		
 		//-- Server verification
 		
