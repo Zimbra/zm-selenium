@@ -65,7 +65,7 @@ public class Button {
 	public static final Button B_HELP = new Button("B_HELP");
 	public static final Button B_USER_NAME = new Button("B_USER_NAME");
 	public static final Button B_Attachment = new Button("B_Attachment");
-	
+	public static final Button B_DUPLICATE = new Button ("B_DUPLICATE");
 
 	public static final Button O_NEW = new Button("O_NEW");
 	public static final Button O_NEW_ADMIN = new Button("O_NEW_ADMIN");
@@ -85,6 +85,7 @@ public class Button {
 	public static final Button O_TAG_NEWTAG = new Button("O_TAG_NEWTAG");
 	public static final Button O_TAG_REMOVETAG = new Button("O_TAG_REMOVETAG");
 	public static final Button O_PRINT_TASKFOLDER = new Button("O_PRINT_TASKFOLDER");
+	public static final Button O_DUPLICATE_COS= new Button("O_DUPLICATE_COS");
 
 	// Accept decline options
 	public static final Button B_CALENDAR = new Button("B_CALENDAR");

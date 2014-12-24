@@ -46,10 +46,11 @@ public class PageManageCOS extends AbsTab {
 		public static final String CONFIGURE="Configure";
 		public static final String CLASS_OS_SERVICE="Class of Service";
 		public static final String DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
-		//public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgProperties']";
 		public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] td[class='ZWidgetTitle']:contains('Edit')";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgProperties']";
+		public static final String DUPLICATE_COS= "css= div[id='zm__zb_currentApp__MENU_POP'] td[id='zmi__zb_currentApp__DUPLICATE_title']";
+		public static final String RIGHT_CLICK_DUPLICATE_COS= "css= td[id='zmi__COSLV__DUPLICATE_title']";
 	}
 
 	public PageManageCOS(AbsApplication application) {
@@ -205,6 +206,12 @@ public class PageManageCOS extends AbsTab {
 			locator=Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
 
 			page=new FormEditCos(this.MyApplication);
+		}else if(button == Button.O_DUPLICATE_COS) {
+
+			locator = Locators.RIGHT_CLICK_DUPLICATE_COS;
+
+			page = new WizardCreateCos(this);
+
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
@@ -266,6 +273,12 @@ public class PageManageCOS extends AbsTab {
 				optionLocator = Locators.EDIT_BUTTON;
 
 				page=new FormEditCos(this.MyApplication);
+
+			} else if(option == Button.O_DUPLICATE_COS) {
+
+				optionLocator = Locators.DUPLICATE_COS;
+
+				page = new WizardCreateCos(this);
 
 			}  else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
