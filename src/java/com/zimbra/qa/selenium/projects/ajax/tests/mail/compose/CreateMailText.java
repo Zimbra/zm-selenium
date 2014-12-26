@@ -88,6 +88,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	@Test(	description = "Send a mail using Text editor using keyboard shortcuts",
 			groups = { "functional" },
 			dataProvider = "DataProvideNewMessageShortcuts")
+	
 	public void CreateMailText_02(Shortcut shortcut, String keys) throws HarnessException {
 		
 		
@@ -97,33 +98,16 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
 		
-		
 		// Open the new mail form
-		//FormMailNew mailform = (FormMailNew) app.zPageMail.zKeyboardShortcut(shortcut);
-		//ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
-		/* TODO: ... debugging to be removed */
-		FormMailNew mailform = new FormMailNew(app);
-		String key = shortcut.getKeys();
-		String keyCode = "";
-		if(key.equals("n")){
-		    keyCode = "78";
-		}else if(key.equals("nm")){
-		    keyCode = "78,77";
-		}else if(key.equals("c")){
-		    keyCode = "67";
-		}
-		mailform.zKeyDown(keyCode);
-		mailform.zWaitForActive();
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zKeyboardShortcut(shortcut);
+		ZAssert.assertNotNull(mailform, "Verify the new form opened");
+				
 		boolean present = mailform.zWaitForElementPresent("css=textarea[id*='ZmHtmlEditor'][class='ZmHtmlEditorTextArea']","30000");
 		ZAssert.assertTrue(present, "Verify the new form opened");
-		
 		
 		// Send the message
 		mailform.zFill(mail);
 		mailform.zSubmit();
-
-		
 
 		// From the receipient end, make sure the message is received
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mail.dSubject +")");
