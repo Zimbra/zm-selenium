@@ -266,7 +266,7 @@ public class EditFile extends FeatureBriefcaseTest {
 
 		// Verify 'Edit' context menu is disabled
 		ZAssert.assertTrue(app.zPageBriefcase
-				.isOptionDisabled(PageBriefcase.Locators.zEditFileMenuItem),
+				.isOptionDisabled(PageBriefcase.Locators.zEditMenuDisabled),
 				"Verify 'Edit' context menu is disabled");
 
 		// delete file upon test completion

@@ -25,6 +25,7 @@ import java.util.Map;
 import org.apache.commons.httpclient.HttpStatus;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.items.DocumentItem;
 import com.zimbra.qa.selenium.framework.items.FileItem;
@@ -57,71 +58,51 @@ public class PageBriefcase extends AbsTab {
 	public static final String pageTitle = "Zimbra: Briefcase";
 
 	public static class Locators {
-		public static final Locators zNewBriefcaseOverviewPaneIcon = new Locators(
-				"id=ztih__main_Briefcase__BRIEFCASE_textCell");
-		public static final Locators zBriefcaseFolder = new Locators(
-				"id=zti__main_Briefcase__16_textCell");
-		public static final Locators briefcaseListView = new Locators(
-				"css=div[id^='zl__BDLV'][class='DwtListView-Rows']");
-		public static final Locators zBriefcaseFolderIcon = new Locators(
-				"css=div[id='zti__main_Briefcase__16']");
-		public static final Locators zBriefcaseFolderIcon_Desktop = new Locators(
-				"css=div[id*='Briefcase'][id$='16_div']");
-		public static final Locators zTrashFolder = new Locators(
-				"id=zti__main_Briefcase__3_textCell");
-		public static final Locators zBriefcaseAppIconBtn = new Locators(
-				"id=zb__App__Briefcase_left_icon");
-		public static final Locators zNewMenuIconBtn = new Locators(
-				"id=zb__BCD__NEW_FILE_left_icon");
-		public static final Locators zNewMenuLeftIconBtn = new Locators(
-				"css=td[id=zb__NEW_MENU_left_icon]");
-		public static final Locators zNewMenuArrowBtn = new Locators(
-				"css=div[id=zb__NEW_MENU] div[class^=ImgSelectPullDownArrow]");
-		public static final Locators zUploadFileIconBtn = new Locators(
-				"id=zb__BDLV-main__NEW_FILE_left_icon");
-		public static final Locators zUploadFileTitleBtn = new Locators(
-			"css=div[id=zb__BDLV-main__NEW_FILE]>table>tbody>tr>td[id=zb__BDLV-main__NEW_FILE_title]");
-		public static final Locators zEditFileIconBtn = new Locators(
-				"id=zb__BDLV-main__EDIT_FILE_left_icon");
-		public static final Locators zEditFileBtn = new Locators(
-				"css=div[id=zb__BDLV-main__EDIT_FILE]");
-		public static final Locators zEditFileMenuItem = new Locators(
-				"css=div[id=EDIT_FILE]");
-		public static final Locators zOpenFileInSeparateWindowIconBtn = new Locators(
-				"id=zb__BDLV-main__NEW_BRIEFCASE_WIN_left_icon");
-		public static final Locators zDeleteIconBtn = new Locators(
-				"id=zb__BDLV-main__DELETE_left_icon");
-		public static final Locators zDeleteBtn = new Locators(
-				"css=div[id=zb__BDLV-main__DELETE]");
-		public static final Locators zMoveIconBtn = new Locators(
-				"id=zb__BDLV-main__MOVE_left_icon");
-		public static final Locators zMoveBtn = new Locators(
-				"id=zb__BDLV-main__MOVE");
-		public static final Locators zTagItemIconBtn = new Locators(
-				"id=zb__BCD__TAG_MENU_left_icon");
-		public static final Locators zViewIconBtn = new Locators(
-				"id=zb__BCD__VIEW_MENU_left_icon");
-		public static final Locators zSendBtnIconBtn = new Locators(
-				"id=zb__BCD__SEND_FILE_left_icon");
-		public static final Locators zNewDocumentIconBtn = new Locators(
-				"id=zb__BCD__NEW_DOC_left_icon");
-		public static final Locators zNewSpreadsheetIconBtn = new Locators(
-				"id=zb__BCD__NEW_SPREADSHEET_left_icon");
-		public static final Locators zNewPresentationIconBtn = new Locators(
-				"id=zb__BCD__NEW_PRESENTATION_left_icon");
-		public static final Locators zRenameInput = new Locators(
-				"css=div[class^=RenameInput]>input");
-		public static final Locators zFileBodyField = new Locators(
-				"css=html>body");
-		public static final Locators zHeaderCheckBox = new Locators(
-				"css=div[id=zlhi__BDLV-main__se]");
-		public static final Locators zListItemLockIcon = new Locators(
-				"css=div[id^=zlif__BDLV-main__][id$=__loid][class=ImgPadLock]");
-		public static final Locators zCloseIconBtn = new Locators(
-				"css=td[id^=zb__MSG][id$=CLOSE_title]");
-		public static final Locators zAttachmentText = new Locators(
-				"css=div[class=attBubbleHolder] span");
-
+		public static final Locators zNewBriefcaseOverviewPaneIcon = new Locators("id=ztih__main_Briefcase__BRIEFCASE_textCell");
+		public static final Locators zBriefcaseFolder = new Locators("id=zti__main_Briefcase__16_textCell");
+		public static final Locators briefcaseListView = new Locators("css=div[id^='zl__BDLV'][class='DwtListView-Rows']");
+		public static final Locators zBriefcaseFolderIcon = new Locators("css=div[id='zti__main_Briefcase__16']");
+		public static final Locators zBriefcaseFolderIcon_Desktop = new Locators("css=div[id*='Briefcase'][id$='16_div']");
+		public static final Locators zTrashFolder = new Locators("id=zti__main_Briefcase__3_textCell");
+		public static final Locators zBriefcaseAppIconBtn = new Locators("id=zb__App__Briefcase_left_icon");
+		public static final Locators zNewMenuIconBtn = new Locators("id=zb__BCD__NEW_FILE_left_icon");
+		public static final Locators zNewMenuLeftIconBtn = new Locators("css=td[id=zb__NEW_MENU_left_icon]");
+		public static final Locators zNewMenuArrowBtn = new Locators("css=div[id=zb__NEW_MENU] div[class^=ImgSelectPullDownArrow]");
+		public static final Locators zUploadFileIconBtn = new Locators("id=zb__BDLV-main__NEW_FILE_left_icon");
+		public static final Locators zUploadFileTitleBtn = new Locators("css=div[id=zb__BDLV-main__NEW_FILE]>table>tbody>tr>td[id=zb__BDLV-main__NEW_FILE_title]");
+		public static final Locators zEditFileIconBtn = new Locators("id=zb__BDLV-main__EDIT_FILE_left_icon");
+		public static final Locators zEditFileBtn = new Locators("css=div[id=zb__BDLV-main__EDIT_FILE]");
+		public static final Locators zOpenFileInSeparateWindowIconBtn = new Locators("id=zb__BDLV-main__NEW_BRIEFCASE_WIN_left_icon");
+		public static final Locators zDeleteIconBtn = new Locators("id=zb__BDLV-main__DELETE_left_icon");
+		public static final Locators zDeleteBtn = new Locators("css=div[id=zb__BDLV-main__DELETE]");
+		public static final Locators zMoveIconBtn = new Locators("id=zb__BDLV-main__MOVE_left_icon");
+		public static final Locators zMoveBtn = new Locators("id=zb__BDLV-main__MOVE");
+		public static final Locators zTagItemIconBtn = new Locators("id=zb__BCD__TAG_MENU_left_icon");
+		public static final Locators zViewIconBtn = new Locators("id=zb__BCD__VIEW_MENU_left_icon");
+		public static final Locators zSendBtnIconBtn = new Locators("id=zb__BCD__SEND_FILE_left_icon");
+		public static final Locators zNewDocumentIconBtn = new Locators("id=zb__BCD__NEW_DOC_left_icon");
+		public static final Locators zNewSpreadsheetIconBtn = new Locators("id=zb__BCD__NEW_SPREADSHEET_left_icon");
+		public static final Locators zNewPresentationIconBtn = new Locators("id=zb__BCD__NEW_PRESENTATION_left_icon");
+		public static final Locators zRenameInput = new Locators("css=div[class^=RenameInput]>input");
+		public static final Locators zFileBodyField = new Locators("css=html>body");
+		public static final Locators zHeaderCheckBox = new Locators("css=div[id=zlhi__BDLV-main__se]");
+		public static final Locators zListItemLockIcon = new Locators("css=div[id^=zlif__BDLV-main__][id$=__loid][class=ImgPadLock]");
+		public static final Locators zCloseIconBtn = new Locators("css=td[id^=zb__MSG][id$=CLOSE_title]");
+		public static final Locators zAttachmentText = new Locators("css=div[class=attBubbleHolder] span");
+		
+		// Menus
+		public static final String zOpenMenu = "css=div[id='zm__Briefcase'] td[id='zmi__Briefcase__OPEN_FILE_title']";
+		public static final String zEditMenu = "css=div[id='zm__Briefcase'] td[id='zmi__Briefcase__EDIT_FILE_title']";
+		public static final Locators zEditMenuDisabled = new Locators("css=div[id='zm__Briefcase'] div[id='zmi__Briefcase__EDIT_FILE']");
+		public static final String zSendLinkMenu = "css=div[id='zm__Briefcase'] td[id='zmi__Briefcase__SEND_FILE_title']";
+		public static final String zSendAsAttachmentsMenu = "css=div[id='zm__Briefcase'] td[id='zmi__Briefcase__SEND_FILE_AS_ATT_title']";
+		public static final String zCheckInFileMenu = "css=div[id='zm__Briefcase'] td[id='zmi__Briefcase__CHECKIN_title']";
+		public static final String zDiscardCheckoutMenu = "css=div[id='zm__Briefcase'] td[id='zmi__Briefcase__DISCARD_CHECKOUT_title']";
+		public static final String zMoveMenu = "css=div[id='zm__Briefcase'] td[id='zmi__Briefcase__MOVE_title']";
+		public static final String zRenameMenu = "css=div[id='zm__Briefcase'] td[id='zmi__Briefcase__RENAME_FILE_title']";
+		public static final String zDeleteMenu = "css=div[id='zm__Briefcase'] td[id='zmi__Briefcase__DELETE_title']";
+		public static final String zTagMenu = "css=div[id='zm__Briefcase'] td[id='zmi__Briefcase__TAG_MENU_title']";
+		
 		public final String locator;
 
 		public Locators(String locator) {
@@ -465,14 +446,14 @@ public class PageBriefcase extends AbsTab {
 
 			} else if (option == Button.O_SEND_AS_ATTACHMENT) {
 
-				optionLocator = "css=div[id=SEND_FILE_AS_ATT] td[id*=SEND_FILE_AS_ATT_title]:contains('Send as attachment')";
+				optionLocator = "css=div[id*=SEND_FILE_AS_ATT] td[id*=SEND_FILE_AS_ATT_title]:contains('Send as attachment')";
 
 				page = new FormMailNew(this.MyApplication);
 
 				// FALL THROUGH
 			} else if (option == Button.O_SEND_LINK) {
 
-				optionLocator = "css=div[id=SEND_FILE] td[id*=SEND_FILE_title]:contains('Send link')";
+				optionLocator = "css=div[id*=SEND_FILE] td[id*=SEND_FILE_title]:contains('Send link')";
 
 				page = new DialogConfirm(DialogConfirm.Confirmation.SENDLINK,
 						this.MyApplication, this);
@@ -975,13 +956,13 @@ public class PageBriefcase extends AbsTab {
 
 			if (option == Button.B_RENAME) {
 
-				optionLocator = "css=div[id=zm__Briefcase] div[id^=RENAME_FILE__] tr[id^=POPUP_RENAME_FILE]>td[id^=RENAME_FILE]:contains(Rename)";
+				optionLocator = Locators.zRenameMenu;
 
 				page = null;
 
 			} else if (option == Button.O_EDIT) {
 
-				optionLocator = "css=td[id$=EDIT_FILE_title]:contains(Edit)";
+				optionLocator = Locators.zEditMenu;
 
 				if (item instanceof DocumentItem) {
 					page = new DocumentBriefcaseEdit(MyApplication,
@@ -990,8 +971,10 @@ public class PageBriefcase extends AbsTab {
 					page = null;
 
 			} else if (option == Button.O_OPEN) {
+				
 
-				optionLocator = "css=td#OPEN_FILE_title:contains(Open)";
+				optionLocator = Locators.zOpenMenu;
+				
 
 				if (item instanceof DocumentItem) {
 					page = new DocumentBriefcaseOpen(MyApplication,
@@ -1001,42 +984,42 @@ public class PageBriefcase extends AbsTab {
 
 			} else if (option == Button.O_SEND_LINK) {
 
-				optionLocator = "css=tr[id^=POPUP_SEND_FILE]>td[id^=SEND_FILE__]:contains('Send link(s)')";
+				optionLocator = Locators.zSendLinkMenu;
 
 				page = new DialogConfirm(DialogConfirm.Confirmation.SENDLINK,
 						this.MyApplication, this);
 
 			} else if (option == Button.O_SEND_AS_ATTACHMENT) {
 
-				optionLocator = "css=div[id^=SEND_FILE_AS_ATT__DWT]";
+				optionLocator = Locators.zSendAsAttachmentsMenu;
 
 				page = new FormMailNew(this.MyApplication);
 
 			} else if (option == Button.O_DELETE) {
 
-				optionLocator = "css=div[id=zm__Briefcase] tr[id=POPUP_DELETE]";
+				optionLocator = Locators.zDeleteMenu;
 
 				page = new DialogConfirm(DialogConfirm.Confirmation.DELETE,
 						MyApplication, this);
 
 			} else if (option == Button.O_MOVE) {
 
-				optionLocator = "css=div[id=zm__Briefcase] tr[id=POPUP_MOVE]";
+				optionLocator = Locators.zMoveMenu;
 
 				page = new DialogMove(MyApplication, this);
 			} else if (option == Button.O_TAG_FILE) {
 
-				optionLocator = "css=td#zmi__Briefcase__TAG_MENU_title:contains('Tag File')";
+				optionLocator = Locators.zTagMenu;
 
 				page = new DialogMove(MyApplication, this);
 			} else if (option == Button.O_CHECK_IN_FILE) {
 
-				optionLocator = "css=tr[id^=POPUP_CHECKIN]>td[id^=CHECKIN__]:contains('Check In File')";
+				optionLocator = Locators.zCheckInFileMenu;
 
 				page = new DialogCheckInFile(MyApplication, this);
 			} else if (option == Button.O_DISCARD_CHECK_OUT) {
 
-				optionLocator = "css=tr[id^=POPUP_DISCARD_CHECKOUT]>td[id^=DISCARD_CHECKOUT__]:contains(Discard Check Out)";
+				optionLocator = Locators.zDiscardCheckoutMenu;
 
 				page = null;
 			} else {
@@ -1384,7 +1367,7 @@ public class PageBriefcase extends AbsTab {
 	}
 
 	public boolean isOptionDisabled(Locators name) throws HarnessException {
-		return sIsElementPresent(name.locator + "[class*=ZDisabled]");
+		return sIsElementPresent(name.locator + "[class='ZMenuItem ZWidget   ZHasText   ZDisabled ZHasLeftIcon']");
 	}
 
 	public boolean isLockIconPresent(IItem item) throws HarnessException {

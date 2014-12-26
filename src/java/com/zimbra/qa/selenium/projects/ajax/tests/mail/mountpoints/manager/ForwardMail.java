@@ -26,13 +26,10 @@ import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-
 public class ForwardMail extends PrefGroupMailByMessageTest {
 
 	public ForwardMail() {
 		logger.info("New "+ ForwardMail.class.getCanonicalName());
-		
-		
 		
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 
@@ -40,6 +37,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 	@Bugs(	ids = "86168")
 	@Test(	description = "Forward (on behalf of) to a message in a shared folder (admin rights)",
 			groups = { "functional" })
+	
 	public void ForwardMail_01() throws HarnessException {
 
 		//-- DATA
@@ -101,11 +99,6 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 		
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 
-		
-		
-
-
-
 		//-- GUI
 		
 		// Login to load the rights
@@ -122,25 +115,19 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 			
 			// Reply the item
 			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
+			mailform.zFillField(Field.From, owner.EmailAddress);
 			mailform.zFillField(FormMailNew.Field.To, ZimbraAccount.AccountA().EmailAddress);
-			mailform.zFillField(Field.From, owner.EmailAddress);	
 			mailform.zSubmit();
 
 		} finally {
 			
-			// Select the inbox
-			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox));
-
 		}
-
-
-
 
 		//-- VERIFICATION
 		
 		// From the receiving end, verify the message details
 		// Need 'in:inbox' to separate the message from the sent message
-		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:("+ subject +")");
+		MailItem sent = MailItem.importFromSOAP(owner, "in:sent subject:("+ subject +")");
 	
 		ZAssert.assertEquals(sent.dToRecipients.size(), 1, "Verify the message is sent to 1 'to' recipient");
 		ZAssert.assertEquals(sent.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountA().EmailAddress, "Verify the 'To' field is correct");
@@ -151,6 +138,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 
 	@Test(	description = "Forward (on behalf of) to a message in a shared folder (admin rights)  - no SOBO rights",
 			groups = { "functional" })
+	
 	public void ForwardMail_02() throws HarnessException {
 
 		//-- DATA
@@ -206,11 +194,6 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 		
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 
-		
-		
-
-
-
 		//-- GUI
 		
 		// Login to load the rights
@@ -227,19 +210,14 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 			
 			// Reply the item
 			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
+			//mailform.zFillField(Field.From, owner.EmailAddress);
 			mailform.zFillField(FormMailNew.Field.To, ZimbraAccount.AccountA().EmailAddress);
 			mailform.zSubmit();
 
 		} finally {
 			
-			// Select the inbox
-			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox));
-
 		}
-
-
-
-
+		
 		//-- VERIFICATION
 		
 		// From the receiving end, verify the message details
