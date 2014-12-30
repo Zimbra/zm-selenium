@@ -211,7 +211,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			//
 			SleepUtil.sleepLong();
 
-			int frames = sGetCssCount("css=iframe");
+			int frames = sGetCssCountNewWindow("css=iframe");
 			logger.debug("Body: # of frames: " + frames);
 			String browser = SeleniumService.getInstance().getSeleniumBrowser();
 			/*
@@ -231,7 +231,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 					this.sFocus(locator);
 					this.zClick(locator);
-					this.sType(locator, value);
+					this.sTypeNewWindow(locator, value);
 
 					return;
 
@@ -256,7 +256,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 					// Text compose
 					// //
 
-					sType("css=textarea[class='ZmHtmlEditorTextArea']", value);
+					sTypeNewWindow("css=textarea[class='ZmHtmlEditorTextArea']", value);
 
 					return;
 
@@ -311,7 +311,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 		// Default behavior, enter value into locator field
 		//
 		
-		sType(locator, value);
+		sTypeNewWindow(locator, value);
 		
 	}
 	
@@ -408,10 +408,6 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			
 			throw new HarnessException("no logic defined for button "+ button);
 			
-		}
-
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
 		}
 
 		// Default behavior, process the locator by clicking on it

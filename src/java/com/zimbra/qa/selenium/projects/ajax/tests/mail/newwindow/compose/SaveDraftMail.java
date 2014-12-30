@@ -107,6 +107,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 	@Test(	description = "Save draft using keyboard shortcut 'Escape'", 
 			groups = { "functional" })
+	
 	public void SaveDraftMail_02() throws HarnessException {
 
 		// Create the message data to be sent
@@ -122,11 +123,9 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 
 			window.zSetWindowTitle("Compose");
-			window.zWaitForActive();		// Make sure the window is there
 
-			/* TODO: ... debugging to be removed */
-			window.waitForComposeWindow();
-		
+			SleepUtil.sleepVeryLong();
+			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 			// Fill out the form with the data

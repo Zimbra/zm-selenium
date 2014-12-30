@@ -155,11 +155,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			
 		}
 
-
-		// Make sure something was set
-		if ( locator == null )
-			throw new HarnessException("locator was null for field = "+ field);
-		
 		// Default behavior
 		//
 		String value = sGetText(locator);
@@ -281,10 +276,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 	   }else {
 
 			throw new HarnessException("no logic defined for button "+ button);
-		}
-
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
 		}
 
 		// Default behavior, process the locator by clicking on it
