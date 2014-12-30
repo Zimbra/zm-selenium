@@ -17,14 +17,16 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.document;
 
 import java.util.List;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.DocumentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
-
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
@@ -45,6 +47,7 @@ public class OpenDocument extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");				
 	}
 
+	@Bugs(ids = "97124")
 	@Test(description = "Create document through SOAP - open & verify through GUI", groups = { "smoke" })
 	public void OpenDocument_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

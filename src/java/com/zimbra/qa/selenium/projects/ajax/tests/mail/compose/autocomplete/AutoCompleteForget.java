@@ -20,6 +20,7 @@ import java.util.*;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
@@ -203,6 +204,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 		
 	}
 
+	@Bugs(ids = "97118")
 	@Test(	description = "Verify the 'forget' link for GAL",
 			groups = { "functional" })
 	public void AutoCompleteForget_03() throws HarnessException {
@@ -283,6 +285,8 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	 * 6. Compose new message, verify Acontact comes before Bcontact
 	 * @throws HarnessException
 	 */
+	
+	@Bugs(ids = "97123")
 	@Test(	description = "Verify 'forget' functionality resets the ranking order - Contacts",
 			groups = { "functional" })
 	public void AutoCompleteForget_04() throws HarnessException {
@@ -455,6 +459,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	 * 6. Compose new message, verify Acontact comes before Bcontact
 	 * @throws HarnessException
 	 */
+	@Bugs(ids = "97118")
 	@Test(	description = "Verify 'forget' functionality resets the ranking order - GAL",
 			groups = { "functional" })
 	public void AutoCompleteForget_05() throws HarnessException {

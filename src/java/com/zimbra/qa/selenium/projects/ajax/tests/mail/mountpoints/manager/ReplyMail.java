@@ -37,6 +37,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 	@Bugs(	ids = "86168")
 	@Test(	description = "Reply (on behalf of) to a message in a shared folder (manager rights)",
 			groups = { "functional" })
+	
 	public void ReplyMail_01() throws HarnessException {
 
 		//-- DATA
@@ -88,8 +89,6 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
             	+		"</m>"
 				+	"</AddMsgRequest>");
 		
-
-		
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
@@ -99,10 +98,6 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 
 		
-		
-
-
-
 		//-- GUI
 		
 		// Login to load the rights
@@ -124,30 +119,28 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 
 		} finally {
 			
-			// Select the inbox
-			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox));
-
 		}
-
-
-
 
 		//-- VERIFICATION
 		
 		// From the receiving end, verify the message details
 		// Need 'in:inbox' to separate the message from the sent message
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:("+ subject +")");
+		ZAssert.assertNull(sent, "Verify mail is not sent by grantee");
 
+		sent = MailItem.importFromSOAP(owner, "in:sent subject:("+ subject +")");
+		ZAssert.assertNotNull(sent, "Verify mail is sent by grantor");
 		ZAssert.assertEquals(sent.dToRecipients.size(), 1, "Verify the message is sent to 1 'to' recipient");
 		ZAssert.assertEquals(sent.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountB().EmailAddress, "Verify the 'To' field is correct");
 		ZAssert.assertEquals(sent.dFromRecipient.dEmailAddress, owner.EmailAddress, "Verify the 'From' field is correct");
 		ZAssert.assertEquals(sent.dSenderRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the 'Sender' field is correct");
 
 	}
-
+	
 
 	@Test(	description = "Reply (on behalf of) to a message in a shared folder (manager rights) - no SOBO rights",
 			groups = { "functional" })
+	
 	public void ReplyMail_02() throws HarnessException {
 
 		//-- DATA
@@ -193,8 +186,6 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
             	+		"</m>"
 				+	"</AddMsgRequest>");
 		
-
-		
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
@@ -202,11 +193,6 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 				+	"</CreateMountpointRequest>");
 		
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
-
-		
-		
-
-
 
 		//-- GUI
 		
@@ -228,13 +214,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 
 		} finally {
 			
-			// Select the inbox
-			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox));
-
 		}
-
-
-
 
 		//-- VERIFICATION
 		
@@ -246,9 +226,5 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(sent.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountB().EmailAddress, "Verify the 'To' field is correct");
 		ZAssert.assertEquals(sent.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the 'From' field is correct");
 		ZAssert.assertNull(sent.dSenderRecipient, "Verify the 'Sender' field is empty");
-
 	}
-
-
-
 }

@@ -30,36 +30,33 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 public class GetFeed extends PrefGroupMailByMessageTest {
 
 	public GetFeed() {
-		logger.info("New "+ GetFeed.class.getCanonicalName());
+		logger.info("New " + GetFeed.class.getCanonicalName());
 
-		
-		
 	}
 
-
-	@Test(	description = "Verify a feed appears in the folder tree",
-			groups = { "functional" })
+	@Test(description = "Verify a feed appears in the folder tree", groups = { "functional" })
 	public void GetFeed_01() throws HarnessException, MalformedURLException {
 
-		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(),
+				SystemFolder.UserRoot);
+		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(),
+				SystemFolder.Inbox);
 
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		
+		String foldername = "folder"
+				+ ZimbraSeleniumProperties.getUniqueString();
+
 		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
 		String feed = ZimbraSeleniumProperties.getStringProperty("feed.rss");
 
 		app.zGetActiveAccount().soapSend(
-				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-					"<folder name='"+ foldername +"' l='"+ root.getId() +"' url='"+ feed +"'/>" +
-				"</CreateFolderRequest>");
+				"<CreateFolderRequest xmlns='urn:zimbraMail'>"
+						+ "<folder name='" + foldername + "' l='"
+						+ root.getId() + "' url='" + feed + "'/>"
+						+ "</CreateFolderRequest>");
 
 		// Click on the "Inbox" to refresh
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
-
-
-		// Verify the feed exists
-		// Get all the messages in the inbox
+		
 		List<FolderItem> folders = app.zTreeMail.zListGetFolders();
 		ZAssert.assertNotNull(folders, "Verify the folder list exists");
 
@@ -74,28 +71,34 @@ public class GetFeed extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertNotNull(found, "Verify the feed is in the folder tree");
 
-		
+		//ZAssert.assertTrue(app.zPageMail.zIsVisiblePerPosition(
+				//"css=div[id^='zti__main_Mail'] td[class='DwtTreeItem-Text'] span:contains('" + foldername + "')", 0, 0),
+				//"Verify the feed is in the folder tree");
+
 	}
 
-
-	@Test(	description = "Reload a feed",
-			groups = { "functional" })
+	@Test(description = "Reload a feed", groups = { "functional" })
 	public void GetFeed_02() throws HarnessException, MalformedURLException {
 
-		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(),
+				SystemFolder.UserRoot);
+		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(),
+				SystemFolder.Inbox);
 
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder"
+				+ ZimbraSeleniumProperties.getUniqueString();
 
 		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
 		String url = ZimbraSeleniumProperties.getStringProperty("feed.rss");
 
 		app.zGetActiveAccount().soapSend(
-				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-					"<folder name='"+ foldername +"' l='"+ root.getId() +"' url='"+ url +"'/>" +
-				"</CreateFolderRequest>");
+				"<CreateFolderRequest xmlns='urn:zimbraMail'>"
+						+ "<folder name='" + foldername + "' l='"
+						+ root.getId() + "' url='" + url + "'/>"
+						+ "</CreateFolderRequest>");
 
-		FolderItem feed = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
+		FolderItem feed = FolderItem.importFromSOAP(app.zGetActiveAccount(),
+				foldername);
 
 		// Click on the "Inbox" to refresh
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
@@ -103,17 +106,14 @@ public class GetFeed extends PrefGroupMailByMessageTest {
 		// Click on the "Feed"
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, feed);
 
-
 		// Click on the "Reload Feed" button
 		app.zPageMail.zToolbarPressButton(Button.B_LOADFEED);
-		
-		
+
 		// Get the list of items
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
-		ZAssert.assertGreaterThan(messages.size(), 0, "Verify that RSS items exist in the list");
-		
-		
-	}
+		ZAssert.assertGreaterThan(messages.size(), 0,
+				"Verify that RSS items exist in the list");
 
+	}
 
 }
