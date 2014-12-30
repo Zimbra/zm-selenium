@@ -130,6 +130,23 @@ public abstract class AbsSeparateWindow extends AbsPage {
 	}
 	
 	/* (non-Javadoc)
+	 * @see com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject#sType(java.lang.String, java.lang.String)
+	 */
+	public void sTypeNewWindow(String locator, String value) throws HarnessException {
+		logger.info(myPageName() + " sType("+ locator +", " + value +")");
+
+
+		try {
+			super.sSelectWindow(this.DialogWindowID);			
+			super.sType(locator, value);
+
+		} finally {
+			
+		}
+
+	}
+	
+	/* (non-Javadoc)
 	 * @see com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject#sGetText(java.lang.String)
 	 */
 	public String sGetText(String locator) throws HarnessException {
@@ -202,6 +219,29 @@ public abstract class AbsSeparateWindow extends AbsPage {
 		} finally {
 			super.sSelectWindow(MainWindowID);
 			super.sWindowFocus();
+		}
+
+		if ( count == null )
+			throw new HarnessException("Unable to determine CSS count");
+		
+		logger.info("getCssCount(" + css + ") = " + count);
+
+		return (count);
+	}
+	
+	public int sGetCssCountNewWindow(String css) throws HarnessException {
+		logger.info(myPageName() + " sGetCssCount("+ css +")");
+		
+		Integer count = null;
+		
+		try {
+			super.sSelectWindow(this.DialogWindowID);
+			changeFocus();
+			
+			count = super.sGetCssCount(css);
+
+		} finally {
+			
 		}
 
 		if ( count == null )
