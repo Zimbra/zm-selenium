@@ -45,6 +45,12 @@ public class PageSearchResults extends AbsTab {
 		public static final String zArrowSelectSearchObject		="css=td[id*='dropdown'] div[class='ImgSelectPullDownArrow']";
 		public static final String zCosSearchObject = "css=div[id='zmi__SEARCH_COSES'] td[id='zmi__SEARCH_COSES_title']";
 		public static final String zDomainSearchObject = "css=div[id='zmi__SEARCH_DOMAINS'] td[id='zmi__SEARCH_DOMAINS_title']";
+		public static final String zAccountsSearchObject = "css=div[id='zmi__SEARCH_ACCOUNTS'] td[id='zmi__SEARCH_ACCOUNTS_title']";
+		public static final String zDLSearchObject = "css=div[id='zmi__SEARCH_DLS'] td[id='zmi__SEARCH_DLS_title']";
+		public static final String zAliasesSearchObject = "css=div[id='zmi__SEARCH_ALIASES'] td[id='zmi__SEARCH_ALIASES_title']";
+		public static final String zResourcesSearchObject = "css=div[id='zmi__SEARCH_RESOURCES'] td[id='zmi__SEARCH_RESOURCES_title']";
+
+
 	}
 
 	public static class TypeOfObject {
@@ -417,7 +423,7 @@ public class PageSearchResults extends AbsTab {
 	}
 	
 public void zSelectSearchObject(String object)throws HarnessException{
-		
+	
 		if(object==S_COS){
 			
 			this.sClickAt(Locators.zArrowSelectSearchObject, "");
@@ -425,9 +431,30 @@ public void zSelectSearchObject(String object)throws HarnessException{
 		
 		
 		}else if(object==S_DOMAIN){
+
+			this.sClickAt(Locators.zDomainSearchObject, "");
+		
+		
+		}else if(object==S_ACCOUNT){
 			
 			this.sClickAt(Locators.zArrowSelectSearchObject, "");
-			this.sClickAt(Locators.zDomainSearchObject, "");
+			this.sClickAt(Locators.zAccountsSearchObject, "");
+		
+		
+		}else if(object==S_RESOURCE){
+
+			this.sClickAt(Locators.zResourcesSearchObject, "");
+		
+		
+		}else if(object==S_DISTRIBUTION_LIST){
+			
+			SleepUtil.sleepMedium();
+			this.sClickAt(Locators.zDLSearchObject, "");
+		
+		
+		}else if(object==S_ALIAS){
+			
+			this.sClickAt(Locators.zAliasesSearchObject, "");
 		
 		
 		}else{
