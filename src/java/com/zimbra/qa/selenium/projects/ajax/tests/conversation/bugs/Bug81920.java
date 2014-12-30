@@ -39,7 +39,7 @@ public class Bug81920 extends PrefGroupMailByConversationTest {
 	
 
 	
-	@Bugs(ids = "97098,81920")
+	@Bugs(ids = "97098")
 	@Test(	description = "Reply to a conversation with a draft",
 			groups = { "functional" })
 	public void Bug81920_01() throws HarnessException {

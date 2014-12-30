@@ -20,6 +20,7 @@ import java.util.*;
 
 import org.testng.annotations.*;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -113,6 +114,7 @@ public class AutoCompleteContactGroup extends PrefGroupMailByMessageTest {
 
 	}
 
+	@Bugs(ids = "97112")
 	@Test(	description = "Autocomplete using a Contact Group - Group Name",
 			groups = { "functional" })
 	public void AutoCompleteContactGroups_01() throws HarnessException {
@@ -159,6 +161,7 @@ public class AutoCompleteContactGroup extends PrefGroupMailByMessageTest {
 
 	}
 
+	@Bugs(ids = "97112")
 	@Test(	description = "Autocomplete using the Contacts - Partial First Name",
 			groups = { "functional" })
 	public void AutoCompleteContactGroups_02() throws HarnessException {

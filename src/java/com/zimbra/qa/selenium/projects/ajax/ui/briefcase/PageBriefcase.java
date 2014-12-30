@@ -72,6 +72,7 @@ public class PageBriefcase extends AbsTab {
 		public static final Locators zUploadFileTitleBtn = new Locators("css=div[id=zb__BDLV-main__NEW_FILE]>table>tbody>tr>td[id=zb__BDLV-main__NEW_FILE_title]");
 		public static final Locators zEditFileIconBtn = new Locators("id=zb__BDLV-main__EDIT_FILE_left_icon");
 		public static final Locators zEditFileBtn = new Locators("css=div[id=zb__BDLV-main__EDIT_FILE]");
+		public static final Locators zEditButtonDisabled = new Locators("css=div[id='ztb__BDLV-main'] div[id='zb__BDLV-main__EDIT_FILE']");
 		public static final Locators zOpenFileInSeparateWindowIconBtn = new Locators("id=zb__BDLV-main__NEW_BRIEFCASE_WIN_left_icon");
 		public static final Locators zDeleteIconBtn = new Locators("id=zb__BDLV-main__DELETE_left_icon");
 		public static final Locators zDeleteBtn = new Locators("css=div[id=zb__BDLV-main__DELETE]");
@@ -1368,6 +1369,10 @@ public class PageBriefcase extends AbsTab {
 
 	public boolean isOptionDisabled(Locators name) throws HarnessException {
 		return sIsElementPresent(name.locator + "[class='ZMenuItem ZWidget   ZHasText   ZDisabled ZHasLeftIcon']");
+	}
+	
+	public boolean isToolbarButtonDisabled(Locators name) throws HarnessException {
+		return sIsElementPresent(name.locator + "[class='ZToolbarButton ZWidget ZHasText ZDisabled']");
 	}
 
 	public boolean isLockIconPresent(IItem item) throws HarnessException {

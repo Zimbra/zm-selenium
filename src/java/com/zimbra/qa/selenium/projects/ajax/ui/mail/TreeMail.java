@@ -1035,7 +1035,7 @@ public class TreeMail extends AbsTree {
 				count++; // temp-fix -- This is required because find share section removed			
 			}
 
-		for ( int i = 1; i <= count; i++) {
+		for ( int i = 1; i <= count+1; i++) {
 			String itemLocator = searchLocator + ":nth-child("+i+")";
 
 			if ( !this.sIsElementPresent(itemLocator) ) {				

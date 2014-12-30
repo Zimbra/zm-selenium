@@ -20,9 +20,12 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.util.HtmlElement;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.DocumentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -51,6 +54,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");				
 	}
 	
+	@Bugs(ids = "97124")
 	@Test(description = "Create document through GUI - verify through GUI", groups = { "sanity" })
 	public void CreateDocument_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
