@@ -77,9 +77,6 @@ public class Decline extends CalendarWorkWeekTest {
 		declineAppt.zClickButton(Button.B_DONT_NOTIFY_ORGANIZER);
 		declineAppt.zClickButton(Button.B_YES);
 		
-		ZAssert.assertEquals(app.zPageCalendar.zGetNeedsActionDropdownValue(), "Declined", "Verify 'Declined' value saved properly in the dropdown");
-		app.zPageCalendar.zToolbarPressButton(Button.B_CLOSE);
-		
 		// Verify "Declined" value saved properly in the dropdown
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN_MENU, apptSubject);
 		ZAssert.assertEquals(app.zPageCalendar.zGetNeedsActionDropdownValue(), "Declined", "Verify 'Declined' value saved properly in the dropdown");

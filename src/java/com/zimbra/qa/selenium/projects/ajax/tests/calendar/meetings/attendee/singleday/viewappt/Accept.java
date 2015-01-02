@@ -69,8 +69,6 @@ public class Accept extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_ACCEPTED_MENU, apptSubject);
 		app.zPageCalendar.zToolbarPressButton(Button.B_SAVE);
-		ZAssert.assertEquals(app.zPageCalendar.zGetNeedsActionDropdownValue(), "Accepted", "Verify 'Accepted' value saved properly in the dropdown");
-		app.zPageCalendar.zToolbarPressButton(Button.B_CLOSE);
 		
 		// Verify "Accepted" value saved properly in the dropdown
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN_MENU, apptSubject);

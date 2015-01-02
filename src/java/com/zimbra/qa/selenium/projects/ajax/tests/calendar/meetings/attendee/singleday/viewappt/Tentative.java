@@ -69,8 +69,6 @@ public class Tentative extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invite as tentative ----------------------------------------------------
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_TENTATIVE_MENU, apptSubject);
 		app.zPageCalendar.zToolbarPressButton(Button.B_SAVE);
-		ZAssert.assertEquals(app.zPageCalendar.zGetNeedsActionDropdownValue(), "Tentative", "Verify 'Tentative' value saved properly in the dropdown");
-		app.zPageCalendar.zToolbarPressButton(Button.B_CLOSE);
 		
 		// Verify "Tentative" value saved properly in the dropdown
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN_MENU, apptSubject);
