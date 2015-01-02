@@ -18,6 +18,7 @@ package com.zimbra.qa.selenium.projects.admin.tests.distributionlists;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.common.service.ServiceException;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -92,5 +93,45 @@ public class CreateDistributionList extends AdminCommonTest {
 		ZAssert.assertNotNull(response, "Verify the distribution list is created successfully");
 	}
 
+	
+	/**
+	 * 1. Create Dynamic DL from UI.
+	 * 2. Verify DL is created using soap.
+	 * @throws HarnessException
+	 * @throws ServiceException 
+	 */
+	@Test(	description = "Create a basic dynamic  DL.",
+			groups = { "smoke" })
+			public void CreateDistributionList_03() throws HarnessException, ServiceException {
 
+		// Create a new dynamic dl in the Admin Console
+		String memberURL ="ldap:///??sub?(&(objectClass=zimbraAccount)(zimbraIsDelegatedAdminAccount=TRUE))";
+		
+		DistributionListItem dl = new DistributionListItem();
+		dl.setDynamicDL(true);
+		dl.setRightManagement(false);
+		dl.setMemberURL(memberURL);
+		WizardCreateDL wizard =(WizardCreateDL) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_NEW);
+		
+		// Fill out the necessary input fields and submit
+		wizard.zCompleteWizard(dl);
+		
+		// Verify the dl exists in the ZCS
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+		"<GetDistributionListRequest xmlns='urn:zimbraAdmin'>" +
+		                     "<dl by='name'>"+dl.getEmailAddress()+"</dl>"+
+		                   "</GetDistributionListRequest>");
+		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
+		ZAssert.assertNotNull(response, "Verify the distribution list is created successfully");
+		
+		// check if the created DL is really Dynamic
+		ZAssert.assertEquals(response.getAttribute("dynamic"), "1" , "Verify the distribution list created is a Dynamic DL");
+
+	   response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl/admin:a[@n='memberURL']", 1);
+
+		// check if the created DL has correct memberURL
+		ZAssert.assertNotNull(response , "Verify if the created DL has correct memberURL");
+				
+
+	}
 }
