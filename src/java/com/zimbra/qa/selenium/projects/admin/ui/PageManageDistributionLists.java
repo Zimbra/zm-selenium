@@ -218,7 +218,7 @@ public class PageManageDistributionLists extends AbsTab {
 
 		// Default behavior, process the locator by clicking on it
 		//
-		this.zClickAt(locator,"");
+		this.zClick(locator);
 
 		// If page was specified, make sure it is active
 		if ( page != null ) {
