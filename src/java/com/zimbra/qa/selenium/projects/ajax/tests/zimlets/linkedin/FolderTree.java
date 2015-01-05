@@ -67,7 +67,7 @@ public class FolderTree extends AjaxCommonTest {
 
 
 	// All these tests require the Folder tree to be fully loaded
-	@BeforeMethod( groups = { "always" } )
+	@BeforeMethod( groups = { "deprecated" } )
 	public void folderTreeBeforeMethod() throws HarnessException {
 		logger.info("folderTreeBeforeMethod: start");
 		
