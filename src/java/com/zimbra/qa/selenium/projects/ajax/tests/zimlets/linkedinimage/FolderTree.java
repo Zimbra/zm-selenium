@@ -42,7 +42,7 @@ public class FolderTree extends AjaxCommonTest {
 	
 	@Bugs(	ids = "81078")
 	@Test(	description = "Verify the LinkedIn zimlet appears in the folder tree",
-			groups = { "functional" })
+			groups = { "deprecated" })
 	public void FolderTree_01() throws HarnessException {
 		
 		
@@ -81,7 +81,7 @@ public class FolderTree extends AjaxCommonTest {
 
 
 	// All these tests require the Folder tree to be fully loaded
-	@BeforeMethod( groups = { "always" } )
+	@BeforeMethod( groups = { "deprecated" } )
 	public void folderTreeBeforeMethod() throws HarnessException {
 		logger.info("folderTreeBeforeMethod: start");
 		
