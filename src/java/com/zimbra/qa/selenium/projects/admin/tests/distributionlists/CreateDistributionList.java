@@ -108,9 +108,9 @@ public class CreateDistributionList extends AdminCommonTest {
 		String memberURL ="ldap:///??sub?(&(objectClass=zimbraAccount)(zimbraIsDelegatedAdminAccount=TRUE))";
 		
 		DistributionListItem dl = new DistributionListItem();
-		dl.setDynamicDL(true);
-		dl.setRightManagement(false);
-		dl.setMemberURL(memberURL);
+		//dl.setDynamicDL(true);
+		//dl.setRightManagement(false);
+		//dl.setMemberURL(memberURL);
 		WizardCreateDL wizard =(WizardCreateDL) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_NEW);
 		
 		// Fill out the necessary input fields and submit
