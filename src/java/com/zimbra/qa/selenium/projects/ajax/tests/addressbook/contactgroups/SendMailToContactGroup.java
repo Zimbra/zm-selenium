@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.addressbook.contactgroups;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -37,7 +38,7 @@ public class SendMailToContactGroup extends AjaxCommonTest  {
 		
 	}
 	
-
+	@Bugs(ids="97157")
 	@Test(	description = "Right click then click New Email",
 			groups = { "smoke" })
 	public void NewEmail() throws HarnessException {
@@ -78,7 +79,7 @@ public class SendMailToContactGroup extends AjaxCommonTest  {
         //-- Verification
         
         MailItem message1 = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
-        ZAssert.assertNotNull(message1, "Verify the message is received by Account A");
+        ZAssert.assertNotNull(message1, "Verify the message is received by Account Bugs:97157");
 
         MailItem message2 = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
         ZAssert.assertNotNull(message2, "Verify the message is received by Account B");
