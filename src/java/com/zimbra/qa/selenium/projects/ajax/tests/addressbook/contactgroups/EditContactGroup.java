@@ -17,6 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.addressbook.contactgroups;
 
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.ContactGroupItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -36,6 +38,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 		super.startingAccountPreferences = null;		
 
 	}
+	@Bugs(ids="97157")
 	@Test(description = "Edit a contact group by click Edit on Toolbar button", groups = { "smoke" })
 	public void EditContactGroup_01() throws HarnessException {
 
@@ -62,6 +65,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 		ZAssert.assertNotNull(actual, "Verify the contact group with new name exists");
 		}
 
+	@Bugs(ids="97157")
 	@Test(description = "Edit a contact group by click Edit Group on Context Menu ", groups = { "functional" })
 	public void EditContactGroup_02() throws HarnessException {
 
@@ -86,7 +90,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 
 	}
 
-
+	@Bugs(ids="97157")
 	@Test(description = "Edit a contact group by double click on the contact group  ", groups = { "functional" })
 	public void EditContactGroup_03() throws HarnessException {
 
@@ -180,7 +184,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 		actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newname);
 		ZAssert.assertNull(actual, "Verify the contact group with new name exists");
 		}
-
+	@Bugs(ids="97157")
 	@Test(description = "Cancel an edited contact by click Close, then click Cancel", groups = { "functional" })
 	public void EditContactGroup_06() throws HarnessException {
 
@@ -217,7 +221,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newname);
 		ZAssert.assertNotNull(actual, "Verify the contact group with new name exists");
 		}
-
+	@Bugs(ids="97157")
 	@Test(description = "Cancel an edited contact by click Close, then click Yes", groups = { "functional" })
 	public void EditContactGroup_07() throws HarnessException {
 
