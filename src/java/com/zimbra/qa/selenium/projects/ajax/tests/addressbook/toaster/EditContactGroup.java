@@ -17,6 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.addressbook.toaster;
 
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.ContactGroupItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -36,6 +38,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 		super.startingAccountPreferences = null;		
 
 	}
+	@Bugs(ids="97157")
 	@Test(description = "Edit a contact group by click Edit on Toolbar button and verify Toast msg", groups = { "functional" })
 	public void EditContactGroupToastMsg_01() throws HarnessException {
 
@@ -60,9 +63,10 @@ public class EditContactGroup extends AjaxCommonTest  {
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Group Saved","Verify toast message: Group Saved");
+		ZAssert.assertStringContains(toastMsg, "Group Saved","Verify toast message: Group Saved bug:97157");
 	}
 
+	@Bugs(ids="97157")
 	@Test(description = "Edit a contact group by click Edit Group on Context Menu and verify toast msg", groups = { "functional" })
 	public void EditContactGroupToastMsg_02() throws HarnessException {
 
@@ -84,11 +88,11 @@ public class EditContactGroup extends AjaxCommonTest  {
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Group Saved","Verify toast message: Group Saved");
+		ZAssert.assertStringContains(toastMsg, "Group Saved","Verify toast message: Group Saved bug:97157");
 
 	}
 
-
+	@Bugs(ids="97157")
 	@Test(description = "Edit a contact group by double click on the contact group and verify toast msg  ", groups = { "functional" })
 	public void EditContactGroupToastMsg_03() throws HarnessException {
 
@@ -111,7 +115,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Group Saved","Verify toast message: Group Saved");
+		ZAssert.assertStringContains(toastMsg, "Group Saved","Verify toast message: Group Saved bug:97157");
 	}
 
 } 
