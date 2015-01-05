@@ -753,6 +753,8 @@ public abstract class AbsSeleniumObject {
 					keycode1 = KeyEvent.VK_P;
 				} else if (Integer.parseInt(kc[0]) == 46) {
 					keycode1 = KeyEvent.VK_DELETE;
+				}else if (Integer.parseInt(kc[0]) == 13) {
+					keycode1 = KeyEvent.VK_ENTER;
 				} else {
 
 					throw new HarnessException("implement shortcut: " + keyCode);
