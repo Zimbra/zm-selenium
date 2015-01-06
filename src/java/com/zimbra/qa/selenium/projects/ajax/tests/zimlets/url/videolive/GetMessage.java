@@ -61,7 +61,7 @@ public class GetMessage extends AjaxCommonTest {
 		
 		// Verify the thumbnail appears
 		
-		String locator = "css=div[id^='YOUTUBE_'] img";
+		String locator = "css=div[id^='YOUTUBE'] img";
 		boolean present = app.zPageMail.sIsElementPresent(locator);
 		
 		ZAssert.assertTrue(present, "Verify the youtube thumbnail is present");
@@ -73,7 +73,7 @@ public class GetMessage extends AjaxCommonTest {
 		SleepUtil.sleep(5000);
 		
 		// Verify the iframe appears with the you tube player
-		locator = "css=iframe[id^='youtube-iframe_']";
+		locator = "css=iframe[id^='YOUTUBE-IFRAME']";
 		present = app.zPageMail.sIsElementPresent(locator);
 
 		ZAssert.assertTrue(present, "Verify the youtube iframe is present");
