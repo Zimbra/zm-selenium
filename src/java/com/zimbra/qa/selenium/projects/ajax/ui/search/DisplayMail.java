@@ -87,7 +87,7 @@ public class DisplayMail extends com.zimbra.qa.selenium.projects.ajax.ui.mail.Di
 
 			try {
 
-				this.sSelectFrame("css=iframe[id^='zv__TV-SR-Mail'][id$='__MSG__body__iframe']");
+				this.sSelectFrame("css=iframe[id^='zv__TV-SR'][id$='__MSG__body__iframe']");
 
 				source = this.sGetHtmlSource();
 
