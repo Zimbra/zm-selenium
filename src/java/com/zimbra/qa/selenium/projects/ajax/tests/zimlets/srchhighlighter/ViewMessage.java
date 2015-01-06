@@ -20,6 +20,7 @@ import java.util.*;
 
 import org.testng.annotations.*;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
@@ -116,7 +117,7 @@ public class ViewMessage extends AjaxCommonTest {
 		}
 
 	}
-
+	@Bugs(ids="82607")
 	@Test(	description = "Search for mail content (two terms).  Verify search terms are highlighted.",
 			groups = { "functional" })
 	public void ViewMessage_02() throws HarnessException {
@@ -168,12 +169,17 @@ public class ViewMessage extends AjaxCommonTest {
 			
 			HtmlElement body = display.zGetMailPropertyAsHtml(Field.Body);
 			
+			throw new HarnessException("See https://bugzilla.zimbra.com/show_bug.cgi?id=82607");
+			
 			// See http://bugzilla.zimbra.com/show_bug.cgi?id=82607 ... the DOM
 			// has a bug in it.  Once that bug is fixed, the xpath may need rework.
 			// 
 			// Verify the first term is located in a search highlight
-			HtmlElement.evaluate(body, "//span/span[@class='ZmSearchResult']", null, term1, 1);
-			HtmlElement.evaluate(body, "//span/span[@class='ZmSearchResult']", null, term2, 1);
+			
+		/*	Note:will comment out following statement once this big got fixed */
+			
+	      /*HtmlElement.evaluate(body, "//span/span[@class='ZmSearchResult']", null, term1, 1);
+			HtmlElement.evaluate(body, "//span/span[@class='ZmSearchResult']", null, term2, 1);*/
 
 		} finally {
 			// Remember to close the search view
