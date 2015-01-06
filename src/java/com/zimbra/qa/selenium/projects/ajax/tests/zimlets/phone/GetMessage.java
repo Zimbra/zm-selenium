@@ -166,12 +166,13 @@ public class GetMessage extends AjaxCommonTest {
 		{
 			put("//a[@href='callto:1-877-486-9273']",				"1-877-486-9273");
 			put("//a[@href='callto:877-486-9273']",					"877-486-9273");
-			put("//a[@href='callto:%28877%29%20456-7890']",			"(877) 456-7890");		// http://bugzilla.zimbra.com/show_bug.cgi?id=67424
+			//put("//a[@href='callto:%28877%29%20456-7890']",			"(877) 456-7890");		// http://bugzilla.zimbra.com/show_bug.cgi?id=67424
+			put("//a[@href='callto:(877) 456-7890']",			"(877) 456-7890");
 			put("//a[@href='callto:6503501010']",					"6503501010");
-			put("//a[@href='callto:+1%20650%20350%201010']",		"+1 650 350 1010");		// http://bugzilla.zimbra.com/show_bug.cgi?id=52337#c15
+			put("//a[@href='callto:+1 650 350 1010']",		"+1 650 350 1010");		// http://bugzilla.zimbra.com/show_bug.cgi?id=52337#c15
 			put("//a[@href='callto:650.350.1010']",					"650.350.1010");
-			put("//a[@href='callto:%28650%29%20350%201010']",		"(650) 350 1010");		// http://bugzilla.zimbra.com/show_bug.cgi?id=67424
-			put("//a[@href='callto:+1%20%28650%29%20350%201010']",	"+1 (650) 350 1010");	// http://bugzilla.zimbra.com/show_bug.cgi?id=52337#c15
+			put("//a[@href='callto:(650) 350 1010']",		"(650) 350 1010");		// http://bugzilla.zimbra.com/show_bug.cgi?id=67424
+			put("//a[@href='callto:+1 (650) 350 1010']",	"+1 (650) 350 1010");	// http://bugzilla.zimbra.com/show_bug.cgi?id=52337#c15
 			put("//a[@href='callto:1-650-350-1010']",				"1-650-350-1010");
 		}};
 
@@ -240,8 +241,8 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Test(	description = "Receive a mail with a phone numbers in subject",
-			groups = { "functional" })
+	@Test(	description = "Receive a mail with a phone numbers in subject( reference bug 86667)",
+			groups = { "deprecated" })
 	public void GetMessage_05() throws HarnessException {
 		
 		// Create the message data to be sent
