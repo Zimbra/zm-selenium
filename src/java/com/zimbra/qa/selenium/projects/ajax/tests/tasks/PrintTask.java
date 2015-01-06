@@ -100,6 +100,10 @@ public class PrintTask extends AjaxCommonTest {
 			String Printcontent = window.sGetBodyText();
 			ZAssert.assertStringContains(Printcontent, subject, "Verify subject in Print view");
 			ZAssert.assertStringContains(Printcontent, bodyText, "Verify content in Print view");
+			
+			//Close Show Original window
+			window.zCloseWindow();
+			window = null;
 		
 		} finally {
 			if ( window != null ) {
@@ -168,6 +172,10 @@ public class PrintTask extends AjaxCommonTest {
 			String Printcontent = window.sGetBodyText();
 			ZAssert.assertStringContains(Printcontent, subject, "Verify subject in Print view");
 			ZAssert.assertStringContains(Printcontent, bodyText, "Verify content in Print view");
+			
+			//Close Show Original window
+			window.zCloseWindow();
+			window = null;
 
 		} finally {
 			if ( window != null ) {
@@ -268,6 +276,10 @@ public class PrintTask extends AjaxCommonTest {
 			ZAssert.assertStringContains(Printcontent, subject1, "Verify subject in Print view");
 			ZAssert.assertStringContains(Printcontent, subject2, "Verify subject2 in Print view");
 			ZAssert.assertStringContains(Printcontent, subject3, "Verify subject2 in Print view");
+			
+			//Close Show Original window
+			window.zCloseWindow();
+			window = null;
 		
 		} finally {
 			if ( window != null ) {
