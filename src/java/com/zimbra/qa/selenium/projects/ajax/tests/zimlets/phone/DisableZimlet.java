@@ -103,7 +103,8 @@ public class DisableZimlet extends AjaxCommonTest {
       // Create the message data to be sent
       String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
       String bodyText = "text" + ZimbraSeleniumProperties.getUniqueString();
-      String bodyHTML = "text <strong>"+ ZimbraSeleniumProperties.getUniqueString() +"</strong> text";
+    //  String bodyHTML = "text <strong>"+ ZimbraSeleniumProperties.getUniqueString() +"</strong> text";
+      String bodyHTML = "text <strong style=\"\">bold"+ ZimbraSeleniumProperties.getUniqueString() +"</strong> text";
       String contentHTML = XmlStringUtil.escapeXml(
          "<html>" +
             "<head></head>" +
@@ -142,7 +143,7 @@ public class DisableZimlet extends AjaxCommonTest {
       ZAssert.assertEquals(   actual.zGetMailProperty(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
       ZAssert.assertEquals(   actual.zGetMailProperty(Field.Cc), ZimbraAccount.AccountB().EmailAddress, "Verify the Cc matches");
       ZAssert.assertEquals(   actual.zGetMailProperty(Field.To), app.zGetActiveAccount().EmailAddress, "Verify the To matches");
-      ZAssert.assertEquals(   actual.zGetMailProperty(Field.Body), bodyHTML, "Verify the body matches");
+      ZAssert.assertStringContains(   actual.zGetMailProperty(Field.Body), bodyHTML, "Verify the body matches");
       ZAssert.assertStringDoesNotContain( actual.zGetMailProperty(Field.Body), "<span", "Ensure that the body doesn't contain <span from phone zimlet");
    }
 }
