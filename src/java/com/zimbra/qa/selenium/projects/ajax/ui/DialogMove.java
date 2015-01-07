@@ -170,9 +170,17 @@ public class DialogMove extends AbsDialog {
 		} else if (MyTab instanceof PageCalendar) {
 
 			locator = String.format(
-					"css=div[id='%s'] td[id='zti__ZmChooseFolderDialog_Calendar_CALENDAR___%s_textCell']",
+					"css=div[id='%s'] td[id='zti__ZmChooseFolderDialog_Calendar___%s_textCell']",
 					Locators.zDialogId,
 					folder.getId());
+			
+			if (!sIsElementPresent(locator)){
+				locator = String.format(
+						"css=div[id='%s'] td[id='zti__ZmChooseFolderDialog_Calendar_CALENDAR___%s_textCell']",
+						Locators.zDialogId,
+						folder.getId());
+			
+			}
 
 		}else if (MyTab instanceof PageTasks){
 			if (ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP) {
