@@ -17,14 +17,16 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.document;
 
 import java.util.List;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.DocumentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
-
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
@@ -132,6 +134,7 @@ public class EditDocument extends FeatureBriefcaseTest {
 		 */
 	}
 
+	@Bugs(ids = "97124")
 	@Test(description = "Create document through SOAP - edit text & name & verify through GUI", groups = { "smoke" })
 	public void EditDocument_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -243,6 +246,7 @@ public class EditDocument extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(docItem2.getName());
 	}
 
+	@Bugs(ids = "97124")
 	@Test(description = "Create document & edit text through SOAP & verify through GUI", groups = { "smoke" })
 	public void EditDocument_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -350,6 +354,7 @@ public class EditDocument extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(docItem.getName());
 	}
 
+	@Bugs(ids = "97124")
 	@Test(description = "Create document through SOAP - edit text & verify through GUI", groups = { "smoke" })
 	public void EditDocument_04() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
