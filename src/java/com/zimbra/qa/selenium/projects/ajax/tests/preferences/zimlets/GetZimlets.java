@@ -38,7 +38,7 @@ public class GetZimlets extends AjaxCommonTest {
 
 	@Test(
 			description = "View the number of zimlets in the default list",
-			groups = { "functional" }
+			groups = { "deprecated" }
 			)
 	public void GetZimlets_01() throws HarnessException {
 
