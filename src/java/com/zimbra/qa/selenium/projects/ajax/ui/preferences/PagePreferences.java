@@ -416,6 +416,11 @@ public class PagePreferences extends AbsTab {
 			locator = Locators.zCancelButtonCustomDialog;
 			page = null;
 			
+		}else if ( button == Button.B_NO ) {
+			
+			locator = Locators.zNoButtonWarningDialog;
+			page = null;
+			
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
