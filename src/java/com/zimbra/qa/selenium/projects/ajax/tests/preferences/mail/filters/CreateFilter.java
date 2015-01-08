@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.filters;
 import org.testng.annotations.Test;
 
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -40,10 +41,10 @@ public class CreateFilter extends AjaxCommonTest {
 		
 	}
 
-
+    @Bugs(ids="97040")
 	@Test(
 			description = "Create a basic filter",
-			groups = { "smoke" }
+			groups = { "functional" }
 			)
 	public void CreateFilter_01() throws HarnessException {
 
