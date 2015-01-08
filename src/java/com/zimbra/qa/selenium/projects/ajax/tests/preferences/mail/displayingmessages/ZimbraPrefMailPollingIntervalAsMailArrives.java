@@ -28,61 +28,55 @@ public class ZimbraPrefMailPollingIntervalAsMailArrives extends AjaxCommonTest {
 
 	public static final long AsMailArrives = 500;			// The value set by the client when choosing AsMailArrives
 	public static final long AsMailArrivesDelay = 7000;		// Give 7 seconds to show the mail
-	
-	
-	
+
+
+
 	public ZimbraPrefMailPollingIntervalAsMailArrives() {
 		logger.info("New "+ ZimbraPrefMailPollingIntervalAsMailArrives.class.getCanonicalName());
-		
+
 		super.startingPage = app.zPagePreferences;
-//		super.startingAccountPreferences = new HashMap<String, String>() {
-//			private static final long serialVersionUID = 3090644573042724593L;
-//			{
-//				put("zimbraPrefMailPollingInterval", "300"); // 5 minutes default
-//			} };
-//
+		//		super.startingAccountPreferences = new HashMap<String, String>() {
+		//			private static final long serialVersionUID = 3090644573042724593L;
+		//			{
+		//				put("zimbraPrefMailPollingInterval", "300"); // 5 minutes default
+		//			} };
+		//
 
 	}
-	
+
 	@Test(	description = "Set 'Check new mail': As Mail Arrives",
 			groups = { "functional" })
-	public void ZimbraPrefMailPollingIntervalAsMailArrives_01() throws HarnessException {
-		
-		//-- DATA
-		
-		
+	public void ZimbraPrefMailPollingIntervalAsMailArrives_01() throws HarnessException {		
 
-
-		//-- GUI
-		
 		// Navigate to preferences -> mail -> displaying messages
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
 
 		// Click pulldown for "Check New Mail:"
 		// See https://bugzilla.zimbra.com/show_bug.cgi?id=81992
 		// See https://bugzilla.zimbra.com/attachment.cgi?id=48826
-		app.zPagePreferences.zClickAt("css=div.ZmPreferencesPage td.ZOptionsField td[id$='_select_container'] td[id$='dropdown'] div.ImgSelectPullDownArrow", "");
+		//	app.zPagePreferences.zClickAt("css=div.ZmPreferencesPage td.ZOptionsField td[id$='_select_container'] td[id$='dropdown'] div.ImgSelectPullDownArrow", "");
 
+		app.zPagePreferences.zClickAt("css=td[id='Prefs_Select_POLLING_INTERVAL_dropdown']>div", "");
 		// Click "As Mail Arrives"
 		// See https://bugzilla.zimbra.com/attachment.cgi?id=48828
-		app.zPagePreferences.zClickAt("css=div#500_1 td[id$='title']", "");
+		app.zPagePreferences.zClickAt("css=div[id^='Prefs_Select_POLLING_INTERVAL_Menu'] td[id$='_title']:contains('As new mail arrives')", "");
 
 		// Click save
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
-		
-		
+
+
 		//-- VERIFICATION
-		
+
 		app.zGetActiveAccount().soapSend(
-						"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
-				+			"<pref name='zimbraPrefMailPollingInterval'/>"
-				+		"</GetPrefsRequest>");
+				"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
+						+			"<pref name='zimbraPrefMailPollingInterval'/>"
+						+		"</GetPrefsRequest>");
 
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefMailPollingInterval']", null);
 		ZAssert.assertEquals(value, ""+ AsMailArrives, "Verify the preference was changed to "+ AsMailArrives);
 
-		
+
 	}
 
 
