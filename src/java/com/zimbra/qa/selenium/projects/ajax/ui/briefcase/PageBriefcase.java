@@ -441,7 +441,7 @@ public class PageBriefcase extends AbsTab {
 
 			if (option == Button.B_LAUNCH_IN_SEPARATE_WINDOW) {
 
-				optionLocator = "css=div[id*=NEW_BRIEFCASE_WIN] td[id*=NEW_BRIEFCASE_WIN_title]:contains(Launch in Separate Window)";
+				optionLocator = "css=div[id*=main__DETACH_WIN] td[id*=main__DETACH_WIN_title]:contains(Open in a separate window)";
 
 				page = new DocumentBriefcaseOpen(this.MyApplication, item);
 
