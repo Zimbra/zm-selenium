@@ -35,9 +35,10 @@ public class PageCreateFolder extends AbsPage {
 		public static final String zEditButton = "css=div[class='x-dock x-dock-vertical x-sized'] span[class='x-button-label']:contains('Edit')";
 		
 		public static final String zFolderNameField = "css=div[class='x-dock x-dock-vertical x-sized'] input[class='x-input-el x-form-field x-input-text']";
-		public static final String zLocationButton = "css=div[class='x-dock x-dock-vertical x-sized'] span[class='x-button-label']:contains('Folders')";
+		public static final String zLocationButton = "css=span[class='x-button-icon x-shown forward']";
 		public static final String zSaveButton = "css=div[class='x-dock x-dock-vertical x-sized'] span[class='x-button-label']:contains('Save')";
 		public static final String zDeleteButton = "css=div[id^='ext-organizeredit-1'] div[class^='x-container zcs-folder-edit']:nth-child(1) span[class='x-button-label']:contains('Delete')";
+		public static final String zSubFolderIcon = "css=div[class='x-unsized x-list-disclosure']";
 		
 	}
 	
@@ -97,6 +98,9 @@ public class PageCreateFolder extends AbsPage {
 			
 		} else if ( button == Button.B_DELETE ) {
 			locator = Locators.zDeleteButton;
+			
+		} else if ( button == Button.B_SUBFOLDER_ICON ) {
+			locator = Locators.zSubFolderIcon;
 
 		} else {
 			throw new HarnessException("Button "+ button +" not implemented");
@@ -112,8 +116,13 @@ public class PageCreateFolder extends AbsPage {
 			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
 		}
 
+		if ( button == Button.B_EDIT ) {
+			SleepUtil.sleepMedium();
+			this.sClickAt("css=span[class='x-button-icon x-shown organizer']", "0,0");
+		}
+		
 		this.sClickAt(locator, "");
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 		
 		return (page);
 	}
@@ -131,8 +140,8 @@ public class PageCreateFolder extends AbsPage {
 			throw new HarnessException("unable to find folder in tree "+ locator);
 		
 		// Click to locations to select sub folder
-		this.sClickAt(Locators.zLocationButton, "");
-		SleepUtil.sleepSmall();
+		//this.sClickAt(Locators.zLocationButton, "");
+		//SleepUtil.sleepSmall();
 		
 		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
