@@ -438,7 +438,7 @@ public class TreeMail extends AbsTree {
 
 		if ( action == Action.A_LEFTCLICK ) {
 			
-			locator = "css=div[id^='ext-simplelistitem-'] div[class='zcs-menu-label']";
+			locator = "css=div[class='zcs-menu-label']:contains('" + folder + "')";
 
 		} else {
 			throw new HarnessException("Action "+ action +" not yet implemented");
@@ -584,9 +584,15 @@ public class TreeMail extends AbsTree {
 			
 		} else if ( button == Button.B_NEW_TAG ) {
 			locator = Locators.zNewTagButton;
-			page = new PageCreateFolder(MyApplication, ((AppTouchClient)MyApplication).zPageMail);
+			page = new PageCreateTag(MyApplication, ((AppTouchClient)MyApplication).zPageMail);
 			
-		} else {
+		} else if ( button == Button.B_EDIT ) {
+			locator = Locators.zEditButton;
+			page = new PageCreateTag(MyApplication, ((AppTouchClient)MyApplication).zPageMail);
+			this.sClickAt(locator, "");
+			return (page);
+			
+		} 	else {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 
@@ -602,6 +608,7 @@ public class TreeMail extends AbsTree {
 		this.sClickAt(Locators.zEditButton, "");
 		SleepUtil.sleepSmall();
 		
+		
 		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
@@ -614,34 +621,26 @@ public class TreeMail extends AbsTree {
 
 	}
 
-	protected AbsPage zTreeItem(Action action, String locator) throws HarnessException {
+	public AbsPage zTreeItem(Action action, String folder) throws HarnessException {
 		AbsPage page = null;
+		String locator = null;
 
-
-		if ( locator == null )
+		if ( folder == null )
 			throw new HarnessException("locator is null for action "+ action);
 
-		if ( !this.sIsElementPresent(locator) )
-			throw new HarnessException("Unable to locator folder in tree "+ locator);
-
 		if ( action == Action.A_LEFTCLICK ) {
-
-			// FALL THROUGH
-		} else if ( action == Action.A_RIGHTCLICK ) {
-
-			// Select the folder
-			this.zRightClick(locator);
-
-			// return a context menu
-			//return (new ContextMenu(MyApplication));
+			
+			locator = "css=div[class='zcs-menu-label']:contains('" + folder + "')";
 
 		} else {
 			throw new HarnessException("Action "+ action +" not yet implemented");
 		}
 
 		// Default behavior.  Click the locator
-		zClick(locator);
-
+		sClickAt(locator, "");
+		
+		SleepUtil.sleepMedium();
+				
 		return (page);
 	}
 
