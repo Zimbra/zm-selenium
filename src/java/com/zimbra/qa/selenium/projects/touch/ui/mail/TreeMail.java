@@ -584,9 +584,15 @@ public class TreeMail extends AbsTree {
 			
 		} else if ( button == Button.B_NEW_TAG ) {
 			locator = Locators.zNewTagButton;
-			page = new PageCreateFolder(MyApplication, ((AppTouchClient)MyApplication).zPageMail);
+			page = new PageCreateTag(MyApplication, ((AppTouchClient)MyApplication).zPageMail);
 			
-		} else {
+		} else if ( button == Button.B_EDIT ) {
+			locator = Locators.zEditButton;
+			page = new PageCreateTag(MyApplication, ((AppTouchClient)MyApplication).zPageMail);
+			this.sClickAt(locator, "");
+			return (page);
+			
+		} 	else {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 
@@ -601,6 +607,7 @@ public class TreeMail extends AbsTree {
 		
 		this.sClickAt(Locators.zEditButton, "");
 		SleepUtil.sleepSmall();
+		
 		
 		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
