@@ -38,10 +38,12 @@ public class PageCreateTag extends AbsPage {
 		public static final String zSaveButton = "css=div[class='x-dock x-dock-vertical x-sized'] span[class='x-button-label']:contains('Save')";
 		public static final String zCancelButton = "css=div['id=ext-button-20'] span[class='x-button-label']:contains('Cancel')";
 		public static final String zDeleteButton = "css=div[id^='ext-organizeredit-1'] div[class^='x-container zcs-folder-edit']:nth-child(2) span[class='x-button-label']:contains('Delete')";
+		public static final String zSubFolderIcon = "css=div[class='x-unsized x-list-disclosure']";
 		
 		public static final String zYesWarningDialog	= "css=div[id='ext-sheet-1'] div[id^='ext-button'] span:contains('Yes')";
 		public static final String zNoWarningDialog		= "css=div[id^='ext-sheet-1'] div[id^='ext-button'] span:contains('No')";
 		public static final String zOkerrorDialog	= "css=div[id='ext-toolbar-3'] div[id^='ext-element']";
+		
 		
 	}
 	
@@ -103,21 +105,24 @@ public class PageCreateTag extends AbsPage {
 			
 		}else if ( button == Button.B_DELETE ) {
 			locator = Locators.zDeleteButton;
+			
+		} else if ( button == Button.B_SUBFOLDER_ICON ) {
+			locator = Locators.zSubFolderIcon;
 		
 		} else if ( button == Button.B_YES ) {
-				
-				locator = Locators.zYesWarningDialog;
-				page = this;
+			locator = Locators.zYesWarningDialog;
+			page = this;
 				
 		} else if ( button == Button.B_NO ) {
-				
-				locator = Locators.zNoWarningDialog;
-				page = this;
+			locator = Locators.zNoWarningDialog;
+			page = this;
 
 		} else if ( button == Button.B_OK ) {
-			
 			locator = Locators.zOkerrorDialog;
 			page = this;
+			
+			
+			
 
 		}else {
 			throw new HarnessException("Button "+ button +" not implemented");
