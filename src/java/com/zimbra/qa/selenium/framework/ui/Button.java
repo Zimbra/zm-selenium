@@ -675,6 +675,7 @@ public class Button {
 	public static Button O_HOME =   new Button("O_HOME");
 	public static Button O_WORK =   new Button("O_WORK");
 	public static Button O_OTHER =   new Button("O_OTHER");
+	public static Button B_SUBFOLDER_ICON =   new Button("B_SUBFOLDER_ICON");
 	
 	
 	
