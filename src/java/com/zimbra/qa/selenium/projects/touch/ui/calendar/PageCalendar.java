@@ -855,6 +855,7 @@ public class PageCalendar extends AbsTab {
 				}
 				
 				this.sClickAt(locator, "");
+				SleepUtil.sleepLong();
 								
 				waitForPostfix = true;
 				
@@ -862,10 +863,9 @@ public class PageCalendar extends AbsTab {
 				
 				optionLocator = Locators.AcceptMenu;
 				
-				this.sClickAt(Locators.ActionsButton, "");
-				SleepUtil.sleepSmall();
-				
+				this.sClickAt(Locators.ActionsButton, "");				
 				this.sClickAt(optionLocator, "");
+				SleepUtil.sleepLong();
 				
 				page = null;
 				
@@ -875,10 +875,9 @@ public class PageCalendar extends AbsTab {
 				
 				optionLocator = Locators.DeclineMenu;
 
-				this.sClickAt(Locators.ActionsButton, "");
-				SleepUtil.sleepSmall();
-				
+				this.sClickAt(Locators.ActionsButton, "");				
 				this.sClickAt(optionLocator, "");
+				SleepUtil.sleepLong();
 				
 				page = null;
 				
@@ -888,10 +887,9 @@ public class PageCalendar extends AbsTab {
 				
 				optionLocator = Locators.TentativeMenu;
 
-				this.sClickAt(Locators.ActionsButton, "");
-				SleepUtil.sleepSmall();
-				
+				this.sClickAt(Locators.ActionsButton, "");				
 				this.sClickAt(optionLocator, "");
+				SleepUtil.sleepLong();
 				
 				page = null;
 				
