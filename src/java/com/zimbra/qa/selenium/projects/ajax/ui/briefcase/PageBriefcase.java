@@ -1275,7 +1275,7 @@ public class PageBriefcase extends AbsTab {
 			we.sendKeys(Keys.RETURN);			
 		}else{
 			sType(Locators.zRenameInput.locator, text);
-
+			SleepUtil.sleepMedium();
 			zKeyEvent(Locators.zRenameInput.locator, "13", "keyup");
 		}
 	}
