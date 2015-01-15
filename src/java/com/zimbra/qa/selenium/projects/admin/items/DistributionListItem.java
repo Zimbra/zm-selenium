@@ -32,20 +32,24 @@ public class DistributionListItem implements IItem {
 
 	protected String distributionListLocalName; // Email Address is LocalName@DomainName
 	protected String distributionListDomainName;
+	protected boolean isDynamicDL;
+	protected boolean isRightManagement;
+	protected String memberURL;
 
 	public DistributionListItem() {
 		super();
 
 		distributionListLocalName = "a_dl" + ZimbraSeleniumProperties.getUniqueString();
 		distributionListDomainName = ZimbraSeleniumProperties.getStringProperty("testdomain");
+		isDynamicDL = false;
+		isRightManagement=true;
+		memberURL="ldap:///??sub?";
 		//Id = null;
 	}
-
-	@Override
+	
 	public void createUsingSOAP(ZimbraAccount account) throws HarnessException {
 	}
 
-	@Override
 	public String getName() {
 		return (getEmailAddress());
 	}
@@ -57,7 +61,7 @@ public class DistributionListItem implements IItem {
 	public String getEmailAddress() {
 		return (distributionListLocalName + "@" + distributionListDomainName);
 	}
-	@Override
+	
 	public String prettyPrint() {
 		return null;
 	}
@@ -73,7 +77,31 @@ public class DistributionListItem implements IItem {
 		distributionListDomainName = domain;
 	}
 
+	public void setDynamicDL(boolean isDynamic) {
+		isDynamicDL = isDynamic;
+	}
+	
+	public boolean getRightManagement() {
+		return (isRightManagement);
+		}
+	
+	public void setRightManagement(boolean isRightMgmt) {
+		isRightManagement = isRightMgmt;
+	}
+	
+	public boolean getDynamicDL() {
+		return (isDynamicDL);
+		}
+	
 	public String getDomainName() {
 		return (distributionListDomainName);
+	}
+	
+	public String getMemberURL() {
+		return (memberURL);
+		}
+	
+	public void setMemberURL(String memURL) {
+		memberURL = memURL;
 	}
 }
