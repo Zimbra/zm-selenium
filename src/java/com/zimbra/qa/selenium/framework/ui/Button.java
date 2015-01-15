@@ -677,8 +677,14 @@ public class Button {
 	public static Button O_OTHER =   new Button("O_OTHER");
 	public static Button B_SUBFOLDER_ICON =   new Button("B_SUBFOLDER_ICON");
 	
-	
-	
+	// Added for Admin Console Home Page Links
+	public static Button B_INSTALL_CERTIFICATE=   new Button("B_INSTALL_CERTIFICATE");
+	public static Button B_HOME_DOMAIN = new Button("B_HOME_DOMAIN");
+	public static Button B_CONFIGURE_GAL = new Button("B_CONFIGURE_GAL");
+	public static Button B_CONFIGURE_AUTHENTICATION = new Button("B_CONFIGURE_AUTHENTICATION");
+	public static Button B_HOME_ACCOUNT =  new Button("B_HOME_ACCOUNT");
+	public static Button B_HOME_MIGRATION=  new Button("B_HOME_MIGRATION");
+
 	// Button properties
 	private final String ID;
 
