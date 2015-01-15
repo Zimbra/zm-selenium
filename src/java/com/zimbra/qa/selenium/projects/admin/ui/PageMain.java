@@ -23,6 +23,7 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
 
 
 /**
@@ -41,6 +42,26 @@ public class PageMain extends AbsTab {
 		public static final String zSkinContainerHelp		= "xpath=//*[@id='skin_container_help']";
 		public static final String zSkinContainerDW			= "xpath=//*[@id='skin_container_dw']";
 		public static final String REFRESH_BUTTON = "css=div.ImgSearchRefreshWhite";
+		
+		public static final String HomeInstallLicense = "css=#ztabv__HOMEV_output_9 > div";
+		public static final String HomeConfigureBackups = "css=#ztabv__HOMEV_output_10 > div";
+
+		public static final String HomeInstallCertificate = "css=#ztabv__HOMEV_output_11 > div";
+
+		public static final String HomeConfigureDefaultCos = "css=#ztabv__HOMEV_output_12 > div";
+
+		public static final String HomeCreateDomain = "css=#ztabv__HOMEV_output_14 > div";
+
+		public static final String HomeConfigureGal = "css=#ztabv__HOMEV_output_15 > div";
+
+		public static final String HomeConfigureAuthentication = "css=#ztabv__HOMEV_output_16 > div";
+
+		public static final String HomeAddAcoount = "css=#ztabv__HOMEV_output_18 > div";
+		
+		public static final String HomeManageAccount = "css=#ztabv__HOMEV_output_19 > div";
+
+		public static final String HomeMigrationCoexistance = "css=#ztabv__HOMEV_output_20 > div";
+
 	}
 
 	public PageMain(AbsApplication application) {
@@ -180,5 +201,9 @@ public class PageMain extends AbsTab {
 	}
 
 
-
+	public boolean zVerifyHeader (String header) throws HarnessException {
+		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
+			return true;
+		return false;
+	}
 }

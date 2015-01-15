@@ -93,7 +93,10 @@ public class AppAdminConsole extends AbsApplication {
 	
 	// Downloads page (http://server.com/zimbra/downloads/index.html
 	public PageDownloads				zPageDownloads = null;
-	
+	public PageManageCofigureGAL			zPageManageCofigureGAL = null;
+	public PageManageCofigureAuthentication			zPageManageCofigureAuthentication = null;
+	public PageManageMigrationCoexistance			zPageManageMigrationCoexistance = null;
+
 	public AppAdminConsole() {
 		super();
 		
@@ -267,6 +270,16 @@ public class AppAdminConsole extends AbsApplication {
 		zPageDownloads = new PageDownloads(this);
 		pages.put(zPageDownloads.myPageName(), zPageDownloads);
 		
+		zPageManageCofigureGAL = new PageManageCofigureGAL(this);
+		pages.put(zPageManageCofigureGAL.myPageName(), zPageManageCofigureGAL);
+		
+		zPageManageCofigureAuthentication = new PageManageCofigureAuthentication(this);
+		pages.put(zPageManageCofigureAuthentication.myPageName(), zPageManageCofigureAuthentication);
+		
+		zPageManageMigrationCoexistance = new PageManageMigrationCoexistance(this);
+		pages.put(zPageManageMigrationCoexistance.myPageName(), zPageManageMigrationCoexistance);
+		
+		
 	}
 
 
@@ -290,3 +303,4 @@ public class AppAdminConsole extends AbsApplication {
 
 	
 }
+

@@ -29,9 +29,9 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
  * @author Matt Rhoades
  *
  */
-public class WizardInstallCertificate extends AbsWizard {
+public class WizardConfigureGAL extends AbsWizard {
 
-	public WizardInstallCertificate(AbsTab page) {
+	public WizardConfigureGAL(AbsTab page) {
 		super(page);
 	}
 
@@ -52,7 +52,7 @@ public class WizardInstallCertificate extends AbsWizard {
 
 	
 	public boolean zCloseWizard() throws HarnessException {
-		this.zClickAt("css=td[id$='zdlg__UNDEFINE_button1_title']" ,"");
+		this.sClickAt("css=td[id$='zdlg__UNDEFINE_button1_title']" ,"");
 		return true;
 	}
 }
