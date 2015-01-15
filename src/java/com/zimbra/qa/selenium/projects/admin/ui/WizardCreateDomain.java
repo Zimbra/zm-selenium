@@ -91,4 +91,8 @@ public class WizardCreateDomain extends AbsWizard {
 		return false;
 	}
 
+	public boolean zCloseWizard() throws HarnessException {
+		this.zClickAt("css=td[id$='zdlg__NEW_DOMAIN_button1_title']" ,"");
+		return true;
+	}
 }

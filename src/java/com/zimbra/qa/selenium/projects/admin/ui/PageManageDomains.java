@@ -230,6 +230,16 @@ public class PageManageDomains extends AbsTab {
 			else if (typeOfObject.equals(TypeOfObject.DOMAIN_ALIAS))
 				page=new WizardCreateDomainAlias(this);
 
+		}else if ( button == Button.B_HOME_DOMAIN ) {
+
+			// New button
+			locator = PageMain.Locators.HomeCreateDomain;
+			// Create the page
+			page = new WizardCreateDomain(this);
+			this.sClickAt(locator,"");
+			return page;
+			// FALL THROUGH
+
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
@@ -240,7 +250,9 @@ public class PageManageDomains extends AbsTab {
 
 		// Default behavior, process the locator by clicking on it
 		//
-		this.zClickAt(locator,"");
+		
+	
+			this.zClickAt(locator,"");
 
 
 

@@ -127,5 +127,10 @@ public class WizardCreateAccount extends AbsWizard {
 		return null;
 	}
 
+	public boolean zCloseWizard() throws HarnessException {
+		this.zClickAt("css=td[id$='zdlg__NEW_ACCT_button1_title']" ,"");
+		return true;
+	}
+
 
 }

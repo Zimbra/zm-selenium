@@ -22,6 +22,7 @@ package com.zimbra.qa.selenium.projects.admin.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.zimbra.common.calendar.ZCalendar.ZParameter;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
@@ -217,7 +218,19 @@ public class PageManageAccounts extends AbsTab {
 			locator=Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
 
 			page = new FormEditAccount(this.MyApplication);
-		}
+		}else if ( button == Button.B_HOME_ACCOUNT) {
+
+			// New button
+			//			locator = Locators.zb__ACLV__NEW_MENU_title;
+			locator = PageMain.Locators.HomeAddAcoount;
+			// Create the page
+			page = new WizardCreateAccount(this);
+			this.sClickAt(locator,"");
+			return page;
+
+			// FALL THROUGH
+
+		} 
 		else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}

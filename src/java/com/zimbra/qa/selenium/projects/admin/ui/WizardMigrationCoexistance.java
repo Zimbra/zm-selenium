@@ -29,9 +29,9 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
  * @author Matt Rhoades
  *
  */
-public class WizardInstallCertificate extends AbsWizard {
+public class WizardMigrationCoexistance extends AbsWizard {
 
-	public WizardInstallCertificate(AbsTab page) {
+	public WizardMigrationCoexistance(AbsTab page) {
 		super(page);
 	}
 
