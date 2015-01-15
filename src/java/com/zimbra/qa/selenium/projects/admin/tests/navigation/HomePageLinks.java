@@ -46,7 +46,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Navigate to Install License",
-			groups = { "test111" })
+			groups = { "sanity" })
 			public void NavigateLicense_01() throws HarnessException {
 		
 		// click on Install license Link on Home page and check if it redirects to proper page
@@ -65,7 +65,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Navigate to Configure Backup",
-			groups = { "test111" })
+			groups = { "sanity" })
 			public void NavigateLicense_02() throws HarnessException {
 		
 		// Navigate back to Home page
@@ -84,7 +84,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Navigate to Install certificate wizard",
-			groups = { "test111" })
+			groups = { "sanity" })
 			public void NavigateLicense_03() throws HarnessException {
 
 		// Navigate back to Home page
@@ -109,7 +109,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Navigate to Configure default COS",
-			groups = { "test111" })
+			groups = { "sanity" })
 			public void NavigateLicense_04() throws HarnessException {
 		
 		/*
@@ -132,7 +132,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Navigate to create Domain wizard",
-			groups = { "test111" })
+			groups = { "sanity" })
 			public void NavigateLicense_05() throws HarnessException {
 		
 		// Navigate back to home page 
@@ -157,7 +157,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Navigate to Configure GAL wizard",
-			groups = { "test111" })
+			groups = { "sanity" })
 			public void NavigateLicense_06() throws HarnessException {
 
 		// Navigate back to Home page 
@@ -182,7 +182,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Navigate to Configure Authentication wizard",
-			groups = { "test111" })
+			groups = { "sanity" })
 			public void NavigateLicense_07() throws HarnessException {
 
 		// Navigate back to Home page
@@ -205,7 +205,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Navigate to create account wizard",
-			groups = { "test111" })
+			groups = { "sanity" })
 			public void NavigateLicense_08() throws HarnessException {
 	
 		// Navigate back to Home page
@@ -230,7 +230,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Navigate to Configure manage accounts",
-			groups = { "test111" })
+			groups = { "sanity" })
 			public void NavigateLicense_09() throws HarnessException {
 		
 		// Navigate back to Home page
@@ -250,7 +250,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Navigate to migration and co Existance wizard",
-			groups = { "test111" })
+			groups = { "sanity" })
 			public void NavigateLicense_10() throws HarnessException {
 		
 		// Navigate Back to Home page
