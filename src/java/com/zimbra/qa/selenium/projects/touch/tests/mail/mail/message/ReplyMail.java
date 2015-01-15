@@ -14,17 +14,17 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.touch.tests.mail.compose;
+package com.zimbra.qa.selenium.projects.touch.tests.mail.mail.message;
 
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;
+import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.touch.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.touch.ui.mail.FormMailNew.Field;
 
-public class ReplyMail extends TouchCommonTest {
+public class ReplyMail extends PrefGroupMailByMessageTest {
 
 	public ReplyMail() {
 		logger.info("New "+ ReplyMail.class.getCanonicalName());
