@@ -26,52 +26,51 @@ public class DeleteContact extends TouchCommonTest  {
 	
 	public DeleteContact() {
 		logger.info("New "+ DeleteContact.class.getCanonicalName());
-		super.startingPage = app.zPageAddressbook;
-	}
+	super.startingPage = app.zPageAddressbook;
+}
+
+@Test(	description = "Delete a contact item",
+		groups = { "sanity" })
+
+public void DeleteContact_01() throws HarnessException {
+
+	// Create a contact item
+	ContactItem contact = new ContactItem();
+	contact.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
+	contact.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
+	contact.email = "email" + ZimbraSeleniumProperties.getUniqueString() + "@domain.com";
+
+	app.zGetActiveAccount().soapSend(
+                "<CreateContactRequest xmlns='urn:zimbraMail'>" +
+                		"<cn >" +
+                			"<a n='firstName'>" + contact.firstName +"</a>" +
+                			"<a n='lastName'>" + contact.lastName +"</a>" +
+                			"<a n='email'>" + contact.email + "</a>" +
+            			"</cn>" +
+                "</CreateContactRequest>");
+
+	//-- GUI
 	
-	@Test(	description = "Delete a contact item",
-			groups = { "sanity" })
+	// Refresh to get the contact into the client
+	app.zPageAddressbook.zRefresh();
 	
-	public void DeleteContact_01() throws HarnessException {
+	// Select the contact from contact list
+	String locator = contact.lastName + ", " + contact.firstName;
+	app.zPageAddressbook.zSelectContact(locator);
+	
+    // Click delete button from action menu
+    app.zPageAddressbook.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_DELETE);
+    
+    // Verify the contact is removed from Contacts folder
+	app.zGetActiveAccount().soapSend(
+			"<SearchRequest xmlns='urn:zimbraMail' types='contact'>"
+		+		"<query>#firstname:"+ contact.firstName +"</query>"
+		+	"</SearchRequest>");
 
-		//-- Data
-		
-		// Create a contact item
-		ContactItem contact = new ContactItem();
-		contact.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
-		contact.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
-		contact.email = "email" + ZimbraSeleniumProperties.getUniqueString() + "@domain.com";
-
-		app.zGetActiveAccount().soapSend(
-	                "<CreateContactRequest xmlns='urn:zimbraMail'>" +
-	                		"<cn >" +
-	                			"<a n='firstName'>" + contact.firstName +"</a>" +
-	                			"<a n='lastName'>" + contact.lastName +"</a>" +
-	                			"<a n='email'>" + contact.email + "</a>" +
-                			"</cn>" +
-	                "</CreateContactRequest>");
-
-		//-- GUI
-		
-		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
-		
-		// Select the contact from contact list
-		String locator = contact.lastName + ", " + contact.firstName;
-		app.zPageAddressbook.zSelectContact(locator);
-		
-        // Click delete button from action menu
-        app.zPageAddressbook.zToolbarPressPulldown(Button.B_ACTIONS,Button.B_DELETE);
-        
-        //-- Verification
-        
-        // Verify contact deleted
-        ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
-        ZAssert.assertNull(actual, "Verify the contact is deleted from the addressbook");
-        
-        // Verify contact in trash
-        actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #firstname:"+ contact.firstName);
-        ZAssert.assertNotNull(actual, "Verify the contact is in the trash");
-        
+    String contactId = app.zGetActiveAccount().soapSelectValue("//mail:cn", "id");
+    ZAssert.assertNull(contactId, "Verify the contact is not returned in the search");
+    
+ 	// UI verification    
+    ZAssert.assertEquals(app.zPageAddressbook.zVerifyContactExists(locator), false, "Verify contact is removed from Contacts folder");
    	}
 }

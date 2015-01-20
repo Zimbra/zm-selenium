@@ -646,6 +646,21 @@ public class PageAddressbook extends AbsTab {
 	    return page;
 	}
 	
+	public Boolean zVerifyContactExists(String contact) throws HarnessException {
+		logger.info(myPageName() + " zVerifyContactExists("+ contact +")");
+
+		if ( contact == null )
+			throw new HarnessException("Contact cannot be null!");
+		
+		String locator = "css=div[id^='ext-contactslistview'] div[class='zcs-contactList-name']:contains('"+ contact +"')";
+		
+		if (this.sIsElementPresent(locator)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+		
 	public AbsPage zToolbarPressPulldown(Button pulldown, IItem item) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButtonWithPulldown("+ pulldown +", "+ item +")");
 
