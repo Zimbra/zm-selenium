@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts.Folders;
+package com.zimbra.qa.selenium.projects.touch.tests.contacts.folders;
 
 import org.testng.annotations.*;
 
