@@ -77,7 +77,7 @@ public class PermanentDeleteContact extends TouchCommonTest  {
       			
         // Verify contact is removed from trash
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #firstname:"+ contact.firstName);
-        ZAssert.assertNull(actual, "Verify the contact is in the trash");
+        ZAssert.assertNull(actual, "Verify the contact is removed from trash");
         
         //GUI verification    
 		ZAssert.assertEquals(app.zPageAddressbook.zVerifyContactExists(locator), false, "Verify contact is removed from Trash folder");
