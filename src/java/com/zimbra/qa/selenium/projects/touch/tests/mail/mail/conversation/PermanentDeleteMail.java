@@ -93,7 +93,7 @@ public class PermanentDeleteMail extends PrefGroupMailByConversationTest {
 	@Test( description = "Cancel delete mail operation",
 			groups = { "functional" })
 			
-	public void DeleteMail_03() throws HarnessException {
+	public void PermanentDeleteMail_02() throws HarnessException {
 		
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "text <strong>bold"+ ZimbraSeleniumProperties.getUniqueString() +"</strong> text";
@@ -147,7 +147,7 @@ public class PermanentDeleteMail extends PrefGroupMailByConversationTest {
 		// Verify whether tag is exist in trash folder
 		MailItem actual= MailItem.importFromSOAP(app.zGetActiveAccount(), "in:trash "+ subject);
 		ZAssert.assertNotNull(actual, "Verify the contact is in the trash folder");
-		ZAssert.assertEquals(app.zPageMail.zVerifyMessageExists(subject),true, "Verify mail is deleted from trash");
+		ZAssert.assertEquals(app.zPageMail.zVerifyMessageExists(subject),true, "Verify the contact is in the trash folder");
 		
 	}
 

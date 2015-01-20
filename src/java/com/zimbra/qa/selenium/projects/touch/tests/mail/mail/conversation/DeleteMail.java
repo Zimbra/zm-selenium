@@ -92,7 +92,7 @@ public class DeleteMail extends PrefGroupMailByConversationTest {
   
         app.zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, "Trash");
-        ZAssert.assertEquals(app.zPageMail.zVerifyMessageExists(subject), true, "Verify appointment is deleted");
+        ZAssert.assertEquals(app.zPageMail.zVerifyMessageExists(subject), true, "Verify message is deleted");
        
 	}
 
