@@ -45,12 +45,12 @@ public class PageMail extends AbsTab {
 		public static final String ReplyAllMenu			= "css=div[id^='ext-listitem-'] div[class='x-innerhtml']:contains('Reply to all')";
 		public static final String ForwardMenu			= "css=div[id^='ext-listitem-'] div[class='x-innerhtml']:contains('Forward')";
 		
-		public static final String DeleteButton			= "css=span[class=x-button-icon x-shown trash']";		
+		public static final String DeleteButton			= "css=div[id='ext-container-7'] span[class='x-button-icon x-shown trash']";		
 		public static final String ActionsDropdown		= "css=span[class=x-button-icon x-shown arrow_down']";
 		
 		public static final String zReplyIcon			= "css=span[class='x-button-icon x-shown reply']";
 		public static final String zReplyAllIcon		= "css=span[class='x-button-icon x-shown replytoall']";
-		public static final String zDeleteIcon			= "css=span[class='x-button-icon x-shown trash']";
+		public static final String zDeleteIcon			= "css=div[id='ext-container-7'] span[class='x-button-icon x-shown trash']";
 		public static final String LoadImagesButton		= "css=span[class='x-button-label']:contains('Load Images')";
 		
 		public static final String IsConViewActiveCSS 	= "css=div[id='zv__CLV-main']";
@@ -96,6 +96,8 @@ public class PageMail extends AbsTab {
 		public static final String IcsLinkInBody = "css=body[class^='MsgBody'] span a[target='_blank']";
 		public static final String CreateNewCalendar = "css=div[id^='POPUP_DWT'] td[id='NEWCAL_title']";
 		
+		public static final String zYesWarningDialog			= "css=div[id='ext-sheet-1'] div[id^='ext-button'] span:contains('Yes')";	
+		public static final String zNoWarningDialog			= "css=div[id^='ext-sheet-1'] div[id^='ext-button'] span:contains('No')";
 		
 		public static class CONTEXT_MENU {
 			public static String stringToReplace = "<ITEM_NAME>";
@@ -255,7 +257,7 @@ public class PageMail extends AbsTab {
 			locator = Locators.LoadImagesButton;
 			
 		} else if ( button == Button.B_DELETE ) {
-			locator = "css=td#" + "1";
+			locator = Locators.DeleteButton;
 
 		} else if ( button == Button.B_MOVE ) {
 			locator = "css=td[id$='__MOVE_left_icon']";
@@ -298,7 +300,43 @@ public class PageMail extends AbsTab {
 
 		return (page);
 	}
+	
+	public AbsPage zClickButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zClickButton("+ button +")");
+		tracer.trace("Click page button "+ button);
 
+		AbsPage page = null;
+		String locator = null;
+		
+		SleepUtil.sleepSmall();
+		if ( button == Button.B_YES ) {
+			locator = Locators.zYesWarningDialog;
+			page = this;
+			
+		} else if ( button == Button.B_NO ) {
+			locator = Locators.zNoWarningDialog;
+			page = this;
+	
+		}else {
+			throw new HarnessException("Button "+ button +" not implemented");
+		}
+
+		// Make sure the locator was set
+		if ( locator == null ) {
+			throw new HarnessException("Button "+ button +" not implemented");
+		}
+
+		// Make sure the locator exists
+		if ( !this.sIsElementPresent(locator) ) {
+			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
+		}
+
+		this.sClickAt(locator, "");
+		SleepUtil.sleepMedium();
+		
+		return (page);
+	}
+		
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButtonWithPulldown("+ pulldown +", "+ option +")");
