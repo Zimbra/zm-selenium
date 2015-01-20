@@ -26,6 +26,7 @@ import java.util.List;
 
 import org.testng.annotations.Test;
 
+import com.thoughtworks.selenium.SeleniumException;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 
@@ -107,6 +108,8 @@ public class DownloadsIndex extends AdminCommonTest {
 	public void DownloadsIndex_02() throws HarnessException {
 	
 		String windowTitle = "Zimbra Collaboration Suite :: Downloads";
+
+		try{
 		app.zPageDownloads.zOpenIndexHTML();
 		SleepUtil.sleep(10000);
 		// This method throws an exception if the page doesn't open
@@ -138,9 +141,12 @@ public class DownloadsIndex extends AdminCommonTest {
 		} else {
 			throw new HarnessException("Unable to find NETWORK or FOSS in version string: "+ ZimbraSeleniumProperties.zimbraGetVersionString());
 		}
-		
+		}catch(Exception e) {
+			
+			throw new HarnessException(e);
+		}finally{
 		app.zPageDownloads.zSeparateWindowClose(windowTitle);
-		
+		}
 	}
 	
 
@@ -149,53 +155,59 @@ public class DownloadsIndex extends AdminCommonTest {
 	public void DownloadsIndex_03() throws HarnessException {
 
 		String windowTitle = "Zimbra Collaboration Suite :: Downloads";
-		app.zPageDownloads.zOpenIndexHTML();
-		SleepUtil.sleep(10000);
-		// This method throws an exception if the page doesn't open
-		app.zPageDownloads.zSeparateWindowFocus(windowTitle);
-		SleepUtil.sleep(10000);
-		
-		// Determine which links should be present
-		List<String> locators = new ArrayList<String>();
-		
-		if ( ZimbraSeleniumProperties.zimbraGetVersionString().contains("NETWORK") ) {
+	
+		try {
+			app.zPageDownloads.zOpenIndexHTML();
+			SleepUtil.sleep(10000);
+			// This method throws an exception if the page doesn't open
+			app.zPageDownloads.zSeparateWindowFocus(windowTitle);
+			SleepUtil.sleep(10000);
 			
-			locators.addAll(Arrays.asList(NetworkOnlyLocators));			
+			// Determine which links should be present
+			List<String> locators = new ArrayList<String>();
 			
-		} else if ( ZimbraSeleniumProperties.zimbraGetVersionString().contains("FOSS") ) {
-			
-			locators.addAll(Arrays.asList(FossOnlyLocators));			
-
-		} else {
-			throw new HarnessException("Unable to find NETWORK or FOSS in version string: "+ ZimbraSeleniumProperties.zimbraGetVersionString());
-		}
-
-		for (String locator : locators ) {
-			String href = app.zPageDownloads.sGetAttribute(locator +"@href");
-			String page = ZimbraSeleniumProperties.getBaseURL() + href;
-			
-			HttpURLConnection  connection = null;
-			try {
+			if ( ZimbraSeleniumProperties.zimbraGetVersionString().contains("NETWORK") ) {
 				
-				URL url = new URL(page);
-				int authResponse = app.zPageDownloads.getAuthResponse(url);
+				locators.addAll(Arrays.asList(NetworkOnlyLocators));			
+				
+			} else if ( ZimbraSeleniumProperties.zimbraGetVersionString().contains("FOSS") ) {
+				
+				locators.addAll(Arrays.asList(FossOnlyLocators));			
 
-		        // 200 and 400 are acceptabl
-		        ZAssert.assertStringContains("200 400", ""+authResponse, "Verify the download URL is valid: "+ url.toString());
-		        
-			} catch (MalformedURLException e) {
-				throw new HarnessException(e);
-			} catch (IOException e) {
-				throw new HarnessException(e);
-			} finally {
-				if ( connection != null ) {
-					connection.disconnect();
-					connection = null;
-				}
+			} else {
+				throw new HarnessException("Unable to find NETWORK or FOSS in version string: "+ ZimbraSeleniumProperties.zimbraGetVersionString());
 			}
 
-		}
+			for (String locator : locators ) {
+				String href = app.zPageDownloads.sGetAttribute(locator +"@href");
+				String page = ZimbraSeleniumProperties.getBaseURL() + href;
+				
+				HttpURLConnection  connection = null;
+				try {
+					
+					URL url = new URL(page);
+					int authResponse = app.zPageDownloads.getAuthResponse(url);
+
+			        // 200 and 400 are acceptabl
+			        ZAssert.assertStringContains("200 400", ""+authResponse, "Verify the download URL is valid: "+ url.toString());
+			        
+				} catch (MalformedURLException e) {
+					throw new HarnessException(e);
+				} catch (IOException e) {
+					throw new HarnessException(e);
+				} finally {
+					if ( connection != null ) {
+						connection.disconnect();
+						connection = null;
+					}
+				}
+
+			}
+		} catch (SeleniumException e) {
+			throw new HarnessException(e);
+		}finally{
 		app.zPageDownloads.zSeparateWindowClose(windowTitle);
+		}
 	}
 
 }
