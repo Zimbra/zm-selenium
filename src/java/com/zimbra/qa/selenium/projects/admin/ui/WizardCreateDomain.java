@@ -36,7 +36,7 @@ public class WizardCreateDomain extends AbsWizard {
 	public static class Locators {
 		public static final String zdlg_DOMAIN_NAME="zdlgv__NEW_DOMAIN_zimbraDomainName";
 		public static final String MAIL_SERVER_DROPDOWN_old="css=div[id$='zimbraMailHost_arrow_button']/div";
-		public static final String MAIL_SERVER_DROPDOWN="css=div[id='zdlgv__NEW_DOMAIN_gal_sync_accounts_set[0]/zimbraMailHost_arrow_button']";
+		public static final String MAIL_SERVER_DROPDOWN="css=div[id^='zdlgv__NEW_DOMAIN_gal_sync_accounts_set'][id$='zimbraMailHost_arrow_button']>div";
 		//public static final String MAIL_SERVER_DROPDOWN="css=div[id^='zdlgv__NEW_DOMAIN_zdlgv__NEW_DOMAIN_gal_sync_accounts_set_wizard'] div.ImgSelectPullDownArrow";
 
 		public static final String MAIL_SERVER_DROPDOWN_TABLE="css=div#___OSELECT_MENU___";

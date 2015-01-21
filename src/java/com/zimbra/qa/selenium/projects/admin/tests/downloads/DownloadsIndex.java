@@ -91,7 +91,8 @@ public class DownloadsIndex extends AdminCommonTest {
 			SleepUtil.sleep(1000);
 			// If we get here (i.e. no exception thrown), then pass
 			ZAssert.assertTrue(true, "Verify that the page opened correctly");
-			
+			app.zPageDownloads.sClose();
+			app.zPageDownloads.sSelectWindow(null);
 		} catch (Exception e) {
 			
 			throw new HarnessException(e);
@@ -99,6 +100,8 @@ public class DownloadsIndex extends AdminCommonTest {
 		} finally {
 			
 			app.zPageDownloads.zSeparateWindowClose(windowTitle);
+			app.zPageDownloads.sSelectWindow(null);
+
 			
 		}
 	}
@@ -138,6 +141,8 @@ public class DownloadsIndex extends AdminCommonTest {
 				ZAssert.assertTrue(app.zPageDownloads.sIsElementPresent(locator), "Verify the foss-only locator exists: "+ locator);
 			}
 
+			app.zPageDownloads.sClose();
+			app.zPageDownloads.sSelectWindow(null);
 		} else {
 			throw new HarnessException("Unable to find NETWORK or FOSS in version string: "+ ZimbraSeleniumProperties.zimbraGetVersionString());
 		}
@@ -146,6 +151,7 @@ public class DownloadsIndex extends AdminCommonTest {
 			throw new HarnessException(e);
 		}finally{
 		app.zPageDownloads.zSeparateWindowClose(windowTitle);
+		app.zPageDownloads.sSelectWindow(null);
 		}
 	}
 	
@@ -203,10 +209,14 @@ public class DownloadsIndex extends AdminCommonTest {
 				}
 
 			}
+			app.zPageDownloads.sClose();
+			app.zPageDownloads.sSelectWindow(null);
 		} catch (SeleniumException e) {
 			throw new HarnessException(e);
 		}finally{
 		app.zPageDownloads.zSeparateWindowClose(windowTitle);
+		app.zPageDownloads.sSelectWindow(null);
+
 		}
 	}
 
