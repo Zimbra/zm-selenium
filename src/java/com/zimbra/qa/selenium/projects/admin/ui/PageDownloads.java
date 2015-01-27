@@ -16,12 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-import sun.misc.BASE64Encoder;
-
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
@@ -153,16 +147,6 @@ public class PageDownloads extends AbsTab {
 		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
-	}
-
-	public int getAuthResponse(URL url) throws IOException{
-        BASE64Encoder enc = new sun.misc.BASE64Encoder();
-		String userpassword = "admin" + ":" + "test123";
-        String encodedAuthorization = enc.encode(userpassword.getBytes());
-        HttpURLConnection connection = (HttpURLConnection )url.openConnection();
-        connection.setRequestProperty("Authorization", "Basic " + encodedAuthorization);
-        int code = connection.getResponseCode();
-		return code;
 	}
 
 
