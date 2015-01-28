@@ -161,12 +161,15 @@ public class DownloadsTab extends AdminCommonTest {
 			try {
 				
 				URL url = new URL(page);
-				int authResponse = app.zPageDownloads.getAuthResponse(url);
-
-		        // 200 and 400 are acceptable
-		        ZAssert.assertStringContains("200 400", ""+authResponse, "Verify the download URL is valid: "+ url.toString());
+				connection = (HttpURLConnection )url.openConnection();
+				connection.setRequestMethod("HEAD");
+		        int code = connection.getResponseCode();
 		        
-		  } catch (MalformedURLException e) {
+		        // TODO: why is 400 returned for the PDF links?
+		        // 200 and 400 are acceptable
+		        ZAssert.assertStringContains("200 400", ""+code, "Verify the download URL is valid: "+ url.toString());
+		        
+			} catch (MalformedURLException e) {
 				throw new HarnessException(e);
 			} catch (IOException e) {
 				throw new HarnessException(e);
