@@ -144,10 +144,10 @@ public class PermanentDeleteMail extends PrefGroupMailByConversationTest {
 		// Click on No on warning dialog
 		app.zPageMail.zClickButton(Button.B_NO);
         
-		// Verify the mail is not deleted from Trash folder
+		// Verify whether tag is exist in trash folder
 		MailItem actual= MailItem.importFromSOAP(app.zGetActiveAccount(), "in:trash "+ subject);
-		ZAssert.assertNotNull(actual, "Verify the mail is not deleted from Trash folder");
-		ZAssert.assertEquals(app.zPageMail.zVerifyMessageExists(subject),true, "Verify the mail is not deleted from Trash folder");
+		ZAssert.assertNotNull(actual, "Verify the contact is in the trash folder");
+		ZAssert.assertEquals(app.zPageMail.zVerifyMessageExists(subject),true, "Verify the contact is in the trash folder");
 		
 	}
 
