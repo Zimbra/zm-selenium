@@ -17,6 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
@@ -73,6 +74,8 @@ public class DialogFindEquipment extends DialogWarning {
 			return ( super.zClickButton(button) );
 
 		}
+		
+		SleepUtil.sleepMedium();
 		
 		// Make sure the locator was set
 		if (locator == null) {
