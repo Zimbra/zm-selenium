@@ -643,6 +643,7 @@ public class Button {
 	
 	// Resources button
 	public static final Button O_RESOURCES_RESOURCE = new Button("O_RESOURCES_RESOURCE");
+	public static final Button B_CANCEL_INSTANCE_LINK = new Button("B_CANCEL_INSTANCE_LINK");
 	
 	// Bubble buttons
 	public static Button B_NEW_MAIL = new Button("B_NEW_MAIL");

@@ -41,6 +41,7 @@ public class DialogWarningConflictingResources extends DialogWarning {
 
 		// The ID for the main Dialog DIV
 		public static final String LocatorDivID = "RESC_CONFLICT_DLG";
+		public static final String CancelInstanceLink = "css=div[class='ZmResourceConflictDialog'] div[class='ResourceConflictResolver'] span span";
 		
 	}
 
@@ -55,6 +56,22 @@ public class DialogWarningConflictingResources extends DialogWarning {
 		SleepUtil.sleepMedium();
 		text = this.zGetDisplayedText("css=div[id='RESC_CONFLICT_DLG']");
 		return text;
+	}
+	
+	public void zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zClickButton(" + button + ")");
+		//AbsPage page = null;
+		//String text = null;
+		String locator = null;
+		
+		if (button == Button.B_CANCEL_INSTANCE_LINK) {
+
+			locator = Locators.CancelInstanceLink;
+
+			sClick(locator);
+			this.zWaitForBusyOverlay();
+			}
+		 // return text;  
 	}
 }
 
