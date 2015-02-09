@@ -78,7 +78,7 @@ public class CreateAlias extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Create a basic account using New->Account",
-			groups = { "sanity" })
+			groups = { "obsolete" })
 			public void CreateAlias_02() throws HarnessException {
 
 		AccountItem target = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
