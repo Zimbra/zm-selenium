@@ -16,8 +16,12 @@
  */
 package com.zimbra.qa.selenium.projects.touch.ui.mail;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.items.SavedSearchFolderItem;
@@ -30,7 +34,6 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
-import com.zimbra.qa.selenium.projects.touch.ui.AppTouchClient;
 import com.zimbra.qa.selenium.projects.touch.ui.*;
 
 public class TreeMail extends AbsTree {
@@ -42,6 +45,8 @@ public class TreeMail extends AbsTree {
 		
 		public static final String zOrganizerButton = "css=div[id='ext-button-1'] span[class='x-button-icon x-shown organizer']";
 		public static final String zEditButton = "css=div[class='x-dock x-dock-vertical x-sized'] span[class='x-button-label']:contains('Edit')";
+		public static final String zMailSearchBox = "css=div[id^='ext-input']>input";
+		
 		
 		public static final String createNewFolderButton = "css=div[id='zov__main_Mail'] td[id='ztih__main_Mail__FOLDER_optCell'] td[id$='_title']";
 		public static final String ztih__main_Mail__ZIMLET_ID = "ztih__main_Mail__ZIMLET";
@@ -1032,6 +1037,31 @@ public class TreeMail extends AbsTree {
 		return (loaded);
 
 	}
+	
+	public void zFillField(Button button, String searchText) throws HarnessException, AWTException{
+		
+		String locator = null;
+		
+		if ( button == Button.B_SEARCH) {
+			
+			locator = "css=div[id^='ext-input']>input";
 
+		} else {
+			throw new HarnessException("Button "+ button +" not yet implemented");
+		}
 
+		// Default behavior.  Click the locator
+		SleepUtil.sleepMedium();
+		sClickAt(locator, ""); 
+        sType(locator, searchText);
+        sFocus(locator); 
+        SleepUtil.sleepMedium();
+        Robot robot = new Robot(); 
+
+        robot.keyPress(KeyEvent.VK_ENTER); 
+        robot.keyRelease(KeyEvent.VK_ENTER);
+        SleepUtil.sleepMedium();
+	    
+	}
+	
 }
