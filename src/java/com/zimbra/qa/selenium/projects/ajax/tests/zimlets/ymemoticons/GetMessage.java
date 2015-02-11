@@ -16,6 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.ymemoticons;
 
+import java.io.IOException;
 import java.util.*;
 
 import org.testng.annotations.*;
@@ -55,7 +56,7 @@ public class GetMessage extends AjaxCommonTest {
 	
 	@Test(	description = "Receive a mail with a basic emoticon",
 			groups = { "functional" })
-	public void GetMessage_01() throws HarnessException {
+	public void GetMessage_01() throws HarnessException, IOException {
 		
 		
 		//-- DATA

@@ -157,13 +157,14 @@ public class HtmlElement {
 	 * @return
 	 */
 	protected static String nodeToString(TagNode node) {
+		PrettyHtmlSerializer serializer = new PrettyHtmlSerializer(cleaner.getProperties());
 		try {
-			PrettyHtmlSerializer serializer = new PrettyHtmlSerializer(cleaner.getProperties());
 			return (serializer.getAsString(node));
 		} catch (IOException e) {
-			logger.error("unable to parse my node", e);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
 		}
-		return ("unable to parse my node");
 	}
 	
 	/**

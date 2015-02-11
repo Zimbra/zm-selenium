@@ -16,6 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.srchhighlighter;
 
+import java.io.IOException;
 import java.util.*;
 
 import org.testng.annotations.*;
@@ -49,7 +50,7 @@ public class ViewMessage extends AjaxCommonTest {
 	
 	@Test(	description = "Search for mail content.  Verify search terms are highlighted.",
 			groups = { "functional" })
-	public void ViewMessage_01() throws HarnessException {
+	public void ViewMessage_01() throws HarnessException, IOException {
 		
 		
 		//-- DATA
@@ -119,7 +120,7 @@ public class ViewMessage extends AjaxCommonTest {
 
 	@Test(	description = "Search for mail content (two terms).  Verify search terms are highlighted.",
 			groups = { "functional" })
-	public void ViewMessage_02() throws HarnessException {
+	public void ViewMessage_02() throws HarnessException, IOException {
 		
 		
 		//-- DATA

@@ -17,6 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.date;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -51,7 +52,7 @@ public class GetMessage extends AjaxCommonTest {
 	
 	@Test(	description = "Receive a mail with a basic date",
 			groups = { "smoke" })
-	public void GetMessage_01() throws HarnessException {
+	public void GetMessage_01() throws HarnessException, IOException {
 		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
@@ -98,7 +99,7 @@ public class GetMessage extends AjaxCommonTest {
 
 	@Test(	description = "Receive a mail with two dates in body",
 			groups = { "functional" })
-	public void GetMessage_02() throws HarnessException {
+	public void GetMessage_02() throws HarnessException, IOException {
 		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
@@ -140,7 +141,7 @@ public class GetMessage extends AjaxCommonTest {
 
 	@Test(	description = "Validate the date zimlet matches valid dates",
 			groups = { "functional" })
-	public void GetMessage_03() throws HarnessException {
+	public void GetMessage_03() throws HarnessException, IOException {
 
 		final String subject = "subject12912323015009";
 		final String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/date01/en_us_valid_dates.txt";
@@ -178,7 +179,7 @@ public class GetMessage extends AjaxCommonTest {
 
 	@Test(	description = "Validate the date zimlet does not match invalid dates",
 			groups = { "functional" })
-	public void GetMessage_04() throws HarnessException {
+	public void GetMessage_04() throws HarnessException, IOException {
 
 		final String subject = "subject1293323025009";
 		final String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/date01/en_us_invalid_dates.txt";
@@ -246,7 +247,7 @@ public class GetMessage extends AjaxCommonTest {
 
 	@Test(	description = "Receive a mail with a date string, such as today, tomorrow, last night, etc.",
 			groups = { "functional" })
-	public void GetMessage_11() throws HarnessException {
+	public void GetMessage_11() throws HarnessException, IOException {
 		String newline = String.format("%n");
 		
 

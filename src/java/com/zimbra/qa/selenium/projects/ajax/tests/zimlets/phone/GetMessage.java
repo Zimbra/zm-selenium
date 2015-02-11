@@ -17,6 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.phone;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 import org.testng.annotations.*;
@@ -50,7 +51,7 @@ public class GetMessage extends AjaxCommonTest {
 	
 	@Test(	description = "Receive a mail with a basic US Phone number",
 			groups = { "smoke" })
-	public void GetMessage_01() throws HarnessException {
+	public void GetMessage_01() throws HarnessException, IOException {
 		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
@@ -92,7 +93,7 @@ public class GetMessage extends AjaxCommonTest {
 
 	@Test(	description = "Receive a mail with two phone numbers in body",
 			groups = { "functional" })
-	public void GetMessage_02() throws HarnessException {
+	public void GetMessage_02() throws HarnessException, IOException {
 		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
@@ -139,7 +140,7 @@ public class GetMessage extends AjaxCommonTest {
 
 	@Test(	description = "Validate the phone zimlet matches NANP phone numbers",
 			groups = { "functional" })
-	public void GetMessage_03() throws HarnessException {
+	public void GetMessage_03() throws HarnessException, IOException {
 
 		final String subject = "subject12977323015009";
 		final String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email01/en_us_valid_phone.txt";
@@ -192,7 +193,7 @@ public class GetMessage extends AjaxCommonTest {
 
 	@Test(	description = "Validate the phone zimlet matches NANP phone numbers",
 			groups = { "functional" })
-	public void GetMessage_04() throws HarnessException {
+	public void GetMessage_04() throws HarnessException, IOException {
 
 		final String subject = "subject12977323025009";
 		final String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email01/en_us_invalid_phone.txt";
@@ -281,7 +282,7 @@ public class GetMessage extends AjaxCommonTest {
 	@Bugs(ids = "73264")
 	@Test(	description = "Receive a mail with an unformated number string - should not match",
 			groups = { "functional", "matt" })
-	public void GetMessage_06() throws HarnessException {
+	public void GetMessage_06() throws HarnessException, IOException {
 		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();

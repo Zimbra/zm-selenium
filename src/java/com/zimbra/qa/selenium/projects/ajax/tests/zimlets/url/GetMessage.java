@@ -17,6 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.url;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 import org.testng.annotations.*;
@@ -50,7 +51,7 @@ public class GetMessage extends AjaxCommonTest {
 	
 	@Test(	description = "Receive a mail with a basic URL",
 			groups = { "smoke" })
-	public void GetMessage_01() throws HarnessException {
+	public void GetMessage_01() throws HarnessException, IOException {
 		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
@@ -92,7 +93,7 @@ public class GetMessage extends AjaxCommonTest {
 
 	@Test(	description = "Receive a mail with two URLs in body",
 			groups = { "functional" })
-	public void GetMessage_02() throws HarnessException {
+	public void GetMessage_02() throws HarnessException, IOException {
 		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
@@ -139,7 +140,7 @@ public class GetMessage extends AjaxCommonTest {
 
 	@Test(	description = "Validate the url zimlet matches valid URLs",
 			groups = { "functional" })
-	public void GetMessage_03() throws HarnessException {
+	public void GetMessage_03() throws HarnessException, IOException {
 
 		final String subject = "subject12955323015009";
 		final String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/url01/valid_url.txt";
@@ -176,7 +177,7 @@ public class GetMessage extends AjaxCommonTest {
 
 	@Test(	description = "Validate the url zimlet does not match invalid URLs",
 			groups = { "functional" })
-	public void GetMessage_04() throws HarnessException {
+	public void GetMessage_04() throws HarnessException, IOException {
 
 		final String subject = "subject12976223025009";
 		final String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/url01/invalid_url.txt";
@@ -246,7 +247,7 @@ public class GetMessage extends AjaxCommonTest {
 	@Bugs(ids = "29018,67927")
 	@Test(	description = "Receive a mail with a URL in angled brackets",
 			groups = { "functional" })
-	public void GetMessage_06() throws HarnessException {
+	public void GetMessage_06() throws HarnessException, IOException {
 		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();

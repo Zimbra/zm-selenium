@@ -16,6 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.date;
 
+import java.io.IOException;
 import java.util.*;
 
 import org.openqa.selenium.*;
@@ -96,7 +97,7 @@ public class HoverOver extends PrefGroupMailByMessageTest {
 	
 	@Test(	description = "Hovor over a date string in the body, such as today, tomorrow, last night, etc.",
 			groups = { "functional" })
-	public void HoverOver_11() throws HarnessException {
+	public void HoverOver_11() throws HarnessException, IOException {
 		String newline = String.format("%n");
 		
 

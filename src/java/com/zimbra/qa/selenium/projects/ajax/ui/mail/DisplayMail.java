@@ -16,10 +16,13 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import org.testng.Assert;
+
 import com.zimbra.qa.selenium.framework.items.AttachmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -904,7 +907,7 @@ public class DisplayMail extends AbsDisplay {
 		return (true);
 	}
 	
-	public HtmlElement zGetMailPropertyAsHtml(Field field) throws HarnessException {
+	public HtmlElement zGetMailPropertyAsHtml(Field field) throws HarnessException, IOException {
 
 		String source = null;
 

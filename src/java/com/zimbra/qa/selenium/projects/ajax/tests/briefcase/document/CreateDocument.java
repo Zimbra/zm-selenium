@@ -16,6 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.document;
 
+import java.io.IOException;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
@@ -137,7 +138,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 	}
 
 	@Test(description = "Create document using New menu pulldown menu - verify through SOAP & RestUtil", groups = { "functional" })
-	public void CreateDocument_02() throws HarnessException {
+	public void CreateDocument_02() throws HarnessException, IOException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
@@ -219,7 +220,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 	}
 
 	@Test(description = "Create document using keyboard shortcut - verify through SOAP & RestUtil", groups = { "zfunctional" })
-	public void CreateDocument_03() throws HarnessException {
+	public void CreateDocument_03() throws HarnessException, IOException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,

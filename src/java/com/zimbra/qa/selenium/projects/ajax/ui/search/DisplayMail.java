@@ -16,6 +16,8 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.search;
 
+import java.io.IOException;
+
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 
@@ -79,7 +81,7 @@ public class DisplayMail extends com.zimbra.qa.selenium.projects.ajax.ui.mail.Di
 	}
 
 	
-	public HtmlElement zGetMailPropertyAsHtml(Field field) throws HarnessException {
+	public HtmlElement zGetMailPropertyAsHtml(Field field) throws HarnessException, IOException {
 
 		String source = null;
 

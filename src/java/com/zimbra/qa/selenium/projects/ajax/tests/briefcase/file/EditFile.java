@@ -16,17 +16,19 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.file;
 
+import java.io.IOException;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.regex.Pattern;
+
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.items.FileItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
-
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.HtmlElement;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
@@ -112,7 +114,7 @@ public class EditFile extends FeatureBriefcaseTest {
 	}
 
 	@Test(description = "Upload file, edit name - verify the content remains the same", groups = { "functional" })
-	public void EditFile_02() throws HarnessException {
+	public void EditFile_02() throws HarnessException, IOException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,

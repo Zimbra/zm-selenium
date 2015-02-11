@@ -17,6 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.bugs;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.testng.annotations.*;
 
@@ -46,7 +47,7 @@ public class Bug31535 extends PrefGroupMailByMessageTest {
 	@Bugs(ids="83527")
 	@Test(	description = "Verify bug 34401",
 			groups = { "functional" })
-	public void Bug_34401() throws HarnessException {
+	public void Bug_34401() throws HarnessException, IOException {
 
 		String subject = "subject13002239738283";
 
