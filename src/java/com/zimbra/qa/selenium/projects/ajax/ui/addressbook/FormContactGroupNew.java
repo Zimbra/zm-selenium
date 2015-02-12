@@ -267,8 +267,8 @@ public class FormContactGroupNew extends AbsForm {
 				throw new HarnessException("Button "+ pulldown +" option "+ option +" pulldownLocator "+ pulldownLocator +" not present!");
 			}
 			
-			this.zClick(pulldownLocator);
-
+			this.zClick(pulldownLocator);			
+			SleepUtil.sleepMedium();
 			this.zWaitForBusyOverlay();
 
 			// See: https://bugzilla.zimbra.com/show_bug.cgi?id=77791
@@ -277,19 +277,23 @@ public class FormContactGroupNew extends AbsForm {
 
 			if ( option == Button.O_CONTACTGROUP_SEARCH_GAL ) {
 				
-	            optionLocator = optionLocator + " td[id$='_title']:contains('Global Address List')"; // TODO: INTL
+	         //   optionLocator = optionLocator + " td[id$='_title']:contains('Global Address List')"; // TODO: INTL
+				optionLocator="css=div[id$='_Menu_1'][style*='display: block;'] div[id$='_Menu_1_option_3']";
+				
 	            
 	            // FALL THROUGH
 	            
 			} else if (option == Button.O_CONTACTGROUP_SEARCH_CONTACTS) {
 				
-	            optionLocator = optionLocator + " td[id$='_title']:contains('Contacts')"; // TODO: INTL
+	         //   optionLocator = optionLocator + " td[id$='_title']:contains('Contacts')"; // TODO: INTL
+	            optionLocator="css=div[id$='_Menu_1'][style*='display: block;'] div[id$='_Menu_1_option_1']";
 	            
 	            // FALL THROUGH
 	            
 			} else if (option == Button.O_CONTACTGROUP_SEARCH_PERSONAL_AND_SHARED) {
 				
-	            optionLocator = optionLocator + " td[id$='_title']:contains('Personal and Shared Contacts')"; // TODO: INTL
+	           // optionLocator = optionLocator + " td[id$='_title']:contains('Personal and Shared Contacts')"; // TODO: INTL
+				optionLocator="css=div[id$='_Menu_1'][style*='display: block;'] div[id$='_Menu_1_option_2']";
 	            
 	            // FALL THROUGH
 	            
@@ -303,6 +307,7 @@ public class FormContactGroupNew extends AbsForm {
 			}
 			
 			this.zClick(optionLocator);
+		//	this.sClickAt(optionLocator,"");
 
 			this.zWaitForBusyOverlay();
 
