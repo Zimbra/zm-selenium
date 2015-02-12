@@ -87,15 +87,15 @@ public class FormApptNew extends AbsForm {
 
 		public static final String NoneMenuItem = "css=div[id*='_Menu'] div[id^='NON'] td[id$='title']:contains('None')";
 		public static final String NoneButton = "css=div[id$='_repeatSelect'] td[id$='_select_container'] td[id$='_title']";
-		public static final String EveryDayMenuItem = "css=div[id*='_Menu'] div[id^='DAI'] td[id$='title']:contains('Every Day')";
+		public static final String EveryDayMenuItem = "css=div[id$='Menu_1_option_2'] td[id$='_Menu_1_option_2_title']:contains('Every Day')";
 		public static final String EveryDayButton = "css=td[id$='_title']:contains('Every Day')";
-		public static final String EveryWeekMenuItem = "css=div[id*='_Menu'] div[id^='WEE'] td[id$='title']:contains('Every Week')";
+		public static final String EveryWeekMenuItem = "css=[id$='Menu_1_option_3'] td[id$='_Menu_1_option_3_title']:contains('Every Week')";
 		public static final String EveryWeekButton = "css=td[id$='_title']:contains('Every Week')";
-		public static final String EveryMonthMenuItem = "css=div[id*='_Menu'] div[id^='MON'] td[id$='title']:contains('Every Month')";
+		public static final String EveryMonthMenuItem = "css=div[id$='Menu_1_option_4'] td[id$='_Menu_1_option_4_title']:contains('Every Month')";
 		public static final String EveryMonthButton = "css=td[id$='_title']:contains('Every Month')";
-		public static final String EveryYearMenuItem = "css=div[id*='_Menu'] div[id^='YEA'] td[id$='title']:contains('Every Year')";
+		public static final String EveryYearMenuItem = "css=div[id$='Menu_1_option_5'] td[id$='_Menu_1_option_5_title']:contains('Every Year')";
 		public static final String EveryYearButton = "css=td[id$='_title']:contains('Every Year')";
-		public static final String CustomMenuItem = "css=div[id*='_Menu'] div[id^='CUS'] td[id$='title']:contains('Custom')";
+		public static final String CustomMenuItem = "css=div[id$='Menu_1_option_6'] td[id$='_Menu_1_option_6_title']:contains('Custom')";
 		public static final String CustomButton = "css=td[id$='_title']:contains('Custom')";
 		public static final String CustomizedLink = "css=div[id$='_repeatDesc']div[class='FakeAnchor']";
 		public static final String CustomizedLinkDisabled = "css=div[id$='_repeatDesc']div[class='DisabledText']";
@@ -149,7 +149,6 @@ public class FormApptNew extends AbsForm {
 		public static final String ToolbarOptions= "css=td[id='zb__APPT-1__COMPOSE_OPTIONS_title']";
 		public static final String RequestResponse= "css=td[id$='_title']:contains('Request Responses')";
 		public static final String ConflictResourceNote = "css= div[id$='_location_status']:contains('One or more locations are not available at the selected time')";
-
 	}
 
 	public static class Field {
@@ -885,7 +884,7 @@ public class FormApptNew extends AbsForm {
 		} else if (field == Field.Repeat) {
 
 			isRepeat = value;
-			locator = "css=div[id$='_repeatSelect'] td[id$='_dropdown']";
+			locator = "css=div[id$='_repeatSelect'] td[id$='_dropdown'] div";
 
 			// body
 		} else if (field == Field.Body) {
