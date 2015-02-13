@@ -1452,21 +1452,21 @@ public class PageMail extends AbsTab {
 					
 					this.zClickAt(pulldownLocatorReply, "");
 					optionLocator = Locators.ReplyMenu;
-					page = null;
+					page = new DisplayMail(this.MyApplication);
 
 					// FALLTHROUGH
 				} else if ( option == Button.B_REPLY_TO_ALL ) {
 					
 					this.zClickAt(pulldownLocatorReply, "");
 					optionLocator = Locators.ReplyAllMenu;
-					page = null;
+					page = new DisplayMail(this.MyApplication);
 
 					// FALLTHROUGH
 				} else if ( option == Button.B_FORWARD_MAIL ) {
 
 					this.zClickAt(pulldownLocatorReply, "");
 					optionLocator = Locators.ForwardMenu;
-					page = null;
+					page = new DisplayMail(this.MyApplication);
 
 				
 				}	if (option == Button.B_DELETE ) {
