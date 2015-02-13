@@ -589,7 +589,8 @@ public class ExecuteHarnessMain {
 
 			SleepMetrics.report();
 
-			if (ZimbraSeleniumProperties.getConfigProperties().getString("server.host").contains("lab.zimbra.com")) {
+			if (ZimbraSeleniumProperties.getConfigProperties().getString("server.host").contains("lab.zimbra.com") && 
+				!ZimbraSeleniumProperties.getConfigProperties().getString("emailTo").contains("qa-automation@zimbra.com")) {
 				SendEmail.main(new String[] {
 					"Selenium: " + classfilter.toString().replace("com.zimbra.qa.selenium.", "") + " | " +
 					"Groups: " + groups.toString().replace("always, ", "").trim() + " | " +
