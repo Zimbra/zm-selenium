@@ -599,49 +599,56 @@ public class FormContactNew extends AbsForm {
 
 			if (option == Button.O_FILEAS_COMPANY) {
 
-				optionLocator = "css=div#"+ getFileAsMenuID() + " td.ZWidgetTitle:contains('Company')";
+				//optionLocator = "css=div#"+ getFileAsMenuID() + " td.ZWidgetTitle:contains('Company')";
+				optionLocator="css=div[id^='editcontactform'][class='DwtMenu'][style*='display: block;'] div[id^='FA_COMPANY']";
 				page = null;
 
 				// FALL THROUGH
 				
 			} else if (option == Button.O_FILEAS_FIRSTLAST) {
 
-				optionLocator = "css=div#"+ getFileAsMenuID() + " td.ZWidgetTitle:contains('First Last')";
+				//optionLocator = "css=div#"+ getFileAsMenuID() + " td.ZWidgetTitle:contains('First Last')";
+				optionLocator="css=div[id^='editcontactform'][class='DwtMenu'][style*='display: block;'] div[id^='FA_FIRST_LAST']";
 				page = null;
 
 				// FALL THROUGH
 				
 			} else if (option == Button.O_FILEAS_LASTFIRST) {
 
-				optionLocator = "css=div#"+ getFileAsMenuID() + " td.ZWidgetTitle:contains('Last, First')";
+				//optionLocator = "css=div#"+ getFileAsMenuID() + " td.ZWidgetTitle:contains('Last, First')";
+				optionLocator="css=div[id^='editcontactform'][class='DwtMenu'][style*='display: block;'] div[id^='FA_LAST_C_FIRST']";
 				page = null;
 
 				// FALL THROUGH
 				
 			} else if (option == Button.O_FILEAS_FIRSTLASTCOMPANY) {
 
-				optionLocator = "css=div#"+ getFileAsMenuID() + " td.ZWidgetTitle:contains('First Last (Company)')";
+				//optionLocator = "css=div#"+ getFileAsMenuID() + " td.ZWidgetTitle:contains('First Last (Company)')";
+				optionLocator="css=div[id^='editcontactform'][class='DwtMenu'][style*='display: block;'] div[id^='FA_FIRST_LAST_COMPANY']";
 				page = null;
 
 				// FALL THROUGH
 				
 			} else if (option == Button.O_FILEAS_LASTFIRSTCOMPANY) {
 
-				optionLocator = "css=div#"+ getFileAsMenuID() + " td.ZWidgetTitle:contains('Last, First (Company)')";
+				//optionLocator = "css=div#"+ getFileAsMenuID() + " td.ZWidgetTitle:contains('Last, First (Company)')";
+				optionLocator="css=div[id^='editcontactform'][class='DwtMenu'][style*='display: block;'] div[id^='FA_LAST_C_FIRST_COMPANY']";
 				page = null;
 
 				// FALL THROUGH
 				
 			} else if (option == Button.O_FILEAS_COMPANYFIRSTLAST) {
 
-				optionLocator = "css=div#"+ getFileAsMenuID() + " td.ZWidgetTitle:contains('Company (First Last)')";
+				//optionLocator = "css=div#"+ getFileAsMenuID() + " td.ZWidgetTitle:contains('Company (First Last)')";
+				optionLocator="css=div[id^='editcontactform'][class='DwtMenu'][style*='display: block;'] div[id^='FA_COMPANY_FIRST_LAST']";
 				page = null;
 
 				// FALL THROUGH
 				
 			} else if (option == Button.O_FILEAS_COMPANYLASTFIRST) {
 
-				optionLocator = "css=div#"+ getFileAsMenuID() + " td.ZWidgetTitle:contains('Company (Last, First)')";
+				//optionLocator = "css=div#"+ getFileAsMenuID() + " td.ZWidgetTitle:contains('Company (Last, First)')";
+				optionLocator="css=div[id^='editcontactform'][class='DwtMenu'][style*='display: block;'] div[id^='FA_COMPANY_LAST_C_FIRST']";
 				page = null;
 
 				// FALL THROUGH
