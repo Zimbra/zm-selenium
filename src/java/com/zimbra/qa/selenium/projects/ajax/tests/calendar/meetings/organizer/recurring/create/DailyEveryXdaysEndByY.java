@@ -136,11 +136,11 @@ public class DailyEveryXdaysEndByY extends CalendarWorkWeekTest {
 		// Go to next/previous week and verify correct number of recurring instances
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 		SleepUtil.sleepMedium(); //Let UI draw first and important for calendar testcases reliability
-		ZAssert.assertGreaterThan(app.zPageCalendar.zGetApptCountWorkWeekView(), 10, "Verify correct no. of recurring instances are present in calendar view");
+		ZAssert.assertGreaterThanEqualTo(app.zPageCalendar.zGetApptCountWorkWeekView(), 10, "Verify correct no. of recurring instances are present in calendar view");
 
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 		SleepUtil.sleepMedium(); //Let UI draw first and important for calendar testcases reliability
-		ZAssert.assertGreaterThan(app.zPageCalendar.zGetApptCountWorkWeekView(), 10, "Verify correct no. of recurring instances are present in calendar view");
+		ZAssert.assertGreaterThanEqualTo(app.zPageCalendar.zGetApptCountWorkWeekView(), 10, "Verify correct no. of recurring instances are present in calendar view");
 		
 	}
 	
