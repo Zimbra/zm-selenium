@@ -46,7 +46,7 @@ public class HtmlElement {
 	 * @param source
 	 * @return
 	 */
-	public static HtmlElement clean(String source) {
+	public static HtmlElement clean(String source) throws IOException {
 		
 		// Use HtmlCleaner to clean up any HTML errors
 		HtmlElement element = new HtmlElement(cleaner.clean(source));
@@ -156,15 +156,9 @@ public class HtmlElement {
 	 * @param node
 	 * @return
 	 */
-	protected static String nodeToString(TagNode node) {
+	protected static String nodeToString(TagNode node) throws IOException{
 		PrettyHtmlSerializer serializer = new PrettyHtmlSerializer(cleaner.getProperties());
-		try {
-			return (serializer.getAsString(node));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+		return (serializer.getAsString(node));
 	}
 	
 	/**
@@ -193,7 +187,7 @@ public class HtmlElement {
 	 * @param node
 	 * @return
 	 */
-	public String prettyPrint() {
+	public String prettyPrint() throws IOException{
 		return (HtmlElement.nodeToString(this.Node));
 	}
 }
