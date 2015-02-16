@@ -29,7 +29,7 @@ public class Bug77991 extends CalendarWorkWeekTest {
   
   @Bugs(ids="77991")
   @Test(description="unable to save when cancelling conflicts",
-  groups={"test"}
+  groups={"functional"}
   )
   public void Bug77991_01() throws HarnessException  {
 	  
