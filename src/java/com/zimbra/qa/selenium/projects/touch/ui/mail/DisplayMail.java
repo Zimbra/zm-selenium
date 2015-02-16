@@ -16,10 +16,13 @@
  */
 package com.zimbra.qa.selenium.projects.touch.ui.mail;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import org.testng.Assert;
+
 import com.zimbra.qa.selenium.framework.items.AttachmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -837,11 +840,21 @@ public class DisplayMail extends AbsDisplay {
 		if ( source == null )
 			throw new HarnessException("source was null for "+ field);
 
-		logger.info("DisplayMail.zGetMailPropertyAsHtml() = "+ HtmlElement.clean(source).prettyPrint());
+		try {
+			logger.info("DisplayMail.zGetMailPropertyAsHtml() = "+ HtmlElement.clean(source).prettyPrint());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		// Clean up the HTML code to be valid
-		return (HtmlElement.clean(source));
-
+		try {
+			return (HtmlElement.clean(source));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return (null);
 
 	}
 	
