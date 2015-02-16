@@ -20,15 +20,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import org.testng.Assert;
-
 import com.zimbra.qa.selenium.framework.items.AttachmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.touch.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.touch.ui.mail.FormMailNew.Locators;
 
 /**
  * The <code>DisplayMail<code> object defines a read-only view of a message
@@ -812,7 +809,7 @@ public class DisplayMail extends AbsDisplay {
 		return (true);
 	}
 	
-	public HtmlElement zGetMailPropertyAsHtml(Field field) throws HarnessException {
+	public HtmlElement zGetMailPropertyAsHtml(Field field) throws HarnessException, IOException {
 
 		String source = null;
 
@@ -840,21 +837,11 @@ public class DisplayMail extends AbsDisplay {
 		if ( source == null )
 			throw new HarnessException("source was null for "+ field);
 
-		try {
-			logger.info("DisplayMail.zGetMailPropertyAsHtml() = "+ HtmlElement.clean(source).prettyPrint());
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		logger.info("DisplayMail.zGetMailPropertyAsHtml() = "+ HtmlElement.clean(source).prettyPrint());
 
 		// Clean up the HTML code to be valid
-		try {
-			return (HtmlElement.clean(source));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return (null);
+		return (HtmlElement.clean(source));
+
 
 	}
 	
