@@ -117,7 +117,7 @@ public class ExecuteHarnessMain {
 	 * <p>
 	 * For example, projects.zcs.tests
 	 */
-	public String classfilter = null;
+	public static String classfilter = null;
 
 	/**
 	 * The regex pattern used to exclude search for tests
@@ -129,7 +129,7 @@ public class ExecuteHarnessMain {
 	/**
 	 * The list of groups to execute
 	 */
-	public ArrayList<String> groups = new ArrayList<String>(Arrays.asList(
+	public static ArrayList<String> groups = new ArrayList<String>(Arrays.asList(
 			"always", "sanity"));
 
 	/**
@@ -146,7 +146,7 @@ public class ExecuteHarnessMain {
 	/**
 	 * Where output is logged
 	 */
-	protected String testoutputfoldername = null;
+	protected static String testoutputfoldername = null;
 
 	public void setTestOutputFolderName(String path) {
 
@@ -515,7 +515,7 @@ public class ExecuteHarnessMain {
 		
 	}
 	
-	protected String getLocalMachineName() throws HarnessException {
+	protected static String getLocalMachineName() throws HarnessException {
 		logger.info("getLocalMachineName()");
 
 		// Command:
@@ -566,13 +566,13 @@ public class ExecuteHarnessMain {
 
 			// Configure the runner
 			ng.setXmlSuites(suites);
-			ng.addListener(new MethodListener(this.testoutputfoldername));
+			ng.addListener(new MethodListener(ExecuteHarnessMain.testoutputfoldername));
 			ng.addListener(new ErrorDialogListener());
 			ng.addListener(ExecuteHarnessMain.currentResultListener = new ResultListener(
-					this.testoutputfoldername));
+					ExecuteHarnessMain.testoutputfoldername));
 
 			try {
-				ng.setOutputDirectory(this.testoutputfoldername + "/TestNG");
+				ng.setOutputDirectory(ExecuteHarnessMain.testoutputfoldername + "/TestNG");
 			} catch (Exception e) {
 				throw new HarnessException(e);
 			}
@@ -592,16 +592,16 @@ public class ExecuteHarnessMain {
 			if (ZimbraSeleniumProperties.getConfigProperties().getString("server.host").contains("lab.zimbra.com") && 
 				!ZimbraSeleniumProperties.getConfigProperties().getString("emailTo").contains("qa-automation@zimbra.com")) {
 				SendEmail.main(new String[] {
-					"Selenium: " + classfilter.toString().replace("com.zimbra.qa.selenium.", "") + " | " +
-					"Groups: " + groups.toString().replace("always, ", "").trim() + " | " +
-					"Total Tests: " + String.valueOf(testsTotal) +
-					" [Passed: " + String.valueOf(testsPass) +
-					", Failed: " + String.valueOf(testsFailed) +
-					", Skipped: " + String.valueOf(testsSkipped) + "]" + " | " +
-					ZimbraSeleniumProperties.getConfigProperties().getString("server.host"),
-					ExecuteHarnessMain.currentResultListener.getResults(),
-					testoutputfoldername + "\\TestNG\\emailable-report.html",
-					testoutputfoldername + "\\TestNG\\index.html" });
+						"Selenium: " + ZimbraSeleniumProperties.zimbraGetVersionString() + " | " +
+						classfilter.toString().replace("com.zimbra.qa.selenium.", "") + " | " +
+						"Groups: " + groups.toString().replace("always, ", "").trim() + " | " +
+						"Total Tests: " + String.valueOf(testsTotal) +
+						" [Passed: " + String.valueOf(testsPass) +
+						", Failed: " + String.valueOf(testsFailed) +
+						", Skipped: " + String.valueOf(testsSkipped) + "]",
+						ExecuteHarnessMain.currentResultListener.getCustomResult(),
+						testoutputfoldername + "\\TestNG\\emailable-report.html",
+						testoutputfoldername + "\\TestNG\\index.html" });
 			}
 
 			return (ExecuteHarnessMain.currentResultListener == null ? "Done"
@@ -664,7 +664,7 @@ public class ExecuteHarnessMain {
 							// Check the groups to make sure they match
 							for (String g : Arrays.asList(t.groups())) {
 
-								if (this.groups.contains(g)) {
+								if (ExecuteHarnessMain.groups.contains(g)) {
 
 									logger.debug("sumTestCounts: matched: " + g);
 
@@ -836,6 +836,7 @@ public class ExecuteHarnessMain {
 		/**
 		 * Add a new FileAppender for each class before invocation
 		 */
+		@SuppressWarnings("deprecation")
 		@Override
 		public void beforeInvocation(IInvokedMethod method, ITestResult result) {
 			if (method.isTestMethod()) {
@@ -881,6 +882,7 @@ public class ExecuteHarnessMain {
 		/**
 		 * Remove any FileAppenders after invocation
 		 */
+		@SuppressWarnings("deprecation")
 		@Override
 		public void afterInvocation(IInvokedMethod method, ITestResult result) {
 			if (method.isTestMethod()) {
@@ -939,6 +941,7 @@ public class ExecuteHarnessMain {
 
 		public String getResults() {
 			StringBuilder sb = new StringBuilder();
+			
 			sb.append("Total Tests:   ").append(testsTotal).append('\n');
 			sb.append("Total Passed:  ").append(testsPass).append('\n');
 			sb.append("Total Failed:  ").append(testsFailed).append('\n');
@@ -955,6 +958,42 @@ public class ExecuteHarnessMain {
 					sb.append(s).append('\n');
 				}
 			}
+			return (sb.toString());
+		}
+		
+		public String getCustomResult() throws HarnessException {
+			StringBuilder sb = new StringBuilder();
+			
+			sb.append("Selenium Automation Report: ").append(ZimbraSeleniumProperties.zimbraGetVersionString() + "_" + ZimbraSeleniumProperties.zimbraGetReleaseString()).append('\n').append('\n');
+					
+			sb.append("Client  :  ").append(getLocalMachineName()).append('\n');
+			sb.append("Server  :  ").append(ZimbraSeleniumProperties.getConfigProperties().getString("server.host")).append('\n').append('\n');
+			
+			sb.append("Browser :  ").append(ZimbraSeleniumProperties.getConfigProperties().getString("browser")).append('\n');
+			sb.append("Pattern :  ").append(classfilter.toString().replace("com.zimbra.qa.selenium.", "")).append('\n');
+			sb.append("Groups  :  ").append(groups.toString().replace("always, ", "").trim()).append('\n').append('\n');
+			
+			sb.append("Test Output   :  ").append(testoutputfoldername).append('\n').append('\n');
+						
+			sb.append("Total Tests   :  ").append(testsTotal).append('\n');
+			sb.append("Total Passed  :  ").append(testsPass).append('\n');
+			sb.append("Total Failed  :  ").append(testsFailed).append('\n');
+			sb.append("Total Skipped :  ").append(testsSkipped).append('\n');
+			
+			if (!failedTests.isEmpty()) {
+				sb.append("\n\nFailed tests:\n");
+				for (String s : failedTests) {
+					sb.append(s).append('\n');
+				}
+			}
+			
+			if (!skippedTests.isEmpty()) {
+				sb.append("\n\nSkipped tests:\n");
+				for (String s : skippedTests) {
+					sb.append(s).append('\n');
+				}
+			}
+			
 			return (sb.toString());
 		}
 
@@ -992,6 +1031,7 @@ public class ExecuteHarnessMain {
 		 * @param result
 		 * @return
 		 */
+		@SuppressWarnings("deprecation")
 		public static void getScreenCapture(ITestResult result) {
 			String filename = getScreenCaptureFilename(result.getMethod()
 					.getMethod());
@@ -1041,6 +1081,7 @@ public class ExecuteHarnessMain {
 					c, m, ++mailboxlogcount));
 		}
 
+		@SuppressWarnings("deprecation")
 		public static void getMailboxLog(ITestResult result)
 				throws HarnessException {
 			logger.warn("Copying mailbox.log");
@@ -1087,6 +1128,7 @@ public class ExecuteHarnessMain {
 		 * Add 1 to the failed tests
 		 */
 		@Override
+		@SuppressWarnings("deprecation")
 		public void onTestFailure(ITestResult result) {
 			testsFailed++;
 			String fullname = result.getMethod().getMethod()
@@ -1101,6 +1143,7 @@ public class ExecuteHarnessMain {
 		 * Add 1 to the skipped tests
 		 */
 		@Override
+		@SuppressWarnings("deprecation")
 		public void onTestSkipped(ITestResult result) {
 			testsSkipped++;
 			String fullname = result.getMethod().getMethod()
@@ -1230,12 +1273,12 @@ public class ExecuteHarnessMain {
 
 			if (cmd.hasOption('p')) {
 				String filter = cmd.getOptionValue('p');
-				this.classfilter = filter;
+				ExecuteHarnessMain.classfilter = filter;
 
 				// Set the app type on the properties
 				for (AppType t : AppType.values()) {
 					// Look for ".type." (e.g. ".ajax.") in the pattern
-					if (this.classfilter.contains(t.toString().toLowerCase())) {
+					if (ExecuteHarnessMain.classfilter.contains(t.toString().toLowerCase())) {
 						ZimbraSeleniumProperties.setAppType(t);
 						break;
 					}
@@ -1273,7 +1316,7 @@ public class ExecuteHarnessMain {
 				// Remove spaces and split on commas
 				String[] values = cmd.getOptionValue('g')
 						.replaceAll("\\s+", "").split(",");
-				this.groups = new ArrayList<String>(Arrays.asList(values));
+				ExecuteHarnessMain.groups = new ArrayList<String>(Arrays.asList(values));
 			}
 
 			if (cmd.hasOption("eg")) {
