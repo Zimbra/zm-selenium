@@ -12,7 +12,8 @@ public class SendEmail
    {
       
 	  // Sender's email ID needs to be mentioned
-	  String from = ZimbraSeleniumProperties.getConfigProperties().getString("emailFrom");
+	  // String from = ZimbraSeleniumProperties.getConfigProperties().getString("emailFrom");
+	  String from = "offline@zimbra.com";
 	      
 	  // Recipient's email ID needs to be mentioned.
       String to = ZimbraSeleniumProperties.getConfigProperties().getString("emailTo");

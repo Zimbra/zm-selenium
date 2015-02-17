@@ -363,6 +363,16 @@ public class ZimbraSeleniumProperties {
 		// The version string looks like 6.0.7_GA_2470.UBUNTU8.NETWORK
 		return (version);
 	}
+	
+	public static String zimbraGetReleaseString() throws HarnessException {		
+		ZimbraAdminAccount.GlobalAdmin().soapSend("<GetVersionInfoRequest xmlns='urn:zimbraAdmin'/>");
+		String release = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:info", "release");
+		if ( release == null )
+			throw new HarnessException("Unable to determine version from GetVersionInfoResponse "+ ZimbraAdminAccount.GlobalAdmin().soapLastResponse());
+		
+		// The release string looks like 20150201090931
+		return (release);
+	}
 
 
 	// for unit test need to change access to public
