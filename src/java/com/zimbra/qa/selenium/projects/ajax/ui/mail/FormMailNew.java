@@ -549,8 +549,9 @@ public class FormMailNew extends AbsForm {
 			this.sType(locator, value);
 			//this.sTypeKeys(locator, "\t");
 			// For some reason, no bubble takes place.  As a workaround, type Enter			
-			this.zKeyDown("13");
-			
+			//this.zKeyDown("13");
+			this.sKeyDown(locator, "13");
+			//SleepUtil.sleepMedium();
 			this.zWaitForBusyOverlay();
 
 			return;
@@ -580,7 +581,7 @@ public class FormMailNew extends AbsForm {
 			// For some reason, no bubble takes place.  As a workaround, type Tab
 			//this.sTypeKeys(locator, "\t");
 			// For some reason, no bubble takes place.  As a workaround, type Enter			
-			this.zKeyDown("13");
+			this.sKeyDown(locator, "13");
 			
 			this.zWaitForBusyOverlay();
 
@@ -611,7 +612,7 @@ public class FormMailNew extends AbsForm {
 			// For some reason, no bubble takes place.  As a workaround, type Tab
 			//this.sTypeKeys(locator, "\t");
 			// For some reason, no bubble takes place.  As a workaround, type Enter			
-			this.zKeyDown("13");
+			this.sKeyDown(locator, "13");
 			
 			this.zWaitForBusyOverlay();
 
