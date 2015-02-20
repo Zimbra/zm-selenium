@@ -14,22 +14,23 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.touch.tests.mail.mail.message;
+package com.zimbra.qa.selenium.projects.touch.tests.mail.views.conversation;
 
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
 
-public class DeleteMail extends PrefGroupMailByMessageTest {
+
+public class DeleteMail extends PrefGroupMailByConversationTest {
 
 	public DeleteMail() {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());
 	}
 	
-	@Test( description = "Delete a mail item in message view",
+	@Test( description = "Delete a mail item in conversation view.",
 			groups = { "sanity" })
 			
 	public void DeleteMail_01() throws HarnessException {
@@ -92,6 +93,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
         app.zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, "Trash");
         ZAssert.assertEquals(app.zPageMail.zVerifyMessageExists(subject), true, "Verify message is deleted");
-	
-	}	
+       
+	}
+
 }

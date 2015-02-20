@@ -14,31 +14,32 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.touch.tests.mail.mail.message;
+package com.zimbra.qa.selenium.projects.touch.tests.mail.views.conversation;
 
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
 import com.zimbra.qa.selenium.projects.touch.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.touch.ui.mail.FormMailNew.Field;
 
-public class ReplyMail extends PrefGroupMailByMessageTest {
+public class ForwardHtmlMail extends PrefGroupMailByConversationTest {
 
-	public ReplyMail() {
-		logger.info("New "+ ReplyMail.class.getCanonicalName());
+	public ForwardHtmlMail() {
+		logger.info("New "+ ForwardHtmlMail.class.getCanonicalName());
 	}
 	
 	@Bugs( ids = "85534")
-	@Test( description = "Reply to a message and verify it",
+	@Test( description = "Forward a html mail and verify body content",
 			groups = { "sanity" })
 			
-	public void ReplyMail_01() throws HarnessException {
+	public void ForwardHtmlMail_01() throws HarnessException {
 		
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "text <strong>bold"+ ZimbraSeleniumProperties.getUniqueString() +"</strong> text";
 		String modifiedContent = "modified body" + ZimbraSeleniumProperties.getUniqueString();
+		
 		String htmlBody = XmlStringUtil.escapeXml(
 				"<html>" +
 					"<head></head>" +
@@ -47,57 +48,49 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
-				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-					"<m>" +
-						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-						"<e t='c' a='"+ ZimbraAccount.AccountB().EmailAddress +"'/>" +
-						"<su>"+ subject +"</su>" +
-						"<mp ct='multipart/alternative'>" +
-						"<mp ct='text/plain'>" +
-							"<content>"+ body +"</content>" +
-						"</mp>" +
-						"<mp ct='text/html'>" +
-							"<content>"+ htmlBody +"</content>" +
-						"</mp>" +
-					"</mp>" +
-					"</m>" +
-				"</SendMsgRequest>");
+					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+						"<m>" +
+							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+							"<su>"+ subject +"</su>" +
+							"<mp ct='multipart/alternative'>" +
+								"<mp ct='text/plain'>" +
+									"<content>"+ body +"</content>" +
+								"</mp>" +
+								"<mp ct='text/html'>" +
+									"<content>"+ htmlBody +"</content>" +
+								"</mp>" +
+							"</mp>" +
+						"</m>" +
+					"</SendMsgRequest>");
 		
+		// Select the mail from inbox
 		app.zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, "Inbox");
-		
-		// Select the mail
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
-		// Reply to mail
-		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressPulldown(Button.B_REPLY, Button.O_REPLY);
+		// Forward the mail
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressPulldown(Button.B_REPLY, Button.O_FORWARD);
+		mailform.zFillField(Field.To, ZimbraAccount.AccountB().EmailAddress);
 		mailform.zFillField(Field.Body, modifiedContent);
 		mailform.zSubmit();
 
 		// Verify received mail
-		ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.AccountB().soapSend(
 				"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
 						+ "<query>subject:(" + subject + ")</query>"
 						+ "</SearchRequest>");
-		String toid = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
+		String toid = ZimbraAccount.AccountB().soapSelectValue("//mail:m", "id");
 		
-		ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.AccountB().soapSend(
 				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + toid
 						+ "' html='1'/>" + "</GetMsgRequest>");
-
-		String tofrom = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a");
-		String toto = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='t']", "a");
-		String tocc = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='c']", "a");
-		String tosubject = ZimbraAccount.AccountA().soapSelectValue("//mail:su", null);
-		String tobody = ZimbraAccount.AccountA().soapSelectValue("//mail:content", null);
 		
-		ZAssert.assertEquals(tofrom, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
-		ZAssert.assertEquals(toto, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
-		ZAssert.assertNull(tocc, "Verify cc value is null");
-		ZAssert.assertEquals(tosubject, "Re: " + subject, "Verify the subject field is correct");
+		String tosubject = ZimbraAccount.AccountB().soapSelectValue("//mail:su", null);
+		ZAssert.assertEquals(tosubject, "Fwd: " + subject, "Verify the subject field is correct");
+
+		String tobody = ZimbraAccount.AccountB().soapSelectValue("//mail:content", null);
 		ZAssert.assertStringContains(tobody, body, "Verify the body content");
 		ZAssert.assertStringContains(tobody, modifiedContent, "Verify the modified content");
-
+		
 	}
-
 }

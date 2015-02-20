@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.touch.tests.mail.mail.message;
+package com.zimbra.qa.selenium.projects.touch.tests.mail.views.message;
 
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.MailItem;
