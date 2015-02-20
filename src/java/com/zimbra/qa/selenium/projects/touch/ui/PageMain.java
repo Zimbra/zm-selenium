@@ -75,7 +75,7 @@ public class PageMain extends AbsTab {
 		if ( !((AppTouchClient)MyApplication).zPageLogin.zIsActive() ) {
 			((AppTouchClient)MyApplication).zPageLogin.zNavigateTo();
 		}
-		((AppTouchClient)MyApplication).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		((AppTouchClient)MyApplication).zPageLogin.zLogin(ZimbraAccount.AccountZTC());
 		
 		// June 28, 2013 (9.0.0 Beta)
 		// For coverage, it seems to take longer than 60 seconds for the page to load
