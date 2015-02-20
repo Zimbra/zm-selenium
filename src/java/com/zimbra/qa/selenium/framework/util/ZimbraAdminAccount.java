@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.framework.util;
 import org.apache.log4j.*;
 
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 
 
 
@@ -36,6 +37,111 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 	}
 
 
+	
+	
+	
+	/**
+	 * Creates the Delegated Administrator account on the ZCS using CreateAccountRequest
+	 * zimbraIsAdminAccount is set to TRUE
+	 */
+	public  ZimbraAdminAccount provisionDA(String email) {
+		
+		try {
+			
+			// Check if the account already exists
+			// If yes, don't provision again
+			//
+		
+			// Make sure domain exists
+			ZimbraDomain domain = new ZimbraDomain( EmailAddress.split("@")[1]);
+			domain.provision();
+			
+				
+			// Create a new account in the Admin Console using SOAP
+			AccountItem account = new AccountItem(email,ZimbraSeleniumProperties.getStringProperty("testdomain"));
+			ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+					"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
+					+			"<name>" + account.getEmailAddress() + "</name>"
+					+			"<password>test123</password>"
+					+			"<a xmlns='' n='zimbraIsDelegatedAdminAccount'>TRUE</a>"
+					+		"</CreateAccountRequest>");
+
+	     
+			
+			Element[] createAccountResponse = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNodes("//admin:CreateAccountResponse");
+
+
+			if ( (createAccountResponse == null) || (createAccountResponse.length == 0)) {
+
+				Element[] soapFault = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNodes("//soap:Fault");
+				if ( soapFault != null && soapFault.length > 0 ) {
+				
+					String error = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//zimbra:Code", null);
+					throw new HarnessException("Unable to create account: "+ error);
+					
+				}
+				
+				throw new HarnessException("Unknown error when provisioning account");
+				
+			}
+
+			// Set the account settings based on the response
+			ZimbraId = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:account", "id");
+			ZimbraMailHost = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:account/admin:a[@n='zimbraMailHost']", null);
+
+			// If the adminHost value is set, use that value for the ZimbraMailHost
+			String adminHost = ZimbraSeleniumProperties.getStringProperty("adminHost", null);
+			if ( adminHost != null ) {
+				ZimbraMailHost = adminHost;
+			}
+			
+			
+			
+			// Assign standard basic rights to DA 
+			String[] rights = {"adminConsoleAccountRights","adminConsoleDLRights","adminConsoleAliasRights","adminConsoleResourceRights","adminConsoleSavedSearchRights","adminConsoleDomainRights"};
+			 for (String right:rights) {
+				 this.grantRightRequest(account, right.trim());
+			 }
+
+			
+				
+				ZimbraAdminAccount.GlobalAdmin().soapSend(
+						"<FlushCacheRequest  xmlns='urn:zimbraAdmin'>" +
+							"<cache type='galgroup'/>" +
+			        	"</FlushCacheRequest>");
+				
+			 ZimbraAdminAccount.GlobalAdmin().soapSend(
+					 "<GetEffectiveRightsRequest xmlns='urn:zimbraAdmin'>" 
+							 +	"<target  by='name' type='account'>" +   account.getEmailAddress()  + "</target>"
+							 +	"<grantee  by='name' >" + GlobalAdmin().EmailAddress + "</grantee>" 
+							 + "</GetEffectiveRightsRequest>");
+
+					
+			// If SOAP trace logging is specified, turn it on
+			if ( ZimbraSeleniumProperties.getStringProperty("soap.trace.enabled", "false").toLowerCase().equals("true") ) {
+				
+				ZimbraAdminAccount.GlobalAdmin().soapSend(
+							"<AddAccountLoggerRequest xmlns='urn:zimbraAdmin'>"
+						+		"<account by='name'>"+ EmailAddress + "</account>"
+						+		"<logger category='zimbra.soap' level='trace'/>"
+						+	"</AddAccountLoggerRequest>");
+
+			}
+
+
+			// Sync the GAL to put the account into the list
+			domain.syncGalAccount();
+
+		} catch (HarnessException e) {
+			logger.error("Unable to provision account: "+ EmailAddress);
+			ZimbraId = null;
+			ZimbraMailHost = null;
+		}
+		
+		return (this);
+	}
+	
+	
 	/**
 	 * Creates the account on the ZCS using CreateAccountRequest
 	 * zimbraIsAdminAccount is set to TRUE
@@ -259,4 +365,19 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 		logger.info("Done!");
 	}
 
+	
+	public void grantRightRequest(AccountItem account , String right)throws HarnessException {
+
+	// grant given right creation request
+	
+	ZimbraAdminAccount.GlobalAdmin().soapSend(
+     "<GrantRightRequest xmlns='urn:zimbraAdmin'>" 
+		+	"<target  by='name' type='domain'>" + account.getDomainName() + "</target>"
+		+	"<grantee  by='name' type='usr'>" + account.getEmailAddress() + "</grantee>" 
+		+	"<right>"+ right + "</right>" 
+	+ "</GrantRightRequest>");
+	
+	
+	
+	}
 }
