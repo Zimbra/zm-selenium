@@ -19,6 +19,8 @@ package com.zimbra.qa.selenium.projects.touch.ui;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.projects.touch.ui.calendar.TreeCalendar;
+import com.zimbra.qa.selenium.projects.touch.ui.mail.TreeMail.Locators;
 
 public class PageCreateTag extends AbsPage {
 
@@ -26,13 +28,15 @@ public class PageCreateTag extends AbsPage {
 		
 		public static final String PageDivLocatorCSS = "css=div[class='x-dock x-dock-vertical x-sized']";
 		public static final String PageNameLocatorCSS = "css=div[class='x-dock x-dock-vertical x-sized'] input[class='x-input-el x-form-field x-input-text']";
+		public static final String zOrganizerButton = "css=div[id='ext-button-1'] span[class='x-button-icon x-shown organizer']";
 		
 		public static final String zNewTagButton = "css=div[class='x-dock x-dock-vertical x-sized'] span[class='x-button-label']:contains('New Tag')";
 		public static final String zDoneButton = "css=div[class='x-dock x-dock-vertical x-sized'] span[class='x-button-label']:contains('Done')";
 		public static final String zEditButton = "css=div[class='x-dock x-dock-vertical x-sized'] span[class='x-button-label']:contains('Edit')";
 		
-		public static final String zEditTagNameField = "css=div[id^='ext-organizeredit'] div[id='ext-input-3'] input";
+		//public static final String zEditTagNameField = "css=div[id^='ext-organizeredit'] div[id='ext-input-3'] input";
 		public static final String zTagNameField = "css=div[id^='ext-organizeredit'] input[id='ext-element-210']";
+		public static final String zEditTagNameField = "css=div[id^='ext-organizeredit'] div[id^='ext-input'] input[placeholder='Tag name']";
 		public static final String zColorButton = "css=div[id^='ext-organizeredit'] div[id='ext-colorselector-1'] div[id^='ext-element-']:nth-child(2)";
 		public static final String zYellowColorButton = "css=div[id^='ext-organizeredit'] div[id='ext-colorselector-1'] div[class='zcs-tag-6']";
 		public static final String zSaveButton = "css=div[class='x-dock x-dock-vertical x-sized'] span[class='x-button-label']:contains('Save')";
@@ -95,6 +99,7 @@ public class PageCreateTag extends AbsPage {
 			locator = Locators.zDoneButton;
 			
 		} else if ( button == Button.B_EDIT ) {
+			this.sClickAt(Locators.zOrganizerButton, "");
 			locator = Locators.zEditButton;
 			
 		} else if ( button == Button.B_SAVE ) {
