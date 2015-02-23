@@ -724,7 +724,17 @@ public abstract class AbsSeleniumObject {
 					keycode1 = KeyEvent.VK_N;
 					keycode2 = KeyEvent.VK_K;
 
-				} else {
+				}else if (Integer.parseInt(kc[0]) == 17
+						&& Integer.parseInt(kc[1]) == 86) {
+					keycode1 = KeyEvent.VK_CONTROL;
+					keycode2 = KeyEvent.VK_V;
+
+				} else if (Integer.parseInt(kc[0]) == 17
+						&& Integer.parseInt(kc[1]) == 67) {
+					keycode1 = KeyEvent.VK_CONTROL;
+					keycode2 = KeyEvent.VK_C;
+
+				}else {
 					throw new HarnessException("implement shortcut: " + keyCode);
 
 				}
