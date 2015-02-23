@@ -1690,6 +1690,18 @@ public class PageMail extends AbsTab {
 			}
 
 			return page;
+		}else if ( shortcut == Shortcut.S_PASTE ) {			
+			page= null;
+			keyCode= "17,86";
+			zKeyDown(keyCode);
+			return (page);
+
+		}else if ( shortcut == Shortcut.S_COPY ) {			
+			page= null;
+			keyCode= "17,67";
+			zKeyDown(keyCode);
+			return (page);
+
 		}
 
 		zKeyboard.zTypeCharacters(shortcut.getKeys());
