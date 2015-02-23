@@ -250,6 +250,8 @@ public abstract class AbsTab extends AbsPage {
 
 					this.zSelectWindow(t); // Select the window
 					this.sClose(); // Close the window
+					this.zSelectWindow("null");
+
 					return;
 
 				}
@@ -264,5 +266,34 @@ public abstract class AbsTab extends AbsPage {
 
 		}
 
+	}
+	
+	
+	
+	public void zSeparateWindowClose() throws HarnessException {
+
+		try {
+
+			List<String> titles = this.sGetAllWindowIds();
+			logger.debug("Found " + titles.size() + " open windows");
+			String winId="";
+			if(titles.size()>1){
+			for (int a=1;a<=titles.size();a++) {
+				logger.info("Found " + a );
+				
+					winId=""+a;
+					this.sSelectWindow(winId);; // Select the window
+					this.sClose(); // Close the window
+			}
+			this.zSelectWindow("null");
+			logger.warn("Tried closing window" +  winId + " but it was not found");
+
+		}
+			} finally {
+
+			this.zSelectWindow("null");
+
+		}
+		
 	}
 }
