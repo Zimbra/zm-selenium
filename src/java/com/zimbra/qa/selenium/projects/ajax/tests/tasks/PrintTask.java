@@ -84,6 +84,7 @@ public class PrintTask extends AjaxCommonTest {
 
 
 		SeparateWindowPrintPreview window = null;
+		String windowTitle = "Zimbra";
 		
 		try {
 				
@@ -102,13 +103,17 @@ public class PrintTask extends AjaxCommonTest {
 			ZAssert.assertStringContains(Printcontent, bodyText, "Verify content in Print view");
 			
 			//Close Show Original window
-			window.zCloseWindow();
-			window = null;
+			app.zPageTasks.zSeparateWindowClose(windowTitle);
+			app.zPageTasks.sSelectWindow(null);
+		//	window.zCloseWindow();
+		//	window = null;
+			//app.zPageTasks.sGetAllWindowTitles();
 		
 		} finally {
 			if ( window != null ) {
-				window.zCloseWindow();
-				window = null;
+				//window.zCloseWindow();
+				app.zPageTasks.zSeparateWindowClose(windowTitle);				
+				app.zPageTasks.sSelectWindow(null);
 			}
 		}
 	}
@@ -154,6 +159,7 @@ public class PrintTask extends AjaxCommonTest {
 
 		
 		SeparateWindowPrintPreview window = null;
+		String windowTitle = "Zimbra";
 		
 		try {
 			
@@ -174,13 +180,15 @@ public class PrintTask extends AjaxCommonTest {
 			ZAssert.assertStringContains(Printcontent, bodyText, "Verify content in Print view");
 			
 			//Close Show Original window
-			window.zCloseWindow();
-			window = null;
+		//	window.zCloseWindow();
+		//	window = null;
+			app.zPageTasks.zSeparateWindowClose(windowTitle);				
+			app.zPageTasks.sSelectWindow(null);
 
 		} finally {
 			if ( window != null ) {
-				window.zCloseWindow();
-				window = null;
+				app.zPageTasks.zSeparateWindowClose(windowTitle);				
+				app.zPageTasks.sSelectWindow(null);
 			}
 		}
 	}
@@ -259,6 +267,7 @@ public class PrintTask extends AjaxCommonTest {
 		
 		
 		SeparateWindowPrintPreview window = null;
+		String windowTitle = "Zimbra";
 
 		try {
 			
@@ -278,13 +287,13 @@ public class PrintTask extends AjaxCommonTest {
 			ZAssert.assertStringContains(Printcontent, subject3, "Verify subject2 in Print view");
 			
 			//Close Show Original window
-			window.zCloseWindow();
-			window = null;
+			app.zPageTasks.zSeparateWindowClose(windowTitle);				
+			app.zPageTasks.sSelectWindow(null);
 		
 		} finally {
 			if ( window != null ) {
-				window.zCloseWindow();
-				window = null;
+				app.zPageTasks.zSeparateWindowClose(windowTitle);				
+				app.zPageTasks.sSelectWindow(null);
 			}
 		}
 
