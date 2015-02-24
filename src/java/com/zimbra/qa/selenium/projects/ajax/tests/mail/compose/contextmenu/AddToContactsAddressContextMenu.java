@@ -21,7 +21,7 @@ public class AddToContactsAddressContextMenu extends PrefGroupMailByMessageTest 
 
 	}
 
-	@Test(description = "Right click to bubble address>>AddToContact", groups = { "smoke" })
+	@Test(description = "Right click to bubble address>>AddToContact", groups = { "smoke1" })
 	public void AddToContactAddressContextMenu() throws HarnessException {
 
 		String contactFirst = "First"
@@ -51,6 +51,7 @@ public class AddToContactsAddressContextMenu extends PrefGroupMailByMessageTest 
 		app.zPageMail.sFocus("css=input[id$='_FIRST_input']");
 		app.zPageMail.sType("css=input[id$='_FIRST_input']", contactFirst);
 		app.zPageMail.sClickAt(FormContactNew.Toolbar.SAVE, "");
+		SleepUtil.sleepMedium();
 
 		// -- Data Verification
 
@@ -61,8 +62,7 @@ public class AddToContactsAddressContextMenu extends PrefGroupMailByMessageTest 
 		String contactId = app.zGetActiveAccount().soapSelectValue("//mail:cn",
 				"id");
 
-		ZAssert.assertNotNull(contactId,
-				"Verify the contact is returned in the search");
+		ZAssert.assertNotNull(contactId,"Verify the contact is returned in the search");
 
 		app.zGetActiveAccount().soapSend(
 				"<GetContactsRequest xmlns='urn:zimbraMail'>" + "<cn id='"
