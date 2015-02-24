@@ -15,7 +15,6 @@
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
-import org.openqa.selenium.WebElement;
 
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.IItem;
@@ -46,7 +45,7 @@ public class DialogFindAttendees extends DialogWarning {
 		
 		public static final String ShowOptionalLink = "css=td[id$='_show_optional']";
 		public static final String ContactPickerSerachField = "id=ZmContactPicker_searchField";
-		public static final String ContactPickerSerachButton = "css=td[id$='_title']:contains('Search')";
+		public static final String ContactPickerSerachButton = "css=td[id='ZmContactPicker_searchButton'] div table tbody tr td[id$='title']:contains('Search')";
 		public static final String ContactPickerFirstContact = "css=div[id='ZmContactPicker'] div[class='DwtChooserListView'] div[id^='zli__DWT'] span";
 		public static final String SelectContactFromPicker = "css=td[id^='DwtChooserButton']:contains('To:')";
 		public static final String AddContactFromPicker = "css=td[id^='ZmContactPicker_button']:contains('OK')";

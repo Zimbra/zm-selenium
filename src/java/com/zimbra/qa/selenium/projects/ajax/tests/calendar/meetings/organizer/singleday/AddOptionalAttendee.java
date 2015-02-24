@@ -150,15 +150,15 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
         apptForm.zToolbarPressButton(Button.B_SEND);
 		SleepUtil.sleepVeryLong();
       
-     // Verify optional attendee receives meeting invitation message
-		ZimbraAccount.AccountB().soapSend(
+        // Verify optional attendee receives meeting invitation message
+		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 			+		"<query>subject:("+ apptSubject +")</query>"
 			+	"</SearchRequest>");
 		String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify new invitation appears in the optional attendee's inbox");
  
-		
+	
 		// Verify that optional attendee present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
