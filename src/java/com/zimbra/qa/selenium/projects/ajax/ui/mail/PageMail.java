@@ -2168,6 +2168,23 @@ public class PageMail extends AbsTab {
 
 	}
 
+	public void CopyAddressContextMenu() throws HarnessException {
+		this.sFocus(Locators.zCopyAddressContextMenu);
+		this.sClickAt(Locators.zCopyAddressContextMenu, "");
+
+	}
+
+	public void EditAddressContextMenu() throws HarnessException {
+		this.sFocus(Locators.zEditAddressContextMenu);
+		this.sClickAt(Locators.zEditAddressContextMenu, "");
+
+	}
+
+	public void AddToContactAddressContextMenu() throws HarnessException {
+		this.sFocus(Locators.zContactAddressContextMenu);
+		this.sClickAt(Locators.zContactAddressContextMenu, "");
+
+	}
 	public boolean zVerifyAllAddressContextMenu() throws HarnessException {
 
 		List<String> locators = Arrays.asList(
