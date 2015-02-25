@@ -19,6 +19,8 @@ package com.zimbra.qa.selenium.projects.admin.ui;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
+import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
+import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 
 
 /**
@@ -301,6 +303,36 @@ public class AppAdminConsole extends AbsApplication {
 	}
 
 
+	public void provisionAuthenticateDA() throws HarnessException {
+		// Create a new AdminAccount
+		ZimbraAdminAccount accounta = new ZimbraAdminAccount("admin"+ ZimbraSeleniumProperties.getUniqueString() + "@" + ZimbraSeleniumProperties.getStringProperty("testdomain"));
+
+		accounta.provisionDA(accounta.EmailAddress);
+		  
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+			"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
+	  +   " <id>"+ accounta.ZimbraId+"</id>"
+	   +   "<a n='zimbraAdminConsoleUIComponents'>accountListView</a>"
+	  +    "<a n='zimbraAdminConsoleUIComponents'>downloadsView</a>"
+	  +    "<a n='zimbraAdminConsoleUIComponents'>DLListView</a>"
+	  +    "<a n='zimbraAdminConsoleUIComponents'>aliasListView</a>"
+	  +    "<a n='zimbraAdminConsoleUIComponents'>resourceListView</a>"
+	  +    "<a n='zimbraAdminConsoleUIComponents'>saveSearch</a>"
+	  +    "<a n='zimbraAdminConsoleUIComponents'>domainListView</a>"
+	  +  "</ModifyAccountRequest>");
+		
+		
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+				"<FlushCacheRequest  xmlns='urn:zimbraAdmin'>" +
+					"<cache type='galgroup'/>" +
+	        	"</FlushCacheRequest>");
+		
+		this.zPageMain.logout();		
+		accounta.authenticate();
 	
+		// Login
+		this.zPageLogin.login(accounta);
+
+	}
 }
 

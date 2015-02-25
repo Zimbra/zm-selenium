@@ -30,6 +30,7 @@ public class FormEditAccount extends AbsForm {
 
 	public static class Locators {
 		public static final String NAME_TEXT_BOX="css=input#ztabv__ACCT_EDIT_";
+		public static final String DA_NAME_TEXT_BOX="css=input[id='ztabv__ACCT_EDIT_name_2']";
 		public static final String SAVE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__SAVE']";
 		public static final String CLOSE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__CLOSE']";
 	}
@@ -90,6 +91,10 @@ public class FormEditAccount extends AbsForm {
 			}
 		}
 		sType(Locators.NAME_TEXT_BOX+"name_3", name);
+		}
+	
+	public void setNameAsDA(String name) throws HarnessException {
+		sType(Locators.DA_NAME_TEXT_BOX, name);
 		}
 	}
 
