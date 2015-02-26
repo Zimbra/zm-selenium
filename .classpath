@@ -27,9 +27,9 @@
 			<attribute name="javadoc_location" value="http://www.dom4j.org/dom4j-1.5.2/apidocs/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/ZimbraCommon/jars/log4j-1.2.16.jar" sourcepath="/ZimbraCommon/jars-src/log4j-1.2.16-sources.jar">
+	<classpathentry kind="lib" path="/ZimbraCommon/jars/log4j-1.2.17.jar" sourcepath="/ZimbraCommon/jars-src/log4j-1.2.17-sources.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/ZimbraCommon/jars-javadoc/log4j-1.2.16-javadoc.jar!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/ZimbraCommon/jars-javadoc/log4j-1.2.17-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/ZimbraCommon/jars/apache-log4j-extras-1.0.jar" sourcepath="/ZimbraCommon/jars-src/apache-log4j-extras-1.0-sources.jar">
