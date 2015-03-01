@@ -244,7 +244,8 @@ public class ZimbraURI {
 		
 		String scheme = ZimbraSeleniumProperties.getStringProperty("server.scheme", "http");
 		String userinfo = null;
-		String host = ZimbraSeleniumProperties.getStringProperty("server.host", "localhost");
+		//String host = ZimbraSeleniumProperties.getStringProperty("server.host", "localhost");
+		String host = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host",	ZimbraSeleniumProperties.getStringProperty("server.host"));
 		String port = ZimbraSeleniumProperties.getStringProperty("server.port", "7070");
 		
 		String path = null;
@@ -390,7 +391,8 @@ public class ZimbraURI {
 	private static URI defaultURI() {
 		
 		String scheme = ZimbraSeleniumProperties.getStringProperty("server.scheme", "http");
-		String host = ZimbraSeleniumProperties.getStringProperty("server.host", "localhost");
+		// String host = ZimbraSeleniumProperties.getStringProperty("server.host", "localhost");
+		String host = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host",	ZimbraSeleniumProperties.getStringProperty("server.host"));
 		String port = ZimbraSeleniumProperties.getStringProperty("server.port", "7070");
 
 		try {

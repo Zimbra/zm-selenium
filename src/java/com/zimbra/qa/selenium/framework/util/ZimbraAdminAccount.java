@@ -28,7 +28,8 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 
 	public ZimbraAdminAccount(String email) {
 		EmailAddress = email;
-		Password = ZimbraSeleniumProperties.getStringProperty("adminPwd", "test123");
+		//Password = ZimbraSeleniumProperties.getStringProperty("adminPwd", "test123");
+		Password = "test123";
 		
 		// In the dev environment, they may need a config value to override
 		// the default, so use that value here
@@ -283,7 +284,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 		if ( _AdminConsoleAdmin == null ) {
 			try {
 				String name = "globaladmin"+ ZimbraSeleniumProperties.getUniqueString();
-				String domain = ZimbraSeleniumProperties.getStringProperty("server.host","qa60.lab.zimbra.com");
+				String domain = ZimbraSeleniumProperties.getStringProperty("server.host","zqa-062.eng.zimbra.com");
 				_AdminConsoleAdmin = new ZimbraAdminAccount(name +"@"+ domain);
 				_AdminConsoleAdmin.provision();
 				_AdminConsoleAdmin.authenticate();
@@ -323,7 +324,8 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 	 */
 	public static synchronized ZimbraAdminAccount GlobalAdmin() {
 		if ( _GlobalAdmin == null ) {
-			String name = ZimbraSeleniumProperties.getStringProperty("adminName");
+			//String name = "globaladmin@" + ZimbraSeleniumProperties.getStringProperty("");
+			String name = "globaladmin@" + ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host",	ZimbraSeleniumProperties.getStringProperty("server.host"));
 			_GlobalAdmin = new ZimbraAdminAccount(name);
 			_GlobalAdmin.authenticate();
 		}
@@ -351,7 +353,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 
 
 		// Create a new global admin account
-		String domain = ZimbraSeleniumProperties.getStringProperty("server.host","qa60.lab.zimbra.com");
+		String domain = ZimbraSeleniumProperties.getStringProperty("server.host","zqa-062.eng.zimbra.com");
 		ZimbraAdminAccount admin = new ZimbraAdminAccount("admin"+ System.currentTimeMillis() +"@"+ domain);
 		admin.provision();	// Create the account (CreateAccountRequest)
 		admin.authenticate();		// Authenticate the account (AuthRequest)

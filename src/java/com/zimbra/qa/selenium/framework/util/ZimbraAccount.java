@@ -112,7 +112,8 @@ public class ZimbraAccount {
 		EmailAddress = email;
 
 		if ( password == null ) {
-			password = ZimbraSeleniumProperties.getStringProperty("adminPwd", "test123");
+			//password = ZimbraSeleniumProperties.getStringProperty("adminPwd", "test123");
+			password = "test123";
 		}
 		Password = password;
 	}
@@ -1248,7 +1249,8 @@ public class ZimbraAccount {
 
 			 String scheme = ZimbraSeleniumProperties.getStringProperty("server.scheme", "http");
 			 String userInfo = null;
-			 String host = ZimbraSeleniumProperties.getStringProperty("server.host", "zqa-061.eng.vmware.com");
+			 //String host = ZimbraSeleniumProperties.getStringProperty("server.host", "zqa-062.lab.zimbra.com");
+			 String host = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host",	ZimbraSeleniumProperties.getStringProperty("server.host"));
 			 String p = ZimbraSeleniumProperties.getStringProperty("server.port", "80");
 			 int port = Integer.parseInt(p);
 			 String path = "/";
@@ -1614,7 +1616,8 @@ public class ZimbraAccount {
 	public static void main(String[] args) throws HarnessException {
 
 
-		String domain = ZimbraSeleniumProperties.getStringProperty("server.host","qa60.lab.zimbra.com");
+		//String domain = ZimbraSeleniumProperties.getStringProperty("server.host","zqa-062.eng.zimbra.com");
+		String domain = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host",	ZimbraSeleniumProperties.getStringProperty("server.host"));
 
 		// Configure log4j using the basic configuration
 		BasicConfigurator.configure();
