@@ -260,6 +260,10 @@ public class SeleniumService {
 		return (SeleniumBrowser);
 	}
 	
+	public String getSeleniumServerHost() {
+		return (SeleniumServerHost);
+	}
+	
 	public String getSeleniumBrowserVersion() {
 		return (SeleniumBrowserVersion);
 	}
@@ -318,6 +322,7 @@ public class SeleniumService {
 	private String SeleniumServer;
 	private int SeleniumPort;
 	private String SeleniumBrowser;
+	private String SeleniumServerHost;
 	private String SeleniumBrowserVersion;
 	
 	private SeleniumServer ss;
@@ -352,10 +357,8 @@ public class SeleniumService {
 		mode = SeleniumMode.Local;
 		SeleniumServer = ZimbraSeleniumProperties.getStringProperty("serverName", "localhost");
 		SeleniumPort = ZimbraSeleniumProperties.getIntProperty("serverPort", 4444);
-		SeleniumBrowser = ZimbraSeleniumProperties.getStringProperty(
-				ZimbraSeleniumProperties.getLocalHost() + ".browser",
-				ZimbraSeleniumProperties.getStringProperty("browser")).split(
-				"_")[0];
+		SeleniumBrowser = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser",	ZimbraSeleniumProperties.getStringProperty("browser"));
+		SeleniumServerHost = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host",	ZimbraSeleniumProperties.getStringProperty("server.host"));
 		SeleniumBrowserVersion = ZimbraSeleniumProperties.getStringProperty("browserVersion");
 
 		if (modeProp.equals(SeleniumMode.Local.toString().toLowerCase())) {
@@ -382,7 +385,7 @@ public class SeleniumService {
 	          "\"os\": \"" + ZimbraSeleniumProperties.getStringProperty("OS", "Windows 2003") + "\"," +
 	          "\"browser\": \"" + ZimbraSeleniumProperties.getStringProperty("browser") + "\"," +
 	          "\"browser-version\": \"" + ZimbraSeleniumProperties.getStringProperty("browserVersion") + "\"," +
-/* TODO: Adding the job name would be useful for finding the test videos in OnDemand
+	          /* TODO: Adding the job name would be useful for finding the test videos in OnDemand
 	          "\"job-name\": \"" + 	Current method or class name + "\"," +  */
 	          "\"user-extensions-url\": \"http://" + ZimbraSeleniumProperties.getStringProperty("server.host") + ":8080/user-extensions.js\"}";
 		

@@ -178,13 +178,13 @@ public class ZimbraSeleniumProperties {
 
 		defaultProp.setProperty("mode", "http");
 
-		defaultProp.setProperty("server", "qa60.lab.zimbra.com");
+		defaultProp.setProperty("server", "zqa-062.eng.zimbra.com");
 
 		defaultProp.setProperty("ZimbraLogRoot", "test-output");
 
-		defaultProp.setProperty("adminName", "admin");
+		//defaultProp.setProperty("adminName", "admin");
 
-		defaultProp.setProperty("adminPwd", "test123");
+		//defaultProp.setProperty("adminPwd", "test123");
 		
 		defaultProp.setProperty("very_small_wait", "1000");
 

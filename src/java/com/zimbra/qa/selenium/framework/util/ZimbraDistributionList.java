@@ -44,7 +44,8 @@ public class ZimbraDistributionList {
 
 		Password = password;
 		if ( (password == null) || (password.trim().length() == 0) ) {
-			password = ZimbraSeleniumProperties.getStringProperty("adminPwd", "test123");
+			//password = ZimbraSeleniumProperties.getStringProperty("adminPwd", "test123");
+			password = "test123";
 		}
 	}
 
