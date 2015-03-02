@@ -65,7 +65,8 @@ public class Button {
 	public static final Button B_HELP = new Button("B_HELP");
 	public static final Button B_USER_NAME = new Button("B_USER_NAME");
 	public static final Button B_Attachment = new Button("B_Attachment");
-	public static final Button B_DUPLICATE = new Button ("B_DUPLICATE");
+	public static final Button B_DUPLICATE = new Button ("B_DUPLICATE");	
+	public static final Button B_OPENTAB = new Button("B_OPENTAB");
 
 	public static final Button O_NEW = new Button("O_NEW");
 	public static final Button O_NEW_ADMIN = new Button("O_NEW_ADMIN");
