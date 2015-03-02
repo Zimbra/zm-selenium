@@ -41,7 +41,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 		
 	}
-	
+	@Bugs( ids = "98054")
 	@Test(	description = "Delete a mail using toolbar delete button",
 			groups = { "smoke" })
 	public void DeleteMail_01() throws HarnessException {
