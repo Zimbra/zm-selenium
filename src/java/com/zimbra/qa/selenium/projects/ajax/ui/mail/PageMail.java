@@ -2185,6 +2185,19 @@ public class PageMail extends AbsTab {
 		this.sClickAt(Locators.zContactAddressContextMenu, "");
 
 	}
+	public void MoveToCcAddressContextMenu() throws HarnessException {
+		// TODO Auto-generated method stub
+		this.sFocus(Locators.zMoveToCcAddressContextMenu);
+		this.sClickAt(Locators.zMoveToCcAddressContextMenu, "");
+		
+	}
+	
+	public void MoveToBCcAddressContextMenu() throws HarnessException {
+		// TODO Auto-generated method stub
+		this.sFocus(Locators.zMoveToBccAddressContextMenu);
+		this.sClickAt(Locators.zMoveToBccAddressContextMenu, "");
+	}
+
 	public boolean zVerifyAllAddressContextMenu() throws HarnessException {
 
 		List<String> locators = Arrays.asList(
@@ -2224,4 +2237,8 @@ public class PageMail extends AbsTab {
 
 		return (true);
 	}
+
+	
+
+	
 }
