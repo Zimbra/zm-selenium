@@ -200,6 +200,10 @@ public class TreeMail extends AbsTree {
 				optionLocator += " div[id^='RECOVER_DELETED_ITEMS'] td[id$='_title']";
 				page = new FormRecoverDeletedItems(MyApplication);
 
+			} else if (option == Button.B_OPENTAB) {
+
+				optionLocator += " div[id^='OPEN_IN_TAB'] td[id$='_title']";
+				page = null;
 			} else {
 				throw new HarnessException("button " + option + " not yet implemented");
 			}

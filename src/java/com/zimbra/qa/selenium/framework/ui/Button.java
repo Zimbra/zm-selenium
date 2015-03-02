@@ -65,7 +65,8 @@ public class Button {
 	public static final Button B_HELP = new Button("B_HELP");
 	public static final Button B_USER_NAME = new Button("B_USER_NAME");
 	public static final Button B_Attachment = new Button("B_Attachment");
-	public static final Button B_DUPLICATE = new Button ("B_DUPLICATE");
+	public static final Button B_DUPLICATE = new Button ("B_DUPLICATE");	
+	public static final Button B_OPENTAB = new Button("B_OPENTAB");
 
 	public static final Button O_NEW = new Button("O_NEW");
 	public static final Button O_NEW_ADMIN = new Button("O_NEW_ADMIN");
@@ -677,6 +678,18 @@ public class Button {
 	public static Button O_WORK =   new Button("O_WORK");
 	public static Button O_OTHER =   new Button("O_OTHER");
 	public static Button B_SUBFOLDER_ICON =   new Button("B_SUBFOLDER_ICON");
+	
+	//Added for Touch client Mail
+	public static Button B_MAIL_ACTION	=   new Button("B_MAIL_ACTION");
+	public static Button B_MARK_CONVERSATION_UNREAD =   new Button("B_MARK_CONVERSATION_UNREAD");
+	public static Button B_FLAG_CONVERSATION 	=   new Button("B_FLAG_CONVERSATION");
+	public static Button B_MOVE_CONVERSATION 	=   new Button("B_MOVE_CONVERSATION");
+	public static Button B_TAG_CONVERSATION 	=   new Button("B_TAG_CONVERSATION");
+	public static Button B_SWITCH_TO_MESSAGE_VIEW =   new Button("B_SWITCH_TO_MESSAGE_VIEW");
+	public static Button B_REPLY_MENU					=   new Button("B_REPLY_MENU");
+	public static Button B_REPLY_TO_ALL =   new Button("B_REPLY_TO_ALL");
+	public static Button B_FORWARD_MAIL =   new Button("B_FORWARD_MAIL");
+	public static Button B_SWITCH_TO_CONVERSATION_VIEW = new Button("B_SWITCH_TO_CONVERSATION_VIEW");
 	
 	// Added for Admin Console Home Page Links
 	public static Button B_INSTALL_CERTIFICATE=   new Button("B_INSTALL_CERTIFICATE");

@@ -40,6 +40,9 @@ public class PageSearch extends AbsTab {
 		public static final String zSearchInput = "css=input#zi_search_inputfield";
 		public static final String zSearchButton = "css=td#zb__Search__SAVE_left_icon";
 		
+		public static final String zSearchTab="css=div[id^='zb__App__tab_SR'] td[id$='_right_icon'] div.ImgCloseGray";
+				
+		
 	}
 
 	private boolean zIsIncludeSharedItems=false;
