@@ -84,11 +84,20 @@ public class DialogInformational extends AbsDialog {
 
 		}else if (button == Button.B_CLOSE) {
 
-			locator = "css=div[class='ZmShortcutsPanel'][style*='left: 453px'] div[class='actions'] span[class='link'][onclick*='closeCallback();']";
+			//locator = "css=div[class='ZmShortcutsPanel'][style*='left: 453px'] div[class='actions'] span[class='link'][onclick*='closeCallback();']";
+			locator = "css=div[class='ZmShortcutsPanel'] div[class='actions'] span[class='link'][onclick*='closeCallback();']";
 			sClick(locator);
 			return page;
 
-		} else {
+		}else if (button == Button.B_NEWWINDOW) {
+
+			locator = "css=div[class='ZmShortcutsPanel'][style*='left: 453px'] div[class='actions'] span[class='link'][onclick*='newWindowCallback();']";
+			page = new SeparateWindow(this.MyApplication);
+			((SeparateWindow)page).zInitializeWindowNames();
+			sClick(locator);
+			return page;
+
+		}  else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
