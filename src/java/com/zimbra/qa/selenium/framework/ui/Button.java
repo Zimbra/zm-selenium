@@ -129,6 +129,7 @@ public class Button {
 	public static final Button O_ABOUT = new Button("O_ABOUT");
 	public static final Button O_OFFLINE_SETTINGS = new Button("O_OFFLINE_SETTINGS");
 	public static final Button O_CHANGE_PASSWORD = new Button("O_CHANGE_PASSWORD");
+	public static final Button O_SHORTCUT = new Button("O_SHORTCUT");
 //	public static final Button O_SIGN_OUT = new Button("O_SIGN_OUT");
 
 	// MailPage buttons and pulldown options

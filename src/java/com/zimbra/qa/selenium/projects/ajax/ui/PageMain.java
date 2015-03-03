@@ -241,14 +241,6 @@ public class PageMain extends AbsTab {
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
 
-		// If page was specified, make sure it is active
-		if (page != null) {
-
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-
-		}
-
 		return (page);
 		
 	}
@@ -301,7 +293,15 @@ public class PageMain extends AbsTab {
 
 					// FALL THROUGH
 					
-			} else {
+			}else if (option == Button.O_SHORTCUT) {
+
+				pulldownLocator = "css=div#skin_outer td#skin_dropMenu div.DwtLinkButtonDropDownArrow";
+				optionLocator = "css=div[id^='POPUP'] div[id='showCurrentShortcuts'] td[id$='_title']";
+				page = new DialogInformational(DialogInformational.DialogWarningID.ShortcutDialog, this.MyApplication, this);
+
+				// FALL THROUGH
+				
+		} else {
 				
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
