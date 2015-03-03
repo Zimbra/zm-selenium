@@ -29,7 +29,8 @@ public class DialogInformational extends AbsDialog {
 	public static class DialogWarningID {
 		
 		public static final DialogWarningID InformationalDialog = new DialogWarningID("ZmMsgDialog");
-
+		public static final DialogWarningID ShortcutDialog = new DialogWarningID("css=div[class='ZmShortcutsPanel'][style*='left: 453px']");
+	//	public static final com.zimbra.qa.selenium.projects.ajax.ui.DialogInformational.DialogWarningID ShortcutDialog = null;
 		protected String Id;
 		public DialogWarningID(String id) {
 			Id = id;
@@ -81,28 +82,23 @@ public class DialogInformational extends AbsDialog {
 
 			locator = buttonsTableLocator + " td[id^='CANCEL_'] td[id$='_title']";
 
+		}else if (button == Button.B_CLOSE) {
+
+			locator = "css=div[class='ZmShortcutsPanel'][style*='left: 453px'] div[class='actions'] span[class='link'][onclick*='closeCallback();']";
+			sClick(locator);
+			return page;
+
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
-		}
-
 		// Click it
 		zClickAt(locator,"0,0");
+		
 
 		// If the app is busy, wait for it to become active
 		zWaitForBusyOverlay();
 
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-
-		}
-		
 		// This dialog might send message(s), so wait for the queue
 		Stafpostqueue sp = new Stafpostqueue();
 		sp.waitForPostqueue();
