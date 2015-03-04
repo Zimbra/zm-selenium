@@ -20,6 +20,7 @@ import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsForm;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.projects.admin.ui.FormEditAccount.Locators;
 
 
 public class FormEditResource extends AbsForm {
@@ -30,7 +31,8 @@ public class FormEditResource extends AbsForm {
 
 	public static class Locators {
 		public static final String NAME_TEXT_BOX="css=input#ztabv__RES_EDIT_";
-		public static final String SAVE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__SAVE']";
+		public static final String DA_NAME_TEXT_BOX="css=input[id='ztabv__RES_EDIT_displayName_2']";
+		public static final String SAVE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__SAVE_']:contains('Save')";
 		public static final String CLOSE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__CLOSE']";
 	}
 
@@ -90,6 +92,11 @@ public class FormEditResource extends AbsForm {
 			}
 		}
 		sType(Locators.NAME_TEXT_BOX+"name_3", name);
+		}
+	
+	
+	public void setNameAsDA(String name) throws HarnessException {
+		sType(Locators.DA_NAME_TEXT_BOX, name);
 		}
 	}
 
