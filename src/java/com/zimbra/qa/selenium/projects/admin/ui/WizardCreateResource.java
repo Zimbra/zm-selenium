@@ -37,7 +37,6 @@ import com.zimbra.qa.selenium.projects.admin.items.ResourceItem;
 public class WizardCreateResource extends AbsWizard {
 	public static class Locators {
 		public static final String zdlg_RESOURCE_NAME = "zdlgv__NEW_RES_displayName";
-		public static final String zdlg_RESOURCE_NAME_DA= "css=input[id='zdlgv__NEW_RES_displayName']";
 		public static final String zdlg_RESOURCE_LOCAL_NAME = "zdlgv__NEW_RES_name";
 		public static final String zdlg_RESOURCE_DOMAIN_NAME="zdlgv__NEW_RES_name_2_display";
 		public static final String zdlg_OK="zdlg__NEW_ALIAS_button2_title";
@@ -101,8 +100,6 @@ public class WizardCreateResource extends AbsWizard {
 
 		return resource;
 	}
-
-
 
 	@Override
 	public String myPageName() {
