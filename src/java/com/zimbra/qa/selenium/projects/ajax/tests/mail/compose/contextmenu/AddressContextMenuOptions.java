@@ -35,7 +35,7 @@ public class AddressContextMenuOptions extends PrefGroupMailByMessageTest {
 
 		mailform.zFill(mail);
 		app.zPageMail.zRightClickAddressBubble(Field.To);
-		ZAssert.assertTrue(app.zPageMail.zVerifyAllAddressContextMenu(),
+		ZAssert.assertTrue(app.zPageMail.zVerifyAllAddressContextMenu(""),
 				"Delete/Copy/Edit/Expand/AddtoContact/Moveto-cc-bcc menu should be exist");
 
 	}
