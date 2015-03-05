@@ -18,6 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
+
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -27,6 +28,8 @@ import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogOpenRecurringItem.Confirmation;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
 @SuppressWarnings("unused")
@@ -184,6 +187,7 @@ public class PageCalendar extends AbsTab {
 		public static final String WeekViewOnFBLink = "css=td[class='TbTop'] td[id='caltb'] a[id='CAL_WEEK']";
 		public static final String MonthViewOnFBLink = "css=td[class='TbTop'] td[id='caltb'] a[id='CAL_MONTH']";
 		public static final String TodayViewOnFBLink = "css=td[class='TbTop'] td[id='caltb'] a[id='CAL_TODAY']";
+		public static final String AttendeeBubbleAddr = "css=tr[id='zcs1_attendeesContainer'] td[id='zcs1_person'] div div span[class^='addrBubble']>span";
 
 
 	}
@@ -2720,4 +2724,18 @@ public class PageCalendar extends AbsTab {
 			return false;
 		}
 	}
+	
+	
+	public void zRightClickAddressBubble() throws HarnessException {
+
+		SleepUtil.sleepVeryLong();
+		this.sMouseOut(Locators.AttendeeBubbleAddr);
+		this.sMouseOver(Locators.AttendeeBubbleAddr);
+		this.sClick(Locators.AttendeeBubbleAddr);
+		this.zRightClick(Locators.AttendeeBubbleAddr);
+		SleepUtil.sleepVeryLong();
+
+	}
+	
+	
 }
