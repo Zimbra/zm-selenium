@@ -38,7 +38,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "81246")
 	@Test(description = "Verify sending appt invite when Location resource has conflicts shows conflict dialog", 
-			groups = { "functional" })
+			groups = { "functional"})
 	public void CreateMeetingWithLocationConflict_01() throws HarnessException {
 		
 		// Creating object for meeting data
@@ -100,6 +100,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 
         // Save appt with location conflict 
 		dialog.zClickButton(Button.B_SAVE_WITH_CONFLICT);
+		SleepUtil.sleepVeryLong();
 		
         // Verify that location with conflict and subject are present in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");

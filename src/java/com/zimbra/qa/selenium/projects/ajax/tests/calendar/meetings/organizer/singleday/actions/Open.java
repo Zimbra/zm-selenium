@@ -17,7 +17,10 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.actions;
 
 import java.util.Calendar;
+
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
@@ -31,6 +34,7 @@ public class Open extends CalendarWorkWeekTest {
 		super.startingAccountPreferences = null;
 	}
 	
+	@Bugs(ids = "98009")
 	@Test(	description = "Rt-click to invite and open it",
 			groups = { "smoke" })
 	public void OpenMeeting_01() throws HarnessException {
