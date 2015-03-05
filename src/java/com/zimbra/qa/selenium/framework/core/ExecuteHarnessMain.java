@@ -136,7 +136,7 @@ public class ExecuteHarnessMain {
 	 * The list of groups to exclude
 	 */
 	public ArrayList<String> excludeGroups = new ArrayList<String>(
-			Arrays.asList("skip"));
+			Arrays.asList("skip", "performance"));
 
 	/**
 	 * The suite verbosity
