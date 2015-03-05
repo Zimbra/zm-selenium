@@ -2198,17 +2198,28 @@ public class PageMail extends AbsTab {
 		this.sClickAt(Locators.zMoveToBccAddressContextMenu, "");
 	}
 
-	public boolean zVerifyAllAddressContextMenu() throws HarnessException {
+	public boolean zVerifyAllAddressContextMenu(String app)throws HarnessException {
 
-		List<String> locators = Arrays.asList(
-				Locators.zDeleteAddressContextMenu,
-				Locators.zCopyAddressContextMenu,
-				Locators.zEditAddressContextMenu,
-				Locators.zExpandAddressContextMenu,
-				Locators.zContactAddressContextMenu,
-				Locators.zMovetToToAddressContextMenu,
-				Locators.zMoveToCcAddressContextMenu,
-				Locators.zMoveToBccAddressContextMenu);
+		List<String> locators = new ArrayList<String>();
+
+		if (app == "calendar") {
+			locators = Arrays.asList(Locators.zDeleteAddressContextMenu,
+					Locators.zCopyAddressContextMenu,
+					Locators.zEditAddressContextMenu,
+					Locators.zExpandAddressContextMenu,
+					Locators.zContactAddressContextMenu);
+
+		} else {
+
+			locators = Arrays.asList(Locators.zDeleteAddressContextMenu,
+					Locators.zCopyAddressContextMenu,
+					Locators.zEditAddressContextMenu,
+					Locators.zExpandAddressContextMenu,
+					Locators.zContactAddressContextMenu,
+					Locators.zMovetToToAddressContextMenu,
+					Locators.zMoveToCcAddressContextMenu,
+					Locators.zMoveToBccAddressContextMenu);
+		}
 
 		for (String locator : locators) {
 			if (!this.sIsElementPresent(locator))
