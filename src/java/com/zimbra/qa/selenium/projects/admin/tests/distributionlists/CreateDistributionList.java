@@ -76,7 +76,7 @@ public class CreateDistributionList extends AdminCommonTest {
 			groups = { "sanity" })
 			public void CreateDistributionList_02() throws HarnessException {
 		
-		this.startingPage = app.zPageManageDistributionList;
+		this.startingPage.zNavigateTo();
 
 		// Create a new dl in the Admin Console
 		DistributionListItem dl = new DistributionListItem();
@@ -105,6 +105,8 @@ public class CreateDistributionList extends AdminCommonTest {
 	@Test(	description = "Create a basic dynamic  DL.",
 			groups = { "smoke" })
 			public void CreateDistributionList_03() throws HarnessException, ServiceException {
+
+		this.startingPage.zNavigateTo();
 
 		// Create a new dynamic dl in the Admin Console
 		String memberURL ="ldap:///??sub?(&(objectClass=zimbraAccount)(zimbraIsDelegatedAdminAccount=TRUE))";

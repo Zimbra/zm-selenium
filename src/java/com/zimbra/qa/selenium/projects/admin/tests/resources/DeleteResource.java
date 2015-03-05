@@ -56,6 +56,8 @@ public class DeleteResource extends AdminCommonTest {
 	public void DeleteResource_01() throws HarnessException {
 
 		// Create a new resource in the Admin Console using SOAP
+		this.startingPage.zNavigateTo();
+
 		ResourceItem resource = new ResourceItem();
 		
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -110,6 +112,8 @@ public class DeleteResource extends AdminCommonTest {
 	@Test(	description = "Verify delete resource operation -- Manage resource View -- Equipment",
 			groups = { "smoke" })
 	public void DeleteResource_02() throws HarnessException {
+
+		this.startingPage.zNavigateTo();
 
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
@@ -166,6 +170,8 @@ public class DeleteResource extends AdminCommonTest {
 	@Test(	description = "Verify delete resource operation -- Manage resource View/Right Click Menu -- Location",
 			groups = { "smoke" })
 	public void DeleteResource_03() throws HarnessException {
+
+		this.startingPage.zNavigateTo();
 
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
@@ -279,6 +285,8 @@ public class DeleteResource extends AdminCommonTest {
 	@Test(	description = "Verify delete resource operation -- Search List View -- Location",
 			groups = { "functional" })
 	public void DeleteResource_05() throws HarnessException {
+
+		this.startingPage.zNavigateTo();
 
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
@@ -398,6 +406,8 @@ public class DeleteResource extends AdminCommonTest {
 			groups = { "functional" })
 	public void DeleteResource_07() throws HarnessException {
 
+		this.startingPage.zNavigateTo();
+
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
 		
@@ -456,6 +466,8 @@ public class DeleteResource extends AdminCommonTest {
 	@Test(	description = "Verify delete resource operation -- Search List View/Right Click Menu -- Equipment",
 			groups = { "functional" })
 	public void DeleteResource_08() throws HarnessException {
+
+		this.startingPage.zNavigateTo();
 
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
