@@ -589,16 +589,25 @@ public class ExecuteHarnessMain {
 
 			SleepMetrics.report();
 
-			if (ZimbraSeleniumProperties.getConfigProperties().getString("server.host").contains("lab.zimbra.com") && 
-				!ZimbraSeleniumProperties.getConfigProperties().getString("emailTo").contains("qa-automation@zimbra.com")) {
+			if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")).contains("lab.zimbra.com") && 
+				!ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".emailTo", ZimbraSeleniumProperties.getStringProperty("emailTo")).contains("qa-automation@zimbra.com")) {
+				
+				String isWebDriver = "";
+				if (ZimbraSeleniumProperties.isWebDriver()) {
+					isWebDriver = " | WebDriver";
+				}
+				
 				SendEmail.main(new String[] {
 						"Selenium: " + ZimbraSeleniumProperties.zimbraGetVersionString() + " | " +
 						classfilter.toString().replace("com.zimbra.qa.selenium.", "") + " | " +
-						"Groups: " + groups.toString().replace("always, ", "").trim() + " | " +
+						"Groups: " + groups.toString().replace("always, ", "").replace("[", "").replace("]", "").trim() + " | " +
 						"Total Tests: " + String.valueOf(testsTotal) +
-						" [Passed: " + String.valueOf(testsPass) +
+						" (Passed: " + String.valueOf(testsPass) +
 						", Failed: " + String.valueOf(testsFailed) +
-						", Skipped: " + String.valueOf(testsSkipped) + "]",
+						", Skipped: " + String.valueOf(testsSkipped) + ")" + " | " +
+						"Client: " + ZimbraSeleniumProperties.getLocalHost() + " | " +
+						"Server: " + ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")).replace(".lab.zimbra.com", "") +
+						isWebDriver,
 						ExecuteHarnessMain.currentResultListener.getCustomResult(),
 						testoutputfoldername + "\\TestNG\\emailable-report.html",
 						testoutputfoldername + "\\TestNG\\index.html" });
@@ -967,11 +976,14 @@ public class ExecuteHarnessMain {
 			sb.append("Selenium Automation Report: ").append(ZimbraSeleniumProperties.zimbraGetVersionString() + "_" + ZimbraSeleniumProperties.zimbraGetReleaseString()).append('\n').append('\n');
 					
 			sb.append("Client  :  ").append(getLocalMachineName()).append('\n');
-			sb.append("Server  :  ").append(ZimbraSeleniumProperties.getConfigProperties().getString("server.host")).append('\n').append('\n');
+			sb.append("Server  :  ").append(ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host"))).append('\n').append('\n');
 			
-			sb.append("Browser :  ").append(ZimbraSeleniumProperties.getConfigProperties().getString("browser")).append('\n');
+			sb.append("Browser :  ").append(ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser", ZimbraSeleniumProperties.getStringProperty("browser"))).append('\n');
 			sb.append("Pattern :  ").append(classfilter.toString().replace("com.zimbra.qa.selenium.", "")).append('\n');
-			sb.append("Groups  :  ").append(groups.toString().replace("always, ", "").trim()).append('\n').append('\n');
+			sb.append("Groups  :  ").append(groups.toString().replace("always, ", "").trim().replace("[", "").replace("]", "")).append('\n');
+			if (ZimbraSeleniumProperties.isWebDriver()) {
+				sb.append("Mode    :  ").append("Web Driver").append('\n').append('\n');
+			}
 			
 			sb.append("Test Output   :  ").append(testoutputfoldername).append('\n').append('\n');
 						
@@ -1283,6 +1295,28 @@ public class ExecuteHarnessMain {
 						break;
 					}
 				}
+				
+				
+				// Unwanted tests execution blocked for now
+				
+				if (ExecuteHarnessMain.classfilter.equals("com.zimbra.qa.selenium.projects.html.tests")) {
+					throw new HarnessException("Currently Html client tests are not being executed.");
+				}
+				
+				if (ExecuteHarnessMain.classfilter.equals("com.zimbra.qa.selenium.projects.mobile.tests")) {
+					throw new HarnessException("Currently Mobile client tests are not being executed.");
+				}
+								
+				if (ExecuteHarnessMain.classfilter.equals("com.zimbra.qa.selenium.projects.touch.tests") && 
+						!ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser", ZimbraSeleniumProperties.getStringProperty("browser")).contains("googlechrome")) {
+					throw new HarnessException("Touch client doesn't support firefox and other non-web kit based browsers so tests can't be executed.");
+				}
+				
+				if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser", ZimbraSeleniumProperties.getStringProperty("browser")).contains("googlechrome") && 
+						ZimbraSeleniumProperties.isWebDriver() == false) {
+					throw new HarnessException("Selenium tests can't be executed in non-web driver mode for Chrome browser because it throws privacy error (security certificate is not trusted) although commercial certificates are installed for server.");
+				}
+				
 			}
 
 			if (cmd.hasOption('e')) {
