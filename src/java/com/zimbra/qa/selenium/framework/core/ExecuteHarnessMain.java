@@ -993,6 +993,8 @@ public class ExecuteHarnessMain {
 			sb.append("Groups  :  ").append(groups.toString().replace("always, ", "").trim().replace("[", "").replace("]", "")).append('\n');
 			if (ZimbraSeleniumProperties.isWebDriver()) {
 				sb.append("Mode    :  ").append("Web Driver").append('\n').append('\n');
+			} else {
+				sb.append('\n');
 			}
 			
 			sb.append("Test Output   :  ").append(testoutputfoldername).append('\n').append('\n');
