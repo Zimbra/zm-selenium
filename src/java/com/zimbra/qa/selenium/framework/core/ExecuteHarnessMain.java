@@ -567,7 +567,7 @@ public class ExecuteHarnessMain {
 			ng.setXmlSuites(suites);
 			ng.addListener(new MethodListener(ExecuteHarnessMain.testoutputfoldername));
 			ng.addListener(new ErrorDialogListener());
-			ng.addListener(ExecuteHarnessMain.currentResultListener = new ResultListener(
+			ng.addListener(currentResultListener = new ResultListener(
 					ExecuteHarnessMain.testoutputfoldername));
 
 			try {
@@ -587,13 +587,37 @@ public class ExecuteHarnessMain {
 			logger.info("Execute tests ... completed");
 
 			SleepMetrics.report();
+			
+			if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")).contains("lab.zimbra.com") && 
+					!ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".emailTo", ZimbraSeleniumProperties.getStringProperty("emailTo")).contains("qa-automation@zimbra.com")) {
+				
+				String isWebDriver = "";
+				if (ZimbraSeleniumProperties.isWebDriver()) {
+					isWebDriver = " | WebDriver";
+				}
+				
+				SendEmail.main(new String[] {
+					"Selenium: " + ZimbraSeleniumProperties.zimbraGetVersionString() + " | " +
+					classfilter.toString().replace("com.zimbra.qa.selenium.", "") + " | " +
+					"Groups: " + groups.toString().replace("always, ", "").replace("[", "").replace("]", "").trim() + " | " +
+					"Total Tests: " + String.valueOf(testsTotal) +
+					" (Passed: " + String.valueOf(testsPass) +
+					", Failed: " + String.valueOf(testsFailed) +
+					", Skipped: " + String.valueOf(testsSkipped) + ")" + " | " +
+					"Client: " + ZimbraSeleniumProperties.getLocalHost() + " | " +
+					"Server: " + ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")).replace(".lab.zimbra.com", "") +
+					isWebDriver,
+					ResultListener.getCustomResult(),
+					testoutputfoldername + "\\TestNG\\emailable-report.html",
+					testoutputfoldername + "\\TestNG\\index.html" });
+			}
 
-			return (ExecuteHarnessMain.currentResultListener == null ? "Done"
-					: ExecuteHarnessMain.currentResultListener.getResults());
+			return (currentResultListener == null ? "Done"
+					: currentResultListener.getResults());
 
 		} finally {
 
-			ExecuteHarnessMain.currentResultListener = null;
+			currentResultListener = null;
 
 		}
 	}
@@ -1374,30 +1398,6 @@ public class ExecuteHarnessMain {
 				} else {
 					result = harness.execute();
 				}
-			}
-			
-			if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")).contains("lab.zimbra.com") && 
-					!ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".emailTo", ZimbraSeleniumProperties.getStringProperty("emailTo")).contains("qa-automation@zimbra.com")) {
-				
-				String isWebDriver = "";
-				if (ZimbraSeleniumProperties.isWebDriver()) {
-					isWebDriver = " | WebDriver";
-				}
-				
-				SendEmail.main(new String[] {
-					"Selenium: " + ZimbraSeleniumProperties.zimbraGetVersionString() + " | " +
-					classfilter.toString().replace("com.zimbra.qa.selenium.", "") + " | " +
-					"Groups: " + groups.toString().replace("always, ", "").replace("[", "").replace("]", "").trim() + " | " +
-					"Total Tests: " + String.valueOf(testsTotal) +
-					" (Passed: " + String.valueOf(testsPass) +
-					", Failed: " + String.valueOf(testsFailed) +
-					", Skipped: " + String.valueOf(testsSkipped) + ")" + " | " +
-					"Client: " + ZimbraSeleniumProperties.getLocalHost() + " | " +
-					"Server: " + ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")).replace(".lab.zimbra.com", "") +
-					isWebDriver,
-					ResultListener.getCustomResult(),
-					testoutputfoldername + "\\TestNG\\emailable-report.html",
-					testoutputfoldername + "\\TestNG\\index.html" });
 			}
 
 		} catch (Exception e) {
