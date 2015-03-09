@@ -207,6 +207,7 @@ public class ExecuteHarnessMain {
 	private static List<String> getClassesFromJar(File jarfile,
 			Pattern pattern, String excludeStr) throws FileNotFoundException,
 			IOException, HarnessException {
+		
 		logger.debug("getClassesFromJar " + jarfile.getAbsolutePath());
 
 		List<String> classes = new ArrayList<String>();
@@ -407,6 +408,7 @@ public class ExecuteHarnessMain {
 	 */
 	public String execute() throws HarnessException, FileNotFoundException,
 			IOException {
+		
 		logger.info("Execute ...");
 
 		Date start = new Date();
@@ -536,6 +538,7 @@ public class ExecuteHarnessMain {
 	 */
 	protected String executeTests() throws FileNotFoundException, IOException,
 			HarnessException {
+		
 		logger.info("Execute tests ...");
 
 		try {
@@ -616,6 +619,11 @@ public class ExecuteHarnessMain {
 					: currentResultListener.getResults());
 
 		} finally {
+			
+			testsTotal = 0;
+			testsPass = 0;
+			testsFailed = 0;
+			testsSkipped = 0;
 
 			currentResultListener = null;
 
@@ -633,6 +641,7 @@ public class ExecuteHarnessMain {
 	 */
 	public String sumTestCounts() throws FileNotFoundException, IOException,
 			HarnessException {
+		
 		logger.debug("sumTestCounts");
 
 		StringBuilder sb = new StringBuilder(); // A list of test method
@@ -798,6 +807,7 @@ public class ExecuteHarnessMain {
 	 * @author Matt Rhoades
 	 */
 	protected static class MethodListener implements IInvokedMethodListener {
+		
 		private static Logger logger = LogManager
 				.getLogger(MethodListener.class);
 
@@ -846,6 +856,7 @@ public class ExecuteHarnessMain {
 		 */
 		@Override
 		public void beforeInvocation(IInvokedMethod method, ITestResult result) {
+			
 			if (method.isTestMethod()) {
 
 				try {
@@ -891,6 +902,7 @@ public class ExecuteHarnessMain {
 		 */
 		@Override
 		public void afterInvocation(IInvokedMethod method, ITestResult result) {
+			
 			if (method.isTestMethod()) {
 
 				try {
@@ -968,6 +980,7 @@ public class ExecuteHarnessMain {
 		}
 		
 		public static String getCustomResult() throws HarnessException {
+			
 			StringBuilder sb = new StringBuilder();
 			
 			sb.append("Selenium Automation Report: ").append(ZimbraSeleniumProperties.zimbraGetVersionString() + "_" + ZimbraSeleniumProperties.zimbraGetReleaseString()).append('\n').append('\n');
@@ -980,6 +993,8 @@ public class ExecuteHarnessMain {
 			sb.append("Groups  :  ").append(groups.toString().replace("always, ", "").trim().replace("[", "").replace("]", "")).append('\n');
 			if (ZimbraSeleniumProperties.isWebDriver()) {
 				sb.append("Mode    :  ").append("Web Driver").append('\n').append('\n');
+			} else {
+				sb.append('\n');
 			}
 			
 			sb.append("Test Output   :  ").append(testoutputfoldername).append('\n').append('\n');
@@ -1041,6 +1056,7 @@ public class ExecuteHarnessMain {
 		 * @return
 		 */
 		public static void getScreenCapture(ITestResult result) {
+			
 			String filename = getScreenCaptureFilename(result.getMethod()
 					.getMethod());
 			logger.warn("Creating screenshot: " + filename);
@@ -1091,6 +1107,7 @@ public class ExecuteHarnessMain {
 
 		public static void getMailboxLog(ITestResult result)
 				throws HarnessException {
+			
 			logger.warn("Copying mailbox.log");
 
 			String command = null;
@@ -1379,6 +1396,11 @@ public class ExecuteHarnessMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
+		testsTotal = 0;
+		testsPass = 0;
+		testsFailed = 0;
+		testsSkipped = 0;
 
 		BasicConfigurator.configure();
 
@@ -1405,10 +1427,10 @@ public class ExecuteHarnessMain {
 		} finally {
 			DO_TEST_CASE_SUM = false;
 		}
-
+		
 		logger.info(result);
 		System.out.println("*****\n" + result);
-
+		
 	}
 
 }
