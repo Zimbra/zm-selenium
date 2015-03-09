@@ -1396,11 +1396,6 @@ public class ExecuteHarnessMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
-		testsTotal = 0;
-		testsPass = 0;
-		testsFailed = 0;
-		testsSkipped = 0;
 
 		BasicConfigurator.configure();
 
