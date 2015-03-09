@@ -80,9 +80,6 @@ public class ExecuteHarnessMain {
 
 	private static HashMap<String, String> configMap = new HashMap<String, String>();
 
-	// The current result listener, so that the current status can be queried
-	public static ResultListener currentResultListener = null;
-
 	public static int testsTotal = 0;
 	public static int testsPass = 0;
 	public static int testsFailed = 0;
@@ -147,6 +144,8 @@ public class ExecuteHarnessMain {
 	 * Where output is logged
 	 */
 	protected static String testoutputfoldername = null;
+
+	public static ResultListener currentResultListener = null;
 
 	public void setTestOutputFolderName(String path) {
 
@@ -589,30 +588,6 @@ public class ExecuteHarnessMain {
 
 			SleepMetrics.report();
 
-			if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")).contains("lab.zimbra.com") && 
-				!ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".emailTo", ZimbraSeleniumProperties.getStringProperty("emailTo")).contains("qa-automation@zimbra.com")) {
-				
-				String isWebDriver = "";
-				if (ZimbraSeleniumProperties.isWebDriver()) {
-					isWebDriver = " | WebDriver";
-				}
-				
-				SendEmail.main(new String[] {
-						"Selenium: " + ZimbraSeleniumProperties.zimbraGetVersionString() + " | " +
-						classfilter.toString().replace("com.zimbra.qa.selenium.", "") + " | " +
-						"Groups: " + groups.toString().replace("always, ", "").replace("[", "").replace("]", "").trim() + " | " +
-						"Total Tests: " + String.valueOf(testsTotal) +
-						" (Passed: " + String.valueOf(testsPass) +
-						", Failed: " + String.valueOf(testsFailed) +
-						", Skipped: " + String.valueOf(testsSkipped) + ")" + " | " +
-						"Client: " + ZimbraSeleniumProperties.getLocalHost() + " | " +
-						"Server: " + ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")).replace(".lab.zimbra.com", "") +
-						isWebDriver,
-						ExecuteHarnessMain.currentResultListener.getCustomResult(),
-						testoutputfoldername + "\\TestNG\\emailable-report.html",
-						testoutputfoldername + "\\TestNG\\index.html" });
-			}
-
 			return (ExecuteHarnessMain.currentResultListener == null ? "Done"
 					: ExecuteHarnessMain.currentResultListener.getResults());
 
@@ -845,7 +820,6 @@ public class ExecuteHarnessMain {
 		/**
 		 * Add a new FileAppender for each class before invocation
 		 */
-		@SuppressWarnings("deprecation")
 		@Override
 		public void beforeInvocation(IInvokedMethod method, ITestResult result) {
 			if (method.isTestMethod()) {
@@ -891,7 +865,6 @@ public class ExecuteHarnessMain {
 		/**
 		 * Remove any FileAppenders after invocation
 		 */
-		@SuppressWarnings("deprecation")
 		@Override
 		public void afterInvocation(IInvokedMethod method, ITestResult result) {
 			if (method.isTestMethod()) {
@@ -941,8 +914,8 @@ public class ExecuteHarnessMain {
 
 		private static final String ZimbraQABasePackage = "com.zimbra.qa.selenium";
 
-		private List<String> failedTests = new ArrayList<String>();
-		private List<String> skippedTests = new ArrayList<String>();
+		private static List<String> failedTests = new ArrayList<String>();
+		private static List<String> skippedTests = new ArrayList<String>();
 
 		protected ResultListener(String folder) {
 			ResultListener.setOutputfolder(folder);
@@ -970,7 +943,7 @@ public class ExecuteHarnessMain {
 			return (sb.toString());
 		}
 		
-		public String getCustomResult() throws HarnessException {
+		public static String getCustomResult() throws HarnessException {
 			StringBuilder sb = new StringBuilder();
 			
 			sb.append("Selenium Automation Report: ").append(ZimbraSeleniumProperties.zimbraGetVersionString() + "_" + ZimbraSeleniumProperties.zimbraGetReleaseString()).append('\n').append('\n');
@@ -1043,7 +1016,6 @@ public class ExecuteHarnessMain {
 		 * @param result
 		 * @return
 		 */
-		@SuppressWarnings("deprecation")
 		public static void getScreenCapture(ITestResult result) {
 			String filename = getScreenCaptureFilename(result.getMethod()
 					.getMethod());
@@ -1093,7 +1065,6 @@ public class ExecuteHarnessMain {
 					c, m, ++mailboxlogcount));
 		}
 
-		@SuppressWarnings("deprecation")
 		public static void getMailboxLog(ITestResult result)
 				throws HarnessException {
 			logger.warn("Copying mailbox.log");
@@ -1140,7 +1111,6 @@ public class ExecuteHarnessMain {
 		 * Add 1 to the failed tests
 		 */
 		@Override
-		@SuppressWarnings("deprecation")
 		public void onTestFailure(ITestResult result) {
 			testsFailed++;
 			String fullname = result.getMethod().getMethod()
@@ -1155,7 +1125,6 @@ public class ExecuteHarnessMain {
 		 * Add 1 to the skipped tests
 		 */
 		@Override
-		@SuppressWarnings("deprecation")
 		public void onTestSkipped(ITestResult result) {
 			testsSkipped++;
 			String fullname = result.getMethod().getMethod()
@@ -1405,6 +1374,30 @@ public class ExecuteHarnessMain {
 				} else {
 					result = harness.execute();
 				}
+			}
+			
+			if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")).contains("lab.zimbra.com") && 
+					!ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".emailTo", ZimbraSeleniumProperties.getStringProperty("emailTo")).contains("qa-automation@zimbra.com")) {
+				
+				String isWebDriver = "";
+				if (ZimbraSeleniumProperties.isWebDriver()) {
+					isWebDriver = " | WebDriver";
+				}
+				
+				SendEmail.main(new String[] {
+					"Selenium: " + ZimbraSeleniumProperties.zimbraGetVersionString() + " | " +
+					classfilter.toString().replace("com.zimbra.qa.selenium.", "") + " | " +
+					"Groups: " + groups.toString().replace("always, ", "").replace("[", "").replace("]", "").trim() + " | " +
+					"Total Tests: " + String.valueOf(testsTotal) +
+					" (Passed: " + String.valueOf(testsPass) +
+					", Failed: " + String.valueOf(testsFailed) +
+					", Skipped: " + String.valueOf(testsSkipped) + ")" + " | " +
+					"Client: " + ZimbraSeleniumProperties.getLocalHost() + " | " +
+					"Server: " + ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")).replace(".lab.zimbra.com", "") +
+					isWebDriver,
+					ResultListener.getCustomResult(),
+					testoutputfoldername + "\\TestNG\\emailable-report.html",
+					testoutputfoldername + "\\TestNG\\index.html" });
 			}
 
 		} catch (Exception e) {
