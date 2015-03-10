@@ -149,6 +149,8 @@ public class FormApptNew extends AbsForm {
 		public static final String ToolbarOptions= "css=td[id='zb__APPT-1__COMPOSE_OPTIONS_title']";
 		public static final String RequestResponse= "css=td[id$='_title']:contains('Request Responses')";
 		public static final String ConflictResourceNote = "css= div[id$='_location_status']:contains('One or more locations are not available at the selected time')";
+		
+		public static final String AttendeeField= "css=input[id$='_person_input']";
 	}
 
 	public static class Field {
