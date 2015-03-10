@@ -992,7 +992,7 @@ public class ExecuteHarnessMain {
 			sb.append("Pattern :  ").append(classfilter.toString().replace("com.zimbra.qa.selenium.", "")).append('\n');
 			sb.append("Groups  :  ").append(groups.toString().replace("always, ", "").trim().replace("[", "").replace("]", "")).append('\n');
 			if (ZimbraSeleniumProperties.isWebDriver()) {
-				sb.append("Mode    :  ").append("Web Driver").append('\n').append('\n');
+				sb.append("Mode    :  ").append("WebDriver").append('\n').append('\n');
 			} else {
 				sb.append('\n');
 			}
