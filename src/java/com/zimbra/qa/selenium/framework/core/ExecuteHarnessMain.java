@@ -610,7 +610,7 @@ public class ExecuteHarnessMain {
 					"Client: " + ZimbraSeleniumProperties.getLocalHost() + " | " +
 					"Server: " + ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")).replace(".lab.zimbra.com", "") +
 					isWebDriver,
-					ResultListener.getCustomResult(),
+					currentResultListener.getCustomResult(),
 					testoutputfoldername + "\\TestNG\\emailable-report.html",
 					testoutputfoldername + "\\TestNG\\index.html" });
 			}
@@ -979,7 +979,7 @@ public class ExecuteHarnessMain {
 			return (sb.toString());
 		}
 		
-		public static String getCustomResult() throws HarnessException {
+		public String getCustomResult() throws HarnessException {
 			
 			StringBuilder sb = new StringBuilder();
 			
