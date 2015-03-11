@@ -99,6 +99,16 @@ public class PageMail extends AbsTab {
 		public static final String zMovetToToAddressContextMenu="css=div[id^='POPUP_DWT'] tbody div[id='MOVE_TO_TO'][class*='ZDisabled'] table tbody tr[id='POPUP_MOVE_TO_TO']";
 		public static final String zMoveToCcAddressContextMenu="css=div[id^='POPUP_DWT'] tbody div[id='MOVE_TO_CC'] table tbody tr[id='POPUP_MOVE_TO_CC']";
 		public static final String zMoveToBccAddressContextMenu="css=div[id^='POPUP_DWT'] tbody div[id='MOVE_TO_BCC'] table tbody tr[id='POPUP_MOVE_TO_BCC']";
+		
+		//Msg header Address Context menu
+		
+		public static final String zCopyMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='COPY'] table tbody tr[id='POPUP_COPY']";
+		public static final String zFindEmailsMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='SEARCH_MENU'] table tbody tr[id='POPUP_SEARCH_MENU']";
+		public static final String zNewEmailsMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='NEW_MESSAGE'] table tbody tr[id='POPUP_NEW_MESSAGE']";
+		public static final String zAddToContactMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='CONTACT'] table tbody tr[id='POPUP_CONTACT']";
+		public static final String zGoToUrlMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='GO_TO_URL'] table tbody tr[id='POPUP_GO_TO_URL']";
+		public static final String zCreateFilterMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='ADD_FILTER_RULE_ADDRESS'] table tbody tr[id='POPUP_ADD_FILTER_RULE_ADDRESS']";
+		public static final String zFromHdrAddressBubble = "css=div[id='zv__TV-main__MSG'] table[id='zv__TV-main__MSG_headerElement'] tr[id^='OBJ_PREFIX_DWT'][id$='_from'] span[class^='addrBubble']>span";
 
 		public static class CONTEXT_MENU {
 			// TODO: Until https://bugzilla.zimbra.com/show_bug.cgi?id=56273 is
@@ -2159,6 +2169,14 @@ public class PageMail extends AbsTab {
 			this.zRightClick("css=tr[id='zv__COMPOSE-1_bcc_row'] td[id='zv__COMPOSE-1_bcc_cell'] div div span[class^='addrBubble']>span");
 			SleepUtil.sleepVeryLong();
 		}
+		else if (field == Field.From) {
+			SleepUtil.sleepVeryLong();
+			this.sMouseOut(Locators.zFromHdrAddressBubble);
+			this.sMouseOver(Locators.zFromHdrAddressBubble);
+			this.sClick(Locators.zFromHdrAddressBubble);
+			this.zRightClick(Locators.zFromHdrAddressBubble);
+			SleepUtil.sleepVeryLong();
+		}
 
 	}
 
@@ -2197,6 +2215,8 @@ public class PageMail extends AbsTab {
 		this.sFocus(Locators.zMoveToBccAddressContextMenu);
 		this.sClickAt(Locators.zMoveToBccAddressContextMenu, "");
 	}
+	
+	
 
 	public boolean zVerifyAllAddressContextMenu(String app)throws HarnessException {
 
@@ -2208,6 +2228,14 @@ public class PageMail extends AbsTab {
 					Locators.zEditAddressContextMenu,
 					Locators.zExpandAddressContextMenu,
 					Locators.zContactAddressContextMenu);
+
+		} else if (app == "MessageHeader") {
+			locators = Arrays.asList(Locators.zCopyMsgHdrContextMenu,
+					Locators.zFindEmailsMsgHdrContextMenu,
+					Locators.zNewEmailsMsgHdrContextMenu,
+					Locators.zAddToContactMsgHdrContextMenu,
+					Locators.zGoToUrlMsgHdrContextMenu,
+					Locators.zCreateFilterMsgHdrContextMenu);
 
 		} else {
 
