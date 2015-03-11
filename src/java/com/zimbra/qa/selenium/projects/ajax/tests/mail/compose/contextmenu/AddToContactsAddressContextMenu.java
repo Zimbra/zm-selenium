@@ -26,7 +26,6 @@ public class AddToContactsAddressContextMenu extends PrefGroupMailByMessageTest 
 
 		String contactFirst = "First"
 				+ ZimbraSeleniumProperties.getUniqueString();
-		;
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
@@ -62,7 +61,8 @@ public class AddToContactsAddressContextMenu extends PrefGroupMailByMessageTest 
 		String contactId = app.zGetActiveAccount().soapSelectValue("//mail:cn",
 				"id");
 
-		ZAssert.assertNotNull(contactId,"Verify the contact is returned in the search");
+		ZAssert.assertNotNull(contactId,
+				"Verify the contact is returned in the search");
 
 		app.zGetActiveAccount().soapSend(
 				"<GetContactsRequest xmlns='urn:zimbraMail'>" + "<cn id='"
