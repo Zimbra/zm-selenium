@@ -156,6 +156,7 @@ public class FormApptNew extends AbsForm {
 	public static class Field {
 
 		public static final Field Subject = new Field("Subject");
+		public static final Field To = new Field("To");
 		public static final Field Attendees = new Field("Attendees");
 		public static final Field Optional = new Field("Optional");
 		public static final Field Location = new Field("Location");
@@ -825,6 +826,10 @@ public class FormApptNew extends AbsForm {
 
 			locator = "css=div[id^='APPT_COMPOSE_'] td[id$='_subject'] input";
 
+		} else if (field == Field.To) {
+
+			locator = "css=input[id='APPT_COMPOSE_1_to_control_input']";
+
 			// attendees
 		} else if (field == Field.Attendees) {
 
@@ -1061,6 +1066,11 @@ public class FormApptNew extends AbsForm {
 		// Subject
 		if (appt.getSubject() != null) {
 			zFillField(Field.Subject, appt.getSubject());
+		}
+		
+		// Forward To Attendees
+		if (appt.getAttendees() != null) {
+			zFillField(Field.To, appt.getAttendees());
 		}
 
 		// Attendees
