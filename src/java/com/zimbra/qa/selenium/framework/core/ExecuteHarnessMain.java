@@ -29,15 +29,12 @@ import java.util.*;
 import java.util.List;
 import java.util.jar.*;
 import java.util.regex.*;
-
 import javax.imageio.ImageIO;
-
 import org.apache.commons.cli.*;
 import org.apache.commons.cli.CommandLine;
 import org.apache.log4j.*;
 import org.testng.*;
 import org.testng.xml.*;
-
 import com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
@@ -982,12 +979,14 @@ public class ExecuteHarnessMain {
 		public String getCustomResult() throws HarnessException {
 			
 			StringBuilder sb = new StringBuilder();
-			
+			String release = null, labURL;
+			String localDirectory = null;
+
 			sb.append("Selenium Automation Report: ").append(ZimbraSeleniumProperties.zimbraGetVersionString() + "_" + ZimbraSeleniumProperties.zimbraGetReleaseString()).append('\n').append('\n');
-					
+
 			sb.append("Client  :  ").append(getLocalMachineName()).append('\n');
 			sb.append("Server  :  ").append(ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host"))).append('\n').append('\n');
-			
+
 			sb.append("Browser :  ").append(ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser", ZimbraSeleniumProperties.getStringProperty("browser"))).append('\n');
 			sb.append("Pattern :  ").append(classfilter.toString().replace("com.zimbra.qa.selenium.", "")).append('\n');
 			sb.append("Groups  :  ").append(groups.toString().replace("always, ", "").trim().replace("[", "").replace("]", "")).append('\n');
@@ -996,28 +995,40 @@ public class ExecuteHarnessMain {
 			} else {
 				sb.append('\n');
 			}
-			
-			sb.append("Test Output   :  ").append(testoutputfoldername).append('\n').append('\n');
-						
-			sb.append("Total Tests   :  ").append(testsTotal).append('\n');
-			sb.append("Total Passed  :  ").append(testsPass).append('\n');
-			sb.append("Total Failed  :  ").append(testsFailed).append('\n');
-			sb.append("Total Skipped :  ").append(testsSkipped).append('\n');
-			
+
+			sb.append("Local Result   :  ").append(testoutputfoldername).append('\n').append('\n');
+
+			localDirectory = testoutputfoldername.replaceAll("[^a-zA-Z0-9/._]", "/").replaceAll("C//opt/qa/JUDASPRIEST/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/JUDASPRIEST/", "").replaceAll("C//opt/qa/main/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/main/", "");
+
+			if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("8.")) {
+				release = "jp/";
+			} else if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("9.")) {
+				release = "main/";
+			}
+
+			labURL = "http://pnq-zqa075.lab.zimbra.com/qa/selenium/machines/" + release + getLocalMachineName().replace(".corp.telligent.com", "/").replace(".lab.zimbra.com", "/") + "results/" + localDirectory;
+
+			sb.append("Lab Result URL :  ").append(labURL).append('\n').append('\n');
+
+			sb.append("Total Tests    :  ").append(testsTotal).append('\n');
+			sb.append("Total Passed   :  ").append(testsPass).append('\n');
+			sb.append("Total Failed   :  ").append(testsFailed).append('\n');
+			sb.append("Total Skipped  :  ").append(testsSkipped).append('\n');
+
 			if (!failedTests.isEmpty()) {
 				sb.append("\n\nFailed tests:\n");
 				for (String s : failedTests) {
 					sb.append(s).append('\n');
 				}
 			}
-			
+
 			if (!skippedTests.isEmpty()) {
 				sb.append("\n\nSkipped tests:\n");
 				for (String s : skippedTests) {
 					sb.append(s).append('\n');
 				}
 			}
-			
+
 			return (sb.toString());
 		}
 
