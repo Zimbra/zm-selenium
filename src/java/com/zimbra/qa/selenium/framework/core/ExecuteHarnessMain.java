@@ -995,7 +995,7 @@ public class ExecuteHarnessMain {
 			} else {
 				sb.append('\n');
 			}
-
+			
 			sb.append("Local Result   :  ").append(testoutputfoldername).append('\n').append('\n');
 
 			localDirectory = testoutputfoldername.replaceAll("[^a-zA-Z0-9/._]", "/").replaceAll("C//opt/qa/JUDASPRIEST/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/JUDASPRIEST/", "").replaceAll("C//opt/qa/main/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/main/", "");
@@ -1006,7 +1006,7 @@ public class ExecuteHarnessMain {
 				release = "main/";
 			}
 
-			labURL = "http://pnq-zqa075.lab.zimbra.com/qa/selenium/machines/" + release + getLocalMachineName().replace(".corp.telligent.com", "/").replace(".lab.zimbra.com", "/") + "results/" + localDirectory;
+			labURL = "http://pnq-zqa075.lab.zimbra.com/qa/selenium/machines/" + release + getLocalMachineName().replace(".corp.telligent.com", "").replace(".lab.zimbra.com", "") + localDirectory;
 
 			sb.append("Lab Result URL :  ").append(labURL).append('\n').append('\n');
 
