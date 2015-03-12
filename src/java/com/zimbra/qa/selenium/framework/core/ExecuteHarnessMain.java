@@ -979,8 +979,7 @@ public class ExecuteHarnessMain {
 		public String getCustomResult() throws HarnessException {
 			
 			StringBuilder sb = new StringBuilder();
-			String release = null, labURL;
-			String localDirectory = null;
+			String release = null, localDirectory = null, labURL, seleniumProject;
 
 			sb.append("Selenium Automation Report: ").append(ZimbraSeleniumProperties.zimbraGetVersionString() + "_" + ZimbraSeleniumProperties.zimbraGetReleaseString()).append('\n').append('\n');
 
@@ -999,6 +998,7 @@ public class ExecuteHarnessMain {
 			sb.append("Local Result   :  ").append(testoutputfoldername).append('\n').append('\n');
 
 			localDirectory = testoutputfoldername.replaceAll("[^a-zA-Z0-9/._]", "/").replaceAll("C//opt/qa/JUDASPRIEST/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/JUDASPRIEST/", "").replaceAll("C//opt/qa/main/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/main/", "");
+			seleniumProject = localDirectory.split("/")[1].toLowerCase();
 
 			if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("8.")) {
 				release = "jp/";
@@ -1006,7 +1006,7 @@ public class ExecuteHarnessMain {
 				release = "main/";
 			}
 
-			labURL = "http://pnq-zqa075.lab.zimbra.com/qa/selenium/machines/" + release + getLocalMachineName().replace(".corp.telligent.com", "").replace(".lab.zimbra.com", "") + "/" + localDirectory;
+			labURL = "http://pnq-zqa075.lab.zimbra.com/qa/selenium/machines/" + release + getLocalMachineName().replace(".corp.telligent.com", "").replace(".lab.zimbra.com", "") + "/" + seleniumProject + "/" + localDirectory;
 
 			sb.append("Lab Result URL :  ").append(labURL).append('\n').append('\n');
 
@@ -1240,30 +1240,17 @@ public class ExecuteHarnessMain {
 		// Build option list
 		Options options = new Options();
 		options.addOption(new Option("h", "help", false, "print usage"));
-		options.addOption(new Option("l", "log4j", true,
-				"log4j file containing log4j configuration"));
-		options.addOption(new Option("j", "jarfile", true,
-				"jarfile containing test cases"));
-		options.addOption(new Option("p", "pattern", true,
-				"class filter regex, i.e. projects.zcs.tests."));
-		options.addOption(new Option("g", "groups", true,
-				"comma separated list of groups to execute (always, sanity, smoke, full)"));
-		options.addOption(new Option("v", "verbose", true,
-				"set suite verbosity (default: " + verbosity + ")"));
+		options.addOption(new Option("l", "log4j", true, "log4j file containing log4j configuration"));
+		options.addOption(new Option("j", "jarfile", true, "jarfile containing test cases"));
+		options.addOption(new Option("p", "pattern", true, "class filter regex, i.e. projects.zcs.tests."));
+		options.addOption(new Option("g", "groups", true, "comma separated list of groups to execute (always, sanity, smoke, full)"));
+		options.addOption(new Option("v", "verbose", true, "set suite verbosity (default: " + verbosity + ")"));
 		options.addOption(new Option("o", "output", true, "output foldername"));
-		options.addOption(new Option("w", "working", true,
-				"current working foldername"));
-		options.addOption(new Option(
-				"c",
-				"config",
-				true,
-				"dynamic setting config properties i.e browser, server, locale... ( -c 'locale=en_US,browser=firefox' "));
-		options.addOption(new Option("s", "sum", false,
-				"run harness in mode to count the number of matching test cases"));
-
+		options.addOption(new Option("w", "working", true, "current working foldername"));
+		options.addOption(new Option("c", "config", true, "dynamic setting config properties i.e browser, server, locale... ( -c 'locale=en_US,browser=firefox' "));
+		options.addOption(new Option("s", "sum", false, "run harness in mode to count the number of matching test cases"));
 		options.addOption(new Option("e", "exclude", true, "exclude pattern  "));
-		options.addOption(new Option("eg", "exclude_groups", true,
-				"comma separated list of groups to exclude when execute (skip)"));
+		options.addOption(new Option("eg", "exclude_groups", true, "comma separated list of groups to exclude when execute (skip)"));
 
 		// Set required options
 		options.getOption("j").setRequired(true);
