@@ -979,7 +979,7 @@ public class ExecuteHarnessMain {
 		public String getCustomResult() throws HarnessException {
 			
 			StringBuilder sb = new StringBuilder();
-			String release = null, localDirectory = null, labURL, seleniumProject;
+			String release = null, resultDirectory = null, labURL, seleniumProject;
 
 			sb.append("Selenium Automation Report: ").append(ZimbraSeleniumProperties.zimbraGetVersionString() + "_" + ZimbraSeleniumProperties.zimbraGetReleaseString()).append('\n').append('\n');
 
@@ -997,8 +997,8 @@ public class ExecuteHarnessMain {
 			
 			sb.append("Local Result   :  ").append(testoutputfoldername).append('\n').append('\n');
 
-			localDirectory = testoutputfoldername.replaceAll("[^a-zA-Z0-9/._]", "/").replaceAll("C//opt/qa/JUDASPRIEST/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/JUDASPRIEST/", "").replaceAll("C//opt/qa/main/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/main/", "");
-			seleniumProject = localDirectory.split(".")[1].toLowerCase();
+			resultDirectory = testoutputfoldername.replaceAll("[^a-zA-Z0-9/._]", "/").replaceAll("C//opt/qa/JUDASPRIEST/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/JUDASPRIEST/", "").replaceAll("C//opt/qa/main/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/main/", "");
+			seleniumProject = resultDirectory.split("\\.")[1].toLowerCase();
 
 			if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("8.")) {
 				release = "jp/";
@@ -1006,7 +1006,7 @@ public class ExecuteHarnessMain {
 				release = "main/";
 			}
 
-			labURL = "http://pnq-zqa075.lab.zimbra.com/qa/selenium/machines/" + release + getLocalMachineName().replace(".corp.telligent.com", "").replace(".lab.zimbra.com", "") + "/" + seleniumProject + "/" + localDirectory;
+			labURL = "http://pnq-zqa075.lab.zimbra.com/qa/selenium/machines/" + release + getLocalMachineName().replace(".corp.telligent.com", "").replace(".lab.zimbra.com", "") + "/" + seleniumProject + "/" + resultDirectory;
 
 			sb.append("Lab Result URL :  ").append(labURL).append('\n').append('\n');
 
