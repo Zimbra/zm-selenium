@@ -998,7 +998,7 @@ public class ExecuteHarnessMain {
 			sb.append("Local Result   :  ").append(testoutputfoldername).append('\n').append('\n');
 
 			localDirectory = testoutputfoldername.replaceAll("[^a-zA-Z0-9/._]", "/").replaceAll("C//opt/qa/JUDASPRIEST/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/JUDASPRIEST/", "").replaceAll("C//opt/qa/main/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/main/", "");
-			seleniumProject = localDirectory.split("/")[1].toLowerCase();
+			seleniumProject = localDirectory.split(".")[1].toLowerCase();
 
 			if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("8.")) {
 				release = "jp/";
