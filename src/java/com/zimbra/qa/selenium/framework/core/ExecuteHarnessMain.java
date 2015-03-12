@@ -1006,7 +1006,7 @@ public class ExecuteHarnessMain {
 				release = "main/";
 			}
 
-			labURL = "http://pnq-zqa075.lab.zimbra.com/qa/selenium/machines/" + release + getLocalMachineName().replace(".corp.telligent.com", "").replace(".lab.zimbra.com", "") + localDirectory;
+			labURL = "http://pnq-zqa075.lab.zimbra.com/qa/selenium/machines/" + release + getLocalMachineName().replace(".corp.telligent.com", "").replace(".lab.zimbra.com", "") + "/" + localDirectory;
 
 			sb.append("Lab Result URL :  ").append(labURL).append('\n').append('\n');
 
