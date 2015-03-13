@@ -26,7 +26,6 @@ public class AddToContactsAddressContextMenu extends PrefGroupMailByMessageTest 
 
 		String contactFirst = "First"
 				+ ZimbraSeleniumProperties.getUniqueString();
-		;
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
@@ -51,6 +50,7 @@ public class AddToContactsAddressContextMenu extends PrefGroupMailByMessageTest 
 		app.zPageMail.sFocus("css=input[id$='_FIRST_input']");
 		app.zPageMail.sType("css=input[id$='_FIRST_input']", contactFirst);
 		app.zPageMail.sClickAt(FormContactNew.Toolbar.SAVE, "");
+		SleepUtil.sleepMedium();
 
 		// -- Data Verification
 
