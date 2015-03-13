@@ -28,24 +28,19 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 
 
+
 public class GetMail extends PrefGroupMailByMessageTest {
 
 	int pollIntervalSeconds = 60;
 	
 	public GetMail() {
-		logger.info("New "+ GetMail.class.getCanonicalName());
-		
-		
-		
+		logger.info("New " + GetMail.class.getCanonicalName());
 
-		
-		
-		super.startingAccountPreferences.put("zimbraPrefMailPollingInterval", "" + pollIntervalSeconds);
-
-
+		super.startingAccountPreferences.put("zimbraPrefMailPollingInterval",
+				"" + pollIntervalSeconds);
 
 	}
-	
+
 	@Test(	description = "Receive a mail",
 			groups = { "smoke" })
 	public void GetMail_01() throws HarnessException {
@@ -133,7 +128,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test(	description = "Receive an html mail - verify mail contents",
-			groups = { "zsmoke" })
+			groups = { "smoke" })
 	public void GetMail_03() throws HarnessException {
 
 		
@@ -303,6 +298,42 @@ public class GetMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(found, "Verify the list contains the new message");
 		
 	}
+	
+	@Test(	description = "Receive a text mail - Right Click From Msg Header and verify all context menus",
+			groups = { "sanity" })
+	public void GetMail_VerifyMsgHdrContextmenu() throws HarnessException {
+
+		// Create the message data to be sent
+		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+
+		ZimbraAccount.AccountA().soapSend(
+				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+						"<m>" +
+						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+						"<e t='c' a='"+ ZimbraAccount.AccountB().EmailAddress +"'/>" +
+						"<su>"+ subject +"</su>" +
+						"<mp ct='text/plain'>" +
+						"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+						"</mp>" +
+						"</m>" +
+				"</SendMsgRequest>");
+
+		// Get all the SOAP data for later verification
+		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
+
+		// Click Get Mail button
+		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+
+		// Select the message so that it shows in the reading pane
+		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);		
+		ZAssert.assertEquals(	actual.zGetMailProperty(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
+
+		app.zPageMail.zRightClickAddressBubble(com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field.From);
+		ZAssert.assertTrue(app.zPageMail.zVerifyAllAddressContextMenu("MessageHeader"),"Copy/FindEmails/New Email/AddtoContact/Goto URL/Create Filter menu should be exist");
+
+
+	}
+
 
 
 }
