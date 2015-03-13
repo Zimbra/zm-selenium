@@ -29,12 +29,15 @@ import java.util.*;
 import java.util.List;
 import java.util.jar.*;
 import java.util.regex.*;
+
 import javax.imageio.ImageIO;
+
 import org.apache.commons.cli.*;
 import org.apache.commons.cli.CommandLine;
 import org.apache.log4j.*;
 import org.testng.*;
 import org.testng.xml.*;
+
 import com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
@@ -976,30 +979,41 @@ public class ExecuteHarnessMain {
 			return (sb.toString());
 		}
 		
-		public String getCustomResult() throws HarnessException {
+		public String getCustomResult() throws HarnessException, FileNotFoundException, IOException {
 			
-			StringBuilder sb = new StringBuilder();
-			String release = null, resultDirectory = null, labURL, seleniumProject;
+			StringBuilder emailBody = new StringBuilder();
+			StringBuilder bugzillaBody = new StringBuilder();
+			StringBuilder formatter = new StringBuilder();
+			
+			String release = null, resultDirectory = null, resultRootDirectory = null, labURL, seleniumProject;
+			String zimbraTestNGResultsJar = "c:/opt/qa/BugReports/zimbratestngresults.jar";
 
-			sb.append("Selenium Automation Report: ").append(ZimbraSeleniumProperties.zimbraGetVersionString() + "_" + ZimbraSeleniumProperties.zimbraGetReleaseString()).append('\n').append('\n');
+			emailBody.append("Selenium Automation Report: ").append(ZimbraSeleniumProperties.zimbraGetVersionString() + "_" + ZimbraSeleniumProperties.zimbraGetReleaseString()).append('\n').append('\n');
 
-			sb.append("Client  :  ").append(getLocalMachineName()).append('\n');
-			sb.append("Server  :  ").append(ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host"))).append('\n').append('\n');
+			emailBody.append("Client  :  ").append(getLocalMachineName()).append('\n');
+			emailBody.append("Server  :  ").append(ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host"))).append('\n').append('\n');
 
-			sb.append("Browser :  ").append(ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser", ZimbraSeleniumProperties.getStringProperty("browser"))).append('\n');
-			sb.append("Pattern :  ").append(classfilter.toString().replace("com.zimbra.qa.selenium.", "")).append('\n');
-			sb.append("Groups  :  ").append(groups.toString().replace("always, ", "").trim().replace("[", "").replace("]", "")).append('\n');
+			emailBody.append("Browser :  ").append(ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser", ZimbraSeleniumProperties.getStringProperty("browser"))).append('\n');
+			emailBody.append("Pattern :  ").append(classfilter.toString().replace("com.zimbra.qa.selenium.", "")).append('\n');
+			emailBody.append("Groups  :  ").append(groups.toString().replace("always, ", "").trim().replace("[", "").replace("]", "")).append('\n');
 			if (ZimbraSeleniumProperties.isWebDriver()) {
-				sb.append("Mode    :  ").append("WebDriver").append('\n').append('\n');
+				emailBody.append("Mode    :  ").append("WebDriver").append('\n').append('\n');
 			} else {
-				sb.append('\n');
+				emailBody.append('\n');
 			}
 			
-			sb.append("Local Result   :  ").append(testoutputfoldername).append('\n').append('\n');
-
+			emailBody.append("Local Result   :  ").append(testoutputfoldername).append('\n').append('\n');
+			
 			resultDirectory = testoutputfoldername.replaceAll("[^a-zA-Z0-9/._]", "/").replaceAll("C//opt/qa/JUDASPRIEST/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/JUDASPRIEST/", "").replaceAll("C//opt/qa/main/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/main/", "");
-			seleniumProject = resultDirectory.split("\\.")[1].toLowerCase();
-
+			
+			// Get selenium project
+			if (resultDirectory.contains("8.") || resultDirectory.contains("9.")) {
+				seleniumProject = resultDirectory.split("/")[1].toLowerCase();
+			} else {
+				seleniumProject = resultDirectory.split("\\.")[1].toLowerCase();
+			}
+			
+			// Get server release
 			if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("8.")) {
 				release = "jp/";
 			} else if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("9.")) {
@@ -1008,30 +1022,75 @@ public class ExecuteHarnessMain {
 
 			labURL = "http://pnq-zqa075.lab.zimbra.com/qa/selenium/machines/" + release + getLocalMachineName().replace(".corp.telligent.com", "").replace(".lab.zimbra.com", "") + "/" + seleniumProject + "/" + resultDirectory;
 
-			sb.append("Lab Result URL :  ").append(labURL).append('\n').append('\n');
+			emailBody.append("Lab Result URL :  ").append(labURL).append('\n').append('\n');
 
-			sb.append("Total Tests    :  ").append(testsTotal).append('\n');
-			sb.append("Total Passed   :  ").append(testsPass).append('\n');
-			sb.append("Total Failed   :  ").append(testsFailed).append('\n');
-			sb.append("Total Skipped  :  ").append(testsSkipped).append('\n');
+			emailBody.append("Total Tests    :  ").append(testsTotal).append('\n');
+			emailBody.append("Total Passed   :  ").append(testsPass).append('\n');
+			emailBody.append("Total Failed   :  ").append(testsFailed).append('\n');
+			emailBody.append("Total Skipped  :  ").append(testsSkipped).append('\n');
 
 			if (!failedTests.isEmpty()) {
-				sb.append("\n\nFailed tests:\n");
+				emailBody.append("\n\nFailed tests:\n");
 				for (String s : failedTests) {
-					sb.append(s).append('\n');
+					emailBody.append(s).append('\n');
 				}
 			}
 
 			if (!skippedTests.isEmpty()) {
-				sb.append("\n\nSkipped tests:\n");
+				emailBody.append("\n\nSkipped tests:\n");
 				for (String s : skippedTests) {
-					sb.append(s).append('\n');
+					emailBody.append(s).append('\n');
 				}
 			}
+			
+			// Check bug status via stored files
+			
+			int resultRootDirectoryLocation = testoutputfoldername.indexOf("AJAX");
+			if (resultRootDirectoryLocation > 0) {
+				resultRootDirectory = testoutputfoldername.substring(0, resultRootDirectoryLocation-1);
+			}
+			resultRootDirectoryLocation = testoutputfoldername.indexOf("ADMIN");
+			if (resultRootDirectoryLocation > 0) {
+				resultRootDirectory = testoutputfoldername.substring(0, resultRootDirectoryLocation-1);
+			}
+			resultRootDirectoryLocation = testoutputfoldername.indexOf("TOUCH");
+			if (resultRootDirectoryLocation > 0) {
+				resultRootDirectory = testoutputfoldername.substring(0, resultRootDirectoryLocation-1);
+			}
+			
+			StafExecute staf = new StafExecute("SERVICE", "ADD SERVICE BUGZILLA LIBRARY JSTAF EXECUTE " + zimbraTestNGResultsJar);
+			staf.execute();
+			
+			staf = new StafExecute("BUGZILLA", "REPORT ROOT " + resultRootDirectory.replaceAll("[^a-zA-Z0-9/._:-]", "/"));
+			staf.execute();
 
-			return (sb.toString());
+			// Read bug report text file and append to the email report
+			
+			try (BufferedReader br = new BufferedReader(new FileReader(resultRootDirectory + "/BugReports/BugReport.txt"))) {
+		        String line = null;
+				try {
+					line = br.readLine();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+
+		        while (line != null) {
+		            bugzillaBody.append(line);
+		            bugzillaBody.append(System.lineSeparator());
+		            try {
+						line = br.readLine();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+		        }
+		    }
+			
+			staf = new StafExecute("SERVICE", "REMOVE SERVICE BUGZILLA");
+			staf.execute();
+
+			return (emailBody.toString() + formatter.append('\n') + formatter.append("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n\n") + bugzillaBody.toString());
 		}
-
+		
 		private static ITestResult runningTestCase = null;
 
 		private static void setRunningTestCase(ITestResult result) {
