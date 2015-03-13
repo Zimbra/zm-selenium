@@ -2170,12 +2170,12 @@ public class PageMail extends AbsTab {
 			SleepUtil.sleepVeryLong();
 		}
 		else if (field == Field.From) {
-			SleepUtil.sleepVeryLong();
+			SleepUtil.sleepMedium();
 			this.sMouseOut(Locators.zFromHdrAddressBubble);
 			this.sMouseOver(Locators.zFromHdrAddressBubble);
 			this.sClick(Locators.zFromHdrAddressBubble);
 			this.zRightClick(Locators.zFromHdrAddressBubble);
-			SleepUtil.sleepVeryLong();
+			SleepUtil.sleepMedium();
 		}
 
 	}
@@ -2214,6 +2214,18 @@ public class PageMail extends AbsTab {
 		// TODO Auto-generated method stub
 		this.sFocus(Locators.zMoveToBccAddressContextMenu);
 		this.sClickAt(Locators.zMoveToBccAddressContextMenu, "");
+	}
+	
+	public void NewEmailMsgHdrContextMenu() throws HarnessException {
+		this.sFocus(Locators.zNewEmailsMsgHdrContextMenu);
+		this.sClickAt(Locators.zNewEmailsMsgHdrContextMenu, "");
+
+	}
+	
+	public void AddToContactMsgHdrContextMenu() throws HarnessException {
+		this.sFocus(Locators.zAddToContactMsgHdrContextMenu);
+		this.sClickAt(Locators.zAddToContactMsgHdrContextMenu, "");
+
 	}
 	
 	
