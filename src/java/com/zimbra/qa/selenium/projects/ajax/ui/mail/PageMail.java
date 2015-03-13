@@ -2227,6 +2227,11 @@ public class PageMail extends AbsTab {
 		this.sClickAt(Locators.zAddToContactMsgHdrContextMenu, "");
 
 	}
+	public void CreateFilterMsgHdrContextMenu() throws HarnessException {
+		this.sFocus(Locators.zCreateFilterMsgHdrContextMenu);
+		this.sClickAt(Locators.zCreateFilterMsgHdrContextMenu, "");
+
+	}
 	
 	
 
