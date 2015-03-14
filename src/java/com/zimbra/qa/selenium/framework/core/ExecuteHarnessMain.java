@@ -985,9 +985,11 @@ public class ExecuteHarnessMain {
 			StringBuilder bugzillaBody = new StringBuilder();
 			StringBuilder formatter = new StringBuilder();
 			
-			String release = null, resultDirectory = null, resultRootDirectory = null, labURL, seleniumProject;
+			String machineName, release = null, resultDirectory = null, resultRootDirectory = null, labURL, seleniumProject;
 			String zimbraTestNGResultsJar = "c:/opt/qa/BugReports/zimbratestngresults.jar";
+			String labMachines = "pnq-zqa101 pnq-zqa102 pnq-zqa103 pnq-zqa104 pnq-zqa105 pnq-zqa106 pnq-zqa107 pnq-zqa108 pnq-zqa109 pnq-zqa110 pnq-zqa057 pnq-zqa058 pnq-zqa059 pnq-zqa060 pnq-zqa061";
 
+			machineName = getLocalMachineName().replace(".corp.telligent.com", "").replace(".lab.zimbra.com", "");
 			emailBody.append("Selenium Automation Report: ").append(ZimbraSeleniumProperties.zimbraGetVersionString() + "_" + ZimbraSeleniumProperties.zimbraGetReleaseString()).append('\n').append('\n');
 
 			emailBody.append("Client  :  ").append(getLocalMachineName()).append('\n');
@@ -1013,17 +1015,18 @@ public class ExecuteHarnessMain {
 				seleniumProject = resultDirectory.split("\\.")[1].toLowerCase();
 			}
 			
-			// Get server release
+			// Get server version
 			if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("8.")) {
 				release = "jp/";
 			} else if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("9.")) {
 				release = "main/";
 			}
-
-			labURL = "http://pnq-zqa075.lab.zimbra.com/qa/selenium/machines/" + release + getLocalMachineName().replace(".corp.telligent.com", "").replace(".lab.zimbra.com", "") + "/" + seleniumProject + "/" + resultDirectory;
-
-			emailBody.append("Lab Result URL :  ").append(labURL).append('\n').append('\n');
-
+			
+			if (labMachines.contains(machineName)) {
+				labURL = "http://pnq-zqa075.lab.zimbra.com/qa/selenium/machines/" + release + machineName + "/" + seleniumProject + "/" + resultDirectory;
+				emailBody.append("Lab Result URL :  ").append(labURL).append('\n').append('\n');
+			}
+			
 			emailBody.append("Total Tests    :  ").append(testsTotal).append('\n');
 			emailBody.append("Total Passed   :  ").append(testsPass).append('\n');
 			emailBody.append("Total Failed   :  ").append(testsFailed).append('\n');
@@ -1043,7 +1046,7 @@ public class ExecuteHarnessMain {
 				}
 			}
 			
-			// Check bug status via stored files
+			// Check bug status via bugzilla files
 			
 			int resultRootDirectoryLocation = testoutputfoldername.indexOf("AJAX");
 			if (resultRootDirectoryLocation > 0) {
