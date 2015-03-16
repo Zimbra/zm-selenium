@@ -17,6 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.main;
 
 
+
+
 import org.testng.annotations.*;
 
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -28,40 +30,55 @@ import com.zimbra.qa.selenium.projects.ajax.ui.*;
 public class ProductHelp extends AjaxCommonTest {
 
 	public ProductHelp() {
-		logger.info("New "+ ProductHelp.class.getCanonicalName());
-		
-		
+		logger.info("New " + ProductHelp.class.getCanonicalName());
+
 		super.startingPage = app.zPageMail;
 		super.startingAccountPreferences = null;
 
-		
 	}
-	
+
 	@Test(	description = "Open 'Product Help'",
 			groups = { "functional" })
 	public void ProductHelp_01() throws HarnessException {
-		
-		//-- DATA
 
-
-		//-- GUI
-		
 		SeparateWindow window = null;
-		
+		String windowTitle = "ZWC Help";
+
 		try {
-			
+
 			// Click the Account -> Product Help
 			window = (SeparateWindow)app.zPageMain.zToolbarPressPulldown(Button.B_ACCOUNT, Button.O_PRODUCT_HELP);
-			window.zWaitForActive(); // Make sure the window is there
-			ZAssert.assertTrue(window.zIsActive(), "Verify the Product Help dialog opens");
+
+			SleepUtil.sleepLong();
+
+			for (String title : app.zPageMain.sGetAllWindowTitles()) {
+				logger.info("Window title: " + title);
+				if (title.contains("Zimbra: Inbox")) {
+					// Main window
+					logger.info("Already existing Name: " + title);
+
+				} else if (title.contains(windowTitle)) {
+					logger.info("zIsActive() = true ... title = " + title);
+					break;
+
+				}
+
+				else {
+					throw new HarnessException("Window never became active!");
+				}
+			}
+			app.zPageMain.sSelectWindow(windowTitle);
+			app.zPageMain.zSeparateWindowClose(windowTitle);
+			app.zPageMain.sSelectWindow(null);
+
 
 		} finally {
-			window.zCloseWindow();
-			window = null;
-		}
 
-		//-- VERIFICATION
-		
+			app.zPageMain.zSeparateWindowClose(windowTitle);
+			app.zPageMain.sSelectWindow(null);
+			window.sSelectWindow(null);
+
+		}
 
 	}
 
