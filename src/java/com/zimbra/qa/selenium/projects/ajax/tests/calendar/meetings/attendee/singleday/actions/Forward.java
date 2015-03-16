@@ -111,7 +111,7 @@ public class Forward extends CalendarWorkWeekTest {
 	
 	@Bugs(ids="50663")
 	@Test(description = "Forward a meeting invite after accepting it",
-			groups = { "test1" })
+			groups = { "fucntional" })
 			
 	public void ForwardMeeting_02() throws HarnessException {
 				
