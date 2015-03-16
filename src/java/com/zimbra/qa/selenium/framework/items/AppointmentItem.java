@@ -30,6 +30,7 @@ public class AppointmentItem implements IItem {
 	protected String dFragment = null;
 	protected String dOrganizer = null;
 	protected String dAttendees = null;
+	protected String dToAttendees = null;
 	protected String dOptionals = null;
 	protected String dLocation = null;
 	protected String dEquipment = null;
@@ -368,6 +369,10 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 
 	public String getAttendees() {
 		return (dAttendees);
+	}
+	
+	public String getToAttendees() {
+		return (dToAttendees);
 	}
 
 	public void setAttendees(String attendees) {

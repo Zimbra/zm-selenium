@@ -1068,14 +1068,14 @@ public class FormApptNew extends AbsForm {
 			zFillField(Field.Subject, appt.getSubject());
 		}
 		
-		// Forward To Attendees
-		if (appt.getAttendees() != null) {
-			zFillField(Field.To, appt.getAttendees());
-		}
-
 		// Attendees
 		if (appt.getAttendees() != null) {
 			zFillField(Field.Attendees, appt.getAttendees());
+		}
+
+		// Forward To Attendees
+		if (appt.getToAttendees() != null) {
+			zFillField(Field.To, appt.getToAttendees());
 		}
 
 		// Optional
