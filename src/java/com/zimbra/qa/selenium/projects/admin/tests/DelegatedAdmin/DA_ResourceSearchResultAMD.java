@@ -41,7 +41,7 @@ public class DA_ResourceSearchResultAMD extends AdminCommonTest {
 		logger.info("New "+ DA_ResourceSearchResultAMD.class.getCanonicalName());
 
 		// All tests start at the "resource" page
-		super.startingPage = app.zPageManageResources;
+		super.startingPage = app.zPageManageSearch;
 
 
 	}
@@ -61,6 +61,8 @@ public class DA_ResourceSearchResultAMD extends AdminCommonTest {
 			groups = { "functional" })
 			public void DA_EditResourceSR_06() throws HarnessException {
 
+		app.provisionAuthenticateDA();
+		this.startingPage.zNavigateTo();
 		// Create a new Resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
