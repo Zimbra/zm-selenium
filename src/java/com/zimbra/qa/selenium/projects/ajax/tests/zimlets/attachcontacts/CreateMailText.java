@@ -22,26 +22,27 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogAttach;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
 
 
 public class CreateMailText extends PrefGroupMailByMessageTest {
 
 	public CreateMailText() {
-		logger.info("New "+ CreateMailText.class.getCanonicalName());
-		
-		
-		
+		logger.info("New " + CreateMailText.class.getCanonicalName());
+
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
-		
+
 	}
-	
+
 	@Test(	description = "Attach a contact to a mail",
 			groups = { "functional" })
 	public void CreateMailText_01() throws HarnessException {
-		
+
 		//-- DATA
-		
+
 		// Create a contact item
 		ContactItem contact = new ContactItem();
 		contact.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
@@ -49,41 +50,66 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		contact.email = "email" + ZimbraSeleniumProperties.getUniqueString() + "@domain.com";
 
 		app.zGetActiveAccount().soapSend(
-	                "<CreateContactRequest xmlns='urn:zimbraMail'>" +
-	                		"<cn >" +
-	                			"<a n='firstName'>" + contact.firstName +"</a>" +
-	                			"<a n='lastName'>" + contact.lastName +"</a>" +
-	                			"<a n='email'>" + contact.email + "</a>" +
-                			"</cn>" +
-	                "</CreateContactRequest>");
-		
-		
+				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
+						"<cn >" +
+						"<a n='firstName'>" + contact.firstName +"</a>" +
+						"<a n='lastName'>" + contact.lastName +"</a>" +
+						"<a n='email'>" + contact.email + "</a>" +
+						"</cn>" +
+				"</CreateContactRequest>");
+
+
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
 		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
-		
-		
+
+
 		//-- GUI
-		
+
 		// Click Get Mail button to get the new contact
 		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
+
+		mailform.zFill(mail);
 		
-		
-		throw new HarnessException("See https://bugzilla.zimbra.com/show_bug.cgi?id=82354");
-		
-		// Fill out the form with the data
-		// mailform.zFill(mail);
-		
-		
+		//Click attach drop down and select Contact
+		app.zPageMail.zToolbarPressPulldown(Button.B_Attach, Button.O_CONTACTATTACH);
+
+
+		DialogAttach dialog = new DialogAttach(app, ((AppAjaxClient)app).zPageMail);
+		ZAssert.assertTrue(dialog.zIsActive(),"Attach Contact dialog gets open and active");
+
+		//Click on Contact folder
+		dialog.zClickAt(Locators.zAttachContactFolder,"");
+
+		//Select first contact
+		dialog.sClickAt("css=div[id^='attachContactsZimlet_row'] tr td>span:contains('"+contact.firstName+"')","");
+		dialog.zClickButton(Button.B_Attach);
+		SleepUtil.sleepMedium();
+		mailform.zSubmit();
+
+		//-- Verification
+
+		// From the receiving end, verify the message details
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mail.dSubject +")");
+		ZAssert.assertNotNull(received, "Verify the message is received correctly");
+		ZimbraAccount.AccountA().soapSend(
+				"<GetMsgRequest xmlns='urn:zimbraMail'>"
+						+		"<m id='"+ received.getId() +"'/>"
+						+	"</GetMsgRequest>");
+
+		String filename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
+
+		ZAssert.assertStringContains(filename, contact.firstName, "Verify the attached contacts exist");
+
 	}
 
-	
+
 
 
 }
