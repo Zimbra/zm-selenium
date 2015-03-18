@@ -110,11 +110,12 @@ public class PrintTask extends AjaxCommonTest {
 			//app.zPageTasks.sGetAllWindowTitles();
 		
 		} finally {
-			if ( window != null ) {
+			
 				//window.zCloseWindow();
 				app.zPageTasks.zSeparateWindowClose(windowTitle);				
 				app.zPageTasks.sSelectWindow(null);
-			}
+				window.sSelectWindow(null);
+			
 		}
 	}
 
@@ -186,10 +187,11 @@ public class PrintTask extends AjaxCommonTest {
 			app.zPageTasks.sSelectWindow(null);
 
 		} finally {
-			if ( window != null ) {
+			
 				app.zPageTasks.zSeparateWindowClose(windowTitle);				
 				app.zPageTasks.sSelectWindow(null);
-			}
+				window.sSelectWindow(null);
+			
 		}
 	}
 	
@@ -291,10 +293,11 @@ public class PrintTask extends AjaxCommonTest {
 			app.zPageTasks.sSelectWindow(null);
 		
 		} finally {
-			if ( window != null ) {
+			
 				app.zPageTasks.zSeparateWindowClose(windowTitle);				
 				app.zPageTasks.sSelectWindow(null);
-			}
+				window.sSelectWindow(null);
+			
 		}
 
 	}
