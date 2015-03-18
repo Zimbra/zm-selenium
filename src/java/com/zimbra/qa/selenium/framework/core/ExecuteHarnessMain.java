@@ -985,7 +985,7 @@ public class ExecuteHarnessMain {
 			StringBuilder bugzillaBody = new StringBuilder();
 			StringBuilder formatter = new StringBuilder();
 			
-			String machineName, release = null, resultDirectory = null, resultRootDirectory = null, labURL, seleniumProject;
+			String machineName, resultDirectory = null, resultRootDirectory = null, labURL, seleniumProject;
 			String zimbraTestNGResultsJar = "c:/opt/qa/BugReports/zimbratestngresults.jar";
 			String labMachines = "pnq-zqa101 pnq-zqa102 pnq-zqa103 pnq-zqa104 pnq-zqa105 pnq-zqa106 pnq-zqa107 pnq-zqa108 pnq-zqa109 pnq-zqa110 pnq-zqa057 pnq-zqa058 pnq-zqa059 pnq-zqa060 pnq-zqa061";
 
@@ -1014,16 +1014,9 @@ public class ExecuteHarnessMain {
 			} else {
 				seleniumProject = resultDirectory.split("\\.")[1].toLowerCase();
 			}
-			
-			// Get server version
-			if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("8.")) {
-				release = "JUDASPRIEST/";
-			} else if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("9.")) {
-				release = "main/";
-			}
-			
+						
 			if (labMachines.contains(machineName)) {
-				labURL = "http://pnq-zqa075.lab.zimbra.com/qa/selenium/machines/" + release + machineName + "/" + seleniumProject + "/" + resultDirectory;
+				labURL = "http://pnq-zqa075.lab.zimbra.com/qa/selenium/machines/" + machineName + "/" + seleniumProject + "/" + resultDirectory;
 				emailBody.append("Lab Result URL :  ").append(labURL).append('\n').append('\n');
 			}
 			
