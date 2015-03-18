@@ -19,6 +19,7 @@
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +55,10 @@ public class PageManageAccounts extends AbsTab {
 		public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgEdit']";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id^='zm__ACLV__MENU_POP'] div[class='ImgDelete']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id^='zm__ACLV__MENU_POP'] div[class='ImgEdit']";
-	}
+		public static final String RIGHT_CLICK_MENU_CHANGE_PASSWORD_BUTTON = "css=td[id='zmi__ACLV__CHNG_PWD_title']";
+		public static final String CHANGE_PASSWORD_BUTTON="css=td[id='zmi__zb_currentApp__CHNG_PWD_title']";
+
+				}
 
 	public PageManageAccounts(AbsApplication application) {
 		super(application);
@@ -136,7 +140,23 @@ public class PageManageAccounts extends AbsTab {
 		String rowsLocator = "css=div#zl__ACCT_MANAGE div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
-
+		
+		int m= 50;
+		if(count == 50){
+			for (int a1 = 1; a1 <= 2; a1++) { 
+				String p0  = rowsLocator + ":nth-child("+m+")";
+				if(this.sIsElementPresent(p0)){
+				zClick(p0);
+				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+				m=m+20;
+				}
+				else
+					break;
+				
+			
+		}
+			
+		}
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + ":nth-child("+i+")";
@@ -144,8 +164,8 @@ public class PageManageAccounts extends AbsTab {
 
 			// Email Address
 			locator = accountLocator + " td[id^='account_data_emailaddress']";
-
-
+			
+		
 			if(this.sIsElementPresent(locator))
 			{
 				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
@@ -218,6 +238,11 @@ public class PageManageAccounts extends AbsTab {
 			locator=Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
 
 			page = new FormEditAccount(this.MyApplication);
+		}else if(button == Button.B_CHANGE_PASSWORD) {
+
+			locator=Locators.RIGHT_CLICK_MENU_CHANGE_PASSWORD_BUTTON;
+			page = new WizardChangePassword(this);
+			
 		}else if ( button == Button.B_HOME_ACCOUNT) {
 
 			// New button
@@ -299,6 +324,11 @@ public class PageManageAccounts extends AbsTab {
 				optionLocator = Locators.DELETE_BUTTON;
 
 				page = new DialogForDeleteOperation(this.MyApplication,null);
+
+			} else if(option == Button.O_CHANGE_PASSWORD) {
+				optionLocator = Locators.CHANGE_PASSWORD_BUTTON;
+
+				page = new FormEditAccount(this.MyApplication);
 
 			}
 
