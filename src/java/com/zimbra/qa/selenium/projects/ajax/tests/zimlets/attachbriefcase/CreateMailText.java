@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.attachmail;
+package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.attachbriefcase;
 
 import org.testng.annotations.*;
 
@@ -40,31 +40,41 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(	description = "Attach an email to a mail",
+	@Test(	description = "Attach an briefcase file to a mail",
 			groups = { "functional" })
 	public void CreateMailText_01() throws HarnessException {
 
-		//-- DATA
+		// -- DATA
 
-		// Create an email to attach
-		final FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-		final String subject = "attached"+ ZimbraSeleniumProperties.getUniqueString();
-		app.zGetActiveAccount().soapSend(
-				"<AddMsgRequest xmlns='urn:zimbraMail'>"
-						+		"<m l='"+ inbox.getId() +"' >"
-						+			"<content>From: foo@foo.com\n"
-						+				"To: foo@foo.com \n"
-						+				"Subject: "+ subject +"\n"
-						+				"MIME-Version: 1.0 \n"
-						+				"Content-Type: text/plain; charset=utf-8 \n"
-						+				"Content-Transfer-Encoding: 7bit\n"
-						+				"\n"
-						+				"simple text string in the body\n"
-						+			"</content>"
-						+		"</m>"
-						+	"</AddMsgRequest>");
+		ZimbraAccount account = app.zGetActiveAccount();
 
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
+				SystemFolder.Briefcase);
 
+		// Create document item
+		DocumentItem docItem = new DocumentItem();
+
+		String docName = docItem.getName();
+		String docText = docItem.getDocText();
+
+		// Create document using SOAP
+		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<body>"
+				+ docText + "</body>" + "</html>");
+
+		account
+				.soapSend("<SaveDocumentRequest requestId='0' xmlns='urn:zimbraMail'>"
+						+ "<doc name='"
+						+ docName
+						+ "' l='"
+						+ briefcaseFolder.getId()
+						+ "' ct='application/x-zimbra-doc'>"
+						+ "<content>"
+						+ contentHTML
+						+ "</content>"
+						+ "</doc>"
+						+ "</SaveDocumentRequest>");
+
+		
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
@@ -82,16 +92,18 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 		mailform.zFill(mail);
-		app.zPageMail.zToolbarPressPulldown(Button.B_Attach, Button.O_MAILATTACH);
+		
+		//Click Attach drop down and click Briefcase
+		app.zPageMail.zToolbarPressPulldown(Button.B_Attach, Button.O_BRIEFCASEATTACH);
 
 
 		DialogAttach dialog = new DialogAttach(app, ((AppAjaxClient)app).zPageMail);
-		ZAssert.assertTrue(dialog.zIsActive(),"Attach Mail dialog gets open and active");
+		ZAssert.assertTrue(dialog.zIsActive(),"Attach File dialog gets open and active");
 		
-		//Click on Inbox folder
-		dialog.zClickAt(Locators.zAttachInboxFolder,"");
+		//Click on Briefcase folder
+		dialog.zClickAt(Locators.zAttachBriefcaseFolder,"");
 		SleepUtil.sleepMedium();
-		dialog.sClickAt("css=div[id'zv__BCI'] tr[id^='zlif__BCI__'] div[class='AttachMailRowDiv'] span[class='AttachMailSubject']","");
+		dialog.sClickAt("css=div[id'zv__BCI'] div[id^='zli__BCI__'] tr td:contains('"+docName+"')","");
 		dialog.zClickButton(Button.B_Attach);
 		SleepUtil.sleepMedium();
 		mailform.zSubmit();
@@ -108,7 +120,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 
 		String filename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
 
-		ZAssert.assertEquals(filename, subject, "Verify the attached mail exist");
+		ZAssert.assertEquals(filename, docName, "Verify the attached file exist");
 
 	}
 
