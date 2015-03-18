@@ -109,7 +109,16 @@ public class PageMail extends AbsTab {
 		public static final String zGoToUrlMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='GO_TO_URL'] table tbody tr[id='POPUP_GO_TO_URL']";
 		public static final String zCreateFilterMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='ADD_FILTER_RULE_ADDRESS'] table tbody tr[id='POPUP_ADD_FILTER_RULE_ADDRESS']";
 		public static final String zFromHdrAddressBubble = "css=div[id='zv__TV-main__MSG'] table[id='zv__TV-main__MSG_headerElement'] tr[id^='OBJ_PREFIX_DWT'][id$='_from'] span[class^='addrBubble']>span";
-
+		public static final String zAttachdropdown ="css=div[id='zb__COMPOSE-1___attachments_btn'] table tbody tr td[id='zb__COMPOSE-1___attachments_btn_dropdown']>div";
+		
+		public static final String zAttachMailMenu ="css=div[class='DwtMenu'] td div[id^='DWT'] td[id$='_title']:contains('Mail')";
+		public static final String zAttachContactMenu = "css=div[class='DwtMenu'] td div[id^='DWT'] td[id$='_title']:contains('Contacts')";
+		public static final String zAttachBriefcaseMenu ="css=div[class='DwtMenu'] td div[id^='DWT'] td[id$='_title']:contains('Briefcase')";
+		public static final String zAttachContactFolder  = "css=div[id='zov__AttachContactsTabView'] div[id^='zti__AttachContactsTabView'] td[id^='zti__AttachContactsTabView']:contains('Contacts')";
+		public static final String zAttachInboxFolder  = "css=div[id='zov__AttachMailTabView'] div[id^='zti__AttachMailTabView'] td[id^='zti__AttachMailTabView']:contains('Inbox')";
+		public static final String zAttachBriefcaseFolder  = "css=div[id='zov__ZmBriefcaseTabView'] div[id^='zti__ZmBriefcaseTabView'] td[id^='zti__ZmBriefcaseTabView']:contains('Briefcase')";
+		
+		
 		public static class CONTEXT_MENU {
 			// TODO: Until https://bugzilla.zimbra.com/show_bug.cgi?id=56273 is
 			// fixed, ContextMenuItem will be defined using the text content
@@ -768,6 +777,27 @@ public class PageMail extends AbsTab {
 
 				optionLocator = "css=td[id$='__NEW_MENU_NEW_FOLDER_left_icon']>div[class='ImgNewFolder']";
 				page = new DialogCreateFolder(this.MyApplication, this);
+
+			}
+
+		} else if (pulldown == Button.B_Attach) {
+
+			pulldownLocator = Locators.zAttachdropdown;
+
+			if (option == Button.O_MAILATTACH) {
+
+				optionLocator = Locators.zAttachMailMenu;
+				page = null;
+
+			} else if (option == Button.O_CONTACTATTACH) {
+
+				optionLocator = Locators.zAttachContactMenu;
+				page = null;
+
+			} else if (option == Button.O_BRIEFCASEATTACH) {
+
+				optionLocator = Locators.zAttachBriefcaseMenu;
+				page = null;
 
 			}
 
