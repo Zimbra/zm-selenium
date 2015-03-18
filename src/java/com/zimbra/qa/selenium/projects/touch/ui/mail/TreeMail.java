@@ -573,6 +573,33 @@ public class TreeMail extends AbsTree {
 		return (page);
 	}	
 
+	public AbsPage zSelectTag(String tagName) throws HarnessException {
+		
+		SleepUtil.sleepMedium();
+		
+		logger.info(myPageName() + " zSelectTag("+ tagName +")");
+		tracer.trace("Click page button "+ tagName);
+
+		AbsPage page = null;
+		String locator = null;
+		
+		if ( tagName == null ) 
+			throw new HarnessException("folder must not be null");
+		
+		locator = "css=div[class='x-dock x-dock-vertical x-sized'] div[class='zcs-menu-label']:contains('" + tagName + "')";
+		
+		if ( !this.sIsElementPresent(locator) )
+			throw new HarnessException("unable to find folder in tree "+ locator);
+		
+		page = new PageCreateTag(MyApplication, ((AppTouchClient)MyApplication).zPageMail);
+		
+		this.sClickAt(locator, "");
+		SleepUtil.sleepMedium();
+		
+		return (page);
+
+	}
+	
 	@Override
 	public AbsPage zPressButton(Button button) throws HarnessException {
 		SleepUtil.sleepMedium();

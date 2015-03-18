@@ -43,7 +43,7 @@ public class PageMail extends AbsTab {
 		public static final String TrashFolder			= "css=div[class^='zcs-menu-label']:contains('Trash')";
 
 		
-		public static final String Mark_Conversation_Uread		= "css=div[class='x-innerhtml']:contains('Mark conversation unread')";
+		public static final String Mark_Conversation_Unread		= "css=div[class='x-innerhtml']:contains('Mark conversation unread')";
 		public static final String Flag_Conversation	 		= "css=div[class='x-innerhtml']:contains('Flag conversation')";
 		public static final String Move_Conversation	 		= "css=div[class='x-innerhtml']:contains('Move conversation')";
 		public static final String Tag_Conversation 	 		= "css=div[class='x-innerhtml']:contains('Tag conversation')";
@@ -52,6 +52,10 @@ public class PageMail extends AbsTab {
 		public static final String Reply_To_All			 		= "css=div[id^='ext-listitem-'] div[class='x-innerhtml']:contains('Reply to all')";
 		public static final String Forward_Mail					= "css=div[id^='ext-listitem-'] div[class='x-innerhtml']:contains('Forward')";
 		public static final String Switch_To_Conversation_View	= "css=div[class='x-innerhtml']:contains('Switch to conv view')";
+		public static final String Tag_Mail 					= "css=div[class='zcs-menu-label']";
+		//public static final String Cancel_Tag_Mail 				= "css=span[class='x-button-label']:contains('Cancel')";
+		public static final String Select_Tag 					= "css=span[class='zcs-area-bubble zcs-tag-bubble']";
+		public static final String Cancel_Tag_Mail 					= "css=div[class='x-innerhtml'] div[id^=ext-element]:contains('Remove Tag')";
 
 		
 		public static final String ReplyForwardDropdown	= "css=span[class='x-button-icon x-shown reply']";
@@ -1393,8 +1397,8 @@ public class PageMail extends AbsTab {
 
 		if ( action == Action.A_LEFTCLICK ) {
 			String itemlocator = null;
-
 			itemlocator = "css=div[class='zcs-mail-list-entry'] div[class^='zcs-mail-subject']:contains('" + subject + "')";
+			
 
 			// Click on the item
 			this.zClickAt(itemlocator, "");
@@ -1405,7 +1409,7 @@ public class PageMail extends AbsTab {
 			if ( option == Button.B_MARK_CONVERSATION_UNREAD) {
 
 				this.zClickAt(pulldownLocatorActionItem,"");
-				optionLocator = Locators.Mark_Conversation_Uread ;
+				optionLocator = Locators.Mark_Conversation_Unread ;
 				page = null;
 
 				// FALLTHROUGH
@@ -1430,6 +1434,7 @@ public class PageMail extends AbsTab {
 
 				this.zClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Tag_Conversation;
+			
 				page = null;
 
 				// FALLTHROUGH
@@ -1438,6 +1443,7 @@ public class PageMail extends AbsTab {
 
 				this.zClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Switch_To_Message_View;
+		
 				page = null;
 
 				
@@ -1476,7 +1482,7 @@ public class PageMail extends AbsTab {
 						
 					// click on the option
 					this.zClickAt(optionLocator,"");
-
+					
 					this.zWaitForBusyOverlay();
 
 					// FALL THROUGH
@@ -1492,4 +1498,78 @@ public class PageMail extends AbsTab {
 			// Default behavior
 			return (page);
 
-		}}
+		}
+	public AbsPage zTagMailAction(Button option) throws HarnessException {
+		logger.info(myPageName() + " zListItem("+ option +")");
+
+		tracer.trace(option);
+
+		// Default behavior variables
+	
+		AbsPage page = null; // If set, this page will be returned
+		String optionLocator = null;
+		// Now the ContextMenu is opened
+		// Click on the specified option
+
+		if ( option == Button.B_TAG_MAIL) {
+			optionLocator = Locators.Tag_Mail ;
+			page = null;
+
+		// FALLTHROUGH
+		} else if(option == Button.B_CANCEL_TAG_MAIL) {
+			optionLocator = Locators.Cancel_Tag_Mail;
+			page = null;
+		
+		// click on the option
+		}this.zClickAt(optionLocator,"");
+		SleepUtil.sleepMedium();
+
+
+		this.zWaitForBusyOverlay();
+		// FALL THROUGH
+
+		if ( page != null ) {
+		page.zWaitForActive();
+		}
+		// Default behavior
+		return (page);	
+
+}
+	/*public AbsPage zRemoveTagMailAction(Button option) throws HarnessException {
+		logger.info(myPageName() + " zListItem("+ option +")");
+
+		tracer.trace(option);
+
+		// Default behavior variables
+	
+		AbsPage page = null; // If set, this page will be returned
+		String optionLocator = null;
+		// Now the ContextMenu is opened
+		// Click on the specified option
+
+		if (option == Button.B_UNTAG_MAIL) {
+			optionLocator = Locators.Untag_Mail;
+			page = null;
+
+		// FALLTHROUGH
+
+		} else if(option == Button.B_UNTAG_MAIL) {
+				optionLocator = Locators.Untag_Mail;
+				page = null;
+				
+		} 
+		// click on the option
+		}this.zClickAt(optionLocator,"");
+		SleepUtil.sleepMedium();
+
+
+		this.zWaitForBusyOverlay();
+		// FALL THROUGH
+
+		if ( page != null ) {
+		page.zWaitForActive();
+		}
+		// Default behavior
+
+		return (page);	
+}*/}
