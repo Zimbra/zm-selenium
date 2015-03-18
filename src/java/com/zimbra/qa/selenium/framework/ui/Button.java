@@ -67,6 +67,7 @@ public class Button {
 	public static final Button B_Attachment = new Button("B_Attachment");
 	public static final Button B_DUPLICATE = new Button ("B_DUPLICATE");	
 	public static final Button B_OPENTAB = new Button("B_OPENTAB");
+	public static final Button B_Attach = new Button("B_Attach");
 
 	public static final Button O_NEW = new Button("O_NEW");
 	public static final Button O_NEW_ADMIN = new Button("O_NEW_ADMIN");
@@ -87,6 +88,7 @@ public class Button {
 	public static final Button O_TAG_REMOVETAG = new Button("O_TAG_REMOVETAG");
 	public static final Button O_PRINT_TASKFOLDER = new Button("O_PRINT_TASKFOLDER");
 	public static final Button O_DUPLICATE_COS= new Button("O_DUPLICATE_COS");
+	
 
 	// Accept decline options
 	public static final Button B_CALENDAR = new Button("B_CALENDAR");
@@ -185,6 +187,12 @@ public class Button {
 	public static final Button O_CREATE_APPOINTMENT = new Button("O_CREATE_APPOINTMENT");
 	public static final Button O_CREATE_TASK = new Button("O_CREATE_TASK");
 	public static final Button O_CLEAR_SEARCH_HIGHLIGHTS = new Button("O_CLEAR_SEARCH_HIGHLIGHTS");
+	//Attach Context menu
+	public static final Button O_MAILATTACH = new Button("O_MAILATTACH");
+	public static final Button O_CONTACTATTACH = new Button("O_CONTACTATTACH");
+	public static final Button O_BRIEFCASEATTACH = new Button("O_BRIEFCASEATTACH");
+	
+	
 
 	// Compose mail buttons and pulldown options
 	public static final Button B_SEND = new Button("B_SEND");
