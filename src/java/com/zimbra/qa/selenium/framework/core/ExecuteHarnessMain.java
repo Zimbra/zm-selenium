@@ -1017,7 +1017,7 @@ public class ExecuteHarnessMain {
 			
 			// Get server version
 			if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("8.")) {
-				release = "jp/";
+				release = "JUDASPRIEST/";
 			} else if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("9.")) {
 				release = "main/";
 			}
