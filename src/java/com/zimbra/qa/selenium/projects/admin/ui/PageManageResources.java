@@ -107,13 +107,15 @@ public class PageManageResources extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
+		SleepUtil.sleepMedium();
 		sIsElementPresent(Locators.RESOURCES);
-		zClickAt(Locators.RESOURCES, "");
+		sClick(Locators.RESOURCES);
 
 		if(ZimbraSeleniumProperties.isWebDriver())
 			SleepUtil.sleepMedium();
 		else
 			zWaitForActive();
+		SleepUtil.sleepMedium();
 
 	}
 

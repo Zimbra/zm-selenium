@@ -113,7 +113,12 @@ public class PageManageAccounts extends AbsTab {
 		sIsElementPresent(Locators.ACCOUNTS);
 		zClickAt(Locators.ACCOUNTS, "");
 
-		zWaitForActive();
+
+		if(ZimbraSeleniumProperties.isWebDriver())
+			SleepUtil.sleepMedium();
+		else
+			zWaitForActive();
+		SleepUtil.sleepMedium();
 
 	}
 

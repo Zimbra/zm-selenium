@@ -43,6 +43,7 @@ public class PageManageDistributionLists extends AbsTab {
 	public static class Locators {
 		public static final String MANAGE_ACCOUNTS_ICON="css=div[class=ImgManageAccounts]";
 		public static final String DISTRIBUTION_LISTS="css=td[id^='zti__AppAdmin__Home__dlLstHV']";
+		
 		public static final String GEAR_ICON="css=div[class=ImgConfigure]";
 		public static final String NEW_MENU="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDistributionList']";
 		public static final String HOME="Home";
@@ -106,13 +107,16 @@ public class PageManageDistributionLists extends AbsTab {
 
 		// Click on Manage Accounts -> Accounts
 		zClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
+		SleepUtil.sleepMedium();
 		sIsElementPresent(Locators.DISTRIBUTION_LISTS);
-		zClickAt(Locators.DISTRIBUTION_LISTS, "");
+		sClick(Locators.DISTRIBUTION_LISTS);
 
 		if(ZimbraSeleniumProperties.isWebDriver())
 			SleepUtil.sleepMedium();
 		else
 			zWaitForActive();
+			SleepUtil.sleepMedium();
+
 	}
 
 	@Override
@@ -302,9 +306,12 @@ public class PageManageDistributionLists extends AbsTab {
 			if(ZimbraSeleniumProperties.isWebDriver())
 				SleepUtil.sleepSmall();
 
+			
+			SleepUtil.sleepLong();
+			
 			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepMedium();
-
+			
 			// If the app is busy, wait for it to become active
 			//zWaitForBusyOverlay();
 

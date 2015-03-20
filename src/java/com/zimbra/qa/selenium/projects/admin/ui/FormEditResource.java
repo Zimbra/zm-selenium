@@ -77,7 +77,6 @@ public class FormEditResource extends AbsForm {
 	@Override
 	public void zSubmit() throws HarnessException {
 		sClickAt(Locators.SAVE_BUTTON,"");
-		sClickAt(Locators.CLOSE_BUTTON,"");
 	}
 
 	public void zClickTreeItem(String treeItem) throws HarnessException {

@@ -26,6 +26,7 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 
 
 /**
@@ -130,7 +131,12 @@ public class PageManageSearch extends AbsTab {
 		// Click on Search
 		zClickAt(Locators.SEARCH_MENU,"");
 
-		zWaitForActive();
+
+		if(ZimbraSeleniumProperties.isWebDriver())
+			SleepUtil.sleepMedium();
+		else
+			zWaitForActive();
+		SleepUtil.sleepMedium();
 	}
 
 	@Override
