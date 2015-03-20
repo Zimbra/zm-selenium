@@ -100,6 +100,7 @@ public class Shortcut {
 	public static final Shortcut S_PASTE = new Shortcut("S_PASTE",	"<CONTROL><V>");
 	public static final Shortcut S_COPY = new Shortcut("S_COPY",	"<CONTROL><C>");
 	public static final Shortcut S_PRINTTASK = new Shortcut("S_PRINTTASK", "p");
+	public static final Shortcut S_UNTAG = new Shortcut("S_UNTAG", "u");
 
 	// Shortcut properties
 	private final String ID;

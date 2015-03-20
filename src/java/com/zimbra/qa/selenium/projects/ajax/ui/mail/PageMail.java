@@ -116,8 +116,8 @@ public class PageMail extends AbsTab {
 		public static final String zAttachBriefcaseMenu ="css=div[class='DwtMenu'] td div[id^='DWT'] td[id$='_title']:contains('Briefcase')";
 		public static final String zAttachContactFolder  = "css=div[id='zov__AttachContactsTabView'] div[id^='zti__AttachContactsTabView'] td[id^='zti__AttachContactsTabView']:contains('Contacts')";
 		public static final String zAttachInboxFolder  = "css=div[id='zov__AttachMailTabView'] div[id^='zti__AttachMailTabView'] td[id^='zti__AttachMailTabView']:contains('Inbox')";
-		public static final String zAttachBriefcaseFolder  = "css=div[id='zov__ZmBriefcaseTabView'] div[id^='zti__ZmBriefcaseTabView'] td[id^='zti__ZmBriefcaseTabView']:contains('Briefcase')";
-		
+		public static final String zAttachBriefcaseFolder  = "css=div[id='zov__ZmBriefcaseTabView'] div[id^='zti__ZmBriefcaseTabView'] td[id^='zti__ZmBriefcaseTabView']:contains('Briefcase')";		
+		public static final String zUntagBubble ="css=div[id='zv__TV-main__MSG'] tr[id='zv__TV__TV-main_MSG_tagRow'] span[class='addrBubble TagBubble'] span[class='ImgBubbleDelete']";
 		
 		public static class CONTEXT_MENU {
 			// TODO: Until https://bugzilla.zimbra.com/show_bug.cgi?id=56273 is
@@ -1743,6 +1743,16 @@ public class PageMail extends AbsTab {
 			return (page);
 
 		}
+		
+		else if ( shortcut == Shortcut.S_UNTAG ) {			
+			page= null;
+			keyCode= "85";
+			zKeyDown(keyCode);
+			
+			return (page);
+
+		}
+
 
 		zKeyboard.zTypeCharacters(shortcut.getKeys());
 
