@@ -46,7 +46,7 @@ public class StafAbstract {
 	public StafAbstract() {
 		logger.info("new "+ StafAbstract.class.getCanonicalName());
 		
-		StafServer = ZimbraSeleniumProperties.getStringProperty("server.host", "local");
+		StafServer = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host"));
 		StafService = "PING";
 		StafParms = "PING";
 		
