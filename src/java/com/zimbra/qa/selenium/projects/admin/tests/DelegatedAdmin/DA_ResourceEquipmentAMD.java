@@ -62,6 +62,7 @@ public class DA_ResourceEquipmentAMD extends AdminCommonTest {
 	public void DA_CreateResourceEquipment_01() throws HarnessException {
 
 		app.provisionAuthenticateDA();
+		this.startingPage.zNavigateTo();
 		// Create a new resource in the Admin Console
 		ResourceItem resource = new ResourceItem();
 
@@ -103,7 +104,7 @@ public class DA_ResourceEquipmentAMD extends AdminCommonTest {
 
 		// Create and authenticate delegated admin
 		app.provisionAuthenticateDA();
-	
+		this.startingPage.zNavigateTo();
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
 
