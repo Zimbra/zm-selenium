@@ -1,6 +1,6 @@
 Date: Tue, 15 Nov 2011 17:10:42 -0800 (PST)
-From: foo@example.com
-To: bar@example.com
+From: foo@testdomain.com
+To: bar@testdomain.com
 Subject: 1 html format
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 7bit
