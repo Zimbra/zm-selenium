@@ -103,7 +103,7 @@ public class LmtpInject {
 
 	}
 
-	protected static void injectFolder(List<String> recipients, String sender, File mime) throws IOException, LmtpProtocolException, LmtpClientException {
+	protected static void injectFolder(List<String> recipients, String sender, File mime) throws IOException, LmtpProtocolException,  LmtpClientException {
 
 		if ( mime.isFile() ) {
 
@@ -149,7 +149,7 @@ public class LmtpInject {
 		try {
 
 			lmtp = new LmtpClient(
-					ZimbraSeleniumProperties.getStringProperty("server.host"),
+					ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")),
 					7025);
 
 			lmtp.sendMessage(new FileInputStream(mime), recipients.toArray(new String[recipients.size()]), sender, "Selenium", length);
