@@ -49,12 +49,12 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "TRUE" +"</pref>"
 			+	"</ModifyPrefsRequest>");
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
-		
+				
 		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email10/mimeHtmlOnly1.txt";
 		final String subject = "1 html format";
 		final String content = "Bold and Italics";
-		String apptAttendee1 = "foo@example.com";
-		String apptAttendee2 = "bar@example.com";
+		String apptAttendee1 = "foo@testdomain.com";
+		String apptAttendee2 = "bar@testdomain.com";
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
