@@ -142,8 +142,8 @@ public class PageManageAccounts extends AbsTab {
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
 		
 		int m= 50;
-		if(count == 50){
-			for (int a1 = 1; a1 <= 2; a1++) { 
+		if(count >= 50){
+			for (int a1 = 1; a1 <= 5; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
 				if(this.sIsElementPresent(p0)){
 				zClick(p0);
@@ -157,6 +157,8 @@ public class PageManageAccounts extends AbsTab {
 		}
 			
 		}
+		
+		count = this.sGetCssCount(rowsLocator);
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + ":nth-child("+i+")";
@@ -394,6 +396,28 @@ public class PageManageAccounts extends AbsTab {
 		int count = this.sGetXpathCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
 
+		
+		
+
+		int m= 50;
+		if(count >= 50){
+			for (int a1 = 1; a1 <= 5; a1++) { 
+				String p0  = rowsLocator + "["+ m +"]";
+				if(this.sIsElementPresent(p0)){
+				zClick(p0);
+				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+				m=m+20;
+				}
+				else
+					break;
+				
+			
+		}
+			
+		}
+		
+		count = this.sGetCssCount(rowsLocator);
+		
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + "["+ i +"]";
