@@ -371,6 +371,16 @@ public class FormApptNew extends AbsForm {
 		SleepUtil.sleepMedium();
 	}
 	
+	public void zRemoveEquipment(String equipment) throws HarnessException {
+		SleepUtil.sleepSmall(); // let free/busy UI draw and then we take UI
+								// actions
+		this.zRightClickAt("css=td[id$='resourcesData'] span:contains('" + equipment
+				+ "')", "");
+		this.zClickAt(Locators.DeleteZimletContextMenu, "");
+		this.zClickAt("css=td[id$='resourcesData']", "");
+		SleepUtil.sleepMedium();
+	}
+	
 	public void zVerifyDisabledControlInProposeNewTimeUI() throws HarnessException {
 		SleepUtil.sleepMedium(); // opening appt takes some time so assert fails
 		ZAssert.assertTrue(this.sIsElementPresent(Locators.ToDisabled), "Verify to field is disabled when attendee propose new time");
