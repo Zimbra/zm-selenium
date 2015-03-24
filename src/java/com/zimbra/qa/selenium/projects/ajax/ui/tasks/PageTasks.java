@@ -81,6 +81,7 @@ public class PageTasks extends AbsTab{
 		public static final String zEditButton= "css=div[id^='ztb__TKL'] tr[id^='ztb__TKL'] td[id$='_title']:contains('Edit')";
 		public static final String zEditAttachmentCheckbox="css=div[class='ZmTaskEditView'] tr[id$='_attachment_container'] input[type='checkbox']";
 		public static final String zCheckboxenable ="css=div[class='ImgCheckboxChecked']";
+		public static final String zUntagTaskBubble ="css=div[id='zv__zv__TKL-main__TKV'] tr[id='zv__TKL-main_MSG_tagRow'] span[class='addrBubble TagBubble'] span[class='ImgBubbleDelete']";
 		
 	}
 
