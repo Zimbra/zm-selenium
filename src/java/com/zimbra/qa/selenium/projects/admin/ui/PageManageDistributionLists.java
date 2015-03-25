@@ -371,7 +371,7 @@ public class PageManageDistributionLists extends AbsTab {
 		}
 			
 		}
-		count = this.sGetCssCount(rowsLocator);
+		count =this.sGetXpathCount(rowsLocator);
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + "["+ i +"]";
