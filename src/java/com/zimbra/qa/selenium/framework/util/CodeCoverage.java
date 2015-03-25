@@ -523,7 +523,7 @@ public class CodeCoverage {
 
 		try {
 			
-			URL url = new URL("http://" + ZimbraSeleniumProperties.getStringProperty("server.host","qa60.lab.zimbra.com") +"/zimbra/"+ jsFilename);
+			URL url = new URL("https://" + ZimbraSeleniumProperties.getStringProperty("server.host","qa60.lab.zimbra.com") +"/"+ jsFilename);
 			URLConnection uc = url.openConnection();
 			BufferedReader reader = null;
 			
