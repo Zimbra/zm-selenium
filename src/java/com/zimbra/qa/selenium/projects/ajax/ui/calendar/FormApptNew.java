@@ -19,12 +19,14 @@ package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
 import com.zimbra.qa.selenium.framework.core.SeleniumService;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
 /**
  * The <code>FormMailNew<code> object defines a compose new message view
@@ -157,6 +159,7 @@ public class FormApptNew extends AbsForm {
 
 		public static final Field Subject = new Field("Subject");
 		public static final Field To = new Field("To");
+		public static final Field From = new Field("From");
 		public static final Field Attendees = new Field("Attendees");
 		public static final Field Optional = new Field("Optional");
 		public static final Field Location = new Field("Location");
@@ -768,6 +771,42 @@ public class FormApptNew extends AbsForm {
 		// Return the specified page, or null if not set
 		return (page);
 	}
+	
+	public void zSetFromIdentity(String value) throws HarnessException {
+		logger.info(myPageName() + " zSetFrom("+ value +")");
+
+		String pulldownLocator = "css=td[id$='_identity'] td[id$='_dropdown']";
+		String optionLocator = "css=td[id$='_title']:contains("+ value +")";
+		
+		// Default behavior
+		if ( pulldownLocator != null ) {
+						
+			// Make sure the locator exists
+			if ( !this.sIsElementPresent(pulldownLocator) ) {
+				throw new HarnessException("pulldownLocator not present! "+ pulldownLocator);
+			}
+			
+			this.zClick(pulldownLocator);
+
+			this.zWaitForBusyOverlay();
+			
+			if ( optionLocator != null ) {
+
+				// Make sure the locator exists
+				if ( !this.sIsElementPresent(optionLocator) ) {
+					throw new HarnessException("optionLocator not present! "+ optionLocator);
+				}
+				
+				this.zClick(optionLocator);
+
+				this.zWaitForBusyOverlay();
+
+			}
+			
+		}
+		
+	}
+	
 
 	public void zFillField(Field field, ZDate value) throws HarnessException {
 		String stringFormat;
@@ -835,6 +874,11 @@ public class FormApptNew extends AbsForm {
 		if (field == Field.Subject) {
 
 			locator = "css=div[id^='APPT_COMPOSE_'] td[id$='_subject'] input";
+			
+		} else if ( field == Field.From ) {
+			
+			zSetFromIdentity(value);
+			return;
 
 		} else if (field == Field.To) {
 
