@@ -91,7 +91,7 @@ public class DA_ResourceSearchResultAMD extends AdminCommonTest {
 
 		//Edit the name.
 		String editedName = "editedResource_" + ZimbraSeleniumProperties.getUniqueString();
-		form.setName(editedName);
+		form.setNameAsDA(editedName);
 		
 		//Submit the form.
 		form.zSubmit();
