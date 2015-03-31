@@ -113,8 +113,7 @@ public class PageManageDistributionLists extends AbsTab {
 		}
 
 		// Click on Manage Accounts -> Accounts
-		zClickAt(Locators.HOME,"");
-
+		
 		zClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
 		SleepUtil.sleepMedium();
 		sIsElementPresent(Locators.DISTRIBUTION_LISTS);
