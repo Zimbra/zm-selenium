@@ -42,7 +42,7 @@ public class PageManageDistributionLists extends AbsTab {
 
 	public static class Locators {
 		public static final String MANAGE_ACCOUNTS_ICON="css=div[class=ImgManageAccounts]";
-		public static final String DISTRIBUTION_LISTS="css=td[id^='zti__AppAdmin__Home__dlLstHV']";
+		public static final String DISTRIBUTION_LISTS="css=div[id^='zti__AppAdmin__Home__dlLstHV']";
 		
 		public static final String GEAR_ICON="css=div[class=ImgConfigure]";
 		public static final String NEW_MENU="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDistributionList']";
@@ -81,6 +81,13 @@ public class PageManageDistributionLists extends AbsTab {
 			logger.debug("isActive() visible = "+ visible);
 			return (false);
 		}
+		
+
+		boolean onPage = zIsVisiblePerPosition(Locators.DISTRIBUTION_LISTS, 0, 0);
+		if ( !onPage ) {
+			logger.debug("isActive() onPage = "+ onPage);
+			return (false);
+		}
 
 		return (true);
 
@@ -106,6 +113,8 @@ public class PageManageDistributionLists extends AbsTab {
 		}
 
 		// Click on Manage Accounts -> Accounts
+		zClickAt(Locators.HOME,"");
+
 		zClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
 		SleepUtil.sleepMedium();
 		sIsElementPresent(Locators.DISTRIBUTION_LISTS);
