@@ -217,13 +217,15 @@ public class EditDistributionList extends AdminCommonTest {
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
-
+		
+		String memberURL ="ldap:///??sub?";
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin' dynamic='1'>"
-						+			"<name>" + dlEmailAddress + "</name>"
-						+			"<a xmlns='' n='zimbraIsAdminGroup'>TRUE</a>"
-						+			"<a xmlns='' n='zimbraIsACLGroup'>TRUE</a>"
-						+		"</CreateDistributionListRequest>");
+				"<CreateDistributionListRequest dynamic='1' xmlns='urn:zimbraAdmin'>"
+						+ "<name>" + dlEmailAddress + "</name>"
+						+ "<a xmlns='' n='zimbraIsACLGroup'>FALSE</a>"
+						+ "<a xmlns='' n='zimbraMailStatus'>enabled</a>"
+						+ "<a xmlns='' n='memberURL'>" +memberURL+ "</a>"
+						+ "</CreateDistributionListRequest>");
 
 		// Refresh the list
 		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
@@ -311,6 +313,8 @@ public class EditDistributionList extends AdminCommonTest {
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
 		ZAssert.assertNotNull(response, "Verify the distribution list is edited successfully");
+		
+		app.zPageMain.zNavigateTo();
 
 	}
 
@@ -328,6 +332,7 @@ public class EditDistributionList extends AdminCommonTest {
 			groups = { "functional" })
 	public void EditDistributionList_06() throws HarnessException {
 
+		super.startingPage.zNavigateTo();
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
@@ -428,6 +433,7 @@ public class EditDistributionList extends AdminCommonTest {
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
 		ZAssert.assertNotNull(response, "Verify the distribution list is edited successfully");
+		super.startingPage.zNavigateTo();
 	}
 
 
@@ -519,6 +525,7 @@ public class EditDistributionList extends AdminCommonTest {
 						+ "</CreateDistributionListRequest>");
 
 		// Enter the search string to find the dl
+		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.DISTRIBUTION_LIST);
 		app.zPageSearchResults.zAddSearchQuery(dlEmailAddress);
 
 		// Click search
@@ -529,7 +536,7 @@ public class EditDistributionList extends AdminCommonTest {
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, dl.getEmailAddress());
 
 		// Click on Edit button
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.DISTRIBUTION_LIST);
+	//	
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
 
 		//Click on General Information tab.

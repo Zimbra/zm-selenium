@@ -98,15 +98,18 @@ public class DeleteAdminDistributionList extends AdminCommonTest {
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
 
+
+		String memberURL ="ldap:///??sub?";
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin' dynamic='1'>"
-				+			"<name>" + dlEmailAddress + "</name>"
-				+			"<a xmlns='' n='zimbraIsAdminGroup'>TRUE</a>"
-				+			"<a xmlns='' n='zimbraIsACLGroup'>TRUE</a>"
-				+		"</CreateDistributionListRequest>");
+				"<CreateDistributionListRequest dynamic='1' xmlns='urn:zimbraAdmin'>"
+						+ "<name>" + dlEmailAddress + "</name>"
+						+ "<a xmlns='' n='zimbraIsACLGroup'>FALSE</a>"
+						+ "<a xmlns='' n='zimbraMailStatus'>enabled</a>"
+						+ "<a xmlns='' n='memberURL'>" +memberURL+ "</a>"
+						+ "</CreateDistributionListRequest>");
 		
 		// Refresh list to populate account.
-		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		this.startingPage.sRefresh();
 
 		// Click on account to be deleted.
 		app.zPageManageDistributionList.zListItem(Action.A_LEFTCLICK, dl.getEmailAddress());
