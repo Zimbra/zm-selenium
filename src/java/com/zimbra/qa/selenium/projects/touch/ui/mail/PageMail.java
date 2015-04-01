@@ -43,8 +43,10 @@ public class PageMail extends AbsTab {
 		public static final String TrashFolder			= "css=div[class^='zcs-menu-label']:contains('Trash')";
 
 		
-		public static final String Mark_Conversation_Unread		= "css=div[class='x-innerhtml']:contains('Mark conversation unread')";
-		public static final String Flag_Conversation	 		= "css=div[class='x-innerhtml']:contains('Flag conversation')";
+		public static final String Mark_Conversation_Unread		= "css=div[class='x-innerhtml']:contains('Mark unread')";
+		public static final String Mark_Conversation_Read		= "css=div[class='x-innerhtml']:contains('Mark read')";
+		public static final String Flag_Conversation	 		= "css=div[class='x-innerhtml']:contains('Flag')";
+		public static final String Unflag_Conversation	 		= "css=div[class='x-innerhtml']:contains('Unflag')";
 		public static final String Move_Conversation	 		= "css=div[class='x-innerhtml']:contains('Move conversation')";
 		public static final String Tag_Conversation 	 		= "css=div[class='x-innerhtml']:contains('Tag conversation')";
 		public static final String Switch_To_Message_View	 	= "css=div[id='ext-listitem-5'] div[class='x-innerhtml']:contains('Switch to message view')";
@@ -55,8 +57,8 @@ public class PageMail extends AbsTab {
 		public static final String Tag_Mail 					= "css=div[class='zcs-menu-label']";
 		//public static final String Cancel_Tag_Mail 				= "css=span[class='x-button-label']:contains('Cancel')";
 		public static final String Select_Tag 					= "css=span[class='zcs-area-bubble zcs-tag-bubble']";
-		public static final String Cancel_Tag_Mail 					= "css=div[class='x-innerhtml'] div[id^=ext-element]:contains('Remove Tag')";
-
+		public static final String Cancel_Tag_Mail 				= "css=div[class='x-innerhtml'] div[id^=ext-element]:contains('Remove Tag')";
+		
 		
 		public static final String ReplyForwardDropdown	= "css=span[class='x-button-icon x-shown reply']";
 
@@ -1413,11 +1415,28 @@ public class PageMail extends AbsTab {
 				page = null;
 
 				// FALLTHROUGH
+				
+			}else if ( option == Button.B_MARK_CONVERSATION_READ) {
+
+					this.zClickAt(pulldownLocatorActionItem,"");
+					optionLocator = Locators.Mark_Conversation_Read ;
+					page = null;
+
+					// FALLTHROUGH
+				
 
 			} else if ( option == Button.B_FLAG_CONVERSATION ) {
 
 				this.zClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Flag_Conversation;
+				page = null;
+
+				// FALLTHROUGH
+				
+			} else if ( option == Button.B_UNFLAG_CONVERSATION ) {
+
+				this.zClickAt(pulldownLocatorActionItem,"");
+				optionLocator = Locators.Unflag_Conversation;
 				page = null;
 
 				// FALLTHROUGH

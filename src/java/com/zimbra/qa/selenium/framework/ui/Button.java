@@ -691,7 +691,9 @@ public class Button {
 	//Added for Touch client Mail
 	public static Button B_MAIL_ACTION	=   new Button("B_MAIL_ACTION");
 	public static Button B_MARK_CONVERSATION_UNREAD =   new Button("B_MARK_CONVERSATION_UNREAD");
+	public static Button B_MARK_CONVERSATION_READ =   new Button("B_MARK_CONVERSATION_READ");
 	public static Button B_FLAG_CONVERSATION 	=   new Button("B_FLAG_CONVERSATION");
+	public static Button B_UNFLAG_CONVERSATION 	=   new Button("B_UNFLAG_CONVERSATION");
 	public static Button B_MOVE_CONVERSATION 	=   new Button("B_MOVE_CONVERSATION");
 	public static Button B_TAG_CONVERSATION 	=   new Button("B_TAG_CONVERSATION");
 	public static Button B_SWITCH_TO_MESSAGE_VIEW =   new Button("B_SWITCH_TO_MESSAGE_VIEW");
