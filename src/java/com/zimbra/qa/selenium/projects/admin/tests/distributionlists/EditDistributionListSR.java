@@ -37,7 +37,7 @@ public class EditDistributionListSR extends AdminCommonTest {
 		logger.info("New "+ EditDistributionListSR.class.getCanonicalName());
 
 		// All tests start at the "Accounts" page
-		super.startingPage = app.zPageManageDistributionList;
+		super.startingPage = app.zPageManageSearch;
 
 	}
 
