@@ -28,7 +28,7 @@ import com.zimbra.qa.selenium.projects.admin.ui.FormEditResource.Locators;
 public class DialogForDeleteOperation extends AbsDialog {
 
 	public static class Locators {
-		public static final String YES_BUTTON="zdlg__MSG__GLOBAL__confirm2btn_button5_title";
+		public static final String YES_BUTTON="css=td[id='zdlg__MSG__GLOBAL__confirm2btn_button5_title']";
 		public static final String NO_BUTTON="zdlg__MSG__GLOBAL__confirm2btn_button4_title";
 		public static final String OK_BUTTON="css=td#zdlg__UNDEFINE";
 	}
@@ -58,7 +58,7 @@ public class DialogForDeleteOperation extends AbsDialog {
 		} else if (button == Button.B_NO) {
 			locator = Locators.NO_BUTTON;
 		} else if (button == Button.B_OK) {
-			for(int i=0;i<=10;i++) {
+			for(int i=0;i<=15;i++) {
 				if(sIsElementPresent(Locators.OK_BUTTON+i+"_button2_title")) {
 					locator=Locators.OK_BUTTON+i+"_button2_title";
 					break;
@@ -83,7 +83,7 @@ public class DialogForDeleteOperation extends AbsDialog {
 		// zGetDisplayedText("css=div[class=" + Locators.zDialogContentClassId +
 		// "]");
 
-		this.zClickAt(locator,"0,0");
+		this.sClickAt(locator,"");
 		SleepUtil.sleepLong();
 
 		// If the app is busy, wait for it to become active

@@ -32,7 +32,9 @@ public class FormEditAccount extends AbsForm {
 		public static final String NAME_TEXT_BOX="css=input#ztabv__ACCT_EDIT_";
 		public static final String DA_NAME_TEXT_BOX="css=input[id='ztabv__ACCT_EDIT_name_2']";
 		public static final String SAVE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__SAVE']";
-		public static final String CLOSE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__CLOSE']";
+		public static final String CLOSE_BUTTON="css=td[id$='zb__ZaCurrentAppBar__CLOSE']";
+		public static final String Pull_DOWN="css=div[class='ImgSelectPullDownArrow']";
+		public static final String PULL_DOWN_CLOSE="css=td[id='zmi__zb_currentApp__CLOSE_title']";
 		public static final String PASSWORD = "css=input[id$='ztabv__ACCT_EDIT_password']";
 		public static final String CONFIRM_PASSWORD= "css=input[id$='ztabv__ACCT_EDIT_confirmPassword']";
 		public static final String zdlg_OK="css=td[id$='_button2_title']:contains('OK')";
@@ -79,6 +81,9 @@ public class FormEditAccount extends AbsForm {
 	@Override
 	public void zSubmit() throws HarnessException {
 		sClickAt(Locators.SAVE_BUTTON,"");
+		sClick(Locators.Pull_DOWN);
+		sClick(Locators.PULL_DOWN_CLOSE);
+		
 	}
 
 	public void zClickTreeItem(String treeItem) throws HarnessException {
