@@ -65,6 +65,8 @@ public class AppTouchClient extends AbsApplication {
 	public PageAddressbook              zPageAddressbook = null;
 	public PageCalendar					zPageCalendar = null;
 	public PageSearch					zPageSearch = null;
+	public FormMailNew					zFormMailNew=null;
+	
 
 	// Trees
 	public TreeMail						zTreeMail = null;
@@ -88,6 +90,10 @@ public class AppTouchClient extends AbsApplication {
 		// Mail page
 		zPageMail = new PageMail(this);
 		pages.put(zPageMail.myPageName(), zPageMail);
+		
+		// Mail form
+		zFormMailNew = new FormMailNew(this);
+		forms.put(zFormMailNew.myPageName(), zFormMailNew);
 		
 		zTreeMail = new TreeMail(this);
 		trees.put(zTreeMail.myPageName(), zTreeMail);

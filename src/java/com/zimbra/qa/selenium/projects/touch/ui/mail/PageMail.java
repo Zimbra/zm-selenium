@@ -50,14 +50,14 @@ public class PageMail extends AbsTab {
 		public static final String Move_Conversation	 		= "css=div[class='x-innerhtml']:contains('Move conversation')";
 		public static final String Tag_Conversation 	 		= "css=div[class='x-innerhtml']:contains('Tag conversation')";
 		public static final String Switch_To_Message_View	 	= "css=div[id='ext-listitem-5'] div[class='x-innerhtml']:contains('Switch to message view')";
-		public static final String Reply_Mail				 	= "css=div[id^='ext-listitem-'] div[class='x-innerhtml']:contains('Reply')";
-		public static final String Reply_To_All			 		= "css=div[id^='ext-listitem-'] div[class='x-innerhtml']:contains('Reply to all')";
-		public static final String Forward_Mail					= "css=div[id^='ext-listitem-'] div[class='x-innerhtml']:contains('Forward')";
+		
 		public static final String Switch_To_Conversation_View	= "css=div[class='x-innerhtml']:contains('Switch to conv view')";
 		public static final String Tag_Mail 					= "css=div[class='zcs-menu-label']";
-		//public static final String Cancel_Tag_Mail 				= "css=span[class='x-button-label']:contains('Cancel')";
+		public static final String Cancel_Tag_Mail 				= "css=span[class='x-button-label']:contains('Cancel')";
 		public static final String Select_Tag 					= "css=span[class='zcs-area-bubble zcs-tag-bubble']";
-		public static final String Cancel_Tag_Mail 				= "css=div[class='x-innerhtml'] div[id^=ext-element]:contains('Remove Tag')";
+		public static final String Remove_Tag_Mail 				= "css=div[class='x-unsized x-list-item-body']:contains('Remove Tag')";
+
+		public static final String Cancel_Move_Mail 			= "css=span[class='x-button-label']:contains('Cancel')";
 		
 		
 		public static final String ReplyForwardDropdown	= "css=span[class='x-button-icon x-shown reply']";
@@ -160,6 +160,28 @@ public class PageMail extends AbsTab {
 			elementPresent = true;
 		} else {
 			elementPresent = false;
+		}
+		return elementPresent;
+	}
+	
+	public boolean zVerifyMessageDetailsExist() throws HarnessException {
+		SleepUtil.sleepMedium();
+		Boolean elementPresent = false;
+		if (sIsElementPresent("css=div[class='x-unsized x-button-normal x-button zcs-btn-msg-details']") == true) {
+			elementPresent = true;
+		} else {
+			elementPresent = false;
+		}
+		return elementPresent;
+	}
+	
+	public boolean zVerifyMessageDetailsNotExist() throws HarnessException {
+		SleepUtil.sleepMedium();
+		Boolean elementPresent = true;
+		if (sIsElementPresent("css=div[class='x-unsized x-button-normal x-button zcs-btn-msg-details']") == true) {
+			elementPresent = false;
+		} else {
+			elementPresent = true;
 		}
 		return elementPresent;
 	}
@@ -1473,25 +1495,33 @@ public class PageMail extends AbsTab {
 				page = null;
 
 
-				} else if ( option == Button.B_REPLY_MENU ) {
+				} else if ( option == Button.B_REPLY_MAIL ) {
 					
 					this.zClickAt(pulldownLocatorReply, "");
 					optionLocator = Locators.ReplyMenu;
-					page = new DisplayMail(this.MyApplication);
+					page = null;
 
 					// FALLTHROUGH
 				} else if ( option == Button.B_REPLY_TO_ALL ) {
 					
 					this.zClickAt(pulldownLocatorReply, "");
 					optionLocator = Locators.ReplyAllMenu;
-					page = new DisplayMail(this.MyApplication);
+					page = null;
 
+					// FALLTHROUGH
+				} else if ( option == null ) {
+					
+					this.zClickAt(pulldownLocatorReply, "");
+					optionLocator = null;
+					page = null;
+
+					
 					// FALLTHROUGH
 				} else if ( option == Button.B_FORWARD_MAIL ) {
 
 					this.zClickAt(pulldownLocatorReply, "");
 					optionLocator = Locators.ForwardMenu;
-					page = new DisplayMail(this.MyApplication);
+					page = new FormMailNew(this.MyApplication);
 
 				
 				}	if (option == Button.B_DELETE ) {
@@ -1518,7 +1548,16 @@ public class PageMail extends AbsTab {
 			return (page);
 
 		}
-	public AbsPage zTagMailAction(Button option) throws HarnessException {
+	public void zSubmit() throws HarnessException {
+		logger.info("FormMailNew.submit()");
+		
+		zToolbarPressButton(Button.B_SEND);
+
+		this.zWaitForBusyOverlay();
+
+	}
+	
+	public AbsPage zCancelMailAction(Button option) throws HarnessException {
 		logger.info(myPageName() + " zListItem("+ option +")");
 
 		tracer.trace(option);
@@ -1537,8 +1576,18 @@ public class PageMail extends AbsTab {
 		// FALLTHROUGH
 		} else if(option == Button.B_CANCEL_TAG_MAIL) {
 			optionLocator = Locators.Cancel_Tag_Mail;
-			page = null;
-		
+			page = null; 
+			
+		// FALLTHROUGH
+		}else if(option == Button.B_CANCEL_MOVE_MAIL) {
+					optionLocator = Locators.Cancel_Move_Mail;
+					page = null;	
+			
+					
+		}else if(option == Button.B_REMOVE_TAG_MAIL) {
+			optionLocator = Locators.Remove_Tag_Mail;
+			page = null;	
+			
 		// click on the option
 		}this.zClickAt(optionLocator,"");
 		SleepUtil.sleepMedium();

@@ -584,9 +584,62 @@ public class TreeMail extends AbsTree {
 		String locator = null;
 		
 		if ( tagName == null ) 
-			throw new HarnessException("folder must not be null");
+			throw new HarnessException("tag must not be null");
 		
 		locator = "css=div[class='x-dock x-dock-vertical x-sized'] div[class='zcs-menu-label']:contains('" + tagName + "')";
+		
+		if ( !this.sIsElementPresent(locator) )
+			throw new HarnessException("unable to find tag in tree "+ locator);
+		
+		page = new PageCreateTag(MyApplication, ((AppTouchClient)MyApplication).zPageMail);
+		
+		this.sClickAt(locator, "");
+		SleepUtil.sleepMedium();
+		
+		return (page);
+		
+	}	
+
+	public AbsPage zSelectMailTag(String tagName) throws HarnessException {
+		
+		SleepUtil.sleepMedium();
+		
+		logger.info(myPageName() + " zSelectTag("+ tagName +")");
+		tracer.trace("Click page button "+ tagName);
+
+		AbsPage page = null;
+		String locator = null;
+		
+		if ( tagName == null ) 
+			throw new HarnessException("tag must not be null");
+		
+		locator = "css=span[class='zcs-area-bubble zcs-tag-bubble']:contains('" + tagName + "')";
+		
+		if ( !this.sIsElementPresent(locator) )
+			throw new HarnessException("unable to find tag in tree "+ locator);
+		
+		page = new PageCreateTag(MyApplication, ((AppTouchClient)MyApplication).zPageMail);
+		
+		this.sClickAt(locator, "");
+		SleepUtil.sleepMedium();
+		
+		return (page);
+
+	}
+	public AbsPage zSelectFolder(String foldername) throws HarnessException {
+		
+		SleepUtil.sleepMedium();
+		
+		logger.info(myPageName() + " zSelectTag("+ foldername +")");
+		tracer.trace("Click page button "+ foldername);
+
+		AbsPage page = null;
+		String locator = null;
+		
+		if ( foldername == null ) 
+			throw new HarnessException("folder must not be null");
+		
+		locator = "css=div[class='zcs-menu-label']:contains('" + foldername + "')";
 		
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("unable to find folder in tree "+ locator);
@@ -599,7 +652,6 @@ public class TreeMail extends AbsTree {
 		return (page);
 
 	}
-	
 	@Override
 	public AbsPage zPressButton(Button button) throws HarnessException {
 		SleepUtil.sleepMedium();
