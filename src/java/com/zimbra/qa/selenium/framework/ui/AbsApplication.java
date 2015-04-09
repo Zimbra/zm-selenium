@@ -54,6 +54,12 @@ public abstract class AbsApplication {
 	 * A map of {@link AbsTree} objects being managed by this object
 	 **/
 	protected Map<String, AbsTree>			trees = new HashMap<String, AbsTree>();
+
+	/**
+	 * A map of {@link AbsForm} objects being managed by this object
+	 **/
+	protected Map<String, AbsForm>			forms = new HashMap<String, AbsForm>();
+
 	
 	/**
 	 * The currently logged in user
