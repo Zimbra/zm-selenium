@@ -21,9 +21,9 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
 
-public class CancelTagMail extends PrefGroupMailByMessageTest {
+public class CancelTagMail extends PrefGroupMailByConversationTest {
 
 	public CancelTagMail() {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());
@@ -66,13 +66,13 @@ public class CancelTagMail extends PrefGroupMailByMessageTest {
 		
 		// Tag a mail
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, Button.B_TAG_CONVERSATION, subject);
-		app.zPageMail.zTagMailAction(Button.B_CANCEL_TAG_MAIL);
+		app.zPageMail.zCancelMailAction(Button.B_CANCEL_TAG_MAIL);
 
 	
 		// UI verification
 		
 		MailItem actual = MailItem.importFromSOAP(app.zGetActiveAccount(),"tag:"+tagItem.getName()+" AND subject:(" + subject + ")");
-        ZAssert.assertNull(actual, "Verify the contact is with the tag");
+        ZAssert.assertNull(actual, "Verify the mail is not with the tag");
 		
 	}
 }
