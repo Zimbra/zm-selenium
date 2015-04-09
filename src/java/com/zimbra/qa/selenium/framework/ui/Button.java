@@ -697,13 +697,15 @@ public class Button {
 	public static Button B_MOVE_CONVERSATION 	=   new Button("B_MOVE_CONVERSATION");
 	public static Button B_TAG_CONVERSATION 	=   new Button("B_TAG_CONVERSATION");
 	public static Button B_SWITCH_TO_MESSAGE_VIEW =   new Button("B_SWITCH_TO_MESSAGE_VIEW");
-	public static Button B_REPLY_MENU					=   new Button("B_REPLY_MENU");
+	public static Button B_REPLY_MAIL				=   new Button("B_REPLY_MENU");
 	public static Button B_REPLY_TO_ALL =   new Button("B_REPLY_TO_ALL");
 	public static Button B_FORWARD_MAIL =   new Button("B_FORWARD_MAIL");
 	public static Button B_SWITCH_TO_CONVERSATION_VIEW = new Button("B_SWITCH_TO_CONVERSATION_VIEW");
 	public static Button B_TAG_MAIL =   new Button("B_TAG_MAIL");
 	public static Button B_UNTAG_MAIL =   new Button("B_UNTAG_MAIL");
 	public static Button B_CANCEL_TAG_MAIL = new Button("B_CANCEL_TAG_MAIL");
+	public static Button B_CANCEL_MOVE_MAIL = new Button("B_CANCEL_MOVE_MAIL");
+	public static Button B_REMOVE_TAG_MAIL =   new Button("B_REMOVE_TAG_MAIL");
 
 	
 	// Added for Admin Console Home Page Links
