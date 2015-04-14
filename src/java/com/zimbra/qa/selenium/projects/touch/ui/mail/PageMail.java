@@ -50,7 +50,9 @@ public class PageMail extends AbsTab {
 		public static final String Move_Conversation	 		= "css=div[class='x-innerhtml']:contains('Move conversation')";
 		public static final String Tag_Conversation 	 		= "css=div[class='x-innerhtml']:contains('Tag conversation')";
 		public static final String Switch_To_Message_View	 	= "css=div[id='ext-listitem-5'] div[class='x-innerhtml']:contains('Switch to message view')";
-		
+		public static final String Spam_Message			 		= "css=div[class='x-innerhtml']:contains('Spam')";
+		public static final String NotSpam_Message			 		= "css=div[class='x-innerhtml']:contains('Not spam')";
+
 		public static final String Switch_To_Conversation_View	= "css=div[class='x-innerhtml']:contains('Switch to conv view')";
 		public static final String Tag_Mail 					= "css=div[class='zcs-menu-label']";
 		public static final String Cancel_Tag_Mail 				= "css=span[class='x-button-label']:contains('Cancel')";
@@ -1475,6 +1477,23 @@ public class PageMail extends AbsTab {
 
 				this.zClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Tag_Conversation;
+			
+				page = null;
+
+				// FALLTHROUGH
+				
+			} else if (option == Button.B_SPAM_MESSAGE) {
+
+				this.zClickAt(pulldownLocatorActionItem,"");
+				optionLocator = Locators.Spam_Message;
+			
+				page = null;
+
+				// FALLTHROUGH
+			} else if (option == Button.B_NOT_SPAM_MESSAGE) {
+
+				this.zClickAt(pulldownLocatorActionItem,"");
+				optionLocator = Locators.NotSpam_Message;
 			
 				page = null;
 
