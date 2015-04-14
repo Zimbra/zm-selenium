@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.touch.tests.mail.mail.message;
 
-import javax.swing.text.html.HTML.Tag;
 
 import org.testng.annotations.Test;
 
@@ -24,17 +23,16 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.touch.ui.PageCreateTag;
+import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
 
-public class TagMail extends PrefGroupMailByMessageTest {
+public class TagMail extends PrefGroupMailByConversationTest {
 
 	public TagMail() {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());
 	}
 	
 	@Test( description = "Tag a mail in message view",
-			groups = { "t1" })
+			groups = { "smoke" })
 			
 	public void TagMail_01() throws HarnessException {
 		
@@ -47,7 +45,7 @@ public class TagMail extends PrefGroupMailByMessageTest {
 				"</html>");
 
 		// Send a message to the account
-		ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.AccountA().soapSend( 
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 					"<m>" +
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +

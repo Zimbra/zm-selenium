@@ -19,65 +19,60 @@ package com.zimbra.qa.selenium.projects.touch.tests.mail.mail.message;
 
 import org.testng.annotations.Test;
 
-import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
-import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
 
-public class UnFlagMail extends PrefGroupMailByMessageTest {
+public class UnFlagMail extends PrefGroupMailByConversationTest {
 
 	public UnFlagMail() {
 		logger.info("New "+ UnFlagMail.class.getCanonicalName());
 	}
-	
-	@Test( description = "mark mail flag",
-			groups = { "smoke" })
-			
+
+	@Test( description = "Unflag mail",
+			groups = { "sanity" })
+
 	public void FlagMail_01() throws HarnessException {
-		
+
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "text <strong>bold"+ ZimbraSeleniumProperties.getUniqueString() +"</strong> text";
 		String htmlBody = XmlStringUtil.escapeXml(
 				"<html>" +
-					"<head></head>" +
-					"<body>"+ body +"</body>" +
+						"<head></head>" +
+						"<body>"+ body +"</body>" +
 				"</html>");
 
 		// Create the message data to be sent
-				ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-					"<m>" +
+						"<m>" +
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<e t='c' a='"+ ZimbraAccount.AccountB().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='multipart/alternative'>" +
 						"<mp ct='text/plain'>" +
-							"<content>"+ body +"</content>" +
+						"<content>"+ body +"</content>" +
 						"</mp>" +
 						"<mp ct='text/html'>" +
-							"<content>"+ htmlBody +"</content>" +
+						"<content>"+ htmlBody +"</content>" +
 						"</mp>" +
-					"</mp>" +
-					"</m>" +
+						"</mp>" +
+						"</m>" +
 				"</SendMsgRequest>");
-				app.zPageMail.zRefresh();
-				// Create a mail item to represent the message
-				MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-				//ZAssert.assertStringDoesNotContain(mail.getFlags(), "u", "Verify message is initially unread");
-	
+		app.zPageMail.zRefresh();
+		// Create a mail item to represent the message
+		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
+		// Unflag mail
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, Button.B_FLAG_CONVERSATION, subject);
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, Button.B_UNFLAG_CONVERSATION, subject);
-		
-		
-	
+
 		// SOAP verification
-				mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-				
+		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
+
 		// UI VERIFICATION 
-				ZAssert.assertStringDoesNotContain(mail.getFlags(), "u", "Verify the message is unflaged");		
-		
+		ZAssert.assertStringDoesNotContain(mail.getFlags(), "u", "Verify the message is unflaged");		
+
 	}
 }
