@@ -42,7 +42,7 @@ public class ZimbraFeatureMailForwardingEnabled extends AjaxCommonTest {
 		}};
 		
 	}
-	
+	@Bugs(ids="98850")
 	@Test(	description = "Verify preferences does not show 'Forward a copy to', if zimbraFeatureMailForwardingEnabled=FALSE",
 			groups = { "functional" })
 	public void zimbraFeatureMailForwardingEnabled_01() throws HarnessException {
