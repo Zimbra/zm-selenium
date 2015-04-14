@@ -37,18 +37,11 @@ public class ReplyToAllMail extends PrefGroupMailByConversationTest {
 	}
 
 	@Test( description = "Reply to all in message view",
-			groups = { "sanity" })
+			groups = { "t1" })
 
 	public void ReplyToAllMail_01() throws HarnessException {
 
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "text <strong>bold"+ ZimbraSeleniumProperties.getUniqueString() +"</strong> text";
-		String htmlBody = XmlStringUtil.escapeXml(
-				"<html>" +
-						"<head></head>" +
-						"<body>"+ body +"</body>" +
-				"</html>");
-
 		// Send a message to the account
 		if ( account1 == null ) {
 			account1 = (new ZimbraAccount()).provision().authenticate();
