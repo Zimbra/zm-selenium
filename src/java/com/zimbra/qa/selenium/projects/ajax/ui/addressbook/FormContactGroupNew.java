@@ -335,8 +335,8 @@ public class FormContactGroupNew extends AbsForm {
 		
 		if ( field == Field.GroupName ) {
 			
-			locator += " table.contactHeaderTable input[id$='_groupName']";
-
+		//	locator += " table.contactHeaderTable input[id$='_groupName']";
+			locator += " table.ZPropertySheet input[id$='_groupName']";
 			// There seems to be an issue with changing the value during edit
 			
 			// workaround

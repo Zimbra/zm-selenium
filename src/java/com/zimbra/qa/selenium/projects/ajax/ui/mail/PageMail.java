@@ -107,7 +107,7 @@ public class PageMail extends AbsTab {
 		public static final String zNewEmailsMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='NEW_MESSAGE'] table tbody tr[id='POPUP_NEW_MESSAGE']";
 		public static final String zAddToContactMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='CONTACT'] table tbody tr[id='POPUP_CONTACT']";
 		public static final String zGoToUrlMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='GO_TO_URL'] table tbody tr[id='POPUP_GO_TO_URL']";
-		public static final String zCreateFilterMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='ADD_FILTER_RULE_ADDRESS'] table tbody tr[id='POPUP_ADD_FILTER_RULE_ADDRESS']";
+		public static final String zCreateFilterMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id^='ADD_TO_FILTER_RULE'] table tbody tr[id^='POPUP_ADD_TO_FILTER_RULE']";
 		public static final String zFromHdrAddressBubble = "css=div[id='zv__TV-main__MSG'] table[id='zv__TV-main__MSG_headerElement'] tr[id^='OBJ_PREFIX_DWT'][id$='_from'] span[class^='addrBubble']>span";
 		public static final String zAttachdropdown ="css=div[id='zb__COMPOSE-1___attachments_btn'] table tbody tr td[id='zb__COMPOSE-1___attachments_btn_dropdown']>div";
 		
