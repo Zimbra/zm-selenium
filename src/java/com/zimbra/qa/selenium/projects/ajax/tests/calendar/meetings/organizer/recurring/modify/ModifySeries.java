@@ -139,7 +139,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 	}
 	
 	@Test(description = "Modify summary of a daily recurring series", 
-			groups = { "test" })
+			groups = { "functional" })
 	public void ModifySeries_02() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -243,7 +243,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 	}
 
 	@Test(description = "Modify summary of a daily recurring series", 
-			groups = { "test" })
+			groups = { "functional" })
 	public void ModifySeries_03() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------

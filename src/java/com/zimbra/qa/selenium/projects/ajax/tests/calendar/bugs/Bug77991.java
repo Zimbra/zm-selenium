@@ -27,7 +27,7 @@ public class Bug77991 extends CalendarWorkWeekTest {
     logger.info("New " + Bug77991.class.getCanonicalName());
   }
   
-  @Bugs(ids="77991")
+  @Bugs(ids="77991,75434")
   @Test(description="unable to save when cancelling conflicts",
   groups={"functional"}
   )
