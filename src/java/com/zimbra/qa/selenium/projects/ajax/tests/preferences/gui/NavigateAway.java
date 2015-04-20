@@ -20,6 +20,7 @@ import java.util.HashMap;
 
 import org.testng.annotations.*;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
@@ -107,7 +108,7 @@ public class NavigateAway extends AjaxCommonTest {
 	}
 
 
-	
+	@Bugs(ids="98364")
 	@Test(
 			description = "If no changes made, verify that navigating away from preferences pages do not prompt 'Save Changes?'",
 			groups = { "functional" },
