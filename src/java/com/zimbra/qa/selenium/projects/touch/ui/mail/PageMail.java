@@ -1642,13 +1642,7 @@ public class PageMail extends AbsTab {
 		String optionlocator = null;
 
 		itemlocator = "css=div[class='zcs-mail-list-entry'] div[class^='zcs-mail-subject']:contains('" + subject + "')";
-		//itemlocator = "css=div[class$='zcs-btn-msg-details'][id^='ext-button']";
-		//x-unsized x-button-normal x-button zcs-btn-msg-details x-button-pressing
-		//itemlocator = "css=div[class$='x-list-item-inner'] div[id^='ext-button']";
 		logger.info(this.sIsElementPresent(itemlocator));
-		//logger.info(this.sIsElementPresent("css=div[class='x-unsized x-button-normal x-button zcs-btn-msg-details'])"));
-
-
 
 		if ( option == Button.B_CONVERSATION_ACTION_DROPDOWN ) {
 			optionlocator = Locators.ConversationActionDropdown;
@@ -1666,7 +1660,6 @@ public class PageMail extends AbsTab {
 		return (page);
 
 	}	
-
 
 	public AbsPage zListItem(Button option) throws HarnessException {
 		logger.info(myPageName() + " zListItem("+ option +")");
@@ -1799,13 +1792,6 @@ public class PageMail extends AbsTab {
 			page = null;
 
 
-			// click on the option
-			
-
-			// FALL THROUGH
-
-
-
 			if ( page != null ) {
 				page.zWaitForActive();
 			}
@@ -1814,9 +1800,10 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("implement me!  action = "+ option);
 		}
 		
+		// Click the option
 		this.zClickAt(optionLocator,"");
 		this.zWaitForBusyOverlay();
-		// Default behavior
+		
 		return (page);
 
 
