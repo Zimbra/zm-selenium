@@ -42,12 +42,13 @@ public class PageMail extends AbsTab {
 		public static final String JunkFolder			= "css=div[class^='zcs-menu-label']:contains('Junk')";
 		public static final String TrashFolder			= "css=div[class^='zcs-menu-label']:contains('Trash')";
 
-		
+
 		public static final String Mark_Conversation_Unread		= "css=div[class='x-innerhtml']:contains('Mark unread')";
 		public static final String Mark_Conversation_Read		= "css=div[class='x-innerhtml']:contains('Mark read')";
 		public static final String Flag_Conversation	 		= "css=div[class='x-innerhtml']:contains('Flag')";
 		public static final String Unflag_Conversation	 		= "css=div[class='x-innerhtml']:contains('Unflag')";
-		public static final String Move_Conversation	 		= "css=div[class='x-innerhtml']:contains('Move conversation')";
+		public static final String Move_Message			 		= "css=div[class='x-innerhtml']:contains('Move conversation')";
+		public static final String Move_Conversation	 		= "css=div[class='x-innerhtml']:contains('Move')";
 		public static final String Tag_Conversation 	 		= "css=div[class='x-innerhtml']:contains('Tag conversation')";
 		public static final String Switch_To_Message_View	 	= "css=div[id='ext-listitem-5'] div[class='x-innerhtml']:contains('Switch to message view')";
 		public static final String Spam_Message			 		= "css=div[class='x-innerhtml']:contains('Spam')";
@@ -60,8 +61,8 @@ public class PageMail extends AbsTab {
 		public static final String Remove_Tag_Mail 				= "css=div[class='x-unsized x-list-item-body']:contains('Remove Tag')";
 
 		public static final String Cancel_Move_Mail 			= "css=span[class='x-button-label']:contains('Cancel')";
-		
-		
+
+
 		public static final String ReplyForwardDropdown	= "css=span[class='x-button-icon x-shown reply']";
 
 		public static final String ReplyMenu			= "css=div[id^='ext-listitem-'] div[class='x-innerhtml']:contains('Reply')";
@@ -70,6 +71,8 @@ public class PageMail extends AbsTab {
 
 		public static final String DeleteButton			= "css=div[id^='ext-button'] span[class='x-button-icon x-shown trash']";		
 		public static final String ActionsDropdown		= "css=div[id='ext-appview-1'] span[class$='x-button-icon x-shown arrow_down']";
+		public static final String ConversationActionDropdown = "css=div[class$='x-list-item-inner'] div[id^='ext-button']";
+		//	public static final String ConversationActionDropdown = "css=div[class='x-unsized x-button-normal x-button zcs-btn-msg-details']";
 
 		public static final String zReplyIcon			= "css=span[class='x-button-icon x-shown reply']";
 		public static final String zReplyAllIcon		= "css=span[class='x-button-icon x-shown replytoall']";
@@ -165,7 +168,7 @@ public class PageMail extends AbsTab {
 		}
 		return elementPresent;
 	}
-	
+
 	public boolean zVerifyMessageDetailsExist() throws HarnessException {
 		SleepUtil.sleepMedium();
 		Boolean elementPresent = false;
@@ -176,7 +179,7 @@ public class PageMail extends AbsTab {
 		}
 		return elementPresent;
 	}
-	
+
 	public boolean zVerifyMessageDetailsNotExist() throws HarnessException {
 		SleepUtil.sleepMedium();
 		Boolean elementPresent = true;
@@ -903,10 +906,10 @@ public class PageMail extends AbsTab {
 
 		throw new HarnessException("implement me!");
 	}
-/*
+	/*
  	// old function
- 
- 
+
+
 	@Override
 	public AbsPage zListItem(Action action, Button option, String subject) throws HarnessException {
 		logger.info(myPageName() + " zListItem("+ action +", "+ option +", "+ subject +")");
@@ -1036,7 +1039,7 @@ public class PageMail extends AbsTab {
 
 		// Default behavior
 		return (page);
-*/
+	 */
 
 
 	@Override
@@ -1424,7 +1427,7 @@ public class PageMail extends AbsTab {
 		if ( action == Action.A_LEFTCLICK ) {
 			String itemlocator = null;
 			itemlocator = "css=div[class='zcs-mail-list-entry'] div[class^='zcs-mail-subject']:contains('" + subject + "')";
-			
+
 
 			// Click on the item
 			this.zClickAt(itemlocator, "");
@@ -1439,15 +1442,15 @@ public class PageMail extends AbsTab {
 				page = null;
 
 				// FALLTHROUGH
-				
+
 			}else if ( option == Button.B_MARK_CONVERSATION_READ) {
 
-					this.zClickAt(pulldownLocatorActionItem,"");
-					optionLocator = Locators.Mark_Conversation_Read ;
-					page = null;
+				this.zClickAt(pulldownLocatorActionItem,"");
+				optionLocator = Locators.Mark_Conversation_Read ;
+				page = null;
 
-					// FALLTHROUGH
-				
+				// FALLTHROUGH
+
 
 			} else if ( option == Button.B_FLAG_CONVERSATION ) {
 
@@ -1456,7 +1459,7 @@ public class PageMail extends AbsTab {
 				page = null;
 
 				// FALLTHROUGH
-				
+
 			} else if ( option == Button.B_UNFLAG_CONVERSATION ) {
 
 				this.zClickAt(pulldownLocatorActionItem,"");
@@ -1465,10 +1468,10 @@ public class PageMail extends AbsTab {
 
 				// FALLTHROUGH
 
-			} else if (option == Button.B_MOVE_CONVERSATION) {
+			} else if (option == Button.B_MOVE_MESSAGE) {
 
 				this.zClickAt(pulldownLocatorActionItem,"");
-				optionLocator = Locators.Move_Conversation;
+				optionLocator = Locators.Move_Message;
 				page = null;
 
 				// FALLTHROUGH
@@ -1477,16 +1480,16 @@ public class PageMail extends AbsTab {
 
 				this.zClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Tag_Conversation;
-			
+
 				page = null;
 
 				// FALLTHROUGH
-				
+
 			} else if (option == Button.B_SPAM_MESSAGE) {
 
 				this.zClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Spam_Message;
-			
+
 				page = null;
 
 				// FALLTHROUGH
@@ -1494,7 +1497,7 @@ public class PageMail extends AbsTab {
 
 				this.zClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.NotSpam_Message;
-			
+
 				page = null;
 
 				// FALLTHROUGH
@@ -1503,10 +1506,10 @@ public class PageMail extends AbsTab {
 
 				this.zClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Switch_To_Message_View;
-		
+
 				page = null;
 
-				
+
 			} else if (option == Button.B_SWITCH_TO_CONVERSATION_VIEW) {
 
 				this.zClickAt(pulldownLocatorActionItem,"");
@@ -1514,75 +1517,75 @@ public class PageMail extends AbsTab {
 				page = null;
 
 
-				} else if ( option == Button.B_REPLY_MAIL ) {
-					
-					this.zClickAt(pulldownLocatorReply, "");
-					optionLocator = Locators.ReplyMenu;
-					page = null;
+			} else if ( option == Button.B_REPLY_MAIL ) {
 
-					// FALLTHROUGH
-				} else if ( option == Button.B_REPLY_TO_ALL ) {
-					
-					this.zClickAt(pulldownLocatorReply, "");
-					optionLocator = Locators.ReplyAllMenu;
-					page = null;
+				this.zClickAt(pulldownLocatorReply, "");
+				optionLocator = Locators.ReplyMenu;
+				page = null;
 
-					// FALLTHROUGH
-				} else if ( option == null ) {
-					
-					this.zClickAt(pulldownLocatorReply, "");
-					optionLocator = null;
-					page = null;
+				// FALLTHROUGH
+			} else if ( option == Button.B_REPLY_TO_ALL ) {
 
-					
-					// FALLTHROUGH
-				} else if ( option == Button.B_FORWARD_MAIL ) {
+				this.zClickAt(pulldownLocatorReply, "");
+				optionLocator = Locators.ReplyAllMenu;
+				page = null;
 
-					this.zClickAt(pulldownLocatorReply, "");
-					optionLocator = Locators.ForwardMenu;
-					page = new FormMailNew(this.MyApplication);
+				// FALLTHROUGH
+			} else if ( option == null ) {
 
-				
-				}	if (option == Button.B_DELETE ) {
-						optionLocator = Locators.DeleteButton;
-						page = null;
-					}
-						
-					// click on the option
-					this.zClickAt(optionLocator,"");
-					
-					this.zWaitForBusyOverlay();
+				this.zClickAt(pulldownLocatorReply, "");
+				optionLocator = null;
+				page = null;
 
-					// FALL THROUGH
 
-			} else {
-				throw new HarnessException("implement me!  action = "+ action);
+				// FALLTHROUGH
+			} else if ( option == Button.B_FORWARD_MAIL ) {
+
+				this.zClickAt(pulldownLocatorReply, "");
+				optionLocator = Locators.ForwardMenu;
+				page = new FormMailNew(this.MyApplication);
+
+
+			}	if (option == Button.B_DELETE ) {
+				optionLocator = Locators.DeleteButton;
+				page = null;
 			}
 
+			// click on the option
+			this.zClickAt(optionLocator,"");
 
-			if ( page != null ) {
-				page.zWaitForActive();
-			}
-			// Default behavior
-			return (page);
+			this.zWaitForBusyOverlay();
 
+			// FALL THROUGH
+
+		} else {
+			throw new HarnessException("implement me!  action = "+ action);
 		}
+
+
+		if ( page != null ) {
+			page.zWaitForActive();
+		}
+		// Default behavior
+		return (page);
+
+	}
 	public void zSubmit() throws HarnessException {
 		logger.info("FormMailNew.submit()");
-		
+
 		zToolbarPressButton(Button.B_SEND);
 
 		this.zWaitForBusyOverlay();
 
 	}
-	
+
 	public AbsPage zCancelMailAction(Button option) throws HarnessException {
 		logger.info(myPageName() + " zListItem("+ option +")");
 
 		tracer.trace(option);
 
 		// Default behavior variables
-	
+
 		AbsPage page = null; // If set, this page will be returned
 		String optionLocator = null;
 		// Now the ContextMenu is opened
@@ -1592,22 +1595,22 @@ public class PageMail extends AbsTab {
 			optionLocator = Locators.Tag_Mail ;
 			page = null;
 
-		// FALLTHROUGH
+			// FALLTHROUGH
 		} else if(option == Button.B_CANCEL_TAG_MAIL) {
 			optionLocator = Locators.Cancel_Tag_Mail;
 			page = null; 
-			
-		// FALLTHROUGH
+
+			// FALLTHROUGH
 		}else if(option == Button.B_CANCEL_MOVE_MAIL) {
-					optionLocator = Locators.Cancel_Move_Mail;
-					page = null;	
-			
-					
+			optionLocator = Locators.Cancel_Move_Mail;
+			page = null;	
+
+
 		}else if(option == Button.B_REMOVE_TAG_MAIL) {
 			optionLocator = Locators.Remove_Tag_Mail;
 			page = null;	
-			
-		// click on the option
+
+			// click on the option
 		}this.zClickAt(optionLocator,"");
 		SleepUtil.sleepMedium();
 
@@ -1616,47 +1619,215 @@ public class PageMail extends AbsTab {
 		// FALL THROUGH
 
 		if ( page != null ) {
-		page.zWaitForActive();
+			page.zWaitForActive();
 		}
 		// Default behavior
 		return (page);	
+	}
+	public AbsPage zConversationListItem(Button option, String subject) throws HarnessException {
 
-}
-	/*public AbsPage zRemoveTagMailAction(Button option) throws HarnessException {
+		logger.info(myPageName() + " zListItem("+ option +", "+ subject +")");
+		tracer.trace(option +" on subject = "+ subject);
+
+		SleepUtil.sleepMedium();
+
+		if ( option == null )
+			throw new HarnessException("option cannot be null");
+
+		if ( subject == null )
+			throw new HarnessException("subject cannot be null");
+
+		AbsPage page = null;
+		String itemlocator = null;
+		String optionlocator = null;
+
+		itemlocator = "css=div[class='zcs-mail-list-entry'] div[class^='zcs-mail-subject']:contains('" + subject + "')";
+		//itemlocator = "css=div[class$='zcs-btn-msg-details'][id^='ext-button']";
+		//x-unsized x-button-normal x-button zcs-btn-msg-details x-button-pressing
+		//itemlocator = "css=div[class$='x-list-item-inner'] div[id^='ext-button']";
+		logger.info(this.sIsElementPresent(itemlocator));
+		//logger.info(this.sIsElementPresent("css=div[class='x-unsized x-button-normal x-button zcs-btn-msg-details'])"));
+
+
+
+		if ( option == Button.B_CONVERSATION_ACTION_DROPDOWN ) {
+			optionlocator = Locators.ConversationActionDropdown;
+			this.sClickAt(itemlocator, "");
+			this.sClickAt(optionlocator, "");
+			SleepUtil.sleepMedium();
+
+			page = new DisplayMail(this.MyApplication); 
+
+		} else {
+			throw new HarnessException("implement me!  action = "+ option);
+		}
+
+		// default return command
+		return (page);
+
+	}	
+
+
+	public AbsPage zListItem(Button option) throws HarnessException {
 		logger.info(myPageName() + " zListItem("+ option +")");
 
 		tracer.trace(option);
 
 		// Default behavior variables
-	
+		String pulldownLocatorActionItem = null; // If set, this will be expanded
+		String pulldownLocatorReply = null; 
+		String optionLocator = null; // If set, this will be clicked
 		AbsPage page = null; // If set, this page will be returned
-		String optionLocator = null;
-		// Now the ContextMenu is opened
-		// Click on the specified option
 
-		if (option == Button.B_UNTAG_MAIL) {
-			optionLocator = Locators.Untag_Mail;
+		pulldownLocatorActionItem = "css=div[class='x-container x-toolbar-dark x-toolbar x-stretched zcs-msg-actions-toolbar'] span[class$='x-button-icon x-shown arrow_down']";
+		pulldownLocatorReply = "css=div[class='x-container x-toolbar-dark x-toolbar x-stretched zcs-msg-actions-toolbar'] span[class='x-button-icon x-shown reply']";
+
+
+		if ( option == Button.B_MARK_CONVERSATION_UNREAD) {
+
+			this.zClickAt(pulldownLocatorActionItem,"");
+			optionLocator = Locators.Mark_Conversation_Unread ;
 			page = null;
 
-		// FALLTHROUGH
+			// FALLTHROUGH
 
-		} else if(option == Button.B_UNTAG_MAIL) {
-				optionLocator = Locators.Untag_Mail;
-				page = null;
-				
-		} 
-		// click on the option
-		}this.zClickAt(optionLocator,"");
-		SleepUtil.sleepMedium();
+		}else if ( option == Button.B_REPLY_MAIL ) {
 
+			this.zClickAt(pulldownLocatorReply, "");
+			optionLocator = Locators.ReplyMenu;
+			page = null;
+
+			// FALLTHROUGH
+
+
+		} else if ( option == Button.B_FLAG_CONVERSATION ) {
+
+			this.zClickAt(pulldownLocatorActionItem,"");
+			optionLocator = Locators.Flag_Conversation;
+			page = null;
+
+			// FALLTHROUGH
+
+		} else if ( option == Button.B_UNFLAG_CONVERSATION ) {
+
+			this.zClickAt(pulldownLocatorActionItem,"");
+			optionLocator = Locators.Unflag_Conversation;
+			page = null;
+
+			// FALLTHROUGH
+
+		} else if (option == Button.B_MOVE_CONVERSATION) {
+
+			this.zClickAt(pulldownLocatorActionItem,"");
+			optionLocator = Locators.Move_Conversation;
+			page = null;
+
+			// FALLTHROUGH
+
+		} else if (option == Button.B_TAG_CONVERSATION) {
+
+			this.zClickAt(pulldownLocatorActionItem,"");
+			optionLocator = Locators.Tag_Conversation;
+
+			page = null;
+
+			// FALLTHROUGH
+
+		} else if (option == Button.B_SPAM_MESSAGE) {
+
+			this.zClickAt(pulldownLocatorActionItem,"");
+			optionLocator = Locators.Spam_Message;
+
+			page = null;
+
+			// FALLTHROUGH
+		} else if (option == Button.B_NOT_SPAM_MESSAGE) {
+
+			this.zClickAt(pulldownLocatorActionItem,"");
+			optionLocator = Locators.NotSpam_Message;
+
+			page = null;
+
+			// FALLTHROUGH
+
+		} else if (option == Button.B_SWITCH_TO_MESSAGE_VIEW) {
+
+			this.zClickAt(pulldownLocatorActionItem,"");
+			optionLocator = Locators.Switch_To_Message_View;
+
+			page = null;
+
+
+		} else if (option == Button.B_SWITCH_TO_CONVERSATION_VIEW) {
+
+			this.zClickAt(pulldownLocatorActionItem,"");
+			optionLocator = Locators.Switch_To_Conversation_View;
+			page = null;
+
+
+		} else if ( option == Button.B_REPLY_MAIL ) {
+
+			this.zClickAt(pulldownLocatorReply, "");
+			optionLocator = Locators.ReplyMenu;
+			page = null;
+
+			// FALLTHROUGH
+		} else if ( option == Button.B_REPLY_TO_ALL ) {
+
+			this.zClickAt(pulldownLocatorReply, "");
+			optionLocator = Locators.ReplyAllMenu;
+			page = null;
+
+			// FALLTHROUGH
+		} else if ( option == null ) {
+
+			this.zClickAt(pulldownLocatorReply, "");
+			optionLocator = null;
+			page = null;
+
+
+			// FALLTHROUGH
+		} else if ( option == Button.B_FORWARD_MAIL ) {
+
+			this.zClickAt(pulldownLocatorReply, "");
+			optionLocator = Locators.ForwardMenu;
+			page = new FormMailNew(this.MyApplication);
+
+
+		}	else if (option == Button.B_DELETE ) {
+			optionLocator = Locators.DeleteButton;
+			page = null;
+
+
+			// click on the option
+			
+
+			// FALL THROUGH
+
+
+
+			if ( page != null ) {
+				page.zWaitForActive();
+			}
+
+		} else {
+			throw new HarnessException("implement me!  action = "+ option);
+		}
+		
+		this.zClickAt(optionLocator,"");
+		this.zWaitForBusyOverlay();
+		// Default behavior
+		return (page);
+
+
+	}
+	public void zSubmit1() throws HarnessException {
+		logger.info("FormMailNew.submit()");
+
+		zToolbarPressButton(Button.B_SEND);
 
 		this.zWaitForBusyOverlay();
-		// FALL THROUGH
 
-		if ( page != null ) {
-		page.zWaitForActive();
-		}
-		// Default behavior
+	}
 
-		return (page);	
-}*/}
+}

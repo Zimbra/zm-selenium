@@ -695,6 +695,7 @@ public class Button {
 	public static Button B_FLAG_CONVERSATION 	=   new Button("B_FLAG_CONVERSATION");
 	public static Button B_UNFLAG_CONVERSATION 	=   new Button("B_UNFLAG_CONVERSATION");
 	public static Button B_MOVE_CONVERSATION 	=   new Button("B_MOVE_CONVERSATION");
+	public static Button B_MOVE_MESSAGE			=   new Button("B_MOVE_MESSAGE");
 	public static Button B_TAG_CONVERSATION 	=   new Button("B_TAG_CONVERSATION");
 	public static Button B_SWITCH_TO_MESSAGE_VIEW =   new Button("B_SWITCH_TO_MESSAGE_VIEW");
 	public static Button B_REPLY_MAIL				=   new Button("B_REPLY_MENU");
@@ -708,6 +709,7 @@ public class Button {
 	public static Button B_REMOVE_TAG_MAIL =   new Button("B_REMOVE_TAG_MAIL");
 	public static Button B_SPAM_MESSAGE =   new Button("B_SPAM_MESSAGE");
 	public static Button B_NOT_SPAM_MESSAGE =   new Button("B_NOT_SPAM_MESSAGE");
+	public static Button B_CONVERSATION_ACTION_DROPDOWN =	new Button("B_CONVERSATION_ACTION_DROPDOWN");
 
 
 	

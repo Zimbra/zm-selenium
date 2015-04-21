@@ -17,7 +17,7 @@ import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTes
 			logger.info("New "+ CancelMoveMessage.class.getCanonicalName());
 		}
 			@Test(	description = "cancel move mail operation",
-					groups = { "smoke" })
+					groups = { "t1" })
 			
 			
 			public void CancelMoveMail_01() throws HarnessException, AWTException {
@@ -50,7 +50,7 @@ import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTes
 		app.zPageMail.zRefresh();	
 
 		// Switch to message view
-		app.zPageMail.zListItem(Action.A_LEFTCLICK, Button.B_MOVE_CONVERSATION, subject);
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, Button.B_MOVE_MESSAGE, subject);
 		app.zPageMail.zCancelMailAction(Button.B_CANCEL_MOVE_MAIL);
 		
 		// Verification
