@@ -142,7 +142,7 @@ public class DA_DistributionListAMD extends AdminCommonTest {
 	 */
 	@Test(	description = "Delegated Admin's : Edit distribution list name  - Manage distribution list View",
 			groups = { "sanity" })
-	public void DA_EditAccount_01() throws HarnessException {
+	public void DA_EditDL_01() throws HarnessException {
 
 		app.provisionAuthenticateDA();
 		this.startingPage.zNavigateTo();
@@ -164,8 +164,7 @@ public class DA_DistributionListAMD extends AdminCommonTest {
 
 		// Click on Edit button
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
-		//FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
-
+		
 		//Click on General Information tab.
 		form.zClickTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
