@@ -132,10 +132,10 @@ public class EditResource extends AdminCommonTest {
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 		
 		// Click on Resource to be Edited.
-		FormEditResource form = (FormEditResource) app.zPageManageResources.zListItem(Action.A_LEFTCLICK, resource.getEmailAddress());
+		 app.zPageManageResources.zListItem(Action.A_LEFTCLICK, resource.getEmailAddress());
 		
 		// Click on Edit button
-		 form = (FormEditResource) app.zPageManageResources.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
+		FormEditResource form = (FormEditResource) app.zPageManageResources.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 		
 		//Click on General Information tab.
 		//form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
@@ -490,6 +490,9 @@ public class EditResource extends AdminCommonTest {
 		
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCalendarResourceResponse/admin:calresource", 1); 
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=74487");
+		
+		
+		
 	}
 
 

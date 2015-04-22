@@ -133,10 +133,9 @@ public class PageManageResources extends AbsTab {
 		String rowsLocator = "css=div#zl__RES_MANAGE div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
-
 		int m= 50;
-		if(count == 50){
-			for (int a1 = 1; a1 <= 2; a1++) { 
+		if(count >= 50){
+			for (int a1 = 1; a1 <= 5; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
 				if(this.sIsElementPresent(p0)){
 				zClick(p0);
@@ -144,8 +143,11 @@ public class PageManageResources extends AbsTab {
 				m=m+20;
 				}
 				else
-					break;	
-		}	
+					break;
+				
+			
+		}
+			
 		}
 		
 		count = this.sGetCssCount(rowsLocator);
@@ -163,12 +165,11 @@ public class PageManageResources extends AbsTab {
 				if(listItem.equalsIgnoreCase(item))
 				{
 					if(action == Action.A_LEFTCLICK) {
-						zClickAt(locator,"");
-						page = new FormEditResource(this.MyApplication);
-						return page;
+						zClick(locator);
+					
 						
 					} else if(action == Action.A_RIGHTCLICK) {
-						page = new FormEditResource(this.MyApplication);
+						
 						zRightClick(locator);
 						
 					}else if(action == Action.A_DOUBLECLICK) {
@@ -325,7 +326,7 @@ public class PageManageResources extends AbsTab {
 
 			if(ZimbraSeleniumProperties.isWebDriver())
 				SleepUtil.sleepMedium();
-			this.sClickAt(pulldownLocator, "" );
+			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepMedium();
 
 
@@ -369,8 +370,8 @@ public class PageManageResources extends AbsTab {
 			throw new HarnessException("Account Rows is not present");
 
 		// How many items are in the table?
-		String rowsLocator = "//div[@id='zl__RES_MANAGE']//div[contains(@id, '__rows')]//div[contains(@id,'zli__')]";
-		int count = this.sGetXpathCount(rowsLocator);
+		String rowsLocator = "css=div#zl__RES_MANAGE div[id$='__rows'] div[id^='zli__']";
+		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
 
 		
@@ -378,7 +379,7 @@ public class PageManageResources extends AbsTab {
 		int m= 50;
 		if(count >= 50){
 			for (int a1 = 1; a1 <= 5; a1++) { 
-				String p0  = rowsLocator + "["+ m +"]";
+				String p0  = rowsLocator + ":nth-child("+m+")";
 				if(this.sIsElementPresent(p0)){
 				zClick(p0);
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
@@ -391,24 +392,25 @@ public class PageManageResources extends AbsTab {
 		}
 			
 		}
-		count = this.sGetXpathCount(rowsLocator);
+		count = this.sGetCssCount(rowsLocator);
+		
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
-			final String accountLocator = rowsLocator + "["+ i +"]";
+			final String accountLocator = rowsLocator +":nth-child("+i+")";
 			String locator;
 
 			AccountItem item = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
 
 			// Type (image)
-			// ImgAdminUser ImgAccount ImgSystemResource (others?)
-			locator = accountLocator + "//td[contains(@id, 'calresource_data_type_')]//div";
+			// ImgAdminUser ImgAccount ImgSystemResource (others?)accountLocator + " td[id^='dl_data_emailaddress']";
+			locator = accountLocator + " td[id^='calresource_data_type_'] div";
 			if ( this.sIsElementPresent(locator) ) {
-				item.setGAccountType(this.sGetAttribute("xpath=("+ locator + ")@class"));
+			//   item.setGAccountType(this.sGetAttribute("("+ locator + ")@class"));
 			}
 
 
 			// Email Address
-			locator = accountLocator + "//td[contains(@id, 'calresource_data_emailaddress_')]";
+			locator = accountLocator + " td[id^='calresource_data_emailaddress_']";
 			if ( this.sIsElementPresent(locator) ) {
 				item.setGEmailAddress(this.sGetText(locator).trim());
 			}
