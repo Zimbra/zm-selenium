@@ -323,9 +323,8 @@ public class PageManageResources extends AbsTab {
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
-
-			if(ZimbraSeleniumProperties.isWebDriver())
-				SleepUtil.sleepMedium();
+				
+			SleepUtil.sleepMedium();
 			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepMedium();
 
