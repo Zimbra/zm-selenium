@@ -80,11 +80,12 @@ public class RunSavedSearch extends AjaxCommonTest  {
 					"</m>" +
 				"</SendMsgRequest>");
 		
+		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
 
 		// Create the saved search
 		app.zGetActiveAccount().soapSend(
 				"<CreateSearchFolderRequest xmlns='urn:zimbraMail'>" +
-					"<search name='"+ name +"' query='"+ query +"' l='1'/>" +
+					"<search name='"+ name +"' query='"+ query +"' l='1' types='message'/>" +
 				"</CreateSearchFolderRequest>");
 		
 		// Get the item
