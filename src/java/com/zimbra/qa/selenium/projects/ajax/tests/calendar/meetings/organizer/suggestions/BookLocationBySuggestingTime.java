@@ -44,7 +44,7 @@ public class BookLocationBySuggestingTime extends CalendarWorkWeekTest {
 
 		String tz = ZTimeZone.TimeZoneEST.getID();
 		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptAttendee = ZimbraAccount.AccountA().EmailAddress;
+		String apptAttendee = ZimbraAccount.AccountC().EmailAddress;
 		String apptLocation = location.EmailAddress;
 		
 		// Absolute dates in UTC zone
@@ -61,7 +61,7 @@ public class BookLocationBySuggestingTime extends CalendarWorkWeekTest {
                      		"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
                      		"<at role='REQ' ptst='NE' rsvp='1' a='" + apptAttendee + "' d='1'/>" +
                      	"</inv>" +
-                     	"<e a='"+ ZimbraAccount.AccountA().EmailAddress +"' t='t'/>" +
+                     	"<e a='"+ ZimbraAccount.AccountC().EmailAddress +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
                      		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
                      	"</mp>" +

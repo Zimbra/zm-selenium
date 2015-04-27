@@ -43,7 +43,7 @@ public class SuggestATime extends CalendarWorkWeekTest {
 		// Create a meeting
 		String tz = ZTimeZone.TimeZoneEST.getID();
 		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptAttendee = ZimbraAccount.AccountA().EmailAddress;
+		String apptAttendee = ZimbraAccount.AccountC().EmailAddress;
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -59,7 +59,7 @@ public class SuggestATime extends CalendarWorkWeekTest {
                      		"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
                      		"<at role='REQ' ptst='NE' rsvp='1' a='" + apptAttendee + "' d='1'/>" +
                      	"</inv>" +
-                     	"<e a='"+ ZimbraAccount.AccountA().EmailAddress +"' t='t'/>" +
+                     	"<e a='"+ ZimbraAccount.AccountC().EmailAddress +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
                      		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
