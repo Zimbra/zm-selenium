@@ -61,9 +61,10 @@ public class DisplayMail extends AbsDisplay {
 		// Accept, Decline & Tentative button, menus and dropdown locators
 		public static final String CalendarDropdown = "css=td[id$='_calendarSelectToolbarCell'] td[id$='_select_container']";
 		
-		public static final String AcceptButton			= "css=span[class='zcs-invite-button zcs-invite-accept']:contains('Accept')";
-		public static final String DeclineButton		= "css=span[class='zcs-invite-button zcs-invite-decline']:contains('Decline')";
-		public static final String TentativeButton		= "css=span[class='zcs-invite-button zcs-invite-tentative']:contains('Tentative')";
+		public static final String AcceptButton			= "css=	td[class='zcs-invite-button zcs-invite-accept']:contains('Accept')";
+		//	zcs-invite-buttons	zcs-invite-button zcs-invite-accept
+		public static final String DeclineButton		= "css=td[class='zcs-invite-button zcs-invite-decline']:contains('Decline')";
+		public static final String TentativeButton		= "css=td[class='zcs-invite-button zcs-invite-tentative']:contains('Tentative')";
 		
 		public static final String zSubjectField = "css=div[id^=zv__COMPOSE] input[id$=_subject_control]";
 		public static final String zReplyButton ="css=div[id$='__REPLY']";

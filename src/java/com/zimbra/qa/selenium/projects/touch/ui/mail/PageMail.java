@@ -47,12 +47,13 @@ public class PageMail extends AbsTab {
 		public static final String Mark_Conversation_Read		= "css=div[class='x-innerhtml']:contains('Mark read')";
 		public static final String Flag_Conversation	 		= "css=div[class='x-innerhtml']:contains('Flag')";
 		public static final String Unflag_Conversation	 		= "css=div[class='x-innerhtml']:contains('Unflag')";
-		public static final String Move_Message			 		= "css=div[class='x-innerhtml']:contains('Move conversation')";
-		public static final String Move_Conversation	 		= "css=div[class='x-innerhtml']:contains('Move')";
-		public static final String Tag_Conversation 	 		= "css=div[class='x-innerhtml']:contains('Tag conversation')";
+		public static final String Move_Conversation			= "css=div[class='x-innerhtml']:contains('Move conversation')";
+		public static final String Move_Message	 				= "css=div[class='x-innerhtml']:contains('Move')";
+		public static final String Tag_Conversation 	 		= "css=div[class='x-innerhtml']:contains('Tag')";
+		public static final String Tag_Message					= "css=div[class='x-innerhtml']:contains('Tag conversation')";
 		public static final String Switch_To_Message_View	 	= "css=div[id='ext-listitem-5'] div[class='x-innerhtml']:contains('Switch to message view')";
 		public static final String Spam_Message			 		= "css=div[class='x-innerhtml']:contains('Spam')";
-		public static final String NotSpam_Message			 		= "css=div[class='x-innerhtml']:contains('Not spam')";
+		public static final String NotSpam_Message			 	= "css=div[class='x-innerhtml']:contains('Not spam')";
 
 		public static final String Switch_To_Conversation_View	= "css=div[class='x-innerhtml']:contains('Switch to conv view')";
 		public static final String Tag_Mail 					= "css=div[class='zcs-menu-label']";
@@ -1468,18 +1469,18 @@ public class PageMail extends AbsTab {
 
 				// FALLTHROUGH
 
-			} else if (option == Button.B_MOVE_MESSAGE) {
+			} else if (option == Button.B_MOVE_CONVERSATION) {
 
 				this.zClickAt(pulldownLocatorActionItem,"");
-				optionLocator = Locators.Move_Message;
+				optionLocator = Locators.Move_Conversation;
 				page = null;
 
 				// FALLTHROUGH
 
-			} else if (option == Button.B_TAG_CONVERSATION) {
+			} else if (option == Button.B_TAG_MESSAGE) {
 
 				this.zClickAt(pulldownLocatorActionItem,"");
-				optionLocator = Locators.Tag_Conversation;
+				optionLocator = Locators.Tag_Message;
 
 				page = null;
 
@@ -1684,6 +1685,12 @@ public class PageMail extends AbsTab {
 
 			// FALLTHROUGH
 
+		}	else if ( option == Button.B_MARK_CONVERSATION_READ) {
+
+			this.zClickAt(pulldownLocatorActionItem,"");
+			optionLocator = Locators.Mark_Conversation_Read ;
+			page = null;
+
 		}else if ( option == Button.B_REPLY_MAIL ) {
 
 			this.zClickAt(pulldownLocatorReply, "");
@@ -1709,10 +1716,10 @@ public class PageMail extends AbsTab {
 
 			// FALLTHROUGH
 
-		} else if (option == Button.B_MOVE_CONVERSATION) {
+		} else if (option == Button.B_MOVE_MESSAGE) {
 
 			this.zClickAt(pulldownLocatorActionItem,"");
-			optionLocator = Locators.Move_Conversation;
+			optionLocator = Locators.Move_Message;
 			page = null;
 
 			// FALLTHROUGH
@@ -1788,7 +1795,7 @@ public class PageMail extends AbsTab {
 
 
 		}	else if (option == Button.B_DELETE ) {
-			optionLocator = Locators.DeleteButton;
+			optionLocator = "css=div[class='x-container x-toolbar-dark x-toolbar x-stretched zcs-msg-actions-toolbar'] div[id^='ext-button'] span[class='x-button-icon x-shown trash']";
 			page = null;
 
 
@@ -1799,11 +1806,11 @@ public class PageMail extends AbsTab {
 		} else {
 			throw new HarnessException("implement me!  action = "+ option);
 		}
-		
+
 		// Click the option
 		this.zClickAt(optionLocator,"");
 		this.zWaitForBusyOverlay();
-		
+
 		return (page);
 
 

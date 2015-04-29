@@ -696,6 +696,7 @@ public class Button {
 	public static Button B_UNFLAG_CONVERSATION 	=   new Button("B_UNFLAG_CONVERSATION");
 	public static Button B_MOVE_CONVERSATION 	=   new Button("B_MOVE_CONVERSATION");
 	public static Button B_MOVE_MESSAGE			=   new Button("B_MOVE_MESSAGE");
+	public static Button B_TAG_MESSAGE		 	= new Button("B_TAG_MESSAGE");
 	public static Button B_TAG_CONVERSATION 	=   new Button("B_TAG_CONVERSATION");
 	public static Button B_SWITCH_TO_MESSAGE_VIEW =   new Button("B_SWITCH_TO_MESSAGE_VIEW");
 	public static Button B_REPLY_MAIL				=   new Button("B_REPLY_MENU");
