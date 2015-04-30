@@ -25,6 +25,8 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.PageMailView;
+import com.zimbra.qa.selenium.projects.touch.ui.mail.PageMail.Locators;
 
 
 /**
@@ -41,7 +43,7 @@ public class PageSearch extends AbsTab {
 		public static final String zSearchButton = "css=td#zb__Search__SAVE_left_icon";
 		
 		public static final String zSearchTab="css=div[id^='zb__App__tab_SR'] td[id$='_right_icon'] div.ImgCloseGray";
-				
+
 		
 	}
 
@@ -189,7 +191,16 @@ public class PageSearch extends AbsTab {
 			}
 			page = null;
 			
-		} else {
+		} else if (button == Button.B_SELECT_ALL) {
+
+			if (zGetPropMailView() == SearchView.BY_MESSAGE) {
+				locator = "css=div[id='zlhi__TV-SR-1__se']";
+			} else {
+				locator = "css=div[id='zlhi__CLV-SR-1__se']";
+			}
+			page = null;
+		}	
+		else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
@@ -898,5 +909,4 @@ public class PageSearch extends AbsTab {
 		return (items);
 	}
 	
-
 }
