@@ -85,6 +85,7 @@ public class DeleteDistributionList extends AdminCommonTest {
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
 		ZAssert.assertNull(response, "Verify the distribution list is deleted successfully");
+		app.zPageMain.logout();
 
 	}
 	
@@ -135,6 +136,7 @@ public class DeleteDistributionList extends AdminCommonTest {
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
 		ZAssert.assertNull(response, "Verify the distribution list is deleted successfully");
+		app.zPageMain.logout();
 
 	}
 

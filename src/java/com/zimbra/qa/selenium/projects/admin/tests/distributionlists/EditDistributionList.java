@@ -92,6 +92,7 @@ public class EditDistributionList extends AdminCommonTest {
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
 		ZAssert.assertNotNull(response, "Verify the distribution list is edited successfully");
+		app.zPageMain.logout();
 	}
 
 	/**
@@ -144,6 +145,7 @@ public class EditDistributionList extends AdminCommonTest {
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=74487");
+		app.zPageMain.logout();
 	}
 
 	/**
@@ -198,6 +200,7 @@ public class EditDistributionList extends AdminCommonTest {
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
 		ZAssert.assertNotNull(response, "Verify the distribution list is edited successfully");
+		app.zPageMain.logout();
 	}
 
 	/**
@@ -255,6 +258,7 @@ public class EditDistributionList extends AdminCommonTest {
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
 		ZAssert.assertNotNull(response, "Verify the distribution list is edited successfully");
+		app.zPageMain.logout();
 	}
 
 
@@ -317,6 +321,7 @@ public class EditDistributionList extends AdminCommonTest {
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
 		ZAssert.assertNotNull(response, "Verify the distribution list is edited successfully");
 		super.startingPage.zNavigateTo();
+		app.zPageMain.logout();
 	}
 
 
@@ -375,6 +380,7 @@ public class EditDistributionList extends AdminCommonTest {
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=74487");
+		app.zPageMain.logout();
 	}
 
 
