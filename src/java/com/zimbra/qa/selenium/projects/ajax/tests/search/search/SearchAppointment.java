@@ -20,6 +20,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.testng.annotations.*;
+
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -38,12 +39,13 @@ public class SearchAppointment extends CalendarWorkWeekTest {
 	@Test(	description = "Search for an appointment by subject",
 			groups = { "functional" })
 	public void SearchAppointment_01() throws HarnessException {
+		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
 		
 		// Create a meeting
 		String subject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
 		AppointmentItem.createAppointmentSingleDay(
 				app.zGetActiveAccount(),
-				Calendar.getInstance(),
+				startDate,
 				120,
 				null,
 				subject,
