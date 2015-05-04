@@ -70,9 +70,10 @@ public class DeleteTagAppointment extends AjaxCommonTest {
 		renameTag1 = ZimbraSeleniumProperties.getUniqueString();
 		apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		
 		// Create new appointment
-		AppointmentItem appt = AppointmentItem.createAppointmentSingleDay(app.zGetActiveAccount(), Calendar.getInstance(), 120, null, apptSubject, apptBody, null, null);
+		AppointmentItem appt = AppointmentItem.createAppointmentSingleDay(app.zGetActiveAccount(), startDate, 120, null, apptSubject, apptBody, null, null);
         String apptId = appt.dApptID;
 
         // Create new tag and get tag ID
@@ -109,9 +110,10 @@ public class DeleteTagAppointment extends AjaxCommonTest {
 		renameTag1 = ZimbraSeleniumProperties.getUniqueString();
 		apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		
 		// Create new appointment
-		AppointmentItem appt = AppointmentItem.createAppointmentSingleDay(app.zGetActiveAccount(), Calendar.getInstance(), 120, null, apptSubject, apptBody, null, null);
+		AppointmentItem appt = AppointmentItem.createAppointmentSingleDay(app.zGetActiveAccount(), startDate, 120, null, apptSubject, apptBody, null, null);
         String apptId = appt.dApptID;
 
         // Create new tag and get tag ID
@@ -147,9 +149,10 @@ public class DeleteTagAppointment extends AjaxCommonTest {
 		renameTag1 = ZimbraSeleniumProperties.getUniqueString();
 		apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		
 		// Create new appointment
-		AppointmentItem appt = AppointmentItem.createAppointmentSingleDay(app.zGetActiveAccount(), Calendar.getInstance(), 120, null, apptSubject, apptBody, null, null);
+		AppointmentItem appt = AppointmentItem.createAppointmentSingleDay(app.zGetActiveAccount(), startDate, 120, null, apptSubject, apptBody, null, null);
         String apptId = appt.dApptID;
 
         // Create new tag and get tag ID

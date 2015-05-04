@@ -21,7 +21,9 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import java.util.HashMap;
+
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
@@ -65,9 +67,10 @@ public class TagAppointment extends AjaxCommonTest {
 		tag1 = ZimbraSeleniumProperties.getUniqueString();
 		apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
 		
 		// Create new appointment
-		AppointmentItem appt = AppointmentItem.createAppointmentSingleDay(app.zGetActiveAccount(), Calendar.getInstance(), 120, null, apptSubject, apptBody, null, null);
+		AppointmentItem appt = AppointmentItem.createAppointmentSingleDay(app.zGetActiveAccount(), startDate, 120, null, apptSubject, apptBody, null, null);
         String apptId = appt.dApptID;
 
         // Create new tag and get tag ID
@@ -98,9 +101,10 @@ public class TagAppointment extends AjaxCommonTest {
 		tag1 = ZimbraSeleniumProperties.getUniqueString();
 		apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
 		
 		// Create new appointment
-		AppointmentItem appt = AppointmentItem.createAppointmentSingleDay(app.zGetActiveAccount(), Calendar.getInstance(), 120, null, apptSubject, apptBody, null, null);
+		AppointmentItem appt = AppointmentItem.createAppointmentSingleDay(app.zGetActiveAccount(), startDate, 120, null, apptSubject, apptBody, null, null);
         String apptId = appt.dApptID;
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
         
@@ -134,9 +138,10 @@ public class TagAppointment extends AjaxCommonTest {
 		tag1 = ZimbraSeleniumProperties.getUniqueString();
 		apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
 		
 		// Create new appointment
-		AppointmentItem appt = AppointmentItem.createAppointmentSingleDay(app.zGetActiveAccount(), Calendar.getInstance(), 120, null, apptSubject, apptBody, null, null);
+		AppointmentItem appt = AppointmentItem.createAppointmentSingleDay(app.zGetActiveAccount(), startDate, 120, null, apptSubject, apptBody, null, null);
         String apptId = appt.dApptID;
 
         // Create new tag and get tag ID
@@ -168,9 +173,10 @@ public class TagAppointment extends AjaxCommonTest {
 		tag1 = ZimbraSeleniumProperties.getUniqueString();
 		apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
 		
 		// Create new appointment
-		AppointmentItem appt = AppointmentItem.createAppointmentSingleDay(app.zGetActiveAccount(), Calendar.getInstance(), 120, null, apptSubject, apptBody, null, null);
+		AppointmentItem appt = AppointmentItem.createAppointmentSingleDay(app.zGetActiveAccount(), startDate, 120, null, apptSubject, apptBody, null, null);
         String apptId = appt.dApptID;
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
         

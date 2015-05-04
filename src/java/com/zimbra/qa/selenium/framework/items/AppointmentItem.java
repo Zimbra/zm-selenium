@@ -720,7 +720,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	 * @return
 	 * @throws HarnessException
 	 */
-	public static AppointmentItem createAppointmentSingleDay(ZimbraAccount account, Calendar start, int duration, TimeZone tz, String subject, String content, String location, List<ZimbraAccount> attendees)
+	public static AppointmentItem createAppointmentSingleDay(ZimbraAccount account, ZDate startDate, int duration, TimeZone tz, String subject, String content, String location, List<ZimbraAccount> attendees)
 	throws HarnessException {
 
 		// If location is null, don't specify the loc attribute
@@ -731,15 +731,16 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 
 
 		// Convert the calendar to a ZDate
-		ZDate beginning = new ZDate(start.get(Calendar.YEAR), start.get(Calendar.MONTH) + 1, start.get(Calendar.DAY_OF_MONTH), start.get(Calendar.HOUR_OF_DAY), 0, 0);
-		ZDate ending = beginning.addMinutes(duration);
+		
+		//ZDate beginning = new ZDate(start.get(Calendar.YEAR), start.get(Calendar.MONTH) + 1, start.get(Calendar.DAY_OF_MONTH), start.get(Calendar.HOUR_OF_DAY), 0, 0);
+		ZDate ending = startDate.addMinutes(duration);
 
 		account.soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
 			+		"<m l='10'>"
 			+			"<inv>"
 			+				"<comp name='"+ subject +"' "+ loc + " draft='0' status='CONF' class='PUB' transp='O' fb='B'>"
-			+					"<s d='"+ beginning.toTimeZone(timezoneString).toYYYYMMDDTHHMMSS() +"' tz='"+ timezoneString +"'/>"
+			+					"<s d='"+ startDate.toTimeZone(timezoneString).toYYYYMMDDTHHMMSS() +"' tz='"+ timezoneString +"'/>"
 			+					"<e d='"+ ending.toTimeZone(timezoneString).toYYYYMMDDTHHMMSS() +"' tz='"+ timezoneString +"'/>"
 			+					"<or a='" + account.EmailAddress +"'/>"
 			+				"</comp>"
@@ -751,7 +752,7 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 			+		"</m>"
 			+	"</CreateAppointmentRequest>");
 
-		AppointmentItem result = AppointmentItem.importFromSOAP(account, "subject:("+ subject +")", beginning.addDays(-7), beginning.addDays(7));
+		AppointmentItem result = AppointmentItem.importFromSOAP(account, "subject:("+ subject +")", startDate.addDays(-7), startDate.addDays(7));
 
 		return (result);
 
