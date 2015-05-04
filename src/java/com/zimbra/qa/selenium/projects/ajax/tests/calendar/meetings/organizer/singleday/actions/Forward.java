@@ -17,7 +17,10 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.actions;
 
 import java.util.Calendar;
+
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -166,6 +169,70 @@ public class Forward extends CalendarWorkWeekTest {
 			+	"</SearchRequest>");
 		id = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
 		ZAssert.assertNull(id, "Verify forwarded content doesn't modify original invite body");
+
+	}
+	
+	@Bugs(ids = "59724")
+	@Test(description = "Forwarding if a conf-room is already scheduled for same invite",
+			groups = { "functional" })
+			
+	public void ForwardMeeting_03() throws HarnessException {
+		// Creating object for meeting data
+		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
+		
+		String tz, apptSubject, apptAttendeeEmail;
+		tz = ZTimeZone.TimeZoneEST.getID();
+		apptSubject = "app" + ZimbraSeleniumProperties.getUniqueString();
+		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
+		String apptLocation = location.EmailAddress;
+		String attendee2 = ZimbraAccount.AccountB().EmailAddress;
+		
+		// Absolute dates in UTC zone
+		Calendar now = this.calendarWeekDayUTC;
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 18, 0, 0);
+		
+		app.zGetActiveAccount().soapSend(
+                "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
+                     "<m>"+
+                     	"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"' loc='"+ apptLocation+"'>" +
+                     		"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
+                     		"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
+                     		"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+                     		"<at role='REQ' ptst='NE' rsvp='1' a='" + apptAttendeeEmail + "' d='2'/>" +
+                     		"<at cutype='RES' a='" + apptLocation + "' rsvp='1' role='REQ' url='" + apptLocation + "' ptst='AC'/>" +
+                     	"</inv>" +
+                     	"<e a='"+ apptLocation +"' t='t'/>" +
+                     	"<mp content-type='text/plain'>" +
+                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     	"</mp>" +
+                     "<su>"+ apptSubject +"</su>" +
+                     "</m>" +
+               "</CreateAppointmentRequest>");
+        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		
+        
+        // Forward appointment to different attendee
+        app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_FORWARD_MENU, apptSubject);
+        app.zPageCalendar.zType(Locators.ForwardToTextArea, attendee2);
+        app.zPageCalendar.zToolbarPressButton(Button.B_SEND);
+		
+		// Verify the new invitation appears in the inbox
+		ZimbraAccount.AccountB().soapSend(
+				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
+			+		"<query>subject:("+ apptSubject +")</query>"
+			+	"</SearchRequest>");
+		String id = ZimbraAccount.AccountB().soapSelectValue("//mail:m", "id");
+		ZAssert.assertNotNull(id, "Verify the new invitation appears in the attendee's inbox");
+		
+		ZimbraAccount.AccountB().soapSend(
+				"<GetMsgRequest  xmlns='urn:zimbraMail'>"
+			+		"<m id='"+ id +"'/>"
+			+	"</GetMsgRequest>");
+
+		// Verify only one appointment is in the calendar
+		AppointmentItem a = AppointmentItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ apptSubject + ")");
+		ZAssert.assertNotNull(a, "Verify only one appointment matches in the calendar");
 
 	}
 	
