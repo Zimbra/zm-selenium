@@ -1372,12 +1372,12 @@ public class ExecuteHarnessMain {
 								
 				if (ExecuteHarnessMain.classfilter.equals("com.zimbra.qa.selenium.projects.touch.tests") && 
 						!ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser", ZimbraSeleniumProperties.getStringProperty("browser")).contains("googlechrome")) {
-					throw new HarnessException("Touch client doesn't support firefox and other non-web kit based browsers so tests can't be executed.");
+					//throw new HarnessException("Touch client doesn't support firefox and other non-web kit based browsers so tests can't be executed.");
 				}
 				
 				if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser", ZimbraSeleniumProperties.getStringProperty("browser")).contains("googlechrome") && 
 						ZimbraSeleniumProperties.isWebDriver() == false) {
-					throw new HarnessException("Selenium tests can't be executed in non-web driver mode for Chrome browser because it throws privacy error (security certificate is not trusted) although commercial certificates are installed for server.");
+					//throw new HarnessException("Selenium tests can't be executed in non-web driver mode for Chrome browser because it throws privacy error (security certificate is not trusted) although commercial certificates are installed for server.");
 				}
 				
 			}
