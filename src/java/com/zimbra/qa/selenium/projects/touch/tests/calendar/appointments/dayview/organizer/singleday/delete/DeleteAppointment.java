@@ -35,7 +35,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 	}
 	
 	@Test(description = "Delete an appointment using Delete toolbar button in day view",
-			groups = { "sanity" })
+			groups = { "functional" })
 	
 	public void DeleteAppointment_01() throws HarnessException {
 		
@@ -72,7 +72,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
         
         // Select appointment and delete it
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.B_DELETE, apptSubject);
-                
+        app.zPageMail.zClickButton(Button.B_YES);       
         // Verify appointment is moved to Trash
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify appointment is deleted");
 		
@@ -84,7 +84,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
         ZAssert.assertNull(ZimbraAccount.AccountA().soapSelectValue("//mail:GetAppointmentResponse//mail:comp", "ciFolder"), "Verify invite is removed from attendee's calendar");
         
         // Verify cancelled message received to attendee
-        MailItem canceledApptMsg = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ "Cancelled: " + apptSubject +")");
+        MailItem canceledApptMsg = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + (char)34 + "Cancelled " + apptSubject + (char)34 + ")");
 		ZAssert.assertNotNull(canceledApptMsg, "Verify cancelled message received to attendee");
 	}
 	

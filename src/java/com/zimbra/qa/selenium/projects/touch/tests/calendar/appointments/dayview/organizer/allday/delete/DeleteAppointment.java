@@ -35,7 +35,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 	}
 	
 	@Test(description = "Delete an appointment using Delete toolbar button in day view",
-			groups = { "sanity" })
+			groups = { "t1" })
 	
 	public void DeleteAppointment_01() throws HarnessException {
 		
@@ -55,8 +55,8 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
     			"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
     		+		"<m>"
     		+			"<inv method='REQUEST' type='event' fb='B' transp='O' allDay='1' name='"+ apptSubject +"'>"
-    		+				"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
-    		+				"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
+    		+				"<s d='"+ startUTC.toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
+    		+				"<e d='"+ endUTC.toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
     		+				"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>"
     		+				"<at role='REQ' ptst='NE' rsvp='1' a='" + apptAttendee1 + "' d='2'/>"
     		+			"</inv>" 
@@ -66,13 +66,14 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
     		+			"<su>" + apptSubject + "</su>" 
     		+		"</m>" 
     		+	"</CreateAppointmentRequest>");
-        String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
         app.zPageCalendar.zRefresh();
         app.zPageCalendar.zGoToToday(startUTC);
+        String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
         
         // Select appointment and delete it
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
+        app.zPageMail.zClickButton(Button.B_YES);
         
         ZAssert.assertEquals(zVerifyToastMessage("Appointment moved to trash"), true, "Verify toast message after creating invite");
         
@@ -87,7 +88,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
         ZAssert.assertNull(ZimbraAccount.AccountA().soapSelectValue("//mail:GetAppointmentResponse//mail:comp", "id"), "Verify invite is removed from attendee's calendar");
         
         // Verify cancelled message received to attendee
-        MailItem canceledApptMsg = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ "Cancelled: " + apptSubject +")");
+        MailItem canceledApptMsg = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + (char)34 + "Cancelled " + apptSubject + (char)34 + ")");
 		ZAssert.assertNotNull(canceledApptMsg, "Verify cancelled message received to attendee");
 	}
 	
