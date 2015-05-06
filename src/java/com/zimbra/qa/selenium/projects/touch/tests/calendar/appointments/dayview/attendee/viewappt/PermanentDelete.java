@@ -33,7 +33,7 @@ public class PermanentDelete extends CalendarWorkWeekTest {
 	}
 
 	@Test(	description = "Permanently delete meeting invite as an attendee", 
-			groups = { "functional" })
+			groups = { "smoke" })
 	
 	public void PermanentDeleteMeeting_01() throws HarnessException {
 
@@ -68,9 +68,10 @@ public class PermanentDelete extends CalendarWorkWeekTest {
         
         // Select appointment and delete it
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.B_DELETE, apptSubject);
-        
+        app.zPageMail.zClickButton(Button.B_YES);
         app.zPageCalendar.zSelectFolder("Trash");
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.B_DELETE, apptSubject);
+        app.zPageMail.zClickButton(Button.B_YES);
  		
  		// Verify appointment is in Trash folder
  		AppointmentItem deleteAppt = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

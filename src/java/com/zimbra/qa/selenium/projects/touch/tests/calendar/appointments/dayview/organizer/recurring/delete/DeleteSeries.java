@@ -86,6 +86,8 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		// Delete instance and verify corresponding UI
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_SERIES_MENU, apptSubject);
         app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
+        app.zPageMail.zClickButton(Button.B_YES);
+
 		
 		// Verify appointment is in Trash folder
 		app.zGetActiveAccount().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ apptId +"'/>");
@@ -103,7 +105,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), true, "Verify appointment is moved to Trash folder");
 		
 		// Verify cancelled message received to attendee
-        MailItem canceledApptMsg = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ "Cancelled: " + apptSubject +")");
+        MailItem canceledApptMsg = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + (char)34 + "Cancelled " + apptSubject + (char)34 + ")");
 		ZAssert.assertNotNull(canceledApptMsg, "Verify cancelled message received to attendee");
 	}
 	

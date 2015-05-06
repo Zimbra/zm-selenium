@@ -84,10 +84,14 @@ public class PermanentDeleteSeries extends CalendarWorkWeekTest {
 		// Delete series and verify corresponding UI
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_SERIES_MENU, apptSubject);
         app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
+        app.zPageMail.zClickButton(Button.B_YES);
+
         
         app.zPageCalendar.zSelectFolder("Trash");
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_SERIES_MENU, apptSubject);
         app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
+        app.zPageMail.zClickButton(Button.B_YES);
+
 		
 		// Verify appointment is removed from Trash folder
         AppointmentItem deleteAppt = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

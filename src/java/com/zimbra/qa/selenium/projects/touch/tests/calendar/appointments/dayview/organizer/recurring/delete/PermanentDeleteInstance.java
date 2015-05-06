@@ -22,6 +22,7 @@ import java.util.HashMap;
 import org.testng.annotations.*;
 
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekTest;
@@ -38,7 +39,7 @@ public class PermanentDeleteInstance extends CalendarWorkWeekTest {
 		    put("zimbraPrefCalendarInitialView", "day");
 		}};
 	}
-	
+	@Bugs(ids = "95735")
 	@Test( description = "Delete an instance of recurring invite", 
 			groups = { "functional" } )
 	
@@ -84,10 +85,14 @@ public class PermanentDeleteInstance extends CalendarWorkWeekTest {
 		// Delete instance and verify corresponding UI
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_INSTANCE_MENU, apptSubject);
         app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
+        app.zPageMail.zClickButton(Button.B_YES);
+
         
         app.zPageCalendar.zSelectFolder("Trash");
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_INSTANCE_MENU, apptSubject);
         app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
+        app.zPageMail.zClickButton(Button.B_YES);
+
         
  		app.zGetActiveAccount().soapSend(
  				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(7).toMillis() +"'>"

@@ -35,7 +35,7 @@ public class PermanentDeleteAppointment extends CalendarWorkWeekTest {
 	}
 	
 	@Test(description = "Permanently delete all day appointment",
-			groups = { "functional" })
+			groups = { "smoke" })
 	
 	public void PermanentDeleteAppointment_01() throws HarnessException {
 		
@@ -55,8 +55,8 @@ public class PermanentDeleteAppointment extends CalendarWorkWeekTest {
     			"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
     		+		"<m>"
     		+			"<inv method='REQUEST' type='event' fb='B' transp='O' allDay='1' name='"+ apptSubject +"'>"
-    		+				"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
-    		+				"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
+    		+				"<s d='"+ startUTC.toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
+    		+				"<e d='"+ endUTC.toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
     		+				"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>"
     		+				"<at role='REQ' ptst='NE' rsvp='1' a='" + apptAttendee1 + "' d='2'/>"
     		+			"</inv>" 
@@ -72,11 +72,13 @@ public class PermanentDeleteAppointment extends CalendarWorkWeekTest {
         
         // Select appointment and delete it
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.B_DELETE, apptSubject);
-        
+        app.zPageMail.zClickButton(Button.B_YES);
+
         // Permanently delete an appointment
 		app.zPageCalendar.zSelectFolder("Trash");
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
+        app.zPageMail.zClickButton(Button.B_YES);
         
         // Verify appointment is removed from Trash folder
         AppointmentItem deleteAppt = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

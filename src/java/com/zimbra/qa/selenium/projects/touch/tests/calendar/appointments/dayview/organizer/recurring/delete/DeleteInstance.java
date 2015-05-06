@@ -41,7 +41,7 @@ public class DeleteInstance extends CalendarWorkWeekTest {
 		}};
 	}
 	
-	@Bugs(ids = "91182")
+	@Bugs(ids = "95735")
 	@Test (	description = "Delete instance of recurring invite", 
 			groups = { "functional" } )
 	
@@ -63,8 +63,8 @@ public class DeleteInstance extends CalendarWorkWeekTest {
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
 					"<m>"+
 						"<inv method='REQUEST' type='event' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"+
-							"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
-							"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
+							"<s d='"+ startUTC.toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
+							"<e d='"+ endUTC.toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
 							"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 							"<at role='REQ' ptst='NE' rsvp='1' a='" + apptAttendee1 + "' d='2'/>" +
 							"<recur>" +
@@ -87,7 +87,9 @@ public class DeleteInstance extends CalendarWorkWeekTest {
 		// Delete instance and verify corresponding UI
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_INSTANCE_MENU, apptSubject);
         app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
-		
+        app.zPageMail.zClickButton(Button.B_YES);
+        SleepUtil.sleepMedium();
+
 		// Verify appointment is removed
         app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(7).toMillis() +"'>"
@@ -114,7 +116,7 @@ public class DeleteInstance extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), true, "Verify appointment is moved to Trash folder");
 		
 		// Verify cancelled message received to attendee
-        MailItem canceledApptMsg = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ "Cancelled: " + apptSubject +")");
+        MailItem canceledApptMsg = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + (char)34 + "Cancelled " + apptSubject + (char)34 + ")");
 		ZAssert.assertNotNull(canceledApptMsg, "Verify cancelled message received to attendee");
 	}
 	
