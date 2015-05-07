@@ -1,0 +1,42 @@
+BEGIN:VCALENDAR
+PRODID:-//Microsoft Corporation//Outlook 10.0 MIMEDIR//EN
+VERSION:2.0
+METHOD:REQUEST
+BEGIN:VTIMEZONE
+TZID:Mountain Time
+BEGIN:STANDARD
+DTSTART:20101101T020000
+RRULE:FREQ=YEARLY;INTERVAL=1;BYDAY=1SU;BYMONTH=11
+TZOFFSETFROM:-0600
+TZOFFSETTO:-0700
+TZNAME:Standard Time
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:20100301T020000
+RRULE:FREQ=YEARLY;INTERVAL=1;BYDAY=2SU;BYMONTH=3
+TZOFFSETFROM:-0700
+TZOFFSETTO:-0600
+TZNAME:Daylight Savings Time
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VEVENT
+ORGANIZER;CN="webex":MAILTO:messenger@webex.com
+DTSTART;TZID="Mountain Time":20120824T100000
+DTEND;TZID="Mountain Time":20120824T110000
+RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=FR
+LOCATION:https://vmware.webex.com/vmware
+TRANSP:OPAQUE
+SEQUENCE:1
+UID:WEBEX-MEETING CENTER-6.0250832-201401882-SU=vmware-MK=928249045-HN=machtemichuk
+DTSTAMP:20120824T160000Z
+DESCRIPTION:\nYou are the host for this online meeting.\n\nHost Key: 120931 (use this to reclaim host privileges)\n\nTo invite others to join, copy and paste everything below into your invitation.\n-------------------------------------------------------\nMeeting information\n-------------------------------------------------------\nTopic: The Performance Hour\nDate: Every 2 weeks on Friday, from Friday, August 24, 2012 to no end date\nTime: 10:00 am, Mountain Daylight Time (Denver, GMT-06:00)\nMeeting Number: 928 249 045\nMeeting Password: (This meeting does not require a password.)\n\n-------------------------------------------------------\nTo start or join the online meeting\n-------------------------------------------------------\nGo to https://vmware.webex.com/vmware/j.php?ED=201401882&UID=491054127&RT=MiM2\n\n-------------------------------------------------------\nTeleconference information\n-------------------------------------------------------\nCall-in toll-free number (Premiere): 1-866-715-6501  (US)\nCall-in number (Premiere): 1-719-325-2777  (US)\nShow global numbers: https://www.myrcplus.com/cnums.asp?bwebid=8369444&ppc=4274058318&num=1866-715-6501&num2=1719-325-2777\nHost access code: 465 968 5667\nAttendee access code: 427 405 8318\n\n-------------------------------------------------------\nFor assistance\n-------------------------------------------------------\n1. Go to https://vmware.webex.com/vmware/mc\n2. On the left navigation bar, click "Support".\nTo add this meeting to your calendar program (for example Microsoft Outlook), click this link:\nhttps://vmware.webex.com/vmware/j.php?ED=201401882&UID=491054127&ICS=MS&LD=1&RD=2&SHA2=yzV-2L7fAxV8DWnVMLl/KPIqdXLZ7QiiLUOjLyFkXA8=&ST=1\n\nTo check whether you have the appropriate players installed for UCF (Universal Communications Format) rich media files, go to https://vmware.webex.com/vmware/systemdiagnosis.php\n\nhttp://www.webex.com\n\nCCM:+17193252777x4659685667# \n\nIMPORTANT NOTICE: This WebEx service includes a feature that allows audio and any documents and other materials exchanged or viewed during the session to be recorded. You should inform all meeting attendees prior to recording if you intend to record the meeting. Please note that any such recordings may be subject to discovery in the event of litigation.\n
+SUMMARY:Meeting scheduled: The Performance Hour
+PRIORITY:5
+CLASS:PUBLIC
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+END:VCALENDAR
