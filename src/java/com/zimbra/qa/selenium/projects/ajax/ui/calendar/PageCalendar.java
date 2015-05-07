@@ -1638,6 +1638,12 @@ public class PageCalendar extends AbsTab {
 				return (page);
 			}
 			
+			page = new DialogConfirmationDeleteAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			if ( page.zIsActive() ) {
+				return (page);
+			}
+
+			
 			page = new DialogConfirmDeleteRecurringAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
