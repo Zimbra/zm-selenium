@@ -33,7 +33,7 @@ public class UnFlagMail extends PrefGroupMailByConversationTest {
 	@Test( description = "Unflag mail",
 			groups = { "sanity" })
 
-	public void FlagMail_01() throws HarnessException {
+	public void UnFlagMail_01() throws HarnessException {
 
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "text <strong>bold"+ ZimbraSeleniumProperties.getUniqueString() +"</strong> text";
