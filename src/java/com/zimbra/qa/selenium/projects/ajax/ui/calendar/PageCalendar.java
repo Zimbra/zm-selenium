@@ -690,16 +690,26 @@ public class PageCalendar extends AbsTab {
 			
 			this.sDoubleClick(locator);
 			this.zWaitForBusyOverlay();
-
-			page = null; // Should probably return the read-only or organizer view of the appointment
+			SleepUtil.sleepLong();
 			
-			return (page);
+			/*page = new DialogOpenRecurringItem(Confirmation.OPENRECURRINGITEM, MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			if ( page.zIsActive() ) {
+				return (page);
+			}*/
 			
+			DialogOpenRecurringItem openRecurring = new DialogOpenRecurringItem(null, MyApplication, null);
+			openRecurring.zClickButton(Button.B_OPEN_THE_SERIES);
+			openRecurring.zClickButton(Button.B_OK);
+			
+			page = new FormApptNew(this.MyApplication);
+			if ( page.zIsActive() ) {
+				return (page);
+			}			
 		} else {
 			throw new HarnessException("implement me!  action = "+ action);
 		}
 
-
+		return(page);
 	}
 	
 	private AbsPage zListItemListView(Action action, Button option, String subject) throws HarnessException {
@@ -1474,6 +1484,11 @@ public class PageCalendar extends AbsTab {
 	private AbsPage zListItemMonthView(Action action, Button option, String subject) throws HarnessException {
 		throw new HarnessException("implement me!");
 	}
+	
+	private AbsPage zListItemMonthView(Action action, Button option, Button subOption, String subject) throws HarnessException {
+		System.out.println("zimbra");
+		return null;
+	}
 
 
 	@Override
@@ -1534,6 +1549,10 @@ public class PageCalendar extends AbsTab {
 			
 			// Read-only appointment locator
 			locator = itemsLocator +" td[id$='_responseActionSelectCell'] td[id$='_select_container']";
+			
+		} else if (this.sIsElementPresent("css=table.calendar_month_day_table td.calendar_month_day_item span[id$='_subject']:contains('"+ subject +"')")) {
+			
+			locator = "css=table.calendar_month_day_table td.calendar_month_day_item span[id$='_subject']:contains('"+ subject +"')";
 			
 		}
 		
@@ -1637,9 +1656,189 @@ public class PageCalendar extends AbsTab {
 			// No dialog
 			return (null);
 
+		} else if ( action == Action.A_DOUBLECLICK) {
+			
+			this.sDoubleClick(locator);
+			this.zWaitForBusyOverlay();
+			SleepUtil.sleepLong();
+			
+			/*page = new DialogOpenRecurringItem(Confirmation.OPENRECURRINGITEM, MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			if ( page.zIsActive() ) {
+				return (page);
+			}*/
+			
+			DialogOpenRecurringItem openRecurring = new DialogOpenRecurringItem(null, MyApplication, null);
+			openRecurring.zClickButton(Button.B_OPEN_THE_SERIES);
+			openRecurring.zClickButton(Button.B_OK);
+			
+			page = new FormApptNew(this.MyApplication);
+			if ( page.zIsActive() ) {
+				return (page);
+			}	
+		
+		} else {
+			throw new HarnessException("implement action:"+ action +" option:"+ option +" suboption:" + subOption);
 		}
 		
-		if ( locator == null || optionLocator == null || subOptionLocator == null ) {
+		if (subOption == Button.O_NEEDS_ACTION_MENU || subOption == Button.O_ACCEPTED_MENU || subOption == Button.O_TENTATIVE_MENU || subOption == Button.O_DECLINED_MENU) {
+			this.sClickAt(Locators.NeedsActionButton_ViewAppt, "");
+			
+		} else if (subOption == Button.O_NEW_TAG || subOption == Button.O_REMOVE_TAG) {
+			zWaitForElementAppear(Locators.NewTagMenu_ViewAppt); //http://bugzilla.zimbra.com/show_bug.cgi?id=79016
+			
+			if (subOption == Button.O_REMOVE_TAG) {
+				this.zClickAt(Locators.TagButton_ViewAppt, "");
+			}
+			
+		} else if (subOption == Button.O_EDIT || subOption == Button.O_CREATE_A_COPY_MENU ||	subOption == Button.O_REPLY_MENU ||
+				subOption == Button.O_REPLY_TO_ALL_MENU || subOption == Button.O_FORWARD_MENU || subOption == Button.O_PROPOSE_NEW_TIME_MENU ||
+				subOption == Button.O_DELETE_MENU || subOption == Button.O_SHOW_ORIGINAL_MENU) {
+			zWaitForElementAppear(Locators.ActionsButton_ViewAppt);
+			
+			this.zClickAt(Locators.ActionsButton_ViewAppt, "");
+		}
+		
+		SleepUtil.sleepSmall();
+		
+		if ( subOption == Button.O_NEEDS_ACTION_MENU ) {
+			
+			optionLocator = Locators.NeedsActionMenu_ViewAppt;
+			
+			this.zClickAt(optionLocator, "");
+			this.zWaitForBusyOverlay();
+			page = null;
+			
+		} else 	if ( (subOption == Button.O_ACCEPTED_MENU)) {
+			
+			optionLocator = Locators.AcceptedMenu_ViewAppt;
+			
+			this.zClickAt(optionLocator, "");
+			this.zWaitForBusyOverlay();
+			
+			page = null;
+		
+		} else if ( subOption == Button.O_TENTATIVE_MENU ) {
+			
+			optionLocator = Locators.TentativeMenu_ViewAppt;
+			
+			this.zClickAt(optionLocator, "");
+			this.zWaitForBusyOverlay();
+			
+			page = null;
+		
+		} else if ( subOption == Button.O_DECLINED_MENU ) {
+			
+			boolean isMultipleMenu = this.sIsElementPresent(Locators.DeclinedMenu3_ViewAppt);
+			if (isMultipleMenu == true) {
+				optionLocator = Locators.DeclinedMenu3_ViewAppt;
+			} else {
+				optionLocator = Locators.DeclinedMenu_ViewAppt;
+			}
+			
+			this.zClickAt(optionLocator, "");
+			this.zWaitForBusyOverlay();
+			
+			page = null;
+		
+		} else if ( subOption == Button.O_NEW_TAG ) {
+			
+			optionLocator = Locators.NewTagMenu_ViewAppt;
+			
+			this.zClickAt(optionLocator, "");
+			this.zWaitForBusyOverlay();
+			
+			page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+		
+		} else if ( subOption == Button.O_REMOVE_TAG ) {
+			
+			optionLocator = Locators.RemoveTagMenu_ViewAppt;
+			
+			this.zClickAt(optionLocator, "");
+			this.zWaitForBusyOverlay();
+			
+			page = null;
+
+		} else if ( subOption == Button.O_EDIT ) {
+			
+			optionLocator = Locators.EditMenu_ViewAppt;
+			
+			this.zClickAt(optionLocator, "");
+			this.zWaitForBusyOverlay();
+			
+			page = new DialogWarning(DialogWarning.DialogWarningID.ZmMsgDialog, MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+		
+		} else if ( subOption == Button.O_CREATE_A_COPY_MENU ) {
+			
+			optionLocator = Locators.CreateACopyMenu_ViewAppt;
+			
+			this.zClickAt(optionLocator, "");
+			this.zWaitForBusyOverlay();
+			
+			page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			
+		} else if ( subOption == Button.O_REPLY_MENU ) {
+			
+			optionLocator = Locators.ReplyMenu_ViewAppt;
+			
+			this.zClickAt(optionLocator, "");
+			this.zWaitForBusyOverlay();
+			
+			page = new FormMailNew(this.MyApplication);
+		
+		} else if ( subOption == Button.O_REPLY_TO_ALL_MENU ) {
+			
+			optionLocator = Locators.ReplyToAllMenu_ViewAppt;
+			
+			this.zClickAt(optionLocator, "");
+			this.zWaitForBusyOverlay();
+			
+			page = new FormMailNew(this.MyApplication);
+			
+		} else if ( subOption == Button.O_FORWARD_MENU ) {
+			
+			optionLocator = Locators.ForwardMenu_ViewAppt;
+			
+			this.zClickAt(optionLocator, "");
+			this.zWaitForBusyOverlay();
+			
+			page = null;
+		
+		} else if ( subOption == Button.O_PROPOSE_NEW_TIME_MENU ) {
+			
+			optionLocator = Locators.ProposeNewTimeMenu_ViewAppt;
+			
+			this.zClickAt(optionLocator, "");
+			this.zWaitForBusyOverlay();
+			
+			page = new FormApptNew(this.MyApplication);
+			
+		} else if ( subOption == Button.O_DELETE_MENU ) {
+			
+			optionLocator = Locators.DeleteMenu_ViewAppt;
+			
+			this.zClickAt(optionLocator, "");
+			this.zWaitForBusyOverlay();
+			
+			page = new DialogConfirmationDeclineAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+		
+		} else if ( subOption == Button.O_SHOW_ORIGINAL_MENU ) {
+			
+			optionLocator = Locators.ShowOriginalMenu_ViewAppt;
+			
+			page = new SeparateWindow(this.MyApplication);
+			((SeparateWindow)page).zInitializeWindowNames();
+			this.zClickAt(optionLocator, "");
+			this.zWaitForBusyOverlay();
+			
+			return (page);				
+			
+		} else {
+			throw new HarnessException("implement me!  option = "+ option);
+		}
+		
+	
+		
+		if ( locator == null || optionLocator == null) {
 			throw new HarnessException("implement action:"+ action +" option:"+ option +" suboption:" + subOption);
 		}
 
