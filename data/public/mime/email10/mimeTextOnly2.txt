@@ -1,7 +1,7 @@
 Date: Tue, 15 Nov 2011 17:06:47 -0800 (PST)
 From: foo@testdomain.com
 To: bar@testdomain.com
-Subject: 2 plain text format
+Subject: 2 plain text
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0

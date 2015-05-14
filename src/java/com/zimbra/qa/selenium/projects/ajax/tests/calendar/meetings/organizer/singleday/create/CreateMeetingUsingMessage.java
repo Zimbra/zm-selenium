@@ -58,8 +58,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 8, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 8, 30, 0);
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -73,6 +73,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
 		apptForm.zFillField(Field.EndDate, endUTC);
+		apptForm.zFillField(Field.StartTime, startUTC);
+		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertTrue(apptForm.zVerifyRequiredAttendee(apptAttendee1), "Verify populated email address bubble 1 from message");
 		ZAssert.assertTrue(apptForm.zVerifyRequiredAttendee(apptAttendee2), "Verify populated email address bubble 2 from message");
@@ -121,8 +123,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 9, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 9, 30, 0);
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -136,6 +138,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
 		apptForm.zFillField(Field.EndDate, endUTC);
+		apptForm.zFillField(Field.StartTime, startUTC);
+		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), "Bold and Italics", "Verify populated appointment body from message");
 		apptForm.zToolbarPressButton(Button.B_SEND);
@@ -173,14 +177,14 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 		
 		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email10/mimeTextOnly1.txt";
-		final String subject = "1 plain text format";
+		final String subject = "1 plain text";
 		final String content = "The Ming Dynasty";
 		final String fullContent = "The Ming Dynasty, also Empire of the Great Ming, was the ruling dynasty of China from 1368 to 1644.";
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 10, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 10, 30, 0);
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -194,6 +198,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
 		apptForm.zFillField(Field.EndDate, endUTC);
+		apptForm.zFillField(Field.StartTime, startUTC);
+		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Verify populated appointment body from message");
 		apptForm.zToolbarPressButton(Button.B_SEND);
@@ -208,10 +214,10 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists("1 plain text f...") == false) {
+		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists("1 plain text") == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}	
-		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "1 plain text f...");
+		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "1 plain text");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 		
@@ -231,14 +237,14 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 		
 		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email10/mimeTextOnly2.txt";
-		final String subject = "2 plain text format";
+		final String subject = "2 plain text";
 		final String content = "The Ming Dynasty";
 		final String fullContent = "The Ming Dynasty, also Empire of the Great Ming, was the ruling dynasty of China from 1368 to 1644.";
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 11, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 11, 30, 0);
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -252,6 +258,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
 		apptForm.zFillField(Field.EndDate, endUTC);
+		apptForm.zFillField(Field.StartTime, startUTC);
+		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Verify populated appointment body from message");
 		apptForm.zToolbarPressButton(Button.B_SEND);
@@ -266,10 +274,10 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists("2 plain text f...") == false) {
+		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists("2 plain text") == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}	
-		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "2 plain text f...");
+		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "2 plain text");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 		
@@ -294,8 +302,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 12, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 12, 30, 0);
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -309,6 +317,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
 		apptForm.zFillField(Field.EndDate, endUTC);
+		apptForm.zFillField(Field.StartTime, startUTC);
+		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), "Bold and Italics", "Verify populated appointment body from message");
 		apptForm.zToolbarPressButton(Button.B_SEND);
@@ -351,8 +361,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 13, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 13, 30, 0);
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -366,6 +376,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
 		apptForm.zFillField(Field.EndDate, endUTC);
+		apptForm.zFillField(Field.StartTime, startUTC);
+		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), "Bold and Italics", "Verify populated appointment body from message");
 		apptForm.zToolbarPressButton(Button.B_SEND);
@@ -404,14 +416,14 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 		
 		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email10/mimeTextOnly3.txt";
-		final String subject = "3 plain text format";
+		final String subject = "3 plain text";
 		final String content = "The Ming Dynasty";
 		final String fullContent = "The Ming Dynasty, also Empire of the Great Ming, was the ruling dynasty of China from 1368 to 1644.";
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 14, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 14, 30, 0);
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -425,6 +437,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
 		apptForm.zFillField(Field.EndDate, endUTC);
+		apptForm.zFillField(Field.StartTime, startUTC);
+		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		apptForm.zToolbarPressButton(Button.B_SEND);
 		
@@ -438,10 +452,10 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists("3 plain text f...") == false) {
+		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists("3 plain text") == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}	
-		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "3 plain text f...");
+		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "3 plain text");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 		
@@ -468,8 +482,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 15, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 15, 30, 0);
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -483,6 +497,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
 		apptForm.zFillField(Field.EndDate, endUTC);
+		apptForm.zFillField(Field.StartTime, startUTC);
+		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), "Bold and Italics", "Verify populated appointment body from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Verify populated appointment body from message");
@@ -498,10 +514,10 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists("4 plain text f...") == false) {
+		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists("4 plain text") == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}	
-		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "4 plain text f...");
+		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "4 plain text");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), fullContent, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 		
