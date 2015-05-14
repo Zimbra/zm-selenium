@@ -96,6 +96,26 @@ public class UnTagAppointment extends AjaxCommonTest {
 		app.zTreeCalendar.zTreeItem(Action.A_LEFTCLICK, tag1);
 		SleepUtil.sleepMedium();
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify search result after clicking tag");
+		app.zGetActiveAccount().soapSend("<TagActionRequest xmlns='urn:zimbraMail'>" + "<action op='delete' id='" + tagID +"'/>" + "</TagActionRequest>");
+		app.zGetActiveAccount().soapSend(
+				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startDate.addDays(-10).toMillis() +"' calExpandInstEnd='"+ startDate.addDays(10).toMillis() +"'>"
+			+		"<query>"+ apptSubject +"</query>"
+			+	"</SearchRequest>");
+	
+	String invId = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
+		
+		app.zGetActiveAccount().soapSend("<CancelAppointmentRequest xmlns='urn:zimbraMail' id='" + invId + "' comp='0'>"
+               + "<m>"
+               +   "<su>Cancelled" + apptSubject + "</su>"
+               +    "<mp content-type='text/plain'>"
+               +        "<content> Action: Cancelled" + apptSubject + "</content>"
+               +    "</mp>"
+               + "</m>"
+           + "</CancelAppointmentRequest>");
+	    this.app.zPageLogin.zNavigateTo();
+	    this.startingPage.zNavigateTo();
+		
+		
 	}
 	
 	@Test(description = "Untag tagged appointment using context menu in day view",

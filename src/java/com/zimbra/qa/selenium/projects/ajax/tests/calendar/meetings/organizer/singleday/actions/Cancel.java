@@ -104,7 +104,7 @@ public class Cancel extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "65749")
 	@Test(description = "Reply to Cancelled Appointments not using zimbraPrefFromAddress",
-			groups = { "test" })
+			groups = { "functional" })
 	public void CancelMeeting_02() throws HarnessException {
 		
 		String tz, apptSubject, apptBody, apptAttendee1, fromAddress;
