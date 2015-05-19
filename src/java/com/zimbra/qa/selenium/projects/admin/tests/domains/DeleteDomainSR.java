@@ -27,6 +27,7 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
+import com.zimbra.qa.selenium.projects.admin.ui.DA_PageManageAccounts.Locators;
 import com.zimbra.qa.selenium.projects.admin.ui.DialogForDeleteOperation;
 import com.zimbra.qa.selenium.projects.admin.ui.DialogForDeleteOperationDomain;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
@@ -46,11 +47,11 @@ public class DeleteDomainSR extends AdminCommonTest {
 	 * 1. Create a domain using SOAP.
 	 * 2. Search domain.
 	 * 3. Select a domain.
-	 * 4. Delete a domain using delete button in Gear box menu.
-	 * 5. Verify domain is deleted using SOAP.
+	 * 4. check delete button in Gear box menu.
+	 * 5. Verify delete domain option is disabled at search results.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify delete domain operation --  Search List View",
+	@Test(	description = "Verify delete domain operation is absent from leftclick > gear icon --  Search List View",
 			groups = { "functional" })
 			public void DeleteDomain_05() throws HarnessException {
 
@@ -72,38 +73,24 @@ public class DeleteDomainSR extends AdminCommonTest {
 		// Click on domain to be deleted.
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, domain.getName());
 
-		// Click on Delete button
-		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DELETE);
-
-		// Click Yes in Confirmation dialog.
-		dialog.zClickButton(Button.B_YES);
-
-		// Click Ok on "Delete Items" dialog
-		dialog.zClickButton(Button.B_OK);
-
-		// Verify the domain do not exists in the ZCS
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
-				+	"<domain by='name'>" + domain.getName() + "</domain>"
-				+	"</GetDomainRequest>");
-
-
-		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDomainResponse/admin:domain", 1);
-		ZAssert.assertNull(response, "Verify the domain is deleted successfully");
-		app.zPageMain.logout();
+		// Click on gear icon
+		app.zPageSearchResults.zClickAt(Locators.GEAR_ICON,"");
+		boolean isPresent = app.zPageSearchResults.zVerifyDisabled("DeleteTreeMenu");
+		ZAssert.assertTrue(isPresent, "Verify the delete domain button is disabled at Search results");
+		
 	}
 	
 	/**
-	 * Testcase : Verify delete domain operation  -- Search List View/Right Click Menu
+	 * Testcase : Verify delete domain operation is disabled -- Search List View/Right Click Menu
 	 * Steps :
 	 * 1. Create a domain using SOAP.
 	 * 2. Search domain.
 	 * 3. Right click on domain.
-	 * 4. Delete a domain using delete button in right click menu.
-	 * 5. Verify domain is deleted using SOAP..
+	 * 4. check option Delete using delete button in right click menu.
+	 * 5. Verify option is disabled
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify delete domain operation",
+	@Test(	description = " Verify delete domain operation is disabled -- Search List View/Right Click Menu",
 			groups = { "functional" })
 			public void DeleteDomain_06() throws HarnessException {
 
@@ -125,37 +112,21 @@ public class DeleteDomainSR extends AdminCommonTest {
 		// Right Click on domain to be deleted.
 		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, domain.getName());
 
-		// Click on Delete button
-		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_DELETE);
-
-		// Click Yes in Confirmation dialog.
-		dialog.zClickButton(Button.B_YES);
-
-		// Click Ok on "Delete Items" dialog
-		dialog.zClickButton(Button.B_OK);
-
-		// Verify the domain do not exists in the ZCS
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
-				+	"<domain by='name'>" + domain.getName() + "</domain>"
-				+	"</GetDomainRequest>");
-
-
-		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDomainResponse/admin:domain", 1);
-		ZAssert.assertNull(response, "Verify the domain is deleted successfully");
-		app.zPageMain.logout();
+		boolean isPresent = app.zPageSearchResults.zVerifyDisabled("DeleteTreeMenu");
+		ZAssert.assertTrue(isPresent, "Verify the delete domain button is disabled at Search results");
+		
 	}
 
 	/**
-	 * Testcase : Verify delete domain alias operation - Search list view.
+	 * Testcase : Verify delete domain alias operation is disabled- Search list view.
 	 * Steps :
 	 * 1. Create domain alias using SOAP.
 	 * 2. Search created domain alias.
 	 * 3. Select the domain alias from gear box menu and select delete.
-	 * 4. Verify domain alias is deleted using SOAP.
+	 * 4. Verify domain alias option is disabled
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify delete domain alias operation - Search list view",
+	@Test(	description = "Verify delete domain alias operation is disabled- Search list view.",
 			groups = { "functional" })
 			public void DeleteDomain_07() throws HarnessException {
 		
@@ -193,36 +164,21 @@ public class DeleteDomainSR extends AdminCommonTest {
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, domainAliasName);
 
 		// Click on Delete button
-		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DELETE);
-
-		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
-
-		// Click Ok on "Delete Items" dialog
-		dialog.zClickButton(Button.B_OK);
-
-		// Verify the domain do not exists in the ZCS
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
-				+	"<domain by='name'>" + domainAliasName + "</domain>"
-				+	"</GetDomainRequest>");
-
-
-		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDomainResponse/admin:domain", 1);
-		ZAssert.assertNull(response, "Verify the domain is deleted successfully");
-		app.zPageMain.logout();
+		boolean isPresent = app.zPageSearchResults.zVerifyDisabled("DeleteTreeMenu");
+		ZAssert.assertTrue(isPresent, "Verify the delete domain button is disabled at Search results");
+		
 	}
 
 	/**
-	 * Testcase : Verify delete domain alias operation - Search list view.
+	 * Testcase : Verify delete domain alias operation is disabled- Search list view.
 	 * Steps :
 	 * 1. Create domain alias using SOAP.
 	 * 2. Search created domain alias.
 	 * 3. Select the domain alias from gear box menu and select delete.
-	 * 4. Verify domain alias is deleted using SOAP.
+	 * 4. Verify domain alias option is disabled
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify delete domain alias operation - Search list view",
+	@Test(	description = "Verify delete domain alias operation is disabled- Search list view.",
 			groups = { "functional" })
 			public void DeleteDomain_08() throws HarnessException {
 		
@@ -260,24 +216,9 @@ public class DeleteDomainSR extends AdminCommonTest {
 		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, domainAliasName);
 
 		// Click on Delete button
-		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_DELETE);
-
-		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
-
-		// Click Ok on "Delete Items" dialog
-		dialog.zClickButton(Button.B_OK);
-
-		// Verify the domain do not exists in the ZCS
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
-				+	"<domain by='name'>" + domainAliasName + "</domain>"
-				+	"</GetDomainRequest>");
-
-
-		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDomainResponse/admin:domain", 1);
-		ZAssert.assertNull(response, "Verify the domain is deleted successfully");
-		app.zPageMain.logout();
-	}
+		boolean isPresent = app.zPageSearchResults.zVerifyDisabled("DeleteTreeMenu");
+		ZAssert.assertTrue(isPresent, "Verify the delete domain button is disabled at Search results");
+	
+		}
 
 }
