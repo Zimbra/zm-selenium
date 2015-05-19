@@ -34,7 +34,7 @@ public class TagMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test(	description = "Tag a message using Toolbar -> Tag -> Existing Tag - in a separate window", 
-			groups = { "deprecated" })
+			groups = { "functional" })
 	public void TagMail_01() throws HarnessException {
 
 		// Create the tag to delete

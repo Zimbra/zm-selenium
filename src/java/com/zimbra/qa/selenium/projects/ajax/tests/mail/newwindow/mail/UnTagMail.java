@@ -33,9 +33,9 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 
 
 	}
-	@Bugs(ids="65769")
+	@Bugs(ids="99519")
 	@Test(	description = "Un-Tag a message using Toolbar -> Tag -> Remove Tag - in a separate window", 
-			groups = { "deprecated" })
+			groups = { "functional" })
 	public void UnTagMail_01() throws HarnessException {
 
 		// Create the tag to delete
@@ -114,8 +114,12 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 				+			"<m id='" + mail.getId() + "'/>"
 				+		"</GetMsgRequest>");
 		String mailTags = app.zGetActiveAccount().soapSelectValue("//mail:m", "t");
+		
+		logger.info(mailTags);
+		
+		ZAssert.assertNull(mailTags, "");
 
-		ZAssert.assertEquals(mailTags, "", "Verify the tag appears on the message");
+		ZAssert.assertEquals(mailTags, "null", "Verify the tag appears on the message");
 
 	}
 
