@@ -114,13 +114,10 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 				+			"<m id='" + mail.getId() + "'/>"
 				+		"</GetMsgRequest>");
 		String mailTags = app.zGetActiveAccount().soapSelectValue("//mail:m", "t");
-		
-		logger.info(mailTags);
-		
-		ZAssert.assertNull(mailTags, "");
+					
+		ZAssert.assertNull(mailTags, "verify tag does not present on the message");
 
-		ZAssert.assertEquals(mailTags, "null", "Verify the tag appears on the message");
-
+		
 	}
 
 }
