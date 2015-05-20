@@ -25,53 +25,48 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
 
 public class UnTagMail extends PrefGroupMailByMessageTest {
 
 	public UnTagMail() {
 		logger.info("New " + UnTagMail.class.getCanonicalName());
 
-
 	}
-	@Bugs(ids="99519")
-	@Test(	description = "Un-Tag a message using Toolbar -> Tag -> Remove Tag - in a separate window", 
-			groups = { "functional" })
+
+	@Bugs(ids = "99519")
+	@Test(description = "Un-Tag a message using Toolbar -> Tag -> Remove Tag - in a separate window", groups = { "functional" })
 	public void UnTagMail_01() throws HarnessException {
 
 		// Create the tag to delete
 		String tagname = "tag" + ZimbraSeleniumProperties.getUniqueString();
-		
+
 		app.zGetActiveAccount().soapSend(
-					"<CreateTagRequest xmlns='urn:zimbraMail'>"
-				+	  	"<tag name='"+ tagname +"' color='1' />"
-				+	"</CreateTagRequest>");
+				"<CreateTagRequest xmlns='urn:zimbraMail'>" + "<tag name='"
+						+ tagname + "' color='1' />" + "</CreateTagRequest>");
 
 		TagItem tag = TagItem.importFromSOAP(app.zGetActiveAccount(), tagname);
 		ZAssert.assertNotNull(tag, "Verify the tag was created");
 
-		
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 
 		// Add a message to the mailbox
-		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+		FolderItem inboxFolder = FolderItem.importFromSOAP(
+				app.zGetActiveAccount(), SystemFolder.Inbox);
 		app.zGetActiveAccount().soapSend(
-					"<AddMsgRequest xmlns='urn:zimbraMail'>"
-				+		"<m l='" + inboxFolder.getId() + "' t='"+ tag.getId() +"'>"
-				+			"<content>"
-				+				"From: foo@foo.com\n"
-				+				"To: foo@foo.com \n"
-				+				"Subject: " + subject + "\n"
-				+				"MIME-Version: 1.0 \n"
-				+				"Content-Type: text/plain; charset=utf-8 \n"
-				+				"Content-Transfer-Encoding: 7bit\n"
-				+				"\n"
-				+				"simple text string in the body\n" 
-				+			"</content>"
-				+		"</m>"
-				+	"</AddMsgRequest>");
+				"<AddMsgRequest xmlns='urn:zimbraMail'>" + "<m l='"
+						+ inboxFolder.getId() + "' t='" + tag.getId() + "'>"
+						+ "<content>" + "From: foo@foo.com\n"
+						+ "To: foo@foo.com \n" + "Subject: " + subject + "\n"
+						+ "MIME-Version: 1.0 \n"
+						+ "Content-Type: text/plain; charset=utf-8 \n"
+						+ "Content-Transfer-Encoding: 7bit\n" + "\n"
+						+ "simple text string in the body\n" + "</content>"
+						+ "</m>" + "</AddMsgRequest>");
 
 		// Get the message data from SOAP
-		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject + ")");
+		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(),
+				"subject:(" + subject + ")");
 
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
@@ -80,44 +75,210 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
 		SeparateWindowDisplayMail window = null;
-		
+
 		try {
-			
+
 			// Choose Actions -> Launch in Window
-			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-			
+			window = (SeparateWindowDisplayMail) app.zPageMail
+					.zToolbarPressPulldown(Button.B_ACTIONS,
+							Button.B_LAUNCH_IN_SEPARATE_WINDOW);
+
 			window.zSetWindowTitle(subject);
-			window.zWaitForActive();		// Make sure the window is there
-			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			
+			window.zWaitForActive(); // Make sure the window is there
+
+			ZAssert.assertTrue(window.zIsActive(),
+					"Verify the window is active");
+
 			window.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_REMOVETAG);
-			
+
 			window.zCloseWindow();
 			window = null;
 
 		} finally {
-			
+
 			// Make sure to close the window
-			if ( window != null ) {
+			if (window != null) {
 				window.zCloseWindow();
 				window = null;
 			}
-			
-		}
-		
 
+		}
 
 		// Make sure the tag was applied to the message
 		app.zGetActiveAccount().soapSend(
-						"<GetMsgRequest xmlns='urn:zimbraMail'>"
-				+			"<m id='" + mail.getId() + "'/>"
-				+		"</GetMsgRequest>");
-		String mailTags = app.zGetActiveAccount().soapSelectValue("//mail:m", "t");
-					
-		ZAssert.assertNull(mailTags, "verify tag does not present on the message");
+				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='"
+						+ mail.getId() + "'/>" + "</GetMsgRequest>");
+		String mailTags = app.zGetActiveAccount().soapSelectValue("//mail:m",
+				"t");
 
-		
+		ZAssert.assertNull(mailTags,
+				"verify tag does not present on the message");
+
+	}
+
+	@Test(description = "Remove a tag from a message using Keyboard shortcut u >>in a separate window", groups = { "functional" })
+	public void UnTagMail_02() throws HarnessException {
+
+		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String tagname = "tag" + ZimbraSeleniumProperties.getUniqueString();
+
+		Shortcut shortcut = Shortcut.S_UNTAG;
+
+		// Create a tag
+		app.zGetActiveAccount().soapSend(
+				"<CreateTagRequest xmlns='urn:zimbraMail'>" + "<tag name='"
+						+ tagname + "' color='1' />" + "</CreateTagRequest>");
+		String tagid = app.zGetActiveAccount().soapSelectValue(
+				"//mail:CreateTagResponse/mail:tag", "id");
+
+		// Add a message to the mailbox
+		FolderItem inboxFolder = FolderItem.importFromSOAP(
+				app.zGetActiveAccount(), SystemFolder.Inbox);
+		app.zGetActiveAccount().soapSend(
+				"<AddMsgRequest xmlns='urn:zimbraMail'>" + "<m l='"
+						+ inboxFolder.getId() + "' t='" + tagid + "'>"
+						+ "<content>From: foo@foo.com\n" + "To: foo@foo.com \n"
+						+ "Subject: " + subject + "\n" + "MIME-Version: 1.0 \n"
+						+ "Content-Type: text/plain; charset=utf-8 \n"
+						+ "Content-Transfer-Encoding: 7bit\n" + "\n"
+						+ "simple text string in the body\n" + "</content>"
+						+ "</m>" + "</AddMsgRequest>");
+
+		// Get the message data from SOAP
+		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(),
+				"subject:(" + subject + ")");
+
+		// Click Get Mail button
+		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+
+		// Select the item
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
+
+		SeparateWindowDisplayMail window = null;
+
+		try {
+
+			// Choose Actions -> Launch in Window
+			window = (SeparateWindowDisplayMail) app.zPageMail
+					.zToolbarPressPulldown(Button.B_ACTIONS,
+							Button.B_LAUNCH_IN_SEPARATE_WINDOW);
+
+			window.zSetWindowTitle(subject);
+			window.zWaitForActive(); // Make sure the window is there
+
+			ZAssert.assertTrue(window.zIsActive(),
+					"Verify the window is active");
+
+			// window.zToolbarPressPulldown(Button.B_TAG,
+			// Button.O_TAG_REMOVETAG);
+			app.zPageMail.zKeyboardShortcut(shortcut);
+			SleepUtil.sleepMedium();
+
+			window.zCloseWindow();
+			window = null;
+
+		} finally {
+
+			// Make sure to close the window
+			if (window != null) {
+				window.zCloseWindow();
+				window = null;
+			}
+
+		}
+
+		// Untag it
+
+		app.zGetActiveAccount().soapSend(
+				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='"
+						+ mail.getId() + "'/>" + "</GetMsgRequest>");
+		String mailTags = app.zGetActiveAccount().soapSelectValue(
+				"//mail:GetMsggResponse//mail:m", "t");
+
+		ZAssert.assertNull(mailTags,
+				"Verify that the tag is removed from the message");
+
+	}
+
+	@Test(description = "Remove a tag from a message clicking 'x' from tag bubble >>in a separate window", groups = { "functional" })
+	public void UnTagMail_03() throws HarnessException {
+
+		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String tagname = "tag" + ZimbraSeleniumProperties.getUniqueString();
+
+		// Create a tag
+		app.zGetActiveAccount().soapSend(
+				"<CreateTagRequest xmlns='urn:zimbraMail'>" + "<tag name='"
+						+ tagname + "' color='1' />" + "</CreateTagRequest>");
+		String tagid = app.zGetActiveAccount().soapSelectValue(
+				"//mail:CreateTagResponse/mail:tag", "id");
+
+		// Add a message to the mailbox
+		FolderItem inboxFolder = FolderItem.importFromSOAP(
+				app.zGetActiveAccount(), SystemFolder.Inbox);
+		app.zGetActiveAccount().soapSend(
+				"<AddMsgRequest xmlns='urn:zimbraMail'>" + "<m l='"
+						+ inboxFolder.getId() + "' t='" + tagid + "'>"
+						+ "<content>From: foo@foo.com\n" + "To: foo@foo.com \n"
+						+ "Subject: " + subject + "\n" + "MIME-Version: 1.0 \n"
+						+ "Content-Type: text/plain; charset=utf-8 \n"
+						+ "Content-Transfer-Encoding: 7bit\n" + "\n"
+						+ "simple text string in the body\n" + "</content>"
+						+ "</m>" + "</AddMsgRequest>");
+
+		// Get the message data from SOAP
+		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(),
+				"subject:(" + subject + ")");
+
+		// Click Get Mail button
+		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+
+		// Select the item
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
+
+		SeparateWindowDisplayMail window = null;
+
+		try {
+
+			// Choose Actions -> Launch in Window
+			window = (SeparateWindowDisplayMail) app.zPageMail
+					.zToolbarPressPulldown(Button.B_ACTIONS,
+							Button.B_LAUNCH_IN_SEPARATE_WINDOW);
+
+			window.zSetWindowTitle(subject);
+			window.zWaitForActive(); // Make sure the window is there
+
+			ZAssert.assertTrue(window.zIsActive(),
+					"Verify the window is active");
+
+			// Untag it pressing 'x' from tag bubble
+
+			app.zPageMail.sClickAt(Locators.zUntagBubble, "");
+			SleepUtil.sleepMedium();
+			window.zCloseWindow();
+			window = null;
+
+		} finally {
+
+			// Make sure to close the window
+			if (window != null) {
+				window.zCloseWindow();
+				window = null;
+			}
+
+		}
+
+		// Untag it pressing 'x' from tag bubble
+
+		app.zGetActiveAccount().soapSend(
+				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='"
+						+ mail.getId() + "'/>" + "</GetMsgRequest>");
+		String mailTags = app.zGetActiveAccount().soapSelectValue(
+				"//mail:GetMsggResponse//mail:m", "t");
+
+		ZAssert.assertNull(mailTags,
+				"Verify that the tag is removed from the message");
+
 	}
 
 }
