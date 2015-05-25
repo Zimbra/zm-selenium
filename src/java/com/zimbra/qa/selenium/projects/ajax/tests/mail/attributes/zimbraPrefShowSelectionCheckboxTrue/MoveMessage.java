@@ -57,7 +57,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 
 	@Test(	description = "Move all mails by selecting 'select all', then clicking toolbar 'Move' button",
 			groups = { "functional" })
-	public void MoveMessage_01() throws HarnessException {
+	public void MoveMessage_02() throws HarnessException {
 
 		
 		//-- DATA
@@ -103,6 +103,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK,inbox);
 		
 		// Select all
 		app.zPageMail.zToolbarPressButton(Button.B_SELECT_ALL);
@@ -127,7 +128,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 
 	@Test(	description = "Move all mails by selecting 'shift-select all', then clicking toolbar 'Move' button",
 			groups = { "functional" })
-	public void MoveMessage_02() throws HarnessException {
+	public void MoveMessage_01() throws HarnessException {
 
 		
 		//-- DATA
@@ -175,6 +176,9 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
 		
 		app.zPageMail.zRefresh();
+		
+		SleepUtil.sleepMedium();
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK,inbox);
 		
 		// Select all
 		app.zPageMail.zToolbarPressButton(Button.B_SHIFT_SELECT_ALL);

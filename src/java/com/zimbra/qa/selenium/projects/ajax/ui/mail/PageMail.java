@@ -616,9 +616,16 @@ public class PageMail extends AbsTab {
 				// robot.keyPress(VK_SHIFT)
 				// this.zClick(locator)
 				// robot.keyRelease(VK_SHIFT)
-
-				throw new HarnessException(
-						"Shift-Click is dependent on WebDriver.");
+				
+				
+				//Workaround: Press Control+Shift+A to select All Messages.
+				sKeyDownNative("17"); //control
+				sKeyDownNative("16"); //Shift
+				sKeyDownNative("65"); // A	
+				
+				sKeyUpNative("17");
+				sKeyUpNative("16");
+				sKeyUpNative("65");	
 			}
 
 			this.zWaitForBusyOverlay();
