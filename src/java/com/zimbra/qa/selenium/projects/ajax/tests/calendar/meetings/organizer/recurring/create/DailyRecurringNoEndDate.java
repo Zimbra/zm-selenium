@@ -68,7 +68,7 @@ public class DailyRecurringNoEndDate extends CalendarWorkWeekTest {
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 		apptForm.zRepeat(Button.O_EVERY_DAY_MENU, Button.B_EVERY_DAY_RADIO_BUTTON, Button.B_NO_END_DATE_RADIO_BUTTON);
-		ZAssert.assertEquals(app.zPageCalendar.zGetRecurringLink(), "Every day No end date Effective " + startUTC.toTimeZone(tz).toMMM_dC_yyyy(), "Recurring link: Verify the appointment data");
+		ZAssert.assertEquals(app.zPageCalendar.zGetRecurringLink(), "Every day. No end date. Effective " + startUTC.toTimeZone(tz).toMMM_dC_yyyy(), "Recurring link: Verify the appointment data");
 				
 		apptForm.zSubmit();
 		SleepUtil.sleepLong(); //SOAP gives wrong response
@@ -130,11 +130,11 @@ public class DailyRecurringNoEndDate extends CalendarWorkWeekTest {
 		// Go to next/previous week and verify correct number of recurring instances
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 		SleepUtil.sleepMedium(); //Let UI draw first and important for calendar testcases reliability
-		ZAssert.assertEquals(app.zPageCalendar.zGetApptCountWorkWeekView(), 10, "Verify correct no. of recurring instances are present in calendar view");
+		ZAssert.assertGreaterThanEqualTo(app.zPageCalendar.zGetApptCountWorkWeekView(), 10, "Verify correct no. of recurring instances are present in calendar view");
 
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 		SleepUtil.sleepMedium(); //Let UI draw first and important for calendar testcases reliability
-		ZAssert.assertEquals(app.zPageCalendar.zGetApptCountWorkWeekView(), 10, "Verify correct no. of recurring instances are present in calendar view");
+		ZAssert.assertGreaterThanEqualTo(app.zPageCalendar.zGetApptCountWorkWeekView(), 10, "Verify correct no. of recurring instances are present in calendar view");
 		
 	}
 

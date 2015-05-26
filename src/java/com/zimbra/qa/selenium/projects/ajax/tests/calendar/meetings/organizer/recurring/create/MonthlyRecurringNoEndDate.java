@@ -77,7 +77,7 @@ public class MonthlyRecurringNoEndDate extends CalendarWorkWeekTest {
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 		apptForm.zRepeat(Button.O_EVERY_MONTH_MENU, Button.B_DAY_X_OF_EVERY_Y_MONTHS_RADIO_BUTTON, Button.B_NO_END_DATE_RADIO_BUTTON);
-		ZAssert.assertEquals(app.zPageCalendar.zGetRecurringLink(), "Day " + dayOfMonth  + " of every 1 month(s) No end date Effective " + startUTC.toTimeZone(tz).toMMM_dC_yyyy(), "Recurring link: Verify the appointment data");
+		ZAssert.assertEquals(app.zPageCalendar.zGetRecurringLink(), "Day " + dayOfMonth  + " of every 1 month(s). No end date. Effective " + startUTC.toTimeZone(tz).toMMM_dC_yyyy(), "Recurring link: Verify the appointment data");
 		apptForm.zSubmit();
 		SleepUtil.sleepLong(); //SOAP gives wrong response
 		

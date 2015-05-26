@@ -48,7 +48,7 @@ public class FormApptNew extends AbsForm {
 	 */
 	public static class Locators {
 						
-		public static final String SubjectDisabled = "css=div[id^='APPT_COMPOSE_'] td[id$='_subject'] div[class='DwtInputField-disabled']";
+		public static final String SubjectDisabled = "css=div[id^='APPT_COMPOSE_'] td[id$='_subject'] div[class='DwtInputField-disabled DwtInputField']";
 		public static final String ToDisabled = "css=div[id^='APPT_COMPOSE_'] td tr[id$='_forward_options'] div[class='ZButton ZPicker ZWidget ZHasText ZDisabled']";
 		public static final String AttendeesDisabled = "css=div[id^='APPT_COMPOSE_'] td tr[id$='_attendeesContainer'] div[class='ZButton ZPicker ZWidget ZHasText ZDisabled']";
 		public static final String OptionalDisabled = "css=div[id^='APPT_COMPOSE_'] td tr[id$='_optionalContainer'] div[class='ZButton ZPicker ZWidget ZHasText ZDisabled']";
@@ -61,8 +61,8 @@ public class FormApptNew extends AbsForm {
 		public static final String RepeatOptionsDisabled = "css=td[id$='_repeat_options'] div[id^='DWT'][class$='ZHasDropDown ZDisabled']";
 		public static final String RepeatDescriptionDisabled = "css=div[id$='_repeatDesc'][class='DisabledText']";
 
-		public static final String ShowOptionalLink = "css=td[id$='_show_optional']";
-		public static final String ShowEquipmentLink = "css=td[id$='_show_resources']";
+		public static final String ShowOptionalLink = "css=div[id$='_show_optional']";
+		public static final String ShowEquipmentLink = "css=div[id$='_show_resources']";
 		public static final String CustomizeLink = "css=div[id$='repeatDesc']:contains('Customize')";
 		public static final String ConfigureLink = "css=div[class='FakeAnchor']:contains('Configure')";
 		public static final String SuggestAtimeLink = "css=div[id$='_suggest_time']:contains('Suggest a time')";
@@ -250,12 +250,21 @@ public class FormApptNew extends AbsForm {
 	
 	public void zAddRequiredAttendeeFromScheduler(String attendee, int keyEvent)
 			throws HarnessException {
+		if(sIsElementPresent(Locators.ShowSchedulerLink)){
 		zToolbarPressButton(Button.B_SHOW);
 		SleepUtil.sleepSmall();
 		this.zType("css=td[id$='_scheduler'] td[id$='_NAME_'] input", attendee);
 		this.sClickAt("css=td[id$='_scheduler'] td[id$='_NAME_'] input", "");
 		SleepUtil.sleepSmall();
 		pageCal.zKeyboard.zTypeKeyEvent(keyEvent);
+		}
+		else{
+			this.zType("css=td[id$='_scheduler'] td[id$='_NAME_'] input", attendee);
+			this.sClickAt("css=td[id$='_scheduler'] td[id$='_NAME_'] input", "");
+			SleepUtil.sleepSmall();
+			pageCal.zKeyboard.zTypeKeyEvent(keyEvent);
+					
+		}
 	}
 
 	public void zAddOptionalAttendeeFromScheduler(String attendee, int keyEvent)

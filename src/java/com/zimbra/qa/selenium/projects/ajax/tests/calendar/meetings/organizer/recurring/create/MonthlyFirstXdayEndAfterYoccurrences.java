@@ -63,7 +63,7 @@ public class MonthlyFirstXdayEndAfterYoccurrences extends CalendarWorkWeekTest {
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 		apptForm.zRepeat(Button.O_EVERY_MONTH_MENU, Button.B_THE_X_Y_OF_EVERY_Z_MONTHS_RADIO_BUTTON, "1", Button.B_END_AFTER_X_OCCURRENCES_RADIO_BUTTON, "2");
-		ZAssert.assertStringContains(app.zPageCalendar.zGetRecurringLink(), "The first Monday of every 1 month(s) End after 2 occurrence(s)", "Recurring link: Verify the appointment data");
+		ZAssert.assertStringContains(app.zPageCalendar.zGetRecurringLink(), "The first Monday of every 1 month(s). End after 2 occurrence(s).", "Recurring link: Verify the appointment data");
 		apptForm.zSubmit();
 		SleepUtil.sleepLong(); //SOAP gives wrong response
 		

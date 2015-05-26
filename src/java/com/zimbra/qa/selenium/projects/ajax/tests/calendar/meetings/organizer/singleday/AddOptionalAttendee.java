@@ -79,7 +79,7 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
         
         // Add optional attendee by typing in the field and resend the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-        apptForm.zClickAt(Locators.ShowOptionalLink,"");
+        apptForm.zClickAt(com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators.ShowOptionalLink,"");
         apptForm.zFill(appt);
         SleepUtil.sleepMedium();
 		apptForm.zSubmit();
@@ -128,7 +128,7 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 		// Compose appointment and send it to invitee
 		
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
-		apptForm.zClickAt(Locators.ShowOptionalLink,"");
+		apptForm.zClickAt(com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators.ShowOptionalLink,"");
 		apptForm.zFill(appt);
         
         apptForm.zToolbarPressButton(Button.B_OPTIONAL);

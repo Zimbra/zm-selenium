@@ -24,7 +24,6 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindAttendees;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindAttendees.Locators;;
 
 public class CreateMeetingBySelectOptionalAddresses extends CalendarWorkWeekTest {	
 	
@@ -53,7 +52,7 @@ public class CreateMeetingBySelectOptionalAddresses extends CalendarWorkWeekTest
 	
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
-		apptForm.zClickAt(Locators.ShowOptionalLink,"");
+		apptForm.zClickAt(com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators.ShowOptionalLink,"");
 		apptForm.zFill(appt);
         apptForm.zToolbarPressButton(Button.B_OPTIONAL);
         DialogFindAttendees dialogFindAttendees = (DialogFindAttendees) new DialogFindAttendees(app, app.zPageCalendar);

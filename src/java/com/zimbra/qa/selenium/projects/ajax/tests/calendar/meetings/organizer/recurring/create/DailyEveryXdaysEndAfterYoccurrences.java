@@ -66,7 +66,7 @@ public class DailyEveryXdaysEndAfterYoccurrences extends CalendarWorkWeekTest {
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 		apptForm.zRepeat(Button.O_EVERY_DAY_MENU, Button.B_EVERY_DAY_RADIO_BUTTON, "", Button.B_END_AFTER_X_OCCURRENCES_RADIO_BUTTON, "10");
-		ZAssert.assertEquals(app.zPageCalendar.zGetRecurringLink(), "Every day End after 10 occurrence(s) Effective " + startUTC.toTimeZone(tz).toMMM_dC_yyyy(), "Recurring link: Verify the appointment data");
+		ZAssert.assertEquals(app.zPageCalendar.zGetRecurringLink(), "Every day. End after 10 occurrence(s). Effective " + startUTC.toTimeZone(tz).toMMM_dC_yyyy(), "Recurring link: Verify the appointment data");
 				
 		apptForm.zSubmit();
 		SleepUtil.sleepLong(); //SOAP gives wrong response

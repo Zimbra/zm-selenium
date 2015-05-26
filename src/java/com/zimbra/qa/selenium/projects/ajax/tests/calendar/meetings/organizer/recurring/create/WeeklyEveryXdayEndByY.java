@@ -63,7 +63,7 @@ public class WeeklyEveryXdayEndByY extends CalendarWorkWeekTest {
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, "Tuesday", Button.B_END_BY_DATE_RADIO_BUTTON, "01/01/2020");
-		ZAssert.assertStringContains(app.zPageCalendar.zGetRecurringLink(), "Every Tuesday End by Jan 1, 2020 Effective ", "Recurring link: Verify the appointment data");
+		ZAssert.assertStringContains(app.zPageCalendar.zGetRecurringLink(), "Every Tuesday. End by Jan 1, 2020. Effective ", "Recurring link: Verify the appointment data");
 				
 		apptForm.zSubmit();
 		SleepUtil.sleepLong(); //SOAP gives wrong response
