@@ -64,7 +64,7 @@ public class ViewContactGroup extends AjaxCommonTest  {
 		for (ContactGroupItem.MemberItem m : group.getMemberList()) {
 			
 			String email = m.getValue();
-			String locator = "css=div.ZmContactSplitView span[id$='']:contains('"+ email +"')";
+			String locator = "css=div.ZmContactSplitView div.contactGroupList div:contains('"+ email +"')";
 
 			boolean present = app.zPageAddressbook.sIsElementPresent(locator);
 			ZAssert.assertTrue(present, "Verify the member "+ email +" is present");
