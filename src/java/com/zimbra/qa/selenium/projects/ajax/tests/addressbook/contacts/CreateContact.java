@@ -21,6 +21,7 @@ import java.util.Map.Entry;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -336,6 +337,7 @@ public class CreateContact extends AjaxCommonTest  {
 	}
 
 
+	@Bugs(ids="99776")	
 	@Test(
 			description = "Create a contacts with non-ASCII special characters", 
 			groups = { "functional", "charsets" },
