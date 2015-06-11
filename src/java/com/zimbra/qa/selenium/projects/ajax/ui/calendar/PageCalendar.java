@@ -374,6 +374,10 @@ public class PageCalendar extends AbsTab {
 			return sIsElementPresent("css=div[id='zm__Calendar'] div[id='zmi__Calendar__REINVITE_ATTENDEES'].ZDisabled");
 		} else if (buttonName.equals(Button.O_FORWARD_DISABLED)) {
 			return sIsElementPresent("css=div[id='zm__Calendar'] div[id='zmi__Calendar__FORWARD_APPT'].ZDisabled");
+		} else if (buttonName.equals(Button.O_CREATE_A_COPY_DISABLED)) {
+			return sIsElementPresent("css=div[id='zm__Calendar'] div[id='zmi__Calendar__DUPLICATE_APPT'].ZDisabled");
+		} else if (buttonName.equals(Button.O_SHOW_ORIGINAL_DISABLED)) {
+			return sIsElementPresent("css=div[id='zm__Calendar'] div[id='zmi__Calendar__SHOW_ORIG'].ZDisabled");
 		} else if (buttonName.equals(Button.O_DELETE_DISABLED)) {
 			return sIsElementPresent("css=div[id='zm__Calendar'] div[id='zmi__Calendar__DELETE'].ZDisabled");
 		} else if (buttonName.equals(Button.O_MOVE_DISABLED)) {
@@ -583,6 +587,11 @@ public class PageCalendar extends AbsTab {
 			
 			// All day single occurrence locator
 			locator = itemsLocator +" td.appt_allday_name>div:contains('"+ subject +"')";
+			
+		} else if ( this.sIsElementPresent(itemsLocator +" td[class='appt_name']")) {
+			
+			// All day single occurrence locator
+			locator = itemsLocator +" td[class='appt_name']";
 			
 		}
 		
@@ -970,6 +979,10 @@ public class PageCalendar extends AbsTab {
 			// Read-only appointment locator
 			locator = itemsLocator +" td[id$='_responseActionSelectCell'] td[id$='_select_container']";
 			
+		}
+		
+		else if(this.sIsElementPresent(itemsLocator +" td[class='appt_name']")){
+			locator = itemsLocator +" td[class='appt_name']";
 		}
 		
 		// Make sure one of the locators found the appt

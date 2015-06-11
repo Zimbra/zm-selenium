@@ -481,6 +481,8 @@ public class Button {
 	public static final Button O_REINVITE_ATTENDEES_DISABLED = new Button("O_REINVITE_ATTENDEES_DISABLED");
 	public static final Button O_FORWARD_DISABLED = new Button("O_FORWARD_DISABLED");	
 	public static final Button O_MOVE_DISABLED = new Button("O_MOVE_DISABLED");
+	public static final Button O_CREATE_A_COPY_DISABLED = new Button("O_CREATE_A_COPY_DISABLED");
+	public static final Button O_SHOW_ORIGINAL_DISABLED = new Button("O_SHOW_ORIGINAL_DISABLED");
 	public static final Button O_TAG_APPOINTMENT_DISABLED = new Button("O_TAG_APPOINTMENT_DISABLED");
 	public static final Button O_REPLY_DISABLED = new Button("O_REPLY_DISABLED");
 	public static final Button B_TAG_APPOINTMENT_DISABLED_READONLY_APPT = new Button("B_TAG_APPOINTMENT_DISABLED_READONLY_APPT");
