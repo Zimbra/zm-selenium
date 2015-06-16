@@ -41,7 +41,8 @@ public class QuickAddAppointment extends AbsTab {
 		public static final String OKButtonQuickAdd = "css=div[class='DwtDialog'] td[id$='_button2_title']:contains(" + "'OK'" + ")";
 		public static final String CancelButtonQuickAdd = "css=div[class='DwtDialog'] td[id$='_button1_title']:contains(" + "'Cancel'" + ")";
 		public static final String MoreDetailsButtonQuickAdd = "css=div[class='DwtDialog'] div[id$='_buttons'] td[id^='More Details..._DWT'] td[id$='_title']";
-
+		public static final String ConfigureReminder = "css=div[class='DwtDialog'] div[class='FakeAnchor']:contains('Configure')";
+		
 		public static final String NoneMenuItem = "css=div[id*='_Menu'] div[id^='NON'] td[id$='title']:contains('None')";
 		public static final String NoneButton = "css=td[id$='_title']:contains('None')";
 		public static final String EveryDayMenuItem = "css=div[id*='_Menu'] div[id^='DAI'] td[id$='title']:contains('Every Day')";
@@ -223,9 +224,9 @@ public class QuickAddAppointment extends AbsTab {
 
 	public void zNewAppointmentMonthView(Action action) throws HarnessException {
 		if (action.equals(Action.A_DOUBLECLICK)) {
-			this.sDoubleClick("css=td[class='calendar_month_cells_td-Selected']");
+			this.sDoubleClick("css=td[class='calendar_month_cells_td']");
 		} else if (action.equals(Action.A_RIGHTCLICK)) {
-			this.zRightClickAt("css=td[class='calendar_month_cells_td-Selected']", "");
+			this.zRightClickAt("css=td[class='calendar_month_cells_td']", "");
 			SleepUtil.sleepSmall();
 			this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_APPT_title']", "");
 		}
@@ -256,6 +257,10 @@ public class QuickAddAppointment extends AbsTab {
 		ZAssert.assertEquals(this.sIsElementPresent(Locators.QuickAddDialog), status, "Verify quick add appt dialog status");
 	}
 
+	public void zVerifyConfigureReminderLink(Boolean status) throws HarnessException {
+		ZAssert.assertEquals(this.sIsElementPresent(Locators.ConfigureReminder), status, "Verify configure reminder link");
+	}
+	
 	public void zWaitForMiniCalToLoad() throws HarnessException {
 		Boolean isElementPresent;
 		for (int i=0; i<=10; i++) {
