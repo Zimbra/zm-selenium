@@ -22,18 +22,18 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
+import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
 
-public class RemoveTagMail extends PrefGroupMailByConversationTest {
+public class RemoveTagMail extends PrefGroupMailByMessageTest {
 
 	public RemoveTagMail() {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());
 	}
 	
 	@Test( description = "Cancel tag operation in message view",
-			groups = { "smoke" })
+			groups = { "" })
 			
-	public void CancelTagMail_01() throws HarnessException {
+	public void RemoveTagMail_01() throws HarnessException {
 		
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "text <strong>bold"+ ZimbraSeleniumProperties.getUniqueString() +"</strong> text";
@@ -72,9 +72,7 @@ public class RemoveTagMail extends PrefGroupMailByConversationTest {
 		app.zTreeMail.zSelectMailTag(tagName);
 		app.zPageMail.zCancelMailAction(Button.B_REMOVE_TAG_MAIL);
 
-	
 		// UI verification
-		
 		MailItem actual = MailItem.importFromSOAP(app.zGetActiveAccount(),"tag:"+tagItem.getName()+" AND subject:(" + subject + ")");
         ZAssert.assertNull(actual, "Verify the mail is not with the tag");
 		

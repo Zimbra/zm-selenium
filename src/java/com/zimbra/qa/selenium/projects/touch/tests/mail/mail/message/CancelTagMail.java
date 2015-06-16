@@ -26,11 +26,11 @@ import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTes
 public class CancelTagMail extends PrefGroupMailByConversationTest {
 
 	public CancelTagMail() {
-		logger.info("New "+ DeleteMail.class.getCanonicalName());
+		logger.info("New "+ CancelTagMail.class.getCanonicalName());
 	}
 	
 	@Test( description = "Cancel tag operation in message view",
-			groups = { "smoke" })
+			groups = { "t1" })
 			
 	public void CancelTagMail_01() throws HarnessException {
 		
@@ -65,7 +65,7 @@ public class CancelTagMail extends PrefGroupMailByConversationTest {
 		TagItem tagItem = TagItem.CreateUsingSoap(app.zGetActiveAccount());	
 		
 		// Tag a mail
-		app.zPageMail.zListItem(Action.A_LEFTCLICK, Button.B_TAG_CONVERSATION, subject);
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, Button.B_TAG_MESSAGE, subject);
 		app.zPageMail.zCancelMailAction(Button.B_CANCEL_TAG_MAIL);
 
 	
