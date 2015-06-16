@@ -710,6 +710,7 @@ public class Button {
 	public static Button B_CANCEL_TAG_MAIL = new Button("B_CANCEL_TAG_MAIL");
 	public static Button B_CANCEL_MOVE_MAIL = new Button("B_CANCEL_MOVE_MAIL");
 	public static Button B_REMOVE_TAG_MAIL =   new Button("B_REMOVE_TAG_MAIL");
+	public static Button B_SELECT_TAG = 	new Button("B_SELECT_TAG");	
 	public static Button B_SPAM_MESSAGE =   new Button("B_SPAM_MESSAGE");
 	public static Button B_NOT_SPAM_MESSAGE =   new Button("B_NOT_SPAM_MESSAGE");
 	public static Button B_CONVERSATION_ACTION_DROPDOWN =	new Button("B_CONVERSATION_ACTION_DROPDOWN");

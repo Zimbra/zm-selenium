@@ -9,15 +9,15 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
-//import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
 
-	public class CancelMoveMessage extends PrefGroupMailByConversationTest{
+	public class CancelMoveMessage extends PrefGroupMailByMessageTest{
 
 		public CancelMoveMessage() {
 			logger.info("New "+ CancelMoveMessage.class.getCanonicalName());
 		}
 			@Test(	description = "cancel move mail operation",
-					groups = { "t1" })
+					groups = { "smoke" })
 			
 			
 			public void CancelMoveMail_01() throws HarnessException, AWTException {

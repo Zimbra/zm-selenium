@@ -47,7 +47,7 @@ public class PageMail extends AbsTab {
 		public static final String Mark_Conversation_Read		= "css=div[class='x-innerhtml']:contains('Mark read')";
 		public static final String Flag_Conversation	 		= "css=div[class='x-innerhtml']:contains('Flag')";
 		public static final String Unflag_Conversation	 		= "css=div[class='x-innerhtml']:contains('Unflag')";
-		public static final String Move_Conversation			= "css=div[class='x-innerhtml']:contains('Move conversation')";
+		public static final String Move_Conversation			= "css=div[class='x-innerhtml']:contains('Move')";
 		public static final String Move_Message	 				= "css=div[class='x-innerhtml']:contains('Move')";
 		public static final String Tag_Conversation 	 		= "css=div[class='x-innerhtml']:contains('Tag')";
 		public static final String Tag_Message					= "css=div[class='x-innerhtml']:contains('Tag conversation')";
@@ -1469,10 +1469,10 @@ public class PageMail extends AbsTab {
 
 				// FALLTHROUGH
 
-			} else if (option == Button.B_MOVE_CONVERSATION) {
+			} else if (option == Button.B_MOVE_MESSAGE) {
 
 				this.zClickAt(pulldownLocatorActionItem,"");
-				optionLocator = Locators.Move_Conversation;
+				optionLocator = Locators.Move_Message;
 				page = null;
 
 				// FALLTHROUGH
@@ -1485,6 +1485,11 @@ public class PageMail extends AbsTab {
 				page = null;
 
 				// FALLTHROUGH
+			}else if (option == Button.B_TAG_CONVERSATION) {
+
+				this.zClickAt(pulldownLocatorActionItem,"");
+				optionLocator = Locators.Tag_Conversation;
+				page = null;
 
 			} else if (option == Button.B_SPAM_MESSAGE) {
 
@@ -1589,6 +1594,7 @@ public class PageMail extends AbsTab {
 
 		AbsPage page = null; // If set, this page will be returned
 		String optionLocator = null;
+		String tagName =null;
 		// Now the ContextMenu is opened
 		// Click on the specified option
 
@@ -1610,7 +1616,11 @@ public class PageMail extends AbsTab {
 		}else if(option == Button.B_REMOVE_TAG_MAIL) {
 			optionLocator = Locators.Remove_Tag_Mail;
 			page = null;	
-
+			
+		}else if(option == Button.B_SELECT_TAG) {
+			optionLocator = "css=span[class='zcs-area-bubble zcs-tag-bubble']:contains('" + tagName + "')";
+			page = null;
+			
 			// click on the option
 		}this.zClickAt(optionLocator,"");
 		SleepUtil.sleepMedium();
@@ -1716,10 +1726,10 @@ public class PageMail extends AbsTab {
 
 			// FALLTHROUGH
 
-		} else if (option == Button.B_MOVE_MESSAGE) {
+		} else if (option == Button.B_MOVE_CONVERSATION) {
 
 			this.zClickAt(pulldownLocatorActionItem,"");
-			optionLocator = Locators.Move_Message;
+			optionLocator = Locators.Move_Conversation;
 			page = null;
 
 			// FALLTHROUGH
