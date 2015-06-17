@@ -33,13 +33,13 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 	
 	@Bugs( ids = "81331")
 	@Test( description = "Verify inline image present after hitting Forward from the mail",
-			groups = { "sanity" })
+			groups = { "functional" })
 			
 	public void ForwardInlineImageMail_01() throws HarnessException {
 		
 		String subject = "inline image testing";		
 		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email13/inline image.txt";
-		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
+		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
 		
 		// Select the mail from inbox
 		app.zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);
