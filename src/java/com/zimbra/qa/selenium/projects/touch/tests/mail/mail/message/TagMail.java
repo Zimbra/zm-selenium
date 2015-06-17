@@ -68,7 +68,7 @@ public class TagMail extends PrefGroupMailByConversationTest {
 		TagItem tagItem = TagItem.CreateUsingSoap(app.zGetActiveAccount());
 		String tagName = tagItem.getName();
 		
-		app.zPageMail.zListItem(Action.A_LEFTCLICK, Button.B_TAG_CONVERSATION, subject);
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, Button.B_TAG_MESSAGE, subject);
 		app.zTreeMail.zSelectTag(tagName);
 	
 		// UI verification

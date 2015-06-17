@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.touch.tests.mail.mail.message;
+package com.zimbra.qa.selenium.projects.touch.tests.mail.mail.conversation.messageaction;
 
 import org.testng.annotations.Test;
 
@@ -22,16 +22,16 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
 
-public class RemoveTagMail extends PrefGroupMailByMessageTest {
+public class RemoveTagMail extends PrefGroupMailByConversationTest {
 
 	public RemoveTagMail() {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());
 	}
 	
 	@Test( description = "Cancel tag operation in message view",
-			groups = { "smoke" })
+			groups = { "functional" })
 			
 	public void RemoveTagMail_01() throws HarnessException {
 		
@@ -67,12 +67,13 @@ public class RemoveTagMail extends PrefGroupMailByMessageTest {
 		String tagName = tagItem.getName();
 		
 		// Tag a mail
-		app.zPageMail.zListItem(Action.A_LEFTCLICK, Button.B_TAG_CONVERSATION, subject);
+		app.zPageMail.zConversationListItem(Button.B_CONVERSATION_ACTION_DROPDOWN, subject);
+		app.zPageMail.zListItem(Button.B_TAG_CONVERSATION);
 		app.zTreeMail.zSelectTag(tagName);
 		app.zTreeMail.zSelectMailTag(tagName);
 		app.zPageMail.zCancelMailAction(Button.B_REMOVE_TAG_MAIL);
-
-		// UI verification
+		
+		// SOAP verification
 		MailItem actual = MailItem.importFromSOAP(app.zGetActiveAccount(),"tag:"+tagItem.getName()+" AND subject:(" + subject + ")");
         ZAssert.assertNull(actual, "Verify the mail is not with the tag");
 		
