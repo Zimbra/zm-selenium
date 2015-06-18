@@ -33,7 +33,7 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 	
 	@Bugs( ids = "81331")
 	@Test( description = "Verify inline image present after hitting Forward from the mail",
-			groups = { "functional" })
+			groups = { "smoke" })
 			
 	public void ForwardInlineImageMail_01() throws HarnessException {
 		
@@ -55,7 +55,7 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 	
 	@Bugs( ids = "81331")
 	@Test( description = "Forward a mail which contains inline image and verify it at the receipient side",
-			groups = { "smoke" })
+			groups = { "functional" })
 			
 	public void ForwardInlineImageMail_02() throws HarnessException {
 		
@@ -66,7 +66,7 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 		String modifiedContent = "modified body" + ZimbraSeleniumProperties.getUniqueString();
 		
 		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email13/inline image.txt";
-		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
+		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
 		
 		// Select the mail from inbox
 		app.zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);
@@ -108,7 +108,7 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 		
 		String subject = "external image testing";		
 		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email13/external image.txt";
-		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
+		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
 		
 		// Select the mail from inbox
 		app.zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);
@@ -136,7 +136,7 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 		String modifiedContent = "modified body" + ZimbraSeleniumProperties.getUniqueString();
 		
 		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email13/external image.txt";
-		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
+		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
 		
 		// Select the mail from inbox
 		app.zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);
@@ -167,7 +167,7 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 		ZAssert.assertStringContains(tobody, endTextOfBody, "Verify the end text of the body");
 		ZAssert.assertStringContains(tobody, modifiedContent, "Verify the modified content");
 		ZAssert.assertStringContains(tobody, imgSrc, "Verify the image tag");
-		//ZAssert.assertTrue(app.zPageMail.zVerifyBodyContent(), "Verify image tag in the composed mail");
+		ZAssert.assertTrue(app.zPageMail.zVerifyBodyContent(), "Verify image tag in the composed mail");
 		
 	}
 	
