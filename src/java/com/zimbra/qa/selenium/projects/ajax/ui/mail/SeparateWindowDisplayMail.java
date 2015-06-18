@@ -366,6 +366,13 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 				
 				// FALL THROUGH
 
+			}else if (option == Button.O_CREATE_TASK) {
+				
+				optionLocator = containerActionMenu + " div[id$='CREATE_TASK'] td[id$='_title']";
+				page = null;
+				
+				// FALL THROUGH
+
 			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
