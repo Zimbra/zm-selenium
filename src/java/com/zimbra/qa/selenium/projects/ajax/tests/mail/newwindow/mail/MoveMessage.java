@@ -54,7 +54,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 
 
 	@Test(	description = "Move a mail from New Window by using Move -> New folder",
-			groups = { "functional1" })
+			groups = { "functional" })
 	public void MoveMail_01() throws HarnessException {
 
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
@@ -143,7 +143,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 
 
 	@Test(	description = "Move a mail from new window by selecting message, then clicking toolbar 'Move' button",
-			groups = { "functional1" })
+			groups = { "functional" })
 	public void MoveMail_02() throws HarnessException {
 
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
@@ -223,7 +223,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 	}
 
 	@Test(	description = "Move a mail from new window by using 'move to trash' ",
-			groups = { "functional1" })
+			groups = { "functional" })
 	public void MoveMail_03() throws HarnessException {
 
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
