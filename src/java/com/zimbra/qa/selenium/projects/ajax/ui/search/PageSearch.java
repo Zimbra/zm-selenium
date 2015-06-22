@@ -174,7 +174,7 @@ public class PageSearch extends AbsTab {
 		
 		if ( button == Button.B_SEARCH ) {
 			
-			locator = "css=div#zb__Search__SEARCH_left_icon div.ImgSearch2";
+			locator = "css=td#zb__Search__SEARCH_left_icon div.ImgSearch2";
 			page = null;
 			
 		} else if ( (button == Button.B_SEARCHSAVE) || (button == Button.B_SAVE) ) {
