@@ -21,6 +21,7 @@ package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.items.SavedSearchFolderItem;
@@ -34,6 +35,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.GeneralUtility;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogDeleteTag.DialogDeleteTagID;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
@@ -534,6 +536,10 @@ public class TreeCalendar extends AbsTree {
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium(); //Let calendar UI refresh
 	}
+	
+	public void zVerifyCalendarChecked(Boolean status, String folderId) throws HarnessException {
+		ZAssert.assertEquals(this.sIsElementPresent("css=div[id=zti__main_Calendar__" + folderId + "_checkboxImg]"), status, "Verify calendar checked status");
+	}	
 	
 	@Override
 	public AbsPage zTreeItem(Action action, Button option, IItem folder) throws HarnessException {

@@ -447,6 +447,7 @@ public class FormApptNew extends AbsForm {
 			sp.waitForPostqueue();
 			
 			SleepUtil.sleepMedium();
+			page = new DialogConfirmRemoveAllExceptions(this.MyApplication, pageCal);
 
 			return (page);
 
