@@ -50,7 +50,7 @@ import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTes
 
 		// Move message
 		app.zPageMail.zConversationListItem(Button.B_CONVERSATION_ACTION_DROPDOWN, subject);
-		app.zPageMail.zListItem(Button.B_MOVE_MESSAGE);
+		app.zPageMail.zListItem(Button.B_MOVE_CONVERSATION);
 		app.zTreeMail.zSelectFolder(folderName);
 		
 		// Verification
