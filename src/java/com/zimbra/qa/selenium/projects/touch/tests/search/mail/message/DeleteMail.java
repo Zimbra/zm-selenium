@@ -13,7 +13,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());
 	}
 	@Test(description = "Search message by subject and delete it in message view",
-			groups = {"smoke"})
+			groups = {"t1"})
 	
 	public void DeleteMail_01() throws HarnessException, AWTException {
 	
@@ -34,7 +34,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	app.zPageMail.zRefresh();	
 
 	// Switch to message view
-	app.zPageMail.zListItem(Action.A_LEFTCLICK, Button.B_SWITCH_TO_MESSAGE_VIEW, subject);
+	app.zPageMail.zListItem(Action.A_LEFTCLICK, Button.B_SWITCH_TO_CONVERSATION_VIEW, subject);
 	
 
 	// Search email		
