@@ -32,7 +32,7 @@ public class MoveFolder extends PrefGroupMailByMessageTest {
 	}
 
 	@Test(description = "Move mail folder",
-			groups = { "smoke" })
+			groups = { "t1" })
 	
 	public void MoveFolder_01() throws HarnessException  {
 		
