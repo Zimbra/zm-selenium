@@ -337,7 +337,6 @@ public class FormMailNew extends AbsForm {
 			locator = Locators.zSubjectField;
 			this.sFocus(locator);
 			this.sClickAt(locator, "");
-			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 			
 		} else if (field == Field.Body) {
 			
@@ -345,7 +344,6 @@ public class FormMailNew extends AbsForm {
 			
 			this.sClickAt(locator, "");
 			this.sFocus(locator);
-			this.zMouseClick(320, 320);
 			
 			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeCharacters(value);
