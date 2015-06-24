@@ -55,6 +55,7 @@ public class DeleteAdminDistributionList extends AdminCommonTest {
 
 		// Refresh list to populate account.
 		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		this.startingPage.zNavigateTo();
 
 		// Click on account to be deleted.
 		app.zPageManageDistributionList.zListItem(Action.A_LEFTCLICK, dl.getEmailAddress());
@@ -109,8 +110,9 @@ public class DeleteAdminDistributionList extends AdminCommonTest {
 						+ "</CreateDistributionListRequest>");
 		
 		// Refresh list to populate account.
-		this.startingPage.sRefresh();
-
+		
+		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		this.startingPage.zNavigateTo();
 		// Click on account to be deleted.
 		app.zPageManageDistributionList.zListItem(Action.A_LEFTCLICK, dl.getEmailAddress());
 

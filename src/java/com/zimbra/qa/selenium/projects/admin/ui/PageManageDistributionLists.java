@@ -42,7 +42,7 @@ public class PageManageDistributionLists extends AbsTab {
 
 	public static class Locators {
 		public static final String MANAGE_ACCOUNTS_ICON="css=div[class=ImgManageAccounts]";
-		public static final String DISTRIBUTION_LISTS="css=div[id^='zti__AppAdmin__Home__dlLstHV']";
+		public static final String DISTRIBUTION_LISTS="css=div[id='zti__AppAdmin__Home__dlLstHV_textCell']";
 		
 		public static final String GEAR_ICON="css=div[class=ImgConfigure]";
 		public static final String NEW_MENU="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDistributionList']";
@@ -54,6 +54,7 @@ public class PageManageDistributionLists extends AbsTab {
 		public static final String EDIT_BUTTON="css=td[id='zmi__zb_currentApp__EDIT_title']";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgEdit']";
+		public static final String REFRESH_BUTTON = "css=div.ImgSearchRefreshWhite";
 	}
 
 	public PageManageDistributionLists(AbsApplication application) {
@@ -115,9 +116,10 @@ public class PageManageDistributionLists extends AbsTab {
 		// Click on Manage Accounts -> Accounts
 		
 		zClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 		sIsElementPresent(Locators.DISTRIBUTION_LISTS);
-		sClick(Locators.DISTRIBUTION_LISTS);
+		SleepUtil.sleepLong();
+		zClickAt(Locators.DISTRIBUTION_LISTS,"");
 
 		if(ZimbraSeleniumProperties.isWebDriver())
 			SleepUtil.sleepMedium();
@@ -331,7 +333,7 @@ public class PageManageDistributionLists extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.sClick(optionLocator);
+				this.sClickAt(optionLocator,"");
 				SleepUtil.sleepMedium();
 
 				// If the app is busy, wait for it to become active

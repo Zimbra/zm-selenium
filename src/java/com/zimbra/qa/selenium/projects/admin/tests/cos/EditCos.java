@@ -218,13 +218,9 @@ public class EditCos extends AdminCommonTest {
 				+			"<name>" + cosName + "</name>"
 				+		"</CreateCosRequest>");
 	
-
-		// Refresh the account list
-		 app.zPageSearchResults.zSelectSearchObject(app.zPageSearchResults.S_COS);
-		
 		// Enter the search string to find the account
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
 		app.zPageSearchResults.zAddSearchQuery(cosName);
+	
 	
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);

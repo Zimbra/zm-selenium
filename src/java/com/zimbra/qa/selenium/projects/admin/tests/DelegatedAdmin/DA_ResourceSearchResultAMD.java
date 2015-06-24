@@ -96,14 +96,18 @@ public class DA_ResourceSearchResultAMD extends AdminCommonTest {
 		//Submit the form.
 		form.zSubmit();
 		
+
 		// Verify the Resource exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-				+ 		"<calresource by='name'>" +  editedName+"@"+resource.getDomainName() + "</calresource>"  
+				+ 		"<calresource by='name'>" +resource.getEmailAddress()+ "</calresource>"  
 				+		"</GetCalendarResourceRequest>");
 		
-		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCalendarResourceResponse/admin:calresource", 1); 
-		ZAssert.assertNotNull(response, "Verify the Resource is edited successfully");
+		
+		 Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCalendarResourceResponse/admin:calresource/admin:a[@n='displayName']", 1);
+		 
+		 ZAssert.assertNotNull(response, "Verify the Resource is edited successfully at DA");
+		 ZAssert.assertStringContains(response.toString(), editedName, "Verify the Resource Displayname is edited successfully at DA");
 	}
 
 
