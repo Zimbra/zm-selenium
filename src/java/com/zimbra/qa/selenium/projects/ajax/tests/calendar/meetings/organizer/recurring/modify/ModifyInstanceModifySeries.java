@@ -129,7 +129,7 @@ public class ModifyInstanceModifySeries extends CalendarWorkWeekTest {
 
 	@Bugs(ids = "66800")	
 	@Test(description = "Delete series from third instance and onwards", 
-			groups = { "test" })
+			groups = { "functional" })
 	public void ModifyInstanceModifySeries_02() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------

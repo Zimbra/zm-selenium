@@ -729,6 +729,7 @@ public class PageCalendar extends AbsTab {
 		String itemlocator = "css=div[id='zl__CLL__rows'] td[id$='__su']:contains('" + subject + "')";
 		String optionLocator = null;
 		AbsPage page = null;
+		boolean waitForPostfix;
 
 
 		if ( action == Action.A_RIGHTCLICK ) {
@@ -752,17 +753,44 @@ public class PageCalendar extends AbsTab {
 			} else if ( option == Button.O_ACCEPT_MENU ) {
 
 				optionLocator = Locators.AcceptMenu;
-				throw new HarnessException("implement action:"+ action +" option:"+ option);
+				
+				if ( optionLocator != null ) {
+
+					this.zClickAt(optionLocator, "");
+					SleepUtil.sleepSmall();
+					this.zWaitForBusyOverlay();
+
+				}
+				page = null;
+				waitForPostfix = true;
 
 			} else if ( option == Button.O_TENTATIVE_MENU ) {
 
 				optionLocator = Locators.TentativeMenu;
-				throw new HarnessException("implement action:"+ action +" option:"+ option);
+				if ( optionLocator != null ) {
+
+					this.zClickAt(optionLocator, "");
+					SleepUtil.sleepSmall();
+					this.zWaitForBusyOverlay();
+
+				}
+				page = null;
+				waitForPostfix = true;
 
 			} else if ( option == Button.O_DECLINE_MENU ) {
-
+				
 				optionLocator = Locators.DeclineMenu;
-				throw new HarnessException("implement action:"+ action +" option:"+ option);
+				
+				if ( optionLocator != null ) {
+
+					this.zClickAt(optionLocator, "");
+					SleepUtil.sleepSmall();
+					this.zWaitForBusyOverlay();
+
+				}
+				page = null;
+				waitForPostfix = true;
+			
 
 			} else if ( option == Button.O_PROPOSE_NEW_TIME_MENU ) {
 
