@@ -38,7 +38,7 @@ public class Tentative extends CalendarWorkWeekTest {
 
 	@Bugs(ids = "69342")		
 	@Test(description = "Rt-click to appointment from the calendar app and mark as Tentative", 
-			groups = { "test" })
+			groups = { "smoke" })
 	public void TentativeMeeting_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
