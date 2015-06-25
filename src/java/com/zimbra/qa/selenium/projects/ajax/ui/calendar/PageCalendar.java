@@ -508,7 +508,7 @@ public class PageCalendar extends AbsTab {
 		}
 
 	}
-	
+		
 	@Override
 	public AbsPage zListItem(Action action, String subject) throws HarnessException {
 		logger.info(myPageName() + " zListItem("+ action +", "+ subject +")");
@@ -1594,7 +1594,23 @@ public class PageCalendar extends AbsTab {
 		} else if (this.sIsElementPresent("css=table.calendar_month_day_table td.calendar_month_day_item span[id$='_subject']:contains('"+ subject +"')")) {
 			
 			locator = "css=table.calendar_month_day_table td.calendar_month_day_item span[id$='_subject']:contains('"+ subject +"')";
-			
+					
+		} else if (this.zIsVisiblePerPosition(Locators.CalendarViewDayCSS, 0, 0) ) {
+		
+			locator = "css=div[class='calendar_allday_appt'] div[name='_allDayDivId']";
+		
+		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewWorkWeekCSS, 0, 0)) {
+		
+			locator = "css=div[class='calendar_hour_scroll'] td[class='calendar_grid_body_time_td'] div[id$='_10']";
+		
+		} else if (this.zIsVisiblePerPosition(Locators.CalendarViewWeekCSS, 0, 0) ) {
+		
+			locator = "css=div[class='calendar_hour_scroll'] td[class='calendar_grid_body_time_td'] div[id$='_10']";
+		
+		} else if (this.zIsVisiblePerPosition(Locators.CalendarViewMonthCSS, 0, 0) ) {
+		
+			locator = "css=td[class='calendar_month_cells_td']";
+		
 		}
 		
 		if (action == Action.A_RIGHTCLICK) {
@@ -1639,6 +1655,25 @@ public class PageCalendar extends AbsTab {
 				
 				} else if ( subOption == Button.O_CREATE_A_COPY_MENU) {
 					subOptionLocator = Locators.CreateACopyInstanceMenu;
+				}
+				
+			} else if (option == Button.O_VIEW_MENU) {
+				optionLocator = Locators.ViewMenu;
+				
+				if ( subOption == Button.O_VIEW_DAY_SUB_MENU ) {
+					subOptionLocator = Locators.ViewDaySubMenu;
+					
+				} else if ( subOption == Button.O_VIEW_WORK_WEEK_SUB_MENU ) {
+					subOptionLocator = Locators.ViewWorkWeekSubMenu;
+				
+				} else if ( subOption == Button.O_VIEW_WEEK_SUB_MENU) {
+					subOptionLocator = Locators.ViewWeekSubMenu;
+				
+				} else if ( subOption == Button.O_VIEW_MONTH_SUB_MENU ) {
+					subOptionLocator = Locators.ViewMonthSubMenu;
+				
+				} else if ( subOption == Button.O_VIEW_LIST_SUB_MENU) {
+					subOptionLocator = Locators.ViewListSubMenu;
 				}
 			}
 
