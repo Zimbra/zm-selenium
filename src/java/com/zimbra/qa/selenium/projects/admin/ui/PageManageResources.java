@@ -43,7 +43,7 @@ public class PageManageResources extends AbsTab {
 	public static class Locators {
 		// ** OverviewTreePanel -> Manage -> Resources
 		public static final String MANAGE_ACCOUNTS_ICON="css=div.ImgManageAccounts";
-		public static final String RESOURCES="css=td[id^='zti__AppAdmin__Home__resLstHV']";
+		public static final String RESOURCES="css=div[id^='zti__AppAdmin__Home__resLstHV']";
 		public static final String GEAR_ICON="css=div.ImgConfigure";
 		public static final String HOME="Home";
 		public static final String MANAGE="Manage";
@@ -109,7 +109,7 @@ public class PageManageResources extends AbsTab {
 		zClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
 		SleepUtil.sleepMedium();
 		sIsElementPresent(Locators.RESOURCES);
-		sClick(Locators.RESOURCES);
+		zClickAt(Locators.RESOURCES,"");
 
 		if(ZimbraSeleniumProperties.isWebDriver())
 			SleepUtil.sleepMedium();

@@ -225,7 +225,7 @@ public class DeleteResource extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Verify delete resource operation -- Manage resource View/Right Click Menu -- Equipment",
-			groups = { "test" })
+			groups = { "smoke" })
 	public void DeleteResource_04() throws HarnessException {
 
 		// Create a new resource in the Admin Console using SOAP
