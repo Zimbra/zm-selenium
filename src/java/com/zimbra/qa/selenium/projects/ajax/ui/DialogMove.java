@@ -155,16 +155,18 @@ public class DialogMove extends AbsDialog {
 		   }
 
 		} else if (MyTab instanceof PageAddressbook) {
-
+			
 			   if (ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP) {
 			      locator = "css=div[id='" + Locators.zDialogId
 	            + "'] td[id^='zti__" + MyApplication.zGetActiveAccount().EmailAddress +
 	            ":ZmChooseFolderDialog_Contacts__'][id$=':"
 	            + folder.getId() + "_textCell']";
 			   } else {
-	   			locator = "css=div[id='" + Locators.zDialogId
+	   			/*locator = "css=div[id='" + Locators.zDialogId
 	   			+ "'] td[id='zti__ZmChooseFolderDialog_Contacts___"
-	   			+ folder.getId() + "_textCell']";
+	   			+ folder.getId() + "_textCell']";*/
+				   
+				   locator="css=div[id='" + Locators.zDialogId+ "'] div[id^='zti__ZmChooseFolderDialog_Contacts'] td[id$='"+ folder.getId() + "_textCell']";
 			   }
 
 		} else if (MyTab instanceof PageCalendar) {
@@ -190,7 +192,7 @@ public class DialogMove extends AbsDialog {
 			         folder.getId() +
 			         "_textCell']";
 			} else {
-			   locator = "css=div[id='" + Locators.zDialogId + "'] div[class='DwtTreeItemLevel1ChildDiv'] td[id='zti__ZmChooseFolderDialog_Tasks___"+ folder.getId() + "_textCell']";
+			   locator = "css=div[id='" + Locators.zDialogId + "'] div[class='DwtTreeItemLevel1ChildDiv'] td[id='zti__ZmChooseFolderDialog_Tasks__"+ folder.getId() + "_textCell']";
 			}
 
 		}else if (MyTab instanceof PageBriefcase ) {
@@ -201,7 +203,7 @@ public class DialogMove extends AbsDialog {
 			         folder.getId() +
 			         "_textCell']";
 			} else {
-			   locator = "css=div[id='" + Locators.zDialogId + "'] td[id='zti__ZmChooseFolderDialog_Briefcase___"+ folder.getId() + "_textCell']";
+			   locator = "css=div[id='" + Locators.zDialogId + "'] td[id='zti__ZmChooseFolderDialog_Briefcase__"+ folder.getId() + "_textCell']";
 			}
 
 		} else {
