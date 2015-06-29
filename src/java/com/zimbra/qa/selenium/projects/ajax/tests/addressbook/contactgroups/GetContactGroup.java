@@ -25,6 +25,7 @@ import java.util.Map.Entry;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -230,7 +231,7 @@ public class GetContactGroup extends AjaxCommonTest  {
 		
 	}
 
-
+	@Bugs(ids="100227")
 	@Test(	description = "Click Alphabetbar button Z: Verify only contact groups started with Z|z is listed ",
 			groups = { "functional" })
 	public void GetContactGroup_02_B_Button() throws HarnessException {
