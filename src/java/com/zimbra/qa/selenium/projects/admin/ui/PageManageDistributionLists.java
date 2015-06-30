@@ -321,7 +321,7 @@ public class PageManageDistributionLists extends AbsTab {
 			SleepUtil.sleepLong();
 			
 			this.sClickAt(pulldownLocator,"");
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepLong();
 			
 			// If the app is busy, wait for it to become active
 			//zWaitForBusyOverlay();

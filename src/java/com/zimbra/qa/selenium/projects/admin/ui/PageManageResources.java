@@ -324,9 +324,9 @@ public class PageManageResources extends AbsTab {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 				
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepLong();
 			this.sClickAt(pulldownLocator,"");
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepLong();
 
 
 			// If the app is busy, wait for it to become active

@@ -222,6 +222,7 @@ public class PageManageCOS extends AbsTab {
 
 		// Default behavior, process the locator by clicking on it
 		//
+		SleepUtil.sleepLong();
 		this.zClickAt(locator,"");
 
 		// If page was specified, make sure it is active
