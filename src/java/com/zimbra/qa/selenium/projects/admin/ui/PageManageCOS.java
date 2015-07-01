@@ -40,13 +40,13 @@ public class PageManageCOS extends AbsTab {
 	public static class Locators {
 		public static final String CONFIGURE_ICON="css=div.ImgAdministration";
 		public static final String COS="zti__AppAdmin__CONFIGURATION__COS_textCell";
-		public static final String GEAR_ICON="css=div.ImgConfigure";
+		public static final String GEAR_ICON="css=div[class='ImgConfigure']";
 		public static final String NEW_MENU="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgNewCOS']";
 		public static final String HOME="Home";
 		public static final String CONFIGURE="Configure";
 		public static final String CLASS_OS_SERVICE="Class of Service";
 		public static final String DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
-		public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] td[class='ZWidgetTitle']:contains('Edit')";
+		public static final String EDIT_BUTTON="css=td[id='zmi__zb_currentApp__EDIT_title']:contains('Edit')";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgProperties']";
 		public static final String DUPLICATE_COS= "css= div[id='zm__zb_currentApp__MENU_POP'] td[id='zmi__zb_currentApp__DUPLICATE_title']";
@@ -309,8 +309,8 @@ public class PageManageCOS extends AbsTab {
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
-
-				this.sClick(optionLocator);
+				SleepUtil.sleepLong();
+				this.sClickAt(optionLocator,"");
 
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();
@@ -359,9 +359,8 @@ public class PageManageCOS extends AbsTab {
 			// Status
 			// Lost Login Time
 			// Description
-
-
 			// Add the new item to the list
+			
 			items.add(item);
 			logger.info(item.prettyPrint());
 		}

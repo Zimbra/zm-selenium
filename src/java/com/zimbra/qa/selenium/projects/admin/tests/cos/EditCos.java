@@ -72,9 +72,6 @@ public class EditCos extends AdminCommonTest {
 		// Click on Edit button
 		FormEditCos form = (FormEditCos) app.zPageManageCOS.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 		
-		//Click on General Information tab.
-		form.zClickTreeItem(FormEditCos.TreeItem.GENERAL_INFORMATION);
-
 		//Edit the name.
 		String editedName = "editedCos_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(editedName);
@@ -164,6 +161,7 @@ public class EditCos extends AdminCommonTest {
 				+		"</CreateCosRequest>");
 	
 		// Enter the search string to find the account
+		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
 		app.zPageSearchResults.zAddSearchQuery(cosName);
 	
 		// Click search
@@ -193,7 +191,9 @@ public class EditCos extends AdminCommonTest {
 		                     "<cos by='name'>"+editedName+"</cos>"+
 		                   "</GetCosRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
-		ZAssert.assertNotNull(response, "Verify the cos is edited successfully");	}
+		ZAssert.assertNotNull(response, "Verify the cos is edited successfully");	
+		app.zPageMain.logout();	
+	}
 
 	/**
 	 * Testcase : Edit cos name -- right click 
@@ -208,7 +208,7 @@ public class EditCos extends AdminCommonTest {
 			public void EditCos_04() throws HarnessException {
 		
 		this.startingPage = app.zPageManageCOS;
-		
+		this.startingPage.zNavigateTo();
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
@@ -218,6 +218,8 @@ public class EditCos extends AdminCommonTest {
 				+			"<name>" + cosName + "</name>"
 				+		"</CreateCosRequest>");
 	
+		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
+
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(cosName);
 	
@@ -227,7 +229,8 @@ public class EditCos extends AdminCommonTest {
 
 		// Click on cos to be deleted.
 		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, cos.getName());
-	
+		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
+
 		// Click on Edit button
 		FormEditCos form = (FormEditCos) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 		
