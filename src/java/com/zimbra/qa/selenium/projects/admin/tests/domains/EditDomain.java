@@ -70,10 +70,7 @@ public class EditDomain extends AdminCommonTest {
 		app.zPageManageDomains.zListItem(Action.A_LEFTCLICK, domain.getName());
 		
 		FormEditDomain form = (FormEditDomain) app.zPageManageDomains.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
-		
-		//Click on General Information tab.
-		form.zClickTreeItem(FormEditDomain.TreeItem.GENERAL_INFORMATION);
-
+	
 		//Edit the description.
 		String description = "editeddomain_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(description);
@@ -123,9 +120,6 @@ public class EditDomain extends AdminCommonTest {
 		app.zPageManageDomains.zListItem(Action.A_RIGHTCLICK, domain.getName());
 		
 		FormEditDomain form = (FormEditDomain) app.zPageManageDomains.zToolbarPressButton(Button.B_TREE_EDIT);
-		
-		//Click on General Information tab.
-		form.zClickTreeItem(FormEditDomain.TreeItem.GENERAL_INFORMATION);
 
 		//Edit the description.
 		String description = "editeddomain_" + ZimbraSeleniumProperties.getUniqueString();
@@ -180,9 +174,6 @@ public class EditDomain extends AdminCommonTest {
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.DOMAIN);
 		FormEditDomain form = (FormEditDomain) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 		
-		//Click on General Information tab.
-		form.zClickTreeItem(FormEditDomain.TreeItem.GENERAL_INFORMATION);
-
 		//Edit the description.
 		String description = "editeddomain_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(description);
@@ -240,9 +231,6 @@ public class EditDomain extends AdminCommonTest {
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.DOMAIN);
 		FormEditDomain form = (FormEditDomain) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 		
-		//Click on General Information tab.
-		form.zClickTreeItem(FormEditDomain.TreeItem.GENERAL_INFORMATION);
-
 		//Edit the description.
 		String description = "editeddomain_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(description);

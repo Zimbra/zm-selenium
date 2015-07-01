@@ -163,7 +163,8 @@ public class PageManageDomains extends AbsTab {
 				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
 				{
 					if(action == Action.A_LEFTCLICK) {
-						zClick(locator);
+						SleepUtil.sleepMedium();
+						zClickAt(locator,"");
 						break;
 					} else if(action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);
