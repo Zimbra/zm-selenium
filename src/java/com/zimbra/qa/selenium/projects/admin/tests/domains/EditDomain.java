@@ -190,6 +190,7 @@ public class EditDomain extends AdminCommonTest {
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDomainResponse/admin:domain/admin:a[@n='description']", 1);
 		ZAssert.assertStringContains(response.toString(), description, "Verify description is edited correctly");
+		app.zPageMain.logout();
 		
 	}
 	
@@ -208,6 +209,8 @@ public class EditDomain extends AdminCommonTest {
 		DomainItem domain = new DomainItem();
 		String domainName=domain.getName();
 		this.startingPage = app.zPageManageDomains;
+		this.startingPage.zNavigateTo();
+		
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
 		+			"<name>" + domainName + "</name>"

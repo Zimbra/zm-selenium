@@ -49,7 +49,7 @@ public class PageManageDomains extends AbsTab {
 		public static final String CONFIGURE="Configure";
 		public static final String DOMAIN="Domains";
 		public static final String DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
-		public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgEdit']";
+		public static final String EDIT_BUTTON="css=td[id='zmi__zb_currentApp__EDIT_title']:contains('Edit')";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgEdit']";
 	}
@@ -123,8 +123,11 @@ public class PageManageDomains extends AbsTab {
 		}
 
 		// Click on Addresses -> Accounts
+		SleepUtil.sleepLong();
+
 		zClickAt(Locators.CONFIGURE_ICON,"");
 		sIsElementPresent(Locators.DOMAINS);
+		SleepUtil.sleepLong();
 		zClickAt(Locators.DOMAINS, "");
 
 		if(ZimbraSeleniumProperties.isWebDriver())
@@ -343,7 +346,8 @@ public class PageManageDomains extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.sClick(optionLocator);
+				SleepUtil.sleepMedium();
+				this.sClickAt(optionLocator,"");
 
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();
