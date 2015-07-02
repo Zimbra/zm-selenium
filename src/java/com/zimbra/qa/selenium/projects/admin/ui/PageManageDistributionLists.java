@@ -51,7 +51,7 @@ public class PageManageDistributionLists extends AbsTab {
 		public static final String DISTRIBUTION_LIST="Distribution Lists";
 		public static final String DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 	//	public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgEdit']";
-		public static final String EDIT_BUTTON="css=td[id='zmi__zb_currentApp__EDIT_title']";
+		public static final String EDIT_BUTTON="css=td[id='zmi__zb_currentApp__EDIT_title']:contains('Edit')";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgEdit']";
 		public static final String REFRESH_BUTTON = "css=div.ImgSearchRefreshWhite";
@@ -319,7 +319,6 @@ public class PageManageDistributionLists extends AbsTab {
 
 			
 			SleepUtil.sleepLong();
-			
 			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepLong();
 			

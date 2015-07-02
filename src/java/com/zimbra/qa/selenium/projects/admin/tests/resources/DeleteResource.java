@@ -69,7 +69,7 @@ public class DeleteResource extends AdminCommonTest {
 		
 		// Refresh list to populate account.
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-
+		this.startingPage.zNavigateTo();
 		// Click on account to be deleted.
 		app.zPageManageResources.zListItem(Action.A_LEFTCLICK, resource.getEmailAddress());
 
@@ -127,7 +127,7 @@ public class DeleteResource extends AdminCommonTest {
 		
 		// Refresh list to populate account.
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-
+		this.startingPage.zNavigateTo();
 		// Click on account to be deleted.
 		app.zPageManageResources.zListItem(Action.A_LEFTCLICK, resource.getEmailAddress());
 
@@ -185,7 +185,7 @@ public class DeleteResource extends AdminCommonTest {
 		
 		// Refresh list to populate account.
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-
+		this.startingPage.zNavigateTo();
 		// Right Click on resource to be deleted.
 		app.zPageManageResources.zListItem(Action.A_RIGHTCLICK, resource.getEmailAddress());
 
@@ -241,7 +241,7 @@ public class DeleteResource extends AdminCommonTest {
 		
 		// Refresh list to populate account.
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-
+		this.startingPage.zNavigateTo();
 		// Right Click on resource to be deleted.
 		app.zPageManageResources.zListItem(Action.A_RIGHTCLICK, resource.getEmailAddress());
 
