@@ -234,9 +234,7 @@ public class EditCos extends AdminCommonTest {
 		// Click on Edit button
 		FormEditCos form = (FormEditCos) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 		
-		//Click on General Information tab.
-		form.zClickTreeItem(FormEditCos.TreeItem.GENERAL_INFORMATION);
-	
+		
 		//Edit the name.
 		String editedName = "editedCos_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(editedName);

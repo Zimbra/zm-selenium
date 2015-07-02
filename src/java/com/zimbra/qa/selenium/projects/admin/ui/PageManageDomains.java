@@ -19,6 +19,7 @@
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class PageManageDomains extends AbsTab {
 		public static final String CONFIGURE_ICON="css=div.ImgAdministration";
 		public static final String DOMAINS="zti__AppAdmin__CONFIGURATION__DOMAINS_textCell";
 		public static final String GEAR_ICON="css=div.ImgConfigure";
-		public static final String NEW_MENU="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDomain']";
+		public static final String NEW_MENU="css=td[id='zmi__zb_currentApp__NEW_title']:contains('New')";
 		public static final String ADD_DOMAIN_ALIAS="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDomainAlias']";
 		public static final String HOME="Home";
 		public static final String CONFIGURE="Configure";
@@ -151,7 +152,23 @@ public class PageManageDomains extends AbsTab {
 		String rowsLocator = "css=div#zl__DOMAIN_MANAGE div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
-
+		int m= 50;
+		if(count >= 50){
+			for (int a1 = 1; a1 <= 5; a1++) { 
+				String p0  = rowsLocator + ":nth-child("+m+")";
+				if(this.sIsElementPresent(p0)){
+				zClick(p0);
+				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+				m=m+20;
+				}
+				else
+					break;
+				
+			
+		}
+			
+		}
+		count = this.sGetCssCount(rowsLocator);
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + ":nth-child("+i+")";
