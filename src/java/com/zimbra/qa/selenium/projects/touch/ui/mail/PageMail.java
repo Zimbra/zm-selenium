@@ -24,6 +24,7 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.ui.*;
+import com.zimbra.qa.selenium.staf.Driver;
 
 /**
  * @author Matt Rhoades
@@ -181,6 +182,17 @@ public class PageMail extends AbsTab {
 		return elementPresent;
 	}
 
+	public boolean zVerifyErrorMessageExist() throws HarnessException {
+		SleepUtil.sleepMedium();
+		Boolean elementPresent = false;
+		if (sIsElementPresent("css=div[class=‘x-innerhtml’] div[id^=‘ext-element’]:contains(‘Permission denied’)") == true) {
+			elementPresent = true;
+		} else {
+			elementPresent = false;
+		}
+		return elementPresent;
+	}
+	
 	public boolean zVerifyMessageDetailsNotExist() throws HarnessException {
 		SleepUtil.sleepMedium();
 		Boolean elementPresent = true;
@@ -1408,7 +1420,8 @@ public class PageMail extends AbsTab {
 		sClickAt(Locators.InboxFolder, "0,0");
 		SleepUtil.sleepMedium();
 	}
-
+	
+	
 	// New Function
 
 	public AbsPage zListItem(Action action, Button option, String subject) throws HarnessException {

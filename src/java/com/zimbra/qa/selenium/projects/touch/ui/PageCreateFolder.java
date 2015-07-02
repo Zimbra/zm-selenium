@@ -145,6 +145,30 @@ public class PageCreateFolder extends AbsPage {
 		
 		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
+	}
+		
+	public AbsPage zSelectMountFolder(String mountpointname)  throws HarnessException {
+		logger.info(myPageName() + " zSelectFolder("+ mountpointname +")");
+		tracer.trace("Click page button "+ mountpointname);
+	
+		//public void zSelectMountFolder(String mountpointname) throws HarnessException {
+		AbsPage page = null;
+
+			
+			if ( mountpointname == null ) 
+				throw new HarnessException("folder must not be null");
+			this.sClickAt("css=span[class='x-button-icon x-shown organizer']", "0,0");
+
+			String locator = "css=div[class='x-dock x-dock-vertical x-sized'] div[class='zcs-menu-label']:contains('" + mountpointname + "')";
+			
+			if ( !this.sIsElementPresent(locator) )
+				throw new HarnessException("unable to find folder in tree "+ locator);
+
+			
+			
+			this.sClickAt(locator, "");
+			this.zWaitForBusyOverlay();
+			return (page);
 
 	}
 
