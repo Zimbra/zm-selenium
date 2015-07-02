@@ -113,11 +113,11 @@ public class PageManageAccounts extends AbsTab {
 		}
 
 		// Click on Manage Accounts -> Accounts
+		SleepUtil.sleepLong();
 		zClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
-		sIsElementPresent(Locators.ACCOUNTS);
+		SleepUtil.sleepLong();
 		zClickAt(Locators.ACCOUNTS, "");
 
-		zWaitForActive();
 
 	}
 
