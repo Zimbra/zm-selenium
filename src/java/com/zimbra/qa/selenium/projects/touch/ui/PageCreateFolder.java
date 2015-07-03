@@ -89,6 +89,8 @@ public class PageCreateFolder extends AbsPage {
 			
 		} else if ( button == Button.B_EDIT ) {
 			locator = Locators.zEditButton;
+			this.sClickAt("css=span[class='x-button-icon x-shown organizer']", "0,0");
+
 		
 		} else if ( button == Button.B_LOCATION ) {
 			locator = Locators.zLocationButton;
@@ -116,11 +118,11 @@ public class PageCreateFolder extends AbsPage {
 			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
 		}
 
-		if ( button == Button.B_EDIT ) {
+		/*if ( button == Button.B_EDIT ) {
 			SleepUtil.sleepMedium();
+			locator = Locators.zEditButton;
 			this.sClickAt("css=span[class='x-button-icon x-shown organizer']", "0,0");
-		}
-		
+		}*/
 		this.sClickAt(locator, "");
 		SleepUtil.sleepLong();
 		
@@ -195,6 +197,15 @@ public class PageCreateFolder extends AbsPage {
 			return true;
 		} else {
 			return false;
-		}	
+		}	}
+		
+		public boolean zVerifyMountFolderExists(String mountpointname) throws HarnessException {
+			logger.info(myPageName() + " zVerifyFolderExists("+ mountpointname +")");
+			String locator = "css=div[class='x-dock x-dock-vertical x-sized'] div[class='zcs-menu-label']:contains('" + mountpointname + "')";
+			if (this.sIsElementPresent(locator) ) {
+				return true;
+			} else {
+				return false;
+			}	
 	}
 }
