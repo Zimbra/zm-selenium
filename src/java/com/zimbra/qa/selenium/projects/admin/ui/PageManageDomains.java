@@ -52,7 +52,7 @@ public class PageManageDomains extends AbsTab {
 		public static final String DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String EDIT_BUTTON="css=td[id='zmi__zb_currentApp__EDIT_title']:contains('Edit')";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
-		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgEdit']";
+		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=td[id='zmi__DMLV__EDIT_title']:contains('Edit')";
 	}
 
 	public static class TypeOfObject {

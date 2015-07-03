@@ -138,9 +138,6 @@ public class EditDistributionListSR extends AdminCommonTest {
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.DISTRIBUTION_LIST);
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 
-		//Click on General Information tab.
-		form.zClickTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
-
 		//Edit the name.
 		String editedName = "editedDL_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(editedName);
@@ -206,9 +203,6 @@ public class EditDistributionListSR extends AdminCommonTest {
 		// Click on Edit button
 	//	
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
-
-		//Click on General Information tab.
-		form.zClickTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		//Edit the name.
 		String editedName = "editedDL_" + ZimbraSeleniumProperties.getUniqueString();

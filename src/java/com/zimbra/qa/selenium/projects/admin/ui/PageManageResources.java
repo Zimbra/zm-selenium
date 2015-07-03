@@ -52,7 +52,7 @@ public class PageManageResources extends AbsTab {
 		public static final String DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String EDIT_BUTTON="css=td[id='zmi__zb_currentApp__EDIT_title']:contains('Edit')";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id^='zm__ACLV__MENU_POP'] div[class='ImgDelete']";
-		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id^='zm__ACLV__MENU_POP'] div[class='ImgEdit']";
+		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=td[id^='zmi__ACLV__EDIT__']:contains('Edit')";
 	}
 
 
@@ -135,7 +135,7 @@ public class PageManageResources extends AbsTab {
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
 		int m= 50;
 		if(count >= 50){
-			for (int a1 = 1; a1 <= 5; a1++) { 
+			for (int a1 = 1; a1 <= 10; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
 				if(this.sIsElementPresent(p0)){
 				zClick(p0);

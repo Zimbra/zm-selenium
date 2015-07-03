@@ -70,9 +70,6 @@ public class EditAccount extends AdminCommonTest {
 		// Click on Edit button
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 		
-		//Click on General Information tab.
-		form.zClickTreeItem(FormEditAccount.TreeItem.GENERAL_INFORMATION);
-
 		//Edit the name.
 		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(editedName);
@@ -80,6 +77,7 @@ public class EditAccount extends AdminCommonTest {
 		//Submit the form.
 		form.zSubmit();
 		
+		app.zPageMain.zRefresh();
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
@@ -87,6 +85,7 @@ public class EditAccount extends AdminCommonTest {
 				+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "Verify the account is edited successfully");
+		app.zPageMain.logout();
 	}
 	
 	/**
@@ -117,9 +116,6 @@ public class EditAccount extends AdminCommonTest {
 		
 		// Click on Edit button
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressButton(Button.B_TREE_EDIT);
-		
-		//Click on General Information tab.
-		form.zClickTreeItem(FormEditAccount.TreeItem.GENERAL_INFORMATION);
 
 		//Edit the name.
 		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
@@ -127,6 +123,7 @@ public class EditAccount extends AdminCommonTest {
 		
 		//Submit the form.
 		form.zSubmit();
+		app.zPageMain.zRefresh();
 		
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -135,6 +132,7 @@ public class EditAccount extends AdminCommonTest {
 				+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=74487");
+		app.zPageMain.logout();
 	}
 	
 	/**
@@ -169,15 +167,13 @@ public class EditAccount extends AdminCommonTest {
 		// Click on Edit button
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 		
-		//Click on General Information tab.
-		form.zClickTreeItem(FormEditAccount.TreeItem.GENERAL_INFORMATION);
-
 		//Edit the name.
 		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(editedName);
 		
 		//Submit the form.
 		form.zSubmit();
+		app.zPageMain.zRefresh();
 		
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -186,6 +182,7 @@ public class EditAccount extends AdminCommonTest {
 				+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "Verify the account is edited successfully");
+		app.zPageMain.logout();
 	}
 
 	/**
@@ -219,9 +216,7 @@ public class EditAccount extends AdminCommonTest {
 		
 		// Click on Edit button
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
-		
-		//Click on General Information tab.
-		form.zClickTreeItem(FormEditAccount.TreeItem.GENERAL_INFORMATION);
+
 
 		//Edit the name.
 		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
@@ -229,6 +224,7 @@ public class EditAccount extends AdminCommonTest {
 		
 		//Submit the form.
 		form.zSubmit();
+		app.zPageMain.zRefresh();
 		
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -237,6 +233,7 @@ public class EditAccount extends AdminCommonTest {
 				+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "Verify the account is edited successfully");
+		app.zPageMain.logout();
 	}
 
 	
@@ -279,15 +276,13 @@ public class EditAccount extends AdminCommonTest {
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.ACCOUNT);
 		FormEditAccount form = (FormEditAccount) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
-		//Click on General Information tab.
-		form.zClickTreeItem(FormEditAccount.TreeItem.GENERAL_INFORMATION);
-
 		//Edit the name.
 		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(editedName);
 		
 		//Submit the form.
 		form.zSubmit();
+		app.zPageMain.zRefresh();
 		
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -296,6 +291,7 @@ public class EditAccount extends AdminCommonTest {
 				+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=74487");
+		app.zPageMain.logout();
 
 	}
 	
@@ -339,8 +335,6 @@ public class EditAccount extends AdminCommonTest {
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.ACCOUNT);
 		FormEditAccount form = (FormEditAccount) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 
-		//Click on General Information tab.
-		form.zClickTreeItem(FormEditAccount.TreeItem.GENERAL_INFORMATION);
 
 		//Edit the name.
 		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
@@ -348,6 +342,7 @@ public class EditAccount extends AdminCommonTest {
 		
 		//Submit the form.
 		form.zSubmit();
+		app.zPageMain.zRefresh();
 		
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -356,6 +351,7 @@ public class EditAccount extends AdminCommonTest {
 				+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=74487");
+		app.zPageMain.logout();
 
 	}
 

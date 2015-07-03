@@ -46,7 +46,7 @@ public class NavigateSearchMail extends AdminCommonTest {
 		 * Verify navigation path -- "Home --> Tools and Migraton --> Search Mail"
 		 */
 		app.zPageManageSearchMail.zClickAt(Locators.TOOLS_AND_MIGRATION_ICON, "");
-		SleepUtil.sleep(10000);
+		SleepUtil.sleepLong();
 		app.zPageManageSearchMail.sClickAt(PageManageSearchMail.Locators.SEARCHMAIL, "");
 		ZAssert.assertTrue(app.zPageManageSearchMail.zVerifyHeader(PageManageSearchMail.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearchMail.zVerifyHeader(PageManageSearchMail.Locators.TOOLS_AND_MIGRATION), "Verfiy the \"Tools and Migration\" text exists in navigation path");
