@@ -119,8 +119,7 @@ public class PageMain extends AbsTab {
 			((AppAdminConsole)MyApplication).zPageLogin.zNavigateTo();
 		}
 		((AppAdminConsole)MyApplication).zPageLogin.login();
-
-		this.zWaitForActive();
+		SleepUtil.sleepLong();
 	}
 
 	/**

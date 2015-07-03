@@ -154,7 +154,7 @@ public class PageManageDomains extends AbsTab {
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
 		int m= 50;
 		if(count >= 50){
-			for (int a1 = 1; a1 <= 5; a1++) { 
+			for (int a1 = 1; a1 <= 8; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
 				if(this.sIsElementPresent(p0)){
 				zClick(p0);

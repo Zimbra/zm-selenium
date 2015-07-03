@@ -41,7 +41,7 @@ public class PageManageCOS extends AbsTab {
 		public static final String CONFIGURE_ICON="css=div.ImgAdministration";
 		public static final String COS="zti__AppAdmin__CONFIGURATION__COS_textCell";
 		public static final String GEAR_ICON="css=div[class='ImgConfigure']";
-		public static final String NEW_MENU="css=id[id='zmi__zb_currentApp__NEW_title']:contains('New')";
+		public static final String NEW_MENU="css=td[id='zmi__zb_currentApp__NEW_title']:contains('New')";
 		public static final String HOME="Home";
 		public static final String CONFIGURE="Configure";
 		public static final String CLASS_OS_SERVICE="Class of Service";

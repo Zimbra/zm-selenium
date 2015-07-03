@@ -51,14 +51,10 @@ public class HomePageLinks extends AdminCommonTest {
 		
 		// click on Install license Link on Home page and check if it redirects to proper page
 
-		// Navigate back to Home page
-		super.startingPage.zNavigateTo();
-		
 		app.zPageMain.sClickAt(Locators.HomeInstallLicense,"");
 		boolean isNavigationSuccess = app.zPageMain.zVerifyHeader("License");
 		ZAssert.assertTrue(isNavigationSuccess, "Verify the install license page is opened");
-
-		
+		app.zPageMain.logout();
 	}
 	
 	/**
@@ -71,11 +67,10 @@ public class HomePageLinks extends AdminCommonTest {
 			groups = { "sanity" })
 			public void NavigateHomePageLinks_02() throws HarnessException {
 		
-		// Navigate back to Home page
-		super.startingPage.zNavigateTo();
 		app.zPageMain.sClickAt(Locators.HomeConfigureBackups,"");
 		boolean isNavigationSuccess = app.zPageMain.zVerifyHeader("Backup/Restore");
 		ZAssert.assertTrue(isNavigationSuccess, "Verify the Backup/Restore page is opened");
+		app.zPageMain.logout();
 
 	}
 	
@@ -90,9 +85,6 @@ public class HomePageLinks extends AdminCommonTest {
 			groups = { "sanity" })
 			public void NavigateHomePageLinks_03() throws HarnessException {
 
-		// Navigate back to Home page
-		super.startingPage.zNavigateTo();
-
 		WizardInstallCertificate wizard = 
 			(WizardInstallCertificate)app.zPageManageCertificates.zToolbarPressButton(Button.B_INSTALL_CERTIFICATE);
 		ZAssert.assertNotNull(wizard.sGetTitle(), "Verify the install certificate wizard is opened");
@@ -100,6 +92,7 @@ public class HomePageLinks extends AdminCommonTest {
 		// close the wizard to proceed to next test
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the install certificate wizard is closed");
+		app.zPageMain.logout();
 
 		
 	}
@@ -118,10 +111,10 @@ public class HomePageLinks extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Configure Default COS""
 		 */
-		super.startingPage.zNavigateTo();
 		app.zPageMain.sClickAt(Locators.HomeConfigureDefaultCos,"");
 		boolean isNavigationSuccess = app.zPageMain.zVerifyHeader("default");
 		ZAssert.assertTrue(isNavigationSuccess, "Verify the configure default COS page is opened");
+		app.zPageMain.logout();
 
 	}
 	
@@ -139,7 +132,6 @@ public class HomePageLinks extends AdminCommonTest {
 			public void NavigateHomePageLinks_05() throws HarnessException {
 		
 		// Navigate back to home page 
-		super.startingPage.zNavigateTo();
 
 		WizardCreateDomain wizard = 
 			(WizardCreateDomain)app.zPageManageDomains.zToolbarPressButton(Button.B_HOME_DOMAIN);
@@ -148,6 +140,7 @@ public class HomePageLinks extends AdminCommonTest {
 		// Close the wizard to proceed to next test
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the  new domain wizard is closed");
+		app.zPageMain.logout();
 
 		
 	}
@@ -164,8 +157,7 @@ public class HomePageLinks extends AdminCommonTest {
 			public void NavigateHomePageLinks_06() throws HarnessException {
 
 		// Navigate back to Home page 
-		super.startingPage.zNavigateTo();
-
+		
 		WizardConfigureGAL wizard = 
 			(WizardConfigureGAL)app.zPageManageCofigureGAL.zToolbarPressButton(Button.B_CONFIGURE_GAL);
 		ZAssert.assertNotNull(wizard.sGetTitle(), "Verify the  Configure GAL wizard is opened");
@@ -174,7 +166,8 @@ public class HomePageLinks extends AdminCommonTest {
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the Configure GAL wizard is closed");
 
-		
+		app.zPageMain.logout();
+
 	}
 	
 
@@ -189,8 +182,6 @@ public class HomePageLinks extends AdminCommonTest {
 			public void NavigateHomePageLinks_07() throws HarnessException {
 
 		// Navigate back to Home page
-		super.startingPage.zNavigateTo();
-
 		WizardConfigureAuthentication wizard = 
 			(WizardConfigureAuthentication)app.zPageManageCofigureAuthentication.zToolbarPressButton(Button.B_CONFIGURE_AUTHENTICATION);
 		ZAssert.assertNotNull(wizard.sGetTitle(), "Verify the  Configure Authentication wizard is opened");
@@ -198,6 +189,8 @@ public class HomePageLinks extends AdminCommonTest {
 		// Close the wizard to proceed to next test
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the Configure Authentication wizard is closed");
+		app.zPageMain.logout();
+
 	}
 	
 	
@@ -212,8 +205,6 @@ public class HomePageLinks extends AdminCommonTest {
 			public void NavigateHomePageLinks_08() throws HarnessException {
 	
 		// Navigate back to Home page
-		super.startingPage.zNavigateTo();
-
 		WizardCreateAccount wizard = 
 			(WizardCreateAccount)app.zPageManageAccounts.zToolbarPressButton(Button.B_HOME_ACCOUNT);
 		ZAssert.assertNotNull(wizard.sGetTitle(), "Verify the new account wizard is opened");
@@ -221,8 +212,7 @@ public class HomePageLinks extends AdminCommonTest {
 		// Close the wizard to proceed to next test
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the  new account wizard is closed");
-
-		
+		app.zPageMain.logout();
 	}
 
 	
@@ -237,11 +227,11 @@ public class HomePageLinks extends AdminCommonTest {
 			public void NavigateHomePageLinks_09() throws HarnessException {
 		
 		// Navigate back to Home page
-		super.startingPage.zNavigateTo();
-		
+	
 		app.zPageMain.sClickAt(Locators.HomeManageAccount,"");
 		boolean isNavigationSuccess = app.zPageMain.zVerifyHeader("Manage");
 		ZAssert.assertTrue(isNavigationSuccess, "Verify the manage accounts page is opened");
+		app.zPageMain.logout();
 
 	}
 	
@@ -257,7 +247,6 @@ public class HomePageLinks extends AdminCommonTest {
 			public void NavigateHomePageLinks_10() throws HarnessException {
 		
 		// Navigate Back to Home page
-		super.startingPage.zNavigateTo();
 
 		WizardMigrationCoexistance wizard = 
 			(WizardMigrationCoexistance)app.zPageManageMigrationCoexistance.zToolbarPressButton(Button.B_HOME_MIGRATION);
@@ -266,6 +255,7 @@ public class HomePageLinks extends AdminCommonTest {
 		// Close the wizard to proceed to next test
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the migration and Coexistance wizard is closed");
+		app.zPageMain.logout();
 
 		
 	}
