@@ -26,7 +26,6 @@ import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
-
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.HtmlElement;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
@@ -150,7 +149,7 @@ public class EditFile extends FeatureBriefcaseTest {
 				+ ZimbraSeleniumProperties.getUniqueString();
 
 		app.zPageBriefcase.rename(fileName2);
-
+		app.zPageBriefcase.zClick("css=div[id='zl__BDLV-main__rows']");	
 		// Verify document name through GUI
 		ZAssert.assertTrue(app.zPageBriefcase
 				.waitForPresentInListView(fileName2),
@@ -218,7 +217,7 @@ public class EditFile extends FeatureBriefcaseTest {
 		*/
 		// Verify 'Edit' tool-bar button is disabled
 		ZAssert.assertTrue(app.zPageBriefcase
-				.isOptionDisabled(PageBriefcase.Locators.zEditFileBtn),
+				.isToolbarButtonDisabled(PageBriefcase.Locators.zEditFileBtn),
 				"Verify 'Edit' toolbar button is disabled");
 
 		// delete file upon test completion
