@@ -21,6 +21,11 @@ package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
 import java.util.*;
 
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+
+import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
@@ -661,6 +666,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			locator = DisplayMail.Locators.ProposeNewTimeButton;
 			page = null;
 
+			doPostfixCheck = true;
 		} else if ( button == Button.B_ACCEPT_SHARE ) {
 
 			locator = this.ContainerLocator + " td[id$='__Shr__SHARE_ACCEPT_title']";
@@ -689,7 +695,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		
 		this.zClickAt(locator, "");
 		
-		this.zWaitForBusyOverlay();
+	//	this.zWaitForBusyOverlay();
 
 		if ( page != null ) {
 			page.zWaitForActive();
@@ -703,7 +709,133 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 		return (page);
 	}
+public AbsPage zPressButtonPulldown(Button pulldown, Button option) throws HarnessException {
+		
+		logger.info(myPageName() + " zPressButtonPulldown(" + pulldown + ", " + option + ")");
+		
+		tracer.trace("Click pulldown " + pulldown + " then " + option);
+
+		if (pulldown == null || option == null) throw new HarnessException("Button/options cannot be null!");
+		
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = this;
+		boolean doPostfixCheck = false;
+
+		if ( pulldown == Button.B_ACCEPT ) {
+			
+			pulldownLocator = DisplayMail.Locators.AcceptDropdown;
+			page = null;
+			doPostfixCheck = true;
+			
+			
+			if (option == Button.O_ACCEPT_NOTIFY_ORGANIZER) {
+
+				optionLocator = DisplayMail.Locators.AcceptNotifyOrganizerMenu;
+				page = null;
+
+			} else if (option == Button.O_ACCEPT_EDIT_REPLY) {
+
+				optionLocator = DisplayMail.Locators.AcceptEditReplyMenu;
+				page = null;
+				doPostfixCheck = true;
+				//this.zSetWindowTitle("Reply");
+				
+			} else if (option == Button.O_ACCEPT_DONT_NOTIFY_ORGANIZER) {
+
+				optionLocator = DisplayMail.Locators.AcceptDontNotifyOrganizerMenu;
+				
+				page = null;
+				
+			} else {
 	
+				throw new HarnessException("No logic defined for pulldown " + pulldown + " and option " + option);
+
+			}
+
+		} else if ( pulldown == Button.B_TENTATIVE ) {
+			
+			pulldownLocator = DisplayMail.Locators.TentativeDropdown;
+			
+			if (option == Button.O_TENTATIVE_NOTIFY_ORGANIZER) {
+
+				optionLocator = DisplayMail.Locators.TentativeNotifyOrganizerMenu;
+				page = null;
+
+			} else if (option == Button.O_TENTATIVE_EDIT_REPLY) {
+
+				optionLocator = DisplayMail.Locators.TentativeEditReplyMenu;
+				page=null;
+				
+			} else if (option == Button.O_TENTATIVE_DONT_NOTIFY_ORGANIZER) {
+
+				optionLocator = DisplayMail.Locators.TentativeDontNotifyOrganizerMenu;
+				
+				page = null;
+				
+			} else {
+	
+				throw new HarnessException("No logic defined for pulldown " + pulldown + " and option " + option);
+
+			}
+
+		} else if ( pulldown == Button.B_DECLINE ) {
+			
+			pulldownLocator = DisplayMail.Locators.DeclineDropdown;
+			
+			if (option == Button.O_DECLINE_NOTIFY_ORGANIZER) {
+
+				optionLocator = DisplayMail.Locators.DeclineNotifyOrganizerMenu;
+				page = null;
+
+			} else if (option == Button.O_DECLINE_EDIT_REPLY) {
+
+				optionLocator = DisplayMail.Locators.DeclineEditReplyMenu;
+				page = null;
+				
+			} else if (option == Button.O_DECLINE_DONT_NOTIFY_ORGANIZER) {
+
+				optionLocator = DisplayMail.Locators.DeclineDontNotifyOrganizerMenu;
+				page = null;
+			}
+			
+		} else if ( pulldown == Button.B_CALENDAR ) {
+				
+			pulldownLocator = DisplayMail.Locators.CalendarDropdown;
+			page = null;
+					
+		} else {
+
+			throw new HarnessException("No logic defined for pulldown " + pulldown + " and option " + option);
+
+		}
+
+		// Click to dropdown and corresponding option
+		
+		//window.zSetWindowTitle("Reply");
+		zClickAt(pulldownLocator, "");
+		
+		zWaitForBusyOverlay();
+		this.zClickAt(optionLocator,"");
+	
+		
+		
+		
+	//	zWaitForBusyOverlay();
+		
+		if (page != null) {
+			page.zWaitForActive();
+		}
+
+		if ( doPostfixCheck ) {
+			// Make sure the response is delivered before proceeding
+			Stafpostqueue sp = new Stafpostqueue();
+			sp.waitForPostqueue();
+		}
+
+		return (page);
+		
+	}
 	/* TODO: ... debugging to be removed */
 	public boolean waitForWindowDisplay( String pageTitle) throws HarnessException {
 	    		    	
