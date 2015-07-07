@@ -18,7 +18,9 @@ package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
 
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import com.zimbra.qa.selenium.framework.core.SeleniumService;
 import com.zimbra.qa.selenium.framework.items.*;
@@ -26,13 +28,14 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.AutocompleteEntry;
+import com.zimbra.qa.selenium.projects.ajax.ui.AutocompleteEntry.Icon;
 
 /**
- * The <code>FormMailNew<code> object defines a compose new message view
+ * The <code>FormApptNew<code> object defines a compose new appointment view
  * in the Zimbra Ajax client.
  * <p>
- * This class can be used to compose a new message.
+ * This class can be used to compose a new appointment.
  * <p>
  * 
  * @author Matt Rhoades
@@ -153,6 +156,9 @@ public class FormApptNew extends AbsForm {
 		public static final String ConflictResourceNote = "css= div[id$='_location_status']:contains('One or more locations are not available at the selected time')";
 		
 		public static final String AttendeeField= "css=input[id$='_person_input']";
+		public static final String LocationField= "css=input[id$='_location_input']";
+		public static final String EquipmentField= "css=input[id$='_resourcesData_input']";
+		
 	}
 
 	public static class Field {
@@ -1468,4 +1474,137 @@ public class FormApptNew extends AbsForm {
 		}
 		
 	}
+
+	public List<AutocompleteEntry> zAutocompleteFillField(Field field, String value) throws HarnessException {
+		logger.info(myPageName() + " zAutocompleteFillField("+ field +", "+ value +")");
+
+		tracer.trace("Set "+ field +" to "+ value);
+
+		String locator = null;
+		
+		if ( field == Field.Attendees) {
+			
+			locator = Locators.AttendeeField;
+			
+			// FALL THROUGH
+			
+		} else if ( field == Field.Location) {
+			
+			locator = Locators.LocationField;
+			
+			// FALL THROUGH
+			
+		} else if ( field == Field.Equipment ) {
+			
+				this.zClickAt(Locators.ShowEquipmentLink, "");
+				locator = Locators.EquipmentField;
+			
+		} else {
+			throw new HarnessException("Unsupported field: "+ field);
+		}
+		
+		if ( locator == null ) {
+			throw new HarnessException("locator was null for field "+ field);
+		}
+		
+		
+		// Make sure the button exists
+		if ( !this.sIsElementPresent(locator) )
+			throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
+		
+		// Seems that the client can't handle filling out the new mail form too quickly
+		// Click in the "To" fields, etc, to make sure the client is ready
+		this.sFocus(locator);
+		this.sClickAt(locator,"");
+		this.zWaitForBusyOverlay();
+
+		// Instead of sType() use zKeyboard
+		// this.zKeyboard.zTypeCharacters(value);
+		
+		// workaround
+		if(ZimbraSeleniumProperties.isWebDriver()){
+		    clearField(locator);
+		    sType(locator, value);
+		}else{
+		    if(value.length() > 0){ 
+			sType(locator, value.substring(0, value.length()-1));
+			sFireEvent(locator, "keyup");
+		    }
+		    zWaitForBusyOverlay();
+		    sType(locator, value);
+		    sFireEvent(locator, "keyup");
+		}
+				
+		this.zWaitForBusyOverlay();
+
+		waitForAutocomplete();
+		return (zAutocompleteListGetEntries());
+		
+	}
+
+	protected void waitForAutocomplete() throws HarnessException {
+		String locator = "css=div[class='acWaiting'][style*='display: none;']";
+		for (int i = 0; i < 30; i++) {
+			if ( this.sIsElementPresent(locator) )
+				return; // Found it!
+			SleepUtil.sleep(1000);
+		}
+		throw new HarnessException("autocomplete never completed");
+	}
+	
+	protected AutocompleteEntry parseAutocompleteEntry(String itemLocator) throws HarnessException {
+		logger.info(myPageName() + " parseAutocompleteEntry()");
+
+		String locator = null;
+		
+		// Get the icon
+		locator = itemLocator + " td.AutocompleteMatchIcon div@class";
+		String image = this.sGetAttribute(locator);
+		
+		// Get the address
+		locator = itemLocator + " td + td";
+		String address = this.sGetText(locator);
+		
+		AutocompleteEntry entry = new AutocompleteEntry(
+									Icon.getIconFromImage(image), 
+									address, 
+									false,
+									itemLocator);
+
+		return (entry);
+	}
+	
+	public List<AutocompleteEntry> zAutocompleteListGetEntries() throws HarnessException {
+		logger.info(myPageName() + " zAutocompleteListGetEntries()");
+		
+		List<AutocompleteEntry> items = new ArrayList<AutocompleteEntry>();
+		
+		String containerLocator = "css=div[id^='zac__APPT-'][style*='display: block;']";
+
+		if ( !this.zWaitForElementPresent(containerLocator,"5000") ) {
+			// Autocomplete is not visible, return an empty list.
+			return (items);
+		}
+
+		
+		String rowsLocator = containerLocator + " tr[id*='_acRow_']";
+		int count = this.sGetCssCount(rowsLocator);
+		for (int i = 0; i < count; i++) {
+			
+			items.add(parseAutocompleteEntry(containerLocator + " tr[id$='_acRow_"+ i +"']"));
+			
+		}
+		
+		return (items);
+	}
+
+	public void zAutocompleteSelectItem(AutocompleteEntry entry) throws HarnessException {
+		logger.info(myPageName() + " zAutocompleteSelectItem("+ entry +")");
+		
+		// Click on the address
+		this.sMouseDown(entry.getLocator() + " td + td");
+		this.zWaitForBusyOverlay();
+		
+	}
+	
 }

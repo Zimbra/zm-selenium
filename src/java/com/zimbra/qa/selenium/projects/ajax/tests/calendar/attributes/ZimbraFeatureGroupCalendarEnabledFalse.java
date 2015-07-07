@@ -27,9 +27,11 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
+import com.zimbra.qa.selenium.framework.util.ZimbraResource;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 
 public class ZimbraFeatureGroupCalendarEnabledFalse extends CalendarWorkWeekTest {
 
@@ -101,4 +103,36 @@ public class ZimbraFeatureGroupCalendarEnabledFalse extends CalendarWorkWeekTest
         ZAssert.assertEquals(app.zGetActiveAccount().soapMatch("//mail:GetAppointmentResponse//mail:comp", "name", editApptSubject), true, "");
         ZAssert.assertEquals(app.zGetActiveAccount().soapMatch("//mail:GetAppointmentResponse//mail:desc", null, editApptBody), true, "");
 	}
+
+	@Test(
+			description = "Bug 59940 -  Location: edit field can display upto 4 characters only if group calendar feature is OFF", 
+			groups = { "functional" })
+	public void ZimbraFeatureGroupCalendarEnabledFalse_02() throws HarnessException {
+
+		// Create appointment data
+		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		String apptLocation = location.EmailAddress;		
+	    
+		// Modify the test account and change zimbraFeatureGroupCalendarEnabled to FALSE
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
+			+		"<id>"+ app.zGetActiveAccount().ZimbraId +"</id>"
+			+		"<a n='zimbraFeatureGroupCalendarEnabled'>FALSE</a>"
+			+	"</ModifyAccountRequest>");
+
+		// Logout and login to pick up the changes
+		app.zPageLogin.zNavigateTo();
+		this.startingPage.zNavigateTo();
+	
+		// Compose appointment and send it to invitee
+		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
+		apptForm.zFillField(Field.Subject, apptSubject);
+		apptForm.zFillField(Field.Location, apptLocation);
+        ZAssert.assertTrue(apptForm.zVerifyLocation(apptLocation), "Verify appointment location");		
+		apptForm.zSubmit();
+			
+		
+	}
+	
 }
