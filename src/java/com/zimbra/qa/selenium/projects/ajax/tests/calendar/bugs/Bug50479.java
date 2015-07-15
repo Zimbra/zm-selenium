@@ -50,14 +50,14 @@ public class Bug50479 extends AjaxCommonTest {
 			description = "Bug 50479 - When setting custom working hours, JS error", 
 			groups = { "bug" })
 	public void Bug50479_01() throws HarnessException {
-		
+/*		
 		// Modify the test account
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
 			+		"<id>"+ app.zGetActiveAccount().ZimbraId +"</id>"
 			+		"<a n='zimbraPrefWarnOnExit'>TRUE</a>"
 			+	"</ModifyAccountRequest>");
-
+*/
 		// Logout and login to pick up the changes
 		app.zPageLogin.zNavigateTo();
 		this.startingPage.zNavigateTo();

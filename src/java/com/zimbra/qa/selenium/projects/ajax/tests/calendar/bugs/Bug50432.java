@@ -33,7 +33,7 @@ public class Bug50432 extends CalendarWorkWeekTest {
 	public Bug50432() {
 		logger.info("New " + Bug50432.class.getCanonicalName());
 		
-		this.startingAccountPreferences.put("zimbraPrefWarnOnExit", "TRUE");
+		//this.startingAccountPreferences.put("zimbraPrefWarnOnExit", "TRUE");
 
 		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
@@ -49,14 +49,14 @@ public class Bug50432 extends CalendarWorkWeekTest {
 			description = "Bug 50432 - Unwanted navigate away dialog after opening appointment/task", 
 			groups = { "functional" })
 	public void Bug50432_01() throws HarnessException {
-		
+/*		
 		// Modify the test account
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
 			+		"<id>"+ app.zGetActiveAccount().ZimbraId +"</id>"
 			+		"<a n='zimbraPrefWarnOnExit'>TRUE</a>"
 			+	"</ModifyAccountRequest>");
-
+*/
 		// Logout and login to pick up the changes
 		app.zPageLogin.zNavigateTo();
 		this.startingPage.zNavigateTo();
