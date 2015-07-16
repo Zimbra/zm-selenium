@@ -30,7 +30,7 @@ public class CancelTagMail extends PrefGroupMailByConversationTest {
 	}
 	
 	@Test( description = "Cancel tag operation in message view",
-			groups = { "t1" })
+			groups = { "functional" })
 			
 	public void CancelTagMail_01() throws HarnessException {
 		
