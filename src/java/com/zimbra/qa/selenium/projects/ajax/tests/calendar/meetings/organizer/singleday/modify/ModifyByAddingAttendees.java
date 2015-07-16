@@ -190,4 +190,99 @@ public class ModifyByAddingAttendees extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(attendee2Status, "NE", "Verify attendee2 free/busy status");
 		
 	}
+
+	@Bugs(ids = "56295")
+	@Test(description = "Add an attendee to an existing appointment and invite sent to ALL",
+			groups = { "functional" })
+			
+	public void ModifyMeetingByAddingAttendees_03() throws HarnessException {
+		
+		// Create a meeting			
+		String tz = ZTimeZone.TimeZoneEST.getID();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		String apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
+		
+		// Create a DL
+		ZimbraAccount account1 = (new ZimbraAccount()).provision().authenticate();
+		ZimbraAccount account2 = (new ZimbraAccount()).provision().authenticate();
+		ZimbraDistributionList distribution = (new ZimbraDistributionList()).provision();
+		distribution.addMember(account1);
+		distribution.addMember(account2);
+		
+		// Absolute dates in UTC zone
+		Calendar now = this.calendarWeekDayUTC;
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		
+		app.zGetActiveAccount().soapSend(
+                "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
+                     "<m>"+
+                     	"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"+
+                     		"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
+                     		"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
+                     		"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+                     		"<at role='REQ' ptst='NE' rsvp='1' a='" + apptAttendee1 + "' d='2'/>" +
+                     	"</inv>" +
+                     	"<e a='"+ ZimbraAccount.AccountA().EmailAddress +"' t='t'/>" +
+                     	"<mp content-type='text/plain'>" +
+                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     	"</mp>" +
+                     "<su>"+ apptSubject +"</su>" +
+                     "</m>" +
+               "</CreateAppointmentRequest>");
+        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        
+        // Add attendee2 and resend the appointment
+        FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
+        apptForm.zFillField(Field.Attendees, distribution.EmailAddress);
+        apptForm.zToolbarPressButton(Button.B_SEND);
+        DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
+        sendUpdateDialog.zClickButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
+        sendUpdateDialog.zClickButton(Button.B_OK);
+        SleepUtil.sleepVeryLong(); // test fails while checking free/busy status, waitForPostqueue is not sufficient here
+        // Tried sleepLong() as well but although fails so using sleepVeryLong()
+ 
+        // Verify that attendee2 present in the appointment
+        AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
+		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
+		ZAssert.assertStringContains(actual.getAttendees(), distribution.EmailAddress, "Attendees: Verify the appointment data");
+		
+        // Verify attendee1 of DL receives meeting invitation message
+		account1.soapSend(
+				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
+			+		"<query>subject:("+ apptSubject +")</query>"
+			+	"</SearchRequest>");
+		
+		String idA = account1.soapSelectValue("//mail:m", "id");
+		ZAssert.assertNotNull(idA, "Verify new invitation appears in the inbox for members of DL ");
+		
+		// Verify attendee2 of DL receives meeting invitation message
+		account2.soapSend(
+				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
+			+		"<query>subject:("+ apptSubject +")</query>"
+			+	"</SearchRequest>");
+		
+		String idB = account2.soapSelectValue("//mail:m", "id");
+		ZAssert.assertNotNull(idB, "Verify new invitation appears in the inbox for members of DL ");
+	
+		// Verify that attendee1 from DL is present in the appointment
+        AppointmentItem actualA = AppointmentItem.importFromSOAP(account1, "subject:("+ apptSubject +")");
+        String id = actualA.dApptID();
+		ZAssert.assertEquals(actualA.getSubject(), apptSubject, "Subject: Verify the appointment data");
+		ZAssert.assertStringContains(actualA.getAttendees(), distribution.EmailAddress, "Attendees: Verify the appointment data");
+		
+		// Verify that attendee2 from DL is present in the appointment
+        AppointmentItem actualB = AppointmentItem.importFromSOAP(account2, "subject:("+ apptSubject +")");
+		ZAssert.assertEquals(actualB.getSubject(), apptSubject, "Subject: Verify the appointment data");
+		ZAssert.assertStringContains(actualB.getAttendees(), distribution.EmailAddress, "Attendees: Verify the appointment data");
+		
+		ZimbraAccount.AccountA().soapSend(
+				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
+			+		"<query>subject:("+ apptSubject +")</query>"
+			+	"</SearchRequest>");
+		String idActual = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
+		ZAssert.assertNotEqual(idActual, id, "Verify that attendee1 does not receives meeting invitation message again");
+		
+	}
+
 }

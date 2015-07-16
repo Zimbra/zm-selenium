@@ -347,6 +347,10 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	}
 
 	// --------------------- SOAP -----------------------------------
+	public String dApptID() {
+		return (dApptID);
+	}
+
 	public String getSubject() {
 		return (dSubject);
 	}
