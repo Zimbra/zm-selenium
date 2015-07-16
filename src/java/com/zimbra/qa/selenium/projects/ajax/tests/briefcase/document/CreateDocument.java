@@ -16,11 +16,12 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.document;
 
+import java.util.Date;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
-
+import java.text.SimpleDateFormat;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
@@ -426,6 +427,71 @@ public class CreateDocument extends FeatureBriefcaseTest {
 
 		ZAssert.assertStringContains(text, docText,
 				"Verify document text through GUI");
+	}
+
+	@Bugs(ids="81299")
+	@Test(description = "Create document using New menu pulldown menu - verify through SOAP & RestUtil", groups = { "functional" })
+	public void CreateDocument_05() throws HarnessException {
+		ZimbraAccount account = app.zGetActiveAccount();
+
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
+				SystemFolder.Briefcase);
+
+		// Create document item
+		DocumentItem document = new DocumentItem();
+		Date date = new Date();
+		String docName = document.getName();
+		String docText = document.getDocText();
+
+		// refresh briefcase page before creating a new document
+		app.zTreeBriefcase
+				.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
+
+		SleepUtil.sleepVerySmall();
+
+		// Create a new document using New pull down menu
+		DocumentBriefcaseNew documentBriefcaseNew = (DocumentBriefcaseNew) app.zPageBriefcase
+				.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_DOCUMENT,
+						document);
+
+		try {
+			app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
+
+			// Fill out the document with the data
+			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name,
+					docName);
+			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Body,
+					docText);
+
+			// Save and close
+			//app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
+
+			documentBriefcaseNew.zSubmit();
+		} finally {
+			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
+		}
+
+		app.zPageBriefcase.zWaitForWindowClosed(DocumentBriefcaseNew.pageTitle);
+
+		// refresh briefcase page
+		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
+
+		// Search for created document
+		account
+				.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>"
+						+ "<query>" + docName + "</query>" + "</SearchRequest>");
+
+		String name = account.soapSelectValue("//mail:doc", "name");
+		String modifiedDate = account.soapSelectValue("//mail:doc", "cd");
+		Date modDate = new Date(Long.parseLong(modifiedDate));
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		
+		ZAssert.assertNotNull(name, "Verify the search response returns the document name");
+		ZAssert.assertStringContains(docName, name, "Verify document name through SOAP");
+		ZAssert.assertEquals(dateFormat.format(modDate), dateFormat.format(date), "modified date is displayed correctly");
+		
+		// delete file upon test completion
+		app.zPageBriefcase.deleteFileByName(docName);
 	}
 	
 	@AfterMethod(groups = { "always" })
