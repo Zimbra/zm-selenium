@@ -23,6 +23,7 @@ import org.openqa.selenium.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.touch.ui.*;
 import com.zimbra.qa.selenium.staf.Driver;
 
@@ -126,7 +127,10 @@ public class PageMail extends AbsTab {
 
 		public static final String zYesWarningDialog			= "css=div[id='ext-sheet-1'] div[id^='ext-button'] span:contains('Yes')";	
 		public static final String zNoWarningDialog			= "css=div[id^='ext-sheet-1'] div[id^='ext-button'] span:contains('No')";
-
+		
+		public static final String zQuickReplySend		= "css=div[id='ext-button-8'] span:contains('Send')";
+	
+	
 		public static class CONTEXT_MENU {
 			public static String stringToReplace = "<ITEM_NAME>";
 			public static final String zDesktopContextMenuItems = new StringBuffer("css=table[class$='MenuTable'] td[id$='_title']:contains(")
@@ -378,7 +382,12 @@ public class PageMail extends AbsTab {
 			locator = Locators.zNoWarningDialog;
 			page = this;
 
-		}else {
+		}else if ( button == Button.B_SEND ) {
+			locator = Locators.zQuickReplySend;
+			page = this;
+
+		}
+		else {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 
@@ -1855,5 +1864,50 @@ public class PageMail extends AbsTab {
 		this.zWaitForBusyOverlay();
 
 	}
+	
 
+	/**
+	 * Set the "Quick Reply" content
+	 * @param reply The text to set the content area as
+	 * @throws HarnessException
+	 */
+	public void zFillField(Field field, String value) throws HarnessException {
+
+		tracer.trace("Set "+ field +" to "+ value);
+
+		String locator = null;
+
+		if ( field == Field.Body ) {
+
+			locator = "css=div[id='ext-textareainput-1'] textarea[id='ext-element-88']";
+
+		} else {
+
+			throw new HarnessException("not implemented for field " + field);
+
+		}
+
+		if ( locator == null ) {
+			throw new HarnessException("locator was null for field "+ field);
+		}
+
+		// Default behavior, enter value into locator field
+		//
+
+		// Make sure the button exists
+		if ( !this.sIsElementPresent(locator) )
+			throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
+
+		// Seems that the client can't handle filling out the new mail form too quickly
+		// Click in the "To" fields, etc, to make sure the client is ready
+		this.sFocus(locator);
+		this.zClick(locator);
+		this.zWaitForBusyOverlay();
+
+		// Enter text
+		this.sType(locator, value);
+
+		this.zWaitForBusyOverlay();
+
+	}
 }
