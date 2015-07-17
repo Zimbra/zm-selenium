@@ -540,18 +540,20 @@ public class FormMailNew extends AbsForm {
 				throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
 			
 			// Seems that the client can't handle filling out the new mail form too quickly
-			// Click in the "To" fields, etc, to make sure the client is ready
+			// Click in the "To" fields, etc, to make sure the client is readybody143712287407910enus14371228710998@testdomain.com
 			this.sFocus(locator);
 			this.zClick(locator);
 			this.zWaitForBusyOverlay();
 
 			// Enter text
-			this.sType(locator, value);
+		//	this.sType(locator, value);
+			this.zKeyboard.zTypeCharacters(value);
+			SleepUtil.sleepMedium();
 			//this.sTypeKeys(locator, "\t");
 			// For some reason, no bubble takes place.  As a workaround, type Enter			
 			//this.zKeyDown("13");
 			this.sKeyDown(locator, "13");
-			//SleepUtil.sleepMedium();
+			SleepUtil.sleepMedium();
 			this.zWaitForBusyOverlay();
 
 			return;
