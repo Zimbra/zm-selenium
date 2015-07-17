@@ -17,13 +17,13 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.file;
 
 import org.testng.annotations.Test;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FileItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.Shortcut;
-
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -330,4 +330,78 @@ public class DeleteFile extends FeatureBriefcaseTest {
 		ZAssert.assertFalse(app.zPageBriefcase.isPresentInListView(fileName),
 				"Verify file was deleted through GUI");		
 	}
+
+	@Bugs(ids = "46889")
+	@Test(description = "Cannot delete uploaded file if it was already deleted once before", groups = { "functional" })
+	public void DeleteFile_05() throws HarnessException {
+		ZimbraAccount account = app.zGetActiveAccount();
+
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
+				SystemFolder.Briefcase);
+
+		// Create file item
+		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+				+ "/data/public/other/testtextfile.txt";
+
+		FileItem fileItem = new FileItem(filePath);
+
+		String fileName = fileItem.getName();
+
+		// Upload file to server through RestUtil
+		String attachmentId = account.uploadFile(filePath);
+
+		// Save uploaded file to briefcase through SOAP
+		account.soapSend(
+		"<SaveDocumentRequest xmlns='urn:zimbraMail'>" +
+		"<doc l='" + briefcaseFolder.getId() + "'>" +
+		"<upload id='" + attachmentId + "'/>" +
+		"</doc>" +
+		"</SaveDocumentRequest>");
+
+		// refresh briefcase page
+		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
+		SleepUtil.sleepSmall();
+		
+		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
+
+		DialogConfirm deleteConfirm = (DialogConfirm) app.zPageBriefcase
+				.zToolbarPressButton(Button.B_DELETE, fileItem);
+
+		deleteConfirm.zClickButton(Button.B_YES);
+
+		app.zTreeBriefcase
+				.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
+
+		ZAssert.assertFalse(app.zPageBriefcase.isPresentInListView(fileName),
+				"Verify document was deleted through GUI");
+		
+		// Re-Upload file to server through RestUtil
+		String attachId = account.uploadFile(filePath);
+
+		// Save uploaded file to briefcase through SOAP
+		account.soapSend(
+		"<SaveDocumentRequest xmlns='urn:zimbraMail'>" +
+		"<doc l='" + briefcaseFolder.getId() + "'>" +
+		"<upload id='" + attachId + "'/>" +
+		"</doc>" +
+		"</SaveDocumentRequest>");
+
+		// refresh briefcase page
+		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
+		SleepUtil.sleepSmall();
+		
+		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
+
+		DialogConfirm deleteConfirm2 = (DialogConfirm) app.zPageBriefcase
+				.zToolbarPressButton(Button.B_DELETE, fileItem);
+
+		deleteConfirm2.zClickButton(Button.B_YES);
+
+		app.zTreeBriefcase
+				.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
+
+		ZAssert.assertFalse(app.zPageBriefcase.isPresentInListView(fileName),
+				"Verify document was deleted through GUI");		
+	}
+
 }
