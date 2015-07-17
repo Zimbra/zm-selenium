@@ -301,6 +301,7 @@ public class Button {
 	public static final Button B_OPEN_IN_SEPARATE_WINDOW = new Button("B_OPEN_IN_SEPARATE_WINDOW");
 	public static final Button B_LAUNCH_IN_SEPARATE_WINDOW = new Button("B_LAUNCH_IN_SEPARATE_WINDOW");
 	public static final Button O_SEND_AS_ATTACHMENT = new Button("O_SEND_AS_ATTACHMENT");
+	public static final Button O_RESTORE_AS_CURRENT_VERSION = new Button("O_RESTORE_AS_CURRENT_VERSION");
 	public static final Button O_SEND_LINK = new Button("O_SEND_LINK");
 	public static final Button O_EDIT = new Button("O_EDIT");
 	public static final Button O_OPEN = new Button("O_OPEN");

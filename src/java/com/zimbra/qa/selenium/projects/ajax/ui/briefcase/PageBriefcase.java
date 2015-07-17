@@ -97,6 +97,7 @@ public class PageBriefcase extends AbsTab {
 		public static final Locators zEditMenuDisabled = new Locators("css=div[id='zm__Briefcase'] div[id='zmi__Briefcase__EDIT_FILE']");
 		public static final String zSendLinkMenu = "css=div[id='zm__Briefcase'] td[id='zmi__Briefcase__SEND_FILE_title']";
 		public static final String zSendAsAttachmentsMenu = "css=div[id='zm__Briefcase'] td[id='zmi__Briefcase__SEND_FILE_AS_ATT_title']";
+		public static final String zRestoreAsCurrentVersion = "css=div[id='zm__Briefcase'] td[id='zmi__Briefcase__RESTORE_VERSION_title']";
 		public static final String zCheckInFileMenu = "css=div[id='zm__Briefcase'] td[id='zmi__Briefcase__CHECKIN_title']";
 		public static final String zDiscardCheckoutMenu = "css=div[id='zm__Briefcase'] td[id='zmi__Briefcase__DISCARD_CHECKOUT_title']";
 		public static final String zMoveMenu = "css=div[id='zm__Briefcase'] td[id='zmi__Briefcase__MOVE_title']";
@@ -970,6 +971,12 @@ public class PageBriefcase extends AbsTab {
 							(DocumentItem) item);
 				} else
 					page = null;
+			} else if(option == Button.O_RESTORE_AS_CURRENT_VERSION){
+				
+					optionLocator = Locators.zRestoreAsCurrentVersion;
+
+					page = null;
+
 
 			} else if (option == Button.O_OPEN) {
 				
@@ -1607,8 +1614,47 @@ public class PageBriefcase extends AbsTab {
 	@Override
 	public AbsPage zListItem(Action action, Button option, String subject)
 			throws HarnessException {
-		throw new HarnessException("implement me! : action=" + action
-				+ " option=" + option + " subject=" + subject);
+		if (action == null)
+			throw new HarnessException("action cannot be null");
+		if (option == null)
+			throw new HarnessException("button cannot be null");
+		if (subject == null)
+			throw new HarnessException("subject cannot be null or blank");
+
+		tracer.trace(action + " then " + option + " on briefcase item = "
+				+ subject);
+
+		logger.info(myPageName() + " zListItem(" + action + ", " + option
+				+ ", " + subject + ")");
+
+		AbsPage page = null;
+
+		if (action == Action.A_RIGHTCLICK) {
+
+			zWaitForElementPresent(subject);
+
+			// Right-Click on the item
+			this.zRightClickAt(subject, "0,0");
+
+			// Now the ContextMenu is opened
+			// Click on the specified option
+			String optionLocator = null;
+
+			if (option == Button.O_RESTORE_AS_CURRENT_VERSION){
+				
+
+					optionLocator = Locators.zRestoreAsCurrentVersion;
+
+					page = null;
+
+			}	
+			this.zClick(optionLocator);
+		}
+
+		// If the app is busy, wait for it to become active
+		zWaitForBusyOverlay();
+		return(page);
+
 	}
 
 	@Override
