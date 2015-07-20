@@ -16,11 +16,15 @@
  */
 package com.zimbra.qa.selenium.projects.touch.ui.contacts;
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.util.*;
+
 import org.apache.log4j.LogManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -37,6 +41,9 @@ public class PageAddressbook extends AbsTab {
 		public static final String PlusIcon		= "css=span[class$='x-button-icon x-shown add']";
 		public static final String EditIcon		= "css=div[id='ext-appview-2'] div[id^='ext-lefttitlebar'] div[id^='ext-button'] span[class$='x-button-icon x-shown edit']";
 		public static final String MenuIcon     = "css=div[id='ext-appview-2'] div[id^='ext-lefttitlebar'] div[id^='ext-button'] span[class$='x-button-icon x-shown arrow_down']";
+		public static final String SearchContact     = "css=div[id='ext-container-21'] input";
+	
+		
 	}	
 	
 	public static class CONTEXT_MENU {
@@ -1517,4 +1524,30 @@ public class PageAddressbook extends AbsTab {
 	private boolean zIsInSearchView() throws HarnessException {
 		return zIsVisiblePerPosition("css=div#z_filterPanel__SR-Contacts-1",0,0);		 
 	}
+
+
+	public void zSearchContact(Button button, String searchText) throws HarnessException{
+		
+		String locator = null;
+		
+		if ( button == Button.B_SEARCH) {
+			
+			locator = Locators.SearchContact;
+
+		} else {
+			throw new HarnessException("Button "+ button +" not yet implemented");
+		}
+
+		// Default behavior.  Click the locator
+		SleepUtil.sleepMedium();
+		sClickAt(locator, ""); 
+        sType(locator, searchText);
+        sFocus(locator); 
+        SleepUtil.sleepMedium();
+        String keyCode = "13";
+		zKeyDown(keyCode);
+        SleepUtil.sleepMedium();
+	    
+	}
+	
 }
