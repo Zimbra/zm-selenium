@@ -110,6 +110,7 @@ public class PageMail extends AbsTab {
 		public static final String zCreateFilterMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id^='ADD_TO_FILTER_RULE'] table tbody tr[id^='POPUP_ADD_TO_FILTER_RULE']";
 		public static final String zFromHdrAddressBubble = "css=div[id='zv__TV-main__MSG'] table[id='zv__TV-main__MSG_headerElement'] tr[id^='OBJ_PREFIX_DWT'][id$='_from'] span[class^='addrBubble']>span";
 		public static final String zAttachdropdown ="css=div[id='zb__COMPOSE-1___attachments_btn'] table tbody tr td[id='zb__COMPOSE-1___attachments_btn_dropdown']>div";
+		public static final String zAddFilterMsgHdrContextMenu ="css=div[id^='POPUP'] td[id$='_title']:contains('New Filter')";
 		
 		public static final String zAttachMailMenu ="css=div[class='DwtMenu'] td div[id^='DWT'] td[id$='_title']:contains('Mail')";
 		public static final String zAttachContactMenu = "css=div[class='DwtMenu'] td div[id^='DWT'] td[id$='_title']:contains('Contacts')";
@@ -2277,6 +2278,7 @@ public class PageMail extends AbsTab {
 	public void CreateFilterMsgHdrContextMenu() throws HarnessException {
 		this.sFocus(Locators.zCreateFilterMsgHdrContextMenu);
 		this.sClickAt(Locators.zCreateFilterMsgHdrContextMenu, "");
+		this.sClickAt(Locators.zAddFilterMsgHdrContextMenu,"");
 
 	}
 	
