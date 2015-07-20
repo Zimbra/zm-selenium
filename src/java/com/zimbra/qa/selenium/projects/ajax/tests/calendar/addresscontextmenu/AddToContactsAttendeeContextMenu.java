@@ -46,7 +46,10 @@ public class AddToContactsAttendeeContextMenu extends PrefGroupMailByMessageTest
 		SleepUtil.sleepMedium();
 
 		app.zPageMail.sFocus("css=input[id$='_FIRST_input']");
-		app.zPageMail.sType("css=input[id$='_FIRST_input']", contactFirst);
+		app.zPageMail.zClick("css=input[id$='_FIRST_input']");
+		app.zPageMail.zKeyboard.zTypeCharacters(contactFirst);
+		SleepUtil.sleepSmall();
+	//	app.zPageMail.sType("css=input[id$='_FIRST_input']", contactFirst);
 		app.zPageMail.sClickAt(FormContactNew.Toolbar.SAVE, "");
 		SleepUtil.sleepMedium();
 
