@@ -256,7 +256,8 @@ public class PageSearch extends AbsTab {
 		//
 		
 		if ( pulldown == Button.B_SEARCHTYPE ) {
-			pulldownLocator = "css=td#ztb_search_searchMenuButton";
+			//pulldownLocator = "css=td#ztb_search_searchMenuButton";
+			pulldownLocator = "css=div[id='zb__Search__MENU'] td[id='zb__Search__MENU_dropdown']>div";
 			
 			if ( option == Button.O_SEARCHTYPE_ALL ) {        
 				optionLocator = "css=div#zmi__Search__ANY";						
@@ -288,7 +289,7 @@ public class PageSearch extends AbsTab {
 						
 			// Make sure the locator exists
 			if ( !this.sIsElementPresent(pulldownLocator) ) {
-				throw new HarnessException("Button "+ pulldown +" option "+ option +" pulldownLocator "+ pulldownLocator +" not present!");
+//				throw new HarnessException("Button "+ pulldown +" option "+ option +" pulldownLocator "+ pulldownLocator +" not present!");
 			}
 			
 			this.zClick(pulldownLocator);
@@ -317,9 +318,7 @@ public class PageSearch extends AbsTab {
 			
 			// If we click on pulldown/option and the page is specified, then
 			// wait for the page to go active
-			if ( page != null ) {
-				page.zWaitForActive();
-			}
+			
 			
 			if (!zIsSearchType(option)) {
 				throw new HarnessException("Not able to change search type "+ option ); 
