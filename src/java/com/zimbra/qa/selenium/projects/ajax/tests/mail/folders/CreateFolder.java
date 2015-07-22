@@ -52,6 +52,10 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 		
 		createFolderDialog.zEnterFolderName(_folderName);
 		createFolderDialog.zClickButton(Button.B_OK);
+		
+		SleepUtil.sleepMedium();
+		//Explicitly click on Inbox folder due to bug 100506
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox));
 
 
 		// Make sure the folder was created on the ZCS server
@@ -80,6 +84,10 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 		// TODO: does a folder in the tree need to be selected?
 		dialog.zEnterFolderName(name);
 		dialog.zClickButton(Button.B_OK);
+		
+		SleepUtil.sleepMedium();
+		//Explicitly click on Inbox folder due to bug 100506
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox));
 
 		// Make sure the folder was created on the server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),name);
@@ -105,6 +113,10 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 
 		createFolderDialog.zEnterFolderName(_folderName);
 		createFolderDialog.zClickButton(Button.B_OK);
+		
+		SleepUtil.sleepMedium();
+		//Explicitly click on Inbox folder due to bug 100506
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox));
 
 
 		// Make sure the folder was created on the ZCS server
@@ -133,6 +145,10 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 		// TODO: does a folder in the tree need to be selected?
 		dialog.zEnterFolderName(name);
 		dialog.zClickButton(Button.B_OK);
+		
+		SleepUtil.sleepMedium();
+		//Explicitly click on Inbox folder due to bug 100506
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox));
 
 		// Make sure the folder was created on the server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),name);
@@ -148,7 +164,7 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 			groups = { "functional" },
 			dataProvider = "DataProviderSupportedCharsets")
 	public void CreateFolder_05(ZCharset charset, String foldername) 
-	throws HarnessException 
+			throws HarnessException 
 	{
 
 
@@ -159,12 +175,15 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 		// TODO: does a folder in the tree need to be selected?
 		dialog.zEnterFolderName(foldername);
 		dialog.zClickButton(Button.B_OK);
+		SleepUtil.sleepMedium();
+		//Explicitly click on Inbox folder due to bug 100506
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox));
 
 		// Make sure the folder was created on the server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),foldername);
 		ZAssert.assertNotNull(folder, "Verify the new folder was created");
 		ZAssert.assertEquals(folder.getName(), foldername, "Verify the server and client folder names match for charset "+ charset);
-		
+
 	}
 
 
