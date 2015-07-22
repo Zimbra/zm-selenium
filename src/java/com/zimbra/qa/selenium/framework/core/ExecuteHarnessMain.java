@@ -591,24 +591,31 @@ public class ExecuteHarnessMain {
 
 			SleepMetrics.report();
 			
-			if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")).contains("lab.zimbra.com") && 
-					!ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".emailTo", ZimbraSeleniumProperties.getStringProperty("emailTo")).contains("qa-automation@zimbra.com")) {
+			if (!ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".emailTo", ZimbraSeleniumProperties.getStringProperty("emailTo")).contains("qa-automation@zimbra.com")) {
 				
 				String isWebDriver = "";
 				if (ZimbraSeleniumProperties.isWebDriver()) {
 					isWebDriver = " | WebDriver";
 				}
 				
+				String project = classfilter.toString().replace("com.zimbra.qa.selenium.", "").replace("projects.", "");
+				project = project.substring(0, 1).toUpperCase() + project.substring(1);
+				String[] projectSplit = project.split(".tests.");
+				
+				String suite = groups.toString().replace("always, ", "").replace("[", "").replace("]", "").trim();
+				if (suite.equals("sanity,smoke,functional") || suite.equals("sanity, smoke, functional")) {
+					suite = "Full";
+				}
+				suite = suite.substring(0, 1).toUpperCase() + suite.substring(1);
+				
 				SendEmail.main(new String[] {
-					"Selenium: " + ZimbraSeleniumProperties.zimbraGetVersionString() + " | " +
-					classfilter.toString().replace("com.zimbra.qa.selenium.", "") + " | " +
-					"Groups: " + groups.toString().replace("always, ", "").replace("[", "").replace("]", "").trim() + " | " +
+					"Selenium: " + projectSplit[0] + " " + suite + " | " +
+					ZimbraSeleniumProperties.zimbraGetVersionString() + " (" + ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")).replace(".eng.zimbra.com", "").replace(".lab.zimbra.com", "") + ")" + " | " +
 					"Total Tests: " + String.valueOf(testsTotal) +
 					" (Passed: " + String.valueOf(testsPass) +
 					", Failed: " + String.valueOf(testsFailed) +
 					", Skipped: " + String.valueOf(testsSkipped) + ")" + " | " +
-					"Client: " + ZimbraSeleniumProperties.getLocalHost() + " | " +
-					"Server: " + ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")).replace(".lab.zimbra.com", "") +
+					ZimbraSeleniumProperties.getLocalHost() +
 					isWebDriver,
 					currentResultListener.getCustomResult(),
 					testoutputfoldername + "\\TestNG\\emailable-report.html",
@@ -985,9 +992,8 @@ public class ExecuteHarnessMain {
 			StringBuilder bugzillaBody = new StringBuilder();
 			StringBuilder formatter = new StringBuilder();
 			
-			String machineName, resultDirectory = null, resultRootDirectory = null, labURL, seleniumProject;
+			String machineName, resultDirectory = null, resultRootDirectory = null, labResultURL, seleniumProject;
 			String zimbraTestNGResultsJar = "c:/opt/qa/BugReports/zimbratestngresults.jar";
-			String labMachines = "pnq-zqa101 pnq-zqa102 pnq-zqa103 pnq-zqa104 pnq-zqa105 pnq-zqa106 pnq-zqa107 pnq-zqa108 pnq-zqa109 pnq-zqa110 pnq-zqa057 pnq-zqa058 pnq-zqa059 pnq-zqa060 pnq-zqa061";
 
 			machineName = getLocalMachineName().replace(".corp.telligent.com", "").replace(".lab.zimbra.com", "");
 			emailBody.append("Selenium Automation Report: ").append(ZimbraSeleniumProperties.zimbraGetVersionString() + "_" + ZimbraSeleniumProperties.zimbraGetReleaseString()).append('\n').append('\n');
@@ -1015,9 +1021,9 @@ public class ExecuteHarnessMain {
 				seleniumProject = resultDirectory.split("\\.")[1].toLowerCase();
 			}
 						
-			if (labMachines.contains(machineName)) {
-				labURL = "http://pnq-zqa075.lab.zimbra.com/qa/selenium/machines/" + machineName + "/" + seleniumProject + "/" + resultDirectory;
-				emailBody.append("Lab Result URL :  ").append(labURL).append('\n').append('\n');
+			if (machineName.contains("pnq-")) {
+				labResultURL = "http://pnq-zqa075.lab.zimbra.com/qa/selenium/machines/" + machineName + "/" + seleniumProject + "/" + resultDirectory;
+				emailBody.append("Lab Result URL :  ").append(labResultURL).append('\n').append('\n');
 			}
 			
 			emailBody.append("Total Tests    :  ").append(testsTotal).append('\n');
