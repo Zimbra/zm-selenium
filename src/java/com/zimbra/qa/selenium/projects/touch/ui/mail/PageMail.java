@@ -129,6 +129,7 @@ public class PageMail extends AbsTab {
 		public static final String zNoWarningDialog			= "css=div[id^='ext-sheet-1'] div[id^='ext-button'] span:contains('No')";
 		
 		public static final String zQuickReplySend		= "css=div[id='ext-button-8'] span:contains('Send')";
+		public static final String zNavigatetoSubfolder		= "css=div[class='x-unsized x-list-disclosure']";
 	
 	
 		public static class CONTEXT_MENU {
