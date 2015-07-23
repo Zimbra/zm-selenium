@@ -41,6 +41,8 @@ public class PageAddressbook extends AbsTab {
 		public static final String PlusIcon		= "css=span[class$='x-button-icon x-shown add']";
 		public static final String EditIcon		= "css=div[id='ext-appview-2'] div[id^='ext-lefttitlebar'] div[id^='ext-button'] span[class$='x-button-icon x-shown edit']";
 		public static final String MenuIcon     = "css=div[id='ext-appview-2'] div[id^='ext-lefttitlebar'] div[id^='ext-button'] span[class$='x-button-icon x-shown arrow_down']";
+		public static final String MenuIconMount     = "css=div[id^='ext-appview'] div[id^='ext-lefttitlebar'] div[id^='ext-button'] span[class$='arrow_down']";
+
 		public static final String SearchContact     = "css=div[id='ext-container-21'] input";
 	
 		
@@ -435,7 +437,6 @@ public class PageAddressbook extends AbsTab {
 
 		if ( button == Button.B_REFRESH ) {
 			
-			//TODO There is no refresh button. So we need to implement some othrer way. 
 			return (((AppTouchClient)this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
 			
 		} else if ( button == Button.B_NEW ) {
@@ -638,6 +639,98 @@ public class PageAddressbook extends AbsTab {
 	    return page;
 	}
 
+	public AbsPage zToolbarPressPulldownMount(Button pulldown, Button option) throws HarnessException {
+		logger.info(myPageName() + " zToolbarPressButtonWithPulldown("+ pulldown +", "+ option +")");
+
+		tracer.trace("Click pulldown "+ pulldown +" then "+ option);
+
+		if ( pulldown == null )
+			throw new HarnessException("Button cannot be null!");
+
+		SleepUtil.sleepSmall();
+		
+		String pulldownLocator = null;	// If set, this will be expanded
+		String optionLocator = null;	// If set, this will be clicked
+		AbsPage page = null;	// If set, this page will be returned
+	   
+		if ( pulldown == Button.B_TAG ) {
+		
+	      if ( option == Button.O_TAG_NEWTAG ) {
+
+	         pulldownLocator = "css=td#zb__CNS-main__TAG_MENU_dropdown div.ImgSelectPullDownArrow";
+	         optionLocator = "css=td#contacts_newtag_title";
+	         
+	         page = null;
+
+	      } 
+		   
+	   } else if ( pulldown == Button.B_ACTIONS ) {
+		   
+		   pulldownLocator = Locators.MenuIconMount;
+		   
+		   if ( option == Button.B_DELETE) {			 
+			    optionLocator="css=div[id^='ext-listitem'] div[id^='ext-element']:contains('Delete')";
+			    page = this;
+		   } else if (option == Button.B_MOVE){
+			    optionLocator="css=div[id^='ext-listitem'] div[id^='ext-element']:contains('Move')";
+		        page = new MoveContactView(this.MyApplication);
+		   } else if (option == Button.B_TAG){
+			    optionLocator="css=div[id^='ext-listitem'] div[id^='ext-element']:contains('Tag')";
+		        page = new TagContactView(this.MyApplication);
+		   }
+	   }
+	 
+	// Default behavior
+		if ( pulldownLocator != null ) {
+						
+			// Make sure the locator exists
+			if ( !sIsElementPresent(pulldownLocator) ) {
+				throw new HarnessException("Button "+ pulldown +" option "+ option +" pulldownLocator "+ pulldownLocator +" not present!");
+			}
+
+			//central coordinate "x,y" 
+			//String center= sGetElementWidth(pulldownLocator)/2 + "," + sGetElementHeight(pulldownLocator)/2;
+			if ( this.zIsBrowserMatch(BrowserMasks.BrowserMaskIE)){
+			 				 
+				// TODO check if the following code make the test case CreateContactGroup.GroupOfNewEmail() pass in wdc			
+			    	/*
+			    	sGetEval("return var evObj = document.createEventObject();" 
+						+ "var x = selenium.browserbot.findElementOrNull('" + pulldownLocator + "');"
+						+ "x.focus();x.blur();x.fireEvent('onclick');");
+			    	*/
+				//the following code failed in wdc, but pass in my machine :
+				sClickAt(pulldownLocator,"");
+			}
+			else {
+			    //others
+			    zClickAt(pulldownLocator,"");
+			}
+			
+			zWaitForBusyOverlay();
+			
+			if ( optionLocator != null ) {
+             	// Make sure the locator exists and visible
+				zWaitForElementPresent(optionLocator);
+					
+				if (!zIsElementDisabled(optionLocator)) {
+				   zClick(optionLocator);
+				   zWaitForBusyOverlay();
+				}
+
+			}
+			
+			// If we click on pulldown/option and the page is specified, then
+			// wait for the page to go active
+			if ( page != null ) {
+				//sWaitForPageToLoad();
+				page.zWaitForActive();
+			}
+			
+		}
+	    return page;
+	}
+
+	
 	public AbsPage zSelectContact(String contact) throws HarnessException {
 		logger.info(myPageName() + " zSelectContact("+ contact +")");
 

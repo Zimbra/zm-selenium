@@ -8,7 +8,6 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
 import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
 
 	public class CancelMoveMessage extends PrefGroupMailByMessageTest{
