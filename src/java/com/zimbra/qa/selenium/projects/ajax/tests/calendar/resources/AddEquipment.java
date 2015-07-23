@@ -17,13 +17,18 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 
 import java.util.Calendar;
+import java.util.List;
+
 import org.testng.annotations.*;
+
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.AutocompleteEntry;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindEquipment;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators;
 
 public class AddEquipment extends CalendarWorkWeekTest {	
@@ -73,7 +78,17 @@ public class AddEquipment extends CalendarWorkWeekTest {
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zClickAt(Locators.ShowEquipmentLink,"");
         apptForm.zFill(appt);
-        SleepUtil.sleepMedium();
+		List<AutocompleteEntry> entries = apptForm.zAutocompleteFillField(Field.Equipment, apptEquipment);
+		AutocompleteEntry found = null;
+		for (AutocompleteEntry entry : entries) {
+			if ( entry.getAddress().contains(apptEquipment) ) {
+				found = entry;
+				break;
+			}
+		}
+		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
+		apptForm.zAutocompleteSelectItem(found);
+        ZAssert.assertTrue(apptForm.zVerifyEquipment(apptEquipment), "Verify appointment equipment");
 		apptForm.zSubmit();
         apptForm.zToolbarPressButton(Button.B_SEND);
         SleepUtil.sleepVeryLong(); // test fails while checking free/busy status, waitForPostqueue is not sufficient here

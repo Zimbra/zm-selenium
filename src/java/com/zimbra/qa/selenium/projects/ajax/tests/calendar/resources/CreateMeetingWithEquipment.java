@@ -17,6 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 
 import java.util.Calendar;
+import java.util.List;
 
 import org.testng.annotations.Test;
 
@@ -25,7 +26,9 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.AutocompleteEntry;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 
 public class CreateMeetingWithEquipment extends CalendarWorkWeekTest {
 
@@ -69,6 +72,17 @@ public class CreateMeetingWithEquipment extends CalendarWorkWeekTest {
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
+		List<AutocompleteEntry> entries = apptForm.zAutocompleteFillField(Field.Equipment, apptEquipment1);
+		AutocompleteEntry found = null;
+		for (AutocompleteEntry entry : entries) {
+			if ( entry.getAddress().contains(apptEquipment1) ) {
+				found = entry;
+				break;
+			}
+		}
+		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
+		apptForm.zAutocompleteSelectItem(found);
+        ZAssert.assertTrue(apptForm.zVerifyEquipment(apptEquipment1), "Verify appointment equipment");
 		apptForm.zSubmit();
 		SleepUtil.sleepVeryLong(); // test fails while checking free/busy status, waitForPostqueue is not sufficient here
         // Tried sleepLong() as well but although fails so using sleepVeryLong()

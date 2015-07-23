@@ -18,12 +18,17 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.d
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
+
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.AutocompleteEntry;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 
 public class CreateAppointment extends AjaxCommonTest {
 
@@ -79,8 +84,8 @@ public class CreateAppointment extends AjaxCommonTest {
 		// Create appointment data
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
-		
 		AppointmentItem appt = new AppointmentItem();
+			
 		
 		String apptSubject, apptAttendee1, apptOptional1, apptLocation1, apptEquipment1, apptContent;
 		Calendar now = Calendar.getInstance();
@@ -103,6 +108,17 @@ public class CreateAppointment extends AjaxCommonTest {
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
+		List<AutocompleteEntry> entries = apptForm.zAutocompleteFillField(Field.Equipment, apptEquipment1);
+		AutocompleteEntry found = null;
+		for (AutocompleteEntry entry : entries) {
+			if ( entry.getAddress().contains(apptEquipment1) ) {
+				found = entry;
+				break;
+			}
+		}
+		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
+		apptForm.zAutocompleteSelectItem(found);
+        ZAssert.assertTrue(apptForm.zVerifyEquipment(apptEquipment1), "Verify appointment equipment");
 		apptForm.zSubmit();
 			
 		// Verify appointment exists on the server
