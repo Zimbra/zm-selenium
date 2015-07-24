@@ -17,6 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.file;
 
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FileItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -33,6 +35,8 @@ public class DisplayFile extends FeatureBriefcaseTest {
 		logger.info("New " + DisplayFile.class.getCanonicalName());
 
 		super.startingPage = app.zPageBriefcase;		
+		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
+		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 	}
 
 	@Test(description = "Upload file through RestUtil - verify through GUI", groups = { "smoke" })
@@ -69,4 +73,39 @@ public class DisplayFile extends FeatureBriefcaseTest {
 		// ZAssert.assertTrue(present, "Verify document name through GUI");
 
 	}
+
+	@Bugs(ids = "79994")
+	@Test(description = " german umlauts breaks briefcase", groups = { "functional" })
+	public void DisplayFile_02() throws HarnessException {
+		ZimbraAccount account = app.zGetActiveAccount();
+
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
+				SystemFolder.Briefcase);
+
+		// Create file item
+		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+				+ "/data/public/other/testäöütest.txt";
+
+		String subject = "test???test.txt";
+
+		// Upload file to server through RestUtil
+		String attachmentId = account.uploadFile(filePath);
+
+		// Save uploaded file to briefcase through SOAP
+		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>"
+				+ "<doc l='" + briefcaseFolder.getId() + "'><upload id='"
+				+ attachmentId + "'/></doc></SaveDocumentRequest>");
+
+		// refresh briefcase page
+		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
+
+		// Verify document is created
+		String name = app.zPageBriefcase.getItemNameFromListView(subject);
+		ZAssert.assertStringContains(name, subject, "Verify file name through GUI");
+		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, subject);
+		
+		
+
+	}
+	
 }

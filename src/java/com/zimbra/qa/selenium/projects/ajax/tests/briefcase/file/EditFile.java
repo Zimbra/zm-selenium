@@ -285,8 +285,6 @@ public class EditFile extends FeatureBriefcaseTest {
 		String file1Path = ZimbraSeleniumProperties.getBaseDirectory()
 				+ "/data/public/other/restoreversion.txt";
 
-		//FileItem file1Item = new FileItem(file1Path);
-		//FileItem file2Item = new FileItem(file2Path);
 		String notesV1 = "notesVersion1" + ZimbraSeleniumProperties.getUniqueString();
 		String notesV2 = "notesVersion2" + ZimbraSeleniumProperties.getUniqueString();
 		String nodeCollapsed = "css=div[id^=zlif__BDLV-main__] div[class='ImgNodeCollapsed']";
@@ -328,4 +326,64 @@ public class EditFile extends FeatureBriefcaseTest {
         ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent("css=tr[id^='zlif__BDLV-main__'] div[id^='zlif__BDLV-main__']:contains('#3: " + notesV1 + "')"), "'Notes' is restored");
 
 	}
+
+	@Bugs(ids = "74644")
+	@Test(description = "Cannot rename the file's latest version", groups = { "functional" })
+	public void EditFile_06() throws HarnessException {
+		ZimbraAccount account = app.zGetActiveAccount();
+
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
+				SystemFolder.Briefcase);
+
+		// Create file item
+		String file1Path = ZimbraSeleniumProperties.getBaseDirectory()
+				+ "/data/public/other/restoreversion.txt";
+
+		String notesV1 = "notesVersion1" + ZimbraSeleniumProperties.getUniqueString();
+		String notesV2 = "notesVersion2" + ZimbraSeleniumProperties.getUniqueString();
+		String nodeCollapsed = "css=div[id^=zlif__BDLV-main__] div[class='ImgNodeCollapsed']";
+		String nodeExpanded = "css=div[id^=zlif__BDLV-main__] div[class='ImgNodeExpanded']";
+		String locator = "css=tr[id^='zlif__BDLV-main__'] div[id^='zlif__BDLV-main__']:contains('#2:')";
+		// Upload file to server through RestUtil
+		String attachment1Id = account.uploadFile(file1Path);
+		String attachment2Id = account.uploadFile(file1Path);
+
+		// Save uploaded file to briefcase through SOAP
+		account.soapSend(
+				"<SaveDocumentRequest xmlns='urn:zimbraMail'>" +
+				"<doc desc='" + notesV1 + "' l='" + briefcaseFolder.getId() + "'>" +
+				"<upload id='" + attachment1Id + "'/>" + 
+				"</doc></SaveDocumentRequest>");
+		String file1Id = account.soapSelectValue("//mail:doc", "id");
+
+		account.soapSend(
+				"<SaveDocumentRequest xmlns='urn:zimbraMail'>" +
+				"<doc desc='" + notesV2 + "' ver='1' l='" + briefcaseFolder.getId() + "' id='" + file1Id + "'>" +
+				"<upload id='" + attachment2Id + "'/>" +
+				"</doc>" +
+				"</SaveDocumentRequest>");
+
+		// refresh briefcase page
+		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
+		
+		if (!app.zPageBriefcase.sIsElementPresent(nodeExpanded)) {
+			app.zPageBriefcase.zClickAt(nodeCollapsed, "");
+		}
+		
+		// Right click on File, select Rename
+		app.zPageBriefcase.zListItem(Action.A_RIGHTCLICK, Button.B_RENAME, locator);
+
+		String fileName2 = "renameFile"
+				+ ZimbraSeleniumProperties.getUniqueString();
+
+		app.zPageBriefcase.rename(fileName2);
+		app.zPageBriefcase.zClick("css=div[id='zl__BDLV-main__rows']");	
+
+		// Verify document name through GUI
+		ZAssert.assertTrue(app.zPageBriefcase.waitForPresentInListView(fileName2),
+				"Verify new file name through GUI");
+
+
+	}
+
 }

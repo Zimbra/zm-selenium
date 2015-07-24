@@ -1607,8 +1607,70 @@ public class PageBriefcase extends AbsTab {
 	@Override
 	public AbsPage zListItem(Action action, String name)
 			throws HarnessException {
-		throw new HarnessException("implement me! : action = " + action
-				+ " name = " + name);
+		// Validate the arguments
+		if ((action == null) || (name == null)) {
+			throw new HarnessException("Must define an action and item");
+		}
+
+		tracer.trace(action + " on briefcase item = " + name);
+
+		logger.info(myPageName() + " zListItem(" + action + ", " + name
+				+ ")");
+
+		AbsPage page = null;
+		String listLocator = "//div[contains(@id,'zl__BDLV')]";
+		String itemLocator = listLocator + "//div[contains(@id,'zli__BDLV') and contains(@class,'Row')]";
+		//String itemNameLocator = itemLocator + " div:contains(" + itemName + ")";
+		String itemNameLocator = listLocator + "//*[contains(@id,'zlif__BDLV') and contains(text(),'" 
+		+ name + "')]";
+
+		if (!this.sIsElementPresent(itemLocator))
+			throw new HarnessException("List View Rows is not present "
+					+ itemLocator);
+
+		if (action == Action.A_LEFTCLICK) {
+			zWaitForElementPresent(itemNameLocator);
+
+			// Left-Click on the item
+			this.zClickAt(itemNameLocator, "0,0");
+
+			// page = new DocumentPreview(MyApplication);
+
+		}  else if (action == Action.A_BRIEFCASE_CHECKBOX) {
+			zWaitForElementPresent(itemNameLocator);
+
+			String checkBoxLocator = "";
+			String itemIndexLocator = "";
+			int count = sGetXpathCount(itemLocator);
+
+			for (int i = 1; i <= count; i++) {
+			    itemIndexLocator = itemLocator + "[position()=" + i + "]";
+			    if (sIsElementPresent(itemIndexLocator + "//*[contains(text(),'" + name + "')]")) {
+				checkBoxLocator = itemIndexLocator + "//div[contains(@id,'zlif__BDLV')]/div[contains(@class,'ImgCheckbox')]";
+				break;
+			    }
+			}
+
+			if (!this.sIsElementPresent(checkBoxLocator)){							
+				throw new HarnessException("Checkbox locator is not present "
+						+ checkBoxLocator);
+			}
+			
+			String image = this.sGetAttribute(checkBoxLocator + "@class");
+
+			if (!image.equals("ImgCheckboxChecked")){
+				// Left-Click on the Check box field
+				this.zClickAt(checkBoxLocator, "0,0");
+			}else{
+				logger.error("Trying to mark check box, but it was already enabled");
+			}
+			// No page to return
+			page = null;
+
+			// FALL THROUGH
+
+		}
+		return (page);
 	}
 
 	@Override
@@ -1640,7 +1702,14 @@ public class PageBriefcase extends AbsTab {
 			// Click on the specified option
 			String optionLocator = null;
 
-			if (option == Button.O_RESTORE_AS_CURRENT_VERSION){
+			if (option == Button.B_RENAME) {
+
+				optionLocator = Locators.zRenameMenu;
+
+				page = null;
+			}
+
+			else if (option == Button.O_RESTORE_AS_CURRENT_VERSION){
 				
 
 					optionLocator = Locators.zRestoreAsCurrentVersion;
