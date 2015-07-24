@@ -39,7 +39,11 @@ public class PageAddressbook extends AbsTab {
 
 	public static class Locators {
 		public static final String PlusIcon		= "css=span[class$='x-button-icon x-shown add']";
-		public static final String EditIcon		= "css=div[id='ext-appview-2'] div[id^='ext-lefttitlebar'] div[id^='ext-button'] span[class$='x-button-icon x-shown edit']";
+		//public static final String EditIcon		= "css=div[id='ext-appview-2'] div[id^='ext-lefttitlebar'] div[id^='ext-button'] span[class$='x-button-icon x-shown edit']";
+		//public static final String EditIcon		= "css=div[id='ext-appview-2'] div[ class$='x-layout-box'] div[id^='ext-button'] span[class$='x-button-icon x-shown edit']";
+		public static final String EditIcon = "css=div[id^='ext-appview'][class='x-container x-layout-card-item x-sized'] div[ class$='x-layout-box'] div[id^='ext-button'] span[class='x-button-icon x-shown edit']";
+
+		
 		public static final String MenuIcon     = "css=div[id='ext-appview-2'] div[id^='ext-lefttitlebar'] div[id^='ext-button'] span[class$='x-button-icon x-shown arrow_down']";
 		public static final String MenuIconMount     = "css=div[id^='ext-appview'] div[id^='ext-lefttitlebar'] div[id^='ext-button'] span[class$='arrow_down']";
 
@@ -512,7 +516,7 @@ public class PageAddressbook extends AbsTab {
 		if ( pulldown == null )
 			throw new HarnessException("Button cannot be null!");
 
-		SleepUtil.sleepSmall();
+		//SleepUtil.sleepSmall();
 		
 		String pulldownLocator = null;	// If set, this will be expanded
 		String optionLocator = null;	// If set, this will be clicked
