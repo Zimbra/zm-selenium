@@ -998,8 +998,8 @@ public class ExecuteHarnessMain {
 			machineName = getLocalMachineName().replace(".corp.telligent.com", "").replace(".lab.zimbra.com", "");
 			emailBody.append("Selenium Automation Report: ").append(ZimbraSeleniumProperties.zimbraGetVersionString() + "_" + ZimbraSeleniumProperties.zimbraGetReleaseString()).append('\n').append('\n');
 
-			emailBody.append("Client  :  ").append(getLocalMachineName()).append('\n');
-			emailBody.append("Server  :  ").append(ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host"))).append('\n').append('\n');
+			emailBody.append("Client  :  ").append(getLocalMachineName().replace(".lab.zimbra.com", "")).append('\n');
+			emailBody.append("Server  :  ").append(ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host").replace(".lab.zimbra.com", ""))).append('\n').append('\n');
 
 			emailBody.append("Browser :  ").append(ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser", ZimbraSeleniumProperties.getStringProperty("browser"))).append('\n');
 			emailBody.append("Pattern :  ").append(classfilter.toString().replace("com.zimbra.qa.selenium.", "")).append('\n');
