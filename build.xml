@@ -69,7 +69,7 @@
 
 	<target name="compile" depends="build-init,data-files,bundles-jar,coverage-jar,compile-ZimbraNative,compile-ZimbraCommon" description="Compiles the source code">
 		<echo message="compiling framework..." />
-		<javac destdir="${build.classes.dir}" debug="true" classpathref="class.path" nowarn="on">
+		<javac destdir="${build.classes.dir}" debug="true" classpathref="class.path" nowarn="on" encoding="iso-8859-1">
 			<src refid="all.java.path" />
 		</javac>
 	</target>
