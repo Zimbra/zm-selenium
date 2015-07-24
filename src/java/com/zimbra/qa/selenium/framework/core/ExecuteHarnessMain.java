@@ -1022,7 +1022,7 @@ public class ExecuteHarnessMain {
 			}
 						
 			if (machineName.contains("pnq-")) {
-				labResultURL = "http://pnq-zqa075.lab.zimbra.com/qa/selenium/machines/" + machineName + "/" + seleniumProject + "/" + resultDirectory;
+				labResultURL = "http://pnq-tms.lab.zimbra.com/qa/selenium/machines/" + machineName + "/" + seleniumProject + "/" + resultDirectory;
 				emailBody.append("Lab Result URL :  ").append(labResultURL).append('\n').append('\n');
 			}
 			
