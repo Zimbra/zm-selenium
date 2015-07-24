@@ -32,7 +32,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest{
 	}
 
 	@Test( description = "Verify user can delete email on mount point with manager rights",
-			groups = { "functional" })
+			groups = { "smoke" })
 
 	public void DeleteMail_01() throws HarnessException  {
 
@@ -73,8 +73,6 @@ public class DeleteMail extends PrefGroupMailByMessageTest{
 						+			"</content>"
 						+		"</m>"
 						+	"</AddMsgRequest>");
-
-		//MailItem mail = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
 
 		// Mount it
 		app.zGetActiveAccount().soapSend(
