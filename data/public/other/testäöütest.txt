@@ -1,0 +1,29 @@
+Bug 43488 - Delete and Move action issue while selecting multiple appointments from list view
+
+Bug 59718 - Invite in UTC time is one hour off
+
+Bug 68381 - Removing attendee from scheduler doesn't work properly -- probably a bug, neha verified
+
+Bug 79994 - german umlauts breaks briefcase
+
+Bug 46371 - Briefcase linking problems upon renames
+
+Bug 56743 - Shared Briefcase subfolder's files cannot be access
+
+Bug 74644 - cannot rename the file's latest version
+
+Bug 80600 - JS error on selecting briefcase subfolder in the list vie...
+
+Bug 76043 - Create appointment in HTML mode with large content will f...
+
+Bug 46416 - Shared root and Calendar: appointment visibility issues
+
+Bug 47629 - HTML view of Public Shared Calendar not showing Appointments
+
+Bug 49386 - Script error when searching in calendar list view
+
+Bug 49924 - Direct link for Zimbra calendar fails when no calendars a...
+
+Bug 50096 - Appt. invite received from primary account though externa...
+
+Bug 58104 - Blank row added in f/b scheduler after removing and addin...
