@@ -1497,7 +1497,12 @@ public class PageMail extends AbsTab {
 				this.zClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Move_Message;
 				page = null;
+				
+			} else if (option == Button.B_MOVE_CONVERSATION) {
 
+				this.zClickAt(pulldownLocatorActionItem,"");
+				optionLocator = Locators.Move_Message;
+				page = null;
 				// FALLTHROUGH
 
 			} else if (option == Button.B_TAG_MESSAGE) {
