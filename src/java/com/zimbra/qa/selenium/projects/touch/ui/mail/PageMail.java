@@ -1880,7 +1880,8 @@ public class PageMail extends AbsTab {
 
 		if ( field == Field.Body ) {
 
-			locator = "css=div[id='ext-textareainput-1'] textarea[id='ext-element-88']";
+			locator = "css=div[class='x-unsized x-field-input x-has-height'] textarea[id^='ext-element-']";
+			 
 
 		} else {
 
