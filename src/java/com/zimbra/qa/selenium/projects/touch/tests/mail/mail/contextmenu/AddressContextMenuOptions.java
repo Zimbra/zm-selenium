@@ -31,7 +31,7 @@ public class AddressContextMenuOptions extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test(	description = "Click from bubble address>>Verify AddtoContact/Newmessage/Search menus", 
-			groups = { "test" })
+			groups = { "sanity" })
 	
 	public void AcceptMeeting_01() throws HarnessException {
 
