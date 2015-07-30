@@ -88,7 +88,9 @@ public class DisplayMail extends AbsDisplay {
 		OnBehalfOfLabel,
 		Bcc,			// Does this show in any mail views?  Maybe in Sent?
 		Subject,
-		Body
+		Body,
+		Organizer,
+		Invitee
 	}
 	
 	public String ContainerLocator = Locators.MessageViewPreviewAtBottomCSS;

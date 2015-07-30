@@ -23,7 +23,8 @@ import org.openqa.selenium.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
+import com.zimbra.qa.selenium.projects.touch.ui.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.touch.ui.*;
 import com.zimbra.qa.selenium.staf.Driver;
 
@@ -130,6 +131,14 @@ public class PageMail extends AbsTab {
 		
 		public static final String zQuickReplySend		= "css=div[id='ext-button-8'] span:contains('Send')";
 		public static final String zNavigatetoSubfolder		= "css=div[class='x-unsized x-list-disclosure']";
+		
+		public static final String zOrganizerHdrAddressBubble = "css=div[class='zcs-msg-body-text'] table[class='zcs-invite'] span[class='zcs-contact-name']:first-child";
+		public static final String zInviteeHdrAddressBubble = "css=div[class='zcs-msg-body-text'] table[class='zcs-invite'] span[class='zcs-contact-name']:nth-child(2)";
+		public static final String zFromHdrAddressBubble			= "css=div[class='x-innerhtml'] div[class='zcs-msgHdr-fromContainer'] span[class='zcs-msgHdr-fromBubble']"; 
+		
+		public static final String zAddToContactMsgHdrContextMenu= "css=div[class='x-dock-body'] div[class='x-innerhtml']:contains('Add to Contacts')";
+		public static final String zNewMessageMsgHdrContextMenu			= "css=div[class='x-dock-body'] div[class='x-innerhtml']:contains('New Message')";
+		public static final String zSeachMsgHdrContextMenu			= "css=div[class='x-dock-body'] div[class='x-innerhtml']:contains('Search')";
 	
 	
 		public static class CONTEXT_MENU {
@@ -1917,4 +1926,98 @@ public class PageMail extends AbsTab {
 		this.zWaitForBusyOverlay();
 
 	}
+	
+	
+	public void zClickAddressBubble(Field field) throws HarnessException {
+		if (field == Field.From) {
+			SleepUtil.sleepMedium();
+			this.sFocus(Locators.zFromHdrAddressBubble);
+			this.sClick(Locators.zFromHdrAddressBubble);
+			this.zClick(Locators.zFromHdrAddressBubble);
+			SleepUtil.sleepMedium();
+		} else if (field == Field.Organizer) {
+			SleepUtil.sleepMedium();
+			this.sFocus(Locators.zOrganizerHdrAddressBubble);
+			this.sClick(Locators.zOrganizerHdrAddressBubble);
+			this.zClick(Locators.zOrganizerHdrAddressBubble);
+			SleepUtil.sleepMedium();
+		}
+		
+
+	}
+	
+	public AbsPage zMsgHdrContextListItem(Button option) throws HarnessException {
+		logger.info(myPageName() + " zMsgHdrContextListItem("+ option +")");
+
+		tracer.trace(option);
+
+		// Default behavior variables
+
+		AbsPage page = null; // If set, this page will be returned
+		String optionLocator = null;
+		
+		// Now the ContextMenu is opened
+		// Click on the specified option
+
+		if ( option == Button.B_ADD_TO_CONTACTS) {
+			optionLocator = Locators.zAddToContactMsgHdrContextMenu ;
+			page = null;
+
+			// FALLTHROUGH
+		} else if(option == Button.B_NEW_MAIL) {
+			optionLocator = Locators.zNewMessageMsgHdrContextMenu;
+			page = null; 
+
+			// FALLTHROUGH
+		}else if(option == Button.B_SEARCH) {
+			optionLocator = Locators.zSeachMsgHdrContextMenu;
+			page = null;	
+		}
+		
+		this.zClickAt(optionLocator,"");
+		SleepUtil.sleepMedium();
+
+
+		this.zWaitForBusyOverlay();
+		// FALL THROUGH
+
+		if ( page != null ) {
+			page.zWaitForActive();
+		}
+		// Default behavior
+		return (page);	
+	}
+	
+	public boolean zVerifyAllAddressContextMenu(String app)throws HarnessException {
+
+		List<String> locators = new ArrayList<String>();
+
+		if (app == "calendar") {
+			locators = Arrays.asList(Locators.zAddToContactMsgHdrContextMenu,
+					Locators.zNewMessageMsgHdrContextMenu,
+					Locators.zSeachMsgHdrContextMenu);
+
+		} else if (app == "MessageHeader") {
+			locators = Arrays.asList(Locators.zAddToContactMsgHdrContextMenu,
+					Locators.zNewMessageMsgHdrContextMenu,
+					Locators.zSeachMsgHdrContextMenu);
+
+		} else {
+
+			locators = Arrays.asList(Locators.zAddToContactMsgHdrContextMenu,
+					Locators.zNewMessageMsgHdrContextMenu,
+					Locators.zSeachMsgHdrContextMenu);
+		}
+
+		for (String locator : locators) {
+			if (!this.sIsElementPresent(locator))
+				return (false);
+
+		}
+
+		return (true);
+
+	}
+
+	
 }
