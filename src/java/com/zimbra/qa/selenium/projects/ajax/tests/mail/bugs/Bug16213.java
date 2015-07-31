@@ -18,7 +18,9 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.bugs;
 
 import java.io.File;
 import java.util.HashMap;
+
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -66,9 +68,8 @@ public class Bug16213 extends AjaxCommonTest {
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
 
-		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
-		ZAssert.assertEquals(display.zGetMailProperty(Field.From), from, "Verify the default string for 'From' is 'Unknown'");
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);				
+		ZAssert.assertEquals(app.zPageMail.sGetText("css=div[id='zv__TV-main'] div[id='zl__TV-main'] ul[id='zl__TV-main__rows'] div[class^='TopRow'] div span").trim(), from, "Verify the default string for 'From' is 'Unknown'");
 
 	}
 
