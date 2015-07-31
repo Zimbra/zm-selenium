@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import org.testng.annotations.*;
 
 import com.zimbra.qa.selenium.framework.items.*;
+import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
@@ -91,7 +92,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	
 	public void CreateMailText_02(Shortcut shortcut, String keys) throws HarnessException {
 		
-		
+		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
@@ -108,6 +109,8 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		// Send the message
 		mailform.zFill(mail);
 		mailform.zSubmit();
+		
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
 
 		// From the receipient end, make sure the message is received
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mail.dSubject +")");
