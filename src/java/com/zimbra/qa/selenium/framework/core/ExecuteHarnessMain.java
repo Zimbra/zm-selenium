@@ -606,7 +606,7 @@ public class ExecuteHarnessMain {
 				if (suite.equals("sanity,smoke,functional") || suite.equals("sanity, smoke, functional")) {
 					suite = "Full";
 				}
-				suite = suite.substring(0, 1).toUpperCase() + suite.substring(1);
+				suite = suite.substring(0, 1).toUpperCase() + suite.substring(1).replace(".tests", "");
 				
 				SendEmail.main(new String[] {
 					"Selenium: " + projectSplit[0] + " " + suite + " | " +
@@ -1001,7 +1001,7 @@ public class ExecuteHarnessMain {
 			emailBody.append("Client  :  ").append(getLocalMachineName().replace(".lab.zimbra.com", "")).append('\n');
 			emailBody.append("Server  :  ").append(ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host").replace(".lab.zimbra.com", ""))).append('\n').append('\n');
 
-			emailBody.append("Browser :  ").append(ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser", ZimbraSeleniumProperties.getStringProperty("browser"))).append('\n');
+			emailBody.append("Browser :  ").append(ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser", ZimbraSeleniumProperties.getStringProperty("browser")).replace("*", "")).append('\n');
 			emailBody.append("Pattern :  ").append(classfilter.toString().replace("com.zimbra.qa.selenium.", "")).append('\n');
 			emailBody.append("Groups  :  ").append(groups.toString().replace("always, ", "").trim().replace("[", "").replace("]", "")).append('\n');
 			if (ZimbraSeleniumProperties.isWebDriver()) {
