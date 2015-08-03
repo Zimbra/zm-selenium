@@ -17,7 +17,9 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newtab;
 
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderMountpointItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -29,6 +31,8 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.TreeMail.Locators;;
+
 
 
 public class OpenInTabSharedMailFolders extends PrefGroupMailByMessageTest {
@@ -119,6 +123,8 @@ public class OpenInTabSharedMailFolders extends PrefGroupMailByMessageTest {
 		String foldername = "tabmountfolder" + ZimbraSeleniumProperties.getUniqueString();
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String locator= "css=div[id^='zti__main_Mail'] span:contains("+ foldername +")";
+		String OpenInTab = "css=div[id='ZmActionMenu_mail_FOLDER'] div[id^='OPEN_IN_TAB'] td[id$='_title']";
 		
 		FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox);
 		
@@ -127,7 +133,7 @@ public class OpenInTabSharedMailFolders extends PrefGroupMailByMessageTest {
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + inbox.getId() + "'/>"
 				+	"</CreateFolderRequest>");
-		
+	
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), foldername);
 		
 		// Share it
@@ -168,11 +174,13 @@ public class OpenInTabSharedMailFolders extends PrefGroupMailByMessageTest {
 		// Expand mountpoint folder
 		app.zTreeMail.zTreeItem(Action.A_TREE_EXPAND, mountpoint);
 		
-		FolderItem folder1 = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), foldername);
+		//Click on subfolder
+		SleepUtil.sleep(5000);
+		app.zTreeMail.zRightClickAt(locator,"");
 		
-		// Right click on folder, select "Open in Tab"
-		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_OPENTAB, folder1);
-		
+		//Click on Open in tab option
+		app.zTreeMail.zClickAt(OpenInTab, "");
+				
 		// Wait for the page
 		SleepUtil.sleep(5000);
 		
