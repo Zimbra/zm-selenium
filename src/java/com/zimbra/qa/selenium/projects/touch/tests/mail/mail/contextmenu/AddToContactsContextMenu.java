@@ -138,7 +138,7 @@ public class AddToContactsContextMenu extends CalendarWorkWeekTest {
 
 		// Click on To address bubble
 		SleepUtil.sleepMedium();
-		app.zPageMail.zClickAddressBubble(Field.To);
+		app.zPageMail.zClickAddressBubble(Field.From);
 		
 		// Click on add to contacts option
 		app.zPageMail.zMsgHdrContextListItem(Button.B_ADD_TO_CONTACTS);

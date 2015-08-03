@@ -17,7 +17,9 @@
 package com.zimbra.qa.selenium.projects.touch.tests.mail.mail.contextmenu;
 
 import java.util.*;
+
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.core.*;
@@ -71,7 +73,7 @@ public class SearchContextMenu extends CalendarWorkWeekTest {
 
 		// Click on To address bubble
 		SleepUtil.sleepMedium();
-		app.zPageMail.zClickAddressBubble(Field.To);
+		app.zPageMail.zClickAddressBubble(Field.From);
 
 		//Click on search option
 		app.zPageMail.zMsgHdrContextListItem(Button.B_SEARCH);
