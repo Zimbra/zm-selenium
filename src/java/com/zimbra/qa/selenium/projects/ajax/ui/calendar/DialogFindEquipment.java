@@ -34,7 +34,7 @@ public class DialogFindEquipment extends DialogWarning {
 	public static class Locators {
 		public static final String EquipmentPickerSerach="css=div[class='DwtDialog'] td[id$='_title']:contains('Search')";
 		public static final String SelectEquipmentFromPicker="css=div[class='DwtDialog'] td[id$='DwtChooserButton_1_title']:contains('Add')";
-		public static final String AddEquipmentFromPicker="css=div[class='DwtDialog']  td[id^='OK'] td[id$='_button2_title']";
+		public static final String AddEquipmentFromPicker="css=div[class='DwtDialog'] td[id='ZmAttendeePicker_EQUIPMENT_button2_title']";
 	}
 
 	@Override
@@ -92,12 +92,6 @@ public class DialogFindEquipment extends DialogWarning {
 		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 		this.zWaitForBusyOverlay();
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-			
-		}
 
 		// This dialog could send messages, so wait for the queue
 		if ( waitForPostfix ) {

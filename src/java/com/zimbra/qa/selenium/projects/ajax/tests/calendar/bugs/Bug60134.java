@@ -54,6 +54,10 @@ public void Bug60134_01() throws HarnessException {
     	      equipment.ZimbraId + "</id>" + 
     	      "<a n='description'>" + equipmentDescription + "</a>" + 
     	      "</ModifyCalendarResourceRequest>");
+    
+	ZimbraDomain domain = new ZimbraDomain(equipment.EmailAddress.split("@")[1]);
+	domain.provision();
+	domain.syncGalAccount();
 
 	// Absolute dates in UTC zone
 	String tz = ZTimeZone.TimeZoneEST.getID();
@@ -80,7 +84,7 @@ public void Bug60134_01() throws HarnessException {
     
     // Add equipment from 'Search Equipment' dialog and send the meeting
     FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-    apptForm.zClick(Locators.ShowEquipmentLink);
+    apptForm.sClick(Locators.ShowEquipmentLink);
     apptForm.zToolbarPressButton(Button.B_EQUIPMENT);
     
     DialogFindEquipment dialogFindEquipment = (DialogFindEquipment) new DialogFindEquipment(app, app.zPageCalendar);
@@ -90,6 +94,7 @@ public void Bug60134_01() throws HarnessException {
     dialogFindEquipment.zClickButton(Button.B_SELECT_EQUIPMENT);
     dialogFindEquipment.zClickButton(Button.B_OK);
     apptForm.zSubmit();
+    SleepUtil.sleepVeryLong();
 
     // Verify equipment present in the appointment
     AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

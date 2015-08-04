@@ -149,8 +149,8 @@ public class FormApptNew extends AbsForm {
 
 		public static final String AddAttendees = "css=td[id$='_title']:contains('Attendees:')";
 		public static final String AddOptiponalAttendees = "css=td[id$='_title']:contains('Optional:')";
-		public static final String EquipmentName= "css=div[class='DwtDialog'] div[id$='_content'] table tr td:nth-child(2) input";
-		public static final String EquipmentDescription= "css=div[class='DwtDialog'] div[id$='_content'] table tr:nth-child(3) td:nth-child(2) input";
+		public static final String EquipmentName= "css=div[class='DwtDialog'] div[id='ZmAttendeePicker_EQUIPMENT_content'] table tr td:nth-child(2) input ";
+		public static final String EquipmentDescription= "css=div[class='DwtDialog'] div[id='ZmAttendeePicker_EQUIPMENT_content'] table tr:nth-child(3) td:nth-child(2) input";
 		public static final String ToolbarOptions= "css=td[id='zb__APPT-1__COMPOSE_OPTIONS_title']";
 		public static final String RequestResponse= "css=td[id$='_title']:contains('Request Responses')";
 		public static final String ConflictResourceNote = "css= div[id$='_location_status']:contains('One or more locations are not available at the selected time')";

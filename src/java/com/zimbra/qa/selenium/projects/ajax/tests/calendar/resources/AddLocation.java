@@ -46,7 +46,7 @@ public class AddLocation extends CalendarWorkWeekTest {
 	}
 	
 	@Test(description = "Search Location and add into existing meeting invite",
-			groups = { "functional" })
+			groups = { "smoke" })
 	public void AddLocation_01() throws HarnessException {
 		
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
@@ -175,7 +175,11 @@ public class AddLocation extends CalendarWorkWeekTest {
 	    	      location.ZimbraId + "</id>" + 
 	    	      "<a n='displayName'>" + locationName + "</a>" + 
 	    	      "</ModifyCalendarResourceRequest>");
-
+	    
+		ZimbraDomain domain = new ZimbraDomain(location.EmailAddress.split("@")[1]);
+		domain.provision();
+		domain.syncGalAccount();
+		
 		// Absolute dates in UTC zone
 		String tz = ZTimeZone.TimeZoneEST.getID();
 		Calendar now = this.calendarWeekDayUTC;

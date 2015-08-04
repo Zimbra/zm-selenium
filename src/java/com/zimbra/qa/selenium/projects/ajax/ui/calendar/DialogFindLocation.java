@@ -35,7 +35,7 @@ public class DialogFindLocation extends DialogWarning {
 
 		public static final String LocationPickerSerach="css=div[class='DwtDialog'] td[id$='_title']:contains('Search')";
 		public static final String SelectLocationFromPicker="css=div[class='DwtDialog'] td[id$='_title']:contains('Select')";
-		public static final String AddLocationFromPicker="css=div[class='DwtDialog']  td[id^='OK'] td[id$='_button2_title']";
+		public static final String AddLocationFromPicker="css=div[class='DwtDialog']  td[id='ZmAttendeePicker_LOCATION_button2_title']";
 	}
 
 	@Override
@@ -92,13 +92,6 @@ public class DialogFindLocation extends DialogWarning {
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();
 		
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-			
-		}
-
 		// This dialog could send messages, so wait for the queue
 		if ( waitForPostfix ) {
 			Stafpostqueue sp = new Stafpostqueue();

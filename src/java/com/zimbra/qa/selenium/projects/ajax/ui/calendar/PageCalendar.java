@@ -173,7 +173,7 @@ public class PageCalendar extends AbsTab {
 		public static final String MoveToolbar = "css=td[id='zb__CLD__MOVE_MENU_left_icon']";
 		public static final String MoveFolderOption = "css=div[class='ZmFolderChooser'] div[class='DwtTreeItemLevel1ChildDiv'] td[class='DwtTreeItem-Text']:contains('";  // append the foldername and close the parenthesis
 		public static final String MoveToNewFolderOption = "css=div[id='ZmMoveButton_CAL'] div[id='ZmMoveButton_CAL|NEWFOLDER']";
-		public static final String LocationName= "css=div[class='DwtDialog'] div[id$='_content'] table tr td:nth-child(2) input";
+		public static final String LocationName= "css=div[class='DwtDialog'] div[id='ZmAttendeePicker_LOCATION_content'] table tr td:nth-child(2) input";
 		public static final String zAttachmentsLabel= "css= tr[id$='_attachment_container'] fieldset[class='ZmFieldset']:contains('Attachments')";
 		
 		public static final String NextPage = "css=div[id='zb__CAL__Nav__PAGE_FORWARD'] div[class='ImgRightArrow']";

@@ -39,7 +39,7 @@ public class AddEquipment extends CalendarWorkWeekTest {
 	}
 	
 	@Test(description = "Add Equipment to existing appointment by typing equipment name and verify F/B",
-			groups = { "functional" })
+			groups = { "smoke" })
 	public void AddEquipment_01() throws HarnessException {
 		
 		// Create a meeting
@@ -137,7 +137,8 @@ public class AddEquipment extends CalendarWorkWeekTest {
         
         // Add equipment from 'Search Equipment' dialog and send the meeting
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-        apptForm.zClick(Locators.ShowEquipmentLink);
+        apptForm.sClick(Locators.ShowEquipmentLink);
+        //apptForm.zClick(Locators.ShowEquipmentLink);
         apptForm.zToolbarPressButton(Button.B_EQUIPMENT);
         
         DialogFindEquipment dialogFindEquipment = (DialogFindEquipment) new DialogFindEquipment(app, app.zPageCalendar);
