@@ -174,8 +174,8 @@ public class VerifyDisabledUI extends CalendarWorkWeekTest {
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, apptSubject);
 		ZAssert.assertTrue(app.zPageCalendar.zVerifyDisabledControl(Button.O_FORWARD_DISABLED), "Verify 'Forward' menu is disabled");
 		ZAssert.assertTrue(app.zPageCalendar.zVerifyDisabledControl(Button.O_MOVE_DISABLED), "Verify 'Move' menu is disabled");
-		ZAssert.assertTrue(app.zPageCalendar.zVerifyDisabledControl(Button.O_CREATE_A_COPY_DISABLED), "Verify 'Create a copy' menu is disabled");
-		ZAssert.assertTrue(app.zPageCalendar.zVerifyDisabledControl(Button.O_SHOW_ORIGINAL_DISABLED), "Verify 'Show Original' menu is disabled");
+		//ZAssert.assertTrue(app.zPageCalendar.zVerifyDisabledControl(Button.O_CREATE_A_COPY_DISABLED), "Verify 'Create a copy' menu is disabled");
+		//ZAssert.assertTrue(app.zPageCalendar.zVerifyDisabledControl(Button.O_SHOW_ORIGINAL_DISABLED), "Verify 'Show Original' menu is disabled");
 		
 	}
 	
