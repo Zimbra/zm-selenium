@@ -148,6 +148,7 @@ public class PageCalendar extends AbsTab {
 		public static final String CalendarViewFreeBusyDivID	= "zv__CLFB";
 
 		public static final String CalendarViewListCSS			= "css=div[id^='" + CalendarViewListDivID + "']";
+		public static final String CalendarViewSearchListCSS	= "css=div[id^='" + CalendarViewListDivID + "__DWT']";
 		public static final String CalendarViewDayCSS			= "css=div#"+ CalendarViewDayDivID;
 		public static final String CalendarViewWeekCSS			= "css=div#"+ CalendarViewWeekDivID;
 		public static final String CalendarViewWorkWeekCSS		= "css=div#"+ CalendarViewWorkWeekDivID;
@@ -2535,6 +2536,43 @@ public class PageCalendar extends AbsTab {
 
 	}
 
+	private List<AppointmentItem> zSearchListGetAppointmentsListView() throws HarnessException {
+		List<AppointmentItem> items = new ArrayList<AppointmentItem>();
+
+		String divLocator = "css=div[id='zl__CLL__rows']";
+		String listLocator = divLocator +">div[id^='zli__CLL__']";
+
+		// Make sure the div exists
+		if ( !this.sIsElementPresent(divLocator) ) {
+			throw new HarnessException("List View Rows is not present: " + divLocator);
+		}
+
+		// If the list doesn't exist, then no items are present
+		if ( !this.sIsElementPresent(listLocator) ) {
+			// return an empty list
+			return (items);
+		}
+
+		// How many items are in the table?
+		int count = this.sGetCssCount(listLocator);
+		logger.debug(myPageName() + " zListGetAppointmentsListView: number of appointments: "+ count);
+
+		// Get each conversation's data from the table list
+		for (int i = 1; i <= count-1; i++) {
+
+			// Add the new item to the list
+			AppointmentItem item = parseListViewRow(listLocator + ":nth-of-type("+ i +")");
+			items.add(item);
+			logger.info(item.prettyPrint());
+
+		}
+
+		// Return the list of items
+		return (items);
+
+	}
+
+	
 	private AppointmentItem parseAppointmentRow(String rowLocator) throws HarnessException {
 
 		/**
@@ -2895,6 +2933,8 @@ public class PageCalendar extends AbsTab {
 
 		if ( this.zIsVisiblePerPosition(Locators.CalendarViewListCSS, 0, 0) ) {
 			return (zListGetAppointmentsListView());											// LIST
+		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewSearchListCSS, 0, 0) ) {
+			return (zSearchListGetAppointmentsListView());				
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewDayCSS, 0, 0) ) {
 			return (zListGetAppointmentsGeneral(Locators.CalendarViewDayItemCSS));				// DAY
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewWeekCSS, 0, 0) ) {
