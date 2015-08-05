@@ -92,7 +92,8 @@ public class Delete extends CalendarWorkWeekTest {
 		app.zPageCalendar.zSelectFolder(mountPointName);
 		app.zPageCalendar.zGoToToday(startUTC);
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.B_DELETE, apptSubject);
-		
+        app.zPageMail.zClickButton(Button.B_YES);       
+
 		// Verify permission denied dialog
 		ZAssert.assertEquals(app.zPageCalendar.zVerifyPermissionDeniedDialog(), true, "Verify permission denied dialog text");
 		app.zPageCalendar.zPressButton(Button.B_OK);

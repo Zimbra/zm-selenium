@@ -35,7 +35,7 @@ public class Delete extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "95870")
 	@Test(	description = "Assistant selects calendar invite from shared calendar and deletes the invite OBO boss",
-			groups = { "functional" })
+			groups = { "t" })
 
 	public void Delete_01() throws HarnessException {
 		
@@ -85,8 +85,9 @@ public class Delete extends CalendarWorkWeekTest {
 		// Select mounted calendar folder and DECLINE the appointment
 		app.zPageCalendar.zSelectFolder(mountPointName);
 		app.zPageCalendar.zGoToToday(startUTC);
-		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_DELETE, apptSubject);
-		
+	//	app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_DELETE, apptSubject);
+        app.zPageMail.zClickButton(Button.B_YES);       
+
 		// -------------- Verification at organizer side --------------
 		
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.AccountB(), FolderItem.SystemFolder.Inbox).getId();
@@ -233,7 +234,8 @@ public class Delete extends CalendarWorkWeekTest {
 		app.zPageCalendar.zSelectFolder(mountPointName);
 		app.zPageCalendar.zGoToToday(startUTC);
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.B_DELETE, apptSubject);
-				
+        app.zPageMail.zClickButton(Button.B_YES);       
+		
 		// Verify meeting invite is deleted from the shared calendar
 		AppointmentItem sharedAppt = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertNull(sharedAppt, "Verify meeting invite is deleted from the shared calendar");
