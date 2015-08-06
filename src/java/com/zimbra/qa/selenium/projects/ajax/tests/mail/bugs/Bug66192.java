@@ -1,0 +1,60 @@
+/*
+ * ***** BEGIN LICENSE BLOCK *****
+ * Zimbra Collaboration Suite Server
+ * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
+ * 
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <http://www.gnu.org/licenses/>.
+ * ***** END LICENSE BLOCK *****
+ */
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.bugs;
+
+import java.io.File;
+
+import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.ui.*;
+import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
+
+
+public class Bug66192 extends PrefGroupMailByMessageTest {
+
+	public Bug66192() {
+		logger.info("New "+ Bug13911.class.getCanonicalName());
+	}
+
+	@Bugs(	ids = "66192")
+	@Test(	description = "Verify bug 66192: Blank body with JS error on viewing some messages",
+			groups = { "functional" })
+	public void Bug_66192() throws HarnessException {
+
+		
+		String subject = "Fwd: test bug66192";
+		String bodytext = "Kind regards,";
+	
+		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug66192";
+		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
+				
+		// Click Get Mail button
+		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+
+		// Select the message so that it shows in the reading pane
+		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+		String body = display.zGetMailProperty(Field.Body);
+		
+		//Verify body contents
+		ZAssert.assertStringContains(body, bodytext, "Verify the ending text appears");
+
+	}
+}
