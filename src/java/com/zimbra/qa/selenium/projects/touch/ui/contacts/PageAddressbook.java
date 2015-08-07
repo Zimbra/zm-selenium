@@ -48,6 +48,7 @@ public class PageAddressbook extends AbsTab {
 		public static final String MenuIconMount     = "css=div[id^='ext-appview'] div[id^='ext-lefttitlebar'] div[id^='ext-button'] span[class$='arrow_down']";
 
 		public static final String SearchContact     = "css=div[id='ext-container-21'] input";
+		public static final String zNavigationButton	= "css=span[class='x-button-icon x-shown organizer']";
 	
 		
 	}	
@@ -1645,6 +1646,28 @@ public class PageAddressbook extends AbsTab {
 		zKeyDown(keyCode);
         SleepUtil.sleepMedium();
 	    
+	}
+	
+	public AbsPage zTreeItem(Action action, String folderName) throws HarnessException {
+		
+		AbsPage page = null;
+		String locator;
+
+		if ( folderName == null )
+			throw new HarnessException("locator is null for action "+ action);
+
+		if ( action == Action.A_LEFTCLICK ) {
+			locator = "css=div[class='zcs-menu-label']:contains('"+ folderName +"')";
+			
+		} else {
+			throw new HarnessException("Action "+ action +" not yet implemented");
+		}
+
+		sClickAt(locator,"0,0");
+		
+		SleepUtil.sleepMedium();
+
+		return (page);
 	}
 	
 }
