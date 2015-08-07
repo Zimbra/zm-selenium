@@ -16,11 +16,11 @@
  */
 package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts;
 import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.core.Bugs;import com.zimbra.qa.selenium.framework.items.ContactItem;import com.zimbra.qa.selenium.framework.items.FolderItem;import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;import com.zimbra.qa.selenium.framework.ui.Action;import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.ui.contacts.FormContactNew;
 import com.zimbra.qa.selenium.projects.touch.ui.contacts.FormContactNew.Field;
-import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;
+import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;import com.zimbra.qa.selenium.projects.touch.ui.contacts.PageAddressbook.Locators;
 public class CreateContact extends TouchCommonTest  {	
 	public CreateContact() {
 		logger.info("New "+ CreateContact.class.getCanonicalName());
@@ -34,7 +34,7 @@ public class CreateContact extends TouchCommonTest  {
 		String contactFirst = "First" + ZimbraSeleniumProperties.getUniqueString();
 		String contactLast = "Last"+ ZimbraSeleniumProperties.getUniqueString();
 		String contactCompany = "Company"+ ZimbraSeleniumProperties.getUniqueString();
-		//-- GUI Action
+		//-- GUI Action		
 		// Click +(Add) button
 		FormContactNew formContactNew = (FormContactNew)app.zPageAddressbook.zToolbarPressButton(Button.B_NEW);
         // Fill in the form
@@ -173,5 +173,5 @@ public class CreateContact extends TouchCommonTest  {
 		ZAssert.assertEquals(othercountry, contactOtherCountry, "Verify the other country was saved correctly");
 		ZAssert.assertEquals(otherzipcode, contactOtherZipcode, "Verify the other zipcode was saved correctly");
 		ZAssert.assertEquals(workurl, contactWorkUrl, "Verify the work url was saved correctly");
-	}
+	}		@Bugs( ids = "82461")	@Test(description = "Create a contact in emailed contacts folder",			groups = { "functional" })	public void CreateContact_03() throws HarnessException {		//-- DATA				// Generate basic attribute values for new account		String contactFirst = "First" + ZimbraSeleniumProperties.getUniqueString();		String contactLast = "Last"+ ZimbraSeleniumProperties.getUniqueString();		String contactCompany = "Company"+ ZimbraSeleniumProperties.getUniqueString();		String locator = "css=div[class='zcs-menu-label']:contains('Emailed Contacts')";		//-- GUI Action				// Click on emailed contacts folder		app.zPageAddressbook.zClickAt(Locators.zNavigationButton, "");		app.zPageAddressbook.zClickAt(locator, "");				// Click +(Add) button		FormContactNew formContactNew = (FormContactNew)app.zPageAddressbook.zToolbarPressButton(Button.B_NEW);		        // Fill in the form		formContactNew.zFillField(Field.FirstName, contactFirst);		formContactNew.zFillField(Field.LastName, contactLast);		formContactNew.zFillField(Field.Company, contactCompany);		// Click Save button		formContactNew.zSubmit();		//-- Data Verification		// The Emailed Contacts folder		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.EmailedContacts);				//-- Verification                //verify contact deleted        ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #firstname:"+ contactFirst);        ZAssert.assertNotNull(actual, "Verify the contact exists in the emailed contacts folder");        ZAssert.assertEquals(actual.getFolderId(), folder.getId(), "Verify the contact is in the Emailed Contacts");	}
 }
