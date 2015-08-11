@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.compose;
 import org.testng.annotations.*;
 
 import com.zimbra.qa.selenium.framework.items.*;
+import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
@@ -136,6 +137,8 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
 		
+		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+		
 		// Open the new mail form
 		SeparateWindowFormMailNew window = null;
 		
@@ -169,7 +172,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			
 		}
 		
-
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
 
 		// From the receipient end, make sure the message is received
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mail.dSubject +")");
