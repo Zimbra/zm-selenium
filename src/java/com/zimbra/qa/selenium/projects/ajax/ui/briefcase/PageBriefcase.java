@@ -1601,7 +1601,27 @@ public class PageBriefcase extends AbsTab {
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		throw new HarnessException("implement me!  button = " + button);
+		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
+
+		tracer.trace("Press the " + button + " button");
+
+		if (button == null)
+			throw new HarnessException("Button cannot be null!");
+
+		// Default behavior variables
+		//
+
+		// Based on the button specified, take the appropriate action(s)
+		//
+
+		if (button == Button.B_REFRESH) {
+			
+			return (((AppAjaxClient)this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
+			
+
+		} 
+		return (null);
+
 	}
 
 	@Override

@@ -401,7 +401,6 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		
 	}
 	
-	
 	@Test(description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=TRUE",
 			groups = { "functional" })
 			
@@ -519,6 +518,64 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		}	
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "4 plain text");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), fullContent, "Open created appointment again and verify body text");
+		apptForm.zToolbarPressButton(Button.B_CLOSE);
+		
+	}
+	
+	@Bugs(ids = "76043")
+	@Test(description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=TRUE",
+			groups = { "functional" })
+			
+	public void CreateMeetingUsingMessage_09() throws HarnessException {
+		
+		app.zPageMain.zLogout();
+		ZimbraAccount.AccountZWC().soapSend(
+				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
+			+		"<pref name='zimbraPrefComposeFormat'>"+ "html" +"</pref>"
+			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "TRUE" +"</pref>"
+			+	"</ModifyPrefsRequest>");
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		
+		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email16/mime.txt";
+		final String subject = "ZCS 8 triage";
+		final String content = "Dev is aggressively";
+		// Absolute dates in UTC zone
+		Calendar now = this.calendarWeekDayUTC;
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 14, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 14, 30, 0);
+
+		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+
+		// Click to Refresh button
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+
+		// Rt-click to message and hit 'Create Appointment'
+		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
+		dlgAddAttendees.zClickButton(Button.B_YES);
+		
+		FormApptNew apptForm = new FormApptNew(app);
+		apptForm.zFillField(Field.StartDate, startUTC);
+		apptForm.zFillField(Field.EndDate, endUTC);
+		apptForm.zFillField(Field.StartTime, startUTC);
+		apptForm.zFillField(Field.EndTime, endUTC);
+		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
+		apptForm.zToolbarPressButton(Button.B_SEND);
+		
+		// Verify appointment exists on the server
+		app.zGetActiveAccount().soapSend(
+				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
+			+		"<query>subject:("+ subject +")" + " " + "content:(" + content +")</query>"
+			+	"</SearchRequest>");
+		String id = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
+		ZAssert.assertNotNull(id, "Verify meeting invite is not null");
+		
+		// Open appointment again and check from the UI side
+		app.zPageCalendar.zNavigateTo();
+		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists("ZCS 8 triage") == false) {
+			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		}	
+		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "ZCS 8 triage");
+		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), content, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 		
 	}
