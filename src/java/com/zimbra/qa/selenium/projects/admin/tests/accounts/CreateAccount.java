@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.admin.tests.accounts;
 import org.testng.annotations.Test;
 
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
@@ -44,6 +45,8 @@ public class CreateAccount extends AdminCommonTest {
 	 * 2. Verify account is created using SOAP.
 	 * @throws HarnessException
 	 */
+	
+	@Bugs( ids = "100779")
 	@Test(	description = "Create a basic account using New->Account",
 			groups = { "sanity" })
 			public void CreateAccount_01() throws HarnessException {
