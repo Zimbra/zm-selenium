@@ -22,6 +22,7 @@ import java.util.*;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 
@@ -131,7 +132,8 @@ public class DownloadsTab extends AdminCommonTest {
 		
 
 	}
-
+	
+	@Bugs( ids = "100755")
 	@Test(	description = "Verify the downloads links return 200 rather than 404",
 			groups = { "functional" })
 	public void DownloadsTab_02() throws HarnessException {
