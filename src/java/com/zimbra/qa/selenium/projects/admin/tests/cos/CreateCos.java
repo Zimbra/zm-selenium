@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.CosItem;
 import com.zimbra.qa.selenium.projects.admin.ui.WizardCreateCos;
-
+import com.zimbra.qa.selenium.framework.core.Bugs;
 
 public class CreateCos extends AdminCommonTest {
 	
@@ -44,6 +44,8 @@ public class CreateCos extends AdminCommonTest {
 	 * 2. Verify cos is created using SOAP.
 	 * @throws HarnessException
 	 */
+	
+	@Bugs( ids = "100779")
 	@Test(	description = "Create a basic COS",
 			groups = { "sanity" })
 			public void CreateCos_01() throws HarnessException {
