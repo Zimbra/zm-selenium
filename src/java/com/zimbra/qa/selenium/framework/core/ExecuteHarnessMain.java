@@ -609,13 +609,13 @@ public class ExecuteHarnessMain {
 				suite = suite.substring(0, 1).toUpperCase() + suite.substring(1).replace(".tests", "");
 				
 				SendEmail.main(new String[] {
-					"Selenium: " + projectSplit[0] + " " + suite + " | " +
+					"Selenium: " + projectSplit[0].replace(".tests", "") + " " + suite  + " | " +	 
+					ZimbraSeleniumProperties.getLocalHost() + " | " +
 					ZimbraSeleniumProperties.zimbraGetVersionString() + " (" + ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")).replace(".eng.zimbra.com", "").replace(".lab.zimbra.com", "") + ")" + " | " +
 					"Total Tests: " + String.valueOf(testsTotal) +
 					" (Passed: " + String.valueOf(testsPass) +
 					", Failed: " + String.valueOf(testsFailed) +
-					", Skipped: " + String.valueOf(testsSkipped) + ")" + " | " +
-					ZimbraSeleniumProperties.getLocalHost() +
+					", Skipped: " + String.valueOf(testsSkipped) + ")" +
 					isWebDriver,
 					currentResultListener.getCustomResult(),
 					testoutputfoldername + "\\TestNG\\emailable-report.html",
