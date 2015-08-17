@@ -1018,8 +1018,10 @@ public class ExecuteHarnessMain {
 			if (resultDirectory.contains("8.") || resultDirectory.contains("9.")) {
 				seleniumProject = resultDirectory.split("/")[1].toLowerCase();
 			} else {
-				seleniumProject = resultDirectory.split("_")[1].toLowerCase();
+				//seleniumProject = resultDirectory.split("_")[1].toLowerCase();
 			}
+
+			emailBody.append("Result Directory    :  ").append(resultDirectory).append('\n');
 						
 			if (machineName.contains("pnq-")) {
 				labResultURL = "http://pnq-tms.lab.zimbra.com/qa/machines/" + machineName + "/selenium/" + seleniumProject + "/" + resultDirectory.replace("Results", "results");
