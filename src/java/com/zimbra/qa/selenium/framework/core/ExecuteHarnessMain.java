@@ -992,7 +992,7 @@ public class ExecuteHarnessMain {
 			StringBuilder bugzillaBody = new StringBuilder();
 			StringBuilder formatter = new StringBuilder();
 			
-			String machineName, resultDirectory = null, resultRootDirectory = null, labResultURL, seleniumProject = null;
+			String machineName, resultDirectory = null, seleniumProject = null, resultRootDirectory = null, labScriptFile, labResultURL;
 			String zimbraTestNGResultsJar = "c:/opt/qa/BugReports/zimbratestngresults.jar";
 
 			machineName = getLocalMachineName().replace(".corp.telligent.com", "").replace(".lab.zimbra.com", "");
@@ -1010,28 +1010,35 @@ public class ExecuteHarnessMain {
 				emailBody.append('\n');
 			}
 			
-			emailBody.append("Local Result   :  ").append(testoutputfoldername).append('\n').append('\n');
-			
 			resultDirectory = testoutputfoldername.replaceAll("[^a-zA-Z0-9/._]", "/").replaceAll("C//opt/qa/JUDASPRIEST/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/JUDASPRIEST/", "").replaceAll("C//opt/qa/main/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/main/", "");
 			
 			// Get selenium project
-			if (resultDirectory.contains("8.") || resultDirectory.contains("9.")) {
-				seleniumProject = resultDirectory.split("/")[1].toLowerCase();
-			} else {
-				//seleniumProject = resultDirectory.split("_")[1].toLowerCase();
+			if (testoutputfoldername.indexOf("AJAX") > 0) {
+				seleniumProject = "ajax";
+			} else if (testoutputfoldername.indexOf("ADMIN") > 0) {
+				seleniumProject = "admin";
+			} else if (testoutputfoldername.indexOf("TOUCH") > 0) {
+				seleniumProject = "touch";
+			} else if (testoutputfoldername.indexOf("HTML") > 0) {
+				seleniumProject = "html";
+			} else if (testoutputfoldername.indexOf("MOBILE") > 0) {
+				seleniumProject = "mobile";
 			}
-
+			
 			emailBody.append("Result Directory    :  ").append(resultDirectory).append('\n');
 						
 			if (machineName.contains("pnq-")) {
+				labScriptFile = "http://pnq-tms.lab.zimbra.com/qa/machines/" + machineName + "/selenium/" + seleniumProject + "/logs/" + resultDirectory.replace("Results", "results") + ".log";
+				emailBody.append("Script Log File  :  ").append(labScriptFile).append('\n').append('\n');
+				
 				labResultURL = "http://pnq-tms.lab.zimbra.com/qa/machines/" + machineName + "/selenium/" + seleniumProject + "/" + resultDirectory.replace("Results", "results");
-				emailBody.append("Lab Result URL :  ").append(labResultURL).append('\n').append('\n');
+				emailBody.append("Lab Result URL   :  ").append(labResultURL).append('\n').append('\n');
 			}
 			
-			emailBody.append("Total Tests    :  ").append(testsTotal).append('\n');
-			emailBody.append("Total Passed   :  ").append(testsPass).append('\n');
-			emailBody.append("Total Failed   :  ").append(testsFailed).append('\n');
-			emailBody.append("Total Skipped  :  ").append(testsSkipped).append('\n');
+			emailBody.append("Total Tests     :  ").append(testsTotal).append('\n');
+			emailBody.append("Total Passed    :  ").append(testsPass).append('\n');
+			emailBody.append("Total Failed    :  ").append(testsFailed).append('\n');
+			emailBody.append("Total Skipped   :  ").append(testsSkipped).append('\n');
 
 			if (!failedTests.isEmpty()) {
 				emailBody.append("\n\nFailed tests:\n");
