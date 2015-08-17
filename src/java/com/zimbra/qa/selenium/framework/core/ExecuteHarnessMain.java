@@ -992,7 +992,7 @@ public class ExecuteHarnessMain {
 			StringBuilder bugzillaBody = new StringBuilder();
 			StringBuilder formatter = new StringBuilder();
 			
-			String machineName, resultDirectory = null, resultRootDirectory = null, labResultURL, seleniumProject;
+			String machineName, resultDirectory = null, resultRootDirectory = null, labResultURL, seleniumProject = null;
 			String zimbraTestNGResultsJar = "c:/opt/qa/BugReports/zimbratestngresults.jar";
 
 			machineName = getLocalMachineName().replace(".corp.telligent.com", "").replace(".lab.zimbra.com", "");
