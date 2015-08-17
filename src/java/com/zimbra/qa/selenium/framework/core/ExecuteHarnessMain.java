@@ -1024,15 +1024,13 @@ public class ExecuteHarnessMain {
 			} else if (testoutputfoldername.indexOf("MOBILE") > 0) {
 				seleniumProject = "mobile";
 			}
-			
-			emailBody.append("Result Directory    :  ").append(resultDirectory).append('\n');
-						
+									
 			if (machineName.contains("pnq-")) {
-				labScriptFile = "http://pnq-tms.lab.zimbra.com/qa/machines/" + machineName + "/selenium/" + seleniumProject + "/logs/" + resultDirectory.replace("Results", "results") + ".log";
-				emailBody.append("Script Log File  :  ").append(labScriptFile).append('\n').append('\n');
+				labScriptFile = "http://pnq-tms.lab.zimbra.com/qa/machines/" + machineName + "/selenium/" + seleniumProject + "/logs/" + resultDirectory.split("/") + ".log";
+				emailBody.append("Script Log File :  ").append(labScriptFile).append('\n').append('\n');
 				
 				labResultURL = "http://pnq-tms.lab.zimbra.com/qa/machines/" + machineName + "/selenium/" + seleniumProject + "/" + resultDirectory.replace("Results", "results");
-				emailBody.append("Lab Result URL   :  ").append(labResultURL).append('\n').append('\n');
+				emailBody.append("Lab Result URL  :  ").append(labResultURL).append('\n').append('\n');
 			}
 			
 			emailBody.append("Total Tests     :  ").append(testsTotal).append('\n');
