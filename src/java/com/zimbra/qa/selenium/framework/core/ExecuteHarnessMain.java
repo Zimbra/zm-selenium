@@ -1026,7 +1026,7 @@ public class ExecuteHarnessMain {
 			}
 									
 			if (machineName.contains("pnq-")) {
-				labScriptFile = "http://pnq-tms.lab.zimbra.com/qa/machines/" + machineName + "/selenium/" + seleniumProject + "/logs/" + resultDirectory.split("/") + ".log";
+				labScriptFile = "http://pnq-tms.lab.zimbra.com/qa/machines/" + machineName + "/selenium/" + seleniumProject + "/logs/" + resultDirectory.split("/")[1] + ".log";
 				emailBody.append("Script Log File :  ").append(labScriptFile).append('\n').append('\n');
 				
 				labResultURL = "http://pnq-tms.lab.zimbra.com/qa/machines/" + machineName + "/selenium/" + seleniumProject + "/" + resultDirectory.replace("Results", "results");
