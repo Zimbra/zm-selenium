@@ -1018,7 +1018,7 @@ public class ExecuteHarnessMain {
 			if (resultDirectory.contains("8.") || resultDirectory.contains("9.")) {
 				seleniumProject = resultDirectory.split("/")[1].toLowerCase();
 			} else {
-				seleniumProject = resultDirectory.split("\\.")[1].toLowerCase();
+				seleniumProject = resultDirectory.split("_")[1].toLowerCase();
 			}
 						
 			if (machineName.contains("pnq-")) {
