@@ -17,16 +17,12 @@
 package com.zimbra.qa.selenium.projects.touch.ui.mail;
 
 import java.util.*;
-
 import org.openqa.selenium.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
 import com.zimbra.qa.selenium.projects.touch.ui.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.touch.ui.*;
-import com.zimbra.qa.selenium.staf.Driver;
 
 /**
  * @author Matt Rhoades
@@ -36,7 +32,6 @@ public class PageMail extends AbsTab {
 
 	public static class Locators {
 
-		//public static final String B_MailActionButton	 	= "css=div[id='ext-appview-1'] span[class$='x-button-icon x-shown arrow_down']";
 		public static final String FolderTreeIcon		= "css=span[class='x-button-icon x-shown organizer']";
 
 		public static final String InboxFolder			= "css=div[class^='zcs-menu-label']:contains('Inbox')";
@@ -44,7 +39,7 @@ public class PageMail extends AbsTab {
 		public static final String DraftsFolder			= "css=div[class^='zcs-menu-label']:contains('Drafts')";
 		public static final String JunkFolder			= "css=div[class^='zcs-menu-label']:contains('Junk')";
 		public static final String TrashFolder			= "css=div[class^='zcs-menu-label']:contains('Trash')";
-
+		public static final String BackButton			= "css=div[class^='x-container x-toolbar-dark'] span[class='x-button-icon x-shown back']";
 
 		public static final String Mark_Conversation_Unread		= "css=div[class='x-innerhtml']:contains('Mark unread')";
 		public static final String Mark_Conversation_Read		= "css=div[class='x-innerhtml']:contains('Mark read')";
@@ -131,6 +126,7 @@ public class PageMail extends AbsTab {
 		
 		public static final String zQuickReplySend		= "css=div[id='ext-button-8'] span:contains('Send')";
 		public static final String zNavigatetoSubfolder		= "css=div[class='x-unsized x-list-disclosure']";
+		
 		
 		public static final String zOrganizerHdrAddressBubble = "css=div[class='zcs-msg-body-text'] table[class='zcs-invite'] span[class='zcs-contact-name']:first-child";
 		public static final String zInviteeHdrAddressBubble = "css=div[class='zcs-msg-body-text'] table[class='zcs-invite'] span[class='zcs-contact-name']:nth-child(2)";
@@ -392,8 +388,12 @@ public class PageMail extends AbsTab {
 			locator = Locators.zNoWarningDialog;
 			page = this;
 
-		}else if ( button == Button.B_SEND ) {
+		} else if ( button == Button.B_SEND ) {
 			locator = Locators.zQuickReplySend;
+			page = this;
+			
+		} else if (button == Button.B_BACK) {
+			locator = Locators.BackButton;
 			page = this;
 
 		}
@@ -1674,11 +1674,7 @@ public class PageMail extends AbsTab {
 
 		this.zWaitForBusyOverlay();
 		// FALL THROUGH
-
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
-		// Default behavior
+		
 		return (page);	
 	}
 	public AbsPage zConversationListItem(Button option, String subject) throws HarnessException {
@@ -1854,11 +1850,6 @@ public class PageMail extends AbsTab {
 			optionLocator = "css=div[class='x-container x-toolbar-dark x-toolbar x-stretched zcs-msg-actions-toolbar'] div[id^='ext-button'] span[class='x-button-icon x-shown trash']";
 			page = null;
 
-
-			if ( page != null ) {
-				page.zWaitForActive();
-			}
-
 		} else {
 			throw new HarnessException("implement me!  action = "+ option);
 		}
@@ -1902,13 +1893,6 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("not implemented for field " + field);
 
 		}
-
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for field "+ field);
-		}
-
-		// Default behavior, enter value into locator field
-		//
 
 		// Make sure the button exists
 		if ( !this.sIsElementPresent(locator) )
@@ -1977,14 +1961,8 @@ public class PageMail extends AbsTab {
 		this.zClickAt(optionLocator,"");
 		SleepUtil.sleepMedium();
 
-
 		this.zWaitForBusyOverlay();
-		// FALL THROUGH
-
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
-		// Default behavior
+		
 		return (page);	
 	}
 	

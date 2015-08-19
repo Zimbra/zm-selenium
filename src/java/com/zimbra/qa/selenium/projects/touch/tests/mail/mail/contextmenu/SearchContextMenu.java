@@ -78,9 +78,12 @@ public class SearchContextMenu extends CalendarWorkWeekTest {
 		//Click on search option
 		app.zPageMail.zMsgHdrContextListItem(Button.B_SEARCH);
 		
-		//Verify search page is opened up
+		//Verify search functionality
 		SleepUtil.sleepSmall();
+		ZAssert.assertTrue(app.zPageMail.zVerifyMessageExists(subject), "Verify message exists after search");
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(locator), "Verify the search results page opened up");
+		
+		app.zPageMail.zClickButton(Button.B_BACK);
 		
 	}
 
@@ -127,9 +130,12 @@ public class SearchContextMenu extends CalendarWorkWeekTest {
 		//Click on search option
 		app.zPageMail.zMsgHdrContextListItem(Button.B_SEARCH);
 		
-		//Verify search page is opened up
+		//Verify search functionality
 		SleepUtil.sleepSmall();
+		ZAssert.assertTrue(app.zPageMail.zVerifyMessageExists(apptSubject), "Verify message exists after search");
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(locator), "Verify the search results page opened up");
+		
+		app.zPageMail.zClickButton(Button.B_BACK);
 
 	}
 }
