@@ -332,7 +332,7 @@ public class PageManageDistributionLists extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.sClickAt(optionLocator,"");
+				this.zClickAt(optionLocator,"0,0");
 				SleepUtil.sleepMedium();
 
 				// If the app is busy, wait for it to become active
