@@ -49,7 +49,7 @@ public class NavigateBackupRestore extends AdminCommonTest {
 		 */
 		app.zPageManageBackups.zClick(Locators.TOOLS_AND_MIGRATION_ICON);
 		SleepUtil.sleep(5000);
-		app.zPageManageBackups.sClickAt(Locators.BACKUP,"");
+		app.zPageManageBackups.zClickAt(Locators.BACKUP,"");
 		ZAssert.assertTrue(app.zPageManageBackups.zVerifyHeader(PageManageBackups.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageBackups.zVerifyHeader(PageManageBackups.Locators.TOOLS_AND_MIGRATION), "Verfiy the \"Tools and Migration\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageBackups.zVerifyHeader(PageManageBackups.Locators.BACKUPS), "Verfiy the \"Backups\" text exists in navigation path");
