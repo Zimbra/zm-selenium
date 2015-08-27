@@ -54,7 +54,7 @@ public class DialogWarning extends AbsDialog {
 		public static final DialogWarningID DeleteAppointment = new DialogWarningID("YesNo");
 		
 		public static final DialogWarningID ComposeOptionsChangeWarning = new DialogWarningID("OkCancel");
-
+		
 		// See bug: http://bugzilla.zimbra.com/show_bug.cgi?id=63353
 		// In main, the dialog id is <div id='OkCancel' .../>
 		// In 8.x, the dialog id is <div id='ShowDelayPastDialog' .../>
@@ -94,7 +94,7 @@ public class DialogWarning extends AbsDialog {
 		MyDivId = dialogId.Id;
 		
 		logger.info("new " + DialogWarning.class.getCanonicalName());
-
+		logger.info("mydivid is" + MyDivId);
 	}
 	
 	public String zGetWarningTitle() throws HarnessException {
@@ -158,10 +158,6 @@ public class DialogWarning extends AbsDialog {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
-		}
-
 		// Default behavior, process the locator by clicking on it
 		//
 
@@ -200,8 +196,8 @@ public class DialogWarning extends AbsDialog {
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		
-		if ( !this.sIsElementPresent(MyDivId) )
+		String dialogPresent = "css=div[id='" + MyDivId + "'][style*='display: block;']";
+		if ( !this.sIsElementPresent(dialogPresent) )
 			return (false);
 		
 		// mountpionts.viewer.FlagMail seems to keep failing on this dialog, even
@@ -210,7 +206,7 @@ public class DialogWarning extends AbsDialog {
 		// 7.X: 		if ( !this.zIsVisiblePerPosition(MyDivId, 225, 300) )
 		// 8.X: dev says any dialogs with non-negative positions should be visible, so using (0,0)
 		//
-		if ( !this.zIsVisiblePerPosition(MyDivId, 0, 0) )
+		if ( !this.zIsVisiblePerPosition(dialogPresent, 0, 0) )
 			return (false);
 		
 		return (true);
