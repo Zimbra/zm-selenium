@@ -419,9 +419,11 @@ public class AjaxCommonTest {
 	 * </ol>
 	 * 
 	 * @throws HarnessException
+	 * @throws InterruptedException 
+	 * @throws IOException 
 	 */
 	@AfterSuite( groups = { "always" } )
-	public void commonTestAfterSuite() throws HarnessException {	
+	public void commonTestAfterSuite() throws HarnessException, IOException, InterruptedException {	
 		logger.info("commonTestAfterSuite: start");
 
 		if (ZimbraSeleniumProperties.isWebDriver()) {
@@ -432,6 +434,7 @@ public class AjaxCommonTest {
 			ClientSessionFactory.session().selenium().stop();
 		}
 		
+		CommandLine.CmdExec("taskkill /f /t /im plugin-container.exe");
 
 		logger.info("commonTestAfterSuite: finish");
 
