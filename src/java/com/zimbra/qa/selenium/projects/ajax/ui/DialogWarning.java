@@ -65,7 +65,7 @@ public class DialogWarning extends AbsDialog {
 		public static final DialogWarningID SendReadReceipt = new DialogWarningID("YesNoMsgDialog");;
 		public static final DialogWarningID QuickCommandConfirmDelete = new DialogWarningID("ZmQuickCommandConfirmation1");
 		public static final DialogWarningID PreferencesSaveChanges = new DialogWarningID("YesNoCancel");
-		public static final DialogWarningID SwitchingToTextWillDiscardHtmlFormatting = new DialogWarningID("css=td[id$='_formatWarning_title']");
+		public static final DialogWarningID SwitchingToTextWillDiscardHtmlFormatting = new DialogWarningID("css=div[id$='_formatWarning']");
 		public static final DialogWarningID SmsVerificationCodeSent = new DialogWarningID("ZmMsgDialog");
 		public static final DialogWarningID ZmAcceptShare = new DialogWarningID("ZmAcceptShare");
 	   	public static final DialogWarningID ConflictResource = new DialogWarningID("RESC_CONFLICT_DLG");
