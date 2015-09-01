@@ -17,11 +17,11 @@
 package com.zimbra.qa.selenium.projects.admin.tests.domains;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
@@ -127,6 +127,7 @@ public class EditDomain extends AdminCommonTest {
 		
 		//Submit the form.
 		form.zSubmit();
+		SleepUtil.sleepMedium();
 		
 		// Verify the domain exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
