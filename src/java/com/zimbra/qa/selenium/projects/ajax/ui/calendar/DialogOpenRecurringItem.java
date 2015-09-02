@@ -55,10 +55,10 @@ public class DialogOpenRecurringItem extends AbsDialog {
 		AbsPage page = null; 
 
 		if (button == Button.B_OPEN_THIS_INSTANCE) {
-			locator = "css=input[id='CAL_ITEM_TYPE_DIALOG_defaultRadio']";
+			locator = "css=label:contains('Open this instance')";
 			
 		} else if (button == Button.B_OPEN_THE_SERIES) {
-			locator = "css=input[id='CAL_ITEM_TYPE_DIALOG_openSeries']";
+			locator = "css=label:contains('Open the series')";
 				
 		} else if (button == Button.B_OK) {
 			locator = "css=div[class='" + Locators.zDialogClass + "'] "
@@ -70,11 +70,6 @@ public class DialogOpenRecurringItem extends AbsDialog {
 					+ "div[class='" + Locators.zDialogButtonsClass
 					+ "'] td[class=ZWidgetTitle]:contains(Cancel)";
 		} else {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
-		// Make sure the locator was set
-		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
@@ -90,14 +85,6 @@ public class DialogOpenRecurringItem extends AbsDialog {
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
 		
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-			
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-			
-		}
-
 		return (page);
 	}
 
@@ -115,7 +102,7 @@ public class DialogOpenRecurringItem extends AbsDialog {
 	public boolean zIsActive() throws HarnessException {
 		logger.info(myPageName() + " zIsActive()");
 
-		String locator = "css=div[id='CAL_ITEM_TYPE_DIALOG']";
+		String locator = "css=td[class='DwtDialogTitle']:contains('Open Recurring Item')";
 
 		if (!this.sIsElementPresent(locator)) {
 			return (false); // Not even present
