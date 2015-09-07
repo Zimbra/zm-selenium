@@ -43,8 +43,8 @@ public class DialogConfirmDeleteRecurringAppointment extends DialogWarning {
 		public static final String LocatorDivID = "CAL_ITEM_TYPE_DIALOG";
 		public static final String LocatorDivCSS = "css=div#CAL_ITEM_TYPE_DIALOG";
 
-		public static final String DeleteThisInstanceRadioButton = LocatorDivCSS +" input[id*='_defaultRadio']";
-		public static final String DeleteTheSeriesRadioButton = LocatorDivCSS +" input[id$='_openSeries']";
+		public static final String DeleteThisInstanceRadioButton = LocatorDivCSS +" label:contains('Delete this instance')";
+		public static final String DeleteTheSeriesRadioButton = LocatorDivCSS +" label:contains('Delete the series')";
 
 	}
 
