@@ -160,11 +160,16 @@ public class MoveContactGroup extends AjaxCommonTest  {
 		// Refresh
 		app.zPageAddressbook.zRefresh();
 		
+		SleepUtil.sleepMedium();
+		
 	    DialogMove dialogContactMove = (DialogMove) app.zPageAddressbook.zKeyboardShortcut(Shortcut.S_MOVE);
+	    SleepUtil.sleepMedium();
 	     
 	    //enter the moved folder
         dialogContactMove.zClickTreeFolder(folder);
+        SleepUtil.sleepMedium();
         dialogContactMove.zClickButton(Button.B_OK);
+     
 
         
         //-- Verification
