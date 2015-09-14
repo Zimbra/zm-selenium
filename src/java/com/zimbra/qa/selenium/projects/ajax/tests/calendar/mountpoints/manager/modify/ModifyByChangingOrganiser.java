@@ -123,7 +123,8 @@ public class ModifyByChangingOrganiser extends CalendarWorkWeekTest {
         
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate start = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, 24, 8, 0, 0);
-       
+        SleepUtil.sleepLong();
+      
         String search = "Meeting Scheduled";
         // Verify calendar value
 		app.zGetActiveAccount().soapSend(
