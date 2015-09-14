@@ -280,6 +280,14 @@ public class FormTaskNew extends AbsForm {
 						DialogWarning.DialogWarningID.SwitchingToTextWillDiscardHtmlFormatting,
 						this.MyApplication,
 						((AppAjaxClient)this.MyApplication).zPageTasks);
+				
+				//Intentionally adding this code.
+				SleepUtil.sleepMedium();
+				this.zClickAt(pulldownLocator,"");
+				SleepUtil.sleepMedium();
+				this.zClickAt(optionLocator,"");
+				SleepUtil.sleepMedium();
+				return (page);
 
 			}
 
