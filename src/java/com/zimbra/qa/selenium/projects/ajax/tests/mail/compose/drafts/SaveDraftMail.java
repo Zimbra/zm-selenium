@@ -25,9 +25,11 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.RecipientItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.items.RecipientItem.RecipientType;
+import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
@@ -294,7 +296,12 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 		// Save the message
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
+		SleepUtil.sleepMedium();
 		mailform.zToolbarPressButton(Button.B_CANCEL);
+		SleepUtil.sleepMedium();
+		
+		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
 
 
 		// Get the message from the server
@@ -335,10 +342,13 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 
 		//-- GUI
+		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
 
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+		SleepUtil.sleepMedium();
 		ZAssert.assertTrue(mailform.zIsActive(), "Verify the new form opened");
 
 		// Fill out the form with the data
@@ -346,6 +356,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 		// Save the message
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
+		SleepUtil.sleepMedium();
 		mailform.zToolbarPressButton(Button.B_CANCEL);
 
 
