@@ -20,7 +20,6 @@
 package com.zimbra.qa.selenium.framework.core;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -29,15 +28,17 @@ import java.util.*;
 import java.util.List;
 import java.util.jar.*;
 import java.util.regex.*;
-import javax.imageio.ImageIO;
+
 import org.apache.commons.cli.*;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.WordUtils;
 import org.apache.log4j.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.*;
 import org.testng.xml.*;
+
 import com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
@@ -1004,7 +1005,7 @@ public class ExecuteHarnessMain {
 
 			emailBody.append("Browser :  ").append(ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser", ZimbraSeleniumProperties.getStringProperty("browser")).replace("*", "")).append('\n');
 			emailBody.append("Pattern :  ").append(classfilter.toString().replace("com.zimbra.qa.selenium.", "")).append('\n');
-			emailBody.append("Groups  :  ").append(groups.toString().replace("always, ", "").trim().replace("[", "").replace("]", "")).append('\n');
+			emailBody.append("Groups  :  ").append(WordUtils.capitalize(groups.toString().replace("always, ", "").trim().replace("[", "").replace("]", ""))).append('\n');
 			if (ZimbraSeleniumProperties.isWebDriver()) {
 				emailBody.append("Mode    :  ").append("WebDriver").append('\n').append('\n');
 			} else {
