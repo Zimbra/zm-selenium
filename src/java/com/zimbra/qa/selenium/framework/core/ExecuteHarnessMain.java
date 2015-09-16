@@ -29,20 +29,21 @@ import java.util.*;
 import java.util.List;
 import java.util.jar.*;
 import java.util.regex.*;
-
 import javax.imageio.ImageIO;
-
 import org.apache.commons.cli.*;
 import org.apache.commons.cli.CommandLine;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.*;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.*;
 import org.testng.xml.*;
-
 import com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
 import com.zimbra.qa.selenium.framework.util.performance.PerfMetrics;
 import com.zimbra.qa.selenium.framework.util.staf.*;
+
 
 /**
  * The <code>ExecuteHarnessMain</code> class is the main execution class for the
@@ -1141,18 +1142,16 @@ public class ExecuteHarnessMain {
 			logger.warn("Creating screenshot: " + filename);
 			if (ZimbraSeleniumProperties.isWebDriver()
 					|| ZimbraSeleniumProperties.isWebDriverBackedSelenium()) {
-				// File scrFile =
-				// ((TakesScreenshot)ClientSessionFactory.session().webDriver()).getScreenshotAs(OutputType.FILE);
-				// FileUtils.copyFile(scrFile, new File(filename));
 				try {
-					BufferedImage image = new Robot()
-							.createScreenCapture(new Rectangle(Toolkit
-									.getDefaultToolkit().getScreenSize()));
-					ImageIO.write(image, "png", new File(filename));
+					File scrFile = ((TakesScreenshot)ClientSessionFactory.session().webDriver()).getScreenshotAs(OutputType.FILE);
+					FileUtils.copyFile(scrFile, new File(filename));
+					
+					//BufferedImage image = new Robot()
+					//		.createScreenCapture(new Rectangle(Toolkit
+					//				.getDefaultToolkit().getScreenSize()));
+					//ImageIO.write(image, "png", new File(filename));
+					
 				} catch (HeadlessException e) {
-					logger.error("Unable to create Robot to create screenshot",
-							e);
-				} catch (AWTException e) {
 					logger.error("Unable to create Robot to create screenshot",
 							e);
 				} catch (IOException e) {
