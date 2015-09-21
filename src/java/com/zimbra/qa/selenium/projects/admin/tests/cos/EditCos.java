@@ -16,18 +16,23 @@
  */
 package com.zimbra.qa.selenium.projects.admin.tests.cos;
 
+import java.awt.event.KeyEvent;
+
 import org.testng.annotations.Test;
 
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.CosItem;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditCos;
+import com.zimbra.qa.selenium.projects.admin.ui.PageEditCOS;
+import com.zimbra.qa.selenium.projects.admin.ui.PageEditCOS.Locators;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults;
 
@@ -249,5 +254,89 @@ public class EditCos extends AdminCommonTest {
 		                   "</GetCosRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
 		ZAssert.assertNotNull(response, "Verify the cos is edited successfully");
+	}
+	
+	/**
+	 * Testcase : Edit cos - Two Factor Authentication
+	 * Steps :
+	 * 1. Create an cos using SOAP.
+	 * 2. Edit the two factor authentication attributes using UI Right Click.
+	 * 3. Verify two factor authentication attributes are changed using SOAP.
+	 * @throws HarnessException
+	 */
+	@Test(	description = "Edit cos - Two Factor Authentication",
+			groups = { "sanity" })
+			public void EditCos_05() throws HarnessException {
+		
+		this.startingPage = app.zPageManageCOS;
+		this.startingPage.zNavigateTo();
+		// Create a new cos in the Admin Console using SOAP
+		CosItem cos = new CosItem();
+		String cosName=cos.getName();
+	
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+				"<CreateCosRequest xmlns='urn:zimbraAdmin'>"
+				+			"<name>" + cosName + "</name>"
+				+		"</CreateCosRequest>");
+	
+		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
+
+		// Enter the search string to find the account
+		app.zPageSearchResults.zAddSearchQuery(cosName);
+	
+	
+		// Click search
+		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
+
+		// Click on cos to be deleted.
+		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, cos.getName());
+		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
+
+		// Click on Edit button
+		FormEditCos form = (FormEditCos) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
+		SleepUtil.sleepMedium();
+		
+		// Click on Advanced
+		form.zClickAt(PageEditCOS.Locators.ADVANCED,"");
+		SleepUtil.sleepMedium();
+		
+		// Check "Enable two-factor authentication"
+		app.zPageEditCOS.sClickAt(Locators.zEnableTwoFactorAuth,"");
+		
+		// Check "Require two-step authentication"
+		app.zPageEditCOS.sClickAt(Locators.zRequiredTwoFactorAuth,"");
+
+		// Check "Number of one-time codes to generate:"
+		app.zPageEditCOS.sType(Locators.zTwoFactorAuthNumScratchCodes,"5");
+		
+		// Uncheck "Enable application passcodes"
+		app.zPageEditCOS.sClickAt(Locators.zEnableApplicationPasscodes,"");
+				
+		// Submit the form
+		form.zSubmit();
+				
+		// Verify the enable two-factor authentication is set to true
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+		"<GetCosRequest xmlns='urn:zimbraAdmin'>" +
+		                     "<cos by='name'>"+cosName+"</cos>"+
+		                   "</GetCosRequest>");
+		Element response1 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos/admin:a[@n='zimbraFeatureTwoFactorAuthAvailable']", 1);
+		ZAssert.assertNotNull(response1, "Verify the COS is edited successfully");
+		ZAssert.assertStringContains(response1.toString(),"TRUE", "Verify the Enable two-factor authentication is set to true");
+		
+		// Verify the require two-step authentication is set to true
+		Element response2 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos/admin:a[@n='zimbraFeatureTwoFactorAuthRequired']", 1);
+		ZAssert.assertNotNull(response2, "Verify the COS is edited successfully");
+		ZAssert.assertStringContains(response2.toString(),"TRUE", " Verify the Require two-step authentication is set to true");
+		
+		// Verify the number of one-time codes to generate is set to 5
+		Element response3 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos/admin:a[@n='zimbraTwoFactorAuthNumScratchCodes']", 1); 
+		ZAssert.assertNotNull(response3, "Verify the COS is edited successfully");
+		ZAssert.assertStringContains(response3.toString(),"5", "Verify the Number of one-time codes to generate is set to 5");
+		
+		// Verify the enable application passcodes is set to false
+		Element response4 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos/admin:a[@n='zimbraFeatureAppSpecificPasswordsEnabled']", 1);
+		ZAssert.assertNotNull(response4, "Verify the COS is edited successfully");
+		ZAssert.assertStringContains(response4.toString(),"FALSE", "Verify the Enable application passcodes is set to false");
 	}
 }

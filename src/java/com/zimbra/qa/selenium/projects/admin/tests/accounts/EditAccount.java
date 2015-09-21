@@ -22,14 +22,18 @@ import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditAccount;
+import com.zimbra.qa.selenium.projects.admin.ui.PageEditCOS;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
+import com.zimbra.qa.selenium.projects.admin.ui.PageManageAccounts;
 import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults;
+import com.zimbra.qa.selenium.projects.admin.ui.PageEditCOS.Locators;
 
 public class EditAccount extends AdminCommonTest {
 	public EditAccount() {
@@ -355,6 +359,86 @@ public class EditAccount extends AdminCommonTest {
 
 	}
 
+	/**
+	 * Testcase : Edit account - Two Factor Authentication
+	 * Steps :
+	 * 1. Create an account using SOAP.
+	 * 2. Edit the two factor authentication attributes using UI
+	 * 3. Verify two factor authentication attributes are changed using SOAP.
+	 * @throws HarnessException
+	 */
+	@Test(	description = "Edit account - Two Factor Authentication",
+			groups = { "sanity" })
+	public void EditAccount_07() throws HarnessException {
 
+		// Create a new account in the Admin Console using SOAP
+		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+		"</CreateAccountRequest>");
+		
+		// Enter the search string to find the account
+		app.zPageSearchResults.zAddSearchQuery(account.getEmailAddress());
 
+		// Click search
+		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
+
+		// Click on account to be edited
+		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
+
+		// Click on Edit button
+		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.ACCOUNT);
+		FormEditAccount form = (FormEditAccount) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
+		SleepUtil.sleepMedium();
+		
+		// Click on Advanced section
+		form.zClickAt(PageManageAccounts.Locators.ADVANCED,"");
+		SleepUtil.sleepMedium();
+		
+		// Check "Enable two-factor authentication"
+		app.zPageEditCOS.sClickAt(Locators.zEnableTwoFactorAuth,"");
+		
+		// Check "Require two-step authentication"
+		app.zPageEditCOS.sClickAt(Locators.zRequiredTwoFactorAuth,"");
+
+		// Check "Number of one-time codes to generate:"
+		app.zPageEditCOS.sType(Locators.zTwoFactorAuthNumScratchCodes,"5");
+		
+		// Uncheck "Enable application passcodes"
+		app.zPageEditCOS.sClickAt(Locators.zEnableApplicationPasscodes,"");
+
+		// Submit the form
+		form.zSubmit();
+
+		// Verify the enable two-factor authentication is set to true
+		app.zPageMain.zRefresh();
+		
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
+						+			"<account by='name'>"+ account.getEmailAddress() +"</account>"
+						+		"</GetAccountRequest>");
+		
+		Element response1 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureTwoFactorAuthAvailable']", 1);
+		ZAssert.assertNotNull(response1, "Verify the account is edited successfully");
+		ZAssert.assertStringContains(response1.toString(),"TRUE", "Verify the Enable two-factor authentication is set to true");
+
+		// Verify the require two-step authentication is set to true
+		Element response2 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureTwoFactorAuthRequired']", 1);
+		ZAssert.assertNotNull(response2, "Verify the account is edited successfully");
+		ZAssert.assertStringContains(response2.toString(),"TRUE", " Verify the Require two-step authentication is set to true");
+
+		// Verify the number of one-time codes to generate is set to 5
+		Element response3 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraTwoFactorAuthNumScratchCodes']", 1); 
+		ZAssert.assertNotNull(response3, "Verify the account is edited successfully");
+		ZAssert.assertStringContains(response3.toString(),"5", "Verify the Number of one-time codes to generate is set to 5");
+
+		// Verify the enable application passcodes is set to false
+		Element response4 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureAppSpecificPasswordsEnabled']", 1);
+		ZAssert.assertNotNull(response4, "Verify the account is edited successfully");
+		ZAssert.assertStringContains(response4.toString(),"FALSE", "Verify the Enable application passcodes is set to false");
+
+	}
+	
 }

@@ -25,6 +25,8 @@ import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults.Locators;
 
 
 /**
@@ -32,7 +34,16 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
  *
  */
 public class PageEditCOS extends AbsTab {
-
+	
+	public static class Locators {
+		public static final String ADVANCED="css=div[id='zti__AppAdmin__Home__actLstHV__1__8_textCell']";
+		public static final String zArrowSelectSearchObject		="css=td[id*='dropdown'] div[class='ImgSelectPullDownArrow']";
+		public static final String zEnableTwoFactorAuth="css=table[id$='_zimbraFeatureTwoFactorAuthAvailable_table'] tbody tr:nth-child(1) td:nth-child(2) input";	
+		public static final String zRequiredTwoFactorAuth="css=table[id$='_zimbraFeatureTwoFactorAuthRequired_table'] tbody tr:nth-child(1) td:nth-child(2) input";
+		public static final String zTwoFactorAuthNumScratchCodes="css=table[id$='_zimbraTwoFactorAuthNumScratchCodes_table'] tbody tr:nth-child(1) td:nth-child(2) input";
+		public static final String zEnableApplicationPasscodes="css=table[id$='_zimbraFeatureAppSpecificPasswordsEnabled_table'] tbody tr:nth-child(1) td:nth-child(2) input";
+	}
+	
 	public PageEditCOS(AbsApplication application) {
 		super(application);
 	}
@@ -89,4 +100,31 @@ public class PageEditCOS extends AbsTab {
 		return null;
 	}
 
+	
+	public AbsPage zSelectTwoFactorAuthenticationOption(Button option)
+			throws HarnessException {
+		if(option== Button.O_ENABLE){
+			
+			this.zClickAt(Locators.zEnableTwoFactorAuth, "");			
+		
+		}else if(option== Button.O_REQUIRED){
+
+			this.sClickAt(Locators.zRequiredTwoFactorAuth, "");
+		
+		
+		}else if(option== Button.O_NUMBER_OF_ONE_TIME_CODES){
+			
+			this.sType(Locators.zTwoFactorAuthNumScratchCodes, "3");
+		
+		
+		
+		}else if(option== Button.O_ENABLE_APPLICATION_PASSCODES){
+
+			this.sClickAt(Locators.zEnableApplicationPasscodes, "");		
+		}else{
+			throw new HarnessException("Not imeplemented for "+option+"Object");
+			
+		}
+		return null;
+	}
 }

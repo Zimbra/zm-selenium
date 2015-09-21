@@ -57,6 +57,7 @@ public class PageManageAccounts extends AbsTab {
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=td[id='zmi__ACLV__EDIT_title']:contains('Edit')";
 		public static final String RIGHT_CLICK_MENU_CHANGE_PASSWORD_BUTTON = "css=td[id='zmi__ACLV__CHNG_PWD_title']";
 		public static final String CHANGE_PASSWORD_BUTTON="css=td[id='zmi__zb_currentApp__CHNG_PWD_title']";
+		public static final String ADVANCED="css=div[id='zti__AppAdmin__Home__actLstHV__1__12_textCell']";
 
 				}
 
