@@ -29,6 +29,7 @@ import org.testng.annotations.*;
 import org.xml.sax.SAXException;
 
 import com.thoughtworks.selenium.*;
+import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;

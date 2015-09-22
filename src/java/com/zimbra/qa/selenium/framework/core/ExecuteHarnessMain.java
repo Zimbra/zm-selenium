@@ -995,6 +995,7 @@ public class ExecuteHarnessMain {
 			StringBuilder formatter = new StringBuilder();
 			
 			String machineName, resultDirectory = null, seleniumProject = null, resultRootDirectory = null, labScriptFile, labResultURL;
+			String labURL = "http://pnq-tms.lab.zimbra.com";
 			String zimbraTestNGResultsJar = "c:/opt/qa/BugReports/zimbratestngresults.jar";
 
 			machineName = getLocalMachineName().replace(".corp.telligent.com", "").replace(".lab.zimbra.com", "");
@@ -1007,7 +1008,15 @@ public class ExecuteHarnessMain {
 			emailBody.append("Pattern :  ").append(classfilter.toString().replace("com.zimbra.qa.selenium.", "")).append('\n');
 			emailBody.append("Groups  :  ").append(WordUtils.capitalize(groups.toString().replace("always, ", "").trim().replace("[", "").replace("]", ""))).append('\n');
 			if (ZimbraSeleniumProperties.isWebDriver()) {
-				emailBody.append("Mode    :  ").append("WebDriver").append('\n').append('\n');
+				emailBody.append('\n');
+				emailBody.append("WebDriver  :  ").append("true").append('\n').append('\n');
+			} else {
+				emailBody.append('\n');
+			}
+
+			if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+				emailBody.append('\n');
+				emailBody.append("Coverage   :  ").append("true").append('\n').append('\n');
 			} else {
 				emailBody.append('\n');
 			}
@@ -1028,10 +1037,10 @@ public class ExecuteHarnessMain {
 			}
 									
 			if (machineName.contains("pnq-")) {
-				labScriptFile = "http://pnq-tms.lab.zimbra.com/qa/machines/" + machineName + "/selenium/" + seleniumProject + "/logs/" + resultDirectory.split("/")[1] + ".log";
+				labScriptFile = labURL + "/qa/machines/" + machineName + "/selenium/" + seleniumProject + "/logs/" + resultDirectory.split("/")[1] + ".log";
 				emailBody.append("Script Log File :  ").append(labScriptFile).append('\n').append('\n');
 				
-				labResultURL = "http://pnq-tms.lab.zimbra.com/qa/machines/" + machineName + "/selenium/" + seleniumProject + "/" + resultDirectory.replace("Results", "results");
+				labResultURL = labURL + "/qa/machines/" + machineName + "/selenium/" + seleniumProject + "/" + resultDirectory.replace("Results", "results");
 				emailBody.append("Lab Result URL  :  ").append(labResultURL).append('\n').append('\n');
 			}
 			
@@ -1136,6 +1145,7 @@ public class ExecuteHarnessMain {
 		 * @param result
 		 * @return
 		 */
+		@SuppressWarnings("deprecation")
 		public static void getScreenCapture(ITestResult result) {
 			
 			String filename = getScreenCaptureFilename(result.getMethod()
@@ -1160,8 +1170,7 @@ public class ExecuteHarnessMain {
 				}
 			} else {
 				try {
-					ClientSessionFactory.session().selenium()
-							.captureScreenshot(filename);
+					ClientSessionFactory.session().selenium().captureScreenshot(filename);
 				} catch (Exception e) {
 					logger.error("Unable to create PNG file at " + filename, e);
 				}

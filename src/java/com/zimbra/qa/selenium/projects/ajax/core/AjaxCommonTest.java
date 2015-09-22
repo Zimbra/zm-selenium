@@ -29,6 +29,7 @@ import org.testng.annotations.*;
 import org.xml.sax.SAXException;
 
 import com.thoughtworks.selenium.*;
+import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -135,6 +136,7 @@ public class AjaxCommonTest {
 	 * @throws IOException 
 	 * @throws SAXException  
 	 */
+	@SuppressWarnings("deprecation")
 	@BeforeSuite( groups = { "always" } )
 	public void commonTestBeforeSuite()
 	throws HarnessException, IOException, InterruptedException, SAXException {
@@ -422,6 +424,7 @@ public class AjaxCommonTest {
 	 * @throws InterruptedException 
 	 * @throws IOException 
 	 */
+	@SuppressWarnings("deprecation")
 	@AfterSuite( groups = { "always" } )
 	public void commonTestAfterSuite() throws HarnessException, IOException, InterruptedException {	
 		logger.info("commonTestAfterSuite: start");

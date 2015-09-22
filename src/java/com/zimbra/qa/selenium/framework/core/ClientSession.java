@@ -17,11 +17,12 @@
 package com.zimbra.qa.selenium.framework.core;
 
 import java.net.URL;
+
 import static org.openqa.selenium.firefox.FirefoxDriver.PROFILE;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -29,6 +30,8 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
+import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 
@@ -57,6 +60,7 @@ public class ClientSession {
 	
 	private String name;	// A unique string identifying this session
 	
+	@SuppressWarnings("deprecation")
 	private ZimbraSelenium selenium = null;
 	private WebDriver webDriver = null;
 	private WebDriverBackedSelenium webDriverBackedSelenium = null;
@@ -77,6 +81,7 @@ public class ClientSession {
 	 * <p>
 	 * @return
 	 */
+	@SuppressWarnings("deprecation")
 	public ZimbraSelenium selenium() {
 		if ( selenium == null ) {
 			selenium = new ZimbraSelenium(
