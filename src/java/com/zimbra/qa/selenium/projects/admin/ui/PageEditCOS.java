@@ -25,9 +25,6 @@ import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults.Locators;
-
 
 /**
  * @author Matt Rhoades
@@ -97,34 +94,6 @@ public class PageEditCOS extends AbsTab {
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
 			throws HarnessException {
-		return null;
-	}
-
-	
-	public AbsPage zSelectTwoFactorAuthenticationOption(Button option)
-			throws HarnessException {
-		if(option== Button.O_ENABLE){
-			
-			this.zClickAt(Locators.zEnableTwoFactorAuth, "");			
-		
-		}else if(option== Button.O_REQUIRED){
-
-			this.sClickAt(Locators.zRequiredTwoFactorAuth, "");
-		
-		
-		}else if(option== Button.O_NUMBER_OF_ONE_TIME_CODES){
-			
-			this.sType(Locators.zTwoFactorAuthNumScratchCodes, "3");
-		
-		
-		
-		}else if(option== Button.O_ENABLE_APPLICATION_PASSCODES){
-
-			this.sClickAt(Locators.zEnableApplicationPasscodes, "");		
-		}else{
-			throw new HarnessException("Not imeplemented for "+option+"Object");
-			
-		}
 		return null;
 	}
 }
