@@ -593,7 +593,8 @@ public class ExecuteHarnessMain {
 
 			SleepMetrics.report();
 			
-			if (!ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".emailTo", ZimbraSeleniumProperties.getStringProperty("emailTo")).contains("qa-automation@zimbra.com")) {
+			if (!ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".emailTo", ZimbraSeleniumProperties.getStringProperty("emailTo")).contains("qa-automation@zimbra.com") && 
+					ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".emailTo", ZimbraSeleniumProperties.getStringProperty("emailTo")).contains("jsojitra@zimbra.com")) {
 				
 				String isWebDriver = "";
 				if (ZimbraSeleniumProperties.isWebDriver()) {
