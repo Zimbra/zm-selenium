@@ -40,6 +40,7 @@ public class PageLogin extends AbsTab {
 		// Text Input
 		public static final String zInputUsername = "css=input[id='username']";
 		public static final String zInputPassword = "css=input[id='password']";
+		public static final String zInputCode = "css=input[id='totpcode']";
 		public static final String zInputRemember = "css=input[id='remember']";
 
 		// Displayed text
@@ -139,10 +140,6 @@ public class PageLogin extends AbsTab {
 
 			// Click the Login button
 			sClick(Locators.zBtnLogin);
-
-			// Wait for the app to load
-			/* TODO: ... debugging to be removed */
-			//sWaitForPageToLoad();
 			
 			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(180000);
 
@@ -155,7 +152,39 @@ public class PageLogin extends AbsTab {
 
 		}
 	}
-	
+
+	public void zLogin(ZimbraAccount account, String totp) throws HarnessException {
+		logger.debug("login(ZimbraAccount account)" + account.EmailAddress);
+
+		tracer.trace("Login to the "+ MyApplication.myApplicationName() +" using user/password "+ account.EmailAddress +"/"+ account.Password);
+
+		zNavigateTo();
+
+		Date start = new Date();
+		
+		try {
+			
+			zSetLoginName(account.EmailAddress);
+			zSetLoginPassword(account.Password);
+			
+			// Click the Login button
+			sClick(Locators.zBtnLogin);
+			SleepUtil.sleepMedium();
+			zSetLoginTOTPCode(totp);
+			sClick(Locators.zBtnLogin);			
+			
+			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(180000);
+
+			((AppAjaxClient)MyApplication).zSetActiveAcount(account);
+
+
+		} finally {
+			
+			SleepMetrics.RecordProcessing((new Throwable()).getStackTrace(), start, new Date());
+
+		}
+	}
+
 	/**
 	 * Add the specified name to the login name field
 	 * @param name
@@ -195,8 +224,19 @@ public class PageLogin extends AbsTab {
 		sType(locator, password);
 	}
 
-
-
+	public void zSetLoginTOTPCode(String totpCode) throws HarnessException {
+		String locator = Locators.zInputCode;
+		if ( totpCode == null ) {
+			throw new HarnessException("totp code is null");
+		}
+		if ( !this.sIsElementPresent(locator) ) {
+			throw new HarnessException("totp code field does not exist "+ locator);
+		}
+		if (ZimbraSeleniumProperties.isWebDriver()){
+		    clearField(locator);
+		}
+		sType(locator, totpCode);
+	}
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {

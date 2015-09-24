@@ -69,6 +69,7 @@ public class DialogWarning extends AbsDialog {
 		public static final DialogWarningID SmsVerificationCodeSent = new DialogWarningID("ZmMsgDialog");
 		public static final DialogWarningID ZmAcceptShare = new DialogWarningID("ZmAcceptShare");
 	   	public static final DialogWarningID ConflictResource = new DialogWarningID("RESC_CONFLICT_DLG");
+	   	public static final DialogWarningID DisableTwoStepAuthentication = new DialogWarningID("YesNoMsgDialog");
 
 		protected String Id;
 		public DialogWarningID(String id) {

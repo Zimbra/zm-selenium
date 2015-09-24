@@ -68,6 +68,8 @@ public class Button {
 	public static final Button B_DUPLICATE = new Button ("B_DUPLICATE");	
 	public static final Button B_OPENTAB = new Button("B_OPENTAB");
 	public static final Button B_Attach = new Button("B_Attach");
+	public static final Button B_BEGIN_SETUP = new Button("B_BEGIN_SETUP");
+	public static final Button B_FINISH = new Button("B_FINISH");
 
 	public static final Button O_NEW = new Button("O_NEW");
 	public static final Button O_NEW_ADMIN = new Button("O_NEW_ADMIN");

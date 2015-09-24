@@ -23,7 +23,10 @@ import java.io.OutputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Calendar;
-
+import com.jcraft.jsch.Channel;
+import com.jcraft.jsch.ChannelExec;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.Session;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -172,7 +175,6 @@ public class CommandLine {
 	   return _startStreaming(process, params);
 	}
 
-
 	/**
 	 * Streaming the input and output from the command line execution
 	 * @param process
@@ -214,4 +216,50 @@ public class CommandLine {
       String output = outputGobbler.output.toString() + errorGobbler.output.toString();
       return output;
 	}
+
+	 public static String cmdExecOnServer(String email, String secret) {
+	        String host = ZimbraSeleniumProperties.getStringProperty("server.host");
+	        String user = "root";
+	        String password = "zimbra";
+	        String command1 = "su - zimbra -c 'zmtotp -a " + email + " -s " + secret + "'";
+	        String totp = "0";
+	        try{
+	             
+	            java.util.Properties config = new java.util.Properties(); 
+	            config.put("StrictHostKeyChecking", "no");
+	            JSch jsch = new JSch();
+	            Session session=jsch.getSession(user, host, 22);
+	            session.setPassword(password);
+	            session.setConfig(config);
+	            session.connect();
+	            System.out.println("Connected");
+	            System.out.println(command1);
+	             
+	            Channel channel=session.openChannel("exec");
+	            ((ChannelExec)channel).setCommand(command1);
+	            channel.setInputStream(null);
+	            ((ChannelExec)channel).setErrStream(System.err);
+	             
+	            InputStream in=channel.getInputStream();
+	            channel.connect();
+	            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+	            StringBuilder out = new StringBuilder();
+	            String line;
+	            while ((line = reader.readLine()) != null) {
+	                out.append(line);
+	            }
+	            System.out.println(out.toString());
+
+	            totp=out.toString();
+	            totp = totp.replaceAll("\\D+","");	            
+	            channel.disconnect();
+	            session.disconnect();
+	            System.out.println(totp);
+	            
+	        }catch(Exception e){
+	            e.printStackTrace();
+	        }
+	    	
+	 return (totp);
+	 }
 }

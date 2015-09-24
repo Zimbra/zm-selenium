@@ -63,13 +63,24 @@ public class PagePreferences extends AbsTab {
 		public static final String zCancelButtonCustomDialog = "css=div[class='DwtDialog'] td[id$='_button1_title']";
 		public static final String zYesButtonWarningDialog = "css=div[id='YesNoMsgDialog'] td[id='YesNoMsgDialog_button5_title']";
 		public static final String zNoButtonWarningDialog = "css=div[id='YesNoMsgDialog'] td[id='YesNoMsgDialog_button4_title']";
+		
+		//Accounts
+		public static final String z2FAEnableLink = "css=div[id='Prefs_Pages_ACCOUNTS_PRIMARY'] a[id='Prefs_Pages_ACCOUNTS_TWO_STEP_AUTH_LINK']:contains('Setup two-step authentication ...')";
+		public static final String zDisable2FALink = "css=div[id='Prefs_Pages_ACCOUNTS_PRIMARY'] a[id='Prefs_Pages_ACCOUNTS_TWO_STEP_AUTH_LINK']:contains('Disable two-step authentication ...')";
+		
 	
 	}
 	
 	
+	public Boolean zVerifyDisable2FALink() throws HarnessException {
+		return sIsElementPresent(Locators.zDisable2FALink);
+	}
 
+	public Boolean zVerifySetup2FALink() throws HarnessException {
+		return sIsElementPresent(Locators.z2FAEnableLink);
+	}
 
-
+	
 	public PagePreferences(AbsApplication application) {
 		super(application);
 		
