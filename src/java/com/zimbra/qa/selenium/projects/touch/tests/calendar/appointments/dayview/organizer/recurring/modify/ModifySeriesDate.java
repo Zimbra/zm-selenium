@@ -24,6 +24,7 @@ import java.util.Date;
 
 import org.testng.annotations.*;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekTest;
@@ -36,7 +37,7 @@ public class ModifySeriesDate extends CalendarWorkWeekTest {
 		logger.info("New "+ ModifySeriesDate.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-
+	@Bugs(ids = "101532")
 	@Test(description = "Modify series invite date and verify it",
 			groups = { "functional" })
 
@@ -87,6 +88,7 @@ public class ModifySeriesDate extends CalendarWorkWeekTest {
 
         String modifiedSeriesDate = "Every day; No end date; Effective " + getTomorrowsDate();
         apptForm = (FormApptNew)app.zPageCalendar.zToolbarPressButton(Button.B_EDIT);
+        SleepUtil.sleepMedium();
         ZAssert.assertTrue(app.zPageCalendar.zVerifyRepeatString(modifiedSeriesDate), "Verify series pattern is updated according to modified date");
         app.zPageCalendar.zToolbarPressButton(Button.B_CANCEL);
 
