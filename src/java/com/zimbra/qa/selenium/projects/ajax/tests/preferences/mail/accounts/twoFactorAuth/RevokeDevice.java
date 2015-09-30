@@ -23,25 +23,26 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
-public class DisableZimbraTwoFactorAuth extends AjaxCommonTest {
+import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Locators;
+import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+public class RevokeDevice extends AjaxCommonTest {
 
-	public DisableZimbraTwoFactorAuth() {
+	public RevokeDevice() {
 		
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			private static final long serialVersionUID = 2485388299568483622L;
 			{				
 		 		put("zimbraFeatureTwoFactorAuthAvailable", "TRUE");
+		 		
 			}
 		};
 
 	}
 
-	@Test(	description = "Disable two factor auth from preferences",
-			groups = { "sanity" })
-	public void DisableZimbraTwoFactorAuth_01() throws HarnessException {
+	@Test(	description = "Revoke the trusted computer and verify that totp is required after that",
+			groups = { "functional" })
+	public void RevokeThisDevie_01() throws HarnessException {
 		String totp, secret, tempToken;
 		
 		ZimbraAccount.AccountZWC().soapSend(
@@ -61,20 +62,22 @@ public class DisableZimbraTwoFactorAuth extends AjaxCommonTest {
         		"</EnableTwoFactorAuthRequest>");
 		// Login
 		totp = CommandLine.cmdExecOnServer(ZimbraAccount.AccountZWC().EmailAddress, secret);
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC(), totp, false);
-		
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC(), totp, true);
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
 
 		app.zPagePreferences.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
-		app.zPagePreferences.sClick(Locators.zDisable2FALink);
-		DialogWarning dialog = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.DisableTwoStepAuthentication, app, app.zPagePreferences);
-		dialog.zClickButton(Button.B_YES);
-		
+		app.zPagePreferences.sClick(Locators.zRevokeThisDeviceLink);
+		DialogWarning dialog = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.RevokeTrustedDevice, app, app.zPagePreferences);
+		dialog.zClickButton(Button.B_REVOKE);
 		//Verification
-        ZAssert.assertTrue(app.zPagePreferences.zVerifySetup2FALink(), "Verify set-up two factor auth link is present");
+		ZAssert.assertTrue(app.zPagePreferences.zVerifyTrustedDeviceCount(0), "Verify trusted device count is decreased");
+		ZAssert.assertTrue(app.zPagePreferences.zVerifyDisabledRevokeThisDeviceLink(), "Verify revoke this device link is disabled");
+	    this.app.zPageLogin.zNavigateTo();
+		totp = CommandLine.cmdExecOnServer(ZimbraAccount.AccountZWC().EmailAddress, secret);
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC(), totp, false);
 
-	}
+	    logger.info("Login requires totp after revoke");
 
-}
+	}}

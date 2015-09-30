@@ -42,7 +42,7 @@ public class PageLogin extends AbsTab {
 		public static final String zInputPassword = "css=input[id='password']";
 		public static final String zInputCode = "css=input[id='totpcode']";
 		public static final String zInputRemember = "css=input[id='remember']";
-
+		public static final String zTrustThisComputer = "css=input[id='trustedDevice']";
 		// Displayed text
 		public static final String zDisplayedusername = "css=form[name='loginForm'] label[for='username']";
 		public static final String zDisplayedcopyright = "css=div[class='copyright']";
@@ -117,8 +117,6 @@ public class PageLogin extends AbsTab {
 
 	}
 
-
-
 	/**
 	 * Login as the specified account
 	 * @param account
@@ -145,7 +143,6 @@ public class PageLogin extends AbsTab {
 
 			((AppAjaxClient)MyApplication).zSetActiveAcount(account);
 
-
 		} finally {
 			
 			SleepMetrics.RecordProcessing((new Throwable()).getStackTrace(), start, new Date());
@@ -153,7 +150,29 @@ public class PageLogin extends AbsTab {
 		}
 	}
 
-	public void zLogin(ZimbraAccount account, String totp) throws HarnessException {
+	public AbsPage zSetupAfterLogin(ZimbraAccount account) throws HarnessException {
+		logger.debug("login(ZimbraAccount account)" + account.EmailAddress);
+
+		tracer.trace("Login to the "+ MyApplication.myApplicationName() +" using user/password "+ account.EmailAddress +"/"+ account.Password);
+		zNavigateTo();			
+			zSetLoginName(account.EmailAddress);
+			zSetLoginPassword(account.Password);
+
+			// Click the Login button
+			sClick(Locators.zBtnLogin);
+			SleepUtil.sleepLong();
+			AbsPage page = null;
+			page = new Dialog2FactorAuthEnable(MyApplication, ((AppAjaxClient) MyApplication).zPageLogin);
+			if ( page.zIsActive() ) {
+				return (page);
+			}
+			
+			return(null);
+		
+	}
+
+	
+	public void zLogin(ZimbraAccount account, String totp, boolean trustThisComputer) throws HarnessException {
 		logger.debug("login(ZimbraAccount account)" + account.EmailAddress);
 
 		tracer.trace("Login to the "+ MyApplication.myApplicationName() +" using user/password "+ account.EmailAddress +"/"+ account.Password);
@@ -171,6 +190,11 @@ public class PageLogin extends AbsTab {
 			sClick(Locators.zBtnLogin);
 			SleepUtil.sleepMedium();
 			zSetLoginTOTPCode(totp);
+			
+			if ( trustThisComputer == true){
+				zMarkTrustThisComputer();
+			}
+			
 			sClick(Locators.zBtnLogin);			
 			
 			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(180000);
@@ -238,6 +262,20 @@ public class PageLogin extends AbsTab {
 		sType(locator, totpCode);
 	}
 
+	public void zMarkTrustThisComputer() throws HarnessException {
+		
+		tracer.trace("Click on Trust this computer");
+		
+		SleepUtil.sleepSmall();
+		this.sClick(Locators.zTrustThisComputer);
+	
+	}
+	
+	public Boolean zVerifyTrustThisComputer() throws HarnessException {
+		return sIsElementPresent(Locators.zTrustThisComputer);
+	}
+
+	
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		throw new HarnessException("Login page does not have a Toolbar");

@@ -67,7 +67,8 @@ public class PagePreferences extends AbsTab {
 		//Accounts
 		public static final String z2FAEnableLink = "css=div[id='Prefs_Pages_ACCOUNTS_PRIMARY'] a[id='Prefs_Pages_ACCOUNTS_TWO_STEP_AUTH_LINK']:contains('Setup two-step authentication ...')";
 		public static final String zDisable2FALink = "css=div[id='Prefs_Pages_ACCOUNTS_PRIMARY'] a[id='Prefs_Pages_ACCOUNTS_TWO_STEP_AUTH_LINK']:contains('Disable two-step authentication ...')";
-		
+		public static final String zTrustedDeviceCount = "css=td[class='ZOptionsField'] span[id='Prefs_Pages_ACCOUNTS_TRUSTED_DEVICES_COUNT']:contains('You have 1 trusted device')";
+		public static final String zRevokeThisDeviceLink = "css=td[class='ZOptionsField'] a[id='Prefs_Pages_ACCOUNTS_TRUSTED_DEVICE_REVOKE_LINK']:contains('revoke this device')";
 	
 	}
 	
@@ -78,6 +79,18 @@ public class PagePreferences extends AbsTab {
 
 	public Boolean zVerifySetup2FALink() throws HarnessException {
 		return sIsElementPresent(Locators.z2FAEnableLink);
+	}
+
+	public Boolean zVerifyRevokeThisDevice() throws HarnessException {
+		return sIsElementPresent(Locators.zRevokeThisDeviceLink);
+	}
+
+	public Boolean zVerifyDisabledRevokeThisDeviceLink() throws HarnessException {
+		return sIsElementPresent("css=td[class='ZOptionsField'] a[id='Prefs_Pages_ACCOUNTS_TRUSTED_DEVICE_REVOKE_LINK'].ZmLinkDisabled");
+	}
+
+	public Boolean zVerifyTrustedDeviceCount(int deviceCount) throws HarnessException {
+		return sIsElementPresent("css=td[class='ZOptionsField'] span[id='Prefs_Pages_ACCOUNTS_TRUSTED_DEVICES_COUNT']:contains('You have " + deviceCount + " trusted device')");
 	}
 
 	

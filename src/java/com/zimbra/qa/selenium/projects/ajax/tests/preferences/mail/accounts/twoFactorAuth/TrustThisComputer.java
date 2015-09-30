@@ -20,28 +20,26 @@ import java.util.HashMap;
 
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
-import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Locators;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
-public class DisableZimbraTwoFactorAuth extends AjaxCommonTest {
+public class TrustThisComputer extends AjaxCommonTest {
 
-	public DisableZimbraTwoFactorAuth() {
+	public TrustThisComputer() {
 		
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			private static final long serialVersionUID = 2485388299568483622L;
 			{				
 		 		put("zimbraFeatureTwoFactorAuthAvailable", "TRUE");
+		 		
 			}
 		};
 
 	}
 
-	@Test(	description = "Disable two factor auth from preferences",
-			groups = { "sanity" })
-	public void DisableZimbraTwoFactorAuth_01() throws HarnessException {
+	@Test(	description = "Trust the computer and verify that after relogin totp code is not required",
+			groups = { "smoke" })
+	public void TrustthisComputer_01() throws HarnessException {
 		String totp, secret, tempToken;
 		
 		ZimbraAccount.AccountZWC().soapSend(
@@ -61,20 +59,19 @@ public class DisableZimbraTwoFactorAuth extends AjaxCommonTest {
         		"</EnableTwoFactorAuthRequest>");
 		// Login
 		totp = CommandLine.cmdExecOnServer(ZimbraAccount.AccountZWC().EmailAddress, secret);
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC(), totp, false);
-		
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC(), totp, true);
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
 
 		app.zPagePreferences.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
-		app.zPagePreferences.sClick(Locators.zDisable2FALink);
-		DialogWarning dialog = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.DisableTwoStepAuthentication, app, app.zPagePreferences);
-		dialog.zClickButton(Button.B_YES);
 		
 		//Verification
-        ZAssert.assertTrue(app.zPagePreferences.zVerifySetup2FALink(), "Verify set-up two factor auth link is present");
+		ZAssert.assertTrue(app.zPagePreferences.zVerifyTrustedDeviceCount(1), "Verify trusted device count is increased");
+		ZAssert.assertTrue(app.zPagePreferences.zVerifyRevokeThisDevice(), "Verify revoke this device link is present");
+	    this.app.zPageLogin.zNavigateTo();
+	    this.startingPage.zNavigateTo();
+	    logger.info("Logged in successfully without totp");
 
 	}
-
 }

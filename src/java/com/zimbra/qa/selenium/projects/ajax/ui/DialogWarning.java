@@ -70,7 +70,7 @@ public class DialogWarning extends AbsDialog {
 		public static final DialogWarningID ZmAcceptShare = new DialogWarningID("ZmAcceptShare");
 	   	public static final DialogWarningID ConflictResource = new DialogWarningID("RESC_CONFLICT_DLG");
 	   	public static final DialogWarningID DisableTwoStepAuthentication = new DialogWarningID("YesNoMsgDialog");
-
+	   	public static final DialogWarningID RevokeTrustedDevice = new DialogWarningID("OkCancel_title");
 		protected String Id;
 		public DialogWarningID(String id) {
 			Id = id;
@@ -147,6 +147,10 @@ public class DialogWarning extends AbsDialog {
 
 			locator = buttonsTableLocator + " td[id$='_button2_title']";
 
+		} else if (button == Button.B_REVOKE) {
+
+			locator = "css=div[id='OkCancel'] div[id='OkCancel_button2'] td[id$='_button2_title']:contains('Revoke')";
+			
 		}else if (button == Button.B_SAVE_WITH_CONFLICT) {
 
 			locator = "css= div[id^='RESC_CONFLICT_DLG_button'] td[id^='RESC_CONFLICT_DLG_']:contains('Save')";
