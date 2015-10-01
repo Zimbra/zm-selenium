@@ -785,7 +785,11 @@ public class FormApptNew extends AbsForm {
 			this.sClickAt(locator, "");
 			String[] valueSplit = value.split(":");
 			String[] valueSplit1 = value.split(" ");
-			this.sClickAt("css=div[id^='ext-timepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[0].replace("0", "") + "')", "");
+			if (valueSplit[0].substring(0, 1).equalsIgnoreCase("0")) {
+				this.sClickAt("css=div[id^='ext-timepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[0].replace("0", "") + "')", "");
+			} else {
+				this.sClickAt("css=div[id^='ext-timepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[0] + "')", "");
+			}
 			this.sClickAt("css=div[id^='ext-timepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit1[0].substring(3) + "')", "");
 			this.sClickAt("css=div[id^='ext-timepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit1[1] + "')", "");
 			
@@ -796,11 +800,14 @@ public class FormApptNew extends AbsForm {
 
 			locator = Locators.EndTime;
 			
-				
 			this.sClickAt(locator, "");
 			String[] valueSplit = value.split(":");
 			String[] valueSplit1 = value.split(" ");
-			this.sClickAt("css=div[id^='ext-timepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[0].replace("0", "") + "')", "");
+			if (valueSplit[0].substring(0, 1).equalsIgnoreCase("0")) {
+				this.sClickAt("css=div[id^='ext-timepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[0].replace("0", "") + "')", "");
+			} else {
+				this.sClickAt("css=div[id^='ext-timepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[0] + "')", "");
+			}
 			this.sClickAt("css=div[id^='ext-timepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit1[0].substring(3) + "')", "");
 			this.sClickAt("css=div[id^='ext-timepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit1[1] + "')", "");
 			
@@ -816,7 +823,7 @@ public class FormApptNew extends AbsForm {
 			if (value.contains("/")) {
 				String[] valueSplit = value.split("/");
 				this.sClickAt("css=div[id^='ext-datepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + zGetCurrentMonth(valueSplit[0]) + "')", "");
-				if (valueSplit[1].charAt(0) == 0) {
+				if (valueSplit[1].substring(0, 1).equalsIgnoreCase("0")) {
 					this.sClickAt("css=div[id^='ext-datepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[1].replace("0", "") + "')", "");
 				} else {
 					this.sClickAt("css=div[id^='ext-datepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[1] + "')", "");
@@ -838,7 +845,7 @@ public class FormApptNew extends AbsForm {
 			if (value.contains("/")) {
 				String[] valueSplit = value.split("/");
 				this.sClickAt("css=div[id^='ext-datepicker-2'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + zGetCurrentMonth(valueSplit[0]) + "')", "");
-				if (valueSplit[1].charAt(0) == 0) {
+				if (valueSplit[1].substring(0, 1).equalsIgnoreCase("0")) {
 					this.sClickAt("css=div[id^='ext-datepicker-2'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[1].replace("0", "") + "')", "");
 				} else {
 					this.sClickAt("css=div[id^='ext-datepicker-2'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[1] + "')", "");
