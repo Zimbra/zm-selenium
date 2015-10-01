@@ -39,7 +39,7 @@ public class ModifySeriesDate extends CalendarWorkWeekTest {
 	}
 	@Bugs(ids = "101532")
 	@Test(description = "Modify series invite date and verify it",
-			groups = { "smoke" })
+			groups = { "functional" })
 
 	public void ModifySeriesDate_01() throws HarnessException, ParseException {
 

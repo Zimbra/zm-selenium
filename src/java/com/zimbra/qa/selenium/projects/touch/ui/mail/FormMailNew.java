@@ -342,6 +342,10 @@ public class FormMailNew extends AbsForm {
 			
 			locator = Locators.zBodyField;
 			
+			this.sFocus(Locators.zSubjectField);
+			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
+			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
+			
 			this.sClickAt(locator, "");
 			this.sFocus(locator);
 			
