@@ -73,7 +73,7 @@ public class QuickReply extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(sent, "Verify the message is in the sent folder");
 
 		// Verify message is Received by sender
-		MailItem received = MailItem.importFromSOAP(account1, "subject:("+ subject +") from:("+ app.zGetActiveAccount().EmailAddress +")");
+		MailItem received = MailItem.importFromSOAP(account1, "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received by the original sender");
 		
 	}
@@ -85,7 +85,6 @@ public class QuickReply extends PrefGroupMailByMessageTest {
 		ZimbraAccount account1 = new ZimbraAccount();
 		account1.provision();
 		account1.authenticate();
-		
 		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
