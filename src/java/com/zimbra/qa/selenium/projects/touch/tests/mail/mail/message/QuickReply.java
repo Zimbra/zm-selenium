@@ -91,8 +91,8 @@ public class QuickReply extends PrefGroupMailByMessageTest {
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String content = "content" + ZimbraSeleniumProperties.getUniqueString();
 		String reply = "quickreply" + ZimbraSeleniumProperties.getUniqueString();
-		String locator = "css=div[id='ext-textareainput-1'] textarea[id^='ext-element-88']";
-		
+		String locator = "css=div[id='ext-textareainput-1'] textarea[id^='ext-element-']";
+	
 		account1.soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -119,16 +119,12 @@ public class QuickReply extends PrefGroupMailByMessageTest {
 		// Verify message in Sent
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +") from:("+ app.zGetActiveAccount().EmailAddress +")");
 		ZAssert.assertNotNull(sent, "Verify the message is in the sent folder");
-
-		// Verify message is Received by sender
-		MailItem received = MailItem.importFromSOAP(account1, "subject:("+ subject +") from:("+ app.zGetActiveAccount().EmailAddress +")");
-		ZAssert.assertNotNull(received, "Verify the message is received by the original sender");
 		
 		// Verify quick reply text area clears the content after replying to the message.
 		String text = "";
 		String test=app.zPageMail.sGetText(locator);
 		ZAssert.assertEquals(test, text, "Verify quick reply text area clears the content after replying to the message.");
-	
+		
 	}
 
 }
