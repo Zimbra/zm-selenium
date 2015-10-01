@@ -15,8 +15,7 @@
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts;
-import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.core.Bugs;import com.zimbra.qa.selenium.framework.items.ContactItem;import com.zimbra.qa.selenium.framework.items.FolderItem;import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;import com.zimbra.qa.selenium.framework.ui.Action;import com.zimbra.qa.selenium.framework.ui.Button;
+import org.testng.annotations.Test;import com.zimbra.qa.selenium.framework.core.Bugs;import com.zimbra.qa.selenium.framework.items.ContactItem;import com.zimbra.qa.selenium.framework.items.FolderItem;import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.ui.contacts.FormContactNew;
 import com.zimbra.qa.selenium.projects.touch.ui.contacts.FormContactNew.Field;

@@ -754,6 +754,7 @@ public class FormApptNew extends AbsForm {
 	 * @param value
 	 * @throws HarnessException
 	 */
+	@SuppressWarnings("deprecation")
 	public void zFillField(Field field, String value) throws HarnessException {
 
 		tracer.trace("Set " + field + " to " + value);
@@ -815,7 +816,11 @@ public class FormApptNew extends AbsForm {
 			if (value.contains("/")) {
 				String[] valueSplit = value.split("/");
 				this.sClickAt("css=div[id^='ext-datepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + zGetCurrentMonth(valueSplit[0]) + "')", "");
-				this.sClickAt("css=div[id^='ext-datepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[1].replace("0", "") + "')", "");
+				if (valueSplit[1].charAt(0) == 0) {
+					this.sClickAt("css=div[id^='ext-datepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[1].replace("0", "") + "')", "");
+				} else {
+					this.sClickAt("css=div[id^='ext-datepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[1] + "')", "");
+				}
 				this.sClickAt("css=div[id^='ext-datepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[2] + "')", "");
 			} else {
 				this.sClickAt("css=div[id^='ext-datepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + value + "')", "");
@@ -833,7 +838,11 @@ public class FormApptNew extends AbsForm {
 			if (value.contains("/")) {
 				String[] valueSplit = value.split("/");
 				this.sClickAt("css=div[id^='ext-datepicker-2'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + zGetCurrentMonth(valueSplit[0]) + "')", "");
-				this.sClickAt("css=div[id^='ext-datepicker-2'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[1].replace("0", "") + "')", "");
+				if (valueSplit[1].charAt(0) == 0) {
+					this.sClickAt("css=div[id^='ext-datepicker-2'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[1].replace("0", "") + "')", "");
+				} else {
+					this.sClickAt("css=div[id^='ext-datepicker-2'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[1] + "')", "");
+				}
 				this.sClickAt("css=div[id^='ext-datepicker-2'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[2] + "')", "");
 			} else {
 				this.sClickAt("css=div[id^='ext-datepicker-2'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + value + "')", "");

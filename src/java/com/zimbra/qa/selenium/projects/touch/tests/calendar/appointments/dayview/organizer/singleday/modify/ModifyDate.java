@@ -70,7 +70,6 @@ public class ModifyDate extends CalendarWorkWeekTest {
                      "</m>" +
                "</CreateAppointmentRequest>");
         app.zPageCalendar.zRefresh();
-        app.zPageCalendar.zGoToToday(startUTC);
         
         // Remove attendee and save the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.B_EDIT, apptSubject);
@@ -92,74 +91,30 @@ public class ModifyDate extends CalendarWorkWeekTest {
 	 	ZAssert.assertEquals(app.zPageCalendar.zVerifyAppointmentDateInViewAppt(getTomorrowsDay()), true, "Verify modified date shown in view appointment UI");
 	}
 	
-	public String getTomorrowsDay() {
-		if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, -1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 3);
-		}
-		
+	public String getTomorrowsDay() {	
 	    Date tomorrow = calendarWeekDayUTC.getTime();
 	    DateFormat dateFormat = new SimpleDateFormat("d");
 	    return dateFormat.format(tomorrow);
 	}
 	
 	public String getTomorrowsDate() {
-		if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, -1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 3);
-		}
-
+		calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
+		
 	    Date tomorrow = calendarWeekDayUTC.getTime();
 	    DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
 	    return dateFormat.format(tomorrow);
 	}
 	
 	public String getTomorrowsStartDate() {
-		if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, -1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 3);
-		}
-
+		
 	    Date tomorrow = calendarWeekDayUTC.getTime();
 	    DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd'T'");
 	    return dateFormat.format(tomorrow) + "010000";
 	}
 	
 	public String getTomorrowsEndDate() {
-		if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, -1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 3);
-		}
-
-	    Date tomorrow = calendarWeekDayUTC.getTime();
+		
+		Date tomorrow = calendarWeekDayUTC.getTime();
 	    DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd'T'");
 	    return dateFormat.format(tomorrow) + "020000";
 	}

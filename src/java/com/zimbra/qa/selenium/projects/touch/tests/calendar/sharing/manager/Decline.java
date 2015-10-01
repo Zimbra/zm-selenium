@@ -84,7 +84,6 @@ public class Decline extends CalendarWorkWeekTest {
 		
 		// Select mounted calendar folder and DECLINE the appointment
 		app.zPageCalendar.zSelectFolder(mountPointName);
-		app.zPageCalendar.zGoToToday(startUTC);
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_DECLINE_MENU, apptSubject);
 		
 		// -------------- Verification at organizer side --------------

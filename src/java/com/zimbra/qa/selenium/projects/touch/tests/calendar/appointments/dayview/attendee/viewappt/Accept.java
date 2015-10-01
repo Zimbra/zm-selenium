@@ -66,7 +66,6 @@ public class Accept extends CalendarWorkWeekTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 		app.zPageCalendar.zRefresh();
-        app.zPageCalendar.zGoToToday(startUTC);
         
         // Select appointment and accept it
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_ACCEPT_MENU, apptSubject);

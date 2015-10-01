@@ -82,7 +82,6 @@ public class DeleteInstance extends CalendarWorkWeekTest {
 					"</m>" +
 				"</CreateAppointmentRequest>");
 		app.zPageCalendar.zRefresh();
-        app.zPageCalendar.zGoToToday(startUTC);
         
 		// Delete instance and verify corresponding UI
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_INSTANCE_MENU, apptSubject);

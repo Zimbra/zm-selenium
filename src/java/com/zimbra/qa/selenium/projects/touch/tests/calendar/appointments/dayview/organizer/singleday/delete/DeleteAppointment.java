@@ -68,7 +68,6 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
     		+	"</CreateAppointmentRequest>");
         String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
         app.zPageCalendar.zRefresh();
-        app.zPageCalendar.zGoToToday(startUTC);
         
         // Select appointment and delete it
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.B_DELETE, apptSubject);

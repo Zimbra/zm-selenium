@@ -64,7 +64,6 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 		apptForm.zSubmit();
-		app.zPageCalendar.zGoToToday(startUTC);
 		
 		ZAssert.assertEquals(zVerifyToastMessage("Invitation Sent"), true, "Verify toast message after creating invite");
 		

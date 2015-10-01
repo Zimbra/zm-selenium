@@ -39,7 +39,7 @@ public class ModifySeriesDate extends CalendarWorkWeekTest {
 	}
 	@Bugs(ids = "101532")
 	@Test(description = "Modify series invite date and verify it",
-			groups = { "functional" })
+			groups = { "smoke" })
 
 	public void ModifySeriesDate_01() throws HarnessException, ParseException {
 
@@ -78,7 +78,6 @@ public class ModifySeriesDate extends CalendarWorkWeekTest {
 				"</CreateAppointmentRequest>");
 		String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
 		app.zPageCalendar.zRefresh();
-        app.zPageCalendar.zGoToToday(startUTC);
 
         // Edit the invite and modify series date
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_SERIES_MENU, apptSubject);
@@ -88,14 +87,11 @@ public class ModifySeriesDate extends CalendarWorkWeekTest {
 
         String modifiedSeriesDate = "Every day; No end date; Effective " + getTomorrowsDate();
         apptForm = (FormApptNew)app.zPageCalendar.zToolbarPressButton(Button.B_EDIT);
-        SleepUtil.sleepMedium();
         ZAssert.assertTrue(app.zPageCalendar.zVerifyRepeatString(modifiedSeriesDate), "Verify series pattern is updated according to modified date");
         app.zPageCalendar.zToolbarPressButton(Button.B_CANCEL);
 
         // Go to next/previous week and verify correct number of recurring instances
         app.zPageCalendar.zToolbarPressButton(Button.B_BACK);
- 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
- 		SleepUtil.sleepMedium(); //Let UI draw first
  		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), true, "Verify meeting invite is present in current calendar view");
 
  		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
@@ -124,17 +120,6 @@ public class ModifySeriesDate extends CalendarWorkWeekTest {
 	}
 
 	public String getTomorrowsDay() {
-		if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, -1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 3);
-		}
 
 	    Date tomorrow = calendarWeekDayUTC.getTime();
 	    DateFormat dateFormat = new SimpleDateFormat("d");
@@ -142,15 +127,7 @@ public class ModifySeriesDate extends CalendarWorkWeekTest {
 	}
 
 	public String getTomorrowsDate() {
-		if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, -1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, -2);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 2);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
-		}
+		
 		Date tomorrow = calendarWeekDayUTC.getTime();
 		DateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy");
 	    return dateFormat.format(tomorrow);

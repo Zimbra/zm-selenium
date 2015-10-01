@@ -63,7 +63,6 @@ public class SelectAddressUsingAutoComplete extends CalendarWorkWeekTest {
 		apptForm.zFill(appt);
 		apptForm.zSelectAddressUsingAutoComplete(Field.Attendees, apptAttendee1);
 		apptForm.zSubmit();
-		app.zPageCalendar.zGoToToday(startUTC);
 				
 		// Verify appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));

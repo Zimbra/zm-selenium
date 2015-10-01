@@ -70,7 +70,6 @@ public class ModifyDate extends CalendarWorkWeekTest {
                      "</m>" +
                "</CreateAppointmentRequest>");
         app.zPageCalendar.zRefresh();
-        app.zPageCalendar.zGoToToday(startUTC);
 
         // Remove attendee and save the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);

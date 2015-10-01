@@ -39,6 +39,7 @@ public class PermanentDeleteInstance extends CalendarWorkWeekTest {
 		    put("zimbraPrefCalendarInitialView", "day");
 		}};
 	}
+	
 	@Bugs(ids = "95735")
 	@Test( description = "Delete an instance of recurring invite", 
 			groups = { "functional" } )
@@ -80,7 +81,6 @@ public class PermanentDeleteInstance extends CalendarWorkWeekTest {
 					"</m>" +
 				"</CreateAppointmentRequest>");
 		app.zPageCalendar.zRefresh();
-        app.zPageCalendar.zGoToToday(startUTC);
         
 		// Delete instance and verify corresponding UI
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_INSTANCE_MENU, apptSubject);

@@ -84,7 +84,6 @@ public class Delete extends CalendarWorkWeekTest {
 		
 		// Select mounted calendar folder and DECLINE the appointment
 		app.zPageCalendar.zSelectFolder(mountPointName);
-		app.zPageCalendar.zGoToToday(startUTC);
 	//	app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_DELETE, apptSubject);
         app.zPageMail.zClickButton(Button.B_YES);       
 
@@ -232,7 +231,6 @@ public class Delete extends CalendarWorkWeekTest {
 		
 		// Select mounted calendar folder and DELETE the appointment
 		app.zPageCalendar.zSelectFolder(mountPointName);
-		app.zPageCalendar.zGoToToday(startUTC);
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.B_DELETE, apptSubject);
         app.zPageMail.zClickButton(Button.B_YES);       
 		

@@ -21,6 +21,7 @@ import java.util.HashMap;
 
 import org.testng.annotations.*;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -39,6 +40,7 @@ public class PermanentDeleteSeries extends CalendarWorkWeekTest {
 		}};
 	}
 	
+	@Bugs(ids = "95735")
 	@Test (	description = "Permanently delete entire series", 
 			groups = { "functional" } )
 	
@@ -79,7 +81,6 @@ public class PermanentDeleteSeries extends CalendarWorkWeekTest {
 					"</m>" +
 				"</CreateAppointmentRequest>");
 		app.zPageCalendar.zRefresh();
-        app.zPageCalendar.zGoToToday(startUTC);
         
 		// Delete series and verify corresponding UI
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_SERIES_MENU, apptSubject);

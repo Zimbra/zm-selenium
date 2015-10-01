@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.touch.tests.calendar.appointments.dayview.organizer.singleday.create;
 
-import java.util.Calendar;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -44,10 +43,6 @@ public class CreateMeetingWithDL extends CalendarWorkWeekTest {
 		String apptSubject, apptContent;
 		apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		
-		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 01, 0, 0);
-		
 		// Create a DL
 		ZimbraAccount account1 = (new ZimbraAccount()).provision().authenticate();
 		ZimbraAccount account2 = (new ZimbraAccount()).provision().authenticate();
@@ -65,7 +60,6 @@ public class CreateMeetingWithDL extends CalendarWorkWeekTest {
 		apptForm.zFill(appt);
 		apptForm.zSelectAddressUsingAutoComplete(Field.Attendees, DL.EmailAddress);
 		apptForm.zSubmit();
-		app.zPageCalendar.zGoToToday(startUTC);
 		
         // Verify attendee1 of DL receives meeting invitation message
 		account1.soapSend(

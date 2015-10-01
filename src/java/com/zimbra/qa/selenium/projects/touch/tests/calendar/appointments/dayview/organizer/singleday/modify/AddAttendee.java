@@ -66,7 +66,6 @@ public class AddAttendee extends CalendarWorkWeekTest {
                      "</m>" +
                "</CreateAppointmentRequest>");
         app.zPageCalendar.zRefresh();
-        app.zPageCalendar.zGoToToday(startUTC);
         
         // Add attendee2 and resend the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.B_EDIT, apptSubject);

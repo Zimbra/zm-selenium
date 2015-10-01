@@ -84,7 +84,6 @@ public class Accept extends CalendarWorkWeekTest {
 		
 		// Select mounted calendar folder and ACCEPT the appointment
 		app.zPageCalendar.zSelectFolder(mountPointName);
-		app.zPageCalendar.zGoToToday(startUTC);
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_ACCEPT_MENU, apptSubject);
 		
 		

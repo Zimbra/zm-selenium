@@ -77,7 +77,6 @@ public class ModifyCalendarFolder extends CalendarWorkWeekTest {
     		+		"</m>" 
     		+	"</CreateAppointmentRequest>");
         app.zPageCalendar.zRefresh();
-        app.zPageCalendar.zGoToToday(startUTC);
         
         // Select appointment and modify calendar folder
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.B_EDIT, apptSubject);

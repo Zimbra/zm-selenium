@@ -1053,8 +1053,6 @@ public class PageCalendar extends AbsTab {
 
 		String locator = null;
 		AbsPage page = null;
-
-		SleepUtil.sleepMedium();
 		
 		if (button == Button.B_NEW) {
 			locator = Locators.NewButton;

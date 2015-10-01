@@ -41,7 +41,7 @@ public class CalendarWorkWeekTest extends TouchCommonTest {
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			private static final long serialVersionUID = -109947857488617841L;
 		{
-		    put("zimbraPrefCalendarInitialView", "workWeek");
+		    put("zimbraPrefCalendarInitialView", "day");
 		}};
 		
 		calendarWeekDayUTC = Calendar.getInstance();
@@ -52,19 +52,19 @@ public class CalendarWorkWeekTest extends TouchCommonTest {
 			// puts the date into Saturday.  Move the time to Thursday
 			// just to be safe.
 			
-			calendarWeekDayUTC.add(Calendar.HOUR, -24);
+			//calendarWeekDayUTC.add(Calendar.HOUR, -24);
 			
 		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ) {
 			
 			// Change Saturdays to Thursday.
 			
-			calendarWeekDayUTC.add(Calendar.HOUR, -48);
+			//calendarWeekDayUTC.add(Calendar.HOUR, -48);
 			
 		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ) {
 			
 			// Change Sundays to Tuesday.
 			
-			calendarWeekDayUTC.add(Calendar.HOUR, 48);
+			//calendarWeekDayUTC.add(Calendar.HOUR, 48);
 			
 		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY ) {
 			
@@ -73,7 +73,7 @@ public class CalendarWorkWeekTest extends TouchCommonTest {
 			// just to be safe.
 			
 			
-			calendarWeekDayUTC.add(Calendar.HOUR, 24);
+			//calendarWeekDayUTC.add(Calendar.HOUR, 24);
 			
 		}
 	}

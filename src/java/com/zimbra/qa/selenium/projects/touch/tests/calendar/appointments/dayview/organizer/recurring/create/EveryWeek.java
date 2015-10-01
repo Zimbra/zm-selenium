@@ -65,7 +65,6 @@ public class EveryWeek extends CalendarWorkWeekTest {
 		apptForm.zRepeat("EVERY_WEEK");
 		apptForm.zSubmit();
 		
-		app.zPageCalendar.zGoToToday(startUTC);
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>"+ apptSubject +"</query>"

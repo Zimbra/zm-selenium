@@ -38,7 +38,7 @@ public class ModifyInstanceTime extends CalendarWorkWeekTest {
 	}
 
 	@Test(description = "Modify instance date of series and verify it",
-			groups = { "functional" })
+			groups = { "test" })
 
 	public void ModifyInstanceTime_01() throws HarnessException, ParseException {
 
@@ -77,13 +77,13 @@ public class ModifyInstanceTime extends CalendarWorkWeekTest {
 				"</CreateAppointmentRequest>");
 		String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
 		app.zPageCalendar.zRefresh();
-        app.zPageCalendar.zGoToToday(startUTC);
 
         // Edit the invite and modify series date
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_INSTANCE_MENU, apptSubject);
         apptForm = (FormApptNew)app.zPageCalendar.zToolbarPressButton(Button.B_EDIT);
         apptForm.zFillField(Field.StartTime, "03:00 AM");
         apptForm.zSubmit();
+        SleepUtil.sleepMedium();
         ZAssert.assertEquals(app.zPageCalendar.zVerifyAppointmentTimeInViewAppt("3:00 AM - 4:00 AM"), true, "Verify modified time shown in view appointment UI");
 
         String modifiedSeriesDate = "Every day; No end date; Effective " + getTomorrowsDate();
@@ -115,15 +115,6 @@ public class ModifyInstanceTime extends CalendarWorkWeekTest {
 	}
 
 	public String getTomorrowsDate() {
-		if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, -1);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, -2);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 2);
-		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY ) {
-			calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
-		}
 		Date tomorrow = calendarWeekDayUTC.getTime();
 		DateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy");
 	    return dateFormat.format(tomorrow);

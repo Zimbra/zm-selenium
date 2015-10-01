@@ -125,7 +125,6 @@ public class Create extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
 		
 		// Verify appointment exists in UI
-		app.zPageCalendar.zGoToToday(startUTC);
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), true, "Verify appointment is visible in UI");
 
 	}

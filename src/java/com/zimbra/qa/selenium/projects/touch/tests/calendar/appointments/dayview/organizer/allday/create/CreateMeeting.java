@@ -65,8 +65,6 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		apptForm.zFill(appt);
 		apptForm.zSubmit();
 		
-        app.zPageCalendar.zGoToToday(startUTC);
-
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>subject:("+ apptSubject + ")" + " " + "content:(" + apptContent +")</query>"

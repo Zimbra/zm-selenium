@@ -66,7 +66,6 @@ public class Decline extends CalendarWorkWeekTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 		app.zPageCalendar.zRefresh();
-        app.zPageCalendar.zGoToToday(startUTC);
         
         // Select appointment and decline it
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_DECLINE_MENU, apptSubject);
