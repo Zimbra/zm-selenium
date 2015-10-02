@@ -234,7 +234,7 @@ public class PageMail extends AbsTab {
 		Boolean elementPresent = false;
 		if (sIsElementPresent("css=html body div:contains('body of the image starts..')") == true) {
 			if (sIsElementPresent("css=html body div:contains('body of the image ends..')") == true) {
-				if (sIsElementPresent("css=html body div img[pnsrc^='cid']") == true || sIsElementPresent("css=html body div img[dfsrc$='nav-zimbra.png']") == true) {
+				if (sIsElementPresent("css=html body div img[pnsrc^='cid']") == true || sIsElementPresent("css=html body div img[dfsrc$='nav-zimbra.png']") == true || sIsElementPresent("css=html body div img[dfsrc$='http://fileswwwzimbracom.s3.amazonaws.com/_res/images/try/Try-Page-Collab-8-5.png']") == true) {
 					elementPresent = true;
 				}
 			}
@@ -1444,6 +1444,9 @@ public class PageMail extends AbsTab {
 	// New Function
 
 	public AbsPage zListItem(Action action, Button option, String subject) throws HarnessException {
+		
+		SleepUtil.sleepSmall();
+		
 		logger.info(myPageName() + " zListItem("+ action +", "+ option +", "+ subject +")");
 
 		tracer.trace(action+" then "+ option +" on subject"+ subject);
@@ -1618,6 +1621,9 @@ public class PageMail extends AbsTab {
 		if ( page != null ) {
 			page.zWaitForActive();
 		}
+		
+		SleepUtil.sleepSmall();
+		
 		// Default behavior
 		return (page);
 

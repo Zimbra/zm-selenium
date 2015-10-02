@@ -351,8 +351,8 @@ public class FormApptNew extends AbsForm {
 	public void zRemoveAttendee(String attendee) throws HarnessException {
 		this.sClickAt(Locators.RemoveAttendeeButton, "");
 		SleepUtil.sleepSmall();
-		this.sClickAt(Locators.ConfirmationDialogYesButton, "");
-		SleepUtil.sleepSmall();
+		//this.sClickAt(Locators.ConfirmationDialogYesButton, "");
+		//SleepUtil.sleepSmall();
 	}
 
 	public void zRemoveLocation(String location) throws HarnessException {

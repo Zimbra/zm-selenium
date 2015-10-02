@@ -1,11 +1,6 @@
 package com.zimbra.qa.selenium.projects.touch.tests.search.mail.conversation;
 
-import java.awt.AWTException;
-import org.testng.annotations.*;
-import com.zimbra.qa.selenium.framework.items.*;
-import com.zimbra.qa.selenium.framework.ui.*;
-import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
+import java.awt.AWTException;import org.testng.annotations.*;import com.zimbra.qa.selenium.framework.items.*;import com.zimbra.qa.selenium.framework.ui.*;import com.zimbra.qa.selenium.framework.util.*;import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
 
 public class DeleteMail extends PrefGroupMailByConversationTest {
 
@@ -14,7 +9,7 @@ public class DeleteMail extends PrefGroupMailByConversationTest {
 	}
 	
 	@Test(description = "Search message by subject and delete it in conversation view",
-			groups = {"smoke"})
+			groups = {"functional"})
 	
 	public void DeleteMail_01() throws HarnessException, AWTException {
 	
@@ -43,7 +38,7 @@ public class DeleteMail extends PrefGroupMailByConversationTest {
 	
 	// SOAP Verification
 	MailItem actual= MailItem.importFromSOAP(app.zGetActiveAccount(), "in:trash "+ subject);
-	ZAssert.assertNotNull(actual, "Verify the mail is in the trash");
+	ZAssert.assertNotNull(actual, "Verify the mail is in the trash");		app.zPageMail.zClickButton(Button.B_BACK);
 	
 	}
 

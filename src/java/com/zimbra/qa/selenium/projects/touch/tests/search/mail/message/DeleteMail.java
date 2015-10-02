@@ -1,7 +1,9 @@
 package com.zimbra.qa.selenium.projects.touch.tests.search.mail.message;
 
 import java.awt.AWTException;
+
 import org.testng.annotations.*;
+
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -50,6 +52,8 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	// SOAP Verification
 	MailItem actual= MailItem.importFromSOAP(app.zGetActiveAccount(), "in:trash "+ subject);
 	ZAssert.assertNotNull(actual, "Verify the mail is in the trash");
+	
+	app.zPageMail.zClickButton(Button.B_BACK);
 	
 	}
 

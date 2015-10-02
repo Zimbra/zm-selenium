@@ -85,6 +85,6 @@ public class ModifyTime extends CalendarWorkWeekTest {
 	    ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:GetAppointmentResponse//mail:comp//mail:e", "u"), String.valueOf(endUTC.addHours(2).toTimeZone(tz).toMillis()), "Verify appointment modified end time");
 
 	    // Verify appointment modified time in UI
-		ZAssert.assertEquals(app.zPageCalendar.zVerifyAppointmentTimeInViewAppt("3:00 AM to 4:00 AM"), true, "Verify modified time shown in view appointment UI");
+		ZAssert.assertEquals(app.zPageCalendar.zVerifyAppointmentTimeInViewAppt("3:00 AM - 4:00 AM"), true, "Verify modified time shown in view appointment UI");
 	}
 }
