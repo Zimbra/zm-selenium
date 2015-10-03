@@ -384,7 +384,8 @@ public class FormApptNew extends AbsForm {
 	public void zAddAttendees(String attendee) throws HarnessException {
 		this.sClickAt(Locators.AddAttendeeButton, "0,0");
 		SleepUtil.sleepSmall();
-		this.zType(Locators.AttendeesField2, attendee);
+		this.sFocus(Locators.AttendeesField2);
+		this.zKeyboard.zTypeCharacters(attendee);
 	}
 	
 	/**
@@ -815,28 +816,52 @@ public class FormApptNew extends AbsForm {
 
 		// start date
 		} else if (field == Field.StartDate) {
-
+			
+			String index = null;
+			
 			locator = Locators.StartDate;
 			
 			this.sClickAt(locator, "");
 			
 			if (value.contains("/")) {
 				String[] valueSplit = value.split("/");
-				this.sClickAt("css=div[id^='ext-datepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + zGetCurrentMonth(valueSplit[0]) + "')", "");
-				if (valueSplit[1].substring(0, 1).equalsIgnoreCase("0")) {
-					this.sClickAt("css=div[id^='ext-datepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[1].replace("0", "") + "')", "");
+				
+				if (this.sIsElementPresent("css=div[id^='ext-datepicker-3'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + zGetCurrentMonth(valueSplit[0]) + "')")) {
+					index = "3";
 				} else {
-					this.sClickAt("css=div[id^='ext-datepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[1] + "')", "");
+					index = "1";
 				}
-				this.sClickAt("css=div[id^='ext-datepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[2] + "')", "");
+
+				this.sClickAt("css=div[id^='ext-datepicker-" + index + "'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + zGetCurrentMonth(valueSplit[0]) + "')", "");
+				if (valueSplit[1].substring(0, 1).equalsIgnoreCase("0")) {
+					this.sClickAt("css=div[id^='ext-datepicker-" + index + "'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[1].replace("0", "") + "')", "");
+				} else {
+					this.sClickAt("css=div[id^='ext-datepicker-" + index + "'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[1] + "')", "");
+				}
+				this.sClickAt("css=div[id^='ext-datepicker-" + index + "'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[2] + "')", "");
 			} else {
-				this.sClickAt("css=div[id^='ext-datepicker-1'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + value + "')", "");
+				
+				if (this.sIsElementPresent("css=div[id^='ext-datepicker-3'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + value + "')") == true) {
+					index = "3";
+				} else {
+					index = "1";
+				}
+				
+				this.sClickAt("css=div[id^='ext-datepicker-" + index + "'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + value + "')", "");
 			}
 			
-			this.sClickAt("css=div[id^='ext-datepicker-1'] div[id^='ext-button'] span[class='x-button-label']:contains('Done')", "");
+			if (this.sIsElementPresent("css=div[id^='ext-datepicker-3'] div[id^='ext-button'] span[class='x-button-label']:contains('Done')") == true) {
+				index = "3";
+			} else {
+				index = "1";
+			}
+			
+			this.sClickAt("css=div[id^='ext-datepicker-" + index + "'] div[id^='ext-button'] span[class='x-button-label']:contains('Done')", "");
 			
 		// end date
 		} else if (field == Field.EndDate) {
+			
+			String index = null;
 
 			locator = Locators.EndDate;
 			
@@ -844,20 +869,40 @@ public class FormApptNew extends AbsForm {
 			
 			if (value.contains("/")) {
 				String[] valueSplit = value.split("/");
-				this.sClickAt("css=div[id^='ext-datepicker-2'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + zGetCurrentMonth(valueSplit[0]) + "')", "");
-				if (valueSplit[1].substring(0, 1).equalsIgnoreCase("0")) {
-					this.sClickAt("css=div[id^='ext-datepicker-2'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[1].replace("0", "") + "')", "");
+				
+				if (this.sIsElementPresent("css=div[id^='ext-datepicker-4'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + zGetCurrentMonth(valueSplit[0]) + "')")) {
+					index = "4";
 				} else {
-					this.sClickAt("css=div[id^='ext-datepicker-2'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[1] + "')", "");
+					index = "2";
 				}
-				this.sClickAt("css=div[id^='ext-datepicker-2'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[2] + "')", "");
+				
+				this.sClickAt("css=div[id^='ext-datepicker-" + index + "'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + zGetCurrentMonth(valueSplit[0]) + "')", "");
+				if (valueSplit[1].substring(0, 1).equalsIgnoreCase("0")) {
+					this.sClickAt("css=div[id^='ext-datepicker-" + index + "'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[1].replace("0", "") + "')", "");
+				} else {
+					this.sClickAt("css=div[id^='ext-datepicker-" + index + "'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[1] + "')", "");
+				}
+				this.sClickAt("css=div[id^='ext-datepicker-" + index + "'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + valueSplit[2] + "')", "");
 			} else {
-				this.sClickAt("css=div[id^='ext-datepicker-2'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + value + "')", "");
+				
+				if (this.sIsElementPresent("css=div[id^='ext-datepicker-4'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + value + "')") == true) {
+					index = "4";
+				} else {
+					index = "2";
+				}
+				
+				this.sClickAt("css=div[id^='ext-datepicker-" + index + "'] div[id^='ext-pickerslot'] div[class^='x-picker-item']:contains('" + value + "')", "");
 			}
 			
-			this.sClickAt("css=div[id^='ext-datepicker-2'] div[id^='ext-button'] span[class='x-button-label']:contains('Done')", "");
+			if (this.sIsElementPresent("css=div[id^='ext-datepicker-4'] div[id^='ext-button'] span[class='x-button-label']:contains('Done')") == true) {
+				index = "4";
+			} else {
+				index = "2";
+			}
+			
+			this.sClickAt("css=div[id^='ext-datepicker-" + index + "'] div[id^='ext-button'] span[class='x-button-label']:contains('Done')", "");
 
-		// repeat
+		// repeat	
 		} else if (field == Field.Repeat) {
 
 			isRepeat = value;

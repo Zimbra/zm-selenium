@@ -23,7 +23,6 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.ui.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
 
-
 public class QuickReply extends PrefGroupMailByMessageTest {
 
 	public QuickReply() {
@@ -33,19 +32,15 @@ public class QuickReply extends PrefGroupMailByMessageTest {
 	
 	@Test(	description = "Quick Reply to a conversation (1 message, 1 recipient)",
 			groups = { "smoke" })
+	
 	public void QuickReply_01() throws HarnessException {
-		
-		ZimbraAccount account1 = new ZimbraAccount();
-		account1.provision();
-		account1.authenticate();
-		
-		
+						
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String content = "content" + ZimbraSeleniumProperties.getUniqueString();
 		String reply = "quickreply" + ZimbraSeleniumProperties.getUniqueString();
 		
-		account1.soapSend(
+		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
@@ -62,9 +57,11 @@ public class QuickReply extends PrefGroupMailByMessageTest {
 		
 		// Select the mail
 		app.zPageMail.zListItem(Action.A_LEFTCLICK,subject);
+		SleepUtil.sleepSmall();
 		
 		// Send a quick reply
 		app.zPageMail.zFillField(Field.Body, reply);
+		SleepUtil.sleepSmall();
 		
 		app.zPageMail.zClickButton(Button.B_SEND);
 		
@@ -73,26 +70,23 @@ public class QuickReply extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(sent, "Verify the message is in the sent folder");
 
 		// Verify message is Received by sender
-		MailItem received = MailItem.importFromSOAP(account1, "subject:("+ subject +")");
-		ZAssert.assertNotNull(received, "Verify the message is received by the original sender");
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +") from:("+ app.zGetActiveAccount().EmailAddress +")");
+		ZAssert.assertNotNull(received, "Verify the message is received to recepient");
 		
 	}
 	
 	@Test(	description = "Bug 92120: Verify quick reply text area clears the content after replying to the message.",
 			groups = { "functional" })
+	
 	public void QuickReply_02() throws HarnessException {
-		
-		ZimbraAccount account1 = new ZimbraAccount();
-		account1.provision();
-		account1.authenticate();
-		
+				
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String content = "content" + ZimbraSeleniumProperties.getUniqueString();
 		String reply = "quickreply" + ZimbraSeleniumProperties.getUniqueString();
-		String locator = "css=div[id='ext-textareainput-1'] textarea[id^='ext-element-']";
-	
-		account1.soapSend(
+		String locator = "css=div[id='ext-textareainput-1'] textarea[id^='ext-element-88']";
+		
+		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
@@ -118,12 +112,16 @@ public class QuickReply extends PrefGroupMailByMessageTest {
 		// Verify message in Sent
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +") from:("+ app.zGetActiveAccount().EmailAddress +")");
 		ZAssert.assertNotNull(sent, "Verify the message is in the sent folder");
+
+		// Verify message is Received by sender
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +") from:("+ app.zGetActiveAccount().EmailAddress +")");
+		ZAssert.assertNotNull(received, "Verify the message is received to recepient");
 		
 		// Verify quick reply text area clears the content after replying to the message.
 		String text = "";
 		String test=app.zPageMail.sGetText(locator);
 		ZAssert.assertEquals(test, text, "Verify quick reply text area clears the content after replying to the message.");
-		
+	
 	}
 
 }

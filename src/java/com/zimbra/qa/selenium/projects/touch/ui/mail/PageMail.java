@@ -17,7 +17,9 @@
 package com.zimbra.qa.selenium.projects.touch.ui.mail;
 
 import java.util.*;
+
 import org.openqa.selenium.*;
+
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -121,10 +123,10 @@ public class PageMail extends AbsTab {
 		public static final String IcsLinkInBody = "css=body[class^='MsgBody'] span a[target='_blank']";
 		public static final String CreateNewCalendar = "css=div[id^='POPUP_DWT'] td[id='NEWCAL_title']";
 
-		public static final String zYesWarningDialog			= "css=div[id='ext-sheet-1'] div[id^='ext-button'] span:contains('Yes')";	
+		public static final String zYesWarningDialog		= "css=div[id='ext-sheet-1'] div[id^='ext-button'] span:contains('Yes')";	
 		public static final String zNoWarningDialog			= "css=div[id^='ext-sheet-1'] div[id^='ext-button'] span:contains('No')";
 		
-		public static final String zQuickReplySend		= "css=div[id='ext-button-8'] span:contains('Send')";
+		public static final String zQuickReplySend			= "css=div[id='ext-button-8'] span:contains('Send')";
 		public static final String zNavigatetoSubfolder		= "css=div[class='x-unsized x-list-disclosure']";
 		
 		
@@ -412,7 +414,7 @@ public class PageMail extends AbsTab {
 		}
 
 		this.sClickAt(locator, "");
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 
 		return (page);
 	}
@@ -1863,6 +1865,7 @@ public class PageMail extends AbsTab {
 		// Click the option
 		this.zClickAt(optionLocator,"");
 		this.zWaitForBusyOverlay();
+		SleepUtil.sleepSmall();
 
 		return (page);
 

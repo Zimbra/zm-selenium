@@ -83,7 +83,6 @@ public class ModifyInstanceTime extends CalendarWorkWeekTest {
         apptForm = (FormApptNew)app.zPageCalendar.zToolbarPressButton(Button.B_EDIT);
         apptForm.zFillField(Field.StartTime, "03:00 AM");
         apptForm.zSubmit();
-        SleepUtil.sleepMedium();
         ZAssert.assertEquals(app.zPageCalendar.zVerifyAppointmentTimeInViewAppt("3:00 AM - 4:00 AM"), true, "Verify modified time shown in view appointment UI");
 
         String modifiedSeriesDate = "Every day; No end date; Effective " + getTomorrowsDate();

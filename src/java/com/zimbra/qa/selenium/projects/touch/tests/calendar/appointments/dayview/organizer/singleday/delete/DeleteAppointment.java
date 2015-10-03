@@ -48,8 +48,8 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 2, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 4, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 02, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 04, 0, 0);
 		
         app.zGetActiveAccount().soapSend(
     			"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
@@ -71,7 +71,8 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
         
         // Select appointment and delete it
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.B_DELETE, apptSubject);
-        app.zPageMail.zClickButton(Button.B_YES);       
+        app.zPageMail.zClickButton(Button.B_YES);
+        
         // Verify appointment is moved to Trash
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify appointment is deleted");
 		
