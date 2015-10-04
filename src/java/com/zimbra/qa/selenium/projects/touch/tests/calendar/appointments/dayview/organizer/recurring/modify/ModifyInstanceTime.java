@@ -43,7 +43,7 @@ public class ModifyInstanceTime extends CalendarWorkWeekTest {
 	public void ModifyInstanceTime_01() throws HarnessException, ParseException {
 
 		// Create a meeting
-		String tz = ZTimeZone.TimeZoneIndia.getID();
+		String tz = ZTimeZone.TimeZoneEST.getID();
 		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptContent = ZimbraSeleniumProperties.getUniqueString();
 		String apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
@@ -81,12 +81,16 @@ public class ModifyInstanceTime extends CalendarWorkWeekTest {
         // Edit the invite and modify series date
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_INSTANCE_MENU, apptSubject);
         apptForm = (FormApptNew)app.zPageCalendar.zToolbarPressButton(Button.B_EDIT);
+        
+        SleepUtil.sleepSmall();
         apptForm.zFillField(Field.StartTime, "03:00 AM");
         apptForm.zSubmit();
         ZAssert.assertEquals(app.zPageCalendar.zVerifyAppointmentTimeInViewAppt("3:00 AM - 4:00 AM"), true, "Verify modified time shown in view appointment UI");
 
         String modifiedSeriesDate = "Every day; No end date; Effective " + getTomorrowsDate();
         apptForm = (FormApptNew)app.zPageCalendar.zToolbarPressButton(Button.B_EDIT);
+        
+        SleepUtil.sleepSmall();
         ZAssert.assertTrue(app.zPageCalendar.zVerifyRepeatString(modifiedSeriesDate), "Verify series pattern is updated according to modified date");
         app.zPageCalendar.zToolbarPressButton(Button.B_CANCEL);
 
@@ -111,6 +115,9 @@ public class ModifyInstanceTime extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(ZimbraAccount.AccountA().soapSelectValue("//mail:GetAppointmentResponse//mail:inv//mail:s", "u"), String.valueOf(startUTC.addHours(2).toTimeZone(tz).toMillis()), "Verify appointment modified start time");
 	    ZAssert.assertEquals(ZimbraAccount.AccountA().soapSelectValue("//mail:GetAppointmentResponse//mail:inv//mail:e", "u"), String.valueOf(endUTC.addHours(2).toTimeZone(tz).toMillis()), "Verify appointment modified end time");
 	    ZAssert.assertEquals(ZimbraAccount.AccountA().soapSelectValue("//mail:GetAppointmentResponse//mail:inv//mail:exceptId", "d"), getExceptionDate(), "Verify appointment modified start time");
+	    
+	    app.zPageCalendar.zToolbarPressButton(Button.B_BACK);
+	    
 	}
 
 	public String getTomorrowsDate() {

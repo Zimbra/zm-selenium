@@ -45,7 +45,7 @@ public class ModifySeriesDate extends CalendarWorkWeekTest {
 	public void ModifySeriesDate_01() throws HarnessException, ParseException {
 
 		// Create a meeting
-		String tz = ZTimeZone.TimeZoneIndia.getID();
+		String tz = ZTimeZone.TimeZoneEST.getID();
 		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptContent = ZimbraSeleniumProperties.getUniqueString();
 		String apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
@@ -83,16 +83,18 @@ public class ModifySeriesDate extends CalendarWorkWeekTest {
         // Edit the invite and modify series date
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_SERIES_MENU, apptSubject);
         apptForm = (FormApptNew)app.zPageCalendar.zToolbarPressButton(Button.B_EDIT);
+        
+        SleepUtil.sleepSmall();
         apptForm.zFillField(Field.StartDate, getTomorrowsDay());
         apptForm.zSubmit();
 
-        String modifiedSeriesDate = "Every day; No end date; Effective " + getTomorrowsDate();
         apptForm = (FormApptNew)app.zPageCalendar.zToolbarPressButton(Button.B_EDIT);
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyRepeatString(modifiedSeriesDate), "Verify series pattern is updated according to modified date");
         app.zPageCalendar.zToolbarPressButton(Button.B_CANCEL);
 
         // Go to next/previous week and verify correct number of recurring instances
         app.zPageCalendar.zToolbarPressButton(Button.B_BACK);
+        app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
+ 		SleepUtil.sleepMedium(); //Let UI draw first
  		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), true, "Verify meeting invite is present in current calendar view");
 
  		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
@@ -118,10 +120,14 @@ public class ModifySeriesDate extends CalendarWorkWeekTest {
 	    ZimbraAccount.AccountA().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ apptId +"'/>");
 		ZAssert.assertEquals(ZimbraAccount.AccountA().soapSelectValue("//mail:GetAppointmentResponse//mail:comp//mail:s", "d"), getTomorrowsStartDate(), "Verify appointment modified start date");
 	    ZAssert.assertEquals(ZimbraAccount.AccountA().soapSelectValue("//mail:GetAppointmentResponse//mail:comp//mail:e", "d"), getTomorrowsEndDate(), "Verify appointment modified end date");
+	    
+	    app.zPageCalendar.zToolbarPressButton(Button.B_BACK);
+	    
 	}
 
 	public String getTomorrowsDay() {
-
+		
+		calendarWeekDayUTC.add(Calendar.DAY_OF_YEAR, 1);
 	    Date tomorrow = calendarWeekDayUTC.getTime();
 	    DateFormat dateFormat = new SimpleDateFormat("d");
 	    return dateFormat.format(tomorrow);

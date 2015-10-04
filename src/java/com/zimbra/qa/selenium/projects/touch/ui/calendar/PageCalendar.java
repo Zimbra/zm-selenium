@@ -908,6 +908,8 @@ public class PageCalendar extends AbsTab {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 		}
+		
+		SleepUtil.sleepMedium();
 
 		return (page);
 	}

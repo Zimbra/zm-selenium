@@ -142,7 +142,7 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 		app.zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, "Inbox");
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		app.zPageMail.zToolbarPressButton(Button.B_LOAD_IMAGES);
+		//app.zPageMail.zToolbarPressButton(Button.B_LOAD_IMAGES); not required because previous test takes care of it
 		
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressPulldown(Button.B_REPLY, Button.O_FORWARD);
 		ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageInComposedMessage(), "Verify image tag in the composed mail");
