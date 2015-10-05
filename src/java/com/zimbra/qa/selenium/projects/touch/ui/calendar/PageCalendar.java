@@ -1039,7 +1039,8 @@ public class PageCalendar extends AbsTab {
 			sp.waitForPostqueue();
 		}
 		
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepLong();
+		
 		return page;
 
 	}
