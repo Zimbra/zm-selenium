@@ -121,8 +121,6 @@ public class ModifySeriesDate extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(ZimbraAccount.AccountA().soapSelectValue("//mail:GetAppointmentResponse//mail:comp//mail:s", "d"), getTomorrowsStartDate(), "Verify appointment modified start date");
 	    ZAssert.assertEquals(ZimbraAccount.AccountA().soapSelectValue("//mail:GetAppointmentResponse//mail:comp//mail:e", "d"), getTomorrowsEndDate(), "Verify appointment modified end date");
 	    
-	    app.zPageCalendar.zToolbarPressButton(Button.B_BACK);
-	    
 	}
 
 	public String getTomorrowsDay() {
