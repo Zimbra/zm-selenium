@@ -67,6 +67,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 		// Save the message
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
+		SleepUtil.sleepMedium();
 		mailform.zToolbarPressButton(Button.B_CANCEL);
 
 		// Get the message from the server
@@ -152,6 +153,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 		// Save the message
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
+		SleepUtil.sleepMedium();
 		mailform.zToolbarPressButton(Button.B_CANCEL);
 
 
@@ -198,6 +200,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 		// Save the message
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
+		SleepUtil.sleepMedium();
 		mailform.zToolbarPressButton(Button.B_CANCEL);
 
 
@@ -249,6 +252,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 		// Save the message
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
+		SleepUtil.sleepMedium();
 		mailform.zToolbarPressButton(Button.B_CANCEL);
 
 
@@ -404,6 +408,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 		// Save the message
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
+		SleepUtil.sleepMedium();
 		mailform.zToolbarPressButton(Button.B_CANCEL);
 
 
