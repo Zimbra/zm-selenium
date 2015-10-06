@@ -82,6 +82,8 @@ public class PageMail extends AbsTab {
 		public static final String zReplyToolbarButton = "css=div[id$='__REPLY']";
 		public static final String zReplyAllToolbarButton = "css=div[id$='__REPLY_ALL']";
 		public static final String zForwardToolbarButton = "css=div[id$='__FORWARD']";
+		
+		public static final String zSaveWarningDialog= "css=div[id='YesNoCancel'][style*='display: block;']";
 		// public static final String zCancelIconBtn =
 		// "css=[id^=zb__COMPOSE][id$=__CANCEL_title]";
 
@@ -119,6 +121,7 @@ public class PageMail extends AbsTab {
 		public static final String zAttachInboxFolder  = "css=div[id='zov__AttachMailTabView'] div[id^='zti__AttachMailTabView'] td[id^='zti__AttachMailTabView']:contains('Inbox')";
 		public static final String zAttachBriefcaseFolder  = "css=div[id='zov__ZmBriefcaseTabView'] div[id^='zti__ZmBriefcaseTabView'] td[id^='zti__ZmBriefcaseTabView']:contains('Briefcase')";		
 		public static final String zUntagBubble ="css=div[id='zv__TV-main__MSG'] tr[id='zv__TV__TV-main_MSG_tagRow'] span[class='addrBubble TagBubble'] span[class='ImgBubbleDelete']";
+		
 		
 		public static class CONTEXT_MENU {
 			// TODO: Until https://bugzilla.zimbra.com/show_bug.cgi?id=56273 is
