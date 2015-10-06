@@ -18,6 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.accounts.two
 
 import java.util.HashMap;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -32,7 +33,7 @@ public class ZimbraFeatureTwoFactorAuthRequired extends AjaxCommonTest {
 		
 		super.startingPage = app.zPagePreferences;
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 2485388299568483622L;
+			private static final long serialVersionUID = 2485388299568483623L;
 			{				
 		 		put("zimbraFeatureTwoFactorAuthAvailable", "TRUE");
 			}
@@ -77,8 +78,16 @@ public class ZimbraFeatureTwoFactorAuthRequired extends AjaxCommonTest {
 		this.app.zPagePreferences.zNavigateTo();
 		this.app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
         ZAssert.assertTrue(app.zPagePreferences.zVerifyDisable2FALink(), "Verify Disable link is present");
-
-		
+        
 	}
 
+	 @AfterMethod(groups={"always"})
+	public void afterMethod() throws HarnessException {
+
+	       // Resetting the account to flush after each  test method,
+	       // so that the next test is running with new account
+		// commonTestAfterClass();
+		ZimbraAccount.ResetAccountZWC();
+	       
+	}
 }
