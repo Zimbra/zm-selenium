@@ -414,8 +414,8 @@ public class PageMail extends AbsTab {
 		}
 
 		this.sClickAt(locator, "");
-		SleepUtil.sleepLong();
-
+		SleepUtil.sleepMedium();
+		
 		return (page);
 	}
 
@@ -1706,8 +1706,12 @@ public class PageMail extends AbsTab {
 		logger.info(this.sIsElementPresent(itemlocator));
 
 		if ( option == Button.B_CONVERSATION_ACTION_DROPDOWN ) {
+			
 			optionlocator = Locators.ConversationActionDropdown;
+			
 			this.sClickAt(itemlocator, "");
+			SleepUtil.sleepSmall();
+			
 			this.sClickAt(optionlocator, "");
 			SleepUtil.sleepMedium();
 

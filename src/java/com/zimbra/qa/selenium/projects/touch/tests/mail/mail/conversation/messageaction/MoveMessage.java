@@ -1,16 +1,13 @@
 package com.zimbra.qa.selenium.projects.touch.tests.mail.mail.conversation.messageaction;
 
-	import java.awt.AWTException;
-
+import java.awt.AWTException;
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
-import com.zimbra.qa.selenium.projects.touch.ui.mail.PageMail.Locators;
 
 	public class MoveMessage extends PrefGroupMailByConversationTest{
 
@@ -21,7 +18,7 @@ import com.zimbra.qa.selenium.projects.touch.ui.mail.PageMail.Locators;
 					groups = { "sanity" })
 			
 			
-			public void MoveMail_01() throws HarnessException, AWTException {
+			public void MoveMessage_01() throws HarnessException, AWTException {
 
 				String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
 				FolderItem userRoot = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
@@ -65,14 +62,14 @@ import com.zimbra.qa.selenium.projects.touch.ui.mail.PageMail.Locators;
 		ZAssert.assertEquals(folderId, pagemail.getId(), "Verify the subfolder ID that the message was moved into");
 		}	
 		
+
 		@Bugs( ids = "83506")
 		@Test(	description = "Move a mail into subfolder",
 					groups = { "smoke" })
-		public void MoveMail_02() throws HarnessException {
+		public void MoveMessage_02() throws HarnessException {
 
 				String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
 				String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
-				String locator = "css=div[class='zcs-menu-label']:contains('" + foldername + "')";
 				
 				// Create a subfolder to move the message into
 				// i.e. Inbox/subfolder
@@ -103,11 +100,11 @@ import com.zimbra.qa.selenium.projects.touch.ui.mail.PageMail.Locators;
 				// Move message
 				app.zPageMail.zConversationListItem(Button.B_CONVERSATION_ACTION_DROPDOWN, subject);
 				SleepUtil.sleepMedium();
-				app.zPageMail.sFocus(Locators.zNavigatetoSubfolder);
-				app.zPageMail.sClickAt(Locators.zNavigatetoSubfolder, "0,0");
+				app.zPageMail.zListItem(Button.B_MOVE_CONVERSATION);
 				SleepUtil.sleepMedium();
-				app.zPageMail.sFocus(locator);
-				app.zPageMail.sClickAt(locator, "0,0");
+				app.zPageMail.sClickAt("css=div[class='x-unsized x-list-disclosure']", "");
+				SleepUtil.sleepMedium();
+				app.zTreeMail.zSelectFolder(foldername);
 
 				// Get the message, make sure it is in the correct folder
 				app.zGetActiveAccount().soapSend(

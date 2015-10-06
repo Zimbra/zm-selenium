@@ -35,7 +35,7 @@ public class PermanentDeleteAppointment extends CalendarWorkWeekTest {
 	}
 	
 	@Test(description = "Permanently delete an appointment",
-			groups = { "sanity" })
+			groups = { "functional" })
 	
 	public void PermanentDeleteAppointment_01() throws HarnessException {
 		
@@ -73,11 +73,15 @@ public class PermanentDeleteAppointment extends CalendarWorkWeekTest {
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.B_DELETE, apptSubject);
         app.zPageMail.zClickButton(Button.B_YES);
 
-                
+
         // Permanently delete an appointment
+        SleepUtil.sleepMedium(); // invite doesn't remove from calendar immidiately so testcase fails here
 		app.zPageCalendar.zSelectFolder("Trash");
+		SleepUtil.sleepSmall();
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
+		SleepUtil.sleepSmall();
         app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
+        SleepUtil.sleepSmall();
         app.zPageMail.zClickButton(Button.B_YES);
 
         
