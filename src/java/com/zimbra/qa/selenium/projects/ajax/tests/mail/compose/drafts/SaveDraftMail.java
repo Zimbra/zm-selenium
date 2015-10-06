@@ -34,9 +34,11 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
 
 
 public class SaveDraftMail extends PrefGroupMailByMessageTest {
@@ -110,6 +112,8 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 		DialogWarning warning = (DialogWarning) app.zPageMail.zKeyboardShortcut(shortcut);
 		ZAssert.assertNotNull(warning, "Verify the dialog is opened");
+		
+		
 
 		warning.zClickButton(Button.B_YES);
 		warning.zWaitForClose(); // Make sure the dialog is dismissed
@@ -155,6 +159,10 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
 		SleepUtil.sleepMedium();
 		mailform.zToolbarPressButton(Button.B_CANCEL);
+		
+		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
+			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
+		}
 
 
 		// Get the message from the server
@@ -202,6 +210,10 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
 		SleepUtil.sleepMedium();
 		mailform.zToolbarPressButton(Button.B_CANCEL);
+		
+		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
+			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
+		}
 
 
 		// Get the message from the server
@@ -254,6 +266,10 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
 		SleepUtil.sleepMedium();
 		mailform.zToolbarPressButton(Button.B_CANCEL);
+		
+		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
+			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
+		}
 
 
 		// Get the message from the server
@@ -303,6 +319,11 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		SleepUtil.sleepMedium();
 		mailform.zToolbarPressButton(Button.B_CANCEL);
 		SleepUtil.sleepMedium();
+		
+				
+		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
+			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
+		}
 		
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
@@ -358,11 +379,15 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		// Fill out the form with the data
 		mailform.zFill(mail);
 
+		SleepUtil.sleepLong();
 		// Save the message
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 		mailform.zToolbarPressButton(Button.B_CANCEL);
-
+		
+		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
+			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
+		}
 
 		// Get the message from the server
 		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(),"subject:(" + mail.dSubject + ")");
@@ -405,12 +430,15 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 		// Fill out the form with the data
 		mailform.zFill(mail);
-
+		SleepUtil.sleepLong();
 		// Save the message
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 		mailform.zToolbarPressButton(Button.B_CANCEL);
 
+		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
+			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
+		}
 
 		// Get the message from the server
 		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(),"subject:(" + mail.dSubject + ")");
