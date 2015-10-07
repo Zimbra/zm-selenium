@@ -20,6 +20,7 @@ import java.util.HashMap;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -27,10 +28,10 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
 
-public class Get extends AjaxCommonTest {
+public class ViewMobileDevices extends AjaxCommonTest {
 
 	@SuppressWarnings("serial")
-	public Get() {
+	public ViewMobileDevices() {
 		
 		super.startingPage = app.zPagePreferences;
 		super.startingAccountPreferences = new HashMap<String , String>() {{
@@ -38,12 +39,12 @@ public class Get extends AjaxCommonTest {
 		}};
 	}
 
-
-	@Test(
-			description = "View the shortcuts preference page",
-			groups = { "functional", "network" }
-			)
-	public void Get_01() throws HarnessException {
+	
+	@Bugs(ids = "101596")
+	
+	@Test( description = "View connected devices and apps in preferences", groups = { "functional", "network" } )
+	
+	public void ViewMobileDevices_01() throws HarnessException {
 
 		
 		// Navigate to preferences -> notifications
