@@ -1,4 +1,4 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.contextmenu;
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.contextmenu;
 
 import org.testng.annotations.*;
 
