@@ -1029,7 +1029,7 @@ public class TreeMail extends AbsTree {
 	private List<FolderItem> zListGetFolders(String css) throws HarnessException {
 		List<FolderItem> items = new ArrayList<FolderItem>();
 
-		String searchLocator = css + " div[class='DwtComposite']";
+		String searchLocator = css + " div[class='DwtTreeItem-Control']";
 
 		int count = this.sGetCssCount(searchLocator);
 		logger.debug(myPageName() + " zListGetFolders: number of folders: "+ count);
