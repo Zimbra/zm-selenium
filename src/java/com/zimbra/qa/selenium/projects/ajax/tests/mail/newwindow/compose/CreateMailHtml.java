@@ -18,6 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.compose;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -34,6 +35,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 
 	}
 
+	@Bugs(	ids = "101612")
 	@Test(	description = "Send a mail using HTML editor - in a separate window",
 			groups = { "sanity" })
 			public void CreateMailHtml_01() throws HarnessException {
