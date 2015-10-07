@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -44,6 +45,8 @@ public class CreateMountpoint extends PrefGroupMailByMessageTest {
 		
 		
 	}
+	
+	@Bugs(	ids = "101616")
 	
 	@Test(	description = "Receive an invitation to a shared folder, accept it - in a separate window",
 			groups = { "smoke" })
