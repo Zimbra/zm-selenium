@@ -548,7 +548,7 @@ public class FormMailNew extends AbsForm {
 			// Enter text
 		//	this.sType(locator, value);
 			this.zKeyboard.zTypeCharacters(value);
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepLong();
 			//this.sTypeKeys(locator, "\t");
 			// For some reason, no bubble takes place.  As a workaround, type Enter			
 			//this.zKeyDown("13");
