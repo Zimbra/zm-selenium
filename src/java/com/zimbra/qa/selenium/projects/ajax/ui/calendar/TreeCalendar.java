@@ -604,7 +604,7 @@ public class TreeCalendar extends AbsTree {
 	private List<FolderItem> zListGetFolders(String css) throws HarnessException {
 		List<FolderItem> items = new ArrayList<FolderItem>();
 
-		String searchLocator = css + " div[class='DwtComposite']";
+		String searchLocator = css + " div[class='DwtTreeItem-Control']";
 
 		int count = this.sGetCssCount(searchLocator);
 		logger.debug(myPageName() + " zListGetFolders: number of folders: "+ count);
@@ -653,7 +653,7 @@ public class TreeCalendar extends AbsTree {
    private List<SavedSearchFolderItem>zListGetSavedSearchFolders(String top) throws HarnessException {
       List<SavedSearchFolderItem> items = new ArrayList<SavedSearchFolderItem>();
 
-      String searchLocator = top + "//div[@class='DwtComposite']";
+      String searchLocator = top + "//div[@class='DwtTreeItem-Control']";
 
       int count = this.sGetXpathCount(searchLocator);
       for ( int i = 1; i <= count; i++) {
