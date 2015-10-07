@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.trustedaddre
 import org.testng.annotations.Test;
 
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
@@ -33,6 +34,8 @@ public class AddTrustedEmail extends AjaxCommonTest {
 		super.startingAccountPreferences = null;
 		
 	}
+	
+	@Bugs(	ids = "101356")
 
 	@Test(
 			description = "Add a trusted email address",

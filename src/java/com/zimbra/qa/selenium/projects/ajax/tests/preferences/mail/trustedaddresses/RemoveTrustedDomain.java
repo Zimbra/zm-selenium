@@ -21,6 +21,7 @@ import java.util.HashMap;
 import org.testng.annotations.Test;
 
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
@@ -49,7 +50,7 @@ public class RemoveTrustedDomain extends AjaxCommonTest {
 		
 	}
 
-	
+	@Bugs(	ids = "101356")
 	@Test(
 			description = "Remove a trusted domain",
 			groups = { "smoke" }
