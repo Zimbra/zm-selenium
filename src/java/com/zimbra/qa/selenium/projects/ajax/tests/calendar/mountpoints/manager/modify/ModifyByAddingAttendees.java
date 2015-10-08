@@ -38,7 +38,7 @@ public class ModifyByAddingAttendees extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "47335")
 	@Test(description = "Modify a meeting in shared caledndar by adding more attendee and send updates only to added/removed attendees",
-			groups = { "test1" })
+			groups = { "functional" })
 			
 	public void ModifyMeetingByAddingAttendees_01() throws HarnessException {
 		

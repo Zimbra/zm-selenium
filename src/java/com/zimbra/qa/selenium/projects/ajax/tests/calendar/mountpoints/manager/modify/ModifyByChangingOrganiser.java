@@ -129,7 +129,7 @@ public class ModifyByChangingOrganiser extends CalendarWorkWeekTest {
         // Verify calendar value
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ start.addDays(-10).toMillis() +"' calExpandInstEnd='"+ start.addDays(10).toMillis() +"'>"
-						+		"<query>inid:"+ folder.getId() +" subject:("+ search +")</query>"
+						+		"<query>inid:257 subject:("+ search +")</query>"
 					+	"</SearchRequest>");
 		String id = app.zGetActiveAccount().soapSelectValue("//mail:appt", "id");
 		ZAssert.assertNotNull(id, "Verify that the appointment was moved to the mountpoint");

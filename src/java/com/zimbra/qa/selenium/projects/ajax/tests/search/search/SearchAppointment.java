@@ -79,8 +79,11 @@ public class SearchAppointment extends CalendarWorkWeekTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the appt list exists");
+	    this.app.zPageLogin.zNavigateTo();
+	    this.startingPage.zNavigateTo();
 
 	}
+	
 
 	@Bugs(ids = "49386")
 	@Test(	description = "Script error when searching in calendar list view", groups = { "functional" })
