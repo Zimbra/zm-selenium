@@ -17,6 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
 
 import java.awt.event.KeyEvent;
+import java.util.Calendar;
+
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -235,7 +237,18 @@ public class QuickAddAppointment extends AbsTab {
 
 	public void zNewAppointmentUsingMiniCal() throws HarnessException {
 		zWaitForMiniCalToLoad();
+		Calendar cal = Calendar.getInstance();
+
+		int month = cal.get(Calendar.MONTH + 1);
+		if (month == 4 || month == 6 || month == 9 || month == 11)
+			this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('30')", "");			
+		else if (month == 2 && cal.get(Calendar.YEAR)%4 == 0)
+		this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('29')", "");
+		else if (month == 2 && cal.get(Calendar.YEAR)%4 != 0)
 		this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('28')", "");
+		else 
+			this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('31')", "");
+			
 		SleepUtil.sleepSmall();
 		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_APPT_title']", "");
 	}
@@ -248,7 +261,17 @@ public class QuickAddAppointment extends AbsTab {
 
 	public void zNewAllDayAppointmentUsingMiniCal() throws HarnessException {
 		zWaitForMiniCalToLoad();
+		Calendar cal = Calendar.getInstance();
+
+		int month = cal.get(Calendar.MONTH + 1);
+		if (month == 4 || month == 6 || month == 9 || month == 11)
+			this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('30')", "");			
+		else if (month == 2 && cal.get(Calendar.YEAR)%4 == 0)
+		this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('29')", "");
+		else if (month == 2 && cal.get(Calendar.YEAR)%4 != 0)
 		this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('28')", "");
+		else 
+			this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('31')", "");
 		SleepUtil.sleepSmall();
 		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_ALLDAY_APPT_title']", "");
 	}
