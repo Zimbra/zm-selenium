@@ -29,7 +29,7 @@ public class DialogInformational extends AbsDialog {
 	public static class DialogWarningID {
 		
 		public static final DialogWarningID InformationalDialog = new DialogWarningID("ZmMsgDialog");
-		public static final DialogWarningID ShortcutDialog = new DialogWarningID("css=div[class='ZmShortcutsPanel'][style*='left: 453px']");
+		public static final DialogWarningID ShortcutDialog = new DialogWarningID("css=div[class='ZmShortcutsPanel'][style*='left: 460px']");
 	//	public static final com.zimbra.qa.selenium.projects.ajax.ui.DialogInformational.DialogWarningID ShortcutDialog = null;
 		protected String Id;
 		public DialogWarningID(String id) {
