@@ -33,7 +33,7 @@ public class DocumentBriefcaseEdit extends AbsForm {
 		public static final String zFrame = "css=iframe[id$='_body_ifr']";
 		public static final String zSaveAndCloseIconBtn = "css=td[id$='_title']:contains('Close')";
 		public static final String zBodyField = "css=body";
-		public static final String zNameField = "css=[class=DwtInputField] input";
+		public static final String zNameField = "css=td[class='ZmDocsEditViewHeaderCell'] td[id$='_item_1'] input";
 	}
 
 	private DocumentItem docItem;

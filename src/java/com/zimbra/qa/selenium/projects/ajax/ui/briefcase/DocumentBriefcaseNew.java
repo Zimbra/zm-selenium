@@ -36,7 +36,7 @@ public class DocumentBriefcaseNew extends AbsForm {
 		//public static final String zSaveAndCloseIconBtn = "css=[id='DWT9_left_icon']";
 		public static final String zSaveAndCloseIconBtn = "css=td[id$='_title']:contains('Close')";
 		public static final String zBodyField = "css=body";
-		public static final String zNameField = "css=td[class='ZmDocsEditViewHeaderCell'] div[class='DwtInputField']>input";
+		public static final String zNameField = "css=td[class='ZmDocsEditViewHeaderCell'] td[id$='_item_1'] input";
 		public static final String zEditNameField = "css=[class=DwtInputField] [input$=]";
 		public static final String zEnableVersionNotes = "css=div[class=DwtComposite] input[id=enableDesc]";
 	}
