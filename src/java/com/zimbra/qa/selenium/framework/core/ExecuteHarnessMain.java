@@ -1243,11 +1243,9 @@ public class ExecuteHarnessMain {
 		@Override
 		public void onTestFailure(ITestResult result) {
 			testsFailed++;
-			String fullname = result.getMethod().getMethod()
-					.getDeclaringClass().getName()
-					+ "." + result.getMethod().getMethod().getName();
-			failedTests.add(fullname.replace(
-					"com.zimbra.qa.selenium.projects.", "main.projects."));
+			String fullname = result.getMethod().getMethod().getDeclaringClass().getName() + "." + result.getMethod().getMethod().getName();
+			failedTests.add(fullname);
+			//failedTests.add(fullname.replace("com.zimbra.qa.selenium.projects.", "main.projects."));
 			getScreenCapture(result);
 		}
 
@@ -1257,11 +1255,9 @@ public class ExecuteHarnessMain {
 		@Override
 		public void onTestSkipped(ITestResult result) {
 			testsSkipped++;
-			String fullname = result.getMethod().getMethod()
-					.getDeclaringClass().getName()
-					+ "." + result.getMethod().getMethod().getName();
-			skippedTests.add(fullname.replace(
-					"com.zimbra.qa.selenium.projects.", "main.projects."));
+			String fullname = result.getMethod().getMethod().getDeclaringClass().getName() + "." + result.getMethod().getMethod().getName();
+			skippedTests.add(fullname);
+			//skippedTests.add(fullname.replace("com.zimbra.qa.selenium.projects.", "main.projects."));
 		}
 
 		/**
