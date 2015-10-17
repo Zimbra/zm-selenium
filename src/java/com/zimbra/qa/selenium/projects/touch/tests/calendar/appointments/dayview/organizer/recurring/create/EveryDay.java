@@ -121,11 +121,9 @@ public class EveryDay extends CalendarWorkWeekTest {
 
 		// Go to next/previous week and verify correct number of recurring instances
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
-		SleepUtil.sleepMedium(); //Let UI draw first
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), true, "Verify meeting invite is present in current calendar view");
 
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
-		SleepUtil.sleepMedium(); //Let UI draw first
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), true, "Verify meeting invite is present in current calendar view");
 
 	}

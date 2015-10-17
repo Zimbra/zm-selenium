@@ -19,8 +19,6 @@ package com.zimbra.qa.selenium.projects.touch.ui;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.projects.touch.ui.calendar.TreeCalendar;
-import com.zimbra.qa.selenium.projects.touch.ui.mail.TreeMail.Locators;
 
 public class PageCreateTag extends AbsPage {
 
@@ -41,7 +39,7 @@ public class PageCreateTag extends AbsPage {
 		public static final String zYellowColorButton = "css=div[id^='ext-organizeredit'] div[id='ext-colorselector-1'] div[class='zcs-tag-6']";
 		public static final String zSaveButton = "css=div[class='x-dock x-dock-vertical x-sized'] span[class='x-button-label']:contains('Save')";
 		public static final String zCancelButton = "css=div['id=ext-button-20'] span[class='x-button-label']:contains('Cancel')";
-		public static final String zDeleteButton = "css=div[id^='ext-organizeredit-1'] div[class^='x-container zcs-folder-edit']:nth-child(2) span[class='x-button-label']:contains('Delete')";
+		public static final String zDeleteButton = "css=div[id^='ext-organizeredit'] div[class*='x-container x-paint-monitored zcs-folder-edit'] span[class='x-button-label']:contains('Delete')";
 		public static final String zSubFolderIcon = "css=div[class='x-unsized x-list-disclosure']";
 		
 		public static final String zYesWarningDialog	= "css=div[id='ext-sheet-1'] div[id^='ext-button'] span:contains('Yes')";

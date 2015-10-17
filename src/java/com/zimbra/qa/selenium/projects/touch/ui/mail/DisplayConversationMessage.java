@@ -126,9 +126,6 @@ public class DisplayConversationMessage extends DisplayMail {
 
 		}
 
-		if ( locator == null )
-			throw new HarnessException("no locator defined for button "+ button);
-
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("locator is not present for button "+ button +" : "+ locator);
 
@@ -169,10 +166,6 @@ public class DisplayConversationMessage extends DisplayMail {
 			throw new HarnessException("not implemented for field " + field);
 //			super.zFillField(field, value);
 //			return;
-		}
-
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for field "+ field);
 		}
 
 		// Default behavior, enter value into locator field

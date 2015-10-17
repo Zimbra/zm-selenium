@@ -83,11 +83,6 @@ public class TreeCalendar extends AbsTree {
 				zClick(optionLocator);
 				this.zWaitForBusyOverlay();
 
-				if (page != null) {
-					// Wait for the page to become active, if it was specified
-					page.zWaitForActive();
-				}
-
 				return (page);
 			}
 
@@ -179,46 +174,10 @@ public class TreeCalendar extends AbsTree {
 
 		if (actionLocator == null)
 			throw new HarnessException("locator is null for action " + action);
-		if (optionLocator == null)
-			throw new HarnessException("locator is null for option " + option);
 
 		// Default behavior. Click the locator
 		this.zClickAt(optionLocator,"");
 		this.zWaitForBusyOverlay();
-
-		if (page != null) {
-			// Wait for the page to become active, if it was specified
-			page.zWaitForActive();
-		}
-		
-		
-		return page;
-	}
-
-	protected AbsPage zTreeItem(Action action, Button option, SavedSearchFolderItem folder) throws HarnessException {
-		if ( (action == null) || (option == null) || (folder == null) ) {
-			throw new HarnessException("Must define an action, option, and addressbook");
-		}
-		tracer.trace("processing " + folder.getName());
-
-		AbsPage page = null;
-		String actionLocator = null;
-		String optionLocator = null;
-
-		if (actionLocator == null)
-			throw new HarnessException("locator is null for action " + action);
-		if (optionLocator == null)
-			throw new HarnessException("locator is null for option " + option);
-
-		// Default behavior. Click the locator
-		zClickAt(actionLocator,"");
-		this.zWaitForBusyOverlay();
-		zClickAt(optionLocator,"");
-		this.zWaitForBusyOverlay();
-
-		if (page != null) {
-			page.zWaitForActive();
-		}
 		
 		return page;
 	}
@@ -235,9 +194,6 @@ public class TreeCalendar extends AbsTree {
 		
 		String optionLocator = null;
 		optionLocator = "css=div[id='ztih__main_Calendar__TAG'] td[id*='zti__main_Calendar__']:contains('" + folder.getName() + "')";
-
-		if (optionLocator == null)
-			throw new HarnessException("option locator is null for option " + option);
 
 		if ( action == Action.A_LEFTCLICK ) {
 
@@ -267,52 +223,6 @@ public class TreeCalendar extends AbsTree {
 			throw new HarnessException("Action "+ action +" not yet implemented");
 		}
 		
-	}
-
-	protected AbsPage zTreeItem(Action action, FolderItem folder) throws HarnessException {
-		if ( (action == null) || (folder == null) ) {
-			throw new HarnessException("Must define an action, option, and addressbook");
-		}
-		tracer.trace("processing " + folder.getName());
-
-		AbsPage page = null;
-		String actionLocator = null;
-
-		if (actionLocator == null)
-			throw new HarnessException("locator is null for action " + action);
-
-		// Default behavior. Click the locator
-		zClickAt(actionLocator,"");
-		this.zWaitForBusyOverlay();
-
-		if (page != null) {
-			page.zWaitForActive();
-		}
-		
-		return page;
-	}
-
-	protected AbsPage zTreeItem(Action action, SavedSearchFolderItem folder) throws HarnessException {
-		if ( (action == null) || (folder == null) ) {
-			throw new HarnessException("Must define an action, option, and addressbook");
-		}
-		tracer.trace("processing " + folder.getName());
-
-		AbsPage page = null;
-		String actionLocator = null;
-
-		if (actionLocator == null)
-			throw new HarnessException("locator is null for action " + action);
-
-		// Default behavior. Click the locator
-		zClickAt(actionLocator,"");
-		this.zWaitForBusyOverlay();
-
-		if (page != null) {
-			page.zWaitForActive();
-		}
-		
-		return page;
 	}
 
 	protected AbsPage zTreeItem(Action action, ZimletItem zimlet) throws HarnessException {
@@ -419,11 +329,6 @@ public class TreeCalendar extends AbsTree {
 				zWaitForBusyOverlay();
 			}
 
-			// If we click on pulldown/option and the page is specified, then
-			// wait for the page to go active
-			if (page != null) {
-				page.zWaitForActive();
-			}
 		}
 		
 		
@@ -466,9 +371,6 @@ public class TreeCalendar extends AbsTree {
 			// If the app is busy, wait for that to finish
 			this.zWaitForBusyOverlay();
 
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-
 			return (page);
 
 		}else if (button == Button.B_TREE_SHOW_REMAINING_FOLDERS ) {
@@ -486,26 +388,11 @@ public class TreeCalendar extends AbsTree {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
-		}
-
-		// Default behavior, process the locator by clicking on it
-		//
-
 		// Click it
 		this.zClick(locator);
 
 		// If the app is busy, wait for that to finish
 		this.zWaitForBusyOverlay();
-
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-
-		}
 
 		return (page);
 
@@ -514,9 +401,6 @@ public class TreeCalendar extends AbsTree {
 	public AbsPage zTreeItem(Action action, String locator) throws HarnessException {
 		
 		locator = "css=td[id^='zti__main_Calendar']:contains('" + locator + "')";
-
-		if ( locator == null )
-			throw new HarnessException("locator is null for action "+ action);
 
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("Unable to find tag in tree "+ locator);

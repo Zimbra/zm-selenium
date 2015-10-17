@@ -45,8 +45,8 @@ public class PageCalendar extends AbsTab {
 		public static final String DayButton 			= "css=span[class='x-button-label']:contains('Day')";
 		public static final String MonthButton 			= "css=span[class='x-button-label']:contains('Month')";
 		public static final String LocationButton 		= "css=span[class='x-button-icon x-shown organizer']";
-		public static final String PreviosButton 		= "css=div[id^='ext-element'] table th[class='goto-prev style=']";
-		public static final String NextButton 			= "css=div[id^='ext-element'] table th[class='goto-next style=']";
+		public static final String PreviosButton 		= "css=div[id^='ext-element'] table[class='day'] th[class='goto-prev']";
+		public static final String NextButton 			= "css=div[id^='ext-element'] table[class='day'] th[class='goto-next']";
 		public static final String ActionsButton 		= "css=div[id='inviteActionsAppt'] span[class='x-button-icon x-shown arrow_down']";
 		public static final String OKButton 			= "css=span[class='x-button-label']:contains('OK')";
 		public static final String PermissionDeniedMsg	= "css=div[id='ext-sheet-1'] div[class='x-innerhtml']:contains('Permission denied.')";
@@ -1162,7 +1162,7 @@ public class PageCalendar extends AbsTab {
 		// Default behavior, process the locator by clicking on it
 		//
 		this.sClickAt(locator, "");
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();

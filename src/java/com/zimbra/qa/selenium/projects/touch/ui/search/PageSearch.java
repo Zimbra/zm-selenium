@@ -190,10 +190,6 @@ public class PageSearch extends AbsTab {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
-		}
-		
 		// Make sure the button exists
 		if ( !sIsElementPresent(locator) )
 			throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
@@ -206,15 +202,6 @@ public class PageSearch extends AbsTab {
 		
 		// If the app is busy, wait for it to become active
 		zWaitForBusyOverlay();
-		
-		
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-            
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-			
-		}
 		
 		return (page);
 	}
@@ -298,12 +285,6 @@ public class PageSearch extends AbsTab {
 				   zIsIncludeSharedItems = !zIsIncludeSharedItems; 
 				}
 				
-			}
-			
-			// If we click on pulldown/option and the page is specified, then
-			// wait for the page to go active
-			if ( page != null ) {
-				page.zWaitForActive();
 			}
 			
 			if (!zIsSearchType(option)) {
@@ -407,20 +388,10 @@ public class PageSearch extends AbsTab {
 				zWaitForBusyOverlay();
 			}
 
-			// If we click on pulldown/option and the page is specified, then
-			// wait for the page to go active
-			if (page != null) {
-				page.zWaitForActive();
-			}
-
 		}
-
-
 
 		// Return the specified page, or null if not set
 		return (page);
-
-
 
 	}
 

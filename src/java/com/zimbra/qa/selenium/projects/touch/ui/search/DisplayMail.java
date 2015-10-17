@@ -103,10 +103,6 @@ public class DisplayMail extends com.zimbra.qa.selenium.projects.touch.ui.mail.D
 			throw new HarnessException("not implemented for field "+ field);
 		}
 
-		// Make sure source was found
-		if ( source == null )
-			throw new HarnessException("source was null for "+ field);
-
 		logger.info("DisplayMail.zGetMailPropertyAsHtml() = "+ HtmlElement.clean(source).prettyPrint());
 
 		// Clean up the HTML code to be valid
