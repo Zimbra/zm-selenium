@@ -81,7 +81,7 @@ public class EditAccount extends AdminCommonTest {
 		//Submit the form.
 		form.zSubmit();
 		
-		app.zPageMain.zRefresh();
+		//app.zPageMain.zRefresh(); //enable after bug 101913 get fixed
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
@@ -127,7 +127,7 @@ public class EditAccount extends AdminCommonTest {
 		
 		//Submit the form.
 		form.zSubmit();
-		app.zPageMain.zRefresh();
+		//app.zPageMain.zRefresh(); //enable after bug 101913 get fixed
 		
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -177,7 +177,7 @@ public class EditAccount extends AdminCommonTest {
 		
 		//Submit the form.
 		form.zSubmit();
-		app.zPageMain.zRefresh();
+		//app.zPageMain.zRefresh(); //enable after bug 101913 get fixed
 		
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -228,7 +228,7 @@ public class EditAccount extends AdminCommonTest {
 		
 		//Submit the form.
 		form.zSubmit();
-		app.zPageMain.zRefresh();
+		//app.zPageMain.zRefresh(); //enable after bug 101913 get fixed
 		
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -286,7 +286,7 @@ public class EditAccount extends AdminCommonTest {
 		
 		//Submit the form.
 		form.zSubmit();
-		app.zPageMain.zRefresh();
+		//app.zPageMain.zRefresh(); //enable after bug 101913 get fixed
 		
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -346,7 +346,7 @@ public class EditAccount extends AdminCommonTest {
 		
 		//Submit the form.
 		form.zSubmit();
-		app.zPageMain.zRefresh();
+		//app.zPageMain.zRefresh(); //enable after bug 101913 get fixed
 		
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -413,7 +413,7 @@ public class EditAccount extends AdminCommonTest {
 		form.zSubmit();
 
 		// Verify the enable two-factor authentication is set to true
-		app.zPageMain.zRefresh();
+		//app.zPageMain.zRefresh(); //enable after bug 101913 get fixed
 		
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
