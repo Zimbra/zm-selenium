@@ -172,7 +172,7 @@ public class EditDistributionListSR extends AdminCommonTest {
 	 */
 	@Bugs(ids = "97150")
 	@Test(	description = "Verify edit operation for dynamic distribution list - Search distribution list view",
-			groups = { "functional" })
+			groups = { "Bug101913" })
 	public void EditDistributionList_09() throws HarnessException {
 
 
