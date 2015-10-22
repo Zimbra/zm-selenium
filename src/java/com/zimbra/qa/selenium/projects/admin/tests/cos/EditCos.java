@@ -265,7 +265,7 @@ public class EditCos extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Edit cos - Two Factor Authentication",
-			groups = { "sanity" })
+			groups = { "Bug101913" })
 			public void EditCos_05() throws HarnessException {
 		
 		this.startingPage = app.zPageManageCOS;
