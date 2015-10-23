@@ -90,8 +90,8 @@ public class GetMessage extends AjaxCommonTest {
 		//  </span>
 		// </span>
 		//
-		HtmlElement.evaluate(bodyElement, "//span//span//span", "id", Pattern.compile(".*_com_zimbra_date"), 1);
-		HtmlElement.evaluate(bodyElement, "//span//span//span", null, date, 1);
+		HtmlElement.evaluate(bodyElement, "//span//span", "id", Pattern.compile(".*_com_zimbra_date"), 1);
+		HtmlElement.evaluate(bodyElement, "//span//span", null, date, 1);
 
 	}
 
@@ -131,8 +131,8 @@ public class GetMessage extends AjaxCommonTest {
 		HtmlElement bodyElement = display.zGetMailPropertyAsHtml(Field.Body);
 		
 		// Verify that the date zimlet has been applied
-		HtmlElement.evaluate(bodyElement, "//span//span//span", null, date1, 1);
-		HtmlElement.evaluate(bodyElement, "//span//span//span", null, date2, 1);
+		HtmlElement.evaluate(bodyElement, "//span//span", null, date1, 1);
+		HtmlElement.evaluate(bodyElement, "//span//span", null, date2, 1);
 
 	}
 
@@ -169,7 +169,7 @@ public class GetMessage extends AjaxCommonTest {
 
 		for (String date : dates) {
 			// Verify that the phone zimlet has been applied
-			HtmlElement.evaluate(bodyElement, "//span//span//span", null, date, 1);
+			HtmlElement.evaluate(bodyElement, "//span//span", null, date, 1);
 		}
 
 
