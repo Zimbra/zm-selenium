@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.admin.tests.accounts;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -29,7 +28,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditAccount;
-import com.zimbra.qa.selenium.projects.admin.ui.PageEditCOS;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 import com.zimbra.qa.selenium.projects.admin.ui.PageManageAccounts;
 import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults;
@@ -81,7 +79,7 @@ public class EditAccount extends AdminCommonTest {
 		//Submit the form.
 		form.zSubmit();
 		
-		//app.zPageMain.zRefresh(); //enable after bug 101913 get fixed
+		app.zPageMain.zRefresh();
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
@@ -127,7 +125,7 @@ public class EditAccount extends AdminCommonTest {
 		
 		//Submit the form.
 		form.zSubmit();
-		//app.zPageMain.zRefresh(); //enable after bug 101913 get fixed
+		app.zPageMain.zRefresh();
 		
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -177,7 +175,7 @@ public class EditAccount extends AdminCommonTest {
 		
 		//Submit the form.
 		form.zSubmit();
-		//app.zPageMain.zRefresh(); //enable after bug 101913 get fixed
+		app.zPageMain.zRefresh();
 		
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -228,7 +226,7 @@ public class EditAccount extends AdminCommonTest {
 		
 		//Submit the form.
 		form.zSubmit();
-		//app.zPageMain.zRefresh(); //enable after bug 101913 get fixed
+		app.zPageMain.zRefresh();
 		
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -286,7 +284,7 @@ public class EditAccount extends AdminCommonTest {
 		
 		//Submit the form.
 		form.zSubmit();
-		//app.zPageMain.zRefresh(); //enable after bug 101913 get fixed
+		app.zPageMain.zRefresh();
 		
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -346,7 +344,7 @@ public class EditAccount extends AdminCommonTest {
 		
 		//Submit the form.
 		form.zSubmit();
-		//app.zPageMain.zRefresh(); //enable after bug 101913 get fixed
+		app.zPageMain.zRefresh();
 		
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -413,7 +411,7 @@ public class EditAccount extends AdminCommonTest {
 		form.zSubmit();
 
 		// Verify the enable two-factor authentication is set to true
-		//app.zPageMain.zRefresh(); //enable after bug 101913 get fixed
+		app.zPageMain.zRefresh();
 		
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
@@ -438,6 +436,8 @@ public class EditAccount extends AdminCommonTest {
 		Element response4 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureAppSpecificPasswordsEnabled']", 1);
 		ZAssert.assertNotNull(response4, "Verify the account is edited successfully");
 		ZAssert.assertStringContains(response4.toString(),"FALSE", "Verify the Enable application passcodes is set to false");
+		
+		app.zPageMain.logout();
 
 	}
 	

@@ -18,8 +18,6 @@ package com.zimbra.qa.selenium.framework.util;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-
-import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
 
 public class HarnessException extends Exception {
@@ -34,10 +32,8 @@ public class HarnessException extends Exception {
 		ZimbraAccount.ResetAccountZMC();
 		ZimbraAdminAccount.ResetAccountAdminConsoleAdmin();
 		if (ZimbraSeleniumProperties.getAppType() == AppType.ADMIN) {
-			// WORKAROUND for all the dialogs that need to be dismissed
-			// Reload the app
-			ClientSessionFactory.session().selenium().refresh();
-			SleepUtil.sleep(10000);
+			//ClientSessionFactory.session().selenium().refresh();
+			//SleepUtil.sleep(10000);
 		}
 	}
 	

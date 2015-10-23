@@ -50,7 +50,8 @@ public class PageSearchResults extends AbsTab {
 		public static final String zDLSearchObject = "css=div[id='zmi__SEARCH_DLS'] td[id='zmi__SEARCH_DLS_title']";
 		public static final String zAliasesSearchObject = "css=div[id='zmi__SEARCH_ALIASES'] td[id='zmi__SEARCH_ALIASES_title']";
 		public static final String zResourcesSearchObject = "css=div[id='zmi__SEARCH_RESOURCES'] td[id='zmi__SEARCH_RESOURCES_title']";
-
+		
+		public static final String zSearchTypeDropdown = "css=div[class^='ZaSearchFieldButton']";
 
 	}
 
@@ -315,8 +316,28 @@ public class PageSearchResults extends AbsTab {
 					page=new FormEditDomain(this.MyApplication);
 				else if (typeOfObject.equals(TypeOfObject.DOMAIN_ALIAS))
 					page=new WizardCreateDomainAlias(this);
-			}else {
+			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
+			}
+			
+		} else if (pulldown == Button.B_SEARCH_TYPE) {
+			
+			pulldownLocator = Locators.zSearchTypeDropdown;
+			
+			if (option == Button.O_ACCOUNTS) {
+				optionLocator="css=td[id='zmi__SEARCH_ACCOUNTS_left_icon']";
+			} else if (option == Button.O_DISTRIBUTION_LISTS) {
+				optionLocator="css=td[id='zmi__SEARCH_DLS_left_icon']";
+			} else if (option == Button.O_ALIASES) {
+				optionLocator="css=td[id='zmi__SEARCH_ALIASES_left_icon']";
+			} else if (option == Button.O_RESOURCES) {
+				optionLocator="css=td[id='zmi__SEARCH_RESOURCES_left_icon']";
+			} else if (option == Button.O_DOMAINS) {
+				optionLocator="css=td[id='zmi__SEARCH_DOMAINS_left_icon']";
+			} else if (option == Button.O_CLASS_OF_SERVICE) {
+				optionLocator="css=td[id='zmi__SEARCH_COSES_left_icon']";
+			} else if (option == Button.O_DISTRIBUTION_LISTS) {
+				optionLocator="css=td[id='zmi__SEARCH_ALL_left_icon']";
 			}
 
 		} else {

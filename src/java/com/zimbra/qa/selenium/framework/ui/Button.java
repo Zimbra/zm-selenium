@@ -720,7 +720,14 @@ public class Button {
 	public static Button B_NOT_SPAM_MESSAGE =   new Button("B_NOT_SPAM_MESSAGE");
 	public static Button B_CONVERSATION_ACTION_DROPDOWN =	new Button("B_CONVERSATION_ACTION_DROPDOWN");
 
-
+	public static Button B_SEARCH_TYPE =	new Button("B_SEARCH_TYPE");
+	public static Button O_ACCOUNTS =	new Button("O_ACCOUNTS");
+	public static Button O_DISTRIBUTION_LISTS =	new Button("O_DISTRIBUTION_LISTS");
+	public static Button O_ALIASES =	new Button("O_ALIASES");
+	public static Button O_RESOURCES =	new Button("O_RESOURCES");
+	public static Button O_DOMAINS =	new Button("O_DOMAINS");
+	public static Button O_CLASS_OF_SERVICE =	new Button("O_CLASS_OF_SERVICE");
+	public static Button O_ALL_OBJECT_TYPES =	new Button("O_ALL_OBJECT_TYPES");
 	
 	// Added for Admin Console Home Page Links
 	public static Button B_INSTALL_CERTIFICATE=   new Button("B_INSTALL_CERTIFICATE");

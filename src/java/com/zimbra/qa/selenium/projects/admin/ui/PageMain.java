@@ -23,7 +23,6 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.ZAssert;
 
 
 /**
@@ -128,35 +127,20 @@ public class PageMain extends AbsTab {
 	 */
 	public void logout() throws HarnessException {
 		logger.debug("logout()");
+		
+		if ( zIsVisiblePerPosition(Locators.zLogoffDropDownArrow, 10, 10) ) {
+			
+			zNavigateTo();
 
-		zNavigateTo();
+			// Click on logout
+			sClickAt(Locators.zLogoffDropDownArrow,"");
+			sClickAt(Locators.zLogOff,"");
+			SleepUtil.sleepLong();
 
-		if ( !sIsElementPresent(Locators.zLogoffDropDownArrow) ) {
-			throw new HarnessException("The refresh button is not present " + Locators.zLogoffDropDownArrow);
+			((AppAdminConsole)MyApplication).zPageLogin.zWaitForActive();
+			((AppAdminConsole)MyApplication).zSetActiveAcount(null);
+			
 		}
-
-		if ( !zIsVisiblePerPosition(Locators.zLogoffDropDownArrow, 10, 10) ) {
-			throw new HarnessException("The refresh button is not visible " + Locators.zLogoffDropDownArrow);
-		}
-
-		// Click on logout
-		sClickAt(Locators.zLogoffDropDownArrow,"");
-		sClickAt(Locators.zLogOff,"");
-		SleepUtil.sleepLong();
-
-
-		/**
-		 * Following WaitForPageToLoad() is needed to ensure successful log off operation.
-		 */
-		//sWaitForPageToLoad();
-		// Sometimes there is a "confirm" popup.
-		// Disable it using zimbraPrefAdminConsoleWarnOnExit=FALSE
-		// This is the default configureation for the AdminConsoleAdmin() account
-
-
-		((AppAdminConsole)MyApplication).zPageLogin.zWaitForActive();
-
-		((AppAdminConsole)MyApplication).zSetActiveAcount(null);
 
 	}
 

@@ -29,7 +29,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.DistributionListItem;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditDistributionList;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults;
 
 public class EditDistributionListSR extends AdminCommonTest {
@@ -55,7 +54,7 @@ public class EditDistributionListSR extends AdminCommonTest {
 	 */
 	@Test(	description = "Verify edit operation for distribution list - Search distribution list view",
 			groups = { "functional" })
-	public void EditDistributionList_05() throws HarnessException {
+	public void EditDistributionListSR_01() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
@@ -112,7 +111,7 @@ public class EditDistributionListSR extends AdminCommonTest {
 	 */
 	@Test(	description = "Verify edit operation for distribution list - Search distribution list view + right click",
 			groups = { "functional" })
-	public void EditDistributionList_06() throws HarnessException {
+	public void EditDistributionListSR_02() throws HarnessException {
 
 		super.startingPage.zNavigateTo();
 		// Create a new dl in the Admin Console using SOAP
@@ -172,8 +171,8 @@ public class EditDistributionListSR extends AdminCommonTest {
 	 */
 	@Bugs(ids = "97150")
 	@Test(	description = "Verify edit operation for dynamic distribution list - Search distribution list view",
-			groups = { "Bug101913" })
-	public void EditDistributionList_09() throws HarnessException {
+			groups = { "functional" })
+	public void EditDistributionListSR_03() throws HarnessException {
 
 
 		// Create a new dynamic dl in the Admin Console using SOAP
@@ -194,6 +193,7 @@ public class EditDistributionListSR extends AdminCommonTest {
 		app.zPageSearchResults.zAddSearchQuery(dlEmailAddress);
 
 		// Click search
+		app.zPageSearchResults.zToolbarPressPulldown(Button.B_SEARCH_TYPE, Button.O_DISTRIBUTION_LISTS);
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
 
@@ -201,7 +201,6 @@ public class EditDistributionListSR extends AdminCommonTest {
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, dl.getEmailAddress());
 
 		// Click on Edit button
-	//	
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
 
 		//Edit the name.

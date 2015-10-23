@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.admin.tests.distributionlists;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -30,7 +29,6 @@ import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.DistributionListItem;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditDistributionList;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
-import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults;
 
 public class EditDistributionList extends AdminCommonTest {
 	public EditDistributionList() {
@@ -277,7 +275,7 @@ public class EditDistributionList extends AdminCommonTest {
 	@Bugs(ids = "97150")
 	@Test(	description = "Edit dynamic Distribution List name - Manage Distribution List view",
 			groups = { "functional" })
-	public void EditDistributionList_07() throws HarnessException {
+	public void EditDistributionList_05() throws HarnessException {
 
 		// Create a new dynamic dl in the Admin Console using SOAP
 		
@@ -337,7 +335,7 @@ public class EditDistributionList extends AdminCommonTest {
 	@Bugs(ids = "97150")
 	@Test(	description = "Edit Dynamic Distribution List name - Manage Distribution List view + Right Click Menu",
 			groups = { "functional" })
-	public void EditDistributionList_08() throws HarnessException {
+	public void EditDistributionList_06() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
 		

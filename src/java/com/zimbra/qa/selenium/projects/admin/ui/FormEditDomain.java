@@ -20,6 +20,7 @@ import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsForm;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 
 public class FormEditDomain extends AbsForm {
@@ -75,7 +76,8 @@ public class FormEditDomain extends AbsForm {
 	@Override
 	public void zSubmit() throws HarnessException {
 		sClickAt(Locators.SAVE_BUTTON,"");
-		//sClickAt(Locators.CLOSE_BUTTON,"");
+		SleepUtil.sleepSmall();
+		zClickAt(Locators.CLOSE_BUTTON,"0,0");
 	}
 
 	public void zClickTreeItem(String treeItem) throws HarnessException {

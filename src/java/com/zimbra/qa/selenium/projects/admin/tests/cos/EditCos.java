@@ -16,15 +16,11 @@
  */
 package com.zimbra.qa.selenium.projects.admin.tests.cos;
 
-import java.awt.event.KeyEvent;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
@@ -105,6 +101,7 @@ public class EditCos extends AdminCommonTest {
 	@Test(	description = "Edit cos name -- right click",
 			groups = { "functional" })
 			public void EditCos_02() throws HarnessException {
+		
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
@@ -172,7 +169,7 @@ public class EditCos extends AdminCommonTest {
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 		
-		// Click on cos to be deleted.
+		// Click on cos
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, cos.getName());
 	
 	
@@ -212,8 +209,6 @@ public class EditCos extends AdminCommonTest {
 			groups = { "functional" })
 			public void EditCos_04() throws HarnessException {
 		
-		this.startingPage = app.zPageManageCOS;
-		this.startingPage.zNavigateTo();
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
@@ -232,7 +227,7 @@ public class EditCos extends AdminCommonTest {
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
-		// Click on cos to be deleted.
+		// Click on cos
 		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, cos.getName());
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
 
@@ -265,11 +260,9 @@ public class EditCos extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Edit cos - Two Factor Authentication",
-			groups = { "Bug101913" })
+			groups = { "smoke" })
 			public void EditCos_05() throws HarnessException {
-		
-		this.startingPage = app.zPageManageCOS;
-		this.startingPage.zNavigateTo();
+				
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
@@ -286,19 +279,16 @@ public class EditCos extends AdminCommonTest {
 	
 	
 		// Click search
+		app.zPageSearchResults.zToolbarPressPulldown(Button.B_SEARCH_TYPE, Button.O_CLASS_OF_SERVICE);
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
-		// Click on cos to be deleted.
+		// Click on cos
 		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, cos.getName());
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
 
-		// Click on Edit button
+		// Click on Edit -> Advanced button
 		FormEditCos form = (FormEditCos) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
-		SleepUtil.sleepMedium();
-		
-		// Click on Advanced
 		form.zClickAt(PageEditCOS.Locators.ADVANCED,"");
-		SleepUtil.sleepMedium();
 		
 		// Check "Enable two-factor authentication"
 		app.zPageEditCOS.sClickAt(Locators.zEnableTwoFactorAuth,"");

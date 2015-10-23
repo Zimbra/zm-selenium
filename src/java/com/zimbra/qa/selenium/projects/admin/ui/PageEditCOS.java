@@ -33,12 +33,12 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 public class PageEditCOS extends AbsTab {
 	
 	public static class Locators {
-		public static final String ADVANCED="css=div[id='zti__AppAdmin__Home__actLstHV__1__8_textCell']";
-		public static final String zArrowSelectSearchObject		="css=td[id*='dropdown'] div[class='ImgSelectPullDownArrow']";
-		public static final String zEnableTwoFactorAuth="css=table[id$='_zimbraFeatureTwoFactorAuthAvailable_table'] tbody tr:nth-child(1) td:nth-child(2) input";	
-		public static final String zRequiredTwoFactorAuth="css=table[id$='_zimbraFeatureTwoFactorAuthRequired_table'] tbody tr:nth-child(1) td:nth-child(2) input";
-		public static final String zTwoFactorAuthNumScratchCodes="css=table[id$='_zimbraTwoFactorAuthNumScratchCodes_table'] tbody tr:nth-child(1) td:nth-child(2) input";
-		public static final String zEnableApplicationPasscodes="css=table[id$='_zimbraFeatureAppSpecificPasswordsEnabled_table'] tbody tr:nth-child(1) td:nth-child(2) input";
+		public static final String ADVANCED="css=div[id='zti__AppAdmin__Home__actLstHV__2__8_textCell']";
+		public static final String zArrowSelectSearchObject	="css=td[id*='dropdown'] div[class='ImgSelectPullDownArrow']";
+		public static final String zEnableTwoFactorAuth="css=td[id$='_zimbraFeatureTwoFactorAuthAvailable___container'] input";	
+		public static final String zRequiredTwoFactorAuth="css=td[id$='_zimbraFeatureTwoFactorAuthRequired___container'] input";
+		public static final String zTwoFactorAuthNumScratchCodes="css=td[id$='_zimbraTwoFactorAuthNumScratchCodes___container'] input";
+		public static final String zEnableApplicationPasscodes="css=td[id$='_zimbraFeatureAppSpecificPasswordsEnabled___container'] input";
 	}
 	
 	public PageEditCOS(AbsApplication application) {
