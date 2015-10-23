@@ -33,7 +33,6 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 public class PageEditCOS extends AbsTab {
 	
 	public static class Locators {
-		public static final String ADVANCED="css=div[id='zti__AppAdmin__Home__actLstHV__2__8_textCell']";
 		public static final String zArrowSelectSearchObject	="css=td[id*='dropdown'] div[class='ImgSelectPullDownArrow']";
 		public static final String zEnableTwoFactorAuth="css=td[id$='_zimbraFeatureTwoFactorAuthAvailable___container'] input";	
 		public static final String zRequiredTwoFactorAuth="css=td[id$='_zimbraFeatureTwoFactorAuthRequired___container'] input";

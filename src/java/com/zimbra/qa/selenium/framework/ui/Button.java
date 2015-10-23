@@ -728,6 +728,7 @@ public class Button {
 	public static Button O_DOMAINS =	new Button("O_DOMAINS");
 	public static Button O_CLASS_OF_SERVICE =	new Button("O_CLASS_OF_SERVICE");
 	public static Button O_ALL_OBJECT_TYPES =	new Button("O_ALL_OBJECT_TYPES");
+	public static Button B_ADVANCED =	new Button("B_ADVANCED");
 	
 	// Added for Admin Console Home Page Links
 	public static Button B_INSTALL_CERTIFICATE=   new Button("B_INSTALL_CERTIFICATE");

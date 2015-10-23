@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.CosItem;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditCos;
-import com.zimbra.qa.selenium.projects.admin.ui.PageEditCOS;
 import com.zimbra.qa.selenium.projects.admin.ui.PageEditCOS.Locators;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults;
@@ -262,6 +261,8 @@ public class EditCos extends AdminCommonTest {
 	@Test(	description = "Edit cos - Two Factor Authentication",
 			groups = { "smoke" })
 			public void EditCos_05() throws HarnessException {
+		
+		app.zPageMain.zRefresh(); // resetting locators 
 				
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
@@ -288,7 +289,7 @@ public class EditCos extends AdminCommonTest {
 
 		// Click on Edit -> Advanced button
 		FormEditCos form = (FormEditCos) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
-		form.zClickAt(PageEditCOS.Locators.ADVANCED,"");
+		app.zPageSearchResults.zToolbarPressButton(Button.B_ADVANCED);
 		
 		// Check "Enable two-factor authentication"
 		app.zPageEditCOS.sClickAt(Locators.zEnableTwoFactorAuth,"");

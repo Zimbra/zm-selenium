@@ -17,8 +17,6 @@
 package com.zimbra.qa.selenium.projects.admin.tests.domains;
 
 import org.testng.annotations.Test;
-
-import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -28,9 +26,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
 import com.zimbra.qa.selenium.projects.admin.ui.DA_PageManageAccounts.Locators;
-import com.zimbra.qa.selenium.projects.admin.ui.DialogForDeleteOperation;
-import com.zimbra.qa.selenium.projects.admin.ui.DialogForDeleteOperationDomain;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 
 public class DeleteDomainSR extends AdminCommonTest {
 	public DeleteDomainSR() {

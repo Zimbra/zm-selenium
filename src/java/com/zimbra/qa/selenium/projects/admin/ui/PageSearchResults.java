@@ -232,12 +232,20 @@ public class PageSearchResults extends AbsTab {
 				throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
 
 			// FALL THROUGH
-		}else if(button == Button.B_DELETE) {
+		} else if(button == Button.B_DELETE) {
 				locator = Locators.DELETE_BUTTON;
 				page = new DialogForDeleteOperation(this.MyApplication,null);
+				
+		} else if(button == Button.B_ADVANCED) {
+			locator = "css=div[id^='zti__AppAdmin__Home__actLstHV__2__8_textCell']";
+			if (zIsVisiblePerPosition(locator, 10, 10)) {
+				locator = "css=div[id^='zti__AppAdmin__Home__actLstHV__2__8_textCell']";
+			} else {
+				locator = "css=div[id^='zti__AppAdmin__Home__actLstHV__1__8_textCell']";
+			}
 
 			// FALL THROUGH
-		}else{
+		} else{
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
