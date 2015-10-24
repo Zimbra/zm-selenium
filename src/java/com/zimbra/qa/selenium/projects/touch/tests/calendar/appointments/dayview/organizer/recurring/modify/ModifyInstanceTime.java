@@ -43,7 +43,7 @@ public class ModifyInstanceTime extends CalendarWorkWeekTest {
 	public void ModifyInstanceTime_01() throws HarnessException, ParseException {
 
 		// Create a meeting
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.TimeZoneIndia.getID();
 		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptContent = ZimbraSeleniumProperties.getUniqueString();
 		String apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
