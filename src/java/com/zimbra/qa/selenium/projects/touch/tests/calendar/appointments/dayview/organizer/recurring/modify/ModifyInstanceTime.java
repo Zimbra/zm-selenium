@@ -102,8 +102,8 @@ public class ModifyInstanceTime extends CalendarWorkWeekTest {
         // Verify appointment modified date and time
         app.zGetActiveAccount().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ apptId +"'/>");
         SleepUtil.sleepMedium();
-		ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:GetAppointmentResponse//mail:inv[2]//mail:s", "u"), String.valueOf(startUTC.addHours(2).toTimeZone(tz).toMillis()), "Verify appointment modified start time");
-	    ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:GetAppointmentResponse//mail:inv[2]//mail:e", "u"), String.valueOf(endUTC.addHours(2).toTimeZone(tz).toMillis()), "Verify appointment modified end time");
+		ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:GetAppointmentResponse//mail:inv[2]//mail:s", "u"), String.valueOf(startUTC.toTimeZone(tz).toMillis()), "Verify appointment modified start time");
+	    ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:GetAppointmentResponse//mail:inv[2]//mail:e", "u"), String.valueOf(endUTC.toTimeZone(tz).toMillis()), "Verify appointment modified end time");
 	    ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:GetAppointmentResponse//mail:inv//mail:exceptId", "d"), getExceptionDate(), "Verify appointment modified start time");
 
 	    ZimbraAccount.AccountA().soapSend(
@@ -114,8 +114,8 @@ public class ModifyInstanceTime extends CalendarWorkWeekTest {
         // Verify appointment modified date and time in attendee's calendar
 	    ZimbraAccount.AccountA().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ apptId +"'/>");
 	    SleepUtil.sleepMedium();
-		ZAssert.assertEquals(ZimbraAccount.AccountA().soapSelectValue("//mail:GetAppointmentResponse//mail:inv//mail:s", "u"), String.valueOf(startUTC.addHours(2).toTimeZone(tz).toMillis()), "Verify appointment modified start time");
-	    ZAssert.assertEquals(ZimbraAccount.AccountA().soapSelectValue("//mail:GetAppointmentResponse//mail:inv//mail:e", "u"), String.valueOf(endUTC.addHours(2).toTimeZone(tz).toMillis()), "Verify appointment modified end time");
+		ZAssert.assertEquals(ZimbraAccount.AccountA().soapSelectValue("//mail:GetAppointmentResponse//mail:inv//mail:s", "u"), String.valueOf(startUTC.toTimeZone(tz).toMillis()), "Verify appointment modified start time");
+	    ZAssert.assertEquals(ZimbraAccount.AccountA().soapSelectValue("//mail:GetAppointmentResponse//mail:inv//mail:e", "u"), String.valueOf(endUTC.toTimeZone(tz).toMillis()), "Verify appointment modified end time");
 	    ZAssert.assertEquals(ZimbraAccount.AccountA().soapSelectValue("//mail:GetAppointmentResponse//mail:inv//mail:exceptId", "d"), getExceptionDate(), "Verify appointment modified start time");
 	    
 	}
