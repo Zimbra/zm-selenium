@@ -78,7 +78,7 @@ public class SleepUtil {
 	 */
 	public static void sleepVerySmall() {
 
-		if(ZimbraSeleniumProperties.getStringProperty("coverage.enabled").contains("true")){
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true){
 
 			sleep(ZimbraSeleniumProperties.getIntProperty("very_small_wait", 1500));
 
@@ -91,7 +91,7 @@ public class SleepUtil {
 	 */
 	public static void sleepSmall() {
 
-		if(ZimbraSeleniumProperties.getStringProperty("coverage.enabled").contains("true")){
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true){
 
 			sleep(ZimbraSeleniumProperties.getIntProperty("very_small_wait", 2500));
 
@@ -103,7 +103,7 @@ public class SleepUtil {
 	 * Sleep a 2000 msec
 	 */
 	public static void sleepMedium() {
-		if(ZimbraSeleniumProperties.getStringProperty("coverage.enabled").contains("true")){
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true){
 
 			sleep(ZimbraSeleniumProperties.getIntProperty("very_small_wait", 4500));
 
@@ -115,7 +115,7 @@ public class SleepUtil {
 	 * Sleep a 4000 msec
 	 */
 	public static void sleepLong() {
-		if(ZimbraSeleniumProperties.getStringProperty("coverage.enabled").contains("true")){
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true){
 
 			sleep(ZimbraSeleniumProperties.getIntProperty("very_small_wait", 8000));
 
@@ -127,7 +127,7 @@ public class SleepUtil {
 	 * Sleep a 10,000 msec
 	 */
 	public static void sleepVeryLong() {
-		if(ZimbraSeleniumProperties.getStringProperty("coverage.enabled").contains("true")){
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true){
 
 			sleep(ZimbraSeleniumProperties.getIntProperty("very_small_wait", 25000));
 
