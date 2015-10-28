@@ -20,6 +20,7 @@ import java.util.*;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -34,8 +35,11 @@ public class CreateMeetingWithRSVPOnOff extends CalendarWorkWeekTest {
 		logger.info("New "+ CreateMeetingWithRSVPOnOff.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
 	}
+	
+	@Bugs(ids = "101999")
 	@Test(description = "Verify organizer does not recieve email notification when attendee responds to the meeting invite while 'Request Response' remains OFF", 
-			groups = { "functional" })
+			groups = { "smoke" })
+	
 	public void CreateMeetingWithRSVPOff_01() throws HarnessException {
 		
 		// Create appointment data 
@@ -104,8 +108,11 @@ public class CreateMeetingWithRSVPOnOff extends CalendarWorkWeekTest {
 		ZAssert.assertNull(messageId, "Verify organizer does not recieve email notification because request response was set OFF while creating meeting invite");
 	}
 	
+	
+	@Bugs(ids = "101999")
 	@Test(description = "Verify organizer receives email notification when attendee responds to the meeting invite while 'Request Response' remains ON", 
 			groups = { "functional" })
+	
 	public void CreateMeetingWithRSVPOn_01() throws HarnessException {
 
 		// Create appointment data 

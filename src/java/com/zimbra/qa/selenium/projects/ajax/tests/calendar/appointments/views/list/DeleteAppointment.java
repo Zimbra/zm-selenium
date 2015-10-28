@@ -328,7 +328,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 	}
 
-	@Bugs(ids = "69132,72444")
+	@Bugs(ids = "72444")
 	@Test(	description = "Delete a appt by selecting and typing '.t' shortcut",
 			groups = { "functional" } )
 	public void DeleteAppointment_04() throws HarnessException {

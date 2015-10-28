@@ -33,15 +33,15 @@ public class ShortcutDialog extends AjaxCommonTest {
 		super.startingAccountPreferences = null;
 
 	}
-	
-	@Bugs(ids="101705")
+
+
+	@Bugs(ids = "101705")
 	
 	@Test(description = "Open the 'Shortcut' dialog >> Verify contents and Close Link", groups = { "functional" })
 	public void Shortcutdialog_Close() throws HarnessException {
 
 		// Click the Account -> Shrotcut menu
-		DialogInformational dialog = (DialogInformational) app.zPageMain
-				.zToolbarPressPulldown(Button.B_ACCOUNT, Button.O_SHORTCUT);
+		DialogInformational dialog = (DialogInformational) app.zPageMain.zToolbarPressPulldown(Button.B_ACCOUNT, Button.O_SHORTCUT);
 
 		// -- VERIFICATION
 		ZAssert.assertTrue(dialog.zIsActive(), "Verify the Shortcut dialog opens");
@@ -50,14 +50,14 @@ public class ShortcutDialog extends AjaxCommonTest {
 
 	}
 	
-	@Bugs(ids="101705")
+
+	@Bugs(ids = "101705")
 	
 	@Test(description = "Open the 'Shortcut' dialog >> Verify in New Window link and contents", groups = { "functional" })
 	public void Shortcutdialog_NewWindow() throws HarnessException {
 
 		// Click the Account -> Shrotcut menu
-		DialogInformational dialog = (DialogInformational) app.zPageMain
-				.zToolbarPressPulldown(Button.B_ACCOUNT, Button.O_SHORTCUT);
+		DialogInformational dialog = (DialogInformational) app.zPageMain.zToolbarPressPulldown(Button.B_ACCOUNT, Button.O_SHORTCUT);
 
 		// -- VERIFICATION
 		ZAssert.assertTrue(dialog.zIsActive(), "Verify the Shortcut dialog opens");
@@ -65,7 +65,7 @@ public class ShortcutDialog extends AjaxCommonTest {
 		SeparateWindow window = null;
 		String windowTitle = "Zimbra";
 		String CloseLink = "css=div[class='ZmShortcutsWindow'] div[class='actions'] span[class='link'][onclick*='closeCallback();']";
-		try{
+		try {
 			window=(SeparateWindow)dialog.zClickButton(Button.B_NEWWINDOW);
 			SleepUtil.sleepLong();
 			window.zWaitForActive();
@@ -78,7 +78,7 @@ public class ShortcutDialog extends AjaxCommonTest {
 			//dialog.zClickButton(Button.B_CLOSE);Zimbra Keyboard Shortcuts
 			app.zPageMain.sSelectWindow(null);
 
-		}finally{
+		} finally{
 			if(window!=null){
 				app.zPageMain.zSeparateWindowClose(windowTitle);
 				app.zPageMain.sSelectWindow(null);

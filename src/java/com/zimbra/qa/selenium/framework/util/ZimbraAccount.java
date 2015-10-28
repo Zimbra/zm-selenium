@@ -204,10 +204,6 @@ public class ZimbraAccount {
 	}
 	private static ZimbraAccount _AccountA = null;
 
-	/**
-	 * Get a general use account for interacting with the test account
-	 * @return a general use ZimbraAccount
-	 */
 	public static synchronized ZimbraAccount AccountB() {
 		if ( _AccountB == null ) {
 			_AccountB = new ZimbraAccount();
@@ -227,6 +223,106 @@ public class ZimbraAccount {
 		return (_AccountC);
 	}
 	private static ZimbraAccount _AccountC = null;
+	
+	public static synchronized ZimbraAccount Account1() {
+		if ( _Account1 == null ) {
+			_Account1 = new ZimbraAccount();
+			_Account1.provision();
+			_Account1.authenticate();
+		}
+		return (_Account1);
+	}
+	private static ZimbraAccount _Account1 = null;
+	
+	public static synchronized ZimbraAccount Account2() {
+		if ( _Account2 == null ) {
+			_Account2 = new ZimbraAccount();
+			_Account2.provision();
+			_Account2.authenticate();
+		}
+		return (_Account2);
+	}
+	private static ZimbraAccount _Account2 = null;
+	
+	public static synchronized ZimbraAccount Account3() {
+		if ( _Account3 == null ) {
+			_Account3 = new ZimbraAccount();
+			_Account3.provision();
+			_Account3.authenticate();
+		}
+		return (_Account3);
+	}
+	private static ZimbraAccount _Account3 = null;
+	
+	public static synchronized ZimbraAccount Account4() {
+		if ( _Account4 == null ) {
+			_Account4 = new ZimbraAccount();
+			_Account4.provision();
+			_Account4.authenticate();
+		}
+		return (_Account4);
+	}
+	private static ZimbraAccount _Account4 = null;
+	
+	public static synchronized ZimbraAccount Account5() {
+		if ( _Account5 == null ) {
+			_Account5 = new ZimbraAccount();
+			_Account5.provision();
+			_Account5.authenticate();
+		}
+		return (_Account5);
+	}
+	private static ZimbraAccount _Account5 = null;
+	
+	public static synchronized ZimbraAccount Account6() {
+		if ( _Account6 == null ) {
+			_Account6 = new ZimbraAccount();
+			_Account6.provision();
+			_Account6.authenticate();
+		}
+		return (_Account6);
+	}
+	private static ZimbraAccount _Account6 = null;
+	
+	public static synchronized ZimbraAccount Account7() {
+		if ( _Account7 == null ) {
+			_Account7 = new ZimbraAccount();
+			_Account7.provision();
+			_Account7.authenticate();
+		}
+		return (_Account7);
+	}
+	private static ZimbraAccount _Account7 = null;
+	
+	public static synchronized ZimbraAccount Account8() {
+		if ( _Account8 == null ) {
+			_Account8 = new ZimbraAccount();
+			_Account8.provision();
+			_Account8.authenticate();
+		}
+		return (_Account8);
+	}
+	private static ZimbraAccount _Account8 = null;
+	
+	public static synchronized ZimbraAccount Account9() {
+		if ( _Account9 == null ) {
+			_Account9 = new ZimbraAccount();
+			_Account9.provision();
+			_Account9.authenticate();
+		}
+		return (_Account9);
+	}
+	private static ZimbraAccount _Account9 = null;
+	
+	public static synchronized ZimbraAccount Account10() {
+		if ( _Account10 == null ) {
+			_Account10 = new ZimbraAccount();
+			_Account10.provision();
+			_Account10.authenticate();
+		}
+		return (_Account10);
+	}
+	private static ZimbraAccount _Account10 = null;
 
 	/**
 	 * Reset all static accounts.  This method should be used before/after
@@ -239,6 +335,16 @@ public class ZimbraAccount {
 		ZimbraAccount._AccountA = null;
 		ZimbraAccount._AccountB = null;
 		ZimbraAccount._AccountC = null;
+		ZimbraAccount._Account1 = null;
+		ZimbraAccount._Account2 = null;
+		ZimbraAccount._Account3 = null;
+		ZimbraAccount._Account4 = null;
+		ZimbraAccount._Account5 = null;
+		ZimbraAccount._Account6 = null;
+		ZimbraAccount._Account7 = null;
+		ZimbraAccount._Account8 = null;
+		ZimbraAccount._Account9 = null;
+		ZimbraAccount._Account10 = null;
 		ZimbraAccount._AccountHTML = null;
 		ZimbraAccount._AccountZMC = null;
 		ZimbraAccount._AccountZWC = null;

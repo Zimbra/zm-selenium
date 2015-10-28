@@ -34,9 +34,10 @@ public class Reply extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "82558,80555")
+	@Bugs(ids = "82558")
 	@Test(description = "Grantee replies to appointment from grantor's calendar",
 			groups = { "functional" })
+	
 	public void Reply_01() throws HarnessException {
 		
 		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();

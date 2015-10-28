@@ -32,7 +32,7 @@ public class VerifyDisabledUI extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "82558,80555")
+	@Bugs(ids = "82558")
 	@Test(description = "Verify Share Calendar option remains disabled & Reply option is enabled on mountpoint appointment (manager share)",
 			groups = { "functional" })
 			

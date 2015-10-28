@@ -44,13 +44,13 @@ public class ResetStatusAfterAddingAttendee extends CalendarWorkWeekTest {
 		// Create a meeting			
 		String tz = ZTimeZone.TimeZoneEST.getID();
 		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
-		String apptAttendee2 = ZimbraAccount.AccountB().EmailAddress;		
+		String apptAttendee1 = ZimbraAccount.Account1().EmailAddress;
+		String apptAttendee2 = ZimbraAccount.Account2().EmailAddress;		
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 6, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 7, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 18, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 19, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -61,7 +61,7 @@ public class ResetStatusAfterAddingAttendee extends CalendarWorkWeekTest {
                      		"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
                      		"<at role='REQ' ptst='NE' rsvp='1' a='" + apptAttendee1 + "' d='2'/>" +
                      	"</inv>" +
-                     	"<e a='"+ ZimbraAccount.AccountA().EmailAddress +"' t='t'/>" +
+                     	"<e a='"+ ZimbraAccount.Account1().EmailAddress +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
                      		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
@@ -72,7 +72,7 @@ public class ResetStatusAfterAddingAttendee extends CalendarWorkWeekTest {
         
         //Login as attendee and accept the invite
         app.zPageMain.zLogout();
-		app.zPageLogin.zLogin(ZimbraAccount.AccountA());
+		app.zPageLogin.zLogin(ZimbraAccount.Account1());
 		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
 		app.zPageCalendar.zNavigateTo();
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);
@@ -103,23 +103,23 @@ public class ResetStatusAfterAddingAttendee extends CalendarWorkWeekTest {
 			app.zGetActiveAccount().soapSend(
 				"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
 	
-		String attendeeStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.AccountA().EmailAddress +"']", "ptst");
+		String attendeeStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=AC
 		ZAssert.assertEquals(attendeeStatus, "AC", "Verify that the attendee shows as 'Accepted'");
 		
 		// --- Check that the attendee showing status as "Accepted" ---		
-		ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.Account1().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>"+ apptSubject +"</query>"
 			+	"</SearchRequest>");
 	
-		String attendeeInvId = ZimbraAccount.AccountA().soapSelectValue("//mail:appt", "invId");
+		String attendeeInvId = ZimbraAccount.Account1().soapSelectValue("//mail:appt", "invId");
 
-		ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.Account1().soapSend(
 				"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
 	
-		String myStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.AccountA().EmailAddress +"']", "ptst");
+		String myStatus = ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=AC
 		ZAssert.assertEquals(myStatus, "AC", "Verify that the attendee shows as 'Accepted'");
