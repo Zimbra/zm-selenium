@@ -112,8 +112,12 @@ public class PageLogin extends AbsTab {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void zNavigateTo() throws HarnessException {
-
-		if ( !zIsVisiblePerPosition(Locators.zBtnLogin, 10, 10) ) {
+		
+		if ( zIsActive() ) {
+			// This page is already active.
+			return;
+			
+		} else if ( !zIsVisiblePerPosition(Locators.zBtnLogin, 10, 10) ) {
 			
 			try {
 				String SeleniumBrowser;
