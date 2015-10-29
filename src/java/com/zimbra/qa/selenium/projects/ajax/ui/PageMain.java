@@ -19,6 +19,17 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.ui;
 
+import java.awt.Toolkit;
+import java.io.IOException;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import com.thoughtworks.selenium.SeleniumException;
+import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
+import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.*;
@@ -31,6 +42,9 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
  *
  */
 public class PageMain extends AbsTab {
+	
+	private WebDriverBackedSelenium _webDriverBackedSelenium = null;
+	private WebDriver _webDriver = null;
 
 	public static class Locators {
 				
@@ -90,7 +104,7 @@ public class PageMain extends AbsTab {
 	}
 	
 	/* (non-Javadoc)
-	 * @see projects.admin.ui.AbsPage#isActive()
+	 * @see projects.ajax.ui.AbsPage#isActive()
 	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
@@ -121,7 +135,7 @@ public class PageMain extends AbsTab {
 	}
 
 	/* (non-Javadoc)
-	 * @see projects.admin.ui.AbsPage#myPageName()
+	 * @see projects.ajax.ui.AbsPage#myPageName()
 	 */
 	@Override
 	public String myPageName() {
@@ -129,11 +143,10 @@ public class PageMain extends AbsTab {
 	}
 
 	/* (non-Javadoc)
-	 * @see projects.admin.ui.AbsPage#navigateTo()
+	 * @see projects.ajax.ui.AbsPage#navigateTo()
 	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
-
 
 		if ( zIsActive() ) {
 			// This page is already active
@@ -161,48 +174,113 @@ public class PageMain extends AbsTab {
 	 * Click the logout button
 	 * @throws HarnessException
 	 */
+	@SuppressWarnings("deprecation")
 	public void zLogout() throws HarnessException {
+		
 		logger.debug("logout()");
-
 		tracer.trace("Logout of the "+ MyApplication.myApplicationName());
 
-		zNavigateTo();
-
-		if (ZimbraSeleniumProperties.isWebDriver()) {
-			// Click on logout pulldown
-			getElement("css=div[class=DwtLinkButtonDropDownArrow]").click();			
-		}else{
-		
-			if ( !sIsElementPresent(Locators.zLogoffPulldown) ) {
-				throw new HarnessException("The logoff button is not present " + Locators.zLogoffPulldown);
+		if ( zIsVisiblePerPosition(Locators.zLogoffPulldown, 10, 10) ) {
+			
+			if (ZimbraSeleniumProperties.isWebDriver()) {
+				getElement("css=div[class=DwtLinkButtonDropDownArrow]").click();		
+			} else {
+				if ( !sIsElementPresent(Locators.zLogoffPulldown) ) {
+					throw new HarnessException("The logoff button is not present " + Locators.zLogoffPulldown);
+				}
+				zClickAt(Locators.zLogoffPulldown, "0,0");
+			}
+			this.zWaitForBusyOverlay();
+			
+			if (ZimbraSeleniumProperties.isWebDriver()) {
+				getElement("css=tr[id=POPUP_logOff]>td[id=logOff_title]").click();			
+			} else {
+				if ( !sIsElementPresent(Locators.zLogoffOption) ) {
+					throw new HarnessException("The logoff button is not present " + Locators.zLogoffOption);
+				}
+				zClick(Locators.zLogoffOption);
+			}
+			
+			SleepUtil.sleepSmall();
+			if ( zIsVisiblePerPosition(PageLogin.Locators.zBtnLogin, 10, 10) ) {
+				SleepUtil.sleepSmall();
+				if ( zIsVisiblePerPosition(PageLogin.Locators.zBtnLogin, 10, 10) ) {
+					SleepUtil.sleepMedium();
+				}
 			}
 
-			// Click on logout pulldown
-			zClickAt(Locators.zLogoffPulldown, "0,0");
-		}
-		
-		this.zWaitForBusyOverlay();
-		
-		if (ZimbraSeleniumProperties.isWebDriver()) {
-			// Click on logout pulldown
-			getElement("css=tr[id=POPUP_logOff]>td[id=logOff_title]").click();			
-		}else{
-			if ( !sIsElementPresent(Locators.zLogoffOption) ) {
-				throw new HarnessException("The logoff button is not present " + Locators.zLogoffOption);
+			((AppAjaxClient)MyApplication).zPageLogin.zWaitForActive();
+			((AppAjaxClient)MyApplication).zSetActiveAcount(null);
+			
+		} else {
+			
+			try {
+				String SeleniumBrowser;
+				SeleniumBrowser = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser",	ZimbraSeleniumProperties.getStringProperty("browser"));
+				
+				if (SeleniumBrowser.contains("iexplore")) {
+				    CommandLine.CmdExec("taskkill /f /t /im iexplore.exe");
+				} else if (SeleniumBrowser.contains("firefox")) {
+					CommandLine.CmdExec("taskkill /f /t /im firefox.exe");
+				} else if (SeleniumBrowser.contains("safariproxy")) {
+				    CommandLine.CmdExec("taskkill /f /t /im safari.exe");
+				} else if (SeleniumBrowser.contains("chrome")) {
+					CommandLine.CmdExec("taskkill /f /t /im chrome.exe");
+				}
+				
+			} catch (IOException e) {
+				throw new HarnessException("Unable to kill browsers", e);
+			} catch (InterruptedException e) {
+				throw new HarnessException("Unable to kill browsers", e);
 			}
+			
+			try
+			{
+				ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.AJAX);
 
-			// Click on logout pulldown
-			zClick(Locators.zLogoffOption);
+				if(ZimbraSeleniumProperties.isWebDriver()) {
+					
+					_webDriver = ClientSessionFactory.session().webDriver();
+
+					Capabilities cp =  ((RemoteWebDriver)_webDriver).getCapabilities();
+					if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){				
+						_webDriver.manage().window().setPosition(new Point(0, 0));
+						_webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
+						//_webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+						_webDriver.navigate().to(ZimbraSeleniumProperties.getBaseURL());
+					}
+					
+				} else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()) {
+					
+					_webDriverBackedSelenium = ClientSessionFactory.session().webDriverBackedSelenium();
+					_webDriverBackedSelenium.windowMaximize();
+					_webDriverBackedSelenium.windowFocus();
+					_webDriverBackedSelenium.setTimeout("60000");
+					_webDriverBackedSelenium.open(ZimbraSeleniumProperties.getBaseURL());
+					
+				} else {
+
+					@SuppressWarnings("unused")
+					String timeout = ZimbraSeleniumProperties.getStringProperty("selenium.maxpageload.msec", "30000");
+
+					ClientSessionFactory.session().selenium().start();
+					ClientSessionFactory.session().selenium().windowMaximize();
+					ClientSessionFactory.session().selenium().windowFocus();
+					ClientSessionFactory.session().selenium().allowNativeXpath("true");
+					ClientSessionFactory.session().selenium().setTimeout("60000");
+					ClientSessionFactory.session().selenium().open(ZimbraSeleniumProperties.getBaseURL());
+				}
+				
+			} catch (SeleniumException e) {
+				logger.error("Unable to open ajax client. Is a valid cert installed?", e);
+				throw e;
+			}
+			
+			((AppAjaxClient)MyApplication).zPageLogin.zNavigateTo();			
+			((AppAjaxClient)MyApplication).zPageLogin.zWaitForActive();
+			((AppAjaxClient)MyApplication).zSetActiveAcount(null);
+			
 		}
-		
-		this.zWaitForBusyOverlay();
-
-		/* TODO: ... debugging to be removed */
-		//sWaitForPageToLoad();
-		((AppAjaxClient)MyApplication).zPageLogin.zWaitForActive();
-
-		((AppAjaxClient)MyApplication).zSetActiveAcount(null);
-
 	}
 
 	@Override

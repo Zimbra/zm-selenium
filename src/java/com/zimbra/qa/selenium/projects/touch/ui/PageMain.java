@@ -16,11 +16,25 @@
  */
 package com.zimbra.qa.selenium.projects.touch.ui;
 
+import java.awt.Toolkit;
+import java.io.IOException;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import com.thoughtworks.selenium.SeleniumException;
+import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
+import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.ui.mail.*;
 
 public class PageMain extends AbsTab {
+	
+	private WebDriverBackedSelenium _webDriverBackedSelenium = null;
+	private WebDriver _webDriver = null;
 
 	public static class Locators {
 		
@@ -91,36 +105,115 @@ public class PageMain extends AbsTab {
 	 * Click the logout button
 	 * @throws HarnessException
 	 */
+	@SuppressWarnings("deprecation")
 	public void zLogout() throws HarnessException {
+		
 		logger.debug("logout()");
-
 		tracer.trace("Logout of the "+ MyApplication.myApplicationName());
+		
+		if ( zIsVisiblePerPosition(Locators.zNavigationButton, 10, 10) ) {
+			
+			if (ZimbraSeleniumProperties.isWebDriver()) {
+				getElement("css=div[class=DwtLinkButtonDropDownArrow]").click();
+			} else if ( !sIsElementPresent(Locators.zNavigationButton) ) {
+				throw new HarnessException("The app navigation button is not present " + Locators.zNavigationButton);
+			}
 
-		zNavigateTo();
+			sClickAt(Locators.zNavigationButton, "0,0");
+			SleepUtil.sleepSmall();
+			
+			if (ZimbraSeleniumProperties.isWebDriver()) {
+				getElement("css=tr[id=POPUP_logOff]>td[id=logOff_title]").click();	
+			} else if ( !sIsElementPresent(Locators.zAppsButton) ) {
+				throw new HarnessException("The application button is not present " + Locators.zAppsButton);
+			}
 
-		if (ZimbraSeleniumProperties.isWebDriver()) {
-			getElement("css=div[class=DwtLinkButtonDropDownArrow]").click();
-		} else if ( !sIsElementPresent(Locators.zNavigationButton) ) {
-			throw new HarnessException("The app navigation button is not present " + Locators.zNavigationButton);
+			sClickAt(Locators.zAppsButton, "0,0");
+			SleepUtil.sleepSmall();		
+			sClickAt(Locators.zSignOutButton, "0,0");
+			
+			SleepUtil.sleepSmall();
+			if ( zIsVisiblePerPosition(PageLogin.Locators.zBtnLogin, 10, 10) ) {
+				SleepUtil.sleepSmall();
+				if ( zIsVisiblePerPosition(PageLogin.Locators.zBtnLogin, 10, 10) ) {
+					SleepUtil.sleepMedium();
+				}
+			}
+			
+			((AppTouchClient)MyApplication).zPageLogin.zWaitForActive();
+			((AppTouchClient)MyApplication).zSetActiveAcount(null);
+			
+		} else {
+			
+			try {
+				String SeleniumBrowser;
+				SeleniumBrowser = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser",	ZimbraSeleniumProperties.getStringProperty("browser"));
+				
+				if (SeleniumBrowser.contains("iexplore")) {
+				    CommandLine.CmdExec("taskkill /f /t /im iexplore.exe");
+				} else if (SeleniumBrowser.contains("firefox")) {
+					CommandLine.CmdExec("taskkill /f /t /im firefox.exe");
+				} else if (SeleniumBrowser.contains("safariproxy")) {
+				    CommandLine.CmdExec("taskkill /f /t /im safari.exe");
+				} else if (SeleniumBrowser.contains("chrome")) {
+					CommandLine.CmdExec("taskkill /f /t /im chrome.exe");
+				}
+				
+			} catch (IOException e) {
+				throw new HarnessException("Unable to kill browsers", e);
+			} catch (InterruptedException e) {
+				throw new HarnessException("Unable to kill browsers", e);
+			}
+			
+			try
+			{
+				ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.TOUCH);
+
+				if(ZimbraSeleniumProperties.isWebDriver()) {
+					
+					_webDriver = ClientSessionFactory.session().webDriver();
+
+					Capabilities cp =  ((RemoteWebDriver)_webDriver).getCapabilities();
+					if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){				
+						_webDriver.manage().window().setPosition(new Point(0, 0));
+						_webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
+						//_webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+						_webDriver.navigate().to(ZimbraSeleniumProperties.getBaseURL());
+					}
+					
+				} else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()) {
+					
+					_webDriverBackedSelenium = ClientSessionFactory.session().webDriverBackedSelenium();
+					_webDriverBackedSelenium.windowMaximize();
+					_webDriverBackedSelenium.windowFocus();
+					_webDriverBackedSelenium.setTimeout("60000");
+					_webDriverBackedSelenium.open(ZimbraSeleniumProperties.getBaseURL());
+					
+				} else {
+
+					@SuppressWarnings("unused")
+					String timeout = ZimbraSeleniumProperties.getStringProperty("selenium.maxpageload.msec", "30000");
+
+					ClientSessionFactory.session().selenium().start();
+					ClientSessionFactory.session().selenium().windowMaximize();
+					ClientSessionFactory.session().selenium().windowFocus();
+					ClientSessionFactory.session().selenium().allowNativeXpath("true");
+					ClientSessionFactory.session().selenium().setTimeout("60000");
+					ClientSessionFactory.session().selenium().open(ZimbraSeleniumProperties.getBaseURL());
+				}
+				
+			} catch (SeleniumException e) {
+				logger.error("Unable to open touch client. Is a valid cert installed?", e);
+				throw e;
+			}
+			
+			((AppTouchClient)MyApplication).zPageLogin.zNavigateTo();			
+			((AppTouchClient)MyApplication).zPageLogin.zWaitForActive();
+			((AppTouchClient)MyApplication).zSetActiveAcount(null);
+			
 		}
 
-		sClickAt(Locators.zNavigationButton, "0,0");
-		SleepUtil.sleepSmall();
 		
-		if (ZimbraSeleniumProperties.isWebDriver()) {
-			getElement("css=tr[id=POPUP_logOff]>td[id=logOff_title]").click();	
-		} else if ( !sIsElementPresent(Locators.zAppsButton) ) {
-			throw new HarnessException("The application button is not present " + Locators.zAppsButton);
-		}
-
-		sClickAt(Locators.zAppsButton, "0,0");
-		SleepUtil.sleepSmall();
-		
-		sClickAt(Locators.zSignOutButton, "0,0");
-		SleepUtil.sleepSmall();
-		
-		((AppTouchClient)MyApplication).zPageLogin.zWaitForActive();
-		((AppTouchClient)MyApplication).zSetActiveAcount(null);
 	}
 
 	@SuppressWarnings("unused")

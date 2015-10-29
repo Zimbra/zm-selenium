@@ -137,7 +137,7 @@ public class PageLogin extends AbsTab {
 				}
 				
 			} catch (SeleniumException e) {
-				logger.error("Unable to open admin app.  Is a valid cert installed?", e);
+				logger.error("Unable to open admin app. Is a valid cert installed?", e);
 				throw e;
 			}
 			

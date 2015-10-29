@@ -147,7 +147,7 @@ public class AppTouchClient extends AbsApplication {
 	 * @see projects.admin.ui.AbsApplication#myApplicationName()
 	 */
 	@Override
-	protected ZimbraAccount zSetActiveAcount(ZimbraAccount account) throws HarnessException {
+	public ZimbraAccount zSetActiveAcount(ZimbraAccount account) throws HarnessException {
 		return (super.zSetActiveAcount(account));
 	}
 
