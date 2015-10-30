@@ -51,25 +51,35 @@ public class Decline extends CalendarWorkWeekTest {
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 
+		String tz = ZTimeZone.TimeZoneIndia.getID();
+
 
 		// --------------- Creating invitation (organizer) ----------------------------
-
+		
 		ZimbraAccount.AccountA().soapSend(
-				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
-				+		"<m>"
-				+			"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"
-				+				"<s d='"+ startUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
-				+				"<e d='"+ endUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
-				+				"<or a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>"
-				+				"<at role='REQ' ptst='NE' rsvp='1' a='" + app.zGetActiveAccount().EmailAddress + "'/>"
-				+			"</inv>"
-				+			"<e a='"+ app.zGetActiveAccount().EmailAddress +"' t='t'/>"
-				+			"<su>"+ apptSubject +"</su>"
-				+			"<mp content-type='text/plain'>"
-				+				"<content>content</content>"
-				+			"</mp>"
-				+		"</m>"
-				+	"</CreateAppointmentRequest>");        
+				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
+					"<m>"+
+						"<inv method='REQUEST' type='event' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"+
+							"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
+							"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
+							"<or a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>" +
+							"<at role='REQ' ptst='NE' rsvp='1' a='" + app.zGetActiveAccount().EmailAddress + "'/>" +
+							"<recur>" +
+								"<add>" +
+									"<rule freq='DAI'>" +
+										"<interval ival='5'/>" +
+									"</rule>" +
+								"</add>" +
+							"</recur>" +
+						"</inv>" +
+						"<e a='"+ app.zGetActiveAccount().EmailAddress +"' t='t'/>" +
+						"<mp content-type='text/plain'>" +
+							"<content>content</content>" +
+						"</mp>" +
+						"<su>"+ apptSubject +"</su>" +
+					"</m>" +
+				"</CreateAppointmentRequest>");
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
@@ -151,25 +161,35 @@ public class Decline extends CalendarWorkWeekTest {
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 
+		String tz = ZTimeZone.TimeZoneIndia.getID();
+
 
 		// --------------- Creating invitation (organizer) ----------------------------
-
+		
 		ZimbraAccount.AccountA().soapSend(
-				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
-				+		"<m>"
-				+			"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"
-				+				"<s d='"+ startUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
-				+				"<e d='"+ endUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
-				+				"<or a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>"
-				+				"<at role='REQ' ptst='NE' rsvp='1' a='" + app.zGetActiveAccount().EmailAddress + "'/>"
-				+			"</inv>"
-				+			"<e a='"+ app.zGetActiveAccount().EmailAddress +"' t='t'/>"
-				+			"<su>"+ apptSubject +"</su>"
-				+			"<mp content-type='text/plain'>"
-				+				"<content>content</content>"
-				+			"</mp>"
-				+		"</m>"
-				+	"</CreateAppointmentRequest>");        
+				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
+					"<m>"+
+						"<inv method='REQUEST' type='event' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"+
+							"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
+							"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
+							"<or a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>" +
+							"<at role='REQ' ptst='NE' rsvp='1' a='" + app.zGetActiveAccount().EmailAddress + "'/>" +
+							"<recur>" +
+								"<add>" +
+									"<rule freq='DAI'>" +
+										"<interval ival='5'/>" +
+									"</rule>" +
+								"</add>" +
+							"</recur>" +
+						"</inv>" +
+						"<e a='"+ app.zGetActiveAccount().EmailAddress +"' t='t'/>" +
+						"<mp content-type='text/plain'>" +
+							"<content>content</content>" +
+						"</mp>" +
+						"<su>"+ apptSubject +"</su>" +
+					"</m>" +
+				"</CreateAppointmentRequest>");
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
