@@ -293,7 +293,7 @@ public class PageLogin extends AbsTab {
 			
 			sClick(Locators.zBtnLogin);			
 			
-			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(180000);
+			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(100000);
 
 			((AppAjaxClient)MyApplication).zSetActiveAcount(account);
 

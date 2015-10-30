@@ -28,6 +28,7 @@ import com.zimbra.qa.selenium.projects.ajax.core.*;
 
 public class Tentative extends CalendarWorkWeekTest {
 
+	@SuppressWarnings("serial")
 	public Tentative() {
 		logger.info("New "+ Tentative.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;

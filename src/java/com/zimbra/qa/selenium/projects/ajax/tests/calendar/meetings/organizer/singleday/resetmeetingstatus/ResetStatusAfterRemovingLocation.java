@@ -70,20 +70,22 @@ public class ResetStatusAfterRemovingLocation extends CalendarWorkWeekTest {
                      "</m>" +
                "</CreateAppointmentRequest>");
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        SleepUtil.sleepSmall();
         
         //Login as attendee and accept the invite
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.Account1());
 		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		SleepUtil.sleepSmall();
 		app.zPageCalendar.zNavigateTo();
+		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);		
 		app.zPageMain.zLogout();			
-		
-		//Login as current account and modify appointment
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());		
-		app.zPageCalendar.zNavigateTo();
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
         
         // Remove location and re-send the appointment
+		app.zPageCalendar.zNavigateTo();
+		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zRemoveLocation(apptLocation);
         apptForm.zToolbarPressButton(Button.B_SEND);

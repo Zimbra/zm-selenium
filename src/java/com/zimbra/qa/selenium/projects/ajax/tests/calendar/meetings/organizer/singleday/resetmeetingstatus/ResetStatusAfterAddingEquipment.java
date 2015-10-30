@@ -70,20 +70,22 @@ public class ResetStatusAfterAddingEquipment extends CalendarWorkWeekTest {
                      "</m>" +
                "</CreateAppointmentRequest>");
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        SleepUtil.sleepSmall();
         
         //Login as attendee and accept the invite
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.Account1());
 		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		SleepUtil.sleepSmall();
 		app.zPageCalendar.zNavigateTo();
-		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);
+		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
+		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);		
 		app.zPageMain.zLogout();			
-		
-		//Login as current account and modify
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 		
         // Add Equipment and re-send the appointment
 		app.zPageCalendar.zNavigateTo();
+		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
 		AppointmentItem appt = new AppointmentItem();
         appt.setEquipment(apptEquipment);

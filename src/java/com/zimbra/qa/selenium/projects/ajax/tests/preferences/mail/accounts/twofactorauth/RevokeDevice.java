@@ -62,6 +62,7 @@ public class RevokeDevice extends AjaxCommonTest {
         		"</EnableTwoFactorAuthRequest>");
 		// Login
 		totp = CommandLine.cmdExecOnServer(ZimbraAccount.AccountZWC().EmailAddress, secret);
+		app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC(), totp, true);
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
@@ -74,8 +75,9 @@ public class RevokeDevice extends AjaxCommonTest {
 		//Verification
 		ZAssert.assertTrue(app.zPagePreferences.zVerifyTrustedDeviceCount(0), "Verify trusted device count is decreased");
 		ZAssert.assertTrue(app.zPagePreferences.zVerifyDisabledRevokeThisDeviceLink(), "Verify revoke this device link is disabled");
-	    this.app.zPageLogin.zNavigateTo();
+		
 		totp = CommandLine.cmdExecOnServer(ZimbraAccount.AccountZWC().EmailAddress, secret);
+		app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC(), totp, false);
 
 	    logger.info("Login requires totp after revoke");

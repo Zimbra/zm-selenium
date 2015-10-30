@@ -39,7 +39,7 @@ public class TrustThisComputer extends AjaxCommonTest {
 
 	@Test(	description = "Trust the computer and verify that after relogin totp code is not required",
 			groups = { "smoke" })
-	public void TrustthisComputer_01() throws HarnessException {
+	public void TrustThisComputer_01() throws HarnessException {
 		String totp, secret, tempToken;
 		
 		ZimbraAccount.AccountZWC().soapSend(
@@ -59,6 +59,7 @@ public class TrustThisComputer extends AjaxCommonTest {
         		"</EnableTwoFactorAuthRequest>");
 		// Login
 		totp = CommandLine.cmdExecOnServer(ZimbraAccount.AccountZWC().EmailAddress, secret);
+		app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC(), totp, true);
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
@@ -69,9 +70,12 @@ public class TrustThisComputer extends AjaxCommonTest {
 		//Verification
 		ZAssert.assertTrue(app.zPagePreferences.zVerifyTrustedDeviceCount(1), "Verify trusted device count is increased");
 		ZAssert.assertTrue(app.zPagePreferences.zVerifyRevokeThisDevice(), "Verify revoke this device link is present");
+		app.zPageMain.zLogout();
 	    this.app.zPageLogin.zNavigateTo();
 	    this.startingPage.zNavigateTo();
 	    logger.info("Logged in successfully without totp");
+	    
+	    app.zPageMain.zLogout();
 
 	}
 }

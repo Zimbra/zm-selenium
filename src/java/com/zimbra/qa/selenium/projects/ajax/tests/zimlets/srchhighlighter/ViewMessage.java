@@ -167,6 +167,7 @@ public class ViewMessage extends AjaxCommonTest {
 
 			// Verify the term is highlighted
 			
+			@SuppressWarnings("unused")
 			HtmlElement body = display.zGetMailPropertyAsHtml(Field.Body);
 			
 			throw new HarnessException("See https://bugzilla.zimbra.com/show_bug.cgi?id=82607");

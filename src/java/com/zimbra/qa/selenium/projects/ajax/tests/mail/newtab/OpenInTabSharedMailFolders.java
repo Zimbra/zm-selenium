@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newtab;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderMountpointItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -31,9 +29,6 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.TreeMail.Locators;;
-
-
 
 public class OpenInTabSharedMailFolders extends PrefGroupMailByMessageTest {
 

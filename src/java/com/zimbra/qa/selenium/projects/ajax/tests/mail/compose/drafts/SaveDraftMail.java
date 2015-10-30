@@ -16,10 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.drafts;
 
-
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.RecipientItem;
@@ -34,21 +31,15 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
 
-
 public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 	public SaveDraftMail() {
 		logger.info("New "+ SaveDraftMail.class.getCanonicalName());
-
-
-
-
 	}
 
 	@Test(	description = "Save a basic draft (subject only)",

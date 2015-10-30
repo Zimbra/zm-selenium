@@ -36,13 +36,13 @@ public class ResetStatusAfterModifyingCalendar extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "49881")
+	@Bugs(ids = "98476,49881")
 	@Test(description = "Check reset status of meeting after modifying calendar",
 			groups = { "functional" })
 			
 	public void ResetStatusAfterModifyingCalendar_01() throws HarnessException {
 		
-		// Create a meeting			
+		// Create a meeting
 		String tz = ZTimeZone.TimeZoneEST.getID();
 		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptAttendee1 = ZimbraAccount.Account1().EmailAddress;
@@ -78,21 +78,22 @@ public class ResetStatusAfterModifyingCalendar extends CalendarWorkWeekTest {
                      "</m>" +
                "</CreateAppointmentRequest>");
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        SleepUtil.sleepSmall();
         
         //Login as attendee and accept the invite
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.Account1());
 		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		SleepUtil.sleepSmall();
 		app.zPageCalendar.zNavigateTo();
-		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);
-		
+		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
+		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);		
 		app.zPageMain.zLogout();			
-		
-		//Login as current account and modify
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 		
         // Add attendee2 and re-send the appointment
 		app.zPageCalendar.zNavigateTo();
+		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);       
         if(ZimbraSeleniumProperties.isWebDriver()){
             String locator = "css=td[id$='_folderSelect'] td[id$='_select_container']";
@@ -121,7 +122,7 @@ public class ResetStatusAfterModifyingCalendar extends CalendarWorkWeekTest {
 	
 		String organizerInvId = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
 
-			app.zGetActiveAccount().soapSend(
+		app.zGetActiveAccount().soapSend(
 				"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
 	
 		String attendeeStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");

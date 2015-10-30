@@ -61,6 +61,7 @@ public class DisableZimbraTwoFactorAuth extends AjaxCommonTest {
         		"</EnableTwoFactorAuthRequest>");
 		// Login
 		totp = CommandLine.cmdExecOnServer(ZimbraAccount.AccountZWC().EmailAddress, secret);
+		app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC(), totp, false);
 		
 		// Verify main page becomes active

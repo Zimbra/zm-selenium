@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
-//import com.zimbra.qa.selenium.projects.ajax.ui.preferences.trustedaddresses.DisplayTrustedAddress;
 
 
 public class ViewMail extends PrefGroupMailByMessageTest {
@@ -37,14 +36,6 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	
 	public ViewMail() throws HarnessException {
 		logger.info("New "+ ViewMail.class.getCanonicalName());
-		
-		
-		
-
-		
-		
-
-
 	}
 	
 	
@@ -73,6 +64,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
 
 		// Select the message so that it shows in the reading pane
+		@SuppressWarnings("unused")
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Verify the To, From, Subject, Body
@@ -112,6 +104,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
 
 		// Select the message so that it shows in the reading pane
+		@SuppressWarnings("unused")
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Verify the To, From, Subject, Body
@@ -151,6 +144,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
 
 		// Select the message so that it shows in the reading pane
+		@SuppressWarnings("unused")
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Verify the To, From, Subject, Body

@@ -24,6 +24,7 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogSendUpdatetoAttendees;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 
@@ -45,7 +46,7 @@ public class ResetStatusAfterUpdatingAttendee extends CalendarWorkWeekTest {
 		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptAttendee1 = ZimbraAccount.Account1().EmailAddress;
 		String apptAttendee2 = ZimbraAccount.Account2().EmailAddress;		
-		String apptAttendee3 = ZimbraAccount.Account3().EmailAddress;		
+		String apptAttendee3 = ZimbraAccount.Account3().EmailAddress;
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -70,24 +71,29 @@ public class ResetStatusAfterUpdatingAttendee extends CalendarWorkWeekTest {
                      "</m>" +
                "</CreateAppointmentRequest>");
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        SleepUtil.sleepSmall();
         
         //Login as attendee and accept the invite
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.Account1());
 		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		SleepUtil.sleepSmall();
 		app.zPageCalendar.zNavigateTo();
+		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);		
 		app.zPageMain.zLogout();			
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
-		
-        // Add attendee2 and re-send the appointment
-		app.zPageCalendar.zNavigateTo();        
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());   
         
         // Remove one attendee, add another and re-send the appointment
+		app.zPageCalendar.zNavigateTo();
+		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zRemoveAttendee(apptAttendee2);
         apptForm.zFillField(Field.Attendees, apptAttendee3);
         apptForm.zToolbarPressButton(Button.B_SEND);
+        DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
+        sendUpdateDialog.zClickButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
+        sendUpdateDialog.zClickButton(Button.B_OK);
         SleepUtil.sleepVeryLong(); 
         
 		// --- Check that the organizer shows the attendee as "Accepted" ---
@@ -119,11 +125,8 @@ public class ResetStatusAfterUpdatingAttendee extends CalendarWorkWeekTest {
 	
 		String myStatus = ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
 
-		// Verify attendee status shows as ptst=NE
-		ZAssert.assertEquals(myStatus, "NE", "Verify that the attendee shows as 'Needs Action'");
-		
-		
-        
+		// Verify attendee status shows as ptst=AC
+		ZAssert.assertEquals(myStatus, "AC", "Verify that the attendee shows as 'Accepted'");
 		
 	}
 	

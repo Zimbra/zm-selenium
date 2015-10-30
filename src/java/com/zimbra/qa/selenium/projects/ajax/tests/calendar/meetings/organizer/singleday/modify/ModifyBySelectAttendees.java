@@ -19,8 +19,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import org.testng.annotations.*;
-
-import com.thoughtworks.selenium.DefaultSelenium;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
@@ -44,9 +42,8 @@ public class ModifyBySelectAttendees extends CalendarWorkWeekTest {
 	
 	public ModifyBySelectAttendees() {
 		logger.info("New "+ ModifyBySelectAttendees.class.getCanonicalName());
-		
+		super.startingPage = app.zPageCalendar;
 	}
-	
 
 	@Test(description = "modify appt and Add attendee to existing appointment from contact picker",
 			groups = { "functional" })

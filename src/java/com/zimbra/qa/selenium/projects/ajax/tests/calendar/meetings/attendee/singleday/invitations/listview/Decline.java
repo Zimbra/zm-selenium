@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.si
 import java.util.*;
 
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -28,6 +29,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmationDeclin
 
 public class Decline extends CalendarWorkWeekTest {
 
+	@SuppressWarnings("serial")
 	public Decline() {
 		logger.info("New "+ Decline.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;

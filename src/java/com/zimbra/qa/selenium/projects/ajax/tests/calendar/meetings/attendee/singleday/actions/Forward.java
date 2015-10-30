@@ -17,7 +17,9 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.actions;
 
 import java.util.Calendar;
+
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
@@ -177,6 +179,7 @@ public class Forward extends CalendarWorkWeekTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 		
 		// Forward the item
+		@SuppressWarnings("unused")
 		FormMailNew mailForm = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
 		
 		// Fill out the form with the data
