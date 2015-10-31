@@ -17,8 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
 
 import java.awt.event.KeyEvent;
-import java.util.Calendar;
-
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -236,20 +234,9 @@ public class QuickAddAppointment extends AbsTab {
 	}
 
 	public void zNewAppointmentUsingMiniCal() throws HarnessException {
-		zWaitForMiniCalToLoad();
-		Calendar cal = Calendar.getInstance();
-
-		int month = cal.get(Calendar.MONTH + 1);
-		if (month == 4 || month == 6 || month == 9 || month == 11)
-			this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('30')", "");			
-		else if (month == 2 && cal.get(Calendar.YEAR)%4 == 0)
-		this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('29')", "");
-		else if (month == 2 && cal.get(Calendar.YEAR)%4 != 0)
-		this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('28')", "");
-		else 
-			this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('31')", "");
-			
-		SleepUtil.sleepSmall();
+		this.sClick("css=div[class='DwtCalendar'] td[class='DwtCalendarButton'] div[class='ImgFwdArrowSmall']");
+		this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('25')", "");
+		SleepUtil.sleepMedium();
 		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_APPT_title']", "");
 	}
 
@@ -259,20 +246,10 @@ public class QuickAddAppointment extends AbsTab {
 		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_ALLDAY_APPT_title']", "");
 	}
 
-	public void zNewAllDayAppointmentUsingMiniCal() throws HarnessException {
-		zWaitForMiniCalToLoad();
-		Calendar cal = Calendar.getInstance();
-
-		int month = cal.get(Calendar.MONTH + 1);
-		if (month == 4 || month == 6 || month == 9 || month == 11)
-			this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('30')", "");			
-		else if (month == 2 && cal.get(Calendar.YEAR)%4 == 0)
-		this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('29')", "");
-		else if (month == 2 && cal.get(Calendar.YEAR)%4 != 0)
-		this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('28')", "");
-		else 
-			this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('31')", "");
-		SleepUtil.sleepSmall();
+	public void zNewAllDayAppointmentUsingMiniCal() throws HarnessException {		
+		this.sClick("css=div[class='DwtCalendar'] td[class='DwtCalendarButton'] div[class='ImgFwdArrowSmall']");
+		this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('25')", "");
+		SleepUtil.sleepMedium();
 		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_ALLDAY_APPT_title']", "");
 	}
 
@@ -284,16 +261,6 @@ public class QuickAddAppointment extends AbsTab {
 		ZAssert.assertEquals(this.sIsElementPresent(Locators.ConfigureReminder), status, "Verify configure reminder link");
 	}
 	
-	public void zWaitForMiniCalToLoad() throws HarnessException {
-		Boolean isElementPresent;
-		for (int i=0; i<=10; i++) {
-			isElementPresent = this.sIsElementPresent("css=td[class='DwtCalendarTitlebar']");
-			while (isElementPresent == false) {
-				SleepUtil.sleepSmall();
-			}
-		}
-	}
-
 	public void zMoreDetails() throws HarnessException {
 		SleepUtil.sleepMedium(); //see intermittent bug 81945
 		this.zClickAt(Locators.MoreDetailsButtonQuickAdd, "");

@@ -2159,12 +2159,8 @@ public class PageCalendar extends AbsTab {
 		if (locator == null) {
 			throw new HarnessException("locator was null for button " + button);
 		}
-
-		// Default behavior, process the locator by clicking on it
-		//
-		this.sClickAt(locator, "");
 		
-		this.sClickAt(locator, "0,0");
+		this.zClickAt(locator, "0,0");
 		
 		// Wait for the message to be delivered (if any)
 		Stafpostqueue sp = new Stafpostqueue();
