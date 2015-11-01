@@ -20,6 +20,7 @@ import java.util.HashMap;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 public class OneTimeCode extends AjaxCommonTest {
@@ -65,13 +66,14 @@ public class OneTimeCode extends AjaxCommonTest {
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
 
 	}
-	 @AfterMethod(groups={"always"})
+	
+	@AfterMethod(groups={"always"})
 	public void afterMethod() throws HarnessException {
-
-	       // Resetting the account to flush after each  test method,
-	       // so that the next test is running with new account
-		// commonTestAfterClass();
 		ZimbraAccount.ResetAccountZWC();
-	 }
+		if (app.zPageMail.sIsVisible("css=td[id='skin_dropMenu'] td[id$='_dropdown']") == false) { 
+			app.zPageLogin.zLogin(ZimbraAccount.Account10());
+			logger.info(app.zGetActiveAccount());
+		}
+	}
 
 }

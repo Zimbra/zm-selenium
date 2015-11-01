@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.accounts.twofactorauth;
 
 import java.util.HashMap;
-
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -72,13 +71,13 @@ public class ZimbraFeatureTrustedDevicesEnabled extends AjaxCommonTest {
         ZAssert.assertFalse(app.zPageLogin.zVerifyTrustThisComputer(), "Verify 'trust this computer' is not present");
 
 	}
-	 @AfterMethod(groups={"always"})
+	
+	@AfterMethod(groups={"always"})
 	public void afterMethod() throws HarnessException {
-
-	       // Resetting the account to flush after each  test method,
-	       // so that the next test is running with new account
-		// commonTestAfterClass();
 		ZimbraAccount.ResetAccountZWC();
-	       
+		if (app.zPageMail.sIsVisible("css=td[id='skin_dropMenu'] td[id$='_dropdown']") == false) { 
+			app.zPageLogin.zLogin(ZimbraAccount.Account10());
+			logger.info(app.zGetActiveAccount());
+		}
 	}
 }

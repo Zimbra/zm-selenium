@@ -18,7 +18,9 @@ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.accounts.two
 
 import java.util.HashMap;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -55,6 +57,7 @@ public class ZimbraTwoFactorAuthEnabled extends AjaxCommonTest {
 		
 		Dialog2FactorAuthEnable dialog = (Dialog2FactorAuthEnable) new Dialog2FactorAuthEnable(app, app.zPagePreferences);
 		dialog.zClickButton(Button.B_BEGIN_SETUP);
+		SleepUtil.sleepSmall();
 		dialog.zSetUserPassword(app.zGetActiveAccount().Password);
 		dialog.zClickButton(Button.B_NEXT);
 		SleepUtil.sleepSmall(); //was not clicking on Next button twice
@@ -62,15 +65,25 @@ public class ZimbraTwoFactorAuthEnabled extends AjaxCommonTest {
 		String secretKey = dialog.zGetSecretKey();
 		String totp = CommandLine.cmdExecOnServer(app.zGetActiveAccount().EmailAddress, secretKey);
 		dialog.zClickButton(Button.B_NEXT);
+		SleepUtil.sleepVeryLong();
 		dialog.zSetTotpCode(totp);
 		dialog.zClickButton(Button.B_NEXT);
 		SleepUtil.sleepSmall();
 		dialog.zClickButton(Button.B_FINISH);
+		SleepUtil.sleepVeryLong();
 
 		//-- VERIFICATION
         ZAssert.assertTrue(app.zPagePreferences.zVerifyDisable2FALink(), "Verify Disable link is present");
 
-		
+	}
+	
+	@AfterMethod(groups={"always"})
+	public void afterMethod() throws HarnessException {
+		ZimbraAccount.ResetAccountZWC();
+		if (app.zPageMail.sIsVisible("css=td[id='skin_dropMenu'] td[id$='_dropdown']") == false) { 
+			app.zPageLogin.zLogin(ZimbraAccount.Account10());
+			logger.info(app.zGetActiveAccount());
+		}
 	}
 
 }

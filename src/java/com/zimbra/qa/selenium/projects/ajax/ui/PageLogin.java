@@ -235,7 +235,7 @@ public class PageLogin extends AbsTab {
 			// Click the Login button
 			sClick(Locators.zBtnLogin);
 			
-			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(180000);
+			SleepUtil.sleepVeryLong();
 
 			((AppAjaxClient)MyApplication).zSetActiveAcount(account);
 
@@ -256,7 +256,7 @@ public class PageLogin extends AbsTab {
 
 			// Click the Login button
 			sClick(Locators.zBtnLogin);
-			SleepUtil.sleepLong();
+			SleepUtil.sleepVeryLong();
 			AbsPage page = null;
 			page = new Dialog2FactorAuthEnable(MyApplication, ((AppAjaxClient) MyApplication).zPageLogin);
 			if ( page.zIsActive() ) {
@@ -284,7 +284,7 @@ public class PageLogin extends AbsTab {
 			
 			// Click the Login button
 			sClick(Locators.zBtnLogin);
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepVeryLong();
 			zSetLoginTOTPCode(totp);
 			
 			if ( trustThisComputer == true){
@@ -293,7 +293,7 @@ public class PageLogin extends AbsTab {
 			
 			sClick(Locators.zBtnLogin);			
 			
-			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(100000);
+			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(80000);
 
 			((AppAjaxClient)MyApplication).zSetActiveAcount(account);
 

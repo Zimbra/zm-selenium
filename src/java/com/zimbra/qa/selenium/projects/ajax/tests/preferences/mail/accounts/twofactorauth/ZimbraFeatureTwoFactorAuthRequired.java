@@ -27,11 +27,11 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.Dialog2FactorAuthEnable;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+
 public class ZimbraFeatureTwoFactorAuthRequired extends AjaxCommonTest {
 
 	public ZimbraFeatureTwoFactorAuthRequired() {
 		
-		super.startingPage = app.zPagePreferences;
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			private static final long serialVersionUID = 2485388299568483623L;
 			{				
@@ -41,12 +41,11 @@ public class ZimbraFeatureTwoFactorAuthRequired extends AjaxCommonTest {
 
 	}
 
-	@Test(
-			description = "Verify that after setting zimbraFeatureTwoFactorAuthRequired to true, user is not allowed to acces mailbox till 2fa setup is completed ",
-			groups = { "sanity" }
-			)
+	
+	@Test(description = "Verify that after setting zimbraFeatureTwoFactorAuthRequired to true, user is not allowed to acces mailbox till 2fa setup is completed ",
+			groups = { "sanity" } )
+	
 	public void ZimbraFeatureTwoFactorAuthRequired_01() throws HarnessException {
-		
 
 		logger.info("Click on 'Setup two-step authentication'");
 
@@ -56,38 +55,41 @@ public class ZimbraFeatureTwoFactorAuthRequired extends AjaxCommonTest {
 			+		"<a n='zimbraFeatureTwoFactorAuthRequired'>TRUE</a>"
 			+	"</ModifyAccountRequest>");
 		
-		 app.zPageMain.zLogout();
-		 app.zPageLogin.zSetupAfterLogin(ZimbraAccount.AccountZWC());
+		app.zPageMain.zLogout();
+		app.zPageLogin.zSetupAfterLogin(ZimbraAccount.AccountZWC());
 		//setup dialog is visible
 		Dialog2FactorAuthEnable dialog = (Dialog2FactorAuthEnable) new Dialog2FactorAuthEnable(app, app.zPageLogin);
 		dialog.zClickButton(Button.B_BEGIN_SETUP);
+		SleepUtil.sleepSmall();
 		dialog.zSetUserPassword(ZimbraAccount.AccountZWC().Password);
 		dialog.zClickButton(Button.B_NEXT);
 		SleepUtil.sleepSmall(); //was not clicking on Next button twice
 		dialog.zClickButton(Button.B_NEXT);
+		SleepUtil.sleepSmall();
 		String secretKey = dialog.zGetSecretKey();
 		String totp = CommandLine.cmdExecOnServer(ZimbraAccount.AccountZWC().EmailAddress, secretKey);
 		dialog.zClickButton(Button.B_NEXT);
+		SleepUtil.sleepSmall();
 		dialog.zSetTotpCode(totp);
 		dialog.zClickButton(Button.B_NEXT);
 		SleepUtil.sleepSmall();
 		dialog.zClickButton(Button.B_FINISH);
+		SleepUtil.sleepVeryLong();
 
 		//-- VERIFICATION
-		SleepUtil.sleepLong();
+		//SleepUtil.sleepVeryLong();
 		this.app.zPagePreferences.zNavigateTo();
 		this.app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
         ZAssert.assertTrue(app.zPagePreferences.zVerifyDisable2FALink(), "Verify Disable link is present");
         
 	}
 
-	 @AfterMethod(groups={"always"})
+	@AfterMethod(groups={"always"})
 	public void afterMethod() throws HarnessException {
-
-	       // Resetting the account to flush after each  test method,
-	       // so that the next test is running with new account
-		// commonTestAfterClass();
 		ZimbraAccount.ResetAccountZWC();
-	       
+		if (app.zPageMail.sIsVisible("css=td[id='skin_dropMenu'] td[id$='_dropdown']") == false) { 
+			app.zPageLogin.zLogin(ZimbraAccount.Account10());
+			logger.info(app.zGetActiveAccount());
+		}
 	}
 }
