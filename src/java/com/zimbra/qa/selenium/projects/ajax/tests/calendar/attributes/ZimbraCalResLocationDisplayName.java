@@ -32,12 +32,12 @@ public class ZimbraCalResLocationDisplayName extends CalendarWorkWeekTest {
 	
 	public ZimbraCalResLocationDisplayName() {
 		logger.info("New "+ ZimbraCalResLocationDisplayName.class.getCanonicalName());
-	    super.startingPage =  app.zPageCalendar;
 	    super.startingAccountPreferences = null;
 	}
 	
 	@Test(description = "Bug 57039 : Verify the serach location dialog shows location display name for location ",
 			groups = { "functional" })
+	
 	public void ZimbraCalResLocationDisplayName_01() throws HarnessException {
 		
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
@@ -55,18 +55,13 @@ public class ZimbraCalResLocationDisplayName extends CalendarWorkWeekTest {
 		logger.info("ModifyCalendarResourceResponse is')" + ModifyCalendarResourceResponse);
 		
 		if ( (ModifyCalendarResourceResponse == null) || (ModifyCalendarResourceResponse.length == 0)) {
-
 			Element[] soapFault = ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("//soap:Fault");
 			if ( soapFault != null && soapFault.length > 0 ) {
-			
 				String error = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//zimbra:Code", null);
 				throw new HarnessException("Unable to modify resource : "+ error);
-				
 			}
-		
-			
+			SleepUtil.sleepMedium();
 		}
-		SleepUtil.sleepLong();
 		
 		// Logout and login to pick up the changes
 		app.zPageLogin.zNavigateTo();
@@ -100,11 +95,14 @@ public class ZimbraCalResLocationDisplayName extends CalendarWorkWeekTest {
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
         
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN, apptSubject);
+        SleepUtil.sleepMedium();
         apptForm.zToolbarPressButton(Button.B_LOCATION);
+        SleepUtil.sleepMedium();
         
         DialogFindLocation dialogFindLocation = (DialogFindLocation) new DialogFindLocation(app, app.zPageCalendar);
         dialogFindLocation.zType(Locators.LocationName, location.EmailAddress);
         dialogFindLocation.zClickButton(Button.B_SEARCH_LOCATION);
+        SleepUtil.sleepMedium();
         
         // Verify the search dialog show name as email address and Location as Display name set above
         String searchResult = dialogFindLocation.zGetDisplayedText(Locators.LocationFirstSearchResult);

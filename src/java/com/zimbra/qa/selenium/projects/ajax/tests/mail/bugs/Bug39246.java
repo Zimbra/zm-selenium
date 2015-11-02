@@ -32,15 +32,12 @@ public class Bug39246 extends PrefGroupMailByMessageTest {
 
 	public Bug39246() {
 		logger.info("New "+ Bug39246.class.getCanonicalName());
-		
-		
-		
-		
 	}
 	
-	@Bugs( ids = "39246")
-	@Test(	description = "Verify bug 39246",
-			groups = { "functional" })
+	@Bugs( ids = "102052")
+	@Test(	description = "Verify bug 39246 (View entire message functionality)",
+			groups = { "smoke" })
+	
 	public void Bug39246_01() throws HarnessException  {
 					
 			
@@ -59,25 +56,7 @@ public class Bug39246 extends PrefGroupMailByMessageTest {
 
 		// In the preview pane, click "View Entire Message"
 		display.zPressButton(Button.B_VIEW_ENTIRE_MESSAGE);
-
-		// 7.X behavior opened a new window
-		// 8.X behavior seems to open the entire message in the preview pane
 		
-//		String windowTitle = "Zimbra: "+ subject;
-//
-//		try {
-//			
-//			// Focus on the separate window
-//			app.zPageMail.zSeparateWindowFocus(windowTitle);
-//			
-//			// TODO: add all other verification from bug 39246 test case
-//			
-//		} finally {
-//			
-//			app.zPageMail.zSeparateWindowClose(windowTitle);
-//						
-//		}			
-			
 		// Wait 30 seconds for the end of the message to display
 		String body = "";
 		for (int i = 0; i < 30; i++) {

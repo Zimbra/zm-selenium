@@ -25,17 +25,15 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-
 public class MoveMessage extends PrefGroupMailByMessageTest {
 
 	public MoveMessage() {
 		logger.info("New "+ MoveMessage.class.getCanonicalName());
-		
-	
 	}
 	
 	@Test(	description = "From serch: Move a message to a subfolder",
 			groups = { "functional" })
+	
 	public void MoveConversation01() throws HarnessException {
 		
 		//-- DATA
@@ -68,9 +66,6 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			    	+			"</content>"
 			    	+		"</m>"
 					+	"</AddMsgRequest>");
-
-
-		
 		
 		//-- GUI
 		
@@ -83,6 +78,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			// Search for the message
 			app.zPageSearch.zAddSearchQuery("subject:("+ subject +")");
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
+			SleepUtil.sleepMedium();
 			
 			// Select the item
 			app.zPageSearch.zListItem(Action.A_LEFTCLICK, subject);
@@ -95,8 +91,6 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			app.zPageSearch.zClose();
 		}
 
-
-		
 		//-- Verification
 		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
@@ -105,9 +99,11 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		
 	}
 
+	
 	@Bugs(ids = "77217")
 	@Test(	description = "From search: Move a message in Trash to a subfolder",
 			groups = { "functional" })
+	
 	public void MoveConversation02() throws HarnessException {
 		
 		//-- DATA
@@ -141,8 +137,6 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
         	+			"</content>"
         	+		"</m>"
 			+	"</AddMsgRequest>");
-
-		
 		
 		//-- GUI
 		
@@ -155,6 +149,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			// Search for the message
 			app.zPageSearch.zAddSearchQuery("is:anywhere subject:("+ subject +")");
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
+			SleepUtil.sleepMedium();
 			
 			// Select the item
 			app.zPageSearch.zListItem(Action.A_LEFTCLICK, subject);
@@ -166,8 +161,6 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			// Remember to close the search view
 			app.zPageSearch.zClose();
 		}
-
-
 		
 		//-- Verification
 		
@@ -181,6 +174,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 	@Bugs(ids = "80611")
 	@Test(	description = "From search: Move a message in Sent to a subfolder",
 			groups = { "functional" })
+	
 	public void MoveConversation03() throws HarnessException {
 		
 		//-- DATA
@@ -210,8 +204,6 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 				"</m>" +
 			"</SendMsgRequest>");
 
-		
-		
 		//-- GUI
 		
 		// Click Get Mail button
@@ -223,6 +215,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			// Search for the message
 			app.zPageSearch.zAddSearchQuery("subject:("+ subject +")");
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
+			SleepUtil.sleepMedium();
 			
 			// Select the item
 			app.zPageSearch.zListItem(Action.A_LEFTCLICK, subject);
@@ -234,8 +227,6 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			// Remember to close the search view
 			app.zPageSearch.zClose();
 		}
-
-
 		
 		//-- Verification
 		

@@ -31,9 +31,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
 public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 
-
-	
-	
 	public AutoCompleteForget() {
 		logger.info("New "+ AutoCompleteForget.class.getCanonicalName());
 		
@@ -55,8 +52,11 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	 * 
 	 * @throws HarnessException
 	 */
+	
+	@Bugs(ids = "102053")
 	@Test(	description = "Forget an autocomplete address - invalid email",
 			groups = { "functional" })
+	
 	public void AutoCompleteForget_01() throws HarnessException {
 		
 		// Create a contact
@@ -207,6 +207,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	@Bugs(ids = "97118")
 	@Test(	description = "Verify the 'forget' link for GAL",
 			groups = { "functional" })
+	
 	public void AutoCompleteForget_03() throws HarnessException {
 		
 		final String givenName = "Christopher" + ZimbraSeleniumProperties.getUniqueString();
@@ -289,6 +290,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	@Bugs(ids = "97123")
 	@Test(	description = "Verify 'forget' functionality resets the ranking order - Contacts",
 			groups = { "functional" })
+	
 	public void AutoCompleteForget_04() throws HarnessException {
 		
 		// Create two contacts
@@ -462,6 +464,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	@Bugs(ids = "97118")
 	@Test(	description = "Verify 'forget' functionality resets the ranking order - GAL",
 			groups = { "functional" })
+	
 	public void AutoCompleteForget_05() throws HarnessException {
 		
 		// Create a GAL Entry

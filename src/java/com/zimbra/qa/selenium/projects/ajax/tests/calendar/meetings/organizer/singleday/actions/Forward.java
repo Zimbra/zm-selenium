@@ -132,11 +132,12 @@ public class Forward extends CalendarWorkWeekTest {
         
         // Forward appointment to different attendee
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_FORWARD_MENU, apptSubject);
-        app.zPageCalendar.zType(Locators.ForwardToTextArea, attendee2);
+        app.zPageCalendar.zTypeKeys(Locators.ForwardToTextArea, attendee2);
         
         FormApptNew form = new FormApptNew(app);
         form.zFillField(Field.Body, ForwardContent);
         app.zPageCalendar.zToolbarPressButton(Button.B_SEND);
+        SleepUtil.sleepLong(); // New invitation doesn't appear in the attendee's inbox
 		
 		// Verify the new invitation appears in the inbox
         ZimbraAccount.AccountB().soapSend(

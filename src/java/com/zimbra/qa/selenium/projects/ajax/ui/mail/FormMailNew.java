@@ -453,6 +453,8 @@ public class FormMailNew extends AbsForm {
 			}
 			
 			this.zClick(pulldownLocator);
+			
+			SleepUtil.sleepSmall();
 
 			this.zWaitForBusyOverlay();
 			

@@ -176,13 +176,16 @@ public class DeleteContact extends AjaxCommonTest  {
 		
 		// Refresh to get the contact into the client
 		app.zPageAddressbook.zRefresh();
+		SleepUtil.sleepMedium();
 		
 		// Select the contact
 		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		SleepUtil.sleepSmall();
 		
 		// Delete the contact
 		logger.info("Typing shortcut key "+ name + " KeyEvent: "+ keyEvent);
 		app.zPageMail.zKeyboardKeyEvent(keyEvent);
+		SleepUtil.sleepSmall();
        
         
         //-- Verification

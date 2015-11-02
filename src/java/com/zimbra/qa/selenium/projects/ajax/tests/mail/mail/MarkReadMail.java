@@ -30,18 +30,12 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 	
 	public MarkReadMail() {
 		logger.info("New "+ MarkReadMail.class.getCanonicalName());
-		
-		
-		
-
-		
 		super.startingAccountPreferences.put("zimbraPrefMarkMsgRead", "" + delaySeconds);
-
-
 	}
 	
 	@Test(	description = "Mark a message as read by clicking on it then waiting",
 			groups = { "smoke" })
+	
 	public void MarkReadMail_01() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -58,7 +52,6 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 					"</m>" +
 				"</SendMsgRequest>");
 		
-		
 		// Create a mail item to represent the message
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
@@ -71,8 +64,6 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 		// Wait to read the message
 		SleepUtil.sleep(1000L * (delaySeconds));
 
-      
-
 		// Wait the for the client to send the change to the server
 		app.zPageMail.zWaitForBusyOverlay();
 		
@@ -80,15 +71,12 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertStringDoesNotContain(mail.getFlags(), "u", "Verify the message is marked read in the server");
 		
-		// TODO: Verify the message is not marked unread in the list
-
-		
 	}
 
 	@Test(	description = "Verify that if the message is not read for less than zimbraPrefMarkMsgRead, it is not read",
 			groups = { "functional" })
+	
 	public void MarkReadMail_02() throws HarnessException {
-		
 		
 		// Create the message data to be sent
 		String subject1 = "subject"+ ZimbraSeleniumProperties.getUniqueString();
@@ -116,7 +104,6 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 					"</m>" +
 				"</SendMsgRequest>");
 
-		
 		// Create a mail item to represent the message
 		MailItem mail1 = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject1 +")");
 		MailItem mail2 = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject2 +")");
@@ -129,26 +116,21 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 				
 		// Select the next item immediately
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail2.dSubject);
-
 		
+		SleepUtil.sleepMedium();
 
 		// Verify the message is marked read in the server (flags attribute should not contain (u)nread)
 		mail1 = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject1 +")");
 		ZAssert.assertStringContains(mail1.getFlags(), "u", "Verify the message is marked read in the server");
-		
-		// TODO: Verify the message is not marked unread in the list
 
-		
-
-		
 	}
 
 
 	@Test(	description = "Mark a message as read by clicking on it, then using 'mr' hotkeys",
 			groups = { "functional" })
+	
 	public void MarkReadMail_03() throws HarnessException {
 		
-
 		// Create the message data to be sent
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
 		
@@ -173,22 +155,17 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 		
-		// TODO: need to L10N this
 		app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_MARKREAD);
-
-		
 
 		// Verify the message is marked read in the server (flags attribute should not contain (u)nread)
 		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertStringDoesNotContain(mail.getFlags(), "u", "Verify the message is marked read in the server");
 		
-		// TODO: Verify the message is not marked unread in the list
-
-		
 	}
 
 	@Test(	description = "Mark a message as read by context menu -> mark read",
 			groups = { "functional" })
+	
 			public void MarkReadMail_04() throws HarnessException {
 		// Create the message data to be sent
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
@@ -204,7 +181,6 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 				"</m>" +
 		"</SendMsgRequest>");
 
-
 		// Create a mail item to represent the message
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
@@ -216,7 +192,5 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringDoesNotContain(mail.getFlags(), "u", "Verify the message is marked read in the server");
 
 	}
-		
-
 
 }

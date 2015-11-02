@@ -30,42 +30,50 @@ public class DisplayMail extends com.zimbra.qa.selenium.projects.ajax.ui.mail.Di
 	
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		//logger.warn("implement me", new Throwable());
-		zWaitForZimlets();
-		
-		// Determine which <div/> contains this preview
-		// Use this 'top' css for all subsequent parsing
-		// zv__TV-SR-Mail-1__MSG
-		
-		if ( this.zIsVisiblePerPosition("css=div[id^='zv__TV-SR-'][id$='__MSG']", 0, 0) ) {
+
+		if ( this.zIsVisiblePerPosition("css=div[id^='zv__TV-SR-3'][id$='__MSG']", 0, 0) ) {
 			
-			int count = this.sGetCssCount("css=div[id^='zv__TV-SR-'][id$='__MSG']");
+			int count = this.sGetCssCount("css=div[id^='zv__TV-SR-3'][id$='__MSG']");
+			if ( count > 1 ) {
+				throw new HarnessException("Too many message views open: "+ count);
+			}
+			ContainerLocator = "css=div#" + this.sGetAttribute("css=div[id^='zv__TV-SR-3'][id$='__MSG']" + "@id");
+			
+		} else if ( this.zIsVisiblePerPosition("css=div[id^='zv__TV-SR-2'][id$='__MSG']", 0, 0) ) {
+				
+			int count = this.sGetCssCount("css=div[id^='zv__TV-SR-2'][id$='__MSG']");
+			if ( count > 1 ) {
+				throw new HarnessException("Too many message views open: "+ count);
+			}
+			ContainerLocator = "css=div#" + this.sGetAttribute("css=div[id^='zv__TV-SR-2'][id$='__MSG']" + "@id");
+			
+		} else if ( this.zIsVisiblePerPosition("css=div[id^='zv__TV-SR-'][id$='__MSG']", 0, 0) ) {
+				
+			int count = this.sGetCssCount("css=div[id^='zl__TV-SR-'][id$='__MSG']");
 			if ( count > 1 ) {
 				throw new HarnessException("Too many message views open: "+ count);
 			}
 			ContainerLocator = "css=div#" + this.sGetAttribute("css=div[id^='zv__TV-SR-'][id$='__MSG']" + "@id");
 			
-//		} else if ( this.zIsVisiblePerPosition("css=div[id^='zv__TV-SR-Mail']", 0, 0)) {
-//			
-//			zv__TV-SR-Mail-1__MSG
-//			
-//			if ( this.zIsVisiblePerPosition(Locators.MessageViewPreviewAtBottomCSS, 0, 0) ) {
-//				ContainerLocator = Locators.MessageViewPreviewAtBottomCSS;
-//			} else if ( this.zIsVisiblePerPosition(Locators.MessageViewPreviewAtRightCSS, 0, 0) ) {
-//				ContainerLocator = Locators.MessageViewPreviewAtRightCSS;
-//			} else {
-//				throw new HarnessException("Unable to determine the current open view");				
-//			}
-//			
-//		} else if ( this.zIsVisiblePerPosition("css=div[id^='zv__CLV-SR-Mail']", 0, 0) ) {
-//			
-//			if ( this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtBottomCSS, 0, 0) ) {
-//				ContainerLocator = Locators.ConversationViewPreviewAtBottomCSS;
-//			} else if ( this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtRightCSS, 0, 0) ){
-//				ContainerLocator = Locators.ConversationViewPreviewAtRightCSS;
-//			} else {
-//				throw new HarnessException("Unable to determine the current open view");
-//			}
+		} else if ( this.zIsVisiblePerPosition("css=div[id^='zv__TV-SR-Mail']", 0, 0)) {
+						
+			if ( this.zIsVisiblePerPosition(Locators.MessageViewPreviewAtBottomCSS, 0, 0) ) {
+				ContainerLocator = Locators.MessageViewPreviewAtBottomCSS;
+			} else if ( this.zIsVisiblePerPosition(Locators.MessageViewPreviewAtRightCSS, 0, 0) ) {
+				ContainerLocator = Locators.MessageViewPreviewAtRightCSS;
+			} else {
+				throw new HarnessException("Unable to determine the current open view");				
+			}
+			
+		} else if ( this.zIsVisiblePerPosition("css=div[id^='zv__CLV-SR-Mail']", 0, 0) ) {
+			
+			if ( this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtBottomCSS, 0, 0) ) {
+				ContainerLocator = Locators.ConversationViewPreviewAtBottomCSS;
+			} else if ( this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtRightCSS, 0, 0) ){
+				ContainerLocator = Locators.ConversationViewPreviewAtRightCSS;
+			} else {
+				throw new HarnessException("Unable to determine the current open view");
+			}
 			
 		} else {
 			
@@ -102,10 +110,6 @@ public class DisplayMail extends com.zimbra.qa.selenium.projects.ajax.ui.mail.Di
 		} else {
 			throw new HarnessException("not implemented for field "+ field);
 		}
-
-		// Make sure source was found
-		if ( source == null )
-			throw new HarnessException("source was null for "+ field);
 
 		logger.info("DisplayMail.zGetMailPropertyAsHtml() = "+ HtmlElement.clean(source).prettyPrint());
 

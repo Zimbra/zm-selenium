@@ -27,6 +27,8 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.FormContactGroupNew.Field;
 
@@ -43,7 +45,6 @@ public class ContactGroup extends AjaxCommonTest  {
 		super.startingAccountPreferences = null;		
 		
 	}
-		
 	
 	/*
 	 * http://bugzilla.zimbra.com/show_bug.cgi?id=60652#c0
@@ -56,6 +57,7 @@ public class ContactGroup extends AjaxCommonTest  {
 	 */
 	@Test(	description = "Contacts are not populated while creating a new contact group",
 			groups = { "functional" })
+	
 	public void Bug60652_ContactsGetPopulated() throws HarnessException {
 		
 		//-- Data
@@ -64,7 +66,6 @@ public class ContactGroup extends AjaxCommonTest  {
 		
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
-		
 		
 		//-- GUI
 		
@@ -94,16 +95,22 @@ public class ContactGroup extends AjaxCommonTest  {
 		ZAssert.assertTrue(found, "Verify contact " + contact.getName() + " populated");
 
 		// Try to close out the window
-		formGroup.zToolbarPressButton(Button.B_CONTACTGROUP_ADD_ADDRESS);
+		formGroup.zToolbarPressButton(Button.B_CLOSE);
 		
-		formGroup.zToolbarPressButton(Button.B_SAVE);
-		
+		DialogWarning dialog =  new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.app, ((AppAjaxClient)this.app).zPageAddressbook);
 
+		// Wait for the dialog to appear
+		dialog.zWaitForActive();
+
+		// Click No: Don't save changes
+		dialog.zClickButton(Button.B_NO);
 		
 	}
 
+	
 	@Test(	description = "Click Delete Toolbar button in Edit Contact Group form",
 			groups = { "functional" })
+	
 	public void Bug62026_ClickDeleteToolbarButtonInEditContactGroupForm() throws HarnessException {
 		
 		//-- Data
@@ -113,8 +120,6 @@ public class ContactGroup extends AjaxCommonTest  {
 		
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-		
-		
 		
 		//-- GUI
 		
@@ -126,8 +131,6 @@ public class ContactGroup extends AjaxCommonTest  {
 		
 		// In the form, click "Delete"
 		form.zToolbarPressButton(Button.B_DELETE);
-		
-		
 
 		//-- Verification
 		
@@ -137,19 +140,20 @@ public class ContactGroup extends AjaxCommonTest  {
 		
 		ZAssert.assertEquals(actual.getFolderId(), trash.getId(), "Verify the group is located in trash");
 
-
    	}
 	
-	@Test( description="create a new contact group from GAL search result",
+	
+	@Test( description="Create a new contact group from GAL search result",
 		   groups= { "functional"  } )
-	public void Bug66623_AddingAGALToAContactGroup() throws HarnessException{
+	
+	public void Bug66623_AddingGALSearchContactToContactGroup() throws HarnessException{
+		
 		String email=ZimbraAccount.AccountA().EmailAddress.substring(0,ZimbraAccount.AccountA().EmailAddress.indexOf('@'));
 
 		// search for a GAL
 		app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_GAL); 		
 		app.zPageSearch.zAddSearchQuery(email);	
 		app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);		
-
 
 		//Right click and select New Contact Group
 		//Create contact group 
@@ -167,17 +171,15 @@ public class ContactGroup extends AjaxCommonTest  {
 		//Save
 		dialog.zClickButton(Button.B_OK);
 
+		//verify toast message 'group created'
+		ZAssert.assertStringContains(app.zPageMain.zGetToaster().zGetToastMessage(), "Group Created" , "Verify toast message: '" + "Group Created" + "'");
+		
 		//Create a contact item
 		ContactItem contactItem = new ContactItem(email);
 		contactItem.email = ZimbraAccount.AccountA().EmailAddress;	 
 
 		//Add the member to the group	 
 		newGroup.addDListMember(contactItem);
-
-		//verify toasted message 'group created'  
-		String expectedMsg ="Group Created";
-		ZAssert.assertStringContains(app.zPageMain.zGetToaster().zGetToastMessage(),
-				expectedMsg , "Verify toast message '" + expectedMsg + "'");
 
 		//click "Contacts" folder
 		FolderItem folder= FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
@@ -199,10 +201,8 @@ public class ContactGroup extends AjaxCommonTest  {
 		ZAssert.assertNotNull(actual, "Verify the group stil exists");
 
 		//verify the location is System folder "Contacts"
-		ZAssert.assertEquals(app.zPageAddressbook.sGetText("css=td.companyFolder"), SystemFolder.Contacts.getName(), "Verify location (folder) is " + SystemFolder.Contacts.getName());
+		//ZAssert.assertEquals(app.zPageAddressbook.sGetText("css=td.companyFolder"), SystemFolder.Contacts.getName(), "Verify location (folder) is " + SystemFolder.Contacts.getName());
 		
 	}
-	     
 	
-
 }

@@ -52,7 +52,6 @@ public class Bug60277 extends CalendarWorkWeekTest {
 			
 	public void Bug60277_01(String locator , String viewName, String label) throws HarnessException {
 		
-		 
 		// Creating object for appointment data
 		String tz, apptSubject, apptBody, apptAttendee;
 		tz = ZTimeZone.TimeZoneEST.getID();
@@ -92,13 +91,12 @@ public class Bug60277 extends CalendarWorkWeekTest {
         uri.addQuery("fmt", "freebusy");
         logger.info("URI is here"+ uri.toString());
         app.zPageCalendar.sOpen(uri.toString());
-        SleepUtil.sleepSmall();
+        SleepUtil.sleepMedium();
         
         // Verify if all views on Free busy view are clickable and visible 
         app.zPageCalendar.sClickAt(locator, "");
-        SleepUtil.sleepSmall();
-        String currentURL = app.zPageCalendar.sGetLocation();
-		ZAssert.assertStringContains(currentURL, viewName,  "URL for "+ label +" view is open");
+        SleepUtil.sleepMedium();
+		ZAssert.assertStringContains(app.zPageCalendar.sGetLocation(), viewName,  "URL for "+ label +" view is open");
 		
 		// Verify if all views show free busy status 
 		String body = app.zPageCalendar.sGetBodyText();

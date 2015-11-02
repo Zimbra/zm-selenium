@@ -1281,7 +1281,7 @@ public class PageCalendar extends AbsTab {
 				
 				if ( optionLocator != null ) {
 					this.zClickAt(optionLocator, "");
-					SleepUtil.sleepSmall();
+					SleepUtil.sleepLong();
 					this.zWaitForBusyOverlay();
 				}
 				

@@ -162,8 +162,8 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Bugs(	ids = "64444")
-	@Test(	description = "Receive a mail with only audio/vav content",
+	@Bugs(	ids = "102049")
+	@Test(	description = "Receive a mail with only audio/wav content",
 			groups = { "functional" })
 	public void ViewMail_04() throws HarnessException {
 		

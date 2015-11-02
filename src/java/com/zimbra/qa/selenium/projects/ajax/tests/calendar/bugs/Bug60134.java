@@ -85,14 +85,20 @@ public void Bug60134_01() throws HarnessException {
     // Add equipment from 'Search Equipment' dialog and send the meeting
     FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
     apptForm.sClick(Locators.ShowEquipmentLink);
+    SleepUtil.sleepSmall();
     apptForm.zToolbarPressButton(Button.B_EQUIPMENT);
+    SleepUtil.sleepMedium();
     
     DialogFindEquipment dialogFindEquipment = (DialogFindEquipment) new DialogFindEquipment(app, app.zPageCalendar);
     dialogFindEquipment.zType(Locators.EquipmentName, apptEquipment);
     dialogFindEquipment.zType(Locators.EquipmentDescription, equipmentDescription);
+    SleepUtil.sleepSmall();
     dialogFindEquipment.zClickButton(Button.B_SEARCH_EQUIPMENT);
+    SleepUtil.sleepMedium();
     dialogFindEquipment.zClickButton(Button.B_SELECT_EQUIPMENT);
+    SleepUtil.sleepSmall();
     dialogFindEquipment.zClickButton(Button.B_OK);
+    SleepUtil.sleepMedium();
     apptForm.zSubmit();
     SleepUtil.sleepVeryLong();
 

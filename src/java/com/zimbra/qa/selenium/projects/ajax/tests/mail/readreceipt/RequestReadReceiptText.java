@@ -24,29 +24,23 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
-
 public class RequestReadReceiptText extends PrefGroupMailByMessageTest {
 
 	public RequestReadReceiptText() {
 		logger.info("New "+ RequestReadReceiptText.class.getCanonicalName());
-		
-		
-		
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
-		
 	}
 	
 	@Test(	description = "Send a text message requesting a read receipt",
-			groups = { "functional" })
+			groups = { "smoke" })
+	
 	public void CreateMailText_01() throws HarnessException {
-		
 		
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
 		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
-		
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -60,8 +54,6 @@ public class RequestReadReceiptText extends PrefGroupMailByMessageTest {
 		
 		// Send the message
 		mailform.zSubmit();
-
-
 		
 		// Verify the message is received with a read receipt request
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mail.dSubject +")");
@@ -72,12 +64,8 @@ public class RequestReadReceiptText extends PrefGroupMailByMessageTest {
 				+	"</GetMsgRequest>");
 		String requestor = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='n']", "a");
 
-		ZAssert.assertEquals(requestor, app.zGetActiveAccount().EmailAddress, 
-				"Verify the received message requests a read receipt from the test account");
+		ZAssert.assertEquals(requestor, app.zGetActiveAccount().EmailAddress, "Verify the received message requests a read receipt from the test account");
 		
 	}
-
-	
-
 
 }

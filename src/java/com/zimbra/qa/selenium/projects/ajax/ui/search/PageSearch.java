@@ -20,14 +20,10 @@
 package com.zimbra.qa.selenium.projects.ajax.ui.search;
 
 import java.util.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.PageMailView;
-import com.zimbra.qa.selenium.projects.touch.ui.mail.PageMail.Locators;
-
 
 /**
  * @author Matt Rhoades
@@ -204,24 +200,16 @@ public class PageSearch extends AbsTab {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
-		}
-		
 		// Make sure the button exists
 		if ( !sIsElementPresent(locator) )
 			throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
-		
-		// Default behavior, process the locator by clicking on it
-		//
-	
+
 		// Click it
 		zClickAt(locator, "");
 		SleepUtil.sleepSmall();
 		
 		// If the app is busy, wait for it to become active
 		zWaitForBusyOverlay();
-		
 		
 		// If page was specified, make sure it is active
 		if ( page != null ) {
@@ -445,20 +433,10 @@ public class PageSearch extends AbsTab {
 				zWaitForBusyOverlay();
 			}
 
-			// If we click on pulldown/option and the page is specified, then
-			// wait for the page to go active
-			if (page != null) {
-				page.zWaitForActive();
-			}
-
 		}
-
-
 
 		// Return the specified page, or null if not set
 		return (page);
-
-
 
 	}
 

@@ -63,6 +63,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	@Bugs(ids = "69132")
 	@Test(	description = "Delete an appointment in the list view - Toolbar Delete",
 			groups = { "functional" })
+	
 	public void DeleteAppointment_01() throws HarnessException {
 
 		//-- Data setup
@@ -157,6 +158,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	@Bugs(ids = "69132")
 	@Test(	description = "Delete an appt using checkbox and toolbar delete button",
 			groups = { "functional" })
+	
 	public void DeleteAppointment_02() throws HarnessException {
 
 		// Create the appointment on the server
@@ -248,6 +250,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	@Test(	description = "Delete a appt by selecting and typing 'delete' keyboard",
 			groups = { "functional" },
 			dataProvider = "DataProviderDeleteKeys")
+	
 	public void DeleteAppointment_03(String name, int keyEvent) throws HarnessException {
 
 
@@ -331,6 +334,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	@Bugs(ids = "72444")
 	@Test(	description = "Delete a appt by selecting and typing '.t' shortcut",
 			groups = { "functional" } )
+	
 	public void DeleteAppointment_04() throws HarnessException {
 
 		// Create the appointment on the server
@@ -413,6 +417,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	@Bugs(ids = "69132,79524")
 	@Test(	description = "Delete multiple appts (3) by select and toolbar delete",
 			groups = { "functional" } )
+	
 	public void DeleteAppointment_05() throws HarnessException {
 
 		// Create three appointments on the server
@@ -574,6 +579,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	@Bugs(ids = "69132")
 	@Test(	description = "Delete a appt using context menu delete button",
 			groups = { "functional" })
+	
 	public void DeleteAppointment_06() throws HarnessException {
 
 
@@ -648,11 +654,11 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 	}
 
-	@Bugs(ids = "69132,61625")
+	@Bugs(ids = "102051")
 	@Test(	description = "Hard-delete a appt by selecting and typing 'shift-del' shortcut",
 			groups = { "functional" } )
+	
 	public void HardDeleteAppointment_01() throws HarnessException {
-
 
 		// Create the appointment on the server
 		// Create the message data to be sent
@@ -727,8 +733,8 @@ public class DeleteAppointment extends AjaxCommonTest {
 	@Bugs(ids = "69132,61625")
 	@Test(	description = "Hard-delete multiple appts (3) by selecting and typing 'shift-del' shortcut",
 			groups = { "functional" })
+	
 	public void HardDeleteAppointment_02() throws HarnessException {
-
 
 		// Create three appointments on the server
 		String subject1 = "appointment" + ZimbraSeleniumProperties.getUniqueString();
