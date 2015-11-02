@@ -83,12 +83,15 @@ public class AddLocation extends CalendarWorkWeekTest {
         // Add location and resend the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zToolbarPressButton(Button.B_LOCATION);
+        SleepUtil.sleepMedium();
         
         DialogFindLocation dialogFindLocation = (DialogFindLocation) new DialogFindLocation(app, app.zPageCalendar);
         dialogFindLocation.zType(Locators.LocationName, apptLocation1);
-        dialogFindLocation.zClickButton(Button.B_SEARCH_LOCATION);
         SleepUtil.sleepSmall(); 
+        dialogFindLocation.zClickButton(Button.B_SEARCH_LOCATION);
+        SleepUtil.sleepMedium(); 
         dialogFindLocation.zClickButton(Button.B_SELECT_LOCATION);
+        SleepUtil.sleepMedium();
         dialogFindLocation.zClickButton(Button.B_OK);
         apptForm.zToolbarPressButton(Button.B_SEND);
         SleepUtil.sleepVeryLong(); // test fails while checking free/busy status, waitForPostqueue is not sufficient here

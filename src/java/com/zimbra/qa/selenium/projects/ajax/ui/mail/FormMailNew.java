@@ -16,6 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -546,14 +547,13 @@ public class FormMailNew extends AbsForm {
 			this.zWaitForBusyOverlay();
 
 			// Enter text
-		//	this.sType(locator, value);
+			// this.sType(locator, value);
 			this.zKeyboard.zTypeCharacters(value);
-			SleepUtil.sleepLong();
-			//this.sTypeKeys(locator, "\t");
-			// For some reason, no bubble takes place.  As a workaround, type Enter			
-			//this.zKeyDown("13");
-			this.sKeyDown(locator, "13");
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepSmall();
+			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+			SleepUtil.sleepSmall();
+			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
+			SleepUtil.sleepSmall();
 			this.zWaitForBusyOverlay();
 
 			return;
