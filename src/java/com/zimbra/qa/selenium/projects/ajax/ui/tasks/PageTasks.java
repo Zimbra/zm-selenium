@@ -1084,8 +1084,14 @@ public class PageTasks extends AbsTab{
 			keyCode= "78,75";
 
 		}else if ( shortcut == Shortcut.S_TASK_HARDELETE ) {			
-			page= null;
-			keyCode= "16,46";
+			// Hard Delete shows the Warning Dialog : Are you sure you want to
+			// permanently delete it?
+			page = new DialogWarning(
+					DialogWarning.DialogWarningID.PermanentlyDeleteTheItem,
+					MyApplication, ((AppAjaxClient) MyApplication).zPageTasks);
+
+			zKeyboard.zTypeCharacters(shortcut.getKeys());
+			return (page);
 
 		}else if (shortcut == Shortcut.S_MOVE) {
 

@@ -29,6 +29,7 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.PageTasks;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.PageTasks.Locators;
@@ -485,7 +486,11 @@ public class DeleteTask extends AjaxCommonTest {
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
 		
 		// Click shift-delete
-		app.zPageTasks.zKeyboardShortcut(Shortcut.S_TASK_HARDELETE);
+		//app.zPageTasks.zKeyboardShortcut(Shortcut.S_TASK_HARDELETE);
+		
+		// Click shift-delete
+			DialogWarning dialog = (DialogWarning)app.zPageTasks.zKeyboardShortcut(Shortcut.S_TASK_HARDELETE);
+				dialog.zClickButton(Button.B_OK);
 		
 		//Verify the task is no longer present in tasks folder
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
@@ -589,7 +594,10 @@ public class DeleteTask extends AjaxCommonTest {
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject3);
 		
 		// Click shift-delete
-		app.zPageTasks.zKeyboardShortcut(Shortcut.S_TASK_HARDELETE);
+	//	app.zPageTasks.zKeyboardShortcut(Shortcut.S_TASK_HARDELETE);
+		
+		DialogWarning dialog = (DialogWarning)app.zPageTasks.zKeyboardShortcut(Shortcut.S_TASK_HARDELETE);
+		dialog.zClickButton(Button.B_OK);
 		
 		//Verify the task is no longer present in tasks/trash folder
 		app.zGetActiveAccount().soapSend(
