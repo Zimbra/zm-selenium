@@ -36,7 +36,7 @@ import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.ContextMenu;
 import com.zimbra.qa.selenium.projects.ajax.ui.PagePrint;
-import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageAddressbook;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageContacts;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.search.PageAdvancedSearch;
 
@@ -102,30 +102,30 @@ public class ContactContextMenu extends AjaxCommonTest  {
         ContextMenu contextMenu= (ContextMenu) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, contactItem.fileAs); // contactItem.fileAs);
       
         
-        ArrayList <ContextMenuItem> list = contextMenu.zListGetContextMenuItems(PageAddressbook.CONTEXT_MENU.class);
+        ArrayList <ContextMenuItem> list = contextMenu.zListGetContextMenuItems(PageContacts.CONTEXT_MENU.class);
         
         //verify all items in the context menu list
-        ZAssert.assertTrue(list.contains(PageAddressbook.CONTEXT_MENU.CONTACT_SEARCH),"Verify contact search in context menu");
-         ZAssert.assertTrue(list.contains(PageAddressbook.CONTEXT_MENU.CONTACT_NEW_EMAIL),"Verify new email in context menu");
-        ZAssert.assertTrue(list.contains(PageAddressbook.CONTEXT_MENU.CONTACT_EDIT),"Verify edit contact  in context menu");
-        ZAssert.assertTrue(list.contains(PageAddressbook.CONTEXT_MENU.CONTACT_FORWARD),"Verify forward email in context menu");
-        ZAssert.assertTrue(list.contains(PageAddressbook.CONTEXT_MENU.CONTACT_TAG),"Verify tag option in context menu");
-        ZAssert.assertTrue(list.contains(PageAddressbook.CONTEXT_MENU.CONTACT_DELETE),"Verify delete option in context menu");
-        ZAssert.assertTrue(list.contains(PageAddressbook.CONTEXT_MENU.CONTACT_MOVE),"Verify move option in context menu");
-        ZAssert.assertTrue(list.contains(PageAddressbook.CONTEXT_MENU.CONTACT_PRINT),"Verify print option in context menu");
+        ZAssert.assertTrue(list.contains(PageContacts.CONTEXT_MENU.CONTACT_SEARCH),"Verify contact search in context menu");
+         ZAssert.assertTrue(list.contains(PageContacts.CONTEXT_MENU.CONTACT_NEW_EMAIL),"Verify new email in context menu");
+        ZAssert.assertTrue(list.contains(PageContacts.CONTEXT_MENU.CONTACT_EDIT),"Verify edit contact  in context menu");
+        ZAssert.assertTrue(list.contains(PageContacts.CONTEXT_MENU.CONTACT_FORWARD),"Verify forward email in context menu");
+        ZAssert.assertTrue(list.contains(PageContacts.CONTEXT_MENU.CONTACT_TAG),"Verify tag option in context menu");
+        ZAssert.assertTrue(list.contains(PageContacts.CONTEXT_MENU.CONTACT_DELETE),"Verify delete option in context menu");
+        ZAssert.assertTrue(list.contains(PageContacts.CONTEXT_MENU.CONTACT_MOVE),"Verify move option in context menu");
+        ZAssert.assertTrue(list.contains(PageContacts.CONTEXT_MENU.CONTACT_PRINT),"Verify print option in context menu");
 
         //Verify all items enabled
-        ZAssert.assertTrue(contextMenu.isEnable(PageAddressbook.CONTEXT_MENU.CONTACT_SEARCH),"Verify contact search is enabled");
-        ZAssert.assertTrue(contextMenu.isEnable(PageAddressbook.CONTEXT_MENU.CONTACT_NEW_EMAIL),"Verify new email is enabled");
-        ZAssert.assertTrue(contextMenu.isEnable(PageAddressbook.CONTEXT_MENU.CONTACT_EDIT),"Verify edit contact is enabled");
+        ZAssert.assertTrue(contextMenu.isEnable(PageContacts.CONTEXT_MENU.CONTACT_SEARCH),"Verify contact search is enabled");
+        ZAssert.assertTrue(contextMenu.isEnable(PageContacts.CONTEXT_MENU.CONTACT_NEW_EMAIL),"Verify new email is enabled");
+        ZAssert.assertTrue(contextMenu.isEnable(PageContacts.CONTEXT_MENU.CONTACT_EDIT),"Verify edit contact is enabled");
 
         
-        ZAssert.assertTrue(contextMenu.isEnable(PageAddressbook.CONTEXT_MENU.CONTACT_FORWARD),"Verify forward email is disabled");
+        ZAssert.assertTrue(contextMenu.isEnable(PageContacts.CONTEXT_MENU.CONTACT_FORWARD),"Verify forward email is disabled");
         
-        ZAssert.assertTrue(contextMenu.isEnable(PageAddressbook.CONTEXT_MENU.CONTACT_TAG),"Verify tag option is enabled");
-        ZAssert.assertTrue(contextMenu.isEnable(PageAddressbook.CONTEXT_MENU.CONTACT_DELETE),"Verify delete option is enabled");
-        ZAssert.assertTrue(contextMenu.isEnable(PageAddressbook.CONTEXT_MENU.CONTACT_MOVE),"Verify move option is enabled");
-        ZAssert.assertTrue(contextMenu.isEnable(PageAddressbook.CONTEXT_MENU.CONTACT_PRINT),"Verify print option is enabled");
+        ZAssert.assertTrue(contextMenu.isEnable(PageContacts.CONTEXT_MENU.CONTACT_TAG),"Verify tag option is enabled");
+        ZAssert.assertTrue(contextMenu.isEnable(PageContacts.CONTEXT_MENU.CONTACT_DELETE),"Verify delete option is enabled");
+        ZAssert.assertTrue(contextMenu.isEnable(PageContacts.CONTEXT_MENU.CONTACT_MOVE),"Verify move option is enabled");
+        ZAssert.assertTrue(contextMenu.isEnable(PageContacts.CONTEXT_MENU.CONTACT_PRINT),"Verify print option is enabled");
    	}
 	
 

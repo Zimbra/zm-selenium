@@ -27,7 +27,7 @@ import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageAddressbook;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageContacts;
 
 
 public class GetContacts extends AjaxCommonTest  {
@@ -306,7 +306,7 @@ public class GetContacts extends AjaxCommonTest  {
 
 		// Create contact groups with each letter
 
-		for ( Entry<Character, Button> entry : PageAddressbook.buttons.entrySet() ) {
+		for ( Entry<Character, Button> entry : PageContacts.buttons.entrySet() ) {
 			
 			Character c = entry.getKey();
 			Button b = entry.getValue();
