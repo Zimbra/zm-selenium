@@ -140,7 +140,7 @@ public class FormContactGroupNew extends AbsForm {
 		} else if ( button == Button.B_CLOSE ) {
 
 			locator = "css=div#" + getToolbarID() + " div[id$='__CANCEL'] td[id$='_title']";
-			page = new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.MyApplication, ((AppAjaxClient)this.MyApplication).zPageAddressbook);
+			page = new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.MyApplication, ((AppAjaxClient)this.MyApplication).zPageContacts);
 
 			// If there are pending changes, the dialog will appear.
 			// If no pending changes, the dialog will not appear.
@@ -161,7 +161,7 @@ public class FormContactGroupNew extends AbsForm {
 
 			// click the folder menu
 			locator = "css=div#"+ MyDivID +" td[id$='_LOCATION_FOLDER'] td[id$='_title']";
-			page = new DialogMove(MyApplication, ((AppAjaxClient) MyApplication).zPageAddressbook);
+			page = new DialogMove(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
 			
 
 			// FALL THROUGH
@@ -553,15 +553,15 @@ public class FormContactGroupNew extends AbsForm {
 		//assume contact is one arrow key down away from top
 		//assume shared contact is two arrow key down away from top
 		//assume GAL is three arrow key down away from top
-		app.zPageAddressbook.zKeyboardKeyEvent(KeyEvent.VK_DOWN);
+		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DOWN);
 		if (!option.equals(SELECT_OPTION_TEXT_CONTACTS)) {
-			app.zPageAddressbook.zKeyboardKeyEvent(KeyEvent.VK_DOWN);			
+			app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DOWN);			
 			if (!option.equals(SELECT_OPTION_TEXT_SHARED_CONTACTS)) {
-				app.zPageAddressbook.zKeyboardKeyEvent(KeyEvent.VK_DOWN);			
+				app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DOWN);			
 			}	
 		}
 		
-		app.zPageAddressbook.zKeyboardKeyEvent(KeyEvent.VK_ENTER);		
+		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_ENTER);		
 
 		
 		//formGroup.zClick(FormContactGroupNew.Locators.zDropdownSelectContacts);

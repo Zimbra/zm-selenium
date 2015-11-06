@@ -33,7 +33,7 @@ public class DeleteContact extends AjaxCommonTest {
 		logger.info("New " + DeleteContact.class.getCanonicalName());
 
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		// Enable user preference checkboxes
 		super.startingAccountPreferences = new HashMap<String, String>() {
@@ -65,13 +65,13 @@ public class DeleteContact extends AjaxCommonTest {
 		// -- GUI
 
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 
 		// delete contact
-		app.zPageAddressbook.zToolbarPressButton(Button.B_DELETE);
+		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
@@ -98,14 +98,14 @@ public class DeleteContact extends AjaxCommonTest {
 		// -- GUI
 
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// By default newly created contact will be checked.
 		// Select the contact's checkbox
-		//app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact.firstName);
+		//app.zPageContacts.zListItem(Action.A_CHECKBOX, contact.firstName);
 
 		// delete contact
-		app.zPageAddressbook.zToolbarPressButton(Button.B_DELETE);
+		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
@@ -139,10 +139,10 @@ public class DeleteContact extends AjaxCommonTest {
 		// -- GUI
 
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 
 		// Delete the contact
 		logger.info("Typing shortcut key " + name + " KeyEvent: " + keyEvent);
@@ -174,10 +174,10 @@ public class DeleteContact extends AjaxCommonTest {
 		// -- GUI
 
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// select delete option
-		app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE,contact.fileAs);
+		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE,contact.fileAs);
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
@@ -235,16 +235,16 @@ public class DeleteContact extends AjaxCommonTest {
 		// -- GUI
 
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the item
 		// By default newly created contact will be checked.
-		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact3.fileAs);
-		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact1.fileAs);
-		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact2.fileAs);
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact3.fileAs);
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact1.fileAs);
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact2.fileAs);
 		
 		// delete 3 contacts
-		app.zPageAddressbook.zToolbarPressButton(Button.B_DELETE);
+		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();

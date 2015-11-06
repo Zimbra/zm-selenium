@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.FormContactNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew;
 
 
 public class ViewContact extends AjaxCommonTest  {
@@ -32,7 +32,7 @@ public class ViewContact extends AjaxCommonTest  {
 		logger.info("New "+ ViewContact.class.getCanonicalName());
 
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		// Enable user preference checkboxes
 		super.startingAccountPreferences = null;
@@ -69,10 +69,10 @@ public class ViewContact extends AjaxCommonTest  {
 		//-- GUI
 
 		// Refresh the app
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact
-		FormContactNew form = (FormContactNew) app.zPageAddressbook.zListItem(Action.A_DOUBLECLICK, firstname);
+		FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, firstname);
 		
 		// Change File As -> Company
 		form.zToolbarPressPulldown(Button.B_FILEAS, Button.O_FILEAS_FIRSTLAST);
@@ -89,7 +89,7 @@ public class ViewContact extends AjaxCommonTest  {
 		
 		// Verify the contact list shows company
 		boolean found = false;
-		for (ContactItem c : app.zPageAddressbook.zListGetContacts()) {
+		for (ContactItem c : app.zPageContacts.zListGetContacts()) {
 			if (c.fileAs.equals(expected)) 
 			{
 				found = true;
@@ -132,10 +132,10 @@ public class ViewContact extends AjaxCommonTest  {
 		//-- GUI
 
 		// Refresh the app
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact
-		FormContactNew form = (FormContactNew) app.zPageAddressbook.zListItem(Action.A_DOUBLECLICK, firstname);
+		FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, firstname);
 		
 		// Change File As -> Company
 		form.zToolbarPressPulldown(Button.B_FILEAS, Button.O_FILEAS_LASTFIRST);
@@ -152,7 +152,7 @@ public class ViewContact extends AjaxCommonTest  {
 		
 		// Verify the contact list shows company
 		boolean found = false;
-		for (ContactItem c : app.zPageAddressbook.zListGetContacts()) {
+		for (ContactItem c : app.zPageContacts.zListGetContacts()) {
 			if (c.fileAs.equals(expected)) 
 			{
 				found = true;
@@ -195,10 +195,10 @@ public class ViewContact extends AjaxCommonTest  {
 		//-- GUI
 
 		// Refresh the app
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact
-		FormContactNew form = (FormContactNew) app.zPageAddressbook.zListItem(Action.A_DOUBLECLICK, firstname);
+		FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, firstname);
 		
 		// Change File As -> Company
 		form.zToolbarPressPulldown(Button.B_FILEAS, Button.O_FILEAS_COMPANYLASTFIRST);
@@ -215,7 +215,7 @@ public class ViewContact extends AjaxCommonTest  {
 		
 		// Verify the contact list shows company
 		boolean found = false;
-		for (ContactItem c : app.zPageAddressbook.zListGetContacts()) {
+		for (ContactItem c : app.zPageContacts.zListGetContacts()) {
 			if (c.fileAs.equals(expected)) 
 			{
 				found = true;
@@ -258,10 +258,10 @@ public class ViewContact extends AjaxCommonTest  {
 		//-- GUI
 
 		// Refresh the app
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact
-		FormContactNew form = (FormContactNew) app.zPageAddressbook.zListItem(Action.A_DOUBLECLICK, firstname);
+		FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, firstname);
 		
 		// Change File As -> Company
 		form.zToolbarPressPulldown(Button.B_FILEAS, Button.O_FILEAS_COMPANY);
@@ -278,7 +278,7 @@ public class ViewContact extends AjaxCommonTest  {
 		
 		// Verify the contact list shows company
 		boolean found = false;
-		for (ContactItem c : app.zPageAddressbook.zListGetContacts()) {
+		for (ContactItem c : app.zPageContacts.zListGetContacts()) {
 			if (c.fileAs.equals(expected)) 
 			{
 				found = true;
@@ -322,10 +322,10 @@ public class ViewContact extends AjaxCommonTest  {
 		//-- GUI
 
 		// Refresh the app
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact
-		FormContactNew form = (FormContactNew) app.zPageAddressbook.zListItem(Action.A_DOUBLECLICK, firstname);
+		FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, firstname);
 		
 		// Change File As -> Company
 		form.zToolbarPressPulldown(Button.B_FILEAS, Button.O_FILEAS_LASTFIRSTCOMPANY);
@@ -342,7 +342,7 @@ public class ViewContact extends AjaxCommonTest  {
 		
 		// Verify the contact list shows company
 		boolean found = false;
-		for (ContactItem c : app.zPageAddressbook.zListGetContacts()) {
+		for (ContactItem c : app.zPageContacts.zListGetContacts()) {
 			if (c.fileAs.equals(expected)) 
 			{
 				found = true;
@@ -387,10 +387,10 @@ public class ViewContact extends AjaxCommonTest  {
 		//-- GUI
 
 		// Refresh the app
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact
-		FormContactNew form = (FormContactNew) app.zPageAddressbook.zListItem(Action.A_DOUBLECLICK, firstname);
+		FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, firstname);
 		
 		// Change File As -> Company
 		form.zToolbarPressPulldown(Button.B_FILEAS, Button.O_FILEAS_FIRSTLASTCOMPANY);
@@ -407,7 +407,7 @@ public class ViewContact extends AjaxCommonTest  {
 		
 		// Verify the contact list shows company
 		boolean found = false;
-		for (ContactItem c : app.zPageAddressbook.zListGetContacts()) {
+		for (ContactItem c : app.zPageContacts.zListGetContacts()) {
 			if (c.fileAs.equals(expected)) 
 			{
 				found = true;
@@ -450,10 +450,10 @@ public class ViewContact extends AjaxCommonTest  {
 		//-- GUI
 
 		// Refresh the app
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact
-		FormContactNew form = (FormContactNew) app.zPageAddressbook.zListItem(Action.A_DOUBLECLICK, firstname);
+		FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, firstname);
 		
 		// Change File As -> Company
 		form.zToolbarPressPulldown(Button.B_FILEAS, Button.O_FILEAS_COMPANYFIRSTLAST);
@@ -470,7 +470,7 @@ public class ViewContact extends AjaxCommonTest  {
 		
 		// Verify the contact list shows company
 		boolean found = false;
-		for (ContactItem c : app.zPageAddressbook.zListGetContacts()) {
+		for (ContactItem c : app.zPageContacts.zListGetContacts()) {
 			if (c.fileAs.equals(expected)) 
 			{
 				found = true;

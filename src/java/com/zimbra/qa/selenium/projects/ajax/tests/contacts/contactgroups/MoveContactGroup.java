@@ -27,7 +27,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogMove;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.FormContactGroupNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactGroupNew;
 
 
 public class MoveContactGroup extends AjaxCommonTest  {
@@ -35,7 +35,7 @@ public class MoveContactGroup extends AjaxCommonTest  {
 		logger.info("New "+ MoveContactGroup.class.getCanonicalName());
 		
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "FALSE");		
 		
@@ -66,13 +66,13 @@ public class MoveContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the group
-        app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.getName());
+        app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
 		//delete contact group by click Delete on Context menu
-        app.zPageAddressbook.zToolbarPressPulldown(Button.B_MOVE, folder);
+        app.zPageContacts.zToolbarPressPulldown(Button.B_MOVE, folder);
 
         
         //-- Verification
@@ -113,9 +113,9 @@ public class MoveContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
-	    DialogMove dialogContactMove = (DialogMove) app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_MOVE, group.getName());
+	    DialogMove dialogContactMove = (DialogMove) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_MOVE, group.getName());
 	     
 	    //enter the moved folder
         dialogContactMove.zClickTreeFolder(folder);
@@ -158,11 +158,11 @@ public class MoveContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		SleepUtil.sleepMedium();
 		
-	    DialogMove dialogContactMove = (DialogMove) app.zPageAddressbook.zKeyboardShortcut(Shortcut.S_MOVE);
+	    DialogMove dialogContactMove = (DialogMove) app.zPageContacts.zKeyboardShortcut(Shortcut.S_MOVE);
 	    SleepUtil.sleepMedium();
 	     
 	    //enter the moved folder
@@ -210,10 +210,10 @@ public class MoveContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		//Click Edit 	
-        FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageAddressbook.zToolbarPressButton(Button.B_EDIT);
+        FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zToolbarPressButton(Button.B_EDIT);
 	  
         //click location's folder 
         DialogMove dialogMove = (DialogMove) formContactGroupNew.zToolbarPressButton(Button.B_CHOOSE_ADDRESSBOOK);

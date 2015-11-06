@@ -34,7 +34,7 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		logger.info("New " + DeleteContactGroup.class.getCanonicalName());
 
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		// Enable user preference checkboxes
 		super.startingAccountPreferences = new HashMap<String, String>() {
@@ -54,13 +54,13 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact group
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.getName());
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
 		// delete contact group by click Delete button on toolbar
-		app.zPageAddressbook.zToolbarPressButton(Button.B_DELETE);
+		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
@@ -78,10 +78,10 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		// -- GUI
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// delete contact group by click Delete on Context menu
-		app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE,
+		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE,
 				group.getName());
 
 		// Verifying the toaster message
@@ -98,14 +98,14 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		// -- GUI
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// By default newly created contact will be checked.
 		// Select the contact group
-		//app.zPageAddressbook.zListItem(Action.A_CHECKBOX, group.getName());
+		//app.zPageContacts.zListItem(Action.A_CHECKBOX, group.getName());
 
 		// delete contact group by click Delete button on toolbar
-		app.zPageAddressbook.zToolbarPressButton(Button.B_DELETE);
+		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
@@ -124,13 +124,13 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		// -- GUI
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact group
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.getName());
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
 		// delete contact group by click shortcut Del
-		app.zPageAddressbook.zKeyboardKeyEvent(KeyEvent.VK_DELETE);
+		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DELETE);
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
@@ -147,13 +147,13 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact group
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.getName());
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
 		// delete contact group by click shortcut Del
-		app.zPageAddressbook.zKeyboardKeyEvent(KeyEvent.VK_BACK_SPACE);
+		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_BACK_SPACE);
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
@@ -173,17 +173,17 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		// -- GUI
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact group
 		// By default newly created contact will be checked.
-		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, group3.getName());
-		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, group1.getName());
-		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, group2.getName());
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, group3.getName());
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, group1.getName());
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, group2.getName());
 		
 
 		// delete contact group by click Delete button on toolbar
-		app.zPageAddressbook.zToolbarPressButton(Button.B_DELETE);
+		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
@@ -202,16 +202,16 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		// -- GUI
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact group
 		// By default newly created contact will be checked.
-		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact.getName());
-		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, group.getName());
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact.getName());
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, group.getName());
 		
 
 		// delete contact group by click Delete button on toolbar
-		app.zPageAddressbook.zToolbarPressButton(Button.B_DELETE);
+		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
@@ -233,13 +233,13 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		// -- GUI
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact group
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.getName());
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
 		// delete contact group by click Delete button on toolbar
-		app.zPageAddressbook.zToolbarPressPulldown(Button.B_MOVE, trash);
+		app.zPageContacts.zToolbarPressPulldown(Button.B_MOVE, trash);
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();

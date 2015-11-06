@@ -450,7 +450,7 @@ public class PageAddressbook extends AbsTab {
 				throw new HarnessException("Tried clicking on "+ locator +" but it was disabled ");
 		    }
 		    
-			page = new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.MyApplication, ((AppAjaxClient)this.MyApplication).zPageAddressbook);
+			page = new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.MyApplication, ((AppAjaxClient)this.MyApplication).zPageContacts);
 	    //click close without changing contact contents
 	    } else if ( button == Button.B_CLOSE){
  	    	locator = "css=div[id^=zb__CN][id$=__CANCEL]" ;
@@ -506,7 +506,7 @@ public class PageAddressbook extends AbsTab {
 		AbsPage page = null;	// If set, this page will be returned
 		
 		if ( shortcut == Shortcut.S_NEWTAG) {
-			page = new DialogTag(MyApplication,((AppAjaxClient) MyApplication).zPageAddressbook);	
+			page = new DialogTag(MyApplication,((AppAjaxClient) MyApplication).zPageContacts);	
 		}
 		else if (shortcut == Shortcut.S_MOVE) {
 			page = new DialogMove(MyApplication, this);
@@ -516,7 +516,7 @@ public class PageAddressbook extends AbsTab {
 			return (page);
 		} 
 		else if ( shortcut == Shortcut.S_ASSISTANT ) {			
-			page = new DialogAssistant(MyApplication, ((AppAjaxClient) MyApplication).zPageAddressbook);
+			page = new DialogAssistant(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
 		}
 		else if ( shortcut == Shortcut.S_MAIL_REMOVETAG ) {			
 			page = null;
@@ -608,7 +608,7 @@ public class PageAddressbook extends AbsTab {
 		   }    
 		   else if ( option == Button.O_NEW_ADDRESSBOOK ) {					   
 			    optionLocator = "css=div#zb__NEW_MENU_NEW_ADDRBOOK td#zb__NEW_MENU_NEW_ADDRBOOK_title";
-			    page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageAddressbook);			    
+			    page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageContacts);			    
 							    
 
 		   } else {

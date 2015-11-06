@@ -24,15 +24,15 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.FormContactNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.FormContactNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew.Field;
 
 public class CreateContact extends AjaxCommonTest {
 
 	public CreateContact() {
 		logger.info("New " + CreateContact.class.getCanonicalName());
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 		// Make sure we are using an account with conversation view
 		super.startingAccountPreferences = null;
 
@@ -49,7 +49,7 @@ public class CreateContact extends AjaxCommonTest {
 
 		// -- GUI Action
 
-		FormContactNew formContactNew = (FormContactNew) app.zPageAddressbook.zToolbarPressButton(Button.B_NEW);
+		FormContactNew formContactNew = (FormContactNew) app.zPageContacts.zToolbarPressButton(Button.B_NEW);
 
 		// Fill in the form
 		formContactNew.zFillField(Field.FirstName, contactFirst);

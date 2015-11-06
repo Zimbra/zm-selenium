@@ -31,7 +31,7 @@ public class Bug101623_app_contacts extends AjaxCommonTest {
 		logger.info("New " + Bug101623_app_contacts.class.getCanonicalName());
 
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		// Enable user preference checkboxes
 		super.startingAccountPreferences = null;
@@ -63,7 +63,7 @@ public class Bug101623_app_contacts extends AjaxCommonTest {
 
 		// -- GUI
 
-	//	app.zPageAddressbook.zRefresh();	
+	//	app.zPageContacts.zRefresh();	
 		
 	//	SleepUtil.sleepMedium();
 
@@ -71,16 +71,16 @@ public class Bug101623_app_contacts extends AjaxCommonTest {
 
 		ZimbraURI uri = new ZimbraURI(ZimbraURI.getBaseURI());
 		uri.addQuery("app", "contacts");
-		app.zPageAddressbook.sOpen(uri.toString());
+		app.zPageContacts.sOpen(uri.toString());
 		
 		SleepUtil.sleepMedium();
 
 		// click All
-		app.zPageAddressbook.zToolbarPressButton(Button.B_AB_ALL);
+		app.zPageContacts.zToolbarPressButton(Button.B_AB_ALL);
 
 		// -- Verification of added contacts
 
-		List<ContactItem> items = app.zPageAddressbook.zListGetContacts();
+		List<ContactItem> items = app.zPageContacts.zListGetContacts();
 
 		boolean found1 = false;
 

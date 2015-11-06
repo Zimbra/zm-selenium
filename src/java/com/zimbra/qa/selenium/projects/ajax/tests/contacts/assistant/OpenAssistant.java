@@ -31,7 +31,7 @@ public class OpenAssistant extends AjaxCommonTest {
 		logger.info("New "+ OpenAssistant.class.getCanonicalName());
 		
 		// All tests start at the login page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		// Make sure we are using an account with message view
 		super.startingAccountPreferences = null;
@@ -43,7 +43,7 @@ public class OpenAssistant extends AjaxCommonTest {
 			groups = { "deprecated" })
 	public void OpenAssistant_01() throws HarnessException {
 		
-		DialogAssistant assistant = (DialogAssistant)app.zPageAddressbook.zKeyboardShortcut(Shortcut.S_ASSISTANT);
+		DialogAssistant assistant = (DialogAssistant)app.zPageContacts.zKeyboardShortcut(Shortcut.S_ASSISTANT);
 		assistant.zClickButton(Button.B_CANCEL);
 		
 	}

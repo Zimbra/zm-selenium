@@ -34,7 +34,7 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 		
 		
 		// All tests start at the addressbook page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 		super.startingAccountPreferences = null;
 
 	}
@@ -76,7 +76,7 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 		// Set the new tag name
 		String name = "tag" + ZimbraSeleniumProperties.getUniqueString();
 		
-		DialogTag dialog = (DialogTag)app.zPageAddressbook.zKeyboardShortcut(shortcut);
+		DialogTag dialog = (DialogTag)app.zPageContacts.zKeyboardShortcut(shortcut);
 		ZAssert.assertNotNull(dialog, "Verify the new dialog opened");
 		
 		// Fill out the form with the basic details
@@ -113,7 +113,7 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 
 		
 		// Refresh to get tag2
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Create a new tag using the context menu + New Tag
 		DialogTag dialog = (DialogTag)app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_NEWTAG, tag2);
@@ -143,7 +143,7 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 				
 		// Create a new folder in the inbox
 		// using the context menu + New Folder
-		DialogTag dialog = (DialogTag)app.zPageAddressbook.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_TAG);
+		DialogTag dialog = (DialogTag)app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_TAG);
 		ZAssert.assertNotNull(dialog, "Verify the new dialog opened");
 		
 		// Fill out the form with the basic details

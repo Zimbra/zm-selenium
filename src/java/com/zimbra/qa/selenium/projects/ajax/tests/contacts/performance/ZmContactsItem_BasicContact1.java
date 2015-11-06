@@ -33,7 +33,7 @@ public class ZmContactsItem_BasicContact1 extends AjaxCommonTest{
       logger.info("New " + ZmContactsItem_BasicContact1.class.getCanonicalName());
 
       // All tests start at the login page
-      super.startingPage = app.zPageAddressbook;
+      super.startingPage = app.zPageContacts;
 
       // Make sure we are using an account with message view
       super.startingAccountPreferences = null;
@@ -57,8 +57,8 @@ public class ZmContactsItem_BasicContact1 extends AjaxCommonTest{
             "Load the basic contact view");
 
       // Select the contact
-   //  app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contactItem.fileAs);;       
-      app.zPageAddressbook.zClickAt("css=div[id='zv__CNS-main'] li[id^='zli__CNS-main'] div[id$='__fileas']:contains('"+contactItem.fileAs+"')","");
+   //  app.zPageContacts.zListItem(Action.A_LEFTCLICK, contactItem.fileAs);;       
+      app.zPageContacts.zClickAt("css=div[id='zv__CNS-main'] li[id^='zli__CNS-main'] div[id$='__fileas']:contains('"+contactItem.fileAs+"')","");
       PerfMetrics.waitTimestamp(token);
 
    }

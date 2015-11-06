@@ -32,7 +32,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		logger.info("New "+ UnTagContactGroup.class.getCanonicalName());
 		
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		super.startingAccountPreferences = null;		
 		
@@ -63,13 +63,13 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact group
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.getName());
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
     	// Untag it by click Tag->Remove Tag on toolbar 
-		app.zPageAddressbook.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_REMOVETAG);
+		app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_REMOVETAG);
     	
 		
 		
@@ -109,10 +109,10 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
     	// Untag it by click Tag->Remove Tag on context menu
-		app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_REMOVETAG , group.getName());
+		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_REMOVETAG , group.getName());
     	
 		
 		
@@ -158,13 +158,13 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact group
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.getName());
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
     	// Untag one tag by click Tag->Remove Tag->A Tag name on toolbar 
-		app.zPageAddressbook.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_REMOVETAG, tag1);
+		app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_REMOVETAG, tag1);
     	
 		
 		
@@ -215,10 +215,10 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
     	// Untag one tag by click Tag->Remove Tag->A Tag name on context menu
-		app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_REMOVETAG , tag1.getName(), group.getName());
+		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_REMOVETAG , tag1.getName(), group.getName());
     	
 		
 		
@@ -267,13 +267,13 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact group
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.getName());
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
     	// Untag one tag by click Tag->Remove Tag->All Tags on toolbar 
-		app.zPageAddressbook.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_REMOVETAG, TagItem.Remove_All_Tags);
+		app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_REMOVETAG, TagItem.Remove_All_Tags);
     	
 		
 		
@@ -320,13 +320,13 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact group
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.getName());
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
     	// Untag one tag by click Tag->Remove Tag->All Tags on context menu
-		app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_REMOVETAG , "All Tags", group.getName());
+		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_REMOVETAG , "All Tags", group.getName());
     	
 		
 		
@@ -374,13 +374,13 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact group
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.getName());
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
     	// Untag one tag by click Tag->Remove Tag->All Tags on context menu
-	    app.zPageAddressbook.zKeyboardShortcut(Shortcut.S_MAIL_REMOVETAG);
+	    app.zPageContacts.zKeyboardShortcut(Shortcut.S_MAIL_REMOVETAG);
     	
 		
 		
@@ -423,13 +423,13 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact group
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.getName());
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
     	// Untag one tag by click Tag->Remove Tag->All Tags on context menu
-	    app.zPageAddressbook.zKeyboardShortcut(Shortcut.S_MAIL_REMOVETAG);
+	    app.zPageContacts.zKeyboardShortcut(Shortcut.S_MAIL_REMOVETAG);
     	
 		
 		

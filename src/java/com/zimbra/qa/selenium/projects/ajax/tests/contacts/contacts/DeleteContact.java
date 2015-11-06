@@ -37,7 +37,7 @@ public class DeleteContact extends AjaxCommonTest  {
 		
 		
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		// Enable user preference checkboxes
 		super.startingAccountPreferences = new HashMap<String , String>() {
@@ -74,13 +74,13 @@ public class DeleteContact extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 		
         // delete contact
-        app.zPageAddressbook.zToolbarPressButton(Button.B_DELETE);
+        app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
        
         
         //-- Verification
@@ -120,14 +120,14 @@ public class DeleteContact extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// By default newly created contact will be checked.
 		// Select the contact's checkbox
-		//app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact.firstName);
+		//app.zPageContacts.zListItem(Action.A_CHECKBOX, contact.firstName);
 		
         // delete contact
-        app.zPageAddressbook.zToolbarPressButton(Button.B_DELETE);
+        app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
        
         
         //-- Verification
@@ -175,11 +175,11 @@ public class DeleteContact extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		SleepUtil.sleepMedium();
 		
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 		SleepUtil.sleepSmall();
 		
 		// Delete the contact
@@ -226,10 +226,10 @@ public class DeleteContact extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		//select delete option
-        app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, contact.fileAs);
+        app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, contact.fileAs);
        
         
         //-- Verification
@@ -301,15 +301,15 @@ public class DeleteContact extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 	    // Select the item
-	    app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact1.fileAs);
-	    app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact2.fileAs);
-	   // app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact3.fileAs);
+	    app.zPageContacts.zListItem(Action.A_CHECKBOX, contact1.fileAs);
+	    app.zPageContacts.zListItem(Action.A_CHECKBOX, contact2.fileAs);
+	   // app.zPageContacts.zListItem(Action.A_CHECKBOX, contact3.fileAs);
 	   
 		//delete 3 contacts
-        app.zPageAddressbook.zToolbarPressButton(Button.B_DELETE);
+        app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
        
         
         //-- Verification

@@ -32,7 +32,7 @@ public class RenameFolder extends AjaxCommonTest {
 		logger.info("New "+ RenameFolder.class.getCanonicalName());
 		
 		// All tests start at the login page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 		super.startingAccountPreferences = null;
 		
 	}
@@ -61,7 +61,7 @@ public class RenameFolder extends AjaxCommonTest {
 		//-- GUI
 		
 		// refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Rename the folder using context menu
 		DialogRenameFolder dialog = (DialogRenameFolder)app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_RENAME, folderItem);
@@ -106,7 +106,7 @@ public class RenameFolder extends AjaxCommonTest {
 		//-- GUI
 		
 		// refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Rename the folder using context menu
 		DialogRenameFolder dialog = (DialogRenameFolder)app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_RENAME, folderItem);

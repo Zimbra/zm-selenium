@@ -32,7 +32,7 @@ public class DragAndDropContact extends AjaxCommonTest  {
 		
 		
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		// Enable user preference checkboxes
 		super.startingAccountPreferences = null;
@@ -79,10 +79,10 @@ public class DragAndDropContact extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// DND
-		app.zPageAddressbook.zDragAndDrop(
+		app.zPageContacts.zDragAndDrop(
 				"css=div#zlif__CNS-main__" + contact.getId() + "__fileas:contains("+ contact.fileAs + ")",
 				"css=td#zti__main_Contacts__" + folder.getId() + "_textCell:contains("+ folder.getName() + ")");
        
@@ -132,10 +132,10 @@ public class DragAndDropContact extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// DND
-		app.zPageAddressbook.zDragAndDrop(
+		app.zPageContacts.zDragAndDrop(
 				"css=div#zlif__CNS-main__" + contact.getId() + "__fileas:contains("+ contact.fileAs + ")",
 				"css=td#zti__main_Contacts__" + trash.getId() + "_textCell:contains("+ trash.getName() + ")");
        

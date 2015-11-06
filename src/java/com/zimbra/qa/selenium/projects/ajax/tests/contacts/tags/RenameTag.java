@@ -32,7 +32,7 @@ public class RenameTag extends PrefGroupMailByMessageTest {
 		logger.info("New "+ RenameTag.class.getCanonicalName());
 		
 		// All tests start at the addressbook page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 		super.startingAccountPreferences = null;
 
 	}
@@ -55,7 +55,7 @@ public class RenameTag extends PrefGroupMailByMessageTest {
 		
 		
 		// Click on Get Mail to refresh the folder list
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Rename the tag using the context menu
 		DialogRenameTag dialog = (DialogRenameTag) app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_RENAME, tag);

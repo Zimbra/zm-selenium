@@ -30,7 +30,7 @@ public class MoveFolder extends AjaxCommonTest {
 		logger.info("New "+ MoveFolder.class.getCanonicalName());
 		
 		// All tests start at the login page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 		super.startingAccountPreferences = null;
 		
 	}
@@ -62,11 +62,11 @@ public class MoveFolder extends AjaxCommonTest {
 		//-- GUI
 		
 		// Refresh to get new addressbooks
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 	
 
 		
-		app.zPageAddressbook.zDragAndDrop(
+		app.zPageContacts.zDragAndDrop(
 				"css=div#zov__main_Contacts td#zti__main_Contacts__" + addressbook1.getId() + "_textCell:contains("+ addressbook1.getName() + ")",
 				"css=div#zov__main_Contacts td#zti__main_Contacts__" + addressbook2.getId() + "_textCell:contains("+ addressbook2.getName() + ")");
 			

@@ -30,7 +30,7 @@ public class UndoDeleteContact extends AjaxCommonTest {
 	public UndoDeleteContact() {
 		logger.info("New " + UndoDeleteContact.class.getCanonicalName());
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 		// Enable user preference checkboxes
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			private static final long serialVersionUID = -8102550098554063084L;
@@ -81,16 +81,16 @@ public class UndoDeleteContact extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();		
 
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 
 		// Wait for the toaster (if any) to close
 		toast.zWaitForClose();
 		
 		// delete contact
-		app.zPageAddressbook.zToolbarPressButton(Button.B_DELETE);		
+		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);		
 
 		// Click undo from the toaster message
 		toast.zWaitForActive();
@@ -131,16 +131,16 @@ public class UndoDeleteContact extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();		
 
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact's checkbox
-		//app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact.firstName);
+		//app.zPageContacts.zListItem(Action.A_CHECKBOX, contact.firstName);
 
 		// Wait for the toaster (if any) to close
 		toast.zWaitForClose();
 		
 		// delete contact
-		app.zPageAddressbook.zToolbarPressButton(Button.B_DELETE);
+		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Click undo from the toaster message
 		toast.zWaitForActive();
@@ -214,18 +214,18 @@ public class UndoDeleteContact extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();		
 
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the item
-		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact1.fileAs);
-		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact2.fileAs);
-		//app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact3.fileAs);
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact1.fileAs);
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact2.fileAs);
+		//app.zPageContacts.zListItem(Action.A_CHECKBOX, contact3.fileAs);
 
 		// Wait for the toaster (if any) to close
 		toast.zWaitForClose();
 		
 		// delete 3 contacts
-		app.zPageAddressbook.zToolbarPressButton(Button.B_DELETE);
+		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Click undo from the toaster message
 		toast.zWaitForActive();

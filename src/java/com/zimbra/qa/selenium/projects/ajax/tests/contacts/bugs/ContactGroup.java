@@ -29,8 +29,8 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.FormContactGroupNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactGroupNew.Field;
 
 
 public class ContactGroup extends AjaxCommonTest  {
@@ -39,7 +39,7 @@ public class ContactGroup extends AjaxCommonTest  {
 		logger.info("New "+ ContactGroup.class.getCanonicalName());
 		
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		// Make sure we are using an account with conversation view
 		super.startingAccountPreferences = null;		
@@ -70,10 +70,10 @@ public class ContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// open contact group form
-		FormContactGroupNew formGroup = (FormContactGroupNew)app.zPageAddressbook.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
+		FormContactGroupNew formGroup = (FormContactGroupNew)app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
         
 		// Set the group name
 		formGroup.zFillField(Field.GroupName, groupname);
@@ -97,7 +97,7 @@ public class ContactGroup extends AjaxCommonTest  {
 		// Try to close out the window
 		formGroup.zToolbarPressButton(Button.B_CLOSE);
 		
-		DialogWarning dialog =  new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.app, ((AppAjaxClient)this.app).zPageAddressbook);
+		DialogWarning dialog =  new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.app, ((AppAjaxClient)this.app).zPageContacts);
 
 		// Wait for the dialog to appear
 		dialog.zWaitForActive();
@@ -124,10 +124,10 @@ public class ContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Edit the group
-		FormContactGroupNew form = (FormContactGroupNew)app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_EDIT, group.getName());
+		FormContactGroupNew form = (FormContactGroupNew)app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_EDIT, group.getName());
 		
 		// In the form, click "Delete"
 		form.zToolbarPressButton(Button.B_DELETE);
@@ -160,7 +160,7 @@ public class ContactGroup extends AjaxCommonTest  {
 		ContactGroupItem newGroup = new ContactGroupItem("group_" + ZimbraSeleniumProperties.getUniqueString().substring(8));
 
 		// Right click on the contact
-		DialogNewContactGroup dialog = (DialogNewContactGroup) app.zPageAddressbook.zListItem(
+		DialogNewContactGroup dialog = (DialogNewContactGroup) app.zPageContacts.zListItem(
 				Action.A_RIGHTCLICK, 
 				Button.B_CONTACTGROUP, 
 				Button.O_NEW_CONTACTGROUP, 
@@ -187,7 +187,7 @@ public class ContactGroup extends AjaxCommonTest  {
 		app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, folder);
 
 		//verify group name is displayed		        
-		List<ContactItem> contacts = app.zPageAddressbook.zListGetContacts();
+		List<ContactItem> contacts = app.zPageContacts.zListGetContacts();
 		boolean isFileAsEqual=false;
 		for (ContactItem ci : contacts) {
 			if (ci.fileAs.equals(ci.fileAs)) {
@@ -201,7 +201,7 @@ public class ContactGroup extends AjaxCommonTest  {
 		ZAssert.assertNotNull(actual, "Verify the group stil exists");
 
 		//verify the location is System folder "Contacts"
-		//ZAssert.assertEquals(app.zPageAddressbook.sGetText("css=td.companyFolder"), SystemFolder.Contacts.getName(), "Verify location (folder) is " + SystemFolder.Contacts.getName());
+		//ZAssert.assertEquals(app.zPageContacts.sGetText("css=td.companyFolder"), SystemFolder.Contacts.getName(), "Verify location (folder) is " + SystemFolder.Contacts.getName());
 		
 	}
 	

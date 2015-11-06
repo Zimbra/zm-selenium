@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.DialogEditFolder;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.DialogEditFolder;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder.FolderColor;
 
 
@@ -33,7 +33,7 @@ public class EditProperties extends AjaxCommonTest {
 		logger.info("New "+ EditProperties.class.getCanonicalName());
 
 		// All tests start at the login page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 		super.startingAccountPreferences = null;
 
 	}
@@ -61,7 +61,7 @@ public class EditProperties extends AjaxCommonTest {
 		//-- GUI
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Change the folder's color using context menu
 		DialogEditFolder dialog = (DialogEditFolder)app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_EDIT, folderItem);
@@ -96,7 +96,7 @@ public class EditProperties extends AjaxCommonTest {
 		//-- GUI
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Change the folder's color using context menu
 		DialogEditFolder dialog = (DialogEditFolder)app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_EDIT, contacts);
@@ -137,7 +137,7 @@ public class EditProperties extends AjaxCommonTest {
 		//-- GUI
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Change the folder's color using context menu
 		DialogEditFolder dialog = (DialogEditFolder)app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_EDIT, folderItem);
@@ -181,7 +181,7 @@ public class EditProperties extends AjaxCommonTest {
 		//-- GUI
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Change the folder's color using context menu
 		DialogEditFolder dialog = (DialogEditFolder)app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_EDIT, folderItem);
@@ -230,7 +230,7 @@ public class EditProperties extends AjaxCommonTest {
 		//-- GUI
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Change the folder's color using context menu
 		DialogEditFolder dialog = (DialogEditFolder)app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_EDIT, folderItem);
@@ -280,7 +280,7 @@ public class EditProperties extends AjaxCommonTest {
 		//-- GUI
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Change the folder's color using context menu
 		DialogEditFolder dialog = (DialogEditFolder)app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_EDIT, folderItem);
@@ -329,7 +329,7 @@ public class EditProperties extends AjaxCommonTest {
 		//-- GUI
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Change the folder's color using context menu
 		DialogEditFolder dialog = (DialogEditFolder)app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_EDIT, folderItem);

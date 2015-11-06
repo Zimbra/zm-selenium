@@ -33,7 +33,7 @@ public class ContextMenuAddressbooks extends AjaxCommonTest {
 		logger.info("New "+ ContextMenuAddressbooks.class.getCanonicalName());
 		
 		// All tests start at the login page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 		
 		// Enable user preference checkboxes
 		super.startingAccountPreferences = null;

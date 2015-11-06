@@ -24,8 +24,8 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.FormContactGroupNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactGroupNew.Field;
 
 
 public class EditContactGroup extends AjaxCommonTest  {
@@ -33,7 +33,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 		logger.info("New "+ EditContactGroup.class.getCanonicalName());
 
 		// All tests start at the Address page
-		super.startingPage =  app.zPageAddressbook;
+		super.startingPage =  app.zPageContacts;
 		// Make sure we are using an account with conversation view
 		super.startingAccountPreferences = null;		
 
@@ -48,13 +48,13 @@ public class EditContactGroup extends AjaxCommonTest  {
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
 		//-Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact group
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.getName());
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
 		//Click Edit on Toolbar button	
-		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageAddressbook.zToolbarPressButton(Button.B_EDIT);
+		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zToolbarPressButton(Button.B_EDIT);
 
 		// CHange the group name
 		formContactGroupNew.zFillField(Field.GroupName, newname);
@@ -76,10 +76,10 @@ public class EditContactGroup extends AjaxCommonTest  {
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Right click -> Edit	
-		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_EDIT, group.getName());        
+		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_EDIT, group.getName());        
 
 		// CHange the group name
 		formContactGroupNew.zFillField(Field.GroupName, newname);
@@ -103,10 +103,10 @@ public class EditContactGroup extends AjaxCommonTest  {
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Double click	
-		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageAddressbook.zListItem(Action.A_DOUBLECLICK, group.getName());        
+		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, group.getName());        
 
 		// CHange the group name
 		formContactGroupNew.zFillField(Field.GroupName, newname);

@@ -32,7 +32,7 @@ public class EmptyTrashFolder extends AjaxCommonTest {
 		logger.info("New "+ EmptyTrashFolder.class.getCanonicalName());
 		
 		// All tests start at the login page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 		
 		// Enable user preference checkboxes
 		super.startingAccountPreferences = null;
@@ -81,7 +81,7 @@ public class EmptyTrashFolder extends AjaxCommonTest {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Now open empty trash dialog
 		DialogWarning dialogWarning = (DialogWarning) app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_EMPTY ,trash);
@@ -154,7 +154,7 @@ public class EmptyTrashFolder extends AjaxCommonTest {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Now open empty trash dialog
 		DialogWarning dialogWarning = (DialogWarning) app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_EMPTY ,trash);

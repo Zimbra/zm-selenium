@@ -31,7 +31,7 @@ public class CreateShare extends AjaxCommonTest  {
 		logger.info("New "+ CreateShare.class.getCanonicalName());
 		
 		// All tests start at the login page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 		super.startingAccountPreferences = null;
 
 	}
@@ -56,7 +56,7 @@ public class CreateShare extends AjaxCommonTest  {
 		
 		
 		//Need to do Refresh by clicking on getmail button to see folder in the list 
-		app.zPageAddressbook.zToolbarPressButton(Button.B_REFRESH);
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 
 		// Right click on folder, select "Share"

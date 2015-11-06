@@ -33,7 +33,7 @@ public class TagContactGroup extends AjaxCommonTest  {
 		logger.info("New "+ TagContactGroup.class.getCanonicalName());
 		
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		super.startingAccountPreferences = new HashMap<String , String>() {
 		private static final long serialVersionUID = 1L;
@@ -61,13 +61,13 @@ public class TagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.getName());
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 		
 		//click Tag Contact->New Tag	
-        DialogTag dialogTag = (DialogTag) app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_NEWTAG , group.getName());        
+        DialogTag dialogTag = (DialogTag) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_NEWTAG , group.getName());        
     	dialogTag.zSetTagName(tagName);
 		dialogTag.zClickButton(Button.B_OK);		
     	
@@ -106,10 +106,10 @@ public class TagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Click Tag Group on context menu
-        DialogTag dialogTag = (DialogTag) app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_NEWTAG , group.getName());        
+        DialogTag dialogTag = (DialogTag) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_NEWTAG , group.getName());        
 		dialogTag.zSetTagName(tagName);
 		dialogTag.zClickButton(Button.B_OK);		
     	
@@ -145,10 +145,10 @@ public class TagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Right Click -> Tag -> Existing Tag
-		app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, tagItem, group.getName());        
+		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, tagItem, group.getName());        
     	
 		
 		
@@ -182,13 +182,13 @@ public class TagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact group
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.getName());
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
 		// Tag -> Existing Tag
-		app.zPageAddressbook.zToolbarPressPulldown(Button.B_TAG, tagItem);
+		app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, tagItem);
     	
 		
 		
@@ -223,14 +223,14 @@ public class TagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact group
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.getName());
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
 		// Tag -> Existing Tag
-		app.zPageAddressbook.zToolbarPressPulldown(Button.B_TAG, tag1);
-		app.zPageAddressbook.zToolbarPressPulldown(Button.B_TAG, tag2);
+		app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, tag1);
+		app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, tag2);
     	
 		
 		
@@ -263,10 +263,10 @@ public class TagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 	    // Dnd on the new tag
-		app.zPageAddressbook.zDragAndDrop(
+		app.zPageContacts.zDragAndDrop(
 				"css=[id=zlif__CNS-main__" + group.getId() + "__fileas]:contains("+ group.getName() + ")",
 				"css=div[id=main_Contacts-parent-TAG] div[id=ztih__main_Contacts__TAG] td[id^=zti__main_Contacts__][id$=_textCell]:contains("+ tagItem.getName() + ")");
     	

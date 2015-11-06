@@ -56,13 +56,13 @@ public class ZmContactsApp_InList_BasicContact1 extends AjaxCommonTest {
 
 	   PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmContactsApp,
 			   logMessage);
-	   //  app.zPageAddressbook.zNavigateTo();
-	   app.zPageAddressbook.zClickAt("css=td[id='zb__App__Contacts_title']","");
+	   //  app.zPageContacts.zNavigateTo();
+	   app.zPageContacts.zClickAt("css=td[id='zb__App__Contacts_title']","");
 
 	   PerfMetrics.waitTimestamp(token);
 
 	   // Wait for the app to load
-	   app.zPageAddressbook.zWaitForActive();
+	   app.zPageContacts.zWaitForActive();
    }
 
    @Test(description = "Measure the time to load address book page with 100 contact items",
@@ -81,12 +81,12 @@ public class ZmContactsApp_InList_BasicContact1 extends AjaxCommonTest {
 
       PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmContactsApp,
             "Load the Address Book app, 100 contacts in list");
-    //  app.zPageAddressbook.zNavigateTo();
-      app.zPageAddressbook.zClickAt("css=td[id='zb__App__Contacts_title']","");
+    //  app.zPageContacts.zNavigateTo();
+      app.zPageContacts.zClickAt("css=td[id='zb__App__Contacts_title']","");
 
       PerfMetrics.waitTimestamp(token);
 
       // Wait for the app to load
-      app.zPageAddressbook.zWaitForActive();
+      app.zPageContacts.zWaitForActive();
    }
 }

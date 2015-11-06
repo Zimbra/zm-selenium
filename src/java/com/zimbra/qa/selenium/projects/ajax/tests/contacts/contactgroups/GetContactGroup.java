@@ -30,7 +30,7 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.PageAddressbook;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageAddressbook;
 
 
 
@@ -46,7 +46,7 @@ public class GetContactGroup extends AjaxCommonTest  {
 		logger.info("New "+ GetContactGroup.class.getCanonicalName());
 		
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		super.startingAccountPreferences = null;		
 		
@@ -107,16 +107,16 @@ public class GetContactGroup extends AjaxCommonTest  {
 
    		//-- GUI
    		
-   		app.zPageAddressbook.zRefresh();
+   		app.zPageContacts.zRefresh();
    		
         //click All       
-		app.zPageAddressbook.zToolbarPressButton(Button.B_AB_ALL);
+		app.zPageContacts.zToolbarPressButton(Button.B_AB_ALL);
 					
 		
 		//-- Verification
 		
 		// Verify group name and members displayed
-		List<ContactItem> items = app.zPageAddressbook.zListGetContacts();
+		List<ContactItem> items = app.zPageContacts.zListGetContacts();
 		
 		boolean found1 = false;
 		boolean found2 = false;
@@ -196,16 +196,16 @@ public class GetContactGroup extends AjaxCommonTest  {
 
    		//-- GUI
    		
-   		app.zPageAddressbook.zRefresh();
+   		app.zPageContacts.zRefresh();
    		
         //click All       
-		app.zPageAddressbook.zToolbarPressButton(Button.B_AB_123);
+		app.zPageContacts.zToolbarPressButton(Button.B_AB_123);
 					
 		
 		//-- Verification
 		
 		// Verify group name and members displayed
-		List<ContactItem> items = app.zPageAddressbook.zListGetContacts();
+		List<ContactItem> items = app.zPageContacts.zListGetContacts();
 		
 		boolean found1 = false;
 		boolean found2 = false;
@@ -286,16 +286,16 @@ public class GetContactGroup extends AjaxCommonTest  {
 
    		//-- GUI
    		
-   		app.zPageAddressbook.zRefresh();
+   		app.zPageContacts.zRefresh();
    		
         //click All       
-		app.zPageAddressbook.zToolbarPressButton(Button.B_AB_B);
+		app.zPageContacts.zToolbarPressButton(Button.B_AB_B);
 					
 		
 		//-- Verification
 		
 		// Verify group name and members displayed
-		List<ContactItem> items = app.zPageAddressbook.zListGetContacts();
+		List<ContactItem> items = app.zPageContacts.zListGetContacts();
 		
 		boolean found1 = false;
 		boolean found2 = false;
@@ -361,7 +361,7 @@ public class GetContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 
 		
@@ -373,11 +373,11 @@ public class GetContactGroup extends AjaxCommonTest  {
 			ContactGroupItem g = entry.getValue();
 			
 			// Click each button
-			app.zPageAddressbook.zToolbarPressButton(b);
+			app.zPageContacts.zToolbarPressButton(b);
 			
 			// Verify the group is listed
 			boolean found = false;
-			for (ContactItem i : app.zPageAddressbook.zListGetContacts()) {
+			for (ContactItem i : app.zPageContacts.zListGetContacts()) {
 				if ( i.getName().equals(g.getName()) ) {
 					found = true;
 				}

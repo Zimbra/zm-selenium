@@ -36,7 +36,7 @@ import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.ContextMenu;
 import com.zimbra.qa.selenium.projects.ajax.ui.PagePrint;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.PageAddressbook;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageAddressbook;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.search.PageAdvancedSearch;
 
@@ -45,7 +45,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 		logger.info("New "+ ContactContextMenu.class.getCanonicalName());
 		
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		super.startingAccountPreferences = null;		
 		
@@ -99,7 +99,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 
 		// Select the item
         // Right click to show the menu
-        ContextMenu contextMenu= (ContextMenu) app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, contactItem.fileAs); // contactItem.fileAs);
+        ContextMenu contextMenu= (ContextMenu) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, contactItem.fileAs); // contactItem.fileAs);
       
         
         ArrayList <ContextMenuItem> list = contextMenu.zListGetContextMenuItems(PageAddressbook.CONTEXT_MENU.class);
@@ -138,14 +138,14 @@ public class ContactContextMenu extends AjaxCommonTest  {
 		
 
 		//Click New Email
-        FormMailNew formMailNew = (FormMailNew) app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_NEW, contactItem.fileAs);        
+        FormMailNew formMailNew = (FormMailNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_NEW, contactItem.fileAs);        
         
         //Verify Form New mail is active
         ZAssert.assertTrue(formMailNew.zIsActive(),"Verify Form New Mail is active");
         
         //Verify contactItem.first contactItem.last displayed in the "To" field
-        ZAssert.assertTrue(app.zPageAddressbook.sGetText(FormMailNew.Locators.zBubbleToField).contains(contactItem.firstName + " "  + contactItem.lastName),
-        		     "Verify contact email displayed in field To - expected " + contactItem.firstName + " " +  contactItem.lastName +" - was " + app.zPageAddressbook.sGetText(FormMailNew.Locators.zBubbleToField));
+        ZAssert.assertTrue(app.zPageContacts.sGetText(FormMailNew.Locators.zBubbleToField).contains(contactItem.firstName + " "  + contactItem.lastName),
+        		     "Verify contact email displayed in field To - expected " + contactItem.firstName + " " +  contactItem.lastName +" - was " + app.zPageContacts.sGetText(FormMailNew.Locators.zBubbleToField));
         
         //TODO: Verify send email
 	}
@@ -159,7 +159,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 		
 
 		//Click Advanced Search
-        PageAdvancedSearch pageAdvancedSearch = (PageAdvancedSearch) app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_SEARCHADVANCED, contactItem.fileAs);        
+        PageAdvancedSearch pageAdvancedSearch = (PageAdvancedSearch) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_SEARCHADVANCED, contactItem.fileAs);        
         
         //Verify Advanced Search page is active
         ZAssert.assertTrue(pageAdvancedSearch.zIsActive(),"Verify Advanced Search page is active");
@@ -174,7 +174,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 		ContactItem contactItem = createSelectARandomContactItem();
 		
 
-        PagePrint pagePrint = (PagePrint) app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_PRINT, contactItem.fileAs);        
+        PagePrint pagePrint = (PagePrint) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_PRINT, contactItem.fileAs);        
                 
         //close Print Dialog 
         pagePrint.cancelPrintDialog();
@@ -214,7 +214,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 		ContactItem contactItem = createSelectAContactItem(app.zGetActiveAccount().DisplayName, lastName, app.zGetActiveAccount().EmailAddress);
 		
 		//Click Find Emails->Sent To Contact
-        app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_SEARCH, Button.O_SEARCH_MAIL_SENT_TO_CONTACT , contactItem.fileAs);
+        app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_SEARCH, Button.O_SEARCH_MAIL_SENT_TO_CONTACT , contactItem.fileAs);
 
         
         // Get the bubleText
@@ -249,7 +249,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 		
 		
 		//Click Find Emails->Received From Contact
-        app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_SEARCH, Button.O_SEARCH_MAIL_RECEIVED_FROM_CONTACT, contactItem.fileAs);
+        app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_SEARCH, Button.O_SEARCH_MAIL_RECEIVED_FROM_CONTACT, contactItem.fileAs);
 
         
         // Get the bubleText

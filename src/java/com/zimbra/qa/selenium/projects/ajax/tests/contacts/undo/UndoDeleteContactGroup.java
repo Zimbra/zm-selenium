@@ -30,7 +30,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 	public UndoDeleteContactGroup() {
 		logger.info("New " + UndoDeleteContactGroup.class.getCanonicalName());
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 		// Enable user preference checkboxes
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			private static final long serialVersionUID = -263733102718446576L;
@@ -58,16 +58,16 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();		
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact group
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.getName());
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
 		// Wait for the toaster (if any) to close
 		toast.zWaitForClose();
 		
 		// delete contact group by click Delete button on toolbar
-		app.zPageAddressbook.zToolbarPressButton(Button.B_DELETE);
+		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Click undo from the toaster message
 		toast.zWaitForActive();
@@ -97,13 +97,13 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();		
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Wait for the toaster (if any) to close
 		toast.zWaitForClose();
 		
 		// delete contact group by click Delete on Context menu
-		app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE,group.getName());
+		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE,group.getName());
 
 		SleepUtil.sleepSmall();
 
@@ -135,16 +135,16 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();		
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact group
-		//app.zPageAddressbook.zListItem(Action.A_CHECKBOX, group.getName());
+		//app.zPageContacts.zListItem(Action.A_CHECKBOX, group.getName());
 
 		// Wait for the toaster (if any) to close
 		toast.zWaitForClose();
 		
 		// delete contact group by click Delete button on toolbar
-		app.zPageAddressbook.zToolbarPressButton(Button.B_DELETE);
+		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 		SleepUtil.sleepSmall();
 
 		// Click undo from the toaster message
@@ -175,16 +175,16 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();		
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact group
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.getName());
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
 		// Wait for the toaster (if any) to close
 		toast.zWaitForClose();
 		
 		// delete contact group by click shortcut Del
-		app.zPageAddressbook.zKeyboardKeyEvent(KeyEvent.VK_DELETE);
+		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DELETE);
 
 		// Click undo from the toaster message
 		toast.zWaitForActive();
@@ -217,18 +217,18 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();		
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact group
-		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, group1.getName());
-		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, group2.getName());
-		//app.zPageAddressbook.zListItem(Action.A_CHECKBOX, group3.getName());
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, group1.getName());
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, group2.getName());
+		//app.zPageContacts.zListItem(Action.A_CHECKBOX, group3.getName());
 
 		// Wait for the toaster (if any) to close
 		toast.zWaitForClose();
 		
 		// delete contact group by click Delete button on toolbar
-		app.zPageAddressbook.zToolbarPressButton(Button.B_DELETE);
+		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Click undo from the toaster message
 		toast.zWaitForActive();
@@ -269,17 +269,17 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();		
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact group
-		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, group.getName());
-		//app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact.getName());
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, group.getName());
+		//app.zPageContacts.zListItem(Action.A_CHECKBOX, contact.getName());
 
 		// Wait for the toaster (if any) to close
 		toast.zWaitForClose();
 		
 		// delete contact group by click Delete button on toolbar
-		app.zPageAddressbook.zToolbarPressButton(Button.B_DELETE);
+		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Click undo from the toaster message
 		toast.zWaitForActive();

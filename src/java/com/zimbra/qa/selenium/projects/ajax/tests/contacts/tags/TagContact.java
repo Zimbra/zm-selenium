@@ -31,7 +31,7 @@ public class TagContact extends  ContactsPrefShowSelectionCheckbox  {
 		logger.info("New "+ TagContact.class.getCanonicalName());
 		
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "FALSE");		
 		
@@ -67,13 +67,13 @@ public class TagContact extends  ContactsPrefShowSelectionCheckbox  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 		
 		//click Tag Contact->New Tag	
-		DialogTag dialogTag = (DialogTag) app.zPageAddressbook.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_NEWTAG);
+		DialogTag dialogTag = (DialogTag) app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_NEWTAG);
     	dialogTag.zSetTagName(tagName);
 		dialogTag.zClickButton(Button.B_OK);		
     	
@@ -109,13 +109,13 @@ public class TagContact extends  ContactsPrefShowSelectionCheckbox  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 		
 		//click Tag Contact->New Tag	
-        DialogTag dialogTag = (DialogTag) app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_NEWTAG , contact.fileAs);        
+        DialogTag dialogTag = (DialogTag) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_NEWTAG , contact.fileAs);        
     	dialogTag.zSetTagName(tagName);
 		dialogTag.zClickButton(Button.B_OK);		
     	
@@ -152,13 +152,13 @@ public class TagContact extends  ContactsPrefShowSelectionCheckbox  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 		
 		//click Tag Contact->the tag name
-		app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, tagItem, contact.fileAs);        
+		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, tagItem, contact.fileAs);        
     	
 		
 		
@@ -192,13 +192,13 @@ public class TagContact extends  ContactsPrefShowSelectionCheckbox  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 		
 		// select the tag
-		app.zPageAddressbook.zToolbarPressPulldown(Button.B_TAG, tagItem);
+		app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, tagItem);
     	
 		
 		
@@ -233,14 +233,14 @@ public class TagContact extends  ContactsPrefShowSelectionCheckbox  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 		
 		// select the tag
-		app.zPageAddressbook.zToolbarPressPulldown(Button.B_TAG, tag1);
-		app.zPageAddressbook.zToolbarPressPulldown(Button.B_TAG, tag2);
+		app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, tag1);
+		app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, tag2);
     	
 		
 		
@@ -276,10 +276,10 @@ public class TagContact extends  ContactsPrefShowSelectionCheckbox  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 	    // Dnd on the new tag
-		app.zPageAddressbook.zDragAndDrop(
+		app.zPageContacts.zDragAndDrop(
 				"css=[id=zlif__CNS-main__" + contact.getId() + "__fileas]:contains("+ contact.fileAs + ")",
 				"css=div[id=main_Contacts-parent-TAG] div[id=ztih__main_Contacts__TAG] td[id^=zti__main_Contacts__][id$=_textCell]:contains("+ tagItem.getName() + ")");
     	

@@ -33,7 +33,7 @@ public class CreateContact extends AjaxCommonTest {
 		logger.info("New "+ CreateContact.class.getCanonicalName());
 		
 		// All tests start at the login page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		// Make sure we are using an account with message view
 		super.startingAccountPreferences = null;
@@ -51,13 +51,13 @@ public class CreateContact extends AjaxCommonTest {
 		String command = "contact " + contactItem.firstName + " " + contactItem.lastName + " " + contactItem.email;
 
 	
-		DialogAssistant assistant = (DialogAssistant)app.zPageAddressbook.zKeyboardShortcut(Shortcut.S_ASSISTANT);
+		DialogAssistant assistant = (DialogAssistant)app.zPageContacts.zKeyboardShortcut(Shortcut.S_ASSISTANT);
 		assistant.zEnterCommand(command);
 		assistant.zClickButton(Button.B_OK);
 		
 	  
 	    // verify contact created
-		List<ContactItem> contacts = app.zPageAddressbook.zListGetContacts(); 
+		List<ContactItem> contacts = app.zPageContacts.zListGetContacts(); 
  	           
         boolean isContactItemDisplayed=false;
 	    for (ContactItem ci : contacts) {

@@ -34,7 +34,7 @@ public class DeleteFolder extends AjaxCommonTest {
 		logger.info("New "+ DeleteFolder.class.getCanonicalName());
 		
 		// All tests start at the login page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 		
 		// Enable user preference checkboxes
 		super.startingAccountPreferences = null;
@@ -63,7 +63,7 @@ public class DeleteFolder extends AjaxCommonTest {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Delete the folder using context menu
 		app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_DELETE, folderItem);
@@ -101,7 +101,7 @@ public class DeleteFolder extends AjaxCommonTest {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Delete the folder using context menu
 		app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_DELETE, folderItem);
@@ -137,10 +137,10 @@ public class DeleteFolder extends AjaxCommonTest {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Delete the folder DND
-		app.zPageAddressbook.zDragAndDrop(
+		app.zPageContacts.zDragAndDrop(
 				"css=td#zti__main_Contacts__" + folderItem.getId() + "_textCell:contains("+ folderItem.getName() + ")",
 				"css=td#zti__main_Contacts__" + trash.getId() + "_textCell:contains("+ trash.getName() + ")");
 
@@ -175,13 +175,13 @@ public class DeleteFolder extends AjaxCommonTest {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the folder
 		app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, folderItem);
 		
  	    // Delete the folder using shortcut Del		
-	    app.zPageAddressbook.zKeyboardKeyEvent(KeyEvent.VK_DELETE);
+	    app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DELETE);
 
 		
 		//-- Verification

@@ -709,7 +709,7 @@ public class FormContactNew extends AbsForm {
 				throw new HarnessException("Tried clicking on "+ locator +" but it was disabled ");
 		    }
 		    
-			page = new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.MyApplication, ((AppAjaxClient)this.MyApplication).zPageAddressbook);
+			page = new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.MyApplication, ((AppAjaxClient)this.MyApplication).zPageContacts);
 			
 			// The dialog will only appear if the contact is dirty.
 			// so, don't check for active here - instead check in the
@@ -734,7 +734,7 @@ public class FormContactNew extends AbsForm {
 		} else if ( button == Button.B_MOVE ) {
 			
  	    	locator = "css=div#"+ MyDivID+ " div[id$='_FOLDER'] td[id$='_title']";
-			page = new DialogMove(this.MyApplication, ((AppAjaxClient)this.MyApplication).zPageAddressbook);
+			page = new DialogMove(this.MyApplication, ((AppAjaxClient)this.MyApplication).zPageContacts);
 
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);

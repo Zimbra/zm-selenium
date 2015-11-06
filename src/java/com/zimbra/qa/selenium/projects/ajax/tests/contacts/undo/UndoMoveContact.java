@@ -32,7 +32,7 @@ public class UndoMoveContact extends AjaxCommonTest {
 
 		
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 		super.startingAccountPreferences = null;
 
 	}
@@ -68,16 +68,16 @@ public class UndoMoveContact extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();		
 
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 
 		// Wait for the toaster (if any) to close
 		toast.zWaitForClose();
 		
 		 // Click Move -> addressbook
-        app.zPageAddressbook.zToolbarPressPulldown(Button.B_MOVE, folder);
+        app.zPageContacts.zToolbarPressPulldown(Button.B_MOVE, folder);
 
 		// Click undo from the toaster message
 		toast.zWaitForActive();

@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogMove;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.FormContactNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew;
 
 
 public class MoveContact extends AjaxCommonTest  {
@@ -33,7 +33,7 @@ public class MoveContact extends AjaxCommonTest  {
 		logger.info("New "+ MoveContact.class.getCanonicalName());
 		
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "FALSE");		
 		
@@ -62,13 +62,13 @@ public class MoveContact extends AjaxCommonTest  {
 		//-- GUI
 	
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 		
 		 // Click Move -> addressbook
-        app.zPageAddressbook.zToolbarPressPulldown(Button.B_MOVE, folder);
+        app.zPageContacts.zToolbarPressPulldown(Button.B_MOVE, folder);
       
         
         
@@ -107,13 +107,13 @@ public class MoveContact extends AjaxCommonTest  {
 		//-- GUI
 	
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 		
 		 //click shortcut m
-	    DialogMove dialogContactMove = (DialogMove) app.zPageAddressbook.zKeyboardShortcut(Shortcut.S_MOVE);
+	    DialogMove dialogContactMove = (DialogMove) app.zPageContacts.zKeyboardShortcut(Shortcut.S_MOVE);
       
 	    //enter the moved folder
         dialogContactMove.zClickTreeFolder(folder);
@@ -155,13 +155,13 @@ public class MoveContact extends AjaxCommonTest  {
 		//-- GUI
 	
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 
 		 //click shortcut m
-	    DialogMove dialogContactMove = (DialogMove) app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_MOVE, contact.fileAs);
+	    DialogMove dialogContactMove = (DialogMove) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_MOVE, contact.fileAs);
       
 	    //enter the moved folder
         dialogContactMove.zClickTreeFolder(folder);
@@ -199,13 +199,13 @@ public class MoveContact extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 
 		//select move option
-        app.zPageAddressbook.zToolbarPressPulldown(Button.B_MOVE,folder);
+        app.zPageContacts.zToolbarPressPulldown(Button.B_MOVE,folder);
        
         
         //-- Verification
@@ -237,13 +237,13 @@ public class MoveContact extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 
 		//select move option
-        app.zPageAddressbook.zToolbarPressPulldown(Button.B_MOVE,folder);
+        app.zPageContacts.zToolbarPressPulldown(Button.B_MOVE,folder);
        
         
         //-- Verification
@@ -284,13 +284,13 @@ public class MoveContact extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh to get the contact into the client
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 
 		//Click Edit contact	
-        FormContactNew formContactNew = (FormContactNew) app.zPageAddressbook.zToolbarPressButton(Button.B_EDIT);
+        FormContactNew formContactNew = (FormContactNew) app.zPageContacts.zToolbarPressButton(Button.B_EDIT);
 	  
         // Click Location
         DialogMove dialogContactMove = (DialogMove) formContactNew.zToolbarPressButton(Button.B_MOVE);

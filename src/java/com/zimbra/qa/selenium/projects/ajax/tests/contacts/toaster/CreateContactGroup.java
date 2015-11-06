@@ -25,8 +25,8 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.FormContactGroupNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.FormContactGroupNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactGroupNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactGroupNew.Field;
 
 public class CreateContactGroup extends AjaxCommonTest {
 
@@ -34,7 +34,7 @@ public class CreateContactGroup extends AjaxCommonTest {
 		logger.info("New " + CreateContactGroup.class.getCanonicalName());
 
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		// Make sure we are using an account with conversation view
 		super.startingAccountPreferences = null;
@@ -52,10 +52,10 @@ public class CreateContactGroup extends AjaxCommonTest {
 
 		// -- GUI
 		// Refresh the addressbook
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// open contact group form
-		FormContactGroupNew form = (FormContactGroupNew) app.zPageAddressbook.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
+		FormContactGroupNew form = (FormContactGroupNew) app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
 
 		// fill in group name and email addresses
 		form.zFillField(Field.GroupName, groupName);
@@ -82,10 +82,10 @@ public class CreateContactGroup extends AjaxCommonTest {
 
 		// -- GUI
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// open contact group form
-		FormContactGroupNew form = (FormContactGroupNew) app.zPageAddressbook
+		FormContactGroupNew form = (FormContactGroupNew) app.zPageContacts
 		.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
 
 		// fill in group name

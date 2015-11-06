@@ -31,7 +31,7 @@ public class SendMailToContact extends AjaxCommonTest  {
 		logger.info("New "+ SendMailToContact.class.getCanonicalName());
 		
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		super.startingAccountPreferences = null;		
 		
@@ -65,10 +65,10 @@ public class SendMailToContact extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Right Click -> New Email
-        FormMailNew formMailNew = (FormMailNew) app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_NEW, firstName);        
+        FormMailNew formMailNew = (FormMailNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_NEW, firstName);        
 
         formMailNew.zFillField(Field.Subject, subject);
         formMailNew.zFillField(Field.Body, "body"+ ZimbraSeleniumProperties.getUniqueString());

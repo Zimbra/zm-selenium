@@ -23,15 +23,15 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.FormContactNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew.Field;
 
 public class EditContact extends AjaxCommonTest {
 	public EditContact() {
 		logger.info("New " + EditContact.class.getCanonicalName());
 
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		// Make sure we are using an account with conversation view
 		super.startingAccountPreferences = null;
@@ -48,13 +48,13 @@ public class EditContact extends AjaxCommonTest {
 		String firstname = "new" + ZimbraSeleniumProperties.getUniqueString();
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.getName());
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.getName());
 
 		// Click "Edit" from the toolbar
-		FormContactNew form = (FormContactNew) app.zPageAddressbook.zToolbarPressButton(Button.B_EDIT);
+		FormContactNew form = (FormContactNew) app.zPageContacts.zToolbarPressButton(Button.B_EDIT);
 
 		// Change the first name
 		form.zFillField(Field.FirstName, firstname);
@@ -77,10 +77,10 @@ public class EditContact extends AjaxCommonTest {
 		String firstname = "new" + ZimbraSeleniumProperties.getUniqueString();
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Rigth Click -> "Edit"
-		FormContactNew form = (FormContactNew) app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_EDIT, contact.getName());
+		FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_EDIT, contact.getName());
 
 		// Change the first name
 		form.zFillField(Field.FirstName, firstname);
@@ -103,10 +103,10 @@ public class EditContact extends AjaxCommonTest {
 		String firstname = "new" + ZimbraSeleniumProperties.getUniqueString();
 
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Double click contact
-		FormContactNew form = (FormContactNew) app.zPageAddressbook.zListItem(Action.A_DOUBLECLICK, contact.getName());
+		FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, contact.getName());
 
 		// Change the first name
 		form.zFillField(Field.FirstName, firstname);

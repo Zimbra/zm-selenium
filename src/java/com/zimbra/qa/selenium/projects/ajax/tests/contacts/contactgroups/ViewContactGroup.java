@@ -21,7 +21,7 @@ import com.zimbra.qa.selenium.framework.items.ContactGroupItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.DisplayContactGroup;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.DisplayContactGroup;
 
 
 public class ViewContactGroup extends AjaxCommonTest  {
@@ -30,7 +30,7 @@ public class ViewContactGroup extends AjaxCommonTest  {
 		logger.info("New "+ ViewContactGroup.class.getCanonicalName());
 
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 		super.startingAccountPreferences = null;		
 
 	}
@@ -46,10 +46,10 @@ public class ViewContactGroup extends AjaxCommonTest  {
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();		
+		app.zPageContacts.zRefresh();		
 		
 		// Select the contact group
-		DisplayContactGroup groupView = (DisplayContactGroup) app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, group.getName());
+		DisplayContactGroup groupView = (DisplayContactGroup) app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
 		// verify groupname
 		//
@@ -66,10 +66,10 @@ public class ViewContactGroup extends AjaxCommonTest  {
 			String email = m.getValue();
 			String locator = "css=div.ZmContactSplitView div.contactGroupList div:contains('"+ email +"')";
 
-			boolean present = app.zPageAddressbook.sIsElementPresent(locator);
+			boolean present = app.zPageContacts.sIsElementPresent(locator);
 			ZAssert.assertTrue(present, "Verify the member "+ email +" is present");
 
-			boolean visible = app.zPageAddressbook.zIsVisiblePerPosition(locator, 0, 0);
+			boolean visible = app.zPageContacts.zIsVisiblePerPosition(locator, 0, 0);
 			ZAssert.assertTrue(visible, "Verify the member "+ email +" is visible");
 			
 		}

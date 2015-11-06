@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.DialogNewContactGroup;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.DialogNewContactGroup;
 
 public class Bug44132_ManipulateContactGroupFromContactContextMenu extends AjaxCommonTest  {
 
@@ -33,7 +33,7 @@ public class Bug44132_ManipulateContactGroupFromContactContextMenu extends AjaxC
 		logger.info("New "+ Bug44132_ManipulateContactGroupFromContactContextMenu.class.getCanonicalName());
 		
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		// Enable user preference checkboxes
 		super.startingAccountPreferences = new HashMap<String , String>() {
@@ -61,10 +61,10 @@ public class Bug44132_ManipulateContactGroupFromContactContextMenu extends AjaxC
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Right click on the contact
-		DialogNewContactGroup dialog = (DialogNewContactGroup) app.zPageAddressbook.zListItem(
+		DialogNewContactGroup dialog = (DialogNewContactGroup) app.zPageContacts.zListItem(
 				Action.A_RIGHTCLICK, 
 				Button.B_CONTACTGROUP, 
 				Button.O_NEW_CONTACTGROUP, 
@@ -108,10 +108,10 @@ public class Bug44132_ManipulateContactGroupFromContactContextMenu extends AjaxC
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Right click on the contact -> Group -> Existing Group Name
-		app.zPageAddressbook.zListItem(
+		app.zPageContacts.zListItem(
 				Action.A_RIGHTCLICK, 
 				Button.B_CONTACTGROUP, 
 				group, 
@@ -157,16 +157,16 @@ public class Bug44132_ManipulateContactGroupFromContactContextMenu extends AjaxC
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Check 3 contact items
-	    app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact1.getName());
-	    app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact2.getName());
-	    app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact3.getName());
+	    app.zPageContacts.zListItem(Action.A_CHECKBOX, contact1.getName());
+	    app.zPageContacts.zListItem(Action.A_CHECKBOX, contact2.getName());
+	    app.zPageContacts.zListItem(Action.A_CHECKBOX, contact3.getName());
 
 
 		// Right click on one contact -> Group -> Existing Group Name
-		app.zPageAddressbook.zListItem(
+		app.zPageContacts.zListItem(
 				Action.A_RIGHTCLICK, 
 				Button.B_CONTACTGROUP, 
 				group, 
@@ -221,16 +221,16 @@ public class Bug44132_ManipulateContactGroupFromContactContextMenu extends AjaxC
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Check 3 contact items
-		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact1.getName());
-	    app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact2.getName());
-	    app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact3.getName());  
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact1.getName());
+	    app.zPageContacts.zListItem(Action.A_CHECKBOX, contact2.getName());
+	    app.zPageContacts.zListItem(Action.A_CHECKBOX, contact3.getName());  
 
 
 		// Right click on one contact -> Group -> Existing Group Name
-	    DialogNewContactGroup dialog = (DialogNewContactGroup) app.zPageAddressbook.zListItem(
+	    DialogNewContactGroup dialog = (DialogNewContactGroup) app.zPageContacts.zListItem(
 				Action.A_RIGHTCLICK, 
 				Button.B_CONTACTGROUP, 
 				Button.O_NEW_CONTACTGROUP, 
@@ -286,16 +286,16 @@ public class Bug44132_ManipulateContactGroupFromContactContextMenu extends AjaxC
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Check 3 contact items
-		app.zPageAddressbook.zListItem(Action.A_CHECKBOX, group.getName());
-	    app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact.getName());
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, group.getName());
+	    app.zPageContacts.zListItem(Action.A_CHECKBOX, contact.getName());
 	  
 
 
 		// Right click on one contact -> Group -> Existing Group Name
-	    DialogNewContactGroup dialog = (DialogNewContactGroup) app.zPageAddressbook.zListItem(
+	    DialogNewContactGroup dialog = (DialogNewContactGroup) app.zPageContacts.zListItem(
 				Action.A_RIGHTCLICK, 
 				Button.B_CONTACTGROUP, 
 				Button.O_NEW_CONTACTGROUP, 
@@ -351,15 +351,15 @@ public class Bug44132_ManipulateContactGroupFromContactContextMenu extends AjaxC
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 
 		// Check 3 contact items
-	    app.zPageAddressbook.zListItem(Action.A_CHECKBOX, contact.getName());
-	    app.zPageAddressbook.zListItem(Action.A_CHECKBOX, group1.getName());
+	    app.zPageContacts.zListItem(Action.A_CHECKBOX, contact.getName());
+	    app.zPageContacts.zListItem(Action.A_CHECKBOX, group1.getName());
 
 
 		// Right click on one contact -> Group -> Existing Group Name
-		app.zPageAddressbook.zListItem(
+		app.zPageContacts.zListItem(
 				Action.A_RIGHTCLICK, 
 				Button.B_CONTACTGROUP, 
 				group2, 

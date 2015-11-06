@@ -22,7 +22,7 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.DialogCreateFolder;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.DialogCreateFolder;
 
 public class CreateFolder extends AjaxCommonTest {
 
@@ -32,7 +32,7 @@ public class CreateFolder extends AjaxCommonTest {
 		logger.info("New " + CreateFolder.class.getCanonicalName());
 
 		// All tests start at the login page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 		super.startingAccountPreferences = null;
 	}
 
@@ -52,7 +52,7 @@ public class CreateFolder extends AjaxCommonTest {
 		//-- GUI
 		
 		// Refresh addressbook
-	   	app.zPageAddressbook.zRefresh();
+	   	app.zPageContacts.zRefresh();
 
 	   	// New Addressbook button
 		DialogCreateFolder createFolderDialog = (DialogCreateFolder) app.zTreeContacts.zPressButton(Button.B_TREE_NEWADDRESSBOOK);	
@@ -89,7 +89,7 @@ public class CreateFolder extends AjaxCommonTest {
 		//-- GUI
 		
 		// Refresh addressbook
-	   	app.zPageAddressbook.zRefresh();
+	   	app.zPageContacts.zRefresh();
 
 		// Right click on root -> New Addressbook
 		DialogCreateFolder createFolderDialog = (DialogCreateFolder) 
@@ -125,7 +125,7 @@ public class CreateFolder extends AjaxCommonTest {
 		//-- GUI
 		
 		// Refresh addressbook
-	   	app.zPageAddressbook.zRefresh();
+	   	app.zPageContacts.zRefresh();
 
 		// Right click on Contacts -> New Addressbook
 		DialogCreateFolder createFolderDialog = (DialogCreateFolder) 
@@ -158,10 +158,10 @@ public class CreateFolder extends AjaxCommonTest {
 		//-- GUI
 		
 		// Refresh addressbook
-	   	app.zPageAddressbook.zRefresh();
+	   	app.zPageContacts.zRefresh();
 
 		// New -> Addressbook
-		DialogCreateFolder createFolderDialog = (DialogCreateFolder) app.zPageAddressbook.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_ADDRESSBOOK);
+		DialogCreateFolder createFolderDialog = (DialogCreateFolder) app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_ADDRESSBOOK);
 		createFolderDialog.zEnterFolderName(folderName);
 		createFolderDialog.zClickButton(Button.B_OK);
   

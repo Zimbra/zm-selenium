@@ -28,8 +28,8 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraCharsets.ZCharset;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.FormContactNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.FormContactNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew.Field;
 
 
 //TODO: add more in ContactItem.java
@@ -40,7 +40,7 @@ public class CreateContact extends AjaxCommonTest  {
 		logger.info("New "+ CreateContact.class.getCanonicalName());
 		
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		// Make sure we are using an account with conversation view
 		super.startingAccountPreferences = null;		
@@ -64,9 +64,9 @@ public class CreateContact extends AjaxCommonTest  {
 		
 		//-- GUI Action
 		
-		// app.zPageAddressbook.zRefresh();
+		// app.zPageContacts.zRefresh();
 		
-		FormContactNew formContactNew = (FormContactNew)app.zPageAddressbook.zToolbarPressButton(Button.B_NEW);
+		FormContactNew formContactNew = (FormContactNew)app.zPageContacts.zToolbarPressButton(Button.B_NEW);
 		
         // Fill in the form
 		formContactNew.zFillField(Field.FirstName, contactFirst);
@@ -115,9 +115,9 @@ public class CreateContact extends AjaxCommonTest  {
 		
 		//-- GUI Action
 		
-		// app.zPageAddressbook.zRefresh();
+		// app.zPageContacts.zRefresh();
 		
-		FormContactNew formContactNew = (FormContactNew)app.zPageAddressbook.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACT);
+		FormContactNew formContactNew = (FormContactNew)app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACT);
 		
         // Fill in the form
 		formContactNew.zFill(contact);
@@ -151,7 +151,7 @@ public class CreateContact extends AjaxCommonTest  {
 		
 		//-- GUI action
 		
-		FormContactNew formContactNew = (FormContactNew)app.zPageAddressbook.zToolbarPressButton(Button.B_NEW);
+		FormContactNew formContactNew = (FormContactNew)app.zPageContacts.zToolbarPressButton(Button.B_NEW);
 		
 		// Fill the fields
 		formContactNew.zFill(contact);
@@ -194,7 +194,7 @@ public class CreateContact extends AjaxCommonTest  {
 		
 		//-- GUI action
 		
-		FormContactNew formContactNew = (FormContactNew)app.zPageAddressbook.zToolbarPressButton(Button.B_NEW);
+		FormContactNew formContactNew = (FormContactNew)app.zPageContacts.zToolbarPressButton(Button.B_NEW);
 		
 		// Fill the fields
 		formContactNew.zFill(contact);
@@ -228,7 +228,7 @@ public class CreateContact extends AjaxCommonTest  {
 		
 		//-- GUI action
 		
-		FormContactNew formContactNew = (FormContactNew)app.zPageAddressbook.zToolbarPressButton(Button.B_NEW);
+		FormContactNew formContactNew = (FormContactNew)app.zPageContacts.zToolbarPressButton(Button.B_NEW);
 		
 		// Fill the fields
 		formContactNew.zFill(contact);
@@ -292,7 +292,7 @@ public class CreateContact extends AjaxCommonTest  {
 
 
 		//-- GUI
-		FormContactNew formContactNew = (FormContactNew)app.zPageAddressbook.zToolbarPressButton(Button.B_NEW);
+		FormContactNew formContactNew = (FormContactNew)app.zPageContacts.zToolbarPressButton(Button.B_NEW);
 				
 		// show all hidden field for names:
 		formContactNew.zDisplayHiddenName();
@@ -354,9 +354,9 @@ public class CreateContact extends AjaxCommonTest  {
 		
 		//-- GUI Action
 		
-		// app.zPageAddressbook.zRefresh();
+		// app.zPageContacts.zRefresh();
 		
-		FormContactNew formContactNew = (FormContactNew)app.zPageAddressbook.zToolbarPressButton(Button.B_NEW);
+		FormContactNew formContactNew = (FormContactNew)app.zPageContacts.zToolbarPressButton(Button.B_NEW);
 		
         // Fill in the form
 		formContactNew.zFillField(Field.FirstName, contactFirst);

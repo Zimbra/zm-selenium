@@ -34,7 +34,7 @@ public class DeleteMountpoint extends AjaxCommonTest {
 		logger.info("New "+ DeleteMountpoint.class.getCanonicalName());
 		
 		// All tests start at the login page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 		super.startingAccountPreferences = null;
 
 		
@@ -80,7 +80,7 @@ public class DeleteMountpoint extends AjaxCommonTest {
 		
 		
 		// Click Get Mail button
-		app.zPageAddressbook.zToolbarPressButton(Button.B_REFRESH);
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Delete the folder using context menu
 		app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_DELETE, mountpoint);

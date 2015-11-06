@@ -35,7 +35,7 @@ public class ForwardContact extends AjaxCommonTest  {
 		logger.info("New "+ ForwardContact.class.getCanonicalName());
 		
 		// All tests start at the Address page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		super.startingAccountPreferences = null;		
 		
@@ -59,16 +59,16 @@ public class ForwardContact extends AjaxCommonTest  {
 		//-- GUI
 	
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 	
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 
         // Forward
-        FormMailNew formMail = (FormMailNew) app.zPageAddressbook.zToolbarPressButton(Button.B_FORWARD);
+        FormMailNew formMail = (FormMailNew) app.zPageContacts.zToolbarPressButton(Button.B_FORWARD);
                 
         //wait for attachment link present
-        for (int i=0; (i<20) && !app.zPageAddressbook.sIsElementPresent("css=div[id$=_attachments_div] div[class='ImgAttachment']") ; i++ , SleepUtil.sleepVerySmall());
+        for (int i=0; (i<20) && !app.zPageContacts.sIsElementPresent("css=div[id$=_attachments_div] div[class='ImgAttachment']") ; i++ , SleepUtil.sleepVerySmall());
         	
         // since the contact.fileAs length probably large, it is usually trim in the middle and replace with ...
         ZAssert.assertTrue( formMail.zHasAttachment("vcf"), "Verify the VCF attachment is there");
@@ -131,19 +131,19 @@ public class ForwardContact extends AjaxCommonTest  {
 		//-- GUI
 	
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 	
 		// Select the contact
-		app.zPageAddressbook.zListItem(Action.A_LEFTCLICK, contact.firstName);
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 
         // Edit
-		app.zPageAddressbook.zToolbarPressButton(Button.B_EDIT);
+		app.zPageContacts.zToolbarPressButton(Button.B_EDIT);
 		
         // Forward
-        FormMailNew formMail = (FormMailNew) app.zPageAddressbook.zToolbarPressButton(Button.B_FORWARD);
+        FormMailNew formMail = (FormMailNew) app.zPageContacts.zToolbarPressButton(Button.B_FORWARD);
                 
         //wait for attachment link present
-        for (int i=0; (i<20) && !app.zPageAddressbook.sIsElementPresent("css=div[id$=_attachments_div] div[class='ImgAttachment']") ; i++ , SleepUtil.sleepVerySmall());
+        for (int i=0; (i<20) && !app.zPageContacts.sIsElementPresent("css=div[id$=_attachments_div] div[class='ImgAttachment']") ; i++ , SleepUtil.sleepVerySmall());
         	
         // since the contact.fileAs length probably large, it is usually trim in the middle and replace with ...
         ZAssert.assertTrue( formMail.zHasAttachment("vcf"), "Verify the VCF attachment is there");
@@ -207,13 +207,13 @@ public class ForwardContact extends AjaxCommonTest  {
 		//-- GUI
 	
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 	
         // Right Click -> Forward
-        FormMailNew formMail = (FormMailNew) app.zPageAddressbook.zListItem(Action.A_RIGHTCLICK, Button.B_FORWARD, contact.fileAs);        
+        FormMailNew formMail = (FormMailNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_FORWARD, contact.fileAs);        
                 
         //wait for attachment link present
-        for (int i=0; (i<20) && !app.zPageAddressbook.sIsElementPresent("css=div[id$=_attachments_div] div[class='ImgAttachment']") ; i++ , SleepUtil.sleepVerySmall());
+        for (int i=0; (i<20) && !app.zPageContacts.sIsElementPresent("css=div[id$=_attachments_div] div[class='ImgAttachment']") ; i++ , SleepUtil.sleepVerySmall());
         	
         // since the contact.fileAs length probably large, it is usually trim in the middle and replace with ...
         ZAssert.assertTrue( formMail.zHasAttachment("vcf"), "Verify the VCF attachment is there");
