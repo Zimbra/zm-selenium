@@ -23,8 +23,8 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.PageAddressbook;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.TreeContacts;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageContacts;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.TreeContacts;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.PageBriefcase;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.TreeBriefcase;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar;
@@ -55,10 +55,10 @@ import com.zimbra.qa.selenium.projects.ajax.ui.tasks.*;
  * {@code
  * 
  * // Navigate to the addresbook
- * app.zPageAddressbook.navigateTo();
+ * app.zPageContacts.navigateTo();
  * 
  * // Click "New" button to create a new contact
- * app.zPageAddressbook.zToolbarPressButton(Button.B_NEW);
+ * app.zPageContacts.zToolbarPressButton(Button.B_NEW);
  * 
  * }
  * </pre>
@@ -78,7 +78,7 @@ public class AppAjaxClient extends AbsApplication {
 	public PageAdvancedSearch			zPageAdvancedSearch = null;
 	public PageMail						zPageMail = null;
 	public PageBriefcase                zPageBriefcase = null;
-	public PageAddressbook              zPageAddressbook = null;
+	public PageContacts              zPageContacts = null;
 	public PageCalendar					zPageCalendar = null;
 	public PageTasks					zPageTasks = null;
 	public PagePreferences				zPagePreferences = null;
@@ -130,8 +130,8 @@ public class AppAjaxClient extends AbsApplication {
 		trees.put(zTreeMail.myPageName(), zTreeMail);
 		
 		//Addressbook page    
-		zPageAddressbook = new PageAddressbook(this);
-		pages.put(zPageAddressbook.myPageName(), zPageAddressbook);
+		zPageContacts = new PageContacts(this);
+		pages.put(zPageContacts.myPageName(), zPageContacts);
 
 		zTreeContacts = new TreeContacts(this);
 		trees.put(zTreeContacts.myPageName(), zTreeContacts);

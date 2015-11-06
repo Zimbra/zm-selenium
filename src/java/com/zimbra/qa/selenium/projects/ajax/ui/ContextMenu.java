@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.PageAddressbook;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageContacts;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
 
 /*
@@ -155,8 +155,8 @@ public class ContextMenu extends AbsDisplay {
 			ContextMenuItem ci  = getContextMenuItem(id, contextMenuItemObjects);		    						
 			list.add(ci);
 			ci.parentLocator = id;
-			/*if ( PageAddressbook.CONTEXT_MENU.CONTEXT_MENUITEM_ARRAY[i-1]!= null) { 
-			  PageAddressbook.CONTEXT_MENU.CONTEXT_MENUITEM_ARRAY[i-1].parentLocator=id;
+			/*if ( PageContacts.CONTEXT_MENU.CONTEXT_MENUITEM_ARRAY[i-1]!= null) { 
+			  PageContacts.CONTEXT_MENU.CONTEXT_MENUITEM_ARRAY[i-1].parentLocator=id;
 			}*/
 		}
 

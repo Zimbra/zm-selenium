@@ -22,7 +22,7 @@ public class ContactsPrefShowSelectionCheckbox extends AjaxCommonTest {
 
 	public ContactsPrefShowSelectionCheckbox() {
 		
-	    super.startingPage = app.zPageAddressbook;
+	    super.startingPage = app.zPageContacts;
 
 	    super.startingAccountPreferences = new HashMap<String, String>() {
 		private static final long serialVersionUID = 1L;

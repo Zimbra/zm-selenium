@@ -229,7 +229,7 @@ public class AjaxCommonTest {
 						throw e;
 					} else {
 						logger.info("App is still not ready...", e);
-						SleepUtil.sleep(10000);
+						SleepUtil.sleep(10000);	
 						continue;
 					}
 				}
@@ -242,7 +242,14 @@ public class AjaxCommonTest {
 			logger.warn(e);
 		}
 
-		logger.info("commonTestBeforeSuite: finish");		
+		logger.info("commonTestBeforeSuite: finish");
+		
+		SleepUtil.sleepLong();
+		ClientSessionFactory.session().selenium().windowFocus();
+		ClientSessionFactory.session().selenium().selectWindow(null);
+		ClientSessionFactory.session().selenium().windowMaximize();
+		SleepUtil.sleepLong();
+		
 	}
 
 	/**

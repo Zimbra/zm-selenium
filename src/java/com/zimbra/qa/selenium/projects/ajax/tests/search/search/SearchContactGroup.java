@@ -36,7 +36,7 @@ public class SearchContactGroup extends AjaxCommonTest {
 		logger.info("New "+ SearchContactGroup.class.getCanonicalName());
 		
 		// All tests start at the login page
-		super.startingPage = app.zPageAddressbook;
+		super.startingPage = app.zPageContacts;
 
 		// Make sure we are using an account with message view
 		super.startingAccountPreferences = null;
@@ -56,7 +56,7 @@ public class SearchContactGroup extends AjaxCommonTest {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Remember to close the search view
 		try {
@@ -94,7 +94,7 @@ public class SearchContactGroup extends AjaxCommonTest {
 		//-- GUI
 		
 		// Refresh
-		app.zPageAddressbook.zRefresh();
+		app.zPageContacts.zRefresh();
 		
 		// Remember to close the search view
 		try {

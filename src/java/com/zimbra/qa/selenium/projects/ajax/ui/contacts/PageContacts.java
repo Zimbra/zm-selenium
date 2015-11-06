@@ -29,7 +29,7 @@ import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
-public class PageAddressbook extends AbsTab {
+public class PageContacts extends AbsTab {
 
 	
 	
@@ -106,9 +106,9 @@ public class PageAddressbook extends AbsTab {
 	}};
 
 
-	public PageAddressbook(AbsApplication application) {
+	public PageContacts(AbsApplication application) {
 		super(application);		
-		logger.info("new " + PageAddressbook.class.getCanonicalName());
+		logger.info("new " + PageContacts.class.getCanonicalName());
 
 	}
 

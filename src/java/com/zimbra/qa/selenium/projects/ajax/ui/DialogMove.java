@@ -21,7 +21,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
-import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.PageAddressbook;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageContacts;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.PageBriefcase;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail;
@@ -154,7 +154,7 @@ public class DialogMove extends AbsDialog {
 		      locator = "css=div[id='" + Locators.zDialogId+ "'] div[id^='zti__ZmChooseFolderDialog_Mail'] td[id$='"+ folder.getId() + "_textCell']";
 		   }
 
-		} else if (MyTab instanceof PageAddressbook) {
+		} else if (MyTab instanceof PageContacts) {
 			
 			   if (ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP) {
 			      locator = "css=div[id='" + Locators.zDialogId
