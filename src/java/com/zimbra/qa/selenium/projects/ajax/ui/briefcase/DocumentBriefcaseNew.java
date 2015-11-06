@@ -214,6 +214,7 @@ public class DocumentBriefcaseNew extends AbsForm {
 				dlgAddNotes.zDismissAddVersionNotesDlg(pageTitle);
 			
 		}
+		SleepUtil.sleepMedium();
 	}
 
 	@Override

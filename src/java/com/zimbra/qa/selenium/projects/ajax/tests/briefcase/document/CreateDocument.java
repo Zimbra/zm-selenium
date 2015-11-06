@@ -85,11 +85,9 @@ public class CreateDocument extends FeatureBriefcaseTest {
 
 			documentBriefcaseNew.zSubmit();
 		} finally {
-			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
+			app.zPageBriefcase.sSelectWindow(null);
 			app.zPageBriefcase.sWindowFocus();
 		}
-
-		app.zPageBriefcase.zWaitForWindowClosed(DocumentBriefcaseNew.pageTitle);
 
 		// refresh briefcase page
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
