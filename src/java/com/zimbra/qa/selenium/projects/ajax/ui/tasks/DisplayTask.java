@@ -174,13 +174,6 @@ public class DisplayTask extends AbsDisplay {
 			
 		}
 
-		// Make sure something was set
-		if ( locator == null )
-			throw new HarnessException("locator was null for field = "+ field);
-		
-		// Default behavior: return the text
-		//
-		
 		// Get the subject value
 		String value = this.sGetText(locator).trim();
 		
@@ -215,11 +208,6 @@ public class DisplayTask extends AbsDisplay {
 
 		}
 
-		// Make sure something was set
-		if (locator == null)
-			throw new HarnessException("locator was null for field = " + field);
-
-
 		// Get the subject value
 		String value = this.sGetText(locator).trim();
 
@@ -228,9 +216,6 @@ public class DisplayTask extends AbsDisplay {
 		return (value);
 
 	}
-
-
-
 
 
 }

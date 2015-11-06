@@ -432,13 +432,13 @@ public class FormTaskNew extends AbsForm {
 		// Enter text
       this.sFocus(locator);
       this.zClick(locator);
-      zKeyboard.zTypeCharacters(value);
+      sType(locator, value);
       
       if(!(sGetValue(locator).equalsIgnoreCase(value))){
     	  sType(locator, value);
       }
 		
-		this.zWaitForBusyOverlay();
+      this.zWaitForBusyOverlay();
 
 	}
 	

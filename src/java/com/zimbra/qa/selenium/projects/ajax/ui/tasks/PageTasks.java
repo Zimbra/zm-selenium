@@ -906,12 +906,6 @@ public class PageTasks extends AbsTab{
 				zWaitForBusyOverlay();
 			}
 
-			// If we click on pulldown/option and the page is specified, then
-			// wait for the page to go active
-			if (page != null) {
-				page.zWaitForActive();
-			}
-
 		}
 
 		// Return the specified page, or null if not set

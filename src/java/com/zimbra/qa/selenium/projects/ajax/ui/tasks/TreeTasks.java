@@ -268,23 +268,12 @@ public class TreeTasks extends AbsTree {
 			throw new HarnessException("Action "+ action +" not yet implemented");
 		}
 
-		
-		if ( locator == null )
-			throw new HarnessException("locator is null for action "+ action);
-		
-		
 		// Default behavior.  Click the locator
 		zClick(locator);
 
 		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
 		
-		if ( page != null ) {
-			
-			// Wait for the page to become active, if it was specified
-			page.zWaitForActive();
-		}
-
 		((AppAjaxClient)MyApplication).zPageTasks.zWaitForDesktopLoadingSpinner(5000);
 
 		return (page);
@@ -362,8 +351,7 @@ public class TreeTasks extends AbsTree {
 			throw new HarnessException("button " + option
 					+ " not yet implemented");
 		}
-		if (actionLocator == null)
-			throw new HarnessException("locator is null for action " + action);
+
 		if (optionLocator == null)
 			throw new HarnessException("locator is null for option " + option);
 
@@ -459,8 +447,7 @@ public class TreeTasks extends AbsTree {
 			throw new HarnessException("button " + option
 					+ " not yet implemented");
 		}
-		if (actionLocator == null)
-			throw new HarnessException("locator is null for action " + action);
+
 		if (optionLocator == null)
 			throw new HarnessException("locator is null for option " + option);
 
