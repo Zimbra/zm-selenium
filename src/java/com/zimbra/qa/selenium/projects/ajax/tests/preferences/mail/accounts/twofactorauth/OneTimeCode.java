@@ -17,12 +17,11 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.accounts.twofactorauth;
 
 import java.util.HashMap;
-
-import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+
 public class OneTimeCode extends AjaxCommonTest {
 
 	public OneTimeCode() {
@@ -67,13 +66,9 @@ public class OneTimeCode extends AjaxCommonTest {
 
 	}
 	
-	@AfterMethod(groups={"always"})
-	public void afterMethod() throws HarnessException {
-		ZimbraAccount.ResetAccountZWC();
-		if (app.zPageMail.sIsVisible("css=td[id='skin_dropMenu'] td[id$='_dropdown']") == false) { 
-			app.zPageLogin.zLogin(ZimbraAccount.Account10());
-			logger.info(app.zGetActiveAccount());
-		}
+	@AfterClass(groups={"always"})
+	public void afterClass() throws HarnessException {
+		killBrowserAndLogin(ZimbraAccount.Account10());
 	}
 
 }

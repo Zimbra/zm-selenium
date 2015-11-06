@@ -17,10 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.accounts.twofactorauth;
 
 import java.util.HashMap;
-
-import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -28,6 +26,7 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
+
 public class DisableZimbraTwoFactorAuth extends AjaxCommonTest {
 
 	public DisableZimbraTwoFactorAuth() {
@@ -43,7 +42,9 @@ public class DisableZimbraTwoFactorAuth extends AjaxCommonTest {
 
 	@Test(	description = "Disable two factor auth from preferences",
 			groups = { "sanity" })
+	
 	public void DisableZimbraTwoFactorAuth_01() throws HarnessException {
+		
 		String totp, secret, tempToken;
 		
 		ZimbraAccount.AccountZWC().soapSend(
@@ -64,7 +65,9 @@ public class DisableZimbraTwoFactorAuth extends AjaxCommonTest {
 		// Login
 		totp = CommandLine.cmdExecOnServer(ZimbraAccount.AccountZWC().EmailAddress, secret);
 		app.zPageMain.zLogout();
+		SleepUtil.sleepLong();
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC(), totp, false);
+		SleepUtil.sleepLong();
 		
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
@@ -80,13 +83,9 @@ public class DisableZimbraTwoFactorAuth extends AjaxCommonTest {
 
 	}
 	
-	@AfterMethod(groups={"always"})
-	public void afterMethod() throws HarnessException {
-		ZimbraAccount.ResetAccountZWC();
-		if (app.zPageMail.sIsVisible("css=td[id='skin_dropMenu'] td[id$='_dropdown']") == false) { 
-			app.zPageLogin.zLogin(ZimbraAccount.Account10());
-			logger.info(app.zGetActiveAccount());
-		}
+	@AfterClass(groups={"always"})
+	public void afterClass() throws HarnessException {
+		killBrowserAndLogin(ZimbraAccount.Account10());
 	}
 
 }

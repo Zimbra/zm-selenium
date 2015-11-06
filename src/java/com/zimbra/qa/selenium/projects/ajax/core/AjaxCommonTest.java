@@ -89,8 +89,8 @@ public class AjaxCommonTest {
 	protected static Logger logger = LogManager.getLogger(AjaxCommonTest.class);
 
 
-	private WebDriverBackedSelenium _webDriverBackedSelenium = null;
-	private WebDriver _webDriver = null;
+	protected WebDriverBackedSelenium _webDriverBackedSelenium = null;
+	protected WebDriver _webDriver = null;
 	
 	/**
 	 * The AdminConsole application object
@@ -244,12 +244,6 @@ public class AjaxCommonTest {
 
 		logger.info("commonTestBeforeSuite: finish");
 		
-		SleepUtil.sleepLong();
-		ClientSessionFactory.session().selenium().windowFocus();
-		ClientSessionFactory.session().selenium().selectWindow(null);
-		ClientSessionFactory.session().selenium().windowMaximize();
-		SleepUtil.sleepLong();
-		
 	}
 
 	/**
@@ -265,7 +259,45 @@ public class AjaxCommonTest {
 
 	}
 
+	
+	public void killBrowserAndLogin (ZimbraAccount account) throws HarnessException {
+		
+		try {
+			
+			if ( !OperatingSystem.isWindows() )
+				return;
 
+			try {
+				
+				String SeleniumBrowser;
+				SeleniumBrowser = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser",	ZimbraSeleniumProperties.getStringProperty("browser"));
+				
+				if (SeleniumBrowser.contains("iexplore")) {
+				    CommandLine.CmdExec("taskkill /f /t /im iexplore.exe");
+				} else if (SeleniumBrowser.contains("firefox")) {
+					CommandLine.CmdExec("taskkill /f /t /im firefox.exe");
+				} else if (SeleniumBrowser.contains("safariproxy")) {
+				    CommandLine.CmdExec("taskkill /f /t /im safari.exe");
+				} else if (SeleniumBrowser.contains("chrome")) {
+					CommandLine.CmdExec("taskkill /f /t /im chrome.exe");
+				}
+				
+			} catch (IOException e) {
+				throw new HarnessException("Unable to kill browsers", e);
+			} catch (InterruptedException e) {
+				throw new HarnessException("Unable to kill browsers", e);
+			}
+			
+			commonTestBeforeSuite();
+			
+		} catch (IOException | InterruptedException | SAXException e) {
+			e.printStackTrace();
+		}
+		
+		app.zPageLogin.zLogin(ZimbraAccount.Account10());
+		logger.info(app.zGetActiveAccount());
+		
+	}
 
 	/**
 	 * Global BeforeMethod
