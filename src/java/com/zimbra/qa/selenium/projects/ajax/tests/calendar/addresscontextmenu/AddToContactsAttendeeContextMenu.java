@@ -1,9 +1,8 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.addresscontextmenu;
 
-//package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.contextmenu;
-
 import org.testng.annotations.*;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -12,17 +11,15 @@ import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.FormContactNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
 
-
 public class AddToContactsAttendeeContextMenu extends PrefGroupMailByMessageTest {
 
 	public AddToContactsAttendeeContextMenu() {
 		logger.info("New " + AddToContactsAttendeeContextMenu.class.getCanonicalName());
-
 		super.startingPage = app.zPageCalendar;
-
 	}
-
-	@Test(description = "Right click To attendee bubble address>>Verify AddToContact", groups = { "smoke" })
+	
+	@Bugs(ids = "102204")
+	@Test(description = "Right click To attendee bubble address>>Verify AddToContact", groups = { "smoke-temp-skipped-bug102204" })
 	public void AddToContactAttendeeContextMenu() throws HarnessException {
 
 		String apptAttendee1,apptContent;
@@ -48,7 +45,7 @@ public class AddToContactsAttendeeContextMenu extends PrefGroupMailByMessageTest
 		app.zPageMail.sFocus("css=input[id$='_FIRST_input']");
 		app.zPageMail.zClick("css=input[id$='_FIRST_input']");
 		app.zPageMail.zKeyboard.zTypeCharacters(contactFirst);
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 	//	app.zPageMail.sType("css=input[id$='_FIRST_input']", contactFirst);
 		app.zPageMail.sClickAt(FormContactNew.Toolbar.SAVE, "");
 		SleepUtil.sleepMedium();

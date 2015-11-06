@@ -2,6 +2,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.contextmenu;
 
 import org.testng.annotations.*;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -10,18 +11,15 @@ import com.zimbra.qa.selenium.projects.ajax.ui.addressbook.FormContactNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-
 public class AddToContactMsgHdrContextMenu extends PrefGroupMailByMessageTest {
 
 	public AddToContactMsgHdrContextMenu() {
-		logger.info("New "
-				+ AddToContactMsgHdrContextMenu.class.getCanonicalName());
-
+		logger.info("New " + AddToContactMsgHdrContextMenu.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
-
 	}
 
-	@Test(description = "Receive a  mail - Right Click From Msg Header and verify context menus>>AddToContact", groups = { "smoke" })
+	@Bugs(ids = "102204")
+	@Test(description = "Receive a  mail - Right Click From Msg Header and verify context menus>>AddToContact", groups = { "smoke-temp-skipped-bug102204" })
 	public void AddToContactMessageHdrContextMenu() throws HarnessException {
 
 		// Create the message data to be sent

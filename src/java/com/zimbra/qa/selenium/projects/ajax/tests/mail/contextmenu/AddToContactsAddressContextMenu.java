@@ -2,6 +2,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.contextmenu;
 
 import org.testng.annotations.*;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -14,14 +15,12 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
 public class AddToContactsAddressContextMenu extends PrefGroupMailByMessageTest {
 
 	public AddToContactsAddressContextMenu() {
-		logger.info("New "
-				+ AddToContactsAddressContextMenu.class.getCanonicalName());
-
+		logger.info("New " + AddToContactsAddressContextMenu.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
-
 	}
-
-	@Test(description = "Right click to bubble address>>AddToContact", groups = { "smoke" })
+	
+	@Bugs(ids = "102204")
+	@Test(description = "Right click to bubble address>>AddToContact", groups = { "smoke-temp-skipped-bug102204" })
 	public void AddToContactAddressContextMenu() throws HarnessException {
 
 		String contactFirst = "First"
@@ -50,7 +49,7 @@ public class AddToContactsAddressContextMenu extends PrefGroupMailByMessageTest 
 		app.zPageMail.sFocus("css=input[id$='_FIRST_input']");
 		app.zPageMail.zClick("css=input[id$='_FIRST_input']");
 		app.zPageMail.zKeyboard.zTypeCharacters(contactFirst);
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 		//app.zPageMail.sType("css=input[id$='_FIRST_input']", contactFirst);	
 		app.zPageMail.sClickAt(FormContactNew.Toolbar.SAVE, "");
 		SleepUtil.sleepMedium();
