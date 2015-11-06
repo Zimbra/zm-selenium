@@ -51,8 +51,8 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		logger.info("New " + CreateDocument.class.getCanonicalName());
 
 		super.startingPage = app.zPageBriefcase;
-
-		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");				
+		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
+		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
 	}
 	
 	@Bugs(ids = "97124")
@@ -75,6 +75,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 
 		try {
 			app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
+			app.zPageBriefcase.sWindowFocus();
 
 			// Fill out the document with the data
 			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name,
@@ -82,12 +83,10 @@ public class CreateDocument extends FeatureBriefcaseTest {
 			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Body,
 					docText);
 
-			
-			//app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
-			// Save and close
 			documentBriefcaseNew.zSubmit();
 		} finally {
 			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
+			app.zPageBriefcase.sWindowFocus();
 		}
 
 		app.zPageBriefcase.zWaitForWindowClosed(DocumentBriefcaseNew.pageTitle);
@@ -118,16 +117,18 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		// Select document opened in a separate window
 		try {
 			app.zPageBriefcase.zSelectWindow(docName);
+			app.zPageBriefcase.sWindowFocus();
 
 			name = documentBriefcaseOpen.retriveDocumentName();
 			text = documentBriefcaseOpen.retriveDocumentText();
 
 			// close
 			app.zPageBriefcase.zSelectWindow(docName);
-
 			app.zPageBriefcase.closeWindow();
+			
 		} finally {
 			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
+			app.zPageBriefcase.sWindowFocus();
 		}
 
 		ZAssert.assertStringContains(name, docName,
@@ -163,6 +164,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 
 		try {
 			app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
+			app.zPageBriefcase.sWindowFocus();
 
 			// Fill out the document with the data
 			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name,
@@ -174,8 +176,10 @@ public class CreateDocument extends FeatureBriefcaseTest {
 			//app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
 
 			documentBriefcaseNew.zSubmit();
+			
 		} finally {
 			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
+			app.zPageBriefcase.sWindowFocus();
 		}
 
 		app.zPageBriefcase.zWaitForWindowClosed(DocumentBriefcaseNew.pageTitle);
@@ -219,7 +223,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(docName);
 	}
 
-	@Test(description = "Create document using keyboard shortcut - verify through SOAP & RestUtil", groups = { "zfunctional" })
+	@Test(description = "Create document using keyboard shortcut - verify through SOAP & RestUtil", groups = { "functional" })
 	public void CreateDocument_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -236,24 +240,24 @@ public class CreateDocument extends FeatureBriefcaseTest {
 
 		// Open new document page using keyboard shortcut
 		app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
+		app.zPageBriefcase.sWindowFocus();
 		DocumentBriefcaseNew documentBriefcaseNew = (DocumentBriefcaseNew) app.zPageBriefcase
 				.zKeyboardShortcut(shortcut);
 
 		try {
 			app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
+			app.zPageBriefcase.sWindowFocus();
 
 			// Fill out the document with the data
 			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name,
 					docName);
 			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Body,
 					docText);
-
-			// Save and close
-			//app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
-
 			documentBriefcaseNew.zSubmit();
+			
 		} finally {
 			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
+			app.zPageBriefcase.sWindowFocus();
 		}
 
 		app.zPageBriefcase.zWaitForWindowClosed(DocumentBriefcaseNew.pageTitle);
@@ -298,7 +302,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(docName);
 	}
 
-	@Test(description = "Create document through GUI - verify through GUI", groups = { "webdriver" })
+	@Test(description = "Create document through GUI - verify through GUI", groups = { "functional" })
 	public void CreateDocument_04() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -331,9 +335,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		
 		String tagName = "tag" + ZimbraSeleniumProperties.getUniqueString();
 		Shortcut shortcut = Shortcut.S_NEWTAG;
-		
-		app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
-		
+				
 		DialogTag dialog = (DialogTag) app.zPageBriefcase
 				.zKeyboardShortcut(shortcut);
 		
@@ -353,6 +355,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		
 		try {
 			app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
+			app.zPageBriefcase.sWindowFocus();
 
 			// Fill out the document with the data
 			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name,
@@ -361,11 +364,12 @@ public class CreateDocument extends FeatureBriefcaseTest {
 					docText);
 
 			// Save and close
-			app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
-
+			app.zPageBriefcase.sWindowFocus();
 			documentBriefcaseNew.zSubmit();
+			
 		} finally {
 			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
+			app.zPageBriefcase.sWindowFocus();
 		}
 		
 		SleepUtil.sleepSmall();
@@ -408,6 +412,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		// Select document opened in a separate window
 		try {
 			app.zPageBriefcase.zSelectWindow(docName);
+			app.zPageBriefcase.sWindowFocus();
 
 			name = documentBriefcaseOpen.retriveDocumentName();
 			text = documentBriefcaseOpen.retriveDocumentText();
@@ -416,10 +421,12 @@ public class CreateDocument extends FeatureBriefcaseTest {
 			
 			// close
 			app.zPageBriefcase.zSelectWindow(docName);
-
+			app.zPageBriefcase.sWindowFocus();
 			app.zPageBriefcase.closeWindow();
+			
 		} finally {
 			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
+			app.zPageBriefcase.sWindowFocus();
 		}
 
 		ZAssert.assertStringContains(name, docName,
@@ -456,19 +463,18 @@ public class CreateDocument extends FeatureBriefcaseTest {
 
 		try {
 			app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
+			app.zPageBriefcase.sWindowFocus();
 
 			// Fill out the document with the data
 			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name,
 					docName);
 			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Body,
 					docText);
-
-			// Save and close
-			//app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
-
 			documentBriefcaseNew.zSubmit();
+			
 		} finally {
 			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
+			app.zPageBriefcase.sWindowFocus();
 		}
 
 		app.zPageBriefcase.zWaitForWindowClosed(DocumentBriefcaseNew.pageTitle);
@@ -508,10 +514,12 @@ public class CreateDocument extends FeatureBriefcaseTest {
 					&& !window.contains("undefined")) {				
 					logger.warn(window + " window was still active. Closing ...");
 					app.zPageBriefcase.zSelectWindow(window);
+					app.zPageBriefcase.sWindowFocus();
 					app.zPageBriefcase.closeWindow();
 				}
 			}
 		}
 		app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
+		app.zPageBriefcase.sWindowFocus();
 	}
 }

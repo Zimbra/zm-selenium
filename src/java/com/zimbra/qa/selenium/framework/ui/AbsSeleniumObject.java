@@ -27,7 +27,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -53,7 +52,6 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.SeleniumException;
 import com.thoughtworks.selenium.webdriven.JavascriptLibrary;
@@ -64,7 +62,6 @@ import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
-
 import org.openqa.selenium.interactions.Mouse;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.internal.Locatable;
@@ -713,7 +710,6 @@ public abstract class AbsSeleniumObject {
 			if (kc.length >= 2) {
 				if (Integer.parseInt(kc[0]) == 16
 						&& Integer.parseInt(kc[1]) == 46) {
-
 					keycode1 = KeyEvent.VK_SHIFT;
 					keycode2 = KeyEvent.VK_DELETE;
 
@@ -736,6 +732,11 @@ public abstract class AbsSeleniumObject {
 						&& Integer.parseInt(kc[1]) == 67) {
 					keycode1 = KeyEvent.VK_CONTROL;
 					keycode2 = KeyEvent.VK_C;
+					
+				} else if (Integer.parseInt(kc[0]) == 78
+						&& Integer.parseInt(kc[1]) == 46) {
+					keycode1 = KeyEvent.VK_N;
+					keycode2 = KeyEvent.VK_D;
 
 				}else {
 					throw new HarnessException("implement shortcut: " + keyCode);

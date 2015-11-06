@@ -17,7 +17,9 @@
 package com.zimbra.qa.selenium.projects.ajax.ui.briefcase;
 
 import java.util.List;
+
 import org.openqa.selenium.WebElement;
+
 import com.zimbra.qa.selenium.framework.items.DocumentItem;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
@@ -79,6 +81,7 @@ public class DocumentBriefcaseOpen extends AbsDisplay {
 		return text;
 	}
 
+	@SuppressWarnings("deprecation")
 	public String retriveDocumentName() throws HarnessException {
 		String text = null;
 		if(ZimbraSeleniumProperties.isWebDriver()) {

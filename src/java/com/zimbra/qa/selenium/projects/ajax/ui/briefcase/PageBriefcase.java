@@ -1186,13 +1186,16 @@ public class PageBriefcase extends AbsTab {
 
 		String keyCode = "";
 
-		if ((shortcut == Shortcut.S_NEWITEM)
-				|| (shortcut == Shortcut.S_NEWDOCUMENT)) {
-
-			// "New Document" shortcut result in a new document page opening
+		if (shortcut == Shortcut.S_NEWITEM) {
+			
 			page = new DocumentBriefcaseNew(this.MyApplication);
-
 			keyCode = "78";
+			
+		} else if (shortcut == Shortcut.S_NEWDOCUMENT) {
+			
+			page = new DocumentBriefcaseNew(this.MyApplication);
+			keyCode = "78,46";
+			
 		} else if (shortcut == Shortcut.S_DELETE) {
 
 			// "Delete Document" shortcut leads to Confirmation Dialog opening
@@ -1316,6 +1319,7 @@ public class PageBriefcase extends AbsTab {
 				+ locator + "'); x.blur(); x.focus(); x.dispatchEvent(evObj);}");
 	}
 
+	@SuppressWarnings("deprecation")
 	public void fireEvent(String locator, String eventName)
 			throws HarnessException {
 		logger.info("firing Event: " + eventName + " on " + locator);
@@ -1559,6 +1563,7 @@ public class PageBriefcase extends AbsTab {
 		this.sClose();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void zSelectWindow(String windowID) throws HarnessException {
 		logger.info("zSelectWindow(" + windowID + ")");
