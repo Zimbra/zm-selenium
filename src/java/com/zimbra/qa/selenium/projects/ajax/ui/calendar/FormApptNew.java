@@ -105,34 +105,34 @@ public class FormApptNew extends AbsForm {
 		public static final String CustomizedLink = "css=div[id$='_repeatDesc']div[class='FakeAnchor']";
 		public static final String CustomizedLinkDisabled = "css=div[id$='_repeatDesc']div[class='DisabledText']";
 		
-		public static final String EveryDayRadioButton = "css=div[id='REPEAT_DAILY_DIV'] input[id='DAILY_DEFAULT']";
-		public static final String EveryWeekdayRadioButton = "css=div[id='REPEAT_DAILY_DIV'] input[id='DAILY_WEEKDAY']";
-		public static final String EveryXdaysRadioButton = "css=div[id='REPEAT_DAILY_DIV'] input[id='DAILY_FIELD_RADIO']";
-		public static final String EveryXdaysEditField = "css=input[id='RECUR_DAILY_FIELD']";
+		public static final String EveryDayRadioButton = "css=div[id^='REPEAT_DAILY_DIV'] input[id^='DAILY_DEFAULT']";
+		public static final String EveryWeekdayRadioButton = "css=div[id^='REPEAT_DAILY_DIV'] input[id^='DAILY_WEEKDAY']";
+		public static final String EveryXdaysRadioButton = "css=div[id^='REPEAT_DAILY_DIV'] input[id^='DAILY_FIELD_RADIO']";
+		public static final String EveryXdaysEditField = "css=input[id^='RECUR_DAILY_FIELD']";
 		
-		public static final String EveryXRadioButton = "css=div[id='REPEAT_WEEKLY_DIV'] input[id='WEEKLY_DEFAULT']";
-		public static final String EveryXDropdown = "css=div[id='REPEAT_WEEKLY_DIV'] td[id='WEEKLY_SELECT'] td[id$='_title']";
-		public static final String EveryXweeksOnRadioButton = "css=div[id='REPEAT_WEEKLY_DIV'] input[id='WEEKLY_FIELD_RADIO']";
-		public static final String EveryXweeksOnEditField = "css=div[id='REPEAT_WEEKLY_DIV'] input[id='RECUR_WEEKLY_FIELD']";
-		public static final String SundayCheckBox = "css=div[id='REPEAT_WEEKLY_DIV'] input[id='WEEKLY_CHECKBOX_NAME_1']";
-		public static final String MondayCheckBox = "css=div[id='REPEAT_WEEKLY_DIV'] input[id='WEEKLY_CHECKBOX_NAME_2']";
-		public static final String TuesdayCheckBox = "css=div[id='REPEAT_WEEKLY_DIV'] input[id='WEEKLY_CHECKBOX_NAME_3']";
-		public static final String WednesdayCheckBox = "css=div[id='REPEAT_WEEKLY_DIV'] input[id='WEEKLY_CHECKBOX_NAME_4']";
-		public static final String ThursdayCheckBox = "css=div[id='REPEAT_WEEKLY_DIV'] input[id='WEEKLY_CHECKBOX_NAME_5']";
-		public static final String FridayCheckBox = "css=div[id='REPEAT_WEEKLY_DIV'] input[id='WEEKLY_CHECKBOX_NAME_6']";
-		public static final String SaturdayCheckBox = "css=div[id='REPEAT_WEEKLY_DIV'] input[id='WEEKLY_CHECKBOX_NAME_7']";
+		public static final String EveryXRadioButton = "css=div[id^='REPEAT_WEEKLY_DIV'] input[id^='WEEKLY_DEFAULT']";
+		public static final String EveryXDropdown = "css=div[id^='REPEAT_WEEKLY_DIV'] td[id^='WEEKLY_SELECT'] td[id$='_title']";
+		public static final String EveryXweeksOnRadioButton = "css=div[id^='REPEAT_WEEKLY_DIV'] input[id^='WEEKLY_FIELD_RADIO']";
+		public static final String EveryXweeksOnEditField = "css=div[id^='REPEAT_WEEKLY_DIV'] input[id^='RECUR_WEEKLY_FIELD']";
+		public static final String SundayCheckBox = "css=div[id^='REPEAT_WEEKLY_DIV'] input[id^='WEEKLY_CHECKBOX_NAME_1']";
+		public static final String MondayCheckBox = "css=div[id^='REPEAT_WEEKLY_DIV'] input[id^='WEEKLY_CHECKBOX_NAME_2']";
+		public static final String TuesdayCheckBox = "css=div[id^='REPEAT_WEEKLY_DIV'] input[id^='WEEKLY_CHECKBOX_NAME_3']";
+		public static final String WednesdayCheckBox = "css=div[id^='REPEAT_WEEKLY_DIV'] input[id^='WEEKLY_CHECKBOX_NAME_4']";
+		public static final String ThursdayCheckBox = "css=div[id^='REPEAT_WEEKLY_DIV'] input[id^='WEEKLY_CHECKBOX_NAME_5']";
+		public static final String FridayCheckBox = "css=div[id^='REPEAT_WEEKLY_DIV'] input[id^='WEEKLY_CHECKBOX_NAME_6']";
+		public static final String SaturdayCheckBox = "css=div[id^='REPEAT_WEEKLY_DIV'] input[id^='WEEKLY_CHECKBOX_NAME_7']";
 		
-		public static final String DayXofEveryYmonthsRadioButton = "css=div[id='REPEAT_MONTHLY_DIV'] input[id='MONTHLY_DEFAULT']";
-		public static final String TheXYofEveryZmonthsRadioButton = "css=div[id='REPEAT_MONTHLY_DIV'] input[id='MONTHLY_FIELD_RADIO']";
+		public static final String DayXofEveryYmonthsRadioButton = "css=div[id^='REPEAT_MONTHLY_DIV'] input[id^='MONTHLY_DEFAULT']";
+		public static final String TheXYofEveryZmonthsRadioButton = "css=div[id^='REPEAT_MONTHLY_DIV'] input[id^='MONTHLY_FIELD_RADIO']";
 		
-		public static final String EveryYearOnXYRadioButton = "css=div[id='REPEAT_YEARLY_DIV'] input[id='YEALY_DEFAULT']";
-		public static final String TheXYofEveryZRadioButton = "css=div[id='REPEAT_YEARLY_DIV'] input[id='YEARLY_FIELD_RADIO']";
+		public static final String EveryYearOnXYRadioButton = "css=div[id^='REPEAT_YEARLY_DIV'] input[id^='YEALY_DEFAULT']";
+		public static final String TheXYofEveryZRadioButton = "css=div[id^='REPEAT_YEARLY_DIV'] input[id^='YEARLY_FIELD_RADIO']";
 		
-		public static final String NoEndDateRadioButton = "css=div[id$='_content'] td input[id='NO_END_DATE_RADIO']";
-		public static final String EndAfterXoccurrencesRadioButton = "css=div[id$='_content'] td input[id='END_AFTER_RADIO']";
-		public static final String EndAfterXoccurrencesEditField = "css=div[id$='_content'] td input[id='RECUR_END_INTERVAL_FIELD']";
-		public static final String EndByXDateRadioButton = "css=div[id$='_content'] td input[id='END_BY_RADIO']";
-		public static final String EndByXDateEditField = "css=div[id$='_content'] td input[id='RECUR_END_BY_FIELD']";
+		public static final String NoEndDateRadioButton = "css=div[id$='_content'] td input[id^='NO_END_DATE_RADIO']";
+		public static final String EndAfterXoccurrencesRadioButton = "css=div[id$='_content'] td input[id^='END_AFTER_RADIO']";
+		public static final String EndAfterXoccurrencesEditField = "css=div[id$='_content'] td input[id^='RECUR_END_INTERVAL_FIELD']";
+		public static final String EndByXDateRadioButton = "css=div[id$='_content'] td input[id^='END_BY_RADIO']";
+		public static final String EndByXDateEditField = "css=div[id$='_content'] td input[id^='RECUR_END_BY_FIELD']";
 		
 		public static final String DeleteZimletContextMenu = "css=div[id^='POPUP_'] td[id='DELETE_title']";
 		public static final String EditZimletContextMenu = "css=div[id^='POPUP_'] td[id='EDIT_title']";
@@ -1250,7 +1250,7 @@ public class FormApptNew extends AbsForm {
 				if (repeat.equals(Button.B_EVERY_X_RADIO_BUTTON)) {
 					this.sClickAt(Locators.EveryXRadioButton, "");
 					if (!repeatOption1.equals("")) {
-						this.sClickAt("css=td[id='WEEKLY_SELECT'] td[id$='_title']", "");
+						this.sClickAt("css=td[id^='WEEKLY_SELECT'] td[id$='_title']", "");
 						this.sClickAt("css=div[id^='POPUP_DWT'] td[id$='_title']:contains('" + repeatOption1 + "')", "");
 					}
 					
@@ -1292,7 +1292,7 @@ public class FormApptNew extends AbsForm {
 				
 				} else if (repeat.equals(Button.B_THE_X_Y_OF_EVERY_Z_MONTHS_RADIO_BUTTON)) {
 					this.sClickAt(Locators.TheXYofEveryZmonthsRadioButton, "");
-					this.sClickAt("css=td[id='MONTHLY_WEEKDAY_SELECT'] td[id$='_title']", "");
+					this.sClickAt("css=td[id^='MONTHLY_WEEKDAY_SELECT'] td[id$='_title']", "");
 					this.sClickAt("css=div[id*='Menu_'] td[id$='_title']:contains('Monday')", "");        
 				}
 				
