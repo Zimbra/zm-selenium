@@ -44,7 +44,7 @@ public class ZimbraTwoFactorAuthEnabled extends AjaxCommonTest {
 
 	@Test(
 			description = "Enable two factor auth from preferences",
-			groups = { "sanity" }
+			groups = { "sanity-skip-temporary" }
 			)
 	public void zimbraTwoFactorAuthEnabled_01() throws HarnessException {
 		

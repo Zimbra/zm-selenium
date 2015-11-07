@@ -42,7 +42,7 @@ public class DisableZimbraTwoFactorAuth extends AjaxCommonTest {
 	}
 
 	@Test(	description = "Disable two factor auth from preferences",
-			groups = { "sanity" })
+			groups = { "sanity-skip-temporary" })
 	public void DisableZimbraTwoFactorAuth_01() throws HarnessException {
 		String totp, secret, tempToken;
 		

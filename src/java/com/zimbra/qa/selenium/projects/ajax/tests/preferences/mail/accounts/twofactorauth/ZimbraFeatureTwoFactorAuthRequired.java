@@ -43,7 +43,7 @@ public class ZimbraFeatureTwoFactorAuthRequired extends AjaxCommonTest {
 
 	
 	@Test(description = "Verify that after setting zimbraFeatureTwoFactorAuthRequired to true, user is not allowed to acces mailbox till 2fa setup is completed ",
-			groups = { "sanity" } )
+			groups = { "sanity-skip-temporary" } )
 	
 	public void ZimbraFeatureTwoFactorAuthRequired_01() throws HarnessException {
 

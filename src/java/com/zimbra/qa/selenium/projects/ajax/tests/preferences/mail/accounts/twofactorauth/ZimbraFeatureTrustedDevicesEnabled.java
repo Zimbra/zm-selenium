@@ -37,7 +37,7 @@ public class ZimbraFeatureTrustedDevicesEnabled extends AjaxCommonTest {
 	}
 
 	@Test(	description = "Trust this computer should not be present if ZimbraFeatureTrustedDevicesEnabled is set to false",
-			groups = { "smoke" })
+			groups = { "smoke-skip-temporary" })
 	public void ZimbraFeatureTrustedDevicesEnabled_01() throws HarnessException {
 		String totp, secret, tempToken;
 		

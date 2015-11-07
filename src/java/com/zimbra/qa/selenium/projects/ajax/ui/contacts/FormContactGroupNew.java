@@ -109,6 +109,7 @@ public class FormContactGroupNew extends AbsForm {
 	@Override
 	public void zSubmit() throws HarnessException {
 		this.zToolbarPressButton(Button.B_SAVE);
+		SleepUtil.sleepMedium();
 	}	
 	
 	/**
@@ -202,14 +203,6 @@ public class FormContactGroupNew extends AbsForm {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
-		// Make sure a locator was set
-		if ( locator == null )
-			throw new HarnessException("locator was null for button "+ button);
-
-		
-		// Default behavior, process the locator by clicking on it
-		//
-		
 		// Click it
 		this.zClickAt(locator,"");
 		
@@ -349,8 +342,7 @@ public class FormContactGroupNew extends AbsForm {
 
 				this.sClickAt(locator,"");
 				this.sType(locator, "");				// clear the contents
-				this.zKeyboard.zTypeCharacters(value);	// Use robot to input the characters
-				// this.sType(locator, value);				// Use Selenium to input the characters
+				this.sType(locator, value);				// Use Selenium to input the characters
 				this.zWaitForBusyOverlay();
 				
 			}

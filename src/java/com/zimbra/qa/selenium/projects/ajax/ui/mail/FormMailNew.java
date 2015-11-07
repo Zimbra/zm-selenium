@@ -172,7 +172,7 @@ public class FormMailNew extends AbsForm {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 		
-			SleepUtil.sleepSmall();
+			SleepUtil.sleepMedium();
 			
 			return (page);
 		
@@ -546,8 +546,8 @@ public class FormMailNew extends AbsForm {
 			// Click in the "To" fields, etc, to make sure the client is readybody143712287407910enus14371228710998@testdomain.com
 			this.sFocus(locator);
 			this.zClick(locator);
-			this.zWaitForBusyOverlay();
-
+			SleepUtil.sleepSmall();
+			
 			// Enter text
 			// this.sType(locator, value);
 			this.zKeyboard.zTypeCharacters(value);
@@ -577,17 +577,14 @@ public class FormMailNew extends AbsForm {
 			// Click in the "To" fields, etc, to make sure the client is ready
 			this.sFocus(locator);
 			this.zClick(locator);
-			this.zWaitForBusyOverlay();
+			SleepUtil.sleepSmall();
 
 			// Enter text
 			this.sType(locator, value);
 			
-			// For some reason, no bubble takes place.  As a workaround, type Tab
-			//this.sTypeKeys(locator, "\t");
-			// For some reason, no bubble takes place.  As a workaround, type Enter			
-			this.sKeyDown(locator, "13");
-			
-			this.zWaitForBusyOverlay();
+			SleepUtil.sleepSmall();
+			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+			SleepUtil.sleepSmall();
 
 			return;
 						
@@ -608,17 +605,14 @@ public class FormMailNew extends AbsForm {
 			// Click in the "To" fields, etc, to make sure the client is ready
 			this.sFocus(locator);
 			this.zClick(locator);
-			this.zWaitForBusyOverlay();
+			SleepUtil.sleepSmall();
 
 			// Enter text
 			this.sType(locator, value);
 			
-			// For some reason, no bubble takes place.  As a workaround, type Tab
-			//this.sTypeKeys(locator, "\t");
-			// For some reason, no bubble takes place.  As a workaround, type Enter			
-			this.sKeyDown(locator, "13");
-			
-			this.zWaitForBusyOverlay();
+			SleepUtil.sleepSmall();
+			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+			SleepUtil.sleepSmall();
 
 			return;
 						

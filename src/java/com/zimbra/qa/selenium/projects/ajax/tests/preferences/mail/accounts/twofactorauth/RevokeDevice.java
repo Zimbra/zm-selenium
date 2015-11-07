@@ -43,7 +43,7 @@ public class RevokeDevice extends AjaxCommonTest {
 	}
 
 	@Test(	description = "Revoke the trusted computer and verify that totp is required after that",
-			groups = { "functional" })
+			groups = { "functional-skip-temporary" })
 	public void RevokeThisDevie_01() throws HarnessException {
 		String totp, secret, tempToken;
 		

@@ -40,7 +40,7 @@ public class TrustThisComputer extends AjaxCommonTest {
 	}
 
 	@Test(	description = "Trust the computer and verify that after relogin totp code is not required",
-			groups = { "smoke" })
+			groups = { "smoke-skip-temporary" })
 	public void TrustThisComputer_01() throws HarnessException {
 		String totp, secret, tempToken;
 		
