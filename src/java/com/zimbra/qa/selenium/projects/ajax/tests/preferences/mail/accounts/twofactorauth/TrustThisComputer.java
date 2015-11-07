@@ -17,13 +17,14 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.accounts.twofactorauth;
 
 import java.util.HashMap;
-import org.testng.annotations.AfterClass;
+
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
-
 public class TrustThisComputer extends AjaxCommonTest {
 
 	public TrustThisComputer() {
@@ -78,9 +79,13 @@ public class TrustThisComputer extends AjaxCommonTest {
 	    
 	}
 	
-	@AfterClass(groups={"always"})
-	public void afterClass() throws HarnessException {
-		killBrowserAndLogin(ZimbraAccount.Account10());
+	@AfterMethod(groups={"always"})
+	public void afterMethod() throws HarnessException {
+		ZimbraAccount.ResetAccountZWC();
+		if (app.zPageMail.sIsVisible("css=td[id='skin_dropMenu'] td[id$='_dropdown']") == false) { 
+			app.zPageLogin.zLogin(ZimbraAccount.Account10());
+			logger.info(app.zGetActiveAccount());
+		}
 	}
 	
 }
