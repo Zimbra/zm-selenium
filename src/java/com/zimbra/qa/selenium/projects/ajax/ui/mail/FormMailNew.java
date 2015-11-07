@@ -618,6 +618,8 @@ public class FormMailNew extends AbsForm {
 						
 		} else if ( field == Field.Subject ) {
 			
+			SleepUtil.sleepMedium();
+			
 			locator = Locators.zSubjectField;
 			
 			// FALL THROUGH
@@ -636,37 +638,6 @@ public class FormMailNew extends AbsForm {
 			if ( this.sIsElementPresent(locator) && this.zIsVisiblePerPosition(locator, 0, 0) ) {
 				
 				logger.info("FormMailNew.zFillField: Html Compose");
-			
-				/**
-
-	<div id="zv__COMPOSE-1" style="position: absolute; overflow: hidden; left: 0px; top: 100px; width: 996px; height: 533px; z-index: 300;"  class="ZmComposeView" parentid="z_shell">
-	   <table id="zv__COMPOSE-1_header" .../>
-	   <div id="DWT54" style="position: relative; overflow: visible; display: block;" class="ZmHtmlEditor" parentid="zv__COMPOSE-1" x-display="block">
-	     <textarea id="DWT54_content" name="DWT54_content" class="DwtHtmlEditorTextArea" style="height: 413px; display: none;" aria-hidden="true"></textarea>
-	     <span id="DWT54_content_parent" role="application" aria-labelledby="DWT54_content_voice" class="mceEditor defaultSkin">
-	      <table id="DWT54_content_tbl" cellspacing="0" cellpadding="0" role="presentation" class="mceLayout" style="width: 100%; height: auto;">
-	        <tbody>
-	          <tr role="presentation" class="mceFirst">...</tr>
-	          <tr class="mceLast">
-	            <td class="mceIframeContainer mceFirst mceLast">
-	             <iframe id="DWT54_content_ifr" frameborder="0" src="javascript:&quot;&quot;" allowtransparency="true"  title="Rich Text AreaPress ALT-F10 for toolbar. Press ALT-0 for help" style="width: 100%; height: 385px; display: block;">
-	              <html>
-	               <head xmlns="http://www.w3.org/1999/xhtml"><meta content="IE=7" http-equiv="X-UA-Compatible"><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></head>
-	               <body id="tinymce" contenteditable="true" onload="window.parent.tinyMCE.get('DWT54_content').onLoad.dispatch();" class="mceContentBody " style="font-family: times new roman,new york,times,serif; font-size: 12pt; color: rgb(0, 0, 0);" dir="LTR">
-	                <div>
-	                 <br data-mce-bogus="1">
-	                </div>
-	               </body>
-	              </html>
-	             </iframe>
-	            </td>
-	          </tr>
-	        </tbody>
-	      </table>
-	    </div>
-	  </div>
-				  
-				 **/
 				
 				try {
 

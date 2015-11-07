@@ -892,6 +892,8 @@ public class FormApptNew extends AbsForm {
 
 		// subject
 		if (field == Field.Subject) {
+			
+			SleepUtil.sleepMedium();
 
 			locator = "css=div[id^='APPT_COMPOSE_'] td[id$='_subject'] input";
 			
@@ -1077,6 +1079,8 @@ public class FormApptNew extends AbsForm {
 		if (locator == null) {
 			throw new HarnessException("locator was null for field " + field);
 		}
+		
+		SleepUtil.sleepSmall();
 
 		// Make sure the button exists
 		if (!this.sIsElementPresent(locator))

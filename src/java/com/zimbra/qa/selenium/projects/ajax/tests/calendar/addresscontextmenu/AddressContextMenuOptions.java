@@ -33,8 +33,10 @@ public class AddressContextMenuOptions extends PrefGroupMailByMessageTest {
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar
 				.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-
+		
+		SleepUtil.sleepMedium();
 		app.zPageCalendar.zRightClickAddressBubble();
+		SleepUtil.sleepMedium();
 		logger.info(app.zPageMail.zVerifyAllAddressContextMenu("calendar"));
 		ZAssert.assertTrue(
 				app.zPageMail.zVerifyAllAddressContextMenu("calendar"),
