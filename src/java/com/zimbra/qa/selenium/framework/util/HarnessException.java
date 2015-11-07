@@ -26,10 +26,11 @@ public class HarnessException extends Exception {
 	private static final long serialVersionUID = 4657095353247341818L;
 
 	protected void resetAccounts() {
-		logger.error("Reset AccountZWC due to exception");
+		logger.error("Reset account due to exception");
 		ZimbraAccount.ResetAccountZWC();
 		ZimbraAccount.ResetAccountHTML();
 		ZimbraAccount.ResetAccountZMC();
+		ZimbraAccount.ResetAccountZTC();
 		ZimbraAdminAccount.ResetAccountAdminConsoleAdmin();
 		if (ZimbraSeleniumProperties.getAppType() == AppType.ADMIN) {
 			//ClientSessionFactory.session().selenium().refresh();
