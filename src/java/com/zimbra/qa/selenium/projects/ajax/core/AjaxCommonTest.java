@@ -356,17 +356,30 @@ public class AjaxCommonTest {
 			logger.debug("commonTestBeforeMethod: AccountZWC is not currently logged in");
 
 			if ( app.zPageMain.zIsActive() )
-				try{
+				
+				try {
 					app.zPageMain.zLogout();
+	
+				} catch(Exception ex){
+					
+					try {
+						
+						if ( !app.zPageLogin.zIsActive()) {
+							logger.error("Login page is not active ", ex);
+				            app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());            
+				            app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
+						}
+						
+					} catch (Exception e) {
 
-				}catch(Exception ex){
-					if ( !app.zPageLogin.zIsActive()) {
-						logger.error("Login page is not active ", ex);
-
-						app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());            
-						app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
+						if ( (!app.zPageMain.zIsActive()) && (!app.zPageLogin.zIsActive()) ) {
+				            logger.error("Neither login page nor main page were active.  Reload app.", new Exception());
+				            killBrowserAndLogin(ZimbraAccount.Account5());
+				        }
+						
 					}
-				}							
+					
+				}
 		}
 
 		// If a startingPage is defined, then make sure we are on that page
