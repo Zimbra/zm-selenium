@@ -20,14 +20,12 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.*;
-
 import org.apache.log4j.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.testng.*;
 import org.testng.annotations.*;
 import org.xml.sax.SAXException;
-
 import com.thoughtworks.selenium.*;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import com.zimbra.qa.selenium.framework.core.*;
@@ -93,11 +91,9 @@ public class AjaxCommonTest {
 	protected WebDriver _webDriver = null;
 	
 	/**
-	 * The AdminConsole application object
+	 * The Ajax client application object
 	 */
 	protected AppAjaxClient app = null;
-
-
 
 	/**
 	 * BeforeMethod variables
@@ -111,9 +107,6 @@ public class AjaxCommonTest {
 	protected Map<String, String> startingUserPreferences = null;		// TODO:
 	protected Map<String, String> startingUserZimletPreferences = null;
 
-	
-	
-	
 	protected AjaxCommonTest() {
 		logger.info("New "+ AjaxCommonTest.class.getCanonicalName());
 
@@ -142,11 +135,8 @@ public class AjaxCommonTest {
 	throws HarnessException, IOException, InterruptedException, SAXException {
 		logger.info("commonTestBeforeSuite: start");
 
-
-
-      // Make sure there is a new default account
+		// Make sure there is a new default account
 		ZimbraAccount.ResetAccountZWC();
-
 
 		try
 		{
@@ -156,25 +146,6 @@ public class AjaxCommonTest {
 			
 			if (ZimbraSeleniumProperties.isWebDriver()) {
 				_webDriver = ClientSessionFactory.session().webDriver();
-				
-				/*
-				Set<String> handles = _webDriver.getWindowHandles(); 
-				String script = "if (window.screen){var win = window.open(window.location); win.moveTo(0,0);win.resizeTo(window.screen.availWidth, window.screen.availHeight);};"; 
-				((JavascriptExecutor) _webDriver).executeScript(script); 
-				Set<String> newHandles = _webDriver.getWindowHandles(); 
-				newHandles.removeAll(handles); 
-				_webDriver.switchTo().window(newHandles.iterator().next());
-							 							 
-				_webDriver.manage().window().setSize(new Dimension(800,600));
-				 
-				Selenium selenium = new WebDriverBackedSelenium(_webDriver, _webDriver.getCurrentUrl());
-				selenium.windowMaximize();
-						
-				int width = Integer.parseInt(selenium.getEval("screen.width;"));
-				int height = Integer.parseInt(selenium.getEval("screen.height;"));
-				_webDriver.manage().window().setPosition(new Point(0, 0));
-				_webDriver.manage().window().setSize(new Dimension(width,height));
-				*/
 				
 				Capabilities cp =  ((RemoteWebDriver)_webDriver).getCapabilities();
 				 if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){				
@@ -186,14 +157,14 @@ public class AjaxCommonTest {
 						.webDriverBackedSelenium();
 				_webDriverBackedSelenium.windowMaximize();
 				_webDriverBackedSelenium.windowFocus();
-				_webDriverBackedSelenium.setTimeout("30000");// Use 30 second timeout for
+				_webDriverBackedSelenium.setTimeout("60000");// Use 60 second timeout for
 			} else {
 				_selenium = ClientSessionFactory.session().selenium();
 				_selenium.start();
 				_selenium.windowMaximize();
 				_selenium.windowFocus();
 				_selenium.allowNativeXpath("true");
-				_selenium.setTimeout("30000");// Use 30 second timeout for opening the browser
+				_selenium.setTimeout("60000");// Use 60 second timeout for opening the browser
 			}
 			// Dynamic wait for App to be ready
 			int maxRetry = 10;
@@ -224,7 +195,7 @@ public class AjaxCommonTest {
 					appIsReady = true;
 				} catch (SeleniumException e) {
 					if (retry == maxRetry) {
-						logger.error("Unable to open admin app." +
+						logger.error("Unable to open ajax app." +
 								"  Is a valid cert installed?", e);
 						throw e;
 					} else {
@@ -254,11 +225,8 @@ public class AjaxCommonTest {
 	@BeforeClass( groups = { "always" } )
 	public void commonTestBeforeClass() throws HarnessException {
 		logger.info("commonTestBeforeClass: start");
-
 		logger.info("commonTestBeforeClass: finish");
-
 	}
-
 	
 	public void killBrowserAndLogin (ZimbraAccount account) throws HarnessException {
 		
@@ -382,8 +350,6 @@ public class AjaxCommonTest {
 
 			ZimbraAccount.AccountZWC().modifyUserZimletPreferences(startingUserZimletPreferences);
 		}
-
-		
 		
 		// If AccountZWC is not currently logged in, then login now
 		if ( !ZimbraAccount.AccountZWC().equals(app.zGetActiveAccount()) ) {
@@ -514,31 +480,23 @@ public class AjaxCommonTest {
 	public void commonTestAfterMethod(Method method, ITestResult testResult)
 	throws HarnessException {
 		logger.info("commonTestAfterMethod: start");
+		
+		try {
+			
+			if ( ZimbraURI.needsReload() ) {
+	            logger.error("The URL does not match the base URL.  Reload app.");
+	            app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());            
+	            app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
+			}
+			
+		} catch (Exception e) {
 
-
-		// If the active URL does not match the base URL, then
-		// the test case may have manually navigated somewhere.
-		//
-		// Clear the cookies and reload
-		//
-		if ( ZimbraURI.needsReload() ) {
-            logger.error("The URL does not match the base URL.  Reload app.");
-            // app.zPageLogin.sDeleteAllVisibleCookies();
-            app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());            
-            app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
+			if ( (!app.zPageMain.zIsActive()) && (!app.zPageLogin.zIsActive()) ) {
+	            logger.error("Neither login page nor main page were active.  Reload app.", new Exception());
+	            killBrowserAndLogin(ZimbraAccount.Account5());
+	        }
+			
 		}
-
-		// If neither the main page or login page are active, then
-		// The app may be in a confused state.
-		//
-		// Clear the cookies and reload
-		//
-		if ( (!app.zPageMain.zIsActive()) && (!app.zPageLogin.zIsActive()) ) {
-            logger.error("Neither login page nor main page were active.  Reload app.", new Exception());
-            // app.zPageLogin.sDeleteAllVisibleCookies();
-            app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());            
-            app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
-        }
 		
 		logger.info("commonTestAfterMethod: finish");
 	}
