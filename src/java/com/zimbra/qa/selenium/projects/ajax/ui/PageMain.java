@@ -60,7 +60,7 @@ public class PageMain extends AbsTab {
 	}
 	
 	public Toaster zGetToaster() throws HarnessException {
-		this.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
 		Toaster toaster = new Toaster(this.MyApplication);
 		logger.info("toaster is active: "+ toaster.zIsActive());
 		return (toaster);
