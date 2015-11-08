@@ -1952,8 +1952,7 @@ public class PageCalendar extends AbsTab {
 		String locator = null; // If set, this will be clicked
 		AbsPage page = null; // If set, this page will be returned
 
-		// Based on the button specified, take the appropriate action(s)
-		//
+		SleepUtil.sleepSmall();
 
 		if (button == Button.B_REFRESH) {
 			
@@ -2176,8 +2175,13 @@ public class PageCalendar extends AbsTab {
 			page.zWaitForActive();
 
 		}
+		
+		if (button == Button.B_NEW) {
+			SleepUtil.sleepMedium();
+		} else {
+			SleepUtil.sleepSmall();
+		}
 
-		SleepUtil.sleepSmall();
 		return (page);
 	}
 

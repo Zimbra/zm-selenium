@@ -1105,7 +1105,9 @@ public class FormApptNew extends AbsForm {
 				this.sTypeDateTime(locator, value);
 				
 			} else if (field == Field.Subject) {
+				SleepUtil.sleepMedium();
 				this.sFocus(locator);
+				SleepUtil.sleepSmall();
 				this.sType(locator, value);
 				SleepUtil.sleepSmall();
 				if (sIsElementPresent("css=td[id='zb__App__tab_COMPOSE-1_right_icon']")) {
