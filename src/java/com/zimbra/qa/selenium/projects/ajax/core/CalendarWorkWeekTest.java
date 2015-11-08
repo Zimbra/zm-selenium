@@ -48,17 +48,15 @@ public class CalendarWorkWeekTest extends AjaxCommonTest {
 		
 		if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY ) {
 			
-			// If UTC is Friday, tests may fail if the TZ offset
-			// puts the date into Saturday.  Move the time to Thursday
-			// just to be safe.
+			// Change Saturdays to Tuesday.
 			
-			calendarWeekDayUTC.add(Calendar.HOUR, -24);
+			calendarWeekDayUTC.add(Calendar.HOUR, 96);
 			
 		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ) {
 			
-			// Change Saturdays to Thursday.
+			// Change Saturdays to Tuesday.
 			
-			calendarWeekDayUTC.add(Calendar.HOUR, -48);
+			calendarWeekDayUTC.add(Calendar.HOUR, 72);
 			
 		} else if ( calendarWeekDayUTC.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ) {
 			
