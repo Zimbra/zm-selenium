@@ -20,7 +20,7 @@ public class AddressContextMenuOptions extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Right click To attendee bubble address>>Verify Delete/Copy/Edit/Expand/AddtoContacts menus", groups = { "sanity" })
+	@Test(description = "Right click To attendee bubble address>>Verify Delete/Copy/Edit/Expand/AddtoContacts menus", groups = { "sanity-temp-skipped" })
 	public void VerifyAttendeesContextMenuOptions() throws HarnessException {
 
 		String apptAttendee1,apptContent;

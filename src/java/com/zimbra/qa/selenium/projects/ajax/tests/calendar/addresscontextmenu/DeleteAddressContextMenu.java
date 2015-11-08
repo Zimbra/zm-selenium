@@ -25,7 +25,7 @@ public class DeleteAddressContextMenu extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Right click To bubble address>>Delete", groups = { "smoke" })
+	@Test(description = "Right click To bubble address>>Delete", groups = { "smoke-temp-skipped" })
 	public void DeleteAttendeeContextMenu() throws HarnessException {
 
 		String apptAttendee1,apptContent;
@@ -54,7 +54,7 @@ public class DeleteAddressContextMenu extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Right click To bubble address>>Delete (Keyboard shortcut)", groups = { "smoke" })
+	@Test(description = "Right click To bubble address>>Delete (Keyboard shortcut)", groups = { "smoke-temp-skipped" })
 	public void DeleteAttendeeContextMenu_DeleteShortcut() throws HarnessException {
 
 		String apptAttendee1,apptContent;
@@ -81,7 +81,7 @@ public class DeleteAddressContextMenu extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Right click To bubble address>>Delete (BackSpace shortcut)", groups = { "smoke" })
+	@Test(description = "Right click To bubble address>>Delete (BackSpace shortcut)", groups = { "smoke-temp-skipped" })
 	public void DeleteAttendeeContextMenu_Backspace() throws HarnessException {
 
 		String apptAttendee1,apptContent;
