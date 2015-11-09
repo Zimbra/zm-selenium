@@ -1082,11 +1082,6 @@ public class FormApptNew extends AbsForm {
 		
 		SleepUtil.sleepSmall();
 
-		// Make sure the button exists
-		if (!this.sIsElementPresent(locator))
-			throw new HarnessException("Field is not present field=" + field
-					+ " locator=" + locator);
-
 		if (isRepeat != null) {
 			this.sClickAt(locator, "");
 			zRecurringOptions(locator, value, isRepeat);

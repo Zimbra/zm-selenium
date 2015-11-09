@@ -1615,7 +1615,7 @@ public abstract class AbsSeleniumObject {
 	 * @throws HarnessException 
 	 */
 	public boolean sIsElementPresent(String locator) throws HarnessException {
-		boolean present;
+		boolean present = false;
 		if (locator.startsWith("//") || locator.startsWith("xpath")) {
 			logger.warn("FIXME: the locator " + locator
 					+ " is a xpath - should change to css");
@@ -1626,8 +1626,18 @@ public abstract class AbsSeleniumObject {
 		}
 		else {
 			long startTime = System.currentTimeMillis();
-			present = ((DefaultSelenium) ClientSessionFactory.session()
-				.selenium()).isElementPresent(locator);
+			
+			try {
+				present = ((DefaultSelenium) ClientSessionFactory.session()
+						.selenium()).isElementPresent(locator);
+				
+			} catch (Exception e) {
+				
+				if (present != false && present != true) {
+					present = false;
+				}
+			}
+			
 			long runTime = System.currentTimeMillis() - startTime;
 			// if run time > 2 sec, the locator is probably xpath; should change to
 			// css

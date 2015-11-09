@@ -717,9 +717,11 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
-		//
-		this.sClickAt(locator, "0,0");
+		if (button == Button.B_NEW) {
+			this.zClickAt(locator, "0,0");
+		} else {
+			this.sClickAt(locator, "0,0");
+		}
 
 		// need small wait so that next element gets appeared/visible after
 		// click

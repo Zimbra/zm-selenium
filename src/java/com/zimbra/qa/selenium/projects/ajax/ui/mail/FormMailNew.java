@@ -374,12 +374,7 @@ public class FormMailNew extends AbsForm {
 				// This action requires a 'wait for postfix queue'
 				optionLocator = "css=tr#POPUP_SEND td#SEND_title";
 				page = null;
-				
-				// Make sure the locator exists
-				if ( !this.sIsElementPresent(pulldownLocator) ) {
-					throw new HarnessException("Button "+ pulldown +" option "+ option +" pulldownLocator "+ pulldownLocator +" not present!");
-				}
-				
+								
 				// For some reason, zClick() activates the entire button, not the pulldown
 				// As a work around use right click
 				// this.zClick(pulldownLocator);
@@ -387,11 +382,6 @@ public class FormMailNew extends AbsForm {
 
 				this.zWaitForBusyOverlay();
 				
-				// Make sure the locator exists
-				if ( !this.sIsElementPresent(optionLocator) ) {
-					throw new HarnessException("Button "+ pulldown +" option "+ option +" optionLocator "+ optionLocator +" not present!");
-				}
-					
 				this.zClick(optionLocator);
 
 				this.zWaitForBusyOverlay();
@@ -410,23 +400,13 @@ public class FormMailNew extends AbsForm {
 				optionLocator = "css=tr#POPUP_SEND_LATER td#SEND_LATER_title";
 				page = new DialogSendLater(this.MyApplication, ((AppAjaxClient)MyApplication).zPageMail);
 
-				// Make sure the locator exists
-				if ( !this.sIsElementPresent(pulldownLocator) ) {
-					throw new HarnessException("Button "+ pulldown +" option "+ option +" pulldownLocator "+ pulldownLocator +" not present!");
-				}
-				
 				// For some reason, zClick() activates the entire button, not the pulldown
 				// As a work around use right click
 				// this.zClick(pulldownLocator);
 				this.zRightClick(pulldownLocator);
 
 				this.zWaitForBusyOverlay();
-				
-				// Make sure the locator exists
-				if ( !this.sIsElementPresent(optionLocator) ) {
-					throw new HarnessException("Button "+ pulldown +" option "+ option +" optionLocator "+ optionLocator +" not present!");
-				}
-					
+									
 				this.zClick(optionLocator);
 
 				this.zWaitForBusyOverlay();
@@ -446,12 +426,7 @@ public class FormMailNew extends AbsForm {
 
 		// Default behavior
 		if ( pulldownLocator != null ) {
-						
-			// Make sure the locator exists
-			if ( !this.sIsElementPresent(pulldownLocator) ) {
-				throw new HarnessException("Button "+ pulldown +" option "+ option +" pulldownLocator "+ pulldownLocator +" not present!");
-			}
-			
+					
 			this.zClick(pulldownLocator);
 			
 			SleepUtil.sleepSmall();
@@ -459,11 +434,6 @@ public class FormMailNew extends AbsForm {
 			this.zWaitForBusyOverlay();
 			
 			if ( optionLocator != null ) {
-
-				// Make sure the locator exists
-				if ( !this.sIsElementPresent(optionLocator) ) {
-					throw new HarnessException("Button "+ pulldown +" option "+ option +" optionLocator "+ optionLocator +" not present!");
-				}
 				
 				this.zClick(optionLocator);
 
@@ -495,22 +465,12 @@ public class FormMailNew extends AbsForm {
 		
 		// Default behavior
 		if ( pulldownLocator != null ) {
-						
-			// Make sure the locator exists
-			if ( !this.sIsElementPresent(pulldownLocator) ) {
-				throw new HarnessException("pulldownLocator not present! "+ pulldownLocator);
-			}
-			
+									
 			this.zClick(pulldownLocator);
 
 			this.zWaitForBusyOverlay();
 			
 			if ( optionLocator != null ) {
-
-				// Make sure the locator exists
-				if ( !this.sIsElementPresent(optionLocator) ) {
-					throw new HarnessException("optionLocator not present! "+ optionLocator);
-				}
 				
 				this.zClick(optionLocator);
 
@@ -537,10 +497,6 @@ public class FormMailNew extends AbsForm {
 		if ( field == Field.To ) {
 			
 			locator = Locators.zToField;
-			
-			// Make sure the button exists
-			if ( !this.sIsElementPresent(locator) )
-				throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
 			
 			// Seems that the client can't handle filling out the new mail form too quickly
 			// Click in the "To" fields, etc, to make sure the client is readybody143712287407910enus14371228710998@testdomain.com
@@ -569,10 +525,6 @@ public class FormMailNew extends AbsForm {
 			
 			locator = Locators.zCcField;
 			
-			// Make sure the button exists
-			if ( !this.sIsElementPresent(locator) )
-				throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
-			
 			// Seems that the client can't handle filling out the new mail form too quickly
 			// Click in the "To" fields, etc, to make sure the client is ready
 			this.sFocus(locator);
@@ -596,10 +548,6 @@ public class FormMailNew extends AbsForm {
 			if ( !zBccIsActive() ) {
 				this.zToolbarPressButton(Button.B_SHOWBCC);
 			}
-			
-			// Make sure the button exists
-			if ( !this.sIsElementPresent(locator) )
-				throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
 			
 			// Seems that the client can't handle filling out the new mail form too quickly
 			// Click in the "To" fields, etc, to make sure the client is ready
@@ -645,9 +593,6 @@ public class FormMailNew extends AbsForm {
 
 					locator = "css=html body";
 
-					if (!this.sIsElementPresent(locator))
-						throw new HarnessException("Unable to locate compose body");
-
 					this.sFocus(locator);
 					this.zClick(locator);
 					
@@ -676,20 +621,6 @@ public class FormMailNew extends AbsForm {
 			if ( this.sIsElementPresent(locator) && this.zIsVisiblePerPosition(locator, 0, 0) ) {
 				
 				logger.info("FormMailNew.zFillField: Text Compose");
-
-				/**
-
-  <div id="zv__COMPOSE-1" style="position: absolute; overflow: hidden; left: 0px; top: 100px; width: 996px; height: 533px; z-index: 300;" class="ZmComposeView" parentid="z_shell">
-    <table id="zv__COMPOSE-1_header" width="100%" cellspacing="6" class="ZPropertySheet">
-	...
-    </table>
-    <div id="DWT52" style="position: relative; overflow: visible; display: block;" class="ZmHtmlEditor" parentid="zv__COMPOSE-1">
-      <textarea id="DWT52_content" name="DWT52_content" class="DwtHtmlEditorTextArea" style="height: 413px;">
-      </textarea>
-    </div>
-  </div>
-				  
-				 **/
 				
 				this.sFocus(locator);
 				this.zClick(locator);
@@ -724,10 +655,6 @@ public class FormMailNew extends AbsForm {
 
 					locator = "css=textarea[id*='textarea_']";
 
-					if (!this.sIsElementPresent(locator))
-						throw new HarnessException(
-								"Unable to locate compose body");
-
 					this.sFocus(locator);
 					this.zClick(locator);
 					this.zWaitForBusyOverlay();
@@ -739,10 +666,7 @@ public class FormMailNew extends AbsForm {
 
 					//locator = "css=iframe[id^='iframe_DWT']";
 					locator ="css=iframe[id$='_content_ifr']";
-					if (!this.sIsElementPresent(locator))
-						throw new HarnessException(
-								"Unable to locate compose body");
-
+					
 					zTypeFormattedText(locator, value);
 
 					// Is this requried?
@@ -760,9 +684,6 @@ public class FormMailNew extends AbsForm {
 
 					locator = "css=textarea[class='DwtHtmlEditorTextArea']";
 
-					if (!this.sIsElementPresent(locator))
-						throw new HarnessException("Unable to locate compose body");
-
 					this.sFocus(locator);
 					this.zClick(locator);
 					this.zWaitForBusyOverlay();
@@ -778,9 +699,6 @@ public class FormMailNew extends AbsForm {
 					try {
 
 						locator = "css=iframe[id$='_content_ifr']";
-
-						if (!this.sIsElementPresent(locator))
-							throw new HarnessException("Unable to locate compose body");
 
 						this.sFocus(locator);
 						this.zClickAt(locator,"");
@@ -820,10 +738,6 @@ public class FormMailNew extends AbsForm {
 
 						locator = "css=html body";
 
-						if (!this.sIsElementPresent(locator))
-							throw new HarnessException(
-									"Unable to locate compose body");
-
 						this.sFocus(locator);
 						this.zClick(locator);
 						
@@ -861,15 +775,6 @@ public class FormMailNew extends AbsForm {
 			throw new HarnessException("locator was null for field "+ field);
 		}
 		
-		// Default behavior, enter value into locator field
-		//
-		
-		// Make sure the button exists
-		if ( !this.sIsElementPresent(locator) )
-			throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
-		
-		// Seems that the client can't handle filling out the new mail form too quickly
-		// Click in the "To" fields, etc, to make sure the client is ready
 		this.sFocus(locator);
 		this.zClick(locator);
 		this.zWaitForBusyOverlay();
@@ -891,8 +796,6 @@ public class FormMailNew extends AbsForm {
 		String locator;
 		
 		locator = "css=div[id^='zv__COMPOSE'] tr[id$='_bcc_row']";
-		if ( !sIsElementPresent(locator) )
-			throw new HarnessException("Unable to locate the BCC field "+ locator);
 		
 		locator = locator + "[style*=none]";
 		return (!sIsElementPresent(locator));
@@ -1107,11 +1010,6 @@ public class FormMailNew extends AbsForm {
 			throw new HarnessException("locator was null for field "+ field);
 		}
 		
-		
-		// Make sure the button exists
-		if ( !this.sIsElementPresent(locator) )
-			throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
-		
 		// Seems that the client can't handle filling out the new mail form too quickly
 		// Click in the "To" fields, etc, to make sure the client is ready
 		this.sFocus(locator);
@@ -1290,10 +1188,6 @@ public class FormMailNew extends AbsForm {
 		// Make sure something was set
 		if ( locator == null )
 			throw new HarnessException("locator was null for field = "+ field);
-		
-		// Make sure the field is present
-		if ( !this.sIsElementPresent(locator) )
-			throw new HarnessException("Unable to find the field = "+ field +" using locator = "+ locator);
 		
 		// Get the field value
 		fieldValue = this.sGetText(locator);
