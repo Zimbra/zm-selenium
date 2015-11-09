@@ -90,6 +90,8 @@ import org.openqa.selenium.internal.Locatable;
  * @author Matt Rhoades
  * 
  */
+
+@SuppressWarnings("deprecation")
 public abstract class AbsSeleniumObject {
 	protected static final int LoadDelay = 30000; // wait 30 seconds for objects
 	// to load
@@ -1603,7 +1605,12 @@ public abstract class AbsSeleniumObject {
 				executeScript("arguments[0].focus();", we);  
 			}
 		}else{
-		    ClientSessionFactory.session().selenium().focus(locator);
+			try {
+				ClientSessionFactory.session().selenium().focus(locator);
+			} catch (Exception e) {
+				logger.info("Couldn't focus to " + locator + " locator.");
+			}
+		    
 		}
 	    } catch (SeleniumException ex) {
 		throw new HarnessException("Unable to focus on locator " + locator, ex);
@@ -1634,6 +1641,7 @@ public abstract class AbsSeleniumObject {
 			} catch (Exception e) {
 				
 				if (present != false && present != true) {
+					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
 					present = false;
 				}
 			}

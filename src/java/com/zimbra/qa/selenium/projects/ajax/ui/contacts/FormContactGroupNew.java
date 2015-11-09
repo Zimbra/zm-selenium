@@ -341,8 +341,7 @@ public class FormContactGroupNew extends AbsForm {
 			} else {
 	
 				this.sClickAt(locator,"");
-				this.sType(locator, "");				// clear the contents
-				this.sType(locator, value);				// Use Selenium to input the characters
+				this.zTypeKeys(locator, value);				// Use Selenium to input the characters
 				this.zWaitForBusyOverlay();
 				
 			}
