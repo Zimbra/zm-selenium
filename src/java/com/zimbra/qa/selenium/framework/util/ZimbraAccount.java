@@ -372,6 +372,7 @@ public class ZimbraAccount {
 
 		put("zimbraPrefAutoAddAddressEnabled", "FALSE");
 		put("zimbraPrefCalendarApptReminderWarningTime", "0");
+		put("zimbraPrefCalendarShowPastDueReminders", "FALSE");
 		put("zimbraPrefWarnOnExit","FALSE");
 		put("zimbraFeatureTouchClientEnabled","TRUE");
 	}};
