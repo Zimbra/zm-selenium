@@ -351,7 +351,7 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		    	   for (char c : characters.toCharArray()) {
 		    	      try {
 		    		   type(c);
-		    		   Thread.sleep(100);
+		    		   Thread.sleep(300);
 		    	      }catch (Exception e) {
 		    	    	  logger.warn(e);
 					}

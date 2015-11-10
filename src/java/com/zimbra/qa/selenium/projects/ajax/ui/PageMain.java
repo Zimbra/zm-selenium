@@ -375,17 +375,19 @@ public class PageMain extends AbsTab {
 	 */
 	public void zCloseComposeTabs() throws HarnessException {
 		
-		String locator = "css=td[id^='ztb_appChooser_item_'] div[id^='zb__App__tab_COMPOSE']";
+		String locator = "css=div[id^='zb__App__tab']";
 		if ( sIsElementPresent(locator) ) {
 			logger.debug("Found compose tabs");
-			
 			int count = this.sGetCssCount(locator);
 			for (int i = 1; i <= count; i++) {
-				final String composeLocator = locator + ":nth-child("+i+") td[id$='_left_icon']";
+				final String composeLocator = locator + ":nth-child("+i+") td[id$='_right_icon']";
 				if ( !sIsElementPresent(composeLocator) ) 
 					throw new HarnessException("Unable to find compose tab close icon "+ composeLocator);
 				this.zClick(composeLocator);
-				this.zWaitForBusyOverlay();
+				if (sIsElementPresent("css=td[id^='YesNoCancel'][id$='_title']:contains('No')")) {
+					SleepUtil.sleepSmall();
+					this.zClickAt("css=td[id^='YesNoCancel'][id$='_title']:contains('No')", "0,0");
+				}
 			}
 		}
 	}

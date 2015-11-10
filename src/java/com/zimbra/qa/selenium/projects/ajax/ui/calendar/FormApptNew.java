@@ -1100,14 +1100,8 @@ public class FormApptNew extends AbsForm {
 				SleepUtil.sleepSmall();
 				this.sType(locator, value);
 				SleepUtil.sleepSmall();
-				if (sIsElementPresent("css=td[id='zb__App__tab_COMPOSE-1_right_icon']")) {
-					sClickAt("css=td[id='zb__App__tab_COMPOSE-1_right_icon']", "0,0");
-				}
 				
 			} else {
-				if (sIsElementPresent("css=td[id='zb__App__tab_COMPOSE-1_right_icon']")) {
-					sClickAt("css=td[id='zb__App__tab_COMPOSE-1_right_icon']", "0,0");
-				}
 				this.sFocus(locator);
 				SleepUtil.sleepSmall();
 				this.sType(locator, value);

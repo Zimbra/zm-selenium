@@ -253,11 +253,6 @@ public class FormMailNew extends AbsForm {
 			if ( zBccIsActive() )
 				return (this);
 			
-			////
-			// For some reason, zClick doesn't work for "Show BCC", but sClick does
-			////
-			
-			// Click it
 			this.zClick(locator);
 			
 			this.zWaitForBusyOverlay();
@@ -272,10 +267,6 @@ public class FormMailNew extends AbsForm {
 		if ( locator == null )
 			throw new HarnessException("locator was null for button "+ button);
 
-		
-		// Default behavior, process the locator by clicking on it
-		//
-		
 		// Click it
 		this.zClick(locator);
 
@@ -498,21 +489,16 @@ public class FormMailNew extends AbsForm {
 			
 			locator = Locators.zToField;
 			
-			// Seems that the client can't handle filling out the new mail form too quickly
-			// Click in the "To" fields, etc, to make sure the client is readybody143712287407910enus14371228710998@testdomain.com
 			this.sFocus(locator);
 			this.zClick(locator);
 			SleepUtil.sleepSmall();
-			
-			// Enter text
-			// this.sType(locator, value);
-			this.zKeyboard.zTypeCharacters(value);
+
+			this.sType(locator, value);
 			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 			SleepUtil.sleepSmall();
-			this.zWaitForBusyOverlay();
 
 			return;
 			
@@ -525,8 +511,6 @@ public class FormMailNew extends AbsForm {
 			
 			locator = Locators.zCcField;
 			
-			// Seems that the client can't handle filling out the new mail form too quickly
-			// Click in the "To" fields, etc, to make sure the client is ready
 			this.sFocus(locator);
 			this.zClick(locator);
 			SleepUtil.sleepSmall();
@@ -548,9 +532,7 @@ public class FormMailNew extends AbsForm {
 			if ( !zBccIsActive() ) {
 				this.zToolbarPressButton(Button.B_SHOWBCC);
 			}
-			
-			// Seems that the client can't handle filling out the new mail form too quickly
-			// Click in the "To" fields, etc, to make sure the client is ready
+
 			this.sFocus(locator);
 			this.zClick(locator);
 			SleepUtil.sleepSmall();
@@ -566,22 +548,14 @@ public class FormMailNew extends AbsForm {
 						
 		} else if ( field == Field.Subject ) {
 			
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepSmall();
 			
 			locator = Locators.zSubjectField;
 			
-			// FALL THROUGH
-			
 		} else if (field == Field.Body) {
 
-			// For some reason, the client expects a bit of a delay here.
-			// A cancel compose will not register unless this delay is here
-			// projects.ajax.tests.mail.compose.CancelComposeHtml.CancelComposeHtml_01
-			// http://server/testlogs/UBUNTU10_64/HELIX/20110621210101_FOSS/SelNG-projects-ajax-tests/130872172760061/server/AJAX/firefox_3.6.12/en_US/debug/projects/ajax/tests/mail/compose/CancelComposeHtml/CancelComposeHtml_01.txt
-			//
 			SleepUtil.sleepLong();
 
-			
 			locator = "css=div[id^='zv__COMPOSE'] iframe[id$='_body_ifr']";
 			if ( this.sIsElementPresent(locator) && this.zIsVisiblePerPosition(locator, 0, 0) ) {
 				
@@ -596,11 +570,6 @@ public class FormMailNew extends AbsForm {
 					this.sFocus(locator);
 					this.zClick(locator);
 					
-					/*
-					 * Oct 25, 2011: The new TinyMCE editor broke sType().  Use zKeyboard instead,
-					 * however, it is preferred to use sType() if possible, but I can't find a
-					 * solution right now. 
-					 */
 					// this.sType(locator, value);
 					this.zKeyboard.zTypeCharacters(value);
 
@@ -630,15 +599,6 @@ public class FormMailNew extends AbsForm {
 				return;
 
 			}
-			
-			
-			/**
-			 * 7/2/2013: Matt
-			 * Below is the OLD code to handle compose.  It handled IE and other
-			 * browser implementations, which may not be required for webdriver.
-			 * 
-			 * Maybe remove if not being used? 
-			 **/
 			
 			
 			int frames = this.sGetCssCount("css=iframe");
@@ -703,11 +663,6 @@ public class FormMailNew extends AbsForm {
 						this.sFocus(locator);
 						this.zClickAt(locator,"");
 
-						/*
-						 * Oct 25, 2011: The new TinyMCE editor broke sType().  Use zKeyboard instead,
-						 * however, it is preferred to use sType() if possible, but I can't find a
-						 * solution right now. 
-						 */
 						// this.sType(locator, value);
 						//this.zKeyboard.zTypeCharacters(value);
 						zTypeFormattedText(locator, value);
@@ -741,11 +696,6 @@ public class FormMailNew extends AbsForm {
 						this.sFocus(locator);
 						this.zClick(locator);
 						
-						/*
-						 * Oct 25, 2011: The new TinyMCE editor broke sType().  Use zKeyboard instead,
-						 * however, it is preferred to use sType() if possible, but I can't find a
-						 * solution right now. 
-						 */
 						// this.sType(locator, value);
 						this.zKeyboard.zTypeCharacters(value);
 
@@ -791,9 +741,6 @@ public class FormMailNew extends AbsForm {
 	private boolean zBccIsActive() throws HarnessException {
 		logger.info(myPageName() + ".zBccIsActive()");
 
-		// <tr id='zv__COMPOSEX_bcc_row' style='display: table_row' x-display='table-row' ...
-		// <tr id='zv__COMPOSEX_bcc_row' style='display: none'  x-display='table-row' ...
-		
 		String locator;
 		
 		locator = "css=div[id^='zv__COMPOSE'] tr[id$='_bcc_row']";
@@ -815,12 +762,7 @@ public class FormMailNew extends AbsForm {
 		// Convert object to MailItem
 		MailItem mail = (MailItem) item;
 		
-		// Fill out the form
-		//
-		
-		// Handle the subject
 		if ( mail.dSubject != null ) {
-			
 			zFillField(Field.Subject, mail.dSubject);
 
 		}
@@ -1038,8 +980,6 @@ public class FormMailNew extends AbsForm {
 
 		waitForAutocomplete();
 		
-// logger.info(this.sGetHtmlSource());		// For debugging
-
 		return (zAutocompleteListGetEntries());
 		
 	}

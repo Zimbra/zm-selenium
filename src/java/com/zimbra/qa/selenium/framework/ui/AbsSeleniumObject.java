@@ -52,7 +52,6 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.SeleniumException;
 import com.thoughtworks.selenium.webdriven.JavascriptLibrary;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
@@ -168,7 +167,7 @@ public abstract class AbsSeleniumObject {
 		if (BrowserUserAgent == null) {
 			if (ZimbraSeleniumProperties.isWebDriver()){
 				BrowserUserAgent = sGetEval("return navigator.userAgent;");
-			}else{
+			} else {
 				BrowserUserAgent = sGetEval("navigator.userAgent;");
 			}
 			logger.info("UserAgent: (navigator.userAgent;) >>>>>> "
@@ -310,30 +309,49 @@ public abstract class AbsSeleniumObject {
 	 */
 	public boolean zIsVisiblePerPosition(String locator, int leftLimit,
 			int topLimit) throws HarnessException {
+
 		if (ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver...findElement:getLocation().x:y");
 			return elementVisiblePerPosition(locator);
-		}else{
-			// Check if the locator is present
-			if (!sIsElementPresent(locator)) {
-				logger.info("isVisiblePerPosition(" + locator
-					+ ") element is not present");
-				return (false);
+
+		} else {
+
+			Boolean present = false;
+
+	    	try {
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+				if (present == true) {
+
+					// Find the current position
+					int left = sGetElementPositionLeft(locator);
+					int top = sGetElementPositionTop(locator);
+
+					// If the position is less than the limits, then it is hidden
+					boolean hidden = ((left < leftLimit) && (top < topLimit));
+					logger.info("isVisiblePerPosition(" + locator + ") - "
+						+ "(left, top) = (" + left + ", " + top + ")"
+						+ "(limit, limit) = (" + leftLimit + ", " + topLimit + ")  = "
+						+ (!hidden));
+
+					return (!hidden);
+	    		}
+
+			} catch (Exception e) {
+
+				if (present != false && present != true) {
+					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+					throw new HarnessException("Locator " + locator + " not present", e);
+
+				} else if (present == false) {
+					throw new HarnessException("Locator " + locator + " not present", e);
+				}
+
 			}
-
-			// Find the current position
-			int left = sGetElementPositionLeft(locator);
-			int top = sGetElementPositionTop(locator);
-
-			// If the position is less than the limits, then it is hidden
-			boolean hidden = ((left < leftLimit) && (top < topLimit));
-			logger.info("isVisiblePerPosition(" + locator + ") - "
-				+ "(left, top) = (" + left + ", " + top + ")"
-				+ "(limit, limit) = (" + leftLimit + ", " + topLimit + ")  = "
-				+ (!hidden));
-
-			return (!hidden);
 		}
+
+		return (false);
+
 	}
 
 	/**
@@ -348,7 +366,7 @@ public abstract class AbsSeleniumObject {
 	    logger.info("zClickAt(" + locator + "," + coord + ")");
 
 	    WebElement we = null;
-	    // Check if the locator is present
+
 	    if (ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver...getElement");
 			if(elements != null && elements.length > 0){
@@ -356,40 +374,42 @@ public abstract class AbsSeleniumObject {
 			} else {
 			    we = getElement(locator);
 			}
+
+			try {
+				logger.info("...WebDriver...moveToElement:click()");
+			    final Actions builder = new Actions(webDriver());
+			    final Action action = builder.moveToElement(we).click(we).build();
+			    action.perform();
+
+		    } catch (Exception ex){
+		    	throw new HarnessException("Unable to clickAt on locator " + locator, ex);
+		    }
+
 	    } else {
-	    	Boolean present = null;
+
+	    	Boolean present = false;
+
 	    	try {
-				present = ((DefaultSelenium) ClientSessionFactory.session()	.selenium()).isElementPresent(locator);
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+				if (present == true) {
+				    this.sMouseDownAt(locator, coord);
+				    this.sMouseUpAt(locator, coord);
+	    		}
 
 			} catch (Exception e) {
 
 				if (present != false && present != true) {
 					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
 					throw new HarnessException("Locator " + locator + " not present", e);
-					
+
 				} else if (present == false) {
 					throw new HarnessException("Locator " + locator + " not present", e);
 				}
-				
+
 			}
 	    }
 
-	    try {
-			if (ZimbraSeleniumProperties.isWebDriver()){
-			    logger.info("...WebDriver...moveToElement:click()");
-			    final Actions builder = new Actions(webDriver());
-			    final Action action = builder.moveToElement(we).click(we)
-					    .build();
-			    action.perform();
-			    //Mouse mouse = ((HasInputDevices) webDriver()).getMouse();
-			    //mouse.click(((Locatable)we).getCoordinates());
-			} else {
-			    this.sMouseDownAt(locator, coord);
-			    this.sMouseUpAt(locator, coord);
-			}
-	    } catch(Exception ex){
-	    	throw new HarnessException("Unable to clickAt on locator " + locator, ex);
-	    }
 	}
 
 	/**
@@ -402,19 +422,44 @@ public abstract class AbsSeleniumObject {
 	    logger.info("zClick(" + locator + ")");
 
 	    WebElement we = null;
-	    // Check if the locator is present
+
 	    if (ZimbraSeleniumProperties.isWebDriver()) {
+
 			logger.info("...WebDriver...getElement");
+
 			if(elements != null && elements.length > 0){
 			    we = elements[0];
 			} else {
 			    we = getElement(locator);
 			}
 
+			try {
+			    logger.info("...WebDriver...click()");
+			    final Actions builder = new Actions(webDriver());
+			    final Action action = builder.click(we).build();
+			    action.perform();
+
+		    } catch (Exception ex){
+		    	throw new HarnessException("Unable to click on locator " + locator, ex);
+		    }
+
 	    } else {
-	    	Boolean present = null;
+
+	    	Boolean present = false;
+
 	    	try {
-				present = ((DefaultSelenium) ClientSessionFactory.session().selenium()).isElementPresent(locator);
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+				if (present == true) {
+
+					try {
+						this.sMouseDown(locator);
+						this.sMouseUp(locator);
+				    } catch (Exception ex){
+				    	throw new HarnessException("Unable to click on locator " + locator, ex);
+				    }
+
+				}
 
 			} catch (Exception e) {
 
@@ -425,23 +470,8 @@ public abstract class AbsSeleniumObject {
 				} else if (present == false) {
 					throw new HarnessException("Locator " + locator + " not present", e);
 				}
-				
-			}
-	    }
 
-	    try {
-			if (ZimbraSeleniumProperties.isWebDriver()){
-			    logger.info("...WebDriver...click()");
-			    final Actions builder = new Actions(webDriver());
-			    final Action action = builder.click(we)
-					    .build();
-			    action.perform();
-			} else {
-			    this.sMouseDown(locator);
-			    this.sMouseUp(locator);
 			}
-	    } catch(Exception ex){
-	    	throw new HarnessException("Unable to click on locator " + locator, ex);
 	    }
 	}
 
@@ -453,22 +483,37 @@ public abstract class AbsSeleniumObject {
 	 */
 	public void zCheckboxSet(String locator, boolean status) throws HarnessException {
 
-		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException(locator + " no present!");
-		}
+		Boolean present = false;
 
-		if ( this.sIsChecked(locator) == status ) {
-			logger.debug("checkbox status matched.  not doing anything");
-			return;
-		}
+    	try {
+			present = ClientSessionFactory.session().selenium().isElementPresent(locator);
 
-		if ( status == true ) {
-			this.sCheck(locator);
-		} else {
-			this.sUncheck(locator);
-		}
+			if (present == true) {
 
-		this.zWaitForBusyOverlay();
+				if ( status == true ) {
+					this.sCheck(locator);
+				} else {
+					this.sUncheck(locator);
+				}
+
+				if ( this.sIsChecked(locator) == status ) {
+					logger.debug("checkbox status matched.  not doing anything");
+					return;
+				}
+
+			}
+
+		} catch (Exception e) {
+
+			if (present != false && present != true) {
+				logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+				throw new HarnessException("Locator " + locator + " not present", e);
+
+			} else if (present == false) {
+				throw new HarnessException("Locator " + locator + " not present", e);
+			}
+
+		}
 
 	}
 
@@ -482,43 +527,47 @@ public abstract class AbsSeleniumObject {
 	 */
 	public void zRightClickAt(String locator, String coord, WebElement... elements)
 			throws HarnessException {
+
 	    logger.info("zRightClickAt(" + locator + "," + coord + ")");
 
 	    WebElement we = null;
-	    // Check if the locator is present
+
 	    if (ZimbraSeleniumProperties.isWebDriver()){
-		logger.info("...WebDriver...getElement");
-		if(elements != null && elements.length > 0){
-		    we = elements[0];
-		} else {
-		    we = getElement(locator);
-		}
+			logger.info("...WebDriver...getElement");
+			if(elements != null && elements.length > 0){
+			    we = elements[0];
+			} else {
+			    we = getElement(locator);
+			}
 
-	    } else {
-		if (!sIsElementPresent(locator)) {
-		    logger.info("zRightClickAt(" + locator + ") element is not present");
-		    throw new HarnessException("zRightClickAt(" + locator
-			+ ") element is not present");
-		}
-	    }
-
-	    try{
-	    	if (ZimbraSeleniumProperties.isWebDriver()){
+			try {
 	    	    logger.info("...WebDriver...moveToElement:contextClick()");
 	    	    final Actions builder = new Actions(webDriver());
-	    	    final Action rClick = builder.moveToElement(we)
-				    .contextClick(we)
-				    .build();
+	    	    final Action rClick = builder.moveToElement(we).contextClick(we).build();
 	    	    rClick.perform();
-	    	    //Mouse mouse = ((HasInputDevices) webDriver()).getMouse();
-	    	    //mouse.contextClick(((Locatable)element).getCoordinates());
-		} else {
-		    this.sMouseDownRightAt(locator, coord);
-		    this.sMouseUpRightAt(locator, coord);
-		}
-	    }catch(Exception ex){
-		throw new HarnessException("Unable to rightClickAt on locator " + locator, ex);
+		    } catch (Exception ex){
+		    	throw new HarnessException("Unable to rightClickAt on locator " + locator, ex);
+		    }
+
+	    } else {
+
+	    	Boolean present = false;
+
+	    	try {
+
+	    		present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+	    		if (present == true) {
+		    		this.sMouseDownRightAt(locator, coord);
+				    this.sMouseUpRightAt(locator, coord);
+	    		}
+
+		    } catch (Exception ex){
+		    	throw new HarnessException("Unable to click on locator " + locator, ex);
+		    }
+
 	    }
+
 	}
 
 	/**
@@ -531,35 +580,42 @@ public abstract class AbsSeleniumObject {
 	    logger.info("zRightClick(" + locator + ")");
 
 	    WebElement we = null;
-	    // Check if the locator is present
+
 	    if (ZimbraSeleniumProperties.isWebDriver()){
-		logger.info("...WebDriver...getElement");
-		if(elements != null && elements.length > 0){
-		    we = elements[0];
-		} else {
-		    we = getElement(locator);
-		}
+			logger.info("...WebDriver...getElement");
+			if(elements != null && elements.length > 0){
+			    we = elements[0];
+			} else {
+			    we = getElement(locator);
+			}
+
+			try {
+	    	    logger.info("...WebDriver...moveToElement:contextClick()");
+	    	    final Actions builder = new Actions(webDriver());
+	    	    final Action rClick = builder.moveToElement(we).contextClick(we).build();
+	    	    rClick.perform();
+		    } catch (Exception ex){
+		    	throw new HarnessException("Unable to rightClickAt on locator " + locator, ex);
+		    }
+
 	    } else {
-		if (!sIsElementPresent(locator)) {
-		    logger.info("zRightClick(" + locator + ") element is not present");
-		    throw new HarnessException("zRightClick(" + locator
-			+ ") element is not present");
-		}
+
+	    	Boolean present = false;
+
+	    	try {
+
+	    		present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+	    		if (present == true) {
+		    		this.sMouseDownRight(locator);
+				    this.sMouseUpRight(locator);
+	    		}
+
+		    } catch (Exception ex){
+		    	throw new HarnessException("Unable to click on locator " + locator, ex);
+		    }
 	    }
 
-	    try{
-		if (ZimbraSeleniumProperties.isWebDriver()){
-		    logger.info("...WebDriver...contextClick()");
-		    final Actions builder = new Actions(webDriver());
-		    final Action rClick = builder.contextClick(we).build();
-		    rClick.perform();
-		} else {
-		    this.sMouseDownRight(locator);
-		    this.sMouseUpRight(locator);
-		}
-	    }catch(Exception ex){
-		throw new HarnessException("Unable to rightClick on locator " + locator, ex);
-	    }
 	}
 
 	/**
@@ -582,6 +638,7 @@ public abstract class AbsSeleniumObject {
 	}
 
 	public String zGetHtml(String locator, WebElement... elements) throws HarnessException {
+
 		try {
 			String html = "";
 			String script = "";
@@ -596,13 +653,35 @@ public abstract class AbsSeleniumObject {
 
 				script = "return arguments[0].innerHTML;";
 				html = executeScript(script, we);
-			}else{
-				script = "this.page().findElement('" + locator
-						+ "').innerHTML";
-				html = this.sGetEval(script);
+
+			} else {
+
+				Boolean present = false;
+
+		    	try {
+
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+					if (present == true) {
+						script = "this.page().findElement('" + locator + "').innerHTML";
+						html = this.sGetEval(script);
+					}
+
+				} catch (Exception e) {
+
+					if (present != false && present != true) {
+						logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+						throw new HarnessException("Locator " + locator + " not present", e);
+
+					} else if (present == false) {
+						throw new HarnessException("Locator " + locator + " not present", e);
+					}
+
+				}
 			}
 			logger.info("zGetHtml(" + locator + ") = " + html);
 			return (html);
+
 		} catch (SeleniumException e) {
 			throw new HarnessException("Unable to grab HTML from locator "
 					+ locator, e);
@@ -620,26 +699,45 @@ public abstract class AbsSeleniumObject {
 	public void zType(String locator, String value, WebElement... elements) throws HarnessException {
 	    logger.info("zType(" + locator + "," + value + ")");
 
-	    WebElement we = null;
 	    if(ZimbraSeleniumProperties.isWebDriver()){
-		logger.info("...WebDriver...getElement");
-		if(elements != null && elements.length > 0){
-		    we = elements[0];
-		} else {
-		    we = getElement(locator);
-		}
+
+	    	WebElement we = null;
+
+	    	logger.info("...WebDriver...getElement");
+	    	if(elements != null && elements.length > 0){
+			    we = elements[0];
+			} else {
+			    we = getElement(locator);
+			}
+
+		    this.sType(locator, value, we);
+
 	    } else {
-		// Check if the locator is present
-		if (!sIsElementPresent(locator)) {
-			logger.info("zType(" + locator + ") element is not present");
-			throw new HarnessException("zType(" + locator
-					+ ") element is not present");
-		}
+
+			Boolean present = false;
+
+			try {
+
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+				if (present == true) {
+					sType(locator, value);
+				}
+
+			} catch (Exception e) {
+
+				if (present != false && present != true) {
+					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+					throw new HarnessException("Locator " + locator + " not present", e);
+
+				} else if (present == false) {
+					throw new HarnessException("Locator " + locator + " not present", e);
+				}
+
+			}
+
 	    }
 
-	    this.sFocus(locator, we);
-	    this.sClickAt(locator, "0,0", we);
-	    this.sType(locator, value, we);
 	}
 
 	/**
@@ -652,77 +750,66 @@ public abstract class AbsSeleniumObject {
 	 * @throws HarnessException
 	 */
 	public void zTypeKeys(String locator, String value, WebElement... elements ) throws HarnessException {
-		if(ZimbraSeleniumProperties.isWebDriver()){
-			logger.info("...WebDriver...sendKeys()");
-			WebElement we = null;
-			if(elements != null && elements.length > 0){
+
+		logger.info("zTypeKeys(" + locator + "," + value + ")");
+
+	    if(ZimbraSeleniumProperties.isWebDriver()){
+
+	    	WebElement we = null;
+
+	    	logger.info("...WebDriver...getElement");
+	    	if(elements != null && elements.length > 0){
 			    we = elements[0];
 			} else {
 			    we = getElement(locator);
 			}
 
-			sType(locator, value, we);
-		}else{
-			sTypeKeys(locator, value);
-			sType(locator, value);
-			logger.info("zTypeKeys(" + locator + "," + value + ")");
+	    	sType(locator, value, we);
+
+	    } else {
+
+			Boolean present = false;
+
+	    	try {
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+				if (present == true) {
+					sTypeKeys(locator, value);
+				}
+
+			} catch (Exception e) {
+
+				if (present != false && present != true) {
+					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+					throw new HarnessException("Locator " + locator + " not present", e);
+
+				} else if (present == false) {
+					throw new HarnessException("Locator " + locator + " not present", e);
+				}
+
+			}
+
 		}
 	}
 
 	public void zKeyDown(String keyCode) throws HarnessException {
 
+		tracer.trace("keyboard shortcut " + keyCode);
+
 		if (keyCode == null || keyCode.isEmpty()){
 			throw new HarnessException("keyCode needs to be provided");
 		}
-		tracer.trace("keyboard shortcut " + keyCode);
 
 		if(ZimbraSeleniumProperties.isWebDriver()){
+
 			logger.info("...WebDriver...executeScript.KeyDownEvent");
 			String locator = "//html//body";
-			//WebElement we = getElement(locator);
-			//Actions builder = new Actions(webDriver());
 			for (String kc : keyCode.split(",")) {
 				zKeyEvent(locator, kc, "keydown");
-				/*
-				try{
-					int code = Integer.parseInt(kc);
-					String key = KeyEvent.getKeyText(code);
-					if (key == null || key.isEmpty()){
-						throw new HarnessException("cannot convert " + code + " to String");
-					}else{
 
-						//we.sendKeys(key.toLowerCase());
-
-						//builder.sendKeys(we,key.toLowerCase()).build().perform();
-
-						//sType(locator,key.toLowerCase());
-					}
-				}catch(Exception ex){
-					logger.error(ex);
-				}
-				*/
 			}
-		}else{
-			/*for (String kc : keyCode.split(",")) {
-				sGetEval("if(document.createEventObject){var body_locator=\"css=html>body\"; "
-					+ "var body=selenium.browserbot.findElement(body_locator);"
-					+ "var evObj = body.document.createEventObject();"
-					+ "evObj.keyCode="
-					+ kc
-					+ ";evObj.repeat = false;"
-					+ "body.focus(); body.fireEvent(\"onkeydown\",evObj);}"
-					+ "else{if(window.KeyEvent){var evObj = document.createEvent('KeyEvents');"
-					+ "evObj.initKeyEvent( 'keydown', true, true, window, false, false, false, false,"
-					+ kc
-					+ ", 0 );}else {var evObj = document.createEvent('HTMLEvents');"
-					+ "evObj.initEvent( 'keydown', true, true, window, 1 );"
-					+ "evObj.keyCode = "
-					+ kc
-					+ ";}var x = selenium.browserbot.findElementOrNull('"
-					+ "css=html>body"
-					+ "');x.focus(); x.dispatchEvent(evObj);}");
-			}*/
 
+		} else {
 
 			SleepUtil.sleepMedium();
 			String[] kc = keyCode.split(",");
@@ -814,6 +901,7 @@ public abstract class AbsSeleniumObject {
 
 	public void zKeyEvent(String locator, String keyCode, String event)
 			throws HarnessException {
+
 		if(ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver...executeScript.KeyEvent");
 			if (this.zIsBrowserMatch(BrowserMasks.BrowserMaskIE)) {
@@ -825,7 +913,7 @@ public abstract class AbsSeleniumObject {
 					+ "; evObj.repeat = false; "
 					+ "el.focus(); el.fireEvent(\"on"
 					+ event
-					+ "\", evObj);}catch(err){return(err.message)}",
+					+ "\", evObj);} catch (err){return(err.message)}",
 					getElement(locator));
 			}else if (this.zIsBrowserMatch(BrowserMasks.BrowserMaskFF)){
 				executeScript(
@@ -835,7 +923,7 @@ public abstract class AbsSeleniumObject {
 					+ event
 					+ "', true, true, window, 1 ); evo.keyCode="
 					+ keyCode
-					+ "; el.blur(); el.focus(); el.dispatchEvent(evo);}catch(err){return(err.message)}",
+					+ "; el.blur(); el.focus(); el.dispatchEvent(evo);} catch (err){return(err.message)}",
 					getElement("css=html body"));
 			}else {
 				executeScript(
@@ -845,31 +933,53 @@ public abstract class AbsSeleniumObject {
 						+ event
 						+ "', true, true, window, 1 ); evo.keyCode="
 						+ keyCode
-						+ "; el.blur(); el.focus(); el.dispatchEvent(evo);}catch(err){return(err.message)}",
+						+ "; el.blur(); el.focus(); el.dispatchEvent(evo);} catch (err){return(err.message)}",
 						getElement("css=html body"));
 			}
-		}else{
-			sGetEval("if(document.createEventObject){var x=selenium.browserbot.findElementOrNull('"
-				+ locator
-				+ "');var evObj = x.document.createEventObject();"
-				+ "evObj.keyCode="
-				+ keyCode
-				+ "; evObj.repeat = false; x.focus(); x.fireEvent(\"on"
-				+ event
-				+ "\",evObj);}"
-				+ "else{if(window.KeyEvent){var evObj = document.createEvent('KeyEvents');"
-				+ "evObj.initKeyEvent( '"
-				+ event
-				+ "', true, true, window, false, false, false, false,"
-				+ keyCode
-				+ ", 0 );} "
-				+ "else {var evObj = document.createEvent('HTMLEvents');"
-				+ "evObj.initEvent( '"
-				+ event
-				+ "', true, true, window, 1 ); evObj.keyCode="
-				+ keyCode
-				+ ";} var x = selenium.browserbot.findElementOrNull('"
-				+ locator + "'); x.blur(); x.focus(); x.dispatchEvent(evObj);}");
+
+		} else {
+
+			Boolean present = false;
+
+	    	try {
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+				if (present == true) {
+					sGetEval("if(document.createEventObject){var x=selenium.browserbot.findElementOrNull('"
+							+ locator
+							+ "');var evObj = x.document.createEventObject();"
+							+ "evObj.keyCode="
+							+ keyCode
+							+ "; evObj.repeat = false; x.focus(); x.fireEvent(\"on"
+							+ event
+							+ "\",evObj);}"
+							+ "else{if(window.KeyEvent){var evObj = document.createEvent('KeyEvents');"
+							+ "evObj.initKeyEvent( '"
+							+ event
+							+ "', true, true, window, false, false, false, false,"
+							+ keyCode
+							+ ", 0 );} "
+							+ "else {var evObj = document.createEvent('HTMLEvents');"
+							+ "evObj.initEvent( '"
+							+ event
+							+ "', true, true, window, 1 ); evObj.keyCode="
+							+ keyCode
+							+ ";} var x = selenium.browserbot.findElementOrNull('"
+							+ locator + "'); x.blur(); x.focus(); x.dispatchEvent(evObj);}");
+				}
+
+			} catch (Exception e) {
+
+				if (present != false && present != true) {
+					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+					throw new HarnessException("Locator " + locator + " not present", e);
+
+				} else if (present == false) {
+					throw new HarnessException("Locator " + locator + " not present", e);
+				}
+
+			}
+
 		}
 	}
 
@@ -886,21 +996,42 @@ public abstract class AbsSeleniumObject {
 
 			if(ZimbraSeleniumProperties.isWebDriver()){
 				logger.info("...WebDriver...executeScript.setInnerHTML");
-				executeScript("try{var bodytext=\""
+				executeScript("try {var bodytext=\""
 					+ html
 					+ "\";"
 					+ "var iframe_element=arguments[0];"
 					+ "var iframe_body=iframe_element.contentWindow.document.body;"
-					+ "iframe_body.innerHTML = bodytext;}catch(err){return(err);}",getElement(locator));
-			}else{
-				sGetEval("var bodytext=\""
-					+ html
-					+ "\";"
-					+ "var iframe_locator=\""
-					+ locator
-					+ "\";"
-					+ "var iframe_body=selenium.browserbot.findElement(iframe_locator).contentWindow.document.body;"
-					+ "iframe_body.innerHTML = bodytext;");
+					+ "iframe_body.innerHTML = bodytext;} catch (err){return(err);}",getElement(locator));
+			} else {
+
+				Boolean present = false;
+
+		    	try {
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+					if (present == true) {
+						sGetEval("var bodytext=\""
+								+ html
+								+ "\";"
+								+ "var iframe_locator=\""
+								+ locator
+								+ "\";"
+								+ "var iframe_body=selenium.browserbot.findElement(iframe_locator).contentWindow.document.body;"
+								+ "iframe_body.innerHTML = bodytext;");
+					}
+
+				} catch (Exception e) {
+
+					if (present != false && present != true) {
+						logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+						throw new HarnessException("Locator " + locator + " not present", e);
+
+					} else if (present == false) {
+						throw new HarnessException("Locator " + locator + " not present", e);
+					}
+
+				}
+
 			}
 	}
 
@@ -922,12 +1053,31 @@ public abstract class AbsSeleniumObject {
 			}
 
 			JavascriptLibrary jsLib = new JavascriptLibrary();
-			//jsLib.callEmbeddedSelenium(webDriver(), "triggerMouseEvent", we, eventName);
-			//jsLib.callEmbeddedSelenium(webDriver(), "triggerMouseEventAt", we, "focus","0,0");
-			//jsLib.callEmbeddedSelenium(webDriver(), "triggerEvent", we, eventName);
 			jsLib.callEmbeddedSelenium(webDriver(), "doFireEvent", we, eventName);
-		}else{
-			ClientSessionFactory.session().selenium().fireEvent(locator, eventName);
+
+		} else {
+
+			Boolean present = false;
+
+	    	try {
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+				if (present == true) {
+					ClientSessionFactory.session().selenium().fireEvent(locator, eventName);
+	    		}
+
+			} catch (Exception e) {
+
+				if (present != false && present != true) {
+					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+					throw new HarnessException("Locator " + locator + " not present", e);
+
+				} else if (present == false) {
+					throw new HarnessException("Locator " + locator + " not present", e);
+				}
+
+			}
+
 		}
 		logger.info("fireEvent(" + locator + ", " + eventName + ")");
 	}
@@ -967,7 +1117,7 @@ public abstract class AbsSeleniumObject {
 		if (ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver... getPageSource()");
 			htmlString = webDriver().getPageSource();
-		}else{
+		} else {
 			htmlString = ClientSessionFactory.session().selenium()
 				.getHtmlSource();
 		}
@@ -986,9 +1136,8 @@ public abstract class AbsSeleniumObject {
 			if (ZimbraSeleniumProperties.isWebDriver()){
 				logger.info("...WebDriver... getSize().height");
 				n = getElement(locator).getSize().height;
-			}else{
-				n= ClientSessionFactory.session().selenium().getElementHeight(
-				locator).intValue();
+			} else {
+				n= ClientSessionFactory.session().selenium().getElementHeight(locator).intValue();
 			}
 			logger.info("getElementHeight(" + locator + ") = " + n);
 			return (n);
@@ -1010,7 +1159,7 @@ public abstract class AbsSeleniumObject {
 				WebElement el = getElement(locator);
 				Dimension dim = el.getSize();
 				n = dim.width;
-			}else{
+			} else {
 				n = ClientSessionFactory.session().selenium().getElementWidth(
 				locator).intValue();
 			}
@@ -1078,7 +1227,7 @@ public abstract class AbsSeleniumObject {
 			logger.info("...WebDriver...executeScript:getElementById().nextSibling.id");
 			sibLingid = executeScript("return document.getElementById('"
 			+ id + "')" + ".nextSibling.id");
-		}else{
+		} else {
 			sibLingid = ClientSessionFactory.session().selenium().getEval(
 			"this.browserbot.getUserWindow().document.getElementById('"
 			+ id + "')" + ".nextSibling.id");
@@ -1098,7 +1247,7 @@ public abstract class AbsSeleniumObject {
 			logger.info("...WebDriver...executeScript:getElementById().previousSibling.id");
 			sibLingid = executeScript("return document.getElementById('"
 			+ id + "')" + ".previousSibling.id");
-		}else{
+		} else {
 			sibLingid = ClientSessionFactory.session().selenium().getEval(
 			"this.browserbot.getUserWindow().document.getElementById('"
 			+ id + "')" + ".previousSibling.id");
@@ -1113,18 +1262,44 @@ public abstract class AbsSeleniumObject {
 	 * @param locator
 	 */
 	public String sGetSelectedId(String locator) throws HarnessException {
+
 		String id = null;
+
 		if (ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver...getFirstSelectedOption()");
 			Select select =  new Select (getElement(locator));
 			WebElement we = select.getFirstSelectedOption();
 			id = we.getAttribute("id");
-		}else{
-			id = ClientSessionFactory.session().selenium().getSelectedId(
-				locator);
+
+		} else {
+
+			Boolean present = false;
+
+	    	try {
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+				if (present == true) {
+					id = ClientSessionFactory.session().selenium().getSelectedId(locator);
+					logger.info("getSelectedId(" + locator + ") = " + id);
+					return (id);
+	    		}
+
+			} catch (Exception e) {
+
+				if (present != false && present != true) {
+					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+					throw new HarnessException("Locator " + locator + " not present", e);
+
+				} else if (present == false) {
+					throw new HarnessException("Locator " + locator + " not present", e);
+				}
+
+			}
+
 		}
-		logger.info("getSelectedId(" + locator + ") = " + id);
+
 		return (id);
+
 	}
 
 	/**
@@ -1147,13 +1322,16 @@ public abstract class AbsSeleniumObject {
 			    Actions builder = new Actions(webDriver());
 			    Action action = builder.moveToElement(we).click(we).build();
 			    action.perform();
+
 			} else {
-				Boolean present = null;
+
+				Boolean present = false;
+
 		    	try {
-					present = ((DefaultSelenium) ClientSessionFactory.session().selenium()).isElementPresent(locator);
-					
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
 		    		if (present == true) {
-		    			((DefaultSelenium) ClientSessionFactory.session().selenium()).clickAt(locator, coord);
+		    			ClientSessionFactory.session().selenium().clickAt(locator, coord);
 		    		}
 
 				} catch (Exception e) {
@@ -1191,13 +1369,16 @@ public abstract class AbsSeleniumObject {
 		    }
 
 		    we.click();
+
 		} else {
-			Boolean present = null;
+
+			Boolean present = false;
+
 	    	try {
-				present = ((DefaultSelenium) ClientSessionFactory.session().selenium()).isElementPresent(locator);
-				
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
 	    		if (present == true) {
-	    			((DefaultSelenium) ClientSessionFactory.session().selenium()).click(locator);
+	    			ClientSessionFactory.session().selenium().click(locator);
 	    		}
 
 			} catch (Exception e) {
@@ -1205,7 +1386,7 @@ public abstract class AbsSeleniumObject {
 				if (present != false && present != true) {
 					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
 					throw new HarnessException("Locator " + locator + " not present", e);
-					
+
 				} else if (present == false) {
 					throw new HarnessException("Locator " + locator + " not present", e);
 				}
@@ -1222,10 +1403,10 @@ public abstract class AbsSeleniumObject {
 	public void sClose() throws HarnessException {
 	    logger.info("close()");
 	    if (ZimbraSeleniumProperties.isWebDriver()){
-		logger.info("...WebDriver...close()");
-		webDriver().close();
+			logger.info("...WebDriver...close()");
+			webDriver().close();
 	    } else {
-		ClientSessionFactory.session().selenium().close();
+	    	ClientSessionFactory.session().selenium().close();
 	    }
 	}
 
@@ -1234,49 +1415,46 @@ public abstract class AbsSeleniumObject {
 	 */
 	public void sDoubleClick(String locator, WebElement... elements) throws HarnessException {
 	    logger.info("doubleClick(" + locator + ")");
-	    try{
-		if (ZimbraSeleniumProperties.isWebDriver()){
-		    logger.info("...WebDriver...doubleClick()");
-		    WebElement we = null;
-		    if(elements != null && elements.length > 0){
-			we = elements[0];
-		    } else {
-			we = getElement(locator);
-		    }
-		    Actions actions = new Actions(webDriver());
-		    Action doubleClick = actions.doubleClick(we).build();
-		    doubleClick.perform();
-		    //Mouse mouse = ((HasInputDevices) webDriver()).getMouse();
-		    //mouse.doubleClick(((Locatable)we).getCoordinates());
-		    /*
-			executeScript("try{var evt = document.createEvent('MouseEvents');" +
-		    	"evt.initMouseEvent('dblclick',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" +
-		        "arguments[0].dispatchEvent(evt)}catch(err){return(err.message)};", we);
-			executeScript("arguments[0].fireEvent('ondblclick');", we);
-		     */
-		}else{
-			Boolean present = null;
-	    	try {
-				present = ((DefaultSelenium) ClientSessionFactory.session().selenium()).isElementPresent(locator);
-				
-				if (present == true) {
-					((DefaultSelenium) ClientSessionFactory.session().selenium()).doubleClick(locator);
-	    		}
 
-			} catch (Exception e) {
+	    try {
+			if (ZimbraSeleniumProperties.isWebDriver()){
+			    logger.info("...WebDriver...doubleClick()");
+			    WebElement we = null;
+			    if(elements != null && elements.length > 0){
+			    	we = elements[0];
+			    } else {
+			    	we = getElement(locator);
+			    }
+			    Actions actions = new Actions(webDriver());
+			    Action doubleClick = actions.doubleClick(we).build();
+			    doubleClick.perform();
 
-				if (present != false && present != true) {
-					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
-					throw new HarnessException("Locator " + locator + " not present", e);
+			} else {
 
-				} else if (present == false) {
-					throw new HarnessException("Locator " + locator + " not present", e);
+				Boolean present = false;
+
+		    	try {
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+					if (present == true) {
+						ClientSessionFactory.session().selenium().doubleClick(locator);
+		    		}
+
+				} catch (Exception e) {
+
+					if (present != false && present != true) {
+						logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+						throw new HarnessException("Locator " + locator + " not present", e);
+
+					} else if (present == false) {
+						throw new HarnessException("Locator " + locator + " not present", e);
+					}
 				}
+
 			}
 
-		}
-	    }catch(Exception ex){
-		throw new HarnessException("Unable to doubleclick on locator " + locator, ex);
+	    } catch (Exception ex){
+	    	throw new HarnessException("Unable to doubleclick on locator " + locator, ex);
 	    }
 	}
 
@@ -1286,50 +1464,64 @@ public abstract class AbsSeleniumObject {
 	 * @return
 	 */
 	public String zGetCenterPoint(String locator) throws HarnessException {
-		int height = -1;
-		int width  = -1;
 
-		if (ZimbraSeleniumProperties.isWebDriver()){
-			logger.info("...WebDriver...getSize()");
+		Boolean present = false;
+
+    	try {
+
+			present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+			if (present == true) {
+
+				int height = -1;
+				int width  = -1;
+
+				if (ZimbraSeleniumProperties.isWebDriver()){
+					logger.info("...WebDriver...getSize()");
+				}
+				height = sGetElementHeight(locator) / 2;
+				width =  sGetElementWidth(locator) / 2;
+
+				String centerHeight = Integer.toString(height);
+				String centerWidth = Integer.toString(width);
+
+		   	   	return new StringBuilder("(").append(centerWidth).append(",").append(centerHeight).append(")").toString();
+    		}
+
+		} catch (Exception e) {
+
+			if (present != false && present != true) {
+				logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+				throw new HarnessException("Locator " + locator + " not present", e);
+
+			} else if (present == false) {
+				throw new HarnessException("Locator " + locator + " not present", e);
+			}
+
 		}
-		height = sGetElementHeight(locator) / 2;
-		width =  sGetElementWidth(locator) / 2;
 
-		String centerHeight = Integer.toString(height);
-		String centerWidth = Integer.toString(width);
-   	   	return new StringBuilder("(").append(centerWidth).append(",").append(centerHeight).append(")").toString();
+    	return (null);
+
 	}
 
 	/**
 	 * DefaultSelenium.waitForPageToLoad()
 	 */
 	public void sWaitForPageToLoad() throws HarnessException {
-		String timeout = ZimbraSeleniumProperties.getStringProperty(
-				"selenium.maxpageload.msec", "20000");
+
+		String timeout = ZimbraSeleniumProperties.getStringProperty("selenium.maxpageload.msec", "20000");
 
 		try {
 
-			// Cast to DefaultSelenium ... Workaround until ZimbraSelnium is
-			// removed
 			logger.info("waitForPageToLoad(" + timeout + ")");
 
 			if(ZimbraSeleniumProperties.isWebDriver()){
 				logger.info("...WebDriver...executeScript:readyState");
-				/*
-				waitForElementPresent("zov__main_Mail",20);
-
-				Wait<WebDriver> wait = new FluentWait<WebDriver>(webDriver()).withTimeout(30, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
-			    WebElement we = wait.until(new ExpectedCondition<WebElement>() {
-			    	 public WebElement apply(WebDriver driver) {
-			    		 return driver.findElement(By.id("zov__main_Mail"));
-			    	 }
-				});
-				*/
 
 				//WebDriverWait wait = new WebDriverWait(webDriver(), 20);
 				Wait<WebDriver> wait = new FluentWait<WebDriver>(webDriver()).withTimeout(10, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
 
-				try{
+				try {
 					wait.until(new ExpectedCondition<Boolean>(){
 						public Boolean apply(WebDriver driver) {
 							Boolean result = false;
@@ -1346,9 +1538,9 @@ public abstract class AbsSeleniumObject {
 				}
 			} else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()){
 				webDriverBackedSelenium().waitForPageToLoad(timeout);
+
 			} else {
-				((DefaultSelenium) ClientSessionFactory.session().selenium())
-					.waitForPageToLoad(timeout);
+				ClientSessionFactory.session().selenium().waitForPageToLoad(timeout);
 			}
 		} catch (Exception ex) {
 			logger.warn("sWaitForPageToLoad() error", ex);
@@ -1361,117 +1553,133 @@ public abstract class AbsSeleniumObject {
 	 */
 	public void sMouseDown(String locator, WebElement... elements) throws HarnessException {
 	    logger.info("mouseDown(" + locator + ")");
-	    try{
-		if(ZimbraSeleniumProperties.isWebDriver()){
-		    logger.info("...WebDriver...mouseDown()");
 
-		    WebElement we = null;
-		    if(elements != null && elements.length > 0){
-			we = elements[0];
-		    } else {
-			we = getElement(locator);
-		    }
+	    try {
+			if(ZimbraSeleniumProperties.isWebDriver()){
+			    logger.info("...WebDriver...mouseDown()");
 
-		    Mouse mouse = ((HasInputDevices)webDriver()).getMouse();
-		    mouse.mouseDown(((RemoteWebElement)we).getCoordinates());
-		}else{
-			Boolean present = null;
-	    	try {
-				present = ((DefaultSelenium) ClientSessionFactory.session().selenium()).isElementPresent(locator);
-				
-				if (present == true) {
-					ClientSessionFactory.session().selenium().mouseDown(locator);
-	    		}
+			    WebElement we = null;
+			    if(elements != null && elements.length > 0){
+				we = elements[0];
+			    } else {
+				we = getElement(locator);
+			    }
 
-			} catch (Exception e) {
+			    Mouse mouse = ((HasInputDevices)webDriver()).getMouse();
+			    mouse.mouseDown(((RemoteWebElement)we).getCoordinates());
 
-				if (present != false && present != true) {
-					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
-					throw new HarnessException("Locator " + locator + " not present", e);
+			} else {
 
-				} else if (present == false) {
-					throw new HarnessException("Locator " + locator + " not present", e);
+				Boolean present = false;
+
+		    	try {
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+					if (present == true) {
+						ClientSessionFactory.session().selenium().mouseDown(locator);
+		    		}
+
+				} catch (Exception e) {
+
+					if (present != false && present != true) {
+						logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+						throw new HarnessException("Locator " + locator + " not present", e);
+
+					} else if (present == false) {
+						throw new HarnessException("Locator " + locator + " not present", e);
+					}
 				}
 			}
-		}
-	    }catch(Exception ex){
+
+	    } catch (Exception ex){
 	    	throw new HarnessException("Unable to mouseDown on locator " + locator, ex);
 	    }
 	}
 
 	public void sMouseDownAt(String locator, String coordString) throws HarnessException {
 	    logger.info("mouseDownAt(" + locator + ",'" + coordString + "')");
+
 	    try {
-		if(ZimbraSeleniumProperties.isWebDriver()){
-		    logger.info("...WebDriver...mouseMove.MouseDown()");
-		    //WebElement we = getElement(locator);
-		    //Point p = ((Locatable)we).getLocationOnScreenOnceScrolledIntoView();
-		    //p = p.moveBy((we.getSize().getWidth()/2), (we.getSize().getHeight()/2));
-		    Coordinates co =  ((RemoteWebElement)getElement(locator)).getCoordinates();
-		    Mouse mouse = ((HasInputDevices)webDriver()).getMouse();
-		    mouse.mouseMove(co,0,0);
-		    mouse.mouseDown(co);
-		}else{
-			Boolean present = null;
-	    	try {
-				present = ((DefaultSelenium) ClientSessionFactory.session().selenium()).isElementPresent(locator);
-				
-				if (present == true) {
-					ClientSessionFactory.session().selenium().mouseDownAt(locator, coordString);
-	    		}
+			if(ZimbraSeleniumProperties.isWebDriver()){
+			    logger.info("...WebDriver...mouseMove.MouseDown()");
+			    //WebElement we = getElement(locator);
+			    //Point p = ((Locatable)we).getLocationOnScreenOnceScrolledIntoView();
+			    //p = p.moveBy((we.getSize().getWidth()/2), (we.getSize().getHeight()/2));
+			    Coordinates co =  ((RemoteWebElement)getElement(locator)).getCoordinates();
+			    Mouse mouse = ((HasInputDevices)webDriver()).getMouse();
+			    mouse.mouseMove(co,0,0);
+			    mouse.mouseDown(co);
 
-			} catch (Exception e) {
+			} else {
 
-				if (present != false && present != true) {
-					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
-					throw new HarnessException("Locator " + locator + " not present", e);
+				Boolean present = false;
 
-				} else if (present == false) {
-					throw new HarnessException("Locator " + locator + " not present", e);
+		    	try {
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+					if (present == true) {
+						ClientSessionFactory.session().selenium().mouseDownAt(locator, coordString);
+		    		}
+
+				} catch (Exception e) {
+
+					if (present != false && present != true) {
+						logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+						throw new HarnessException("Locator " + locator + " not present", e);
+
+					} else if (present == false) {
+						throw new HarnessException("Locator " + locator + " not present", e);
+					}
 				}
 			}
-		}
+
 	    } catch (SeleniumException ex) {
-		throw new HarnessException("Unable to mouseDownAt on locator " + locator, ex);
+	    	throw new HarnessException("Unable to mouseDownAt on locator " + locator, ex);
 	    }
 	}
 
 	public void sMouseDownRightAt(String locator, String coordString, WebElement... elements) throws HarnessException {
 	    logger.info("mouseDownRightAt(" + locator + ",'" + coordString + "')");
+
 	    try {
-		if(ZimbraSeleniumProperties.isWebDriver()){
-		    logger.info("...WebDriver...action.moveToElement.contextClick()");
 
-		    WebElement we = null;
-		    if(elements != null && elements.length > 0){
-			we = elements[0];
-		    } else {
-			we = getElement(locator);
-		    }
+			if(ZimbraSeleniumProperties.isWebDriver()){
+			    logger.info("...WebDriver...action.moveToElement.contextClick()");
 
-		    Actions action = new Actions(webDriver());
-		    action.moveToElement(we,1,1).contextClick(we).build().perform();
-		}else{
-			Boolean present = null;
-	    	try {
-				present = ((DefaultSelenium) ClientSessionFactory.session().selenium()).isElementPresent(locator);
-				
-				if (present == true) {
-					ClientSessionFactory.session().selenium().mouseDownRightAt(locator,	coordString);
-	    		}
+			    WebElement we = null;
+			    if(elements != null && elements.length > 0){
+			    	we = elements[0];
+			    } else {
+			    	we = getElement(locator);
+			    }
 
-			} catch (Exception e) {
+			    Actions action = new Actions(webDriver());
+			    action.moveToElement(we,1,1).contextClick(we).build().perform();
 
-				if (present != false && present != true) {
-					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
-					throw new HarnessException("Locator " + locator + " not present", e);
+			} else {
 
-				} else if (present == false) {
-					throw new HarnessException("Locator " + locator + " not present", e);
+				Boolean present = false;
+
+		    	try {
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+					if (present == true) {
+						ClientSessionFactory.session().selenium().mouseDownRightAt(locator,	coordString);
+		    		}
+
+				} catch (Exception e) {
+
+					if (present != false && present != true) {
+						logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+						throw new HarnessException("Locator " + locator + " not present", e);
+
+					} else if (present == false) {
+						throw new HarnessException("Locator " + locator + " not present", e);
+					}
 				}
+
 			}
 
-		}
 	    } catch (SeleniumException ex) {
 	    	throw new HarnessException("Unable to mouseDownRightAt on locator " + locator, ex);
 	    }
@@ -1479,24 +1687,47 @@ public abstract class AbsSeleniumObject {
 
 	public void sMouseUpRightAt(String locator, String coordString, WebElement... elements) throws HarnessException {
 	    logger.info("mouseUpRightAt(" + locator + ",'" + coordString + "')");
+
 	    try {
-		if(ZimbraSeleniumProperties.isWebDriver()){
-		    logger.info("...WebDriver...action.moveToElement.release()");
+			if(ZimbraSeleniumProperties.isWebDriver()){
+			    logger.info("...WebDriver...action.moveToElement.release()");
 
-		    WebElement we = null;
-		    if(elements != null && elements.length > 0){
-			we = elements[0];
-		    } else {
-			we = getElement(locator);
-		    }
+			    WebElement we = null;
+			    if(elements != null && elements.length > 0){
+			    	we = elements[0];
+			    } else {
+			    	we = getElement(locator);
+			    }
 
-		    Actions action = new Actions(webDriver());
-		    action.moveToElement(we,0,0).release(we).build().perform();
-		}else{
-		    ClientSessionFactory.session().selenium().mouseUpRightAt(locator, coordString);
-		}
+			    Actions action = new Actions(webDriver());
+			    action.moveToElement(we,0,0).release(we).build().perform();
+
+			} else {
+
+				Boolean present = false;
+
+		    	try {
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+					if (present == true) {
+						ClientSessionFactory.session().selenium().mouseUpRightAt(locator, coordString);
+		    		}
+
+				} catch (Exception e) {
+
+					if (present != false && present != true) {
+						logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+						throw new HarnessException("Locator " + locator + " not present", e);
+
+					} else if (present == false) {
+						throw new HarnessException("Locator " + locator + " not present", e);
+					}
+				}
+
+			}
+
 	    } catch (SeleniumException ex) {
-		throw new HarnessException("Unable to mouseUpRightAt on locator " + locator, ex);
+	    	throw new HarnessException("Unable to mouseUpRightAt on locator " + locator, ex);
 	    }
 	}
 
@@ -1505,27 +1736,47 @@ public abstract class AbsSeleniumObject {
 	 */
 	public void sMouseOver(String locator, WebElement... elements) throws HarnessException {
 	    logger.info("mouseOver(" + locator + ")");
-	    try{
+
+	    try {
 	    	if (ZimbraSeleniumProperties.isWebDriver()){
 	    	    logger.info("...WebDriver...action.moveToElement()");
 
 	    	    WebElement we = null;
-		    if(elements != null && elements.length > 0){
-			we = elements[0];
-		    } else {
-			we = getElement(locator);
-		    }
+			    if(elements != null && elements.length > 0){
+			    	we = elements[0];
+			    } else {
+			    	we = getElement(locator);
+			    }
 
-	    	    //Mouse mouse = ((HasInputDevices) webDriver()).getMouse();
-	    	    //mouse.mouseMove(((Locatable)we).getCoordinates());
 	    	    Actions action = new Actions(webDriver());
 	    	    action.moveToElement(we).build().perform();
 
-		} else{
-		    ClientSessionFactory.session().selenium().mouseOver(locator);
-		}
+			} else {
+
+				Boolean present = false;
+
+		    	try {
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+					if (present == true) {
+						ClientSessionFactory.session().selenium().mouseOver(locator);
+		    		}
+
+				} catch (Exception e) {
+
+					if (present != false && present != true) {
+						logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+						throw new HarnessException("Locator " + locator + " not present", e);
+
+					} else if (present == false) {
+						throw new HarnessException("Locator " + locator + " not present", e);
+					}
+				}
+
+			}
+
 	    } catch (SeleniumException ex) {
-		throw new HarnessException("Unable to mouseOver on locator " + locator, ex);
+	    	throw new HarnessException("Unable to mouseOver on locator " + locator, ex);
 	    }
 	}
 
@@ -1534,24 +1785,47 @@ public abstract class AbsSeleniumObject {
 	 */
 	public void sMouseOut(String locator, WebElement... elements) throws HarnessException {
 	    logger.info("mouseOut(" + locator + ")");
-	    try{
-		if (ZimbraSeleniumProperties.isWebDriver()){
-		    logger.info("...WebDriver...action.clickAndHold.moveByOffset()");
 
-		    WebElement we = null;
-		    if(elements != null && elements.length > 0){
-			we = elements[0];
-		    } else {
-			we = getElement(locator);
-		    }
+	    try {
+			if (ZimbraSeleniumProperties.isWebDriver()){
+			    logger.info("...WebDriver...action.clickAndHold.moveByOffset()");
 
-		    Actions action = new Actions(webDriver());
-		    action.clickAndHold(we).moveByOffset(1,1).build().perform();
-		}else{
-		    ClientSessionFactory.session().selenium().mouseOut(locator);
-		}
+			    WebElement we = null;
+			    if(elements != null && elements.length > 0){
+			    	we = elements[0];
+			    } else {
+			    	we = getElement(locator);
+			    }
+
+			    Actions action = new Actions(webDriver());
+			    action.clickAndHold(we).moveByOffset(1,1).build().perform();
+
+			} else {
+
+				Boolean present = false;
+
+		    	try {
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+					if (present == true) {
+						ClientSessionFactory.session().selenium().mouseOut(locator);
+		    		}
+
+				} catch (Exception e) {
+
+					if (present != false && present != true) {
+						logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+						throw new HarnessException("Locator " + locator + " not present", e);
+
+					} else if (present == false) {
+						throw new HarnessException("Locator " + locator + " not present", e);
+					}
+				}
+
+			}
+
 	    } catch (SeleniumException ex) {
-		throw new HarnessException("Unable to mouseOut on locator " + locator, ex);
+	    	throw new HarnessException("Unable to mouseOut on locator " + locator, ex);
 	    }
 	}
 
@@ -1561,10 +1835,10 @@ public abstract class AbsSeleniumObject {
 	public void sRefresh() throws HarnessException {
 	    logger.info("refresh()");
 	    if (ZimbraSeleniumProperties.isWebDriver()){
-		logger.info("...WebDriver...navigate.refresh()");
-		webDriver().navigate().refresh();
-	    }else{
-		ClientSessionFactory.session().selenium().refresh();
+			logger.info("...WebDriver...navigate.refresh()");
+			webDriver().navigate().refresh();
+	    } else {
+	    	ClientSessionFactory.session().selenium().refresh();
 	    }
 	}
 
@@ -1574,17 +1848,40 @@ public abstract class AbsSeleniumObject {
 	 */
 	public void sMouseUp(String locator) throws HarnessException {
 	    logger.info("mouseUp(" + locator + ")");
-	    try{
-		if(ZimbraSeleniumProperties.isWebDriver()){
-		    logger.info("...WebDriver...MouseUp()");
-		    Coordinates co =  ((Locatable)getElement(locator)).getCoordinates();
-		    Mouse mouse = ((HasInputDevices)webDriver()).getMouse();
-		    mouse.mouseUp(co);
-		}else{
-		    ClientSessionFactory.session().selenium().mouseUp(locator);
-		}
+
+	    try {
+			if(ZimbraSeleniumProperties.isWebDriver()){
+			    logger.info("...WebDriver...MouseUp()");
+			    Coordinates co =  ((Locatable)getElement(locator)).getCoordinates();
+			    Mouse mouse = ((HasInputDevices)webDriver()).getMouse();
+			    mouse.mouseUp(co);
+
+			} else {
+
+				Boolean present = false;
+
+		    	try {
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+					if (present == true) {
+						ClientSessionFactory.session().selenium().mouseUp(locator);
+		    		}
+
+				} catch (Exception e) {
+
+					if (present != false && present != true) {
+						logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+						throw new HarnessException("Locator " + locator + " not present", e);
+
+					} else if (present == false) {
+						throw new HarnessException("Locator " + locator + " not present", e);
+					}
+				}
+
+			}
+
 	    } catch (SeleniumException ex) {
-		throw new HarnessException("Unable to mouseUp on locator " + locator, ex);
+	    	throw new HarnessException("Unable to mouseUp on locator " + locator, ex);
 	    }
 	}
 
@@ -1593,48 +1890,93 @@ public abstract class AbsSeleniumObject {
 	 */
 	public void sMouseMoveAt(String locator, String coordString, WebElement... elements) throws HarnessException {
 	    logger.info("mouseMoveAt(" + locator + ",'" + coordString + "')");
-	    try{
-		if(ZimbraSeleniumProperties.isWebDriver()){
-		    logger.info("...WebDriver...action.moveToElement()");
 
-		    WebElement we = null;
-		    if(elements != null && elements.length > 0){
-			we = elements[0];
-		    } else {
-			we = getElement(locator);
-		    }
+	    try {
+			if(ZimbraSeleniumProperties.isWebDriver()){
+			    logger.info("...WebDriver...action.moveToElement()");
 
-		    Actions action = new Actions(webDriver());
-		    action.moveToElement(we,0,0).build().perform();
-		}else{
-		    ClientSessionFactory.session().selenium().mouseMoveAt(locator, coordString);
-		}
+			    WebElement we = null;
+			    if(elements != null && elements.length > 0){
+			    	we = elements[0];
+			    } else {
+			    	we = getElement(locator);
+			    }
+
+			    Actions action = new Actions(webDriver());
+			    action.moveToElement(we,0,0).build().perform();
+
+			} else {
+
+				Boolean present = false;
+
+		    	try {
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+					if (present == true) {
+						ClientSessionFactory.session().selenium().mouseMoveAt(locator, coordString);
+		    		}
+
+				} catch (Exception e) {
+
+					if (present != false && present != true) {
+						logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+						throw new HarnessException("Locator " + locator + " not present", e);
+
+					} else if (present == false) {
+						throw new HarnessException("Locator " + locator + " not present", e);
+					}
+				}
+
+			}
+
 	    } catch (SeleniumException ex) {
-		throw new HarnessException("Unable to mouseMoveAt on locator " + locator, ex);
+	    	throw new HarnessException("Unable to mouseMoveAt on locator " + locator, ex);
 	    }
 	}
 
 	public void sMouseMove(String locator, WebElement... elements) throws HarnessException {
 	    logger.info("mouseMove(" + locator + ")");
-	    try{
-		if(ZimbraSeleniumProperties.isWebDriver()){
-		    logger.info("...WebDriver...action.moveToElement()");
 
-		    WebElement we = null;
-		    if(elements != null && elements.length > 0){
-			we = elements[0];
-		    } else {
-			we = getElement(locator);
-		    }
+	    try {
+			if(ZimbraSeleniumProperties.isWebDriver()){
+			    logger.info("...WebDriver...action.moveToElement()");
 
-		    Actions action = new Actions(webDriver());
-		    action.moveToElement(we).build().perform();
+			    WebElement we = null;
+			    if(elements != null && elements.length > 0){
+			    	we = elements[0];
+			    } else {
+			    	we = getElement(locator);
+			    }
 
-		}else{
-		    ClientSessionFactory.session().selenium().mouseMove(locator);
-		}
-	    }catch(Exception ex){
-		throw new HarnessException("Unable to mouseMove on locator " + locator, ex);
+			    Actions action = new Actions(webDriver());
+			    action.moveToElement(we).build().perform();
+
+			} else {
+
+				Boolean present = false;
+
+		    	try {
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+					if (present == true) {
+						ClientSessionFactory.session().selenium().mouseMove(locator);
+		    		}
+
+				} catch (Exception e) {
+
+					if (present != false && present != true) {
+						logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+						throw new HarnessException("Locator " + locator + " not present", e);
+
+					} else if (present == false) {
+						throw new HarnessException("Locator " + locator + " not present", e);
+					}
+				}
+
+			}
+
+	    } catch (Exception ex){
+	    	throw new HarnessException("Unable to mouseMove on locator " + locator, ex);
 	    }
 	}
 
@@ -1643,18 +1985,42 @@ public abstract class AbsSeleniumObject {
 	 */
 	public void sMouseUpAt(String locator, String coordString) throws HarnessException {
 	    logger.info("mouseUpAt(" + locator + ",'" + coordString + ")'");
+
 	    try {
-		if(ZimbraSeleniumProperties.isWebDriver()){
-		    logger.info("...WebDriver...mouseMove.MouseUp()");
-		    Coordinates co =  ((RemoteWebElement)getElement(locator)).getCoordinates();
-		    Mouse mouse = ((HasInputDevices)webDriver()).getMouse();
-		    mouse.mouseMove(co,0,0);
-		    mouse.mouseUp(co);
-		}else{
-		    ClientSessionFactory.session().selenium().mouseUpAt(locator, coordString);
-		}
+
+			if(ZimbraSeleniumProperties.isWebDriver()){
+			    logger.info("...WebDriver...mouseMove.MouseUp()");
+			    Coordinates co =  ((RemoteWebElement)getElement(locator)).getCoordinates();
+			    Mouse mouse = ((HasInputDevices)webDriver()).getMouse();
+			    mouse.mouseMove(co,0,0);
+			    mouse.mouseUp(co);
+
+			} else {
+
+				Boolean present = false;
+
+		    	try {
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+					if (present == true) {
+						ClientSessionFactory.session().selenium().mouseUpAt(locator, coordString);
+		    		}
+
+				} catch (Exception e) {
+
+					if (present != false && present != true) {
+						logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+						throw new HarnessException("Locator " + locator + " not present", e);
+
+					} else if (present == false) {
+						throw new HarnessException("Locator " + locator + " not present", e);
+					}
+				}
+
+			}
+
 	    } catch (SeleniumException ex) {
-		throw new HarnessException("Unable to mouseUpAt on locator " + locator, ex);
+	    	throw new HarnessException("Unable to mouseUpAt on locator " + locator, ex);
 	    }
 	}
 
@@ -1663,24 +2029,48 @@ public abstract class AbsSeleniumObject {
 	 */
 	public void sMouseDownRight(String locator, WebElement... elements) throws HarnessException {
 	    logger.info("mouseDownRight(" + locator + ")");
+
 	    try {
-		if(ZimbraSeleniumProperties.isWebDriver()){
-		    logger.info("...WebDriver...action.contextClick()");
 
-		    WebElement we = null;
-		    if(elements != null && elements.length > 0){
-			we = elements[0];
-		    } else {
-			we = getElement(locator);
-		    }
+			if(ZimbraSeleniumProperties.isWebDriver()){
+			    logger.info("...WebDriver...action.contextClick()");
 
-		    Actions action = new Actions(webDriver());
-		    action.contextClick(we).build().perform();
-		}else{
-		    ClientSessionFactory.session().selenium().mouseDownRight(locator);
-		}
+			    WebElement we = null;
+			    if(elements != null && elements.length > 0){
+			    	we = elements[0];
+			    } else {
+			    	we = getElement(locator);
+			    }
+
+			    Actions action = new Actions(webDriver());
+			    action.contextClick(we).build().perform();
+
+			} else {
+
+				Boolean present = false;
+
+		    	try {
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+					if (present == true) {
+						ClientSessionFactory.session().selenium().mouseDownRight(locator);
+		    		}
+
+				} catch (Exception e) {
+
+					if (present != false && present != true) {
+						logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+						throw new HarnessException("Locator " + locator + " not present", e);
+
+					} else if (present == false) {
+						throw new HarnessException("Locator " + locator + " not present", e);
+					}
+				}
+
+			}
+
 	    } catch (SeleniumException ex) {
-		throw new HarnessException("Unable to mouseDownRight on locator " + locator, ex);
+	    	throw new HarnessException("Unable to mouseDownRight on locator " + locator, ex);
 	    }
 	}
 
@@ -1689,24 +2079,47 @@ public abstract class AbsSeleniumObject {
 	 */
 	public void sMouseUpRight(String locator, WebElement... elements) throws HarnessException {
 	    logger.info("mouseUpRight(" + locator + ")");
+
 	    try {
-		if(ZimbraSeleniumProperties.isWebDriver()){
-		    logger.info("...WebDriver...action.release()");
+			if(ZimbraSeleniumProperties.isWebDriver()){
+			    logger.info("...WebDriver...action.release()");
 
-		    WebElement we = null;
-		    if(elements != null && elements.length > 0){
-			we = elements[0];
-		    } else {
-			we = getElement(locator);
-		    }
+			    WebElement we = null;
+			    if(elements != null && elements.length > 0){
+				we = elements[0];
+			    } else {
+				we = getElement(locator);
+			    }
 
-		    Actions action = new Actions(webDriver());
-		    action.release(we).build().perform();
-		}else{
-		    ClientSessionFactory.session().selenium().mouseUpRight(locator);
-		}
+			    Actions action = new Actions(webDriver());
+			    action.release(we).build().perform();
+
+			} else {
+
+				Boolean present = false;
+
+		    	try {
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+					if (present == true) {
+						ClientSessionFactory.session().selenium().mouseUpRight(locator);
+		    		}
+
+				} catch (Exception e) {
+
+					if (present != false && present != true) {
+						logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+						throw new HarnessException("Locator " + locator + " not present", e);
+
+					} else if (present == false) {
+						throw new HarnessException("Locator " + locator + " not present", e);
+					}
+				}
+
+			}
+
 	    } catch (SeleniumException ex) {
-		throw new HarnessException("Unable to mouseUpRight on locator " + locator, ex);
+	    	throw new HarnessException("Unable to mouseUpRight on locator " + locator, ex);
 	    }
 	}
 
@@ -1716,29 +2129,53 @@ public abstract class AbsSeleniumObject {
 	 */
 	public void sFocus(String locator, WebElement... elements) throws HarnessException {
 	    logger.info("focus(" + locator + ")");
+
 	    try {
-		if (ZimbraSeleniumProperties.isWebDriver()){
-			logger.info("...WebDriver...executeScript:focus()");
-			WebElement we = null;
-			if(elements != null && elements.length > 0){
-			    we = elements[0];
+			if (ZimbraSeleniumProperties.isWebDriver()){
+				logger.info("...WebDriver...executeScript:focus()");
+				WebElement we = null;
+				if(elements != null && elements.length > 0){
+				    we = elements[0];
+				} else {
+				    we = getElement(locator);
+				}
+				Capabilities cp =  ((RemoteWebDriver)webDriver()).getCapabilities();
+				if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){
+					executeScript("arguments[0].focus();", we);
+				}
+
 			} else {
-			    we = getElement(locator);
-			}
-			Capabilities cp =  ((RemoteWebDriver)webDriver()).getCapabilities();
-			if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){
-				executeScript("arguments[0].focus();", we);
-			}
-		}else{
-			try {
-				ClientSessionFactory.session().selenium().focus(locator);
-			} catch (Exception e) {
-				logger.info("Couldn't focus to " + locator + " locator.");
+
+				try {
+
+					Boolean present = false;
+
+			    	try {
+						present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+						if (present == true) {
+							ClientSessionFactory.session().selenium().focus(locator);
+			    		}
+
+					} catch (Exception e) {
+
+						if (present != false && present != true) {
+							logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+							throw new HarnessException("Locator " + locator + " not present", e);
+
+						} else if (present == false) {
+							throw new HarnessException("Locator " + locator + " not present", e);
+						}
+					}
+
+				} catch (Exception e) {
+					logger.info("Couldn't focus to " + locator + " locator.");
+				}
+
 			}
 
-		}
 	    } catch (SeleniumException ex) {
-		throw new HarnessException("Unable to focus on locator " + locator, ex);
+	    	throw new HarnessException("Unable to focus on locator " + locator, ex);
 	    }
 	}
 
@@ -1760,8 +2197,8 @@ public abstract class AbsSeleniumObject {
 			long startTime = System.currentTimeMillis();
 
 			try {
-				present = ((DefaultSelenium) ClientSessionFactory.session().selenium()).isElementPresent(locator);
-				
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
 				if (present == true) {
 					logger.info("sIsElementPresent(" + locator + ") = " + present);
 					return (present);
@@ -1776,7 +2213,7 @@ public abstract class AbsSeleniumObject {
 				} else if (present == false) {
 					throw new HarnessException("Locator " + locator + " not present", e);
 				}
-				
+
 			}
 
 			long runTime = System.currentTimeMillis() - startTime;
@@ -1798,7 +2235,7 @@ public abstract class AbsSeleniumObject {
 		int count = 0;
 		if(ZimbraSeleniumProperties.isWebDriver()){
 			count = getElements(By.xpath(xpath)).size();
-		}else{
+		} else {
 			count = ClientSessionFactory.session().selenium().getXpathCount(
 				xpath).intValue();
 		}
@@ -1815,7 +2252,7 @@ public abstract class AbsSeleniumObject {
 
 		if(ZimbraSeleniumProperties.isWebDriver()){
 			count = getElements(By.cssSelector(getCssLocator(css).getLocator())).size();
-		}else{
+		} else {
 			count = ClientSessionFactory.session().selenium().getCssCount(css)
 				.intValue();
 		}
@@ -1833,7 +2270,7 @@ public abstract class AbsSeleniumObject {
 		if (ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver... switchTo.window.getTitles()");
 			list =  getAllWindowNames();
-		}else{
+		} else {
 			String[] windows = ClientSessionFactory.session().selenium()
 				.getAllWindowTitles();
 			list = (Arrays.asList(windows));
@@ -1851,7 +2288,7 @@ public abstract class AbsSeleniumObject {
 		if (ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver... getWindowHandles");
 			list = new ArrayList<String>(webDriver().getWindowHandles());
-		}else{
+		} else {
 			String[] ids = ClientSessionFactory.session().selenium().getAllWindowIds();
 			list = (Arrays.asList(ids));
 		}
@@ -1894,57 +2331,80 @@ public abstract class AbsSeleniumObject {
 	 */
 	public String sGetAttribute(String locator) throws SeleniumException {
 
-		// How can we determine whether the attribute exists or not?
-		// Default selenium doesn't seem to have a way.
-		// Tasks requires the SeleniumException to be thrown, then caught ...
-		// so, can't convert to HarnessException
-		//
-
 		try {
 		    logger.info("getAttribute(" + locator + ")");
 
 		    String attrs = "";
 		    if (ZimbraSeleniumProperties.isWebDriver()) {
-			logger.info("...WebDriver...findElement.getAttribute()");
-			if(locator!=null && locator.lastIndexOf('@') + 1 < locator.length()){
-			    String elementLocator = locator.substring(0, locator.lastIndexOf('@'));
-			    if(elementLocator.length() > 1){
-				try {
-				    WebElement we = getElement(elementLocator);
-				    attrs = we.getAttribute(locator.substring(locator.lastIndexOf('@')+1));
-				} catch (Exception ex) {
-				    logger.error(ex);
+				logger.info("...WebDriver...findElement.getAttribute()");
+				if(locator!=null && locator.lastIndexOf('@') + 1 < locator.length()){
+				    String elementLocator = locator.substring(0, locator.lastIndexOf('@'));
+				    if(elementLocator.length() > 1){
+					try {
+					    WebElement we = getElement(elementLocator);
+					    attrs = we.getAttribute(locator.substring(locator.lastIndexOf('@')+1));
+					} catch (Exception ex) {
+					    logger.error(ex);
+					}
+				    }
 				}
-			    }
-			}
-		    } else{
-			attrs = ClientSessionFactory.session().selenium()
-				.getAttribute(locator);
+
+		    } else {
+
+				attrs = ClientSessionFactory.session().selenium().getAttribute(locator);
+				logger.info("getAttribute(" + locator + ") = " + attrs);
+				return (attrs);
+
 		    }
 
-		    logger.info("getAttribute(" + locator + ") = " + attrs);
-		    return (attrs);
-
 		} catch (SeleniumException e) {
-			logger.error(e.getMessage(), e); // SeleniumExceptions don't use
-			// logger, so log it here
+			logger.error(e.getMessage(), e);
 			throw e;
 		}
+
+		return (null);
+
 	}
 
 	/**
 	 * DefaultSelenium.isVisible()
 	 */
 	public boolean sIsVisible(String locator) throws HarnessException {
+
 		boolean visible = false;
+
 		if (ZimbraSeleniumProperties.isWebDriver()) {
 		    logger.info("...WebDriver...findElement.isDisplayed()");
 		    visible = elementVisible(locator);
+
 		} else {
-		    visible = ClientSessionFactory.session().selenium().isVisible(locator);
+
+		    Boolean present = false;
+
+	    	try {
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+				if (present == true) {
+					visible = ClientSessionFactory.session().selenium().isVisible(locator);
+				    logger.info("isVisible(" + locator + ") = " + visible);
+					return (visible);
+	    		}
+
+			} catch (Exception e) {
+
+				if (present != false && present != true) {
+					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+					throw new HarnessException("Locator " + locator + " not present", e);
+
+				} else if (present == false) {
+					throw new HarnessException("Locator " + locator + " not present", e);
+				}
+			}
+
 		}
-		logger.info("isVisible(" + locator + ") = " + visible);
-		return (visible);
+
+		return (false);
+
 	}
 
 	/**
@@ -1997,19 +2457,7 @@ public abstract class AbsSeleniumObject {
 		logger.info("zWaitForBusyOverlayHTML()");
 		if (ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver...");
-		}else{
-			SleepUtil.sleepLong();
-		}
-	}
-
-	/**
-	 * zWaitForBusyOverlayOctopus
-	 */
-	public void zWaitForBusyOverlayOctopus() throws HarnessException {
-		logger.info("zWaitForBusyOverlayOctopus()");
-		if (ZimbraSeleniumProperties.isWebDriver()){
-			logger.info("...WebDriver...");
-		}else{
+		} else {
 			SleepUtil.sleepLong();
 		}
 	}
@@ -2034,7 +2482,7 @@ public abstract class AbsSeleniumObject {
 							public Boolean apply(WebDriver d) {
 								if(d==null){
 									return false;
-								}else{
+								} else {
 									return (Boolean) ((JavascriptExecutor) d)
 											.executeScript(script);
 								}
@@ -2078,7 +2526,7 @@ public abstract class AbsSeleniumObject {
 							public Boolean apply(WebDriver d) {
 								if(d==null){
 									return false;
-								}else{
+								} else {
 									return (Boolean) ((JavascriptExecutor) d)
 										.executeScript(script);
 								}
@@ -2116,9 +2564,9 @@ public abstract class AbsSeleniumObject {
 				|| ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver...executeScript:wait.until()");
 			return waitForElementPresent(locator, true, 10);
-		}else{
-			return sWaitForCondition("selenium.isElementPresent(\"" + locator
-				+ "\")");
+
+		} else {
+			return sWaitForCondition("selenium.isElementPresent(\"" + locator + "\")");
 		}
 	}
 
@@ -2138,7 +2586,7 @@ public abstract class AbsSeleniumObject {
 				|| ZimbraSeleniumProperties.isWebDriver())	{
 			logger.info("...WebDriver...executeScript:wait.until()");
 			return waitForElementPresent(locator, true, Long.valueOf(timeout)/SleepUtil.SleepGranularity);
-		}else{
+		} else {
 			return sWaitForCondition("selenium.isElementPresent(\"" + locator
 				+ "\")", timeout);
 		}
@@ -2158,7 +2606,7 @@ public abstract class AbsSeleniumObject {
 			if (ZimbraSeleniumProperties.isWebDriver())	{
 				logger.info("...WebDriver...executeScript:wait.until()");
 				waitForElementPresent(locator, false, 10);
-			}else{
+			} else {
 				sWaitForCondition("!selenium.isElementPresent(\"" + locator + "\")");
 			}
 		} catch (Exception ex) {
@@ -2179,7 +2627,7 @@ public abstract class AbsSeleniumObject {
 		if (ZimbraSeleniumProperties.isWebDriver())	{
 			logger.info("...WebDriver...executeScript:wait.until()");
 			return waitForElementPresent(locator, false, Long.valueOf(timeout)/SleepUtil.SleepGranularity);
-		}else{
+		} else {
 			return sWaitForCondition("!selenium.isElementPresent(\"" + locator + "\")", timeout);
 		}
 	}
@@ -2191,13 +2639,39 @@ public abstract class AbsSeleniumObject {
 	 * @throws HarnessException
 	 */
 	public boolean zIsElementDisabled(String cssLocator) throws HarnessException {
+
 		logger.info("zIsElementDisabled(" + cssLocator + ")");
-		String locator = (cssLocator.startsWith("css=") ? "" : "css=")
-				+ cssLocator + "[class*=ZDisabled]";
+		String locator = (cssLocator.startsWith("css=") ? "" : "css=") + cssLocator + "[class*=ZDisabled]";
+
 		if (ZimbraSeleniumProperties.isWebDriver())	{
 			logger.info("...WebDriver...findElement()");
+
+		} else {
+
+			Boolean present = false;
+
+	    	try {
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+				if (present == true) {
+					return sIsElementPresent(locator);
+	    		}
+
+			} catch (Exception e) {
+
+				if (present != false && present != true) {
+					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+					throw new HarnessException("Locator " + locator + " not present", e);
+
+				} else if (present == false) {
+					throw new HarnessException("Locator " + locator + " not present", e);
+				}
+			}
+
 		}
-		return sIsElementPresent(locator);
+
+    	return (false);
+
 	}
 
 	/**
@@ -2237,7 +2711,7 @@ public abstract class AbsSeleniumObject {
 			if(waitForElementVisible(locator, true, 15)){
 				return;
 			}
-		}else{
+		} else {
 		*/
 		    for (int i = 0; i < 15; i++) {
 				if (zIsVisiblePerPosition(locator, 0, 0)) {
@@ -2264,7 +2738,7 @@ public abstract class AbsSeleniumObject {
 			if(waitForElementVisible(locator, false, 15)){
 				return;
 			}
-		}else{
+		} else {
 			for (int i = 0; i < 15; i++) {
 				if (!zIsVisiblePerPosition(locator, 0, 0)) {
 					return;
@@ -2327,28 +2801,28 @@ public abstract class AbsSeleniumObject {
 								+ "if(navigator.userAgent.indexOf('MSIE')!=-1){"
 								+ "var result = iframe_body.innerHTML.indexOf('"
 								+ text
-								+ "') >= 0}else{"
+								+ "') >= 0} else {"
 								+ "var result = iframe_body.textContent.indexOf('"
 								+ text
 								+ "') >= 0} return result",we);
 						if(result == null){
 							return false;
-						}else{
+						} else {
 							return Boolean.valueOf(result);
 						}
 					}
 				};
 				result =  waitForCondition(ec,10);
-			}else{
+			} else {
 				result = sWaitForCondition("var x = selenium.browserbot.findElementOrNull(\""
 					+ iframe
 					+ "\");if(x!=null){x=x.contentWindow.document.body;if(browserVersion.isChrome){x.textContent.indexOf('"
 					+ text
 					+ "') >= 0;}else if(browserVersion.isIE){x.innerText.indexOf('"
 					+ text
-					+ "') >= 0;}else{x.textContent.indexOf('"
+					+ "') >= 0;} else {x.textContent.indexOf('"
 					+ text
-					+ "') >= 0;}}else{false}","30000");
+					+ "') >= 0;}} else {false}","30000");
 			}
 			return result;
 		} catch (Exception ex) {
@@ -2394,7 +2868,7 @@ public abstract class AbsSeleniumObject {
 		try {
 			if(ZimbraSeleniumProperties.isWebDriver()){
 				result = waitForWindowClosed(name, 5L, webDriver().getWindowHandles().size());
-			}else{
+			} else {
 				String condition = "{var x; for(var windowName in selenium.browserbot.openedWindows ){"
 					+ "var targetWindow = selenium.browserbot.openedWindows[windowName];"
 					+ "if((!selenium.browserbot._windowClosed(targetWindow))&&"
@@ -2417,39 +2891,87 @@ public abstract class AbsSeleniumObject {
 	 * DefaultSelenium.check()
 	 */
 	public void sCheck(String locator) throws HarnessException {
+
 		if (ZimbraSeleniumProperties.isWebDriver()) {
 			logger.info("...WebDriver...findElement.click()");
 			WebElement we = getElement(locator);
 			if(!we.isSelected()){
 				we.click();
 		    }
-		}else{
-			ClientSessionFactory.session().selenium().check(locator);
+
+		} else {
+
+			Boolean present = false;
+
+	    	try {
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+				if (present == true) {
+					ClientSessionFactory.session().selenium().check(locator);
+					logger.info("check(" + locator + ")");
+	    		}
+
+			} catch (Exception e) {
+
+				if (present != false && present != true) {
+					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+					throw new HarnessException("Locator " + locator + " not present", e);
+
+				} else if (present == false) {
+					throw new HarnessException("Locator " + locator + " not present", e);
+				}
+			}
+
 		}
-		logger.info("check(" + locator + ")");
+
 	}
 
 	/**
     * DefaultSelenium.uncheck()
     */
 	public void sUncheck(String locator) throws HarnessException {
+
 		if (ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver...findElement.isSelected.click()");
 			WebElement we = getElement(locator);
 			if(we.isSelected()){
 				we.click();
 		    }
-		}else{
-			ClientSessionFactory.session().selenium().uncheck(locator);
+
+		} else {
+
+			Boolean present = false;
+
+	    	try {
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+				if (present == true) {
+					ClientSessionFactory.session().selenium().uncheck(locator);
+					logger.info("uncheck(" + locator + ")");
+	    		}
+
+			} catch (Exception e) {
+
+				if (present != false && present != true) {
+					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+					throw new HarnessException("Locator " + locator + " not present", e);
+
+				} else if (present == false) {
+					throw new HarnessException("Locator " + locator + " not present", e);
+				}
+			}
+
 		}
-      logger.info("uncheck(" + locator + ")");
+
 	}
 
 	/**
 	 * DefaultSelenium.isChecked()
 	 */
 	public boolean sIsChecked(String locator, WebElement... elements) throws HarnessException {
+
 		boolean checked = false;
+
 		if (ZimbraSeleniumProperties.isWebDriver()) {
 			logger.info("...WebDriver...findElement.isSelected()");
 			WebElement we = null;
@@ -2460,12 +2982,29 @@ public abstract class AbsSeleniumObject {
 			}
 
 			checked = we.isSelected();
-		} else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()) {
-			checked = webDriverBackedSelenium().isChecked(locator);
+
 		} else {
-			// Cast to DefaultSelenium ... Workaround until ZimbraSelnium is removed
-			checked = ((DefaultSelenium) ClientSessionFactory.session()
-				.selenium()).isChecked(locator);
+
+			Boolean present = false;
+
+	    	try {
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+				if (present == true) {
+					checked = ClientSessionFactory.session().selenium().isChecked(locator);
+	    		}
+
+			} catch (Exception e) {
+
+				if (present != false && present != true) {
+					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+					throw new HarnessException("Locator " + locator + " not present", e);
+
+				} else if (present == false) {
+					throw new HarnessException("Locator " + locator + " not present", e);
+				}
+			}
+
 		}
 
 		logger.info("isChecked(" + locator + ") = " + checked);
@@ -2478,25 +3017,33 @@ public abstract class AbsSeleniumObject {
 	 * @throws HarnessException
 	 */
 	public String sGetText(String locator, WebElement... elements) throws HarnessException {
-		try {
-			String text = null;
-			if (ZimbraSeleniumProperties.isWebDriver()) {
-			logger.info("...WebDriver...findElement.getText()");
-			WebElement we = null;
-			if(elements != null && elements.length > 0){
-			    we = elements[0];
-			} else {
-			    we = getElement(locator);
-			}
 
-			text = we.getText();
+		String text = null;
+
+		try {
+
+			if (ZimbraSeleniumProperties.isWebDriver()) {
+				logger.info("...WebDriver...findElement.getText()");
+				WebElement we = null;
+				if(elements != null && elements.length > 0){
+				    we = elements[0];
+				} else {
+				    we = getElement(locator);
+				}
+
+				text = we.getText();
+
 			} else {
-				Boolean present = null;
+
+				Boolean present = false;
+
 		    	try {
-					present = ((DefaultSelenium) ClientSessionFactory.session()	.selenium()).isElementPresent(locator);
-					
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
 			    	if (present == true) {
-			    		 text = ClientSessionFactory.session().selenium().getText(locator);
+			    		text = ClientSessionFactory.session().selenium().getText(locator);
+			    		logger.info("DefaultSelenium.getText(" + locator + ") = " + text);
+			 			return (text);
 					}
 
 				} catch (Exception e) {
@@ -2504,26 +3051,29 @@ public abstract class AbsSeleniumObject {
 					if (present != false && present != true) {
 						logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
 						throw new HarnessException("Locator " + locator + " not present", e);
-						
+
 					} else if (present == false) {
 						throw new HarnessException("Locator " + locator + " not present", e);
 					}
-					
 				}
 			}
-			logger.info("DefaultSelenium.getText(" + locator + ") = " + text);
-			return (text);
+
 		} catch (SeleniumException e) {
 			throw new HarnessException(e);
 		}
+
+		return (text);
 	}
 
 	/**
 	 * DefaultSelenium.getValue()
 	 */
 	public String sGetValue(String locator, WebElement... elements) throws HarnessException {
+
 		String text = null;
+
 		if (ZimbraSeleniumProperties.isWebDriver()){
+
 			logger.info("...WebDriver...findElement.getAttribute()");
 			WebElement we = null;
 			if(elements != null && elements.length > 0){
@@ -2532,12 +3082,35 @@ public abstract class AbsSeleniumObject {
 			    we = getElement(locator);
 			}
 			text = we.getAttribute("value");
-		}else{
-			text = ClientSessionFactory.session().selenium().getValue(
-				locator);
+
+		} else {
+
+			Boolean present = false;
+
+	    	try {
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+		    	if (present == true) {
+		    		text = ClientSessionFactory.session().selenium().getValue(locator);
+		    		logger.info("getValue(" + locator + ") = " + text);
+		 			return (text);
+				}
+
+			} catch (Exception e) {
+
+				if (present != false && present != true) {
+					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+					throw new HarnessException("Locator " + locator + " not present", e);
+
+				} else if (present == false) {
+					throw new HarnessException("Locator " + locator + " not present", e);
+				}
+			}
+
 		}
-		logger.info("getValue(" + locator + ") = " + text);
+
 		return (text);
+
 	}
 
 	/**
@@ -2546,14 +3119,18 @@ public abstract class AbsSeleniumObject {
 	 * @return
 	 */
 	public String sGetBodyText() throws HarnessException {
+
 		String text = "";
+
 		if (ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver...findElement.getText()");
 			WebElement el = getElement("css=body");
 			text = el.getText();
-		}else{
+
+		} else {
 			text = ClientSessionFactory.session().selenium().getBodyText();
 		}
+
 		logger.info("sGetBodyText() = " + text);
 		return text;
 	}
@@ -2568,7 +3145,7 @@ public abstract class AbsSeleniumObject {
 		if (ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver...getTitle()");
 			text = webDriver().getTitle();
-		}else{
+		} else {
 			text = ClientSessionFactory.session().selenium().getTitle();
 		}
 		logger.info("DefaultSelenium.getTitle() = " + text);
@@ -2581,28 +3158,53 @@ public abstract class AbsSeleniumObject {
 	 * @throws HarnessException
 	 */
 	public void sType(String locator, String text, WebElement... elements) throws HarnessException {
+
 		try {
 			if (ZimbraSeleniumProperties.isWebDriver()){
 			    logger.info("...WebDriver...action.sendKeys()");
 
 			    WebElement we = null;
 			    if(elements != null && elements.length > 0){
-				we = elements[0];
+			    	we = elements[0];
 			    } else {
-				we = getElement(locator);
+			    	we = getElement(locator);
 			    }
 			    we.clear();
 			    we.sendKeys(text);
+
 			} else {
-			    ClientSessionFactory.session().selenium().type(locator, text);
+
+				Boolean present = false;
+
+		    	try {
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+			    	if (present == true) {
+			    		ClientSessionFactory.session().selenium().type(locator, text);
+			    		logger.info("sType(" + locator + ", " + text + ")");
+					}
+
+				} catch (Exception e) {
+
+					if (present != false && present != true) {
+						logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+						throw new HarnessException("Locator " + locator + " not present", e);
+
+					} else if (present == false) {
+						throw new HarnessException("Locator " + locator + " not present", e);
+					}
+				}
+
 			}
-			logger.info("type(" + locator + ", " + text + ")");
+
 		} catch (SeleniumException e) {
 			throw new HarnessException(e);
 		}
+
 	}
 
 	public void sTypeDateTime(String locator, String text, WebElement... elements) throws HarnessException {
+
 		try {
 			if (ZimbraSeleniumProperties.isWebDriver()){
 			    logger.info("...WebDriver...action.sendKeys()");
@@ -2614,13 +3216,35 @@ public abstract class AbsSeleniumObject {
 				we = getElement(locator);
 			    }
 			    we.sendKeys(text);
+
 			} else {
-			    ClientSessionFactory.session().selenium().type(locator, text);
+
+			    Boolean present = false;
+
+		    	try {
+					present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+			    	if (present == true) {
+			    		ClientSessionFactory.session().selenium().type(locator, text);
+			    		logger.info("sTypeDateTime(" + locator + ", " + text + ")");
+					}
+
+				} catch (Exception e) {
+
+					if (present != false && present != true) {
+						logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+						throw new HarnessException("Locator " + locator + " not present", e);
+
+					} else if (present == false) {
+						throw new HarnessException("Locator " + locator + " not present", e);
+					}
+				}
 			}
-			logger.info("type(" + locator + ", " + text + ")");
+
 		} catch (SeleniumException e) {
 			throw new HarnessException(e);
 		}
+
 	}
 
 
@@ -2628,6 +3252,7 @@ public abstract class AbsSeleniumObject {
 	 * DefaultSelenium.typeKeys()
 	 */
 	public void sTypeKeys(String locator, String text, WebElement... elements) throws HarnessException {
+
 		if (ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver...action.sendKeys()");
 
@@ -2641,10 +3266,32 @@ public abstract class AbsSeleniumObject {
 			final Actions builder = new Actions(webDriver());
 			final Action action = builder.sendKeys(we,text).build();
 			action.perform();
-		}else{
-			ClientSessionFactory.session().selenium().typeKeys(locator, text);
+
+		} else {
+
+			Boolean present = false;
+
+	    	try {
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+		    	if (present == true) {
+		    		ClientSessionFactory.session().selenium().typeKeys(locator, text);
+		    		logger.info("sTypeKeys(" + locator + ", " + text + ")");
+				}
+
+			} catch (Exception e) {
+
+				if (present != false && present != true) {
+					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+					throw new HarnessException("Locator " + locator + " not present", e);
+
+				} else if (present == false) {
+					throw new HarnessException("Locator " + locator + " not present", e);
+				}
+			}
+
 		}
-		logger.info("typeKeys(" + locator + ", " + text + ")");
+
 	}
 
 	/**
@@ -2655,7 +3302,7 @@ public abstract class AbsSeleniumObject {
 		if (ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver...switchTo.alert.getText()");
 			confirm = webDriver().switchTo().alert().getText();
-		}else{
+		} else {
 			confirm =  ClientSessionFactory.session().selenium().getConfirmation();
 		}
 		logger.info("getConfirmation()");
@@ -2671,7 +3318,7 @@ public abstract class AbsSeleniumObject {
 			logger.info("...WebDriver...action.sendKeys()");
 			Actions builder = new Actions(webDriver());
 			builder.sendKeys(code).build().perform();
-		}else{
+		} else {
 			ClientSessionFactory.session().selenium().keyPressNative(code);
 		}
 		logger.info("keyPressNative(" + code + ")");
@@ -2685,10 +3332,33 @@ public abstract class AbsSeleniumObject {
 			logger.info("...WebDriver...action.sendKeys()");
 			Actions builder = new Actions(webDriver());
 			builder.sendKeys(getElement(locator), code).build().perform();
-		}else{
-			ClientSessionFactory.session().selenium().keyPress(locator, code);
+
+		} else {
+
+			Boolean present = false;
+
+			try {
+
+				logger.info("keypress(" + code + ")");
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+				if (present == true) {
+					ClientSessionFactory.session().selenium().keyPress(locator, code);
+				}
+
+			} catch (Exception e) {
+
+				if (present != false && present != true) {
+					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+					throw new HarnessException("Locator " + locator + " not present", e);
+
+				} else if (present == false) {
+					throw new HarnessException("Locator " + locator + " not present", e);
+				}
+
+			}
+
 		}
-		logger.info("keypress(" + code + ")");
 	}
 
 	/**
@@ -2699,10 +3369,34 @@ public abstract class AbsSeleniumObject {
 			logger.info("...WebDriver...Actions.keyDown()");
 			Actions builder = new Actions(webDriver());
 			builder.keyDown(getElement(locator),Keys.valueOf(code)).build().perform();
-		}else{
-			ClientSessionFactory.session().selenium().keyDown(locator, code);
+
+		} else {
+
+			Boolean present = false;
+
+			try {
+
+				logger.info("keyDown(" + code + ")");
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+				if (present == true) {
+					ClientSessionFactory.session().selenium().keyDown(locator, code);
+				}
+
+			} catch (Exception e) {
+
+				if (present != false && present != true) {
+					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+					throw new HarnessException("Locator " + locator + " not present", e);
+
+				} else if (present == false) {
+					throw new HarnessException("Locator " + locator + " not present", e);
+				}
+
+			}
+
 		}
-		logger.info("keyDown(" + code + ")");
+
 	}
 
 	/**
@@ -2713,10 +3407,34 @@ public abstract class AbsSeleniumObject {
 			logger.info("...WebDriver...Actions.keyUp()");
 			Actions builder = new Actions(webDriver());
 			builder.keyUp(getElement(locator),Keys.valueOf(code)).build().perform();
-		}else{
-			ClientSessionFactory.session().selenium().keyUp(locator, code);
+
+		} else {
+
+			Boolean present = false;
+
+			try {
+
+				logger.info("keyUp(" + code + ")");
+				present = ClientSessionFactory.session().selenium().isElementPresent(locator);
+
+				if (present == true) {
+					ClientSessionFactory.session().selenium().keyUp(locator, code);
+				}
+
+			} catch (Exception e) {
+
+				if (present != false && present != true) {
+					logger.info("Illegal value returned for boolean variable when using sIsElementPresent method");
+					throw new HarnessException("Locator " + locator + " not present", e);
+
+				} else if (present == false) {
+					throw new HarnessException("Locator " + locator + " not present", e);
+				}
+
+			}
+
 		}
-		logger.info("keyUp(" + code + ")");
+
 	}
 
 	/**
@@ -2727,7 +3445,7 @@ public abstract class AbsSeleniumObject {
 			logger.info("...WebDriver...action.sendKeys()");
 			Actions builder = new Actions(webDriver());
 			builder.sendKeys(code).build().perform();
-		}else{
+		} else {
 			ClientSessionFactory.session().selenium().keyDownNative(code);
 		}
 		logger.info("keyDownNative(" + code + ")");
@@ -2741,31 +3459,12 @@ public abstract class AbsSeleniumObject {
 			logger.info("...WebDriver...action.release()");
 			Actions builder = new Actions(webDriver());
 			builder.release().build().perform();
-		}else{
+		} else {
 			ClientSessionFactory.session().selenium().keyUpNative(code);
 		}
 		logger.info("keyUpNative(" + code + ")");
 	}
 
-	/**
-	 * DefaultSelenium.select
-	 *
-	 * @param selectLocator
-	 *            Locator of the dropdown-list
-	 * @param optionLocator
-	 *            Option locators provide different ways of specifying options
-	 *            of an HTML Select element (e.g. for selecting a specific
-	 *            option, or for asserting that the selected option satisfies a
-	 *            specification). There are several forms of Select Option
-	 *            Locator. label=labelPattern matches options based on their
-	 *            labels, i.e. the visible text. (This is the default.)
-	 *            label=regexp:^[Oo]ther value=valuePattern matches options
-	 *            based on their values. value=other id=id matches options based
-	 *            on their ids. id=option1index=index matches an option based on
-	 *            its index (offset from zero). index=2 If no option locator
-	 *            prefix is provided, the default behaviour is to match on
-	 *            label.
-	 */
 	public void sSelectDropDown(String selectLocator, String optionLocator) throws HarnessException {
 		if (ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver...getFirstSelectedOption()");
@@ -2775,12 +3474,10 @@ public abstract class AbsSeleniumObject {
 				option = option.split("value=")[1];
 			}
 			select.selectByValue(option);
-		}else{
-			ClientSessionFactory.session().selenium().select(selectLocator,
-				optionLocator);
+		} else {
+			ClientSessionFactory.session().selenium().select(selectLocator, optionLocator);
 		}
-		logger.info("sSelectDropDown(" + selectLocator + ", " + optionLocator
-				+ ")");
+		logger.info("sSelectDropDown(" + selectLocator + ", " + optionLocator + ")");
 	}
 
 	/**
@@ -2794,7 +3491,7 @@ public abstract class AbsSeleniumObject {
 				logger.info("...WebDriver...switchTo.frame()");
 				if(locator.contains("relative=top")){
 					webDriver().switchTo().defaultContent();
-				}else{
+				} else {
 					webDriver().switchTo().frame(getElement(locator));
 				}
 			} else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()) {
@@ -2818,7 +3515,7 @@ public abstract class AbsSeleniumObject {
 			logger.info("...WebDriver...switchTo()");
 			switchTo(windowID);
 			//switchToWindowUsingTitle(windowID);
-		}else{
+		} else {
 			ClientSessionFactory.session().selenium().selectWindow(windowID);
 		}
 		logger.info("sSelectWindow(" + windowID + ")");
@@ -2849,7 +3546,7 @@ public abstract class AbsSeleniumObject {
 		if (ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver...manage.deleteCookieNamed()");
 			webDriver().manage().deleteCookieNamed(name);
-		}else{
+		} else {
 			ClientSessionFactory.session().selenium().deleteCookie(name , optionString);
 		}
 	}
@@ -2865,7 +3562,7 @@ public abstract class AbsSeleniumObject {
 		if (ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver...navigate().to()");
 			webDriver().navigate().to(url);
-		}else{
+		} else {
 			ClientSessionFactory.session().selenium().open(url);
 		}
 	}
@@ -2880,7 +3577,7 @@ public abstract class AbsSeleniumObject {
 		if (ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver...navigate().to()");
 			webDriver().navigate().to(url);
-		}else{
+		} else {
 			ClientSessionFactory.session().selenium().openWindow(url, windowID);
 		}
 		logger.info("openWindow(" + url + ", " + windowID + ")");
@@ -2890,7 +3587,7 @@ public abstract class AbsSeleniumObject {
 		if (ZimbraSeleniumProperties.isWebDriver()){
 			logger.info("...WebDriver...wait().switchTo()");
 			waitForWindowOpen(windowID,Long.valueOf(timeout)/SleepUtil.SleepGranularity);
-		}else{
+		} else {
 			ClientSessionFactory.session().selenium().waitForPopUp(windowID,
 				timeout);
 		}
@@ -2919,7 +3616,7 @@ public abstract class AbsSeleniumObject {
 			webDriver().manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
 		    	//webDriver().manage().window().maximize();
 
-		}else{
+		} else {
 			ClientSessionFactory.session().selenium().windowMaximize();
 		}
 		logger.info("sWindowMaximize()");
@@ -2932,7 +3629,7 @@ public abstract class AbsSeleniumObject {
 		String url = null;
 		if (ZimbraSeleniumProperties.isWebDriver()){
 			url = webDriver().getCurrentUrl();
-		}else{
+		} else {
 			url = ClientSessionFactory.session().selenium().getLocation();
 		}
 		logger.info("sGetLocation(): " + url);
@@ -2986,7 +3683,7 @@ public abstract class AbsSeleniumObject {
 		    .moveToElement(destinationElement,xOffset,yOffset)
 		    .build().perform();
 		    (new Actions(webDriver())).release(sourceElement).build().perform();
-		}else{
+		} else {
 		    ClientSessionFactory.session().selenium().dragAndDrop(locatorSource, relative.toString());
 		 //   SleepUtil.sleepLong();
 		   // ClientSessionFactory.session().selenium().dragAndDrop(locatorSource, relative.toString());
@@ -3002,6 +3699,7 @@ public abstract class AbsSeleniumObject {
 	// End: Selenium methods
 	// // ***
 
+
 	// // ***
 	// Start: WebDriver methods
 	// // ***
@@ -3014,7 +3712,7 @@ public abstract class AbsSeleniumObject {
 			if(waitForElementVisible(locator, flag, wait)){
 				return true;
 			}
-		}else{
+		} else {
 			for (int i = 0; i < wait; i++) {
 				if (zIsVisiblePerPosition(locator, 0, 0)||!flag) {
 					return true;
@@ -3031,7 +3729,7 @@ public abstract class AbsSeleniumObject {
 		for(String locator : locators) {
 		    sendKeys(locator, keys);
 		}
-	    }else{
+	    } else {
 		logger.info("...WebDriver...actions.sendKeys(Keys)");
 		Actions builder = new Actions(webDriver());
 		builder.sendKeys(keys).build().perform();
@@ -3120,10 +3818,10 @@ public abstract class AbsSeleniumObject {
 				try {
 					if(we == null){
 						we = webDriver().findElement(by);
-					}else{
+					} else {
 						we = we.findElement(by);
 					}
-				}catch(Exception ex){
+				} catch (Exception ex){
 					logger.info("...findBy()..." + ex);
 				}
 			}
@@ -3193,7 +3891,7 @@ public abstract class AbsSeleniumObject {
 
 		if(we==null){
 			throw new HarnessException("WebElement is null: " + locator );
-		}else{
+		} else {
 			return we;
 		}
 	}
@@ -3205,7 +3903,7 @@ public abstract class AbsSeleniumObject {
 		if (locator != null){
 			try {
 				element = driver.findElement(By.xpath(locator));
-			}catch(Exception ex){
+			} catch (Exception ex){
 				logger.info("...getElementByXPath()..." + ex);
 			}
 		}
@@ -3224,7 +3922,7 @@ public abstract class AbsSeleniumObject {
 			}
 			try {
 				element = driver.findElement(By.id(modifiedLocator));
-			}catch(Exception ex){
+			} catch (Exception ex){
 				logger.info("...getElementById()..." + ex);
 			}
 		}
@@ -3243,7 +3941,7 @@ public abstract class AbsSeleniumObject {
 			}
 			try {
 				element = driver.findElement(By.className(modifiedLocator));
-			}catch(Exception ex){
+			} catch (Exception ex){
 				logger.info("...getElementById()..." + ex);
 			}
 		}
@@ -3259,7 +3957,7 @@ public abstract class AbsSeleniumObject {
 		CssLocator cssl = configureCssLocator(locator, startSuffix, containSuffix);
 		if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()){
 			driver = webDriverBackedSelenium().getWrappedDriver();
-		}else{
+		} else {
 			driver = webDriver();
 		}
 		String modLocator = cssl.getLocator();
@@ -3312,10 +4010,10 @@ public abstract class AbsSeleniumObject {
 			we = getElementByXPath(locator);
 		}else if(locator.startsWith("css=")){
 			we = getElementByCss(locator);
-		}else{
+		} else {
 			if(locator.contains("=")){
 				we = getElementByCss(locator);
-			}else{
+			} else {
 				we = getElementById(locator);
 			}
 		}
@@ -3369,18 +4067,18 @@ public abstract class AbsSeleniumObject {
 		logger.info("...WebDriver...waitForElementPresent()");
 		Boolean present = false;
 		if(locator !=null && !locator.isEmpty()){
-			try{
+			try {
 				present = (new FluentWait<WebDriver>(webDriver()).withTimeout(timeout, TimeUnit.SECONDS).
 					pollingEvery(500, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class))
 						.until(new ExpectedCondition<Boolean>(){
 							public Boolean apply(WebDriver d) {
 								if(flag){
 									return elementPresent(locator);
-								}else{
+								} else {
 									return !elementPresent(locator);
 								}
 				}});
-			}catch(TimeoutException  e){
+			} catch (TimeoutException  e){
 				logger.info("...waitForElementPresent()... " + locator + " timed out after " + timeout + "s");
 			}
 		}
@@ -3391,18 +4089,18 @@ public abstract class AbsSeleniumObject {
 		logger.info("...WebDriver...waitForElementVisible()");
 		Boolean visible = false;
 		if(locator !=null && !locator.isEmpty()){
-			try{
+			try {
 				visible = (new FluentWait<WebDriver>(webDriver()).withTimeout(timeout, TimeUnit.SECONDS).
 					pollingEvery(500, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class).ignoring(MoveTargetOutOfBoundsException.class).ignoring(ElementNotVisibleException.class))
 						.until(new ExpectedCondition<Boolean>(){
 							public Boolean apply(WebDriver d) {
 								if(flag){
 									return elementVisiblePerPosition(locator);
-								}else{
+								} else {
 									return !elementVisiblePerPosition(locator);
 								}
 				}});
-			}catch(TimeoutException  e){
+			} catch (TimeoutException  e){
 				logger.info("...waitForElementVisible()... " + locator + " timed out after " + timeout + "s");
 			}
 		}
@@ -3413,9 +4111,9 @@ public abstract class AbsSeleniumObject {
 		logger.info("...WebDriver...waitForCondition()");
 		WebDriverWait wait = new WebDriverWait(webDriver(), timeout);
 		Boolean result = false;
-		try{
+		try {
 			result = wait.until(condition);
-		}catch(TimeoutException  e){
+		} catch (TimeoutException  e){
 				logger.info("...WebDriver...waitForCondition()... timed out after " + timeout + "s");
 		}
 		return result;
@@ -3427,14 +4125,14 @@ public abstract class AbsSeleniumObject {
 		List<String> list = new ArrayList<String>();
 		WebDriver driver = webDriver();
 		String currentWindowHandle = driver.getWindowHandle();
-		try{
+		try {
 			Set<String> windowHandles = driver.getWindowHandles();
 			if (windowHandles!=null && !windowHandles.isEmpty()) {
 				for (String handle : windowHandles) {
 					list.add(driver.switchTo().window(handle).getTitle());
 				}
 			}
-		}catch(Exception ex){
+		} catch (Exception ex){
 			logger.error(ex);
 		}
 		finally{
@@ -3454,7 +4152,7 @@ public abstract class AbsSeleniumObject {
 		if(handles == null){
 		    throw new HarnessException("...handles are null");
 		}
-		try{
+		try {
 		    if(name == null || name.contentEquals("null")){
 			LinkedHashSet<String> windowHandles = new LinkedHashSet<String>(handles);
 			driver.switchTo().window(windowHandles.iterator().next());
@@ -3462,16 +4160,16 @@ public abstract class AbsSeleniumObject {
 			logger.info("selecting defaultContent()" + defaultContent);
 			sWindowFocus();
 			found = true;
-		    }else{
+		    } else {
 			logger.info("handles size: " + handles.size());
 			String url = "";
 			String title = null;
 			for (String handle : handles) {
 			    logger.info("about to switch to handle: " + handle);
-			    try{
+			    try {
 				title = driver.switchTo().window(handle).getTitle();
 				logger.info("switched to title: " + title);
-			    }catch(Exception ex){
+			    } catch (Exception ex){
 				logger.error(ex);
 			    }
 			    url = driver.getCurrentUrl();
@@ -3483,7 +4181,7 @@ public abstract class AbsSeleniumObject {
 			    }
 			}
 		    }
-		}catch(Exception ex){
+		} catch (Exception ex){
 			logger.error(ex);
 		}
 		finally{
@@ -3501,9 +4199,9 @@ public abstract class AbsSeleniumObject {
 
 		boolean found = false;
 		for (int i = 0; i < 5; i++) {
-			try{
+			try {
 				found = switchTo(name);
-			}catch(Exception ex){
+			} catch (Exception ex){
 				logger.error(ex);
 			}
 			if (found){
@@ -3532,34 +4230,34 @@ public abstract class AbsSeleniumObject {
 
 		if(handlesSize != null && handlesSize.length > 0){
 			final int size = handlesSize[0];
-			try{
+			try {
 				wait = new FluentWait<WebDriver>(webDriver()).withTimeout(5L, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS);
 				wait.until(new ExpectedCondition<Boolean>(){
 					Boolean result = false;
 					public Boolean apply(WebDriver driver) {
 						if(flag){
 							result = driver.getWindowHandles().size() > size;
-						}else{
+						} else {
 							if(size > 1){
 								result = driver.getWindowHandles().size() < size;
 							}
 						}
 						return result;
 				}});
-			}catch(Exception te){
+			} catch (Exception te){
 				logger.info("...wait for getWindowHandles().size differ from " + size + " timed out");
 			}
 		}
 
 		boolean status = false;
 		wait = new FluentWait<WebDriver>(webDriver()).withTimeout(timeout, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS);
-		try{
+		try {
 			status = wait.until(new ExpectedCondition<Boolean>(){
 				public Boolean apply(WebDriver driver) {
 					try {
 						if(flag){
 							return switchTo(name);
-						}else{
+						} else {
 							return !switchTo(name);
 						}
 					} catch (HarnessException ex) {
@@ -3568,7 +4266,7 @@ public abstract class AbsSeleniumObject {
 					}
 				}
 			});
-		}catch(Exception te){
+		} catch (Exception te){
 			logger.info("...wait for window " + name + " become:" + flag + " timed out");
 		}
 		return status;
