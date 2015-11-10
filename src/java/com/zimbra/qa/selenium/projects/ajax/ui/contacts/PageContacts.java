@@ -942,6 +942,9 @@ public class PageContacts extends AbsTab {
 
 	
 	public AbsPage zListItem(Action action, Button option ,Button subOption, String contact) throws HarnessException {
+		
+		SleepUtil.sleepSmall();
+		
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned		
 		String parentLocator = null;
@@ -1120,18 +1123,18 @@ public class PageContacts extends AbsTab {
     		sFocus(locator);
             sMouseOver(locator);
             SleepUtil.sleepSmall();
-            //jClick(locator);
             //zClickAt(locator, "0,0");
              sClickAt(locator, "0,0");
-     	//}
        zWaitForBusyOverlay();
+       
+       SleepUtil.sleepSmall();
+       
+       if ( page != null ) {
+    	   //sWaitForPageToLoad();
+    	   page.zWaitForActive();
+       }
 		
-		
-		if ( page != null ) {
-			//sWaitForPageToLoad();
-			page.zWaitForActive();
-		}
-		return (page);
+       return (page);
     
 	}
 	
@@ -1390,6 +1393,9 @@ public class PageContacts extends AbsTab {
 	 */
 	@Override
 	public AbsPage zListItem(Action action, String contact) throws HarnessException {
+		
+		SleepUtil.sleepSmall();
+		
 		logger.info(myPageName() + " zListItem("+ action +", "+ contact +")");
         String contactLocator=getContactLocator(contact);
     	AbsPage page = null;	
@@ -1460,6 +1466,9 @@ public class PageContacts extends AbsTab {
 		if (page != null) {
 		    page.zWaitForActive();
 		}
+		
+		SleepUtil.sleepSmall();
+		
 		return page;
 	}
 	

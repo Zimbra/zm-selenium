@@ -21,7 +21,7 @@ public class CreateFilterMsgHdrContextMenu extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Receive a  mail - Right Click From Msg Header and verify context menus>>Create Filter", groups = { "smoke-temp-skipped" })
+	@Test(description = "Receive a  mail - Right Click From Msg Header and verify context menus>>Create Filter", groups = { "smoke" })
 	public void CreateFilterMessageHdrContextMenu() throws HarnessException {
 
 		// Create the message data to be sent

@@ -246,9 +246,6 @@ public class AjaxCommonTest {
 		
 		SleepUtil.sleepLong();
 		ClientSessionFactory.session().selenium().windowFocus();
-		ClientSessionFactory.session().selenium().selectWindow(null);
-		ClientSessionFactory.session().selenium().windowMaximize();
-		SleepUtil.sleepLong();
 		
 	}
 

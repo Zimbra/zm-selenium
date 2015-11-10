@@ -475,7 +475,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 		
 		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email10/mimeTextOnly4.txt";
-		final String subject = "4 plain text format";
+		final String subject = "4 plain text";
 		final String content = "The Ming Dynasty";
 		final String fullContent = "The Ming Dynasty, also Empire of the Great Ming, was the ruling dynasty of China from 1368 to 1644.";
 		

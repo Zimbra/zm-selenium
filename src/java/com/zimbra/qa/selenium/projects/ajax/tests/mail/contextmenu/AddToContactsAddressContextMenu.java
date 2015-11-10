@@ -20,7 +20,7 @@ public class AddToContactsAddressContextMenu extends PrefGroupMailByMessageTest 
 	}
 	
 	@Bugs(ids = "102204")
-	@Test(description = "Right click to bubble address>>AddToContact", groups = { "smoke-temp-skipped-bug102204" })
+	@Test(description = "Right click to bubble address>>AddToContact", groups = { "smoke" })
 	public void AddToContactAddressContextMenu() throws HarnessException {
 
 		String contactFirst = "First"

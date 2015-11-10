@@ -781,6 +781,7 @@ public class FormMailNew extends AbsForm {
 
 		// Enter text
 		this.sType(locator, value);
+		SleepUtil.sleepSmall();
 		
 		this.zWaitForBusyOverlay();
 

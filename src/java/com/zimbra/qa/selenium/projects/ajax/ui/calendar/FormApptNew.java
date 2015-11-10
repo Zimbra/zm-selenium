@@ -893,8 +893,6 @@ public class FormApptNew extends AbsForm {
 		// subject
 		if (field == Field.Subject) {
 			
-			SleepUtil.sleepMedium();
-
 			locator = "css=div[id^='APPT_COMPOSE_'] td[id$='_subject'] input";
 			
 		} else if ( field == Field.From ) {
@@ -1080,8 +1078,6 @@ public class FormApptNew extends AbsForm {
 			throw new HarnessException("locator was null for field " + field);
 		}
 		
-		SleepUtil.sleepSmall();
-
 		if (isRepeat != null) {
 			this.sClickAt(locator, "");
 			zRecurringOptions(locator, value, isRepeat);
@@ -1100,7 +1096,6 @@ public class FormApptNew extends AbsForm {
 				this.sTypeDateTime(locator, value);
 				
 			} else if (field == Field.Subject) {
-				SleepUtil.sleepMedium();
 				this.sFocus(locator);
 				SleepUtil.sleepSmall();
 				this.sType(locator, value);
