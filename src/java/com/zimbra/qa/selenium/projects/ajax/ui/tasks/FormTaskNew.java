@@ -430,15 +430,18 @@ public class FormTaskNew extends AbsForm {
 			throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
 		
 		// Enter text
-      this.sFocus(locator);
-      this.zClick(locator);
-      sType(locator, value);
-      
-      if(!(sGetValue(locator).equalsIgnoreCase(value))){
-    	  sType(locator, value);
-      }
+		if (field != Field.Subject) {
+			this.sFocus(locator);
+		}
 		
-      this.zWaitForBusyOverlay();
+		this.sClick(locator);
+		sType(locator, value);
+      
+		if(!(sGetValue(locator).equalsIgnoreCase(value))){
+			sType(locator, value);
+		}
+		
+		this.zWaitForBusyOverlay();
 
 	}
 	
