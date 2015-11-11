@@ -18,7 +18,7 @@ public class AddressContextMenuOptions extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Right click To bubble address>>Verify Delete/Copy/Edit/Expand/AddtoContact/Moveto-cc-bcc menus", groups = { "sanity" })
+	@Test(description = "Right click To bubble address>>Verify Delete/Copy/Edit/Expand/AddtoContact/Moveto-cc-bcc menus", groups = { "sanity-skip" })
 	public void VerifyAddressContextMenuOptions() throws HarnessException {
 
 		// Create the message data to be sent

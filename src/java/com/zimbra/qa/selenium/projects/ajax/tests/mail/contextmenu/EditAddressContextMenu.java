@@ -20,7 +20,7 @@ public class EditAddressContextMenu extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Right click to bubble address>>Edit", groups = { "smoke" })
+	@Test(description = "Right click to bubble address>>Edit", groups = { "smoke-skip" })
 	public void EditToAddressContextMenu() throws HarnessException {
 
 		// Create the message data to be sent
