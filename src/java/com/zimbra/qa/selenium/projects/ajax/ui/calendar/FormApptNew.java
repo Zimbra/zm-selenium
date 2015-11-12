@@ -595,8 +595,9 @@ public class FormApptNew extends AbsForm {
 		if (locator == null)
 			throw new HarnessException("locator was null for button " + button);
 
-		// Default behavior, process the locator by clicking on it
-		//
+		if (!this.sIsElementPresent(locator)) {
+			throw new HarnessException("Locator " + locator + " not present!");
+		}
 
 		// Click it
 		this.sClickAt(locator, "");
@@ -644,7 +645,11 @@ public class FormApptNew extends AbsForm {
 
 		if (locator == null)
 			throw new HarnessException("locator was null for button " + button);
-
+		
+		if (!this.sIsElementPresent(locator)) {
+			throw new HarnessException("Locator " + locator + " not present!");
+		}
+		
 		this.sClickAt(locator, "");
 		SleepUtil.sleepMedium();
 		
@@ -1078,6 +1083,10 @@ public class FormApptNew extends AbsForm {
 			throw new HarnessException("locator was null for field " + field);
 		}
 		
+		if (!this.sIsElementPresent(locator)) {
+			throw new HarnessException("Locator " + locator + " not present!");
+		}
+		
 		if (isRepeat != null) {
 			this.sClickAt(locator, "");
 			zRecurringOptions(locator, value, isRepeat);
@@ -1214,7 +1223,7 @@ public class FormApptNew extends AbsForm {
 		}
 		
 		SleepUtil.sleepSmall();
-		this.zClickAt(Locators.NoneButton, "");
+		this.sClickAt(Locators.NoneButton, "");
 		
 		if (!recurringType.equals(Button.O_CUSTOM_MENU)) {
 			
@@ -1490,7 +1499,7 @@ public class FormApptNew extends AbsForm {
 			
 		} else if ( field == Field.Equipment ) {
 			
-				this.zClickAt(Locators.ShowEquipmentLink, "");
+				this.sClickAt(Locators.ShowEquipmentLink, "");
 				locator = Locators.EquipmentField;
 			
 		} else {
@@ -1519,7 +1528,7 @@ public class FormApptNew extends AbsForm {
 		if(ZimbraSeleniumProperties.isWebDriver()){
 		    clearField(locator);
 		    sType(locator, value);
-		}else{
+		} else {
 		    if(value.length() > 0){ 
 			sType(locator, value.substring(0, value.length()-1));
 			sFireEvent(locator, "keyup");

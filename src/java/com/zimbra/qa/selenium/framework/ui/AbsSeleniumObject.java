@@ -1820,6 +1820,7 @@ public abstract class AbsSeleniumObject {
 				if (present != false && present != true) {
 					logger.info("Illegal value returned for boolean variable");
 					present = false;
+					throw new HarnessException("Locator " + locator + " not present", e);
 
 				} else if (present == false) {
 					throw new HarnessException("Locator " + locator + " not present", e);
@@ -2258,6 +2259,7 @@ public abstract class AbsSeleniumObject {
 				if (present != false && present != true) {
 					logger.info("Illegal value returned for boolean variable");
 					present = false;
+					throw new HarnessException("Locator " + locator + " not present", e);
 
 				} else if (present == false) {
 					present = false;

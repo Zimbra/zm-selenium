@@ -266,9 +266,13 @@ public class FormMailNew extends AbsForm {
 		// Make sure a locator was set
 		if ( locator == null )
 			throw new HarnessException("locator was null for button "+ button);
+		
+		if (!this.sIsElementPresent(locator)) {
+			throw new HarnessException("Locator " + locator + " not present!");
+		}
 
 		// Click it
-		this.zClick(locator);
+		this.sClickAt(locator, "");
 
 		// if the app is busy, wait for it to become active again
 		this.zWaitForBusyOverlay();
@@ -414,6 +418,10 @@ public class FormMailNew extends AbsForm {
 		} else {
 			throw new HarnessException("no logic defined for pulldown "+ pulldown);
 		}
+		
+		if (!this.sIsElementPresent(pulldownLocator)) {
+			throw new HarnessException("Locator " + pulldownLocator + " not present!");
+		}
 
 		// Default behavior
 		if ( pulldownLocator != null ) {
@@ -424,9 +432,13 @@ public class FormMailNew extends AbsForm {
 
 			this.zWaitForBusyOverlay();
 			
+			if (!this.sIsElementPresent(optionLocator)) {
+				throw new HarnessException("Locator " + optionLocator + " not present!");
+			}
+			
 			if ( optionLocator != null ) {
 				
-				this.zClick(optionLocator);
+				this.sClickAt(optionLocator, "");
 
 				this.zWaitForBusyOverlay();
 
@@ -454,16 +466,20 @@ public class FormMailNew extends AbsForm {
 		String pulldownLocator = "css=div[id^='zv__COMPOSE'] tr[id$='_identity_row'] td[id$='_dropdown']";
 		String optionLocator = "css=td[id$='_title']:contains("+ value +")";
 		
+		if (!this.sIsElementPresent(pulldownLocator)) {
+			throw new HarnessException("Locator " + pulldownLocator + " not present!");
+		}
+		
 		// Default behavior
 		if ( pulldownLocator != null ) {
 									
-			this.zClick(pulldownLocator);
+			this.sClick(pulldownLocator);
 
 			this.zWaitForBusyOverlay();
 			
 			if ( optionLocator != null ) {
 				
-				this.zClick(optionLocator);
+				this.sClick(optionLocator);
 
 				this.zWaitForBusyOverlay();
 
@@ -983,46 +999,6 @@ public class FormMailNew extends AbsForm {
 		return (zAutocompleteListGetEntries());
 		
 	}
-
-	
-	/**
-
-  <div x-display="block" parentid="z_shell" class="ZmAutocompleteListView" style="position: absolute; overflow: auto; display: block; left: 263px; top: 132px; z-index: 750;" id="zac__COMPOSE-1">
-    <table id="DWT117" border="0" cellpadding="0" cellspacing="0">
-      <tbody>
-        <tr id="zac__COMPOSE-1_acRow_0" class="acRow-selected">
-          <td class="Icon">
-            <div class="ImgContact" style=""></div>
-          </td>
-
-          <td>"&Atilde;&lsquo;&Atilde;&copy;&Atilde;&iexcl;l Wilson"
-          &lt;enus13173367893124@testdomain.com&gt;</td>
-
-          <td class="Link"></td>
-
-          <td class="Link"></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <span style= "position: absolute; left: -10000px; top: -10000px; font-size: 13.3333px;">&Atilde;&lsquo;&Atilde;&copy;&Atilde;&iexcl;l</span>
-
-
-  <div x-display="block" style="position: absolute; left: 263px; top: 132px; z-index: 100; display: none;" class="acWaiting">
-    <table border="0" cellpadding="0" cellspacing="0">
-      <tbody>
-        <tr>
-          <td>
-            <div class="ImgSpinner"></div>
-          </td>
-
-          <td>Autocompleting...</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-		 */
 
 	/**
 	 * Wait for the autocomplete spinner to go away
