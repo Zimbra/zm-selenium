@@ -74,16 +74,21 @@ public class PageMain extends AbsTab {
 		return (new DialogError(zimbra, this.MyApplication, this));
 	}
 
-
-
 	public boolean zIsZimletLoaded() throws HarnessException {
-		if (ZimbraSeleniumProperties.isWebDriver())
-			return ("true".equals(sGetEval("return top.appCtxt.getZimletMgr().loaded")));
-		else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium())
-			return ("true".equals(sGetEval("selenium.browserbot.getCurrentWindow().top.appCtxt.getZimletMgr().loaded")));
-		else
-			return ("true".equals(sGetEval("this.browserbot.getUserWindow().top.appCtxt.getZimletMgr().loaded")));
-	}
+        for (int i=0; i<=30; i++) {
+            boolean present = sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']");
+            if (present == true) {
+                SleepUtil.sleepSmall();
+                return true;
+            } else {
+                SleepUtil.sleepMedium();
+                if (i == 30) {
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
 	
 	public boolean zIsMinicalLoaded() throws HarnessException {
 		return ("true".equals(sGetEval("this.browserbot.getUserWindow().top.appCtxt.getAppViewMgr().getCurrentViewComponent(this.browserbot.getUserWindow().top.ZmAppViewMgr.C_TREE_FOOTER) != null")));
