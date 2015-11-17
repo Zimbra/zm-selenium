@@ -20,7 +20,7 @@ public class NewEmailMsgHdrContextMenu extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Receive a  mail - Right Click From Msg Header and verify context menus>>New Emails", groups = { "smoke-skip" })
+	@Test(description = "Receive a  mail - Right Click From Msg Header and verify context menus>>New Emails", groups = { "smoke" })
 	public void NewEmailMessageHdrContextMenu() throws HarnessException {
 
 		// Create the message data to be sent

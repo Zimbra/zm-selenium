@@ -19,7 +19,7 @@ public class AddToContactsAttendeeContextMenu extends PrefGroupMailByMessageTest
 	}
 	
 	@Bugs(ids = "102204")
-	@Test(description = "Right click To attendee bubble address>>Verify AddToContact", groups = { "smoke-skip" })
+	@Test(description = "Right click To attendee bubble address>>Verify AddToContact", groups = { "smoke" })
 	public void AddToContactAttendeeContextMenu() throws HarnessException {
 
 		String apptAttendee1,apptContent;

@@ -21,7 +21,7 @@ public class EditAttendeeContextMenu extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Right click To attendee bubble address>>Verify Edit menus", groups = { "smoke-skip" })
+	@Test(description = "Right click To attendee bubble address>>Verify Edit menus", groups = { "smoke" })
 	public void EditAttendeesContextMenu() throws HarnessException {
 
 		String apptAttendee1,apptContent;
