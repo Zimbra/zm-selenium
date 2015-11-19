@@ -100,7 +100,6 @@ public class AdminCommonTest {
 			ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.ADMIN);
 
 			if(ZimbraSeleniumProperties.isWebDriver()) {
-				
 				_webDriver = ClientSessionFactory.session().webDriver();
 
 				Capabilities cp =  ((RemoteWebDriver)_webDriver).getCapabilities();
@@ -108,19 +107,19 @@ public class AdminCommonTest {
 					_webDriver.manage().window().setPosition(new Point(0, 0));
 					_webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
 					//_webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
 					_webDriver.navigate().to(ZimbraSeleniumProperties.getBaseURL());
+
 				}
 				
-			} else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()) {
-				
+			}else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()) {
 				_webDriverBackedSelenium = ClientSessionFactory.session().webDriverBackedSelenium();
 				_webDriverBackedSelenium.windowMaximize();
 				_webDriverBackedSelenium.windowFocus();
-				_webDriverBackedSelenium.setTimeout("60000");
+				_webDriverBackedSelenium.setTimeout("60000");// Use 60 second timeout for
 				_webDriverBackedSelenium.open(ZimbraSeleniumProperties.getBaseURL());
-				
 			} else {
-
+				// Use 30 second timeout for opening the browser
 				String timeout = ZimbraSeleniumProperties.getStringProperty("selenium.maxpageload.msec", "30000");
 
 				ClientSessionFactory.session().selenium().start();
