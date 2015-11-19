@@ -53,7 +53,7 @@ public class DeleteResourceSR extends AdminCommonTest {
 	 */
 	@Test(	description = "Verify delete resource operation -- Search List View -- Location",
 			groups = { "functional" })
-	public void DeleteResource_05() throws HarnessException {
+	public void DeleteResourceSR_01() throws HarnessException {
 
 		this.startingPage.zNavigateTo();
 
@@ -113,8 +113,8 @@ public class DeleteResourceSR extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Verify delete resource operation -- Search List View -- Equipment",
-			groups = { "test" })
-	public void DeleteResource_06() throws HarnessException {
+			groups = { "functional" })
+	public void DeleteResourceSR_02() throws HarnessException {
 
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
@@ -173,7 +173,7 @@ public class DeleteResourceSR extends AdminCommonTest {
 	 */
 	@Test(	description = "Verify delete resource operation -- Search List View/Right Click Menu -- Location",
 			groups = { "functional" })
-	public void DeleteResource_07() throws HarnessException {
+	public void DeleteResourceSR_03() throws HarnessException {
 
 		this.startingPage.zNavigateTo();
 
@@ -233,8 +233,8 @@ public class DeleteResourceSR extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Verify delete resource operation -- Search List View/Right Click Menu -- Equipment",
-			groups = { "test" })
-	public void DeleteResource_08() throws HarnessException {
+			groups = { "functional" })
+	public void DeleteResourceSR_04() throws HarnessException {
 
 		this.startingPage.zNavigateTo();
 
