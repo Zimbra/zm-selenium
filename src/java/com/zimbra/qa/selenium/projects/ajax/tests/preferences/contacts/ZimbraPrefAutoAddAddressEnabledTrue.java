@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.preferences.addressbook;
+package com.zimbra.qa.selenium.projects.ajax.tests.preferences.contacts;
 
 import java.util.HashMap;
 
@@ -27,16 +27,16 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-public class ZimbraPrefAutoAddAddressEnabledFalse extends AjaxCommonTest {
+public class ZimbraPrefAutoAddAddressEnabledTrue extends AjaxCommonTest {
 
-	public ZimbraPrefAutoAddAddressEnabledFalse() {
+	public ZimbraPrefAutoAddAddressEnabledTrue() {
 
 		super.startingPage = app.zPagePreferences;
 		
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 1275472695659221683L;
+			private static final long serialVersionUID = 2485388299568483622L;
 			{				
-		 		put("zimbraPrefAutoAddAddressEnabled", "TRUE");
+		 		put("zimbraPrefAutoAddAddressEnabled", "FALSE");
 			}
 		};
 	}
@@ -46,9 +46,9 @@ public class ZimbraPrefAutoAddAddressEnabledFalse extends AjaxCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(
-			description= "Select the checkbox to set zimbraPrefAutoAddAddressEnabled=false ", 
+			description= "Select the checkbox to set zimbraPrefAutoAddAddressEnabled=true ", 
 			groups= {"functional" })
-	public void ZimbraPrefAutoAddAddressEnabledFalse_01() throws HarnessException {
+	public void ZimbraPrefAutoAddAddressEnabledTrue_01() throws HarnessException {
 
 		//-- DATA Setup
 		
@@ -60,7 +60,7 @@ public class ZimbraPrefAutoAddAddressEnabledFalse extends AjaxCommonTest {
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.AddressBook);
 
 		// Uncheck the box
-		app.zPagePreferences.zCheckboxSet("css=input[id$=_AUTO_ADD_ADDRESS]",false);
+		app.zPagePreferences.zCheckboxSet("css=input[id$=_AUTO_ADD_ADDRESS]", true);
 			
 		// Click save
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);		
@@ -75,7 +75,7 @@ public class ZimbraPrefAutoAddAddressEnabledFalse extends AjaxCommonTest {
                  + "</GetPrefsRequest>");
 
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefAutoAddAddressEnabled']", null);
-		ZAssert.assertEquals(value, "FALSE", "Verify the zimbraPrefAutoAddAddressEnabled preference was changed to 'FALSE'");
+		ZAssert.assertEquals(value, "TRUE", "Verify the zimbraPrefAutoAddAddressEnabled preference was changed to 'TRUE'");
 
 		
 	}

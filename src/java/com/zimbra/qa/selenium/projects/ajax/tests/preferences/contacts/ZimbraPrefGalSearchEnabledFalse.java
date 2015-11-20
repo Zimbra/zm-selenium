@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.preferences.addressbook;
+package com.zimbra.qa.selenium.projects.ajax.tests.preferences.contacts;
 
 import java.util.HashMap;
 
@@ -25,16 +25,16 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-public class ZimbraPrefSharedAddrBookAutoCompleteEnabledTrue extends AjaxCommonTest {
+public class ZimbraPrefGalSearchEnabledFalse extends AjaxCommonTest {
 
-	public ZimbraPrefSharedAddrBookAutoCompleteEnabledTrue() {
+	public ZimbraPrefGalSearchEnabledFalse() {
 		
 		
 		super.startingPage = app.zPagePreferences;
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -699124925243182136L;
+			private static final long serialVersionUID = -6378381583935057753L;
 			{				
-				put("zimbraPrefSharedAddrBookAutoCompleteEnabled", "FALSE");
+				put("zimbraPrefGalSearchEnabled", "TRUE");
 			}
 		};
 		
@@ -42,10 +42,10 @@ public class ZimbraPrefSharedAddrBookAutoCompleteEnabledTrue extends AjaxCommonT
 	}
 
 	@Test(
-			description = "Set zimbraPrefSharedAddrBookAutoCompleteEnabled to 'TRUE'",
+			description = "Set zimbraPrefGalSearchEnabled to 'FALSE'",
 			groups = { "functional" }
 	)
-	public void ZimbraPrefSharedAddrBookAutoCompleteEnabledTrue_01() throws HarnessException {
+	public void ZimbraPrefGalSearchEnabledFalse_01() throws HarnessException {
 
 		//-- DATA Setup
 		
@@ -58,7 +58,7 @@ public class ZimbraPrefSharedAddrBookAutoCompleteEnabledTrue extends AjaxCommonT
 
 		
 		// Click radio button for "	Initially search the Global Address List when using the contact picker"
-		app.zPagePreferences.sClick("css=div[id$='AUTOCOMPLETE_SHARED_ADDR_BOOKS_control'] input[id$='AUTOCOMPLETE_SHARED_ADDR_BOOKS']");
+		app.zPagePreferences.sClick("css=div[id$='INITIALLY_SEARCH_GAL_control'] input[id$='INITIALLY_SEARCH_GAL']");
 
 		// Click save
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
@@ -69,11 +69,11 @@ public class ZimbraPrefSharedAddrBookAutoCompleteEnabledTrue extends AjaxCommonT
 		
 		app.zGetActiveAccount().soapSend(
 						"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
-				+			"<pref name='zimbraPrefSharedAddrBookAutoCompleteEnabled'/>"
+				+			"<pref name='zimbraPrefGalSearchEnabled'/>"
 				+		"</GetPrefsRequest>");
 
-		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefSharedAddrBookAutoCompleteEnabled']", null);
-		ZAssert.assertEquals(value, "TRUE", "Verify the zimbraPrefSharedAddrBookAutoCompleteEnabled preference was changed to 'TRUE'");
+		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefGalSearchEnabled']", null);
+		ZAssert.assertEquals(value, "FALSE", "Verify the zimbraPrefGalSearchEnabled preference was changed to 'TRUE'");
 
 	}
 	

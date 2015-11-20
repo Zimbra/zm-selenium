@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.preferences.addressbook;
+package com.zimbra.qa.selenium.projects.ajax.tests.preferences.contacts;
 
 import java.util.HashMap;
 
@@ -25,16 +25,16 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-public class ZimbraPrefGalAutoCompleteEnabledTrue extends AjaxCommonTest {
+public class ZimbraPrefGalSearchEnabledTrue extends AjaxCommonTest {
 
-	public ZimbraPrefGalAutoCompleteEnabledTrue() {
+	public ZimbraPrefGalSearchEnabledTrue() {
 		
 		
 		super.startingPage = app.zPagePreferences;
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -9003499097205536365L;
+			private static final long serialVersionUID = 1548564137395983698L;
 			{				
-				put("zimbraPrefGalAutoCompleteEnabled", "FALSE");
+				put("zimbraPrefGalSearchEnabled", "FALSE");
 			}
 		};
 		
@@ -42,10 +42,10 @@ public class ZimbraPrefGalAutoCompleteEnabledTrue extends AjaxCommonTest {
 	}
 
 	@Test(
-			description = "Set zimbraPrefGalAutoCompleteEnabled to 'TRUE'",
+			description = "Set zimbraPrefGalSearchEnabled to 'TRUE'",
 			groups = { "functional" }
 	)
-	public void zimbraPrefGalAutoCompleteEnabledTrue_01() throws HarnessException {
+	public void ZimbraPrefGalSearchEnabledTrue_01() throws HarnessException {
 
 		//-- DATA Setup
 		
@@ -58,7 +58,7 @@ public class ZimbraPrefGalAutoCompleteEnabledTrue extends AjaxCommonTest {
 
 		
 		// Click radio button for "	Initially search the Global Address List when using the contact picker"
-		app.zPagePreferences.sClick("css=div[id$='GAL_AUTOCOMPLETE_control'] input[id$='GAL_AUTOCOMPLETE']");
+		app.zPagePreferences.sClick("css=div[id$='INITIALLY_SEARCH_GAL_control'] input[id$='INITIALLY_SEARCH_GAL']");
 
 		// Click save
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
@@ -69,11 +69,11 @@ public class ZimbraPrefGalAutoCompleteEnabledTrue extends AjaxCommonTest {
 		
 		app.zGetActiveAccount().soapSend(
 						"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
-				+			"<pref name='zimbraPrefGalAutoCompleteEnabled'/>"
+				+			"<pref name='zimbraPrefGalSearchEnabled'/>"
 				+		"</GetPrefsRequest>");
 
-		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefGalAutoCompleteEnabled']", null);
-		ZAssert.assertEquals(value, "TRUE", "Verify the zimbraPrefGalAutoCompleteEnabled preference was changed to 'TRUE'");
+		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefGalSearchEnabled']", null);
+		ZAssert.assertEquals(value, "TRUE", "Verify the zimbraPrefGalSearchEnabled preference was changed to 'TRUE'");
 
 	}
 	

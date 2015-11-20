@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.preferences.addressbook;
+package com.zimbra.qa.selenium.projects.ajax.tests.preferences.contacts;
 
 import java.util.HashMap;
 
@@ -25,16 +25,16 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-public class ZimbraPrefGalSearchEnabledFalse extends AjaxCommonTest {
+public class ZimbraPrefAutoCompleteQuickCompletionOnCommaFalse extends AjaxCommonTest {
 
-	public ZimbraPrefGalSearchEnabledFalse() {
+	public ZimbraPrefAutoCompleteQuickCompletionOnCommaFalse() {
 		
 		
 		super.startingPage = app.zPagePreferences;
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -6378381583935057753L;
+			private static final long serialVersionUID = 2104957058330806917L;
 			{				
-				put("zimbraPrefGalSearchEnabled", "TRUE");
+				put("zimbraPrefAutoCompleteQuickCompletionOnComma", "TRUE");
 			}
 		};
 		
@@ -42,10 +42,10 @@ public class ZimbraPrefGalSearchEnabledFalse extends AjaxCommonTest {
 	}
 
 	@Test(
-			description = "Set zimbraPrefGalSearchEnabled to 'FALSE'",
+			description = "Set zimbraPrefAutoCompleteQuickCompletionOnComma to 'FALSE'",
 			groups = { "functional" }
 	)
-	public void ZimbraPrefGalSearchEnabledFalse_01() throws HarnessException {
+	public void ZzimbraPrefAutoCompleteQuickCompletionOnCommaFalse_01() throws HarnessException {
 
 		//-- DATA Setup
 		
@@ -58,7 +58,7 @@ public class ZimbraPrefGalSearchEnabledFalse extends AjaxCommonTest {
 
 		
 		// Click radio button for "	Initially search the Global Address List when using the contact picker"
-		app.zPagePreferences.sClick("css=div[id$='INITIALLY_SEARCH_GAL_control'] input[id$='INITIALLY_SEARCH_GAL']");
+		app.zPagePreferences.sClick("css=div[id$='AUTOCOMPLETE_ON_COMMA_control'] input[id$='AUTOCOMPLETE_ON_COMMA']");
 
 		// Click save
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
@@ -69,11 +69,11 @@ public class ZimbraPrefGalSearchEnabledFalse extends AjaxCommonTest {
 		
 		app.zGetActiveAccount().soapSend(
 						"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
-				+			"<pref name='zimbraPrefGalSearchEnabled'/>"
+				+			"<pref name='zimbraPrefAutoCompleteQuickCompletionOnComma'/>"
 				+		"</GetPrefsRequest>");
 
-		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefGalSearchEnabled']", null);
-		ZAssert.assertEquals(value, "FALSE", "Verify the zimbraPrefGalSearchEnabled preference was changed to 'TRUE'");
+		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefAutoCompleteQuickCompletionOnComma']", null);
+		ZAssert.assertEquals(value, "FALSE", "Verify the zimbraPrefAutoCompleteQuickCompletionOnComma preference was changed to 'FALSE'");
 
 	}
 	
