@@ -156,8 +156,10 @@ public abstract class AbsTab extends AbsPage {
 	 * @throws HarnessException
 	 */
 	public AbsPage zKeyboardKeyEvent(int keyEvent) throws HarnessException {
+		this.zWaitForBusyOverlay();
 		AbsPage page = null;
 		this.zKeyboard.zTypeKeyEvent(keyEvent);
+		this.zWaitForBusyOverlay();
 		return (page);
 	}
 

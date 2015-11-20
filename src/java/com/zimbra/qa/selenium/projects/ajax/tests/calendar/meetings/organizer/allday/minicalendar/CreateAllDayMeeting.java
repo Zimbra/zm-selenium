@@ -63,6 +63,8 @@ public class CreateAllDayMeeting extends CalendarWorkWeekTest {
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
 		appt.setLocation(apptLocation);
+		
+		app.zPageCalendar.zNavigateTo();
 	
 		// Quick add appointment dialog
 		QuickAddAppointment quickAddAppt = new QuickAddAppointment(app) ;

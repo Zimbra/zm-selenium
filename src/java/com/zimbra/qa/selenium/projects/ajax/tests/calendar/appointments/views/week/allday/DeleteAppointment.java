@@ -99,6 +99,8 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
         // Refresh the calendar to pick up changes
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
         
+        app.zPageCalendar.zNavigateTo();
+        
         // Select the appointment
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         
@@ -153,6 +155,8 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
         
         // Refresh the calendar to pick up the appointment
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        
+        app.zPageCalendar.zNavigateTo();
         
         // Right click -> Delete
         DialogConfirmDeleteAppointment dlgConfirm = (DialogConfirmDeleteAppointment)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DELETE, apptSubject);
@@ -214,6 +218,8 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
         
         // Refresh the calendar view
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        
+        app.zPageCalendar.zNavigateTo();
         
         // Select the appointment
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);

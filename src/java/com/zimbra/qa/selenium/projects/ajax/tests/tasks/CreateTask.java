@@ -45,9 +45,10 @@ public class CreateTask extends AjaxCommonTest {
 		}};
 	}
 
-	@Test(	description = "Create Simple task through GUI - verify through soap",
-			groups = { "sanity" })
-			public void CreateTask_01() throws HarnessException {
+	
+	@Test(	description = "Create Simple task through GUI - verify through soap", groups = { "sanity" })
+	
+	public void CreateTask_01() throws HarnessException {
 
 		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "taskbody"+ ZimbraSeleniumProperties.getUniqueString();
@@ -59,23 +60,16 @@ public class CreateTask extends AjaxCommonTest {
 		taskNew.zFillField(Field.Subject, subject);
 		taskNew.zFillField(Field.Body, body);
 		taskNew.zSubmit();
-		SleepUtil.sleepMedium();
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
 		ZAssert.assertEquals(task.gettaskBody().trim(), body.trim(), "Verify the task body");
 
 	}
-	/**
-	 * Test Case :Create new task using keyboard shortcut Esc
-	 * Open new Task 
-	 * Enter Subject and body
-	 * Press Escape 'Esc' shortcut 
-	 * Waring dialog should pop up and press Yes
-	 * Task should show in list 
-	 * @throws HarnessException
-	 */
+
+	
 	@Test(description = "Create new task using keyboard shortcut Esc- Verify through Soap", groups = { "smoke" })
+	
 	public void CreateTask_02() throws HarnessException {
 
 		Shortcut shortcut = Shortcut.S_ESCAPE;
@@ -102,15 +96,16 @@ public class CreateTask extends AjaxCommonTest {
 
 	}
 	
+	
 	@Test(	description = "Create task using New menu pulldown  - verify through SOAP",	groups = { "smoke" })
+	
 	public void CreateTask_03() throws HarnessException {
 
 		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "taskbody" + ZimbraSeleniumProperties.getUniqueString();
 
 		// Click NEW drop down and click Task
-		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks
-				.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_TASK);
+		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_TASK);
 
 		// Fill out the resulting form
 		taskNew.zFillField(Field.Subject, subject);
@@ -122,17 +117,10 @@ public class CreateTask extends AjaxCommonTest {
 		ZAssert.assertEquals(task.gettaskBody().trim(), body.trim(),"Verify the task body");
 
 	}
-	/**
-	 * Test Case :Create new task using keyboard shortcut NK (New Task)
-	 * Open new Task 
-	 * Enter Subject and body
-	 * Press 'NK' shortcut 
-	 * New Task page should get open
-	 * Fill required inputs and save it
-	 * Task should show in list 
-	 * @throws HarnessException
-	 */
-	@Test(description = "Create new task using keyboard shortcut 'NK'- Verify through Soap", groups = { "smoke" })
+	
+	
+	@Test(	description = "Create new task using NK keyboard shortcut key", groups = { "smoke" })
+	
 	public void CreateTask_04() throws HarnessException {
 
 		Shortcut shortcut = Shortcut.S_NEWTASK;
@@ -158,8 +146,9 @@ public class CreateTask extends AjaxCommonTest {
 
 	}
 	
-	@Test(	description = "Create Tasks, using 'Right Click' Mail subject -> 'Create Task'-Verify through Soap",
-			groups = { "smoke" })
+	
+	@Test(	description = "Create Tasks, using 'Right Click' Mail subject -> 'Create Task'-Verify through Soap", groups = { "smoke" })
+	
 	public void CreateTask_05() throws HarnessException {
 		
 		app.zPageMail.zNavigateTo();
@@ -188,7 +177,6 @@ public class CreateTask extends AjaxCommonTest {
 		//Click on subject
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 		
-		
 		//Right click subject >> select Create Task menu item
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_TASK, mail.dSubject);
 		
@@ -200,9 +188,10 @@ public class CreateTask extends AjaxCommonTest {
 		ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
 	}
 	
-	@Test(	description = "Create Simple task with attachment through RestUtil - verify through GUI",
-			groups = { "smoke" })
-			public void CreateTask_06() throws HarnessException {
+	
+	@Test(	description = "Create Simple task with attachment through RestUtil - verify through GUI", groups = { "smoke" })
+	
+	public void CreateTask_06() throws HarnessException {
 
 		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
 		
@@ -232,8 +221,6 @@ public class CreateTask extends AjaxCommonTest {
 				"</attach>"+
 				"</m>" +
 		"</CreateTaskRequest>");
-
-		
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
@@ -247,12 +234,12 @@ public class CreateTask extends AjaxCommonTest {
 		
 	}
 	
-	@Test(	description = "Create Simple task  with attachment through RestUtil - verify through soap",
-			groups = { "smoke" })
-			public void CreateTask_07() throws HarnessException {
+	
+	@Test(	description = "Create Simple task  with attachment through RestUtil - verify through soap",groups = { "smoke" })
+	
+	public void CreateTask_07() throws HarnessException {
 
 		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
-		
 		
 		ZimbraAccount account = app.zGetActiveAccount();
 		FolderItem taskFolder = FolderItem.importFromSOAP(account,SystemFolder.Tasks);
@@ -265,7 +252,6 @@ public class CreateTask extends AjaxCommonTest {
 		// Upload file to server through RestUtil
 		String attachmentId = account.uploadFile(filePath);		
 		
-
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
 				"<m >" +
@@ -283,7 +269,6 @@ public class CreateTask extends AjaxCommonTest {
 				"</m>" +
 		"</CreateTaskRequest>");
 
-		
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
@@ -303,6 +288,7 @@ public class CreateTask extends AjaxCommonTest {
 				
 	}
 
+	
 	@DataProvider(name = "DataProvidePriorities")
 	public Object[][] DataProvidePriorities() {
 	  return new Object[][] {
@@ -311,10 +297,10 @@ public class CreateTask extends AjaxCommonTest {
 			  new Object[] { Button.O_PRIORITY_NORMAL, "5" }
 	  };
 	}
+	
 
-	@Test(	description = "Create a task with different priorities high/normal/low",
-			groups = { "functional" },
-			dataProvider = "DataProvidePriorities")
+	@Test(	description = "Create a task with different priorities high/normal/low", groups = { "functional" },	dataProvider = "DataProvidePriorities")
+	
 	public void CreateTask_10(Button option, String verify) throws HarnessException {
 		
 		//-- DATA

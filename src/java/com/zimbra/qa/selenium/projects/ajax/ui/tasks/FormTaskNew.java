@@ -61,7 +61,6 @@ public class FormTaskNew extends AbsForm {
 		public static final String zPriorityOptionNormal	= "css=[id^=zv__COMPOSE][id$=___priority_dropdown]";
 		public static final String zPriorityOptionLow	= "css=[id^=zv__COMPOSE][id$=___priority_dropdown]";
 
-		//added by Girish
 		public static final String zFrame = "css=iframe[id^='iframe_DWT']";
 		public static final String zSaveAndCloseIconBtn = "//*[@id='DWT9_left_icon']";
 		public static final String zBodyField = "css=body";
@@ -167,14 +166,11 @@ public class FormTaskNew extends AbsForm {
 		if ( locator == null )
 			throw new HarnessException("locator was null for button "+ button);
 
-
-		// Default behavior, process the locator by clicking on it
-		//
-
 		// Click it
 		this.zClickAt(locator,"0,0");
-
-	//	sClickAt(locator, "0,0");
+		// this.sClickAt(locator, "0,0");
+		
+		SleepUtil.sleepMedium();
 
 		// if the app is busy, wait for it to become active again
 		this.zWaitForBusyOverlay();
@@ -374,6 +370,9 @@ public class FormTaskNew extends AbsForm {
 			return;
 
 		}else if (field == Field.HtmlBody) {
+			
+			SleepUtil.sleepVeryLong();
+			
 			String browser = SeleniumService.getInstance().getSeleniumBrowser();
 			try {
 
@@ -390,20 +389,13 @@ public class FormTaskNew extends AbsForm {
 
 				} else {
 
-
 					//sSelectFrame("css=div[id^='zv__TKE-'] iframe[id$='_content_ifr']");
 					sSelectFrame("css=div[class='ZmTaskEditView'] div[id$='_notes'] iframe[id$='_body_ifr']");
-
 
 					locator = "css=body[id='tinymce']";
 					this.sFocus(locator);
 					this.zClickAt(locator, "");
 
-					/*
-					 * Oct 25, 2011: The new TinyMCE editor broke sType().  Use zKeyboard instead,
-					 * however, it is preferred to use sType() if possible, but I can't find a
-					 * solution right now.
-					 */
 					// this.sType(locator, value);
 					this.zKeyboard.zTypeCharacters(value);
 
@@ -478,17 +470,12 @@ public class FormTaskNew extends AbsForm {
 	public boolean zIsActive() throws HarnessException {
 		logger.info(myPageName() + " zIsActive()");
 
-		// Look for the div
 		//String locator = "css=td[id='zv__TKE1_subject']";css=td[id$='_subject']
 		String locator = "css=td[id$='_subject']";
 		if ( !this.sIsElementPresent(locator) ) {
 			return (false);
 		}
 
-//		if ( !this.zIsVisiblePerPosition(locator, 150, 80) ) {
-//			return (false);
-//		}
-//
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 	}

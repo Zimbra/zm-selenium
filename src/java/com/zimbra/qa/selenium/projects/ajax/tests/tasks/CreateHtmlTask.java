@@ -54,9 +54,10 @@ public class CreateHtmlTask extends AjaxCommonTest {
 		}};
 	}
 
-	@Test(	description = "Create Simple Html task through GUI - verify through soap",
-			groups = { "smoke" })
-			public void CreateHtmlTask_01() throws HarnessException {
+	
+	@Test(	description = "Create Simple Html task through GUI - verify through soap", groups = { "sanity" })
+	
+	public void CreateHtmlTask_01() throws HarnessException {
 
 		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
 		//String taskHtmlbody = "task<b>bold"+ ZimbraSeleniumProperties.getUniqueString() + "</b>task";
@@ -64,19 +65,12 @@ public class CreateHtmlTask extends AjaxCommonTest {
 
 		// Click NEW button
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
-		//Pull down Options drop down and select Format As Html option
-		//taskNew.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_OPTION_FORMAT_AS_HTML);	
-			
-		//Reason:With "?dev=1&debug=0", Tinymce editor in HTML mode takes more time to load 
-		//removing incompatible to webdriver refernece
-		//if(ClientSessionFactory.session().selenium().getEval("window.tinyMCE").equalsIgnoreCase("null")){
-			SleepUtil.sleepVeryLong();
-		//}
+		SleepUtil.sleepVeryLong();
+
 		// Fill out the resulting form
 		taskNew.zFillField(Field.Subject, subject);
 		taskNew.zFillField(Field.HtmlBody, taskHtmlbody);
 		taskNew.zSubmit();
-		SleepUtil.sleepMedium();
 
 		//Verify the html content of the task body		
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
@@ -84,16 +78,10 @@ public class CreateHtmlTask extends AjaxCommonTest {
 		ZAssert.assertStringContains(task.getHtmlTaskBody().trim().toLowerCase(), taskHtmlbody.trim(), "Verify the html content of task body");
 
 	}
-	/**
-	 * Test Case :Create new task using keyboard shortcut Esc
-	 * Open new Task >> select Options>> Format As Html option
-	 * Enter Subject and body
-	 * Press Escape 'Esc' shortcut 
-	 * Waring dialog should pop up and press Yes
-	 * Html Task should show in list 
-	 * @throws HarnessException
-	 */
+
+	
 	@Test(description = "Create new Html task using keyboard shortcut Esc- Verify through Soap", groups = { "smoke" })
+	
 	public void CreateHtmlTask_02() throws HarnessException {
 
 		Shortcut shortcut = Shortcut.S_ESCAPE;
@@ -103,14 +91,8 @@ public class CreateHtmlTask extends AjaxCommonTest {
 
 		//Click NEW button
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
+		SleepUtil.sleepVeryLong();
 
-		//Pull down Options drop down and select Format As Html option
-		//taskNew.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_OPTION_FORMAT_AS_HTML);
-		//Reason:With "?dev=1&debug=0", Tinymce editor in HTML mode takes more time to load 
-		//removing incompatible to webdriver refernece
-		//if(ClientSessionFactory.session().selenium().getEval("window.tinyMCE").equalsIgnoreCase("null")){
-			SleepUtil.sleepVeryLong();
-		//}
 		//Fill out resulting form		
 		taskNew.zFillField(Field.Subject, subject);
 		taskNew.zFillField(Field.HtmlBody, taskHtmlbody);
@@ -129,7 +111,9 @@ public class CreateHtmlTask extends AjaxCommonTest {
 
 	}
 
+	
 	@Test(	description = "Create Html task using New menu pulldown  - verify through SOAP",	groups = { "smoke" })
+	
 	public void CreateHtmlTask_03() throws HarnessException {
 
 		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
@@ -137,22 +121,13 @@ public class CreateHtmlTask extends AjaxCommonTest {
 		String taskHtmlbody = "body" + ZimbraSeleniumProperties.getUniqueString();
 
 		// Click NEW drop down and click Task
-		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks
-		.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_TASK);
-
-		//Pull down Options drop down and select Format As Html option
-		//taskNew.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_OPTION_FORMAT_AS_HTML);
-		//Reason:With "?dev=1&debug=0", Tinymce editor in HTML mode takes more time to load 
-		//removing incompatible to webdriver refernece
-		//if(ClientSessionFactory.session().selenium().getEval("window.tinyMCE").equalsIgnoreCase("null")){
-			SleepUtil.sleepVeryLong();
-		//}
+		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_TASK);
+		SleepUtil.sleepVeryLong();
 
 		// Fill out the resulting form
 		taskNew.zFillField(Field.Subject, subject);
 		taskNew.zFillField(Field.HtmlBody, taskHtmlbody);
 		taskNew.zSubmit();
-		SleepUtil.sleepMedium();
 
 		//Verify the html content of the task body		
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
@@ -160,16 +135,10 @@ public class CreateHtmlTask extends AjaxCommonTest {
 		ZAssert.assertStringContains(task.getHtmlTaskBody().trim().toLowerCase(), taskHtmlbody.trim(), "Verify the html content of task body");
 
 	}
-	/**
-	 * Test Case :Create new Html task using keyboard shortcut NK (New Task)
-	 * Go to Task 
-	 * Press 'NK' shortcut
-	 * New Task page should get open >>Select Options>> Format As Html
-	 * Fill required inputs and save it
-	 * Html Task should show in list 
-	 * @throws HarnessException
-	 */
+
+	
 	@Test(description = "Create new Html task using keyboard shortcut 'NK'- Verify through Soap", groups = { "smoke" })
+	
 	public void CreateHtmlTask_04() throws HarnessException {
 
 		Shortcut shortcut = Shortcut.S_NEWTASK;
@@ -184,20 +153,12 @@ public class CreateHtmlTask extends AjaxCommonTest {
 
 		//Click NEW Task shortcut "NK"
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zKeyboardShortcut(shortcut);
-
-		//Pull down Options drop down and select Format As Html option
-		//taskNew.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_OPTION_FORMAT_AS_HTML);
-		//Reason:With "?dev=1&debug=0", Tinymce editor in HTML mode takes more time to load 
-		//removing incompatible to webdriver refernece
-		//if(ClientSessionFactory.session().selenium().getEval("window.tinyMCE").equalsIgnoreCase("null")){
-			SleepUtil.sleepVeryLong();
-		//}
+		SleepUtil.sleepVeryLong();
 
 		// Fill out the resulting form
 		taskNew.zFillField(Field.Subject, subject);
 		taskNew.zFillField(Field.HtmlBody, taskHtmlbody);
 		taskNew.zSubmit();
-		SleepUtil.sleepMedium();
 
 		//Verify the html content of the task body		
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
@@ -206,8 +167,9 @@ public class CreateHtmlTask extends AjaxCommonTest {
 
 	}
 
-	@Test(	description = "Create Html Tasks, using 'Right Click' Html Mail subject -> 'Create Task'-Verify through Soap",
-			groups = { "smoke" })
+	
+	@Test(	description = "Create Html Tasks, using 'Right Click' Html Mail subject -> 'Create Task'-Verify through Soap", groups = { "smoke" })
+	
 	public void CreateHtmlTask_05() throws HarnessException {
 
 		app.zPageMail.zNavigateTo();
@@ -262,9 +224,12 @@ public class CreateHtmlTask extends AjaxCommonTest {
 
 		ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
 		ZAssert.assertStringContains(task.getHtmlTaskBody().trim().toLowerCase(), taskHtmlbody.trim(), "Verify the html content of task body");
+		
 	}
 	
+	
 	@Test(description = "Create Html task with attachment through RestUtil - verify through GUI", groups = { "smoke" })
+	
 	public void CreateHtmlTask_06() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 		FolderItem taskFolder = FolderItem.importFromSOAP(account, SystemFolder.Tasks);
@@ -309,10 +274,11 @@ public class CreateHtmlTask extends AjaxCommonTest {
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 		ZAssert.assertTrue(app.zPageTasks.sIsElementPresent(Locators.zAttachmentsLabel),"Verify Attachments: label");
 		
-
 	}
 	
+	
 	@Test(description = "Create Html task with attachment through RestUtil - verify through Soap", groups = { "smoke" })
+	
 	public void CreateHtmlTask_07() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 		FolderItem taskFolder = FolderItem.importFromSOAP(account, SystemFolder.Tasks);
@@ -370,6 +336,5 @@ public class CreateHtmlTask extends AjaxCommonTest {
 		ZAssert.assertEquals(m.getAttribute("filename", null), fileName, "Verify file name through SOAP");
 
 	}
-
 
 }
