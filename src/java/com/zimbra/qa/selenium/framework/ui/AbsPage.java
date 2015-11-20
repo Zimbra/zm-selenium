@@ -21,13 +21,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
 import org.apache.log4j.*;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
-import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.util.*;
 
 
@@ -327,6 +321,12 @@ public abstract class AbsPage extends AbsSeleniumObject {
 				}
 		    }
 
+//		    public RobotKeyboard(Robot robot) {
+//				logger.info("new " + RobotKeyboard.class.getCanonicalName());
+	//
+//				this.robot = robot;
+//		    }
+
 		    // Used to make sure num lock is not pressed
 		    private static boolean numLockHasBeenProcessed = false;
 
@@ -350,8 +350,9 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		    	} else {
 		    	   for (char c : characters.toCharArray()) {
 		    	      try {
-		    	    	  zWaitForBusyOverlay();
+		    	    	  Thread.sleep(50);
 		    	    	  type(c);
+		    	    	  Thread.sleep(50);
 		    	      }catch (Exception e) {
 		    	    	  logger.warn(e);
 					}
@@ -359,69 +360,6 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		    	}
 		    	
 		    }
-		    
-		    public static void zWaitForBusyOverlay() throws HarnessException {
-				logger.info("zWaitForBusyOverlay()");
-
-				try {
-					if (ZimbraSeleniumProperties.isWebDriver()){
-						logger.info("...WebDriver...executeScript:wait.until.getBusy()");
-						sWaitForCondition("return top.appCtxt.getShell().getBusy()==false");
-					}
-					else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()){
-						sWaitForCondition("selenium.browserbot.getCurrentWindow().top.appCtxt.getShell().getBusy()==false");
-					}
-					else{
-						sWaitForCondition("selenium.browserbot.getUserWindow().top.appCtxt.getShell().getBusy()==false");
-					}
-				} catch (Exception ex) {
-					throw new HarnessException("Busy Overlay never disappeared!", ex);
-				}
-			}
-		    
-		    @SuppressWarnings("deprecation")
-			protected static boolean sWaitForCondition(String condition) throws HarnessException {
-				logger.info("sWaitForCondition(" + condition + "), timeout="
-						+ LoadDelay);
-				try {
-					boolean result = false;
-					if (ZimbraSeleniumProperties.isWebDriver()) {
-						logger.info("...WebDriver...executeScript.wait.until()");
-						final String script = condition;
-						result = (new WebDriverWait(webDriver(), LoadDelay/SleepUtil.SleepGranularity))
-								.until(new ExpectedCondition<Boolean>() {
-									public Boolean apply(WebDriver d) {
-										if(d==null){
-											return false;
-										} else {
-											return (Boolean) ((JavascriptExecutor) d)
-													.executeScript(script);
-										}
-									}
-								});
-					}
-					else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()){
-						webDriverBackedSelenium().waitForCondition( condition, String.valueOf(LoadDelay));
-						result = true;
-					}
-					else{
-						ClientSessionFactory.session().selenium().waitForCondition(condition, "" + LoadDelay);
-						result = true;
-					}
-					return result;
-				} catch (Exception ex) {
-					logger.info(condition + " never become true: " + ex);
-					return false;
-				}
-			}
-		    
-		    protected static WebDriverBackedSelenium webDriverBackedSelenium() {
-				return ClientSessionFactory.session().webDriverBackedSelenium();
-			}
-		    
-		    protected static WebDriver webDriver() {
-				return ClientSessionFactory.session().webDriver();
-			}
 
 		    private void type(char character) {
 		    	logger.info("type("+ character +")");

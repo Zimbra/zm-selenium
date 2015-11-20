@@ -29,7 +29,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.thoughtworks.selenium.SeleniumException;
-import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
@@ -39,12 +38,12 @@ import com.zimbra.qa.selenium.projects.html.ui.AppHtmlClient;
 import com.zimbra.qa.selenium.projects.mobile.ui.AppMobileClient;
 import com.zimbra.qa.selenium.projects.touch.ui.AppTouchClient;
 
+@SuppressWarnings("deprecation")
 public class HarnessException extends Exception {
 	
 	Logger logger = LogManager.getLogger(HarnessException.class);
 	private static final long serialVersionUID = 4657095353247341818L;
 	
-	private WebDriverBackedSelenium _webDriverBackedSelenium = null;
 	private WebDriver _webDriver = null;
 	
 	protected AppAjaxClient app1 = null;
@@ -69,14 +68,16 @@ public class HarnessException extends Exception {
 			app5 = new AppMobileClient();
 		}
 		
+		logger.error("HarnessException: Kill the browser and relogin");
 		killBrowserAndRelogin();
 		
-		logger.error("Reset account due to exception");
+		logger.error("HarnessException: Reset account due to exception");
 		ZimbraAccount.ResetAccountZWC();
 		ZimbraAdminAccount.ResetAccountAdminConsoleAdmin();
 		ZimbraAccount.ResetAccountHTML();
 		ZimbraAccount.ResetAccountZMC();
 		ZimbraAccount.ResetAccountZTC();
+
 	}
 	
 	public HarnessException(String message) {
@@ -98,7 +99,6 @@ public class HarnessException extends Exception {
 	}
 	
 	
-	@SuppressWarnings("deprecation")
 	public void killBrowserAndRelogin () {
 		
 		try {
@@ -146,18 +146,10 @@ public class HarnessException extends Exception {
 					_webDriver.navigate().to(ZimbraSeleniumProperties.getBaseURL());
 				}
 				
-			} else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()) {
-				
-				_webDriverBackedSelenium = ClientSessionFactory.session().webDriverBackedSelenium();
-				_webDriverBackedSelenium.windowMaximize();
-				_webDriverBackedSelenium.windowFocus();
-				_webDriverBackedSelenium.setTimeout("60000");
-				_webDriverBackedSelenium.open(ZimbraSeleniumProperties.getBaseURL());
-				
 			} else {
 
 				@SuppressWarnings("unused")
-				String timeout = ZimbraSeleniumProperties.getStringProperty("selenium.maxpageload.msec", "60000");
+				String timeout = ZimbraSeleniumProperties.getStringProperty("selenium.maxpageload.msec", "100000");
 
 				ClientSessionFactory.session().selenium().start();
 				ClientSessionFactory.session().selenium().windowMaximize();
