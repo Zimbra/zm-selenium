@@ -740,6 +740,14 @@ public class FormContactNew extends AbsForm {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
+		// Make sure a locator was set
+		if ( locator == null )
+			throw new HarnessException("locator was null for button "+ button);
+
+		
+		// Default behavior, process the locator by clicking on it
+		//
+		
 		// Click it
 		zClickAt(locator, "0,0");
 

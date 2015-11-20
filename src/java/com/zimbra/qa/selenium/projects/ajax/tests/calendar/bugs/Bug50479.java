@@ -18,7 +18,10 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.bugs;
 
 import java.util.Calendar;
 import java.util.HashMap;
+
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -41,38 +44,29 @@ public class Bug50479 extends AjaxCommonTest {
 
 	public Bug50479() {
 		logger.info("New " + Bug50479.class.getCanonicalName());
-		
 		super.startingPage = app.zPagePreferences;
 	}
-
-	// Need to skip this test till bug 77465 get fixed otherwise automation may stuck at browser navigate away dialog
-	@Test(
-			description = "Bug 50479 - When setting custom working hours, JS error", 
-			groups = { "bug" })
+	
+	@Bugs(ids = "102406")
+	@Test( description = "Bug 50479 - When setting custom working hours, JS error", 
+			groups = { "functional" })
+	
 	public void Bug50479_01() throws HarnessException {
-/*		
-		// Modify the test account
-		ZimbraAdminAccount.GlobalAdmin().soapSend(
-				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
-			+		"<id>"+ app.zGetActiveAccount().ZimbraId +"</id>"
-			+		"<a n='zimbraPrefWarnOnExit'>TRUE</a>"
-			+	"</ModifyAccountRequest>");
-*/
-		// Logout and login to pick up the changes
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
 
 		// Navigate to preferences -> calendar
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
-		SleepUtil.sleepMedium();
 
 		// Select custom work hours
 		app.zPagePreferences.zSelectRadioButton(Button.R_CUSTOM_WORK_HOURS);
+		app.zPagePreferences.zPressButton(Button.B_CUSTOMIZE);
+		app.zPagePreferences.zSelectCheckBox(Button.B_MONDAY_CHECK_BOX);
+		app.zPagePreferences.zPressButton(Button.B_OK);
 		
 		// Save preferences
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
-		//DialogWarning dlgWarning = (DialogWarning) new DialogWarning(null, app, null).zClickButton(Button.B_NO);
-		app.zPagePreferences.zPressButton(Button.B_NO);
+		app.zPagePreferences.zPressButton(Button.B_YES);
+		SleepUtil.sleepVeryLong();
+		SleepUtil.sleepMedium();
  
 		// Verify the preference value
 		app.zGetActiveAccount().soapSend(
@@ -81,7 +75,7 @@ public class Bug50479 extends AjaxCommonTest {
 				+		"</GetPrefsRequest>");
 		
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefCalendarWorkingHours']", null);
-		ZAssert.assertEquals(value, "1:N:0800:1700,2:Y:0800:1700,3:Y:0800:1700,4:Y:0800:1700,5:Y:0800:1700,6:Y:0800:1700,7:N:0800:1700", "Verify zimbraPrefCalendarWorkingHours value (Sunday & Saturday as non-working days)'");
+		ZAssert.assertEquals(value, "1:N:0800:1700,2:N:0800:1700,3:Y:0800:1700,4:Y:0800:1700,5:Y:0800:1700,6:Y:0800:1700,7:N:0800:1700", "Verify zimbraPrefCalendarWorkingHours value (Sunday & Saturday as non-working days)'");
 		
 		// if logout stucks then assume that browser dialog appeared
 		app.zPageMain.zLogout();

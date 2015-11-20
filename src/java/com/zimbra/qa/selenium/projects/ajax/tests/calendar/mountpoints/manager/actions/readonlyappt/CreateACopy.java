@@ -43,7 +43,7 @@ public class CreateACopy extends CalendarWorkWeekTest {
 		
 		String organizer;
 		organizerTest = false;
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptContent = "body" + ZimbraSeleniumProperties.getUniqueString();
 		String newSubject = ZimbraSeleniumProperties.getUniqueString();
 		String newContent = ZimbraSeleniumProperties.getUniqueString();

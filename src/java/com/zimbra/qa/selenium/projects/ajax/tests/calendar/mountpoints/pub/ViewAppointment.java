@@ -38,7 +38,7 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 			
 	public void ViewAppointment_01() throws HarnessException {
 		
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptContent = ZimbraSeleniumProperties.getUniqueString();
 		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
 		

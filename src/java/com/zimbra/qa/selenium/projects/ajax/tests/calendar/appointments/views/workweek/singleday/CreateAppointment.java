@@ -45,7 +45,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		// Create appointment
 		AppointmentItem appt = new AppointmentItem();
 		Calendar now = this.calendarWeekDayUTC;
-		appt.setSubject("appointment" + ZimbraSeleniumProperties.getUniqueString());
+		appt.setSubject(ZimbraSeleniumProperties.getUniqueString());
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
 		appt.setContent("content" + ZimbraSeleniumProperties.getUniqueString());
@@ -130,7 +130,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		// Create appointment
 		String apptSubject;
 		Calendar now = this.calendarWeekDayUTC;
-		apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
 		
 		appt.setSubject(apptSubject);

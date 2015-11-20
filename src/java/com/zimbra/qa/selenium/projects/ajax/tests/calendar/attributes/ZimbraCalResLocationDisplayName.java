@@ -35,7 +35,7 @@ public class ZimbraCalResLocationDisplayName extends CalendarWorkWeekTest {
 	    super.startingAccountPreferences = null;
 	}
 	
-	@Test(description = "Bug 57039 : Verify the serach location dialog shows location display name for location ",
+	@Test(description = "Bug 57039 : Verify the serach location dialog shows location display name for location",
 			groups = { "functional" })
 	
 	public void ZimbraCalResLocationDisplayName_01() throws HarnessException {

@@ -19,18 +19,14 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.l
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
 public class GetAppointment extends AjaxCommonTest {
-
 	
 	@SuppressWarnings("serial")
 	public GetAppointment() {
@@ -44,7 +40,6 @@ public class GetAppointment extends AjaxCommonTest {
 		    put("zimbraPrefCalendarInitialView", "list");
 		}};
 
-
 	}
 	
 	@Bugs(ids = "69132")
@@ -54,7 +49,7 @@ public class GetAppointment extends AjaxCommonTest {
 		
 		// Create the appointment on the server
 		// Create the message data to be sent
-		String subject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = ZimbraSeleniumProperties.getUniqueString();
 		
 		
 		// Absolute dates in UTC zone
@@ -107,7 +102,7 @@ public class GetAppointment extends AjaxCommonTest {
 		
 		// Create the appointment on the server
 		// Create the message data to be sent
-		String subject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = ZimbraSeleniumProperties.getUniqueString();
 		String location = "location" + ZimbraSeleniumProperties.getUniqueString();
 		String content = "content" + ZimbraSeleniumProperties.getUniqueString();
 		

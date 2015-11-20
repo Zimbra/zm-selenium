@@ -1186,16 +1186,13 @@ public class PageBriefcase extends AbsTab {
 
 		String keyCode = "";
 
-		if (shortcut == Shortcut.S_NEWITEM) {
-			
+		if ((shortcut == Shortcut.S_NEWITEM)
+				|| (shortcut == Shortcut.S_NEWDOCUMENT)) {
+
+			// "New Document" shortcut result in a new document page opening
 			page = new DocumentBriefcaseNew(this.MyApplication);
+
 			keyCode = "78";
-			
-		} else if (shortcut == Shortcut.S_NEWDOCUMENT) {
-			
-			page = new DocumentBriefcaseNew(this.MyApplication);
-			keyCode = "78,46";
-			
 		} else if (shortcut == Shortcut.S_DELETE) {
 
 			// "Delete Document" shortcut leads to Confirmation Dialog opening
@@ -1563,7 +1560,6 @@ public class PageBriefcase extends AbsTab {
 		this.sClose();
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void zSelectWindow(String windowID) throws HarnessException {
 		logger.info("zSelectWindow(" + windowID + ")");
@@ -1574,6 +1570,7 @@ public class PageBriefcase extends AbsTab {
 				|| ZimbraSeleniumProperties.isWebDriver()) {
 			super.zSelectWindow(windowID);
 		} else {
+			@SuppressWarnings("deprecation")
 			String[] windowNames = ClientSessionFactory.session()
 					.selenium().getAllWindowNames();
 
@@ -1586,6 +1583,7 @@ public class PageBriefcase extends AbsTab {
 			}
 
 			if (!found) {
+				@SuppressWarnings("deprecation")
 				String[] windowTitles = ClientSessionFactory.session()
 						.selenium().getAllWindowTitles();
 				for (int i = 0; i < windowTitles.length; i++) {

@@ -89,7 +89,6 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		// Create meeting which has location conflict with above created appointment
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-		SleepUtil.sleepVeryLong();
 		
 		// Verify the compose page shows note below resource about conflicting resources
 		ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.ConflictResourceNote),  "Verify that the conflicting resource note appears on appt compose page");

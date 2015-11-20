@@ -377,6 +377,8 @@ public class PagePreferences extends AbsTab {
 			page.zWaitForActive();
 			page.zWaitForBusyOverlay();
 		}
+		
+		SleepUtil.sleepMedium();
 
 		return (page);
 	}
@@ -414,6 +416,32 @@ public class PagePreferences extends AbsTab {
 		
 	}
 	
+	public void zSelectCheckBox (Button option) throws HarnessException {
+		
+		if ( option == null )
+			throw new HarnessException("Option cannot be null!");
+		
+		String locator = null;
+		AbsPage page = null;
+		
+		if ( option == Button.B_MONDAY_CHECK_BOX ) {
+			
+			locator = Locators.zMondayCustomWorkHour;
+			page = null;
+			
+		} else {
+			throw new HarnessException("no logic defined for option "+ option);
+		}
+
+		if ( locator == null ) {
+			throw new HarnessException("locator was null for option "+ option);
+		}
+		
+		this.sClickAt(locator, "");
+		this.zWaitForBusyOverlay();
+		
+	}
+	
 	public AbsPage zPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zPressButton("+ button +")");
 		
@@ -428,6 +456,11 @@ public class PagePreferences extends AbsTab {
 		if ( button == Button.B_CUSTOMIZE ) {
 			
 			locator = Locators.zCustomizeButton;
+			page = null;
+			
+		} else if ( button == Button.B_YES ) {
+			
+			locator = Locators.zYesButtonWarningDialog;
 			page = null;
 		
 		} else if ( button == Button.B_OK ) {

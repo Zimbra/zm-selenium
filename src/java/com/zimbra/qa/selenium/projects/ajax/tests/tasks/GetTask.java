@@ -29,35 +29,9 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.DisplayTask;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.DisplayTask.Field;
-//import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew.Field;;
 
 public class GetTask extends AjaxCommonTest {
 
-	/**
-	 * Example SOAP:
-	 * <CreateTaskRequest xmlns="urn:zimbraMail">
-	 * 	<m l="15">
-	 * 		<inv>
-	 * 			<comp priority="1" status="INPR" percentComplete="50" allDay="1" name="subject" loc="location">
-	 * 				<s d="20110214"/>
-	 * 				<e d="20110216"/>
-	 * 				<or a="enus12974607211563@testdomain.com"/>
-	 * 				<alarm action="DISPLAY">
-	 * 					<trigger>
-	 * 						<abs d="20110215T223000Z"/>
-	 * 					</trigger>
-	 * 				</alarm>
-	 * 			</comp>
-	 * 		</inv>
-	 * 		<su>subject</su>
-	 * 		<mp ct="text/plain">
-	 * 			<content>content</content>
-	 * 		</mp>
-	 * 	</m>
-	 * </CreateTaskRequest>
-	 * 
-	 */
-	
 	@SuppressWarnings("serial")
 	public GetTask() {
 		logger.info("New "+ GetTask.class.getCanonicalName());
@@ -169,7 +143,7 @@ public class GetTask extends AjaxCommonTest {
 	}
 
 	@Test(	description = "Verify Multipart/alternative (text and html) task that can be display the body in preview pane",
-			groups = { "smoke123" })
+			groups = { "smoke" })
 			public void GetTask_03() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

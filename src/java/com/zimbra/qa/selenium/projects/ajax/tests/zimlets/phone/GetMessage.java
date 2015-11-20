@@ -281,7 +281,7 @@ public class GetMessage extends AjaxCommonTest {
 
 	@Bugs(ids = "73264")
 	@Test(	description = "Receive a mail with an unformated number string - should not match",
-			groups = { "functional", "matt" })
+			groups = { "functional" })
 	public void GetMessage_06() throws HarnessException {
 		
 		// Create the message data to be sent

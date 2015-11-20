@@ -168,7 +168,7 @@ public class GetCalendar extends CalendarWorkWeekTest {
 		
 		
 		// Create the appointment in the subfolder
-		String subject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = ZimbraSeleniumProperties.getUniqueString();
 		String location = "location" + ZimbraSeleniumProperties.getUniqueString();
 		String content = "content" + ZimbraSeleniumProperties.getUniqueString();
 		

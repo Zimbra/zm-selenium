@@ -37,15 +37,15 @@ public class PageTasks extends AbsTab{
 	
 	public static class Locators {
 		
-		public static final String zl__TKL__rowsID = "zl__TKL__rows";
+		public static final String zl__TKL__rowsID = "zl__TKL-main__rows";
 		public static final String _newTaskBannerID = "_newTaskBannerId";
 		public static final String _upComingTaskListHdrID = "_upComingTaskListHdr";
-		public static final String zli__TKL__ = "zli__TKL__"; // Each task item:
+		public static final String zli__TKL__ = "zli__TKL-"; // Each task item:
 		// <div
 		// id='zli__TKL__<item
 		// id>' .../>
 		public static final String zb__TKE1__SAVE_left_icon = "zb__TKE1__SAVE_left_icon";
-		public static final String taskListView = "css=div[id='zl__TKL__rows'][class='DwtListView-Rows']";
+		public static final String taskListView = "css=div[id='zl__TKL-main__rows'][class='DwtListView-Rows']";
 		public static final String zTasksTab = "zb__App__Tasks";
 		//public static final String zNewTask = "zb__TKL-main__NEW_MENU_left_icon";
 		//public static final String zNewTaskDropDown = "css=td[id='zb__TKL-main__NEW_MENU_dropdown']>div";
@@ -111,9 +111,6 @@ public class PageTasks extends AbsTab{
 		boolean loaded = this.sIsElementPresent(rowLocator);
 		if (!loaded)
 			return (false);
-
-		//	String selected = this.sGetAttribute("xpath=(//div[@id='" + locator + "'])@class");
-		//	return (selected.contains("ZSelected"));
 
 		return(this.sIsElementPresent("css=div[id='"+ id +"'][class*=ZSelected]"));
 
@@ -985,21 +982,6 @@ public class PageTasks extends AbsTab{
 
 		List<TaskItem> items = new ArrayList<TaskItem>();
 
-		// The task page has the following under the zl__TKL__rows div:
-		// <div id='_newTaskBannerId' .../> -- enter a new task
-		// <div id='_upComingTaskListHdr' .../> -- Past due
-		// <div id='zli__TKL__267' .../> -- Task item
-		// <div id='zli__TKL__299' .../> -- Task item
-		// <div id='_upComingTaskListHdr' .../> -- Upcoming
-		// <div id='zli__TKL__271' .../> -- Task item
-		// <div id='zli__TKL__278' .../> -- Task item
-		// <div id='zli__TKL__275' .../> -- Task item
-		// <div id='_upComingTaskListHdr' .../> -- No due date
-		// <div id='zli__TKL__284' .../> -- Task item
-		// <div id='zli__TKL__290' .../> -- Task item
-
-		// How many items are in the table?
-		// findTask(subject);
 		String rowLocator = "css=div[id='" + Locators.zl__TKL__rowsID + "']>div";
 		int count = this.sGetCssCount(rowLocator);
 		logger.debug(myPageName() + " zGetTasks: number of rows: " + count);

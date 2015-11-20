@@ -58,7 +58,7 @@ public class CreateAppointment extends AjaxCommonTest {
 		startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		endTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		
-		appt.setSubject("appointment" + ZimbraSeleniumProperties.getUniqueString());
+		appt.setSubject(ZimbraSeleniumProperties.getUniqueString());
 		appt.setAttendees(ZimbraAccount.AccountA().EmailAddress);
 		appt.setContent("content" + ZimbraSeleniumProperties.getUniqueString());
 		appt.setStartTime(startTime);

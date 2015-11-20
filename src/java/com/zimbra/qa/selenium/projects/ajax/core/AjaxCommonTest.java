@@ -142,11 +142,8 @@ public class AjaxCommonTest {
 	throws HarnessException, IOException, InterruptedException, SAXException {
 		logger.info("commonTestBeforeSuite: start");
 
-
-
-      // Make sure there is a new default account
+		// Make sure there is a new default account
 		ZimbraAccount.ResetAccountZWC();
-
 
 		try
 		{
@@ -156,25 +153,6 @@ public class AjaxCommonTest {
 			
 			if (ZimbraSeleniumProperties.isWebDriver()) {
 				_webDriver = ClientSessionFactory.session().webDriver();
-				
-				/*
-				Set<String> handles = _webDriver.getWindowHandles(); 
-				String script = "if (window.screen){var win = window.open(window.location); win.moveTo(0,0);win.resizeTo(window.screen.availWidth, window.screen.availHeight);};"; 
-				((JavascriptExecutor) _webDriver).executeScript(script); 
-				Set<String> newHandles = _webDriver.getWindowHandles(); 
-				newHandles.removeAll(handles); 
-				_webDriver.switchTo().window(newHandles.iterator().next());
-							 							 
-				_webDriver.manage().window().setSize(new Dimension(800,600));
-				 
-				Selenium selenium = new WebDriverBackedSelenium(_webDriver, _webDriver.getCurrentUrl());
-				selenium.windowMaximize();
-						
-				int width = Integer.parseInt(selenium.getEval("screen.width;"));
-				int height = Integer.parseInt(selenium.getEval("screen.height;"));
-				_webDriver.manage().window().setPosition(new Point(0, 0));
-				_webDriver.manage().window().setSize(new Dimension(width,height));
-				*/
 				
 				Capabilities cp =  ((RemoteWebDriver)_webDriver).getCapabilities();
 				 if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){				
@@ -186,14 +164,14 @@ public class AjaxCommonTest {
 						.webDriverBackedSelenium();
 				_webDriverBackedSelenium.windowMaximize();
 				_webDriverBackedSelenium.windowFocus();
-				_webDriverBackedSelenium.setTimeout("30000");// Use 30 second timeout for
+				_webDriverBackedSelenium.setTimeout("45000");// Use 45 second timeout for
 			} else {
 				_selenium = ClientSessionFactory.session().selenium();
 				_selenium.start();
 				_selenium.windowMaximize();
 				_selenium.windowFocus();
 				_selenium.allowNativeXpath("true");
-				_selenium.setTimeout("30000");// Use 30 second timeout for opening the browser
+				_selenium.setTimeout("45000");// Use 45 second timeout for opening the browser
 			}
 			// Dynamic wait for App to be ready
 			int maxRetry = 10;
@@ -229,7 +207,7 @@ public class AjaxCommonTest {
 						throw e;
 					} else {
 						logger.info("App is still not ready...", e);
-						SleepUtil.sleep(10000);	
+						SleepUtil.sleep(10000);
 						continue;
 					}
 				}
@@ -242,11 +220,7 @@ public class AjaxCommonTest {
 			logger.warn(e);
 		}
 
-		logger.info("commonTestBeforeSuite: finish");
-		
-		SleepUtil.sleepLong();
-		ClientSessionFactory.session().selenium().windowFocus();
-		
+		logger.info("commonTestBeforeSuite: finish");		
 	}
 
 	/**

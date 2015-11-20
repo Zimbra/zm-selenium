@@ -71,7 +71,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		
 		// Create the appointment on the server
 		// Create the message data to be sent
-		String subject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = ZimbraSeleniumProperties.getUniqueString();
 
 
 		// Absolute dates in UTC zone
@@ -163,7 +163,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 		// Create the appointment on the server
 		// Create the message data to be sent
-		String subject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = ZimbraSeleniumProperties.getUniqueString();
 
 
 		// Absolute dates in UTC zone
@@ -256,7 +256,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 		// Create the appointment on the server
 		// Create the message data to be sent
-		String subject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = ZimbraSeleniumProperties.getUniqueString();
 
 
 		// Absolute dates in UTC zone
@@ -339,7 +339,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 		// Create the appointment on the server
 		// Create the message data to be sent
-		String subject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = ZimbraSeleniumProperties.getUniqueString();
 
 
 		// Absolute dates in UTC zone
@@ -421,7 +421,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	public void DeleteAppointment_05() throws HarnessException {
 
 		// Create three appointments on the server
-		String subject1 = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject1 = ZimbraSeleniumProperties.getUniqueString();
 		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
@@ -445,7 +445,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 
-		String subject2 = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject2 = ZimbraSeleniumProperties.getUniqueString();
 		startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
 
@@ -467,7 +467,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 
-		String subject3 = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject3 = ZimbraSeleniumProperties.getUniqueString();
 		startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
 		endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);
 
@@ -585,7 +585,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 		// Create the appointment on the server
 		// Create the message data to be sent
-		String subject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = ZimbraSeleniumProperties.getUniqueString();
 
 
 		// Absolute dates in UTC zone
@@ -662,7 +662,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 		// Create the appointment on the server
 		// Create the message data to be sent
-		String subject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = ZimbraSeleniumProperties.getUniqueString();
 
 
 		// Absolute dates in UTC zone
@@ -730,14 +730,14 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 	}
 
-	@Bugs(ids = "69132,61625")
+	@Bugs(ids = "102051")
 	@Test(	description = "Hard-delete multiple appts (3) by selecting and typing 'shift-del' shortcut",
 			groups = { "functional" })
 	
 	public void HardDeleteAppointment_02() throws HarnessException {
 
 		// Create three appointments on the server
-		String subject1 = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject1 = ZimbraSeleniumProperties.getUniqueString();
 		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
@@ -761,7 +761,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 
-		String subject2 = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject2 = ZimbraSeleniumProperties.getUniqueString();
 		startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
 
@@ -783,7 +783,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 
-		String subject3 = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject3 = ZimbraSeleniumProperties.getUniqueString();
 		startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
 		endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);
 

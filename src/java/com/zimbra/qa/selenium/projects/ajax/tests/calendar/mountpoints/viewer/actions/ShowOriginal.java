@@ -36,7 +36,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 			
 	public void ShowOriginal_01() throws HarnessException {
 		
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptContent = ZimbraSeleniumProperties.getUniqueString();
 		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();

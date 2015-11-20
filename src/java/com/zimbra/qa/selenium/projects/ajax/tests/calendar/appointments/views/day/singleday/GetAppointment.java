@@ -49,7 +49,7 @@ public class GetAppointment extends AjaxCommonTest {
 		
 		// Create the appointment on the server
 		// Create the message data to be sent
-		String subject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = ZimbraSeleniumProperties.getUniqueString();
 		String location = "location" + ZimbraSeleniumProperties.getUniqueString();
 		String content = "content" + ZimbraSeleniumProperties.getUniqueString();
 		

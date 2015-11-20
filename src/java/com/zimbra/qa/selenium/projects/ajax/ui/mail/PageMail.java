@@ -276,6 +276,11 @@ public class PageMail extends AbsTab {
 			// Create the page
 			page = new SeparateWindowFormMailNew(this.MyApplication);
 
+			// Don't fall through - the new window may need additional
+			// information from the test case
+			// such as "Zimbra: Compose" or "Zimbra: Reply" to determine if the
+			// window is open
+
 			this.zClickAt(locator, "0,0");
 
 			return (page);
@@ -442,6 +447,13 @@ public class PageMail extends AbsTab {
 
 		} else if (button == Button.B_TAG) {
 
+			// For "TAG" without a specified pulldown option, just click on the
+			// pulldown
+			// To use "TAG" with a pulldown option, see
+			// zToolbarPressPulldown(Button, Button)
+			//
+
+			// Check if the button is enabled
 			String attrs = sGetAttribute("xpath=(//td[@id='"
 					+ Locators.zTagMenuDropdownBtnID + "']/div)@class");
 			if (attrs.contains("ZDisabledImage")) {
@@ -464,6 +476,13 @@ public class PageMail extends AbsTab {
 
 		} else if (button == Button.B_ARCHIVE) {
 
+			// If 'Archive' is not initialized, a 'folder chooser'
+			// dialog will open. However, we cannot define it here,
+			// because if 'Archive' has been initialized, then
+			// the chooser will not appear.
+			//
+			// The test case must create the page dialog object.
+			//
 			page = null;
 
 			if (this.sIsElementPresent("css=div[id$='zb__TV-main__ARCHIVE'] td[id$='_title']")) {
@@ -505,11 +524,43 @@ public class PageMail extends AbsTab {
 
 		} else if (button == Button.B_NEWWINDOW) {
 
+			// 8.0: http://bugzilla.zimbra.com/show_bug.cgi?id=73721
+			//
+			// page = null;
+			// if ( zGetPropMailView() == PageMailView.BY_MESSAGE ) {
+			// locator =
+			// "css=div#ztb__TV-main div[id$='__DETACH'] div.ImgOpenInNewWindow";
+			// } else {
+			// locator =
+			// "css=div#ztb__CLV-main div[id$='__DETACH'] div.ImgOpenInNewWindow";
+			// }
+			//
+			// if ( !this.sIsElementPresent(locator) ) {
+			// throw new HarnessException("Detach icon not present "+ button);
+			// }
+			//
+			// this.zClickAt(locator, "");
+			// page = new SeparateWindowDisplayMail(this.MyApplication);
+			//
+			// // We don't know the window title at this point (However, the
+			// test case should.)
+			// // Don't check that the page is active, let the test case do
+			// that.
+			//
+			// return (page);
+
 			return (this.zToolbarPressPulldown(Button.B_ACTIONS,
 					Button.B_LAUNCH_IN_SEPARATE_WINDOW));
 
 		} else if (button == Button.B_LISTVIEW) {
 
+			// For "TAG" without a specified pulldown option, just click on the
+			// pulldown
+			// To use "TAG" with a pulldown option, see
+			// zToolbarPressPulldown(Button, Button)
+			//
+
+			// Check if the button is enabled
 			String attrs = sGetAttribute("xpath=(//td[@id='"
 					+ Locators.zViewMenuDropdownBtnID + "']/div)@class");
 			if (attrs.contains("ZDisabledImage")) {
@@ -528,6 +579,12 @@ public class PageMail extends AbsTab {
 			}
 			page = null;
 
+			// FALLTHROUGH
+
+			// this.zClick(locator);
+			// this.zWaitForBusyOverlay();
+			// return (null);
+
 		} else if (button == Button.B_SHIFT_SELECT_ALL) {
 
 			if (zGetPropMailView() == PageMailView.BY_MESSAGE) {
@@ -539,6 +596,12 @@ public class PageMail extends AbsTab {
 
 			if (ZimbraSeleniumProperties.isWebDriver()) {
 
+				// WEBDRIVER:
+				// Need something like:
+				// aBuilder.keyDown(Keys.SHIFT).click(checkbox1).click(checkbox2).keyUp(Keys.SHIFT).perform();
+				// See
+				// https://groups.google.com/forum/#!topic/webdriver/plAWUa2E3Lw
+
 				logger.info("...WebDriver...click()");
 				final org.openqa.selenium.interactions.Actions builder = new org.openqa.selenium.interactions.Actions(
 						webDriver());
@@ -548,6 +611,16 @@ public class PageMail extends AbsTab {
 				action.perform();
 
 			} else {
+
+				// SELENIUM:
+				// I don't see how it can be done. The selenium click() method
+				// uses JS, which
+				// doesn't care what state the keyboard is currently in. So,
+				// this does not work:
+				// robot.keyPress(VK_SHIFT)
+				// this.zClick(locator)
+				// robot.keyRelease(VK_SHIFT)
+				
 				
 				//Workaround: Press Control+Shift+A to select All Messages.
 				sKeyDownNative("17"); //control
@@ -644,12 +717,12 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		if (button == Button.B_NEW) {
-			this.zClickAt(locator, "0,0");
-		} else {
-			this.sClickAt(locator, "0,0");
-		}
+		// Default behavior, process the locator by clicking on it
+		//
+		this.zClickAt(locator, "0,0");
 
+		// need small wait so that next element gets appeared/visible after
+		// click
 		SleepUtil.sleepMedium();
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
@@ -1446,7 +1519,7 @@ public class PageMail extends AbsTab {
 		for (int i = 1; i <= count; i++) {
 
 			itemlocator = listLocator + " div:nth-of-type(" + i + ") ";
-			String s = this.sGetText(itemlocator + " [id$='__su'] span").trim();
+			String s = this.sGetText(itemlocator + " [id$='__su']").trim();
 
 			if (s.contains(subject)) {
 				break; // found it

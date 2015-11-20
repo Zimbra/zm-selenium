@@ -41,7 +41,7 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 	//TODO: Remove x from groups to enable when feature is implemented  
 	@Bugs(ids = "38449")
 	@Test(	description = "Mute a message (conversation) using Actions -> Mute",
-			groups = { "xsmoke" })
+			groups = { "smoke" })
 	public void MuteMessage_01() throws HarnessException {
 		
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
@@ -82,14 +82,14 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 	//TODO: Remove x from groups to enable when feature is implemented  
 	@Bugs( ids = "65844")
 	@Test(	description = "Mute message, using 'Mute' shortcut key",
-			groups = { "xfunctional" })
+			groups = { "functional" })
 	public void MuteMessage_02() throws HarnessException {
 		throw new HarnessException("See bug https://bugzilla.zimbra.com/show_bug.cgi?id=65844");
 	}
 	
 	//TODO: Remove x from groups to enable when feature is implemented  
 	@Test(	description = "Mute message, using 'Right Click' -> 'Mute'",
-			groups = { "xsmoke" })
+			groups = { "smoke" })
 	public void MuteMessage_03() throws HarnessException {
 		
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();

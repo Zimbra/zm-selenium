@@ -17,8 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
 
 import org.testng.annotations.Test;
-
-import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -27,16 +25,9 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 
 
 public class RedirectMessage extends PrefGroupMailByMessageTest {
-
 	
 	public RedirectMessage() {
 		logger.info("New "+ RedirectMessage.class.getCanonicalName());
-		
-		
-		
-
-
-		
 	}
 	
 	@Test(	description = "Redirect message, using 'Redirect' toolbar button - in separate window",
@@ -106,15 +97,6 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 
 
 	}
-
-	@Bugs( ids = "62170")
-	@Test(	description = "Redirect message, using 'Redirect' shortcut key  - in separate window",
-			groups = { "xfunctional" })
-	public void RedirectMessage_02() throws HarnessException {
-		throw new HarnessException("See bug https://bugzilla.zimbra.com/show_bug.cgi?id=62170");
-	}
-	
-
 
 
 }

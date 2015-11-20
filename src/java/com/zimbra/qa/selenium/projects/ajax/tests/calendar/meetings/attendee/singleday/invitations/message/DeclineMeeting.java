@@ -81,7 +81,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 		// ------------------------ Test data ------------------------------------
 
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
@@ -177,7 +177,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 		// ------------------------ Test data ------------------------------------
 
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
@@ -234,7 +234,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 		// ------------------------ Test data ------------------------------------
 
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
@@ -341,7 +341,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 		// ------------------------ Test data ------------------------------------
 
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String modifiedBody = "modified" + ZimbraSeleniumProperties.getUniqueString();
 
 		Calendar now = this.calendarWeekDayUTC;
@@ -444,7 +444,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 		// ------------------------ Test data ------------------------------------
 
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);

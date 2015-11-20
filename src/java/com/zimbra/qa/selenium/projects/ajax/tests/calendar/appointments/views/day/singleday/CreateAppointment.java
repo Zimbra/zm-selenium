@@ -55,7 +55,7 @@ public class CreateAppointment extends AjaxCommonTest {
 		// Create appointment
 		AppointmentItem appt = new AppointmentItem();
 		Calendar now = Calendar.getInstance();
-		appt.setSubject("appointment" + ZimbraSeleniumProperties.getUniqueString());
+		appt.setSubject(ZimbraSeleniumProperties.getUniqueString());
 		appt.setContent("content" + ZimbraSeleniumProperties.getUniqueString());
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
@@ -140,7 +140,7 @@ public class CreateAppointment extends AjaxCommonTest {
 		
 		// Create appointment
 		String apptSubject;
-		apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
 		
 		appt.setSubject(apptSubject);

@@ -25,22 +25,16 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-
 public class SendAsDistList extends PrefGroupMailByMessageTest {
-
 
 	public SendAsDistList() {
 		logger.info("New "+ SendAsDistList.class.getCanonicalName());
-		
-		
-		
-
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
-		
 	}
 	
 	@Test(	description = "Send As Distribution List",
 			groups = { "smoke" })
+	
 	public void SendAsDistList_01() throws HarnessException {
 		
 		//-- Data Setup
@@ -71,13 +65,13 @@ public class SendAsDistList extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 		
 		// Fill out the form with the data
+
 		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, "body" + ZimbraSeleniumProperties.getUniqueString());
 		mailform.zFillField(Field.From, list.EmailAddress);	
 		mailform.zSubmit();
 	
-
 		
 		//-- Data verification
 		

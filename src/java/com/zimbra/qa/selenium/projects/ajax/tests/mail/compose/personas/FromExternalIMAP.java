@@ -25,25 +25,22 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-
 public class FromExternalIMAP extends PrefGroupMailByMessageTest {
 
 	public FromExternalIMAP() {
 		logger.info("New "+ FromExternalIMAP.class.getCanonicalName());
-		
 	}
 	
 	@Test(	description = "Compose message from - External IMAP",
 			groups = { "smoke" })
+	
 	public void FromExternalIMAP_01() throws HarnessException {
-		
 		
 		// Create the external data source on the same server
 		ZimbraAccount external = new ZimbraAccount();
 		external.provision();
 		external.authenticate();
 		
-
 		// Create the folder to put the data source
 		String foldername = "external" + ZimbraSeleniumProperties.getUniqueString();
 		
@@ -68,17 +65,12 @@ public class FromExternalIMAP extends PrefGroupMailByMessageTest {
 			+			"username='"+ external.EmailAddress +"' password='"+ external.Password +"' />"
 			+	"</CreateDataSourceRequest>");
 
-		
-		
 		// Need to logout/login to get the new folder
 		app.zPageLogin.zNavigateTo();
 		startingPage.zNavigateTo();
 		
-
-		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -92,9 +84,8 @@ public class FromExternalIMAP extends PrefGroupMailByMessageTest {
 		
 		// Send the message
 		mailform.zSubmit();
+		SleepUtil.sleepLong(); // search request doesn't find mail
 
-		
-		
 		// Verify the message shows as from the alias
 		ZimbraAccount.AccountA().soapSend(
 					"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
@@ -127,11 +118,6 @@ public class FromExternalIMAP extends PrefGroupMailByMessageTest {
 		// Verify From: alias
 		String address = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a");
 		ZAssert.assertEquals(address, app.zGetActiveAccount().EmailAddress, "In the Zimbra-Zimbra config, verify the from is the Zimbra email address");
-
-		
-	}	
-
-
-
+	}
 
 }

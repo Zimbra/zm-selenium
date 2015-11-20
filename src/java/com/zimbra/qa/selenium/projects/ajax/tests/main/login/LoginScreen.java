@@ -90,19 +90,10 @@ public class LoginScreen extends AjaxCommonTest {
 		
 	}
 
-	@Test(	description = "Verify tab order in the login screen (username, password, enter)",
-			groups = { "unstable" })
-	public void LoginScreen04() throws HarnessException {
-		
-		throw new HarnessException("implement me!");
-		
-	}
-
-
 	@Bugs(ids = "50457")
 	@Test(	description = "Verify 'web client' rather than 'collaboration suite'",
 			groups = { "functional" })
-	public void LoginScreen05() throws HarnessException {
+	public void LoginScreen04() throws HarnessException {
 		
 
 		String title = app.zPageLogin.sGetTitle();

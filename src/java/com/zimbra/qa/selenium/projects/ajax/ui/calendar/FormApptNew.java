@@ -2,11 +2,11 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -37,9 +37,9 @@ import com.zimbra.qa.selenium.projects.ajax.ui.AutocompleteEntry.Icon;
  * <p>
  * This class can be used to compose a new appointment.
  * <p>
- * 
+ *
  * @author Matt Rhoades
- * @see http 
+ * @see http
  *      ://wiki.zimbra.com/wiki/Testing:_Selenium:_ZimbraSelenium_Overview#Mail_Page
  */
 public class FormApptNew extends AbsForm {
@@ -50,7 +50,7 @@ public class FormApptNew extends AbsForm {
 	 * Defines Selenium locators for various objects in {@link FormApptNew}
 	 */
 	public static class Locators {
-						
+
 		public static final String SubjectDisabled = "css=div[id^='APPT_COMPOSE_'] td[id$='_subject'] div[class='DwtInputField-focused DwtInputField-disabled DwtInputField']";
 		public static final String ToDisabled = "css=div[id^='APPT_COMPOSE_'] td tr[id$='_forward_options'] div[class='ZButton ZPicker ZWidget ZHasText ZDisabled']";
 		public static final String AttendeesDisabled = "css=div[id^='APPT_COMPOSE_'] td tr[id$='_attendeesContainer'] div[class='ZButton ZPicker ZWidget ZHasText ZDisabled']";
@@ -60,7 +60,7 @@ public class FormApptNew extends AbsForm {
 		public static final String DisplayDisabled = "css=div[id^='APPT_COMPOSE_'] td[id$='_showAsSelect'] div[class$='ZHasDropDown ZDisabled ZHasLeftIcon']";
 		public static final String FolderDisabled = "css=div[id^='APPT_COMPOSE_'] td[id$='_folderSelect'] div[class$='ZHasDropDown ZDisabled ZHasLeftIcon']";
 		public static final String PrivateDisabled = "css=div[id^='APPT_COMPOSE_'] td input[id$='_privateCheckbox'][type='checkbox'][disabled]";
-		
+
 		public static final String RepeatOptionsDisabled = "css=td[id$='_repeat_options'] div[id^='DWT'][class$='ZHasDropDown ZDisabled']";
 		public static final String RepeatDescriptionDisabled = "css=div[id$='_repeatDesc'][class='DisabledText']";
 
@@ -81,7 +81,7 @@ public class FormApptNew extends AbsForm {
 		public static final String Button_Save = "css=div[id^='ztb__APPT-'] td[id$='_SAVE_title']";
 		public static final String Button_SaveAndClose = "css=div[id^='ztb__APPT-'] td[id$='_SAVE_title']";
 		public static final String Button_Close = "css=div[id^='ztb__APPT-'] td[id$='_CANCEL_title']";
-		
+
 		public static final String OptionsDropdown = "css=div[id$='__COMPOSE_OPTIONS'] td[id$='COMPOSE_OPTIONS_title']";
 		public static final String SuggestionPreferencesMenu = "css=div[class='DwtMenu ZHasCheck ZHasIcon'] td[id$='_title']:contains('Suggestion Preferences')";
 		public static final String OnlyIncludeMyWorkingHoursCheckBox = "css=input[id$='_my_working_hrs_pref']";
@@ -104,12 +104,12 @@ public class FormApptNew extends AbsForm {
 		public static final String CustomButton = "css=td[id$='_title']:contains('Custom')";
 		public static final String CustomizedLink = "css=div[id$='_repeatDesc']div[class='FakeAnchor']";
 		public static final String CustomizedLinkDisabled = "css=div[id$='_repeatDesc']div[class='DisabledText']";
-		
+
 		public static final String EveryDayRadioButton = "css=div[id^='REPEAT_DAILY_DIV'] input[id^='DAILY_DEFAULT']";
 		public static final String EveryWeekdayRadioButton = "css=div[id^='REPEAT_DAILY_DIV'] input[id^='DAILY_WEEKDAY']";
 		public static final String EveryXdaysRadioButton = "css=div[id^='REPEAT_DAILY_DIV'] input[id^='DAILY_FIELD_RADIO']";
 		public static final String EveryXdaysEditField = "css=input[id^='RECUR_DAILY_FIELD']";
-		
+
 		public static final String EveryXRadioButton = "css=div[id^='REPEAT_WEEKLY_DIV'] input[id^='WEEKLY_DEFAULT']";
 		public static final String EveryXDropdown = "css=div[id^='REPEAT_WEEKLY_DIV'] td[id^='WEEKLY_SELECT'] td[id$='_title']";
 		public static final String EveryXweeksOnRadioButton = "css=div[id^='REPEAT_WEEKLY_DIV'] input[id^='WEEKLY_FIELD_RADIO']";
@@ -121,19 +121,19 @@ public class FormApptNew extends AbsForm {
 		public static final String ThursdayCheckBox = "css=div[id^='REPEAT_WEEKLY_DIV'] input[id^='WEEKLY_CHECKBOX_NAME_5']";
 		public static final String FridayCheckBox = "css=div[id^='REPEAT_WEEKLY_DIV'] input[id^='WEEKLY_CHECKBOX_NAME_6']";
 		public static final String SaturdayCheckBox = "css=div[id^='REPEAT_WEEKLY_DIV'] input[id^='WEEKLY_CHECKBOX_NAME_7']";
-		
+
 		public static final String DayXofEveryYmonthsRadioButton = "css=div[id^='REPEAT_MONTHLY_DIV'] input[id^='MONTHLY_DEFAULT']";
 		public static final String TheXYofEveryZmonthsRadioButton = "css=div[id^='REPEAT_MONTHLY_DIV'] input[id^='MONTHLY_FIELD_RADIO']";
-		
+
 		public static final String EveryYearOnXYRadioButton = "css=div[id^='REPEAT_YEARLY_DIV'] input[id^='YEALY_DEFAULT']";
 		public static final String TheXYofEveryZRadioButton = "css=div[id^='REPEAT_YEARLY_DIV'] input[id^='YEARLY_FIELD_RADIO']";
-		
+
 		public static final String NoEndDateRadioButton = "css=div[id$='_content'] td input[id^='NO_END_DATE_RADIO']";
 		public static final String EndAfterXoccurrencesRadioButton = "css=div[id$='_content'] td input[id^='END_AFTER_RADIO']";
 		public static final String EndAfterXoccurrencesEditField = "css=div[id$='_content'] td input[id^='RECUR_END_INTERVAL_FIELD']";
 		public static final String EndByXDateRadioButton = "css=div[id$='_content'] td input[id^='END_BY_RADIO']";
 		public static final String EndByXDateEditField = "css=div[id$='_content'] td input[id^='RECUR_END_BY_FIELD']";
-		
+
 		public static final String DeleteZimletContextMenu = "css=div[id^='POPUP_'] td[id='DELETE_title']";
 		public static final String EditZimletContextMenu = "css=div[id^='POPUP_'] td[id='EDIT_title']";
 		public static final String ExpandZimletContextMenu = "css=div[id^='POPUP_'] td[id='EXPAND_title']";
@@ -154,11 +154,11 @@ public class FormApptNew extends AbsForm {
 		public static final String ToolbarOptions= "css=td[id='zb__APPT-1__COMPOSE_OPTIONS_title']";
 		public static final String RequestResponse= "css=td[id$='_title']:contains('Request Responses')";
 		public static final String ConflictResourceNote = "css= div[id$='_location_status']:contains('One or more locations are not available at the selected time')";
-		
+
 		public static final String AttendeeField= "css=input[id$='_person_input']";
 		public static final String LocationField= "css=input[id$='_location_input']";
 		public static final String EquipmentField= "css=input[id$='_resourcesData_input']";
-		
+
 	}
 
 	public static class Field {
@@ -198,7 +198,7 @@ public class FormApptNew extends AbsForm {
 	/**
 	 * Protected constuctor for this object. Only classes within this package
 	 * should create DisplayMail objects.
-	 * 
+	 *
 	 * @param application
 	 */
 	public FormApptNew(AbsApplication application) {
@@ -207,7 +207,7 @@ public class FormApptNew extends AbsForm {
 		logger.info("new " + FormApptNew.class.getCanonicalName());
 
 	}
-	
+
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
@@ -231,7 +231,7 @@ public class FormApptNew extends AbsForm {
 
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();
-		
+
 		// Wait for the message to be delivered
 		Stafpostqueue sp = new Stafpostqueue();
 		sp.waitForPostqueue();
@@ -248,12 +248,12 @@ public class FormApptNew extends AbsForm {
 		return "css=div[id^='POPUP_DWT'] td[id^='" + apptLocation + "']";
 
 	}
-	
+
 	public Boolean zIsLocationExistsInSuggestPane(String apptLocation)
 			throws HarnessException {
 		return sIsElementPresent("css=div[id='zv__CSLP'] div[id^='zli__CSLP__']:contains('" + apptLocation + "')");
 	}
-	
+
 	public void zAddRequiredAttendeeFromScheduler(String attendee, int keyEvent)
 			throws HarnessException {
 		if(sIsElementPresent(Locators.ShowSchedulerLink)){
@@ -269,7 +269,7 @@ public class FormApptNew extends AbsForm {
 			this.sClickAt("css=td[id$='_scheduler'] td[id$='_NAME_'] input", "");
 			SleepUtil.sleepSmall();
 			pageCal.zKeyboard.zTypeKeyEvent(keyEvent);
-					
+
 		}
 	}
 
@@ -337,7 +337,7 @@ public class FormApptNew extends AbsForm {
 	public String zGetAttendeeFromScheduler() throws HarnessException {
 		return sGetValue("css=td[id$='_scheduler'] td[id$='_NAME_'] input");
 	}
-	
+
 	public Boolean zVerifyRequiredAttendee(String attendee)
 			throws HarnessException {
 		return sIsElementPresent("css=td[id$='_person'] span:contains('"
@@ -363,16 +363,16 @@ public class FormApptNew extends AbsForm {
 	public String zGetApptBodyValue() throws HarnessException {
 		return sGetValue("css=div[class='ZmHtmlEditor'] textarea[class='ZmHtmlEditorTextArea']");
 	}
-	
+
 	public String zGetApptBodyText() throws HarnessException {
 		String bodyText;
 		this.sSelectFrame("css=iframe[id$='ZmHtmlEditor1_body_ifr']");
-		bodyText = sGetText("css=body[id='tinymce']"); 
+		bodyText = sGetText("css=body[id='tinymce']");
 		this.sSelectFrame("relative=top");
 		return bodyText;
-		
+
 	}
-	
+
 
 	public void zRemoveAttendee(String attendee) throws HarnessException {
 		SleepUtil.sleepSmall(); // let free/busy UI draw and then we take UI
@@ -392,7 +392,7 @@ public class FormApptNew extends AbsForm {
 		this.zClickAt("css=input[id$='_location_input']", "");
 		SleepUtil.sleepMedium();
 	}
-	
+
 	public void zRemoveEquipment(String equipment) throws HarnessException {
 		SleepUtil.sleepSmall(); // let free/busy UI draw and then we take UI
 								// actions
@@ -402,11 +402,11 @@ public class FormApptNew extends AbsForm {
 		this.zClickAt("css=td[id$='resourcesData']", "");
 		SleepUtil.sleepMedium();
 	}
-	
+
 	public void zVerifyDisabledControlInProposeNewTimeUI() throws HarnessException {
 		SleepUtil.sleepMedium(); // opening appt takes some time so assert fails
 		ZAssert.assertTrue(this.sIsElementPresent(Locators.ToDisabled), "Verify to field is disabled when attendee propose new time");
-		ZAssert.assertTrue(this.sIsElementPresent(Locators.SubjectDisabled), "Verify subject field is disabled when attendee propose new time");		
+		ZAssert.assertTrue(this.sIsElementPresent(Locators.SubjectDisabled), "Verify subject field is disabled when attendee propose new time");
 		ZAssert.assertTrue(this.sIsElementPresent(Locators.AttendeesDisabled), "Verify attendees field is disabled when attendee propose new time");
 		ZAssert.assertTrue(this.sIsElementPresent(Locators.OptionalDisabled), "Verify optional field is disabled when attendee propose new time");
 		ZAssert.assertTrue(this.sIsElementPresent(Locators.LocationDisabled), "Verify location field is disabled when attendee propose new time");
@@ -415,15 +415,15 @@ public class FormApptNew extends AbsForm {
 		ZAssert.assertTrue(this.sIsElementPresent(Locators.FolderDisabled), "Verify folder field is disabled when attendee propose new time");
 		ZAssert.assertTrue(this.sIsElementPresent(Locators.PrivateDisabled), "Verify private field is disabled when attendee propose new time");
 	}
-	
+
 	public void zVerifyDisabledControlInOpenInstance() throws HarnessException {
 		ZAssert.assertTrue(this.sIsElementPresent(Locators.RepeatOptionsDisabled), "Verify repeat dropdown remains disabled");
 		ZAssert.assertTrue(this.sIsElementPresent(Locators.RepeatDescriptionDisabled), "Verify repeat description remains disabled");
 	}
-	
+
 	/**
 	 * Press the toolbar button
-	 * 
+	 *
 	 * @param button
 	 * @return
 	 * @throws HarnessException
@@ -455,7 +455,7 @@ public class FormApptNew extends AbsForm {
 			// Wait for the message to be delivered
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
-			
+
 			SleepUtil.sleepMedium();
 			page = new DialogConfirmRemoveAllExceptions(this.MyApplication, pageCal);
 
@@ -492,17 +492,17 @@ public class FormApptNew extends AbsForm {
 		} else if (button == Button.B_FIRST_TIME_SUGGESTION) {
 
 			SleepUtil.sleepMedium();
-			
+
 			if (this.sIsElementPresent(Locators.SelectFirstFreeTimeFromSuggestTimePane) == true) {
 				this.sClickAt(Locators.SelectFirstFreeTimeFromSuggestTimePane, "");
-				
+
 			} else if (this.sIsElementPresent(Locators.ShowTimesAnywayLink) == true) {
 				this.sClickAt(Locators.ShowTimesAnywayLink, "");
 				this.sClickAt(Locators.SelectFirstFreeTimeFromSuggestTimePane, "");
 			}
-			
+
 			return null;
-			
+
 			// FALL THROUGH
 
 		} else if (button == Button.B_SUGGESTALOCATION) {
@@ -514,7 +514,7 @@ public class FormApptNew extends AbsForm {
 			// FALL THROUGH
 
 		} else if (button == Button.B_10AM) {
-			
+
 			SleepUtil.sleepMedium();
 			locator = Locators.SuggestATime10AM;
 			page = null;
@@ -529,7 +529,7 @@ public class FormApptNew extends AbsForm {
 			this.zWaitForBusyOverlay();
 
 			return (page);
-		
+
 		} else if (button == Button.B_SHOW_TIMES_ANYWAY) {
 
 			locator = Locators.ShowTimesAnywayLink;
@@ -564,7 +564,7 @@ public class FormApptNew extends AbsForm {
 
 			// FALL THROUGH
 
-		} 
+		}
 		else if (button == Button.B_TO) {
 
 			locator = Locators.AddAttendees;
@@ -595,9 +595,8 @@ public class FormApptNew extends AbsForm {
 		if (locator == null)
 			throw new HarnessException("locator was null for button " + button);
 
-		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Locator " + locator + " not present!");
-		}
+		// Default behavior, process the locator by clicking on it
+		//
 
 		// Click it
 		this.sClickAt(locator, "");
@@ -613,7 +612,7 @@ public class FormApptNew extends AbsForm {
 
 	public AbsPage zPressButton(Button button, String value)
 			throws HarnessException {
-		
+
 		logger.info(myPageName() + " zPressButton(" + button + ")");
 		SleepUtil.sleepMedium();
 
@@ -633,10 +632,10 @@ public class FormApptNew extends AbsForm {
 		} else if (button == Button.B_LOCATIONMENU) {
 
 			locator = zGetLocationVaueFromPopUp(value);
-			
+
 			this.sClickAt("css=div[id$='_suggest_view'] table:nth-child(2) tbody tr td:nth-child(3) span", "0,0");
 			SleepUtil.sleepSmall();
-			
+
 			page = null;
 
 		} else {
@@ -645,14 +644,10 @@ public class FormApptNew extends AbsForm {
 
 		if (locator == null)
 			throw new HarnessException("locator was null for button " + button);
-		
-		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Locator " + locator + " not present!");
-		}
-		
+
 		this.sClickAt(locator, "");
 		SleepUtil.sleepMedium();
-		
+
 		this.zWaitForBusyOverlay();
 
 		return (page);
@@ -698,22 +693,22 @@ public class FormApptNew extends AbsForm {
 							"Verify busy timeslot are not showing while suggesting a time");
 		}
 	}
-	
+
 	public void zSetTomorrowDate() throws HarnessException{
 	    Calendar c = Calendar.getInstance();
 	    c.add(Calendar.DATE, 2);
 	    this.zTypeKeys("css=input[id$='_startDateField']", new SimpleDateFormat("MM/dd/yyyy").format(c.getTime()));
 	}
-	
+
 	public String zGetTomorrowDate() throws HarnessException{
 		Calendar c = Calendar.getInstance();
-	    c.add(Calendar.DATE, 2);	    
+	    c.add(Calendar.DATE, 2);
 	    return new SimpleDateFormat("yyyyMMdd").format(c.getTime());
 	}
 
 	/**
 	 * Press the toolbar pulldown and the menu option
-	 * 
+	 *
 	 * @param pulldown
 	 * @param option
 	 * @return
@@ -721,7 +716,7 @@ public class FormApptNew extends AbsForm {
 	 */
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
 			throws HarnessException {
-		
+
 		logger.info(myPageName() + " zToolbarPressPulldown(" + pulldown + ", "
 				+ option + ")");
 
@@ -745,7 +740,7 @@ public class FormApptNew extends AbsForm {
 			throw new HarnessException("no logic defined for pulldown "
 					+ pulldown);
 		}
-		
+
 		if (option == Button.O_SUGGESTION_PREFERENCES) {
 			optionLocator = Locators.SuggestionPreferencesMenu;
 
@@ -769,7 +764,7 @@ public class FormApptNew extends AbsForm {
 			this.zWaitForBusyOverlay();
 
 			if (optionLocator != null) {
-				
+
 				if (option == Button.O_SUGGESTION_PREFERENCES) {
 					optionLocator = Locators.SuggestionPreferencesMenu;
 
@@ -796,42 +791,42 @@ public class FormApptNew extends AbsForm {
 		// Return the specified page, or null if not set
 		return (page);
 	}
-	
+
 	public void zSetFromIdentity(String value) throws HarnessException {
 		logger.info(myPageName() + " zSetFrom("+ value +")");
 
 		String pulldownLocator = "css=td[id$='_identity'] td[id$='_dropdown']";
 		String optionLocator = "css=td[id$='_title']:contains("+ value +")";
-		
+
 		// Default behavior
 		if ( pulldownLocator != null ) {
-						
+
 			// Make sure the locator exists
 			if ( !this.sIsElementPresent(pulldownLocator) ) {
 				throw new HarnessException("pulldownLocator not present! "+ pulldownLocator);
 			}
-			
+
 			this.zClick(pulldownLocator);
 
 			this.zWaitForBusyOverlay();
-			
+
 			if ( optionLocator != null ) {
 
 				// Make sure the locator exists
 				if ( !this.sIsElementPresent(optionLocator) ) {
 					throw new HarnessException("optionLocator not present! "+ optionLocator);
 				}
-				
+
 				this.zClick(optionLocator);
 
 				this.zWaitForBusyOverlay();
 
 			}
-			
+
 		}
-		
+
 	}
-	
+
 
 	public void zFillField(Field field, ZDate value) throws HarnessException {
 		String stringFormat;
@@ -883,7 +878,7 @@ public class FormApptNew extends AbsForm {
 
 	/**
 	 * Fill in the form field with the specified text
-	 * 
+	 *
 	 * @param field
 	 * @param value
 	 * @throws HarnessException
@@ -897,11 +892,11 @@ public class FormApptNew extends AbsForm {
 
 		// subject
 		if (field == Field.Subject) {
-			
+
 			locator = "css=div[id^='APPT_COMPOSE_'] td[id$='_subject'] input";
-			
+
 		} else if ( field == Field.From ) {
-			
+
 			zSetFromIdentity(value);
 			return;
 
@@ -1025,7 +1020,7 @@ public class FormApptNew extends AbsForm {
 				if (this
 						.sIsElementPresent("css=textarea[class='ZmHtmlEditorTextArea']") && frames == 0) {
 					locator = "css=textarea[class='ZmHtmlEditorTextArea']";
-					
+
 					this.sFocus(locator);
 					this.zClick(locator);
 					this.zWaitForBusyOverlay();
@@ -1038,7 +1033,7 @@ public class FormApptNew extends AbsForm {
 					// HTML compose
 
 					try {
-							
+
 						if (this.sIsElementPresent("css=iframe[id$='ZmHtmlEditor1_body_ifr']")) {
 							locator = "css=body[id='tinymce']";
 							this.sSelectFrame("css=div[class='ZmApptComposeView'] div[id$='_notes'] iframe[id$='_body_ifr']"); // iframe index is 0 based
@@ -1047,18 +1042,18 @@ public class FormApptNew extends AbsForm {
 							//this.sType(locator, value);
 							this.zKeyboard.zTypeCharacters(value);
 
-						} else if (this.sIsElementPresent("css=textarea[class='ZmHtmlEditorTextArea']")) {	
+						} else if (this.sIsElementPresent("css=textarea[class='ZmHtmlEditorTextArea']")) {
 							locator = "css=textarea[class='ZmHtmlEditorTextArea']";
 							this.sFocus(locator);
 							this.zClick(locator);
 							this.sType(locator, value);
-						
+
 						} else {
 							throw new HarnessException("Unable to locate compose body");
 						}
 
 					} finally {
-						
+
 						// Make sure to go back to the original iframe
 						this.sSelectFrame("relative=top");
 
@@ -1082,35 +1077,41 @@ public class FormApptNew extends AbsForm {
 		if (locator == null) {
 			throw new HarnessException("locator was null for field " + field);
 		}
-		
-		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Locator " + locator + " not present!");
-		}
-		
+
+		// Make sure the button exists
+		if (!this.sIsElementPresent(locator))
+			throw new HarnessException("Field is not present field=" + field
+					+ " locator=" + locator);
+
 		if (isRepeat != null) {
 			this.sClickAt(locator, "");
 			zRecurringOptions(locator, value, isRepeat);
-			
+
 		} else {
 			if (ZimbraSeleniumProperties.isWebDriver()) {
 				this.sClickAt(locator, "");
 				this.clearField(locator);
 				this.sClickAt(locator, "");
 			}
-			
+
 			if (field == Field.StartDate || field == Field.EndDate
 					|| field == Field.StartTime || field == Field.EndTime) {
 				this.sFocus(locator);
 				this.zKeyboard.zSelectAll();
 				this.sTypeDateTime(locator, value);
-				
+
 			} else if (field == Field.Subject) {
 				this.sFocus(locator);
-				SleepUtil.sleepSmall();
 				this.sType(locator, value);
 				SleepUtil.sleepSmall();
-				
+				if (sIsElementPresent("css=td[id='zb__App__tab_COMPOSE-1_right_icon']")) {
+					sClickAt("css=td[id='zb__App__tab_COMPOSE-1_right_icon']", "0,0");
+				}
+
 			} else {
+				if (sIsElementPresent("css=td[id='zb__App__tab_COMPOSE-1_right_icon']")) {
+					sClickAt("css=td[id='zb__App__tab_COMPOSE-1_right_icon']", "0,0");
+				}
 				this.sFocus(locator);
 				SleepUtil.sleepSmall();
 				this.sType(locator, value);
@@ -1140,7 +1141,7 @@ public class FormApptNew extends AbsForm {
 		if (appt.getSubject() != null) {
 			zFillField(Field.Subject, appt.getSubject());
 		}
-		
+
 		// Attendees
 		if (appt.getAttendees() != null) {
 			zFillField(Field.Attendees, appt.getAttendees());
@@ -1201,7 +1202,7 @@ public class FormApptNew extends AbsForm {
 			 this.sCheck(locator);
 			 this.zWaitForBusyOverlay();
 		}
-		
+
 		if (appt.getIsPrivate() == false) {
 		 String locator = "css=input[id$='_privateCheckbox']";
 		 this.sUncheck(locator);
@@ -1213,55 +1214,55 @@ public class FormApptNew extends AbsForm {
 		}
 
 	}
-	
+
 	private void zRepeatCore(Button recurringType, Button repeat, String repeatOption1, Button end, String endOption1) throws HarnessException {
-		
+
 		logger.info(myPageName() + " zRepeat(recurringType, " + repeat + ", " + repeatOption1 + ", " + end + ", " + endOption1 + ")");
-		
+
 		if (recurringType.equals(null) || repeat.equals(null) || end.equals(null)) {
 			throw new HarnessException("Repeat options can't be null!");
 		}
-		
+
 		SleepUtil.sleepSmall();
-		this.sClickAt(Locators.NoneButton, "");
-		
+		this.zClickAt(Locators.NoneButton, "");
+
 		if (!recurringType.equals(Button.O_CUSTOM_MENU)) {
-			
+
 			if (recurringType.equals(Button.O_EVERY_DAY_MENU)) {
 				this.sClickAt(Locators.EveryDayMenuItem, "");
 				this.sClickAt(Locators.CustomizedLink,"");
-				
+
 				if (repeat.equals(Button.B_EVERY_DAY_RADIO_BUTTON)) {
 					this.sClickAt(Locators.EveryDayRadioButton, "");
-					
+
 				} else if (repeat.equals(Button.B_EVERY_WEEKDAY_RADIO_BUTTON)) {
 					this.sClickAt(Locators.EveryWeekdayRadioButton, "");
-					
+
 				} else if (repeat.equals(Button.B_EVERY_X_DAYS_RADIO_BUTTON)) {
 					this.sClickAt(Locators.EveryXdaysRadioButton, "");
 					this.sType(Locators.EveryXdaysEditField, repeatOption1);
-				} 
-				
+				}
+
 			} else if (recurringType.equals(Button.O_EVERY_WEEK_MENU)) {
 				this.sClickAt(Locators.EveryWeekMenuItem, "");
 				this.sClickAt(Locators.CustomizedLink,"");
-				
+
 				if (repeat.equals(Button.B_EVERY_X_RADIO_BUTTON)) {
 					this.sClickAt(Locators.EveryXRadioButton, "");
 					if (!repeatOption1.equals("")) {
 						this.sClickAt("css=td[id^='WEEKLY_SELECT'] td[id$='_title']", "");
 						this.sClickAt("css=div[id^='POPUP_DWT'] td[id$='_title']:contains('" + repeatOption1 + "')", "");
 					}
-					
+
 				} else if (repeat.equals(Button.B_EVERY_X_WEEKS_ON_RADIO_BUTTON)) {
 					this.sClickAt(Locators.EveryXweeksOnRadioButton, "");
-					
+
 				} else if (repeat.equals(Button.E_EVERY_X_WEEKS_ON_EDIT_FIELD)) {
 					this.sType(Locators.EveryXweeksOnEditField, repeatOption1);
-					
+
 				} else if (repeat.equals(Button.B_SUNDAY_CHECK_BOX)) {
 					this.sClickAt(Locators.SundayCheckBox, repeatOption1);
-				
+
 				} else if (repeat.equals(Button.B_MONDAY_CHECK_BOX)) {
 					this.sClickAt(Locators.MondayCheckBox, repeatOption1);
 
@@ -1279,65 +1280,65 @@ public class FormApptNew extends AbsForm {
 
 				} else if (repeat.equals(Button.B_SATURDAY_CHECK_BOX)) {
 					this.sClickAt(Locators.SaturdayCheckBox, repeatOption1);
-					
+
 				}
-				
+
 			} else if (recurringType.equals(Button.O_EVERY_MONTH_MENU)) {
 				this.sClickAt(Locators.EveryMonthMenuItem, "");
 				this.sClickAt(Locators.CustomizedLink,"");
-				
+
 				if (repeat.equals(Button.B_DAY_X_OF_EVERY_Y_MONTHS_RADIO_BUTTON)) {
 					this.sClickAt(Locators.DayXofEveryYmonthsRadioButton, "");
-				
+
 				} else if (repeat.equals(Button.B_THE_X_Y_OF_EVERY_Z_MONTHS_RADIO_BUTTON)) {
 					this.sClickAt(Locators.TheXYofEveryZmonthsRadioButton, "");
 					this.sClickAt("css=td[id^='MONTHLY_WEEKDAY_SELECT'] td[id$='_title']", "");
-					this.sClickAt("css=div[id*='Menu_'] td[id$='_title']:contains('Monday')", "");        
+					this.sClickAt("css=div[id*='Menu_'] td[id$='_title']:contains('Monday')", "");
 				}
-				
+
 			} else if (recurringType.equals(Button.O_EVERY_YEAR_MENU)) {
 				this.sClickAt(Locators.EveryYearMenuItem, "");
 				this.sClickAt(Locators.CustomizedLink,"");
-				
+
 				if (repeat.equals(Button.B_EVERY_YEAR_ON_X_Y_RADIO_BUTTON)) {
 					this.sClickAt(Locators.EveryYearOnXYRadioButton, "");
-					
+
 				} else if (repeat.equals(Button.B_THE_X_Y_OF_EVERY_Z_RADIO_BUTTON)) {
 					this.sClickAt(Locators.TheXYofEveryZRadioButton, "");
 				}
-				
+
 			}
-		
+
 			if (end.equals(Button.B_NO_END_DATE_RADIO_BUTTON)) {
 				this.sClickAt(Locators.NoEndDateRadioButton, "");
-				
+
 			} else if (end.equals(Button.B_END_AFTER_X_OCCURRENCES_RADIO_BUTTON)) {
 				this.sClickAt(Locators.EndAfterXoccurrencesRadioButton, "");
 				this.sType(Locators.EndAfterXoccurrencesEditField, endOption1);
-				
+
 			} else if (end.equals(Button.B_END_BY_DATE_RADIO_BUTTON)) {
 				this.sClickAt(Locators.EndByXDateRadioButton, "");
 				this.sType(Locators.EndByXDateEditField, endOption1);
-			}	
-	
+			}
+
 		}
-		
+
 		DialogCustomRepeat dlgCustomRepeat = (DialogCustomRepeat) new DialogCustomRepeat(DialogCustomRepeat.DialogWarningID.DialogCustomRepeat, MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 		dlgCustomRepeat.zClickButton(Button.B_OK);
-		
+
 		SleepUtil.sleepSmall();
 	}
-	
+
 	public void zRepeat(Button recurringType, Button repeat, Button end) throws HarnessException {
 		zRepeatCore(recurringType, repeat, "", end, "");
-		
+
 	}
-	
+
 	public void zRepeat(Button recurringType, Button repeat, String repeatOption1, Button end, String endOption1) throws HarnessException {
 		zRepeatCore(recurringType, repeat, repeatOption1, end, endOption1);
-		
+
 	}
-	
+
 	@Override
 	public boolean zIsActive() throws HarnessException {
 		logger.info(myPageName() + " zIsActive()");
@@ -1427,55 +1428,55 @@ public class FormApptNew extends AbsForm {
 			this.sType(locator, recurringType);
 		}
 	}
-	
+
 	public boolean zVerifyNewApptTabClosed()throws HarnessException {
 		String disappeared = sGetEval("this.browserbot.getUserWindow().document.getElementById('ztb__APPT-1').style.left");
-		
+
 		// if locator is not visible the style.left returns 10000px else returns 0 , so checked the same
 		if (disappeared.equalsIgnoreCase("-10000px")){
 			return true;
 		}else{
 		   return false;
-		
+
 		}
-		
+
 	}
-	
+
 	public void zRequestResponseOFF()throws HarnessException {
-		// click at toolbar >> request response once to disable it	
+		// click at toolbar >> request response once to disable it
 		this.zClickAt(Locators.ToolbarOptions, "");
 		this.zClickAt(Locators.RequestResponse, ""); //Request Response Set to OFF
-		
+
 	}
-	
+
 	public void zRequestResponseON()throws HarnessException {
-		// click at toolbar >> click at request response twice to enable it		
+		// click at toolbar >> click at request response twice to enable it
 		this.zClickAt(Locators.ToolbarOptions, "");
 		this.zClickAt(Locators.RequestResponse, ""); //Request Response Set to OFF
 		SleepUtil.sleepSmall();
 		this.zClickAt(Locators.ToolbarOptions, "");
 		this.zClickAt(Locators.RequestResponse, ""); //Request Response Set to ON
-		
+
 	}
-	
+
 	public void zCloseModifiedApptTab()throws HarnessException {
 		// Close the modified appointment without saving changes
 		this.zToolbarPressButton(Button.B_CLOSE);
 		DialogConfirmModification confirmClose = (DialogConfirmModification) new DialogConfirmModification(this.MyApplication, pageCal);
-	    confirmClose.zClickButton(Button.B_CANCEL);	
+	    confirmClose.zClickButton(Button.B_CANCEL);
 	}
-	
+
 	public boolean zVerifyComposeFormatHTML()throws HarnessException {
 		String disappeared = sGetEval("window.document.getElementsByClassName('ZmHtmlEditorTextArea')[0].style.display");
-		
+
 		// if display proerty returns 'none' it is HTML compose format else it is Plain text format
 		if (disappeared.equalsIgnoreCase("none")){
 			return true;
 		}else{
 		   return false;
-		
+
 		}
-		
+
 	}
 
 	public List<AutocompleteEntry> zAutocompleteFillField(Field field, String value) throws HarnessException {
@@ -1484,37 +1485,37 @@ public class FormApptNew extends AbsForm {
 		tracer.trace("Set "+ field +" to "+ value);
 
 		String locator = null;
-		
+
 		if ( field == Field.Attendees) {
-			
+
 			locator = Locators.AttendeeField;
-			
+
 			// FALL THROUGH
-			
+
 		} else if ( field == Field.Location) {
-			
+
 			locator = Locators.LocationField;
-			
+
 			// FALL THROUGH
-			
+
 		} else if ( field == Field.Equipment ) {
-			
-				this.sClickAt(Locators.ShowEquipmentLink, "");
+
+				this.zClickAt(Locators.ShowEquipmentLink, "");
 				locator = Locators.EquipmentField;
-			
+
 		} else {
 			throw new HarnessException("Unsupported field: "+ field);
 		}
-		
+
 		if ( locator == null ) {
 			throw new HarnessException("locator was null for field "+ field);
 		}
-		
-		
+
+
 		// Make sure the button exists
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
-		
+
 		// Seems that the client can't handle filling out the new mail form too quickly
 		// Click in the "To" fields, etc, to make sure the client is ready
 		this.sFocus(locator);
@@ -1523,13 +1524,13 @@ public class FormApptNew extends AbsForm {
 
 		// Instead of sType() use zKeyboard
 		// this.zKeyboard.zTypeCharacters(value);
-		
+
 		// workaround
 		if(ZimbraSeleniumProperties.isWebDriver()){
 		    clearField(locator);
 		    sType(locator, value);
-		} else {
-		    if(value.length() > 0){ 
+		}else{
+		    if(value.length() > 0){
 			sType(locator, value.substring(0, value.length()-1));
 			sFireEvent(locator, "keyup");
 		    }
@@ -1537,12 +1538,12 @@ public class FormApptNew extends AbsForm {
 		    sType(locator, value);
 		    sFireEvent(locator, "keyup");
 		}
-				
+
 		this.zWaitForBusyOverlay();
 
 		waitForAutocomplete();
 		return (zAutocompleteListGetEntries());
-		
+
 	}
 
 	protected void waitForAutocomplete() throws HarnessException {
@@ -1554,34 +1555,34 @@ public class FormApptNew extends AbsForm {
 		}
 		throw new HarnessException("autocomplete never completed");
 	}
-	
+
 	protected AutocompleteEntry parseAutocompleteEntry(String itemLocator) throws HarnessException {
 		logger.info(myPageName() + " parseAutocompleteEntry()");
 
 		String locator = null;
-		
+
 		// Get the icon
 		locator = itemLocator + " td.AutocompleteMatchIcon div@class";
 		String image = this.sGetAttribute(locator);
-		
+
 		// Get the address
 		locator = itemLocator + " td + td";
 		String address = this.sGetText(locator);
-		
+
 		AutocompleteEntry entry = new AutocompleteEntry(
-									Icon.getIconFromImage(image), 
-									address, 
+									Icon.getIconFromImage(image),
+									address,
 									false,
 									itemLocator);
 
 		return (entry);
 	}
-	
+
 	public List<AutocompleteEntry> zAutocompleteListGetEntries() throws HarnessException {
 		logger.info(myPageName() + " zAutocompleteListGetEntries()");
-		
+
 		List<AutocompleteEntry> items = new ArrayList<AutocompleteEntry>();
-		
+
 		String containerLocator = "css=div[id^='zac__APPT-'][style*='display: block;']";
 
 		if ( !this.zWaitForElementPresent(containerLocator,"5000") ) {
@@ -1589,25 +1590,25 @@ public class FormApptNew extends AbsForm {
 			return (items);
 		}
 
-		
+
 		String rowsLocator = containerLocator + " tr[id*='_acRow_']";
 		int count = this.sGetCssCount(rowsLocator);
 		for (int i = 0; i < count; i++) {
-			
+
 			items.add(parseAutocompleteEntry(containerLocator + " tr[id$='_acRow_"+ i +"']"));
-			
+
 		}
-		
+
 		return (items);
 	}
 
 	public void zAutocompleteSelectItem(AutocompleteEntry entry) throws HarnessException {
 		logger.info(myPageName() + " zAutocompleteSelectItem("+ entry +")");
-		
+
 		// Click on the address
 		this.sMouseDown(entry.getLocator() + " td + td");
 		this.zWaitForBusyOverlay();
-		
+
 	}
-	
+
 }

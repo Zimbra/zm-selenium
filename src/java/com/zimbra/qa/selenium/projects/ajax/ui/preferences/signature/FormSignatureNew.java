@@ -115,13 +115,6 @@ public class FormSignatureNew extends AbsForm {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		if (locator == null) {
-			throw new HarnessException("locator was null for button " + button);
-		}
-
-		// Default behavior, process the locator by clicking on it
-		//
-
 		// Make sure the button exists
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("Button is not present locator="
@@ -157,7 +150,7 @@ public class FormSignatureNew extends AbsForm {
 			locator = Locators.signatureBody;
 			this.sFocus(locator);
 			this.zClickAt(locator,"");
-			zKeyboard.zTypeCharacters(value);
+			sType(locator, value);
 
 			if (!(sGetValue(locator).equalsIgnoreCase(value))) {
 				this.sFocus(locator);
@@ -212,12 +205,12 @@ public class FormSignatureNew extends AbsForm {
 		}else{
 		    this.sFocus(locator);
 		    this.zClickAt(locator,"");
-		    zKeyboard.zTypeCharacters(value);
+		    sType(locator, value);
 
 		    if (!(sGetValue(locator).equalsIgnoreCase(value))) {
-			this.sFocus(locator);
-			this.zClickAt(locator,"");
-			sType(locator, value);
+				this.sFocus(locator);
+				this.zClickAt(locator,"");
+				sType(locator, value);
 		    }
 		}
 		this.zWaitForBusyOverlay();

@@ -109,7 +109,6 @@ public class FormContactGroupNew extends AbsForm {
 	@Override
 	public void zSubmit() throws HarnessException {
 		this.zToolbarPressButton(Button.B_SAVE);
-		SleepUtil.sleepMedium();
 	}	
 	
 	/**
@@ -203,6 +202,14 @@ public class FormContactGroupNew extends AbsForm {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
+		// Make sure a locator was set
+		if ( locator == null )
+			throw new HarnessException("locator was null for button "+ button);
+
+		
+		// Default behavior, process the locator by clicking on it
+		//
+		
 		// Click it
 		this.zClickAt(locator,"");
 		
@@ -322,15 +329,15 @@ public class FormContactGroupNew extends AbsForm {
 	
 	public void zFillField(Field field, String value) throws HarnessException {
 		
-		SleepUtil.sleepMedium();
-		
 		tracer.trace("Set "+ field +" to "+ value);
 
 		String locator = "css=div#"+ MyDivID;
 		
 		if ( field == Field.GroupName ) {
 			
+		//	locator += " table.contactHeaderTable input[id$='_groupName']";
 			locator += " table.ZPropertySheet input[id$='_groupName']";
+			// There seems to be an issue with changing the value during edit
 			
 			// workaround
 			if(ZimbraSeleniumProperties.isWebDriver()){
@@ -339,13 +346,15 @@ public class FormContactGroupNew extends AbsForm {
 				sType(locator, value);
 				
 			} else {
-	
+
 				this.sClickAt(locator,"");
-				this.zTypeKeys(locator, value);				// Use Selenium to input the characters
+				this.sType(locator, "");				// clear the contents
+				this.zKeyboard.zTypeCharacters(value);	// Use robot to input the characters
+				// this.sType(locator, value);				// Use Selenium to input the characters
 				this.zWaitForBusyOverlay();
 				
 			}
-	
+
 			return;
 			
 		
@@ -384,12 +393,12 @@ public class FormContactGroupNew extends AbsForm {
 		// Click at the field
 		this.sClickAt(locator, "");
 		
-		SleepUtil.sleepSmall();
-		
 		// Type the value
 		this.sType(locator, value);
 		
-		SleepUtil.sleepMedium();
+		this.zWaitForBusyOverlay();
+
+
 	}
 	
 	@Override

@@ -115,11 +115,6 @@ public class DialogConfirmDeleteAttendee extends DialogWarning {
 
 		}
 
-		// Make sure the locator was set
-		if (locator == null) {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
 		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator "
@@ -131,14 +126,6 @@ public class DialogConfirmDeleteAttendee extends DialogWarning {
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
 		
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-			
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-			
-		}
-
 		// This dialog could send messages, so wait for the queue
 		if ( waitForPostfix ) {
 			Stafpostqueue sp = new Stafpostqueue();

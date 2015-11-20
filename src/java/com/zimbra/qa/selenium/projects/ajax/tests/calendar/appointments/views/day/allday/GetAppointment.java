@@ -46,7 +46,7 @@ public class GetAppointment extends AjaxCommonTest {
 	public void GetAllDayAppointment_01() throws HarnessException {
 		
 		// Create the appointment on the server
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptLocation = "location" + ZimbraSeleniumProperties.getUniqueString();
 		String apptBody = "content" + ZimbraSeleniumProperties.getUniqueString();
 		

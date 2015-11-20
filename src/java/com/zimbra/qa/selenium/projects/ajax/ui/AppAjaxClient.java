@@ -78,7 +78,7 @@ public class AppAjaxClient extends AbsApplication {
 	public PageAdvancedSearch			zPageAdvancedSearch = null;
 	public PageMail						zPageMail = null;
 	public PageBriefcase                zPageBriefcase = null;
-	public PageContacts              zPageContacts = null;
+	public PageContacts              	zPageContacts = null;
 	public PageCalendar					zPageCalendar = null;
 	public PageTasks					zPageTasks = null;
 	public PagePreferences				zPagePreferences = null;

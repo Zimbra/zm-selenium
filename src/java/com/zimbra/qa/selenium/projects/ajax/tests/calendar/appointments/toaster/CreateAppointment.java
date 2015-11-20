@@ -48,7 +48,7 @@ public class CreateAppointment extends AjaxCommonTest {
 		
 		// Create the message data to be sent
 		AppointmentItem appt = new AppointmentItem();
-		appt.setSubject("appointment" + ZimbraSeleniumProperties.getUniqueString());
+		appt.setSubject(ZimbraSeleniumProperties.getUniqueString());
 		appt.setContent("content" + ZimbraSeleniumProperties.getUniqueString());
 		appt.setStartTime(new ZDate(2014, 12, 25, 12, 0, 0));
 		appt.setEndTime(new ZDate(2014, 12, 25, 14, 0, 0));

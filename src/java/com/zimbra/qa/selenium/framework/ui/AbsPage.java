@@ -142,6 +142,8 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		
 		SleepUtil.sleep(2000);
 		
+		/*
+		
 		// Get the coordinates for the locators
 		Coordinate destination = new Coordinate(
 				this.sGetElementPositionLeft(locatorDestination), 
@@ -175,6 +177,25 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		SleepUtil.sleep(1000);
 		// Release the mouse
 		this.sMouseUpAt(locatorDestination, relative.toString());
+		
+		*/
+		
+		this.sMouseDownAt(locatorSource,"");
+		SleepUtil.sleep(1000);
+
+		// Drag the mouse to the destination, plus the offset
+		this.sMouseMoveAt(locatorDestination,"");
+
+		// Wait a bit for things to happen 
+		SleepUtil.sleep(1000 * 3);
+
+		this.sMouseMoveAt(locatorDestination,"");
+		this.sMouseOver(locatorDestination);
+
+		SleepUtil.sleep(1000);
+
+		// Release the mouse
+		this.sMouseUpAt(locatorDestination,"");
 
 		// Wait for the client to come back
 		this.zWaitForBusyOverlay();		

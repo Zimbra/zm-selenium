@@ -32,7 +32,7 @@ public class Bug27661 extends CalendarWorkWeekTest {
   public void Bug27661_01()
     throws HarnessException
   {
-    String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+    String apptSubject = ZimbraSeleniumProperties.getUniqueString();
     
     Calendar now = this.calendarWeekDayUTC;
     ZDate startUTC = new ZDate(now.get(1), now.get(2) + 1, now.get(5), 12, 0, 0);

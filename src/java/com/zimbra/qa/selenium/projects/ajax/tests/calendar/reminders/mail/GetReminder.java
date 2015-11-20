@@ -44,12 +44,12 @@ public class GetReminder extends AjaxCommonTest {
 	
 	@Bugs(ids = "69132")
 	@Test(	description = "Verify reminder popup when in the mail app",
-			groups = { "implement" })
+			groups = { "skip" })
 	public void GetReminder_01() throws HarnessException {
 		
 		// Create the appointment on the server
 		// Create the message data to be sent
-		String subject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = ZimbraSeleniumProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();

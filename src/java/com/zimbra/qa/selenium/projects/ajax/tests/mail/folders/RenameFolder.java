@@ -87,7 +87,7 @@ public class RenameFolder extends PrefGroupMailByMessageTest {
 
 	
 	@Test(	description = "Rename a folder - set to an invalid name with ':'",
-			groups = { "functional", "matt" })
+			groups = { "functional" })
 	public void RenameFolder_02() throws HarnessException {
 		
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);

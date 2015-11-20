@@ -40,7 +40,7 @@ public class VerifyDisabledUI extends CalendarWorkWeekTest {
 		
 		organizerTest = false;
 		
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptBody = ZimbraSeleniumProperties.getUniqueString();
 		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
@@ -119,7 +119,7 @@ public class VerifyDisabledUI extends CalendarWorkWeekTest {
 		
 		organizerTest = false;
 		
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptBody = ZimbraSeleniumProperties.getUniqueString();
 		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();

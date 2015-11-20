@@ -47,6 +47,7 @@ public class CreateSavedSearch extends AjaxCommonTest  {
 	
 	@Test(	description = "Create a basic saved search",
 			groups = { "sanity" })
+	
 	public void CreateSavedSearch_01() throws HarnessException {				
 				
 			

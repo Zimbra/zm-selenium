@@ -34,13 +34,13 @@ public class ProposeNewTime extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "80559,81647")
+	@Bugs(ids = "80559")
 	@Test(	description = "Assistant right clicks to calendar invite from shared calendar and proposes new time OBO boss",
 			groups = { "functional" })
 			
 	public void ProposeNewTime_01() throws HarnessException {
 		
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptBody = "body" + ZimbraSeleniumProperties.getUniqueString();
 		String mountPointName = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
 		
@@ -48,7 +48,7 @@ public class ProposeNewTime extends CalendarWorkWeekTest {
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		String modifiedSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String modifiedSubject = ZimbraSeleniumProperties.getUniqueString();
 		ZDate modifiedStartUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 		ZDate modifiedEndUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		String modifiedBody = "body" + ZimbraSeleniumProperties.getUniqueString();

@@ -41,7 +41,7 @@ public class Reply extends CalendarWorkWeekTest {
 	public void Reply_01() throws HarnessException {
 		
 		// Create the appointment on the server
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String attendee1 = ZimbraAccount.AccountA().EmailAddress;
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;

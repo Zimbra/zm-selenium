@@ -40,7 +40,7 @@ public class EditReplyDecline extends CalendarWorkWeekTest {
 
 		// ------------------------ Test data ------------------------------------
 
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String modifiedBody = ZimbraSeleniumProperties.getUniqueString();
 
 		Calendar now = this.calendarWeekDayUTC;

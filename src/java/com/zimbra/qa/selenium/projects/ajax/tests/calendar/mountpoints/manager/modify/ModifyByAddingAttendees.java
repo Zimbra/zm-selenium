@@ -42,7 +42,7 @@ public class ModifyByAddingAttendees extends CalendarWorkWeekTest {
 			
 	public void ModifyMeetingByAddingAttendees_01() throws HarnessException {
 		
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptBody = ZimbraSeleniumProperties.getUniqueString();
 		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
 		String mountPointName = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();

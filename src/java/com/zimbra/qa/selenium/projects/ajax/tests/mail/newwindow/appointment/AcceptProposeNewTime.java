@@ -49,7 +49,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 	
 
 	@Test(description = "  Receive meeting invite -> Propose New Time  From New window to organizer and organizer accepts the new time using message view", 
-			groups = { "skip-functional" })
+			groups = { "functional-skip" })
 	public void AcceptProposeNewTime_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------

@@ -38,7 +38,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 			
 	public void DeleteAppointment_01() throws HarnessException {
 		
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptBody = ZimbraSeleniumProperties.getUniqueString();
 		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
@@ -114,7 +114,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 			
 	public void DeleteAppointment_02() throws HarnessException {
 		
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptBody = ZimbraSeleniumProperties.getUniqueString();
 		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();

@@ -26,6 +26,7 @@ import java.util.Map;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
 
@@ -105,6 +106,8 @@ public class TreePreferences extends AbsTree {
 		}
 		
 		zClickAt(locator,"");
+		
+		SleepUtil.sleepMedium();
 		
 		zWaitForBusyOverlay();
 		

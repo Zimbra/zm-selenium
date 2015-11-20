@@ -17,7 +17,10 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 
 import java.util.Calendar;
+
 import org.testng.annotations.*;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -33,9 +36,11 @@ public class ResourceConflictWhenOOO extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
+	@Bugs(ids = "102271")
 	@Test(description = "Verify if OOO status of Location causes double booking",
 			groups = { "functional" })
-			public void LocationConflictWhenOOO_01() throws HarnessException {
+	
+	public void LocationConflictWhenOOO_01() throws HarnessException {
 
 		// Creating object for meeting data
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);

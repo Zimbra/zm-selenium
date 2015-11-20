@@ -39,7 +39,7 @@ public class Decline extends CalendarWorkWeekTest {
 			
 	public void Decline_01() throws HarnessException {
 		
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptBody = "body" + ZimbraSeleniumProperties.getUniqueString();
 		String mountPointName = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
 		
@@ -154,7 +154,7 @@ public class Decline extends CalendarWorkWeekTest {
 			
 	public void Decline_02() throws HarnessException {
 		
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptBody = "body" + ZimbraSeleniumProperties.getUniqueString();
 		String mountPointName = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
 		

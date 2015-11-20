@@ -39,7 +39,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		   
 		// Create appointment
 		String apptSubject;
-		apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
 		
 		appt.setSubject(apptSubject);

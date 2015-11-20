@@ -48,7 +48,7 @@ public class GetAppointment extends AjaxCommonTest {
 		
 		// Create the appointment on the server
 		// Create the message data to be sent
-		String subject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = ZimbraSeleniumProperties.getUniqueString();
 		
 		
 		// Absolute dates in UTC zone

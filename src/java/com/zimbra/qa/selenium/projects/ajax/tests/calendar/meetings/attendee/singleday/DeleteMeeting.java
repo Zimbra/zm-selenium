@@ -18,10 +18,16 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.si
 
 import java.util.Calendar;
 import org.testng.annotations.Test;
+import com.zimbra.qa.selenium.framework.items.FolderItem;
+import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmDeleteAppointment;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmDeleteAttendee;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmationDeclineAppointment;
 
+@SuppressWarnings("unused")
 public class DeleteMeeting extends CalendarWorkWeekTest {
 
 	public DeleteMeeting() {
@@ -29,14 +35,13 @@ public class DeleteMeeting extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test(	description = "View a basic appointment in the week view",
-			groups = { "implement" }) //smoke
+	@Test(	description = "Delete appointment in the week view - Don't Notify Organizer",
+			groups = { "smoke" })
+
 	public void DeleteMeeting_01() throws HarnessException {
 		
 		// Create the appointment on the server
-		// Create the message data to be sent
-		String subject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
-		
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -47,18 +52,18 @@ public class DeleteMeeting extends CalendarWorkWeekTest {
 		String tz = ZTimeZone.TimeZoneEST.getID();
 
 		// Create an appointment
-		app.zGetActiveAccount().soapSend(
-					"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
+		ZimbraAccount.AccountA().soapSend(
+				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
 				+		"<m>"
-				+			"<inv>"
-				+				"<comp status='CONF' fb='B' class='PUB' transp='O' allDay='0' name='"+ subject +"' >"
-				+					"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
-				+					"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
-				+					"<or a='"+ app.zGetActiveAccount().EmailAddress + "'/>"
-				+				"</comp>"
+				+			"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"
+				+				"<s d='"+ startUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
+				+				"<e d='"+ endUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
+				+				"<or a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>"
+				+				"<at role='REQ' ptst='NE' rsvp='1' a='" + app.zGetActiveAccount().EmailAddress + "'/>"
 				+			"</inv>"
-				+			"<su>"+ subject + "</su>"
-				+			"<mp ct='text/plain'>"
+				+			"<e a='"+ app.zGetActiveAccount().EmailAddress +"' t='t'/>"
+				+			"<su>"+ apptSubject +"</su>"
+				+			"<mp content-type='text/plain'>"
 				+				"<content>content</content>"
 				+			"</mp>"
 				+		"</m>"
@@ -66,11 +71,136 @@ public class DeleteMeeting extends CalendarWorkWeekTest {
 		
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		
-		SleepUtil.sleep(5000);
-		
-		throw new HarnessException("add verification that the appointment appears");
+		// Click to appointment and delete it
+        app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
+        DialogConfirmDeleteAttendee dlgConfirm = (DialogConfirmDeleteAttendee)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
+
+        // Select "Don't notify organizer"
+ 		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
+ 		declineAppt.zClickButton(Button.B_DONT_NOTIFY_ORGANIZER);
+ 		declineAppt.zClickButton(Button.B_YES);
+ 		SleepUtil.sleepVeryLong();
+
+ 		
+ 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
+
+ 		// --- Check that the organizer shows the attendee as "DECLINE" ---
+
+ 		// Organizer: Search for the appointment (InvId)
+ 		ZimbraAccount.AccountA().soapSend(
+ 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
+ 				+		"<query>"+ apptSubject +"</query>"
+ 				+	"</SearchRequest>");
+ 		
+ 		String organizerInvId = ZimbraAccount.AccountA().soapSelectValue("//mail:appt", "invId");
+
+ 		// Get the appointment details
+ 		ZimbraAccount.AccountA().soapSend(
+ 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
+ 		
+ 		String attendeeStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
+
+ 		// Verify attendee status shows as ptst=NE (because "Don't notify organizer)
+ 		ZAssert.assertEquals(attendeeStatus, "NE", "Verify that the attendee status shows as 'NEEDS ACTION' instead of 'DECLINED'");
+
+
+ 		// Attendee: Search for the appointment (InvId)
+ 		app.zGetActiveAccount().soapSend(
+ 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
+ 				+		"<query>"+ apptSubject +"</query>"
+ 				+	"</SearchRequest>");
+ 		
+ 		String attendeeInvId = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
+
+ 		// Verify attendee status shows as ptst=DE
+ 		ZAssert.assertNull(attendeeInvId, "Verify appointment is not found");
+ 		
+ 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify appointment is deleted");
 	    
 	}
+	
+	
+	@Test(	description = "Delete appointment in the week view - Notify Organizer",
+			groups = { "smoke" })
 
+	public void DeleteMeeting_02() throws HarnessException {
+		
+		// Create the appointment on the server
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		
+		// Absolute dates in UTC zone
+		Calendar now = this.calendarWeekDayUTC;
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		
+		// EST timezone string
+		String tz = ZTimeZone.TimeZoneEST.getID();
+
+		// Create an appointment
+		ZimbraAccount.AccountA().soapSend(
+				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
+				+		"<m>"
+				+			"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"
+				+				"<s d='"+ startUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
+				+				"<e d='"+ endUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
+				+				"<or a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>"
+				+				"<at role='REQ' ptst='NE' rsvp='1' a='" + app.zGetActiveAccount().EmailAddress + "'/>"
+				+			"</inv>"
+				+			"<e a='"+ app.zGetActiveAccount().EmailAddress +"' t='t'/>"
+				+			"<su>"+ apptSubject +"</su>"
+				+			"<mp content-type='text/plain'>"
+				+				"<content>content</content>"
+				+			"</mp>"
+				+		"</m>"
+				+	"</CreateAppointmentRequest>");
+		
+		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		
+		// Click to appointment and delete it
+        app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
+        DialogConfirmDeleteAttendee dlgConfirm = (DialogConfirmDeleteAttendee)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
+
+        // Select "Don't notify organizer"
+ 		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
+ 		declineAppt.zClickButton(Button.B_NOTIFY_ORGANIZER);
+ 		declineAppt.zClickButton(Button.B_YES);
+ 		SleepUtil.sleepVeryLong();
+ 		
+ 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
+
+ 		// --- Check that the organizer shows the attendee as "DECLINE" ---
+
+ 		// Organizer: Search for the appointment (InvId)
+ 		ZimbraAccount.AccountA().soapSend(
+ 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
+ 				+		"<query>"+ apptSubject +"</query>"
+ 				+	"</SearchRequest>");
+ 		
+ 		String organizerInvId = ZimbraAccount.AccountA().soapSelectValue("//mail:appt", "invId");
+
+ 		// Get the appointment details
+ 		ZimbraAccount.AccountA().soapSend(
+ 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
+ 		
+ 		String attendeeStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
+
+ 		// Verify attendee status shows as ptst=DE
+ 		ZAssert.assertEquals(attendeeStatus, "DE", "Verify that the attendee status shows as 'DECLINED' instead of 'NEEDS ACTION'");
+
+
+ 		// Attendee: Search for the appointment (InvId)
+ 		app.zGetActiveAccount().soapSend(
+ 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
+ 				+		"<query>"+ apptSubject +"</query>"
+ 				+	"</SearchRequest>");
+ 		
+ 		String attendeeInvId = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
+
+ 		// Verify attendee status shows as ptst=DE
+ 		ZAssert.assertNull(attendeeInvId, "Verify appointment is not found");
+ 		
+ 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify appointment is deleted");
+	    
+	}
 
 }

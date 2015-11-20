@@ -16,6 +16,7 @@
  */
 package  com.zimbra.qa.selenium.projects.ajax.ui.contacts;
 
+
 import java.awt.event.KeyEvent;
 import java.util.*;
 
@@ -383,8 +384,8 @@ public class PageContacts extends AbsTab {
 			throw new HarnessException("Button cannot be null!");
 
 
-		SleepUtil.sleepMedium();
-		
+		// Default behavior variables
+		//
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
 
@@ -394,17 +395,32 @@ public class PageContacts extends AbsTab {
 			
 		} else if ( button == Button.B_NEW ) {
 
+			// For "NEW" without a specified pulldown option, just return the default item
+			// To use "NEW" with a pulldown option, see  zToolbarPressPulldown(Button, Button)
+
+			
 			locator = "css=div#zb__NEW_MENU td[id$='_title']";			
 			page = new FormContactNew(this.MyApplication);
 
+	
 		} else if ( button == Button.B_DELETE ) {
 
 			String id = "zb__CNS-main__DELETE";
+
+			if (this.zIsElementDisabled("css=div#" + id)) {
+				throw new HarnessException("Tried clicking on "+ button +" but it was disabled "+ id);
+			}
+
 			locator = "id="+ id;
 
 		} else if ( button == Button.B_EDIT ) {
 
 			String id = "zb__CNS-main__EDIT";
+
+			
+			if (zIsElementDisabled("css=div#" + id )) {
+				throw new HarnessException("Tried clicking on "+ button +" but it was disabled "+ id);
+			}
 
 			locator = "id="+ id;
 			page = newFormSelected();	
@@ -413,26 +429,42 @@ public class PageContacts extends AbsTab {
 
 		    String id = "zb__CNS__MOVE_left_icon";
 
-		    locator = "id="+ id;
-		    page = new DialogMove(MyApplication, this);
-		   
+		    if (sIsElementPresent("css=td#" + id + " div[class*=ZDisabledImage]")) {
+				throw new HarnessException("Tried clicking on "+ button +" but it was disabled "+ id);
+			}
+		    
+		   locator = "id="+ id;
+		   page = new DialogMove(MyApplication, this);
 	    } else if ( button == Button.B_FORWARD) {		 
-	    	
-	    	locator = "css=div[id^=zb__CN-][id$=__SEND_CONTACTS_IN_EMAIL]";
+			locator = "css=div[id^=zb__CN-][id$=__SEND_CONTACTS_IN_EMAIL]";
 
-	    	page = new FormMailNew(MyApplication);	
+		    if (zIsElementDisabled(locator)) {
+				throw new HarnessException("Tried clicking on "+ button +" but it was disabled ");
+			}
+		   page = new FormMailNew(MyApplication);	
 		   
 	    } else if ( button == Button.B_CANCEL) {
-	    	
+ 	    	//String id ="dizb__CN__CANCEL";
  	    	locator = "css=div[id^=zb__CN][id$=__CANCEL]" ;
+		    if (zIsElementDisabled(locator)) {
+				throw new HarnessException("Tried clicking on "+ locator +" but it was disabled ");
+		    }
+		    
 			page = new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.MyApplication, ((AppAjaxClient)this.MyApplication).zPageContacts);
-			
+	    //click close without changing contact contents
 	    } else if ( button == Button.B_CLOSE){
  	    	locator = "css=div[id^=zb__CN][id$=__CANCEL]" ;
-		    
+		    if (zIsElementDisabled(locator)) {
+				throw new HarnessException("Tried clicking on "+ locator +" but it was disabled ");
+		    }		    			
+
 		    		
-	    } else if (isAlphabetButton(button)) {
+	    } else if (isAlphabetButton(button))
+          {
        	   locator=DisplayContactGroup.ALPHABET_PREFIX + button.toString() + DisplayContactGroup.ALPHABET_POSTFIX;
+       	   
+       	   //TODO
+       	   //page = ???
 	    }
 
       
@@ -453,8 +485,8 @@ public class PageContacts extends AbsTab {
  		  //for addressbook alphabet button only
 		  sClick(locator);
 		}
-		
-		SleepUtil.sleepMedium();
+		zWaitForBusyOverlay();
+	
 		
 		if ( page != null ) {
 			//sWaitForPageToLoad();			
@@ -942,9 +974,6 @@ public class PageContacts extends AbsTab {
 
 	
 	public AbsPage zListItem(Action action, Button option ,Button subOption, String contact) throws HarnessException {
-		
-		SleepUtil.sleepSmall();
-		
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned		
 		String parentLocator = null;
@@ -1094,13 +1123,6 @@ public class PageContacts extends AbsTab {
 	            locator = "css=" + sub_cmi.locator + extraLocator;
 	    	}
 	    	
-	    	
-			//  Make sure the sub context menu exists			
-			zWaitForElementPresent(locator) ;
-			
-			// make sure the sub context menu enabled			
-			//zWaitForElementEnabled(locator);
-			
         } 
 		
         //ExecuteHarnessMain.ResultListener.captureScreen();
@@ -1116,25 +1138,22 @@ public class PageContacts extends AbsTab {
 				locator="css=td[id^=SEARCH__DWT][id$=_title]:contains('Received From Contact')";
 			}
        }		
-       		//if (subOption == Button.O_TAG_REMOVETAG) {
-       		//    ExecuteHarnessMain.ResultListener.captureScreen();
-       		//}
 
     		sFocus(locator);
             sMouseOver(locator);
             SleepUtil.sleepSmall();
+            //jClick(locator);
             //zClickAt(locator, "0,0");
              sClickAt(locator, "0,0");
+     	//}
        zWaitForBusyOverlay();
-       
-       SleepUtil.sleepSmall();
-       
-       if ( page != null ) {
-    	   //sWaitForPageToLoad();
-    	   page.zWaitForActive();
-       }
 		
-       return (page);
+		
+		if ( page != null ) {
+			//sWaitForPageToLoad();
+			page.zWaitForActive();
+		}
+		return (page);
     
 	}
 	
@@ -1293,8 +1312,8 @@ public class PageContacts extends AbsTab {
 			this.zClickAt(itemLocator, "");
 			this.zWaitForBusyOverlay();
 			
-        } 
-
+        }
+        
         return (page);
     
 	}
@@ -1393,9 +1412,6 @@ public class PageContacts extends AbsTab {
 	 */
 	@Override
 	public AbsPage zListItem(Action action, String contact) throws HarnessException {
-		
-		SleepUtil.sleepSmall();
-		
 		logger.info(myPageName() + " zListItem("+ action +", "+ contact +")");
         String contactLocator=getContactLocator(contact);
     	AbsPage page = null;	
@@ -1466,9 +1482,6 @@ public class PageContacts extends AbsTab {
 		if (page != null) {
 		    page.zWaitForActive();
 		}
-		
-		SleepUtil.sleepSmall();
-		
 		return page;
 	}
 	

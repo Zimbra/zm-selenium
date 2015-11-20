@@ -43,7 +43,7 @@ public class Bug68726 extends CalendarWorkWeekTest {
 	public void Bug68726_01() throws HarnessException {
 		
 		// Data
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptBody = "content" + ZimbraSeleniumProperties.getUniqueString();
 		
 		// Modify the test account

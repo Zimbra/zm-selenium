@@ -54,7 +54,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	public void DeleteAppointment_01() throws HarnessException {
 		
 		// Create an appointment on the server
-		String subject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = ZimbraSeleniumProperties.getUniqueString();
 
 		AppointmentItem.createAppointmentAllDay(
 				app.zGetActiveAccount(),

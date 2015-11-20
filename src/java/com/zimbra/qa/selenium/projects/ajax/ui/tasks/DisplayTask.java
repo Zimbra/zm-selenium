@@ -173,7 +173,7 @@ public class DisplayTask extends AbsDisplay {
 			throw new HarnessException("no logic defined for field "+ field);
 			
 		}
-
+		
 		// Get the subject value
 		String value = this.sGetText(locator).trim();
 		
@@ -216,6 +216,9 @@ public class DisplayTask extends AbsDisplay {
 		return (value);
 
 	}
+
+
+
 
 
 }

@@ -68,7 +68,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
     		+		"</m>" 
     		+	"</CreateAppointmentRequest>");
         
-        // Right click to appointment and delete it
+        // Click to appointment and delete it
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         DialogConfirmDeleteAppointment dlgConfirm = (DialogConfirmDeleteAppointment)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);

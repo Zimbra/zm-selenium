@@ -38,7 +38,7 @@ public class Reply extends CalendarWorkWeekTest {
 			
 	public void Reply_01() throws HarnessException {
 		
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptContent = ZimbraSeleniumProperties.getUniqueString();
 		String replyContent = ZimbraSeleniumProperties.getUniqueString();
 		

@@ -60,7 +60,7 @@ public class ZimbraFeatureCalendarEnabled extends AjaxCommonTest {
 	 */
 	@Bugs(	ids = "86552")
 	@Test(	description = "Load the mail tab with just Calendar enabled",
-			groups = { "disable_functional" })
+			groups = { "functional-skip" })
 	public void ZimbraFeatureCalendarEnabled_01() throws HarnessException {
 		
 		// TODO: add basic verification that a simple appointment appears

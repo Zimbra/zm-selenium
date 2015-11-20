@@ -49,7 +49,7 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 		
 		String apptSubject, apptAttendee1, apptLocation1, apptContent;
 		Calendar now = this.calendarWeekDayUTC;
-		apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		apptLocation1 = location.EmailAddress;
 		apptContent = "content" + ZimbraSeleniumProperties.getUniqueString();

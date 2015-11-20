@@ -34,13 +34,13 @@ public class EditReplyDecline extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "80559,81647")
+	@Bugs(ids = "80559")
 	@Test(	description = "Assistant right clicks to calendar invite from shared calendar and declines the invite OBO boss (Notify organizer)",
 			groups = { "functional" })
 			
 	public void EditReplyDecline_01() throws HarnessException {
 		
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptBody = "body" + ZimbraSeleniumProperties.getUniqueString();
 		String mountPointName = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
 		String modifiedBody = ZimbraSeleniumProperties.getUniqueString();

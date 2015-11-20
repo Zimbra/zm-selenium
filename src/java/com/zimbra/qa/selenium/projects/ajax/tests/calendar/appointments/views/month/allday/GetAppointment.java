@@ -51,7 +51,7 @@ public class GetAppointment extends AjaxCommonTest {
 	public void GetAppointment_01() throws HarnessException {
 		
 		// Create an appointment on the server
-		String subject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = ZimbraSeleniumProperties.getUniqueString();
 
 		AppointmentItem.createAppointmentAllDay(
 				app.zGetActiveAccount(),
@@ -90,7 +90,7 @@ public class GetAppointment extends AjaxCommonTest {
 	public void GetAppointment_02() throws HarnessException {
 		
 		// Create an appointment on the server
-		String subject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = ZimbraSeleniumProperties.getUniqueString();
 
 		AppointmentItem.createAppointmentAllDay(
 				app.zGetActiveAccount(),

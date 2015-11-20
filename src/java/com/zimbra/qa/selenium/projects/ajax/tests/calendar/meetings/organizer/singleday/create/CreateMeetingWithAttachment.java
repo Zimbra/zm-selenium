@@ -39,7 +39,7 @@ public class CreateMeetingWithAttachment extends CalendarWorkWeekTest {
 		
 		// Create appointment & subject
 		ZimbraAccount account = app.zGetActiveAccount();
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		
 		//upload file to server
 		String filename = "BasicExcel2007.xlsx";

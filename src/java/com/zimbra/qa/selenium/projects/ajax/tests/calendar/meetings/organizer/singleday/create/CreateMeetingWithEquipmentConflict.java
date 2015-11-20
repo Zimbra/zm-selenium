@@ -21,6 +21,7 @@ import java.util.*;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -35,6 +36,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		super.startingPage =  app.zPageCalendar;
 	}
 	
+	@Bugs(ids = "102271")
 	@Test(description = "Verify sending appt invite when Equipment resource has conflicts shows conflict dialog", 
 			groups = { "functional" })
 	public void CreateMeetingWithEquipmentConflict_01() throws HarnessException {
@@ -74,7 +76,6 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
                      "<su>"+ apptSubject1 +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-		SleepUtil.sleepVeryLong();
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
         
 		// Create appointment data

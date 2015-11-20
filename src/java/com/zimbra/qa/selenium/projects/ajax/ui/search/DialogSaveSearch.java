@@ -90,22 +90,16 @@ public class DialogSaveSearch extends AbsDialog {
 		
 		if ( button == Button.B_OK ) {
 
-         locator = "css=div[id='" + Locators.zDialogButtonsId + "'] div[id='CreateNewFolderDialog_button2']";
+			locator = "css=div[id='" + Locators.zDialogButtonsId + "'] div[id='CreateNewFolderDialog_button2']";
 
-      } else if ( button == Button.B_CANCEL ) {
+		} else if ( button == Button.B_CANCEL ) {
 
-         locator = "css=div[id='" + Locators.zDialogButtonsId + "'] div[id='CreateNewFolderDialog_button1']";
+			locator = "css=div[id='" + Locators.zDialogButtonsId + "'] div[id='CreateNewFolderDialog_button1']";
 
-      } else {
-         throw new HarnessException("Button "+ button +" not implemented");
-      }
-		
-		// Default behavior, click the locator
-		//
-		
-		// Make sure the locator was set
-		if ( locator == null ) {
+		} else {
+			
 			throw new HarnessException("Button "+ button +" not implemented");
+			
 		}
 		
 		// Make sure the locator exists
@@ -143,9 +137,6 @@ public class DialogSaveSearch extends AbsDialog {
 		
 		tracer.trace("Click on tree folder with name "+ folder.getName());
 
-		if ( folder == null ) 
-			throw new HarnessException("folder must not be null");
-		
 		String locator = Locators.zDialogLocator + " td[id='zti__ZmChooseFolderDialog_Mail__"+ folder.getId() +"_textCell']";
 		
 		if ( !this.sIsElementPresent(locator) )
@@ -180,8 +171,7 @@ public class DialogSaveSearch extends AbsDialog {
 		// For some reason, the text doesn't get entered on the first try
 		this.sFocus(locator);
 		this.zClick(locator);
-		this.sType(locator, folder);
-		// zKeyboard.zTypeCharacters(folder);
+		zKeyboard.zTypeCharacters(folder);
 
 		// Is this sleep necessary?
 		SleepUtil.sleepSmall();

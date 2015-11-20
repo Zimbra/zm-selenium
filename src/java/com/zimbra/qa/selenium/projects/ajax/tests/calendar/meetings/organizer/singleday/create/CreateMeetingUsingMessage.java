@@ -560,6 +560,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		apptForm.zToolbarPressButton(Button.B_SEND);
+		SleepUtil.sleepVeryLong();
 		
 		// Verify appointment exists on the server
 		app.zGetActiveAccount().soapSend(

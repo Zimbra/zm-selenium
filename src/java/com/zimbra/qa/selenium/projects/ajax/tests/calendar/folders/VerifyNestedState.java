@@ -35,7 +35,7 @@ public class VerifyNestedState extends CalendarWorkWeekTest {
 			
 	public void VerifyNestedState_01() throws HarnessException {
 		
-		String apptSubject = "appointment" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptContent = ZimbraSeleniumProperties.getUniqueString();
 		String foldername1 = "folder" + ZimbraSeleniumProperties.getUniqueString();
 		String foldername2 = "folder" + ZimbraSeleniumProperties.getUniqueString();

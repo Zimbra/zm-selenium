@@ -16,10 +16,13 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday;
 
+import java.util.Calendar;
 import java.util.HashMap;
+
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 
@@ -45,7 +48,6 @@ public class DragAndDropMeeting extends CalendarWorkWeekTest {
 			
 	public void DragAndDropMeeting_01() throws HarnessException {
 		
-		/*
 		// Creating a meeting
 		String tz = ZTimeZone.TimeZoneEST.getID();
 		String subject = ZimbraSeleniumProperties.getUniqueString();
@@ -77,9 +79,6 @@ public class DragAndDropMeeting extends CalendarWorkWeekTest {
         app.zPageCalendar.zDragAndDrop(
 				String.format("css=div[id$='_st_su']:contains('" + subject + "')"),
 				String.format("css=td[class='calendar_month_cells_td'] table:nth-child(2) tbody"));
-        */
-		
-        throw new HarnessException("https://bugzilla.zimbra.com/show_bug.cgi?id=77866");
 
 	}
 	
