@@ -44,7 +44,7 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 	}
 	
 	@Test(	description = "Drag and Drop a appointment from calendar to different calendar in day view",
-			groups = { "temp" })
+			groups = { "smoke" })
 	public void DragAndDropAppointment_01() throws HarnessException {
 
 		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
