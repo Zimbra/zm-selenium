@@ -148,7 +148,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		try {
 			window.zWaitForActive();
 			app.zPageMail.zSelectWindow("_blank");
-			SleepUtil.sleepLong();
+			SleepUtil.sleepVeryLong();
 			
 			app.zPageCalendar.zWaitForElementAppear("id=zv__MSG__MSG-1_attLinks_2_calendar");
 			
@@ -223,7 +223,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		try {
 			window.zWaitForActive();
 			app.zPageMail.zSelectWindow("_blank");
-			SleepUtil.sleepLong();
+			SleepUtil.sleepVeryLong();
 			
 			app.zPageCalendar.zWaitForElementAppear("id=zv__MSG__MSG-1_attLinks_2_calendar");
 			

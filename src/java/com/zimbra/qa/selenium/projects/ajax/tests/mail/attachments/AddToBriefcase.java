@@ -163,7 +163,7 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 		try {
 			window.zWaitForActive();
 			app.zPageMail.zSelectWindow("_blank");
-			SleepUtil.sleepLong();
+			SleepUtil.sleepVeryLong();
 			
 			app.zPageCalendar.zWaitForElementAppear("css=div[id*=zv__MSG__MSG][id*=_attLinks_]");
 			
