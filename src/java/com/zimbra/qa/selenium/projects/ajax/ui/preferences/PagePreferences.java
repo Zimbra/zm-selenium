@@ -34,7 +34,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning.DialogWarningID;
  * @author Matt Rhoades
  *
  */
-@SuppressWarnings("unused")
 public class PagePreferences extends AbsTab {
 
 	
@@ -162,7 +161,7 @@ public class PagePreferences extends AbsTab {
 			((AppAjaxClient)MyApplication).zPageMain.zNavigateTo();
 		}
 		
-		tracer.trace("Navigate to "+ this.myPageName());
+		logger.info("Navigate to "+ this.myPageName());
 
 		// Click on Preferences icon
 		if ( !sIsElementPresent(PageMain.Locators.zAppbarPreferences) ) {
@@ -170,8 +169,12 @@ public class PagePreferences extends AbsTab {
 		}
 
 		zClick(PageMain.Locators.zAppbarPreferences);
+		SleepUtil.sleepSmall();
+		zWaitForElementPresent(Locators.zToolbarSaveID);
 		
 		zWaitForActive();
+
+		logger.info("Navigated to "+ this.myPageName() + " page");
 
 	}
 
@@ -261,10 +264,6 @@ public class PagePreferences extends AbsTab {
 			
 		}else {
 			throw new HarnessException("zGetCheckboxStatus() not defined for preference "+ preference);
-		}
-		
-		if ( locator == null ) {
-			throw new HarnessException("locator not defined for preference "+ preference);
 		}
 		
 		if ( !sIsElementPresent(locator) ) {
@@ -357,13 +356,6 @@ public class PagePreferences extends AbsTab {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
-		}
-		
-		// Default behavior, process the locator by clicking on it
-		//
-		
 		// Make sure the button exists
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
@@ -396,12 +388,10 @@ public class PagePreferences extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 		
 		String locator = null;
-		AbsPage page = null;
 		
 		if ( option == Button.R_CUSTOM_WORK_HOURS ) {
 			
 			locator = Locators.zCustomWorkHours;
-			page = null;
 			
 		} else {
 			throw new HarnessException("no logic defined for option "+ option);
@@ -422,12 +412,10 @@ public class PagePreferences extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 		
 		String locator = null;
-		AbsPage page = null;
 		
 		if ( option == Button.B_MONDAY_CHECK_BOX ) {
 			
 			locator = Locators.zMondayCustomWorkHour;
-			page = null;
 			
 		} else {
 			throw new HarnessException("no logic defined for option "+ option);
@@ -495,11 +483,6 @@ public class PagePreferences extends AbsTab {
 		
 		this.zWaitForBusyOverlay();
 		
-		if ( page != null ) {
-			page.zWaitForActive();
-			page.zWaitForBusyOverlay();
-		}
-
 		return (page);
 	}
 	

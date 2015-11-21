@@ -2381,13 +2381,17 @@ public class PageCalendar extends AbsTab {
 			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
 		}
 
-		tracer.trace("Navigate to " + this.myPageName());
+		logger.info("Navigate to " + this.myPageName());
 
 		this.zClick(PageMain.Locators.zAppbarCal);
+		SleepUtil.sleepSmall();
 
 		this.zWaitForBusyOverlay();
+		zWaitForElementPresent(Locators.CalendarFolder);
 
 		zWaitForActive();
+
+		logger.info("Navigated to "+ this.myPageName() + " page");
 
 	}
 

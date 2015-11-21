@@ -186,7 +186,7 @@ public class PageBriefcase extends AbsTab {
 			return;
 		}
 
-		tracer.trace("Navigate to " + this.myPageName());
+		logger.info("Navigate to " + this.myPageName());
 
 		// Make sure we are logged into the Ajax app
 		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive())
@@ -194,10 +194,13 @@ public class PageBriefcase extends AbsTab {
 				
 		// Click on Briefcase icon
 		zClickAt(PageMain.Locators.zAppbarBriefcase, "0,0");
+		SleepUtil.sleepSmall();
 
 		zWaitForBusyOverlay();
 
 		zWaitForElementPresent(Locators.zBriefcaseFolderIcon.locator);
+
+		logger.info("Navigated to "+ this.myPageName() + " page");
 
 	}
 

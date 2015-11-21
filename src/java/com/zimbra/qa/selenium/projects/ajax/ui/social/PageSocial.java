@@ -25,6 +25,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.PageMain;
 
@@ -114,13 +115,16 @@ public class PageSocial extends AbsTab {
 			((AppAjaxClient)MyApplication).zPageMain.zNavigateTo();
 		}
 
-		tracer.trace("Navigate to "+ this.myPageName());
+		logger.info("Navigate to "+ this.myPageName());
 
 		this.zClick(PageMain.Locators.zAppbarSocialLocator);
+		SleepUtil.sleepSmall();
 
 		this.zWaitForBusyOverlay();
 
 		zWaitForActive();
+
+		logger.info("Navigated to "+ this.myPageName() + " page");
 
 	}
 

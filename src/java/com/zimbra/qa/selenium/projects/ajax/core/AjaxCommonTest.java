@@ -164,14 +164,14 @@ public class AjaxCommonTest {
 						.webDriverBackedSelenium();
 				_webDriverBackedSelenium.windowMaximize();
 				_webDriverBackedSelenium.windowFocus();
-				_webDriverBackedSelenium.setTimeout("45000");// Use 45 second timeout for
+				_webDriverBackedSelenium.setTimeout("60000");
 			} else {
 				_selenium = ClientSessionFactory.session().selenium();
 				_selenium.start();
 				_selenium.windowMaximize();
 				_selenium.windowFocus();
 				_selenium.allowNativeXpath("true");
-				_selenium.setTimeout("45000");// Use 45 second timeout for opening the browser
+				_selenium.setTimeout("60000");
 			}
 			// Dynamic wait for App to be ready
 			int maxRetry = 10;
@@ -277,12 +277,12 @@ public class AjaxCommonTest {
 		// uses those preferences
 		//
 		if ( (startingAccountPreferences != null) && (!startingAccountPreferences.isEmpty()) ) {
-			logger.debug("commonTestBeforeMethod: startingAccountPreferences are defined");
+			logger.info("commonTestBeforeMethod: startingAccountPreferences are defined");
 
 			// If the current test accounts preferences match, then the account can be used
 			if ( !ZimbraAccount.AccountZWC().compareAccountPreferences(startingAccountPreferences) ) {
 				
-				logger.debug("commonTestBeforeMethod: startingAccountPreferences do not match active account");
+				logger.info("commonTestBeforeMethod: startingAccountPreferences do not match active account");
 
 				// Reset the account
 				ZimbraAccount.ResetAccountZWC();
@@ -301,12 +301,12 @@ public class AjaxCommonTest {
 		// uses those zimlet preferences
 		//
 		if ( (startingUserZimletPreferences != null) && (!startingUserZimletPreferences.isEmpty()) ) {
-			logger.debug("commonTestBeforeMethod: startingAccountZimletPreferences are defined");
+			logger.info("commonTestBeforeMethod: startingAccountZimletPreferences are defined");
 			
 			// If the current test accounts preferences match, then the account can be used
 			if ( !ZimbraAccount.AccountZWC().compareUserZimletPreferences(startingUserZimletPreferences) ) {
 				
-				logger.debug("commonTestBeforeMethod: startingAccountZimletPreferences do not match active account");
+				logger.info("commonTestBeforeMethod: startingAccountZimletPreferences do not match active account");
 
 				// Reset the account
 				ZimbraAccount.ResetAccountZWC();
@@ -326,7 +326,7 @@ public class AjaxCommonTest {
 		
 		// If AccountZWC is not currently logged in, then login now
 		if ( !ZimbraAccount.AccountZWC().equals(app.zGetActiveAccount()) ) {
-			logger.debug("commonTestBeforeMethod: AccountZWC is not currently logged in");
+			logger.info("commonTestBeforeMethod: AccountZWC is not currently logged in");
 
 			if ( app.zPageMain.zIsActive() )
 				try{
@@ -344,17 +344,21 @@ public class AjaxCommonTest {
 
 		// If a startingPage is defined, then make sure we are on that page
 		if ( startingPage != null ) {
-			logger.debug("commonTestBeforeMethod: startingPage is defined");
+			logger.info("commonTestBeforeMethod: startingPage is defined");
 
 			// If the starting page is not active, navigate to it
 			if ( !startingPage.zIsActive() ) {
+				SleepUtil.sleepSmall();
 				startingPage.zNavigateTo();
+				SleepUtil.sleepSmall();
 			}
 
 			// Confirm that the page is active
 			if ( !startingPage.zIsActive() ) {
 				throw new HarnessException("Unable to navigate to "+ startingPage.myPageName());
 			}
+			
+			logger.info("commonTestBeforeMethod: startingPage navigation done");
 
 		}
 

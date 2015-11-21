@@ -144,13 +144,17 @@ public class PageTasks extends AbsTab{
 			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
 		}
 
-		tracer.trace("Navigate to "+ this.myPageName());
+		logger.info("Navigate to "+ this.myPageName());
 
 		this.zClickAt(PageMain.Locators.zAppbarTasks, "");
+		SleepUtil.sleepSmall();
 
 		this.zWaitForBusyOverlay();
+		zWaitForElementPresent(Locators._newTaskBannerID);
 
 		zWaitForActive();
+
+		logger.info("Navigated to "+ this.myPageName() + " page");
 
 	}
 	public boolean isPresent(String itemName) throws HarnessException {

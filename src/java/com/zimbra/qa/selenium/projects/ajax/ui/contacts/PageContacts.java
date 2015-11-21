@@ -16,12 +16,9 @@
  */
 package  com.zimbra.qa.selenium.projects.ajax.ui.contacts;
 
-
 import java.awt.event.KeyEvent;
 import java.util.*;
-
 import org.apache.log4j.LogManager;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -31,8 +28,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
 public class PageContacts extends AbsTab {
 
-	
-	
 	public static class CONTEXT_MENU {
 		public static final String LOCATOR		= "id='zm__Contacts'";
 		
@@ -157,7 +152,7 @@ public class PageContacts extends AbsTab {
 			((AppAjaxClient)MyApplication).zPageMain.zNavigateTo();
 		}
 
-		tracer.trace("Navigate to "+ this.myPageName());
+		logger.info("Navigate to "+ this.myPageName());
 
 		if (!GeneralUtility.waitForElementPresent(this,PageMain.Locators.zAppbarContact))  {
 			throw new HarnessException("Can't locate addressbook icon");
@@ -166,8 +161,12 @@ public class PageContacts extends AbsTab {
 		
 		// Click on Addressbook icon
 		zClickAt(PageMain.Locators.zAppbarContact,"0,0");
+		SleepUtil.sleepSmall();
+		zWaitForElementPresent("css=div#ztih__main_Contacts__ADDRBOOK_div");
 
 		zWaitForActive();
+
+		logger.info("Navigated to "+ this.myPageName() + " page");
 
 	}
 

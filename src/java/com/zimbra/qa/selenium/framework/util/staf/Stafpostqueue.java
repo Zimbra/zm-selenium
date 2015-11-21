@@ -52,7 +52,7 @@ public class Stafpostqueue extends StafServicePROCESS {
 		// emailaddress could be null or blank
 		// if so, set it to @domain.com
 		if ( (emailaddress == null) || (emailaddress.equals("")) ) {
-			logger.warn("Unable to determien current user account.  Use @testdomain.com instead");
+			logger.warn("Unable to determine current user account.  Use @testdomain.com instead");
 			emailaddress = "@" + ZimbraSeleniumProperties.getStringProperty("testdomain", "testdomain.com");
 		}
 

@@ -231,13 +231,16 @@ public class PageMail extends AbsTab {
 			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
 		}
 
-		tracer.trace("Navigate to " + this.myPageName());
+		logger.info("Navigate to " + this.myPageName());
 
 		this.zClick(PageMain.Locators.zAppbarMail);
+		SleepUtil.sleepSmall();
 
 		this.zWaitForBusyOverlay();
 
 		zWaitForActive();
+
+		logger.info("Navigated to "+ this.myPageName() + " page");
 
 	}
 

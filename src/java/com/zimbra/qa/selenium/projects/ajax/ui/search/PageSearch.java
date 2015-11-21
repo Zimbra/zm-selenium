@@ -142,11 +142,14 @@ public class PageSearch extends AbsTab {
 		if ( !((AppAjaxClient)MyApplication).zPageMain.zIsActive() ) {
 			((AppAjaxClient)MyApplication).zPageMain.zNavigateTo();
 		}
+		SleepUtil.sleepSmall();
 
 		// Nothing more to do to make search appear, since it is always active if the app is active
-		tracer.trace("Navigate to "+ this.myPageName());
+		logger.info("Navigate to "+ this.myPageName());
 
 		zWaitForActive();
+
+		logger.info("Navigated to "+ this.myPageName() + " page");
 		
 	}
 
