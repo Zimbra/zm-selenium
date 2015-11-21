@@ -230,7 +230,7 @@ public class FormApptNew extends AbsForm {
 		}
 
 		this.zWaitForBusyOverlay();
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 
 		// Wait for the message to be delivered
 		Stafpostqueue sp = new Stafpostqueue();
