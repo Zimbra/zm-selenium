@@ -69,13 +69,14 @@ public class ResetStatusAfterAddingEquipment extends CalendarWorkWeekTest {
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-        SleepUtil.sleepSmall();
+        
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
         
         //Login as attendee and accept the invite
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.Account1());
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		SleepUtil.sleepSmall();
 		app.zPageCalendar.zNavigateTo();
 		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here

@@ -40,7 +40,7 @@ public class Bug56465 extends CalendarWorkWeekTest {
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		
 		String tz = ZTimeZone.TimeZoneEST.getID();
-		String subject = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String attendee1 = ZimbraAccount.AccountA().EmailAddress;
 		String attendee2 = ZimbraAccount.AccountB().EmailAddress;
 		String apptLocation = location.EmailAddress;
@@ -53,7 +53,7 @@ public class Bug56465 extends CalendarWorkWeekTest {
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
                      "<m>"+
-                     	"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ subject +"'>"+
+                     	"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"+
                      		"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
                      		"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
                      		"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
@@ -64,15 +64,17 @@ public class Bug56465 extends CalendarWorkWeekTest {
                      	"<mp content-type='text/plain'>" +
                      		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
-                     "<su>"+ subject +"</su>" +
+                     "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
         
         // Delete the invite message from the attendee's mailbox
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
-			+		"<query>subject:("+ subject +")</query>"
+			+		"<query>subject:("+ apptSubject +")</query>"
 			+	"</SearchRequest>");
 		String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		
@@ -82,14 +84,14 @@ public class Bug56465 extends CalendarWorkWeekTest {
 			+	"</ItemActionRequest>");
         
         // Forward appointment to different attendee
-        app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_FORWARD_MENU, subject);
+        app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_FORWARD_MENU, apptSubject);
         app.zPageCalendar.zType(Locators.ForwardToTextArea, attendee2);
         app.zPageCalendar.zToolbarPressButton(Button.B_SEND);		
         
 		// Verify meeting invite appears to attendee (appt forwarding)
 		ZimbraAccount.AccountB().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
-			+		"<query>subject:("+ subject +")</query>"
+			+		"<query>subject:("+ apptSubject +")</query>"
 			+	"</SearchRequest>");
 		id = ZimbraAccount.AccountB().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify new invitation appears in the attendee's inbox");
@@ -102,13 +104,13 @@ public class Bug56465 extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(id, "Verify new invitation appears in the attendee's inbox");
 
 		// Verify meeting invite appears for new attendee
-		AppointmentItem a = AppointmentItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ subject + ")");
+		AppointmentItem a = AppointmentItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ apptSubject + ")");
 		ZAssert.assertNotNull(a, "Verify that appointment matches in the calendar");
 		
 		// Verify meeting invite is not present for first attendee
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
-			+		"<query>subject:("+ subject +")</query>"
+			+		"<query>subject:("+ apptSubject +")</query>"
 			+	"</SearchRequest>");
 		id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNull(id, "Verify meeting invite is not present to first attendee");

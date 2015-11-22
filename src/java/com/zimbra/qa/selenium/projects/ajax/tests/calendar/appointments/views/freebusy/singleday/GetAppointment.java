@@ -48,8 +48,7 @@ public class GetAppointment extends AjaxCommonTest {
 		
 		// Create the appointment on the server
 		// Create the message data to be sent
-		String subject = ZimbraSeleniumProperties.getUniqueString();
-		
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
@@ -64,19 +63,21 @@ public class GetAppointment extends AjaxCommonTest {
 					"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
 				+		"<m>"
 				+			"<inv>"
-				+				"<comp status='CONF' fb='B' class='PUB' transp='O' allDay='0' name='"+ subject +"' >"
+				+				"<comp status='CONF' fb='B' class='PUB' transp='O' allDay='0' name='"+ apptSubject +"' >"
 				+					"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
 				+					"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
 				+					"<or a='"+ app.zGetActiveAccount().EmailAddress + "'/>"
 				+				"</comp>"
 				+			"</inv>"
-				+			"<su>"+ subject + "</su>"
+				+			"<su>"+ apptSubject + "</su>"
 				+			"<mp ct='text/plain'>"
 				+				"<content>content</content>"
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 		
 		//-- GUI Actions
 		
@@ -88,7 +89,7 @@ public class GetAppointment extends AjaxCommonTest {
 		
 		// Verify the appointment appears on the page
 		SleepUtil.sleepMedium(); //test fails without sleep because calendar view rendering takes time 
-		ZAssert.assertTrue(app.zPageCalendar.zGetApptLocatorFreeBusyView(app.zGetActiveAccount().EmailAddress, subject), "Verify attendee free/busy row exists");
+		ZAssert.assertTrue(app.zPageCalendar.zGetApptLocatorFreeBusyView(app.zGetActiveAccount().EmailAddress, apptSubject), "Verify attendee free/busy row exists");
 	    
 	}
 }

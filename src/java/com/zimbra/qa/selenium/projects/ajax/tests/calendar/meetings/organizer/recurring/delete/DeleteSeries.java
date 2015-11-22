@@ -62,7 +62,9 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 					"</m>" +
 				"</CreateAppointmentRequest>");
 		
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 		

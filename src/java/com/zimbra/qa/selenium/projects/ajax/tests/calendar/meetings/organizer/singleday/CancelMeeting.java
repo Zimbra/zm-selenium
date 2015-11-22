@@ -370,12 +370,8 @@ public class CancelMeeting extends CalendarWorkWeekTest {
                      "</m>" +
                "</CreateAppointmentRequest>");
 	
-		
-		//-- GUI actions
-		
-		
-        // Refresh the view
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
         
         // Select the appointment
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);

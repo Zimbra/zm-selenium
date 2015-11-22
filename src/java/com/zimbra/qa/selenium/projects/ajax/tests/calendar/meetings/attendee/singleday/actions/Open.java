@@ -59,8 +59,9 @@ public class Open extends CalendarWorkWeekTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");        
 
-		// Refresh the view
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN_MENU, apptSubject);
         ZAssert.assertEquals(app.zPageCalendar.zGetApptSubjectFromReadOnlyAppt(), apptSubject, "Verify appointment subject from read only appointment UI");
         ZAssert.assertEquals(app.zPageCalendar.zGetApptBodyFromReadOnlyAppt(), apptBody, "Verify appointment body from read only appointment UI");

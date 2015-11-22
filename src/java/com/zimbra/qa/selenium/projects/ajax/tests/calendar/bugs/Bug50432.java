@@ -20,8 +20,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
-import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
@@ -86,7 +86,8 @@ public class Bug50432 extends CalendarWorkWeekTest {
                                "</m>" +
                          "</CreateAppointmentRequest>");
 
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 
         // Open appointment & close it
         app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);

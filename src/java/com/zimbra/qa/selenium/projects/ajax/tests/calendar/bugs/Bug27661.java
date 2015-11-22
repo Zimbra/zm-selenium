@@ -62,12 +62,13 @@ public class Bug27661 extends CalendarWorkWeekTest {
 			+				"<content>content</content>"
 			+			"</mp>"
 			+		"</m>"
-			+	"</CreateAppointmentRequest>");        
+			+	"</CreateAppointmentRequest>");
 
-    this.app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+	// Verify appointment exists in current view
+	ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+
     this.app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DECLINE_MENU, apptSubject);
     
-
     DialogConfirmationDeclineAppointment declineAppt = new DialogConfirmationDeclineAppointment(this.app, this.app.zPageCalendar);
     declineAppt.zClickButton(Button.B_DONT_NOTIFY_ORGANIZER);
     declineAppt.zClickButton(Button.B_YES);

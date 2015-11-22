@@ -168,7 +168,7 @@ public class GetCalendar extends CalendarWorkWeekTest {
 		
 		
 		// Create the appointment in the subfolder
-		String subject = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String location = "location" + ZimbraSeleniumProperties.getUniqueString();
 		String content = "content" + ZimbraSeleniumProperties.getUniqueString();
 		
@@ -185,31 +185,29 @@ public class GetCalendar extends CalendarWorkWeekTest {
 					"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
 				+		"<m l='"+ subfolder2.getId() +"'>"
 				+			"<inv>"
-				+				"<comp status='CONF' fb='B' class='PUB' transp='O' allDay='0' name='"+ subject +"' loc='"+ location +"' >"
+				+				"<comp status='CONF' fb='B' class='PUB' transp='O' allDay='0' name='"+ apptSubject +"' loc='"+ location +"' >"
 				+					"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
 				+					"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
 				+					"<or a='"+ app.zGetActiveAccount().EmailAddress + "'/>"
 				+				"</comp>"
 				+			"</inv>"
-				+			"<su>"+ subject + "</su>"
+				+			"<su>"+ apptSubject + "</su>"
 				+			"<mp ct='text/plain'>"
 				+				"<content>"+ content +"</content>"
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 
-		// Click on Get Mail to refresh the folder list
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-
-		
 		//-- Verification
 		
 	    //verify appt displayed in workweek view
 		boolean found = false;
 		List<AppointmentItem> items = app.zPageCalendar.zListGetAppointments();
 		for (AppointmentItem item : items ) {
-			if ( subject.equals(item.getSubject()) ) {
+			if ( apptSubject.equals(item.getSubject()) ) {
 				found = true;
 				break;
 			}

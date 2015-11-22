@@ -16,28 +16,16 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.modify;
 
-import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import org.testng.annotations.*;
-import com.zimbra.common.soap.Element;
-import com.zimbra.qa.selenium.framework.core.Bugs;
-import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmDeleteOrganizer;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindAttendees;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindLocation;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogSendUpdatetoAttendees;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindAttendees.Locators;;
 
-@SuppressWarnings("unused")
 public class ModifyBySelectAttendees extends CalendarWorkWeekTest {	
 	
 	public ModifyBySelectAttendees() {
@@ -50,8 +38,6 @@ public class ModifyBySelectAttendees extends CalendarWorkWeekTest {
 	public void ModifyBySelectAttendees_01() throws HarnessException {
 		
 		// Create a meeting
-		AppointmentItem appt = new AppointmentItem();
-			
 		String tz = ZTimeZone.TimeZoneEST.getID();
 		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
@@ -77,7 +63,9 @@ public class ModifyBySelectAttendees extends CalendarWorkWeekTest {
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
         
         // Delete the invite message from the attendee1's mailbox
 		ZimbraAccount.AccountA().soapSend(

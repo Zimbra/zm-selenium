@@ -16,30 +16,20 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.day.singleday.tags;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
-import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogDeleteTag;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogRenameTag;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmDeleteAppointment;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators;
 
 @SuppressWarnings("unused")
 public class DeleteTagAppointment extends AjaxCommonTest {
@@ -175,19 +165,8 @@ public class DeleteTagAppointment extends AjaxCommonTest {
         app.zGetActiveAccount().soapSend("<GetAppointmentRequest xmlns='urn:zimbraMail' id='" + apptId + "'/>");
         ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:appt", "t"), null, "Verify appointment is not tagged");
         
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-		
-	    //verify appt displayed in day view
-		boolean found = false;
-		List<AppointmentItem> items = app.zPageCalendar.zListGetAppointments();
-		for (AppointmentItem item : items ) {
-			if ( apptSubject.equals(item.getSubject()) ) {
-				found = true;
-				break;
-			}
-		}
-		
-		ZAssert.assertTrue(found, "Verify appt gets displayed in day view");
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
        
 	}
 	

@@ -35,7 +35,6 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		logger.info("New "+ CreateAppointment.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-
 	
 	@Test(	description = "Create a basic appointment without an attendee",
 			groups = { "sanity" }

@@ -16,27 +16,20 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 
-import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import java.util.List;
-
 import org.testng.annotations.*;
-
-import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmDeleteOrganizer;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindEquipment;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindLocation;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
-@SuppressWarnings("unused")
+
 public class AddLocation extends CalendarWorkWeekTest {	
 	
 	public AddLocation() {
@@ -55,7 +48,6 @@ public class AddLocation extends CalendarWorkWeekTest {
 		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptAttendee = ZimbraAccount.AccountA().EmailAddress;
 		String apptLocation1 = location.EmailAddress;
-    	AppointmentItem appt = new AppointmentItem();
     	
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -113,7 +105,6 @@ public class AddLocation extends CalendarWorkWeekTest {
 	public void AddLocation_02() throws HarnessException {
 		
 		// Create a meeting
-		AppointmentItem appt = new AppointmentItem();
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		
 		String tz = ZTimeZone.TimeZoneEST.getID();
@@ -142,7 +133,9 @@ public class AddLocation extends CalendarWorkWeekTest {
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
         
         // Add location and resend the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
@@ -204,7 +197,9 @@ public class AddLocation extends CalendarWorkWeekTest {
 	                 "<su>"+ apptSubject +"</su>" +
 	                 "</m>" +
 	           "</CreateAppointmentRequest>");
-	    app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+	    
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 	    
 	    // Add equipment from 'Search Equipment' dialog and send the meeting
 	    FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);

@@ -18,23 +18,19 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.bugs;
 
 import java.util.Calendar;
 import java.util.HashMap;
+
 import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.items.AppointmentItem;
+
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Locators;
 
 @SuppressWarnings("unused")
@@ -60,7 +56,6 @@ public class Bug50729 extends CalendarWorkWeekTest {
 	public void Bug50729_01() throws HarnessException {
 
 		// Creating object for appointment data
-		AppointmentItem appt = new AppointmentItem();
 		String tz, apptSubject, apptBody, apptAttendee;
 		tz = ZTimeZone.TimeZoneEST.getID();
 		apptSubject = ZimbraSeleniumProperties.getUniqueString();
@@ -87,9 +82,9 @@ public class Bug50729 extends CalendarWorkWeekTest {
                                "<su>"+ apptSubject +"</su>" +
                                "</m>" +
                          "</CreateAppointmentRequest>");
-
-        String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 
         // Open appointment & close it
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_REPLY_TO_ALL_MENU, apptSubject);

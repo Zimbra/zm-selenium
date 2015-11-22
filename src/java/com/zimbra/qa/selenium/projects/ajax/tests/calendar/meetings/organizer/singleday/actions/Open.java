@@ -79,9 +79,11 @@ public class Open extends CalendarWorkWeekTest {
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
+		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 
         // Open appointment and cancel it
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN_MENU, apptSubject);
         
         ZAssert.assertEquals(apptForm.zGetApptSubject(), apptSubject, "Verify appointment subject");

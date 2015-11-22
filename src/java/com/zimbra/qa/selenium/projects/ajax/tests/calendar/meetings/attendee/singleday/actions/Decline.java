@@ -64,12 +64,12 @@ public class Decline extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");        
-
+		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 		
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DECLINE_MENU, apptSubject);
 		
 		// Select "Don't notify organizer"
@@ -168,8 +168,9 @@ public class Decline extends CalendarWorkWeekTest {
 		
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DECLINE_MENU, apptSubject);
 		
 		// Select "Don't notify organizer"

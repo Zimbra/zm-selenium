@@ -527,41 +527,10 @@ public class PageMail extends AbsTab {
 
 		} else if (button == Button.B_NEWWINDOW) {
 
-			// 8.0: http://bugzilla.zimbra.com/show_bug.cgi?id=73721
-			//
-			// page = null;
-			// if ( zGetPropMailView() == PageMailView.BY_MESSAGE ) {
-			// locator =
-			// "css=div#ztb__TV-main div[id$='__DETACH'] div.ImgOpenInNewWindow";
-			// } else {
-			// locator =
-			// "css=div#ztb__CLV-main div[id$='__DETACH'] div.ImgOpenInNewWindow";
-			// }
-			//
-			// if ( !this.sIsElementPresent(locator) ) {
-			// throw new HarnessException("Detach icon not present "+ button);
-			// }
-			//
-			// this.zClickAt(locator, "");
-			// page = new SeparateWindowDisplayMail(this.MyApplication);
-			//
-			// // We don't know the window title at this point (However, the
-			// test case should.)
-			// // Don't check that the page is active, let the test case do
-			// that.
-			//
-			// return (page);
-
 			return (this.zToolbarPressPulldown(Button.B_ACTIONS,
 					Button.B_LAUNCH_IN_SEPARATE_WINDOW));
 
 		} else if (button == Button.B_LISTVIEW) {
-
-			// For "TAG" without a specified pulldown option, just click on the
-			// pulldown
-			// To use "TAG" with a pulldown option, see
-			// zToolbarPressPulldown(Button, Button)
-			//
 
 			// Check if the button is enabled
 			String attrs = sGetAttribute("xpath=(//td[@id='"
@@ -720,14 +689,10 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
-		//
-		this.sClickAt(locator, "0,0");
+		this.zClickAt(locator, "10,10");
 
-		// need small wait so that next element gets appeared/visible after
-		// click
 		SleepUtil.sleepMedium();
-		// If the app is busy, wait for it to become active
+		
 		this.zWaitForBusyOverlay();
 
 		return (page);

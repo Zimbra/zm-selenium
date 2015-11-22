@@ -32,6 +32,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
+@SuppressWarnings("unused")
 public class Forward extends CalendarWorkWeekTest {	
 	
 	public Forward() {
@@ -157,21 +158,20 @@ public class Forward extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
         
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);
 		
 		app.zPageMain.zLogout();
-			
 		
 		app.zPageLogin.zLogin(ZimbraAccount.AccountA());
 		
 		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		//Go to sent folder and forward
 		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Sent);
@@ -179,7 +179,6 @@ public class Forward extends CalendarWorkWeekTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 		
 		// Forward the item
-		@SuppressWarnings("unused")
 		FormMailNew mailForm = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
 		
 		// Fill out the form with the data
@@ -191,8 +190,9 @@ public class Forward extends CalendarWorkWeekTest {
 		//Logout and login as AccountB
 		app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.AccountB());
+		
 		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the invitation and verify Accept/decline/Tentative buttons are present
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);

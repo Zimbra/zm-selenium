@@ -38,13 +38,9 @@ public class ReinviteAttendees extends CalendarWorkWeekTest {
 			groups = { "smoke" })
 	public void ReinviteAttendees_01() throws HarnessException {
 		
-		
-		//-- Data setup
-		
-		
 		// Creating a meeting
 		String tz = ZTimeZone.TimeZoneEST.getID();
-		String subject = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -54,7 +50,7 @@ public class ReinviteAttendees extends CalendarWorkWeekTest {
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
                      "<m>"+
-                     	"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ subject +"'>"+
+                     	"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"+
                      		"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
                      		"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
                      		"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
@@ -64,14 +60,14 @@ public class ReinviteAttendees extends CalendarWorkWeekTest {
                      	"<mp content-type='text/plain'>" +
                      		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
-                     "<su>"+ subject +"</su>" +
+                     "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
         
 		// Delete the invite from the attendee
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
-			+		"<query>subject:("+ subject +")</query>"
+			+		"<query>subject:("+ apptSubject +")</query>"
 			+	"</SearchRequest>");
 		String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		
@@ -79,29 +75,23 @@ public class ReinviteAttendees extends CalendarWorkWeekTest {
 				"<ItemActionRequest  xmlns='urn:zimbraMail'>"
 			+		"<action id='"+ id +"' op='delete'/>"
 			+	"</ItemActionRequest>");
-
 		
-		//-- GUI actions
-		
-		
-        // Refresh the view
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
         
         // Select the appointment
-        app.zPageCalendar.zListItem(Action.A_LEFTCLICK, subject);
+        app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         
         // Right Click -> Re-invite context menu
-       app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_REINVITE, subject);
+        app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_REINVITE, apptSubject);
 
-		
-		
 		//-- Verification
 		
 		
 		// Verify the new invitation appears in the inbox
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
-			+		"<query>subject:("+ subject +")</query>"
+			+		"<query>subject:("+ apptSubject +")</query>"
 			+	"</SearchRequest>");
 		id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify the new invitation appears in the attendee's inbox");
@@ -112,7 +102,7 @@ public class ReinviteAttendees extends CalendarWorkWeekTest {
 			+	"</GetMsgRequest>");
 
 		// Verify only one appointment is in the calendar
-		AppointmentItem a = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject + ")");
+		AppointmentItem a = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ apptSubject + ")");
 		ZAssert.assertNotNull(a, "Verify only one appointment matches in the calendar");
 
 

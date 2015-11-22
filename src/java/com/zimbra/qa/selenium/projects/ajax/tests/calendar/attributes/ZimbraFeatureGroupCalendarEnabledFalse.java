@@ -87,7 +87,8 @@ public class ZimbraFeatureGroupCalendarEnabledFalse extends CalendarWorkWeekTest
 
         String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
     
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 
         // Open appointment and check if appt can be modified and saved
         app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);

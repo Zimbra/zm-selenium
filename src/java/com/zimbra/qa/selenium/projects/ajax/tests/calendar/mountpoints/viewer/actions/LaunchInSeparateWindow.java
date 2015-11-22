@@ -154,7 +154,9 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 
 
 		// Launch shared folder in separate window through context menu

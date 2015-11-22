@@ -70,8 +70,9 @@ public class EditReplyAccept extends CalendarWorkWeekTest {
 		
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+
 		FormMailNew mailComposeForm = (FormMailNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT_REPLY_ACCEPT_SUB_MENU, apptSubject);
         mailComposeForm.zFillField(Field.Body, modifiedBody + " ");		
 		mailComposeForm.zSubmit();

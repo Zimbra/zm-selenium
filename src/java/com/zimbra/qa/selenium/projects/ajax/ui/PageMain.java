@@ -75,14 +75,14 @@ public class PageMain extends AbsTab {
 	}
 
 	public boolean zIsZimletLoaded() throws HarnessException {
-        for (int i=0; i<=30; i++) {
+        for (int i=0; i<=60; i++) {
             boolean present = sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']");
             if (present == true) {
                 SleepUtil.sleepSmall();
                 return true;
             } else {
                 SleepUtil.sleepMedium();
-                if (i == 30) {
+                if (i == 60) {
                     return false;
                 }
             }
@@ -240,8 +240,7 @@ public class PageMain extends AbsTab {
 
 		// Default behavior, process the locator by clicking on it
 		//
-		this.zClick(locator);
-		SleepUtil.sleepSmall();
+		this.sClickAt(locator, "0,0");
 
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();

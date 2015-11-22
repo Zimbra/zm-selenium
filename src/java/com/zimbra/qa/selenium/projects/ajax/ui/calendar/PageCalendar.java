@@ -19,7 +19,6 @@ package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
 import java.awt.event.KeyEvent;
 import java.util.*;
 
-import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -28,11 +27,8 @@ import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogOpenRecurringItem.Confirmation;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
-@SuppressWarnings("unused")
 public class PageCalendar extends AbsTab {
 
 	public static class Locators {
@@ -208,6 +204,7 @@ public class PageCalendar extends AbsTab {
 		
 	}
 
+	@SuppressWarnings("unused")
 	private String getLocatorBySubject(String subject) throws HarnessException {
 		int count;
 		String locator;
@@ -265,6 +262,37 @@ public class PageCalendar extends AbsTab {
 		}
 		
 		throw new HarnessException("Unable to locate appointment!");
+		
+	}
+	
+	public boolean zVerifyAppointmentExists (String apptSubject) throws HarnessException {
+		
+		Stafpostqueue sp = new Stafpostqueue();
+		sp.waitForPostqueue();
+		
+		boolean found = false;
+		
+		for (int i=1; i<=3; i++) {
+			zToolbarPressButton(Button.B_REFRESH);
+			SleepUtil.sleepMedium();
+			List<AppointmentItem> items = zListGetAppointments();
+			for (AppointmentItem item : items ) {
+				if ( apptSubject.equals(item.getSubject()) ) {
+					found = true;
+					break;
+				} else {
+					zToolbarPressButton(Button.B_REFRESH);
+					SleepUtil.sleepLong();
+				}
+				SleepUtil.sleepSmall();
+			}
+			if (found = true) {
+				ZAssert.assertTrue(found, "Verify appt gets displayed in current view");
+				break;
+			}
+		}
+		
+		return found;
 		
 	}
 	
@@ -474,14 +502,6 @@ public class PageCalendar extends AbsTab {
 			throw new HarnessException("implement me!  action = "+ action);
 		}
 
-		// Action should take place in the if/else block.
-		// No need to take action on a locator at this point.
-
-		// If a page was specified, make sure it is active
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
-
 		return (page);
 	}
 	
@@ -534,20 +554,6 @@ public class PageCalendar extends AbsTab {
 	}
 	
 	private AbsPage zListItemGeneral(String itemsLocator, Action action, String subject) throws HarnessException {
-
-		/**
-
-		The DAY, WEEK, WORKWEEK, all use the same logic, just
-		different DIV objects in the DOM.
-		
-		Based on the itemsLocator, which locates each individual
-		appointment in the view, parse available appointments
-		and return them.
-
-		LIST, MONTH, SCHEDULE, (FREE/BUSY) use different logic.
-		That processing must happen in a different method.
-		
-		 */
 
 		if ( itemsLocator == null )
 			throw new HarnessException("itemsLocator cannot be null");
@@ -722,6 +728,7 @@ public class PageCalendar extends AbsTab {
 		return(page);
 	}
 	
+	@SuppressWarnings("unused")
 	private AbsPage zListItemListView(Action action, Button option, String subject) throws HarnessException {
 		
 		logger.info(myPageName() + " zListItemListView("+ action +", "+ option +", "+ subject +")");
@@ -731,7 +738,6 @@ public class PageCalendar extends AbsTab {
 		String optionLocator = null;
 		AbsPage page = null;
 		boolean waitForPostfix;
-
 
 		if ( action == Action.A_RIGHTCLICK ) {
 
@@ -967,6 +973,7 @@ public class PageCalendar extends AbsTab {
 	}
 	
 
+	@SuppressWarnings("unused")
 	private AbsPage zListItemGeneral(String itemsLocator, Action action, Button option, String subject) throws HarnessException {
 
 		if ( itemsLocator == null )
@@ -1509,10 +1516,6 @@ public class PageCalendar extends AbsTab {
 			throw new HarnessException("implement me!  action = "+ action);
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("Unable to determine the appointment locator");
-		}
-		
 		if ( page != null ) {
 			page.zWaitForActive();
 		}
@@ -1527,6 +1530,7 @@ public class PageCalendar extends AbsTab {
 		throw new HarnessException("implement me!");
 	}
 	
+	@SuppressWarnings("unused")
 	private AbsPage zListItemMonthView(Action action, Button option, Button subOption, String subject) throws HarnessException {
 		System.out.println("zimbra");
 		return null;
@@ -1947,29 +1951,15 @@ public class PageCalendar extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		// Default behavior variables
-		//
 		String locator = null; // If set, this will be clicked
 		AbsPage page = null; // If set, this page will be returned
 
-		// Based on the button specified, take the appropriate action(s)
-		//
-
 		if (button == Button.B_REFRESH) {
-			
 			return (((AppAjaxClient)this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
 			
-
 		} else if (button == Button.B_NEW) {
-
-			// New button
-			// 7.X version: locator = "css=div[id^='ztb__CLD'] td[id$='zb__CLD__NEW_MENU_title']";
-			// 8.X version: locator = "css=td#zb__NEW_MENU_title"
 			locator = "css=td#zb__NEW_MENU_title";
-
-			// Create the page
 			page = new FormApptNew(this.MyApplication);
-			// FALL THROUGH
 		
 		} else if (button == Button.B_CLOSE) {
 			locator = Locators.CloseButton;
@@ -1991,12 +1981,7 @@ public class PageCalendar extends AbsTab {
 			this.zClickAt(locator, "");
 			this.zWaitForBusyOverlay();
 
-
-			// Since we are not going to "wait for active", insert
-			// a small delay to make sure the dialog shows up
-			// before the zIsActive() method is called
 			SleepUtil.sleepMedium();
-
 
 			// If the organizer deletes an appointment, you get "Send Cancellation" dialog
 			page = new DialogConfirmDeleteOrganizer(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
@@ -2160,21 +2145,15 @@ public class PageCalendar extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 		
-		this.zClickAt(locator, "0,0");
+		this.zClickAt(locator, "10,10");
 		
-		// Wait for the message to be delivered (if any)
 		Stafpostqueue sp = new Stafpostqueue();
 		sp.waitForPostqueue();
 
-		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
 
-		// If page was specified, make sure it is active
 		if (page != null) {
-
-			// This function (default) throws an exception if never active
 			page.zWaitForActive();
-
 		}
 
 		SleepUtil.sleepSmall();
@@ -2190,9 +2169,6 @@ public class PageCalendar extends AbsTab {
 			this.zKeyboard.zTypeKeyEvent(keyEvent);
 			this.zWaitForBusyOverlay();
 			
-			// Since we are not going to "wait for active", insert
-			// a small delay to make sure the dialog shows up
-			// before the zIsActive() method is called
 			SleepUtil.sleepMedium();
 
 			// If the organizer deletes an appointment, you get "Send Cancellation" dialog
@@ -2228,11 +2204,6 @@ public class PageCalendar extends AbsTab {
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
 
-		// If a page is specified, wait for it to become active
-		if ( page != null ) {
-			page.zWaitForActive();	// This method throws a HarnessException if never active
-		}
-
 		return (page);
 	}
 
@@ -2248,21 +2219,11 @@ public class PageCalendar extends AbsTab {
 
 			page = new DialogConfirmDeleteAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 
-			// Depending on the type of appointment being deleted,
-			// We may need to use a different type of page here
-			// page = new DialogConfirmDeleteAttendee(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
-			// page = new DialogConfirmDeleteOrganizer(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
-
 		} else if ( 
 				shortcut == Shortcut.S_MAIL_MOVETOTRASH ||
 				shortcut == Shortcut.S_MAIL_HARDELETE ) {
 
 			page = new DialogConfirmDeleteAppointment(MyApplication,  ((AppAjaxClient) MyApplication).zPageCalendar);
-
-			// Depending on the type of appointment being deleted,
-			// We may need to use a different type of page here
-			// page = new DialogConfirmDeleteAttendee(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
-			// page = new DialogConfirmDeleteOrganizer(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 
 		} else if ( shortcut == Shortcut.S_NEWCALENDAR ) {
 
@@ -2284,7 +2245,6 @@ public class PageCalendar extends AbsTab {
 
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
 	throws HarnessException {
@@ -2315,11 +2275,6 @@ public class PageCalendar extends AbsTab {
 			}
 
 		} else if (pulldown == Button.B_LISTVIEW) {
-
-			// In 8.0 D3, there is no pulldown for the view anymore.  There are just buttons.
-			//
-			// Redirect to the press button method
-			//
 			return (this.zToolbarPressButton(option));
 			
 		} else {
@@ -2335,13 +2290,7 @@ public class PageCalendar extends AbsTab {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			if (ClientSessionFactory.session().currentBrowserName().contains("IE")) {
-				// IE
-				sClickAt(pulldownLocator, "0,0");
-			} else {
-				// others
-				zClickAt(pulldownLocator, "0,0");
-			}
+			zClickAt(pulldownLocator, "0,0");
 
 			zWaitForBusyOverlay();
 
@@ -2403,11 +2352,6 @@ public class PageCalendar extends AbsTab {
 			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
 		}
 
-		/**
-		 * 8.0: <div id="ztb__CLD" style="position: absolute; overflow: visible; z-index: 300; left: 179px; top: 78px; width: 1280px; height: 26px;"
-		 * class="ZToolbar ZWidget" parentid="z_shell">
-		 */
-		// If the "folders" tree is visible, then mail is active
 		String locator = "css=div#ztb__CLD";
 
 		boolean loaded = this.sIsElementPresent(locator);
@@ -2418,8 +2362,6 @@ public class PageCalendar extends AbsTab {
 		if (!active)
 			return (false);
 
-		// html body div#z_shell.DwtShell div#ztb__CLD.ZToolbar
-		// Made it here. The page is active.
 		return (true);
 
 	}
@@ -2484,9 +2426,6 @@ public class PageCalendar extends AbsTab {
 			String status = this.sGetText(locator).trim();
 			item.setGStatus(status);
 		}
-
-		// What calendar is it in
-		// TODO
 
 		// Is it recurring
 		locator = rowLocator + " div[id=$='__re'][class='ImgApptRecur']";
@@ -2575,20 +2514,6 @@ public class PageCalendar extends AbsTab {
 	
 	private AppointmentItem parseAppointmentRow(String rowLocator) throws HarnessException {
 
-		/**
-
-		The DAY, WEEK, WORKWEEK, all use the same logic, just
-		different DIV objects in the DOM.
-		
-		Based on the itemsLocator, which locates each individual
-		appointment in the view, parse available appointments
-		and return them.
-
-		LIST, MONTH, SCHEDULE, (FREE/BUSY) use different logic.
-		That processing must happen in a different method.
-		
-		*/
-
 		AppointmentItem item = new AppointmentItem();
 		
 		// Initialize the locator (but narrow to the subject field, if found later)
@@ -2657,19 +2582,6 @@ public class PageCalendar extends AbsTab {
 	private List<AppointmentItem> zListGetAppointmentsGeneral(String itemsLocator) throws HarnessException {
 		logger.info(myPageName() + " zListGetAppointmentsGeneral("+ itemsLocator +")");
 
-		/**
-
-			The DAY, WEEK, WORKWEEK, all use the same logic, just
-			different DIV objects in the DOM.
-			
-			Based on the itemsLocator, which locates each individual
-			appointment in the view, parse available appointments
-			and return them.
-
-			LIST, MONTH, SCHEDULE, (FREE/BUSY) use different logic.
-			That processing must happen in a different method.
-			
-		 */
 		List<AppointmentItem> items = new ArrayList<AppointmentItem>();
 
 		// If the list doesn't exist, then no items are present
@@ -2702,8 +2614,6 @@ public class PageCalendar extends AbsTab {
 
 	}
 
-	
-	
 
 	/**
 	 * @param cssLocator
@@ -2713,39 +2623,6 @@ public class PageCalendar extends AbsTab {
 	private AppointmentItem parseMonthViewAllDay(String cssLocator) throws HarnessException {
 		logger.info(myPageName() + " parseMonthViewAllDay("+ cssLocator +")");
 
-		/*
-
-  <div style=
-  "position: absolute; width: 119px; height: 20px; overflow: hidden; padding-bottom: 4px; left: 133.208px; top: 85px;"
-  class="appt" id="zli__CLM__258_DWT557">
-    <div class="appt_allday_body ZmSchedulerApptBorder-free" id=
-    "zli__CLM__258_DWT557_body" style="width: 119px; height: 16px;">
-      <table cellspacing="0" cellpadding="0" style=
-      "table-layout: fixed; height: 100%; background: -moz-linear-gradient(center top , rgb(255, 255, 255), rgb(235, 175, 96)) repeat scroll 0% 0% transparent; opacity: 0.4;"
-      id="zli__CLM__258_DWT557_tableBody">
-        <tbody>
-          <tr style="background:-moz-linear-gradient(top,#FFFFFF, #ebaf60);">
-            <td width="4px" style=
-            "background:-moz-linear-gradient(top,#FFFFFF, #FFFFFF);" class=""></td>
-
-            <td width="100%" class="appt_allday_name">
-              <div style="overflow: hidden; white-space: nowrap;">
-                appointment13213151729848
-              </div>
-            </td>
-
-            <td width="20px" style="padding-right:3px;" id="zli__CLM__258_DWT557_tag">
-              <div style="width:16" class="ImgBlank_16"></div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-		 */
-		
-		
-		
 		String locator;
 		
 		AppointmentItem appt = new AppointmentItem();
@@ -2766,37 +2643,6 @@ public class PageCalendar extends AbsTab {
 	private AppointmentItem parseMonthViewNonAllDay(String cssLocator) throws HarnessException {
 		logger.info(myPageName() + " parseMonthViewNonAllDay("+ cssLocator +")");
 
-		/*
-
-      <td class="calendar_month_day_item">
-        <div style="position:relative;" id="zli__CLM__258_DWT304_body" class="">
-          <table width="100%" style=
-          "table-layout:fixed; background:-moz-linear-gradient(top,#FFFFFF, #98b6e9);"
-          id="zli__CLM__258_DWT304_tableBody">
-            <tbody>
-              <tr>
-                <td width="4px" style=
-                "background:-moz-linear-gradient(top,#FFFFFF, #FFFFFF);"></td>
-
-                <td width="100%">
-                  <div style="overflow:hidden;white-space:nowrap;" id=
-                  "zli__CLM__258_DWT304_st_su">
-                    <span id="zli__CLM__258_DWT304_start_time">&nbsp;9:00
-                    PM</span><span id=
-                    "zli__CLM__258_DWT304_subject">appointment13335134710154</span>
-                  </div>
-                </td>
-
-                <td width="20px" style="padding-right:3px;" id=
-                "zli__CLM__258_DWT304_tag">
-                  <div style="width:16" class="ImgBlank_16"></div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </td>		 */
-		
 		String locator;
 		
 		AppointmentItem appt = new AppointmentItem();
@@ -2969,10 +2815,6 @@ public class PageCalendar extends AbsTab {
 		this.zClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
-
 		return (page);
 	}
 	
@@ -2995,10 +2837,6 @@ public class PageCalendar extends AbsTab {
 		
 		this.zClickAt(locator, "");
 		this.zWaitForBusyOverlay();
-
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
 
 		return (page);
 	}

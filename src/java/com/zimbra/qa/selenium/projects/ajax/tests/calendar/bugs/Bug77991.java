@@ -68,8 +68,10 @@ public class Bug77991 extends CalendarWorkWeekTest {
 				"</m>" +
 		"</CreateAppointmentRequest>");
 		
-		SleepUtil.sleepVeryLong();//Location's free/busy is not updated otherwise
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		SleepUtil.sleepVeryLong();
+
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject1), "Appointment not displayed in current view");
 
 		appt.setSubject(apptSubject2);
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0));

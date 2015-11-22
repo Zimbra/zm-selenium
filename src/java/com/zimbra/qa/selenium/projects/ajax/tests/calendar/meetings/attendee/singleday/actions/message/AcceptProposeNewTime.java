@@ -27,7 +27,7 @@ import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 
-@SuppressWarnings("unused")
+
 public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 
 	public AcceptProposeNewTime() {
@@ -43,7 +43,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		// ------------------------ Test data ------------------------------------
 
 		String organizerEmailAddress, apptAttendee1EmailAddress, apptAttendee2EmailAddress;
-		ZimbraAccount organizer, apptAttendee1, apptAttendee2; 
+		ZimbraAccount organizer, apptAttendee1; 
 		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptBody = ZimbraSeleniumProperties.getUniqueString();
 		String modifiedSubject = ZimbraSeleniumProperties.getUniqueString();
@@ -53,7 +53,6 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		apptAttendee1EmailAddress = app.zGetActiveAccount().EmailAddress;
 		organizer = ZimbraAccount.AccountA();
 		organizerEmailAddress = ZimbraAccount.AccountA().EmailAddress;
-		apptAttendee2 = ZimbraAccount.AccountB();
 		apptAttendee2EmailAddress = ZimbraAccount.AccountB().EmailAddress;
 
 		Calendar now = this.calendarWeekDayUTC;
@@ -82,7 +81,9 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");        
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 		
 		// --------------- Login to attendee & propose new time ----------------------------------------------------
 

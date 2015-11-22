@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.workweek.singleday;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -77,10 +75,12 @@ public class ModifyAppointment extends CalendarWorkWeekTest {
                          "</CreateAppointmentRequest>");
 
         String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
+        
+        // Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
     
         // Switch to work week view
         app.zPageCalendar.zToolbarPressPulldown(Button.B_LISTVIEW, Button.O_LISTVIEW_WORKWEEK);
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
         // Open appointment & modify subject, body and save it
         app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);

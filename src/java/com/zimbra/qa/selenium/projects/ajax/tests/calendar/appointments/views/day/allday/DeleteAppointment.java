@@ -24,21 +24,12 @@ import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
-import com.zimbra.qa.selenium.framework.ui.AbsApplication;
-import com.zimbra.qa.selenium.framework.ui.AbsDialog;
-import com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
-import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning.DialogWarningID;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.*;
 
-
-@SuppressWarnings("unused")
 public class DeleteAppointment extends AjaxCommonTest {
 
 	public DeleteAppointment() {
@@ -65,7 +56,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		// Creating objects for appointment data
 		String tz, apptSubject, apptBody;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		apptBody = "body" + ZimbraSeleniumProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
@@ -74,26 +65,22 @@ public class DeleteAppointment extends AjaxCommonTest {
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		
         app.zGetActiveAccount().soapSend(
-                          "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
-                               "<m>"+
-                               "<inv method='REQUEST' type='event' fb='B' transp='O' allDay='1' name='"+ apptSubject +"'>"+
-                               "<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
-                               "<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
-                               "<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-                               "</inv>" +
-                               "<mp content-type='text/plain'>" +
-                               "<content>"+ apptBody +"</content>" +
-                               "</mp>" +
-                               "<su>"+ apptSubject +"</su>" +
-                               "</m>" +
-                         "</CreateAppointmentRequest>");
-        String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
+              "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
+                   "<m>"+
+                   "<inv method='REQUEST' type='event' fb='B' transp='O' allDay='1' name='"+ apptSubject +"'>"+
+                   "<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
+                   "<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
+                   "<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+                   "</inv>" +
+                   "<mp content-type='text/plain'>" +
+                   "<content>"+ apptBody +"</content>" +
+                   "</mp>" +
+                   "<su>"+ apptSubject +"</su>" +
+                   "</m>" +
+             "</CreateAppointmentRequest>");        
         
-        
-        //-- GUI actions
-        
-        // Refresh the calendar to pick up changes
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        // Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
         
         // Select the appointment
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -103,11 +90,9 @@ public class DeleteAppointment extends AjaxCommonTest {
 		dlgConfirm.zClickButton(Button.B_YES);
 		dlgConfirm.zWaitForClose();
 		
-		
 		//-- Verification
-//		SleepUtil.sleepMedium(); //testcase failing due to timing issue so added sleep
-//		ZAssert.assertEquals(app.zPageCalendar.sIsElementPresent(app.zPageCalendar.zGetAllDayApptLocator(apptSubject)), false, "Verify all-day appointment is deleted");
-		
+		SleepUtil.sleepMedium(); //testcase failing due to timing issue so added sleep
+		ZAssert.assertEquals(app.zPageCalendar.sIsElementPresent(app.zPageCalendar.zGetAllDayApptLocator(apptSubject)), false, "Verify all-day appointment is deleted");
 		
 		AppointmentItem trashed = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +") is:anywhere");
 		ZAssert.assertNotNull(trashed, "Verify the appointment exists (it is in the trash)");
@@ -147,20 +132,15 @@ public class DeleteAppointment extends AjaxCommonTest {
                                "</mp>" +
                                "<su>"+ apptSubject +"</su>" +
                                "</m>" +
-                         "</CreateAppointmentRequest>");
-        String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse//mail:appt", "id");
+                         "</CreateAppointmentRequest>");        
         
-        
-        //-- GUI Actions
-        
-        // Refresh the calendar to pick up the appointment
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        // Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
         
         // Right click -> Delete
         DialogConfirmDeleteAppointment dlgConfirm = (DialogConfirmDeleteAppointment)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DELETE, apptSubject);
 		dlgConfirm.zClickButton(Button.B_YES);
 		dlgConfirm.zWaitForClose();
-		
 		
 		//-- Verification
 		SleepUtil.sleepMedium(); //testcase failing due to timing issue so added sleep
@@ -207,15 +187,10 @@ public class DeleteAppointment extends AjaxCommonTest {
                                "</mp>" +
                                "<su>"+ apptSubject +"</su>" +
                                "</m>" +
-                         "</CreateAppointmentRequest>");
-        String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse//mail:appt", "id");
+                         "</CreateAppointmentRequest>");        
         
-        
-        //-- GUI Actions
-        
-        
-        // Refresh the calendar view
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        // Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
         
         // Select the appointment
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);

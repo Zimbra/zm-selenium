@@ -229,7 +229,9 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
                      "<su>"+ apptSubject1 +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject1), "Appointment not displayed in current view");
         
 		// Create appointment data
 		appt.setSubject(apptSubject2);
@@ -310,7 +312,9 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
                      "<su>"+ apptSubject1 +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject1), "Appointment not displayed in current view");
         
 		// Create appointment data
 		appt.setSubject(apptSubject2);

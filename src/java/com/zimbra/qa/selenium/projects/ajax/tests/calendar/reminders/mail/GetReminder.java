@@ -17,20 +17,16 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.reminders.mail;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
-import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
 public class GetReminder extends AjaxCommonTest {
 
-	
 	public GetReminder() {
 		logger.info("New "+ GetReminder.class.getCanonicalName());
 		
@@ -44,12 +40,12 @@ public class GetReminder extends AjaxCommonTest {
 	
 	@Bugs(ids = "69132")
 	@Test(	description = "Verify reminder popup when in the mail app",
-			groups = { "skip" })
+			groups = { "smoke-skip" })
 	public void GetReminder_01() throws HarnessException {
 		
 		// Create the appointment on the server
 		// Create the message data to be sent
-		String subject = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
@@ -61,7 +57,7 @@ public class GetReminder extends AjaxCommonTest {
 					"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
 				+		"<m>"
 				+			"<inv>"
-				+				"<comp status='CONF' fb='B' class='PUB' transp='O' allDay='0' name='"+ subject +"'>"
+				+				"<comp status='CONF' fb='B' class='PUB' transp='O' allDay='0' name='"+ apptSubject +"'>"
 				+					"<s d='"+ startLocal.toYYYYMMDDTHHMMSS() +"' tz='"+ now.getTimeZone().getID() +"'/>"
 				+					"<e d='"+ finishLocal.toYYYYMMDDTHHMMSS() +"' tz='"+ now.getTimeZone().getID() +"'/>"
 				+					"<or a='"+ app.zGetActiveAccount().EmailAddress + "'/>"
@@ -72,16 +68,15 @@ public class GetReminder extends AjaxCommonTest {
 				+					"</alarm>"
 				+				"</comp>"
 				+			"</inv>"
-				+			"<su>"+ subject + "</su>"
+				+			"<su>"+ apptSubject + "</su>"
 				+			"<mp ct='text/plain'>"
 				+				"<content>content</content>"
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 		
-
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");		
 
 		// ReminderDialog dialog = (ReminderDialog) app.zPageMain.zGetReminderDialog();
 		throw new HarnessException("Implement me: check that the Reminder Dialog Shows Up");

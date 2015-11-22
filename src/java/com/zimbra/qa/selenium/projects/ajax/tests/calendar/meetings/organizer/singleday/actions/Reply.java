@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 
 import java.util.Calendar;
 import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
@@ -69,9 +68,9 @@ public class Reply extends CalendarWorkWeekTest {
                      "</m>" +
                "</CreateAppointmentRequest>");
 		
-		//-- GUI actions	
-        // Refresh the view
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
     
        // check on the context menu 'Reply' option is disabled for organizer
         app.zPageCalendar.zRightClickAt(app.zPageCalendar.zGetApptLocator(apptSubject),"");

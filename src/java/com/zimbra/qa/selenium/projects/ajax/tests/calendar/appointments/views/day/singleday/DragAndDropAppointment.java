@@ -18,13 +18,14 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.d
 
 import java.util.Calendar;
 import java.util.HashMap;
+
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-
 
 public class DragAndDropAppointment extends AjaxCommonTest {
 
@@ -88,14 +89,12 @@ public class DragAndDropAppointment extends AjaxCommonTest {
     		+	"</CreateAppointmentRequest>");
         String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
         
-        
-        
-        //-- GUI actions
-        
-		// Click Refresh		
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        // Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 		
-		// Select the item
+        SleepUtil.sleepMedium();
+        
+        // Select the item
 		app.zPageCalendar.zDragAndDrop(
 					"css=div[id^='zli__CLD__"+ apptId +"'] td.appt_name", // <div id="zli__CLWW__263_DWT114" .../>
 					"css=td[id='zti__main_Calendar__"+ subcalendarFolder.getId() + "_textCell']"); // <div id="zti__main_Calendar__273_textCell" .../>
@@ -153,8 +152,8 @@ public class DragAndDropAppointment extends AjaxCommonTest {
         String s = app.zGetActiveAccount().soapSelectValue("//mail:s", "d");
         String e = app.zGetActiveAccount().soapSelectValue("//mail:e", "d");
 
-        //Refresh view after first Appointment creation
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 
 		String otherSubject = ZimbraSeleniumProperties.getUniqueString();
 		ZDate otherStartUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
@@ -175,14 +174,12 @@ public class DragAndDropAppointment extends AjaxCommonTest {
     		+	"</CreateAppointmentRequest>");
         String otherApptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
 
-        
-        //-- GUI actions
-        
-        //Click Refresh after second Appointment creation		
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        // Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 
-		
-		// drag and drop the item
+        SleepUtil.sleepMedium();
+        
+        // drag and drop the item
         	String sourceLocator = "css=div[id^='zli__CLD__"+ apptId +"']";
         	String destinationLocator = "css=div[id^='zli__CLD__"+ otherApptId +"']";
 

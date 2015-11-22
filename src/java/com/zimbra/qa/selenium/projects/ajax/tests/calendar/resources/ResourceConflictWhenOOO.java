@@ -81,8 +81,9 @@ public class ResourceConflictWhenOOO extends CalendarWorkWeekTest {
 				"</m>" +
 		"</CreateAppointmentRequest>");
 
-		SleepUtil.sleepVeryLong();
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject1), "Appointment not displayed in current view");
+
 		app.zGetActiveAccount().soapSend(	
 
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"

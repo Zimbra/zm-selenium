@@ -58,7 +58,6 @@ public class ModifyCalendar extends CalendarWorkWeekTest {
                 	"<folder name='"+ apptCalendar +"' l='"+ root.getId() +"' view='appointment'/>" +
                 "</CreateFolderRequest>");
 		FolderItem apptCal = FolderItem.importFromSOAP(app.zGetActiveAccount(), apptCalendar);
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -82,8 +81,10 @@ public class ModifyCalendar extends CalendarWorkWeekTest {
                      "</m>" +
                "</CreateAppointmentRequest>");
 		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+		
         // Open appointment and modify calendar folder
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);       
         if(ZimbraSeleniumProperties.isWebDriver()){
             String locator = "css=td[id$='_folderSelect'] td[id$='_select_container']";

@@ -75,7 +75,9 @@ public class Decline extends CalendarWorkWeekTest {
 						"<su>"+ apptSubject +"</su>" +
 					"</m>" +
 				"</CreateAppointmentRequest>");
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 		
 		
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------

@@ -19,21 +19,14 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.w
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import java.util.HashMap;
-
 import org.testng.annotations.*;
-
-import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.*;
 
-
-
-@SuppressWarnings("unused")
 public class DeleteSeries extends CalendarWorkWeekTest {
 
 	public DeleteSeries() {
@@ -64,7 +57,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		// Appointment data
 		String tz, apptSubject, apptBody;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		apptBody = "body" + ZimbraSeleniumProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
@@ -94,12 +87,8 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 					"</m>" +
 				"</CreateAppointmentRequest>");
 
-        
-        //-- GUI actions
-        
-        
-		// Delete instance and verify corresponding UI
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 		
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         
@@ -159,7 +148,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		// Appointment data
 		String tz, apptSubject, apptBody;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		apptBody = "body" + ZimbraSeleniumProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
@@ -189,12 +178,8 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 					"</m>" +
 				"</CreateAppointmentRequest>");
 
-        
-        //-- GUI actions
-        
-        
-		// Delete instance and verify corresponding UI
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 		
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         
@@ -258,7 +243,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		// Appointment data
 		String tz, apptSubject, apptBody;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		apptBody = "body" + ZimbraSeleniumProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
@@ -287,13 +272,9 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 						"<su>"+ apptSubject +"</su>" +
 					"</m>" +
 				"</CreateAppointmentRequest>");
-
         
-        //-- GUI actions
-        
-        
-		// Delete instance and verify corresponding UI
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 		
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         

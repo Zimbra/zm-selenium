@@ -66,10 +66,10 @@ public class VerifyOptionalAttendee extends CalendarWorkWeekTest {
 				+				"<content>" + apptBody + "</content>"
 				+			"</mp>"
 				+		"</m>"
-				+	"</CreateAppointmentRequest>");        
-
-		// Refresh the view
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+				+	"</CreateAppointmentRequest>");
+		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 		
 		// --------------- Login to attendee & open the invitation ----------------------------------------------------
 		DialogWarning dialog = (DialogWarning)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_EDIT, apptSubject);

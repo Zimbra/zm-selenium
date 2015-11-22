@@ -59,8 +59,6 @@ public class Move extends CalendarWorkWeekTest {
 
 		FolderItem subfolder1 = FolderItem.importFromSOAP(app.zGetActiveAccount(), name1);
 		ZAssert.assertNotNull(subfolder1, "Verify the first subfolder is available");
-		  // Refresh the view
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
         
         // create meeting
 		app.zGetActiveAccount().soapSend(
@@ -79,10 +77,9 @@ public class Move extends CalendarWorkWeekTest {
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-        
-		//-- GUI actions
-        // Refresh the view
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 
         // Right Click -> Move context menu
         DialogMove dialog = (DialogMove)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.B_MOVE, apptSubject);

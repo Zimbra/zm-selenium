@@ -62,7 +62,7 @@ public class CreateAppointment extends AjaxCommonTest {
 		String command = "appointment \"" + subject + "\" ["+ location +"] ("+ notes +")";
 
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		DialogAssistant assistant = (DialogAssistant)app.zPageCalendar.zKeyboardShortcut(Shortcut.S_ASSISTANT);
 		assistant.zEnterCommand(command);
@@ -102,7 +102,7 @@ public class CreateAppointment extends AjaxCommonTest {
 		String command = "appointment \"" + subject + "\" ["+ location +"] ("+ notes +")";
 
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		DialogAssistant assistant = (DialogAssistant)app.zPageCalendar.zKeyboardShortcut(Shortcut.S_ASSISTANT);
 		assistant.zEnterCommand(command);

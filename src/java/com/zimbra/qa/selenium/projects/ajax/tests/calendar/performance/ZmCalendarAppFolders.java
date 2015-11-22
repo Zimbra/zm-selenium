@@ -50,7 +50,7 @@ public class ZmCalendarAppFolders extends AjaxCommonTest {
 
 
 		// Sync the changes to the client (notification block)
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmCalendarAppOverviewPanel, "Load the calendar app, 1 calendar");
 
@@ -83,7 +83,7 @@ public class ZmCalendarAppFolders extends AjaxCommonTest {
 
 
 		// Sync the changes to the client (notification block)
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmCalendarAppOverviewPanel, "Load the calendar app, 100 calendars");
 

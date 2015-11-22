@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 
 public class CreateAppointment extends AjaxCommonTest {
 
-
 	public CreateAppointment() {
 		logger.info("New "+ CreateAppointment.class.getCanonicalName());
 
@@ -66,15 +65,10 @@ public class CreateAppointment extends AjaxCommonTest {
 		appt.setRecurring("EVERYDAY", "");
 
 		
-		//-- GUI steps
-		
-		
-		
 		// Create series appointment
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 		apptForm.zSubmit();
-		
 		
 		//-- Data Verification
 		

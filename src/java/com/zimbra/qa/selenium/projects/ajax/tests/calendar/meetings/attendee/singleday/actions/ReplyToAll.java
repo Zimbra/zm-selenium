@@ -60,16 +60,10 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 				+				"<content>content</content>"
 				+			"</mp>"
 				+		"</m>"
-				+	"</CreateAppointmentRequest>");        
-
+				+	"</CreateAppointmentRequest>");
 		
-
-		// --------------- replyAll to invitation ----------------------------------------------------
-		//-- GUI actions	
-        // Refresh the view
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-        
-  
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
         
         // When the form opens, add some text and then Submit
         String replyText= "ReplyAllByAttendee";

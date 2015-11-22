@@ -17,15 +17,10 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.workweek.singleday;
 
 import java.util.*;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
-import com.zimbra.qa.selenium.framework.items.AppointmentItem;
-import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
-
 
 public class GetAppointment extends CalendarWorkWeekTest {
 	
@@ -41,7 +36,7 @@ public class GetAppointment extends CalendarWorkWeekTest {
 		
 		// Create the appointment on the server
 		// Create the message data to be sent
-		String subject = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String location = "location" + ZimbraSeleniumProperties.getUniqueString();
 		String content = "content" + ZimbraSeleniumProperties.getUniqueString();
 		
@@ -58,39 +53,21 @@ public class GetAppointment extends CalendarWorkWeekTest {
 					"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
 				+		"<m>"
 				+			"<inv>"
-				+				"<comp status='CONF' fb='B' class='PUB' transp='O' allDay='0' name='"+ subject +"' loc='"+ location +"' >"
+				+				"<comp status='CONF' fb='B' class='PUB' transp='O' allDay='0' name='"+ apptSubject +"' loc='"+ location +"' >"
 				+					"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
 				+					"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
 				+					"<or a='"+ app.zGetActiveAccount().EmailAddress + "'/>"
 				+				"</comp>"
 				+			"</inv>"
-				+			"<su>"+ subject + "</su>"
+				+			"<su>"+ apptSubject + "</su>"
 				+			"<mp ct='text/plain'>"
 				+				"<content>"+ content +"</content>"
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 		
-
-
-		//-- GUI Action
-	
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-		
-		
-		
-		//-- Verification
-		
-		boolean found = false;
-		List<AppointmentItem> items = app.zPageCalendar.zListGetAppointments();
-		for (AppointmentItem item : items ) {
-			if ( subject.equals(item.getSubject()) ) {
-				found = true;
-				break;
-			}	
-		}	
-		
-		ZAssert.assertTrue(found, "Verify appt gets displayed in work week view");
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 		
 	}
 

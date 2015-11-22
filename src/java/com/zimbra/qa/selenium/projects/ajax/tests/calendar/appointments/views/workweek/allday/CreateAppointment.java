@@ -63,17 +63,8 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 		ZAssert.assertEquals(app.zGetActiveAccount().soapMatch("//mail:GetAppointmentResponse//mail:comp", "allDay", "1"), true, "");
 		
-		// Verify in UI
-
-		boolean found = false;
-		for (AppointmentItem a : app.zPageCalendar.zListGetAppointments()) {
-			if ( apptSubject.equals(a.getSubject()) ) {
-				found = true;
-				break;
-			}
-		}
-		
-		ZAssert.assertTrue(found, "Verify the new apointment appears");
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 
 	}
 	

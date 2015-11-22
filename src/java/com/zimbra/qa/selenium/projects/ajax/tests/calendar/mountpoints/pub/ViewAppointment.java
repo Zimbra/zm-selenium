@@ -18,10 +18,8 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.mountpoints.pub;
 
 import java.util.Calendar;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
-import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 
@@ -81,7 +79,10 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+
         app.zPageCalendar.sOpen("https://" + ZimbraSeleniumProperties.getStringProperty("server.host") + ":8443/home/" + ZimbraAccount.AccountA().EmailAddress + "/Calendar/" + foldername + ".html");
         ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent("css=div[class^='ZhCalMonthAppt']:contains('" + apptSubject + "')"), "Appointment is visible");
         SleepUtil.sleepLong();

@@ -17,12 +17,9 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.week.allday;
 
 import java.util.*;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
-import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 
@@ -84,10 +81,8 @@ public class GetAppointment extends CalendarWorkWeekTest {
 		AppointmentItem appt = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")", startUTC.addDays(-7), endUTC.addDays(7));
 		ZAssert.assertNotNull(appt, "Verify the new appointment is created");
 
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-		
-		//wait for the appointment displayed in the view
-		ZAssert.assertEquals(app.zPageCalendar.sIsElementPresent(app.zPageCalendar.zGetReadOnlyAllDayApptLocator(apptSubject)), true, "Verify all-day appointment is deleted");
-	    
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+
 	}
 }

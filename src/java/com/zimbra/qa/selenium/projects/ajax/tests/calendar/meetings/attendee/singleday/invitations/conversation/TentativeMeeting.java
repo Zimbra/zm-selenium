@@ -106,7 +106,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invitation as Tentative ------------------------------------
 
 		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -186,7 +186,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invitation as tentative -----------------------------------
 
 		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -258,7 +258,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invitation as tentative -----------------------------------
 
 		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -366,7 +366,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invitation as tentative ----------------------------------
 
 		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -470,8 +470,8 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 
 		// --------------- Login to attendee & mark invitation as tentative -----------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);

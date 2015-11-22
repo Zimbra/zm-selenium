@@ -44,7 +44,7 @@ public class OpenAssistant extends AjaxCommonTest {
 	public void OpenAssistant_01() throws HarnessException {
 		
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		DialogAssistant assistant = (DialogAssistant)app.zPageCalendar.zKeyboardShortcut(Shortcut.S_ASSISTANT);
 		assistant.zClickButton(Button.B_CANCEL);

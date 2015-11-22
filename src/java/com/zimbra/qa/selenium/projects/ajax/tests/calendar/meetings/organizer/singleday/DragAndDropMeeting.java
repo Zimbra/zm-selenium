@@ -18,11 +18,8 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 
 import java.util.Calendar;
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
-import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 
@@ -50,7 +47,7 @@ public class DragAndDropMeeting extends CalendarWorkWeekTest {
 		
 		// Creating a meeting
 		String tz = ZTimeZone.TimeZoneEST.getID();
-		String subject = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String attendee1 = ZimbraAccount.AccountA().EmailAddress;
 		
 		// Absolute dates in UTC zone
@@ -61,7 +58,7 @@ public class DragAndDropMeeting extends CalendarWorkWeekTest {
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
                      "<m>"+
-                     	"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ subject +"'>"+
+                     	"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"+
                      		"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
                      		"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
                      		"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
@@ -71,13 +68,15 @@ public class DragAndDropMeeting extends CalendarWorkWeekTest {
                      	"<mp content-type='text/plain'>" +
                      		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
-                     "<su>"+ subject +"</su>" +
+                     "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
         
         app.zPageCalendar.zDragAndDrop(
-				String.format("css=div[id$='_st_su']:contains('" + subject + "')"),
+				String.format("css=div[id$='_st_su']:contains('" + apptSubject + "')"),
 				String.format("css=td[class='calendar_month_cells_td'] table:nth-child(2) tbody"));
 
 	}

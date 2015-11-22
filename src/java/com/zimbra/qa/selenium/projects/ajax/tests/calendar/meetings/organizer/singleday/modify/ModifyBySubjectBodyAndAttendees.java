@@ -74,9 +74,8 @@ public class ModifyBySubjectBodyAndAttendees extends CalendarWorkWeekTest {
                      "</m>" +
                "</CreateAppointmentRequest>");
 
-        
-        // Open appointment and modify subject, attendee and content
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
         
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zFillField(Field.Subject, modifiedApptSubject);

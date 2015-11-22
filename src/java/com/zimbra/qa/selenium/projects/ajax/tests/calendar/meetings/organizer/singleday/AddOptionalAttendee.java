@@ -74,7 +74,10 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+        
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+
         appt.setOptional(apptOptionalAttendee);
         
         // Add optional attendee by typing in the field and resend the appointment

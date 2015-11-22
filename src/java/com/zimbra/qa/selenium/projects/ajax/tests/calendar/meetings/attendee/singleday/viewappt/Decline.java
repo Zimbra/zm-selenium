@@ -66,7 +66,9 @@ public class Decline extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");        
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 		
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_DECLINED_MENU, apptSubject);
@@ -169,14 +171,12 @@ public class Decline extends CalendarWorkWeekTest {
 				+				"<content>content</content>"
 				+			"</mp>"
 				+		"</m>"
-				+	"</CreateAppointmentRequest>");        
-
+				+	"</CreateAppointmentRequest>");
+			
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 		
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
-
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		SleepUtil.sleepMedium();
 		
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_DECLINED_MENU, apptSubject);
 		app.zPageCalendar.zToolbarPressButton(Button.B_SAVE);

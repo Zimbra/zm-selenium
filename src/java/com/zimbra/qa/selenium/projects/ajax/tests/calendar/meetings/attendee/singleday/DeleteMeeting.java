@@ -17,13 +17,13 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday;
 
 import java.util.Calendar;
+
 import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.items.FolderItem;
+
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmDeleteAppointment;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmDeleteAttendee;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmationDeclineAppointment;
 
@@ -154,7 +154,8 @@ public class DeleteMeeting extends CalendarWorkWeekTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 		
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 		
 		// Click to appointment and delete it
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
