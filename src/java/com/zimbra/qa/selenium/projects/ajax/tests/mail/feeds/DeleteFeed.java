@@ -30,11 +30,6 @@ public class DeleteFeed extends PrefGroupMailByMessageTest {
 
 	public DeleteFeed() {
 		logger.info("New "+ DeleteFeed.class.getCanonicalName());
-
-
-
-
-
 	}
 
 	@Test(	description = "Delete a feed folder - Right click, Delete",
@@ -58,7 +53,7 @@ public class DeleteFeed extends PrefGroupMailByMessageTest {
 
 
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Delete the folder using context menu
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_DELETE, feed);

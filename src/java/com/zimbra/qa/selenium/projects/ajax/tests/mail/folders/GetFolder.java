@@ -59,7 +59,7 @@ public class GetFolder extends PrefGroupMailByMessageTest {
 		
 		
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		
 		// Verify the folder appears in the list
@@ -97,7 +97,7 @@ public class GetFolder extends PrefGroupMailByMessageTest {
 		
 		
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		
 		// Verify the folder appears in the list

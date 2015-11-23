@@ -71,8 +71,8 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		ZAssert.assertEquals(from, mail.dFromRecipient.dEmailAddress, "Verify the from matches");
 //		ZAssert.assertEquals(sender, mail.dSenderRecipient.dEmailAddress, "Verify the sender matches");
 //		
-//		// Click Get Mail button
-//		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+//		// Refresh current view
+//		app.zPageMail.zVerifyMailExists(subject);
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -105,8 +105,8 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		ZAssert.assertEquals(from, mail.dFromRecipient.dEmailAddress, "Verify the from matches");
 //		ZAssert.assertEquals(replyto, mail.dReplyToRecipient.dEmailAddress, "Verify the Reply-To matches");
 //		
-//		// Click Get Mail button
-//		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+//		// Refresh current view
+//		app.zPageMail.zVerifyMailExists(subject);
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -139,8 +139,8 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		ZAssert.assertNotNull(mail, "Verify message is received");
 //		ZAssert.assertEquals(resentfrom, mail.dRedirectedFromRecipient.dEmailAddress, "Verify the Resent-From matches");
 //		
-//		// Click Get Mail button
-//		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+//		// Refresh current view
+//		app.zPageMail.zVerifyMailExists(subject);
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -170,8 +170,8 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject +")");
 //		ZAssert.assertNotNull(mail, "Verify message is received");
 //		
-//		// Click Get Mail button
-//		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+//		// Refresh current view
+//		app.zPageMail.zVerifyMailExists(subject);
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -200,8 +200,8 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject +")");
 //		ZAssert.assertNotNull(mail, "Verify message is received");
 //		
-//		// Click Get Mail button
-//		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+//		// Refresh current view
+//		app.zPageMail.zVerifyMailExists(subject);
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -248,7 +248,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //
 //		
 //		// Refresh the inbox
-//		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+//		app.zPageMail.zVerifyMailExists(subject);
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -271,7 +271,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //
 //		
 //		// Refresh the inbox
-//		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+//		app.zPageMail.zVerifyMailExists(subject);
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -294,7 +294,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //
 //		
 //		// Refresh the inbox
-//		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+//		app.zPageMail.zVerifyMailExists(subject);
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -317,8 +317,8 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //
 //		
 //		
-//		// Click Get Mail button
-//		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+//		// Refresh current view
+//		app.zPageMail.zVerifyMailExists(subject);
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -341,8 +341,8 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //
 //		
 //		
-//		// Click Get Mail button
-//		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+//		// Refresh current view
+//		app.zPageMail.zVerifyMailExists(subject);
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -366,8 +366,8 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //
 //		
 //		
-//		// Click Get Mail button
-//		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+//		// Refresh current view
+//		app.zPageMail.zVerifyMailExists(subject);
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -393,8 +393,8 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //
 //		
 //		
-//		// Click Get Mail button
-//		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+//		// Refresh current view
+//		app.zPageMail.zVerifyMailExists(subject);
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -424,8 +424,8 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //
 //		
 //		
-//		// Click Get Mail button
-//		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+//		// Refresh current view
+//		app.zPageMail.zVerifyMailExists(subject);
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -449,12 +449,9 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String htmlcontent = "html1328844621404";
 		
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
-
-
 		
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message 
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

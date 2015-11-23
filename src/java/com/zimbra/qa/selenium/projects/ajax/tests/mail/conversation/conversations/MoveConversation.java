@@ -44,11 +44,6 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 	
 	public MoveConversation() {
 		logger.info("New "+ MoveConversation.class.getCanonicalName());
-		
-		
-		
-
-		
 	}
 	
 	@Test(	description = "Move a conversation by selecting message, then clicking toolbar 'Move' button",
@@ -76,8 +71,8 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		
 		//-- GUI
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(c.getSubject());
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox));
 
 		// Select the item
@@ -125,8 +120,8 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		
 		//-- GUI
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(c.getSubject());
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox));
 
 		// Select the item
@@ -171,8 +166,8 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		
 		//-- GUI
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(c.getSubject());
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox));
 
 		// Select the item
@@ -228,8 +223,8 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		
 		//-- GUI
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(c.getSubject());
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox));
 
 		// Click the subfolder in the tree
@@ -276,8 +271,8 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		
 		//-- GUI
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(c.getSubject());
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox));
 
 		// Select the item
@@ -371,8 +366,8 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 
 		//-- GUI
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(c.getSubject());
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox));
 
 		// Select the item

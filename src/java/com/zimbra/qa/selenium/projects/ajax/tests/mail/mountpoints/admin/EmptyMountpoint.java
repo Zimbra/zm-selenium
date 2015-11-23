@@ -91,8 +91,8 @@ public class EmptyMountpoint extends PrefGroupMailByMessageTest {
 		
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Right click on folder, select "Mark all as read"
 		DialogWarning dialog = 

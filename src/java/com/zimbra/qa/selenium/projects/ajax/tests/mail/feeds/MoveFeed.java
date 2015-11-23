@@ -72,7 +72,7 @@ public class MoveFeed extends PrefGroupMailByMessageTest {
 		
 		
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Move the folder using context menu
 		DialogMove dialog = (DialogMove)app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_MOVE, feed);

@@ -69,8 +69,8 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertStringDoesNotContain(mail.getFlags(), "u", "Verify message is initially unread");
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -116,8 +116,8 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertStringDoesNotContain(mail.getFlags(), "u", "Verify message is initially unread");
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		// Select the item
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_MARK_AS_UNREAD, mail.dSubject);

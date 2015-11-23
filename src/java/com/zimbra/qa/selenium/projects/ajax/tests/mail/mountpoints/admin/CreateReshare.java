@@ -86,8 +86,8 @@ public class CreateReshare extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(mountpoint, "Verify the subfolder is available");
 
 
-		// Click Get Mail button to see the new mountpoint
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view to see the new mountpoint
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		DialogShare dialog = (DialogShare)app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_SHARE, mountpoint);
 		ZAssert.assertNotNull(dialog, "Verify the sharing dialog pops up");

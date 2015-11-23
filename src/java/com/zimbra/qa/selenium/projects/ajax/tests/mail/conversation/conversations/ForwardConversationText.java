@@ -49,8 +49,8 @@ public class ForwardConversationText extends PrefGroupMailByConversationTest {
 		
 		//-- GUI
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(c.getSubject());
 		
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());

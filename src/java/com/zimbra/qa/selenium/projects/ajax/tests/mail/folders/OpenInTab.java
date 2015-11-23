@@ -36,7 +36,7 @@ public class OpenInTab extends PrefGroupMailByMessageTest {
 		
 		
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		//Click Open in Tab context menu
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_OPENTAB, subfolder1);

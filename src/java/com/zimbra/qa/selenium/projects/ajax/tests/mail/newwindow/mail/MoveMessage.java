@@ -79,8 +79,8 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Click the inbox
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
@@ -175,8 +175,8 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -245,8 +245,8 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);

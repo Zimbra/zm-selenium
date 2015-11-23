@@ -18,11 +18,8 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.performance
 
 import java.io.File;
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
-import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.performance.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.LmtpInject;
@@ -60,8 +57,8 @@ public class ZmConv extends AjaxCommonTest {
 
 
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmConv, "Load preview pane, text message, initial load");
 

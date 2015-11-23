@@ -101,8 +101,8 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 		//-- GUI Actions
 		//
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		try {
 
@@ -196,8 +196,8 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 		//-- GUI Actions
 		//
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		try {
 

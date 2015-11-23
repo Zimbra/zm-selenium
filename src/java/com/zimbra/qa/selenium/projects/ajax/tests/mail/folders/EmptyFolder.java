@@ -71,7 +71,7 @@ public class EmptyFolder extends PrefGroupMailByMessageTest {
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(),"subject:(" + subject + ")");
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		// Right click on folder, select "Mark all as read"
 		DialogWarning dialog = (DialogWarning) app.zTreeMail.zTreeItem(
 				Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_EMPTY, subfolder);

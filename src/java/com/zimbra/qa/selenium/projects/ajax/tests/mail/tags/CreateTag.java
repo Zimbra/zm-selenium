@@ -110,7 +110,7 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 
 		
 		// Refresh to get tag2
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Create a new tag using the context menu + New Tag
 		DialogTag dialog = (DialogTag)app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_NEWTAG, tag2);

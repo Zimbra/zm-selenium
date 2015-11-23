@@ -83,8 +83,8 @@ public class Bug44826_02 extends  AjaxCommonTest {
 		MailItem mail1 = MailItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:("+ subject1 +")");
 		MailItem mail2 = MailItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:("+ subject2 +")");
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Remember to close the search view
 		try {

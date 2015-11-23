@@ -44,8 +44,8 @@ public class Cancel extends PrefGroupMailByMessageTest {
 	public void CancelFindShares_01() throws HarnessException {
 		
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Click the inbox
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);

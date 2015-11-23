@@ -79,8 +79,8 @@ public class FindShare extends PrefGroupMailByMessageTest {
 		
 
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Click Find Shares
 		DialogShareFind dialog = (DialogShareFind)app.zTreeMail.zPressPulldown(Button.B_TREE_FOLDERS_OPTIONS, Button.B_TREE_FIND_SHARES);

@@ -61,8 +61,8 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 				"</SendMsgRequest>");
 
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Right click on folder, select "Open in Tab"
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
@@ -103,8 +103,8 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
 		mailform.zToolbarPressButton(Button.B_CANCEL);
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Get the message from the server
 		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(),
@@ -170,7 +170,7 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 		"</AddMsgRequest>");
 
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Right click on folder, select "Open in Tab"
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_OPENTAB, subfolder1);

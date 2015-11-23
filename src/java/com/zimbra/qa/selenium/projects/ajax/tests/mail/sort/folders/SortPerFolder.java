@@ -135,8 +135,8 @@ public class SortPerFolder extends PrefGroupMailByMessageTest {
 		//
 		
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on folder1
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, folder1);

@@ -93,8 +93,8 @@ public class MoveMountpoint extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
 
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		
 		// Move the folder using context menu

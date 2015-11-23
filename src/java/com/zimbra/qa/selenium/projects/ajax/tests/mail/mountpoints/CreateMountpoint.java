@@ -99,8 +99,8 @@ public class CreateMountpoint extends PrefGroupMailByMessageTest {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(shareMessageSubject);
 		
 		// Click the inbox
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);

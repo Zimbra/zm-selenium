@@ -94,8 +94,8 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		
 		try {
 				
-			// Click Get Mail button
-			app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+			// Refresh current view
+			app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 					
 			// Click on the subfolder
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, folder);
@@ -191,8 +191,8 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		
 		try {
 			
-			// Click Get Mail button
-			app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+			// Refresh current view
+			app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 					
 			// Click on the subfolder
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, folder);
@@ -287,8 +287,8 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		
 		try {
 			
-			// Click Get Mail button
-			app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+			// Refresh current view
+			app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 					
 			// Click on the subfolder
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, folder);
@@ -390,8 +390,8 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		
 		try {
 			
-			// Click Get Mail button
-			app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+			// Refresh current view
+			app.zPageMail.zVerifyMailExists(subject);
 					
 			// Click on the subfolder
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, folder);

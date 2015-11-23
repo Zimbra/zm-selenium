@@ -56,8 +56,8 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailAppCompose, "Load Reply-Compose window for simple conversation");
 
@@ -80,8 +80,8 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailAppCompose, "Load Reply-Compose window for large conversation");
 		
@@ -102,8 +102,8 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailAppCompose, "Load Reply-Compose window for invite conversation");
 
@@ -125,8 +125,8 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailAppCompose, "Load Reply-Compose window for invite conversation with 7mb attachment");
 

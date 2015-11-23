@@ -78,8 +78,8 @@ public class UndoDragAndDropMail extends PrefGroupMailByMessageTest {
 
 
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 				
 		// Expand the Inbox folder to see the subfolder?

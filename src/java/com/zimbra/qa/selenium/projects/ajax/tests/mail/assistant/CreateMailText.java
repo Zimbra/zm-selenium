@@ -33,10 +33,6 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	
 	public CreateMailText() {
 		logger.info("New "+ CreateMailText.class.getCanonicalName());
-		
-		
-		
-
 	}
 	
 	@Test(	description = "Send a text mail using the Zimbra Assistant",
@@ -47,8 +43,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String command = "mail \"" + subject + "\" to: "+ ZimbraAccount.AccountA().EmailAddress + " body: foo";
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		DialogAssistant assistant = (DialogAssistant)app.zPageMail.zKeyboardShortcut(Shortcut.S_ASSISTANT);
 		assistant.zEnterCommand(command);

@@ -21,7 +21,6 @@ import java.util.List;
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.items.MailItem;
-import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 
@@ -54,8 +53,8 @@ public class PriorityMail extends PrefGroupMailByMessageTest {
 					"</SendMsgRequest>");
 
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Get all the messages in the inbox
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
@@ -95,8 +94,8 @@ public class PriorityMail extends PrefGroupMailByMessageTest {
 						"</m>" +
 					"</SendMsgRequest>");
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Get all the messages in the inbox
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
@@ -137,8 +136,8 @@ public class PriorityMail extends PrefGroupMailByMessageTest {
 						"</m>" +
 					"</SendMsgRequest>");
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Get all the messages in the inbox
 		List<MailItem> messages = app.zPageMail.zListGetMessages();

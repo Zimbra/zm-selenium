@@ -113,7 +113,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
 		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 
 		// Select the invitation
@@ -228,7 +228,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
 		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
@@ -326,7 +326,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
 		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
@@ -462,7 +462,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
 		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 

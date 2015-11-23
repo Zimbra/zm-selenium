@@ -116,7 +116,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		// Select the invitation
 
@@ -219,7 +219,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		// Select the invitation
 
@@ -318,7 +318,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 
 
@@ -456,7 +456,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 
 		// Select the invitation

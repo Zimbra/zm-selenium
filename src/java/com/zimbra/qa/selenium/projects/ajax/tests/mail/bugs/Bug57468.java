@@ -73,7 +73,7 @@ public class Bug57468 extends PrefGroupMailByMessageTest {
                 "</CreateFolderRequest>");
 
 		
-		// Click Get Mail button to refresh the tree
+		// Refresh current view to refresh the tree
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
 
 		
@@ -96,8 +96,8 @@ public class Bug57468 extends PrefGroupMailByMessageTest {
 		
 		
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		
 		// Verify the inbox remains collapsed

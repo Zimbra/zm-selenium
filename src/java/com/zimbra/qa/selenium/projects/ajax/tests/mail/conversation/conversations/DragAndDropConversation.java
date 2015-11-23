@@ -84,8 +84,8 @@ public class DragAndDropConversation extends PrefGroupMailByConversationTest {
 
 		
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 		
 		// Select the conversation (optional step)
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -178,8 +178,8 @@ public class DragAndDropConversation extends PrefGroupMailByConversationTest {
 
 		
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 		
 		// Select the conversation (optional step)
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -275,8 +275,8 @@ public class DragAndDropConversation extends PrefGroupMailByConversationTest {
 
 		
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 		
 		// Select the conversation (optional step)
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

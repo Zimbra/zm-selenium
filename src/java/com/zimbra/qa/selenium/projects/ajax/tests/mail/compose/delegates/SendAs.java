@@ -29,15 +29,9 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
 public class SendAs extends PrefGroupMailByMessageTest {
 
-
 	public SendAs() {
 		logger.info("New "+ SendAs.class.getCanonicalName());
-		
-		
-		
-
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
-		
 	}
 	
 	@Test(	description = "Send As another user",
@@ -133,22 +127,20 @@ public class SendAs extends PrefGroupMailByMessageTest {
 		this.startingPage.zNavigateTo();
 		
 		//-- DATA
-		final String mimeSubject = "subject13977785775182543";
+		final String subject = "subject13977785775182543";
 		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email14/mime.txt";
 		final String mimeAttachmentName = "screenshot.JPG";
 
 		// Send the message to the test account
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
-
-
 		//-- GUI
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 						
 		// Select the item
-		app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		// Forward the item
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
@@ -166,7 +158,7 @@ public class SendAs extends PrefGroupMailByMessageTest {
 		//-- Verification
 		
 		// From the receiving end, verify the message details
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ mimeSubject +")");
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
 		
 		// Verify the attachment exists in the forwarded mail

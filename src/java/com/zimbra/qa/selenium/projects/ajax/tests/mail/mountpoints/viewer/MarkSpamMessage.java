@@ -89,8 +89,8 @@ public class MarkSpamMessage extends PrefGroupMailByMessageTest {
 		
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		try {
 
@@ -175,8 +175,8 @@ public class MarkSpamMessage extends PrefGroupMailByMessageTest {
 		
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 		
 		// For some reason, it takes a bit of time for this share to show up
 		SleepUtil.sleepMedium();

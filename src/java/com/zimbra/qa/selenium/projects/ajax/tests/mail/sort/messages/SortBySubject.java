@@ -80,8 +80,8 @@ public class SortBySubject extends PrefGroupMailByMessageTest {
 	
 
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on Inbox
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
@@ -161,8 +161,8 @@ public class SortBySubject extends PrefGroupMailByMessageTest {
 	
 
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on Inbox
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);

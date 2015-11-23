@@ -39,26 +39,22 @@ public class Forward extends PrefGroupMailByMessageTest {
 	
 	@Test(	description = "Forward a mail with attachment - Verify attachment sent",
 			groups = { "functional" })
+	
 	public void Forward_01() throws HarnessException {
 		
-
 		//-- DATA
-		final String mimeSubject = "subject03431362517016470";
+		final String subject = "subject03431362517016470";
 		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email09/mime.txt";
 		final String mimeAttachmentName = "screenshot.JPG";
 
 		// Send the message to the test account
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
-
-
-		//-- GUI
-
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 						
 		// Select the item
-		app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		// Forward the item
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
@@ -70,12 +66,10 @@ public class Forward extends PrefGroupMailByMessageTest {
 		// Send the message
 		mailform.zSubmit();
 
-
-
 		//-- Verification
 		
 		// From the receiving end, verify the message details
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ mimeSubject +")");
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
 		
 		// Verify the attachment exists in the forwarded mail

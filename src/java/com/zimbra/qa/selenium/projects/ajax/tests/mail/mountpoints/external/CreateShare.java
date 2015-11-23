@@ -50,7 +50,7 @@ public class CreateShare extends PrefGroupMailByMessageTest {
 		String folderid = app.zGetActiveAccount().soapSelectValue("//mail:folder", "id");
 
 		//Need to do Refresh by clicking on getmail button to see folder in the list 
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Make sure the folder was created on the server
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);

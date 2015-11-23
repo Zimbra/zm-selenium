@@ -71,7 +71,7 @@ public class MarkAllAsReadFolder extends PrefGroupMailByMessageTest {
 		"</AddMsgRequest>");
 
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		// Right click on folder, select "Mark all as read"
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_MARKASREAD, subfolder);
 

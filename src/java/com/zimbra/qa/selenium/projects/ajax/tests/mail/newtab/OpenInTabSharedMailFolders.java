@@ -89,8 +89,8 @@ public class OpenInTabSharedMailFolders extends PrefGroupMailByMessageTest {
 		
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Right click on folder, select "Open in Tab"
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_OPENTAB, mountpoint);
@@ -163,8 +163,8 @@ public class OpenInTabSharedMailFolders extends PrefGroupMailByMessageTest {
 		
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 		
 		// Expand mountpoint folder
 		app.zTreeMail.zTreeItem(Action.A_TREE_EXPAND, mountpoint);

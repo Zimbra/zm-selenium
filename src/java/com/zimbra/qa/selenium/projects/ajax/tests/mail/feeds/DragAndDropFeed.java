@@ -30,11 +30,6 @@ public class DragAndDropFeed extends PrefGroupMailByMessageTest{
 
 	public DragAndDropFeed(){
 		logger.info("New "+ DragAndDropFeed.class.getCanonicalName());
-
-		
-		
-		
-
 	}
 
 	@Test(	description = "Drag one folder and Drop into other",
@@ -71,10 +66,8 @@ public class DragAndDropFeed extends PrefGroupMailByMessageTest{
 		FolderItem subfolder1 = FolderItem.importFromSOAP(app.zGetActiveAccount(), name1);
 		ZAssert.assertNotNull(subfolder1, "Verify the first subfolder is available");
 
-
-
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Bug 65234
 		// Sometimes the folder tree is rendered slowly.  sleep a bit

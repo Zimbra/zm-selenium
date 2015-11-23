@@ -69,8 +69,8 @@ public class MarkUnSpamMessage extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:("+ subject +")");
 		
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		// Go to the Junk folder
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, junk);

@@ -106,8 +106,8 @@ public class Bug78632 extends PrefGroupMailByMessageTest {
 		app.zPageLogin.zNavigateTo();
 		this.startingPage.zNavigateTo();
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click in sent
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Sent));
@@ -246,8 +246,8 @@ public class Bug78632 extends PrefGroupMailByMessageTest {
 		app.zPageLogin.zNavigateTo();
 		this.startingPage.zNavigateTo();
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Click in sent
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Sent));

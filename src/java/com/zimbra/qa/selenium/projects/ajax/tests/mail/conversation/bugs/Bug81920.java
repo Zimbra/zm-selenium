@@ -30,15 +30,11 @@ public class Bug81920 extends PrefGroupMailByConversationTest {
 
 	public Bug81920() {
 		logger.info("New "+ Bug81920.class.getCanonicalName());
-		
-		
-		
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 		
 	}
 	
 
-	
 	@Bugs(ids = "97098")
 	@Test(	description = "Reply to a conversation with a draft",
 			groups = { "functional" })
@@ -79,8 +75,8 @@ public class Bug81920 extends PrefGroupMailByConversationTest {
 		
 		//-- GUI
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(c.getSubject());
 		
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
@@ -141,8 +137,8 @@ public class Bug81920 extends PrefGroupMailByConversationTest {
 		
 		//-- GUI
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(c.getSubject());
 		
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
@@ -204,8 +200,8 @@ public class Bug81920 extends PrefGroupMailByConversationTest {
 		
 		//-- GUI
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(c.getSubject());
 		
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
@@ -272,8 +268,8 @@ public class Bug81920 extends PrefGroupMailByConversationTest {
 		
 		//-- GUI
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(c.getSubject());
 		
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());

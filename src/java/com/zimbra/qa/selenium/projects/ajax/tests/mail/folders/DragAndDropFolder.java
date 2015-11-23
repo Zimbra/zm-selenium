@@ -68,7 +68,7 @@ public class DragAndDropFolder extends PrefGroupMailByMessageTest{
 
 
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Bug 65234
 		// Sometimes the folder tree is rendered slowly.  sleep a bit

@@ -81,8 +81,8 @@ public class RenameMountpoint extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(mountpoint, "Verify the subfolder is available");
 
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		DialogRenameFolder dialog = (DialogRenameFolder)app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_RENAME, mountpoint);
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");

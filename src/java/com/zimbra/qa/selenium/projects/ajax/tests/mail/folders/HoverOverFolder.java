@@ -67,7 +67,7 @@ public class HoverOverFolder extends PrefGroupMailByMessageTest {
 		//-- GUI
 		
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Hover over the folder
 		TooltipFolder tooltip = (TooltipFolder)app.zTreeMail.zTreeItem(Action.A_HOVEROVER, subfolder);
@@ -113,7 +113,7 @@ public class HoverOverFolder extends PrefGroupMailByMessageTest {
 		//-- GUI
 		
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Hover over the folder
 		TooltipFolder tooltip = (TooltipFolder)app.zTreeMail.zTreeItem(Action.A_HOVEROVER, subfolder);
@@ -174,7 +174,7 @@ public class HoverOverFolder extends PrefGroupMailByMessageTest {
 		//-- GUI
 		
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Hover over the folder
 		TooltipFolder tooltip = (TooltipFolder)app.zTreeMail.zTreeItem(Action.A_HOVEROVER, subfolder);
@@ -243,7 +243,7 @@ public class HoverOverFolder extends PrefGroupMailByMessageTest {
 		//-- GUI
 		
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Hover over the folder
 		TooltipFolder tooltip = (TooltipFolder)app.zTreeMail.zTreeItem(Action.A_HOVEROVER, subfolder);

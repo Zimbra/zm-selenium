@@ -57,7 +57,7 @@ public class DeleteFolder extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(subfolder, "Verify the subfolder is available");
 
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Delete the folder using context menu
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_DELETE, subfolder);
@@ -91,7 +91,7 @@ public class DeleteFolder extends PrefGroupMailByMessageTest {
 	   ZAssert.assertNotNull(subfolder1, "Verify the subfolder is available");
 
 	   // Click on Get Mail to refresh the folder list
-	   app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+	   app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 	   // Delete the folder using context menu
 	   app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_DELETE, subfolder1);
@@ -108,7 +108,7 @@ public class DeleteFolder extends PrefGroupMailByMessageTest {
       ZAssert.assertNotNull(subfolder2, "Verify the subfolder is available");
 
       // Click on Get Mail to refresh the folder list
-      app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+      app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
       // Delete the folder using context menu
       app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_DELETE, subfolder2);

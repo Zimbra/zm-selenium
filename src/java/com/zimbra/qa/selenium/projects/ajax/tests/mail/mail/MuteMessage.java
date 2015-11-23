@@ -64,8 +64,8 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 		
 		
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -112,8 +112,8 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 		
 		
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 		
 		// Click Mute
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_MUTE, mail.dSubject);

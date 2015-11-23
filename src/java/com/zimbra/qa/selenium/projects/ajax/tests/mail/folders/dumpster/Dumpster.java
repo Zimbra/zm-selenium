@@ -93,7 +93,7 @@ public class Dumpster extends PrefGroupMailByMessageTest {
 		
 
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		
 		// Right click on Trash, select "Recover Deleted Items"

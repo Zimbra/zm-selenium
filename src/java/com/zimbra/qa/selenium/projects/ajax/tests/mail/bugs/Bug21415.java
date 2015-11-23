@@ -17,11 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.bugs;
 
 import java.io.File;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
-import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -31,20 +28,10 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 
-
 public class Bug21415 extends PrefGroupMailByMessageTest {
 
-
-	
 	public Bug21415() {
 		logger.info("New "+ Bug21415.class.getCanonicalName());
-
-		
-		
-
-		
-		
-
 
 	}
 
@@ -52,19 +39,18 @@ public class Bug21415 extends PrefGroupMailByMessageTest {
 			groups = { "functional" })
 	public void Test21415_01() throws HarnessException {
 
-		String subject1 = "subject12998858731253";
+		String subject = "subject12998858731253";
 		String beginningContent = "Uso Interno";
 		String endingContent = "Esta mensagem";
 
 		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug21415";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
-
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message so that it shows in the reading pane
-		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject1);
+		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		// Get the body
 		String body = display.zGetMailProperty(Field.Body);
@@ -80,7 +66,7 @@ public class Bug21415 extends PrefGroupMailByMessageTest {
 			groups = { "functional" })
 	public void Test21415_02() throws HarnessException {
 
-		String subject1 = "subject12998912514374";
+		String subject = "subject12998912514374";
 		String beginningContent = "Change 77406";
 		String endingContent = "SkinResources.java";
 
@@ -88,11 +74,11 @@ public class Bug21415 extends PrefGroupMailByMessageTest {
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message so that it shows in the reading pane
-		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject1);
+		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		// Get the body
 		String body = display.zGetMailProperty(Field.Body);

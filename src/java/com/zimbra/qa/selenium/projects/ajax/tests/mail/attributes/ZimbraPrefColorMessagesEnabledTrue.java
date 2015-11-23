@@ -17,17 +17,11 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attributes;
 
 import java.util.*;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.*;
-import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-
-
-
 
 public class ZimbraPrefColorMessagesEnabledTrue extends PrefGroupMailByMessageTest {
 
@@ -77,8 +71,8 @@ public class ZimbraPrefColorMessagesEnabledTrue extends PrefGroupMailByMessageTe
 
 		//-- GUI
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		
 		
@@ -159,8 +153,8 @@ public class ZimbraPrefColorMessagesEnabledTrue extends PrefGroupMailByMessageTe
 
 		//-- GUI
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		
 		

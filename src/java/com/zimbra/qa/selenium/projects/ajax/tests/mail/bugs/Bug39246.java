@@ -49,7 +49,7 @@ public class Bug39246 extends PrefGroupMailByMessageTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
 
 		// Get Mail
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zVerifyMailExists(subject);
 		
 		// Select the message
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

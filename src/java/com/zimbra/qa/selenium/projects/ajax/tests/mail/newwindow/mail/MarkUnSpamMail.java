@@ -51,20 +51,20 @@ public class MarkUnSpamMail extends PrefGroupMailByMessageTest {
 				"<AddMsgRequest xmlns='urn:zimbraMail'>" +
             		"<m l='"+ junk.getId() +"'>" +
                 		"<content>From: foo@foo.com\n" +
-"To: foo@foo.com \n" +
-"Subject: "+ subject +"\n" +
-"MIME-Version: 1.0 \n" +
-"Content-Type: text/plain; charset=utf-8 \n" +
-"Content-Transfer-Encoding: 7bit\n" +
-"\n" +
-"simple text string in the body\n" +
-"</content>" +
+							"To: foo@foo.com \n" +
+							"Subject: "+ subject +"\n" +
+							"MIME-Version: 1.0 \n" +
+							"Content-Type: text/plain; charset=utf-8 \n" +
+							"Content-Transfer-Encoding: 7bit\n" +
+							"\n" +
+							"simple text string in the body\n" +
+							"</content>" +
                 	"</m>" +
             	"</AddMsgRequest>");
 		
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		// Go to the Junk folder
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, junk);

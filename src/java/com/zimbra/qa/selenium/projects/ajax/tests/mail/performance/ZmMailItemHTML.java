@@ -57,8 +57,8 @@ public class ZmMailItemHTML extends AjaxCommonTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
 
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailItem, "Load preview pane, html message, initial load");
 
@@ -79,8 +79,8 @@ public class ZmMailItemHTML extends AjaxCommonTest {
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailItem, "Load preview pane, html message, 1 message");
 

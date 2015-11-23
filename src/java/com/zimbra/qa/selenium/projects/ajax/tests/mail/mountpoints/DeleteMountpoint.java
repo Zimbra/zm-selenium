@@ -82,8 +82,8 @@ public class DeleteMountpoint extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(mountpoint, "Verify the subfolder is available");
 
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Verify the mountpoint exists
 		List<FolderItem> folders = app.zTreeMail.zListGetFolders();

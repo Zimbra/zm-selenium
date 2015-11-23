@@ -56,7 +56,7 @@ public class ZimbraPrefMailPollingIntervalAsMailArrives extends PrefGroupMailByM
 		//-- GUI
 		
 		// Refresh the client to sync up
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Send a new message
 		ZimbraAccount.AccountA().soapSend(

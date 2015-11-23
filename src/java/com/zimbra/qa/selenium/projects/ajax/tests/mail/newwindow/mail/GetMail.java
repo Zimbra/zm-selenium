@@ -69,8 +69,8 @@ public class GetMail extends PrefGroupMailByMessageTest {
 				"</SendMsgRequest>");
 		
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -120,8 +120,8 @@ public class GetMail extends PrefGroupMailByMessageTest {
 				"</SendMsgRequest>");
 		
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -197,8 +197,8 @@ public class GetMail extends PrefGroupMailByMessageTest {
 		
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -257,8 +257,8 @@ public class GetMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(sender, mail.dSenderRecipient.dEmailAddress, "Verify the sender matches");
 
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -316,8 +316,8 @@ public class GetMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(from, mail.dFromRecipient.dEmailAddress, "Verify the from matches");
 		ZAssert.assertEquals(replyto, mail.dReplyToRecipient.dEmailAddress, "Verify the Reply-To matches");
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 		
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -372,8 +372,8 @@ public class GetMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(mail, "Verify message is received");
 		ZAssert.assertEquals(resentfrom, mail.dRedirectedFromRecipient.dEmailAddress, "Verify the Resent-From matches");
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

@@ -92,8 +92,8 @@ public class GroupBySize extends PrefGroupMailByMessageTest {
 		//-- GUI
 		
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Right click on Subject header area -> Group By -> From
 		// Since this appears to be a very specific action, don't make a

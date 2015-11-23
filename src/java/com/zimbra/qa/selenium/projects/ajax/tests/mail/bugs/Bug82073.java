@@ -17,10 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.bugs;
 
 import java.io.*;
-import java.util.*;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -33,7 +30,6 @@ public class Bug82073 extends PrefGroupMailByMessageTest {
 
 	public Bug82073() {
 		logger.info("New " + Bug82073.class.getCanonicalName());
-
 		
 	}
 
@@ -48,9 +44,6 @@ public class Bug82073 extends PrefGroupMailByMessageTest {
 		String subject = ZimbraSeleniumProperties.getUniqueString() + " & " + ZimbraSeleniumProperties.getUniqueString();
 		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
 
-		
-		
-		
 		//-- GUI
 		
 		// Open the new mail form
@@ -64,7 +57,6 @@ public class Bug82073 extends PrefGroupMailByMessageTest {
 		
 		// Send the message
 		mailform.zSubmit();
-		
 		
 		//-- VERIFIFICATION
 		
@@ -87,32 +79,9 @@ public class Bug82073 extends PrefGroupMailByMessageTest {
 		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug82073/mime1.txt";
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
-
-		
 		//-- GUI
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zVerifyMailExists(subject);
 
-		// Get all the messages in the inbox
-		List<MailItem> messages = app.zPageMail.zListGetMessages();
-		ZAssert.assertNotNull(messages, "Verify the message list exists");
-
-		
-		
-		//-- VERIFIFICATION
-		
-		// Make sure the message appears in the list
-		MailItem found = null;
-		for (MailItem m : messages) {
-			logger.info("Subject: looking for "+ subject +" found: "+ m.gSubject);
-			if ( subject.equals(m.gSubject) ) {
-				found = m;
-				break;
-			}
-		}
-		ZAssert.assertNotNull(found, "Verify the message is in the inbox (without the &amp;)");
-		
 	}
 
 

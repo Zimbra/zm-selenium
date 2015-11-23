@@ -69,7 +69,7 @@ public class ExpandDL extends PrefGroupMailByMessageTest {
 		//-- GUI
 		
 		// Refresh to get the new message
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -132,7 +132,7 @@ public class ExpandDL extends PrefGroupMailByMessageTest {
 		//-- GUI
 		
 		// Refresh to get the new message
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

@@ -57,7 +57,7 @@ public class ChangeColorFolder extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(subfolder1, "Verify the subfolder is available");
 
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Rename the folder using context menu
 		DialogEditFolder dialog = (DialogEditFolder) app.zTreeMail.zTreeItem(

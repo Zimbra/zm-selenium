@@ -57,8 +57,8 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(
 				mimeFile));
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -81,8 +81,8 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		app.zPageLogin.zNavigateTo();
 		this.startingPage.zNavigateTo();
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Click in sent
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Sent));

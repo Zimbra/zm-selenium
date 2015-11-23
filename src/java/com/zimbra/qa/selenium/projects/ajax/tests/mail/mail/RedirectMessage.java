@@ -65,8 +65,8 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 		
 		
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -117,8 +117,8 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 		
 		
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 		
 		// Click redirect
 		DialogRedirect dialog = (DialogRedirect)app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_REDIRECT, mail.dSubject);

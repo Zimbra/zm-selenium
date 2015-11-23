@@ -101,8 +101,8 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		//-- GUI
 
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK,inbox);
 		
 		// Select all
@@ -172,12 +172,9 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		//-- GUI
 
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 		
-		app.zPageMail.zRefresh();
-		
-		SleepUtil.sleepMedium();
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK,inbox);
 		
 		// Select all

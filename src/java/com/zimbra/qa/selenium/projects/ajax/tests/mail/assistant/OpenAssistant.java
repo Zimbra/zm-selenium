@@ -39,8 +39,8 @@ public class OpenAssistant extends PrefGroupMailByMessageTest {
 			groups = { "deprecated" })
 	public void OpenAssistant_01() throws HarnessException {
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		DialogAssistant assistant = (DialogAssistant)app.zPageMail.zKeyboardShortcut(Shortcut.S_ASSISTANT);
 		assistant.zClickButton(Button.B_CANCEL);

@@ -83,7 +83,7 @@ public class EditShare extends PrefGroupMailByMessageTest {
 		
 
 		//Need to do Refresh by clicking on getmail button to see folder in the list 
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 
 		//Edit

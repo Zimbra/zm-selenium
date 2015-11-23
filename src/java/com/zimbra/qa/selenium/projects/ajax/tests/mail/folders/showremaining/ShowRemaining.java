@@ -66,7 +66,7 @@ public class ShowRemaining extends PrefGroupMailByMessageTest {
 		
 		
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on the "Show Remaining"
 		app.zTreeMail.zPressButton(Button.B_TREE_SHOW_REMAINING_FOLDERS);

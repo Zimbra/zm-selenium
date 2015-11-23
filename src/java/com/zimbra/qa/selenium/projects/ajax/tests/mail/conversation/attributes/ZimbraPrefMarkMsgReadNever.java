@@ -69,8 +69,8 @@ public class ZimbraPrefMarkMsgReadNever extends PrefGroupMailByConversationTest 
 		//-- GUI
 		
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -101,14 +101,10 @@ public class ZimbraPrefMarkMsgReadNever extends PrefGroupMailByConversationTest 
 
 		//-- DATA
 		
-		
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
 
-		
-		//-- GUI
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());

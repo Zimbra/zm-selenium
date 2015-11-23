@@ -56,8 +56,8 @@ public class ZmMailAppFwdCompose extends AjaxCommonTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
 
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailAppCompose, "Load Forward-Compose window for simple conversation");
 
@@ -82,8 +82,8 @@ public class ZmMailAppFwdCompose extends AjaxCommonTest {
 
 
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailAppCompose, "Load Forward-Compose window for large conversation");
 		

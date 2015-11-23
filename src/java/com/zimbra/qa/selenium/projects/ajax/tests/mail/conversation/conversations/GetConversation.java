@@ -17,11 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversations;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.MailItem;
-import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByConversationTest;
 
@@ -54,8 +51,8 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 						"</m>" +
 					"</SendMsgRequest>");
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		// Get the list of messages
 		List<MailItem> conversations = app.zPageMail.zListGetMessages();

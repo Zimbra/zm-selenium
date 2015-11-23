@@ -60,8 +60,8 @@ public class EditAsNewMessage extends PrefGroupMailByMessageTest {
 		
 		
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -108,8 +108,8 @@ public class EditAsNewMessage extends PrefGroupMailByMessageTest {
 		
 		
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 		
 		// Click redirect
 		FormMailNew form = (FormMailNew)app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT_AS_NEW, mail.dSubject);

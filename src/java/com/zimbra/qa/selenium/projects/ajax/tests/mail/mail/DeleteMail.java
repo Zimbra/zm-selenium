@@ -62,8 +62,8 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -106,8 +106,8 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_MAIL_CHECKBOX, mail.dSubject);
@@ -159,8 +159,8 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -205,8 +205,8 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -277,8 +277,8 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		MailItem mail2 = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject2 +")");
 		MailItem mail3 = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject3 +")");
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 				
 		// Select all three items
 		app.zPageMail.zListItem(Action.A_MAIL_CHECKBOX, mail1.dSubject);
@@ -334,8 +334,8 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		// Right click the item, select delete
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, mail.dSubject);
@@ -381,8 +381,8 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -453,8 +453,8 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		MailItem mail2 = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject2 +")");
 		MailItem mail3 = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject3 +")");
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 				
 		// Select all three items
 		app.zPageMail.zListItem(Action.A_MAIL_CHECKBOX, mail1.dSubject);
@@ -530,8 +530,8 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		try {
 			
 		
-			// Click Get Mail button
-			app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+			// Refresh current view
+			app.zPageMail.zVerifyMailExists(subject);
 					
 			// Select the trash
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, trash);
@@ -639,8 +639,8 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		
 		try {
 			
-			// Click Get Mail button
-			app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+			// Refresh current view
+			app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 					
 			// Select the trash
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, trash);
@@ -729,8 +729,8 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		
 		try {
 			
-			// Click Get Mail button
-			app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+			// Refresh current view
+			app.zPageMail.zVerifyMailExists(subject);
 					
 			// Click in Drafts
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, drafts);

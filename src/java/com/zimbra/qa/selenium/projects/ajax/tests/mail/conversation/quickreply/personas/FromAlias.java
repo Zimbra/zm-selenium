@@ -100,8 +100,8 @@ public class FromAlias extends PrefGroupMailByConversationTest {
 		app.zPageLogin.zNavigateTo();
 		this.startingPage.zNavigateTo();
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 		
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

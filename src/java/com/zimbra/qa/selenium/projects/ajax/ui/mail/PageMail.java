@@ -26,6 +26,7 @@ import org.openqa.selenium.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
@@ -242,6 +243,37 @@ public class PageMail extends AbsTab {
 
 		logger.info("Navigated to "+ this.myPageName() + " page");
 
+	}
+	
+	public boolean zVerifyMailExists (String subject) throws HarnessException {
+		
+		Stafpostqueue sp = new Stafpostqueue();
+		sp.waitForPostqueue();
+		
+		boolean found = false;
+		
+		for (int i=1; i<=3; i++) {
+			zToolbarPressButton(Button.B_REFRESH);
+			SleepUtil.sleepMedium();
+			List<MailItem> items = zListGetMessages();
+			for (MailItem item : items ) {
+				if ( subject.equals(item.getSubject()) ) {
+					found = true;
+					break;
+				} else {
+					zToolbarPressButton(Button.B_REFRESH);
+					SleepUtil.sleepLong();
+				}
+				SleepUtil.sleepSmall();
+			}
+			if (found = true) {
+				ZAssert.assertTrue(found, "Verify mail gets displayed in current view");
+				break;
+			}
+		}
+		
+		return found;
+		
 	}
 
 	@Override

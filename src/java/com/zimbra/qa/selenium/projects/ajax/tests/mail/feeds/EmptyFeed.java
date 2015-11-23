@@ -57,7 +57,7 @@ public class EmptyFeed extends PrefGroupMailByMessageTest {
 
 		
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		
 		// Right click on folder, select "Mark all as read"

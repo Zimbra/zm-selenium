@@ -85,7 +85,7 @@ public class ZimbraPrefIncludeTrashInSearchFalse extends PrefGroupMailByMessageT
 		//-- GUI Actions
 		
 		
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Search for the query
 		app.zPageSearch.zAddSearchQuery(query);

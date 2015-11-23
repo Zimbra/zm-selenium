@@ -81,8 +81,8 @@ public class ChangeColorMountpoint extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(mountpoint, "Verify the subfolder is available");
 
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Rename the folder using context menu
 		DialogEditFolder dialog = 

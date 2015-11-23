@@ -53,10 +53,6 @@ public class DragAndDropMessage extends PrefGroupMailByMessageTest {
 						"<folder name='" + foldername +"' l='"+ inbox.getId() +"'/>" +
 					"</CreateFolderRequest>");
 		
-		// Click Get Mail button to view folder in list		
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
-		
-		
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 
 		// Send a message to the account
@@ -72,15 +68,12 @@ public class DragAndDropMessage extends PrefGroupMailByMessageTest {
 					"</SendMsgRequest>");
 		
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
 
 		// Get the mail item for the new message
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
-
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 				
 		// Expand the Inbox folder to see the subfolder?
 		
@@ -89,8 +82,6 @@ public class DragAndDropMessage extends PrefGroupMailByMessageTest {
 					"css=span[id$='"+ mail.getId() +"__su']", // <td id="zlif__TV__12345__su" .../>
 					"css=div[id='zti__main_Mail__"+ subfolder.getId() +"']"); // <div id="zti__main_Mail__67890" .../>
 		
-		
-
 		// Get the message, make sure it is in the correct folder
 		app.zGetActiveAccount().soapSend(
 				"<GetMsgRequest xmlns='urn:zimbraMail'>" +

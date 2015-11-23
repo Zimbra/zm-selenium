@@ -52,7 +52,7 @@ public class RenameTag extends PrefGroupMailByMessageTest {
 		
 		
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Rename the tag using the context menu
 		DialogRenameTag dialog = (DialogRenameTag) app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_RENAME, tag);

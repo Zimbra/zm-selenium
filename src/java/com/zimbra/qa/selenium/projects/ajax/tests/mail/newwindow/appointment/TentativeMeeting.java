@@ -116,49 +116,46 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invitation as Tentative ------------------------------------
 
 		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zVerifyMailExists(apptSubject);
 		
-		// Select the invitation
-
-				app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 
-				SeparateWindowDisplayMail window = null;
+		SeparateWindowDisplayMail window = null;
 
-				try {
+		try {
 
-					// Choose Actions -> Launch in Window
-					window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
+			// Choose Actions -> Launch in Window
+			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-					window.zSetWindowTitle(apptSubject);
-					window.zWaitForActive();		// Make sure the window is there
+			window.zSetWindowTitle(apptSubject);
+			window.zWaitForActive();		// Make sure the window is there
 
-					ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
-					// Click Accept
-					window.zPressButton(Button.B_TENTATIVE);
+			// Click Accept
+			window.zPressButton(Button.B_TENTATIVE);
 
-					// The dialog will send a message, so wait for delivery
-					Stafpostqueue sp = new Stafpostqueue();
-					sp.waitForPostqueue();
+			// The dialog will send a message, so wait for delivery
+			Stafpostqueue sp = new Stafpostqueue();
+			sp.waitForPostqueue();
 
-				} finally {
+		} finally {
 
-					// Make sure to close the window
-					if ( window != null ) {
-						window.zCloseWindow();
-						window = null;
-					}
+			// Make sure to close the window
+			if ( window != null ) {
+				window.zCloseWindow();
+				window = null;
+			}
 
-				}
+		}
 
 
 		// Select the invitation
-	//	DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
+		//	DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		// Click Tentative
-	//	display.zPressButton(Button.B_TENTATIVE);
-
+		//	display.zPressButton(Button.B_TENTATIVE);
 
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
@@ -231,7 +228,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invitation as tentative -----------------------------------
 
 		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
@@ -329,7 +326,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invitation as tentative -----------------------------------
 
 		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zVerifyMailExists(apptSubject);
 		
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
@@ -464,7 +461,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invitation as tentative -----------------------------------
 
 		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 

@@ -73,11 +73,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		Element[] nodes = account.soapSelectNodes("//mail:mp[@cd='attachment']");
 		ZAssert.assertGreaterThan(nodes.length, 0, "Verify the message has the attachment");
 
-
-		// -- GUI actions
-		
-		// Click to Refresh button
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -129,7 +125,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		
 		// Inject the message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -203,7 +199,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		
 		// Inject the message
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(mimeFile));
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		app.zPageMail.zVerifyMailExists(apptSubject);
 		SleepUtil.sleepMedium();
 
 		// Select the message so that it shows in the reading pane
@@ -284,7 +280,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		
 		// Inject the message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		app.zPageMail.zVerifyMailExists(apptSubject);
 		SleepUtil.sleepMedium();
 
 		// Select the message so that it shows in the reading pane
@@ -326,7 +322,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test(description = "Bug 77131 - Cannot 'add to calendar' an ics into a shared calendar",
-			groups = { "zfunctional" })
+			groups = { "functional" })
 			
 	public void AddToCalendar_SharedCalendar_01() throws HarnessException {
 		
@@ -386,7 +382,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		ZAssert.assertGreaterThan(nodes.length, 0, "Verify the message has the attachment");
 
 		// Select the message so that it shows in the reading pane
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);		
+		app.zPageMail.zVerifyMailExists(apptSubject);
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		AttachmentItem item = null;
@@ -435,7 +431,8 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		
 		// Inject the message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

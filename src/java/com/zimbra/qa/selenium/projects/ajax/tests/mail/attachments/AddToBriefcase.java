@@ -71,11 +71,7 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 		Element[] nodes = account.soapSelectNodes("//mail:mp[@cd='attachment']");
 		ZAssert.assertGreaterThan(nodes.length, 0, "Verify the message has the attachment");
 
-
-		// -- GUI actions
-		
-		// Click to Refresh button
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -140,11 +136,7 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
  		Element[] nodes = account.soapSelectNodes("//mail:mp[@cd='attachment']");
  		ZAssert.assertGreaterThan(nodes.length, 0, "Verify the message has the attachment");
 
-
- 		// -- GUI actions
-	 		
- 		// Click to Refresh button
- 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+ 		app.zPageMail.zVerifyMailExists(subject);
 
  		// Select the message so that it shows in the reading pane
  		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

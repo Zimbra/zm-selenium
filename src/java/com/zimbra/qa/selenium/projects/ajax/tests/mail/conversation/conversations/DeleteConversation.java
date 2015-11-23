@@ -50,8 +50,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		
 
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(c.getSubject());
 		
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
@@ -86,8 +86,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 
 		
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(c.getSubject());
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_MAIL_CHECKBOX, c.getSubject());
@@ -130,8 +130,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		
 		
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(c.getSubject());
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
@@ -166,8 +166,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		
 		
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(c.getSubject());
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
@@ -205,8 +205,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		
 		
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 				
 		// Select all three items
 		app.zPageMail.zListItem(Action.A_MAIL_CHECKBOX, c1.getSubject());
@@ -251,8 +251,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		
 		
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(c.getSubject());
 				
 		// Right click the item, select delete
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, c.getSubject());
@@ -285,8 +285,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		
 		
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(c.getSubject());
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
@@ -324,8 +324,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		
 		
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 				
 		// Select all three items
 		app.zPageMail.zListItem(Action.A_MAIL_CHECKBOX, c1.getSubject());
@@ -418,8 +418,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		
 		//-- GUI
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(c.getSubject());
 				
 		// Right click the item, select delete
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, c.getSubject());
@@ -489,8 +489,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		
 		//-- GUI
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 		
 		try {
 				
@@ -565,8 +565,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		
 		//-- GUI
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		// Select the item (this should refresh)
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -638,13 +638,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 				"</SendMsgRequest>");
 		MailItem message = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "in:sent subject:("+ subject +")");
 
-
-		
-		//-- GUI
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
-				
 		// Send another message to the conversation
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -656,6 +649,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
+
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Right click the item, select delete (this should not refresh)
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, subject);
@@ -730,8 +725,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		
 		//-- GUI
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 				
 		// Select the item (this should refresh)
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -822,15 +817,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 				"</SendMsgRequest>");
 		
 
-
-
-
-		
-		//-- GUI
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
-				
 		// Send another message to the conversation
 		// AccountA replies to the message.
 		ZimbraAccount.AccountA().soapSend(
@@ -843,6 +829,9 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
+
+
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Right click the item, select delete (this should not refresh)
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, subject);
