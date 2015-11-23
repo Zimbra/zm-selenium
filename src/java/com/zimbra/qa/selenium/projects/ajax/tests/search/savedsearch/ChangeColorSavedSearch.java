@@ -65,7 +65,7 @@ public class ChangeColorSavedSearch extends PrefGroupMailByMessageTest {
 		
 		
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Right click on the search, select edit
 		// TODO: can the folder rename dialog be reused?  Or, do we need DialogRenameSavedSearchFolder class?

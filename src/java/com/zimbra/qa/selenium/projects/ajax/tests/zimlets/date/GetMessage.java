@@ -29,9 +29,7 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 
-
 public class GetMessage extends AjaxCommonTest {
-
 	
 	@SuppressWarnings("serial")
 	public GetMessage() {
@@ -44,8 +42,6 @@ public class GetMessage extends AjaxCommonTest {
 		super.startingAccountPreferences = new HashMap<String, String>() {{
 		    put("zimbraPrefGroupMailBy", "message");
 		}};
-
-
 
 	}
 	
@@ -70,8 +66,8 @@ public class GetMessage extends AjaxCommonTest {
 						"</m>" +
 					"</SendMsgRequest>");
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Get all the messages in the inbox
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -81,15 +77,6 @@ public class GetMessage extends AjaxCommonTest {
 		
 		// Get the HTML of the body
 		HtmlElement bodyElement = display.zGetMailPropertyAsHtml(Field.Body);
-		
-		// Verify that the phone zimlet has been applied
-		//
-		// <span id="OBJ_PREFIX_DWT36_com_zimbra_date" class="Object">
-		//  <span id="OBJ_PREFIX_DWT37_com_zimbra_date" class="Object">
-		//    12/25/2014
-		//  </span>
-		// </span>
-		//
 		HtmlElement.evaluate(bodyElement, "//span//span", "id", Pattern.compile(".*_com_zimbra_date"), 1);
 		HtmlElement.evaluate(bodyElement, "//span//span", null, date, 1);
 
@@ -118,8 +105,8 @@ public class GetMessage extends AjaxCommonTest {
 						"</m>" +
 					"</SendMsgRequest>");
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Get all the messages in the inbox
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -148,8 +135,8 @@ public class GetMessage extends AjaxCommonTest {
 		// Inject the example message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Get all the messages in the inbox
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -186,8 +173,8 @@ public class GetMessage extends AjaxCommonTest {
 		// Inject the example message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Get all the messages in the inbox
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -215,18 +202,18 @@ public class GetMessage extends AjaxCommonTest {
 		
 		// Send the message from AccountA to the ZWC user
 		ZimbraAccount.AccountA().soapSend(
-					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-						"<m>" +
-							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-							"<su>"+ subject +"</su>" +
-							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
-							"</mp>" +
-						"</m>" +
-					"</SendMsgRequest>");
+			"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+				"<m>" +
+					"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+					"<su>"+ subject +"</su>" +
+					"<mp ct='text/plain'>" +
+						"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+					"</mp>" +
+				"</m>" +
+			"</SendMsgRequest>");
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Get all the messages in the inbox
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -239,7 +226,6 @@ public class GetMessage extends AjaxCommonTest {
 		
 		ZAssert.assertTrue(display.sIsElementPresent(locator), "Verify the date zimlet applies to the subject");
 		ZAssert.assertEquals(display.sGetText(locator), date, "Verify the date zimlet highlights the date");
-		
 
 	}
 
@@ -302,8 +288,8 @@ format7.rule = now week={weekord},{dayname}
 						"</m>" +
 					"</SendMsgRequest>");
 
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Get all the messages in the inbox
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -314,18 +300,6 @@ format7.rule = now week={weekord},{dayname}
 		// Get the HTML of the body
 		HtmlElement bodyElement = display.zGetMailPropertyAsHtml(Field.Body);
 		
-		// Verify that the phone zimlet has been applied
-		//
-		//	<span id="OBJ_PREFIX_DWT47_com_zimbra_date" class="Object">
-		//		<span id="OBJ_PREFIX_DWT52_com_zimbra_date" class="Object">last night</span>
-		//	</span>
-		//	<br style="" />
-		//
-		//	<span id="OBJ_PREFIX_DWT48_com_zimbra_date" class="Object">
-		//		<span id="OBJ_PREFIX_DWT53_com_zimbra_date" class="Object">this morning</span>
-		//	</span>
-		//	<br style="" />
-		//
 		for (String value : values) {
 
 			HtmlElement.evaluate(bodyElement, "//span//span", null, value, 1);

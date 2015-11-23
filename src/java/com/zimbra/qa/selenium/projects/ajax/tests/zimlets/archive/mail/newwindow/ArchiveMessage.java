@@ -24,27 +24,17 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.tests.zimlets.archive.mail.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 
-
 public class ArchiveMessage extends ArchiveZimletByMessageTest {
 
-	
 	public ArchiveMessage() {
 		logger.info("New "+ ArchiveMessage.class.getCanonicalName());
-		
-
-
 	}
 	
-	// See https://bugzilla.zimbra.com/show_bug.cgi?id=79929
-	// Archive button removed from new window
+	// See https://bugzilla.zimbra.com/show_bug.cgi?id=79929 (Archive button removed from new window)
+	
 	@Test(	description = "Archive a message",
 			groups = { "deprecated" })
 	public void ArchiveMessage_01() throws HarnessException {
-		
-		
-		
-		//-- DATA setup
-		
 		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
@@ -66,15 +56,8 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
             	+		"</m>"
 				+	"</AddMsgRequest>");
 
-
-
-
-		
-		//-- GUI steps
-		
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -93,10 +76,6 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 			
 			window.zToolbarPressButton(Button.B_ARCHIVE);
 			
-			// See http://bugzilla.zimbra.com/show_bug.cgi?id=79929
-			// Does the separate window close automatically after clicking Archive?
-			// Or, does it stay open?
-			// Need to update test steps if the behavior changes
 			if ( window.zIsActive() ) {
 				window.zCloseWindow();
 			}
@@ -111,10 +90,6 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 			}
 			
 		}
-
-
-
-		//-- VERIFICATION
 		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(message, "Verify the archived message still exists in the mailbox");
@@ -126,11 +101,6 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 	@Test(	description = "Verify the 'archive' button is not present in separate window",
 			groups = { "functional" })
 	public void ArchiveMessage_02() throws HarnessException {
-		
-		
-		
-		//-- DATA setup
-		
 		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
@@ -151,16 +121,9 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
             	+			"</content>"
             	+		"</m>"
 				+	"</AddMsgRequest>");
-
-
-
-
 		
-		//-- GUI steps
-		
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -168,8 +131,6 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 		SeparateWindowDisplayMail window = null;
 		
 		try {
-			
-			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(subject);
@@ -177,9 +138,6 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
-			//-- VERIFICATION
-			
-			// Verify the 'archive' button is not present
 			String locator = "css=div[id^='ztb__MSG'] div[id*='ARCHIVE'] td[id$='_title']";
 			boolean present = window.sIsElementPresent(locator);
 			
@@ -194,13 +152,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 			}
 			
 		}
-
-
-
-
+		
 	}
-
-
-
 
 }

@@ -64,10 +64,8 @@ public class ViewMessage extends AjaxCommonTest {
 						"</m>" +
 					"</SendMsgRequest>");
 
-		//-- GUI
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Remember to close the search view
 		try {

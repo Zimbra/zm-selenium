@@ -39,7 +39,6 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 			groups = { "functional" })
 	public void HoverOverMessageBody_01() throws HarnessException {
 
-		//-- DATA Setup
 		final String email = "email" + ZimbraSeleniumProperties.getUniqueString() + "@foo.com";
 		final String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 
@@ -69,14 +68,8 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
         	+		"</m>"
 			+	"</AddMsgRequest>");
 
-
-		
-		
-		//-- GUI Actions
-		
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -85,25 +78,17 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 		String locator = "css=span[id$='_ZmEmailObjectHandler']:contains("+ email +")";
 		app.zPageMail.sMouseOver(locator, (WebElement[]) null);
 		
-		
-		
-		//-- VERIFICATION
-		
-		
 		// Verify the contact tool tip opens
 		TooltipContact tooltip = new TooltipContact(app);
 		tooltip.zWaitForActive();
 		
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
 		
-		
 	}
 	
 	@Test(	description = "Hover over a GAL contact in a message body",
 			groups = { "functional" })
 	public void HoverOverMessageBody_02() throws HarnessException {
-
-		//-- DATA Setup
 		
 		// Create a contact in the GAL
 		ZimbraAccount contactGAL = (new ZimbraAccount()).provision().authenticate();
@@ -127,14 +112,8 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
         	+		"</m>"
 			+	"</AddMsgRequest>");
 
-
-		
-		
-		//-- GUI Actions
-		
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -142,11 +121,6 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 		// Hover over the email address
 		String locator = "css=span[id$='_ZmEmailObjectHandler']:contains("+ contactGAL.EmailAddress +")";
 		app.zPageMail.sMouseOver(locator, (WebElement[]) null);
-		
-		
-		
-		//-- VERIFICATION
-		
 		
 		// Verify the contact tool tip opens
 		TooltipContact tooltip = new TooltipContact(app);
@@ -160,8 +134,6 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 	@Test(	description = "Hover over a contact group in a message body",
 			groups = { "functional" })
 	public void HoverOverMessageBody_03() throws HarnessException {
-
-		//-- DATA Setup
 
 		String groupName = "group" + ZimbraSeleniumProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
@@ -194,25 +166,14 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
         	+		"</m>"
 			+	"</AddMsgRequest>");
 
-
-		
-		
-		//-- GUI Actions
-		
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Hover over the email address
 		String locator = "css=span[id$='_com_zimbra_email']:contains("+ groupName +")";
-		
-		
-		
-		//-- VERIFICATION
-		
 		
 		// Verify the contact group is not converted to the email zimlet link
 		boolean present = app.zPageMail.sIsElementPresent(locator);
@@ -225,7 +186,6 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 			groups = { "functional" })
 	public void HoverOverMessageBody_04() throws HarnessException {
 
-		//-- DATA Setup
 		final String email = "email" + ZimbraSeleniumProperties.getUniqueString() + "@foo.com";
 		final String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 
@@ -246,14 +206,8 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
         	+		"</m>"
 			+	"</AddMsgRequest>");
 
-
-		
-		
-		//-- GUI Actions
-		
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -262,19 +216,12 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 		String locator = "css=span[id$='_ZmEmailObjectHandler']:contains("+ email +")";
 		app.zPageMail.sMouseOver(locator, (WebElement[]) null);
 		
-		
-		
-		//-- VERIFICATION
-		
-		
 		// Verify the contact tool tip opens
 		TooltipContact tooltip = new TooltipContact(app);
 		tooltip.zWaitForActive();
 		
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
 		
-		
 	}
-
 
 }

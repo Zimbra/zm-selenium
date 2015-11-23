@@ -22,25 +22,15 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 
-
 public class ArchiveMessage extends ArchiveZimletByMessageTest {
 
-	
 	public ArchiveMessage() {
 		logger.info("New "+ ArchiveMessage.class.getCanonicalName());
-		
-
-
 	}
 	
 	@Test(	description = "Archive a message",
 			groups = { "smoke" })
 	public void ArchiveMessage_01() throws HarnessException {
-		
-		
-		
-		//-- DATA setup
-		
 		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
@@ -61,14 +51,9 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
             	+			"</content>"
             	+		"</m>"
 				+	"</AddMsgRequest>");
-
 		
-
-		
-		//-- GUI steps
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -82,10 +67,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(message, "Verify the archived message still exists in the mailbox");
 		ZAssert.assertEquals(message.dFolderId, this.MyArchiveFolder.getId(), "Verify the archived message is moved to the archive folder");
-		
 
 	}
-
-
 
 }

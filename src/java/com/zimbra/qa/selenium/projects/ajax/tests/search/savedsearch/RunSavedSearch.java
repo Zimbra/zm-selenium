@@ -80,7 +80,7 @@ public class RunSavedSearch extends AjaxCommonTest  {
 					"</m>" +
 				"</SendMsgRequest>");
 		
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Create the saved search
 		app.zGetActiveAccount().soapSend(
@@ -92,7 +92,7 @@ public class RunSavedSearch extends AjaxCommonTest  {
 		SavedSearchFolderItem item = SavedSearchFolderItem.importFromSOAP(app.zGetActiveAccount(), name);
 		
 		// Refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Left click on the search
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, item);

@@ -61,7 +61,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		//-- GUI
 		
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Remember to close the search view
 		try {
@@ -133,7 +133,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		//-- GUI
 		
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Remember to close the search view
 		try {
@@ -201,7 +201,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		//-- GUI
 		
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Remember to close the search view
 		try {

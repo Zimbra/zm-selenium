@@ -17,12 +17,9 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.phone;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
-import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -31,7 +28,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
-
 
 public class DisableZimlet extends AjaxCommonTest {
 
@@ -75,8 +71,8 @@ public class DisableZimlet extends AjaxCommonTest {
       // Get all the SOAP data for later verification
       MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
-      // Click Get Mail button
-      app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+      // Refresh current view
+   	  app.zPageMail.zVerifyMailExists(subject);
 
       // Select the message so that it shows in the reading pane
       DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -130,8 +126,8 @@ public class DisableZimlet extends AjaxCommonTest {
 
       MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
-      // Click Get Mail button
-      app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+      // Refresh current view
+   	  app.zPageMail.zVerifyMailExists(subject);
 
       // Select the message so that it shows in the reading pane
       DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);

@@ -28,7 +28,6 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.TreeMail.*;
 
-
 public class FolderTree extends AjaxCommonTest {
 
 	public FolderTree() {
@@ -45,27 +44,13 @@ public class FolderTree extends AjaxCommonTest {
 			groups = { "deprecated" })
 	public void FolderTree_01() throws HarnessException {
 		
-		
-		//-- DATA
-		
 		ZimletItem linkedin = CoreZimletItem.getCoreZimlet(CoreZimletName.com_zimbra_linkedinimage, app);
-		
-		
-		
-		
-		
-		//-- GUI
-		
 		
 		// Expand the zimlets section
 		app.zTreeMail.zSectionAction(FolderSectionAction.Expand, FolderSection.Zimlets);
 		
 		// Get the list of zimlets
 		List<ZimletItem> zimlets = app.zTreeMail.zListGetZimlets();
-		
-		
-		//-- VERIFICATION
-		
 		
 		// Find out if LinkedIn is listed
 		ZimletItem found = null;

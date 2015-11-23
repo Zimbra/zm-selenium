@@ -17,18 +17,14 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.search.tags;
 
 import java.util.*;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-
 public class SelectTag extends PrefGroupMailByMessageTest {
-
 	
 	public SelectTag() {
 		logger.info("New "+ SelectTag.class.getCanonicalName());
@@ -38,20 +34,16 @@ public class SelectTag extends PrefGroupMailByMessageTest {
 
 		// Make sure we are using an account with message view
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 3685575017990609879L;
+		private static final long serialVersionUID = 3685575017990609879L;
 		{
-				    put("zimbraPrefGroupMailBy", "message");
-				}};
-
+			put("zimbraPrefGroupMailBy", "message");
+		}};
 
 	}
 	
 	@Test(	description = "Left click on tag - verify tagged messages are shown",
 			groups = { "functional" })
 	public void SelectTag_01() throws HarnessException {
-		
-		
-		//-- DATA
 		
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		String subject1 = "tagged" + ZimbraSeleniumProperties.getUniqueString();
@@ -91,20 +83,11 @@ public class SelectTag extends PrefGroupMailByMessageTest {
 						"</content>" +
 					"</m>" + "</AddMsgRequest>");
 
-		
-		
-		//-- GUI
-		
-
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on the tag from the tree
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, tag);
-		
-
-		
-		
 		
 		//-- VERIFICATION
 
@@ -119,7 +102,6 @@ public class SelectTag extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertTrue(found, "Verify the tagged message appears");
-		
 		
 		// Verify the un-tagged message does not show
 		found = false;

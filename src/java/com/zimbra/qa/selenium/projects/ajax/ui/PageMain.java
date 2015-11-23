@@ -214,16 +214,11 @@ public class PageMain extends AbsTab {
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
-		// Q. Should the tabs or help or logout be processed here?
-		// A. I don't think those are considered "toolbars", so don't handle here for now (Matt)
-
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		// Default behavior variables
-		//
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == Button.B_REFRESH) {
 			
@@ -238,12 +233,10 @@ public class PageMain extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
-		//
 		this.sClickAt(locator, "0,0");
-
-		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
+		
+		SleepUtil.sleepMedium();
 
 		return (page);
 		

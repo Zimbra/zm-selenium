@@ -28,16 +28,11 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogAttach;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
 
-
 public class CreateMailText extends PrefGroupMailByMessageTest {
 
 	public CreateMailText() {
 		logger.info("New "+ CreateMailText.class.getCanonicalName());
-
-
-
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
-
 	}
 
 	@Test(	description = "Attach an email to a mail",
@@ -50,21 +45,19 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		final FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		final String subject = "attached"+ ZimbraSeleniumProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
-				"<AddMsgRequest xmlns='urn:zimbraMail'>"
-						+		"<m l='"+ inbox.getId() +"' >"
-						+			"<content>From: foo@foo.com\n"
-						+				"To: foo@foo.com \n"
-						+				"Subject: "+ subject +"\n"
-						+				"MIME-Version: 1.0 \n"
-						+				"Content-Type: text/plain; charset=utf-8 \n"
-						+				"Content-Transfer-Encoding: 7bit\n"
-						+				"\n"
-						+				"simple text string in the body\n"
-						+			"</content>"
-						+		"</m>"
-						+	"</AddMsgRequest>");
-
-
+			"<AddMsgRequest xmlns='urn:zimbraMail'>"
+					+		"<m l='"+ inbox.getId() +"' >"
+					+			"<content>From: foo@foo.com\n"
+					+				"To: foo@foo.com \n"
+					+				"Subject: "+ subject +"\n"
+					+				"MIME-Version: 1.0 \n"
+					+				"Content-Type: text/plain; charset=utf-8 \n"
+					+				"Content-Transfer-Encoding: 7bit\n"
+					+				"\n"
+					+				"simple text string in the body\n"
+					+			"</content>"
+					+		"</m>"
+					+	"</AddMsgRequest>");
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
@@ -72,18 +65,14 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
 
-
-		//-- GUI
-
-		// Click Get Mail button to get the new contact
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 		mailform.zFill(mail);
 		app.zPageMail.zToolbarPressPulldown(Button.B_Attach, Button.O_MAILATTACH);
-
 
 		DialogAttach dialog = new DialogAttach(app, ((AppAjaxClient)app).zPageMail);
 		ZAssert.assertTrue(dialog.zIsActive(),"Attach Mail dialog gets open and active");
@@ -96,8 +85,6 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		SleepUtil.sleepMedium();
 		mailform.zSubmit();
 
-		//-- Verification
-		
 		// From the receiving end, verify the message details
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mail.dSubject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");

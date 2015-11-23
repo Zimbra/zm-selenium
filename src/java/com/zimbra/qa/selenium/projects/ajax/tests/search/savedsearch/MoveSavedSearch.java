@@ -67,7 +67,7 @@ public class MoveSavedSearch extends AjaxCommonTest  {
 
 
 		// Refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Right click on the search, select delete
 		// TODO: can the folder move dialog be reused?  Or, do we need DialogMoveSavedSearchFolder class?

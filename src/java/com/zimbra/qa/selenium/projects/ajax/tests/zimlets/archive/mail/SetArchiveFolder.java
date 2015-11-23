@@ -17,30 +17,21 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.archive.mail;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
-
 public class SetArchiveFolder extends PrefGroupMailByMessageTest {
 
-	
 	public SetArchiveFolder() {
 		logger.info("New "+ SetArchiveFolder.class.getCanonicalName());
-		
-
 	}
 	
 	@Test(	description = "On clicking 'Archive', client should prompt to set the archive folder",
 			groups = { "functional" })
 	public void SetArchiveFolder_01() throws HarnessException {
-		
-		
-		//-- DATA setup
-		
 		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
@@ -71,11 +62,8 @@ public class SetArchiveFolder extends PrefGroupMailByMessageTest {
                 "</CreateFolderRequest>");
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 
-		
-		//-- GUI steps
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -89,20 +77,6 @@ public class SetArchiveFolder extends PrefGroupMailByMessageTest {
 		dialog.zClickTreeFolder(subfolder);
 		dialog.zClickButton(Button.B_OK);
 
-
-		//-- VERIFICATION
-		
-		/*
-		 *	Jan 28, 2013:
-		 *		<GetMailboxMetadataResponse xmlns="urn:zimbraMail">
-		 *			<meta section="zwc:archiveZimlet">
-		 *				<a n="archivedFolder">258</a>
-		 *				<a n="hideDeleteButton">false</a>
-		 *				<a n="showSendAndArchive">false</a>
-		 *			</meta>
-		 *		</GetMailboxMetadataResponse>
-
-		 */
 		app.zGetActiveAccount().soapSend(
 				"<GetMailboxMetadataRequest xmlns='urn:zimbraMail'>" +
 					"<meta section='zwc:archiveZimlet'/>" +
@@ -112,7 +86,5 @@ public class SetArchiveFolder extends PrefGroupMailByMessageTest {
 		
 		ZAssert.assertEquals(id, subfolder.getId(), "Verify the archive folder ID was set correctly");
 	}
-
-
 
 }

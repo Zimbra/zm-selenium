@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.archive.conversation;
 
 import java.util.*;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -27,35 +25,20 @@ import com.zimbra.qa.selenium.framework.util.*;
 
 
 public class ArchiveConversation extends ArchiveZimletByConversationTest {
-
 	
 	public ArchiveConversation() {
 		logger.info("New "+ ArchiveConversation.class.getCanonicalName());
-		
-
-
 	}
 	
 	@Test(	description = "Archive a conversation",
 			groups = { "smoke" })
 	public void ArchiveConversation_01() throws HarnessException {
 		
-		
-		
-		//-- DATA setup
-		
-		
 		// Create a conversation
 		ConversationItem conversation = ConversationItem.createConversationItem(app.zGetActiveAccount());
 		
-
-		
-
-		
-		//-- GUI steps
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(conversation.getSubject());
 
 		// Select the message
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, conversation.getSubject());
@@ -63,31 +46,19 @@ public class ArchiveConversation extends ArchiveZimletByConversationTest {
 		// Click Archive
 		app.zPageMail.zToolbarPressButton(Button.B_ARCHIVE);
 		
-
-		//-- VERIFICATION
-		
 		// Refresh the conversation (otherwise, we will be using stale data)
 		conversation = ConversationItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ conversation.getSubject() +")");
 		
 		// Verify all messages in the conversation are in the archive folder
 		for (MailItem m : conversation.getMessageList()) {
-			
 			ZAssert.assertEquals(m.dFolderId, this.MyArchiveFolder.getId(), "Verify the archived message is moved to the archive folder");
-
 		}
-		
-
 	}
 
 	@Bugs(ids = "89122")
 	@Test(	description = "Archive a single message in a conversation",
 			groups = { "smoke" })
 	public void ArchiveConversation_02() throws HarnessException {
-		
-		
-		
-		//-- DATA setup
-		
 		
 		// Create a conversation
 		ConversationItem conversation = ConversationItem.createConversationItem(app.zGetActiveAccount());
@@ -99,13 +70,9 @@ public class ArchiveConversation extends ArchiveZimletByConversationTest {
 				"<ItemActionRequest xmlns='urn:zimbraMail'>" +
 						"<action op='move' id='"+ messages.get(0).getId() +"' l='"+ this.MyArchiveFolder.getId() +"'/>" +
 				"</ItemActionRequest>");
-
-
 		
-		//-- GUI steps
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(conversation.getSubject());
 		
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, conversation.getSubject());
@@ -116,22 +83,14 @@ public class ArchiveConversation extends ArchiveZimletByConversationTest {
 		// Click Archive
 		app.zPageMail.zToolbarPressButton(Button.B_ARCHIVE);
 		
-
-		//-- VERIFICATION
-		
 		// Refresh the conversation (otherwise, we will be using stale data)
 		conversation = ConversationItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ conversation.getSubject() +")");
 		
 		// Verify all messages in the conversation are in the archive folder
 		for (MailItem m : conversation.getMessageList()) {
-			
 			ZAssert.assertEquals(m.dFolderId, this.MyArchiveFolder.getId(), "Verify the archived message is moved to the archive folder");
-
 		}
-		
 
 	}
-
-
 
 }

@@ -45,19 +45,12 @@ public class HoverOverURL extends AjaxCommonTest {
 		    put("zimbraPrefGroupMailBy", "message");
 		}};
 
-
-
 	}
 	
 	@Test(	description = "Hover over a URL",
 			groups = { "functional" })
 	public void HoverOverURL_01() throws HarnessException {
 
-		
-		//-- DATA
-		
-		
-		
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String server = "server" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "http://www."+ server +".com";
@@ -74,12 +67,8 @@ public class HoverOverURL extends AjaxCommonTest {
 						"</m>" +
 					"</SendMsgRequest>");
 
-		
-
-		//-- GUI
-		
-		
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Get all the messages in the inbox
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -105,11 +94,6 @@ public class HoverOverURL extends AjaxCommonTest {
 			groups = { "functional" })
 	public void HoverOverURL_02() throws HarnessException {
 
-		
-		//-- DATA
-		
-		
-		
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String server = "server" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "http://www."+ server +".com";
@@ -125,13 +109,9 @@ public class HoverOverURL extends AjaxCommonTest {
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
-
 		
-
-		//-- GUI
-		
-		
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Get all the messages in the inbox
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -156,31 +136,19 @@ public class HoverOverURL extends AjaxCommonTest {
 
 	}
 
-
-
 	
 	@Bugs(ids = "82303")
 	@Test(	description = "Hover over a URL with 'javascript' in the path.  Verify no change to JAVASCRIPT-BLOCKED",
 			groups = { "functional" })
 	public void HoverOverURL_03() throws HarnessException {
 
-		
-		//-- DATA
-		
-		
-		
 		// Create the message data to be sent
 		String subject = "bug82303";
 		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug82303/mime.txt";
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
-
 		
-
-		//-- GUI
-		
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Get all the messages in the inbox
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

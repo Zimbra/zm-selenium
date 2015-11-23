@@ -25,14 +25,12 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByConversationTest;
 
-
 public class DeleteConversation extends PrefGroupMailByConversationTest {
 
 	public DeleteConversation() {
 		logger.info("New "+ DeleteConversation.class.getCanonicalName());
-		
+	
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
-
 	}
 	
 	@Bugs(	ids = "81074")
@@ -40,20 +38,17 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 			groups = { "functional" })
 	public void DeleteConversation_01() throws HarnessException {
 		
-
-		//-- Data
-		
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
 		// Create the message data to be sent
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
 		
-
+		
 		//-- GUI
 		
 		
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Remember to close the search view
 		try {

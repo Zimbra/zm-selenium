@@ -61,7 +61,7 @@ public class DeleteSavedSearch extends AjaxCommonTest  {
 		SavedSearchFolderItem item = SavedSearchFolderItem.importFromSOAP(app.zGetActiveAccount(), name);
 		
 		// Refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Right click on the search, select delete
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_DELETE, item);

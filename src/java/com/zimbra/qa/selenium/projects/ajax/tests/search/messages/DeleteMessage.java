@@ -66,7 +66,7 @@ public class DeleteMessage extends PrefGroupMailByMessageTest {
 		//-- GUI
 		
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 				
 		// Remember to close the search view
 		try {

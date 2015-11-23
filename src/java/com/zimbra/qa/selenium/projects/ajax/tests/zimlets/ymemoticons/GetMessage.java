@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.ymemoticons;
 
 import java.util.*;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
@@ -35,7 +33,6 @@ public class GetMessage extends AjaxCommonTest {
 		// TODO: add all the emoticons
 	}
 	
-	
 	public GetMessage() {
 		logger.info("New "+ GetMessage.class.getCanonicalName());
 		
@@ -48,18 +45,11 @@ public class GetMessage extends AjaxCommonTest {
 		{
 		    put("zimbraPrefGroupMailBy", "message");
 		}};
-
-
-
 	}
 	
 	@Test(	description = "Receive a mail with a basic emoticon",
 			groups = { "functional" })
 	public void GetMessage_01() throws HarnessException {
-		
-		
-		//-- DATA
-		
 		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
@@ -67,22 +57,18 @@ public class GetMessage extends AjaxCommonTest {
 		
 		// Send the message from AccountA to the ZWC user
 		ZimbraAccount.AccountA().soapSend(
-					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-						"<m>" +
-							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-							"<su>"+ subject +"</su>" +
-							"<mp ct='text/plain'>" +
-								"<content>"+ body +"</content>" +
-							"</mp>" +
-						"</m>" +
-					"</SendMsgRequest>");
-
+			"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+				"<m>" +
+					"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+					"<su>"+ subject +"</su>" +
+					"<mp ct='text/plain'>" +
+						"<content>"+ body +"</content>" +
+					"</mp>" +
+				"</m>" +
+			"</SendMsgRequest>");
 		
-		//-- GUI
-		
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Get all the messages in the inbox
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -97,27 +83,8 @@ public class GetMessage extends AjaxCommonTest {
 		// Get the HTML of the body
 		HtmlElement bodyElement = display.zGetMailPropertyAsHtml(Field.Body);
 		
-		// Verify that the phone zimlet has been applied
-		//
-		// <span style="height:18;width:18;padding:9px 18px 9px 0; 
-		//			background:url(https://zqa-062.eng.zimbra.com/service/zimlet/com_zimbra_ymemoticons/img/1.gif) 
-		//			no-repeat 0 50%;" title=":( - sad">
-		//		<span style="visibility:hidden">a</span>
-		//	</span>
-		//
-		
-		// TODO: probably need to re-implement HtmlElement, since htmlcleaner doesn't
-		// support 'contains()', which is required to verify this element.  For now,
-		// just verify that the strings are contained in the body.
-		// 
 		ZAssert.assertStringContains(bodyElement.prettyPrint(), "com_zimbra_ymemoticons", "Verify the ymemoticons zimlet is applied to the body");
 		ZAssert.assertStringContains(bodyElement.prettyPrint(), "1.gif", "Verify the 'happy' emoticon is displayed");
 		
-
-
 	}
-
-
-
-
 }
