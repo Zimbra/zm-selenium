@@ -21,14 +21,13 @@ import java.util.HashMap;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.SignatureItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-
 import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
@@ -81,6 +80,8 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 	 * Verify signature should place Below included message while fwd'ing msg
 	 * @throws HarnessException
 	 */
+	
+	@Bugs(ids="102479")
 	@Test(description = "Verify Html Signature place BelowIncludedMsg While Fwd'ing- Verify through GUI ", groups = { "functional" })
 	public void FwdMsgWithTextSignatureBelowIncludeMsg_01() throws HarnessException {
 
@@ -140,6 +141,7 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 	 * Verify signature should place Below included message while Replying msg
 	 * @throws HarnessException
 	 */
+	@Bugs(ids="102479")
 	@Test(description = "Verify Html Signature placed BelowIncludedMsg While Replying Msg", groups = { "functional" })
 	public void ReplyMsgWithTextSignatureBelowIncludeMsg_02() throws HarnessException {
 
@@ -200,6 +202,8 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 	 * Verify signature should place Below included message while Replying msg
 	 * @throws HarnessException
 	 */
+	
+	@Bugs(ids="102479")
 	@Test(description = "Verify Html Signature placed BelowIncludedMsg While ReplyingAll", groups = { "functional" })
 	public void ReplyAllMsgWithTextSignatureBelowIncludeMsg_03() throws HarnessException {
 
