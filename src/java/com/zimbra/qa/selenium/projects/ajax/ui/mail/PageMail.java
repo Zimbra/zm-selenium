@@ -721,7 +721,9 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		this.zClickAt(locator, "10,10");
+		//this.zClickAt(locator, "10,10");
+		
+		this.sClickAt(locator,"");
 
 		SleepUtil.sleepMedium();
 		
