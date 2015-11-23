@@ -61,6 +61,7 @@ public class UnTagContact extends AjaxCommonTest  {
 		
 		// Refresh
 		app.zPageContacts.zRefresh();
+		SleepUtil.sleepMedium();
 		
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
@@ -108,6 +109,8 @@ public class UnTagContact extends AjaxCommonTest  {
 		
 		// Refresh
 		app.zPageContacts.zRefresh();
+		
+		SleepUtil.sleepMedium();
 		
     	// Untag it
         app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_REMOVETAG , contact.fileAs);

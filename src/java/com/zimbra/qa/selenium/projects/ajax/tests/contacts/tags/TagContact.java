@@ -109,7 +109,8 @@ public class TagContact extends  ContactsPrefShowSelectionCheckbox  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zRefresh();		
+		SleepUtil.sleepMedium();
 		
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);

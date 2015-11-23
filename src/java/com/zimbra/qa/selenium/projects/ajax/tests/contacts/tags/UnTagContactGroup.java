@@ -64,6 +64,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		
 		// Refresh
 		app.zPageContacts.zRefresh();
+		SleepUtil.sleepMedium();
 		
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
@@ -110,6 +111,8 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		
 		// Refresh
 		app.zPageContacts.zRefresh();
+		
+		SleepUtil.sleepMedium();
 		
     	// Untag it by click Tag->Remove Tag on context menu
 		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_REMOVETAG , group.getName());
@@ -159,6 +162,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		
 		// Refresh
 		app.zPageContacts.zRefresh();
+		SleepUtil.sleepMedium();
 		
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
@@ -217,6 +221,8 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		// Refresh
 		app.zPageContacts.zRefresh();
 		
+		SleepUtil.sleepMedium();
+		
     	// Untag one tag by click Tag->Remove Tag->A Tag name on context menu
 		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_REMOVETAG , tag1.getName(), group.getName());
     	
@@ -268,6 +274,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		
 		// Refresh
 		app.zPageContacts.zRefresh();
+		SleepUtil.sleepMedium();
 		
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
@@ -321,6 +328,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		
 		// Refresh
 		app.zPageContacts.zRefresh();
+		SleepUtil.sleepMedium();
 		
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
@@ -376,6 +384,8 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		// Refresh
 		app.zPageContacts.zRefresh();
 		
+		SleepUtil.sleepMedium();
+		
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
@@ -424,6 +434,8 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		
 		// Refresh
 		app.zPageContacts.zRefresh();
+		
+		SleepUtil.sleepMedium();
 		
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());

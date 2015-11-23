@@ -1084,6 +1084,7 @@ public class PageContacts extends AbsTab {
 			 // Mouse over the option
 			 sFocus(locator);
 			 sMouseOver(locator);
+			 SleepUtil.sleepSmall();
 		    }
 			 
 		    zWaitForBusyOverlay();
