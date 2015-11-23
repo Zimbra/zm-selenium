@@ -20,6 +20,7 @@ import java.util.Calendar;
 
 import org.testng.annotations.*;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -35,6 +36,7 @@ public class Reply extends CalendarWorkWeekTest {
 	    super.startingAccountPreferences = null;	
 	}
 	
+	@Bugs(ids = "102475")
 	@Test(description = "Verify organizer receives message while attendee replies to",
 			groups = { "functional" })
 	public void Reply_01() throws HarnessException {

@@ -235,7 +235,10 @@ public class QuickAddAppointment extends AbsTab {
 
 	public void zNewAppointmentUsingMiniCal() throws HarnessException {
 		this.sClick("css=div[class='DwtCalendar'] td[class='DwtCalendarButton'] div[class='ImgFwdArrowSmall']");
-		this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('25')", "");
+		if (this.sIsElementPresent("css=td[class='DwtCalendarDay']:contains('25')"))
+			this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('25')", "");
+		else
+			this.zRightClickAt("css=td[class='DwtCalendarDay DwtCalendarDay-selected']:contains('25')", "");
 		SleepUtil.sleepMedium();
 		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_APPT_title']", "");
 	}
@@ -248,7 +251,10 @@ public class QuickAddAppointment extends AbsTab {
 
 	public void zNewAllDayAppointmentUsingMiniCal() throws HarnessException {		
 		this.sClick("css=div[class='DwtCalendar'] td[class='DwtCalendarButton'] div[class='ImgFwdArrowSmall']");
-		this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('25')", "");
+		if (this.sIsElementPresent("css=td[class='DwtCalendarDay']:contains('25')"))
+			this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('25')", "");
+		else
+			this.zRightClickAt("css=td[class='DwtCalendarDay DwtCalendarDay-selected']:contains('25')", "");
 		SleepUtil.sleepMedium();
 		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_ALLDAY_APPT_title']", "");
 	}

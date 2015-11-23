@@ -19,6 +19,8 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.si
 import java.util.Calendar;
 
 import org.testng.annotations.*;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
@@ -33,6 +35,7 @@ public class Reply extends CalendarWorkWeekTest {
 		super.startingAccountPreferences = null;
 	}
 	
+	@Bugs(ids = "102475")
 	@Test(description = "View meeting invite by opening it and reply to organizer",
 			groups = { "functional" })
 			

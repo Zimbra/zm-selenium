@@ -18,6 +18,8 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.mountpoints.viewer.a
 
 import java.util.Calendar;
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -32,6 +34,7 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
+	@Bugs(ids = "102475")
 	@Test(description = "Grantee replies all to appointment from grantor's calendar",
 			groups = { "functional" })
 			
