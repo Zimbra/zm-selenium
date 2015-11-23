@@ -137,7 +137,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 
 	}
 	
-
+	@Bugs(ids="102475")
 	@Test(	description = "Reply (on behalf of) to a message in a shared folder (manager rights) - no SOBO rights",
 			groups = { "functional" })
 	

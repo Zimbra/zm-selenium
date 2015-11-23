@@ -17,6 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mountpoints.manager;
 
 import org.testng.annotations.*;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -133,7 +135,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(sent.dSenderRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the 'Sender' field is correct");
 
 	}
-
+	@Bugs(ids="102475")
 	@Test(	description = "Forward (on behalf of) to a message in a shared folder (admin rights)  - no SOBO rights",
 			groups = { "functional" })
 	

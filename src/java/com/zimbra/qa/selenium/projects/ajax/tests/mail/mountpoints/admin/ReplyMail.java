@@ -134,8 +134,10 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(sent.dFromRecipient.dEmailAddress, owner.EmailAddress, "Verify the 'From' field is correct");
 		ZAssert.assertEquals(sent.dSenderRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the 'Sender' field is correct");
 	}
+	
+	
 
-
+	@Bugs(ids="102475")
 	@Test(	description = "Reply (on behalf of) to a message in a shared folder (admin rights) - no SOBO rights",
 			groups = { "functional" })
 	
