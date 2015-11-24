@@ -20,19 +20,18 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.*;
-
 import org.apache.log4j.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.testng.*;
 import org.testng.annotations.*;
 import org.xml.sax.SAXException;
-
 import com.thoughtworks.selenium.*;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.DialogErrorID;
 
@@ -202,12 +201,12 @@ public class AjaxCommonTest {
 					appIsReady = true;
 				} catch (SeleniumException e) {
 					if (retry == maxRetry) {
-						logger.error("Unable to open admin app." +
+						logger.error("Unable to open ajax app." +
 								"  Is a valid cert installed?", e);
 						throw e;
 					} else {
 						logger.info("App is still not ready...", e);
-						SleepUtil.sleep(10000);
+						SleepUtil.sleep(6000);
 						continue;
 					}
 				}
@@ -520,5 +519,88 @@ public class AjaxCommonTest {
 				+		"<id>"+ string +"</id>"
 				+		settings.toString()
 				+	"</ModifyAccountRequest>");
+	}
+
+	
+	@SuppressWarnings("deprecation")
+	public void zKillBrowserAndRelogin () {
+		
+		logger.error("Reset account");
+		ZimbraAccount.ResetAccountZWC();
+		
+		try {
+			String SeleniumBrowser;
+			SeleniumBrowser = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser",	ZimbraSeleniumProperties.getStringProperty("browser"));
+			
+			if (SeleniumBrowser.contains("iexplore")) {
+			    CommandLine.CmdExec("taskkill /f /t /im iexplore.exe");
+			} else if (SeleniumBrowser.contains("firefox")) {
+				CommandLine.CmdExec("taskkill /f /t /im firefox.exe");
+			} else if (SeleniumBrowser.contains("safariproxy")) {
+			    CommandLine.CmdExec("taskkill /f /t /im safari.exe");
+			} else if (SeleniumBrowser.contains("chrome")) {
+				CommandLine.CmdExec("taskkill /f /t /im chrome.exe");
+			}
+			
+		} catch (IOException e) {
+			logger.error("Unable to kill browsers", e);
+		} catch (InterruptedException e) {
+			logger.error("Unable to kill browsers", e);
+		}
+		
+		try
+		{
+			if (ZimbraSeleniumProperties.getAppType() == AppType.AJAX) {
+				ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.AJAX);
+			} else if (ZimbraSeleniumProperties.getAppType() == AppType.ADMIN) {
+				ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.ADMIN);
+			} else if (ZimbraSeleniumProperties.getAppType() == AppType.TOUCH) {
+				ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.TOUCH);
+			} else if (ZimbraSeleniumProperties.getAppType() == AppType.HTML) {
+				ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.HTML);
+			} else if (ZimbraSeleniumProperties.getAppType() == AppType.MOBILE) {
+				ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.MOBILE);
+			}
+			
+			if(ZimbraSeleniumProperties.isWebDriver()) {
+				
+				_webDriver = ClientSessionFactory.session().webDriver();
+
+				Capabilities cp =  ((RemoteWebDriver)_webDriver).getCapabilities();
+				if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){				
+					_webDriver.manage().window().setPosition(new Point(0, 0));
+					_webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
+					_webDriver.navigate().to(ZimbraSeleniumProperties.getBaseURL());
+				}
+				
+			} else {
+
+				ClientSessionFactory.session().selenium().start();
+				ClientSessionFactory.session().selenium().windowMaximize();
+				ClientSessionFactory.session().selenium().windowFocus();
+				ClientSessionFactory.session().selenium().allowNativeXpath("true");
+				ClientSessionFactory.session().selenium().setTimeout("60000");
+				ClientSessionFactory.session().selenium().open(ZimbraSeleniumProperties.getBaseURL());
+			}
+			
+		} catch (SeleniumException e) {
+			logger.error("Unable to open app.", e);
+			throw e;
+		}
+		
+		try {
+			
+			if (ZimbraSeleniumProperties.getAppType() == AppType.AJAX) {
+				if (ZimbraAccount.AccountZWC() != null) {
+					((AppAjaxClient)app).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+				} else {
+					((AppAjaxClient)app).zPageLogin.zLogin(ZimbraAccount.Account10());
+				}
+			}
+			
+		} catch (HarnessException e) {
+			logger.error("Unable to navigate to app.", e);
+		}
+		
 	}
 }

@@ -56,6 +56,13 @@ public class HarnessException extends Exception {
 
 	protected void resetAccounts() {
 		
+		logger.error("HarnessException: Reset account due to exception");
+		ZimbraAccount.ResetAccountZWC();
+		ZimbraAdminAccount.ResetAccountAdminConsoleAdmin();
+		ZimbraAccount.ResetAccountHTML();
+		ZimbraAccount.ResetAccountZMC();
+		ZimbraAccount.ResetAccountZTC();
+		
 		if (ZimbraSeleniumProperties.getAppType() == AppType.AJAX) {
 			app1 = new AppAjaxClient();
 		} else if (ZimbraSeleniumProperties.getAppType() == AppType.ADMIN) {
@@ -69,15 +76,8 @@ public class HarnessException extends Exception {
 		}
 		
 		logger.error("HarnessException: Kill the browser and relogin");
-		killBrowserAndRelogin();
+		zKillBrowserAndRelogin();
 		
-		logger.error("HarnessException: Reset account due to exception");
-		ZimbraAccount.ResetAccountZWC();
-		ZimbraAdminAccount.ResetAccountAdminConsoleAdmin();
-		ZimbraAccount.ResetAccountHTML();
-		ZimbraAccount.ResetAccountZMC();
-		ZimbraAccount.ResetAccountZTC();
-
 	}
 	
 	public HarnessException(String message) {
@@ -99,7 +99,7 @@ public class HarnessException extends Exception {
 	}
 	
 	
-	public void killBrowserAndRelogin () {
+	public void zKillBrowserAndRelogin () {
 		
 		try {
 			String SeleniumBrowser;
@@ -148,14 +148,11 @@ public class HarnessException extends Exception {
 				
 			} else {
 
-				@SuppressWarnings("unused")
-				String timeout = ZimbraSeleniumProperties.getStringProperty("selenium.maxpageload.msec", "100000");
-
 				ClientSessionFactory.session().selenium().start();
 				ClientSessionFactory.session().selenium().windowMaximize();
 				ClientSessionFactory.session().selenium().windowFocus();
 				ClientSessionFactory.session().selenium().allowNativeXpath("true");
-				ClientSessionFactory.session().selenium().setTimeout("100000");
+				ClientSessionFactory.session().selenium().setTimeout("60000");
 				ClientSessionFactory.session().selenium().open(ZimbraSeleniumProperties.getBaseURL());
 			}
 			
@@ -197,6 +194,9 @@ public class HarnessException extends Exception {
 					((AppMobileClient)app5).zPageLogin.zLogin(ZimbraAccount.Account10());
 				}
 			}
+			
+			ClientSessionFactory.session().selenium().windowFocus();
+			ClientSessionFactory.session().selenium().windowMaximize();
 			
 		} catch (HarnessException e) {
 			logger.error("Unable to navigate to app.", e);

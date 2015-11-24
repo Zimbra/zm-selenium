@@ -165,14 +165,11 @@ public class PageLogin extends AbsTab {
 					
 				} else {
 
-					@SuppressWarnings("unused")
-					String timeout = ZimbraSeleniumProperties.getStringProperty("selenium.maxpageload.msec", "40000");
-
 					ClientSessionFactory.session().selenium().start();
 					ClientSessionFactory.session().selenium().windowMaximize();
 					ClientSessionFactory.session().selenium().windowFocus();
 					ClientSessionFactory.session().selenium().allowNativeXpath("true");
-					ClientSessionFactory.session().selenium().setTimeout("100000");
+					ClientSessionFactory.session().selenium().setTimeout("60000");
 					ClientSessionFactory.session().selenium().open(ZimbraSeleniumProperties.getBaseURL());
 				}
 				
@@ -235,7 +232,7 @@ public class PageLogin extends AbsTab {
 			// Click the Login button
 			sClick(Locators.zBtnLogin);
 			
-			SleepUtil.sleepVeryLong();
+			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(60000);
 
 			((AppAjaxClient)MyApplication).zSetActiveAcount(account);
 
@@ -293,7 +290,7 @@ public class PageLogin extends AbsTab {
 			
 			sClick(Locators.zBtnLogin);			
 			
-			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(80000);
+			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(60000);
 
 			((AppAjaxClient)MyApplication).zSetActiveAcount(account);
 

@@ -74,10 +74,7 @@ public class ZimbraFeatureTrustedDevicesEnabled extends AjaxCommonTest {
 	
 	@AfterMethod(groups={"always"})
 	public void afterMethod() throws HarnessException {
-		ZimbraAccount.ResetAccountZWC();
-		if (app.zPageMail.sIsVisible("css=td[id='skin_dropMenu'] td[id$='_dropdown']") == false) { 
-			app.zPageLogin.zLogin(ZimbraAccount.Account10());
-			logger.info(app.zGetActiveAccount());
-		}
+		zKillBrowserAndRelogin();
+		logger.info(app.zGetActiveAccount().EmailAddress);
 	}
 }
