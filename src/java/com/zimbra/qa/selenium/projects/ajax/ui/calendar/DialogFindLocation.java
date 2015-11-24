@@ -88,7 +88,7 @@ public class DialogFindLocation extends DialogWarning {
 		}
 		this.sFocus(locator);
 		this.sGetCssCount(locator);
-		this.sClickAt(locator, "");
+		this.zClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();
 		

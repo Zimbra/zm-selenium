@@ -562,8 +562,8 @@ public class FormMailNew extends AbsForm {
 			
 		} else if ( field == Field.From ) {
 			
-			zSetFromIdentity(value);
-			
+			SleepUtil.sleepSmall();			
+			zSetFromIdentity(value);			
 			SleepUtil.sleepSmall();
 			
 			return;

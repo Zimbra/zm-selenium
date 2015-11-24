@@ -25,14 +25,10 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
 
-
 public class MarkUnSpamMail extends PrefGroupMailByMessageTest {
 
-	
 	public MarkUnSpamMail() {
 		logger.info("New "+ MarkUnSpamMail.class.getCanonicalName());
-		
-		
 	}
 	
 	@Test(	description = "Mark a message as not spam, using 'Not Spam' toolbar button - in a separate window",
@@ -44,7 +40,6 @@ public class MarkUnSpamMail extends PrefGroupMailByMessageTest {
 		// Get the junk and inbox folder
 		FolderItem junk = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Junk);
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-
 
 		// Add a message to the account's junk folder
 		app.zGetActiveAccount().soapSend(
@@ -61,7 +56,6 @@ public class MarkUnSpamMail extends PrefGroupMailByMessageTest {
 							"</content>" +
                 	"</m>" +
             	"</AddMsgRequest>");
-		
 
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(subject);
@@ -83,8 +77,10 @@ public class MarkUnSpamMail extends PrefGroupMailByMessageTest {
 			window.zWaitForActive();		// Make sure the window is there
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-		
+			
 			window.zToolbarPressButton(Button.B_RESPORTNOTSPAM);
+			
+			SleepUtil.sleepLong(); // wrong SOAP response
 			
 			// Window is closed automatically by the client
 			window = null;
@@ -99,14 +95,11 @@ public class MarkUnSpamMail extends PrefGroupMailByMessageTest {
 			
 		}
 		
-		// Get the mail item for the new message
-		// Need 'is:anywhere' to include the spam folder
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:("+ subject +")");
 		ZAssert.assertNotNull(mail, "Make sure the mail is found");
 
 		ZAssert.assertEquals(mail.dFolderId, inbox.getId(), "Verify the message is in the inbox folder");
 				
 	}
-
 
 }

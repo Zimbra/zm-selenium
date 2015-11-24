@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.delegates;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
@@ -27,22 +26,14 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
 public class SendOnBehalfOfDistList extends PrefGroupMailByMessageTest {
 
-
 	public SendOnBehalfOfDistList() {
 		logger.info("New "+ SendOnBehalfOfDistList.class.getCanonicalName());
-		
-		
-		
-
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
-		
 	}
 	
 	@Test(	description = "Send On Behalf Of Distribution List",
 			groups = { "smoke" })
 	public void SendOnBehalfOfDistList_01() throws HarnessException {
-		
-		//-- Data Setup
 		
 		// Mail data
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
@@ -57,11 +48,9 @@ public class SendOnBehalfOfDistList extends PrefGroupMailByMessageTest {
 		// Grant send rights
 		list.grantRight(app.zGetActiveAccount(), "sendOnBehalfOfDistList");
 
-				
 		// Login to load the rights
 		app.zPageLogin.zNavigateTo();
 		this.startingPage.zNavigateTo();
-		
 		
 		//-- GUI Steps
 		
@@ -76,10 +65,6 @@ public class SendOnBehalfOfDistList extends PrefGroupMailByMessageTest {
 		mailform.zFillField(Field.From, list.EmailAddress);	
 		mailform.zSubmit();
 	
-
-		
-		//-- Data verification
-		
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 			+		"<query>subject:("+ subject +")</query>"
@@ -90,7 +75,6 @@ public class SendOnBehalfOfDistList extends PrefGroupMailByMessageTest {
 				"<GetMsgRequest xmlns='urn:zimbraMail' >"
 			+		"<m id='"+ id +"'/>"
 			+	"</GetMsgRequest>");
-
 
 		// Verify From: grantor
 		String from = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a");

@@ -721,13 +721,11 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		//this.zClickAt(locator, "10,10");
-		
-		this.sClickAt(locator,"");
-
-		SleepUtil.sleepMedium();
+		this.zClickAt(locator,"10,19");
 		
 		this.zWaitForBusyOverlay();
+		
+		SleepUtil.sleepSmall();
 
 		return (page);
 	}
@@ -841,26 +839,16 @@ public class PageMail extends AbsTab {
 
 			} else if (option == Button.B_LAUNCH_IN_SEPARATE_WINDOW) {
 
-				// 8.0, 4/25/2012: separate window moved from Actions menu to
-				// Toolbar
-				//
-
-				// 8.0: http://bugzilla.zimbra.com/show_bug.cgi?id=73721
-				// return (this.zToolbarPressButton(Button.B_NEWWINDOW));
-
 				optionLocator += " div[id*='DETACH'] td[id$='_title']";
 				page = new SeparateWindowDisplayMail(this.MyApplication);
-
-				// We don't know the window title at this point (However, the
-				// test case should.)
-				// Don't check that the page is active, let the test case do
-				// that.
 
 				this.zClickAt(pulldownLocator, "0,0");
 				zWaitForBusyOverlay();
 
 				this.zClickAt(optionLocator, "0,0");
 				zWaitForBusyOverlay();
+				
+				SleepUtil.sleepLong();
 
 				return (page);
 

@@ -24,25 +24,16 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-
 public class SendOnBehalfOf extends PrefGroupMailByMessageTest {
-
 
 	public SendOnBehalfOf() {
 		logger.info("New "+ SendOnBehalfOf.class.getCanonicalName());
-		
-		
-		
-
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
-		
 	}
 	
 	@Test(	description = "Send On Behalf Of another user",
 			groups = { "smoke" })
 	public void SendOnBehalfOf_01() throws HarnessException {
-		
-		//-- Data Setup
 		
 		// Mail data
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
@@ -62,9 +53,6 @@ public class SendOnBehalfOf extends PrefGroupMailByMessageTest {
 		app.zPageLogin.zNavigateTo();
 		this.startingPage.zNavigateTo();
 		
-		
-		//-- GUI Steps
-		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
@@ -76,8 +64,6 @@ public class SendOnBehalfOf extends PrefGroupMailByMessageTest {
 		mailform.zFillField(Field.From, grantor.EmailAddress);	
 		mailform.zSubmit();
 	
-
-		
 		//-- Data verification
 		
 		ZimbraAccount.AccountA().soapSend(
@@ -91,7 +77,6 @@ public class SendOnBehalfOf extends PrefGroupMailByMessageTest {
 			+		"<m id='"+ id +"'/>"
 			+	"</GetMsgRequest>");
 
-
 		// Verify From: grantor
 		String from = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a");
 		ZAssert.assertEquals(from, grantor.EmailAddress, "Verify From: grantor");
@@ -102,5 +87,4 @@ public class SendOnBehalfOf extends PrefGroupMailByMessageTest {
 
 	}
 
-	
 }

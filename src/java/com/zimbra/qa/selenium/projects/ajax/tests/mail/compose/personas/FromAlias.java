@@ -25,7 +25,6 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-
 public class FromAlias extends PrefGroupMailByMessageTest {
 
 	private String AliasEmailAddress = null;
@@ -79,11 +78,8 @@ public class FromAlias extends PrefGroupMailByMessageTest {
 			groups = { "functional" })
 	public void FromAlias_01() throws HarnessException {
 		
-		
-		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -94,11 +90,7 @@ public class FromAlias extends PrefGroupMailByMessageTest {
 		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, "content" + ZimbraSeleniumProperties.getUniqueString());
-		
-		// Send the message
 		mailform.zSubmit();
-
-		
 		
 		// Verify the message shows as from the alias
 		ZimbraAccount.AccountA().soapSend(

@@ -81,8 +81,6 @@ public class FromExternalIMAP extends PrefGroupMailByMessageTest {
 		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, "content" + ZimbraSeleniumProperties.getUniqueString());
-		
-		// Send the message
 		mailform.zSubmit();
 		SleepUtil.sleepLong(); // search request doesn't find mail
 

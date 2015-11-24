@@ -37,8 +37,6 @@ public class SendAsDistList extends PrefGroupMailByMessageTest {
 	
 	public void SendAsDistList_01() throws HarnessException {
 		
-		//-- Data Setup
-		
 		// Mail data
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
 		
@@ -52,14 +50,10 @@ public class SendAsDistList extends PrefGroupMailByMessageTest {
 		// Grant send rights
 		list.grantRight(app.zGetActiveAccount(), "sendAsDistList");
 
-				
 		// Login to load the rights
 		app.zPageLogin.zNavigateTo();
 		this.startingPage.zNavigateTo();
-		
-		
-		//-- GUI Steps
-		
+	
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
@@ -71,7 +65,6 @@ public class SendAsDistList extends PrefGroupMailByMessageTest {
 		mailform.zFillField(Field.Body, "body" + ZimbraSeleniumProperties.getUniqueString());
 		mailform.zFillField(Field.From, list.EmailAddress);	
 		mailform.zSubmit();
-	
 		
 		//-- Data verification
 		
@@ -85,7 +78,6 @@ public class SendAsDistList extends PrefGroupMailByMessageTest {
 				"<GetMsgRequest xmlns='urn:zimbraMail' >"
 			+		"<m id='"+ id +"'/>"
 			+	"</GetMsgRequest>");
-
 
 		// Verify From: grantor
 		String from = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a");

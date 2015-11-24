@@ -17,8 +17,11 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.delegates;
 
 import java.io.File;
+
 import org.testng.annotations.Test;
+
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -38,8 +41,6 @@ public class SendAs extends PrefGroupMailByMessageTest {
 			groups = { "smoke" })
 	public void SendAs_01() throws HarnessException {
 		
-		//-- Data Setup
-		
 		// Mail data
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
 		
@@ -50,17 +51,13 @@ public class SendAs extends PrefGroupMailByMessageTest {
 		grantor.authenticate();
 
 		grantor.soapSend(
-					"<GrantRightsRequest xmlns='urn:zimbraAccount'>"
-				+		"<ace gt='usr' d='"+ app.zGetActiveAccount().EmailAddress +"' right='sendAs'/>"
-				+	"</GrantRightsRequest>");
+				"<GrantRightsRequest xmlns='urn:zimbraAccount'>"
+			+		"<ace gt='usr' d='"+ app.zGetActiveAccount().EmailAddress +"' right='sendAs'/>"
+			+	"</GrantRightsRequest>");
 
-		
 		// Login to load the rights
 		app.zPageLogin.zNavigateTo();
 		this.startingPage.zNavigateTo();
-		
-		
-		//-- GUI Steps
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -73,10 +70,6 @@ public class SendAs extends PrefGroupMailByMessageTest {
 		mailform.zFillField(Field.From, grantor.EmailAddress);	
 		mailform.zSubmit();
 	
-
-		
-		//-- Data verification
-		
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 			+		"<query>subject:("+ subject +")</query>"
@@ -87,7 +80,6 @@ public class SendAs extends PrefGroupMailByMessageTest {
 				"<GetMsgRequest xmlns='urn:zimbraMail' >"
 			+		"<m id='"+ id +"'/>"
 			+	"</GetMsgRequest>");
-
 
 		// Verify From: grantor
 		String from = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a");
@@ -106,8 +98,7 @@ public class SendAs extends PrefGroupMailByMessageTest {
 		}
 	}
 	
-	
-
+	@Bugs(ids="102475")
 	@Test(	description = "Forward a mail with attachment as a delegate - Verify attachment sent",
 			groups = { "functional" })
 	public void SendAs_02() throws HarnessException {
@@ -118,9 +109,9 @@ public class SendAs extends PrefGroupMailByMessageTest {
 		grantor.authenticate();
 
 		grantor.soapSend(
-					"<GrantRightsRequest xmlns='urn:zimbraAccount'>"
-				+		"<ace gt='usr' d='"+ app.zGetActiveAccount().EmailAddress +"' right='sendAs'/>"
-				+	"</GrantRightsRequest>");
+				"<GrantRightsRequest xmlns='urn:zimbraAccount'>"
+			+		"<ace gt='usr' d='"+ app.zGetActiveAccount().EmailAddress +"' right='sendAs'/>"
+			+	"</GrantRightsRequest>");
 
 		// Login to load the rights
 		app.zPageLogin.zNavigateTo();
@@ -152,10 +143,6 @@ public class SendAs extends PrefGroupMailByMessageTest {
 		
 		// Send the message
 		mailform.zSubmit();
-
-		SleepUtil.sleepSmall();
-
-		//-- Verification
 		
 		// From the receiving end, verify the message details
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ subject +")");

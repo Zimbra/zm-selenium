@@ -25,7 +25,6 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-
 public class FromAllowAddress extends PrefGroupMailByMessageTest {
 
 	private String AllowEmailAddress = null;
@@ -33,9 +32,7 @@ public class FromAllowAddress extends PrefGroupMailByMessageTest {
 
 	public FromAllowAddress() {
 		logger.info("New "+ FromAllowAddress.class.getCanonicalName());
-		
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
-		
 	}
 	
 	@BeforeMethod( groups = { "always" } )
@@ -54,8 +51,6 @@ public class FromAllowAddress extends PrefGroupMailByMessageTest {
 				+		"<a n='zimbraAllowFromAddress'>"+ AllowEmailAddress +"</a>"
 				+	"</ModifyAccountRequest>");
 
-		
-		
 		app.zGetActiveAccount().soapSend(
 				" <CreateIdentityRequest xmlns='urn:zimbraAccount'>"
 			+		"<identity name='"+ identity +"'>"
@@ -81,11 +76,8 @@ public class FromAllowAddress extends PrefGroupMailByMessageTest {
 			groups = { "functional" })
 	public void FromAllowAddress_01() throws HarnessException {
 		
-		
-		
 		// Create the message data to be sent
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -96,12 +88,8 @@ public class FromAllowAddress extends PrefGroupMailByMessageTest {
 		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, "content" + ZimbraSeleniumProperties.getUniqueString());
-		
-		// Send the message
 		mailform.zSubmit();
 
-		
-		
 		// Verify the message shows as from the alias
 		ZimbraAccount.AccountA().soapSend(
 					"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
@@ -131,6 +119,5 @@ public class FromAllowAddress extends PrefGroupMailByMessageTest {
 		}
 
 	}
-
 
 }
