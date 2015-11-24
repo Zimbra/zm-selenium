@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.actions;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -27,7 +25,6 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
 
 public class Forward extends CalendarWorkWeekTest {	
 	
@@ -43,7 +40,7 @@ public class Forward extends CalendarWorkWeekTest {
 				
 		// Creating a meeting
 		String tz = ZTimeZone.TimeZoneEST.getID();
-		String subject = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String attendee1 = ZimbraAccount.AccountA().EmailAddress;
 		String attendee2 = ZimbraAccount.AccountB().EmailAddress;
 		
@@ -55,7 +52,7 @@ public class Forward extends CalendarWorkWeekTest {
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
                      "<m>"+
-                     	"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ subject +"'>"+
+                     	"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"+
                      		"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
                      		"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
                      		"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
@@ -65,20 +62,24 @@ public class Forward extends CalendarWorkWeekTest {
                      	"<mp content-type='text/plain'>" +
                      		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
-                     "<su>"+ subject +"</su>" +
+                     "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+
+        // Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
         
         // Forward appointment to different attendee
-        app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_FORWARD_MENU, subject);
-        app.zPageCalendar.zType(Locators.ForwardToTextArea, attendee2);
-        app.zPageCalendar.zToolbarPressButton(Button.B_SEND);
+        app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_FORWARD_MENU, apptSubject);
+        
+		FormApptNew form = new FormApptNew(app);
+        form.zFillField(Field.To, attendee2);
+        form.zSubmit();
 		
 		// Verify the new invitation appears in the inbox
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
-			+		"<query>subject:("+ subject +")</query>"
+			+		"<query>subject:("+ apptSubject +")</query>"
 			+	"</SearchRequest>");
 		String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify the new invitation appears in the attendee's inbox");
@@ -89,7 +90,7 @@ public class Forward extends CalendarWorkWeekTest {
 			+	"</GetMsgRequest>");
 
 		// Verify only one appointment is in the calendar
-		AppointmentItem a = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject + ")");
+		AppointmentItem a = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ apptSubject + ")");
 		ZAssert.assertNotNull(a, "Verify only one appointment matches in the calendar");
 
 	}
@@ -134,12 +135,12 @@ public class Forward extends CalendarWorkWeekTest {
         
         // Forward appointment to different attendee
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_FORWARD_MENU, apptSubject);
-        app.zPageCalendar.zTypeKeys(Locators.ForwardToTextArea, attendee2);
         
         FormApptNew form = new FormApptNew(app);
+        form.zFillField(Field.To, attendee2);
         form.zFillField(Field.Body, ForwardContent);
-        app.zPageCalendar.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepLong(); // New invitation doesn't appear in the attendee's inbox
+        form.zSubmit();
+        SleepUtil.sleepMedium(); // New invitation doesn't appear in the attendee's inbox
 		
 		// Verify the new invitation appears in the inbox
         ZimbraAccount.AccountB().soapSend(
@@ -180,11 +181,13 @@ public class Forward extends CalendarWorkWeekTest {
 			groups = { "functional" })
 			
 	public void ForwardMeeting_03() throws HarnessException {
+		
 		// Creating object for meeting data
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		
 		String tz, apptSubject, apptAttendeeEmail;
 		tz = ZTimeZone.TimeZoneEST.getID();
+		
 		apptSubject = "app" + ZimbraSeleniumProperties.getUniqueString();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
 		String apptLocation = location.EmailAddress;
@@ -218,8 +221,10 @@ public class Forward extends CalendarWorkWeekTest {
 		
         // Forward appointment to different attendee
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_FORWARD_MENU, apptSubject);
-        app.zPageCalendar.zType(Locators.ForwardToTextArea, attendee2);
-        app.zPageCalendar.zToolbarPressButton(Button.B_SEND);
+        
+		FormApptNew form = new FormApptNew(app);
+        form.zFillField(Field.To, attendee2);
+        form.zSubmit();
 		
 		// Verify the new invitation appears in the inbox
 		ZimbraAccount.AccountB().soapSend(

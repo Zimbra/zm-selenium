@@ -969,6 +969,8 @@ public class FormApptNew extends AbsForm {
 
 			// body
 		} else if (field == Field.Body) {
+			
+			SleepUtil.sleepMedium();
 
 			int frames = this.sGetCssCount("css=iframe");
 			logger.info("Body: # of frames: " + frames);
@@ -991,7 +993,7 @@ public class FormApptNew extends AbsForm {
 						this.sClickAt(locator, "");
 					}
 					this.sFocus(locator);
-					this.zClick(locator);
+					this.zClickAt(locator, "10,10");
 					this.zWaitForBusyOverlay();
 					this.sType(locator, value);
 
@@ -1003,6 +1005,9 @@ public class FormApptNew extends AbsForm {
 					if (!this.sIsElementPresent(locator))
 						throw new HarnessException(
 								"Unable to locate compose body");
+					
+					this.sFocus(locator);
+					this.zClickAt(locator, "10,10");
 
 					zTypeFormattedText(locator, value);
 
@@ -1017,12 +1022,13 @@ public class FormApptNew extends AbsForm {
 				// If plain text editor present then there is no need to count
 				// iframes. Also there is a a bug in iframe counting if single test
 				// logouts multiple time for e.g. run 2 Accept propose new time tests
-				if (this
-						.sIsElementPresent("css=textarea[class='ZmHtmlEditorTextArea']") && frames == 0) {
+				
+				if (this.sIsElementPresent("css=textarea[class='ZmHtmlEditorTextArea']") && ( frames == 0 || frames == 1) ) {
+	
 					locator = "css=textarea[class='ZmHtmlEditorTextArea']";
 
 					this.sFocus(locator);
-					this.zClick(locator);
+					this.zClickAt(locator, "10,10");
 					this.zWaitForBusyOverlay();
 					this.sType(locator, value);
 
@@ -1037,7 +1043,7 @@ public class FormApptNew extends AbsForm {
 						if (this.sIsElementPresent("css=iframe[id$='ZmHtmlEditor1_body_ifr']")) {
 							locator = "css=body[id='tinymce']";
 							this.sSelectFrame("css=div[class='ZmApptComposeView'] div[id$='_notes'] iframe[id$='_body_ifr']"); // iframe index is 0 based
-							this.sClickAt(locator, "0,0");
+							this.zClickAt(locator, "10,10");
 							this.sFocus(locator);
 							//this.sType(locator, value);
 							this.zKeyboard.zTypeCharacters(value);

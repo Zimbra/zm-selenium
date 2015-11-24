@@ -74,9 +74,9 @@ public class Forward extends CalendarWorkWeekTest {
         
         // --------------- Login to attendee & open the invitation ----------------------------------------------------
         app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_FORWARD_MENU, apptSubject);
-        app.zPageCalendar.zType(Locators.ForwardToTextArea, attendee2);
         
         FormApptNew form = new FormApptNew(app);
+		form.zFillField(Field.To, attendee2);
         form.zFillField(Field.Body, ForwardContent);
         app.zPageCalendar.zToolbarPressButton(Button.B_SEND);
         SleepUtil.sleepLong();

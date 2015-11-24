@@ -28,8 +28,8 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
-
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
@@ -68,12 +68,13 @@ public class ContactContextMenu extends AjaxCommonTest  {
                 "</cn>" +            
                 "</CreateContactRequest>");
 
-        
         ContactItem contactItem = ContactItem.importFromSOAP(app.zGetActiveAccount(), "FIELD[lastname]:" + lastName + "");
         
         // Refresh the view, to pick up the new contact
         FolderItem contactFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), "Contacts");
         app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, contactFolder);
+        
+        app.zPageContacts.zRefresh();
                  
         return contactItem;		
 	
@@ -186,9 +187,6 @@ public class ContactContextMenu extends AjaxCommonTest  {
 	    
 	}
 
-
-	
-	
 	@Test(	description = "Right click then  click Find Emails->Sent To contact",
 			groups = { "smoke" })
 	public void FindEmailsSentToContact() throws HarnessException {
@@ -200,22 +198,23 @@ public class ContactContextMenu extends AjaxCommonTest  {
 		
 		// Send the message from AccountA to the ZWC user
 		ZimbraAccount.AccountA().soapSend(
-					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-						"<m>" +
-							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-							"<su>"+ subject +"</su>" +
-							"<mp ct='text/plain'>" +
-								"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
-							"</mp>" +
-						"</m>" +
-					"</SendMsgRequest>");
+			"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+				"<m>" +
+					"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+					"<su>"+ subject +"</su>" +
+					"<mp ct='text/plain'>" +
+						"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+					"</mp>" +
+				"</m>" +
+			"</SendMsgRequest>");
 		MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
 		ContactItem contactItem = createSelectAContactItem(app.zGetActiveAccount().DisplayName, lastName, app.zGetActiveAccount().EmailAddress);
 		
 		//Click Find Emails->Sent To Contact
         app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_SEARCH, Button.O_SEARCH_MAIL_SENT_TO_CONTACT , contactItem.fileAs);
-
+		
+		SleepUtil.sleepSmall();
         
         // Get the bubleText
 		String bubleText = app.zPageSearch.sGetText("css=[class='addrBubble']");

@@ -1923,20 +1923,17 @@ public class PageCalendar extends AbsTab {
 			throw new HarnessException("implement me!  option = "+ option);
 		}
 		
-	
-		
 		if ( locator == null || optionLocator == null) {
 			throw new HarnessException("implement action:"+ action +" option:"+ option +" suboption:" + subOption);
 		}
 
-
-		
-		// TODO: implement me
 		this.zWaitForBusyOverlay();
 
 		if ( page != null ) {
 			page.zWaitForActive();
 		}
+		
+		SleepUtil.sleepMedium();
 
 		return (page);
 

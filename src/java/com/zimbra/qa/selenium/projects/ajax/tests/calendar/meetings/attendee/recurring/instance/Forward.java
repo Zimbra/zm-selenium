@@ -24,7 +24,6 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
 
 public class Forward extends CalendarWorkWeekTest {	
 	
@@ -78,9 +77,9 @@ public class Forward extends CalendarWorkWeekTest {
         
         // Forward appointment to different attendee
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_INSTANCE_MENU, Button.O_FORWARD_MENU, apptSubject);
-        app.zPageCalendar.zType(Locators.ForwardToTextArea, attendee2);
         
         FormApptNew form = new FormApptNew(app);
+        form.zFillField(Field.To, attendee2);
         form.zFillField(Field.Body, ForwardContent);
         form.zSubmit();
 		

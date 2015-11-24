@@ -74,7 +74,9 @@ public class Forward extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
         
         // Forward appointment to different attendee
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_FORWARD_MENU, apptSubject);    
@@ -167,7 +169,6 @@ public class Forward extends CalendarWorkWeekTest {
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);
 		
 		app.zPageMain.zLogout();
-		
 		app.zPageLogin.zLogin(ZimbraAccount.AccountA());
 		
 		// Refresh the view
@@ -184,7 +185,6 @@ public class Forward extends CalendarWorkWeekTest {
 		// Fill out the form with the data
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.To, attendee2);
-		// Send the message
 		apptForm.zSubmit();
 		
 		//Logout and login as AccountB

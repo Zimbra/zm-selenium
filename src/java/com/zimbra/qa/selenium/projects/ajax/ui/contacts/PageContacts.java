@@ -1153,6 +1153,9 @@ public class PageContacts extends AbsTab {
 			//sWaitForPageToLoad();
 			page.zWaitForActive();
 		}
+		
+		SleepUtil.sleepMedium();
+		
 		return (page);
     
 	}
