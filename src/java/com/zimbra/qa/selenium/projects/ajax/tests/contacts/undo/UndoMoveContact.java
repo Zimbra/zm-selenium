@@ -29,12 +29,7 @@ public class UndoMoveContact extends AjaxCommonTest {
 
 	public UndoMoveContact() {
 		logger.info("New " + UndoMoveContact.class.getCanonicalName());
-
-		
-		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
-		super.startingAccountPreferences = null;
-
 	}
 
 
@@ -43,9 +38,6 @@ public class UndoMoveContact extends AjaxCommonTest {
 			groups = { "functional" })
 	public void UndoMoveContact_01() throws HarnessException {
 		 
-
-		//-- Data
-		
 		// The contacts folder
 		FolderItem contacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
 
@@ -61,28 +53,19 @@ public class UndoMoveContact extends AjaxCommonTest {
 		 // Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
 		
-	
-		// -- GUI
-
-		// Get a toaster object
-		Toaster toast = app.zPageMain.zGetToaster();		
-
 		// Refresh to get the contact into the client
 		app.zPageContacts.zRefresh();
 
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 
-		// Wait for the toaster (if any) to close
-		toast.zWaitForClose();
-		
 		 // Click Move -> addressbook
         app.zPageContacts.zToolbarPressPulldown(Button.B_MOVE, folder);
 
 		// Click undo from the toaster message
+        Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
 		toast.zClickUndo();
-
 
 		// Verify contact come back into Contacts folder
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);

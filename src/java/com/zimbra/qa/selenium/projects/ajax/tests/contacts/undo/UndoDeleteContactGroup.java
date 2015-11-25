@@ -44,18 +44,11 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 	@Test(description = "Undone deleted a contact group", groups = { "functional" })
 	public void UndoDeleteContactGroup_01() throws HarnessException {
 
-		//-- Data
-		
 		// The contacts folder
 		FolderItem contacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
 
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-
-		// -- GUI
-
-		// Get a toaster object
-		Toaster toast = app.zPageMain.zGetToaster();		
 
 		// Refresh
 		app.zPageContacts.zRefresh();
@@ -63,13 +56,11 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
-		// Wait for the toaster (if any) to close
-		toast.zWaitForClose();
-		
 		// delete contact group by click Delete button on toolbar
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Click undo from the toaster message
+		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
 		toast.zClickUndo();
 
@@ -83,34 +74,22 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 	@Test(description = "Undone deleted contact group by clicking Delete on Context Menu", groups = { "functional" })
 	public void UndoDeleteContactGroup_02() throws HarnessException {
 
-		//-- Data
-		
 		// The contacts folder
 		FolderItem contacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
 
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
-		// -- GUI
-
-		// Get a toaster object
-		Toaster toast = app.zPageMain.zGetToaster();		
-
 		// Refresh
 		app.zPageContacts.zRefresh();
 
-		// Wait for the toaster (if any) to close
-		toast.zWaitForClose();
-		
 		// delete contact group by click Delete on Context menu
 		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE,group.getName());
 
-		SleepUtil.sleepSmall();
-
 		// Click undo from the toaster message
+		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
 		toast.zClickUndo();
-
 
 		//Verify contact group come back into Contacts folder		
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
@@ -121,33 +100,23 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 	@Test(description = "Undone deleted  contact group selected by checkbox", groups = { "functional" })
 	public void UndoDeleteContactGroup_03()throws HarnessException {
 
-		//-- Data
-		
 		// The contacts folder
 		FolderItem contacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
 
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
-		// -- GUI
-
-		// Get a toaster object
-		Toaster toast = app.zPageMain.zGetToaster();		
-
 		// Refresh
 		app.zPageContacts.zRefresh();
 
 		// Select the contact group
-		//app.zPageContacts.zListItem(Action.A_CHECKBOX, group.getName());
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, group.getName());
 
-		// Wait for the toaster (if any) to close
-		toast.zWaitForClose();
-		
 		// delete contact group by click Delete button on toolbar
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
-		SleepUtil.sleepSmall();
 
 		// Click undo from the toaster message
+		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
 		toast.zClickUndo();
 
@@ -161,18 +130,11 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 	@Test(description = "undone deleted a contact group use shortcut Del", groups = { "functional" })
 	public void UndoDeleteContactGroup_04() throws HarnessException {
 
-		//-- Data
-		
 		// The contacts folder
 		FolderItem contacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
 
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-
-		// -- GUI
-
-		// Get a toaster object
-		Toaster toast = app.zPageMain.zGetToaster();		
 
 		// Refresh
 		app.zPageContacts.zRefresh();
@@ -180,16 +142,13 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
-		// Wait for the toaster (if any) to close
-		toast.zWaitForClose();
-		
 		// delete contact group by click shortcut Del
 		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DELETE);
 
 		// Click undo from the toaster message
+		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
 		toast.zClickUndo();
-
 
 		//Verify contact group come back into Contacts folder		
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
@@ -201,8 +160,6 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 	@Test(description = "Undone deleted multiple contact groups at once", groups = { "functional" })
 	public void UndoDeleteContactGroup_05() throws HarnessException {
 
-		//-- Data
-		
 		// The contacts folder
 		FolderItem contacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
 
@@ -211,29 +168,21 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		ContactGroupItem group2 = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 		ContactGroupItem group3 = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
-		// -- GUI
-
-		// Get a toaster object
-		Toaster toast = app.zPageMain.zGetToaster();		
-
 		// Refresh
 		app.zPageContacts.zRefresh();
 
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, group1.getName());
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, group2.getName());
-		//app.zPageContacts.zListItem(Action.A_CHECKBOX, group3.getName());
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, group3.getName());
 
-		// Wait for the toaster (if any) to close
-		toast.zWaitForClose();
-		
 		// delete contact group by click Delete button on toolbar
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Click undo from the toaster message
+		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
 		toast.zClickUndo();
-
 
 		//Verify 3 contact groups are come back into Contacts folder
 
@@ -254,8 +203,6 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 	@Test(description = "Undone Deleted contact + contact group at once", groups = { "functional" })
 	public void UndoDeleteContactGroup_06() throws HarnessException {
 
-		//-- Data
-		
 		// The contacts folder
 		FolderItem contacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
 
@@ -263,28 +210,19 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
 
-		// -- GUI
-
-		// Get a toaster object
-		Toaster toast = app.zPageMain.zGetToaster();		
-
 		// Refresh
 		app.zPageContacts.zRefresh();
 
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, group.getName());
-		//app.zPageContacts.zListItem(Action.A_CHECKBOX, contact.getName());
 
-		// Wait for the toaster (if any) to close
-		toast.zWaitForClose();
-		
 		// delete contact group by click Delete button on toolbar
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Click undo from the toaster message
+		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
 		toast.zClickUndo();
-
 
 		//Verify contact group as well as contact come back into Contacts folder		
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());

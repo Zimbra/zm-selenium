@@ -41,24 +41,9 @@ public class UndoDeleteContact extends AjaxCommonTest {
 
 	}
 
-	/**
-	 * @throws HarnessException
-	 */
-	@BeforeClass( groups = { "always" } )
-	public void UndoDeleteContactBeforeClass() throws HarnessException {
-		logger.info("UndoDeleteContactBeforeClass: start");
-		
-		// Rest the ZWC user
-		ZimbraAccount.ResetAccountZWC();
-		
-		logger.info("UndoDeleteContactBeforeClass: finish");
-	}
-
 	@Test(description = "Undone deleted contact", groups = { "functional" })
 	public void UndoDeleteContact_01() throws HarnessException {
 
-		//-- Data
-		
 		// The contacts folder
 		FolderItem contacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
 
@@ -75,24 +60,17 @@ public class UndoDeleteContact extends AjaxCommonTest {
 				+ "<a n='email'>" + contact.email + "</a>" + "</cn>"
 				+ "</CreateContactRequest>");
 
-		// -- GUI
-
-		// Get a toaster object
-		Toaster toast = app.zPageMain.zGetToaster();		
-
 		// Refresh to get the contact into the client
 		app.zPageContacts.zRefresh();
 
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 
-		// Wait for the toaster (if any) to close
-		toast.zWaitForClose();
-		
-		// delete contact
-		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);		
+		// Delete contact
+		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Click undo from the toaster message
+		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
 		toast.zClickUndo();
 
@@ -107,8 +85,6 @@ public class UndoDeleteContact extends AjaxCommonTest {
 	@Test(description = "Undone deleted a contact item selected with checkbox", groups = { "functional" })
 	public void UndoDeleteContact_02() throws HarnessException {
 
-		//-- Data
-		
 		// The contacts folder
 		FolderItem contacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
 
@@ -125,27 +101,19 @@ public class UndoDeleteContact extends AjaxCommonTest {
 				+ "<a n='email'>" + contact.email + "</a>" + "</cn>"
 				+ "</CreateContactRequest>");
 
-		// -- GUI
-
-		// Get a toaster object
-		Toaster toast = app.zPageMain.zGetToaster();		
-
 		// Refresh to get the contact into the client
 		app.zPageContacts.zRefresh();
 
 		// Select the contact's checkbox
-		//app.zPageContacts.zListItem(Action.A_CHECKBOX, contact.firstName);
-
-		// Wait for the toaster (if any) to close
-		toast.zWaitForClose();
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact.firstName);
 		
-		// delete contact
+		// Delete contact
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Click undo from the toaster message
+		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
 		toast.zClickUndo();
-
 
 		//Verify contact come back into Contacts folder
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
@@ -159,9 +127,6 @@ public class UndoDeleteContact extends AjaxCommonTest {
 	@Test(description = "Undone deleted multiple contact items", groups = { "functional" })
 	public void UndoDeleteContact_03() throws HarnessException {
 
-
-		//-- Data
-		
 		// The contacts folder
 		FolderItem contacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
 
@@ -208,30 +173,21 @@ public class UndoDeleteContact extends AjaxCommonTest {
 				+ "<a n='email'>" + contact3.email + "</a>" + "</cn>"
 				+ "</CreateContactRequest>");
 
-		// -- GUI
-
-		// Get a toaster object
-		Toaster toast = app.zPageMain.zGetToaster();		
-
 		// Refresh to get the contact into the client
 		app.zPageContacts.zRefresh();
 
 		// Select the item
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact1.fileAs);
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact2.fileAs);
-		//app.zPageContacts.zListItem(Action.A_CHECKBOX, contact3.fileAs);
+		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact3.fileAs);
 
-		// Wait for the toaster (if any) to close
-		toast.zWaitForClose();
-		
 		// delete 3 contacts
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Click undo from the toaster message
+		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
 		toast.zClickUndo();
-
-
 
 		//Verify all 3 contacts are come back into Contacts folder
 
