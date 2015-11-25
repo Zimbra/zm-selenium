@@ -1023,7 +1023,7 @@ public class FormApptNew extends AbsForm {
 				// iframes. Also there is a a bug in iframe counting if single test
 				// logouts multiple time for e.g. run 2 Accept propose new time tests
 				
-				if (this.sIsElementPresent("css=textarea[class='ZmHtmlEditorTextArea']") && ( frames == 0 || frames == 1) ) {
+				if (this.sIsElementPresent("css=textarea[class='ZmHtmlEditorTextArea']") && ( frames == 0) ) {
 	
 					locator = "css=textarea[class='ZmHtmlEditorTextArea']";
 
