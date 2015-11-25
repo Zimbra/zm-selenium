@@ -28,23 +28,33 @@ import java.util.*;
 import java.util.List;
 import java.util.jar.*;
 import java.util.regex.*;
-
 import org.apache.commons.cli.*;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.WordUtils;
 import org.apache.log4j.*;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.*;
 import org.testng.xml.*;
-
+import com.thoughtworks.selenium.SeleniumException;
 import com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject;
+import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
 import com.zimbra.qa.selenium.framework.util.performance.PerfMetrics;
 import com.zimbra.qa.selenium.framework.util.staf.*;
-
+import com.zimbra.qa.selenium.projects.admin.ui.AppAdminConsole;
+import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.html.ui.AppHtmlClient;
+import com.zimbra.qa.selenium.projects.mobile.ui.AppMobileClient;
+import com.zimbra.qa.selenium.projects.touch.ui.AppTouchClient;
 
 /**
  * The <code>ExecuteHarnessMain</code> class is the main execution class for the
@@ -86,6 +96,16 @@ public class ExecuteHarnessMain {
 	public static int testsPass = 0;
 	public static int testsFailed = 0;
 	public static int testsSkipped = 0;
+	
+	private static WebDriver _webDriver = null;
+	
+	protected static AppAjaxClient app1 = null;
+	protected static AppAdminConsole app2 = null;
+	protected static AppTouchClient app3 = null;
+	protected static AppHtmlClient app4 = null;
+	protected static AppMobileClient app5 = null;
+	
+	protected AbsTab startingPage = null;
 
 	public ExecuteHarnessMain() {
 
@@ -1244,9 +1264,9 @@ public class ExecuteHarnessMain {
 		public void onTestFailure(ITestResult result) {
 			testsFailed++;
 			String fullname = result.getMethod().getMethod().getDeclaringClass().getName() + "." + result.getMethod().getMethod().getName();
-			failedTests.add(fullname);
-			//failedTests.add(fullname.replace("com.zimbra.qa.selenium.projects.", "main.projects."));
+			failedTests.add(fullname); //failedTests.add(fullname.replace("com.zimbra.qa.selenium.projects.", "main.projects."));
 			getScreenCapture(result);
+			zResetClient();
 		}
 
 		/**
@@ -1256,8 +1276,9 @@ public class ExecuteHarnessMain {
 		public void onTestSkipped(ITestResult result) {
 			testsSkipped++;
 			String fullname = result.getMethod().getMethod().getDeclaringClass().getName() + "." + result.getMethod().getMethod().getName();
-			skippedTests.add(fullname);
-			//skippedTests.add(fullname.replace("com.zimbra.qa.selenium.projects.", "main.projects."));
+			skippedTests.add(fullname); //skippedTests.add(fullname.replace("com.zimbra.qa.selenium.projects.", "main.projects."));
+			getScreenCapture(result);
+			zResetClient();
 		}
 
 		/**
@@ -1458,6 +1479,138 @@ public class ExecuteHarnessMain {
 		}
 
 		return (true);
+	}
+	
+	public static void zResetClient() {
+		
+		logger.error("HarnessException: Reset account due to exception");
+		ZimbraAccount.ResetAccountZWC();
+		ZimbraAdminAccount.ResetAccountAdminConsoleAdmin();
+		ZimbraAccount.ResetAccountHTML();
+		ZimbraAccount.ResetAccountZMC();
+		ZimbraAccount.ResetAccountZTC();
+		
+		if (ZimbraSeleniumProperties.getAppType() == AppType.AJAX) {
+			app1 = new AppAjaxClient();
+		} else if (ZimbraSeleniumProperties.getAppType() == AppType.ADMIN) {
+			app2 = new AppAdminConsole();
+		} else if (ZimbraSeleniumProperties.getAppType() == AppType.TOUCH) {
+			app3 = new AppTouchClient();
+		} else if (ZimbraSeleniumProperties.getAppType() == AppType.HTML) {
+			app4 = new AppHtmlClient();
+		} else if (ZimbraSeleniumProperties.getAppType() == AppType.MOBILE) {
+			app5 = new AppMobileClient();
+		}
+		
+		logger.error("HarnessException: Kill the browser and relogin");
+		zKillBrowserAndRelogin();
+		
+	}
+
+	@SuppressWarnings("deprecation")
+	public static void zKillBrowserAndRelogin () {
+		
+		try {
+			String SeleniumBrowser;
+			SeleniumBrowser = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser",	ZimbraSeleniumProperties.getStringProperty("browser"));
+			
+			if (SeleniumBrowser.contains("iexplore")) {
+				com.zimbra.qa.selenium.framework.util.CommandLine.CmdExec("taskkill /f /t /im iexplore.exe");
+			} else if (SeleniumBrowser.contains("firefox")) {
+				com.zimbra.qa.selenium.framework.util.CommandLine.CmdExec("taskkill /f /t /im firefox.exe");
+			} else if (SeleniumBrowser.contains("safariproxy")) {
+				com.zimbra.qa.selenium.framework.util.CommandLine.CmdExec("taskkill /f /t /im safari.exe");
+			} else if (SeleniumBrowser.contains("chrome")) {
+				com.zimbra.qa.selenium.framework.util.CommandLine.CmdExec("taskkill /f /t /im chrome.exe");
+			}
+			
+		} catch (IOException e) {
+			logger.error("Unable to kill browsers", e);
+		} catch (InterruptedException e) {
+			logger.error("Unable to kill browsers", e);
+		}
+		
+		try
+		{
+			if (ZimbraSeleniumProperties.getAppType() == AppType.AJAX) {
+				ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.AJAX);
+			} else if (ZimbraSeleniumProperties.getAppType() == AppType.ADMIN) {
+				ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.ADMIN);
+			} else if (ZimbraSeleniumProperties.getAppType() == AppType.TOUCH) {
+				ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.TOUCH);
+			} else if (ZimbraSeleniumProperties.getAppType() == AppType.HTML) {
+				ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.HTML);
+			} else if (ZimbraSeleniumProperties.getAppType() == AppType.MOBILE) {
+				ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.MOBILE);
+			}
+			
+			if(ZimbraSeleniumProperties.isWebDriver()) {
+				
+				_webDriver = ClientSessionFactory.session().webDriver();
+
+				Capabilities cp =  ((RemoteWebDriver)_webDriver).getCapabilities();
+				if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){				
+					_webDriver.manage().window().setPosition(new Point(0, 0));
+					_webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
+					_webDriver.navigate().to(ZimbraSeleniumProperties.getBaseURL());
+				}
+				
+			} else {
+
+				ClientSessionFactory.session().selenium().start();
+				ClientSessionFactory.session().selenium().windowMaximize();
+				ClientSessionFactory.session().selenium().windowFocus();
+				ClientSessionFactory.session().selenium().allowNativeXpath("true");
+				ClientSessionFactory.session().selenium().setTimeout("60000");
+				ClientSessionFactory.session().selenium().open(ZimbraSeleniumProperties.getBaseURL());
+			}
+			
+		} catch (SeleniumException e) {
+			logger.error("Unable to open app.", e);
+			throw e;
+		}
+		
+		try {
+			
+			if (ZimbraSeleniumProperties.getAppType() == AppType.AJAX) {
+				if (ZimbraAccount.AccountZWC() != null) {
+					((AppAjaxClient)app1).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+				} else {
+					((AppAjaxClient)app1).zPageLogin.zLogin(ZimbraAccount.Account10());
+				}
+			} else if (ZimbraSeleniumProperties.getAppType() == AppType.ADMIN) {
+				if (ZimbraAdminAccount.GlobalAdmin() != null) {
+					((AppAdminConsole)app2).zPageLogin.login(ZimbraAdminAccount.GlobalAdmin());
+				} else {
+					((AppAdminConsole)app2).zPageLogin.login(ZimbraAccount.Account10());
+				}
+			} else if (ZimbraSeleniumProperties.getAppType() == AppType.TOUCH) {
+				if (ZimbraAccount.AccountZTC() != null) {
+					((AppTouchClient)app3).zPageLogin.zLogin(ZimbraAccount.AccountZTC());
+				} else {
+					((AppTouchClient)app3).zPageLogin.zLogin(ZimbraAccount.Account10());
+				}
+			} else if (ZimbraSeleniumProperties.getAppType() == AppType.HTML) {
+				if (ZimbraAccount.AccountHTML() != null) {
+					((AppHtmlClient)app4).zPageLogin.zLogin(ZimbraAccount.AccountHTML());
+				} else {
+					((AppHtmlClient)app4).zPageLogin.zLogin(ZimbraAccount.Account10());
+				}
+			} else if (ZimbraSeleniumProperties.getAppType() == AppType.MOBILE) {
+				if (ZimbraAccount.AccountZMC() != null) {
+					((AppMobileClient)app5).zPageLogin.zLogin(ZimbraAccount.AccountZMC());
+				} else {
+					((AppMobileClient)app5).zPageLogin.zLogin(ZimbraAccount.Account10());
+				}
+			}
+			
+			ClientSessionFactory.session().selenium().windowFocus();
+			ClientSessionFactory.session().selenium().windowMaximize();
+			
+		} catch (HarnessException e) {
+			logger.error("Unable to navigate to app.", e);
+		}
+		
 	}
 
 	/**

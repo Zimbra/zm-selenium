@@ -83,19 +83,19 @@ public class HarnessException extends Exception {
 	public HarnessException(String message) {
 		super(message);
 		logger.error(message, this);
-		resetAccounts();
+		//resetAccounts(); code moved to ExecuteHarnessMain class, onTestFailure method
 	}
 
 	public HarnessException(Throwable cause) {
 		super(cause);
 		logger.error(cause.getMessage(), cause);
-		resetAccounts();
+		//resetAccounts(); code moved to ExecuteHarnessMain class, onTestFailure method
 	}
 
 	public HarnessException(String message, Throwable cause) {
 		super(message, cause);
 		logger.error(message, cause);
-		resetAccounts();
+		//resetAccounts(); code moved to ExecuteHarnessMain class, onTestFailure method
 	}
 	
 	
