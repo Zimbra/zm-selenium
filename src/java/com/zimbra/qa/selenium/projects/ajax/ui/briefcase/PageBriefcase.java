@@ -1195,7 +1195,7 @@ public class PageBriefcase extends AbsTab {
 			// "New Document" shortcut result in a new document page opening
 			page = new DocumentBriefcaseNew(this.MyApplication);
 
-			keyCode = "78";
+			keyCode = "78,68";
 		} else if (shortcut == Shortcut.S_DELETE) {
 
 			// "Delete Document" shortcut leads to Confirmation Dialog opening
