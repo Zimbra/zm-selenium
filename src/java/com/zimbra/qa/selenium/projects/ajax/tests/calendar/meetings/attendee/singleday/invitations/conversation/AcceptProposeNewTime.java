@@ -83,8 +83,10 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 				+				"<content>" + apptBody + "</content>"
 				+			"</mp>"
 				+		"</m>"
-				+	"</CreateAppointmentRequest>");        
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+				+	"</CreateAppointmentRequest>");
+		
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 		
 		// --------------- Login to attendee & propose new time ----------------------------------------------------
 

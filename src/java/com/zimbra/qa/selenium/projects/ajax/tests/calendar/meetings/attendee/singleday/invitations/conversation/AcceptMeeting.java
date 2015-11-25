@@ -463,8 +463,8 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
-		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);

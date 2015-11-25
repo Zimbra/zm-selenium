@@ -112,13 +112,10 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 				+	"</CreateFolderRequest>");
 		FolderItem folderSOAP = FolderItem.importFromSOAP(app.zGetActiveAccount(), folderName);
 		
-		SleepUtil.sleepMedium(); //created folder not visible after hitting Refresh, lets see after wait..
-
-		
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -198,8 +195,6 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 				+	"</CreateFolderRequest>");
 		FolderItem folderSOAP = FolderItem.importFromSOAP(app.zGetActiveAccount(), folderName);
 		
-		SleepUtil.sleepMedium(); //created folder not visible after hitting Refresh, lets see after wait..
-		
 		// --------------- Creating invitation (organizer) ----------------------------
 		
 		this.SendCreateAppointmentRequest(apptSubject, startUTC);
@@ -207,7 +202,8 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 		
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -289,12 +285,10 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 				+	"</CreateFolderRequest>");
 		FolderItem folderSOAP = FolderItem.importFromSOAP(app.zGetActiveAccount(), folderName);
 		
-		SleepUtil.sleepMedium(); //created folder not visible after hitting Refresh, lets see after wait..
-
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -413,12 +407,10 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 				+	"</CreateFolderRequest>");
 		FolderItem folderSOAP = FolderItem.importFromSOAP(app.zGetActiveAccount(), folderName);
 		
-		SleepUtil.sleepMedium(); //created folder not visible after hitting Refresh, lets see after wait..
-
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 		
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -534,12 +526,10 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 				+	"</CreateFolderRequest>");
 		FolderItem folderSOAP = FolderItem.importFromSOAP(app.zGetActiveAccount(), folderName);
 		
-		SleepUtil.sleepMedium(); //created folder not visible after hitting Refresh, lets see after wait..
-
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);

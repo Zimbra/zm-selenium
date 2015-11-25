@@ -122,8 +122,8 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 		
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -210,7 +210,8 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 		
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -294,8 +295,8 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -416,8 +417,8 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 		
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -535,8 +536,8 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);

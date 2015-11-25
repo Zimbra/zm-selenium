@@ -26,7 +26,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 
 public class CreateAppointment extends AjaxCommonTest {
 
-
 	public CreateAppointment() {
 		logger.info("New "+ CreateAppointment.class.getCanonicalName());
 
@@ -35,11 +34,7 @@ public class CreateAppointment extends AjaxCommonTest {
 
 		// Make sure we are using an account with message view
 		super.startingAccountPreferences = null;
-
-
 	}
-	
-	
 	
 	@Test(	description = "Verify Toaster message on Create Appointment",
 			groups = { "functional" }
@@ -50,9 +45,6 @@ public class CreateAppointment extends AjaxCommonTest {
 		AppointmentItem appt = new AppointmentItem();
 		appt.setSubject(ZimbraSeleniumProperties.getUniqueString());
 		appt.setContent("content" + ZimbraSeleniumProperties.getUniqueString());
-		appt.setStartTime(new ZDate(2014, 12, 25, 12, 0, 0));
-		appt.setEndTime(new ZDate(2014, 12, 25, 14, 0, 0));
-
 
 		// Open the new mail form
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
@@ -62,12 +54,11 @@ public class CreateAppointment extends AjaxCommonTest {
 		apptForm.zFill(appt);
 
 		// Send the message
-		apptForm.zSubmit();
+		apptForm.zToolbarPressButton(Button.B_SAVE);
 			
 		//verify toasted message 'Appointment Created'  
         String expectedMsg ="Appointment Created";
-        ZAssert.assertStringContains(app.zPageMain.zGetToaster().zGetToastMessage(),
-        		        expectedMsg , "Verify toast message '" + expectedMsg + "'");
+        ZAssert.assertStringContains(app.zPageMain.zGetToaster().zGetToastMessage(),expectedMsg, "Verify toast message '" + expectedMsg + "'");
     
 		
 	}
