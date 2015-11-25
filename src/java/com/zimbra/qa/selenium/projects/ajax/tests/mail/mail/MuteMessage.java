@@ -24,18 +24,10 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 
-
 public class MuteMessage extends PrefGroupMailByMessageTest {
 
-	
 	public MuteMessage() {
 		logger.info("New "+ MuteMessage.class.getCanonicalName());
-		
-		
-		
-
-
-		
 	}
 	
 	//TODO: Remove x from groups to enable when feature is implemented  
@@ -46,23 +38,20 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 		
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
 	
-
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
-					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-						"<m>" +
-							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-							"<su>"+ subject +"</su>" +
-							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
-							"</mp>" +
-						"</m>" +
-					"</SendMsgRequest>");
+			"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+				"<m>" +
+					"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+					"<su>"+ subject +"</su>" +
+					"<mp ct='text/plain'>" +
+						"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+					"</mp>" +
+				"</m>" +
+			"</SendMsgRequest>");
 		
 		// Get the mail item for the new message
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-		
-		
 
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(subject);
@@ -79,13 +68,15 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 		
 	}
 
+	
 	//TODO: Remove x from groups to enable when feature is implemented  
-	@Bugs( ids = "65844")
+	@Bugs( ids = "38449")
 	@Test(	description = "Mute message, using 'Mute' shortcut key",
 			groups = { "functional" })
 	public void MuteMessage_02() throws HarnessException {
 		throw new HarnessException("See bug https://bugzilla.zimbra.com/show_bug.cgi?id=65844");
 	}
+	
 	
 	//TODO: Remove x from groups to enable when feature is implemented  
 	@Test(	description = "Mute message, using 'Right Click' -> 'Mute'",
@@ -93,24 +84,21 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 	public void MuteMessage_03() throws HarnessException {
 		
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-	
 
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
-					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-						"<m>" +
-							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-							"<su>"+ subject +"</su>" +
-							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
-							"</mp>" +
-						"</m>" +
-					"</SendMsgRequest>");
+			"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+				"<m>" +
+					"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+					"<su>"+ subject +"</su>" +
+					"<mp ct='text/plain'>" +
+						"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+					"</mp>" +
+				"</m>" +
+			"</SendMsgRequest>");
 		
 		// Get the mail item for the new message
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-		
-		
 
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(subject);
@@ -118,14 +106,9 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 		// Click Mute
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_MUTE, mail.dSubject);
 		
-
 		// Verify the redirected message is received
 		throw new HarnessException("Need to determine how to verify the conversation is muted (from the server) - see bug 38449 and bug 63312");
 
-
 	}
-
-
-
 
 }
