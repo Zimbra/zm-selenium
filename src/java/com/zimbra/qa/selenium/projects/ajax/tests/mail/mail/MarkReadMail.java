@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 
 public class MarkReadMail extends PrefGroupMailByMessageTest {
 
-	public int delaySeconds = 5;
+	public int delaySeconds = 10;
 	
 	public MarkReadMail() {
 		logger.info("New "+ MarkReadMail.class.getCanonicalName());
@@ -107,18 +107,17 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 		// Create a mail item to represent the message
 		MailItem mail1 = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject1 +")");
 		MailItem mail2 = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject2 +")");
-
+		
 		// Refresh current view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-				
+		app.zPageMail.zVerifyMailExists(subject1);
+		app.zPageMail.zVerifyMailExists(subject2);
+
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail1.dSubject);
 				
 		// Select the next item immediately
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail2.dSubject);
 		
-		SleepUtil.sleepMedium();
-
 		// Verify the message is marked read in the server (flags attribute should not contain (u)nread)
 		mail1 = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject1 +")");
 		ZAssert.assertStringContains(mail1.getFlags(), "u", "Verify the message is marked read in the server");

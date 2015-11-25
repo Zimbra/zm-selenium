@@ -18,9 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversatio
 
 import java.awt.event.KeyEvent;
 import java.util.List;
-
 import org.testng.annotations.*;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
@@ -30,25 +28,19 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByConversationTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
-
 public class DeleteConversation extends PrefGroupMailByConversationTest {
 
 	public DeleteConversation() {
 		logger.info("New "+ DeleteConversation.class.getCanonicalName());
-		
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
-
 	}
 	
 	@Test(	description = "Delete a conversation",
 			groups = { "smoke" })
 	public void DeleteConversation_01() throws HarnessException {
 		
-		
 		// Create the message data to be sent
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
-		
-
 
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(c.getSubject());
@@ -75,8 +67,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 	}
 
 	
-	
-	
 	@Test(	description = "Delete a conversation using checkbox and toolbar delete button",
 			groups = { "functional" })
 	public void DeleteConversation_02() throws HarnessException {
@@ -84,8 +74,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		// Create the message data to be sent
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
 
-		
-		
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(c.getSubject());
 				
@@ -94,10 +82,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		
 		// Click delete
 		app.zPageMail.zToolbarPressButton(Button.B_DELETE);
-		
-		
-		
-		//-- Verification
 		
 		// Check each message to verify they exist in the trash
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash);
@@ -123,13 +107,9 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 			dataProvider = "DataProviderDeleteKeys")
 	public void DeleteConversation_03(String name, int keyEvent) throws HarnessException {
 		
-		
 		// Create the message data to be sent
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
 
-		
-		
-		
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(c.getSubject());
 				
@@ -140,10 +120,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		logger.info("Typing shortcut key "+ name + " KeyEvent: "+ keyEvent);
 		app.zPageMail.zKeyboardKeyEvent(keyEvent);
 				
-
-
-		//-- Verification
-		
 		// Check each message to verify they exist in the trash
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash);
 		ConversationItem actual = ConversationItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:"+ c.getSubject());
@@ -152,20 +128,15 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 			ZAssert.assertEquals(m.dFolderId, trash.getId(), "Verify the conversation message is in the trash");
 		}
 
-		
 	}
 
 	@Test(	description = "Delete a conversation by selecting and typing '.t' shortcut",
 			groups = { "functional" } )
 	public void DeleteConversation_04() throws HarnessException {
 		
-		
 		// Create the message data to be sent
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
 
-		
-		
-		
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(c.getSubject());
 				
@@ -175,11 +146,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		// Click delete
 		app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_MOVETOTRASH);
 				
-		
-
-
-		//-- Verification
-		
 		// Check each message to verify they exist in the trash
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash);
 		ConversationItem actual = ConversationItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:"+ c.getSubject());
@@ -187,24 +153,17 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		for (MailItem m : actual.getMessageList()) {
 			ZAssert.assertEquals(m.dFolderId, trash.getId(), "Verify the conversation message is in the trash");
 		}
-
-		
 	}
 
 	@Test(	description = "Delete multiple messages (3) by select and toolbar delete",
 			groups = { "functional" })
 	public void DeleteConversation_05() throws HarnessException {
 		
-		
 		// Create the message data to be sent
 		ConversationItem c1 = ConversationItem.createConversationItem(app.zGetActiveAccount());
 		ConversationItem c2 = ConversationItem.createConversationItem(app.zGetActiveAccount());
 		ConversationItem c3 = ConversationItem.createConversationItem(app.zGetActiveAccount());
 
-		
-		
-		
-		
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 				
@@ -216,9 +175,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		// Click toolbar delete button
 		app.zPageMail.zToolbarPressButton(Button.B_DELETE);
 				
-
-		//-- Verification
-		
 		// Check each message to verify they exist in the trash
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash);
 		
@@ -244,22 +200,14 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 			groups = { "functional" })
 	public void DeleteConversation_06() throws HarnessException {
 		
-		
 		// Create the message data to be sent
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
 
-		
-		
-		
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(c.getSubject());
 				
 		// Right click the item, select delete
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, c.getSubject());
-		
-
-
-		//-- Verification
 		
 		// Check each message to verify they exist in the trash
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash);
@@ -268,8 +216,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		for (MailItem m : actual.getMessageList()) {
 			ZAssert.assertEquals(m.dFolderId, trash.getId(), "Verify the conversation message is in the trash");
 		}
-
-		
 	}
 
 
@@ -278,13 +224,9 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 			groups = { "functional" } )
 	public void HardDeleteConversation_01() throws HarnessException {
 		
-		
 		// Create the message data to be sent
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
 
-		
-		
-		
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(c.getSubject());
 				
@@ -295,7 +237,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		DialogWarning dialog = (DialogWarning)app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_HARDELETE);
 		dialog.zClickButton(Button.B_OK);
 			
-		
 		// Verify the message is no longer in the mailbox
 		app.zGetActiveAccount().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='conversation'>"
@@ -304,8 +245,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 
 		Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:c");
 		ZAssert.assertEquals(nodes.length, 0, "Verify the converastion is no longer in the mailbox");
-
-		
 	}
 
 	
@@ -314,16 +253,11 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 			groups = { "functional" })
 	public void HardDeleteConversation_02() throws HarnessException {
 		
-		
 		// Create the message data to be sent
 		ConversationItem c1 = ConversationItem.createConversationItem(app.zGetActiveAccount());
 		ConversationItem c2 = ConversationItem.createConversationItem(app.zGetActiveAccount());
 		ConversationItem c3 = ConversationItem.createConversationItem(app.zGetActiveAccount());
 
-		
-		
-		
-		
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 				
@@ -334,7 +268,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		
 		DialogWarning dialog = (DialogWarning)app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_HARDELETE);
 		dialog.zClickButton(Button.B_OK);
-			
 		
 		// Verify the message is no longer in the mailbox
 		app.zGetActiveAccount().soapSend(
@@ -360,8 +293,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 
 		nodes = app.zGetActiveAccount().soapSelectNodes("//mail:c");
 		ZAssert.assertEquals(nodes.length, 0, "Verify the conversation (subject2) is no longer in the mailbox");
-
-		
 	}
 
 
@@ -369,8 +300,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 	@Test(	description = "Delete a conversation - 1 message in inbox, 1 message in sent, 1 message in subfolder",
 			groups = { "functional" })
 	public void DeleteConversation_10() throws HarnessException {
-		
-		//-- DATA
 		
 		// Create a conversation (3 messages)
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
@@ -415,18 +344,11 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 					"</SendMsgRequest>");
 		String idSent = app.zGetActiveAccount().soapSelectValue("//mail:m", "id");
 
-		
-		//-- GUI
-		
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(c.getSubject());
 				
 		// Right click the item, select delete
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, c.getSubject());
-		
-
-
-		//-- Verification
 		
 		// Expected: all messages should be in trash, except for the sent message
 		// Check each message to verify they exist in the trash
@@ -478,17 +400,11 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 					"</m>" +
 				"</SaveDraftRequest>");
         
-
-
 		// Get the system folders
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		FolderItem drafts = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Drafts);
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
-
-		
-		//-- GUI
-		
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(subject);
 		
@@ -509,10 +425,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
 
 		}
-		
-
-
-		//-- Verification
 		
 		// Verify inbox message remains (bug 79188)
 		MailItem m = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject +") inid:"+ inbox.getId());
@@ -536,18 +448,12 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 			groups = { "functional" })
 	public void DeleteConversation_21() throws HarnessException {
 		
-		//-- DATA
-		
-		
-		
 		final String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
 		final String content1 = "content1"+ ZimbraSeleniumProperties.getUniqueString();
 		final String content2 = "content2"+ ZimbraSeleniumProperties.getUniqueString();
 		final FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		final FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 		String folderid;
-		
-		
 		
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -561,10 +467,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 				"</SendMsgRequest>");
 		MailItem message = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "in:sent subject:("+ subject +")");
 
-
-		
-		//-- GUI
-		
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(subject);
 				
@@ -585,10 +487,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 
 		// Click delete (no refresh)
 		app.zPageMail.zToolbarPressButton(Button.B_DELETE);
-		
-
-
-		//-- Verification
 		
 		// If conversation is 'selected', then all messages should be refreshed and deleted
 		
@@ -614,17 +512,12 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 			groups = { "functional" })
 	public void DeleteConversation_22() throws HarnessException {
 		
-		//-- DATA
-		
-		
 		final String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
 		final String content1 = "content1"+ ZimbraSeleniumProperties.getUniqueString();
 		final String content2 = "content2"+ ZimbraSeleniumProperties.getUniqueString();
 		final FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		final FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 		String folderid;
-		
-		
 		
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -638,6 +531,9 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 				"</SendMsgRequest>");
 		MailItem message = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "in:sent subject:("+ subject +")");
 
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+				
 		// Send another message to the conversation
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -650,14 +546,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 					"</m>" +
 				"</SendMsgRequest>");
 
-		app.zPageMail.zVerifyMailExists(subject);
-
 		// Right click the item, select delete (this should not refresh)
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, subject);
-		
-
-
-		//-- Verification
 		
 		// If conversation is not refreshed, then only the old message should be deleted
 		
@@ -683,9 +573,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 			groups = { "functional" })
 	public void DeleteConversation_23() throws HarnessException {
 		
-		//-- DATA
-		
-		
 		final String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
 		final String content1 = "content1"+ ZimbraSeleniumProperties.getUniqueString();
 		final String content2 = "content2"+ ZimbraSeleniumProperties.getUniqueString();
@@ -693,8 +580,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		final FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		final FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 		String folderid;
-		
-		
 		
 		// Send a message to the test account and AccountB
 		ZimbraAccount.AccountA().soapSend(
@@ -721,12 +606,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 					"</m>" +
 				"</SendMsgRequest>");
 
-
-		
-		//-- GUI
-		
-		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		// Click Get Mail button
+		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
 				
 		// Select the item (this should refresh)
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -743,12 +624,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 					"</m>" +
 				"</SendMsgRequest>");
 
-		// Click delete
-		app.zPageMail.zToolbarPressButton(Button.B_DELETE);
-		
-
-
-		//-- Verification
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
 		
 		// If conversation is 'selected', then all messages should be refreshed and deleted
 		
@@ -816,7 +693,9 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 					"</m>" +
 				"</SendMsgRequest>");
 		
-
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+				
 		// Send another message to the conversation
 		// AccountA replies to the message.
 		ZimbraAccount.AccountA().soapSend(
@@ -830,14 +709,9 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 					"</m>" +
 				"</SendMsgRequest>");
 
-
-		app.zPageMail.zVerifyMailExists(subject);
-
 		// Right click the item, select delete (this should not refresh)
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, subject);
 		
-
-
 		//-- Verification
 		
 		// If conversation is not refreshed, then only the old messages should be deleted

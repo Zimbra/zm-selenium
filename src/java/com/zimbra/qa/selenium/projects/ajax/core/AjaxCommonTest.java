@@ -96,8 +96,6 @@ public class AjaxCommonTest {
 	 */
 	protected AppAjaxClient app = null;
 
-
-
 	/**
 	 * BeforeMethod variables
 	 * startingPage = the starting page before the test method starts
@@ -110,9 +108,6 @@ public class AjaxCommonTest {
 	protected Map<String, String> startingUserPreferences = null;		// TODO:
 	protected Map<String, String> startingUserZimletPreferences = null;
 
-	
-	
-	
 	protected AjaxCommonTest() {
 		logger.info("New "+ AjaxCommonTest.class.getCanonicalName());
 
@@ -163,14 +158,14 @@ public class AjaxCommonTest {
 						.webDriverBackedSelenium();
 				_webDriverBackedSelenium.windowMaximize();
 				_webDriverBackedSelenium.windowFocus();
-				_webDriverBackedSelenium.setTimeout("60000");
+				_webDriverBackedSelenium.setTimeout("80000");
 			} else {
 				_selenium = ClientSessionFactory.session().selenium();
 				_selenium.start();
 				_selenium.windowMaximize();
 				_selenium.windowFocus();
 				_selenium.allowNativeXpath("true");
-				_selenium.setTimeout("60000");
+				_selenium.setTimeout("80000");
 			}
 			// Dynamic wait for App to be ready
 			int maxRetry = 10;
@@ -230,12 +225,8 @@ public class AjaxCommonTest {
 	@BeforeClass( groups = { "always" } )
 	public void commonTestBeforeClass() throws HarnessException {
 		logger.info("commonTestBeforeClass: start");
-
 		logger.info("commonTestBeforeClass: finish");
-
 	}
-
-
 
 	/**
 	 * Global BeforeMethod
@@ -290,8 +281,6 @@ public class AjaxCommonTest {
 				// Set the preferences accordingly
 				ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
 				ZimbraAccount.AccountZWC().modifyUserZimletPreferences(startingUserZimletPreferences);
-
-
 			}
 			
 		}
@@ -314,8 +303,6 @@ public class AjaxCommonTest {
 				// Set the preferences accordingly
 				ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
 				ZimbraAccount.AccountZWC().modifyUserZimletPreferences(startingUserZimletPreferences);
-
-
 			}
 
 			ZimbraAccount.AccountZWC().modifyUserZimletPreferences(startingUserZimletPreferences);
@@ -381,11 +368,8 @@ public class AjaxCommonTest {
 					throw new HarnessException("Error Dialog is visible");
 
 				}
-
-
 			}
-		}	
-
+		}
 
 		// Make sure any extra compose tabs are closed
 		app.zPageMain.zCloseComposeTabs();

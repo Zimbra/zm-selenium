@@ -16,12 +16,9 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contacts;
 
-
 import java.util.ArrayList;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.items.ContextMenuItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
@@ -29,7 +26,6 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
@@ -97,12 +93,9 @@ public class ContactContextMenu extends AjaxCommonTest  {
 		
 		ContactItem contactItem = createSelectARandomContactItem();
 		
-
-		// Select the item
         // Right click to show the menu
         ContextMenu contextMenu= (ContextMenu) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, contactItem.fileAs); // contactItem.fileAs);
       
-        
         ArrayList <ContextMenuItem> list = contextMenu.zListGetContextMenuItems(PageContacts.CONTEXT_MENU.class);
         
         //verify all items in the context menu list
@@ -186,12 +179,52 @@ public class ContactContextMenu extends AjaxCommonTest  {
 	    Assert.assertTrue(pagePrint.isContained("css=td[class='contactOutput']", contactItem.email ), contactItem.firstName + " not displayed in Print Page");
 	    
 	}
+	
+	@Test(	description = "Right click then  click Find Emails->Received From contact",
+			groups = { "smoke" })
+	public void FindEmailsReceivedFromContact() throws HarnessException {
+		
+	    //Create  email sent to this contacts	
+		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String lastName = "lastname " + ZimbraSeleniumProperties.getUniqueString();
+		
+		// Send the message from AccountB to the ZWC user
+		ZimbraAccount.AccountB().soapSend(
+					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+						"<m>" +
+							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+							"<su>"+ subject +"</su>" +
+							"<mp ct='text/plain'>" +
+								"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"</mp>" +
+						"</m>" +
+					"</SendMsgRequest>");
+	
+		MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ subject +")");
+	
+		ContactItem contactItem = createSelectAContactItem(app.zGetActiveAccount().DisplayName,lastName, ZimbraAccount.AccountB().EmailAddress);
+		
+		//Click Find Emails -> Received From Contact
+	    app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_SEARCH, Button.O_SEARCH_MAIL_RECEIVED_FROM_CONTACT, contactItem.fileAs);
+	
+	    // Get the bubleText
+	    String bubleText;
+		if (app.zPageContacts.sIsElementPresent("css=div[id='ztb_searchresults__SR-3'] span[class='addrBubble']")) {
+			bubleText = app.zPageSearch.sGetText("css=div[id='ztb_searchresults__SR-3'] span[class='addrBubble']");
+		} else if (app.zPageContacts.sIsElementPresent("css=div[id='ztb_searchresults__SR-2'] span[class='addrBubble']")) {
+			bubleText = app.zPageSearch.sGetText("css=div[id='ztb_searchresults__SR-2'] span[class='addrBubble']");
+		} else {
+			bubleText = app.zPageSearch.sGetText("css=[class='addrBubble']");
+		}
+		
+		ZAssert.assertEquals(bubleText, "from:"+ ZimbraAccount.AccountB().EmailAddress ,"Verify the message list exists");
+		
+	}
 
 	@Test(	description = "Right click then  click Find Emails->Sent To contact",
 			groups = { "smoke" })
 	public void FindEmailsSentToContact() throws HarnessException {
 
-			
 	    //Create  email sent to this contacts	
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 		String lastName = "lastname " + ZimbraSeleniumProperties.getUniqueString();
@@ -211,51 +244,22 @@ public class ContactContextMenu extends AjaxCommonTest  {
 
 		ContactItem contactItem = createSelectAContactItem(app.zGetActiveAccount().DisplayName, lastName, app.zGetActiveAccount().EmailAddress);
 		
-		//Click Find Emails->Sent To Contact
+		//Click Find Emails -> Sent To Contact
         app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_SEARCH, Button.O_SEARCH_MAIL_SENT_TO_CONTACT , contactItem.fileAs);
 		
-		SleepUtil.sleepSmall();
-        
         // Get the bubleText
-		String bubleText = app.zPageSearch.sGetText("css=[class='addrBubble']");
+		String bubleText;
+		if (app.zPageContacts.sIsElementPresent("css=div[id='ztb_searchresults__SR-3'] span[class='addrBubble']")) {
+			bubleText = app.zPageSearch.sGetText("css=div[id='ztb_searchresults__SR-3'] span[class='addrBubble']");
+		} else if (app.zPageContacts.sIsElementPresent("css=div[id='ztb_searchresults__SR-2'] span[class='addrBubble']")) {
+			bubleText = app.zPageSearch.sGetText("css=div[id='ztb_searchresults__SR-2'] span[class='addrBubble']");
+		} else {
+			bubleText = app.zPageSearch.sGetText("css=[class='addrBubble']");
+		}
+		
 		ZAssert.assertEquals(bubleText, "tocc:"+ app.zGetActiveAccount().EmailAddress ,"Verify the message list exists");
                 
 	}
 	
-	@Test(	description = "Right click then  click Find Emails->Received From contact",
-				groups = { "smoke" })
-	public void FindEmailsReceivedFromContact() throws HarnessException {
-		
-	    //Create  email sent to this contacts	
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String lastName = "lastname " + ZimbraSeleniumProperties.getUniqueString();
-		
-		// Send the message from AccountB to the ZWC user
-		ZimbraAccount.AccountB().soapSend(
-					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-						"<m>" +
-							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-							"<su>"+ subject +"</su>" +
-							"<mp ct='text/plain'>" +
-								"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
-							"</mp>" +
-						"</m>" +
-					"</SendMsgRequest>");
-
-		MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ subject +")");
-
-		ContactItem contactItem = createSelectAContactItem(app.zGetActiveAccount().DisplayName,lastName, ZimbraAccount.AccountB().EmailAddress);
-		
-		
-		//Click Find Emails->Received From Contact
-        app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_SEARCH, Button.O_SEARCH_MAIL_RECEIVED_FROM_CONTACT, contactItem.fileAs);
-
-        
-        // Get the bubleText
-		String bubleText = app.zPageSearch.sGetText("css=[class='addrBubble']");
-		ZAssert.assertEquals(bubleText, "from:"+ ZimbraAccount.AccountB().EmailAddress ,"Verify the message list exists");
-		
-                
-	}
 }
 

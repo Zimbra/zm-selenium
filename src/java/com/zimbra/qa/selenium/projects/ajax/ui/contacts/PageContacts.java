@@ -640,7 +640,7 @@ public class PageContacts extends AbsTab {
 			}
 			else {
 			    //others
-			    zClickAt(pulldownLocator,"");
+			    zClickAt(pulldownLocator,"10,20");
 			}
 			
 			zWaitForBusyOverlay();
@@ -1144,7 +1144,7 @@ public class PageContacts extends AbsTab {
             SleepUtil.sleepSmall();
             //jClick(locator);
             //zClickAt(locator, "0,0");
-             sClickAt(locator, "0,0");
+            zClickAt(locator, "10,20");
      	//}
        zWaitForBusyOverlay();
 		

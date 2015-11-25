@@ -139,25 +139,16 @@ public class PageMain extends AbsTab {
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
-
 		if ( zIsActive() ) {
 			// This page is already active
 			return;
 		}
-			
-		// 1. Logout
-		// 2. Login as the default account
+
 		if ( !((AppAjaxClient)MyApplication).zPageLogin.zIsActive() ) {
 			((AppAjaxClient)MyApplication).zPageLogin.zNavigateTo();
 		}
 		((AppAjaxClient)MyApplication).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 		
-		// June 28, 2013 (9.0.0 Beta)
-		// For coverage, it seems to take longer than 60 seconds for the page to load
-		// Update the value to 120 seconds, and then make sure the harness doesn't slow
-		// down, or else that could mean a slowdown in the client.
-		//
-		// zWaitForActive();		// Default: 60 seconds
 		zWaitForActive(120000);
 		
 	}
