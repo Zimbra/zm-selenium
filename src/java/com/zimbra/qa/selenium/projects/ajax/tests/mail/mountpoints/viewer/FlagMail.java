@@ -24,20 +24,15 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
-
 public class FlagMail extends PrefGroupMailByMessageTest {
 
 	public FlagMail() {
 		logger.info("New "+ FlagMail.class.getCanonicalName());
-		
-		
-		
-
-		
 	}
 	
 	@Test(	description = "Verify Permission Denied on Flag a shared mail (read-only share)",
 			groups = { "functional" })
+	
 	public void FlagMail_01() throws HarnessException {
 		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
@@ -76,8 +71,6 @@ public class FlagMail extends PrefGroupMailByMessageTest {
             	+			"</content>"
             	+		"</m>"
 				+	"</AddMsgRequest>");
-		
-
 		
 		// Mount it
 		app.zGetActiveAccount().soapSend(
@@ -133,6 +126,7 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 	
 	@Test(	description = "Verify Permission Denied on Flag (keyboard='mf') a shared mail (read-only share)",
 			groups = { "functional" })
+	
 	public void FlagMail_02() throws HarnessException {
 		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
@@ -226,6 +220,7 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 
 	@Test(	description = "Verify Permission Denied toaster on Flag a shared mail (read-only share)",
 			groups = { "functional" })
+	
 	public void FlagMail_03() throws HarnessException {
 		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
@@ -286,18 +281,14 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 			// Select the item
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 			
-			// Make sure any existing toaster is closed
-			Toaster toaster = app.zPageMain.zGetToaster();		
-			toaster.zWaitForClose();
-			
 			// Flag the item
 			app.zPageMail.zListItem(Action.A_MAIL_FLAG, subject);
 	
 			// Wait for the toaster
+			Toaster toaster = app.zPageMain.zGetToaster();	
 			toaster.zWaitForActive();
 			ZAssert.assertEquals(toaster.zGetToastMessage(), "Permission denied.", "Verify the toaster shows");	// TODO: I18N
 
-			
 			// https://bugzilla.zimbra.com/show_bug.cgi?id=73696#c9
 			// A "Permission Denied" error popup *might* occur
 			DialogError dialog = app.zPageMain.zGetErrorDialog(DialogError.DialogErrorID.Zimbra);
