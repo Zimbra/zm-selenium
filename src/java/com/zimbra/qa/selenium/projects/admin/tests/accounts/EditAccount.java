@@ -53,43 +53,43 @@ public class EditAccount extends AdminCommonTest {
 	 */
 	@Test(	description = "Edit Account name  - Manage Account View",
 			groups = { "smoke" })
-			public void EditAccount_01() throws HarnessException {
+	public void EditAccount_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
-				+		"</CreateAccountRequest>");
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+		"</CreateAccountRequest>");
 
 		// Refresh the account list
 		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-		
+
 		// Click on account to be Edited.
 		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
-		
+
 		// Click on Edit button
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
-		
+
 		//Edit the name.
 		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(editedName);
-		
+
 		//Submit the form.
 		form.zSubmit();
-		
+
 		app.zPageMain.zRefresh();
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<account by='name'>"+ editedName+"@"+account.getDomainName() +"</account>"
-				+		"</GetAccountRequest>");
+						+			"<account by='name'>"+ editedName+"@"+account.getDomainName() +"</account>"
+						+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "Verify the account is edited successfully");
 		app.zPageMain.logout();
 	}
-	
+
 	/**
 	 * Testcase : Edit account name -- right click 
 	 * Steps :
@@ -100,43 +100,43 @@ public class EditAccount extends AdminCommonTest {
 	 */
 	@Test(	description = "Edit account name -- right click",
 			groups = { "functional" })
-			public void EditAccount_02() throws HarnessException {
+	public void EditAccount_02() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
-				+		"</CreateAccountRequest>");
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+		"</CreateAccountRequest>");
 
 		// Refresh the account list
 		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-		
+
 		// Right Click on account to be Edited.
 		app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, account.getEmailAddress());
-		
+
 		// Click on Edit button
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		//Edit the name.
 		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(editedName);
-		
+
 		//Submit the form.
 		form.zSubmit();
 		app.zPageMain.zRefresh();
-		
+
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<account by='name'>"+ editedName+"@"+account.getDomainName() +"</account>"
-				+		"</GetAccountRequest>");
+						+			"<account by='name'>"+ editedName+"@"+account.getDomainName() +"</account>"
+						+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=74487");
 		app.zPageMain.logout();
 	}
-	
+
 	/**
 	 * Testcase : Edit delegated admin account name  - Manage Account View
 	 * Steps :
@@ -149,39 +149,39 @@ public class EditAccount extends AdminCommonTest {
 	 */
 	@Test(	description = "Edit delegated admin account name  - Manage Account View",
 			groups = { "functional" })
-			public void EditAccount_03() throws HarnessException {
+	public void EditAccount_03() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("delegated_admin" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
-				+			"<a xmlns='' n='zimbraIsDelegatedAdminAccount'>TRUE</a>"
-				+		"</CreateAccountRequest>");
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+			"<a xmlns='' n='zimbraIsDelegatedAdminAccount'>TRUE</a>"
+						+		"</CreateAccountRequest>");
 
 		// Refresh the account list
 		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-		
+
 		// Click on account to be Edited.
 		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
-		
+
 		// Click on Edit button
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
-		
+
 		//Edit the name.
 		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(editedName);
-		
+
 		//Submit the form.
 		form.zSubmit();
 		app.zPageMain.zRefresh();
-		
+
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<account by='name'>"+ editedName+"@"+account.getDomainName() +"</account>"
-				+		"</GetAccountRequest>");
+						+			"<account by='name'>"+ editedName+"@"+account.getDomainName() +"</account>"
+						+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "Verify the account is edited successfully");
 		app.zPageMain.logout();
@@ -199,23 +199,23 @@ public class EditAccount extends AdminCommonTest {
 	 */
 	@Test(	description = "Edit global admin Account name  - Manage Account View",
 			groups = { "smoke" })
-			public void EditAccount_04() throws HarnessException {
+	public void EditAccount_04() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("global_admin" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
-				+			"<a xmlns='' n='zimbraIsAdminAccount'>TRUE</a>"
-				+		"</CreateAccountRequest>");
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+			"<a xmlns='' n='zimbraIsAdminAccount'>TRUE</a>"
+						+		"</CreateAccountRequest>");
 
 		// Refresh the account list
 		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-		
+
 		// Click on account to be Edited.
 		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
-		
+
 		// Click on Edit button
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
@@ -223,22 +223,22 @@ public class EditAccount extends AdminCommonTest {
 		//Edit the name.
 		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(editedName);
-		
+
 		//Submit the form.
 		form.zSubmit();
 		app.zPageMain.zRefresh();
-		
+
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<account by='name'>"+ editedName+"@"+account.getDomainName() +"</account>"
-				+		"</GetAccountRequest>");
+						+			"<account by='name'>"+ editedName+"@"+account.getDomainName() +"</account>"
+						+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "Verify the account is edited successfully");
 		app.zPageMain.logout();
 	}
 
-	
+
 	/**
 	 * Testcase : Edit a basic account -- Search List View
 	 * Steps :
@@ -252,15 +252,15 @@ public class EditAccount extends AdminCommonTest {
 	 */
 	@Test(	description = "Edit a basic account - Search List View",
 			groups = { "functional" })
-			public void EditAccount_05() throws HarnessException {
+	public void EditAccount_05() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
-				+		"</CreateAccountRequest>");
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+		"</CreateAccountRequest>");
 
 
 
@@ -273,7 +273,7 @@ public class EditAccount extends AdminCommonTest {
 		// Click on account to be deleted.
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
 
-		
+
 		// Click on Delete button
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.ACCOUNT);
 		FormEditAccount form = (FormEditAccount) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
@@ -281,22 +281,22 @@ public class EditAccount extends AdminCommonTest {
 		//Edit the name.
 		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(editedName);
-		
+
 		//Submit the form.
 		form.zSubmit();
 		app.zPageMain.zRefresh();
-		
+
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<account by='name'>"+ editedName+"@"+account.getDomainName() +"</account>"
-				+		"</GetAccountRequest>");
+						+			"<account by='name'>"+ editedName+"@"+account.getDomainName() +"</account>"
+						+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=74487");
 		app.zPageMain.logout();
 
 	}
-	
+
 	/**
 	 * Testcase : Edit a basic account -- Search List View
 	 * Steps :
@@ -310,16 +310,16 @@ public class EditAccount extends AdminCommonTest {
 	 */
 	@Test(	description = "Edit a basic account - Search List View",
 			groups = { "functional" })
-			public void EditAccount_06() throws HarnessException {
+	public void EditAccount_06() throws HarnessException {
 
 
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
-				+		"</CreateAccountRequest>");
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+		"</CreateAccountRequest>");
 
 
 
@@ -332,7 +332,7 @@ public class EditAccount extends AdminCommonTest {
 		// Click on account to be deleted.
 		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, account.getEmailAddress());
 
-		
+
 		// Click on Delete button
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.ACCOUNT);
 		FormEditAccount form = (FormEditAccount) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
@@ -341,16 +341,16 @@ public class EditAccount extends AdminCommonTest {
 		//Edit the name.
 		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(editedName);
-		
+
 		//Submit the form.
 		form.zSubmit();
 		app.zPageMain.zRefresh();
-		
+
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<account by='name'>"+ editedName+"@"+account.getDomainName() +"</account>"
-				+		"</GetAccountRequest>");
+						+			"<account by='name'>"+ editedName+"@"+account.getDomainName() +"</account>"
+						+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=74487");
 		app.zPageMain.logout();
@@ -366,7 +366,7 @@ public class EditAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Edit account - Two Factor Authentication",
-			groups = { "sanity" })
+			groups = { "sanity", "network" })
 	public void EditAccount_07() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -376,7 +376,10 @@ public class EditAccount extends AdminCommonTest {
 						+			"<name>" + account.getEmailAddress() + "</name>"
 						+			"<password>test123</password>"
 						+		"</CreateAccountRequest>");
-		
+
+		// Refresh the account list
+		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(account.getEmailAddress());
 
@@ -390,34 +393,34 @@ public class EditAccount extends AdminCommonTest {
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.ACCOUNT);
 		FormEditAccount form = (FormEditAccount) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 		SleepUtil.sleepMedium();
-		
+
 		// Click on Advanced section
 		form.zClickAt(PageManageAccounts.Locators.ADVANCED,"");
 		SleepUtil.sleepMedium();
-		
-		// Check "Enable two-factor authentication"
-		app.zPageEditCOS.sClickAt(Locators.zEnableTwoFactorAuth,"");
-		
-		// Check "Require two-step authentication"
-		app.zPageEditCOS.sClickAt(Locators.zRequiredTwoFactorAuth,"");
 
-		// Check "Number of one-time codes to generate:"
-		app.zPageEditCOS.sType(Locators.zTwoFactorAuthNumScratchCodes,"5");
-		
-		// Uncheck "Enable application passcodes"
-		app.zPageEditCOS.sClickAt(Locators.zEnableApplicationPasscodes,"");
+		// Check "Enable two-factor authentication"
+		app.zPageEditCOS.zPreferenceCheckboxSet(Button.B_ENABLE_TWO_FACTOR_AUTH,true);
+
+		// Check "Require two-step authentication"
+		app.zPageEditCOS.zPreferenceCheckboxSet(Button.B_REQUIRED_TWO_FACTOR_AUTH,true);
+
+		// Check "Enable application passcodes"
+		app.zPageEditCOS.zPreferenceCheckboxSet(Button.B_ENABLE_APPLICATION_PASSCODES,true);
+
+		// Enter "Number of one-time codes to generate"
+		app.zPageEditCOS.zPreferenceTextSet(Button.B_TWO_FACTOR_AUTH_NUM_SCRATCH_CODES, "5");
 
 		// Submit the form
 		form.zSubmit();
 
 		// Verify the enable two-factor authentication is set to true
 		app.zPageMain.zRefresh();
-		
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<account by='name'>"+ account.getEmailAddress() +"</account>"
 						+		"</GetAccountRequest>");
-		
+
 		Element response1 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureTwoFactorAuthAvailable']", 1);
 		ZAssert.assertNotNull(response1, "Verify the account is edited successfully");
 		ZAssert.assertStringContains(response1.toString(),"TRUE", "Verify the Enable two-factor authentication is set to true");
@@ -432,13 +435,12 @@ public class EditAccount extends AdminCommonTest {
 		ZAssert.assertNotNull(response3, "Verify the account is edited successfully");
 		ZAssert.assertStringContains(response3.toString(),"5", "Verify the Number of one-time codes to generate is set to 5");
 
-		// Verify the enable application passcodes is set to false
+		// Verify the enable application passcodes is set to true
 		Element response4 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureAppSpecificPasswordsEnabled']", 1);
 		ZAssert.assertNotNull(response4, "Verify the account is edited successfully");
-		ZAssert.assertStringContains(response4.toString(),"FALSE", "Verify the Enable application passcodes is set to false");
-		
-		app.zPageMain.logout();
+		ZAssert.assertStringContains(response4.toString(),"TRUE", "Verify the Enable application passcodes is set to true");
 
+		app.zPageMain.logout();
 	}
-	
+
 }

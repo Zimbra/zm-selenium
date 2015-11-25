@@ -52,7 +52,7 @@ public class EditCos extends AdminCommonTest {
 	 */
 	@Test(	description = "Edit Cos name  - Manage Cos View",
 			groups = { "functional" })
-			public void EditCos_01() throws HarnessException {
+	public void EditCos_01() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
@@ -60,35 +60,35 @@ public class EditCos extends AdminCommonTest {
 
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateCosRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + cosName + "</name>"
-				+		"</CreateCosRequest>");
+						+			"<name>" + cosName + "</name>"
+						+		"</CreateCosRequest>");
 
 		// Refresh the account list
 		app.zPageManageCOS.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
 		// Click on account to be deleted.
 		app.zPageManageCOS.zListItem(Action.A_LEFTCLICK, cosName);
-		
+
 		// Click on Edit button
 		FormEditCos form = (FormEditCos) app.zPageManageCOS.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
-		
+
 		//Edit the name.
 		String editedName = "editedCos_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(editedName);
-		
+
 		//Submit the form.
 		form.zSubmit();
-		
+
 		// Verify the cos exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-		"<GetCosRequest xmlns='urn:zimbraAdmin'>" +
-		                     "<cos by='name'>"+editedName+"</cos>"+
-		                   "</GetCosRequest>");
+				"<GetCosRequest xmlns='urn:zimbraAdmin'>" +
+						"<cos by='name'>"+editedName+"</cos>"+
+				"</GetCosRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
 		ZAssert.assertNotNull(response, "Verify the cos is edited successfully");	
 	}
-	
-	
+
+
 	/**
 	 * Testcase : Edit cos name -- right click 
 	 * Steps :
@@ -99,41 +99,41 @@ public class EditCos extends AdminCommonTest {
 	 */
 	@Test(	description = "Edit cos name -- right click",
 			groups = { "functional" })
-			public void EditCos_02() throws HarnessException {
-		
+	public void EditCos_02() throws HarnessException {
+
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
 
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateCosRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + cosName + "</name>"
-				+		"</CreateCosRequest>");
+						+			"<name>" + cosName + "</name>"
+						+		"</CreateCosRequest>");
 
 		// Refresh the account list
 		app.zPageManageCOS.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
 		// Click on account to be deleted.
 		app.zPageManageCOS.zListItem(Action.A_LEFTCLICK, cosName);
-		
+
 		// Click on Edit button
 		FormEditCos form = (FormEditCos) app.zPageManageCOS.zToolbarPressButton(Button.B_TREE_EDIT);
-				
+
 		//Click on General Information tab.
 		form.zClickTreeItem(FormEditCos.TreeItem.GENERAL_INFORMATION);
 
 		//Edit the name.
 		String editedName = "editedCos_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(editedName);
-		
+
 		//Submit the form.
 		form.zSubmit();
-		
+
 		// Verify the cos exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-		"<GetCosRequest xmlns='urn:zimbraAdmin'>" +
-		                     "<cos by='name'>"+editedName+"</cos>"+
-		                   "</GetCosRequest>");
+				"<GetCosRequest xmlns='urn:zimbraAdmin'>" +
+						"<cos by='name'>"+editedName+"</cos>"+
+				"</GetCosRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=79304");
 	}
@@ -150,47 +150,47 @@ public class EditCos extends AdminCommonTest {
 	 */
 	@Test(	description = "Edit Cos name  - Search Cos View",
 			groups = { "functional" })
-			public void EditCos_03() throws HarnessException {
-	
+	public void EditCos_03() throws HarnessException {
+
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
-	
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateCosRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + cosName + "</name>"
-				+		"</CreateCosRequest>");
-	
+						+			"<name>" + cosName + "</name>"
+						+		"</CreateCosRequest>");
+
 		// Enter the search string to find the account
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
 		app.zPageSearchResults.zAddSearchQuery(cosName);
-	
+
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
-		
+
 		// Click on cos
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, cos.getName());
-	
-	
+
+
 		// Click on Edit button
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
 		FormEditCos form = (FormEditCos) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
-		
+
 		//Click on General Information tab.
 		form.zClickTreeItem(FormEditCos.TreeItem.GENERAL_INFORMATION);
-	
+
 		//Edit the name.
 		String editedName = "editedCos_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(editedName);
-		
+
 		//Submit the form.
 		form.zSubmit();
-		
+
 		// Verify the cos exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-		"<GetCosRequest xmlns='urn:zimbraAdmin'>" +
-		                     "<cos by='name'>"+editedName+"</cos>"+
-		                   "</GetCosRequest>");
+				"<GetCosRequest xmlns='urn:zimbraAdmin'>" +
+						"<cos by='name'>"+editedName+"</cos>"+
+				"</GetCosRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
 		ZAssert.assertNotNull(response, "Verify the cos is edited successfully");	
 		app.zPageMain.logout();	
@@ -206,23 +206,23 @@ public class EditCos extends AdminCommonTest {
 	 */
 	@Test(	description = "Edit cos name -- right click",
 			groups = { "functional" })
-			public void EditCos_04() throws HarnessException {
-		
+	public void EditCos_04() throws HarnessException {
+
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
-	
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateCosRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + cosName + "</name>"
-				+		"</CreateCosRequest>");
-	
+						+			"<name>" + cosName + "</name>"
+						+		"</CreateCosRequest>");
+
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
 
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(cosName);
-	
-	
+
+
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
@@ -232,24 +232,24 @@ public class EditCos extends AdminCommonTest {
 
 		// Click on Edit button
 		FormEditCos form = (FormEditCos) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
-		
-		
+
+
 		//Edit the name.
 		String editedName = "editedCos_" + ZimbraSeleniumProperties.getUniqueString();
 		form.setName(editedName);
-		
+
 		//Submit the form.
 		form.zSubmit();
-		
+
 		// Verify the cos exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-		"<GetCosRequest xmlns='urn:zimbraAdmin'>" +
-		                     "<cos by='name'>"+editedName+"</cos>"+
-		                   "</GetCosRequest>");
+				"<GetCosRequest xmlns='urn:zimbraAdmin'>" +
+						"<cos by='name'>"+editedName+"</cos>"+
+				"</GetCosRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
 		ZAssert.assertNotNull(response, "Verify the cos is edited successfully");
 	}
-	
+
 	/**
 	 * Testcase : Edit cos - Two Factor Authentication
 	 * Steps :
@@ -260,25 +260,25 @@ public class EditCos extends AdminCommonTest {
 	 */
 	@Test(	description = "Edit cos - Two Factor Authentication",
 			groups = { "smoke" })
-			public void EditCos_05() throws HarnessException {
-		
+	public void EditCos_05() throws HarnessException {
+
 		app.zPageMain.zRefresh(); // resetting locators 
-				
+
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
-	
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateCosRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + cosName + "</name>"
-				+		"</CreateCosRequest>");
-	
+						+			"<name>" + cosName + "</name>"
+						+		"</CreateCosRequest>");
+
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
 
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(cosName);
-	
-	
+
+
 		// Click search
 		app.zPageSearchResults.zToolbarPressPulldown(Button.B_SEARCH_TYPE, Button.O_CLASS_OF_SERVICE);
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
@@ -290,44 +290,44 @@ public class EditCos extends AdminCommonTest {
 		// Click on Edit -> Advanced button
 		FormEditCos form = (FormEditCos) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 		app.zPageSearchResults.zToolbarPressButton(Button.B_ADVANCED);
-		
-		// Check "Enable two-factor authentication"
-		app.zPageEditCOS.sClickAt(Locators.zEnableTwoFactorAuth,"");
-		
-		// Check "Require two-step authentication"
-		app.zPageEditCOS.sClickAt(Locators.zRequiredTwoFactorAuth,"");
 
-		// Check "Number of one-time codes to generate:"
-		app.zPageEditCOS.sType(Locators.zTwoFactorAuthNumScratchCodes,"5");
-		
-		// Uncheck "Enable application passcodes"
-		app.zPageEditCOS.sClickAt(Locators.zEnableApplicationPasscodes,"");
-				
+		// Check "Enable two-factor authentication"
+		app.zPageEditCOS.zPreferenceCheckboxSet(Button.B_ENABLE_TWO_FACTOR_AUTH,true);
+
+		// Check "Require two-step authentication"
+		app.zPageEditCOS.zPreferenceCheckboxSet(Button.B_REQUIRED_TWO_FACTOR_AUTH,true);
+
+		// Check "Enable application passcodes"
+		app.zPageEditCOS.zPreferenceCheckboxSet(Button.B_ENABLE_APPLICATION_PASSCODES,true);
+
+		// Enter "Number of one-time codes to generate"
+		app.zPageEditCOS.zPreferenceTextSet(Button.B_TWO_FACTOR_AUTH_NUM_SCRATCH_CODES, "5");
+
 		// Submit the form
 		form.zSubmit();
-				
+
 		// Verify the enable two-factor authentication is set to true
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-		"<GetCosRequest xmlns='urn:zimbraAdmin'>" +
-		                     "<cos by='name'>"+cosName+"</cos>"+
-		                   "</GetCosRequest>");
+				"<GetCosRequest xmlns='urn:zimbraAdmin'>" +
+						"<cos by='name'>"+cosName+"</cos>"+
+				"</GetCosRequest>");
 		Element response1 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos/admin:a[@n='zimbraFeatureTwoFactorAuthAvailable']", 1);
 		ZAssert.assertNotNull(response1, "Verify the COS is edited successfully");
 		ZAssert.assertStringContains(response1.toString(),"TRUE", "Verify the Enable two-factor authentication is set to true");
-		
+
 		// Verify the require two-step authentication is set to true
 		Element response2 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos/admin:a[@n='zimbraFeatureTwoFactorAuthRequired']", 1);
 		ZAssert.assertNotNull(response2, "Verify the COS is edited successfully");
 		ZAssert.assertStringContains(response2.toString(),"TRUE", " Verify the Require two-step authentication is set to true");
-		
+
 		// Verify the number of one-time codes to generate is set to 5
 		Element response3 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos/admin:a[@n='zimbraTwoFactorAuthNumScratchCodes']", 1); 
 		ZAssert.assertNotNull(response3, "Verify the COS is edited successfully");
 		ZAssert.assertStringContains(response3.toString(),"5", "Verify the Number of one-time codes to generate is set to 5");
-		
+
 		// Verify the enable application passcodes is set to false
 		Element response4 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos/admin:a[@n='zimbraFeatureAppSpecificPasswordsEnabled']", 1);
 		ZAssert.assertNotNull(response4, "Verify the COS is edited successfully");
-		ZAssert.assertStringContains(response4.toString(),"FALSE", "Verify the Enable application passcodes is set to false");
+		ZAssert.assertStringContains(response4.toString(),"TRUE", "Verify the Enable application passcodes is set to true");
 	}
 }

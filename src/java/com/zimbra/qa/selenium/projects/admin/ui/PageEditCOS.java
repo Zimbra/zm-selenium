@@ -25,13 +25,13 @@ import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 /**
  * @author Matt Rhoades
  *
  */
 public class PageEditCOS extends AbsTab {
-	
+
 	public static class Locators {
 		public static final String zArrowSelectSearchObject	="css=td[id*='dropdown'] div[class='ImgSelectPullDownArrow']";
 		public static final String zEnableTwoFactorAuth="css=td[id$='_zimbraFeatureTwoFactorAuthAvailable___container'] input";	
@@ -39,7 +39,7 @@ public class PageEditCOS extends AbsTab {
 		public static final String zTwoFactorAuthNumScratchCodes="css=td[id$='_zimbraTwoFactorAuthNumScratchCodes___container'] input";
 		public static final String zEnableApplicationPasscodes="css=td[id$='_zimbraFeatureAppSpecificPasswordsEnabled___container'] input";
 	}
-	
+
 	public PageEditCOS(AbsApplication application) {
 		super(application);
 	}
@@ -94,6 +94,93 @@ public class PageEditCOS extends AbsTab {
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
 			throws HarnessException {
 		return null;
-		
+
 	}
+
+	public AbsPage zPreferenceTextSet(Button button, String numscratchcodes) throws HarnessException {
+		logger.info(myPageName() + " zPreferenceSet("+ button +")");
+		tracer.trace("Click page button "+ button);
+
+		AbsPage page = null;
+		String locator = null;
+
+		if ( button == Button.B_TWO_FACTOR_AUTH_NUM_SCRATCH_CODES ) {
+
+			locator = Locators.zTwoFactorAuthNumScratchCodes;
+
+		}else {
+			throw new HarnessException("Button "+ button +" not implemented");
+		}
+
+		// Make sure the locator was set
+		if ( locator == null ) {
+			throw new HarnessException("Button "+ button +" not implemented");
+		}
+
+		// Make sure the locator exists
+		if ( !this.sIsElementPresent(locator) ) {
+			throw new HarnessException(locator + " no present!");
+		}
+
+		else
+		{
+			this.sType(locator, numscratchcodes);
+		}
+
+		SleepUtil.sleepSmall();
+		return (page);
+	}
+
+
+	public AbsPage zPreferenceCheckboxSet(Button button, boolean status) throws HarnessException {
+		logger.info(myPageName() + " zPreferenceSet("+ button +")");
+		tracer.trace("Click page button "+ button);
+
+		AbsPage page = null;
+		String locator = null;
+
+		SleepUtil.sleepSmall();
+
+		if ( button == Button.B_ENABLE_TWO_FACTOR_AUTH ) {
+
+			locator = Locators.zEnableTwoFactorAuth;
+
+		} else if ( button == Button.B_REQUIRED_TWO_FACTOR_AUTH ) {
+
+			locator = Locators.zRequiredTwoFactorAuth;
+
+		} else if ( button == Button.B_ENABLE_APPLICATION_PASSCODES ) {
+
+			locator = Locators.zEnableApplicationPasscodes;
+
+		}else {
+			throw new HarnessException("Button "+ button +" not implemented");
+		}
+
+		// Make sure the locator was set
+		if ( locator == null ) {
+			throw new HarnessException("Button "+ button +" not implemented");
+		}
+
+		// Make sure the locator exists
+		if ( !this.sIsElementPresent(locator) ) {
+			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
+		}
+
+		if ( this.sIsChecked(locator) == status ) {
+			logger.debug("checkbox status matched. not doing anything");
+			return (page);
+		}
+
+		if ( status == true ) {
+			this.sClickAt(locator,"");
+
+		} else {
+			this.sUncheck(locator);
+		}
+
+		SleepUtil.sleepSmall();
+		return (page);
+	}
+
 }

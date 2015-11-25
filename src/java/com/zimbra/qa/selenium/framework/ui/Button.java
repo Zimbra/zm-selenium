@@ -737,6 +737,12 @@ public class Button {
 	public static Button B_CONFIGURE_AUTHENTICATION = new Button("B_CONFIGURE_AUTHENTICATION");
 	public static Button B_HOME_ACCOUNT =  new Button("B_HOME_ACCOUNT");
 	public static Button B_HOME_MIGRATION=  new Button("B_HOME_MIGRATION");
+	
+	//Added for Admin Console Two Factor Authentication
+	public static Button B_ENABLE_TWO_FACTOR_AUTH=   new Button("B_ENABLE_TWO_FACTOR_AUTH");
+	public static Button B_REQUIRED_TWO_FACTOR_AUTH=   new Button("B_REQUIRED_TWO_FACTOR_AUTH");
+	public static Button B_TWO_FACTOR_AUTH_NUM_SCRATCH_CODES=   new Button("B_TWO_FACTOR_AUTH_NUM_SCRATCH_CODES");
+	public static Button B_ENABLE_APPLICATION_PASSCODES=   new Button("B_ENABLE_APPLICATION_PASSCODES");
 
 	// Button properties
 	private final String ID;
