@@ -538,19 +538,15 @@ public class FormMailNew extends AbsForm {
 			
 			locator = Locators.zToField;
 			
-			// Make sure the button exists
 			if ( !this.sIsElementPresent(locator) )
 				throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
 			
-			// Seems that the client can't handle filling out the new mail form too quickly
-			// Click in the "To" fields, etc, to make sure the client is readybody143712287407910enus14371228710998@testdomain.com
 			this.sFocus(locator);
 			this.zClick(locator);
 			this.zWaitForBusyOverlay();
 
-			// Enter text
-			// this.sType(locator, value);
-			this.zKeyboard.zTypeCharacters(value);
+			this.sType(locator, value);
+			// this.zKeyboard.zTypeCharacters(value);
 			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 			SleepUtil.sleepSmall();
@@ -572,26 +568,20 @@ public class FormMailNew extends AbsForm {
 			
 			locator = Locators.zCcField;
 			
-			// Make sure the button exists
 			if ( !this.sIsElementPresent(locator) )
 				throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
 			
-			// Seems that the client can't handle filling out the new mail form too quickly
-			// Click in the "To" fields, etc, to make sure the client is ready
 			this.sFocus(locator);
 			this.zClick(locator);
 			this.zWaitForBusyOverlay();
-
-			// Enter text
+			
 			this.sType(locator, value);
-			
-			// For some reason, no bubble takes place.  As a workaround, type Tab
-			//this.sTypeKeys(locator, "\t");
-			// For some reason, no bubble takes place.  As a workaround, type Enter			
-			this.sKeyDown(locator, "13");
-			
+			// this.zKeyboard.zTypeCharacters(value);
 			SleepUtil.sleepSmall();
-			
+			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+			SleepUtil.sleepSmall();
+			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
+			SleepUtil.sleepSmall();
 			this.zWaitForBusyOverlay();
 
 			return;
@@ -600,33 +590,26 @@ public class FormMailNew extends AbsForm {
 		
 			locator = Locators.zBccField;
 			
-			// Make sure the BCC field is showing
 			if ( !zBccIsActive() ) {
 				this.zToolbarPressButton(Button.B_SHOWBCC);
 			}
 			
-			// Make sure the button exists
 			if ( !this.sIsElementPresent(locator) )
 				throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
 			
-			// Seems that the client can't handle filling out the new mail form too quickly
-			// Click in the "To" fields, etc, to make sure the client is ready
 			this.sFocus(locator);
 			this.zClick(locator);
 			this.zWaitForBusyOverlay();
 
-			// Enter text
 			this.sType(locator, value);
-			
-			// For some reason, no bubble takes place.  As a workaround, type Tab
-			//this.sTypeKeys(locator, "\t");
-			// For some reason, no bubble takes place.  As a workaround, type Enter			
-			this.sKeyDown(locator, "13");
-			
+			// this.zKeyboard.zTypeCharacters(value);
 			SleepUtil.sleepSmall();
-			
+			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+			SleepUtil.sleepSmall();
+			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
+			SleepUtil.sleepSmall();
 			this.zWaitForBusyOverlay();
-
+			
 			return;
 						
 		} else if ( field == Field.Subject ) {

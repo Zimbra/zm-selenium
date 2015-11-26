@@ -101,23 +101,20 @@ public class DialogShare extends AbsDialog {
 			throw new HarnessException("zSetEmailAddress " + locator + " is not present");
 		}
 		
-		
 		// Seems that the client can't handle filling out the new mail form too quickly
 		// Click in the "To" fields, etc, to make sure the client is ready
 		this.sFocus(locator);
 		this.zClick(locator);
 		this.zWaitForBusyOverlay();
-		//this.sType(locator, email);
 		
-		this.zKeyboard.zTypeCharacters(email);
+		//this.zKeyboard.zTypeCharacters(email);
+		this.sType(locator, email);
 		SleepUtil.sleepSmall();
 		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		SleepUtil.sleepSmall();
 		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 		SleepUtil.sleepSmall();
 		this.zWaitForBusyOverlay();
-		
-
 	}
 	
 	public static class ShareRole {

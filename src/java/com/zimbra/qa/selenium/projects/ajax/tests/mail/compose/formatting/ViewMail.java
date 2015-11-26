@@ -31,11 +31,8 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 
 	boolean injected = false;
 
-
-
 	public ViewMail() throws HarnessException {
 		logger.info("New " + ViewMail.class.getCanonicalName());
-
 	}
 
 	@Test(description = "View a message with Excel data formatting", groups = { "smoke" })
@@ -45,8 +42,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 				+ "/data/public/mime/Excel_Data_Formatting_Mime.txt";
 		final String subject = "Test Excel Data Formatting";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(
-				mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(subject);
@@ -55,9 +51,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		//	app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-
 		//Verify Excel Table border and its contents
-
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=div[id='zimbraEditorContainer'] div table[border='1']"), "Verify Excel Table border ");
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), "ID", "Verify the body content matches");
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), "Fname", "Verify the body content matches");
@@ -66,10 +60,5 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), "Test2", "Verify the body content matches");
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), "Test3", "Verify the body content matches");
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), "Test4", "Verify the body content matches");
-
-
-
-
 	}
-
 }

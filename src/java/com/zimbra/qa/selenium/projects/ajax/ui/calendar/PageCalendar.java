@@ -83,7 +83,7 @@ public class PageCalendar extends AbsTab {
 		public static final String AcceptedMenu_ViewAppt = "css=div[id*='_Menu_'] td[id^='ZmNeedActionOption_AC']:contains('Accepted')";
 		public static final String TentativeMenu_ViewAppt = "css=div[id*='_Menu_'] td[id^='ZmNeedActionOption_TE']:contains('Tentative')";
 		public static final String DeclinedMenu_ViewAppt = "css=div[id*='_Menu_'] td[id^='ZmNeedActionOption_DE']:contains('Declined')";
-		public static final String DeclinedMenu3_ViewAppt = "css=div[id$='_Menu_3'] div[id^='DE_3'] td[id='DE_3_title']:contains('Declined')";
+		public static final String DeclinedMenu3_ViewAppt = "css=div[id='ZmNeedActionSelect_3_Menu_1'] td[id='ZmNeedActionOption_DE_3_title']:contains('Declined')";
 		public static final String TagButton_ViewAppt = "css=div[id^='ztb__APPTRO'] td[id$='TAG_MENU_dropdown']";
 		public static final String NewTagMenu_ViewAppt = "css=div[id$='__TAG_MENU|MENU'] td[id='viewAppointment_newtag_title']";
 		public static final String RemoveTagMenu_ViewAppt = "css=div[id$='__TAG_MENU|MENU'] td[id='viewAppointment_removetag_title']";
@@ -1357,7 +1357,7 @@ public class PageCalendar extends AbsTab {
 			SleepUtil.sleepMedium();
 			
 			if (option == Button.O_NEEDS_ACTION_MENU || option == Button.O_ACCEPTED_MENU || option == Button.O_TENTATIVE_MENU || option == Button.O_DECLINED_MENU) {
-				this.sClickAt(Locators.NeedsActionButton_ViewAppt, "");
+				this.zClickAt(Locators.NeedsActionButton_ViewAppt, "10,20");
 				
 			} else if (option == Button.O_NEW_TAG || option == Button.O_REMOVE_TAG) {
 				zWaitForElementAppear(Locators.NewTagMenu_ViewAppt); //http://bugzilla.zimbra.com/show_bug.cgi?id=79016

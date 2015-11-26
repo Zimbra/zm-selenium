@@ -19,6 +19,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
+import java.awt.event.KeyEvent;
 import java.util.*;
 
 import com.zimbra.qa.selenium.framework.core.SeleniumService;
@@ -72,41 +73,32 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 	public void zFill(MailItem mail) throws HarnessException {
 		logger.info(myPageName() + ".zFill(MailItem)");
 		logger.info(mail.prettyPrint());
-
-		// Fill out the form
-		//
-		
-		// Handle the subject
+	
 		if ( mail.dSubject != null ) {
-			
 			zFillField(Field.Subject, mail.dSubject);
 
 		}
 		
 		if ( mail.dBodyText != null ) {
-			
 			zFillField(Field.Body, mail.dBodyText);
-			
 		}
+		
 		if ( mail.dBodyHtml != null ) {
 		    if(ZimbraSeleniumProperties.isWebDriver()){
-			sSelectWindow(this.DialogWindowID);
-			String locator = "css=iframe[id*=ifr]";
-			sClickAt(locator,"");
-			zTypeFormattedText(locator, mail.dBodyHtml);					
-		    }else{
-			zFillField(Field.Body, mail.dBodyHtml);
+				sSelectWindow(this.DialogWindowID);
+				String locator = "css=iframe[id*=ifr]";
+				sClickAt(locator,"");
+				zTypeFormattedText(locator, mail.dBodyHtml);					
+		    } else {
+		    	zFillField(Field.Body, mail.dBodyHtml);
 		    }
 		}
 				
-		// Handle the Recipient list, which can be a combination
-		// of To, Cc, Bcc, and From
 		StringBuilder to = null;
 		StringBuilder cc = null;
 		StringBuilder bcc = null;
 		StringBuilder from = null;
 		
-		// Convert the list of recipients to a semicolon separated string
 		List<RecipientItem> recipients = mail.dAllRecipients();
 		if ( recipients != null ) {
 			if ( !recipients.isEmpty() ) {
@@ -149,7 +141,6 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			}
 		}
 		
-		// Fill out the To field
 		if ( to != null ) {
 			this.zFillField(Field.To, to.toString());
 		}
@@ -162,7 +153,6 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			this.zFillField(Field.Bcc, bcc.toString());
 		}
 
-		
 	}
 
 	public void zFillField(Field field, String value) throws HarnessException {
@@ -176,47 +166,32 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 		if ( field == Field.To ) {
 			
 			locator = container + " tr[id$='_to_row'] input[id$='_to_control']";
-			
-			// FALL THROUGH
-			
+						
 		} else if ( field == Field.Cc ) {
 			
 			locator = container + " tr[id$='_cc_row'] input[id$='_cc_control']";
-			
-			// FALL THROUGH
-			
+						
 		} else if ( field == Field.Bcc ) {
 			
 			locator = container + " tr[id$='_bcc_row'] input[id$='_bcc_control']";
 			
-			// Make sure the BCC field is showing
 			if ( !zBccIsActive() ) {
 				this.zToolbarPressButton(Button.B_SHOWBCC);
 			}
-			
-			// FALL THROUGH
-			
+						
 		} else if ( field == Field.Subject ) {
 			
 			locator = container + " tr[id$='_subject_row'] input[id$='_subject_control']";
-
-			// FALL THROUGH
 			
 		} else if (field == Field.Body) {
 
-			// For some reason, the client expects a bit of a delay here.
-			// A cancel compose will not register unless this delay is here
-			// projects.ajax.tests.mail.compose.CancelComposeHtml.CancelComposeHtml_01
-			// http://server/testlogs/UBUNTU10_64/HELIX/20110621210101_FOSS/SelNG-projects-ajax-tests/130872172760061/server/AJAX/firefox_3.6.12/en_US/debug/projects/ajax/tests/mail/compose/CancelComposeHtml/CancelComposeHtml_01.txt
-			//
 			SleepUtil.sleepLong();
 
 			int frames = sGetCssCountNewWindow("css=iframe");
+			
 			logger.debug("Body: # of frames: " + frames);
 			String browser = SeleniumService.getInstance().getSeleniumBrowser();
-			/*
-			 * Added IE specific condition because IE recognized frame=1 for text compose and frame=2 for html compose
-			 */
+
 			if (browser.equalsIgnoreCase("iexplore")) {
 				if (frames == 1) {
 					// //
@@ -276,21 +251,11 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 						sFocus(locator);
 						zClick(locator);
-
-						/*
-						 * Oct 25, 2011: The new TinyMCE editor broke sType().  Use zKeyboard instead,
-						 * however, it is preferred to use sType() if possible, but I can't find a
-						 * solution right now. 
-						 */
-						// sType("css=iframe[id$='_content_ifr']", "css=html body", value);
-
 						// this.sType(locator, value);
 						zTypeCharacters(value);
 						
 					} finally {
-						// Make sure to go back to the original iframe
 						this.sSelectFrame("relative=top");
-
 					}
 
 					return;
@@ -308,10 +273,17 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			throw new HarnessException("locator was null for field "+ field);
 		}
 		
-		// Default behavior, enter value into locator field
-		//
+		this.sFocus(locator);
+		this.zClickAt(locator, "10,10");
+		this.zWaitForBusyOverlay();
 		
 		sTypeNewWindow(locator, value);
+		SleepUtil.sleepSmall();
+		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+		SleepUtil.sleepSmall();
+		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
+		SleepUtil.sleepSmall();
+		this.zWaitForBusyOverlay();
 		
 	}
 	
@@ -319,9 +291,6 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 	private boolean zBccIsActive() throws HarnessException {
 		logger.info(myPageName() + ".zBccIsActive()");
 
-		// <tr id='zv__COMPOSEX_bcc_row' style='display: table_row' x-display='table-row' ...
-		// <tr id='zv__COMPOSEX_bcc_row' style='display: none'  x-display='table-row' ...
-		
 		String locator;
 		
 		locator = "css=div[id^='zv__COMPOSE'] tr[id$='_bcc_row']";
@@ -341,15 +310,9 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 		if ( button == null )
 			throw new HarnessException("Button cannot be null!");
 
-
-		// Default behavior variables
-		//
 		String container = "css=div[id^='ztb__COMPOSE']";
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
-
-		// Based on the button specified, take the appropriate action(s)
-		//
 
 		if ( button == Button.B_SEND ) {
 
@@ -410,10 +373,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			
 		}
 
-		// Default behavior, process the locator by clicking on it
-		//
 		this.zClickAt(locator,"0,0");
-
 
 		return (page);
 		
