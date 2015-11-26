@@ -18,6 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.search.savedsearch;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.SavedSearchFolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -40,7 +41,7 @@ public class MoveSavedSearch extends AjaxCommonTest  {
 		
 	}
 	
-	
+	@Bugs(	ids = "102547")
 	@Test(	description = "Move a saved search",
 			groups = { "smoke" })
 	public void MoveSavedSearch_01() throws HarnessException {				
