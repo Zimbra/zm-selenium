@@ -64,7 +64,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Navigate to Configure Backup",
-			groups = { "sanity" })
+			groups = { "sanity","network" })
 			public void NavigateHomePageLinks_02() throws HarnessException {
 		
 		app.zPageMain.sClickAt(Locators.HomeConfigureBackups,"");

@@ -86,7 +86,7 @@ public class CreateAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Create a global admin account",
-			groups = { "sanity" })
+			groups = { "sanity","network" })
 			public void CreateAccount_02() throws HarnessException {
 
 		// Create a new account in the Admin Console
