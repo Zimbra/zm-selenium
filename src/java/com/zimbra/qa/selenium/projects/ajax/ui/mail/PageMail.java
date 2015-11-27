@@ -31,7 +31,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-
 /**
  * @author Matt Rhoades
  *
@@ -165,26 +164,6 @@ public class PageMail extends AbsTab {
 		String locator;
 		boolean loaded, visible;
 
-		/**
-		 * http://bugzilla.zimbra.com/show_bug.cgi?id=70068 ... new menu is same
-		 * for all apps Instead of the new menu, key off the conv/msg view
-		 * pulldown <div id="zb__CLV-main__VIEW_MENU" .../> <div
-		 * id="zb__TV-main__VIEW_MENU" .../>
-		 * 
-		 * Pre-Feb 2012 ... 8.0 MLV: <div id="zb__TV-main__NEW_MENU" style=
-		 * "position: absolute; overflow: visible; z-index: 300; left: 5px; top: 78px; width: 159px; height: 24px;"
-		 * class
-		 * ="ZToolbarButton ZWidget   ZHasDropDown       ZHasLeftIcon ZHasText"
-		 * parentid="z_shell"> CLV: <div id="zb__CLV-main__NEW_MENU" style=
-		 * "position: absolute; overflow: visible; z-index: 300; left: 5px; top: 78px; width: 159px; height: 24px;"
-		 * class
-		 * ="ZToolbarButton ZWidget   ZHasDropDown       ZHasLeftIcon ZHasText"
-		 * parentid="z_shell">
-		 * 
-		 */
-
-		// If the "NEW" button is visible, then the app is visible
-
 		// Check MLV first
 		locator = "css=div#zb__TV-main__VIEW_MENU";
 
@@ -285,13 +264,8 @@ public class PageMail extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		// Default behavior variables
-		//
 		String locator = null; // If set, this will be clicked
 		AbsPage page = null; // If set, this page will be returned
-
-		// Based on the button specified, take the appropriate action(s)
-		//
 
 		if (button == Button.B_NEW) {
 
@@ -310,11 +284,6 @@ public class PageMail extends AbsTab {
 
 			// Create the page
 			page = new SeparateWindowFormMailNew(this.MyApplication);
-
-			// Don't fall through - the new window may need additional
-			// information from the test case
-			// such as "Zimbra: Compose" or "Zimbra: Reply" to determine if the
-			// window is open
 
 			this.zClickAt(locator, "0,0");
 
@@ -482,12 +451,6 @@ public class PageMail extends AbsTab {
 
 		} else if (button == Button.B_TAG) {
 
-			// For "TAG" without a specified pulldown option, just click on the
-			// pulldown
-			// To use "TAG" with a pulldown option, see
-			// zToolbarPressPulldown(Button, Button)
-			//
-
 			// Check if the button is enabled
 			String attrs = sGetAttribute("xpath=(//td[@id='"
 					+ Locators.zTagMenuDropdownBtnID + "']/div)@class");
@@ -511,13 +474,6 @@ public class PageMail extends AbsTab {
 
 		} else if (button == Button.B_ARCHIVE) {
 
-			// If 'Archive' is not initialized, a 'folder chooser'
-			// dialog will open. However, we cannot define it here,
-			// because if 'Archive' has been initialized, then
-			// the chooser will not appear.
-			//
-			// The test case must create the page dialog object.
-			//
 			page = null;
 
 			if (this.sIsElementPresent("css=div[id$='zb__TV-main__ARCHIVE'] td[id$='_title']")) {
@@ -583,12 +539,6 @@ public class PageMail extends AbsTab {
 			}
 			page = null;
 
-			// FALLTHROUGH
-
-			// this.zClick(locator);
-			// this.zWaitForBusyOverlay();
-			// return (null);
-
 		} else if (button == Button.B_SHIFT_SELECT_ALL) {
 
 			if (zGetPropMailView() == PageMailView.BY_MESSAGE) {
@@ -616,16 +566,6 @@ public class PageMail extends AbsTab {
 
 			} else {
 
-				// SELENIUM:
-				// I don't see how it can be done. The selenium click() method
-				// uses JS, which
-				// doesn't care what state the keyboard is currently in. So,
-				// this does not work:
-				// robot.keyPress(VK_SHIFT)
-				// this.zClick(locator)
-				// robot.keyRelease(VK_SHIFT)
-				
-				
 				//Workaround: Press Control+Shift+A to select All Messages.
 				sKeyDownNative("17"); //control
 				sKeyDownNative("16"); //Shift
@@ -643,11 +583,6 @@ public class PageMail extends AbsTab {
 				|| (button == Button.B_MAIL_LIST_GROUPBY_DATE)
 				|| (button == Button.B_MAIL_LIST_GROUPBY_SIZE)) {
 
-			// Right click on header area -> Group By -> From
-
-			// Right click on header area (ex: subject)
-			// This locator could probably be more generic. Right now, it
-			// assumes the message preview is on the bottom
 			locator = "css=td#zlha__TV-main__su";
 			this.zRightClickAt(locator, "", (WebElement[]) null);
 			this.zWaitForBusyOverlay();
@@ -721,7 +656,7 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		this.zClickAt(locator,"10,19");
+		this.sClickAt(locator,"10,10");
 		
 		this.zWaitForBusyOverlay();
 		
@@ -1184,19 +1119,6 @@ public class PageMail extends AbsTab {
 		return (item);
 	}
 
-	/**
-	 * Return a list of all messages in the current view.
-	 * <p>
-	 * <p>
-	 * For conversations, a ConversationItem (extends MailItem) is returned for
-	 * the containing row. If the conversation is expanded, then the expanded
-	 * messages are also returned in the list.
-	 * <p>
-	 * <p>
-	 * 
-	 * @return
-	 * @throws HarnessException
-	 */
 	public List<MailItem> zListGetMessages() throws HarnessException {
 
 		List<MailItem> items = new ArrayList<MailItem>();
@@ -1751,9 +1673,7 @@ public class PageMail extends AbsTab {
 			zKeyDown(keyCode);
 			
 			return (page);
-
 		}
-
 
 		zKeyboard.zTypeCharacters(shortcut.getKeys());
 
@@ -1798,8 +1718,6 @@ public class PageMail extends AbsTab {
 			String name = (String) dynamic;
 			logger.info("Click on Signature: " + name);
 
-			// pulldownLocator =
-			// "css=td[id$='_ADD_SIGNATURE_dropdown']>div[class='ImgSelectPullDownArrow']";
 			pulldownLocator = "css=[id^=zb__COMPOSE][id$=__COMPOSE_OPTIONS_dropdown]";
 			optionLocator = "css=div[id$='ADD_SIGNATURE'] tr[id='POPUP_zmi__COMPOSE-1_NEW_MESSAGE__ADD_SIGNATURE']> td[id='zmi__COMPOSE-1_NEW_MESSAGE__ADD_SIGNATURE_dropdown']>div[class='ImgCascade']";
 			dynamicLocator = "css=td[id$='_title']:contains('" + name + "')";
@@ -1815,8 +1733,6 @@ public class PageMail extends AbsTab {
 			String name = (String) dynamic;
 			logger.info("Click on Signature: " + name);
 
-			// pulldownLocator =
-			// "css=td[id$='_ADD_SIGNATURE_dropdown']>div[class='ImgSelectPullDownArrow']";
 			pulldownLocator = "css=[id^=zb__COMPOSE][id$=__COMPOSE_OPTIONS_dropdown]";
 			optionLocator = "css=div[id$='_FORWARD_ATT'] div[id$='ADD_SIGNATURE'] tr[id='POPUP_zmi__COMPOSE-1_FORWARD_ATT__ADD_SIGNATURE']>td[id$='_dropdown']>div[class='ImgCascade']";
 			dynamicLocator = "css=td[id$='_title']:contains('" + name + "')";
@@ -1950,16 +1866,6 @@ public class PageMail extends AbsTab {
 
 	}
 
-	/**
-	 * Activate a pulldown with dynamic values, such as "Move to folder" and
-	 * "Add a tag".
-	 * 
-	 * @param pulldown
-	 *            the toolbar button to press
-	 * @param dynamic
-	 *            the toolbar item to click such as FolderItem or TagItem
-	 * @throws HarnessException
-	 */
 	public AbsPage zToolbarPressPulldown(Button pulldown, Object dynamic)
 			throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButtonWithPulldown("
@@ -2058,13 +1964,6 @@ public class PageMail extends AbsTab {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.zimbra.qa.selenium.framework.ui.AbsPage#zHoverOver(com.zimbra.qa.
-	 * selenium.framework.ui.Button)
-	 */
 	public AbsTooltip zHoverOver(Button button) throws HarnessException {
 		logger.info(myPageName() + " zHoverOverButton(" + button + ")");
 
@@ -2094,12 +1993,6 @@ public class PageMail extends AbsTab {
 		} else {
 			throw new HarnessException("no logic defined for button: " + button);
 		}
-
-		// If another tooltip is active, sometimes it takes a few seconds for
-		// the new text to show
-		// So, wait if the tooltip is already active
-		// Don't wait if the tooltip is not active
-		//
 
 		Tooltip tooltip = new Tooltip(MyApplication);
 		if (tooltip.zIsActive()) {
@@ -2160,34 +2053,8 @@ public class PageMail extends AbsTab {
 		} else {
 			throw new HarnessException("no logic defined  ");
 		}
-
-		/*
-		 * if(document.createEventObject){ var body_locator="css=html>body"; var
-		 * body= selenium.browserbot.findElement(body_locator); var evObj =
-		 * body.document.createEventObject(); evObj.keyCode=78;evObj.repeat =
-		 * false;body.focus(); body.fireEvent("onkeydown",evObj);} else{
-		 * if(window.KeyEvent) { var evObj = document.createEvent('KeyEvents');
-		 * evObj.initKeyEvent( 'keydown', true, true, window, false, false,
-		 * false, false,78, 0 );} else {var evObj =
-		 * document.createEvent('HTMLEvents'); evObj.initEvent( 'keydown', true,
-		 * true, window, 1 ); evObj.keyCode = 78;} var x =
-		 * selenium.browserbot.findElementOrNull('css=html>body'); x.focus();
-		 * x.dispatchEvent(evObj); }
-		 */
 	}
-
-	/*
-	 * public String zDisplayImageLink()throws HarnessException {
-	 * 
-	 * String DisplayImgLink = null; if (zGetPropMailView() ==
-	 * PageMailView.BY_MESSAGE) { DisplayImgLink = sGetEval(
-	 * "selenium.browserbot.getCurrentWindow().document.getElementById('zv__TV-main__MSG_displayImages').style.display"
-	 * ); return DisplayImgLink; } else if (zGetPropMailView() ==
-	 * PageMailView.BY_CONVERSATION) { DisplayImgLink = sGetEval(
-	 * "selenium.browserbot.getCurrentWindow().document.getElementById('zv__CLV-main__MSG_displayImages').style.display"
-	 * ); return DisplayImgLink; } else { throw new
-	 * HarnessException("no logic defined  "); } }
-	 */
+	
 	public void zRightClickAddressBubble(Field field) throws HarnessException {
 		if (field == Field.To) {
 			SleepUtil.sleepVeryLong();
@@ -2275,8 +2142,6 @@ public class PageMail extends AbsTab {
 
 	}
 	
-	
-
 	public boolean zVerifyAllAddressContextMenu(String app)throws HarnessException {
 
 		List<String> locators = new ArrayList<String>();
@@ -2320,8 +2185,6 @@ public class PageMail extends AbsTab {
 
 	public boolean zHasTOCcBccEmpty() throws HarnessException {
 
-		// check To/Cc/Bcc doesn't contains values
-
 		List<String> locators = Arrays
 				.asList("css=td[id='zv__COMPOSE-1_to_cell'] div div[class='addrBubbleHolder-empty']",
 						"css=td[id='zv__COMPOSE-1_cc_cell'] div div[class='addrBubbleHolder-empty']",
@@ -2335,8 +2198,4 @@ public class PageMail extends AbsTab {
 
 		return (true);
 	}
-
-	
-
-	
 }

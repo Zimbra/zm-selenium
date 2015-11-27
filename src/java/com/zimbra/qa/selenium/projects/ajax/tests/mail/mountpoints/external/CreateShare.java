@@ -25,17 +25,14 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare.ShareWith;
 
-
 public class CreateShare extends PrefGroupMailByMessageTest {
 
 	public CreateShare() {
 		logger.info("New "+ CreateShare.class.getCanonicalName());
-		
-		
 	}
 	
-	@Test(	description = "Share a folder - External",
-			groups = { "smoke" })
+	@Test(	description = "Share a folder - External", groups = { "smoke" })
+	
 	public void CreateShare_01() throws HarnessException {
 		
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
@@ -56,7 +53,6 @@ public class CreateShare extends PrefGroupMailByMessageTest {
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 		ZAssert.assertNotNull(subfolder, "Verify the folder exists on the server");
 
-
 		// Right click on folder, select "Share"
 		DialogShare dialog = (DialogShare)app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_SHARE, subfolder);
 		ZAssert.assertNotNull(dialog, "Verify the sharing dialog pops up");
@@ -70,20 +66,9 @@ public class CreateShare extends PrefGroupMailByMessageTest {
 		
 		// Verify the account has shared the folder
 		app.zGetActiveAccount().soapSend(
-					"<GetFolderRequest xmlns='urn:zimbraMail'>"
-				+		"<folder l='" + folderid + "'/>"
-				+	"</GetFolderRequest>");
-		
-		/** Example response:
-		 *     <GetFolderResponse xmlns="urn:zimbraMail">
-		 *           <folder f="i" rev="2" i4next="258" i4ms="2" ms="4" n="0" activesyncdisabled="0" l="2" id="257" s="0" name="folder13379798458754" uuid="a4d8c530-d8f5-46e2-9798-c87c86968c82" luuid="9dce7c49-ec67-4315-868f-bbf090605034">
-		 *             <acl guestGrantExpiry="1345755322480">
-		 *               <grant zid="zimbraexternal@yahoo.com" gt="guest" pw="" perm="r"/>
-		 *             </acl>
- 		 *          </folder>
-		 *         </GetFolderResponse>
-		 * 
-		 **/
+				"<GetFolderRequest xmlns='urn:zimbraMail'>"
+			+		"<folder l='" + folderid + "'/>"
+			+	"</GetFolderRequest>");
 
 		String zid = app.zGetActiveAccount().soapSelectValue("//mail:grant", "zid");
 		ZAssert.assertEquals(zid, externalEmail, "Verify the zid of the shared folder is set to the external address");

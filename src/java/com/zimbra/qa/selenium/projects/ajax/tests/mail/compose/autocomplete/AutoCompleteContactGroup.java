@@ -206,7 +206,7 @@ public class AutoCompleteContactGroup extends PrefGroupMailByMessageTest {
 
 	@Test(	description = "Autocomplete using a Contact - Multiple Matches",
 			groups = { "functional" })
-	public void AutoCompleteContactGroups_08() throws HarnessException {
+	public void AutoCompleteContactGroups_03() throws HarnessException {
 		
 		// Create 3 contact groups, all starting with groupPrefix
 		String groupPrefix = "Exxon";

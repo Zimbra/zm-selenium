@@ -416,7 +416,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(apptName, apptSubject, "Verify correct appointment returned'");
 	}
 	
-	@Bugs(ids = "49715")
+	@Bugs(ids = "102578")
 	@Test(description = "Bug 49715 - Links in email messages to .ics files should provide method to add to calendar",
 			groups = { "functional" })
 			

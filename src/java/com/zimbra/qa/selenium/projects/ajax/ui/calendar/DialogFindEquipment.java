@@ -89,7 +89,7 @@ public class DialogFindEquipment extends DialogWarning {
 		}
 		this.sFocus(locator);
 		this.sGetCssCount(locator);
-		this.sClickAt(locator, "");
+		this.sClickAt(locator, "10,10");
 		this.zWaitForBusyOverlay();
 		this.zWaitForBusyOverlay();
 

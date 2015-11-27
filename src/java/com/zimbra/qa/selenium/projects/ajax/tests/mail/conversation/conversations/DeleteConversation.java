@@ -607,7 +607,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 				"</SendMsgRequest>");
 
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 				
 		// Select the item (this should refresh)
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -623,10 +623,10 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
-
-		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
 		
+		// Click delete (no refresh)
+		app.zPageMail.zToolbarPressButton(Button.B_DELETE);
+
 		// If conversation is 'selected', then all messages should be refreshed and deleted
 		
 		app.zGetActiveAccount().soapSend(
