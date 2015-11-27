@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders.accounts;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -17,6 +15,8 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders.accounts;
  * ***** END LICENSE BLOCK *****
  */
 
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders.accounts;
+
 import java.util.List;
 
 import org.testng.annotations.Test;
@@ -29,7 +29,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.DialogErrorID;
 import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.PageMailView;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.TreeMail.Locators;
-
 
 public class GetGmailImap extends PrefGroupMailByMessageTest {
 
@@ -53,13 +52,10 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 			groups = { "smoke" })
 	public void GetExternalGmailIMAP_01() throws HarnessException {
 
-
 		// Create the external data source on the same server
-
 		String external = "testzimbra123@gmail.com";
 		String Password="zimbra@123";		
 		String subject = "Your account settings in one place at My Account" ;
-
 
 		// Create the folder to put the data source
 		String foldername = "external" + ZimbraSeleniumProperties.getUniqueString();
@@ -79,15 +75,13 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 		String datasourceImapType = ZimbraSeleniumProperties.getStringProperty("server.imap.type");
 
 		app.zGetActiveAccount().soapSend(
-				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
-						+		"<imap name='"+ datasourcename +"' l='"+ folder.getId() +"' isEnabled='true' "
-						+			"port='"+ datasourceImapPort +"' host='"+ datasourceHost +"' connectionType='"+ datasourceImapType +"' leaveOnServer='true' "
-						+			"username='"+ external +"' password='"+ Password +"' "
-						+			"useAddressForForwardReply='true' replyToDisplay='Bar Foo' replyToAddress='"+ app.zGetActiveAccount().EmailAddress +"' "
-						+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
-						+	"</CreateDataSourceRequest>");
-
-
+			"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
+					+		"<imap name='"+ datasourcename +"' l='"+ folder.getId() +"' isEnabled='true' "
+					+			"port='"+ datasourceImapPort +"' host='"+ datasourceHost +"' connectionType='"+ datasourceImapType +"' leaveOnServer='true' "
+					+			"username='"+ external +"' password='"+ Password +"' "
+					+			"useAddressForForwardReply='true' replyToDisplay='Bar Foo' replyToAddress='"+ app.zGetActiveAccount().EmailAddress +"' "
+					+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
+					+	"</CreateDataSourceRequest>");
 
 		// Need to logout/login to get the new folder
 		ZimbraAccount active = app.zGetActiveAccount();
@@ -112,7 +106,6 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 			errorDialog.zClickButton(Button.B_OK);
 		}
 
-
 		// Click on the folder and select Sync
 
 		// If the datasource has never been synced, then an empty title bar appears
@@ -121,11 +114,16 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 		app.zTreeMail.zClickAt(Locators.ContextMenuTVFoldersCSS + " div[id^='SYNC'] td[id$='_title']", "");
 		app.zTreeMail.zWaitForBusyOverlay();
 
-
 		// Sync is asynchronous, so we have to wait for the toaster
 		Toaster toaster = app.zPageMain.zGetToaster();
 		toaster.zWaitForActive();
-
+		SleepUtil.sleepMedium();
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		app.zTreeMail.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		app.zTreeMail.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
 
 		// See: https://bugzilla.zimbra.com/show_bug.cgi?id=66447
 		// Get the folder from the server
@@ -166,11 +164,6 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the external folder");
-
-
 	}	
-
-
-
 
 }

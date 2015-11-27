@@ -30,12 +30,10 @@ import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.PageMailView;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.TreeMail.Locators;
 
-
 public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 
 	public GetExternalIMAP() {
 		logger.info("New "+ GetExternalIMAP.class.getCanonicalName());
-		
 	}
 	
 	/**
@@ -54,7 +52,6 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 	@Test(	description = "View an external folder - IMAP",
 			groups = { "smoke" })
 	public void GetExternalIMAP_01() throws HarnessException {
-		
 		
 		// Create the external data source on the same server
 		ZimbraAccount external = new ZimbraAccount();
@@ -104,8 +101,6 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 			+			"useAddressForForwardReply='true' replyToDisplay='Bar Foo' replyToAddress='"+ app.zGetActiveAccount().EmailAddress +"' "
 			+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
 			+	"</CreateDataSourceRequest>");
-
-		
 		
 		// Need to logout/login to get the new folder
 		ZimbraAccount active = app.zGetActiveAccount();
@@ -130,7 +125,6 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		    errorDialog.zClickButton(Button.B_OK);
 		}
 
-		
 		// Click on the folder and select Sync
 		
 		// If the datasource has never been synced, then an empty title bar appears
@@ -138,13 +132,18 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		app.zTreeMail.zWaitForBusyOverlay();
 		app.zTreeMail.zClickAt(Locators.ContextMenuTVFoldersCSS + " div[id^='SYNC'] td[id$='_title']", "");
 		app.zTreeMail.zWaitForBusyOverlay();
-
 		
 		// Sync is asynchronous, so we have to wait for the toaster
 		Toaster toaster = app.zPageMain.zGetToaster();
 		toaster.zWaitForActive();
+		SleepUtil.sleepMedium();
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		app.zTreeMail.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		app.zTreeMail.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
 
-		
 		// See: https://bugzilla.zimbra.com/show_bug.cgi?id=66447
 		// Get the folder from the server
 		app.zGetActiveAccount().soapSend("<GetFolderRequest xmlns='urn:zimbraMail'/>");
@@ -184,15 +183,12 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the external folder");
-
-		
 	}	
 
 
 	@Test(	description = "IMAP: get updates from the external account - 'refresh' button",
 			groups = { "functional" })
 	public void GetExternalIMAP_02() throws HarnessException {
-		
 		
 		// Create the external data source on the same server
 		ZimbraAccount external = new ZimbraAccount();
@@ -243,8 +239,6 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 			+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
 			+	"</CreateDataSourceRequest>");
 
-		
-		
 		// Need to logout/login to get the new folder
 		ZimbraAccount active = app.zGetActiveAccount();
 		if ( app.zPageMain.zIsActive() )
@@ -276,13 +270,16 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		app.zTreeMail.zClickAt(Locators.ContextMenuTVFoldersCSS + " div[id^='SYNC'] td[id$='_title']", "");
 		app.zTreeMail.zWaitForBusyOverlay();
 
-		
 		// Sync is asynchronous, so we have to wait for the toaster
 		Toaster toaster = app.zPageMain.zGetToaster();
 		toaster.zWaitForActive();
-		toaster.zWaitForClose();
-
-
+		SleepUtil.sleepMedium();
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		app.zTreeMail.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		app.zTreeMail.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
 		
 		// See: https://bugzilla.zimbra.com/show_bug.cgi?id=66447
 		// Get the folder from the server
@@ -291,7 +288,6 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 
 		// Click on the INBOX
 		app.zTreeMail.zClickAt("css=td[id='zti__main_Mail__" + externalInbox +"_textCell']", "");
-		
 		
 		// Add another message
 		String subject2 = "subject" + ZimbraSeleniumProperties.getUniqueString();
@@ -312,12 +308,16 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 
 		SleepUtil.sleepMedium();
 		
-		// Click Refresh
-		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
-
 		// Sync is asynchronous, so we have to wait for the toaster
 		toaster = app.zPageMain.zGetToaster();
 		toaster.zWaitForActive();
+		SleepUtil.sleepMedium();
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		app.zTreeMail.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		app.zTreeMail.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
 
 		// Get the messages
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
@@ -333,15 +333,12 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the external folder");
-
-		
 	}	
 
-
+	
 	@Test(	description = "IMAP: get updates from the external account - right click -> sync",
 			groups = { "functional" })
 	public void GetExternalIMAP_03() throws HarnessException {
-		
 		
 		// Create the external data source on the same server
 		ZimbraAccount external = new ZimbraAccount();
@@ -392,16 +389,12 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 			+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
 			+	"</CreateDataSourceRequest>");
 
-		
-		
 		// Need to logout/login to get the new folder
 		ZimbraAccount active = app.zGetActiveAccount();
 		if ( app.zPageMain.zIsActive() )
 			app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(active);
 		startingPage.zNavigateTo();
-		
-
 		
 		// Click on the folder and select Sync
 		
@@ -411,14 +404,17 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		app.zTreeMail.zClickAt(Locators.ContextMenuTVFoldersCSS + " div[id^='SYNC'] td[id$='_title']", "");
 		app.zTreeMail.zWaitForBusyOverlay();
 
-		
 		// Sync is asynchronous, so we have to wait for the toaster
 		Toaster toaster = app.zPageMain.zGetToaster();
 		toaster.zWaitForActive();
-		toaster.zWaitForClose();
-
-
-		
+		SleepUtil.sleepMedium();
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		app.zTreeMail.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		app.zTreeMail.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
+				
 		// See: https://bugzilla.zimbra.com/show_bug.cgi?id=66447
 		// Get the folder from the server
 		app.zGetActiveAccount().soapSend("<GetFolderRequest xmlns='urn:zimbraMail'/>");
@@ -426,7 +422,6 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 
 		// Click on the INBOX
 		app.zTreeMail.zClickAt("css=td[id='zti__main_Mail__" + externalInbox +"_textCell']", "");
-		
 		
 		// Add another message
 		String subject2 = "subject" + ZimbraSeleniumProperties.getUniqueString();
@@ -454,6 +449,10 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		// Sync is asynchronous, so we have to wait for the toaster
 		toaster = app.zPageMain.zGetToaster();
 		toaster.zWaitForActive();
+		SleepUtil.sleepVeryLong();
+		
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		app.zTreeMail.zWaitForBusyOverlay();
 
 		// Get the messages
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
@@ -469,9 +468,5 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the external folder");
-
-		
-	}	
-
-
+	}
 }
