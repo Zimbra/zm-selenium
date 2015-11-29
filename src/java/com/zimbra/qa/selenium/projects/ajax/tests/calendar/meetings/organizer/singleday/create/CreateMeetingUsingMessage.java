@@ -69,6 +69,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
 		dlgAddAttendees.zClickButton(Button.B_YES);
+		SleepUtil.sleepVeryLong();
 		
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -134,6 +135,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
 		dlgAddAttendees.zClickButton(Button.B_YES);
+		SleepUtil.sleepVeryLong();
 		
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -194,6 +196,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
 		dlgAddAttendees.zClickButton(Button.B_NO);
+		SleepUtil.sleepMedium();
 		
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -254,6 +257,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
 		dlgAddAttendees.zClickButton(Button.B_NO);
+		SleepUtil.sleepMedium();
 		
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -313,6 +317,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
 		dlgAddAttendees.zClickButton(Button.B_YES);
+		SleepUtil.sleepVeryLong();
 		
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -372,6 +377,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
 		dlgAddAttendees.zClickButton(Button.B_YES);
+		SleepUtil.sleepVeryLong();
 		
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -432,6 +438,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
 		dlgAddAttendees.zClickButton(Button.B_YES);
+		SleepUtil.sleepVeryLong();
 		
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -492,6 +499,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);		
 		dlgAddAttendees.zClickButton(Button.B_NO);
+		SleepUtil.sleepMedium();
 		
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -552,6 +560,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
 		dlgAddAttendees.zClickButton(Button.B_YES);
+		SleepUtil.sleepVeryLong();
 		
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);

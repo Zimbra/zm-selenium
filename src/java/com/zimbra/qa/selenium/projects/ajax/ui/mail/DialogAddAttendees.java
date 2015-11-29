@@ -96,7 +96,7 @@ public class DialogAddAttendees extends AbsDialog {
 		this.zClick(locator);
 		
 		this.zWaitForBusyOverlay();
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 
 		return (page);
 	}
