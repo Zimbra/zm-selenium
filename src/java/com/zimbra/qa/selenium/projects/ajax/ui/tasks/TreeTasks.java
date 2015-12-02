@@ -267,13 +267,13 @@ public class TreeTasks extends AbsTree {
 		} else {
 			throw new HarnessException("Action "+ action +" not yet implemented");
 		}
-		
+
 		// Default behavior.  Click the locator
 		zClick(locator);
 
 		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
-
+		
 		((AppAjaxClient)MyApplication).zPageTasks.zWaitForDesktopLoadingSpinner(5000);
 
 		return (page);

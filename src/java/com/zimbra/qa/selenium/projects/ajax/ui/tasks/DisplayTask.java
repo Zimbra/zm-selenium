@@ -184,7 +184,7 @@ public class DisplayTask extends AbsDisplay {
 	}
 
 	public String zGetTaskListViewProperty(Field field) throws HarnessException {
-		String locator = "css=div[id='zl__TKL-main__rows'] div[id^='zli__TKL'] tr[id^='zlif__TKL']";
+		String locator = "css=div[id='zl__TKL__rows'] div[id^='zli__TKL'] tr[id^='zlif__TKL']";
 
 		if (field == Field.Subject) {
 		
