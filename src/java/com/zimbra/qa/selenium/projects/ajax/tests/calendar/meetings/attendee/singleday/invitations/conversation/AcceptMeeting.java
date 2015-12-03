@@ -108,7 +108,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 		// Refresh the view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
-		// Select the invitation
+		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 		
 		// Click Accept
@@ -180,9 +180,10 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 		
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
-		// Select the invitation
+		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 		
 		// Click Accept
@@ -250,10 +251,10 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
-		// Select the invitation
+		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		// Click Accept > Notify Organizer
@@ -358,10 +359,10 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 		
-		// Select the invitation
+		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		// Click Accept -> Edit Reply , which will open a new reply compose
@@ -466,7 +467,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(apptSubject);
 
-		// Select the invitation
+		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		// Click Accept > Don't Notify Organizer

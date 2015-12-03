@@ -112,10 +112,10 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 
 		// --------------- Login to attendee & mark invitation as Tentative ------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
-		// Select the invitation
+		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		// Click Tentative
@@ -195,7 +195,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		// Refresh the view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
-		// Select the invitation
+		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		// Click Tentative
@@ -264,10 +264,10 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 
 		// --------------- Login to attendee & mark invitation as tentative -----------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
-		// Select the invitation
+		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		// Click Tentative > Notify Organizer
@@ -372,10 +372,10 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 
 		// --------------- Login to attendee & mark invitation as tentative ----------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 		
-		// Select the invitation
+		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		// Click Tentative > Edit Reply, modify body and send
@@ -477,7 +477,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(apptSubject);
 
-		// Select the invitation
+		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		// Click Tentative > Don't Notify Organizer

@@ -112,10 +112,10 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
-		// Select the invitation
+		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		// Click Decline
@@ -192,10 +192,10 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
-		// Select the invitation
+		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		// Click Decline
@@ -264,10 +264,10 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 
-		// Select the invitation
+		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		// Click Decline > Notify Organizer
@@ -372,10 +372,10 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
-		// Refresh the view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(apptSubject);
 		
-		// Select the invitation
+		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		// Click Decline > Edit Reply, modify body and send
@@ -477,7 +477,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(apptSubject);
 
-		// Select the invitation
+		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		// Click Decline > Don't Notify Organizer
