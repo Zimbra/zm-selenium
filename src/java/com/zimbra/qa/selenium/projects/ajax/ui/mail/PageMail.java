@@ -2,11 +2,11 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -82,7 +82,7 @@ public class PageMail extends AbsTab {
 		public static final String zReplyToolbarButton = "css=div[id$='__REPLY']";
 		public static final String zReplyAllToolbarButton = "css=div[id$='__REPLY_ALL']";
 		public static final String zForwardToolbarButton = "css=div[id$='__FORWARD']";
-		
+
 		public static final String zSaveWarningDialog= "css=div[id='YesNoCancel'][style*='display: block;']";
 		// public static final String zCancelIconBtn =
 		// "css=[id^=zb__COMPOSE][id$=__CANCEL_title]";
@@ -101,9 +101,9 @@ public class PageMail extends AbsTab {
 		public static final String zMovetToToAddressContextMenu="css=div[id^='POPUP_DWT'] tbody div[id='MOVE_TO_TO'][class*='ZDisabled'] table tbody tr[id='POPUP_MOVE_TO_TO']";
 		public static final String zMoveToCcAddressContextMenu="css=div[id^='POPUP_DWT'] tbody div[id='MOVE_TO_CC'] table tbody tr[id='POPUP_MOVE_TO_CC']";
 		public static final String zMoveToBccAddressContextMenu="css=div[id^='POPUP_DWT'] tbody div[id='MOVE_TO_BCC'] table tbody tr[id='POPUP_MOVE_TO_BCC']";
-		
+
 		//Msg header Address Context menu
-		
+
 		public static final String zCopyMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='COPY'] table tbody tr[id='POPUP_COPY']";
 		public static final String zFindEmailsMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='SEARCH_MENU'] table tbody tr[id='POPUP_SEARCH_MENU']";
 		public static final String zNewEmailsMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='NEW_MESSAGE'] table tbody tr[id='POPUP_NEW_MESSAGE']";
@@ -113,16 +113,16 @@ public class PageMail extends AbsTab {
 		public static final String zFromHdrAddressBubble = "css=div[id='zv__TV-main__MSG'] table[id='zv__TV-main__MSG_headerElement'] tr[id^='OBJ_PREFIX_DWT'][id$='_from'] span[class^='addrBubble']>span";
 		public static final String zAttachdropdown ="css=div[id='zb__COMPOSE-1___attachments_btn'] table tbody tr td[id='zb__COMPOSE-1___attachments_btn_dropdown']>div";
 		public static final String zAddFilterMsgHdrContextMenu ="css=div[id^='POPUP'] td[id$='_title']:contains('New Filter')";
-		
+
 		public static final String zAttachMailMenu ="css=div[class='DwtMenu'] td div[id^='DWT'] td[id$='_title']:contains('Mail')";
 		public static final String zAttachContactMenu = "css=div[class='DwtMenu'] td div[id^='DWT'] td[id$='_title']:contains('Contacts')";
 		public static final String zAttachBriefcaseMenu ="css=div[class='DwtMenu'] td div[id^='DWT'] td[id$='_title']:contains('Briefcase')";
 		public static final String zAttachContactFolder  = "css=div[id='zov__AttachContactsTabView'] div[id^='zti__AttachContactsTabView'] td[id^='zti__AttachContactsTabView']:contains('Contacts')";
 		public static final String zAttachInboxFolder  = "css=div[id='zov__AttachMailTabView'] div[id^='zti__AttachMailTabView'] td[id^='zti__AttachMailTabView']:contains('Inbox')";
-		public static final String zAttachBriefcaseFolder  = "css=div[id='zov__ZmBriefcaseTabView'] div[id^='zti__ZmBriefcaseTabView'] td[id^='zti__ZmBriefcaseTabView']:contains('Briefcase')";		
+		public static final String zAttachBriefcaseFolder  = "css=div[id='zov__ZmBriefcaseTabView'] div[id^='zti__ZmBriefcaseTabView'] td[id^='zti__ZmBriefcaseTabView']:contains('Briefcase')";
 		public static final String zUntagBubble ="css=div[id='zv__TV-main__MSG'] tr[id='zv__TV__TV-main_MSG_tagRow'] span[class='addrBubble TagBubble'] span[class='ImgBubbleDelete']";
-		
-		
+
+
 		public static class CONTEXT_MENU {
 			// TODO: Until https://bugzilla.zimbra.com/show_bug.cgi?id=56273 is
 			// fixed, ContextMenuItem will be defined using the text content
@@ -150,7 +150,7 @@ public class PageMail extends AbsTab {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see projects.admin.ui.AbsPage#isActive()
 	 */
 	@Override
@@ -185,7 +185,7 @@ public class PageMail extends AbsTab {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see projects.admin.ui.AbsPage#myPageName()
 	 */
 	@Override
@@ -195,7 +195,7 @@ public class PageMail extends AbsTab {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see projects.admin.ui.AbsPage#navigateTo()
 	 */
 	@Override
@@ -223,36 +223,38 @@ public class PageMail extends AbsTab {
 		logger.info("Navigated to "+ this.myPageName() + " page");
 
 	}
-	
+
 	public boolean zVerifyMailExists (String subject) throws HarnessException {
-		
-		Stafpostqueue sp = new Stafpostqueue();
-		sp.waitForPostqueue();
-		
+
 		boolean found = false;
-		
-		for (int i=1; i<=3; i++) {
+
+		for (int i=1; i<=5; i++) {
+
 			zToolbarPressButton(Button.B_REFRESH);
-			SleepUtil.sleepMedium();
+
 			List<MailItem> items = zListGetMessages();
+
 			for (MailItem item : items ) {
 				if ( subject.equals(item.getSubject()) ) {
 					found = true;
 					break;
 				} else {
-					zToolbarPressButton(Button.B_REFRESH);
-					SleepUtil.sleepLong();
+					logger.info("Mail not displayed in current view");
+					Stafpostqueue sp = new Stafpostqueue();
+					sp.waitForPostqueue();
 				}
-				SleepUtil.sleepSmall();
 			}
+
 			if (found = true) {
-				ZAssert.assertTrue(found, "Verify mail gets displayed in current view");
+				SleepUtil.sleepSmall();
+				logger.info("Mail displayed in current view");
+				ZAssert.assertTrue(found, "Mail not displayed in current view");
 				break;
 			}
 		}
-		
+
 		return found;
-		
+
 	}
 
 	@Override
@@ -569,11 +571,11 @@ public class PageMail extends AbsTab {
 				//Workaround: Press Control+Shift+A to select All Messages.
 				sKeyDownNative("17"); //control
 				sKeyDownNative("16"); //Shift
-				sKeyDownNative("65"); // A	
-				
+				sKeyDownNative("65"); // A
+
 				sKeyUpNative("17");
 				sKeyUpNative("16");
-				sKeyUpNative("65");	
+				sKeyUpNative("65");
 			}
 
 			this.zWaitForBusyOverlay();
@@ -657,9 +659,9 @@ public class PageMail extends AbsTab {
 		}
 
 		this.sClickAt(locator,"10,10");
-		
+
 		this.zWaitForBusyOverlay();
-		
+
 		SleepUtil.sleepSmall();
 
 		return (page);
@@ -782,7 +784,7 @@ public class PageMail extends AbsTab {
 
 				this.zClickAt(optionLocator, "0,0");
 				zWaitForBusyOverlay();
-				
+
 				SleepUtil.sleepLong();
 
 				return (page);
@@ -991,7 +993,7 @@ public class PageMail extends AbsTab {
 
 	/**
 	 * Get the Page Property: ListView = By message OR By Conversation
-	 * 
+	 *
 	 * @return
 	 * @throws HarnessException
 	 */
@@ -1653,25 +1655,25 @@ public class PageMail extends AbsTab {
 			}
 
 			return page;
-		}else if ( shortcut == Shortcut.S_PASTE ) {			
+		}else if ( shortcut == Shortcut.S_PASTE ) {
 			page= null;
 			keyCode= "17,86";
 			zKeyDown(keyCode);
 			return (page);
 
-		}else if ( shortcut == Shortcut.S_COPY ) {			
+		}else if ( shortcut == Shortcut.S_COPY ) {
 			page= null;
 			keyCode= "17,67";
 			zKeyDown(keyCode);
 			return (page);
 
 		}
-		
-		else if ( shortcut == Shortcut.S_UNTAG ) {			
+
+		else if ( shortcut == Shortcut.S_UNTAG ) {
 			page= null;
 			keyCode= "85";
 			zKeyDown(keyCode);
-			
+
 			return (page);
 		}
 
@@ -2023,7 +2025,7 @@ public class PageMail extends AbsTab {
 
 	/**
 	 * Check warning icon,Display Image link,Domain link
-	 * 
+	 *
 	 * @return
 	 * @throws HarnessException
 	 */
@@ -2054,7 +2056,7 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("no logic defined  ");
 		}
 	}
-	
+
 	public void zRightClickAddressBubble(Field field) throws HarnessException {
 		if (field == Field.To) {
 			SleepUtil.sleepVeryLong();
@@ -2115,21 +2117,21 @@ public class PageMail extends AbsTab {
 		// TODO Auto-generated method stub
 		this.sFocus(Locators.zMoveToCcAddressContextMenu);
 		this.sClickAt(Locators.zMoveToCcAddressContextMenu, "");
-		
+
 	}
-	
+
 	public void MoveToBCcAddressContextMenu() throws HarnessException {
 		// TODO Auto-generated method stub
 		this.sFocus(Locators.zMoveToBccAddressContextMenu);
 		this.sClickAt(Locators.zMoveToBccAddressContextMenu, "");
 	}
-	
+
 	public void NewEmailMsgHdrContextMenu() throws HarnessException {
 		this.sFocus(Locators.zNewEmailsMsgHdrContextMenu);
 		this.sClickAt(Locators.zNewEmailsMsgHdrContextMenu, "");
 
 	}
-	
+
 	public void AddToContactMsgHdrContextMenu() throws HarnessException {
 		this.sFocus(Locators.zAddToContactMsgHdrContextMenu);
 		this.sClickAt(Locators.zAddToContactMsgHdrContextMenu, "");
@@ -2141,7 +2143,7 @@ public class PageMail extends AbsTab {
 		this.sClickAt(Locators.zAddFilterMsgHdrContextMenu,"");
 
 	}
-	
+
 	public boolean zVerifyAllAddressContextMenu(String app)throws HarnessException {
 
 		List<String> locators = new ArrayList<String>();
