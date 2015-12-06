@@ -2,11 +2,11 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -32,27 +32,27 @@ public class MoveSavedSearch extends AjaxCommonTest  {
 
 	public MoveSavedSearch() {
 		logger.info("New "+ MoveSavedSearch.class.getCanonicalName());
-		
+
 		// All tests start at the Address page
 		super.startingPage = app.zPageMail;
 
 		// Make sure we are using an account with conversation view
-		super.startingAccountPreferences = null;		
-		
+		super.startingAccountPreferences = null;
+
 	}
-	
+
 	@Bugs(	ids = "102547")
 	@Test(	description = "Move a saved search",
 			groups = { "smoke" })
-	public void MoveSavedSearch_01() throws HarnessException {				
-				
-			
+	public void MoveSavedSearch_01() throws HarnessException {
+
+
 		// Create the message data to be moved
 		String name1 = "search" + ZimbraSeleniumProperties.getUniqueString();
 		String name2 = "search" + ZimbraSeleniumProperties.getUniqueString();
 		String query1 = "subject:(" + ZimbraSeleniumProperties.getUniqueString() + ")";
 		String query2 = "subject:(" + ZimbraSeleniumProperties.getUniqueString() + ")";
-		
+
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateSearchFolderRequest xmlns='urn:zimbraMail'>" +
@@ -66,14 +66,13 @@ public class MoveSavedSearch extends AjaxCommonTest  {
 				"</CreateSearchFolderRequest>");
 		SavedSearchFolderItem item2 = SavedSearchFolderItem.importFromSOAP(app.zGetActiveAccount(), name2);
 
+		app.zPageLogin.zNavigateTo();
+		this.startingPage.zNavigateTo(); //see bug 102547
 
-		// Refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
 		// Right click on the search, select delete
 		// TODO: can the folder move dialog be reused?  Or, do we need DialogMoveSavedSearchFolder class?
 		DialogMove dialog = (DialogMove) app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_MOVE, item1);
-		
+
 		// Rename the search
 		dialog.zEnterFolderName(name2);
 		dialog.zClickButton(Button.B_OK);
@@ -82,7 +81,7 @@ public class MoveSavedSearch extends AjaxCommonTest  {
 		// Verify the saved search exists under the other saved search
 		item1 = SavedSearchFolderItem.importFromSOAP(app.zGetActiveAccount(), name1);
 		ZAssert.assertEquals(item1.getParentId(), item2.getId(), "Verify the saved search's parent folder is the other saved search");
-		
+
 
 	}
 }

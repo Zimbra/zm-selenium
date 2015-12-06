@@ -730,7 +730,6 @@ public class PageCalendar extends AbsTab {
 		return(page);
 	}
 
-	@SuppressWarnings("unused")
 	private AbsPage zListItemListView(Action action, Button option, String subject) throws HarnessException {
 
 		logger.info(myPageName() + " zListItemListView("+ action +", "+ option +", "+ subject +")");
@@ -739,7 +738,6 @@ public class PageCalendar extends AbsTab {
 		String itemlocator = "css=div[id='zl__CLL__rows'] td[id$='__su']:contains('" + subject + "')";
 		String optionLocator = null;
 		AbsPage page = null;
-		boolean waitForPostfix;
 
 		if ( action == Action.A_RIGHTCLICK ) {
 
@@ -771,7 +769,6 @@ public class PageCalendar extends AbsTab {
 
 				}
 				page = null;
-				waitForPostfix = true;
 
 			} else if ( option == Button.O_TENTATIVE_MENU ) {
 
@@ -784,7 +781,6 @@ public class PageCalendar extends AbsTab {
 
 				}
 				page = null;
-				waitForPostfix = true;
 
 			} else if ( option == Button.O_DECLINE_MENU ) {
 
@@ -798,8 +794,6 @@ public class PageCalendar extends AbsTab {
 
 				}
 				page = null;
-				waitForPostfix = true;
-
 
 			} else if ( option == Button.O_PROPOSE_NEW_TIME_MENU ) {
 
@@ -921,27 +915,20 @@ public class PageCalendar extends AbsTab {
 				throw new HarnessException("implement action:"+ action +" option:"+ option);
 			}
 
-			// click on the option
 			this.zClickAt(optionLocator,"");
-
 			this.zWaitForBusyOverlay();
-
-			// FALL THROUGH
-
 
 		} else {
 			throw new HarnessException("implement me!  action = "+ action);
 		}
 
-		// Action should take place in the if/else block.
-		// No need to take action on a locator at this point.
-
 		if ( page != null ) {
 			page.zWaitForActive();
 		}
 
+		Stafpostqueue sp = new Stafpostqueue();
+		sp.waitForPostqueue();
 
-		// Default behavior
 		return (page);
 
 	}
@@ -975,7 +962,6 @@ public class PageCalendar extends AbsTab {
 	}
 
 
-	@SuppressWarnings("unused")
 	private AbsPage zListItemGeneral(String itemsLocator, Action action, Button option, String subject) throws HarnessException {
 
 		if ( itemsLocator == null )
@@ -995,7 +981,6 @@ public class PageCalendar extends AbsTab {
 		AbsPage page = null;
 		String optionLocator = null;
 		String subOptionLocator = null;
-		boolean waitForPostfix;
 
 		if ( this.sIsElementPresent(itemsLocator +" td.appt_name:contains('"+ subject +"')")) {
 
@@ -1044,7 +1029,6 @@ public class PageCalendar extends AbsTab {
 					this.zWaitForBusyOverlay();
 				}
 				page = null;
-				waitForPostfix = true;
 
 			} else {
 
@@ -1128,7 +1112,6 @@ public class PageCalendar extends AbsTab {
 
 				}
 				page = null;
-				waitForPostfix = true;
 
 			} else if ( option == Button.O_TENTATIVE_MENU ) {
 
@@ -1142,7 +1125,6 @@ public class PageCalendar extends AbsTab {
 
 				}
 				page = null;
-				waitForPostfix = true;
 
 			} else if ( option == Button.O_DECLINE_MENU ) {
 
@@ -1156,7 +1138,6 @@ public class PageCalendar extends AbsTab {
 
 				}
 				page = null;
-				waitForPostfix = true;
 
 			} else if ( option == Button.O_EDIT_REPLY_ACCEPT_SUB_MENU ) {
 
@@ -1175,7 +1156,6 @@ public class PageCalendar extends AbsTab {
 
 				}
 				page = new FormMailNew(this.MyApplication);
-				waitForPostfix = true;
 
 			} else if ( option == Button.O_EDIT_REPLY_TENTATIVE_SUB_MENU ) {
 
@@ -1194,7 +1174,6 @@ public class PageCalendar extends AbsTab {
 
 				}
 				page = new FormMailNew(this.MyApplication);
-				waitForPostfix = true;
 
 			} else if ( option == Button.O_EDIT_REPLY_DECLINE_SUB_MENU ) {
 
@@ -1213,7 +1192,6 @@ public class PageCalendar extends AbsTab {
 
 				}
 				page = new FormMailNew(this.MyApplication);
-				waitForPostfix = true;
 
 			} else if ( option == Button.O_PROPOSE_NEW_TIME_MENU ) {
 
@@ -1228,7 +1206,6 @@ public class PageCalendar extends AbsTab {
 
 				}
 				page = new FormApptNew(this.MyApplication);
-				waitForPostfix = true;
 
 			} else if ( option == Button.O_REINVITE ) {
 
@@ -1242,7 +1219,6 @@ public class PageCalendar extends AbsTab {
 
 				}
 				page = null;
-				waitForPostfix = true;
 
 			} else if ( option == Button.O_REINVITE ) {
 
@@ -1256,7 +1232,6 @@ public class PageCalendar extends AbsTab {
 
 				}
 				page = null;
-				waitForPostfix = true;
 
 			} else if ( option == Button.O_REPLY_MENU ) {
 
@@ -1269,7 +1244,6 @@ public class PageCalendar extends AbsTab {
 				}
 
 				page = new FormMailNew(this.MyApplication);
-				waitForPostfix = true;
 
 			} else if ( option == Button.O_REPLY_TO_ALL_MENU ) {
 
@@ -1282,7 +1256,6 @@ public class PageCalendar extends AbsTab {
 				}
 
 				page = new FormMailNew(this.MyApplication);
-				waitForPostfix = true;
 
 			} else if ( option == Button.O_FORWARD_MENU) {
 
@@ -1295,7 +1268,6 @@ public class PageCalendar extends AbsTab {
 				}
 
 				page = null;
-				waitForPostfix = true;
 
 			} else if ( option == Button.B_MOVE ) {
 
@@ -1337,8 +1309,6 @@ public class PageCalendar extends AbsTab {
 				} else {
 					page = null;
 				}
-
-				waitForPostfix = false;
 
 			}else if ( option == Button.O_OPEN) {
 
@@ -1935,6 +1905,9 @@ public class PageCalendar extends AbsTab {
 			page.zWaitForActive();
 		}
 
+		Stafpostqueue sp = new Stafpostqueue();
+		sp.waitForPostqueue();
+
 		SleepUtil.sleepMedium();
 
 		return (page);
@@ -2245,8 +2218,7 @@ public class PageCalendar extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
-	throws HarnessException {
+	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressPulldown(" + pulldown + ", "
 				+ option + ")");
 
@@ -2300,8 +2272,6 @@ public class PageCalendar extends AbsTab {
 
 			}
 
-			// If we click on pulldown/option and the page is specified, then
-			// wait for the page to go active
 			if (page != null) {
 				page.zWaitForActive();
 			}
