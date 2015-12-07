@@ -83,13 +83,6 @@ public class DialogSendUpdatetoAttendees extends DialogWarning {
 		
 		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
-		
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-			
-		}
 
 		// This dialog could send messages, so wait for the queue
 		Stafpostqueue sp = new Stafpostqueue();

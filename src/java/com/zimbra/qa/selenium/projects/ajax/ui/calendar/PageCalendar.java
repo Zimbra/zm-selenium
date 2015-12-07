@@ -2130,6 +2130,8 @@ public class PageCalendar extends AbsTab {
 		}
 
 		this.zClickAt(locator, "10,10");
+		
+		SleepUtil.sleepMedium();
 
 		Stafpostqueue sp = new Stafpostqueue();
 		sp.waitForPostqueue();
@@ -2140,7 +2142,6 @@ public class PageCalendar extends AbsTab {
 			page.zWaitForActive();
 		}
 
-		SleepUtil.sleepSmall();
 		return (page);
 	}
 
