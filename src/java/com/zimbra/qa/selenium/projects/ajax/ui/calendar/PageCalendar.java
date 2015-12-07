@@ -1672,6 +1672,9 @@ public class PageCalendar extends AbsTab {
 			// a small delay to make sure the dialog shows up
 			// before the zIsActive() method is called
 			SleepUtil.sleepMedium();
+			
+			Stafpostqueue sp = new Stafpostqueue();
+			sp.waitForPostqueue();
 
 			// If the organizer deletes an appointment, you get "Send Cancellation" dialog
 			page = new DialogConfirmDeleteOrganizer(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
@@ -1954,6 +1957,9 @@ public class PageCalendar extends AbsTab {
 			this.zWaitForBusyOverlay();
 
 			SleepUtil.sleepMedium();
+			
+			Stafpostqueue sp = new Stafpostqueue();
+			sp.waitForPostqueue();
 
 			// If the organizer deletes an appointment, you get "Send Cancellation" dialog
 			page = new DialogConfirmDeleteOrganizer(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
@@ -1984,7 +1990,10 @@ public class PageCalendar extends AbsTab {
 		} else if (button == Button.B_SEND_WITH_CONFLICT) {
 			locator = Locators.SendButton;
 			this.zClickAt(locator, "");
-			SleepUtil.sleepMedium();
+			
+			Stafpostqueue sp = new Stafpostqueue();
+			sp.waitForPostqueue();
+			
 			page = new DialogWarningConflictingResources(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 
 			if ( page.zIsActive() ) {
@@ -1998,7 +2007,10 @@ public class PageCalendar extends AbsTab {
 		} else if (button == Button.B_SAVE_WITH_CONFLICT) {
 			locator = Locators.OrganizerSaveButton;
 			this.zClickAt(locator, "");
-			SleepUtil.sleepMedium();
+			
+			Stafpostqueue sp = new Stafpostqueue();
+			sp.waitForPostqueue();
+			
 			page = new DialogWarningConflictingResources(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 
 			if ( page.zIsActive() ) {
