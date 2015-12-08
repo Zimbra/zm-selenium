@@ -70,6 +70,9 @@ public class CreateACopy extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
+		
+		this.app.zPageLogin.zNavigateTo();
+		this.startingPage.zNavigateTo();
         
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");

@@ -22,6 +22,7 @@ package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 
 public class DialogAddAttendees extends AbsDialog {
 
@@ -96,7 +97,10 @@ public class DialogAddAttendees extends AbsDialog {
 		this.zClick(locator);
 		
 		this.zWaitForBusyOverlay();
-		SleepUtil.sleepLong();
+		
+		SleepUtil.sleepMedium();
+		Stafpostqueue sp = new Stafpostqueue();
+		sp.waitForPostqueue();
 
 		return (page);
 	}
