@@ -436,7 +436,7 @@ public class PageTasks extends AbsTab{
 
 				page = new SeparateWindow(this.MyApplication);
 				((SeparateWindow)page).zInitializeWindowNames();
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 				this.zWaitForBusyOverlay();
 
 				return (page);
@@ -446,7 +446,7 @@ public class PageTasks extends AbsTab{
 
 				page = new SeparateWindowPrintPreview(this.MyApplication);
 				((SeparateWindowPrintPreview)page).zInitializeWindowNames();
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 				this.zWaitForBusyOverlay();
 
 				return (page);
@@ -457,7 +457,7 @@ public class PageTasks extends AbsTab{
 			}
 
 			// click on the option
-			this.zClickAt(optionLocator,"");
+			this.sClickAt(optionLocator,"");
 			SleepUtil.sleepMedium();
 
 			this.zWaitForBusyOverlay();

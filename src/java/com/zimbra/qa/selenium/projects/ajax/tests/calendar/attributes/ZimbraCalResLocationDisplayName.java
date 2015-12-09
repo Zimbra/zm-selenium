@@ -51,6 +51,10 @@ public class ZimbraCalResLocationDisplayName extends CalendarWorkWeekTest {
 					"<a n='zimbraCalResLocationDisplayName'>"+ resourceDisplayName +"</a>" +
 				"</ModifyCalendarResourceRequest>");
 		
+		ZimbraDomain domain = new ZimbraDomain(location.EmailAddress.split("@")[1]);
+		domain.provision();
+		domain.syncGalAccount();
+		
 		Element[] ModifyCalendarResourceResponse = ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("//admin:ModifyCalendarResourceRequest");
 		logger.info("ModifyCalendarResourceResponse is')" + ModifyCalendarResourceResponse);
 		

@@ -47,6 +47,7 @@ public class RevokeDevice extends AjaxCommonTest {
 	public void RevokeThisDevie_01() throws HarnessException {
 		String totp, secret, tempToken;
 		
+		app.zPageMain.zLogout();
 		ZimbraAccount.AccountZWC().soapSend(
         		"<EnableTwoFactorAuthRequest xmlns='urn:zimbraAccount'>" +
         		"<name>" + ZimbraAccount.AccountZWC().EmailAddress + "</name>" +
@@ -64,8 +65,8 @@ public class RevokeDevice extends AjaxCommonTest {
         		"</EnableTwoFactorAuthRequest>");
 		// Login
 		totp = CommandLine.cmdExecOnServer(ZimbraAccount.AccountZWC().EmailAddress, secret);
-		app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC(), totp, true);
+		
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
 

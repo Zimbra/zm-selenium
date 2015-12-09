@@ -105,9 +105,6 @@ public class PrintTask extends AjaxCommonTest {
 			//Close Show Original window
 			app.zPageTasks.zSeparateWindowClose(windowTitle);
 			app.zPageTasks.sSelectWindow(null);
-		//	window.zCloseWindow();
-		//	window = null;
-			//app.zPageTasks.sGetAllWindowTitles();
 		
 		} finally {
 			
