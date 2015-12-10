@@ -65,19 +65,13 @@ public class ZimbraFeatureTrustedDevicesEnabled extends AjaxCommonTest {
 			+		"<id>"+ app.zGetActiveAccount().ZimbraId +"</id>"
 			+		"<a n='zimbraFeatureTrustedDevicesEnabled'>FALSE</a>"
 			+	"</ModifyAccountRequest>");
-
-		app.zPageMain.zLogout();
+		
+		app.zPageLogin.zNavigateTo();		
 		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZWC().EmailAddress);
 		app.zPageLogin.zSetLoginPassword(ZimbraAccount.AccountZWC().Password);
 		app.zPageLogin.sClickAt(Locators.zBtnLogin, "");
         ZAssert.assertFalse(app.zPageLogin.zVerifyTrustThisComputer(), "Verify 'trust this computer' is not present");
 
-	}
-	
-	@AfterMethod(groups={"always"})
-	public void beforeMethod() throws HarnessException {
-		zKillBrowserAndRelogin();
-		logger.info(app.zGetActiveAccount().EmailAddress);
 	}
 	
 	@AfterMethod(groups={"always"})
