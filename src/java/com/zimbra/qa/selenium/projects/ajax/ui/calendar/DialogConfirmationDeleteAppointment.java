@@ -50,7 +50,7 @@ public class DialogConfirmationDeleteAppointment extends DialogWarning {
 
 			locator = Locators.DeleteAllOccurrencesRadioButton;
 
-			sClick(locator);
+			sClickAt(locator,"0,0");
 			this.zWaitForBusyOverlay();
 			
 			return (page);
@@ -59,7 +59,7 @@ public class DialogConfirmationDeleteAppointment extends DialogWarning {
 
 			locator = Locators.DeleteThisAndFutureOccurrencesRadioButton;
 
-			sClick(locator);
+			sClickAt(locator,"0,0");
 			this.zWaitForBusyOverlay();
 			
 			return (page);

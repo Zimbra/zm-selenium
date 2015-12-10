@@ -34,7 +34,7 @@ public class PageMain extends AbsTab {
 
 	public static class Locators {
 				
-		public static final String zLogoffPulldown		= "css=td[id='skin_dropMenu'] td[id$='_dropdown']";
+		public static final String zLogoffPulldown		= "css=td[id='skin_dropMenu'] div[class='DwtLinkButtonDropDownArrow']";
 		public static final String zLogoffOption		= "css=tr[id='POPUP_logOff'] td[id$='_title']";
 		
 		public static final String zAppbarMail			= "id=zb__App__Mail_title";
@@ -104,13 +104,13 @@ public class PageMain extends AbsTab {
 		// check if zimlet + minical loaded
 		boolean present = sIsElementPresent(Locators.zLogoffPulldown);
 		if ( !present ) {
-			logger.debug("Logoff button present = "+ present);
+			logger.info("Logoff button present = "+ present);
 			return (false);
 		}
 
 		boolean loaded = zIsZimletLoaded();
 		if ( !loaded) {
-			logger.debug("zIsZimletLoaded() = "+ loaded);
+			logger.info("zIsZimletLoaded() = "+ loaded);
 			return (false);
 		}
 		
@@ -120,7 +120,7 @@ public class PageMain extends AbsTab {
 //			return (false);
 //		}
 		
-		logger.debug("isActive() = "+ true);
+		logger.info("isActive() = "+ true);
 		return (true);
 
 	}

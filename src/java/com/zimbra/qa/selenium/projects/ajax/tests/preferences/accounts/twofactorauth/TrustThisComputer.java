@@ -44,7 +44,6 @@ public class TrustThisComputer extends AjaxCommonTest {
 	public void TrustThisComputer_01() throws HarnessException {
 		String totp, secret, tempToken;
 		
-		app.zPageMain.zLogout();
 		ZimbraAccount.AccountZWC().soapSend(
         		"<EnableTwoFactorAuthRequest xmlns='urn:zimbraAccount'>" +
         		"<name>" + ZimbraAccount.AccountZWC().EmailAddress + "</name>" +
@@ -78,6 +77,12 @@ public class TrustThisComputer extends AjaxCommonTest {
 	    this.startingPage.zNavigateTo();
 	    logger.info("Logged in successfully without totp");
 	    
+	}
+	
+	@AfterMethod(groups={"always"})
+	public void beforeMethod() throws HarnessException {
+		zKillBrowserAndRelogin();
+		logger.info(app.zGetActiveAccount().EmailAddress);
 	}
 	
 	@AfterMethod(groups={"always"})

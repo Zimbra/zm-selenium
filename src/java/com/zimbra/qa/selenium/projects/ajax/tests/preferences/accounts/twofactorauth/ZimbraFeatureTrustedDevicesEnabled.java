@@ -17,8 +17,10 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.accounts.twofactorauth;
 
 import java.util.HashMap;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.PageLogin.Locators;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
@@ -67,9 +69,15 @@ public class ZimbraFeatureTrustedDevicesEnabled extends AjaxCommonTest {
 		app.zPageMain.zLogout();
 		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZWC().EmailAddress);
 		app.zPageLogin.zSetLoginPassword(ZimbraAccount.AccountZWC().Password);
-		app.zPageLogin.zClick(Locators.zBtnLogin);
+		app.zPageLogin.sClickAt(Locators.zBtnLogin, "");
         ZAssert.assertFalse(app.zPageLogin.zVerifyTrustThisComputer(), "Verify 'trust this computer' is not present");
 
+	}
+	
+	@AfterMethod(groups={"always"})
+	public void beforeMethod() throws HarnessException {
+		zKillBrowserAndRelogin();
+		logger.info(app.zGetActiveAccount().EmailAddress);
 	}
 	
 	@AfterMethod(groups={"always"})

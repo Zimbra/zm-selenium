@@ -47,7 +47,6 @@ public class RevokeDevice extends AjaxCommonTest {
 	public void RevokeThisDevie_01() throws HarnessException {
 		String totp, secret, tempToken;
 		
-		app.zPageMain.zLogout();
 		ZimbraAccount.AccountZWC().soapSend(
         		"<EnableTwoFactorAuthRequest xmlns='urn:zimbraAccount'>" +
         		"<name>" + ZimbraAccount.AccountZWC().EmailAddress + "</name>" +
@@ -85,6 +84,12 @@ public class RevokeDevice extends AjaxCommonTest {
 
 	    logger.info("Login requires totp after revoke");
 
+	}
+	
+	@AfterMethod(groups={"always"})
+	public void beforeMethod() throws HarnessException {
+		zKillBrowserAndRelogin();
+		logger.info(app.zGetActiveAccount().EmailAddress);
 	}
 	
 	@AfterMethod(groups={"always"})

@@ -50,7 +50,7 @@ public class DialogConfirmationDeclineAppointment extends DialogWarning {
 
 			locator = Locators.DontNotifyOrganizerRadioButton;
 
-			sClick(locator);
+			sClickAt(locator,"0,0");
 			this.zWaitForBusyOverlay();
 			
 			return (page);
@@ -59,7 +59,7 @@ public class DialogConfirmationDeclineAppointment extends DialogWarning {
 
 			locator = Locators.NotifyOrganizerRadioButton;
 
-			sClick(locator);
+			sClickAt(locator,"0,0");
 			this.zWaitForBusyOverlay();
 			
 			return (page);

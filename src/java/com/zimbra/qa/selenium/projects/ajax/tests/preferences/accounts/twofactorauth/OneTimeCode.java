@@ -68,6 +68,12 @@ public class OneTimeCode extends AjaxCommonTest {
 	}
 	
 	@AfterMethod(groups={"always"})
+	public void beforeMethod() throws HarnessException {
+		zKillBrowserAndRelogin();
+		logger.info(app.zGetActiveAccount().EmailAddress);
+	}
+	
+	@AfterMethod(groups={"always"})
 	public void afterMethod() throws HarnessException {
 		zKillBrowserAndRelogin();
 		logger.info(app.zGetActiveAccount().EmailAddress);
