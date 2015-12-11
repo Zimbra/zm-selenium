@@ -60,17 +60,12 @@ public class OneTimeCode extends AjaxCommonTest {
 		oneTimeCode = ZimbraAccount.AccountZWC().soapSelectValue("//acct:EnableTwoFactorAuthResponse//acct:scratchCodes", "scratchCode");
 		
 		// Login
+		app.zPageLogin.zNavigateTo();
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC(), oneTimeCode, false);
 		
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
 
-	}
-	
-	@AfterMethod(groups={"always"})
-	public void beforeMethod() throws HarnessException {
-		zKillBrowserAndRelogin();
-		logger.info(app.zGetActiveAccount().EmailAddress);
 	}
 	
 	@AfterMethod(groups={"always"})
