@@ -177,6 +177,7 @@ public class Stafpostqueue extends StafServicePROCESS {
 		
 		// STAF <SERVER> PROCESS START COMMAND
 		// /opt/zimbra/postfix/sbin/postsuper PARMS -d <queue_id> RETURNSTDOUT
+		// /opt/zimbra/common/sbin/postsuper PARMS -d <queue_id> RETURNSTDOUT
 		// RETURNSTDERR WAIT 60000
 		
 		for (String id : ids)
@@ -187,10 +188,10 @@ public class Stafpostqueue extends StafServicePROCESS {
 	private void deletePostqueueItem(String id) throws HarnessException {
 
 		// STAF <SERVER> PROCESS START COMMAND
-		// /opt/zimbra/postfix/sbin/postsuper PARMS -d <queue_id> RETURNSTDOUT
+		// /opt/zimbra/common/sbin/postsuper PARMS -d <queue_id> RETURNSTDOUT
 		// RETURNSTDERR WAIT 60000
 
-		execute("/opt/zimbra/postfix/sbin/postsuper -d " + id);
+		execute("/opt/zimbra/common/sbin/postsuper -d " + id);
 
 	}
 
