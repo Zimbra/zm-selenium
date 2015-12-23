@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.main.external.register;
 import org.testng.annotations.Test;
 
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
@@ -35,6 +36,9 @@ public class BasicRegistration extends AjaxCommonTest {
 		super.startingAccountPreferences = null;
 		
 	}
+	
+	
+	@Bugs(ids = "103011" )
 	
 	@Test(	description = "Register as and external user",
 			groups = { "smoke" })
