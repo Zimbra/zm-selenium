@@ -19,11 +19,14 @@
  */
 package com.zimbra.qa.selenium.framework.util;
 
+import java.io.UnsupportedEncodingException;
 import java.net.*;
 import java.util.regex.*;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.*;
 
+import com.google.common.html.HtmlEscapers;
 import com.zimbra.common.soap.Element;
 
 /**
@@ -137,7 +140,12 @@ public class ZimbraExternalAccount extends ZimbraAccount {
 			
 			String href = matcherTag.group(1);
 			String text = matcherTag.group(2);
-
+			
+			//?p&#61;0 should be ?p=0  so we use following code.
+			
+			href = StringEscapeUtils.unescapeHtml(href);
+			
+			
 			logger.info("href: "+ href);
 			logger.info("text: "+ text);
 
