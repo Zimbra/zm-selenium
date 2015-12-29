@@ -34,7 +34,7 @@ public class Open extends CalendarWorkWeekTest {
 		super.startingAccountPreferences = null;
 	}
 	
-	@Bugs(ids = "98009")
+	@Bugs(ids = "103056")
 	@Test(	description = "Rt-click to invite and open it",
 			groups = { "smoke" })
 	public void OpenMeeting_01() throws HarnessException {
