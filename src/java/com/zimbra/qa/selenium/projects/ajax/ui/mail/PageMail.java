@@ -46,6 +46,10 @@ public class PageMail extends AbsTab {
 		public static final String zTagMenuDropdownBtnID = "zb__CLV-main__TAG_MENU_dropdown";
 		public static final String zDetachIconBtnID = "zb__TV-main__DETACH_left_icon";
 		public static final String zViewMenuDropdownBtnID = "zb__CLV-main__VIEW_MENU_dropdown";
+		public static final String zViewMenuDropdownBtnConvID = "zb__CV-1__VIEW_MENU_dropdown";
+		public static final String zByConvViewConvID = "css=div[id^='POPUP_DWT'][style*='display: block;'] div[id^='CLV']";
+		public static final String zByMsgViewConvID = "css=div[id^='POPUP_DWT'][style*='display: block;'] div[id^='TV']";
+		public static final String zByCONVORDERwConvID = "css=div[id^='POPUP_DWT'][style*='display: block;'] div[id^='CONV_ORDER']";		
 
 		public static final String zCloseIconBtn_messageWindow = "css=td[id=zb__MSG__CLOSE_left_icon]";
 		public static final String cssTVRowsLocator = "css=div#zl__TV-main__rows";
