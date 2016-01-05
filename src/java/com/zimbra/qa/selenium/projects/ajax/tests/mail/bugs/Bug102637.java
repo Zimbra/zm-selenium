@@ -21,10 +21,10 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.bugs;
 import java.io.File;
 
 
+
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.core.Bugs;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
@@ -41,7 +41,6 @@ public class Bug102637 extends PrefGroupMailByMessageTest {
 	
 	
 	@Bugs(	ids = "102637" )	
-
 	@Test(description = "Persistent XSS: unsafe content not filtered by defange", groups = { "functional" })
 	public void Bug_102637() throws HarnessException {
 
@@ -54,23 +53,35 @@ public class Bug102637 extends PrefGroupMailByMessageTest {
 
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(subject);
-
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		SleepUtil.sleepMedium();
-
-		//click on test link
-		
-		app.zPageMail.sClick("css=div>a[target='_blank']:contains('test')");
-
 		String Window = "Problem loading page";
-
-		String[] windowtitle = app.zPageMail.sGetAllWindowTitles().toString()
-				.split(",");
 		
-		//Veriy there is not xss alert dialog.
-		ZAssert.assertStringContains(windowtitle[1].toLowerCase(),
-				Window.toLowerCase(), "it shows window javascript-blocked:alert'XSS");
+		try {
+			//click on test link
+			
+			app.zPageMail.sClick("css=div>a[target='_blank']:contains('test')");	
+			SleepUtil.sleepMedium();
+
+			String[] windowtitle = app.zPageMail.sGetAllWindowTitles().toString()
+					.split(",");
+			
+			//Veriy there is not xss alert dialog.
+			ZAssert.assertStringContains(windowtitle[1].toLowerCase(),
+					Window.toLowerCase(), "it shows window javascript-blocked:alert'XSS");
+			
+			//Close Show Original window
+			app.zPageMail.zSeparateWindowClose(Window);
+			app.zPageMail.sSelectWindow(null);
+			
+		} finally  {
+			app.zPageMail.zSeparateWindowClose(Window);				
+			app.zPageMail.sSelectWindow(null);
+			//window.sSelectWindow(null);
+		}
+		
+		
 
 	}
 	
