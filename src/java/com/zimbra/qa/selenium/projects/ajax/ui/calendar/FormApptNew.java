@@ -338,6 +338,14 @@ public class FormApptNew extends AbsForm {
 		return sGetValue("css=td[id$='_scheduler'] td[id$='_NAME_'] input");
 	}
 
+	public String zGetStartDate() throws HarnessException {
+		return sGetValue("css=input[id$='startDateField']");
+	}
+	
+	public String zGetEndDate() throws HarnessException {
+		return sGetValue("css=input[id$='endDateField']");
+	}
+		
 	public Boolean zVerifyRequiredAttendee(String attendee)
 			throws HarnessException {
 		return sIsElementPresent("css=td[id$='_person'] span:contains('"

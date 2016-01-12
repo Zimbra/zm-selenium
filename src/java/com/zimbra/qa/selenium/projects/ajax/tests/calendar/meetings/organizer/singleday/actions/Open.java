@@ -19,7 +19,10 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 import java.util.Calendar;
 
 import org.testng.annotations.Test;
-
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -37,7 +40,7 @@ public class Open extends CalendarWorkWeekTest {
 	@Bugs(ids = "103056")
 	@Test(	description = "Rt-click to invite and open it",
 			groups = { "smoke" })
-	public void OpenMeeting_01() throws HarnessException {
+	public void OpenMeeting_01() throws HarnessException, ParseException {
 		
 		organizerTest = false;
 		
@@ -50,15 +53,15 @@ public class Open extends CalendarWorkWeekTest {
 		tz = ZTimeZone.TimeZoneEST.getID();
 		apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		apptBody = ZimbraSeleniumProperties.getUniqueString();
-		apptAttendee = ZimbraAccount.AccountA().EmailAddress;
-		apptOptional = ZimbraAccount.AccountB().EmailAddress;
+		apptAttendee = ZimbraAccount.Account1().EmailAddress;
+		apptOptional = ZimbraAccount.Account2().EmailAddress;
 		apptLocation = location.EmailAddress;
 		apptEquipment = equipment.EmailAddress;
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 2, 12, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 2, 14, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -85,8 +88,16 @@ public class Open extends CalendarWorkWeekTest {
 
         // Open appointment and cancel it
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN_MENU, apptSubject);
-        
-        ZAssert.assertEquals(apptForm.zGetApptSubject(), apptSubject, "Verify appointment subject");
+        ZAssert.assertEquals(apptForm.zGetApptSubject(), apptSubject, "Verify appointment subject");  
+        String actualStartDate = apptForm.zGetStartDate();
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        Date startDate1 = df.parse(actualStartDate);
+        String startDate = df.format(startDate1);
+        String actualEndDate = apptForm.zGetEndDate();
+        Date endDate1 = df.parse(actualEndDate);
+        String endDate = df.format(endDate1);
+        ZAssert.assertEquals(startDate, startUTC.toMM_DD_YYYY(), "Verify start date");
+        ZAssert.assertEquals(endDate, endUTC.toMM_DD_YYYY(), "Verify end date");
         ZAssert.assertTrue(apptForm.zVerifyRequiredAttendee(apptAttendee), "Verify appointment required attendee");
         ZAssert.assertTrue(apptForm.zVerifyOptionalAttendee(apptOptional), "Verify appointment optional attendee");
         ZAssert.assertTrue(apptForm.zVerifyLocation(apptLocation), "Verify appointment location");
