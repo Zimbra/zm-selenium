@@ -36,7 +36,7 @@ public class WizardCreateDomainAlias extends AbsWizard {
 	public static class Locators {
 		public static final String DOMAIN_ALIAS_DLG = "zdlgv__UNDEFINE1_zimbraDomainName";
 		public static final String DOMAIN_ALIAS_NAME = "_zimbraDomainName";
-		public static final String TARGET_DOMAIN_NAME="_zimbraDomainAliasTargetName_display";
+		public static final String TARGET_DOMAIN_NAME="_zimbraDomainAliasTargetName";
 		public static final String zdlg_OK="_button2_title";
 	}
 
