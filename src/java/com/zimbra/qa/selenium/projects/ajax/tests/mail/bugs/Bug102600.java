@@ -34,7 +34,7 @@ public class Bug102600 extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Typing in: in search input and pressing down arrow >> it opens Search menu list as well", groups = { "functional1" })
+	@Test(description = "Typing in: in search input and pressing down arrow >> it opens Search menu list as well", groups = { "smoke" })
 	public void Bug_102600() throws HarnessException {
 
 		// Type In: in search input
