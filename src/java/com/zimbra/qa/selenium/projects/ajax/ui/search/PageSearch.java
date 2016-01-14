@@ -39,6 +39,8 @@ public class PageSearch extends AbsTab {
 		public static final String zSearchButton = "css=td#zb__Search__SAVE_left_icon";
 		
 		public static final String zSearchTab="css=div[id^='zb__App__tab_SR'] td[id$='_right_icon'] div.ImgCloseGray";
+		public static final String zSearchInputMenu= "css=div[id='zac__ZmMainSearchToolBar'][style*='display: block;']";
+		public static final String zSearchDropDownMenu= "css=div[id='zm__Search'][style*='display: block;']";
 
 		
 	}
