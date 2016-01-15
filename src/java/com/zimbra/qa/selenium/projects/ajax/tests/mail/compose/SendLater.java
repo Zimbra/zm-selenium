@@ -23,6 +23,7 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
@@ -88,7 +89,7 @@ public class SendLater extends PrefGroupMailByMessageTest {
 	public void SendLater_02() throws HarnessException {
 		
 		// Create the message data to be sent
-		GregorianCalendar calendar = new GregorianCalendar(2015, 11, 25, 12, 0, 0); // Dec 25, 2015 at noon local time
+		GregorianCalendar calendar = new GregorianCalendar(2016, 11, 25, 12, 0, 0); // Dec 25, 2015 at noon local time
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
 
 
@@ -105,6 +106,7 @@ public class SendLater extends PrefGroupMailByMessageTest {
 
 		// Enter the dialog information
 		dialog.zFill(calendar);
+		SleepUtil.sleepMedium();
 		
 		dialog.zClickButton(Button.B_OK);
 		
