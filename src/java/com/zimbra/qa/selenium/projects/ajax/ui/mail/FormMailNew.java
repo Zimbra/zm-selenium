@@ -36,6 +36,7 @@ import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.AutocompleteEntry;
 import com.zimbra.qa.selenium.projects.ajax.ui.AutocompleteEntry.Icon;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
 
@@ -87,6 +88,10 @@ public class FormMailNew extends AbsForm {
 		public static final String zBubbleCcField		= "css=[id^=zv__COMPOSE][id$=_cc_cell]";
 		public static final String zBubbleBccField		= "css=[id^=zv__COMPOSE][id$=_bcc_cell]";
 		public static final String CcField              = "css= td[id='zv__COMPOSE-1_cc_cell']  div[class='addrBubbleContainer']";
+		
+		public static final String FormatAsHTMLMenu = "css=div[id^='zm__COMPOSE'] div[id$='NEW_MESSAGE__FORMAT_HTML'] tr[id^='POPUP_zmi__COMPOSE']";
+		public static final String FormatAsPlainTextMenu = "css=div[id^='zm__COMPOSE'] div[id$='NEW_MESSAGE__FORMAT_TEXT'] tr[id^='POPUP_zmi__COMPOSE']";
+		public static final String zOptionsdropdown = "css=[id^=zb__COMPOSE][id$=__COMPOSE_OPTIONS_dropdown]";
 	}
 
 	public static class Field {
@@ -331,6 +336,23 @@ public class FormMailNew extends AbsForm {
 	            
 	            // FALL THROUGH
 	            
+			}else if (option == Button.O_FORMAT_AS_HTML) {
+
+				pulldownLocator = Locators.zOptionsdropdown;
+				optionLocator = Locators.FormatAsHTMLMenu;
+				
+				page = null;
+
+			}else if(option == Button.O_FORMAT_AS_PLAIN_TEXT) {
+
+				pulldownLocator = Locators.zOptionsdropdown;
+				optionLocator = Locators.FormatAsPlainTextMenu;
+				
+				page = new DialogWarning(
+						DialogWarning.DialogWarningID.ComposeOptionsChangeWarning,
+						this.MyApplication,
+						((AppAjaxClient)this.MyApplication).zPageMail);				
+
 			} else {
 				throw new HarnessException("implement "+ pulldown +" and "+ option);
 			}
@@ -1240,6 +1262,9 @@ public class FormMailNew extends AbsForm {
 		if ( field == Field.Cc ) {	
 			locator = Locators.CcField;
 			
+		} else if ( field == Field.Body ) {	
+			locator = Locators.CcField;
+			
 		} else {
 			
 			throw new HarnessException("no logic defined for field "+ field);
@@ -1259,6 +1284,29 @@ public class FormMailNew extends AbsForm {
 		logger.info("DisplayMail.ZGetFieldValue(" + field + ") = " + fieldValue);
 		return(fieldValue);
 
+
+	}
+	
+	public String zGetHtmltBodyText() throws HarnessException {
+		String BodyHtmlText;
+		try{
+			
+			this.sSelectFrame("css=iframe[id$='ZmHtmlEditor1_body_ifr']");
+			BodyHtmlText = sGetText("css=body[id='tinymce']");
+			
+		}finally{
+			this.sSelectFrame("relative=top");
+		}
+		
+		
+		return BodyHtmlText;
+
+	}
+	
+	public String zGetPlainBodyText() throws HarnessException {
+		String locator = "css=textarea[id*='ZmHtmlEditor'][class='ZmHtmlEditorTextArea']";
+		String	BodyPlainText = sGetValue(locator);		
+		return BodyPlainText;
 
 	}
 
