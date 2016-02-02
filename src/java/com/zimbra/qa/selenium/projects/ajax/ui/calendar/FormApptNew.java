@@ -29,6 +29,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.AutocompleteEntry;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.AutocompleteEntry.Icon;
 
 /**
@@ -84,6 +85,8 @@ public class FormApptNew extends AbsForm {
 
 		public static final String OptionsDropdown = "css=div[id$='__COMPOSE_OPTIONS'] td[id$='COMPOSE_OPTIONS_title']";
 		public static final String SuggestionPreferencesMenu = "css=div[class='DwtMenu ZHasCheck ZHasIcon'] td[id$='_title']:contains('Suggestion Preferences')";
+		public static final String FormatAsHTMLMenu = "css=div[class='DwtMenu ZHasCheck ZHasIcon'] td[id$='_FORMAT_HTML_title']:contains('Format As HTML')";
+		public static final String FormatAsPlainTextMenu = "css=div[class='DwtMenu ZHasCheck ZHasIcon'] td[id$='_FORMAT_TEXT_title']:contains('Format As Plain Text')";
 		public static final String OnlyIncludeMyWorkingHoursCheckBox = "css=input[id$='_my_working_hrs_pref']";
 		public static final String OnlyIncludeOtherAttendeeCheckBox = "css=input[id$='_others_working_hrs_pref']";
 		public static final String NameLocationPreferencesField = "css=div[class='ZmTimeSuggestionPrefDialog'] table[id$='_locationpref'] input[id$='_name']";
@@ -751,8 +754,17 @@ public class FormApptNew extends AbsForm {
 
 		if (option == Button.O_SUGGESTION_PREFERENCES) {
 			optionLocator = Locators.SuggestionPreferencesMenu;
+		}
+		
+		else if(option == Button.O_FORMAT_AS_HTML){
+			optionLocator = Locators.FormatAsHTMLMenu;
+		}
 
-		} else {
+		else if(option == Button.O_FORMAT_AS_PLAIN_TEXT){
+			optionLocator = Locators.FormatAsPlainTextMenu;
+		}
+		
+		else {
 			throw new HarnessException("no logic defined for option "
 					+ pulldown);
 		}
@@ -776,7 +788,17 @@ public class FormApptNew extends AbsForm {
 				if (option == Button.O_SUGGESTION_PREFERENCES) {
 					optionLocator = Locators.SuggestionPreferencesMenu;
 
-				} else {
+				} 
+				
+				else if(option == Button.O_FORMAT_AS_HTML){
+					optionLocator = Locators.FormatAsHTMLMenu;
+				}
+
+				else if(option == Button.O_FORMAT_AS_PLAIN_TEXT){
+					optionLocator = Locators.FormatAsPlainTextMenu;
+				}
+				
+				else {
 					throw new HarnessException("no logic defined for pulldown "
 							+ pulldown);
 				}
@@ -791,6 +813,7 @@ public class FormApptNew extends AbsForm {
 				this.sClickAt(optionLocator, "");
 
 				this.zWaitForBusyOverlay();
+				page = new DialogWarning(DialogWarning.DialogWarningID.SwitchToTextComposeAppointment,this.MyApplication, ((AppAjaxClient)this.MyApplication).zPageCalendar);
 
 			}
 

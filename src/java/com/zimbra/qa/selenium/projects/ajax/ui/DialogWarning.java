@@ -71,6 +71,8 @@ public class DialogWarning extends AbsDialog {
 	   	public static final DialogWarningID ConflictResource = new DialogWarningID("RESC_CONFLICT_DLG");
 	   	public static final DialogWarningID DisableTwoStepAuthentication = new DialogWarningID("YesNoMsgDialog");
 	   	public static final DialogWarningID RevokeTrustedDevice = new DialogWarningID("OkCancel_title");
+	   	public static final DialogWarningID SwitchToTextComposeAppointment = new DialogWarningID("APPT_COMPOSE_1_formatWarning");
+	   	
 		protected String Id;
 		public DialogWarningID(String id) {
 			Id = id;

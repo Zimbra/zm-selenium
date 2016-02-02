@@ -455,6 +455,8 @@ public class Button {
 	public static final Button B_SUGGESTALOCATION = new Button("B_SUGGESTALOCATION");
 	public static final Button B_SHOW_TIMES_ANYWAY = new Button("B_SHOW_TIMES_ANYWAY");
 	public static final Button O_SUGGESTION_PREFERENCES = new Button("O_SUGGESTION_PREFERENCES");
+	public static final Button O_FORMAT_AS_HTML = new Button("O_FORMAT_AS_HTML");
+	public static final Button O_FORMAT_AS_PLAIN_TEXT = new Button("O_FORMAT_AS_PLAIN_TEXT");
 	public static final Button B_10AM = new Button("B_10AM");
 	public static final Button B_FIRST_TIME_SUGGESTION = new Button("B_FIRST_TIME_SUGGESTION");
 	public static final Button B_SUGGESTEDLOCATION = new Button("B_SUGGESTEDLOCATION");
