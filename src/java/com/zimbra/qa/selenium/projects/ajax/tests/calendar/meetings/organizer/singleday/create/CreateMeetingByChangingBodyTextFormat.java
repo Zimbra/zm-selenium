@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.compose;
+package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.create;
 
 import java.util.Calendar;
 
@@ -28,10 +28,10 @@ import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 
-public class BodyTextFormat extends CalendarWorkWeekTest {
+public class CreateMeetingByChangingBodyTextFormat extends CalendarWorkWeekTest {
 
-	public BodyTextFormat() {
-		logger.info("New "+ BodyTextFormat.class.getCanonicalName());
+	public CreateMeetingByChangingBodyTextFormat() {
+		logger.info("New "+ CreateMeetingByChangingBodyTextFormat.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
 	
