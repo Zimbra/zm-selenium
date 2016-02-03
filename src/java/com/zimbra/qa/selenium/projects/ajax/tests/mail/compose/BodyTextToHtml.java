@@ -57,6 +57,16 @@ public class BodyTextToHtml extends PrefGroupMailByMessageTest {
 		// Verify Body contents remain same or does not lost.
 
 		ZAssert.assertStringContains(mailform.zGetHtmltBodyText(),mail.dBodyText, "Verify content is not lost");
+		
+		// Send the message
+		mailform.zSubmit();
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mail.dSubject +")");
+		// TODO: add checks for TO, Subject, Body
+		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
+		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
+		ZAssert.assertEquals(received.dSubject, mail.dSubject, "Verify the subject field is correct");
+		ZAssert.assertStringContains(received.dBodyText, mail.dBodyText, "Verify the body field is correct");
+		
 
 	}
 
