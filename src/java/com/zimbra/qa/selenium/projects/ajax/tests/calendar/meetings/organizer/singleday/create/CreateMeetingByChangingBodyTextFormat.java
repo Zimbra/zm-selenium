@@ -68,7 +68,7 @@ public class CreateMeetingByChangingBodyTextFormat extends CalendarWorkWeekTest 
 		
 		//Change text format to HTML
 		apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_HTML);
-		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), apptContent, "Verify content is not lost");
+		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), apptContent, "Verify content is not lost");
 
 		apptForm.zToolbarPressButton(Button.B_SAVEANDCLOSE);
 		
@@ -115,7 +115,7 @@ public class CreateMeetingByChangingBodyTextFormat extends CalendarWorkWeekTest 
 		DialogWarning dialog = (DialogWarning)apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_PLAIN_TEXT);
 		dialog.zClickButton(Button.B_OK);
 
-		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), apptContent, "Verify content is not lost");
+		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), apptContent, "Verify content is not lost");
 		apptForm.zToolbarPressButton(Button.B_SAVEANDCLOSE);
 		
 		// Verify the new appointment exists on the server

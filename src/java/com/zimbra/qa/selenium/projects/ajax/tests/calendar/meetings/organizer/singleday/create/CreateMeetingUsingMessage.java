@@ -79,7 +79,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertTrue(apptForm.zVerifyRequiredAttendee(apptAttendee1), "Verify populated email address bubble 1 from message");
 		ZAssert.assertTrue(apptForm.zVerifyRequiredAttendee(apptAttendee2), "Verify populated email address bubble 2 from message");
-		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), "Bold and Italics", "Verify populated appointment body from message");
+		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), "Bold and Italics", "Verify populated appointment body from message");
 		apptForm.zToolbarPressButton(Button.B_SEND);
 
 		// Verify appointment exists on the server
@@ -99,7 +99,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "1 html mail");
 		ZAssert.assertTrue(apptForm.zVerifyRequiredAttendee(apptAttendee1), "Open created appointment again and verify attendee1");
 		ZAssert.assertTrue(apptForm.zVerifyRequiredAttendee(apptAttendee2), "Open created appointment again and verify attendee2");
-		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), content, "Open created appointment again and verify body text");
+		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 
 	}
@@ -143,7 +143,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.StartTime, startUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
-		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), "Bold and Italics", "Verify populated appointment body from message");
+		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), "Bold and Italics", "Verify populated appointment body from message");
 		apptForm.zToolbarPressButton(Button.B_SEND);
 
 		// Verify appointment exists on the server
@@ -325,7 +325,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.StartTime, startUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
-		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), "Bold and Italics", "Verify populated appointment body from message");
+		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), "Bold and Italics", "Verify populated appointment body from message");
 		apptForm.zToolbarPressButton(Button.B_SEND);
 
 		// Verify appointment exists on the server
@@ -342,7 +342,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "3 html mail");
-		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), content, "Open created appointment again and verify body text");
+		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 
 	}
@@ -385,7 +385,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.StartTime, startUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
-		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), "Bold and Italics", "Verify populated appointment body from message");
+		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), "Bold and Italics", "Verify populated appointment body from message");
 		apptForm.zToolbarPressButton(Button.B_SEND);
 
 		// Verify appointment exists on the server
@@ -402,7 +402,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "4 html mail");
-		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), content, "Open created appointment again and verify body text");
+		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 
 	}
@@ -507,7 +507,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.StartTime, startUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
-		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), "Bold and Italics", "Verify populated appointment body from message");
+		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), "Bold and Italics", "Verify populated appointment body from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Verify populated appointment body from message");
 		apptForm.zToolbarPressButton(Button.B_SEND);
 
@@ -525,7 +525,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "4 plain mail");
-		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), fullContent, "Open created appointment again and verify body text");
+		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), fullContent, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 
 	}
@@ -585,7 +585,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "ZCS 8 triage");
-		ZAssert.assertStringContains(apptForm.zGetApptBodyText(), content, "Open created appointment again and verify body text");
+		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 
 	}

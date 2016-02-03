@@ -375,7 +375,7 @@ public class FormApptNew extends AbsForm {
 		return sGetValue("css=div[class='ZmHtmlEditor'] textarea[class='ZmHtmlEditorTextArea']");
 	}
 
-	public String zGetApptBodyText() throws HarnessException {
+	public String zGetApptBodyHtml() throws HarnessException {
 		String bodyText;
 		this.sSelectFrame("css=iframe[id$='ZmHtmlEditor1_body_ifr']");
 		bodyText = sGetText("css=body[id='tinymce']");
