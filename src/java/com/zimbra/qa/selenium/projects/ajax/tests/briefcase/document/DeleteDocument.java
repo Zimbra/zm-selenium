@@ -520,4 +520,81 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 		ZAssert.assertEquals(id, docId1,	"Verify the document was moved to the trash folder");
 	}
 
+	@Bugs(ids = "103343")
+	@Test(description = "Create document with 3 versions through SOAP - delete using Right Click context menu & verify through GUI", groups = { "functional" })
+	public void DeleteDocument_07() throws HarnessException {
+		ZimbraAccount account = app.zGetActiveAccount();
+
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
+				SystemFolder.Briefcase);
+
+		// Create document item
+		DocumentItem docItem = new DocumentItem();
+
+		String docName = docItem.getName();
+		String docTextV1 = "textVersion1" + docItem.getDocText();
+		String docTextV2 = "textVersion2" + docItem.getDocText();
+		String docTextV3 = "textVersion3" + docItem.getDocText();
+		String notesV1 = "notesVersion1" + ZimbraSeleniumProperties.getUniqueString();
+		String notesV2 = "notesVersion2" + ZimbraSeleniumProperties.getUniqueString();
+		String notesV3 = "notesVersion3" + ZimbraSeleniumProperties.getUniqueString();
+		String nodeCollapsed = "css=div[id^=zlif__BDLV-main__] div[class='ImgNodeCollapsed']";
+		String nodeExpanded = "css=div[id^=zlif__BDLV-main__] div[class='ImgNodeExpanded']";
+		String locator = "css=tr[id^='zlif__BDLV-main__'] div[id^='zlif__BDLV-main__']:contains('#2:')";
+		String dialogText = "css=div[id='CONFIRM_DIALOG_content'] div[class='DwtConfirmDialogQuestion']:contains('Are you sure you want to move \"" + docName + "\" to Trash?')";
+		// Create document using SOAP
+		String contentHTML1 = XmlStringUtil.escapeXml("<html>" + "<body>"
+				+ docTextV1 + "</body>" + "</html>");
+		
+		String contentHTML2 = XmlStringUtil.escapeXml("<html>" + "<body>"
+				+ docTextV2 + "</body>" + "</html>");
+		
+		String contentHTML3 = XmlStringUtil.escapeXml("<html>" + "<body>"
+				+ docTextV3 + "</body>" + "</html>");
+		
+		account.soapSend(
+				"<SaveDocumentRequest requestId='0' xmlns='urn:zimbraMail'>" +
+				"<doc ct='application/x-zimbra-doc' name='"+ docName +"' descEnabled='true' l='"+ briefcaseFolder.getId() +"' desc='" + notesV1 +"'>" +
+				"<content>" + contentHTML1 + "</content>" +
+				"</doc>" +
+				"</SaveDocumentRequest>");
+		String documentId = account.soapSelectValue("//mail:doc", "id");
+		
+		account.soapSend(
+				"<SaveDocumentRequest requestId='0' xmlns='urn:zimbraMail'>" +
+				"<doc ct='application/x-zimbra-doc' name='"+ docName +"' descEnabled='true' ver='1' id='" + documentId + "' l='"+ briefcaseFolder.getId() +"' desc='" + notesV2 +"'>" +
+				"<content>" + contentHTML2 + "</content>" +
+				"</doc>" +
+				"</SaveDocumentRequest>");
+
+		account.soapSend(
+				"<SaveDocumentRequest requestId='0' xmlns='urn:zimbraMail'>" +
+				"<doc ct='application/x-zimbra-doc' name='"+ docName +"' descEnabled='true' ver='2' id='" + documentId + "' l='"+ briefcaseFolder.getId() +"' desc='" + notesV3 +"'>" +
+				"<content>" + contentHTML3 + "</content>" +
+				"</doc>" +
+				"</SaveDocumentRequest>");
+		
+		// refresh briefcase page
+		// refresh briefcase page
+		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
+		
+		if (!app.zPageBriefcase.sIsElementPresent(nodeExpanded)) {
+			app.zPageBriefcase.zClickAt(nodeCollapsed, "");
+		}
+		
+		// Delete Document using Right Click Context Menu
+		DialogConfirm deleteConfirm = (DialogConfirm) app.zPageBriefcase.zListItem(Action.A_RIGHTCLICK, Button.O_DELETE, locator);
+		ZAssert.assertTrue(app.zPageBriefcase.sIsElementPresent(dialogText), "Verify that text is correct");
+		// Click OK on Confirmation dialog
+		deleteConfirm.zClickButton(Button.B_YES);
+
+		// refresh briefcase page
+		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
+
+		// Verify document was deleted
+		boolean isDeleted = app.zPageBriefcase.waitForDeletedFromListView(docName);
+
+		ZAssert.assertTrue(isDeleted, "Verify document was deleted through GUI");
+	}
+	
 }

@@ -1734,7 +1734,15 @@ public class PageBriefcase extends AbsTab {
 
 				page = null;
 			}
+			
+			else if (option == Button.O_DELETE) {
 
+				optionLocator = Locators.zDeleteMenu;
+
+				page = new DialogConfirm(DialogConfirm.Confirmation.DELETE,
+						MyApplication, this);
+
+			}
 			else if (option == Button.O_RESTORE_AS_CURRENT_VERSION){
 				
 
