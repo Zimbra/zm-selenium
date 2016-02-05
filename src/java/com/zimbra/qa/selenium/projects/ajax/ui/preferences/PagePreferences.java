@@ -62,7 +62,7 @@ public class PagePreferences extends AbsTab {
 		public static final String zCancelButtonCustomDialog = "css=div[class='DwtDialog'] td[id$='_button1_title']";
 		public static final String zYesButtonWarningDialog = "css=div[id='YesNoMsgDialog'] td[id='YesNoMsgDialog_button5_title']";
 		public static final String zNoButtonWarningDialog = "css=div[id='YesNoMsgDialog'] td[id='YesNoMsgDialog_button4_title']";
-		
+		public static final String zMondayWorkWeek = "css=div[id='CAL_WORKING_HOURS1'] td[id='CAL_WORKING_HOURS1_CAL_WORKING_DAY_1'] input[type='checkbox']";
 		//Accounts
 		public static final String z2FAEnableLink = "css=div[id='Prefs_Pages_ACCOUNTS_PRIMARY'] a[id='Prefs_Pages_ACCOUNTS_TWO_STEP_AUTH_LINK']:contains('Setup two-step authentication ...')";
 		public static final String zDisable2FALink = "css=div[id='Prefs_Pages_ACCOUNTS_PRIMARY'] a[id='Prefs_Pages_ACCOUNTS_TWO_STEP_AUTH_LINK']:contains('Disable two-step authentication ...')";
@@ -525,7 +525,11 @@ public class PagePreferences extends AbsTab {
 			
 			locator = Locators.zSaturdayCustomWorkHour;
 	
-		} else {
+		} else if ( checkbox == Button.C_MONDAY_WORK_WEEK ) {
+			
+			locator = Locators.zMondayWorkWeek;
+	
+		}else {
 			throw new HarnessException("no logic defined for checkbox "+ checkbox);
 		}
 

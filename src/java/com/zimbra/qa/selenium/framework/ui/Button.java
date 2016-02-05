@@ -632,6 +632,7 @@ public class Button {
 	public static final Button C_THURSDAY_WORK_HOUR		= new Button("C_THURSDAY_WORK_HOUR");
 	public static final Button C_FRIDAY_WORK_HOUR		= new Button("C_FRIDAY_WORK_HOUR");
 	public static final Button C_SATURDAY_WORK_HOUR		= new Button("C_SATURDAY_WORK_HOUR");
+	public static final Button C_MONDAY_WORK_WEEK		= new Button("C_MONDAY_WORK_WEEK");
 
    //Calendar poups
 	

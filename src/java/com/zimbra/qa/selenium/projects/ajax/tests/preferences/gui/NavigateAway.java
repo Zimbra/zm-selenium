@@ -157,6 +157,25 @@ public class NavigateAway extends AjaxCommonTest {
 		}
 		
 	}
+
+	@Bugs(ids = "103549")
+	@Test(description = "Set calendar custom work week and navigate away without saving", 
+			groups = { "functional" })
+	
+	public void NavigateAway_02() throws HarnessException {
+
+		// Navigate to preferences -> calendar
+		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
+		SleepUtil.sleepMedium();
+
+		// Select custom work hours for e.g. Tuesday to Friday
+		app.zPagePreferences.zCheckboxSet(Button.C_MONDAY_WORK_WEEK, false);
+		boolean isVisible = navigateAwayCheckWarning();
+		if ( isVisible ) {
+			throw new HarnessException("Dialog 'Save Changes?' was present!");
+		}
+	}
+	
 }
 
 		
