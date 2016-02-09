@@ -388,6 +388,10 @@ public class PageCalendar extends AbsTab {
 			return false;
 		}
 	}
+	public String zReturnDayOfWorkWeek(int number) throws HarnessException {
+		
+		return sGetText("css=div[id=zv__CLWW] div[class='calendar_heading'] div[class^='calendar_heading_day']:nth-child(" + number +")");
+	}
 
 	public String zGetRecurringLink() throws HarnessException {
 		return sGetText("css=div[id$='repeatDesc']");

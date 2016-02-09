@@ -623,16 +623,26 @@ public class Button {
 	public static final Button B_DELETE_QUICK_COMMAND	= new Button("B_DELETE_QUICK_COMMAND");
 	
 	// Calendar preferences
-	public static final Button R_CUSTOM_WORK_HOURS		= new Button("R_CUSTOM_WORK_HOURS");
-	public static final Button B_CUSTOMIZE				= new Button("B_CUSTOMIZE");
-	public static final Button C_SUNDAY_WORK_HOUR		= new Button("C_SUNDAY_WORK_HOUR");
-	public static final Button C_MONDAY_WORK_HOUR		= new Button("C_MONDAY_WORK_HOUR");
-	public static final Button C_TUESDAY_WORK_HOUR		= new Button("C_TUESDAY_WORK_HOUR");
-	public static final Button C_WEDNESDAY_WORK_HOUR	= new Button("C_WEDNESDAY_WORK_HOUR");
-	public static final Button C_THURSDAY_WORK_HOUR		= new Button("C_THURSDAY_WORK_HOUR");
-	public static final Button C_FRIDAY_WORK_HOUR		= new Button("C_FRIDAY_WORK_HOUR");
-	public static final Button C_SATURDAY_WORK_HOUR		= new Button("C_SATURDAY_WORK_HOUR");
-	public static final Button C_MONDAY_WORK_WEEK		= new Button("C_MONDAY_WORK_WEEK");
+	public static final Button R_CUSTOM_WORK_HOURS				= new Button("R_CUSTOM_WORK_HOURS");
+	public static final Button B_CUSTOMIZE						= new Button("B_CUSTOMIZE");
+	public static final Button C_SUNDAY_WORK_HOUR				= new Button("C_SUNDAY_WORK_HOUR");
+	public static final Button C_MONDAY_WORK_HOUR				= new Button("C_MONDAY_WORK_HOUR");
+	public static final Button C_TUESDAY_WORK_HOUR				= new Button("C_TUESDAY_WORK_HOUR");
+	public static final Button C_WEDNESDAY_WORK_HOUR			= new Button("C_WEDNESDAY_WORK_HOUR");
+	public static final Button C_THURSDAY_WORK_HOUR				= new Button("C_THURSDAY_WORK_HOUR");
+	public static final Button C_FRIDAY_WORK_HOUR				= new Button("C_FRIDAY_WORK_HOUR");
+	public static final Button C_SATURDAY_WORK_HOUR				= new Button("C_SATURDAY_WORK_HOUR");
+	public static final Button C_MONDAY_WORK_WEEK				= new Button("C_MONDAY_WORK_WEEK");
+	public static final Button O_START_WEEK_ON					= new Button("O_START_WEEK_ON");
+	public static final Button O_START_WEEK_ON_SUNDAY			= new Button("O_START_WEEK_ON_SUNDAY");
+	public static final Button O_START_WEEK_ON_MONDAY			= new Button("O_START_WEEK_ON_MONDAY");
+	public static final Button O_START_WEEK_ON_TUESDAY			= new Button("O_START_WEEK_ON_TUESDAY");
+	public static final Button O_START_WEEK_ON_WEDNESDAY		= new Button("O_START_WEEK_ON_WEDNESDAY");
+	public static final Button O_DEFAULT_APPOINTMENT_DURATION	= new Button("O_DEFAULT_APPOINTMENT_DURATION");
+	public static final Button O_APPOINTMENT_DURATION_30		= new Button("O_APPOINTMENT_DURATION_30");
+	public static final Button O_APPOINTMENT_DURATION_60		= new Button("O_APPOINTMENT_DURATION_60");
+	public static final Button O_APPOINTMENT_DURATION_90		= new Button("O_APPOINTMENT_DURATION_90");
+	public static final Button O_APPOINTMENT_DURATION_120		= new Button("O_APPOINTMENT_DURATION_120");
 
    //Calendar poups
 	

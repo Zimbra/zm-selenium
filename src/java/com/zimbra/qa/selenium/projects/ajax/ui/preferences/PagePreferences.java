@@ -63,6 +63,17 @@ public class PagePreferences extends AbsTab {
 		public static final String zYesButtonWarningDialog = "css=div[id='YesNoMsgDialog'] td[id='YesNoMsgDialog_button5_title']";
 		public static final String zNoButtonWarningDialog = "css=div[id='YesNoMsgDialog'] td[id='YesNoMsgDialog_button4_title']";
 		public static final String zMondayWorkWeek = "css=div[id='CAL_WORKING_HOURS1'] td[id='CAL_WORKING_HOURS1_CAL_WORKING_DAY_1'] input[type='checkbox']";
+		public static final String zStartWeekOn = "css=td[id='Prefs_Select_CAL_FIRST_DAY_OF_WEEK_select_container']";
+		public static final String zStartWeekOnSunday = "css=td[id$='_title']:contains('Sunday')";
+		public static final String zStartWeekOnMonday = "css=td[id$='_title']:contains('Monday')";
+		public static final String zStartWeekOnTuesday = "css=td[id$='_title']:contains('Tuesday')";
+		public static final String zStartWeekOnWednesday = "css=td[id$='_title']:contains('Wednesday')";
+		public static final String zDefaultAppointmentDuration = "css=td[id='Prefs_Select_CAL_DEFAULT_APPT_DURATION_select_container']";
+		public static final String zAppointmentDuration30 = "css=td[id$='_title']:contains('30')";
+		public static final String zAppointmentDuration60 = "css=td[id$='_title']:contains('60')";
+		public static final String zAppointmentDuration90 = "css=td[id$='_title']:contains('90')";
+		public static final String zAppointmentDuration120 = "css=td[id$='_title']:contains('120')";
+
 		//Accounts
 		public static final String z2FAEnableLink = "css=div[id='Prefs_Pages_ACCOUNTS_PRIMARY'] a[id='Prefs_Pages_ACCOUNTS_TWO_STEP_AUTH_LINK']:contains('Setup two-step authentication ...')";
 		public static final String zDisable2FALink = "css=div[id='Prefs_Pages_ACCOUNTS_PRIMARY'] a[id='Prefs_Pages_ACCOUNTS_TWO_STEP_AUTH_LINK']:contains('Disable two-step authentication ...')";
@@ -378,8 +389,65 @@ public class PagePreferences extends AbsTab {
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		tracer.trace("Click pulldown "+ pulldown +" then "+ option);
+		AbsPage page = null;	// If set, this page will be returned
+		
+		// Default behavior
+		if ( pulldown != null ) {
+			if ( pulldown == Button.O_START_WEEK_ON ){
+						
+			// Make sure the locator exists
+			if ( !this.sIsElementPresent(Locators.zStartWeekOn) ) {
+				throw new HarnessException("pulldownLocator not present! "+ Locators.zStartWeekOn);
+			}
+			
+			this.zClick(Locators.zStartWeekOn);
 
-		throw new HarnessException("implement me!");
+			this.zWaitForBusyOverlay();
+			
+			if ( option != null ) {
+				
+				if ( option == Button.O_START_WEEK_ON_TUESDAY ){
+				// Make sure the locator exists
+				if ( !this.sIsElementPresent(Locators.zStartWeekOnTuesday) ) {
+					throw new HarnessException("optionLocator not present! "+ Locators.zStartWeekOnTuesday);
+				}
+				
+				this.zClick(Locators.zStartWeekOnTuesday);
+
+				this.zWaitForBusyOverlay();
+				}
+			}
+		}
+			
+			if ( pulldown == Button.O_DEFAULT_APPOINTMENT_DURATION ){
+				
+			// Make sure the locator exists
+			if ( !this.sIsElementPresent(Locators.zDefaultAppointmentDuration) ) {
+				throw new HarnessException("pulldownLocator not present! "+ Locators.zDefaultAppointmentDuration);
+			}
+			
+			this.zClick(Locators.zDefaultAppointmentDuration);
+
+			this.zWaitForBusyOverlay();
+			
+			if ( option != null ) {
+				
+				if ( option == Button.O_APPOINTMENT_DURATION_90 ){
+				// Make sure the locator exists
+				if ( !this.sIsElementPresent(Locators.zAppointmentDuration90) ) {
+					throw new HarnessException("optionLocator not present! "+ Locators.zAppointmentDuration90);
+				}
+				
+				this.zClick(Locators.zAppointmentDuration90);
+
+				this.zWaitForBusyOverlay();
+				}
+			}
+		}
+			
+	}
+		return (page);
+
 	}
 	
 	public void zSelectRadioButton (Button option) throws HarnessException {
