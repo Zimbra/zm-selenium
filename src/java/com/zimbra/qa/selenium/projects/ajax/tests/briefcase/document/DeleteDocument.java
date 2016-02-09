@@ -541,7 +541,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 		String nodeCollapsed = "css=div[id^=zlif__BDLV-main__] div[class='ImgNodeCollapsed']";
 		String nodeExpanded = "css=div[id^=zlif__BDLV-main__] div[class='ImgNodeExpanded']";
 		String locator = "css=tr[id^='zlif__BDLV-main__'] div[id^='zlif__BDLV-main__']:contains('#2:')";
-		String dialogText = "css=div[id='CONFIRM_DIALOG_content'] div[class='DwtConfirmDialogQuestion']:contains('Are you sure you want to move \"" + docName + "\" to Trash?')";
+		String dialogText = "css=div[id='CONFIRM_DIALOG_content'] div[class='DwtConfirmDialogQuestion']:contains('Are you sure you want to permanently delete \"" + docName + "\"?')";
 		// Create document using SOAP
 		String contentHTML1 = XmlStringUtil.escapeXml("<html>" + "<body>"
 				+ docTextV1 + "</body>" + "</html>");
