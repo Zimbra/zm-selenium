@@ -69,7 +69,6 @@ public class NavigateAway extends AjaxCommonTest {
 			// If the warning dialog is visible, discard
 			// changes and throw exception
 			warning.zClickButton(Button.B_NO);
-			
 		}
 		
 		logger.info("navigateAwayCheckWarning: finish");
@@ -171,7 +170,26 @@ public class NavigateAway extends AjaxCommonTest {
 		// Select custom work hours for e.g. Tuesday to Friday
 		app.zPagePreferences.zCheckboxSet(Button.C_MONDAY_WORK_WEEK, false);
 		boolean isVisible = navigateAwayCheckWarning();
-		if ( isVisible ) {
+		if ( !isVisible ) {
+			throw new HarnessException("Dialog 'Save Changes?' was present!");
+		}
+	}
+
+	@Bugs(ids = "103549")
+	@Test(description = "Change default appointment duration and navigate away without saving", 
+			groups = { "functional" })
+	
+	public void NavigateAway_03() throws HarnessException {
+
+		// Navigate to preferences -> calendar
+		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
+		SleepUtil.sleepMedium();
+
+		// Select custom work hours for e.g. Tuesday to Friday
+		// Change the default appointment duration
+		app.zPagePreferences.zToolbarPressPulldown(Button.O_DEFAULT_APPOINTMENT_DURATION, Button.O_APPOINTMENT_DURATION_90);
+		boolean isVisible = navigateAwayCheckWarning();
+		if ( !isVisible ) {
 			throw new HarnessException("Dialog 'Save Changes?' was present!");
 		}
 	}
