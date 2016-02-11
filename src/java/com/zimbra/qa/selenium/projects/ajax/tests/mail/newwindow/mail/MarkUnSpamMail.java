@@ -18,6 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -31,6 +32,7 @@ public class MarkUnSpamMail extends PrefGroupMailByMessageTest {
 		logger.info("New "+ MarkUnSpamMail.class.getCanonicalName());
 	}
 	
+	@Bugs(	ids = "103950")
 	@Test(	description = "Mark a message as not spam, using 'Not Spam' toolbar button - in a separate window",
 			groups = { "smoke" })
 	public void MarkUnSpamMail_01() throws HarnessException {
