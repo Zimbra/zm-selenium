@@ -100,7 +100,8 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringContains(mail.getFlags(), "u", "Verify the message is marked unread in the server");
 		
 	}
-
+	
+	@Bugs(	ids = "103950")
 	@Test(	description = "Mark a message as unread by action menu -> mark read",
 			groups = { "functional" })
 	public void MarkUnReadMail_02() throws HarnessException {
