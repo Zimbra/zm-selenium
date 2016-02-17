@@ -75,8 +75,10 @@ public class HarnessException extends Exception {
 			app5 = new AppMobileClient();
 		}
 		
-		logger.error("HarnessException: Kill the browser and relogin");
-		zKillBrowserAndRelogin();
+		if (!ZimbraSeleniumProperties.isWebDriver()) {
+			logger.error("HarnessException: Kill the browser and relogin");
+			zKillBrowserAndRelogin();
+		}
 		
 	}
 	

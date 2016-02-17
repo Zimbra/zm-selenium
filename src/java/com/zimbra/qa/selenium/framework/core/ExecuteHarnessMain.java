@@ -28,6 +28,7 @@ import java.util.*;
 import java.util.List;
 import java.util.jar.*;
 import java.util.regex.*;
+
 import org.apache.commons.cli.*;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.io.FileUtils;
@@ -43,6 +44,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.*;
 import org.testng.xml.*;
+
 import com.thoughtworks.selenium.SeleniumException;
 import com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
@@ -155,7 +157,7 @@ public class ExecuteHarnessMain {
 	 * The list of groups to exclude
 	 */
 	public ArrayList<String> excludeGroups = new ArrayList<String>(
-			Arrays.asList("skip", "performance"));
+			Arrays.asList("skip", "performance", "sanity_webdriver_tobefixed", "smoke_webdriver_tobefixed", "functional_webdriver_tobefixed"));
 
 	/**
 	 * The suite verbosity
@@ -1502,8 +1504,10 @@ public class ExecuteHarnessMain {
 			app5 = new AppMobileClient();
 		}
 		
-		logger.error("HarnessException: Kill the browser and relogin");
-		zKillBrowserAndRelogin();
+		if (!ZimbraSeleniumProperties.isWebDriver()) {
+			logger.error("HarnessException: Kill the browser and relogin");
+			zKillBrowserAndRelogin();
+		}
 		
 	}
 
