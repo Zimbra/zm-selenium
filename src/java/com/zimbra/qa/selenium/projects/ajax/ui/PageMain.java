@@ -166,7 +166,7 @@ public class PageMain extends AbsTab {
 
 		if (ZimbraSeleniumProperties.isWebDriver()) {
 			// Click on logout pulldown
-			getElement("css=div[class=DwtLinkButtonDropDownArrow]").click();			
+			getElement("css=div[id=DwtLinkButtonDropDownArrowTd").click();
 		}else{
 		
 			if ( !sIsElementPresent(Locators.zLogoffPulldown) ) {

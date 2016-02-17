@@ -17,6 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.ui;
 
 import java.util.Date;
+
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.*;
@@ -130,7 +131,7 @@ public class PageLogin extends AbsTab {
 			zSetLoginPassword(account.Password);
 
 			// Click the Login button
-			sClick(Locators.zBtnLogin);
+			sClickAt(Locators.zBtnLogin, "");
 			
 			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(180000);
 
@@ -151,9 +152,10 @@ public class PageLogin extends AbsTab {
 		zNavigateTo();			
 		zSetLoginName(account.EmailAddress);
 		zSetLoginPassword(account.Password);
-
+		
 		// Click the Login button
-		sClick(Locators.zBtnLogin);
+		sClickAt(Locators.zBtnLogin, "");
+		
 		SleepUtil.sleepLong();
 		
 		AbsPage page = null;
@@ -182,7 +184,7 @@ public class PageLogin extends AbsTab {
 			zSetLoginPassword(account.Password);
 			
 			// Click the Login button
-			sClick(Locators.zBtnLogin);
+			sClickAt(Locators.zBtnLogin, "");
 			SleepUtil.sleepMedium();
 			zSetLoginTOTPCode(totp);
 			
@@ -190,8 +192,8 @@ public class PageLogin extends AbsTab {
 				zMarkTrustThisComputer();
 			}
 			
-			sClick(Locators.zBtnLogin);			
-			
+			sClickAt(Locators.zBtnLogin, "");
+		
 			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(180000);
 
 			((AppAjaxClient)MyApplication).zSetActiveAcount(account);

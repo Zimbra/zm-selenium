@@ -27,6 +27,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogOpenRecurringItem.Confirmation;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
 public class PageCalendar extends AbsTab {
@@ -2877,12 +2878,20 @@ public class PageCalendar extends AbsTab {
 
 	public void zRightClickAddressBubble() throws HarnessException {
 
-		SleepUtil.sleepVeryLong();
-		this.sMouseOut(Locators.AttendeeBubbleAddr);
-		this.sMouseOver(Locators.AttendeeBubbleAddr);
-		this.sClick(Locators.AttendeeBubbleAddr);
-		this.zRightClick(Locators.AttendeeBubbleAddr);
-		SleepUtil.sleepVeryLong();
+		try {
+			if (ZimbraSeleniumProperties.isWebDriver()) {
+				logger.info("...WebDriver...contextClick()");
+				this.zRightClick(Locators.AttendeeBubbleAddr);
+			} else {
+				SleepUtil.sleepMedium();
+				this.sMouseOut(Locators.AttendeeBubbleAddr);
+				this.sMouseOver(Locators.AttendeeBubbleAddr);
+				this.zRightClick(Locators.AttendeeBubbleAddr);
+				SleepUtil.sleepLong();
+			}
+		} catch (Exception ex) {
+			throw new HarnessException(ex);
+		}
 
 	}
 

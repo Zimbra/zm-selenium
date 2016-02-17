@@ -19,7 +19,6 @@ package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.zimbra.qa.selenium.framework.core.SeleniumService;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -36,7 +35,6 @@ import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.AutocompleteEntry;
 import com.zimbra.qa.selenium.projects.ajax.ui.AutocompleteEntry.Icon;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
 
@@ -556,6 +554,8 @@ public class FormMailNew extends AbsForm {
 
 		String locator = null;
 		
+		SleepUtil.sleepSmall();
+		
 		if ( field == Field.To ) {
 			
 			locator = Locators.zToField;
@@ -569,7 +569,11 @@ public class FormMailNew extends AbsForm {
 
 			this.sType(locator, value);
 			// this.zKeyboard.zTypeCharacters(value);
-			SleepUtil.sleepSmall();
+			if (ZimbraSeleniumProperties.isWebDriver()) {
+				SleepUtil.sleepMedium();
+			} else {
+				SleepUtil.sleepSmall();
+			}
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
@@ -599,7 +603,11 @@ public class FormMailNew extends AbsForm {
 			
 			this.sType(locator, value);
 			// this.zKeyboard.zTypeCharacters(value);
-			SleepUtil.sleepSmall();
+			if (ZimbraSeleniumProperties.isWebDriver()) {
+				SleepUtil.sleepMedium();
+			} else {
+				SleepUtil.sleepSmall();
+			}
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
@@ -625,7 +633,11 @@ public class FormMailNew extends AbsForm {
 
 			this.sType(locator, value);
 			// this.zKeyboard.zTypeCharacters(value);
-			SleepUtil.sleepSmall();
+			if (ZimbraSeleniumProperties.isWebDriver()) {
+				SleepUtil.sleepMedium();
+			} else {
+				SleepUtil.sleepSmall();
+			}
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
