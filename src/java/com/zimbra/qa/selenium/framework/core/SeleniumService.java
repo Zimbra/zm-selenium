@@ -269,12 +269,12 @@ public class SeleniumService {
 	}
 	
 	private void stopBrowsers() throws HarnessException {
-		stopBrowsersXP();
-		stopBrowsersMac();
+		stopBrowsersWindows();
 		stopBrowsersLinux();
+		stopBrowsersMac();
 	}
 	
-	private void stopBrowsersXP() throws HarnessException {
+	private void stopBrowsersWindows() throws HarnessException {
 		
 		// Only run for windows
 		if ( !OperatingSystem.isWindows() )
@@ -285,7 +285,7 @@ public class SeleniumService {
 			    CommandLine.CmdExec("taskkill /f /t /im iexplore.exe");
 			} else if (SeleniumBrowser.contains("firefox")) {
 				CommandLine.CmdExec("taskkill /f /t /im firefox.exe");
-			} else if (SeleniumBrowser.contains("safariproxy")) {
+			} else if (SeleniumBrowser.contains("safari")) {
 			    CommandLine.CmdExec("taskkill /f /t /im safari.exe");
 			} else if (SeleniumBrowser.contains("chrome")) {
 				CommandLine.CmdExec("taskkill /f /t /im chrome.exe");
@@ -299,25 +299,50 @@ public class SeleniumService {
 
 	}
 
-	private void stopBrowsersMac() throws HarnessException {
-		// Only run for Mac
-		if ( !OperatingSystem.isMac() ) {
-			return;
-		}
-
-		logger.warn("implement me!", new Throwable("implement me!"));
-	}
-	
 	private void stopBrowsersLinux() throws HarnessException {
+		
 		// Only run for Linux
 		if ( !OperatingSystem.isLinux() ) {
 			return;
 		}
 
-		logger.warn("implement me!", new Throwable("implement me!"));
+		try {
+			if (SeleniumBrowser.contains("firefox")) {
+				CommandLine.CmdExec("pkill -f firefox");
+			} else if (SeleniumBrowser.contains("chrome")) {
+				CommandLine.CmdExec("pkill -f googlechrome");
+			}
+			
+		} catch (IOException e) {
+			throw new HarnessException("Unable to kill browsers", e);
+		} catch (InterruptedException e) {
+			throw new HarnessException("Unable to kill browsers", e);
+		}
 	}
 	
+	private void stopBrowsersMac() throws HarnessException {
+		
+		// Only run for Mac
+		if ( !OperatingSystem.isMac() ) {
+			return;
+		}
 
+		try {
+			if (SeleniumBrowser.contains("firefox")) {
+				CommandLine.CmdExec("pkill -f firefox");
+			} else if (SeleniumBrowser.contains("chrome")) {
+				CommandLine.CmdExec("pkill -f googlechrome");
+			} else if (SeleniumBrowser.contains("safari")) {
+				CommandLine.CmdExec("pkill -f safari");
+			}
+			
+		} catch (IOException e) {
+			throw new HarnessException("Unable to kill browsers", e);
+		} catch (InterruptedException e) {
+			throw new HarnessException("Unable to kill browsers", e);
+		}
+	}
+	
 	private SeleniumMode mode;
 	private String SeleniumServer;
 	private int SeleniumPort;
