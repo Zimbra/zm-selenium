@@ -27,7 +27,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -53,7 +52,6 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.SeleniumException;
 import com.thoughtworks.selenium.webdriven.JavascriptLibrary;
@@ -64,7 +62,6 @@ import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
-
 import org.openqa.selenium.interactions.Mouse;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.internal.Locatable;
@@ -93,6 +90,8 @@ import org.openqa.selenium.internal.Locatable;
  * @author Matt Rhoades
  * 
  */
+
+@SuppressWarnings("deprecation")
 public abstract class AbsSeleniumObject {
 	protected static final int LoadDelay = 30000; // wait 30 seconds for objects
 	// to load
@@ -368,12 +367,14 @@ public abstract class AbsSeleniumObject {
 	    try{
 		if (ZimbraSeleniumProperties.isWebDriver()){
 		    logger.info("...WebDriver...moveToElement:click()");		    
+		   
 		    final Actions builder = new Actions(webDriver());
-		    final Action action = builder.moveToElement(we).click(we)
+		    final Action action = builder.click(we)
 				    .build();
-		    action.perform();
+		    action.perform();	
+		    
 		    //Mouse mouse = ((HasInputDevices) webDriver()).getMouse();			
-		    //mouse.click(((Locatable)we).getCoordinates());		    
+		    //mouse.click(((Locatable)we).getCoordinates());
 		} else {
 		    this.sMouseDownAt(locator, coord);
 		    this.sMouseUpAt(locator, coord);

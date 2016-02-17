@@ -213,13 +213,6 @@ public class TreeMail extends AbsTree {
 			throw new HarnessException("Action " + action+ " not yet implemented");
 		}
 
-
-
-		if (actionLocator == null)
-			throw new HarnessException("locator is null for action " + action);
-		if (optionLocator == null)
-			throw new HarnessException("locator is null for option " + option);
-
 		// Default behavior. Click the locator
 		zClickAt(optionLocator,"");
 
@@ -298,8 +291,6 @@ public class TreeMail extends AbsTree {
 
 		}
 
-		if (actionLocator == null)
-			throw new HarnessException("locator is null for action " + action);
 		if (optionLocator == null)
 			throw new HarnessException("locator is null for option " + option);
 
@@ -419,10 +410,6 @@ public class TreeMail extends AbsTree {
 			throw new HarnessException("button " + option
 					+ " not yet implemented");
 		}
-		if (actionLocator == null)
-			throw new HarnessException("locator is null for action " + action);
-		if (optionLocator == null)
-			throw new HarnessException("locator is null for option " + option);
 
 		// Default behavior. Click the locator
 		zClickAt(optionLocator,"");
@@ -537,21 +524,11 @@ public class TreeMail extends AbsTree {
 		}
 
 
-		if ( locator == null )
-			throw new HarnessException("locator is null for action "+ action);
-
-
 		// Default behavior.  Click the locator
 		zClickAt(locator,"");
 
 		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
-
-		if ( page != null ) {
-
-			// Wait for the page to become active, if it was specified
-			page.zWaitForActive();
-		}
 
 		return (page);
 
@@ -647,10 +624,6 @@ public class TreeMail extends AbsTree {
 		}
 
 
-		if ( locator == null )
-			throw new HarnessException("locator is null for action "+ action);
-
-
 		// Default behavior.  Click the locator
 		zClickAt(locator,"");
 		
@@ -661,12 +634,6 @@ public class TreeMail extends AbsTree {
 
 		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
-
-		if ( page != null ) {
-
-			// Wait for the page to become active, if it was specified
-			page.zWaitForActive();
-		}
 
 		return (page);
 
@@ -702,12 +669,6 @@ public class TreeMail extends AbsTree {
 		// If the app is busy, wait until it is ready again
 		this.zWaitForBusyOverlay();
 
-		if ( page != null ) {
-
-			// Wait for the page to become active, if it was specified
-			page.zWaitForActive();
-		}
-
 		return (page);
 	}
 
@@ -738,12 +699,12 @@ public class TreeMail extends AbsTree {
 			
 			if ( option == Button.B_TREE_NEWFOLDER ) {
 				
-				optionLocator = "css=div[id='ZmActionMenu_mail_FOLDER'] div[id='NEW_FOLDER'] td[id$='_title']";
+				optionLocator = "css=div[id='NEW_FOLDER']";
 				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageMail);
 			
 			} else if ( option == Button.B_TREE_FIND_SHARES ) {
 					
-				optionLocator = "css=div[id='ZmActionMenu_mail_FOLDER'] div[id='FIND_SHARES'] td[id$='_title']";
+				optionLocator = "css=div[id='FIND_SHARES']";
 				page = new DialogShareFind(MyApplication, ((AppAjaxClient)MyApplication).zPageMail);
 				
 			} else {
@@ -758,7 +719,7 @@ public class TreeMail extends AbsTree {
 			
 			if ( option == Button.B_TREE_NEWTAG ) {
 
-				optionLocator = "css=div[id='ZmActionMenu_mail_TAG'] div[id='NEW_TAG'] td[id$='_title']";
+				optionLocator = "css=div[id='NEW_TAG']";
 				page = new DialogTag(MyApplication,((AppAjaxClient) MyApplication).zPageMail);
 
 			} else {
@@ -771,8 +732,6 @@ public class TreeMail extends AbsTree {
 			throw new HarnessException("Pulldown/Option "+ pulldown +"/"+ option +" not implemented");
 		}
 		
-		
-
 		// Default behavior
 		if (pulldownLocator != null) {
 
@@ -797,7 +756,7 @@ public class TreeMail extends AbsTree {
 
 				// 8.0 change ... need zClickAt()
 				// this.zClick(optionLocator);
-				this.zClickAt(optionLocator, "0,0");
+				this.sClickAt(optionLocator, "0,0");
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
@@ -887,14 +846,6 @@ public class TreeMail extends AbsTree {
 
 		// If the app is busy, wait for that to finish
 		this.zWaitForBusyOverlay();
-
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-
-		}
 
 		return (page);
 
@@ -1298,10 +1249,6 @@ public class TreeMail extends AbsTree {
 		this.zClick(locator);
 
 		this.zWaitForBusyOverlay();
-
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
 
 		return (page);
 	}
