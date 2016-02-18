@@ -307,17 +307,17 @@ public class TreeCalendar extends AbsTree {
 			
 			if ( option == Button.B_TREE_NEWFOLDER ) {
 				
-				optionLocator = "css=div[id='ZmActionMenu_calendar_CALENDAR'] div[id='NEW_CALENDAR'] td[id$='_title']";
+				optionLocator = "css=div[id='NEW_CALENDAR']";
 				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageMail);
 			
 			} else if ( option == Button.B_TREE_FIND_SHARES ) {
 				
-				optionLocator = "css=div[id='ZmActionMenu_calendar_CALENDAR'] div[id='FIND_SHARES'] td[id$='_title']";
+				optionLocator = "css=div[id='FIND_SHARES']";
 				page = new DialogShareFind(MyApplication, ((AppAjaxClient)MyApplication).zPageMail);
 				
 			} else if ( option == Button.B_TREE_NEW_EXTERNAL_CALENDAR ) {
 				
-				optionLocator = "css=div[id='ZmActionMenu_calendar_CALENDAR'] div[id='ADD_EXTERNAL_CALENDAR'] td[id$='_title']";
+				optionLocator = "css=div[id='ADD_EXTERNAL_CALENDAR']";
 				page = new DialogAddExternalCalendar(MyApplication, ((AppAjaxClient)MyApplication).zPageMail);
 				
 				/**

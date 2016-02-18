@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
-
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -27,7 +26,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogOpenRecurringItem.Confirmation;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
 public class PageCalendar extends AbsTab {
@@ -1673,9 +1671,6 @@ public class PageCalendar extends AbsTab {
 			this.sClickAt(subOptionLocator, "");
 			this.zWaitForBusyOverlay();
 
-			// Since we are not going to "wait for active", insert
-			// a small delay to make sure the dialog shows up
-			// before the zIsActive() method is called
 			SleepUtil.sleepMedium();
 			
 			Stafpostqueue sp = new Stafpostqueue();

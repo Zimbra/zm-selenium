@@ -175,6 +175,12 @@ public abstract class AbsTab extends AbsPage {
 		this.zKeyboard.zTypeCharacters(keys);
 		return (page);
 	}
+	
+	public AbsPage zKeyboardTypeStringUpload(String keys) throws HarnessException {
+		AbsPage page = null;
+		this.zKeyboard.zTypeCharactersUpload(keys, "upload");
+		return (page);
+	}
 
 	/**
 	 * Waiting for the desktop loading spinner

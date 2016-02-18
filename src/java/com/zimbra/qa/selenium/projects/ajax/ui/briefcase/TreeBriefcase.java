@@ -346,13 +346,13 @@ public class TreeBriefcase extends AbsTree {
 
 			if (option == Button.B_TREE_NEWFOLDER) {
 
-				optionLocator = "css=div[id='ZmActionMenu_briefcase_BRIEFCASE'] div[id='NEW_BRIEFCASE'] td[id$='_title']";
+				optionLocator ="css=div[id='NEW_BRIEFCASE']";
 				page = new DialogCreateBriefcaseFolder(MyApplication,
 						((AppAjaxClient) MyApplication).zPageBriefcase);
 
 			} else if (option == Button.B_TREE_FIND_SHARES) {
 
-				optionLocator = "css=div[id='ZmActionMenu_briefcase_BRIEFCASE'] div[id='FIND_SHARES'] td[id$='_title']";
+				optionLocator ="css=div[id='FIND_SHARES']";
 				page = new DialogFindShares(MyApplication,
 						((AppAjaxClient) MyApplication).zPageBriefcase);
 			} else {
@@ -369,6 +369,8 @@ public class TreeBriefcase extends AbsTree {
 			if (option == Button.B_TREE_NEWTAG) {
 
 				optionLocator = "css=div[id='ZmActionMenu_briefcase_TAG'] div[id='NEW_TAG'] td[id$='_title']";
+				optionLocator ="css=div[id='NEW_TAG']";
+				
 				page = new DialogTag(MyApplication,
 						((AppAjaxClient) MyApplication).zPageBriefcase);
 

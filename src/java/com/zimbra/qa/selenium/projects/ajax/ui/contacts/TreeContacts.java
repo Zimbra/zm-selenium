@@ -89,10 +89,6 @@ public class TreeContacts extends AbsTree {
 			throw new HarnessException("Action "+ action +" not yet implemented");
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("no locator defined for action: "+ action);
-		}
-
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("Unable to locator folder in tree "+ locator);
 	    }
@@ -100,10 +96,6 @@ public class TreeContacts extends AbsTree {
 		// By default, left click at locator
 		zClick(locator);
 		zWaitForBusyOverlay();
-
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
 
 		return (page);
 	}
@@ -164,7 +156,7 @@ public class TreeContacts extends AbsTree {
 
 			if (option == Button.B_TREE_NEWFOLDER) {
 
-				optionLocator += " div[id='NEW_ADDRBOOK'] td[id$='_title']";
+				optionLocator ="css=div[id^='NEW_ADDRBOOK']";
 				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageContacts);
 
 			}
@@ -245,7 +237,7 @@ public class TreeContacts extends AbsTree {
 
 			if (option == Button.B_TREE_NEWFOLDER) {
 
-				optionLocator = "css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='NEW_ADDRBOOK'] td[id$='_title']";
+				optionLocator ="css=div[id^='NEW_ADDRBOOK']";
 				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageContacts);
 
 			}
@@ -391,11 +383,6 @@ public class TreeContacts extends AbsTree {
 					+ " not yet implemented");
 		}
 
-		if (actionLocator == null)
-			throw new HarnessException("locator is null for action " + action);
-		if (optionLocator == null)
-			throw new HarnessException("locator is null for option " + option);
-
 		// Default behavior. Click the locator
 		zClickAt(optionLocator,"");
 
@@ -456,14 +443,14 @@ public class TreeContacts extends AbsTree {
 		if ( button == Button.B_TREE_NEWADDRESSBOOK ) {
 
 			locator = "css=div[id=main_Contacts-parent-ADDRBOOK] div[class*=ImgContextMenu]";
-		    subLocator ="css=div#ZmActionMenu_contacts_ADDRBOOK td#NEW_ADDRBOOK_title";
+		    subLocator ="css=div[id^='NEW_ADDRBOOK']";
 			page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageContacts);
 
 
 		} else if ( button == Button.B_TREE_NEWTAG ) {
 			//locator = zNewTagIcon;
 			locator = "css=div[id=main_Contacts-parent-TAG] div[class*=ImgContextMenu]"; //td#ztih__main_Contacts__TAG_optCell";
-            subLocator ="css=div#ZmActionMenu_contacts_TAG td#NEW_TAG_title";
+            subLocator ="css=div[id='NEW_TAG']";
 			page = new DialogTag(MyApplication,((AppAjaxClient) MyApplication).zPageContacts);
 
 		} else {

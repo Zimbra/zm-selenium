@@ -66,7 +66,7 @@ public class PageBriefcase extends AbsTab {
 		public static final Locators zTrashFolder = new Locators("id=zti__main_Briefcase__3_textCell");
 		public static final Locators zBriefcaseAppIconBtn = new Locators("id=zb__App__Briefcase_left_icon");
 		public static final Locators zNewMenuIconBtn = new Locators("id=zb__BCD__NEW_FILE_left_icon");
-		public static final Locators zNewMenuLeftIconBtn = new Locators("css=td[id=zb__NEW_MENU_left_icon]");
+		public static final Locators zNewMenuLeftIconBtn = new Locators("css=div[id=zb__NEW_MENU]");
 		public static final Locators zNewMenuArrowBtn = new Locators("css=div[id=zb__NEW_MENU] div[class^=ImgSelectPullDownArrow]");
 		public static final Locators zUploadFileIconBtn = new Locators("id=zb__BDLV-main__NEW_FILE_left_icon");
 		public static final Locators zUploadFileTitleBtn = new Locators("css=div[id=zb__BDLV-main__NEW_FILE]>table>tbody>tr>td[id=zb__BDLV-main__NEW_FILE_title]");
@@ -445,7 +445,7 @@ public class PageBriefcase extends AbsTab {
 
 			if (option == Button.B_LAUNCH_IN_SEPARATE_WINDOW) {
 
-				optionLocator = "css=div[id*=main__DETACH_WIN] td[id*=main__DETACH_WIN_title]:contains(Open in a separate window)";
+				optionLocator = "css=div[id='zmi__BDLV-main__DETACH_WIN']";
 
 				page = new DocumentBriefcaseOpen(this.MyApplication, item);
 
@@ -791,6 +791,8 @@ public class PageBriefcase extends AbsTab {
 	}
 
 	public AbsPage zListItem(Action action, IItem item) throws HarnessException {
+		
+		SleepUtil.sleepMedium();
 
 		// Validate the arguments
 		if ((action == null) || (item == null)) {
@@ -812,31 +814,7 @@ public class PageBriefcase extends AbsTab {
 		String listLocator = "//div[contains(@id,'zl__BDLV')]";
 		String itemLocator = listLocator + "//div[contains(@id,'zli__BDLV') and contains(@class,'Row')]";
 		//String itemNameLocator = itemLocator + " div:contains(" + itemName + ")";
-		String itemNameLocator = listLocator + "//*[contains(@id,'zlif__BDLV') and contains(text(),'" 
-		+ itemName + "')]";
-		/*
-		 * listLocator =
-		 * "div[id='zl__BDLV-main__rows'][class='DwtListView-Rows']"; String
-		 * rowLocator = rowLocator = "div[id^='zli__BDLV-main__']"; rowLocator =
-		 * "css=div:contains[id^='zli__BDLV-main__']"; rowLocator =
-		 * "css=div:contains[id:contains('zli__BDLV-main__')]";
-		 * 
-		 * // How many items are in the table? int count =this.sGetXpathCount(
-		 * "//div[@id='zl__BDLV-main__rows']//div[contains(@id, 'zli__BDLV-main__')]"
-		 * ); logger.debug(myPageName() +
-		 * " zListSelectItem: number of list items: "+ count);
-		 * 
-		 * for (int i = 1; i <= count; i++) { itemlocator = "css=" + listLocator
-		 * + ">div:nth-child(" + i + ")"; String namelocator; namelocator =
-		 * itemlocator + ">table>tbody>tr>td>div[id*='__na']"; String s =
-		 * this.sGetText(namelocator).trim(); s =
-		 * this.sGetText("css=div[id='zl__BDLV-main__rows']>div:nth-child(" + i
-		 * + ")").trim();
-		 * 
-		 * if ( s.contains(name) ) { break; // found it } itemlocator = null; }
-		 * if ( itemlocator == null ) { throw new
-		 * HarnessException("Unable to locate item with name("+ name +")"); }
-		 */
+		String itemNameLocator = listLocator + "//*[contains(@id,'zlif__BDLV') and contains(text(),'" + itemName + "')]";
 
 		if (!this.sIsElementPresent(itemLocator))
 			throw new HarnessException("List View Rows is not present "

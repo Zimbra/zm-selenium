@@ -322,6 +322,20 @@ public abstract class AbsPage extends AbsSeleniumObject {
 
 		}
 		
+		public void zTypeCharactersUpload(String chars, String upload) throws HarnessException {
+			logger.info("zTypeCharacters("+ chars +")");
+
+			RobotKeyboard keyboard = new RobotKeyboard();
+			keyboard.typeUpload(chars, upload);
+
+			// For some reason, need a sleep here otherwise selenium
+	    	// can't recognize the typed string
+	    	// e.g. if the string is foo123, then getValue(locator) will only return foo1 (23 missing)
+	    	//
+			SleepUtil.sleepMedium();
+
+		}
+		
 
 		
 		//// ***
@@ -379,6 +393,41 @@ public abstract class AbsPage extends AbsSeleniumObject {
 					}
 		    	   }
 		    	}
+		    	
+		    }
+		    
+		    public void typeUpload(String characters, String upload) {
+		    	logger.info("type("+ characters +")");
+		    	try {
+					Thread.sleep(200);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		    	for (char c : characters.toCharArray()) {
+	    	      try {
+	    	    	  Thread.sleep(100);
+	    	    	  type(c);
+	    	    	  Thread.sleep(100);
+	    	      }catch (Exception e) {
+	    	    	  logger.warn(e);
+	    	      }
+	    	   }
+		    	try {
+					Thread.sleep(100);
+					RobotKeyboard keyboard;
+					try {
+						keyboard = new RobotKeyboard();
+						keyboard.robot.keyPress(KeyEvent.VK_ENTER);
+						keyboard.robot.keyRelease(KeyEvent.VK_ENTER);
+					} catch (HarnessException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 		    	
 		    }
 
