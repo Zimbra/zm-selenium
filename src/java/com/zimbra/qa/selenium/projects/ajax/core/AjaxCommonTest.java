@@ -513,6 +513,8 @@ public class AjaxCommonTest {
 	
 	public void zUpload (String filePath) throws HarnessException {
 		
+		SleepUtil.sleepMedium();
+		
 		if (ZimbraSeleniumProperties.isWebDriver()) {
 			
 			//put path to your image in a clipboard

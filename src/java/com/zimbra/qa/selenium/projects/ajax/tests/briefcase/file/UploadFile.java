@@ -16,7 +16,12 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.file;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.items.FileItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -72,34 +77,54 @@ public class UploadFile extends FeatureBriefcaseTest {
 	@Test(description = "Upload file through GUI - verify through GUI", groups = { "sanity" })
 	public void UploadFile_02() throws HarnessException {
 		
-		ZimbraAccount account = app.zGetActiveAccount();
-		
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
-		
-		// Create file item
-		final String fileName = "testtextfile.txt";
-		final String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
-		
-		FileItem fileItem = new FileItem(filePath);
-
-		// refresh briefcase page
-		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
-		
-		// Click on Upload File button in the Toolbar
-		DialogUploadFile dlg = (DialogUploadFile) app.zPageBriefcase.zToolbarPressButton(Button.B_UPLOAD_FILE, fileItem);
-		
-		app.zPageBriefcase.sClickAt("css=div[class='ZmUploadDialog'] input[name='uploadFile']", "");
-		
-		zUpload(filePath);
-		
-		dlg.zClickButton(Button.B_OK);
-		
-		// Click on created File
-		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
-		
-		// Verify file is uploaded
-		String name = app.zPageBriefcase.getItemNameFromListView(fileName);
-		ZAssert.assertStringContains(name, fileName, "Verify file name through GUI");
+		try {
+			
+			ZimbraAccount account = app.zGetActiveAccount();
+			
+			FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
+			
+			// Create file item
+			final String fileName = "testtextfile.txt";
+			final String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+			
+			FileItem fileItem = new FileItem(filePath);
+	
+			// refresh briefcase page
+			app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
+			
+			// Click on Upload File button in the Toolbar
+			DialogUploadFile dlg = (DialogUploadFile) app.zPageBriefcase.zToolbarPressButton(Button.B_UPLOAD_FILE, fileItem);
+			
+			app.zPageBriefcase.sClickAt("css=div[class='ZmUploadDialog'] input[name='uploadFile']", "");
+			
+			zUpload(filePath);
+			
+			dlg.zClickButton(Button.B_OK);
+			
+			// Click on created File
+			app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
+			
+			// Verify file is uploaded
+			String name = app.zPageBriefcase.getItemNameFromListView(fileName);
+			ZAssert.assertStringContains(name, fileName, "Verify file name through GUI");
+			
+		} finally {
+			
+			Robot robot;
+			
+			try {
+				robot = new Robot();
+				robot.delay(250);
+				robot.keyPress(KeyEvent.VK_ESCAPE);
+				robot.keyRelease(KeyEvent.VK_ESCAPE);
+				robot.delay(50);
+				
+			} catch (AWTException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 	}
 	
 	@Test(description = "Upload file through RestUtil - verify through SOAP", groups = { "smoke" })
