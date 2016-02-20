@@ -134,6 +134,19 @@ public class SleepUtil {
 		}
 		sleep(ZimbraSeleniumProperties.getIntProperty("very_long_wait", 10000));
 	}
+	
+	
+	/**
+	 * Sleep a 15,000 msec
+	 */
+	public static void sleepVeryVeryLong() {
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true){
+
+			sleep(ZimbraSeleniumProperties.getIntProperty("very_small_wait", 20000));
+
+		}
+		sleep(ZimbraSeleniumProperties.getIntProperty("very_long_wait", 15000));
+	}
 
 
 }

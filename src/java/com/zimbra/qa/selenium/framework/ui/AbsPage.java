@@ -322,25 +322,13 @@ public abstract class AbsPage extends AbsSeleniumObject {
 
 		}
 		
-		public void zTypeCharactersUpload(String chars, String upload) throws HarnessException {
+		public void zTypeCharactersUpload(String chars, String upload) throws HarnessException, InterruptedException {
 			logger.info("zTypeCharacters("+ chars +")");
-
 			RobotKeyboard keyboard = new RobotKeyboard();
 			keyboard.typeUpload(chars, upload);
-
-			// For some reason, need a sleep here otherwise selenium
-	    	// can't recognize the typed string
-	    	// e.g. if the string is foo123, then getValue(locator) will only return foo1 (23 missing)
-	    	//
 			SleepUtil.sleepMedium();
-
 		}
 		
-
-		
-		//// ***
-		// Start: Robot methods
-		//// ***
 		private static class RobotKeyboard {
 			private static Logger logger = LogManager.getLogger(RobotKeyboard.class);
 
@@ -356,13 +344,6 @@ public abstract class AbsPage extends AbsSeleniumObject {
 				}
 		    }
 
-//		    public RobotKeyboard(Robot robot) {
-//				logger.info("new " + RobotKeyboard.class.getCanonicalName());
-	//
-//				this.robot = robot;
-//		    }
-
-		    // Used to make sure num lock is not pressed
 		    private static boolean numLockHasBeenProcessed = false;
 
 		    public void type(String characters) {
@@ -399,7 +380,7 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		    public void typeUpload(String characters, String upload) {
 		    	logger.info("type("+ characters +")");
 		    	try {
-					Thread.sleep(200);
+		    		Thread.sleep(500);
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -413,20 +394,18 @@ public abstract class AbsPage extends AbsSeleniumObject {
 	    	    	  logger.warn(e);
 	    	      }
 	    	   }
-		    	try {
-					Thread.sleep(100);
-					RobotKeyboard keyboard;
-					try {
-						keyboard = new RobotKeyboard();
-						keyboard.robot.keyPress(KeyEvent.VK_ENTER);
-						keyboard.robot.keyRelease(KeyEvent.VK_ENTER);
-					} catch (HarnessException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				} catch (InterruptedException e1) {
+		    	RobotKeyboard keyboard;
+				try {
+					Thread.sleep(500);
+					keyboard = new RobotKeyboard();
+					keyboard.robot.keyPress(KeyEvent.VK_ENTER);
+					keyboard.robot.keyRelease(KeyEvent.VK_ENTER);
+				} catch (HarnessException e) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 		    	
 		    }

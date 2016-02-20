@@ -16,22 +16,16 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.core;
 
-import java.awt.AWTException;
-import java.awt.Robot;
 import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.*;
-
 import org.apache.log4j.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.testng.*;
 import org.testng.annotations.*;
 import org.xml.sax.SAXException;
-
 import com.thoughtworks.selenium.*;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import com.zimbra.qa.selenium.framework.core.*;
@@ -513,37 +507,64 @@ public class AjaxCommonTest {
 	
 	public void zUpload (String filePath) throws HarnessException {
 		
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 		
 		if (ZimbraSeleniumProperties.isWebDriver()) {
 			
-			//put path to your image in a clipboard
-			StringSelection ss = new StringSelection(filePath);
-			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
-	
-			//imitate mouse events like ENTER, CTRL+C, CTRL+V
-			Robot robot;
-			try {
-				robot = new Robot();
-				robot.delay(250);
-				robot.keyPress(KeyEvent.VK_ENTER);
-				robot.keyRelease(KeyEvent.VK_ENTER);
-				robot.keyPress(KeyEvent.VK_CONTROL);
-				robot.keyPress(KeyEvent.VK_V);
-				robot.keyRelease(KeyEvent.VK_V);
-				robot.keyRelease(KeyEvent.VK_CONTROL);
-				robot.keyPress(KeyEvent.VK_ENTER);
-				robot.delay(50);
-				robot.keyRelease(KeyEvent.VK_ENTER);
-			} catch (AWTException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			/*
+				//put path to your image in a clipboard
+				StringSelection ss = new StringSelection(filePath);
+				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
+				SleepUtil.sleepLong();
+		
+				//imitate mouse events like ENTER, CTRL+C, CTRL+V
+				Robot robot;
+				try {
+					robot = new Robot();
+					robot.keyPress(KeyEvent.VK_CONTROL);
+					robot.keyPress(KeyEvent.VK_V);
+					robot.keyRelease(KeyEvent.VK_V);
+					robot.keyRelease(KeyEvent.VK_CONTROL);
+					robot.keyPress(KeyEvent.VK_TAB);
+					robot.keyRelease(KeyEvent.VK_TAB);
+					robot.keyPress(KeyEvent.VK_TAB);
+					robot.keyRelease(KeyEvent.VK_TAB);
+					robot.keyPress(KeyEvent.VK_ENTER);
+					robot.keyRelease(KeyEvent.VK_ENTER);
+					SleepUtil.sleepVeryLong();
+				} catch (AWTException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			*/
+			
+			app.zPageBriefcase.zKeyboardTypeStringUpload(filePath);
 			
 		} else {
 			
 			app.zPageBriefcase.zKeyboardTypeStringUpload(filePath);
+			
 		}
+		
+		SleepUtil.sleepVeryVeryLong();
+		
+	}
+	
+	public void zUploadInlineImageAttachment (String filePath) throws HarnessException {
+		
+		SleepUtil.sleepLong();
+		
+		if (ZimbraSeleniumProperties.isWebDriver()) {
+			
+			app.zPageBriefcase.zKeyboardTypeStringUpload(filePath);
+			
+		} else {
+			
+			app.zPageBriefcase.zKeyboardTypeStringUpload(filePath);
+			
+		}
+		
+		SleepUtil.sleepVeryVeryLong();
 		
 	}
 

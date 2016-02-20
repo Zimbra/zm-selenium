@@ -67,12 +67,13 @@ public class Button {
 	public static final Button B_Attachment = new Button("B_Attachment");
 	public static final Button B_DUPLICATE = new Button ("B_DUPLICATE");	
 	public static final Button B_OPENTAB = new Button("B_OPENTAB");
-	public static final Button B_Attach = new Button("B_Attach");
+	public static final Button B_ATTACH = new Button("B_ATTACH");
+	public static final Button O_ATTACH_DROPDOWN = new Button("O_ATTACH_DROPDOWN");
+	public static final Button B_ATTACH_INLINE = new Button("B_ATTACH_INLINE");
 	public static final Button B_BEGIN_SETUP = new Button("B_BEGIN_SETUP");
 	public static final Button B_FINISH = new Button("B_FINISH");
 	public static final Button B_REVOKE = new Button("B_REVOKE");
 	
-
 	public static final Button O_NEW = new Button("O_NEW");
 	public static final Button O_NEW_ADMIN = new Button("O_NEW_ADMIN");
 	public static final Button O_NEW_MESSAGE = new Button("O_NEW_MESSAGE");

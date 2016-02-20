@@ -72,7 +72,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 		mailform.zFill(mail);
-		app.zPageMail.zToolbarPressPulldown(Button.B_Attach, Button.O_MAILATTACH);
+		app.zPageMail.zToolbarPressPulldown(Button.B_ATTACH, Button.O_MAILATTACH);
 
 		DialogAttach dialog = new DialogAttach(app, ((AppAjaxClient)app).zPageMail);
 		ZAssert.assertTrue(dialog.zIsActive(),"Attach Mail dialog gets open and active");
@@ -81,7 +81,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		dialog.zClickAt(Locators.zAttachInboxFolder,"");
 		SleepUtil.sleepMedium();
 		dialog.sClickAt("css=div[id'zv__BCI'] tr[id^='zlif__BCI__'] div[class='AttachMailRowDiv'] span[class='AttachMailSubject']","");
-		dialog.zClickButton(Button.B_Attach);
+		dialog.zClickButton(Button.B_ATTACH);
 		SleepUtil.sleepMedium();
 		mailform.zSubmit();
 

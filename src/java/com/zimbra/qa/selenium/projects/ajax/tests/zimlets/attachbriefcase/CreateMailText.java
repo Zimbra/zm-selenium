@@ -94,7 +94,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		mailform.zFill(mail);
 		
 		//Click Attach drop down and click Briefcase
-		app.zPageMail.zToolbarPressPulldown(Button.B_Attach, Button.O_BRIEFCASEATTACH);
+		app.zPageMail.zToolbarPressPulldown(Button.B_ATTACH, Button.O_BRIEFCASEATTACH);
 
 
 		DialogAttach dialog = new DialogAttach(app, ((AppAjaxClient)app).zPageMail);
@@ -104,7 +104,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		dialog.zClickAt(Locators.zAttachBriefcaseFolder,"");
 		SleepUtil.sleepMedium();
 		dialog.sClickAt("css=div[id'zv__BCI'] div[id^='zli__BCI__'] tr td:contains('"+docName+"')","");
-		dialog.zClickButton(Button.B_Attach);
+		dialog.zClickButton(Button.B_ATTACH);
 		SleepUtil.sleepMedium();
 		mailform.zSubmit();
 

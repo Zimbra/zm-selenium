@@ -78,7 +78,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		mailform.zFill(mail);
 		
 		//Click attach drop down and select Contact
-		app.zPageMail.zToolbarPressPulldown(Button.B_Attach, Button.O_CONTACTATTACH);
+		app.zPageMail.zToolbarPressPulldown(Button.B_ATTACH, Button.O_CONTACTATTACH);
 
 
 		DialogAttach dialog = new DialogAttach(app, ((AppAjaxClient)app).zPageMail);
@@ -89,7 +89,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 
 		//Select first contact
 		dialog.sClickAt("css=div[id^='attachContactsZimlet_row'] tr td>span:contains('"+contact.firstName+"')","");
-		dialog.zClickButton(Button.B_Attach);
+		dialog.zClickButton(Button.B_ATTACH);
 		SleepUtil.sleepMedium();
 		mailform.zSubmit();
 

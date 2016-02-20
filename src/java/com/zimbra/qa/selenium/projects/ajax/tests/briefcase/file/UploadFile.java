@@ -74,7 +74,7 @@ public class UploadFile extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(fileItem.getName());
 	}
 	
-	@Test(description = "Upload file through GUI - verify through GUI", groups = { "sanity" })
+	@Test(description = "Upload file through GUI - verify through GUI", groups = { "windows" })
 	public void UploadFile_02() throws HarnessException {
 		
 		try {

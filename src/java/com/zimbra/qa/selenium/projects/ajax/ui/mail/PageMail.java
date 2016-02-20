@@ -20,9 +20,7 @@
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
 import java.util.*;
-
 import org.openqa.selenium.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -260,7 +258,17 @@ public class PageMail extends AbsTab {
 		return found;
 
 	}
-
+	
+	public boolean zVerifyAttachmentExistsInMail (String fileName) throws HarnessException {
+		boolean isAttachmentExists = sIsElementPresent("css=td a[id^='zv__TV__TV-main_MSG_attLinks']:contains('" + fileName + "')");
+		return isAttachmentExists;
+	}
+	
+	public boolean zVerifyInlineImageAttachmentExistsInMail (String fileName) throws HarnessException {
+		boolean isAttachmentExists = sIsElementPresent("css=img[data-mce-src^='cid']");
+		return isAttachmentExists;
+	}
+	
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
@@ -732,7 +740,7 @@ public class PageMail extends AbsTab {
 
 			}
 
-		} else if (pulldown == Button.B_Attach) {
+		} else if (pulldown == Button.B_ATTACH) {
 
 			pulldownLocator = Locators.zAttachdropdown;
 
@@ -2180,6 +2188,37 @@ public class PageMail extends AbsTab {
 		this.sClickAt(Locators.zCreateFilterMsgHdrContextMenu, "");
 		this.sClickAt(Locators.zAddFilterMsgHdrContextMenu,"");
 
+	}
+	
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
+
+		tracer.trace("Press the " + button + " button");
+
+		if (button == null)
+			throw new HarnessException("Button cannot be null!");
+
+		String locator = null;
+		AbsPage page = null;
+
+		if (button == Button.B_ATTACH) {
+			locator = "css=td[id='zb__COMPOSE-1___attachments_btn_title']";
+			
+		} else if (button == Button.O_ATTACH_DROPDOWN) {
+			locator = "css=td[id='zb__COMPOSE-1___attachments_btn_dropdown']";
+			
+		} else if (button == Button.B_ATTACH_INLINE) {
+			locator = "css=td[id$='_title']:contains('Attach Inline')";
+
+		} else {
+			throw new HarnessException("no logic defined for button " + button);
+		}
+
+		this.sClickAt(locator, "0,0");
+		
+		SleepUtil.sleepMedium();
+
+		return (page);
 	}
 
 	public boolean zVerifyAllAddressContextMenu(String app)throws HarnessException {

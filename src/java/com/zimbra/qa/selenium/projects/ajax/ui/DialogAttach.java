@@ -53,7 +53,7 @@ public class DialogAttach extends AbsDialog {
 		AbsPage page = null;
 		String locator = null;
 
-		if (button == Button.B_Attach) {
+		if (button == Button.B_ATTACH) {
 
 			locator = "css=div[class='ZmAttachDialog'] div[id$='_buttons'] td[id^='OK'] td[id$='_title']:contains('Attach')";
 
