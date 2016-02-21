@@ -396,7 +396,7 @@ public abstract class AbsPage extends AbsSeleniumObject {
 	    	   }
 		    	RobotKeyboard keyboard;
 				try {
-					Thread.sleep(500);
+					Thread.sleep(3000);
 					keyboard = new RobotKeyboard();
 					keyboard.robot.keyPress(KeyEvent.VK_ENTER);
 					keyboard.robot.keyRelease(KeyEvent.VK_ENTER);

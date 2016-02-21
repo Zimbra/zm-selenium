@@ -69,6 +69,7 @@ public class Button {
 	public static final Button B_OPENTAB = new Button("B_OPENTAB");
 	public static final Button B_ATTACH = new Button("B_ATTACH");
 	public static final Button O_ATTACH_DROPDOWN = new Button("O_ATTACH_DROPDOWN");
+	public static final Button B_MY_COMPUTER = new Button("B_MY_COMPUTER");
 	public static final Button B_ATTACH_INLINE = new Button("B_ATTACH_INLINE");
 	public static final Button B_BEGIN_SETUP = new Button("B_BEGIN_SETUP");
 	public static final Button B_FINISH = new Button("B_FINISH");

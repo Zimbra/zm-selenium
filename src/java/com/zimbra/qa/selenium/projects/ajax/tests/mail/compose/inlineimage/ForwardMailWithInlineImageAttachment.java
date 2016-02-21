@@ -43,50 +43,27 @@ public class ForwardMailWithInlineImageAttachment extends PrefGroupMailByMessage
 	public void ForwardMailWithInlineImageAttachment_01() throws HarnessException {
 		
 		//-- DATA
-		final String mimeSubject = "subject03431362517016470";
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email09/mime.txt";
-		final String subject = "subject13625192398933";
+		final String mimeSubject = "subjectAttachment";
+		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
 		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 
-		LmtpInject.injectFile(ZimbraAccount.AccountA().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
-		MailItem original = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mimeSubject +")");
+		MailItem original = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ mimeSubject +")");
 		ZAssert.assertNotNull(original, "Verify the message is received correctly");
-
-		// Get the part ID
-		ZimbraAccount.AccountA().soapSend(
-				"<GetMsgRequest xmlns='urn:zimbraMail'>"
-			+		"<m id='"+ original.getId() +"'/>"
-			+	"</GetMsgRequest>");
-
-		String partID = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "part");
-
-		ZimbraAccount.AccountA().soapSend(
-			"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-				"<m>" +
-					"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-					"<su>"+ subject +"</su>" +
-					"<mp ct='text/plain'>" +
-						"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
-					"</mp>" +
-					"<attach>" +
-						"<mp mid='"+ original.getId() +"' part='"+ partID +"'/>" +
-					"</attach>" +
-				"</m>" +
-			"</SendMsgRequest>");
 
 		//-- GUI
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		app.zPageMail.zVerifyMailExists(mimeSubject);
 						
 		// Select the item
-		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);
 		
 		// Reply to the item
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
 		
-		mailform.zFillField(Field.To, ZimbraAccount.AccountB().EmailAddress);
+		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 		
 		final String fileName = "samplejpg.jpg";
 		final String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
@@ -103,23 +80,23 @@ public class ForwardMailWithInlineImageAttachment extends PrefGroupMailByMessage
 		//-- Verification
 		
 		// From the receiving end, verify the message details
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "from:("+ app.zGetActiveAccount().EmailAddress +") subject:("+ subject +")");
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "from:("+ app.zGetActiveAccount().EmailAddress +") subject:("+ mimeSubject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
 		
-		ZimbraAccount.AccountB().soapSend(
+		ZimbraAccount.AccountA().soapSend(
 				"<GetMsgRequest xmlns='urn:zimbraMail'>"
 				+		"<m id='"+ received.getId() +"'/>"
 				+	"</GetMsgRequest>");
 
-		String getFilename = ZimbraAccount.AccountB().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
+		String getFilename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
 		ZAssert.assertEquals(getFilename, fileName, "Verify existing attachment exists in the forwarded mail");
 		
-		Element[] nodes = ZimbraAccount.AccountB().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
-		ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the replied mail");
+		Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
+		ZAssert.assertEquals(nodes.length, 2, "Verify attachment exist in the replied mail");
 		
 		// Verify UI for attachment
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
-		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);
 		ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the email");
 		
 		app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(fileName);
