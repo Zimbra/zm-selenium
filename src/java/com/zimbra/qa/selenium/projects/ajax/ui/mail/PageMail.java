@@ -2200,12 +2200,25 @@ public class PageMail extends AbsTab {
 
 		String locator = null;
 		AbsPage page = null;
+		
+		SleepUtil.sleepSmall();
 
-		if (button == Button.B_ATTACH) {
-			locator = "css=td[id='zb__COMPOSE-1___attachments_btn_title']";
+		if (button == Button.O_ATTACH_DROPDOWN) {
+			if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_dropdown']")) {
+				locator = "css=td[id='zb__COMPOSE-2___attachments_btn_dropdown']";
+			} else {
+				locator = "css=td[id='zb__COMPOSE-1___attachments_btn_dropdown']";
+			}
 			
-		} else if (button == Button.O_ATTACH_DROPDOWN) {
-			locator = "css=td[id='zb__COMPOSE-1___attachments_btn_dropdown']";
+		} else if (button == Button.B_ATTACH) {
+			if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_title']")) {
+				locator = "css=td[id='zb__COMPOSE-2___attachments_btn_title']";
+			} else {
+				locator = "css=td[id='zb__COMPOSE-1___attachments_btn_title']";
+			}
+			
+		} else if (button == Button.B_MY_COMPUTER) {
+			locator = "css=td[id$='_title']:contains('My Computer')";
 			
 		} else if (button == Button.B_ATTACH_INLINE) {
 			locator = "css=td[id$='_title']:contains('Attach Inline')";

@@ -16,6 +16,9 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.attachments;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.io.File;
 
 import org.testng.annotations.Test;
@@ -41,58 +44,78 @@ public class ForwardMailWithAttachment extends PrefGroupMailByMessageTest {
 	
 	public void ForwardMailWithAttachment_01() throws HarnessException {
 		
-		//-- DATA
-		final String subject = "subjectAttachment";
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
-		final String mimeAttachmentName = "samplejpg.jpg";
+		try {
 		
-		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
-
-		// Send the message to the test account
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
-
-		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
-
-		// Select the item
-		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+			//-- DATA
+			final String subject = "subjectAttachment";
+			final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
+			final String mimeAttachmentName = "samplejpg.jpg";
+			
+			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
+	
+			// Send the message to the test account
+			LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+	
+			// Refresh current view
+			app.zPageMail.zVerifyMailExists(subject);
+	
+			// Select the item
+			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+			
+			// Forward the item
+			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
+			
+			// Fill out the form with the data
+			mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
+			
+			final String fileName = "testtextfile.txt";
+			final String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+			
+			app.zPageMail.zPressButton(Button.B_ATTACH);
+			zUpload(filePath);
+			
+			// Send the message
+			mailform.zSubmit();
+	
+			//-- Verification
+			
+			// From the receiving end, verify the message details
+			MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
+			ZAssert.assertNotNull(received, "Verify the message is received correctly");
+			
+			ZimbraAccount.AccountA().soapSend(
+					"<GetMsgRequest xmlns='urn:zimbraMail'>"
+					+		"<m id='"+ received.getId() +"'/>"
+					+	"</GetMsgRequest>");
+	
+			String getFilename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
+			ZAssert.assertEquals(getFilename, fileName, "Verify existing attachment exists in the forwarded mail");
+			
+			Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + mimeAttachmentName + "']");
+			ZAssert.assertEquals(nodes.length, 1, "Verify attachment exists in the forwarded mail");
+			
+			// Verify UI for attachment
+			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
+			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+			app.zPageMail.zVerifyAttachmentExistsInMail(mimeAttachmentName);
 		
-		// Forward the item
-		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
-		
-		// Fill out the form with the data
-		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
-		
-		final String fileName = "testtextfile.txt";
-		final String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
-		
-		app.zPageMail.zPressButton(Button.B_ATTACH);
-		zUpload(filePath);
-		
-		// Send the message
-		mailform.zSubmit();
-
-		//-- Verification
-		
-		// From the receiving end, verify the message details
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
-		ZAssert.assertNotNull(received, "Verify the message is received correctly");
-		
-		ZimbraAccount.AccountA().soapSend(
-				"<GetMsgRequest xmlns='urn:zimbraMail'>"
-				+		"<m id='"+ received.getId() +"'/>"
-				+	"</GetMsgRequest>");
-
-		String getFilename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
-		ZAssert.assertEquals(getFilename, fileName, "Verify existing attachment exists in the forwarded mail");
-		
-		Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + mimeAttachmentName + "']");
-		ZAssert.assertEquals(nodes.length, 1, "Verify attachment exists in the forwarded mail");
-		
-		// Verify UI for attachment
-		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
-		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		app.zPageMail.zVerifyAttachmentExistsInMail(mimeAttachmentName);
+		} finally {
+			
+			Robot robot;
+			
+			try {
+				robot = new Robot();
+				robot.delay(250);
+				robot.keyPress(KeyEvent.VK_ESCAPE);
+				robot.keyRelease(KeyEvent.VK_ESCAPE);
+				robot.delay(50);
+				
+			} catch (AWTException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 	}
 
 }

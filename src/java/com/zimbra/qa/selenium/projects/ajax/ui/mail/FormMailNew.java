@@ -59,6 +59,8 @@ public class FormMailNew extends AbsForm {
 		
 		public static final String zSendIconBtn			= "css=div[id^='ztb__COMPOSE'] div[id*='SEND'] td[id$='_title']";
 		public static final String zCancelIconBtn		= "css=[id^=zb__COMPOSE][id$=__CANCEL_title]";
+		public static final String zEditIconBtn			= "css=[id$='main__EDIT_title']";
+		public static final String zCloseIconBtn		= "css=[id^=zb__COMPOSE][id$=__CANCEL_title]";
 		public static final String zSaveDraftIconBtn	= "css=[id^=zb__COMPOSE][id$=__SAVE_DRAFT_title]";
 		public static final String zSpellCheckIconBtn	= "css=[id^=zb__COMPOSE][id$=__SPELL_CHECK_left_icon]>div.ImgSpellCheck";
 		
@@ -164,7 +166,11 @@ public class FormMailNew extends AbsForm {
 		
 		if ( button == Button.B_SEND ) {
 			
-			locator = Locators.zSendIconBtn;
+			if (sIsElementPresent("css=div[id^='ztb__COMPOSE-2'] div[id*='SEND'] td[id$='_title']")) {
+				locator = "css=div[id^='ztb__COMPOSE-2'] div[id*='SEND'] td[id$='_title']";
+			} else {
+				locator = Locators.zSendIconBtn;
+			}
 			
 			// Click on send
 			this.zClick(locator);
@@ -193,6 +199,24 @@ public class FormMailNew extends AbsForm {
 			this.zWaitForBusyOverlay();
 
 			// Return the page, if specified
+			return (page);
+			
+		} else if ( button == Button.B_EDIT ) {
+
+			locator = Locators.zEditIconBtn;
+			page = null;
+			this.zClick(locator);
+
+			this.zWaitForBusyOverlay();
+			return (page);
+			
+		} else if ( button == Button.B_CLOSE ) {
+
+			locator = Locators.zCloseIconBtn;
+			page = null;
+			this.zClick(locator);
+
+			this.zWaitForBusyOverlay();
 			return (page);
 			
 		} else if ( button == Button.B_SAVE_DRAFT ) {
@@ -281,6 +305,8 @@ public class FormMailNew extends AbsForm {
 		
 		// Click it
 		this.zClick(locator);
+		
+		SleepUtil.sleepSmall();
 
 		// if the app is busy, wait for it to become active again
 		this.zWaitForBusyOverlay();

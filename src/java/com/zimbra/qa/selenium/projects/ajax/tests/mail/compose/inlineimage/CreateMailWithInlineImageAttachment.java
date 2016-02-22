@@ -95,7 +95,10 @@ public class CreateMailWithInlineImageAttachment extends PrefGroupMailByMessageT
 			ZAssert.assertEquals(subject, mail.dSubject, "Verify the subject field is correct");
 			ZAssert.assertStringContains(html, mail.dBodyHtml, "Verify the html content");
 			
-			Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
+			String getFilename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='inline']", "filename");
+			ZAssert.assertEquals(getFilename, fileName, "Verify existing attachment exists in the forwarded mail");
+			
+			Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");		
 			ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the sent mail");
 			
 			// Verify UI for attachment
