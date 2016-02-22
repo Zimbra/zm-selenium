@@ -19,6 +19,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.preferences;
 
+import java.awt.event.KeyEvent;
 import java.util.*;
 
 import org.apache.commons.lang.StringUtils;
@@ -26,7 +27,10 @@ import org.apache.commons.lang.StringUtils;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
+import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare.Locators;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare.ShareRole;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning.DialogWarningID;
 
 
@@ -73,6 +77,10 @@ public class PagePreferences extends AbsTab {
 		public static final String zAppointmentDuration60 = "css=td[id$='_title']:contains('60')";
 		public static final String zAppointmentDuration90 = "css=td[id$='_title']:contains('90')";
 		public static final String zAppointmentDuration120 = "css=td[id$='_title']:contains('120')";
+		public static final String zShareFolderType = "css=td[id$='_shareButton_title']";
+		
+		//Share dialogue
+		public static final String zDialogShareId = "ShareDialog";
 
 		//Accounts
 		public static final String z2FAEnableLink = "css=div[id='Prefs_Pages_ACCOUNTS_PRIMARY'] a[id='Prefs_Pages_ACCOUNTS_TWO_STEP_AUTH_LINK']:contains('Setup two-step authentication ...')";
@@ -449,6 +457,35 @@ public class PagePreferences extends AbsTab {
 		return (page);
 
 	}
+	
+	
+		public AbsPage zFolderPressPulldown(Button button) throws HarnessException {
+			logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+			
+			tracer.trace("Click button "+ button);
+
+					
+			// Default behavior variables
+			//
+			//String locator = null;			// If set, this will be clicked
+			AbsPage page = null;	// If set, this page will be returned
+		
+		// Default behavior
+		if ( button != null ) {
+			if ( button == Button.O_SHARE_FOLDER_TYPE ){
+						
+			// Make sure the locator exists
+			if ( !this.sIsElementPresent(Locators.zShareFolderType) ) {
+				throw new HarnessException("pulldownLocator not present! "+ Locators.zShareFolderType);
+			}
+			
+			this.zClick(Locators.zShareFolderType);
+			this.zWaitForBusyOverlay();
+			
+			}		
+	}
+		return page;
+}
 	
 	public void zSelectRadioButton (Button option) throws HarnessException {
 		
@@ -893,10 +930,74 @@ public class PagePreferences extends AbsTab {
 		
 	}
 
+	public void zSetEmailAddress(String email) throws HarnessException {
+		logger.info(myPageName() + " zSetEmailAddress(" + email + ")");
+
+		String locator = "css=input#ShareDialog_grantee";
+
+		// Make sure the locator exists
+		if (!this.sIsElementPresent(locator)) {
+			throw new HarnessException("zSetEmailAddress " + locator + " is not present");
+		}
+		
+		// Seems that the client can't handle filling out the new mail form too quickly
+		// Click in the "To" fields, etc, to make sure the client is ready
+		this.sFocus(locator);
+		this.zClick(locator);
+		this.zWaitForBusyOverlay();
+		
+		//this.zKeyboard.zTypeCharacters(email);
+		this.sType(locator, email);
+		SleepUtil.sleepSmall();
+		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+		SleepUtil.sleepSmall();
+		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
+		SleepUtil.sleepSmall();
+		this.zWaitForBusyOverlay();
+	
+	}
 
 
+	public AbsPage zClickButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zClickButton("+ button +")");
 
+		String locator = null;
+		
+		if ( button == Button.B_OK ) {
+			
+			locator = "css=div[id='"+ Locators.zDialogShareId +"'] td[id^='OK'] td[id$='_title']";
+			
+		} else if ( button == Button.B_CANCEL ) {
+			
+			locator = "css=div[id='"+ Locators.zDialogShareId +"'] td[id^='Cancel'] td[id$='_title']";
 
+		} else {
+			throw new HarnessException("Button "+ button +" not implemented");
+		}
+		
+		this.zClick(locator);
+		zWaitForBusyOverlay();
+		
+		// This dialog sends a message, so we need to check the queue
+		Stafpostqueue sp = new Stafpostqueue();
+		sp.waitForPostqueue();
 
+		return (null);
+	
+	}
 
+	public void zSetRole(ShareRole role) throws HarnessException {
+		logger.info(myPageName() + " zSetRole("+ role +")");
+		String locator =null;
+		if(role== ShareRole.Admin){
+			locator = "//div[@id='"+ Locators.zDialogShareId +"']//div[contains(@id,'_content')]//div/fieldset/div/table/tbody/tr[4]/td/input[contains(@id,'ShareRole_ADMIN')]";
+		}else if (role== ShareRole.Manager){
+			locator = "//div[@id='"+ Locators.zDialogShareId +"']//div[contains(@id,'_content')]//div/fieldset/div/table/tbody/tr[3]/td/input[contains(@id,'ShareRole_MANAGER')]";
+		}else{
+			throw new HarnessException("zSetRole "+ locator +" is not present");
+		}
+		this.sFocus(locator);
+		this.sClick(locator);
+		//this.sCheck(locator);
+	}
 }

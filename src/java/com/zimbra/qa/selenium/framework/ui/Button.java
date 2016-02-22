@@ -623,6 +623,8 @@ public class Button {
 	public static final Button B_NEW_QUICK_COMMAND		= new Button("B_NEW_QUICK_COMMAND");
 	public static final Button B_EDIT_QUICK_COMMAND		= new Button("B_EDIT_QUICK_COMMAND");
 	public static final Button B_DELETE_QUICK_COMMAND	= new Button("B_DELETE_QUICK_COMMAND");
+	public static final Button O_SHARE_FOLDER_TYPE				= new Button("O_SHARE_FOLDER_TYPE");
+
 	
 	// Calendar preferences
 	public static final Button R_CUSTOM_WORK_HOURS				= new Button("R_CUSTOM_WORK_HOURS");
