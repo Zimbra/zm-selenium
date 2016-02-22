@@ -69,7 +69,11 @@ public class CreateMailWithInlineImageAttachment extends PrefGroupMailByMessageT
 			app.zPageMail.zPressButton(Button.B_ATTACH_INLINE);
 			zUploadInlineImageAttachment(filePath);
 			
-			app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(fileName);
+			//Verify inline image in compose window
+			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline image is present in compose window");
+
+			
+			//app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(fileName);
 			
 			// Send the message
 			mailform.zSubmit();
@@ -96,7 +100,7 @@ public class CreateMailWithInlineImageAttachment extends PrefGroupMailByMessageT
 			ZAssert.assertStringContains(html, mail.dBodyHtml, "Verify the html content");
 			
 			String getFilename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='inline']", "filename");
-			ZAssert.assertEquals(getFilename, fileName, "Verify existing attachment exists in the forwarded mail");
+			ZAssert.assertEquals(getFilename, fileName, "Verify existing attachment exists in the  mail");
 			
 			Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");		
 			ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the sent mail");
@@ -104,7 +108,11 @@ public class CreateMailWithInlineImageAttachment extends PrefGroupMailByMessageT
 			// Verify UI for attachment
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);			
-			app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(fileName);
+			//app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(fileName);
+			
+			//Verify inline image in reading pane
+			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline image is present in reading pane");
+
 
 		} finally {
 			
