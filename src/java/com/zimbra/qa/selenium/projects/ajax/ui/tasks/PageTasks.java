@@ -41,9 +41,8 @@ public class PageTasks extends AbsTab{
 		public static final String _newTaskBannerID = "_newTaskBannerId";
 		public static final String _upComingTaskListHdrID = "_upComingTaskListHdr";
 		public static final String zli__TKL__ = "zli__TKL-"; // Each task item:
-		// <div
-		// id='zli__TKL__<item
-		// id>' .../>
+		public static final String zTasksZimletsPane = "ztih__main_Tasks__ZIMLET_textCell";
+		
 		public static final String zb__TKE1__SAVE_left_icon = "zb__TKE1__SAVE_left_icon";
 		public static final String taskListView = "css=div[id='zl__TKL-main__rows'][class='DwtListView-Rows']";
 		public static final String zTasksTab = "zb__App__Tasks";
@@ -147,12 +146,7 @@ public class PageTasks extends AbsTab{
 		logger.info("Navigate to "+ this.myPageName());
 
 		this.zClickAt(PageMain.Locators.zAppbarTasks, "");
-		SleepUtil.sleepSmall();
-
-		this.zWaitForBusyOverlay();
-		zWaitForElementPresent(Locators._newTaskBannerID);
-
-		zWaitForActive();
+		zWaitTillElementPresent(Locators.zTasksZimletsPane);
 
 		logger.info("Navigated to "+ this.myPageName() + " page");
 

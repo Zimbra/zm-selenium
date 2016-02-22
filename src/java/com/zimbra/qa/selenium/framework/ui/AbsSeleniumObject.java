@@ -1980,6 +1980,28 @@ public abstract class AbsSeleniumObject {
 				+ "\")");
 		}
 	}
+	
+	public boolean zWaitTillElementPresent(String locator) throws HarnessException {
+		this.zWaitForBusyOverlay();
+		
+		boolean present = false;
+        for (int i=0; i<=60; i++) {
+        	present = zIsVisiblePerPosition(locator, 10, 10);
+            if (present == true) {
+                SleepUtil.sleepSmall();
+                return true;
+            } else {
+                SleepUtil.sleepMedium();
+                if (i == 60) {
+                    return false;
+                }
+            }
+        }
+        if (present == false) {
+        	throw new HarnessException(locator + " not present in the UI");
+        }
+        return present;
+    }
 
 	/**
 	 * zWaitForElementPresent() Waits for condition during a given timout period until

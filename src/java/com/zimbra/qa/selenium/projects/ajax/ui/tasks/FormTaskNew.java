@@ -355,12 +355,10 @@ public class FormTaskNew extends AbsForm {
 
 		} else if (field == Field.Body) {
 
-			SleepUtil.sleepMedium();
-
 			locator = "css=div[class='ZmTaskEditView'] div[id$='_notes'] textarea[id$='_body']";
 			this.sFocus(locator);
 			this.zClick(locator);
-			zKeyboard.zTypeCharacters(value);
+			sType(locator, value);
 
 			if (!(sGetValue(locator).equalsIgnoreCase(value))) {
 				this.sFocus(locator);
