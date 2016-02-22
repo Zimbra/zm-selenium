@@ -31,6 +31,8 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 public class PageCalendar extends AbsTab {
 
 	public static class Locators {
+		
+		public static final String zCalendarZimletsPane = "ztih__main_Calendar__ZIMLET_textCell";
 
 		// Buttons
 		public static final String NewButton = "css=td#zb__CLWW__NEW_MENU_title";
@@ -268,7 +270,7 @@ public class PageCalendar extends AbsTab {
 
 		boolean found = false;
 
-		for (int i=1; i<=3; i++) {
+		for (int i=1; i<=5; i++) {
 
 			zToolbarPressButton(Button.B_REFRESH);
 
@@ -2315,12 +2317,8 @@ public class PageCalendar extends AbsTab {
 		logger.info("Navigate to " + this.myPageName());
 
 		this.zClick(PageMain.Locators.zAppbarCal);
-		SleepUtil.sleepSmall();
-
-		this.zWaitForBusyOverlay();
-		zWaitForElementPresent(Locators.CalendarFolder);
-
-		zWaitForActive();
+		
+		zWaitTillElementPresent(Locators.zCalendarZimletsPane);
 
 		logger.info("Navigated to "+ this.myPageName() + " page");
 
@@ -2872,18 +2870,19 @@ public class PageCalendar extends AbsTab {
 
 
 	public void zRightClickAddressBubble() throws HarnessException {
-
+		
+		SleepUtil.sleepMedium();
 		try {
 			if (ZimbraSeleniumProperties.isWebDriver()) {
 				logger.info("...WebDriver...contextClick()");
 				this.zRightClick(Locators.AttendeeBubbleAddr);
 			} else {
-				SleepUtil.sleepMedium();
+				
 				this.sMouseOut(Locators.AttendeeBubbleAddr);
 				this.sMouseOver(Locators.AttendeeBubbleAddr);
 				this.zRightClick(Locators.AttendeeBubbleAddr);
-				SleepUtil.sleepLong();
 			}
+			SleepUtil.sleepSmall();
 		} catch (Exception ex) {
 			throw new HarnessException(ex);
 		}

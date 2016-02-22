@@ -2072,64 +2072,61 @@ public class PageMail extends AbsTab {
 	public void zRightClickAddressBubble(Field field) throws HarnessException {
 		if (field == Field.To) {
 			try {
+				SleepUtil.sleepMedium();
 				if (ZimbraSeleniumProperties.isWebDriver()) {
 					logger.info("...WebDriver...contextClick()");
 					this.zRightClick(Locators.zToAddressBubble);
 				} else {
-					SleepUtil.sleepMedium();
 					this.sMouseOut(Locators.zToAddressBubble);
 					this.sMouseOver(Locators.zToAddressBubble);
 					this.zRightClick(Locators.zToAddressBubble);
-					SleepUtil.sleepLong();
 				}
+				SleepUtil.sleepSmall();
 			} catch (Exception ex) {
 				throw new HarnessException(ex);
 			}
 		} else if (field == Field.Cc) {
 			try {
+				SleepUtil.sleepMedium();
 				if (ZimbraSeleniumProperties.isWebDriver()) {
 					logger.info("...WebDriver...contextClick()");
 					this.zRightClick("css=tr[id='zv__COMPOSE-1_cc_row'] td[id='zv__COMPOSE-1_cc_cell'] div div span[class^='addrBubble']>span");
 				} else {
-					SleepUtil.sleepMedium();
 					this.sMouseOut(Locators.zCcAddressBubble);
 					this.sMouseOver(Locators.zCcAddressBubble);
-					this.sClick(Locators.zCcAddressBubble);
 					this.zRightClick("css=tr[id='zv__COMPOSE-1_cc_row'] td[id='zv__COMPOSE-1_cc_cell'] div div span[class^='addrBubble']>span");
-					SleepUtil.sleepLong();
 				}
+				SleepUtil.sleepSmall();
 			} catch (Exception ex) {
 				throw new HarnessException(ex);
 			}
 		} else if (field == Field.Bcc) {
+			SleepUtil.sleepMedium();
 			try {
 				if (ZimbraSeleniumProperties.isWebDriver()) {
 					logger.info("...WebDriver...contextClick()");
 					this.zRightClick("css=tr[id='zv__COMPOSE-1_bcc_row'] td[id='zv__COMPOSE-1_bcc_cell'] div div span[class^='addrBubble']>span");
 				} else {
-					SleepUtil.sleepMedium();
 					this.sMouseOut(Locators.zBccAddressBubble);
 					this.sMouseOver(Locators.zBccAddressBubble);
-					this.sClick(Locators.zBccAddressBubble);
 					this.zRightClick("css=tr[id='zv__COMPOSE-1_bcc_row'] td[id='zv__COMPOSE-1_bcc_cell'] div div span[class^='addrBubble']>span");
-					SleepUtil.sleepLong();
 				}
+				SleepUtil.sleepSmall();
 			} catch (Exception ex) {
 				throw new HarnessException(ex);
 			}
 		} else if (field == Field.From) {
+			SleepUtil.sleepMedium();
 			try {
 				if (ZimbraSeleniumProperties.isWebDriver()) {
 					logger.info("...WebDriver...contextClick()");
 					this.zRightClick(Locators.zFromHdrAddressBubble);
 				} else {
-					SleepUtil.sleepMedium();
 					this.sMouseOut(Locators.zFromHdrAddressBubble);
 					this.sMouseOver(Locators.zFromHdrAddressBubble);
-					this.sClick(Locators.zFromHdrAddressBubble);
 					this.zRightClick(Locators.zFromHdrAddressBubble);
-					SleepUtil.sleepMedium();
 				}
+				SleepUtil.sleepSmall();
 			} catch (Exception ex) {
 				throw new HarnessException(ex);
 			}

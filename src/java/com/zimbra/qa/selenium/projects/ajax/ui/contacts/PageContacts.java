@@ -27,11 +27,16 @@ import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
 public class PageContacts extends AbsTab {
-
+	
+	public static class Locators {
+		public static final String zContactsZimletsPane = "ztih__main_Contacts__ZIMLET_textCell";
+	}
+	
 	public static class CONTEXT_MENU {
-		public static final String LOCATOR		= "id='zm__Contacts'";
 		
-		//contact's context menu	
+		public static final String LOCATOR = "id='zm__Contacts'";
+		
+		//contact's context menu
 		public static final ContextMenuItem CONTACT_SEARCH = new ContextMenuItem("POPUP_zmi__Contacts__SEARCH_MENU","Find Emails...","div[class*='ImgSearch']"," div[class*='ImgCascade']");	
 		public static final ContextMenuItem CONTACT_NEW_EMAIL = new ContextMenuItem("POPUP_zmi__Contacts__NEW_MESSAGE","New Email","div[class*='ImgNewMessage']",":contains('nm')");  	
     
@@ -122,8 +127,7 @@ public class PageContacts extends AbsTab {
 			
 		String locator = "css=div#ztih__main_Contacts__ADDRBOOK_div";
 
-
-      active &= this.sIsElementPresent(locator);		   
+		active &= this.sIsElementPresent(locator);		   
 		return (active);
 
 	}
@@ -147,24 +151,14 @@ public class PageContacts extends AbsTab {
 			return;
 		}
 
-
 		if ( !((AppAjaxClient)MyApplication).zPageMain.zIsActive() ) {
 			((AppAjaxClient)MyApplication).zPageMain.zNavigateTo();
 		}
-
-		logger.info("Navigate to "+ this.myPageName());
-
-		if (!GeneralUtility.waitForElementPresent(this,PageMain.Locators.zAppbarContact))  {
-			throw new HarnessException("Can't locate addressbook icon");
-		}
-
 		
-		// Click on Addressbook icon
-		zClickAt(PageMain.Locators.zAppbarContact,"0,0");
-		SleepUtil.sleepSmall();
-		zWaitForElementPresent("css=div#ztih__main_Contacts__ADDRBOOK_div");
+		logger.info("Navigate to " + this.myPageName());
 
-		zWaitForActive();
+		zClickAt(PageMain.Locators.zAppbarContact,"0,0");
+		zWaitTillElementPresent(Locators.zContactsZimletsPane);
 
 		logger.info("Navigated to "+ this.myPageName() + " page");
 

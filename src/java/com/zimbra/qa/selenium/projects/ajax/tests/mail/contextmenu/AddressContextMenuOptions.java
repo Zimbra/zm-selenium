@@ -13,33 +13,26 @@ public class AddressContextMenuOptions extends PrefGroupMailByMessageTest {
 
 	public AddressContextMenuOptions() {
 		logger.info("New " + AddressContextMenuOptions.class.getCanonicalName());
-
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
-
 	}
 
-	@Test(description = "Right click To bubble address>>Verify Delete/Copy/Edit/Expand/AddtoContact/Moveto-cc-bcc menus", groups = { "sanity" })
+	@Test(description = "Right click To bubble and verify Delete, Copy, Edit, Expand, Add to Contact and Move To cc, bcc options", groups = { "sanity" })
+	
 	public void VerifyAddressContextMenuOptions() throws HarnessException {
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
-		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountB(),
-				RecipientItem.RecipientType.To));
+		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountB(), RecipientItem.RecipientType.To));
 
 		// Open the new mail form
-		FormMailNew mailform = (FormMailNew) app.zPageMail
-				.zToolbarPressButton(Button.B_NEW);
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 
 		// Fill out the form with the data
-		
-		SleepUtil.sleepMedium();
 		mailform.zFill(mail);
-		SleepUtil.sleepMedium();
+
 		app.zPageMail.zRightClickAddressBubble(Field.To);
-		ZAssert.assertTrue(app.zPageMail.zVerifyAllAddressContextMenu(""),
-				"Delete/Copy/Edit/Expand/AddtoContact/Moveto-cc-bcc menu should be exist");
+		ZAssert.assertTrue(app.zPageMail.zVerifyAllAddressContextMenu(""), "Delete, Copy, Edit, Expand, Add to Contact and Move To cc, bcc options doesn't exists");
 
 	}
-
 }

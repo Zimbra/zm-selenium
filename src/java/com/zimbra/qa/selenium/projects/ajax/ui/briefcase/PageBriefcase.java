@@ -21,11 +21,9 @@ package com.zimbra.qa.selenium.projects.ajax.ui.briefcase;
 
 import java.util.EnumMap;
 import java.util.Map;
-
 import org.apache.commons.httpclient.HttpStatus;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.items.DocumentItem;
 import com.zimbra.qa.selenium.framework.items.FileItem;
@@ -49,15 +47,14 @@ import com.zimbra.qa.selenium.projects.ajax.ui.PageMain;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
-/**
- * @author
- * 
- */
 public class PageBriefcase extends AbsTab {
 
 	public static final String pageTitle = "Zimbra: Briefcase";
 
 	public static class Locators {
+		
+		public static final String zBriefcaseZimletsPane = "ztih__main_Briefcase__ZIMLET_textCell";
+		
 		public static final Locators zNewBriefcaseOverviewPaneIcon = new Locators("id=ztih__main_Briefcase__BRIEFCASE_textCell");
 		public static final Locators zBriefcaseFolder = new Locators("id=zti__main_Briefcase__16_textCell");
 		public static final Locators briefcaseListView = new Locators("css=div[id^='zl__BDLV'][class='DwtListView-Rows']");
@@ -146,12 +143,6 @@ public class PageBriefcase extends AbsTab {
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
-		// Make sure the main page is active
-		// if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive())
-		// ((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
-
-		// If the "folders" tree is visible, then Briefcase tab is active
-
 		String locator = Locators.zBriefcaseFolderIcon.locator;
 		
 		boolean loaded = zWaitForElementPresent(locator,"1000");
@@ -186,19 +177,15 @@ public class PageBriefcase extends AbsTab {
 			return;
 		}
 
-		logger.info("Navigate to " + this.myPageName());
-
 		// Make sure we are logged into the Ajax app
 		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive())
-			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();			
+			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
+		
+		logger.info("Navigate to " + this.myPageName());
 				
 		// Click on Briefcase icon
 		zClickAt(PageMain.Locators.zAppbarBriefcase, "0,0");
-		SleepUtil.sleepSmall();
-
-		zWaitForBusyOverlay();
-
-		zWaitForElementPresent(Locators.zBriefcaseFolderIcon.locator);
+		zWaitTillElementPresent(Locators.zBriefcaseZimletsPane);
 
 		logger.info("Navigated to "+ this.myPageName() + " page");
 

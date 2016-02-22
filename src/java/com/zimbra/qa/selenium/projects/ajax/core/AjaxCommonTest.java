@@ -402,10 +402,7 @@ public class AjaxCommonTest {
 			ClientSessionFactory.session().selenium().stop();
 		}
 		
-		CommandLine.CmdExec("taskkill /f /t /im plugin-container.exe");
-
 		logger.info("commonTestAfterSuite: finish");
-
 	}
 
 	/**

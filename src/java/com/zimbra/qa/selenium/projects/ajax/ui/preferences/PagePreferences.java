@@ -21,18 +21,14 @@ package com.zimbra.qa.selenium.projects.ajax.ui.preferences;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
-
 import org.apache.commons.lang.StringUtils;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare.ShareRole;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning.DialogWarningID;
-
 
 /**
  * @author Matt Rhoades
