@@ -35,7 +35,7 @@ public class zimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
 	}
 
 	// Need to skip this test completely till bug 77465 get fixed otherwise automation may stuck at browser navigate away dialog 
-	@Bugs(ids = "101729")
+	@Bugs(ids = "101729,103862")
 	@Test(
 			description = "Set First day of the week and verify that first day is set correctly", 
 			groups = { "functional" })
@@ -51,6 +51,10 @@ public class zimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
 		
 		// Save preferences
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
+		DialogWarning dialog = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.ReloadApplication, app, app.zPagePreferences);
+		ZAssert.assertNotNull(dialog, "Dialog is present");
+		dialog.zClickButton(Button.B_YES);
+
 		app.zPageLogin.zNavigateTo();
 		this.startingPage.zNavigateTo();
 		
@@ -69,29 +73,6 @@ public class zimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
 		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayOfWorkWeek(3), "Thu", "Third day matched");
 		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayOfWorkWeek(4), "Fri", "Fourth day matched");
 		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayOfWorkWeek(6), "Mon", "Fifth day matched");
-		app.zPageMain.zLogout();
-	}
-
-	@Bugs(ids = "103862")
-	@Test(
-			description = "Verify that modifying 'Start week on:' preference prompts for UI refresh", 
-			groups = { "functional" })
-	
-	public void zimbraPrefCalendarFirstDayOfWeek_02() throws HarnessException {
-		
-		// Navigate to preferences -> calendar
-		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
-		SleepUtil.sleepMedium();
-
-		// Set Start week on day to something other than Sunday
-		app.zPagePreferences.zToolbarPressPulldown(Button.O_START_WEEK_ON, Button.O_START_WEEK_ON_TUESDAY);
-		
-		// Save preferences
-		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
-		DialogWarning dialog = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.ReloadApplication, app, app.zPagePreferences);
-		ZAssert.assertNotNull(dialog, "Dialog is present");
-		dialog.zClickButton(Button.B_YES);
-
 		app.zPageMain.zLogout();
 	}
 	
