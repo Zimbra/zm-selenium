@@ -24,6 +24,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
 public class zimbraPrefCalendarWorkingHours extends AjaxCommonTest {
@@ -79,4 +80,27 @@ public class zimbraPrefCalendarWorkingHours extends AjaxCommonTest {
 		// if logout stucks then assume that browser dialog appeared
 		app.zPageMain.zLogout();
 	}
+
+	@Bugs(ids = "103862")
+	@Test(description = "Verify that modifying 'Work Week:' preference prompts for UI refresh", 
+			groups = { "functional" })
+	
+	public void zimbraPrefCalendarWorkingHours_02() throws HarnessException {
+		
+		// Navigate to preferences -> calendar
+		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
+		SleepUtil.sleepMedium();
+
+		// Set Start week on day to something other than Sunday
+		app.zPagePreferences.zCheckboxSet(Button.C_MONDAY_WORK_WEEK, false);
+		
+		// Save preferences
+		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
+		DialogWarning dialog = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.ReloadApplication, app, app.zPagePreferences);
+		ZAssert.assertNotNull(dialog, "Dialog is present");
+		dialog.zClickButton(Button.B_YES);
+
+		app.zPageMain.zLogout();
+	}
+	
 }

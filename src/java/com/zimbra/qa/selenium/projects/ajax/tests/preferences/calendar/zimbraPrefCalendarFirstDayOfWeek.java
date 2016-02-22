@@ -24,6 +24,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
 public class zimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
@@ -70,4 +71,28 @@ public class zimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
 		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayOfWorkWeek(6), "Mon", "Fifth day matched");
 		app.zPageMain.zLogout();
 	}
+
+	@Bugs(ids = "103862")
+	@Test(
+			description = "Verify that modifying 'Start week on:' preference prompts for UI refresh", 
+			groups = { "functional" })
+	
+	public void zimbraPrefCalendarFirstDayOfWeek_02() throws HarnessException {
+		
+		// Navigate to preferences -> calendar
+		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
+		SleepUtil.sleepMedium();
+
+		// Set Start week on day to something other than Sunday
+		app.zPagePreferences.zToolbarPressPulldown(Button.O_START_WEEK_ON, Button.O_START_WEEK_ON_TUESDAY);
+		
+		// Save preferences
+		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
+		DialogWarning dialog = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.ReloadApplication, app, app.zPagePreferences);
+		ZAssert.assertNotNull(dialog, "Dialog is present");
+		dialog.zClickButton(Button.B_YES);
+
+		app.zPageMain.zLogout();
+	}
+	
 }
