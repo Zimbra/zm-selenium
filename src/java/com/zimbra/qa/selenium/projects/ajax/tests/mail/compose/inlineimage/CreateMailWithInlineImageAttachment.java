@@ -110,9 +110,8 @@ public class CreateMailWithInlineImageAttachment extends PrefGroupMailByMessageT
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);			
 			//app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(fileName);
 			
-			//Verify inline image in reading pane
+			// Verify inline image in reading pane
 			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline image is present in reading pane");
-
 
 		} finally {
 			

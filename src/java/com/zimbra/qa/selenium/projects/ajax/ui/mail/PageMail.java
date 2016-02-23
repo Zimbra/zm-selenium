@@ -123,7 +123,7 @@ public class PageMail extends AbsTab {
 		public static final String zAttachInboxFolder  = "css=div[id='zov__AttachMailTabView'] div[id^='zti__AttachMailTabView'] td[id^='zti__AttachMailTabView']:contains('Inbox')";
 		public static final String zAttachBriefcaseFolder  = "css=div[id='zov__ZmBriefcaseTabView'] div[id^='zti__ZmBriefcaseTabView'] td[id^='zti__ZmBriefcaseTabView']:contains('Briefcase')";
 		public static final String zUntagBubble ="css=div[id='zv__TV-main__MSG'] tr[id='zv__TV__TV-main_MSG_tagRow'] span[class='addrBubble TagBubble'] span[class='ImgBubbleDelete']";
-		public static final String zInlineImage="css=img[data-mce-src^='cid']&&[data-mce-src$='@zimbra']";
+		public static final String zInlineImageAttachment="css=img[data-mce-src^='cid']&&[data-mce-src$='@zimbra']";
 
 		public static class CONTEXT_MENU {
 			// TODO: Until https://bugzilla.zimbra.com/show_bug.cgi?id=56273 is
@@ -260,17 +260,13 @@ public class PageMail extends AbsTab {
 	}
 	
 	public boolean zVerifyAttachmentExistsInMail (String fileName) throws HarnessException {
-		boolean isAttachmentExists = sIsElementPresent("css=td a[id^='zv__TV__TV-main_MSG_attLinks']:contains('" + fileName + "')");
+		boolean isAttachmentExists = false;
+		isAttachmentExists = sIsElementPresent("css=td a[id$='main_MSG_attLinks']:contains('" + fileName + "')");
 		return isAttachmentExists;
 	}
-	
-	public boolean zVerifyInlineImageAttachmentExistsInMail (String fileName) throws HarnessException {
-		boolean isAttachmentExists = sIsElementPresent("css=img[data-mce-src^='cid']");
-		return isAttachmentExists;
-	}
-	
-	public boolean zVerifyInlineImageAttachmentExistsInMail()throws HarnessException {
-		String locator = Locators.zInlineImage;
+		
+	public boolean zVerifyInlineImageAttachmentExistsInMail() throws HarnessException {
+		String locator = Locators.zInlineImageAttachment;
 		boolean inlineimgloaded = this.sIsElementPresent(locator);
 		if (!inlineimgloaded)
 			return (false);

@@ -77,7 +77,7 @@ public class ReplyMailWithInlineImageAttachment extends PrefGroupMailByMessageTe
 			app.zPageMail.zPressButton(Button.B_ATTACH_INLINE);
 			zUploadInlineImageAttachment(filePath);
 			
-			app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(fileName);
+			app.zPageMail.zVerifyInlineImageAttachmentExistsInMail();
 			
 			// Send the message
 			mailform.zSubmit();
@@ -103,8 +103,7 @@ public class ReplyMailWithInlineImageAttachment extends PrefGroupMailByMessageTe
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);
 			ZAssert.assertFalse(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the email");
-			
-			app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(fileName);
+			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline attachment exists in the email");
 			
 		} finally {
 			

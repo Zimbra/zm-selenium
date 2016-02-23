@@ -100,8 +100,8 @@ public class SaveDraftMailWithAttachment extends PrefGroupMailByMessageTest {
 			// Verify UI for attachment
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);			
-			app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(fileName);
-
+			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline attachment exists in the email");
+			
 		} finally {
 			
 			Robot robot;

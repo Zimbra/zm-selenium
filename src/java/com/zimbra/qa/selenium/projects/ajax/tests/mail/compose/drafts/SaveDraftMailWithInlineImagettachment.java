@@ -70,7 +70,7 @@ public class SaveDraftMailWithInlineImagettachment extends PrefGroupMailByMessag
 			app.zPageMail.zPressButton(Button.B_ATTACH_INLINE);
 			zUploadInlineImageAttachment(filePath);
 			
-			app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(filePath);
+			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline attachment exists in the email");
 
 			// Send the message after saving as draft
 			mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
@@ -170,7 +170,7 @@ public class SaveDraftMailWithInlineImagettachment extends PrefGroupMailByMessag
 			app.zPageMail.zPressButton(Button.B_ATTACH_INLINE);
 			zUploadInlineImageAttachment(anotherFilePath);
 			
-			app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(anotherFilePath);
+			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline attachment exists in the email");
 
 			mailform.zSubmit();
 			
@@ -211,7 +211,7 @@ public class SaveDraftMailWithInlineImagettachment extends PrefGroupMailByMessag
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);			
 			app.zPageMail.zVerifyAttachmentExistsInMail(mimeAttachmentName);
-			app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(anotherFileName);
+			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline attachment exists in the email");
 
 		} finally {
 			

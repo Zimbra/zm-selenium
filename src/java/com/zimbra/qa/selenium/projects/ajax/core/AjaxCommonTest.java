@@ -507,7 +507,6 @@ public class AjaxCommonTest {
 		SleepUtil.sleepLong();
 		
 		if (ZimbraSeleniumProperties.isWebDriver()) {
-			
 			/*
 				//put path to your image in a clipboard
 				StringSelection ss = new StringSelection(filePath);
@@ -534,17 +533,13 @@ public class AjaxCommonTest {
 					e.printStackTrace();
 				}
 			*/
-			
-			app.zPageBriefcase.zKeyboardTypeStringUpload(filePath);
+			app.zPageMail.zKeyboardTypeStringUpload(filePath);
 			
 		} else {
-			
-			app.zPageBriefcase.zKeyboardTypeStringUpload(filePath);
-			
+			app.zPageMail.zKeyboardTypeStringUpload(filePath);
 		}
 		
-		SleepUtil.sleepVeryVeryLong();
-		
+		SleepUtil.sleepVeryVeryLong(); //real uploading of the file takes time
 	}
 	
 	public void zUploadInlineImageAttachment (String filePath) throws HarnessException {
@@ -552,17 +547,12 @@ public class AjaxCommonTest {
 		SleepUtil.sleepLong();
 		
 		if (ZimbraSeleniumProperties.isWebDriver()) {
-			
-			app.zPageBriefcase.zKeyboardTypeStringUpload(filePath);
-			
+			app.zPageMail.zKeyboardTypeStringUpload(filePath);
 		} else {
-			
-			app.zPageBriefcase.zKeyboardTypeStringUpload(filePath);
-			
+			app.zPageMail.zKeyboardTypeStringUpload(filePath);
 		}
 		
 		SleepUtil.sleepVeryVeryLong();
-		
 	}
 
 	@SuppressWarnings("deprecation")
