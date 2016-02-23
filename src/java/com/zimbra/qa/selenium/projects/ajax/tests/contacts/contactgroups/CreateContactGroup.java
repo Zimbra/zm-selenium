@@ -16,47 +16,41 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contactgroups;
 
+import java.util.List;
 
 import org.testng.annotations.Test;
 
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.items.*;
+import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
+import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactGroupNew.Field;
 
-
 public class CreateContactGroup extends AjaxCommonTest  {
 
 	public CreateContactGroup() {
 		logger.info("New "+ CreateContactGroup.class.getCanonicalName());
 		
-		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
-
-		// Make sure we are using an account with conversation view
 		super.startingAccountPreferences = null;		
-		
 	}
-		
 	
 	
-	@Test(	description = "Create a basic contact group with 2 addresses.  New -> Contact Group",
-			groups = { "sanity" })
+	@Test(	description = "Create a basic contact group with 2 addresses.  New -> Contact Group", groups = { "sanity" })
+	
 	public void CreateContactGroup_01() throws HarnessException {			
 
-		
 		//-- Data
 		
 		String groupName = "group" + ZimbraSeleniumProperties.getUniqueString();
 		String member1 = "m" + ZimbraSeleniumProperties.getUniqueString() + "@example.com";
 		String member2 = "m" + ZimbraSeleniumProperties.getUniqueString() + "@example.com";
 		
-		
 		//-- GUI
-		
 		
 		// Refresh the addressbook
 		app.zPageContacts.zRefresh();
@@ -70,7 +64,6 @@ public class CreateContactGroup extends AjaxCommonTest  {
 		form.zFillField(Field.FreeFormAddress, member2);
 		form.zSubmit();
 	   
-	
 		//-- Data Verification
 		
 		app.zGetActiveAccount().soapSend(
@@ -112,17 +105,15 @@ public class CreateContactGroup extends AjaxCommonTest  {
 	}
 	
 	
-	@Test(	description = "Create a basic contact group with 2 GAL addresses.",
-			groups = { "functional" })
+	@Test(	description = "Create a basic contact group with 2 GAL addresses", groups = { "functional" })
+	
 	public void CreateContactGroup_02() throws HarnessException {
 		
 		//-- Data
 		
 		String groupName = "group" + ZimbraSeleniumProperties.getUniqueString();
-
 		
 		//-- GUI
-		
 		
 		// Refresh the addressbook
 		app.zPageContacts.zRefresh();
@@ -147,8 +138,6 @@ public class CreateContactGroup extends AjaxCommonTest  {
 		// Save the group
 		form.zSubmit();
 		
-
-
 		//-- Verification
 		
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ groupName);
@@ -158,11 +147,11 @@ public class CreateContactGroup extends AjaxCommonTest  {
 		ZAssert.assertContains(actual.getMemberList(), new ContactGroupItem.MemberItemGAL(ZimbraAccount.AccountB()), "Verify member 1 is in the group");
 
 	}
+	
 
-	@Test(	description = "Create a contact group with existing contacts",
-			groups = { "functional" })
+	@Test(	description = "Create a contact group with existing contacts", groups = { "functional" })
+	
 	public void CreateContactGroup_03() throws HarnessException {
-
 		
 		//-- Data
 		
@@ -173,8 +162,6 @@ public class CreateContactGroup extends AjaxCommonTest  {
 		ContactItem contact1 = ContactItem.createContactItem(app.zGetActiveAccount());
 		ContactItem contact2 = ContactItem.createContactItem(app.zGetActiveAccount());
 
-		
-		
 		//-- GUI
 		
 		// Refresh
@@ -198,9 +185,7 @@ public class CreateContactGroup extends AjaxCommonTest  {
 		form.zToolbarPressButton(Button.B_CONTACTGROUP_ADD_SEARCH_RESULT);
 			
 		// click Save
-		form.zSubmit(); 
-		
-
+		form.zSubmit();
 
 		//-- Verification
 		
@@ -212,11 +197,10 @@ public class CreateContactGroup extends AjaxCommonTest  {
 
 	}
 
-	@Test(	description = "Create a contact group with GAL + existing contacts + new emails",
-			groups = { "functional" })
+	@Test(	description = "Create a contact group with GAL + existing contacts + new emails", groups = { "functional" })
+	
 	public void CreateContactGroup_04() throws HarnessException {			
 
-		
 		//-- Data
 		
 		// The contact group name
@@ -227,7 +211,6 @@ public class CreateContactGroup extends AjaxCommonTest  {
 
 		// A general email address
 		String member1 = "m" + ZimbraSeleniumProperties.getUniqueString() + "@example.com";
-
 		
 		//-- GUI
 		
@@ -255,12 +238,9 @@ public class CreateContactGroup extends AjaxCommonTest  {
 		// Add the free-form email
 		form.zFillField(Field.FreeFormAddress, member1);
 
-			
 		// click Save
 		form.zSubmit(); 
 		
-
-
 		//-- Verification
 		
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ groupName);
@@ -271,6 +251,71 @@ public class CreateContactGroup extends AjaxCommonTest  {
 		ZAssert.assertContains(actual.getMemberList(), new ContactGroupItem.MemberItemAddress(member1), "Verify GAL 1 is in the group");
 
 	}
+	
+	
+	@Test( description="Create a new contact group from GAL search result",  groups= { "functional"  } )
+	
+	public void CreateContactGroupFromGALSearchResult_01() throws HarnessException{
+		
+		String email=ZimbraAccount.AccountA().EmailAddress.substring(0,ZimbraAccount.AccountA().EmailAddress.indexOf('@'));
+		
+		// Re-navigation required because selenium mouse hover doesn't show context menu at right location for 2nd test within the class (work around) 
+		app.zPageLogin.zNavigateTo();
+		this.startingPage.zNavigateTo();
 
+		// search for a GAL
+		app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_GAL); 		
+		app.zPageSearch.zAddSearchQuery(email);	
+		app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);		
+
+		//Right click and select New Contact Group
+		//Create contact group 
+		ContactGroupItem newGroup = new ContactGroupItem("group_" + ZimbraSeleniumProperties.getUniqueString().substring(8));
+
+		// Right click on the contact
+		DialogNewContactGroup dialog = (DialogNewContactGroup) app.zPageContacts.zListItem(
+				Action.A_RIGHTCLICK, 
+				Button.B_CONTACTGROUP, 
+				Button.O_NEW_CONTACTGROUP, 
+				email);
+
+		//fill in group name 
+		dialog.zEnterGroupName(newGroup.getName());
+		//Save
+		dialog.zClickButton(Button.B_OK);
+
+		//verify toast message 'group created'
+		ZAssert.assertStringContains(app.zPageMain.zGetToaster().zGetToastMessage(), "Group Created" , "Verify toast message: '" + "Group Created" + "'");
+		
+		//Create a contact item
+		ContactItem contactItem = new ContactItem(email);
+		contactItem.email = ZimbraAccount.AccountA().EmailAddress;	 
+
+		//Add the member to the group	 
+		newGroup.addDListMember(contactItem);
+
+		//click "Contacts" folder
+		FolderItem folder= FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
+
+		app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, folder);
+
+		//verify group name is displayed		        
+		List<ContactItem> contacts = app.zPageContacts.zListGetContacts();
+		boolean isFileAsEqual=false;
+		for (ContactItem ci : contacts) {
+			if (ci.fileAs.equals(ci.fileAs)) {
+				isFileAsEqual = true;	
+				break;
+			}
+		}
+		ZAssert.assertTrue(isFileAsEqual, "Verify group name (" + newGroup.fileAs + ") displayed");
+		//ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ groupName);
+		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newGroup.getName());
+		ZAssert.assertNotNull(actual, "Verify the group stil exists");
+
+		//verify the location is System folder "Contacts"
+		//ZAssert.assertEquals(app.zPageContacts.sGetText("css=td.companyFolder"), SystemFolder.Contacts.getName(), "Verify location (folder) is " + SystemFolder.Contacts.getName());
+		
+	}
 
 }
