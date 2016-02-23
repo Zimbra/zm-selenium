@@ -33,11 +33,11 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 		logger.info("New "+ CheckMailContentForSpecificMimes.class.getCanonicalName());
 	}
 
-	@Bugs(	ids = "13911")
+	@Bugs(	ids = "13911,11684")
 	@Test(	description = "Verify bug 13911",
 			groups = { "functional" })
 	
-	public void CheckMailContentForSpecificMimes_01() throws HarnessException {
+	public void CheckMailContentForSpecificMime_01() throws HarnessException {
 		
 		String subject = "subject13010064065623";
 		String bodyBeforeImage = "K\u00e6re alle"; 
@@ -62,7 +62,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 	@Bugs(	ids = "21415")
 	@Test(	description = "Verify bug 21415", groups = { "functional" })
 	
-	public void CheckMailContentForSpecificMimes_02() throws HarnessException {
+	public void CheckMailContentForSpecificMime_02() throws HarnessException {
 
 		String subject = "subject12998858731253";
 		String beginningContent = "Uso Interno";
@@ -89,7 +89,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 	@Bugs(	ids = "21415")
 	@Test(	description = "Verify bug 21415", groups = { "functional" })
 	
-	public void CheckMailContentForSpecificMimes_03() throws HarnessException {
+	public void CheckMailContentForSpecificMime_03() throws HarnessException {
 
 		String subject = "subject12998912514374";
 		String beginningContent = "Change 77406";
@@ -116,7 +116,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 	@Bugs(	ids = "25624")
 	@Test(	description = "Verify bug 25624", groups = { "functional" })
 	
-	public void CheckMailContentForSpecificMimes_04() throws HarnessException {
+	public void CheckMailContentForSpecificMime_04() throws HarnessException {
 
 		String subject = "subject13001430504373";
 
@@ -136,7 +136,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 	@Bugs(	ids = "27796")
 	@Test(	description = "Verify bug 27796", groups = { "functional" })
 	
-	public void CheckMailContentForSpecificMimes_05() throws HarnessException {
+	public void CheckMailContentForSpecificMime_05() throws HarnessException {
 
 		String subject = "subject13001430504374";
 
@@ -159,7 +159,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 	@Bugs(ids="83527")
 	@Test(	description = "Verify bug 34401", groups = { "functional" })
 	
-	public void CheckMailContentForSpecificMimes_06() throws HarnessException {
+	public void CheckMailContentForSpecificMime_06() throws HarnessException {
 
 		String subject = "subject13002239738283";
 
@@ -178,9 +178,9 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 	}
 	
 	@Bugs(	ids = "66192")
-	@Test(	description = "Verify bug 66192: Blank body with JS error on viewing some messages", groups = { "functional" })
+	@Test(	description = "Blank body with JS error on viewing some messages", groups = { "functional" })
 	
-	public void CheckMailContentForSpecificMimes_07() throws HarnessException {
+	public void CheckMailContentForSpecificMime_07() throws HarnessException {
 
 		String subject = "Fwd: test bug66192";
 		String bodytext = "Kind regards,";
