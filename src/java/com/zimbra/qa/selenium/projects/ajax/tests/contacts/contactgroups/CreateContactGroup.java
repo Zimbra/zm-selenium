@@ -255,7 +255,7 @@ public class CreateContactGroup extends AjaxCommonTest  {
 	
 	@Test( description="Create a new contact group from GAL search result",  groups= { "functional"  } )
 	
-	public void CreateContactGroupFromGALSearchResult_01() throws HarnessException{
+	public void CreateContactGroupFromGALSearchResult_05() throws HarnessException{
 		
 		String email=ZimbraAccount.AccountA().EmailAddress.substring(0,ZimbraAccount.AccountA().EmailAddress.indexOf('@'));
 		
