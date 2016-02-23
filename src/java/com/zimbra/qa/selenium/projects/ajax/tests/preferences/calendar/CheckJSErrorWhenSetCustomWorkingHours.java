@@ -33,9 +33,8 @@ public class CheckJSErrorWhenSetCustomWorkingHours extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 	
-	@Bugs(ids = "102406")
-	@Test( description = "Bug 50479 - When setting custom working hours, JS error", 
-			groups = { "functional" })
+	@Bugs(ids = "102406,50479")
+	@Test( description = "When setting custom working hours, JS error", groups = { "functional" })
 	
 	public void CheckJSErrorWhenSetCustomWorkingHours_01() throws HarnessException {
 

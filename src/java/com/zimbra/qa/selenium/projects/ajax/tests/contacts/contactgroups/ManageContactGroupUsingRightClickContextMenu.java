@@ -20,6 +20,7 @@ import java.util.HashMap;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -82,6 +83,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 	}
 
 	
+	@Bugs(ids = "77882")
 	@Test(	description = "Add a contact to an existing group", groups = { "smoke" })
 	
 	public void Add1ContactToExistingContactGroup() throws HarnessException {			
@@ -120,6 +122,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 	}
 
 	
+	@Bugs(ids = "77882")
 	@Test(	description = "Add 3 contacts to an existing group", groups = { "functional" })
 	
 	public void Add3ContactsToExistingContactGroup() throws HarnessException {
@@ -240,6 +243,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 	}
 
 	
+	@Bugs(ids = "65500,15646")
 	@Test(	description = "Create a contact group with 1 contact + 1 group", groups = { "functional" })
 	
 	public void CreateContactGroupWith1ContactAnd1ContactGroup() throws HarnessException {			
@@ -297,7 +301,8 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 		
 	}		
 	
-
+	
+	@Bugs(ids = "77882,15646")
 	@Test(	description = "Add 1 contact + 1 group to an existing group", groups = { "functional" })
 	
 	public void Add1ContactAnd1GroupToExistingContactGroup() throws HarnessException {

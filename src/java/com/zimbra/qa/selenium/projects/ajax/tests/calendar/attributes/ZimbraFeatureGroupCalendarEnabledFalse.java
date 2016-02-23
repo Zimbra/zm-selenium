@@ -17,7 +17,10 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.attributes;
 
 import java.util.Calendar;
+
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -40,8 +43,9 @@ public class ZimbraFeatureGroupCalendarEnabledFalse extends CalendarWorkWeekTest
 		super.startingPage = app.zPageCalendar;
 	}
 	
+	@Bugs(ids = "56440")
 	@Test(
-			description = "Bug 56440 - If zimbraFeatureGroupCalendarEnabled to FALSE then check if user can edit existing appt", 
+			description = "If zimbraFeatureGroupCalendarEnabled to FALSE then check if user can edit existing appt", 
 			groups = { "functional" })
 	public void ZimbraFeatureGroupCalendarEnabledFalse_01() throws HarnessException {
 

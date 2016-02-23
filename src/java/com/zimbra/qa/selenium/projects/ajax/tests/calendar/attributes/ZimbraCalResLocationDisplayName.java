@@ -21,6 +21,7 @@ import java.util.Calendar;
 import org.testng.annotations.*;
 
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
@@ -35,7 +36,8 @@ public class ZimbraCalResLocationDisplayName extends CalendarWorkWeekTest {
 	    super.startingAccountPreferences = null;
 	}
 	
-	@Test(description = "Bug 57039 : Verify the serach location dialog shows location display name for location",
+	@Bugs(ids = "57039")
+	@Test(description = "Verify the serach location dialog shows location display name for location",
 			groups = { "functional" })
 	
 	public void ZimbraCalResLocationDisplayName_01() throws HarnessException {

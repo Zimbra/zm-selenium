@@ -21,6 +21,7 @@ import java.util.List;
 import org.testng.annotations.Test;
 
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -252,7 +253,7 @@ public class CreateContactGroup extends AjaxCommonTest  {
 
 	}
 	
-	
+	@Bugs(ids = "77968,70905,66623")
 	@Test( description="Create a new contact group from GAL search result",  groups= { "functional"  } )
 	
 	public void CreateContactGroupFromGALSearchResult_05() throws HarnessException{

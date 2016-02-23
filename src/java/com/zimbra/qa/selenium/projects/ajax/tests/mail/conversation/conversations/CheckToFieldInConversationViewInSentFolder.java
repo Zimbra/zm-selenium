@@ -18,7 +18,10 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversations;
 
 import java.util.HashMap;
+
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.RecipientItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -46,7 +49,8 @@ public class CheckToFieldInConversationViewInSentFolder extends AjaxCommonTest {
 	}
 
 	
-	@Test(	description = "Verify bug 47288 - To field should not display blank in a conversation in Sent folder",
+	@Bugs(ids = "67986,64067,47288,16213")
+	@Test(	description = "To field should not display blank in a conversation in Sent folder",
 			groups = { "functional" })
 	
 	public void CheckToFieldInConversationViewInSentFolder_01() throws HarnessException {

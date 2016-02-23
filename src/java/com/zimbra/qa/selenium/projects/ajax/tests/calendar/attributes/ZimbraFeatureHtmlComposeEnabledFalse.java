@@ -17,7 +17,10 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.attributes;
 
 import java.util.Calendar;
+
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -35,8 +38,9 @@ public class ZimbraFeatureHtmlComposeEnabledFalse extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
+	@Bugs(ids = "59504")
 	@Test(
-			description = "Bug 59504 - If zimbraFeatureHtmlComposeEnabled to FALSE then check if user can create appt", 
+			description = "If zimbraFeatureHtmlComposeEnabled to FALSE then check if user can create appt", 
 			groups = { "functional" })
 	public void ZimbraFeatureHtmlComposeEnabledFalse_01() throws HarnessException {
 		

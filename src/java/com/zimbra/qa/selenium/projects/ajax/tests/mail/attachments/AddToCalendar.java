@@ -109,7 +109,8 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(apptName, apptSubject, "Verify correct appointment returned'");
 	}
 	
-	@Test(description = "Bug 49734 - JS error (t is undefined) while click to 'Add to Calendar' when viewing in separate window",
+	@Bugs(ids = "49734")
+	@Test(description = "JS error (t is undefined) while click to 'Add to Calendar' when viewing in separate window",
 			groups = { "functional" })
 			
 	public void AddToCalendar_NewWindow_01() throws HarnessException {
@@ -178,7 +179,8 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	}
 	
 	
-	@Test(description = "Bug 51442 - Js error (ZmNewCalendarDialog is not defined) while pressing New Calendar from new window and can't open new calendar dialog",
+	@Bugs(ids = "51442")
+	@Test(description = "Js error (ZmNewCalendarDialog is not defined) while pressing New Calendar from new window and can't open new calendar dialog",
 			groups = { "functional" })
 			
 	public void AddToCalendar_NewWindow_02() throws HarnessException {
@@ -416,8 +418,8 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(apptName, apptSubject, "Verify correct appointment returned'");
 	}
 	
-	@Bugs(ids = "102578")
-	@Test(description = "Bug 49715 - Links in email messages to .ics files should provide method to add to calendar",
+	@Bugs(ids = "102578,49715")
+	@Test(description = "Links in email messages to .ics files should provide method to add to calendar",
 			groups = { "functional" })
 			
 	public void AddToCalendar_icsLink_01() throws HarnessException {

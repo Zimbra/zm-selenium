@@ -19,7 +19,10 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversatio
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -49,8 +52,8 @@ public class CheckFromHeaderInConversationView extends AjaxCommonTest {
 
 	}
 
-	
-	@Test(	description = "Verify bug 16213 - Conversation list should show From=<blank>", groups = { "functional" })
+	@Bugs(ids = "67986,64067,47288,16213")
+	@Test(	description = "Conversation list should show From=<blank>", groups = { "functional" })
 	
 	public void CheckFromHeaderInConversationView_01() throws HarnessException {
 
