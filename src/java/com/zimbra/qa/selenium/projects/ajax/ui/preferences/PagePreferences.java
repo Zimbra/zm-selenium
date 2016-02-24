@@ -477,7 +477,7 @@ public class PagePreferences extends AbsTab {
 			
 			this.zClick(Locators.zShareFolderType);
 			this.zWaitForBusyOverlay();
-			
+			SleepUtil.sleepSmall();
 			}		
 	}
 		return page;
@@ -948,7 +948,7 @@ public class PagePreferences extends AbsTab {
 		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		SleepUtil.sleepSmall();
 		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 		this.zWaitForBusyOverlay();
 	
 	}
@@ -972,6 +972,7 @@ public class PagePreferences extends AbsTab {
 		}
 		
 		this.zClick(locator);
+		SleepUtil.sleepSmall();
 		zWaitForBusyOverlay();
 		
 		// This dialog sends a message, so we need to check the queue
@@ -994,6 +995,8 @@ public class PagePreferences extends AbsTab {
 		}
 		this.sFocus(locator);
 		this.sClick(locator);
+		SleepUtil.sleepMedium();
+
 		//this.sCheck(locator);
 	}
 }
