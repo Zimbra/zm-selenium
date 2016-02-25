@@ -158,13 +158,6 @@ public class FormAddressPicker extends AbsForm {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
-		// Make sure a locator was set
-		if ( locator == null )
-			throw new HarnessException("locator was null for button "+ button);
-
-		
-		// Default behavior, process the locator by clicking on it
-		//
 		if ( !this.sIsElementPresent(locator) ) 
 			throw new HarnessException("locator was not present for button "+ button);
 
@@ -173,13 +166,6 @@ public class FormAddressPicker extends AbsForm {
 
 		// if the app is busy, wait for it to become active again
 		this.zWaitForBusyOverlay();
-		
-		if ( page != null ) {
-			
-			// Make sure the page becomes active
-			page.zWaitForActive();
-			
-		}
 		
 		// Return the page, if specified
 		return (page);
@@ -271,12 +257,6 @@ public class FormAddressPicker extends AbsForm {
 
 			}
 			
-			// If we click on pulldown/option and the page is specified, then
-			// wait for the page to go active
-			if ( page != null ) {
-				page.zWaitForActive();
-			}
-			
 		}
 		
 		// Return the specified page, or null if not set
@@ -304,13 +284,6 @@ public class FormAddressPicker extends AbsForm {
 		} else {
 			throw new HarnessException("not implemented for field " + field);
 		}
-		
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for field "+ field);
-		}
-		
-		// Default behavior, enter value into locator field
-		//
 		
 		// Make sure the button exists
 		if ( !this.sIsElementPresent(locator) )

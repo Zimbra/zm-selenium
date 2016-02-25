@@ -261,7 +261,7 @@ public class PageMail extends AbsTab {
 	
 	public boolean zVerifyAttachmentExistsInMail (String fileName) throws HarnessException {
 		boolean isAttachmentExists = false;
-		isAttachmentExists = sIsElementPresent("css=td a[id$='main_MSG_attLinks']:contains('" + fileName + "')");
+		isAttachmentExists = sIsElementPresent("css=td a[id*='main_MSG_attLinks']:contains('" + fileName + "')");
 		return isAttachmentExists;
 	}
 		

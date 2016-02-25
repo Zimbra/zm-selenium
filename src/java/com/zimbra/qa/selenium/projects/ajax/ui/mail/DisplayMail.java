@@ -669,10 +669,6 @@ public class DisplayMail extends AbsDisplay {
 			throw new HarnessException("implement me!  action = "+ button);
 		}
 
-
-		if ( locator == null )
-			throw new HarnessException("no locator defined for button "+ button);
-		
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("locator is not present for button "+ button +" : "+ locator);
 		
@@ -680,10 +676,6 @@ public class DisplayMail extends AbsDisplay {
 		
 		this.zWaitForBusyOverlay();
 
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
-		
 		return (page);
 
 	}
@@ -773,12 +765,7 @@ public class DisplayMail extends AbsDisplay {
 		} else {
 			throw new HarnessException("implement me!  action = "+ action);
 		}
-
-
-		if ( page != null ) {
-			//page.zWaitForActive();
-		}
-
+		
 		// default return command
 		return (page);
 
@@ -927,10 +914,6 @@ public class DisplayMail extends AbsDisplay {
 		} else {
 			throw new HarnessException("not implemented for field "+ field);
 		}
-
-		// Make sure source was found
-		if ( source == null )
-			throw new HarnessException("source was null for "+ field);
 
 		logger.info("DisplayMail.zGetMailPropertyAsHtml() = "+ HtmlElement.clean(source).prettyPrint());
 
@@ -1172,13 +1155,6 @@ public class DisplayMail extends AbsDisplay {
 			
 		}
 
-		// Make sure something was set
-		if ( locator == null )
-			throw new HarnessException("locator was null for field = "+ field);
-		
-		// Default behavior, process the locator by clicking on it
-		//
-		
 		// Make sure the subject is present
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("Unable to find the field = "+ field +" using locator = "+ locator);
@@ -1211,20 +1187,12 @@ public class DisplayMail extends AbsDisplay {
 
 		}
 		
-		if ( locator == null ) {
-			throw new HarnessException("locator was null!");
-		}
-		
 		if ( !(this.sIsElementPresent(locator)) ) {
 			throw new HarnessException("locator not present: "+ locator);
 		}
 		
 		this.sMouseOver(locator);
 		this.zWaitForBusyOverlay();
-		
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
 		
 		return (page);
 
