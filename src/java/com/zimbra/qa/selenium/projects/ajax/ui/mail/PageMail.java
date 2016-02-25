@@ -968,6 +968,7 @@ public class PageMail extends AbsTab {
 
 			if (pulldownLocator.equals(Locators.IcsLinkInBody)) {
 				this.zRightClickAt(pulldownLocator, "0,0");
+				SleepUtil.sleepMedium();
 			} else {
 				this.zClickAt(pulldownLocator, "0,0");
 			}
@@ -987,6 +988,7 @@ public class PageMail extends AbsTab {
 				// 8.0 change ... need zClickAt()
 				// this.zClick(optionLocator);
 				this.zClickAt(optionLocator, "0,0");
+				SleepUtil.sleepSmall();
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
