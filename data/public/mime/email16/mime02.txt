@@ -1,0 +1,36 @@
+Date: Fri, 19 Feb 2016 13:20:34 +0530 (IST)
+From: enus14558676574843@testdomain.com
+To: xyz@testdomain.com
+Subject: remove attachment from conversation view
+MIME-Version: 1.0
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_494_1310380726.1455868234954"
+X-Originating-IP: [10.15.32.134]
+X-Mailer: Zimbra 8.7.0_BETA2_1536 (ZimbraWebClient - FF44 (Win)/8.7.0_BETA2_1536)
+Thread-Index: 4DN3KtU+a/UVMa/kQwwx07IobWNMhQ==
+Thread-Topic: remove attachment from conversation view
+
+------=_Part_494_1310380726.1455868234954
+Content-Type: multipart/alternative; 
+	boundary="=_c2bd299f-c5d1-41be-a258-092388ace9ee"
+
+--=_c2bd299f-c5d1-41be-a258-092388ace9ee
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+remove attachment from conversation view 
+
+--=_c2bd299f-c5d1-41be-a258-092388ace9ee
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html><body><div style="font-family: arial, helvetica, sans-serif; font-size: 12pt; color: #000000"><div>remove attachment from conversation view<br data-mce-bogus="1"></div></div></body></html>
+--=_c2bd299f-c5d1-41be-a258-092388ace9ee--
+
+------=_Part_494_1310380726.1455868234954
+Content-Type: text/plain; name=remove.txt
+Content-Disposition: attachment; filename=remove.txt
+Content-Transfer-Encoding: base64
+
+cmVtb3ZlIGF0dGFjaG1lbnQgZnJvbSBjb252ZXJzYXRpb24gdmlldw==
+------=_Part_494_1310380726.1455868234954--
