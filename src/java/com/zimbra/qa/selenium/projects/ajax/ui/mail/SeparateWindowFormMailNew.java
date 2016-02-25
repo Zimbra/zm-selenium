@@ -500,7 +500,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 	public boolean waitForComposeWindow() throws HarnessException {
 	    	String pageTitle = "Zimbra: Compose";
 	    	if (ZimbraSeleniumProperties.isWebDriver()){
-	    	    sWaitForPopUp(pageTitle,"60000");
+	    	    sWaitForPopUp(pageTitle,"30000");
 	    	}else{
 	    	    sWaitForCondition("var x; for(var windowName in selenium.browserbot.openedWindows)"
 			+ "{var targetWindow = selenium.browserbot.openedWindows[windowName];"
@@ -513,7 +513,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 	    	}
 		sSelectWindow(pageTitle);
 
-		zWaitForElementPresent("css=textarea[id*='DWT'][class='DwtHtmlEditorTextArea']","30000");
+		zWaitForElementPresent("css=textarea[id*='DWT'][class='DwtHtmlEditorTextArea']","10000");
 
 		return true;
 	}
