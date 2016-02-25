@@ -48,7 +48,7 @@ public class PageMail extends AbsTab {
 		public static final String zByConvViewConvID = "css=div[id^='POPUP_DWT'][style*='display: block;'] div[id^='CLV']";
 		public static final String zByMsgViewConvID = "css=div[id^='POPUP_DWT'][style*='display: block;'] div[id^='TV']";
 		public static final String zByCONVORDERwConvID = "css=div[id^='POPUP_DWT'][style*='display: block;'] div[id^='CONV_ORDER']";		
-
+		public static final String zViewEntireMessageLink = "css=div[id$='msgTruncation'] td [id$='_link']";
 		public static final String zCloseIconBtn_messageWindow = "css=td[id=zb__MSG__CLOSE_left_icon]";
 		public static final String cssTVRowsLocator = "css=div#zl__TV-main__rows";
 
@@ -548,6 +548,11 @@ public class PageMail extends AbsTab {
 
 			locator = "id='" + Locators.zViewMenuDropdownBtnID + "'";
 
+		}  else if ( button == Button.B_CLOSE_CONVERSATION ) { // Close the conversation tab
+
+			locator = "css=div[id$='__CLOSE'] td[id$='_title']";
+			page = null;
+			
 		} else if (button == Button.B_SELECT_ALL) {
 
 			if (zGetPropMailView() == PageMailView.BY_MESSAGE) {
@@ -596,6 +601,32 @@ public class PageMail extends AbsTab {
 
 			this.zWaitForBusyOverlay();
 			return (page);
+
+		} else if ((button == Button.B_MAIL_VIEW_READING_PANE_BOTTOM)
+				|| (button == Button.B_MAIL_VIEW_READING_PANE_RIGHT)
+				|| (button == Button.B_MAIL_VIEW_READING_PANE_OFF)) { //Selecting the Reading Pane
+
+			locator = "css=td[id$=VIEW_MENU_dropdown]>div[class='ImgSelectPullDownArrow']";
+			this.zClick(locator, (WebElement[]) null);			
+			this.zWaitForBusyOverlay();
+
+			// Click on Reading pane
+			locator = "css=td[id$=READING_PANE_1_dropdown]>div[class='ImgCascade']"; 
+			this.zClick(locator, (WebElement[]) null);
+			this.zWaitForBusyOverlay();
+
+			// Select Reading Pane At the Bottom/On the Right/Off
+			if (button == Button.B_MAIL_VIEW_READING_PANE_BOTTOM) {
+				locator = "css=div#bottom td[id$='_title']";
+			} else if (button == Button.B_MAIL_VIEW_READING_PANE_RIGHT) {
+				locator = "css=div#right td[id$='_title']";
+			} else if (button == Button.B_MAIL_VIEW_READING_PANE_OFF) {
+				locator = "css=div#off td[id$='_title']";
+			}
+			this.zClick(locator, (WebElement[]) null);
+			this.zWaitForBusyOverlay();
+
+			return (null);
 
 		} else if ((button == Button.B_MAIL_LIST_GROUPBY_FROM)
 				|| (button == Button.B_MAIL_LIST_GROUPBY_DATE)
@@ -826,6 +857,13 @@ public class PageMail extends AbsTab {
 
 				// FALL THROUGH
 
+			} else if (option == Button.O_SHOW_CONVERSATION) { //Selecting 'Show Conversation' option
+
+				optionLocator= "id=zmi__TV-main__SHOW_CONV_title";
+				page = null;
+
+				// FALL THROUGH 
+			
 			} else if (option == Button.B_REDIRECT) {
 
 				optionLocator += " div[id*='REDIRECT'] td[id$='_title']";
