@@ -69,6 +69,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 			// Send the message
 			window.zToolbarPressButton(Button.B_SAVE_DRAFT);
+			SleepUtil.sleepMedium();
 			
 			// Close the window
 			window.zToolbarPressButton(Button.B_CANCEL);
@@ -123,8 +124,10 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 
 			window.zSetWindowTitle("Compose");
+			window.zWaitForActive();		// Make sure the window is there
 
-			SleepUtil.sleepVeryLong();
+			
+			//SleepUtil.sleepVeryLong();
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
