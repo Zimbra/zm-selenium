@@ -505,12 +505,12 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		
-		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(Locators.zViewEntireMessageLink), "Verify Dosplay entire message link is displayed");
+		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(Locators.zViewEntireMessageLink), "Verify Display entire message link is displayed");
 		app.zPageMail.sClick(Locators.zViewEntireMessageLink,(WebElement[]) null);
 		SleepUtil.sleepVeryLong();
 		
 		// Verify that  View entire message link is not present now
-		ZAssert.assertFalse(app.zPageMail.sIsElementPresent(Locators.zViewEntireMessageLink), "Verify Dosplay entire message link is still present");
+		ZAssert.assertFalse(app.zPageMail.sIsElementPresent(Locators.zViewEntireMessageLink), "Verify Display entire message link is still present");
 		
 		// Verify that Entire content is displayed		
 		SleepUtil.sleepVeryLong();
