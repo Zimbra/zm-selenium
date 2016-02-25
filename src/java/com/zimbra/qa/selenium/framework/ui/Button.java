@@ -162,14 +162,19 @@ public class Button {
 	public static final Button O_LISTVIEW_READINGPANEBOTTOM = new Button("O_LISTVIEW_READINGPANEBOTTOM");
 	public static final Button O_LISTVIEW_READINGPANERIGHT = new Button("O_LISTVIEW_READINGPANERIGHT");
 	public static final Button O_LISTVIEW_READINGPANEOFF = new Button("O_LISTVIEW_READINGPANEOFF");
+	
+	// MailPage View Reading Pane (options)
+	public static final Button B_MAIL_VIEW_READING_PANE_BOTTOM = new Button("B_MAIL_VIEW_READING_PANE_BOTTOM");
+	public static final Button B_MAIL_VIEW_READING_PANE_RIGHT = new Button("B_MAIL_VIEW_READING_PANE_RIGHT");
+	public static final Button B_MAIL_VIEW_READING_PANE_OFF = new Button("B_MAIL_VIEW_READING_PANE_OFF");
 
 	// MailPage list buttons (sort by options)
-	public static final Button B_MAIL_LIST_SORTBY_FLAGGED = new Button("B_MAIL_LIST_SORTBY_FLAGGED");;
-	public static final Button B_MAIL_LIST_SORTBY_FROM = new Button("B_MAIL_LIST_SORTBY_FROM");;
+	public static final Button B_MAIL_LIST_SORTBY_FLAGGED = new Button("B_MAIL_LIST_SORTBY_FLAGGED");
+	public static final Button B_MAIL_LIST_SORTBY_FROM = new Button("B_MAIL_LIST_SORTBY_FROM");
 	public static final Button B_MAIL_LIST_SORTBY_ATTACHMENT = new Button("B_MAIL_LIST_SORTBY_ATTACHMENT");
 	public static final Button B_MAIL_LIST_SORTBY_SUBJECT = new Button("B_MAIL_LIST_SORTBY_SUBJECT");;
-	public static final Button B_MAIL_LIST_SORTBY_SIZE = new Button("B_MAIL_LIST_SORTBY_SIZE");;
-	public static final Button B_MAIL_LIST_SORTBY_RECEIVED = new Button("B_MAIL_LIST_SORTBY_RECEIVED");;
+	public static final Button B_MAIL_LIST_SORTBY_SIZE = new Button("B_MAIL_LIST_SORTBY_SIZE");
+	public static final Button B_MAIL_LIST_SORTBY_RECEIVED = new Button("B_MAIL_LIST_SORTBY_RECEIVED");
 
 	// MailPage list buttons (group by options)
 	public static final Button B_MAIL_LIST_GROUPBY_FROM = new Button("B_MAIL_LIST_GROUPBY_FROM");;
@@ -189,6 +194,7 @@ public class Button {
 	public static final Button O_PRINT = new Button("O_PRINT");
 	public static final Button O_MARK_AS_SPAM = new Button("O_MARK_AS_SPAM");
 	public static final Button O_SHOW_ORIGINAL = new Button("O_SHOW_ORIGINAL");
+	public static final Button O_SHOW_CONVERSATION = new Button("O_SHOW_CONVERSATION");
 	public static final Button O_NEW_FILTER = new Button("O_NEW_FILTER");
 	public static final Button O_CREATE_APPOINTMENT = new Button("O_CREATE_APPOINTMENT");
 	public static final Button O_CREATE_TASK = new Button("O_CREATE_TASK");
@@ -197,8 +203,6 @@ public class Button {
 	public static final Button O_MAILATTACH = new Button("O_MAILATTACH");
 	public static final Button O_CONTACTATTACH = new Button("O_CONTACTATTACH");
 	public static final Button O_BRIEFCASEATTACH = new Button("O_BRIEFCASEATTACH");
-	
-	
 
 	// Compose mail buttons and pulldown options
 	public static final Button B_SEND = new Button("B_SEND");
@@ -236,7 +240,9 @@ public class Button {
 	public static final Button O_ADD_FWD_SIGNATURE = new Button("O_ADD_FWD_SIGNATURE");
 	public static final Button O_ADD_Reply_SIGNATURE = new Button("O_ADD_Reply_SIGNATURE");
 	public static final Button O_ADD_ReplyAll_SIGNATURE = new Button("O_ADD_ReplyAll_SIGNATURE");
-
+	
+	//Show Conversation page buttons and pulldown options
+	public static final Button B_CLOSE_CONVERSATION = new Button("B_CLOSE_CONVERSATION");
 
 	// Dumpster dialog
 	public static final Button B_RECOVER_DELETED_ITEMS = new Button("B_RECOVER_DELETED_ITEMS");
