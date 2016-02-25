@@ -15,7 +15,7 @@ public class AcceptShareFromPreferences extends AjaxCommonTest {
 		super.startingAccountPreferences = null;	
 	}
 
-	@Test( description = "Accept shared folder from preferences/sharing", groups = { "test" })
+	@Test( description = "Accept shared folder from preferences/sharing", groups = { "functional" })
 
 	public void AcceptShare_01() throws HarnessException {
 
@@ -42,8 +42,7 @@ public class AcceptShareFromPreferences extends AjaxCommonTest {
 
 		// Navigate to preferences -> sharing
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Sharing);
-		//SleepUtil.sleepMedium();
-
+		
 		// Add Share name to the search box
 		app.zPagePreferences.sType("css=div#Prefs_Pages_Sharing_shareForm div[id$='_owner'] input", ZimbraAccount.AccountA().EmailAddress);
 
