@@ -18,8 +18,10 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
 import java.io.File;
 
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
+import com.zimbra.common.zclient.ZClientException;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -27,7 +29,8 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
-
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
 @SuppressWarnings("unused")
 public class ViewMail extends PrefGroupMailByMessageTest {
 
@@ -463,7 +466,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	public void ViewMail_20() throws HarnessException {
 		
 		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/externalImage01/externalimage01.txt";
-		final String subject = "externalimage01";
+		final String subject = "externalimage01";		
 		
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -483,6 +486,36 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		
 
 	}
+	@Bugs(ids = "96820")
+	@Test(	description = "View very large message using 'View entire message' link",
+			groups = { "functional" }
+			)
+	public void ViewMail_21() throws HarnessException {
 
+		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug96820/Bug96820_VeryLargeMessage.txt";
+		final String subject = "Very large message";
+		final String testString = "Entire message is displayed";
+		
+		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+
+		// Refresh current view
+		app.zPageMail.zVerifyMailExists(subject);
+
+		// Select the message so that it shows in the reading pane
+		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+		
+		
+		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(Locators.zViewEntireMessageLink), "Verify Dosplay entire message link is displayed");
+		app.zPageMail.sClick(Locators.zViewEntireMessageLink,(WebElement[]) null);
+		SleepUtil.sleepVeryLong();
+		
+		// Verify that  View entire message link is not present now
+		ZAssert.assertFalse(app.zPageMail.sIsElementPresent(Locators.zViewEntireMessageLink), "Verify Dosplay entire message link is still present");
+		
+		// Verify that Entire content is displayed		
+		SleepUtil.sleepVeryLong();
+		ZAssert.assertTrue(actual.zGetMailProperty(Field.Body).contains(testString), "Verify that entire message is displayed");
+		
+	}
 
 }
