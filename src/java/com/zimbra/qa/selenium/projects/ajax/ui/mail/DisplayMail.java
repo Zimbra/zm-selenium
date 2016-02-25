@@ -557,7 +557,7 @@ public class DisplayMail extends AbsDisplay {
 		
 		List<AttachmentItem> items = new ArrayList<AttachmentItem>();
 
-		String listLocator = "css=table[id$='zv__TV__TV-main_MSG_attLinks_table']";
+		String listLocator = "css=table[id$='attLinks_table']";
 
 		// Make sure the button exists
 		if ( !this.sIsElementPresent(listLocator) ) {
