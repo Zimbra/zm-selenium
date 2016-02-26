@@ -31,7 +31,6 @@ import com.zimbra.qa.selenium.projects.admin.ui.FormEditAccount;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 import com.zimbra.qa.selenium.projects.admin.ui.PageManageAccounts;
 import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults;
-import com.zimbra.qa.selenium.projects.admin.ui.PageEditCOS.Locators;
 
 public class EditAccount extends AdminCommonTest {
 	public EditAccount() {

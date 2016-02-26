@@ -97,7 +97,7 @@ public class ForwardMailWithAttachment extends PrefGroupMailByMessageTest {
 			// Verify UI for attachment
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-			app.zPageMail.zVerifyAttachmentExistsInMail(mimeAttachmentName);
+			ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(mimeAttachmentName), "Verify attachment exists in the email");
 		
 		} finally {
 			

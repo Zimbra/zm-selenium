@@ -19,7 +19,9 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.attachments;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+
 import org.testng.annotations.Test;
+
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -95,7 +97,7 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 			// Verify UI for attachment
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);			
-			app.zPageMail.zVerifyAttachmentExistsInMail(fileName);
+			ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the email");
 
 		} finally {
 			

@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.CosItem;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditCos;
-import com.zimbra.qa.selenium.projects.admin.ui.PageEditCOS.Locators;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults;
 

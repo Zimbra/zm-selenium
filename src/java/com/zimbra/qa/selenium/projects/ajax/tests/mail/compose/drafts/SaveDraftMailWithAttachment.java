@@ -100,7 +100,7 @@ public class SaveDraftMailWithAttachment extends PrefGroupMailByMessageTest {
 			// Verify UI for attachment
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);			
-			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline attachment exists in the email");
+			ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the email");
 			
 		} finally {
 			
@@ -204,9 +204,9 @@ public class SaveDraftMailWithAttachment extends PrefGroupMailByMessageTest {
 			
 			// Verify UI for attachment
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
-			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);			
-			app.zPageMail.zVerifyAttachmentExistsInMail(mimeAttachmentName);
-			app.zPageMail.zVerifyAttachmentExistsInMail(anotherFileName);
+			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+			ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(mimeAttachmentName), "Verify attachment exists in the email");
+			ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(anotherFileName), "Verify attachment exists in the email");
 
 		} finally {
 			
