@@ -61,7 +61,13 @@ public class CreateContactGroup extends AjaxCommonTest {
 		form.zFillField(Field.GroupName, groupName);
 		form.zFillField(Field.FreeFormAddress, member1);
 		form.zFillField(Field.FreeFormAddress, member2);
-		form.zSubmit();
+		
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
+			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+		} else {
+			form.zSubmit();
+		}		
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
@@ -85,8 +91,7 @@ public class CreateContactGroup extends AjaxCommonTest {
 		app.zPageContacts.zRefresh();
 
 		// open contact group form
-		FormContactGroupNew form = (FormContactGroupNew) app.zPageContacts
-		.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
+		FormContactGroupNew form = (FormContactGroupNew) app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
 
 		// fill in group name
 		form.zFillField(Field.GroupName, groupName);
@@ -102,8 +107,12 @@ public class CreateContactGroup extends AjaxCommonTest {
 		form.zToolbarPressButton(Button.B_SEARCH);
 		form.zToolbarPressButton(Button.B_CONTACTGROUP_ADD_SEARCH_RESULT);
 		
-		// click Save
-		form.zSubmit();
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
+			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+		} else {
+			form.zSubmit();
+		}		
 		
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();

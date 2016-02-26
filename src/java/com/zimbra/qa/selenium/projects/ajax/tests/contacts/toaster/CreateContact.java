@@ -39,6 +39,7 @@ public class CreateContact extends AjaxCommonTest {
 	}
 
 	@Test(description = "Create a basic contact item by click New in page Addressbook and verify toast msg ", groups = { "functional" })
+	
 	public void CreateContactToastMsg() throws HarnessException {
 
 		// -- DATA
@@ -55,7 +56,13 @@ public class CreateContact extends AjaxCommonTest {
 		formContactNew.zFillField(Field.FirstName, contactFirst);
 		formContactNew.zFillField(Field.LastName, contactLast);
 		formContactNew.zFillField(Field.Email, contactEmail);
-		formContactNew.zSubmit();
+		
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
+			app.zPageContacts.zClickAt("css=div#" + formContactNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+		} else {
+			formContactNew.zSubmit();
+		}
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();

@@ -201,14 +201,6 @@ public class FormContactGroupNew extends AbsForm {
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
-
-		// Make sure a locator was set
-		if ( locator == null )
-			throw new HarnessException("locator was null for button "+ button);
-
-		
-		// Default behavior, process the locator by clicking on it
-		//
 		
 		// Click it
 		this.zClickAt(locator,"");
@@ -579,7 +571,7 @@ public class FormContactGroupNew extends AbsForm {
 	 * @return The z_shell Child ID
 	 * @throws HarnessException 
 	 */
-	protected String getToolbarID() throws HarnessException {
+	public String getToolbarID() throws HarnessException {
 		logger.info("getToolbarID()");
 		
 		if ( MyToolbarID != null ) {

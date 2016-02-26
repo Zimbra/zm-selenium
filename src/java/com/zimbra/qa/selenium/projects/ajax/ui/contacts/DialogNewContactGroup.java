@@ -107,10 +107,6 @@ public class DialogNewContactGroup extends AbsDialog {
 		this.zClick(locator);
 		zWaitForBusyOverlay();
 
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
-
-		return (null);
+		return (page);
 	}
 }

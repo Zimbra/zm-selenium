@@ -49,8 +49,13 @@ public class CreateAppointment extends AjaxCommonTest {
 		apptForm.zFill(appt);
 
 		// Send the message
-		// apptForm.zToolbarPressButton(Button.B_SAVE); // this method by default waits for some sec, toast message disappears so testcase fails
-		app.zPageCalendar.zClickAt("css=div[id^='ztb__APPT-'] td[id$='_SAVE_title']", "0,0");
+		
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
+			app.zPageCalendar.zClickAt("css=div[id^='ztb__APPT-'] td[id$='_SAVE_title']", "0,0");
+		} else {
+			apptForm.zToolbarPressButton(Button.B_SAVE);
+		}		
 		
 		//verify toasted message 'Appointment Created'  
         String expectedMsg ="Appointment Created";

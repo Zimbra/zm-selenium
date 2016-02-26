@@ -56,9 +56,15 @@ public class EditContactGroup extends AjaxCommonTest  {
 		//Click Edit on Toolbar button	
 		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zToolbarPressButton(Button.B_EDIT);
 
-		// CHange the group name
+		// Change the group name
 		formContactGroupNew.zFillField(Field.GroupName, newname);
-		formContactGroupNew.zSubmit();
+		
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
+			app.zPageContacts.zClickAt("css=div#" + formContactGroupNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+		} else {
+			formContactGroupNew.zSubmit();
+		}		
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
@@ -81,10 +87,16 @@ public class EditContactGroup extends AjaxCommonTest  {
 		// Right click -> Edit	
 		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_EDIT, group.getName());        
 
-		// CHange the group name
+		// Change the group name
 		formContactGroupNew.zFillField(Field.GroupName, newname);
-		formContactGroupNew.zSubmit();
-
+		
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
+			app.zPageContacts.zClickAt("css=div#" + formContactGroupNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+		} else {
+			formContactGroupNew.zSubmit();
+		}
+		
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
@@ -108,9 +120,15 @@ public class EditContactGroup extends AjaxCommonTest  {
 		// Double click	
 		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, group.getName());        
 
-		// CHange the group name
+		// Change the group name
 		formContactGroupNew.zFillField(Field.GroupName, newname);
-		formContactGroupNew.zSubmit();
+
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
+			app.zPageContacts.zClickAt("css=div#" + formContactGroupNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+		} else {
+			formContactGroupNew.zSubmit();
+		}
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();

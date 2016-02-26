@@ -55,8 +55,14 @@ public class CreateTask extends AjaxCommonTest {
 		// Fill out the resulting form
 		taskNew.zFillField(Field.Subject, subject);
 		taskNew.zFillField(Field.Body, body);
-		taskNew.zSubmit();
-
+		
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
+			app.zPageTasks.zClickAt("css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')", "0,0");
+		} else {
+			taskNew.zSubmit();
+		}		
+		
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();

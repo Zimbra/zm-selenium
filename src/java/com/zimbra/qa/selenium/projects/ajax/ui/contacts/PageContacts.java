@@ -18,7 +18,9 @@ package  com.zimbra.qa.selenium.projects.ajax.ui.contacts;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
+
 import org.apache.log4j.LogManager;
+
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -658,6 +660,9 @@ public class PageContacts extends AbsTab {
 			}
 			
 		}
+		
+		SleepUtil.sleepMedium();
+		
 	    return page;
 	}
 

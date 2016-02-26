@@ -17,7 +17,9 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.toaster;
 
 import java.util.HashMap;
+
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.TaskItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -79,8 +81,6 @@ public class EditTask extends AjaxCommonTest{
 				"</m>" +
 		"</CreateTaskRequest>");
 
-		
-
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
 
@@ -97,13 +97,18 @@ public class EditTask extends AjaxCommonTest{
 
 		//Uncheck Attachment		
 		app.zPageTasks.sUncheck(Locators.zEditAttachmentCheckbox);
-		taskedit.zSubmit();
+		
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
+			app.zPageTasks.zClickAt("css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')", "0,0");
+		} else {
+			taskedit.zSubmit();
+		}
 		
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "Task Saved","Verify toast message: Task Saved");
 	}
-
 
 }

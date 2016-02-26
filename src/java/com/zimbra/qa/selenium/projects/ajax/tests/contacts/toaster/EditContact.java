@@ -58,7 +58,13 @@ public class EditContact extends AjaxCommonTest {
 
 		// Change the first name
 		form.zFillField(Field.FirstName, firstname);
-		form.zToolbarPressButton(Button.B_SAVE);
+		
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
+			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+		} else {
+			form.zSubmit();
+		}		
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
@@ -84,7 +90,13 @@ public class EditContact extends AjaxCommonTest {
 
 		// Change the first name
 		form.zFillField(Field.FirstName, firstname);
-		form.zToolbarPressButton(Button.B_SAVE);
+		
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
+			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+		} else {
+			form.zSubmit();
+		}		
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
@@ -110,7 +122,13 @@ public class EditContact extends AjaxCommonTest {
 
 		// Change the first name
 		form.zFillField(Field.FirstName, firstname);
-		form.zToolbarPressButton(Button.B_SAVE);
+		
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
+			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+		} else {
+			form.zSubmit();
+		}		
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
