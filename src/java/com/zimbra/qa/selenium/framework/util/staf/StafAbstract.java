@@ -71,9 +71,9 @@ public class StafAbstract {
 		sb.append(StafParms + " ");
 		
 		if (sb.indexOf("postqueue -p") >=0 ) {
-			if (sb.indexOf(".lab.zimbra.com") >=0 ) { // (domain.length() == 25)
+			if (sb.indexOf(".lab.zimbra.com") >=0 ) {
 				sb = sb.replace(sb.indexOf(".")-10, sb.indexOf(".com")+4, ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".mta.host", ZimbraSeleniumProperties.getStringProperty("mta.host")));
-			} else if (sb.indexOf(".eng.zimbra.com") >=0 ) { // (domain.length() == 22)
+			} else if (sb.indexOf(".eng.zimbra.com") >=0 ) {
 				sb = sb.replace(sb.indexOf(".")-7, sb.indexOf(".com")+4, ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".mta.host", ZimbraSeleniumProperties.getStringProperty("mta.host")));
 			}
 		}
