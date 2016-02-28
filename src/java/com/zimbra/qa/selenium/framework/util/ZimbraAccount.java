@@ -1372,7 +1372,7 @@ public class ZimbraAccount {
 				 // https://server.com:7071/service/admin/soap/
 				 scheme = "https";
 				 path = "/service/admin/soap/";
-				 port = 7071;
+				 port = Integer.parseInt(ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".admin.port", ZimbraSeleniumProperties.getStringProperty("admin.port")));
 
 			 } else if ( namespace.equals("urn:zimbraAccount") ) {
 

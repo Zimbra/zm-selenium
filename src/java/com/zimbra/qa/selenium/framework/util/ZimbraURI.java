@@ -216,6 +216,7 @@ public class ZimbraURI {
 	 * @return
 	 * @throws URLSyntaxException
 	 */
+	@SuppressWarnings("deprecation")
 	public static URI getCurrentURI() {
 		String uri;
 		if (ZimbraSeleniumProperties.isWebDriver()){
@@ -309,7 +310,7 @@ public class ZimbraURI {
 			scheme = "https";
 			//path = "/zimbraAdmin/";
 			path = "";
-			port = "7071";
+			port = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".admin.port",	ZimbraSeleniumProperties.getStringProperty("admin.port"));
 
 		}
 
