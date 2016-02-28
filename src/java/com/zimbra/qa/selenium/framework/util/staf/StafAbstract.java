@@ -71,6 +71,8 @@ public class StafAbstract {
 		sb.append(StafService + " ");
 		sb.append(StafParms + " ");
 		
+		logger.info(sb);
+		
 		int domainStartIndex = sb.indexOf(" ");
 		int domainEndInxed = sb.indexOf(".com");
 		String domain = sb.substring(domainStartIndex+1, domainEndInxed+4);
