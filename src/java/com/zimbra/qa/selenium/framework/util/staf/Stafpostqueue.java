@@ -34,7 +34,7 @@ public class Stafpostqueue extends StafServicePROCESS {
 	 * Wait for messages for the current test account to be delivered
 	 * @throws HarnessException
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public void waitForPostqueue() throws HarnessException {
 		
 		// Start: Dev env hack
