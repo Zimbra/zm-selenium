@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.framework.util.staf;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-
 import com.ibm.staf.STAFException;
 import com.ibm.staf.STAFHandle;
 import com.ibm.staf.STAFMarshallingContext;
@@ -71,17 +70,11 @@ public class StafAbstract {
 		sb.append(StafService + " ");
 		sb.append(StafParms + " ");
 		
-		logger.info(sb);
-		
-		int domainStartIndex = sb.indexOf(" ");
-		int domainEndInxed = sb.indexOf(".com");
-		String domain = sb.substring(domainStartIndex+1, domainEndInxed+4);
-		
 		if (sb.indexOf("postqueue -p") >=0 ) {
-			if (domain.length() == 25) { // if (sb.indexOf(".lab.zimbra.com") >=0 ) {
-				sb = sb.replace(5, 30, ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".mta.host", ZimbraSeleniumProperties.getStringProperty("mta.host")));
-			} else if (domain.length() == 22) { // } else if (sb.indexOf(".eng.zimbra.com") >=0 ) {
-				sb = sb.replace(5, 27, ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".mta.host", ZimbraSeleniumProperties.getStringProperty("mta.host")));
+			if (sb.indexOf(".lab.zimbra.com") >=0 ) { // (domain.length() == 25)
+				sb = sb.replace(sb.indexOf(".")-10, sb.indexOf(".com")+4, ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".mta.host", ZimbraSeleniumProperties.getStringProperty("mta.host")));
+			} else if (sb.indexOf(".eng.zimbra.com") >=0 ) { // (domain.length() == 22)
+				sb = sb.replace(sb.indexOf(".")-7, sb.indexOf(".com")+4, ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".mta.host", ZimbraSeleniumProperties.getStringProperty("mta.host")));
 			}
 		}
 		
