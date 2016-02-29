@@ -29,6 +29,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogCreateCalendarFolder;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 
@@ -436,6 +437,15 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		
 		app.zPageMail.zVerifyMailExists(subject);
 
+		//Adding additional code to go to Cal tab and click explicitly on Calendar header, so that new folder will create in upper level.
+		app.zPageCalendar.zNavigateTo();				
+		SleepUtil.sleepMedium();
+		app.zPageCalendar.zClickAt(PageCalendar.Locators.Cal_FirstOverviewHeader,"");
+		
+		//Navigate to Mail Tab again		
+		app.zPageMail.zNavigateTo();
+		SleepUtil.sleepMedium();
+		app.zPageMail.zVerifyMailExists(subject);
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		app.zPageMail.zToolbarPressPulldown(Button.B_ICS_LINK_IN_BODY, Button.B_CREATE_NEW_CALENDAR);
