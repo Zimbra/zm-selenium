@@ -186,8 +186,8 @@ public class PageCalendar extends AbsTab {
 		public static final String MonthViewOnFBLink = "css=td[class='TbTop'] td[id='caltb'] a[id='CAL_MONTH']";
 		public static final String TodayViewOnFBLink = "css=td[class='TbTop'] td[id='caltb'] a[id='CAL_TODAY']";
 		public static final String AttendeeBubbleAddr = "css=tr[id='zcs1_attendeesContainer'] td[id='zcs1_person'] div div span[class^='addrBubble']>span";
-		public static final String CloseAptTab = "css= div[id^='zb__App__tab_APPT'] tr td>div[class='ImgCloseGray']";
-
+		public static final String CloseAptTab = "css= div[id^='zb__App__tab_APPT'] tr td>div[class='ImgCloseGray']";		
+		public static final String Cal_FirstOverviewHeader  = "css=td[id='ztih__main_Calendar__CALENDAR_textCell']";
 
 
 
