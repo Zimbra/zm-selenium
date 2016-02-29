@@ -17,14 +17,12 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.drafts;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
@@ -33,16 +31,16 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-public class DraftModeToolbar extends PrefGroupMailByMessageTest {
+public class CheckReplyForwardButtonsInDraftsView extends PrefGroupMailByMessageTest {
 
-	public DraftModeToolbar() {
-
-		logger.info("New " + DraftModeToolbar.class.getCanonicalName());
+	public CheckReplyForwardButtonsInDraftsView() {
+		logger.info("New " + CheckReplyForwardButtonsInDraftsView.class.getCanonicalName());
 	}
 
 	@Bugs(ids = "83164")
-	@Test(description = "Verify disabled toolbar button in Draft mode when opened from Tag Selection", groups = { "functional1" })
-	public void DraftModeToolbar_01() throws HarnessException {
+	@Test(description = "Verify reply/forward buttons remains disabled in Draft mode when searched using tag", groups = { "functional" })
+	
+	public void CheckReplyForwardButtonsInDraftsView_01() throws HarnessException {
 
 		// Create the message data to be entered while composing mail
 		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
@@ -59,7 +57,6 @@ public class DraftModeToolbar extends PrefGroupMailByMessageTest {
 
 		// Save the message
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
-		SleepUtil.sleepMedium();
 		mailform.zToolbarPressButton(Button.B_CLOSE);		
 
 		// Go to draft		
@@ -86,16 +83,11 @@ public class DraftModeToolbar extends PrefGroupMailByMessageTest {
 		//Select the tag
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, tag);		
 		
-		
 		// Select the mail 
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=div[id$='_REPLY'][class*='ZDisabled']"),"Verify Reply button is disabled in Draft mode");
-
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=div[id$='_REPLY_ALL'][class*='ZDisabled']"),"Verify Reply All button is disabled in Draft mode");
-		
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=div[id$='_FORWARD'][class*='ZDisabled']"),"Verify Forward button is disabled in Draft mode");
-		
 	}
-
 }
