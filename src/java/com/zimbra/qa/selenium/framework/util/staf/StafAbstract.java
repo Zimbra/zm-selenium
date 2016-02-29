@@ -76,6 +76,12 @@ public class StafAbstract {
 			} else if (sb.indexOf(".eng.zimbra.com") >=0 ) {
 				sb = sb.replace(sb.indexOf(".")-7, sb.indexOf(".com")+4, ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".mta.host", ZimbraSeleniumProperties.getStringProperty("mta.host")));
 			}
+		} else if (sb.indexOf("zmmailbox") >=0 || sb.indexOf("zmtlsctl") >=0 || sb.indexOf("zm") >=0 || sb.indexOf("zmprov") >=0 || sb.indexOf("SYSTEM") >=0) {
+			if (sb.indexOf(".lab.zimbra.com") >=0 ) {
+				sb = sb.replace(sb.indexOf(".")-10, sb.indexOf(".com")+4, ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".store.host", ZimbraSeleniumProperties.getStringProperty("store.host")));
+			} else if (sb.indexOf(".eng.zimbra.com") >=0 ) {
+				sb = sb.replace(sb.indexOf(".")-7, sb.indexOf(".com")+4, ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".store.host", ZimbraSeleniumProperties.getStringProperty("store.host")));
+			}
 		}
 		
 		return (sb.toString());
