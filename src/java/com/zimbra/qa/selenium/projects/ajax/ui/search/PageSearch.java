@@ -210,7 +210,8 @@ public class PageSearch extends AbsTab {
 			throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
 
 		// Click it
-		zClickAt(locator, "");
+		SleepUtil.sleepSmall();
+		sClickAt(locator, "");
 		SleepUtil.sleepSmall();
 		
 		// If the app is busy, wait for it to become active
