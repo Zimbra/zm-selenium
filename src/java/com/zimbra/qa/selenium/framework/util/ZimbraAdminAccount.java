@@ -21,8 +21,6 @@ import org.apache.log4j.*;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 
-
-
 public class ZimbraAdminAccount extends ZimbraAccount {
 	private static Logger logger = LogManager.getLogger(ZimbraAccount.class);
 
@@ -36,9 +34,6 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 		ZimbraMailHost = ZimbraSeleniumProperties.getStringProperty("adminHost", EmailAddress.split("@")[1]);
 
 	}
-
-
-	
 	
 	
 	/**
@@ -170,6 +165,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 						"<name>"+ EmailAddress +"</name>" +
 						"<password>"+ Password +"</password>" +
 						"<a n='zimbraIsAdminAccount'>TRUE</a>" +
+						"<zimbraMailHost>"+ ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".store.host", ZimbraSeleniumProperties.getStringProperty("store.host")) +"</zimbraMailHost>" + 
 					"</CreateAccountRequest>");
 			
 			Element[] createAccountResponse = ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("//admin:CreateAccountResponse");
