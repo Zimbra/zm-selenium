@@ -244,6 +244,7 @@ public class CodeCoverage {
 	 * Update the coverage data
 	 * @throws HarnessException 
 	 */
+	@SuppressWarnings("deprecation")
 	public void calculateCoverage(String method) throws HarnessException {
 		logger.info("calculateCoverage()");
 
@@ -356,6 +357,7 @@ public class CodeCoverage {
 	
 	// For logging, report how many new files were touched and how many new lines were touched
 	//
+	@SuppressWarnings("deprecation")
 	private void traceCoverage(JSONObject oldJSON, JSONObject newJSON) {
 		logger.info("CodeCoverage: URL="+ ClientSessionFactory.session().selenium().getLocation());
 		

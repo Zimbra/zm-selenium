@@ -19,14 +19,10 @@
  */
 package com.zimbra.qa.selenium.framework.util;
 
-import java.io.UnsupportedEncodingException;
 import java.net.*;
 import java.util.regex.*;
-
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.*;
-
-import com.google.common.html.HtmlEscapers;
 import com.zimbra.common.soap.Element;
 
 /**

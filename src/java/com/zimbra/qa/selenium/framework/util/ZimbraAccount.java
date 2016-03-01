@@ -408,10 +408,10 @@ public class ZimbraAccount {
 			ZimbraPrefLocale = Locale.getDefault().toString();
 		}
 
-		// If the adminHost value is set, use that value for the ZimbraMailHost
-		String adminHost = ZimbraSeleniumProperties.getStringProperty("adminHost", null);
-		if ( adminHost != null ) {
-			ZimbraMailHost = adminHost;
+		// If the storeHost value is set, use that value for the ZimbraMailHost
+		String storeHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
+		if ( storeHost != null ) {
+			ZimbraMailHost = storeHost;
 		}
 		
 		return (true);
@@ -491,10 +491,10 @@ public class ZimbraAccount {
 				ZimbraPrefLocale = Locale.getDefault().toString();
 			}
 
-			// If the adminHost value is set, use that value for the ZimbraMailHost
-			String adminHost = ZimbraSeleniumProperties.getStringProperty("adminHost", null);
-			if ( adminHost != null ) {
-				ZimbraMailHost = adminHost;
+			// If the storeHost value is set, use that value for the ZimbraMailHost
+			String storeHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
+			if ( storeHost != null ) {
+				ZimbraMailHost = storeHost;
 			}
 
 			// If SOAP trace logging is specified, turn it on

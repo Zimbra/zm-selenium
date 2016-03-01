@@ -43,7 +43,7 @@ import org.testng.TestListenerAdapter;
 
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 
-
+@SuppressWarnings("resource")
 public class TestStatusReporter extends TestListenerAdapter {  
 	private static final Logger logger = LogManager.getLogger(TestStatusReporter.class);
 	
@@ -528,6 +528,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	private void generateReport() {
 		long duration = ((new Date()).getTime() - startDate.getTime())/1000;
 
@@ -773,6 +774,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onTestFailure(ITestResult tr) {
 		String fullTestName = tr.getTestClass().getName() + "." + tr.getName();
@@ -815,6 +817,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 		return result;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onConfigurationSkip(ITestResult tr) {
 		String fullTestName = tr.getTestClass().getName() + "." + tr.getName();

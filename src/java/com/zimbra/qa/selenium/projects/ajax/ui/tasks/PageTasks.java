@@ -104,17 +104,14 @@ public class PageTasks extends AbsTab{
 			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
 		}
 		
-		String locator = "css=div[class='ZmTaskMultiView'] div[id$='main__rows']";
-		
-		boolean loaded = this.sIsElementPresent(locator);
+		String id = "zb__App__Tasks";
+		String rowLocator = "css=div[id='" + Locators.zl__TKL__rowsID + "']>div";
+
+		boolean loaded = this.sIsElementPresent(rowLocator);
 		if (!loaded)
 			return (false);
 
-		boolean active = this.zIsVisiblePerPosition(locator, 0, 0);
-		if (!active)
-			return (false);
-
-		return (true);
+		return(this.sIsElementPresent("css=div[id='"+ id +"'][class*=ZSelected]"));
 
 	}
 

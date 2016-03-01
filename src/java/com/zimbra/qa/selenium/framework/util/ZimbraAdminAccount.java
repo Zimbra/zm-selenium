@@ -30,7 +30,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 		
 		// In the dev environment, they may need a config value to override
 		// the default, so use that value here
-		ZimbraMailHost = ZimbraSeleniumProperties.getStringProperty("adminHost", EmailAddress.split("@")[1]);
+		ZimbraMailHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
 
 	}
 	
@@ -84,10 +84,10 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			ZimbraId = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:account", "id");
 			ZimbraMailHost = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:account/admin:a[@n='zimbraMailHost']", null);
 
-			// If the adminHost value is set, use that value for the ZimbraMailHost
-			String adminHost = ZimbraSeleniumProperties.getStringProperty("adminHost", null);
-			if ( adminHost != null ) {
-				ZimbraMailHost = adminHost;
+			// If the storeHost value is set, use that value for the ZimbraMailHost
+			String storeHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
+			if ( storeHost != null ) {
+				ZimbraMailHost = storeHost;
 			}
 			
 			
@@ -194,10 +194,10 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			ZimbraId = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:account", "id");
 			ZimbraMailHost = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:account/admin:a[@n='zimbraMailHost']", null);
 
-			// If the adminHost value is set, use that value for the ZimbraMailHost
-			String adminHost = ZimbraSeleniumProperties.getStringProperty("adminHost", null);
-			if ( adminHost != null ) {
-				ZimbraMailHost = adminHost;
+			// If the storeHost value is set, use that value for the ZimbraMailHost
+			String storeHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
+			if ( storeHost != null ) {
+				ZimbraMailHost = storeHost;
 			}
 
 			// If SOAP trace logging is specified, turn it on

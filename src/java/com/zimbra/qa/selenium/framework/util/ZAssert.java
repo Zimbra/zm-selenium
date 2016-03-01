@@ -24,12 +24,11 @@ import org.testng.Assert;
 
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 
-
+@SuppressWarnings("unused")
 public class ZAssert {
 	private static Logger logger = LogManager.getLogger(ZAssert.class);
 	
-
-    private static int TotalCountTests = 0;
+	private static int TotalCountTests = 0;
     private static int TotalCountPass = 0;
 
     private static int CountTests;

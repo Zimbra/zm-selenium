@@ -172,6 +172,7 @@ public class PerfMetrics {
 	 * @param type
 	 * @return
 	 */
+	@SuppressWarnings("deprecation")
 	private String getValue(String id) {
 		String value = "";
 		try {
