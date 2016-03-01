@@ -31,7 +31,7 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "47629")
-	@Test(description = " HTML view of Public Shared Calendar not showing Appointments ",
+	@Test(description = " HTML view of public shared calendar not showing appointments",
 			groups = { "sanity" })
 			
 	public void ViewAppointment_01() throws HarnessException {
@@ -84,13 +84,12 @@ public class ViewAppointment extends CalendarWorkWeekTest {
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 
         if ( ZimbraSeleniumProperties.getStringProperty("server.host") != ZimbraSeleniumProperties.getStringProperty("store.host") ) {
-        	app.zPageCalendar.sOpen("https://" + ZimbraSeleniumProperties.getStringProperty("store.host") + ":8443/home/" + ZimbraAccount.AccountA().EmailAddress + "/Calendar/" + foldername + ".html");
+        	app.zPageCalendar.sOpen("https://" + ZimbraSeleniumProperties.getStringProperty("store.host") + "/home/" + ZimbraAccount.AccountA().EmailAddress + "/Calendar/" + foldername + ".html");
 		} else {
-			app.zPageCalendar.sOpen("https://" + ZimbraSeleniumProperties.getStringProperty("server.host") + "/home/" + ZimbraAccount.AccountA().EmailAddress + "/Calendar/" + foldername + ".html");
+			app.zPageCalendar.sOpen("https://" + ZimbraSeleniumProperties.getStringProperty("server.host") + ":8443/home/" + ZimbraAccount.AccountA().EmailAddress + "/Calendar/" + foldername + ".html");
 		}
         
         ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent("css=div[class^='ZhCalMonthAppt']:contains('" + apptSubject + "')"), "Appointment is visible");
-        SleepUtil.sleepLong();
         ZimbraURI uri = new ZimbraURI(ZimbraURI.getBaseURI());
         app.zPageCalendar.sOpen(uri.toString());
 
