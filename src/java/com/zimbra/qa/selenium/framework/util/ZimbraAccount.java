@@ -462,6 +462,7 @@ public class ZimbraAccount {
 					"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 					+		"<name>"+ EmailAddress +"</name>"
 					+		"<password>"+ Password +"</password>"
+					+		"<zimbraMailHost>"+ ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".store.host", ZimbraSeleniumProperties.getStringProperty("store.host")) +"</zimbraMailHost>"
 					+		prefs.toString()
 					+	"</CreateAccountRequest>");
 
