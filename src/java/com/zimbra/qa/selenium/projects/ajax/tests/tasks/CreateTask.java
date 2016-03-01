@@ -169,9 +169,8 @@ public class CreateTask extends AjaxCommonTest {
 		// Get the mail item for the new message
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
-		
+		// Click refresh
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		SleepUtil.sleepMedium();
 		
 		//Click on subject
@@ -195,16 +194,13 @@ public class CreateTask extends AjaxCommonTest {
 
 		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
 		
-		
 		ZimbraAccount account = app.zGetActiveAccount();
 		FolderItem taskFolder = FolderItem.importFromSOAP(account,SystemFolder.Tasks);
 
 		// Create file item
 		String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/Files/Basic01/BasicExcel2007.xlsx";
-		// Upload file to server through RestUtil
 		String attachmentId = account.uploadFile(filePath);		
 		
-
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
 				"<m >" +
@@ -268,7 +264,6 @@ public class CreateTask extends AjaxCommonTest {
 				"</attach>"+
 				"</m>" +
 		"</CreateTaskRequest>");
-
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");

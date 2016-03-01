@@ -103,15 +103,18 @@ public class PageTasks extends AbsTab{
 		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
 			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
 		}
-
-		String id = "zb__App__Tasks";
-		String rowLocator = "css=div[id='" + Locators.zl__TKL__rowsID + "']>div";
-
-		boolean loaded = this.sIsElementPresent(rowLocator);
+		
+		String locator = "css=div[class='ZmTaskMultiView'] div[id$='main__rows']";
+		
+		boolean loaded = this.sIsElementPresent(locator);
 		if (!loaded)
 			return (false);
 
-		return(this.sIsElementPresent("css=div[id='"+ id +"'][class*=ZSelected]"));
+		boolean active = this.zIsVisiblePerPosition(locator, 0, 0);
+		if (!active)
+			return (false);
+
+		return (true);
 
 	}
 
@@ -603,7 +606,6 @@ public class PageTasks extends AbsTab{
 
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
-		SleepUtil.sleepMedium();
 
 		// If page was specified, make sure it is active
 		if (page != null) {
