@@ -23,7 +23,6 @@ import java.net.URISyntaxException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.apache.commons.httpclient.Cookie;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpConnectionManager;
@@ -44,7 +43,6 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.dom4j.InvalidXPathException;
-
 import com.zimbra.common.auth.ZAuthToken;
 import com.zimbra.common.net.SocketFactories;
 import com.zimbra.common.service.ServiceException;
@@ -59,8 +57,8 @@ import com.zimbra.common.util.ByteUtil;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.I18N;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
+import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
-
 
 @SuppressWarnings("deprecation")
 public class ZimbraAccount {
@@ -481,8 +479,7 @@ public class ZimbraAccount {
 				
 				throw new HarnessException("Unknown error when provisioning account");
 				
-			}
-			
+			}			
 
 			// Set the account settings based on the response
 			ZimbraId = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:account", "id");
@@ -512,10 +509,15 @@ public class ZimbraAccount {
 
 			}
 			
-			
 			// Sync the GAL to put the account into the list
 			domain.syncGalAccount();
-
+			
+			// Restart memcached for proxy
+			if ( ZimbraSeleniumProperties.getStringProperty("server.host") != ZimbraSeleniumProperties.getStringProperty("store.host") ) {				
+				StafServicePROCESS staf = new StafServicePROCESS();
+				staf.execute("zmmemcachedctl restart");
+			}
+			
 		} catch (HarnessException e) {
 
 			logger.error("Unable to provision account: "+ EmailAddress, e);
