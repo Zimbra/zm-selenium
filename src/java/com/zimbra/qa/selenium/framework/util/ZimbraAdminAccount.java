@@ -18,7 +18,9 @@ package com.zimbra.qa.selenium.framework.util;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import org.apache.log4j.*;
+
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 
@@ -27,13 +29,11 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 
 	public ZimbraAdminAccount(String email) {
 		EmailAddress = email;
-		//Password = ZimbraSeleniumProperties.getStringProperty("adminPwd", "test123");
 		Password = "test123";
 		
 		// In the dev environment, they may need a config value to override
 		// the default, so use that value here
 		ZimbraMailHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
-
 	}
 	
 	
@@ -41,19 +41,30 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 	 * Creates the Delegated Administrator account on the ZCS using CreateAccountRequest
 	 * zimbraIsAdminAccount is set to TRUE
 	 */
-	public  ZimbraAdminAccount provisionDA(String email) {
+	public ZimbraAdminAccount provisionDA (String email) {
 		
 		try {
-			
-			// Check if the account already exists
-			// If yes, don't provision again
-			//
-		
+
 			// Make sure domain exists
 			ZimbraDomain domain = new ZimbraDomain( EmailAddress.split("@")[1]);
 			domain.provision();
 			
-				
+			// If the storeHost value is set, use that value for the ZimbraMailHost
+			String storeHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
+			if ( storeHost != null ) {
+				ZimbraMailHost = storeHost;
+			}
+			
+			// Build the list of default preferences
+			Map<String, String> attributes = new HashMap<String, String>();
+			attributes.put("zimbraMailHost", ZimbraMailHost);	// Set zimbraMailHost
+			
+			// Add the display name
+			StringBuilder prefs = new StringBuilder();
+			for (Map.Entry<String, String> entry : attributes.entrySet()) {
+				prefs.append(String.format("<a n='%s'>%s</a>", entry.getKey(), entry.getValue()));
+			}
+			
 			// Create a new account in the Admin Console using SOAP
 			AccountItem account = new AccountItem(email,ZimbraSeleniumProperties.getStringProperty("testdomain"));
 			ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -63,10 +74,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 					+			"<a xmlns='' n='zimbraIsDelegatedAdminAccount'>TRUE</a>"
 					+		"</CreateAccountRequest>");
 
-	     
-			
 			Element[] createAccountResponse = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNodes("//admin:CreateAccountResponse");
-
 
 			if ( (createAccountResponse == null) || (createAccountResponse.length == 0)) {
 
@@ -86,32 +94,22 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			ZimbraId = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:account", "id");
 			ZimbraMailHost = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:account/admin:a[@n='zimbraMailHost']", null);
 
-			// If the storeHost value is set, use that value for the ZimbraMailHost
-			String storeHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
-			if ( storeHost != null ) {
-				ZimbraMailHost = storeHost;
-			}
-			
-			
-			
 			// Assign standard basic rights to DA 
 			String[] rights = {"adminConsoleAccountRights","adminConsoleDLRights","adminConsoleAliasRights","adminConsoleResourceRights","adminConsoleSavedSearchRights","adminConsoleDomainRights"};
 			 for (String right:rights) {
 				 this.grantRightRequest(account, right.trim());
 			 }
 
-			
+			ZimbraAdminAccount.GlobalAdmin().soapSend(
+				"<FlushCacheRequest  xmlns='urn:zimbraAdmin'>" +
+					"<cache type='galgroup'/>" +
+	        	"</FlushCacheRequest>");
 				
-				ZimbraAdminAccount.GlobalAdmin().soapSend(
-						"<FlushCacheRequest  xmlns='urn:zimbraAdmin'>" +
-							"<cache type='galgroup'/>" +
-			        	"</FlushCacheRequest>");
-				
-			 ZimbraAdminAccount.GlobalAdmin().soapSend(
-					 "<GetEffectiveRightsRequest xmlns='urn:zimbraAdmin'>" 
-							 +	"<target  by='name' type='account'>" +   account.getEmailAddress()  + "</target>"
-							 +	"<grantee  by='name' >" + GlobalAdmin().EmailAddress + "</grantee>" 
-							 + "</GetEffectiveRightsRequest>");
+			ZimbraAdminAccount.GlobalAdmin().soapSend(
+				 "<GetEffectiveRightsRequest xmlns='urn:zimbraAdmin'>" 
+						 +	"<target  by='name' type='account'>" +   account.getEmailAddress()  + "</target>"
+						 +	"<grantee  by='name' >" + GlobalAdmin().EmailAddress + "</grantee>" 
+						 + "</GetEffectiveRightsRequest>");
 
 					
 			// If SOAP trace logging is specified, turn it on
