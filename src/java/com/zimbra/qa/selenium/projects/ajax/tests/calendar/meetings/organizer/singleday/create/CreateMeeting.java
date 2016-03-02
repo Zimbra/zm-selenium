@@ -22,11 +22,14 @@ import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
+import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
+import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 
 public class CreateMeeting extends CalendarWorkWeekTest {
 
@@ -35,9 +38,9 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "95899,95900")
+	@Bugs(ids = "95899,95900,46442")
 	@Test(description = "Create a basic meeting with attendee",
-			groups = { "sanity" })
+			groups = { "sanity1" })
 			
 	public void CreateMeeting_01() throws HarnessException {
 		
@@ -60,6 +63,19 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 		apptForm.zSubmit();
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        app.zPageMail.zNavigateTo();
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+
+		// Go to draft		
+		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
+		
+		// Select the invitation and verify Accept/decline/Tentative buttons are not present
+		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
+		ZAssert.assertFalse(display.zHasADTButtons(), "Verify A/D/T buttons");
 		
 		// Verify appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
