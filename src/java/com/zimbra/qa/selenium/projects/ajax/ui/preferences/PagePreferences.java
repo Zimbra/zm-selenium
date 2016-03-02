@@ -83,7 +83,7 @@ public class PagePreferences extends AbsTab {
 		public static final String zDisable2FALink = "css=div[id='Prefs_Pages_ACCOUNTS_PRIMARY'] a[id='Prefs_Pages_ACCOUNTS_TWO_STEP_AUTH_LINK']:contains('Disable two-step authentication ...')";
 		public static final String zTrustedDeviceCount = "css=td[class='ZOptionsField'] span[id='Prefs_Pages_ACCOUNTS_TRUSTED_DEVICES_COUNT']:contains('You have 1 trusted device')";
 		public static final String zRevokeThisDeviceLink = "css=td[class='ZOptionsField'] a[id='Prefs_Pages_ACCOUNTS_TRUSTED_DEVICE_REVOKE_LINK']:contains('revoke this device')";
-	
+		public static final String zChangePwdButton= "css=td[id='CHANGE_PASSWORD_title']";
 	}
 	
 	
@@ -339,7 +339,8 @@ public class PagePreferences extends AbsTab {
 						
 		} else if ( button == Button.B_CHANGE_PASSWORD ) {
 			
-			locator = "css=td[id='CHANGE_PASSWORD_title']";
+		//	locator = "css=td[id='CHANGE_PASSWORD_title']";
+			locator = Locators.zChangePwdButton;
 			page = new SeparateWindowChangePassword(MyApplication);
 	
 		} else if ( button == Button.B_NEW_FILTER ) {
