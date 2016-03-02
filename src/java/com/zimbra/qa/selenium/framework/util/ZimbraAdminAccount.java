@@ -16,6 +16,8 @@
  */
 package com.zimbra.qa.selenium.framework.util;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.log4j.*;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
@@ -128,9 +130,9 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			
 			// Restart memcached for proxy
 			//if ( ZimbraSeleniumProperties.getStringProperty("server.host") != ZimbraSeleniumProperties.getStringProperty("store.host") ) {				
-				//StafServicePROCESS staf = new StafServicePROCESS();
-				//staf.execute("zmmemcachedctl restart");
-				//staf.execute("zmmemcachedctl restart"); //sometimes folder doesn't load in first restart too
+			//	StafServicePROCESS staf = new StafServicePROCESS();
+			//	staf.execute("zmmemcachedctl restart");
+			//	staf.execute("zmmemcachedctl restart"); //sometimes folder doesn't load in first restart too
 			//}
 
 		} catch (HarnessException e) {
@@ -151,9 +153,6 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 		
 		try {
 			
-			// Check if the account already exists
-			// If yes, don't provision again
-			//
 			if ( exists() ) {
 				logger.info(EmailAddress + " already exists.  Not provisioning again.");
 				return (this);
@@ -163,29 +162,40 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			ZimbraDomain domain = new ZimbraDomain( EmailAddress.split("@")[1]);
 			domain.provision();
 			
-				
+			// If the storeHost value is set, use that value for the ZimbraMailHost
+			String storeHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
+			if ( storeHost != null ) {
+				ZimbraMailHost = storeHost;
+			}
+			
+			// Build the list of default preferences
+			Map<String, String> attributes = new HashMap<String, String>();
+			attributes.put("zimbraMailHost", ZimbraMailHost);	// Set zimbraMailHost
+			
+			// Add the display name
+			StringBuilder prefs = new StringBuilder();
+			for (Map.Entry<String, String> entry : attributes.entrySet()) {
+				prefs.append(String.format("<a n='%s'>%s</a>", entry.getKey(), entry.getValue()));
+			}
+						
 			// Account does not exist.  Create it now.
 			ZimbraAdminAccount.GlobalAdmin().soapSend(
 					"<CreateAccountRequest xmlns='urn:zimbraAdmin'>" +
 						"<name>"+ EmailAddress +"</name>" +
 						"<password>"+ Password +"</password>" +
+						prefs.toString() + 
 						"<a n='zimbraIsAdminAccount'>TRUE</a>" +
-						"<zimbraMailHost>"+ ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".store.host", ZimbraSeleniumProperties.getStringProperty("store.host")) +"</zimbraMailHost>" + 
 					"</CreateAccountRequest>");
 			
 			Element[] createAccountResponse = ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("//admin:CreateAccountResponse");
-
 
 			if ( (createAccountResponse == null) || (createAccountResponse.length == 0)) {
 
 				Element[] soapFault = ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("//soap:Fault");
 				if ( soapFault != null && soapFault.length > 0 ) {
-				
 					String error = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//zimbra:Code", null);
 					throw new HarnessException("Unable to create account: "+ error);
-					
 				}
-				
 				throw new HarnessException("Unknown error when provisioning account");
 				
 			}
@@ -193,12 +203,6 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			// Set the account settings based on the response
 			ZimbraId = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:account", "id");
 			ZimbraMailHost = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:account/admin:a[@n='zimbraMailHost']", null);
-
-			// If the storeHost value is set, use that value for the ZimbraMailHost
-			String storeHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
-			if ( storeHost != null ) {
-				ZimbraMailHost = storeHost;
-			}
 
 			// If SOAP trace logging is specified, turn it on
 			if ( ZimbraSeleniumProperties.getStringProperty("soap.trace.enabled", "false").toLowerCase().equals("true") ) {

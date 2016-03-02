@@ -352,13 +352,9 @@ public class ZimbraAccount {
 	@SuppressWarnings("serial")
 	private static final Map<String, String> accountAttrs = new HashMap<String, String>() {{
 		
-		// The following settings can be tuned from config.properties
-		//
-		
 		put("zimbraPrefLocale", ZimbraSeleniumProperties.getStringProperty("locale"));
 		put("zimbraPrefTimeZoneId", ZimbraSeleniumProperties.getStringProperty("zimbraPrefTimeZoneId", "America/Los_Angeles"));
 
-		
 		// The following settings are specific to the test harness
 		// and deviate from the default settings to work around
 		// test harness issues/limitations
@@ -389,14 +385,16 @@ public class ZimbraAccount {
 		
 		Element[] getAccountResponse = ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("//admin:GetAccountResponse");
 
-
 		if ( (getAccountResponse == null) || (getAccountResponse.length == 0) ) {
-			
 			logger.debug("Account does not exist");
 			return (false);
-			
 		}
 		
+		// If the storeHost value is set, use that value for the ZimbraMailHost
+		String storeHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
+		if ( storeHost != null ) {
+			ZimbraMailHost = storeHost;
+		}
 
 		// Reset the account settings based on the response
 		ZimbraId = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:account", "id");
@@ -406,12 +404,6 @@ public class ZimbraAccount {
 		// If pref is not set, then use default
 		if ( (ZimbraPrefLocale == null) || ZimbraPrefLocale.trim().equals("") ) {
 			ZimbraPrefLocale = Locale.getDefault().toString();
-		}
-
-		// If the storeHost value is set, use that value for the ZimbraMailHost
-		String storeHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
-		if ( storeHost != null ) {
-			ZimbraMailHost = storeHost;
 		}
 		
 		return (true);
@@ -424,31 +416,30 @@ public class ZimbraAccount {
 		
 		try {
 
-			// Check if the account already exists
-			// If yes, don't provision again
-			//
 			if ( exists() ) {
 				logger.info(EmailAddress + " already exists.  Not provisioning again.");
 				return (this);
 			}
 
-			
-			
 			// Make sure domain exists
 			ZimbraDomain domain = new ZimbraDomain( EmailAddress.split("@")[1]);
 			domain.provision();
 			
-
+			// If the storeHost value is set, use that value for the ZimbraMailHost
+			String storeHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
+			if ( storeHost != null ) {
+				ZimbraMailHost = storeHost;
+			}
 			
 			// Build the list of default preferences
 			Map<String, String> attributes = new HashMap<String, String>();
 			
-			attributes.putAll(accountAttrs);				// Lowest priority, add defaults
-			attributes.put("displayName", DisplayName);	// Put display name from constructor
+			attributes.putAll(accountAttrs);					// Lowest priority, add defaults
+			attributes.put("displayName", DisplayName);			// Put display name from constructor
+			attributes.put("zimbraMailHost", ZimbraMailHost);	// Set zimbraMailHost
 			attributes.putAll(startingAccountPreferences);		// Highest priority, add preferences from test case
 			
 			// Add the display name
-						
 			StringBuilder prefs = new StringBuilder();
 			for (Map.Entry<String, String> entry : attributes.entrySet()) {
 				prefs.append(String.format("<a n='%s'>%s</a>", entry.getKey(), entry.getValue()));
@@ -459,25 +450,20 @@ public class ZimbraAccount {
 					"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 					+		"<name>"+ EmailAddress +"</name>"
 					+		"<password>"+ Password +"</password>"
-					+		"<zimbraMailHost>"+ ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".store.host", ZimbraSeleniumProperties.getStringProperty("store.host")) +"</zimbraMailHost>"
 					+		prefs.toString()
 					+	"</CreateAccountRequest>");
 
 			Element[] createAccountResponse = ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("//admin:CreateAccountResponse");
 
-
 			if ( (createAccountResponse == null) || (createAccountResponse.length == 0)) {
 
 				Element[] soapFault = ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("//soap:Fault");
 				if ( soapFault != null && soapFault.length > 0 ) {
-				
 					String error = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//zimbra:Code", null);
 					throw new HarnessException("Unable to create account: "+ error);
-					
 				}
 				
 				throw new HarnessException("Unknown error when provisioning account");
-				
 			}			
 
 			// Set the account settings based on the response
@@ -485,18 +471,11 @@ public class ZimbraAccount {
 			ZimbraMailHost = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:account/admin:a[@n='zimbraMailHost']", null);
 			ZimbraPrefLocale = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:account/admin:a[@n='zimbraPrefLocale']", null);
 
-
 			// If pref is not set, then use default
 			if ( (ZimbraPrefLocale == null) || ZimbraPrefLocale.trim().equals("") ) {
 				ZimbraPrefLocale = Locale.getDefault().toString();
 			}
-
-			// If the storeHost value is set, use that value for the ZimbraMailHost
-			String storeHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
-			if ( storeHost != null ) {
-				ZimbraMailHost = storeHost;
-			}
-
+			
 			// If SOAP trace logging is specified, turn it on
 			if ( ZimbraSeleniumProperties.getStringProperty("soap.trace.enabled", "false").toLowerCase().equals("true") ) {
 				
@@ -513,9 +492,9 @@ public class ZimbraAccount {
 			
 			// Restart memcached for proxy
 			//if ( ZimbraSeleniumProperties.getStringProperty("server.host") != ZimbraSeleniumProperties.getStringProperty("store.host") ) {				
-				//StafServicePROCESS staf = new StafServicePROCESS();
-				//staf.execute("zmmemcachedctl restart");
-				//staf.execute("zmmemcachedctl restart"); //sometimes folder doesn't load in first restart too
+			//	StafServicePROCESS staf = new StafServicePROCESS();
+			//	staf.execute("zmmemcachedctl restart");
+			//	staf.execute("zmmemcachedctl restart"); //sometimes folder doesn't load in first restart too
 			//}
 			
 		} catch (HarnessException e) {
@@ -525,7 +504,6 @@ public class ZimbraAccount {
 			ZimbraMailHost = null;
 
 		}
-
 
 		return (this);
 	}
