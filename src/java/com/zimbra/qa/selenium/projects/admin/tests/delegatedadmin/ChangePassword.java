@@ -17,6 +17,7 @@
 package com.zimbra.qa.selenium.projects.admin.tests.delegatedadmin;
 
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -50,14 +51,9 @@ public class ChangePassword extends AdminCommonTest {
 		app.provisionAuthenticateDA();
 		this.startingPage.zNavigateTo();
 
-		//Create a new account in the Delegated Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-						+			"<name>" + account.getEmailAddress() + "</name>"
-						+			"<password>test123</password>"
-						+		"</CreateAccountRequest>");
-
+		// Create a new account in the Delegated Admin 
+		String account = ZimbraAccount.AccountZWC().EmailAddress;
+		
 		//Refresh the account list
 		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 		
@@ -65,7 +61,7 @@ public class ChangePassword extends AdminCommonTest {
 		app.zPageManageAccounts.zNavigateTo();
 
 		//Click on account to be Edited.
-		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
+		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account);
 
 		//Click on Edit button
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
@@ -84,7 +80,7 @@ public class ChangePassword extends AdminCommonTest {
 		//by getting a new token
 		app.zGetActiveAccount().soapSend(
 				"<AuthRequest xmlns='urn:zimbraAccount'>"
-						+		"<account by='name'>"+ account.getEmailAddress() +"</account>"
+						+		"<account by='name'>"+ account +"</account>"
 						+		"<password>"+ editedPassword +"</password>"
 						+	"</AuthRequest>");
 		String token = app.zGetActiveAccount().soapSelectValue("//acct:AuthResponse//acct:authToken", null);
@@ -108,11 +104,9 @@ public class ChangePassword extends AdminCommonTest {
 
 		// Create a new account in the Delegated Admin Console using SOAP
 		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-						+			"<name>" + account.getEmailAddress() + "</name>"
-						+			"<password>test123</password>"
-						+		"</CreateAccountRequest>");
+		
+		// Create a new account in the Delegated Admin 
+		String new_account = ZimbraAccount.AccountZWC().EmailAddress;
 		
 		//Refresh the account list
 		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
@@ -121,7 +115,7 @@ public class ChangePassword extends AdminCommonTest {
 		app.zPageManageAccounts.zNavigateTo();
 		
 		//Right Click on account to be Edited.
-		app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, account.getEmailAddress());
+		app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, new_account);
 		
 		//Right Click account >>  "Change password"
 		WizardChangePassword wizard = 
@@ -136,7 +130,7 @@ public class ChangePassword extends AdminCommonTest {
 		//by getting a new token
 		app.zGetActiveAccount().soapSend(
 					"<AuthRequest xmlns='urn:zimbraAccount'>"
-				+		"<account by='name'>"+ account.getEmailAddress() +"</account>"
+				+		"<account by='name'>"+ new_account +"</account>"
 				+		"<password>"+ "test1234" +"</password>"
 				+	"</AuthRequest>");
 		String token = app.zGetActiveAccount().soapSelectValue("//acct:AuthResponse//acct:authToken", null);
