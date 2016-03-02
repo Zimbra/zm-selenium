@@ -17,6 +17,7 @@
 package com.zimbra.qa.selenium.projects.admin.tests.delegatedadmin;
 
 import org.testng.annotations.Test;
+
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -92,21 +93,14 @@ public class AccountManage extends AdminCommonTest {
 		this.startingPage.zNavigateTo();
 
 
-		// Create a new account in the Delegated Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-						+			"<name>" + account.getEmailAddress() + "</name>"
-						+			"<password>test123</password>"
-						+		"</CreateAccountRequest>");
-
-
+		// Create a new account in the Delegated Admin 
+		String account = ZimbraAccount.AccountZWC().EmailAddress;
 
 		// Refresh the account list
 		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
 		// Click on account to be deleted.
-		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
+		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account);
 
 
 		// Click on Delete button
@@ -122,7 +116,7 @@ public class AccountManage extends AdminCommonTest {
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-						+			"<account by='name'>"+ account.getEmailAddress() +"</account>"
+						+			"<account by='name'>"+ account +"</account>"
 						+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1); 
 		ZAssert.assertNull(response, "Verify the account is deleted successfully at DA");
@@ -148,19 +142,14 @@ public class AccountManage extends AdminCommonTest {
 		app.provisionAuthenticateDA();
 		this.startingPage.zNavigateTo();
 
-		// Create a new account in the Delegated Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-						+			"<name>" + account.getEmailAddress() + "</name>"
-						+			"<password>test123</password>"
-						+		"</CreateAccountRequest>");
+		// Create a new account in the Delegated Admin 
+		String account = ZimbraAccount.AccountZWC().EmailAddress;
 
 		// Refresh the account list
 		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
 		// Click on account to be Edited.
-		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
+		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account);
 
 		// Click on Edit button
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
@@ -178,7 +167,7 @@ public class AccountManage extends AdminCommonTest {
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-						+			"<account by='name'>"+ editedName+"@"+account.getDomainName() +"</account>"
+						+			"<account by='name'>"+ editedName+"@" + ZimbraSeleniumProperties.getStringProperty("testdomain", "testdomain.com")+"</account>"
 						+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "Verify the account is edited successfully at DA");
