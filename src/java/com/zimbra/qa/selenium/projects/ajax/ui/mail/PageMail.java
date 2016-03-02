@@ -307,6 +307,18 @@ public class PageMail extends AbsTab {
 
 			return (page);
 
+		} else if (button == Button.B_DETACH_COMPOSE) {
+
+			// New button
+			locator = "css=div[id$='__DETACH_COMPOSE'] td[id$='COMPOSE_left_icon']";
+
+			// Create the page
+			page = new SeparateWindowFormMailNew(this.MyApplication);
+			
+			this.zClickAt(locator, "0,0");
+			
+			return (page);
+			
 		} else if (button == Button.B_GETMAIL || button == Button.B_LOADFEED
 				|| button == Button.B_REFRESH) {
 

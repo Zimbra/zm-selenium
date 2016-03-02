@@ -51,6 +51,7 @@ public class Button {
 	public static final Button B_NEW_TAG = new Button("B_NEW_TAG");
 	public static final Button B_GEAR_BOX=new Button("B_GEAR_BOX");
 	public static final Button B_NEW_IN_NEW_WINDOW = new Button("B_NEW_IN_NEW_WINDOW");
+	public static final Button B_DETACH_COMPOSE = new Button("B_DETACH_COMPOSE");
 	public static final Button B_DELETE = new Button("B_DELETE");
 	public static final Button B_MOVE = new Button("B_MOVE");
 	public static final Button B_PRINT = new Button("B_PRINT");
