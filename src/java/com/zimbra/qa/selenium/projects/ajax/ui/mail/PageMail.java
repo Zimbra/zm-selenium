@@ -1117,7 +1117,7 @@ public class PageMail extends AbsTab {
 		// TODO: handle tags
 
 		// Get the From
-		locator = msglocator + " [id$='__fr']";
+		locator = msglocator + " [id*='__fr']";
 		item.gFrom = this.sGetText(locator).trim();
 
 		// Get the attachment
