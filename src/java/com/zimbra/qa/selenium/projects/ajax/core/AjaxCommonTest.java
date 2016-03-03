@@ -20,18 +20,21 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.*;
+
 import org.apache.log4j.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.testng.*;
 import org.testng.annotations.*;
 import org.xml.sax.SAXException;
+
 import com.thoughtworks.selenium.*;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
+import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.DialogErrorID;
 
@@ -243,7 +246,14 @@ public class AjaxCommonTest {
 	public void commonTestBeforeMethod(Method method, ITestContext testContext) throws HarnessException {
 		logger.info("commonTestBeforeMethod: start");
 
-
+		// Restart memcached for proxy
+		if ( ZimbraSeleniumProperties.getStringProperty("server.host") != ZimbraSeleniumProperties.getStringProperty("store.host") ) {				
+			StafServicePROCESS staf = new StafServicePROCESS();
+			staf.execute("zmmemcachedctl restart");
+			staf.execute("zmmemcachedctl restart");
+			staf.execute("zmmemcachedctl restart"); //sometimes folder doesn't load in first restart too in proxy (work around temporary)
+		}
+					
 		// Get the test description
 		// By default, the test description is set to method's name
 		// if it is set, then change it to the specified one
