@@ -23,6 +23,7 @@ import java.net.URISyntaxException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.apache.commons.httpclient.Cookie;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpConnectionManager;
@@ -43,6 +44,7 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.dom4j.InvalidXPathException;
+
 import com.zimbra.common.auth.ZAuthToken;
 import com.zimbra.common.net.SocketFactories;
 import com.zimbra.common.service.ServiceException;
@@ -57,6 +59,7 @@ import com.zimbra.common.util.ByteUtil;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.I18N;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
+import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 
 @SuppressWarnings("deprecation")
@@ -491,11 +494,12 @@ public class ZimbraAccount {
 			domain.syncGalAccount();
 			
 			// Restart memcached for proxy
-			//if ( ZimbraSeleniumProperties.getStringProperty("server.host") != ZimbraSeleniumProperties.getStringProperty("store.host") ) {				
-			//	StafServicePROCESS staf = new StafServicePROCESS();
-			//	staf.execute("zmmemcachedctl restart");
-			//	staf.execute("zmmemcachedctl restart"); //sometimes folder doesn't load in first restart too
-			//}
+			if ( ZimbraSeleniumProperties.getStringProperty("server.host") != ZimbraSeleniumProperties.getStringProperty("store.host") ) {				
+				StafServicePROCESS staf = new StafServicePROCESS();
+				staf.execute("zmmemcachedctl restart");
+				staf.execute("zmmemcachedctl restart");
+				staf.execute("zmmemcachedctl restart"); //sometimes folder doesn't load in first restart too in proxy (work around temporary)
+			}
 			
 		} catch (HarnessException e) {
 

@@ -22,6 +22,7 @@ import java.util.Map;
 import org.apache.log4j.*;
 
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 
 public class ZimbraAdminAccount extends ZimbraAccount {
@@ -127,11 +128,12 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			domain.syncGalAccount();
 			
 			// Restart memcached for proxy
-			//if ( ZimbraSeleniumProperties.getStringProperty("server.host") != ZimbraSeleniumProperties.getStringProperty("store.host") ) {				
-			//	StafServicePROCESS staf = new StafServicePROCESS();
-			//	staf.execute("zmmemcachedctl restart");
-			//	staf.execute("zmmemcachedctl restart"); //sometimes folder doesn't load in first restart too
-			//}
+			if ( ZimbraSeleniumProperties.getStringProperty("server.host") != ZimbraSeleniumProperties.getStringProperty("store.host") ) {				
+				StafServicePROCESS staf = new StafServicePROCESS();
+				staf.execute("zmmemcachedctl restart");
+				staf.execute("zmmemcachedctl restart");
+				staf.execute("zmmemcachedctl restart"); //sometimes folder doesn't load in first restart too in proxy (work around temporary)
+			}
 
 		} catch (HarnessException e) {
 			logger.error("Unable to provision account: "+ EmailAddress);
@@ -213,7 +215,14 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 
 			}
 
-
+			// Restart memcached for proxy
+			if ( ZimbraSeleniumProperties.getStringProperty("server.host") != ZimbraSeleniumProperties.getStringProperty("store.host") ) {				
+				StafServicePROCESS staf = new StafServicePROCESS();
+				staf.execute("zmmemcachedctl restart");
+				staf.execute("zmmemcachedctl restart");
+				staf.execute("zmmemcachedctl restart"); //sometimes folder doesn't load in first restart too in proxy (work around temporary)
+			}
+						
 			// Sync the GAL to put the account into the list
 			domain.syncGalAccount();
 
