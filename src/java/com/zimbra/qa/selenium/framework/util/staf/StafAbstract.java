@@ -102,6 +102,12 @@ public class StafAbstract {
 	    			} else if (StafServer.indexOf(".eng.zimbra.com") >=0 ) {
 	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-7, StafServer.indexOf(".com")+4), ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".mta.host", ZimbraSeleniumProperties.getStringProperty("mta.host")));
 	    			}
+	        	} else if (StafParms.indexOf("zmmemcachedctl") >=0 ) {
+	    			if (StafServer.indexOf(".lab.zimbra.com") >=0 ) {
+	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-10, StafServer.indexOf(".com")+4), ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")));
+	    			} else if (StafServer.indexOf(".eng.zimbra.com") >=0 ) {
+	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-7, StafServer.indexOf(".com")+4), ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")));
+	    			}
 	    		} else if (StafParms.indexOf("zmmailbox") >=0 || StafParms.indexOf("zmtlsctl") >=0 || StafParms.indexOf("zm") >=0 || StafParms.indexOf("zmprov") >=0 || StafParms.indexOf("SYSTEM") >=0) {
 	    			if (StafServer.indexOf(".lab.zimbra.com") >=0 ) {
 	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-10, StafServer.indexOf(".com")+4), ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".store.host", ZimbraSeleniumProperties.getStringProperty("store.host")));
