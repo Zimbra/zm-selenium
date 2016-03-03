@@ -497,8 +497,6 @@ public class ZimbraAccount {
 			if ( ZimbraSeleniumProperties.getStringProperty("server.host") != ZimbraSeleniumProperties.getStringProperty("store.host") ) {				
 				StafServicePROCESS staf = new StafServicePROCESS();
 				staf.execute("zmmemcachedctl restart");
-				staf.execute("zmmemcachedctl restart");
-				staf.execute("zmmemcachedctl restart"); //sometimes folder doesn't load in first restart too in proxy (work around temporary)
 			}
 			
 		} catch (HarnessException e) {
