@@ -22,27 +22,17 @@ package com.zimbra.qa.selenium.projects.ajax.ui;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageContacts;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
-
-/*
- * Right-click menu
- * 
- */
 
 public class ContextMenu extends AbsDisplay {
 
-	
 	public ContextMenu(AbsApplication application) {
 		super(application);
 	}
 	
-	
-
 	public void  zSelect(ContextMenuItem cmi) throws HarnessException {
 		logger.info(myPageName() + " zSelect("+ cmi.text +")");
 				
@@ -50,6 +40,7 @@ public class ContextMenu extends AbsDisplay {
         zWaitForBusyOverlay();
 	}
 
+	@SuppressWarnings("incomplete-switch")
 	public AbsPage zSelect(ContextMenuItem.CONTEXT_MENU_ITEM_NAME cmiName) throws HarnessException {
       ContextMenuItem cmi = ContextMenuItem.getDesktopContextMenuItem(cmiName);
       logger.info(myPageName() + " zSelect("+ cmi.text +")");
@@ -70,6 +61,7 @@ public class ContextMenu extends AbsDisplay {
       return page;
     }
 
+	@SuppressWarnings("rawtypes")
 	public ContextMenuItem getContextMenuItem  (String parentLocator, Class contextMenuItemObject)throws HarnessException {
 		   ContextMenuItem cmi=null;
 		   
@@ -125,6 +117,7 @@ public class ContextMenu extends AbsDisplay {
 		   return cmi;
 		}
 		
+	@SuppressWarnings("rawtypes")
 	public ArrayList<ContextMenuItem> zListGetContextMenuItems(Class contextMenuItemObjects) throws HarnessException {
 
 		ArrayList <ContextMenuItem> list= new ArrayList<ContextMenuItem>();

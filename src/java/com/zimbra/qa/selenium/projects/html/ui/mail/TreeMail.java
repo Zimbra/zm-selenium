@@ -54,28 +54,7 @@ public class TreeMail extends AbsTree {
 	}
 
 	protected AbsPage zTreeItem(Action action, FolderItem folder) throws HarnessException {
-		AbsPage page = null;
-		String locator = null;
-
-
-		if ( locator == null )
-			throw new HarnessException("locator is null for action "+ action);
-
-
-		// Default behavior.  Click the locator
-		zClick(locator);
-
-		// If there is a busy overlay, wait for that to finish
-		this.zWaitForBusyOverlayHTML();
-
-		if ( page != null ) {
-
-			// Wait for the page to become active, if it was specified
-			page.zWaitForActive();
-		}
-
-		return (page);
-
+		throw new HarnessException("locator is null for action "+ action);
 	}
 
 	/**
@@ -93,28 +72,7 @@ public class TreeMail extends AbsTree {
 	}
 
 	protected AbsPage zTreeItem(Action action, SavedSearchFolderItem savedSearch) throws HarnessException {
-		AbsPage page = null;
-		String locator = null;
-
-		// TODO: implement me!
-
-		if ( locator == null )
-			throw new HarnessException("locator is null for action "+ action);
-
-
-		// Default behavior.  Click the locator
-		zClick(locator);
-
-		// If the app is busy, wait until it is ready again
-		this.zWaitForBusyOverlayHTML();
-
-		if ( page != null ) {
-
-			// Wait for the page to become active, if it was specified
-			page.zWaitForActive();
-		}
-
-		return (page);
+		throw new HarnessException("locator is null for action "+ action);
 	}
 
 	protected AbsPage zTreeItem(Action action, ZimletItem zimlet) throws HarnessException {
@@ -126,39 +84,7 @@ public class TreeMail extends AbsTree {
 	 */
 	@Override
 	public AbsPage zPressButton(Button button) throws HarnessException {
-
-		tracer.trace("Click "+ button);
-
-		if ( button == null )
-			throw new HarnessException("Button cannot be null");
-
-		AbsPage page = null;
-		String locator = null;
-
-
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
-		}
-
-		// Default behavior, process the locator by clicking on it
-		//
-
-		// Click it
-		this.zClick(locator);
-
-		// If the app is busy, wait for that to finish
-		this.zWaitForBusyOverlayHTML();
-
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-
-		}
-
-		return (page);
-
+		throw new HarnessException("button is null for action");
 	}
 
 	public AbsPage zTreeItem(Action action, String locator) throws HarnessException {
@@ -341,31 +267,7 @@ public class TreeMail extends AbsTree {
 	 * @throws HarnessException
 	 */
 	public AbsPage zSectionAction(FolderSectionAction action, FolderSection section) throws HarnessException {
-
-		AbsPage page = null;
-		String locator = null;
-
-		if ( section == FolderSection.Zimlets ) {
-
-
-			// Fall through
-
-		}
-
-		if ( locator == null ) {
-			throw new HarnessException("no locator defined for "+ action +" "+ section);
-		}
-
-		// Default behavior
-		this.zClick(locator);
-
-		this.zWaitForBusyOverlayHTML();
-
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
-
-		return (page);
+		throw new HarnessException("section is null for action "+ action);
 	}
 
 

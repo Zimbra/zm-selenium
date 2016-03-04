@@ -21,10 +21,13 @@ import java.util.Map.Entry;
 
 import org.apache.log4j.*;
 import org.json.*;
+
 import com.thoughtworks.selenium.SeleniumException;
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+
 import org.openqa.selenium.JavascriptExecutor;
+
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 
 
@@ -41,6 +44,8 @@ import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
  * @author Matt Rhoades
  *
  */
+
+@SuppressWarnings("deprecation")
 public class ZimbraDOM {
 	public static Logger logger = LogManager.getLogger(ZimbraDOM.class);
 
@@ -126,6 +131,7 @@ public class ZimbraDOM {
 	 * @return
 	 * @throws HarnessException on Selenium exception trying to call getEval()
 	 */
+	
 	protected static String lookup(JSONObject parms) throws HarnessException {
 
 		String command = null;

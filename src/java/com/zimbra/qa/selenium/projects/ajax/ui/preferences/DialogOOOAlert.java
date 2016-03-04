@@ -64,11 +64,6 @@ public class DialogOOOAlert extends AbsDialog {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator was set
-		if (locator == null) {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
 		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator "
@@ -84,12 +79,6 @@ public class DialogOOOAlert extends AbsDialog {
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
 
-		// If page was specified, make sure it is active
-		if (page != null) {
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-		}
-
 		return (page);
 	}
 
@@ -97,11 +86,6 @@ public class DialogOOOAlert extends AbsDialog {
 		logger.info("zGetCheckboxStatus");
 
 		String locator = "css=input[type=checkbox][id$=dontRemind]";
-
-		if (locator == null) {
-			throw new HarnessException(
-					"DialogOOOAlert checkbox locator not defined");
-		}
 
 		if (!sIsElementPresent(locator)) {
 			throw new HarnessException(

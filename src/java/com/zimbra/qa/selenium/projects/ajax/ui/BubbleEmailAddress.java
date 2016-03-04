@@ -109,10 +109,6 @@ public class BubbleEmailAddress extends AbsBubble {
 			this.sMouseOver(locator);
 			this.zWaitForBusyOverlay();
 
-			if ( page != null ) {
-				page.zWaitForActive();
-			}
-			
 			return (page);
 			
 		} else if ( action == Action.A_EXPAND ) {
@@ -152,10 +148,6 @@ public class BubbleEmailAddress extends AbsBubble {
 		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 		
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
-		
 		return (page);
 	}
 	
@@ -175,7 +167,6 @@ public class BubbleEmailAddress extends AbsBubble {
 
 		AbsPage page = null;
 		String locator = null;
-		String optionLocator = null;
 		
 		if ( action == Action.A_RIGHTCLICK ) {
 			
@@ -185,7 +176,6 @@ public class BubbleEmailAddress extends AbsBubble {
 				
 				// View mail bubble
 				
-				optionLocator = "implement me";
 				page = null;
 				
 				throw new HarnessException("implement me");
@@ -247,14 +237,6 @@ public class BubbleEmailAddress extends AbsBubble {
 				// Right click on the bubble
 				this.zRightClickAt(locator,"");
 				this.zWaitForBusyOverlay();
-				
-				if ( optionLocator != null ) {
-					
-					// Click on the context menu
-					this.zClickAt(optionLocator,"");
-					this.zWaitForBusyOverlay();
-
-				}
 
 			}
 			
@@ -264,10 +246,6 @@ public class BubbleEmailAddress extends AbsBubble {
 			throw new HarnessException("No logic for action "+ action);
 		}
 		
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
-
 		// Default behavior
 		return (page);
 
@@ -360,10 +338,6 @@ public class BubbleEmailAddress extends AbsBubble {
 			throw new HarnessException("No logic for action "+ action);
 		}
 		
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
-
 		// Default behavior
 		return (page);
 

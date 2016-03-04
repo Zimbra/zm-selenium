@@ -97,26 +97,11 @@ public class DialogAssistant extends AbsDialog {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
-		}
-		
-		// Default behavior, process the locator by clicking on it
-		//
-				
 		// Click it
 		zClickAt(locator,"0,0");
 		
 		// If the app is busy, wait for it to become active
 		zWaitForBusyOverlay();
-		
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-			
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-			
-		}
 		
 		if ( postqueue ) {
 			Stafpostqueue sp = new Stafpostqueue();

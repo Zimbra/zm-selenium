@@ -20,14 +20,8 @@
 package com.zimbra.qa.selenium.framework.items;
 
 import org.apache.log4j.*;
-
 import com.zimbra.common.soap.Element;
-import com.zimbra.qa.selenium.framework.ui.AbsApplication;
-import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-
-
 
 /**
  * This class represents a mail message

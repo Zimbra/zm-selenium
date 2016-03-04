@@ -19,15 +19,12 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.social;
 
-
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsDialog;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-
-
 
 /**
  * Represents a "Rename Folder" dialog box
@@ -58,14 +55,6 @@ public class DialogSocialZimletWelcome extends AbsDialog {
 			locator = Locators.zDialogLocatorCSS + " td[id^='OK_'] td[id$='_title']";
 			
 		} else {
-			throw new HarnessException("Button "+ button +" not implemented");
-		}
-		
-		// Default behavior, click the locator
-		//
-		
-		// Make sure the locator was set
-		if ( locator == null ) {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 		

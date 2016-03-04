@@ -16,15 +16,11 @@
  */
 package com.zimbra.qa.selenium.projects.touch.ui.contacts;
 
-import java.awt.AWTException;
-import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.util.*;
-
 import org.apache.log4j.LogManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;

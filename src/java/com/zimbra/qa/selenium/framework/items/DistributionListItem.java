@@ -29,6 +29,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 /**
  * The <code>DistributionListItem</code> defines a Zimbra dl item
  */
+@SuppressWarnings("unused")
 public class DistributionListItem extends ContactItem implements IItem {
 	protected static Logger logger = LogManager.getLogger(IItem.class);
 	public static final String IMAGE_CLASS   = "ImgDistributionList";

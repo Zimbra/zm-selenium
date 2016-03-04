@@ -15,10 +15,6 @@
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
-/**
- * 
- */
-
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -78,11 +74,6 @@ public class DialogConfirmDeleteOrganizer extends DialogWarning {
 			
 			return ( super.zClickButton(button) );
 
-		}
-
-		// Make sure the locator was set
-		if (locator == null) {
-			throw new HarnessException("Button " + button + " not implemented");
 		}
 
 		// Make sure the locator exists

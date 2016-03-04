@@ -201,14 +201,6 @@ public class FormContactGroupNew extends AbsForm {
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
-
-		// Make sure a locator was set
-		if ( locator == null )
-			throw new HarnessException("locator was null for button "+ button);
-
-		
-		// Default behavior, process the locator by clicking on it
-		//
 		
 		// Click it
 		this.zClickAt(locator,"");
@@ -217,13 +209,6 @@ public class FormContactGroupNew extends AbsForm {
 
 		// if the app is busy, wait for it to become active again
 		this.zWaitForBusyOverlay();
-		
-		if ( page != null ) {
-			
-			// Make sure the page becomes active
-			page.zWaitForActive();
-			
-		}
 		
 		// Return the page, if specified
 		return (page);

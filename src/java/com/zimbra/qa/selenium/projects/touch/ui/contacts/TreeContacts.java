@@ -27,10 +27,6 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 
-/**
- * @author zimbra
- *
- */
 public class TreeContacts extends AbsTree {
     public static final String NEW_FOLDER="css=#ztih__main_Contacts__ADDRBOOK_table tbody tr td:nth-child(4)";
     public static final String COLLAPSE_TREE="css#ztih__main_Contacts__ADDRBOOK_nodeCell";
@@ -88,10 +84,6 @@ public class TreeContacts extends AbsTree {
 			throw new HarnessException("Action "+ action +" not yet implemented");
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("no locator defined for action: "+ action);
-		}
-
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("Unable to locator folder in tree "+ locator);
 	    }
@@ -99,10 +91,6 @@ public class TreeContacts extends AbsTree {
 		// By default, left click at locator
 		zClick(locator);
 		zWaitForBusyOverlay();
-
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
 
 		return (page);
 	}
@@ -202,10 +190,6 @@ public class TreeContacts extends AbsTree {
 			zClickAt(optionLocator, "0,0");
 			zWaitForBusyOverlay();
 
-			if ( page != null ) {
-				page.zWaitForActive();
-			}
-
 			return (page);
 
 		} else {
@@ -295,10 +279,6 @@ public class TreeContacts extends AbsTree {
 
 			}
 
-			if ( page != null ) {
-				page.zWaitForActive();
-			}
-
 			return page;
 
 		} else if (action == Action.A_LEFTCLICK) {
@@ -314,10 +294,6 @@ public class TreeContacts extends AbsTree {
 
 		} else {
 			throw new HarnessException("implement action:"+ action +" option:"+ option);
-		}
-
-		if ( page != null ) {
-			page.zWaitForActive();
 		}
 
 		return page;
@@ -384,22 +360,11 @@ public class TreeContacts extends AbsTree {
 					+ " not yet implemented");
 		}
 
-		if (actionLocator == null)
-			throw new HarnessException("locator is null for action " + action);
-		if (optionLocator == null)
-			throw new HarnessException("locator is null for option " + option);
-
 		// Default behavior. Click the locator
 		zClickAt(optionLocator,"");
 
 		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
-
-		if (page != null) {
-
-			// Wait for the page to become active, if it was specified
-			page.zWaitForActive();
-		}
 
 		return (page);
 
@@ -486,14 +451,6 @@ public class TreeContacts extends AbsTree {
 
 		// If the app is busy, wait for that to finish
 		this.zWaitForBusyOverlay();
-
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-
-		}
 
 		return (page);
 

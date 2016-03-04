@@ -80,6 +80,8 @@ import com.zimbra.qa.selenium.projects.html.ui.AppHtmlClient;
  * @author Matt Rhoades
  *
  */
+
+@SuppressWarnings("deprecation")
 public class HtmlCommonTest {
 	protected static Logger logger = LogManager.getLogger(HtmlCommonTest.class);
 

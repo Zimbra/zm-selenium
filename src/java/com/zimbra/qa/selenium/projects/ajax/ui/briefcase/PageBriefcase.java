@@ -57,7 +57,7 @@ public class PageBriefcase extends AbsTab {
 		
 		public static final Locators zNewBriefcaseOverviewPaneIcon = new Locators("id=ztih__main_Briefcase__BRIEFCASE_textCell");
 		public static final Locators zBriefcaseFolder = new Locators("id=zti__main_Briefcase__16_textCell");
-		public static final Locators briefcaseListView = new Locators("css=div[id^='zl__BDLV'][class='DwtListView-Rows']");
+		public static final Locators briefcaseListView = new Locators("css=div[id^='zl__BDLV'][class^='DwtListView-Rows']");
 		public static final Locators zBriefcaseFolderIcon = new Locators("css=div[id='zti__main_Briefcase__16']");
 		public static final Locators zBriefcaseFolderIcon_Desktop = new Locators("css=div[id*='Briefcase'][id$='16_div']");
 		public static final Locators zTrashFolder = new Locators("id=zti__main_Briefcase__3_textCell");

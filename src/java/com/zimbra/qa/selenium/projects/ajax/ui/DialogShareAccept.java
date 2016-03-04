@@ -19,11 +19,9 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.ui;
 
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
-
 
 
 /**
@@ -109,14 +107,6 @@ public class DialogShareAccept extends AbsDialog {
 			locator = "css=div[class='ZmAcceptShareDialog'] td[id^='No_'] td[id$='_button4_title']";
 
 		} else {
-			throw new HarnessException("Button "+ button +" not implemented");
-		}
-		
-		// Default behavior, click the locator
-		//
-		
-		// Make sure the locator was set
-		if ( locator == null ) {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 		

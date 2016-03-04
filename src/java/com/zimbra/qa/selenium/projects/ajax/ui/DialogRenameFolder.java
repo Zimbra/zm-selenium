@@ -22,8 +22,6 @@ package com.zimbra.qa.selenium.projects.ajax.ui;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 
-
-
 /**
  * Represents a "Rename Folder" dialog box
  * <p>
@@ -83,14 +81,6 @@ public class DialogRenameFolder extends AbsDialog {
 			locator = "css=div[id='RenameFolderDialog_buttons'] td[id^='Cancel_'] td[id$='_title']";
 
 		} else {
-			throw new HarnessException("Button "+ button +" not implemented");
-		}
-		
-		// Default behavior, click the locator
-		//
-		
-		// Make sure the locator was set
-		if ( locator == null ) {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 		

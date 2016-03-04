@@ -33,7 +33,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.SeleniumException;
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
@@ -47,12 +46,14 @@ import com.zimbra.qa.selenium.projects.mobile.ui.AppMobileClient;
  * @author Matt Rhoades
  *
  */
+@SuppressWarnings("deprecation")
 public class MobileCommonTest {
 	protected static Logger logger = LogManager.getLogger(MobileCommonTest.class);
 		
 	
 	// Web Driver integration
 	private WebDriver _webDriver = null;
+	
 	private DefaultSelenium _selenium = null;
 
 	/**

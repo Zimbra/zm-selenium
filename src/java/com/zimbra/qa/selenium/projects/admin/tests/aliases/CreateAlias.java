@@ -17,8 +17,6 @@
 package com.zimbra.qa.selenium.projects.admin.tests.aliases;
 
 import org.testng.annotations.Test;
-
-import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -26,9 +24,7 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.*;
-import com.zimbra.qa.selenium.projects.admin.ui.WizardCreateAdminAccount;
 import com.zimbra.qa.selenium.projects.admin.ui.WizardCreateAlias;
-
 
 public class CreateAlias extends AdminCommonTest {
 	

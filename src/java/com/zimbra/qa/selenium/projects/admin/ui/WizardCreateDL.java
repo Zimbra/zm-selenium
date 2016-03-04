@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import java.awt.event.KeyEvent;
-
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.AbsWizard;
@@ -25,7 +24,6 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.admin.items.DistributionListItem;
-import com.zimbra.qa.selenium.projects.admin.ui.WizardCreateResource.Locators;
 
 public class WizardCreateDL extends AbsWizard {
 	public static class Locators {

@@ -26,8 +26,6 @@ import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
-
-
 /**
  * Represents the "Activity Stream" dialog box
  * <p>
@@ -71,20 +69,8 @@ public class DialogActivityStream extends AbsDialog {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 		
-		// Default behavior, click the locator
-		//
-		
-		// Make sure the locator was set
-		if ( locator == null ) {
-			throw new HarnessException("Button "+ button +" not implemented");
-		}
-		
 		this.zCheckboxSet(locator, status);
 		zWaitForBusyOverlay();
-		
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
 		
 		return (page);
 	}
@@ -107,21 +93,9 @@ public class DialogActivityStream extends AbsDialog {
 		} else {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
-		
-		// Default behavior, click the locator
-		//
-		
-		// Make sure the locator was set
-		if ( locator == null ) {
-			throw new HarnessException("Button "+ button +" not implemented");
-		}
-		
+
 		zClick(locator);
 		zWaitForBusyOverlay();
-		
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
 		
 		return (page);
 	}

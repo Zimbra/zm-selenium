@@ -131,12 +131,6 @@ public class DialogFindAttendees extends DialogWarning {
 		this.sClickAt(locator, "");
 		SleepUtil.sleepMedium();
 		this.zWaitForBusyOverlay();
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-			
-		}
 
 		// This dialog could send messages, so wait for the queue
 		if ( waitForPostfix ) {

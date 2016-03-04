@@ -22,8 +22,6 @@ package com.zimbra.qa.selenium.projects.admin.ui;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.zimbra.common.calendar.ZCalendar.ZParameter;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;

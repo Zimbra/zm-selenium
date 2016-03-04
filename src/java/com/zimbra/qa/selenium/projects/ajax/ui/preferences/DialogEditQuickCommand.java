@@ -25,8 +25,6 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
-
-
 /**
  * Represents a "Rename Folder" dialog box
  * <p>
@@ -119,20 +117,8 @@ public class DialogEditQuickCommand extends AbsDialog {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 
-		// Default behavior, click the locator
-		//
-
-		// Make sure the locator was set
-		if ( locator == null ) {
-			throw new HarnessException("Button "+ button +" not implemented");
-		}
-
 		zClick(locator);
 		zWaitForBusyOverlay();
-
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
 
 		return (page);
 	}
@@ -239,6 +225,7 @@ public class DialogEditQuickCommand extends AbsDialog {
 	 * @param type
 	 * @throws HarnessException
 	 */
+	@SuppressWarnings("unused")
 	public void zSetQuickCommandType(QuickCommandType type)
 	throws HarnessException 
 	{

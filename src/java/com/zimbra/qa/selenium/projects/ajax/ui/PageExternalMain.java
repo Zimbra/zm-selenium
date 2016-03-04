@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.ui;
 
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.projects.ajax.ui.PageMain.Locators;
 
 public class PageExternalMain extends PageMain {
 

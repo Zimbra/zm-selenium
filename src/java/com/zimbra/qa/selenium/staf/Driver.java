@@ -33,6 +33,7 @@ public class Driver {
 	 * @throws FileNotFoundException 
 	 * @throws HarnessException 
 	 */
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) throws FileNotFoundException, IOException, HarnessException {
 
         // Create the execution object

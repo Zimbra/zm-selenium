@@ -15,10 +15,6 @@
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
-/**
- * 
- */
-
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -82,11 +78,6 @@ public class DialogAddExternalCalendar extends AbsDialog {
 
 		}
 
-		// Make sure the locator was set
-		if (locator == null) {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
 		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator "
@@ -98,16 +89,6 @@ public class DialogAddExternalCalendar extends AbsDialog {
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
 		
-		
-		
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-			
-			// This function (default) throws an exception if never active
-			page.zWaitForActive();
-			
-		}
-
 		return (page);
 	}
 
@@ -180,11 +161,6 @@ public class DialogAddExternalCalendar extends AbsDialog {
 	
 	public void zSetCalendarType(CalendarType type) throws HarnessException {
 		logger.info(myPageName() + " zSetCalendarType("+ type +")");
-		
-		String pulldownLocator = null;
-		String optionLocator = null;
-		
-
 	}
 	
 	public void zSetSourceEmailAddress(String address) throws HarnessException {

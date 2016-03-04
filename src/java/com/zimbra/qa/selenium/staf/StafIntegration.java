@@ -126,6 +126,7 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
         }
     }
 	
+	@SuppressWarnings("static-access")
 	private STAFResult parseExecute(STAFCommandParseResult request, ExecuteHarnessMain harness) {
 		
 

@@ -135,6 +135,7 @@ public class TouchCommonTest {
 	 * @throws IOException 
 	 * @throws SAXException  
 	 */
+	@SuppressWarnings("deprecation")
 	@BeforeSuite( groups = { "always" } )
 	public void commonTestBeforeSuite()
 	throws HarnessException, IOException, InterruptedException, SAXException {
@@ -357,6 +358,7 @@ public class TouchCommonTest {
 	 * 
 	 * @throws HarnessException
 	 */
+	@SuppressWarnings("deprecation")
 	@AfterSuite( groups = { "always" } )
 	public void commonTestAfterSuite() throws HarnessException {	
 		logger.info("commonTestAfterSuite: start");

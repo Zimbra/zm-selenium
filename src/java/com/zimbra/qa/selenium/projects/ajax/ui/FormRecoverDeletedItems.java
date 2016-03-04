@@ -24,9 +24,6 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
-
-
-
 /**
  * The <code>FormRecoverDeletedItems<code> object defines an "Recover Deleted Items" dialog
  * <p>
@@ -138,13 +135,6 @@ public class FormRecoverDeletedItems extends AbsForm {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
-		// Make sure a locator was set
-		if ( locator == null )
-			throw new HarnessException("locator was null for button "+ button);
-
-		
-		// Default behavior, process the locator by clicking on it
-		//
 		if ( !this.sIsElementPresent(locator) ) 
 			throw new HarnessException("locator was not present for button "+ button);
 
@@ -210,13 +200,6 @@ public class FormRecoverDeletedItems extends AbsForm {
 		} else {
 			throw new HarnessException("not implemented for field " + field);
 		}
-		
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for field "+ field);
-		}
-		
-		// Default behavior, enter value into locator field
-		//
 		
 		// Make sure the button exists
 		if ( !this.sIsElementPresent(locator) )
@@ -301,11 +284,6 @@ public class FormRecoverDeletedItems extends AbsForm {
 
 		} else {
 			throw new HarnessException("implement me!  action = "+ action);
-		}
-
-
-		if ( page != null ) {
-			page.zWaitForActive();
 		}
 
 		// default return command

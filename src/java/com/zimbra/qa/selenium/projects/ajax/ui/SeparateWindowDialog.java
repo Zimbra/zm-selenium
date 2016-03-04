@@ -99,13 +99,6 @@ public class SeparateWindowDialog extends AbsSeparateWindow {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
-		}
-
-		// Default behavior, process the locator by clicking on it
-		//
-
 		// Click it
 		zClickAt(locator,"0,0");
 

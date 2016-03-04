@@ -19,7 +19,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.ui;
 
-
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +31,6 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-
-
 
 /**
  * Represents a "Rename Folder" dialog box
@@ -204,6 +201,7 @@ public class DialogShareFind extends AbsDialog {
 	 * @param FolderItem
 	 * @throws HarnessException 
 	 */
+	@SuppressWarnings("unused")
 	public AbsPage zTreeItem(Action action, String folder) throws HarnessException {
 		AbsPage page = null;
 		String locator = this.zGetLocator(folder);

@@ -24,13 +24,10 @@ import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 
-
+@SuppressWarnings("deprecation")
 public class PagePrint extends AbsPage {
 	protected static Logger logger = LogManager.getLogger(AbsTab.class);
 	
-
-
-
 	/**
 	 * Create this page object that exists in the specified application
 	 * @param application

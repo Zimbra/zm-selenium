@@ -76,6 +76,7 @@ public class AliasItem implements IItem {
 		return (aliasDomainName);
 	}
 
+	@SuppressWarnings("static-access")
 	public void setTarget(AccountItem account) throws HarnessException {
 		if ( (account.getEmailAddress() == null) || (account.getEmailAddress().trim().length() == 0) )
 			throw new HarnessException("AccountItem email address is not set");

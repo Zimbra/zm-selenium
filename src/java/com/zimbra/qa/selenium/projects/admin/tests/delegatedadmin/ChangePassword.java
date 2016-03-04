@@ -29,7 +29,7 @@ import com.zimbra.qa.selenium.projects.admin.ui.WizardChangePassword;
 
 public class ChangePassword extends AdminCommonTest {
 
-	public void ChangePassword() throws HarnessException {
+	public ChangePassword() throws HarnessException {
 		logger.info("New "+ ChangePassword.class.getCanonicalName());
 
 		//All tests start at the "Accounts" page

@@ -17,10 +17,7 @@
 package com.zimbra.qa.selenium.projects.admin.tests.search;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
-import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -33,8 +30,6 @@ import com.zimbra.qa.selenium.projects.admin.items.CosItem;
 import com.zimbra.qa.selenium.projects.admin.items.DistributionListItem;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
 import com.zimbra.qa.selenium.projects.admin.items.ResourceItem;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageSearch;
-import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults;
 
 public class GlobalHomeSearch extends AdminCommonTest {
 	

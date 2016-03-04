@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.admin.tests.resources;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -29,7 +27,6 @@ import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.items.ResourceItem;
 import com.zimbra.qa.selenium.projects.admin.ui.DialogForDeleteOperation;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 
 public class DeleteResourceSR extends AdminCommonTest {
 
