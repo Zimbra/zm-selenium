@@ -1362,7 +1362,6 @@ public class FormApptNew extends AbsForm {
 
 		DialogCustomRepeat dlgCustomRepeat = (DialogCustomRepeat) new DialogCustomRepeat(DialogCustomRepeat.DialogWarningID.DialogCustomRepeat, MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 		dlgCustomRepeat.zClickButton(Button.B_OK);
-		sClickAt("css=div[class='DwtDialog'][style*='display: block;'] div[id$='_buttons'] td[id^='OK'] td[id$='title']","0,0");
 
 		SleepUtil.sleepSmall();
 	}
