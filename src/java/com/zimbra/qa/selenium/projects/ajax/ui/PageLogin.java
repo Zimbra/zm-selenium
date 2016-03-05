@@ -152,6 +152,7 @@ public class PageLogin extends AbsTab {
 					zSetLoginName(account.EmailAddress);
 					zSetLoginPassword(account.Password);
 					sClickAt(Locators.zBtnLogin, "");
+					SleepUtil.sleepMedium();
 				} else {
 					logger.debug("2nd login retry - successfully logged in using " + account.EmailAddress);
 				}
