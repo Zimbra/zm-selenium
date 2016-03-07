@@ -72,6 +72,7 @@ public class PageTasks extends AbsTab{
 		public static final String zShowOrigTaskMenuItem ="css=div[id='zm__Tasks'] tr[id='POPUP_zmi__Tasks__SHOW_ORIG'] td[id$='_title']";
 		public static final String zPrintTaskMenuItem ="css=div[id='zm__Tasks'] tr[id='POPUP_zmi__Tasks__PRINT_TASK'] td[id$='_title']";
 		public static String zPrintTaskDropDownId = null;
+		public static final String zTaskBodyField = "css=div[class='ZmTaskEditView'] div[id$='_notes'] textarea[id$='_body']";
 		//public static final String zPrintTaskDropDown="css=td#zcs8_dropdown>div";
 		public static final String zPrintTaskFolder ="css=tr[id='POPUP_PRINT_TASKFOLDER'] td[id$='_title']";
 		public static final String zCloseButton="css=div[id^='ztb__TKV']  tr[id^='ztb__TKV'] td[id$='_title']:contains('Close')";

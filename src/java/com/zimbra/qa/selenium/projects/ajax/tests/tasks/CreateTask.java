@@ -79,7 +79,11 @@ public class CreateTask extends AjaxCommonTest {
 		
 		//Fill out resulting form		
 		taskNew.zFillField(Field.Subject, subject);
-		taskNew.zFillField(Field.Body, body);
+		
+		//Work around by typing using keyboard otherwise warning dialog won't come
+		taskNew.sFocus(Locators.zTaskBodyField);
+		taskNew.zClick(Locators.zTaskBodyField);
+		taskNew.zKeyboard.zTypeCharacters(body);
 				
 		//Click Escape shortcut 'Esc'	
 		DialogWarning warning =(DialogWarning)app.zPageTasks.zKeyboardShortcut(shortcut);

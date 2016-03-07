@@ -70,6 +70,7 @@ public class FormTaskNew extends AbsForm {
 		public static final String zSaveTask = "css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')";
 		//public static final String zTasksubjField = "//td[contains(@id,'zv__TKE1_subject')]/div/input";
 		public static final String zTasksubjField = "css=td[id$='_subject'] div input";
+		public static final String zTaskBodyField = "css=div[class='ZmTaskEditView'] div[id$='_notes'] textarea[id$='_body']";
 		public static final String zTasksubjFieldDesktop = "//td[contains(@id,'_subject')]/div/input";
 		//public static final String zCancelTask = "zb__TKE-1__CANCEL_left_icon";
 		public static final String zCancelTask = "css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Cancel')";
@@ -367,7 +368,7 @@ public class FormTaskNew extends AbsForm {
 			}
 			return;
 
-		}else if (field == Field.HtmlBody) {
+		} else if (field == Field.HtmlBody) {
 			
 			SleepUtil.sleepVeryLong();
 			
