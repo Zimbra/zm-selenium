@@ -89,7 +89,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		
 		// Create the data source
 		String datasourcename = "datasource" + ZimbraSeleniumProperties.getUniqueString();
-		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("server.host");
+		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("store.host");
 		String datasourceImapPort = ZimbraSeleniumProperties.getStringProperty("server.imap.port");
 		String datasourceImapType = ZimbraSeleniumProperties.getStringProperty("server.imap.type");
 		
@@ -226,7 +226,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		
 		// Create the data source
 		String datasourcename = "datasource" + ZimbraSeleniumProperties.getUniqueString();
-		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("server.host");
+		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("store.host");
 		String datasourceImapPort = ZimbraSeleniumProperties.getStringProperty("server.imap.port");
 		String datasourceImapType = ZimbraSeleniumProperties.getStringProperty("server.imap.type");
 		
@@ -376,7 +376,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		
 		// Create the data source
 		String datasourcename = "datasource" + ZimbraSeleniumProperties.getUniqueString();
-		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("server.host");
+		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("store.host");
 		String datasourceImapPort = ZimbraSeleniumProperties.getStringProperty("server.imap.port");
 		String datasourceImapType = ZimbraSeleniumProperties.getStringProperty("server.imap.type");
 		

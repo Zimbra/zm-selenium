@@ -88,7 +88,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		
 		// Create the data source
 		String datasourcename = "datasource" + ZimbraSeleniumProperties.getUniqueString();
-		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("server.host");
+		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("store.host");
 		String datasourcePopPort = ZimbraSeleniumProperties.getStringProperty("server.pop.port");
 		String datasourcePopType = ZimbraSeleniumProperties.getStringProperty("server.pop.type");
 		
@@ -197,7 +197,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		
 		// Create the data source
 		String datasourcename = "datasource" + ZimbraSeleniumProperties.getUniqueString();
-		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("server.host");
+		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("store.host");
 		String datasourcePopPort = ZimbraSeleniumProperties.getStringProperty("server.pop.port");
 		String datasourcePopType = ZimbraSeleniumProperties.getStringProperty("server.pop.type");
 		
@@ -318,7 +318,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		
 		// Create the data source
 		String datasourcename = "datasource" + ZimbraSeleniumProperties.getUniqueString();
-		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("server.host");
+		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("store.host");
 		String datasourcePopPort = ZimbraSeleniumProperties.getStringProperty("server.pop.port");
 		String datasourcePopType = ZimbraSeleniumProperties.getStringProperty("server.pop.type");
 		
