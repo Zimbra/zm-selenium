@@ -456,6 +456,9 @@ public class Button {
 	public static final Button B_QUICK_REPLY_CANCEL = new Button("B_QUICK_REPLY_CANCEL");
 	public static final Button B_QUICK_REPLY_MORE = new Button("B_QUICK_REPLY_MORE");
 
+	// Full pane view buttons
+	public static final Button B_DELETE_FULL_VIEW_PANE = new Button("B_DELETE_FULL_VIEW_PANE");
+	
 	// Calendar
 	public static final Button B_SHOW = new Button("B_SHOW");
 	public static final Button B_SAVEANDCLOSE = new Button("B_SAVEANDCLOSE");

@@ -125,6 +125,10 @@ public class PageMail extends AbsTab {
 		public static final String zUntagBubble ="css=div[id='zv__TV-main__MSG'] tr[id='zv__TV__TV-main_MSG_tagRow'] span[class='addrBubble TagBubble'] span[class='ImgBubbleDelete']";
 		public static final String zInlineImageAttachment="css=img[data-mce-src^='cid']&&[data-mce-src$='@zimbra']";
 
+		// Full view pane locators
+		public static final String zCloseButtonFullViewPane = "css=img[data-mce-src^='cid']&&[data-mce-src$='@zimbra']";
+		public static final String zDeleteButtonFullViewPane = "css=div[id^='ztb__MSG'] div[id$='DELETE'] tr td[id$='DELETE_title']";
+		
 		public static class CONTEXT_MENU {
 			// TODO: Until https://bugzilla.zimbra.com/show_bug.cgi?id=56273 is
 			// fixed, ContextMenuItem will be defined using the text content
@@ -2343,4 +2347,113 @@ public class PageMail extends AbsTab {
 
 		return (true);
 	}
+	
+	public AbsPage zToolbarPressButtonFullView(Button button) throws HarnessException {
+
+		logger.info(myPageName() + " zToolbarPressButtonFullView("+ button +")");
+
+		tracer.trace("Click page button "+ button);
+
+
+
+		AbsPage page = null;
+
+		String locator = null;
+
+
+
+		if ( button == Button.B_DELETE_FULL_VIEW_PANE ) {
+
+		locator = Locators.zDeleteButtonFullViewPane;
+
+
+
+		} else if ( button == Button.B_DONE ) {
+
+		locator = Locators.zCloseButtonFullViewPane;
+
+
+
+		/*	} else if ( button == Button.B_EDIT ) {
+
+		locator = Locators.zEditButton;
+
+		this.sClickAt("css=span[class='x-button-icon x-shown organizer']", "0,0");
+
+
+
+
+
+		} else if ( button == Button.B_LOCATION ) {
+
+		locator = Locators.zLocationButton;
+
+
+
+		} else if ( button == Button.B_SAVE ) {
+
+		locator = Locators.zSaveButton;
+
+
+
+		} else if ( button == Button.B_DELETE ) {
+
+		locator = Locators.zDeleteButton;
+
+
+
+		} else if ( button == Button.B_SUBFOLDER_ICON ) {
+
+		locator = Locators.zSubFolderIcon;
+
+		*/
+
+		} else {
+
+		throw new HarnessException("Button "+ button +" not implemented");
+
+		}
+
+
+
+		// Make sure the locator was set
+
+		if ( locator == null ) {
+
+		throw new HarnessException("Button "+ button +" not implemented");
+
+		}
+
+
+
+		// Make sure the locator exists
+
+		if ( !this.sIsElementPresent(locator) ) {
+
+		throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
+
+		}
+
+
+
+		/*if ( button == Button.B_EDIT ) {
+
+		SleepUtil.sleepMedium();
+
+		locator = Locators.zEditButton;
+
+		this.sClickAt("css=span[class='x-button-icon x-shown organizer']", "0,0");
+
+		}*/
+
+		this.sClickAt(locator, "");
+
+		SleepUtil.sleepMedium();
+
+
+
+		return (page);
+
+		}
+	
 }
