@@ -1,5 +1,3 @@
-
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -16,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.fullviewpane;
 
 import java.util.List;
 
@@ -27,16 +25,15 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 
-public class DeleteMailInFullReadingPane extends PrefGroupMailByMessageTest {
+public class DeleteMailInFullViewPane extends PrefGroupMailByMessageTest {
 
-	public DeleteMailInFullReadingPane() throws HarnessException {
-		logger.info("New "+ DeleteMailInFullReadingPane.class.getCanonicalName());
-
+	public DeleteMailInFullViewPane() throws HarnessException {
+		logger.info("New "+ DeleteMailInFullViewPane.class.getCanonicalName());
 	}
 
 	@Test(	description = "Bug 77538 - Double click a mail and delete it", groups = { "functional" })
 
-	public void DeleteMailInFullReadingPane_01() throws HarnessException {
+	public void DeleteMailInFullViewPane_01() throws HarnessException {
 
 		// Data Setup	
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
