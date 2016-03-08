@@ -218,7 +218,7 @@ public class CommandLine {
 	}
 
 	 public static String cmdExecOnServer(String email, String secret) {
-	        String host = ZimbraSeleniumProperties.getStringProperty("server.host");
+	        String host = ZimbraSeleniumProperties.getStringProperty("store.host");
 	        String user = "root";
 	        String password = "zimbra";
 	        String command1 = "su - zimbra -c 'zmtotp -a " + email + " -s " + secret + "'";
