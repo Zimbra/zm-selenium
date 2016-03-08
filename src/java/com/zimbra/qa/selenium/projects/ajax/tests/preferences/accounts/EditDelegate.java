@@ -175,10 +175,11 @@ public class EditDelegate extends AjaxCommonTest {
 		app.zPagePreferences.zClickAt(buttonLocator, "");
 		dialog.zWaitForActive();
 		dialog.zUnCheckRight(DialogDelegate.Rights.SendAs);
-		SleepUtil.sleepMedium();
+		//SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 		dialog.zClickButton(Button.B_OK);
-		SleepUtil.sleepMedium();
-		
+		//SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 		
 		//-- Verification
 		app.zGetActiveAccount().soapSend(
