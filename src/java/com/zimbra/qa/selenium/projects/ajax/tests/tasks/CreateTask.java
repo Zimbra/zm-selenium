@@ -315,7 +315,11 @@ public class CreateTask extends AjaxCommonTest {
 
 		// Fill out the resulting form
 		form.zFillField(Field.Subject, subject);
-		form.zFillField(Field.Body, body);
+		//form.zFillField(Field.Body, body);
+		//Work around by typing using keyboard otherwise it won't save task
+		form.sFocus(Locators.zTaskBodyField);
+		form.zClick(Locators.zTaskBodyField);
+		form.zKeyboard.zTypeCharacters(body);
 
 		// Change the priority
 		form.zToolbarPressPulldown(Button.B_PRIORITY, option);
