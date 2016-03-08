@@ -121,7 +121,8 @@ public class RestUtil {
 			host = null;
 			authToken = null;
 		} else {
-			host = account.ZimbraMailHost;
+		//	host = account.ZimbraMailHost;
+			host = ZimbraSeleniumProperties.getStringProperty("server.host", null);
 			authToken = account.MyAuthToken;			
 		}
 		return (account);
