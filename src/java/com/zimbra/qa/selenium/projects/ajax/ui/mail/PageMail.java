@@ -2348,112 +2348,36 @@ public class PageMail extends AbsTab {
 		return (true);
 	}
 	
-	public AbsPage zToolbarPressButtonFullView(Button button) throws HarnessException {
+	public AbsPage zToolbarPressButtonFullViewPane (Button button) throws HarnessException {
 
-		logger.info(myPageName() + " zToolbarPressButtonFullView("+ button +")");
-
+		logger.info(myPageName() + " zToolbarPressButtonFullView ("+ button +")");
 		tracer.trace("Click page button "+ button);
 
-
-
 		AbsPage page = null;
-
 		String locator = null;
 
-
-
 		if ( button == Button.B_DELETE_FULL_VIEW_PANE ) {
-
-		locator = Locators.zDeleteButtonFullViewPane;
-
-
-
-		} else if ( button == Button.B_DONE ) {
-
-		locator = Locators.zCloseButtonFullViewPane;
-
-
-
-		/*	} else if ( button == Button.B_EDIT ) {
-
-		locator = Locators.zEditButton;
-
-		this.sClickAt("css=span[class='x-button-icon x-shown organizer']", "0,0");
-
-
-
-
-
-		} else if ( button == Button.B_LOCATION ) {
-
-		locator = Locators.zLocationButton;
-
-
-
-		} else if ( button == Button.B_SAVE ) {
-
-		locator = Locators.zSaveButton;
-
-
-
-		} else if ( button == Button.B_DELETE ) {
-
-		locator = Locators.zDeleteButton;
-
-
-
-		} else if ( button == Button.B_SUBFOLDER_ICON ) {
-
-		locator = Locators.zSubFolderIcon;
-
-		*/
+			locator = Locators.zDeleteButtonFullViewPane;
 
 		} else {
-
-		throw new HarnessException("Button "+ button +" not implemented");
-
+			throw new HarnessException("Button "+ button +" not implemented");
 		}
-
-
 
 		// Make sure the locator was set
-
 		if ( locator == null ) {
-
-		throw new HarnessException("Button "+ button +" not implemented");
-
+			throw new HarnessException("Button "+ button +" not implemented");
 		}
-
-
 
 		// Make sure the locator exists
-
 		if ( !this.sIsElementPresent(locator) ) {
-
-		throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
-
+			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
 		}
-
-
-
-		/*if ( button == Button.B_EDIT ) {
-
-		SleepUtil.sleepMedium();
-
-		locator = Locators.zEditButton;
-
-		this.sClickAt("css=span[class='x-button-icon x-shown organizer']", "0,0");
-
-		}*/
-
+		
 		this.sClickAt(locator, "");
-
 		SleepUtil.sleepMedium();
-
-
 
 		return (page);
 
-		}
+	}
 	
 }

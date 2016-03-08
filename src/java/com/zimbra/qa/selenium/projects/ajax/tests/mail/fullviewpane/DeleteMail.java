@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.fullviewpane;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -30,24 +28,24 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	public DeleteMail() throws HarnessException {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());
 	}
-
-	@Test(	description = "Bug 77538 - Double click a mail and delete it", groups = { "functional" })
-
+	
+	@Test( description = "Bug 77538 - Double click a mail and delete it", groups = { "functional" } )
+	
 	public void DeleteMail_01() throws HarnessException {
 
 		// Data Setup	
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
 
 		ZimbraAccount.AccountA().soapSend(
-				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-						"<m>" +
-						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-						"<su>"+ subject +"</su>" +
-						"<mp ct='text/plain'>" +
-						"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
-						"</mp>" +
-						"</m>" +
-				"</SendMsgRequest>");
+			"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+					"<m>" +
+					"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+					"<su>"+ subject +"</su>" +
+					"<mp ct='text/plain'>" +
+					"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+					"</mp>" +
+					"</m>" +
+			"</SendMsgRequest>");
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
@@ -57,11 +55,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		// Double click the message to open in full reading pane
 		app.zPageMail.zListItem(Action.A_DOUBLECLICK, subject);
 
-		// click delete
-		//app.zPageMail.zClick("zDeleteButtonFullViewPane"); //Delete button locator
-		//SleepUtil.sleepMedium();
-
-		app.zPageMail.zToolbarPressButtonFullView(Button.B_DELETE_FULL_VIEW_PANE);
+		app.zPageMail.zToolbarPressButtonFullViewPane (Button.B_DELETE_FULL_VIEW_PANE);
 		
 		// Verify the message no longer exist in the list
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
@@ -75,6 +69,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 				break;
 			}
 		}
+		
 		ZAssert.assertNull(found, "Verify the message is no longer in the inbox");
 
 		ZAssert.assertFalse(app.zPageMail.zIsVisiblePerPosition("css=div[id^='ztb__MSG'] div[id$='DELETE'] tr td[id$='DELETE_title']", 10, 10), "Verify delete button is not present");

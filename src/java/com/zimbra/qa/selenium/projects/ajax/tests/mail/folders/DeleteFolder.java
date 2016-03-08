@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -28,11 +27,6 @@ public class DeleteFolder extends PrefGroupMailByMessageTest {
 
 	public DeleteFolder() {
 		logger.info("New "+ DeleteFolder.class.getCanonicalName());
-
-		
-		
-		
-
 	}
 
 	@Test(	description = "Delete a folder - Right click, Delete",
