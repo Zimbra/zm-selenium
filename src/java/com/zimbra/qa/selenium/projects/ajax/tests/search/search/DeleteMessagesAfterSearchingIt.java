@@ -27,6 +27,7 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
@@ -137,6 +138,10 @@ public class DeleteMessagesAfterSearchingIt extends PrefGroupMailByMessageTest {
 	@Test(	description = "Verify bug 44826", groups = { "functional" })
 	
 	public void DeleteMessagesAfterSearchingIt_02() throws HarnessException {
+		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inboxFolder);
+
+		SleepUtil.sleepMedium();
 		
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 		// Create a message in trash to move

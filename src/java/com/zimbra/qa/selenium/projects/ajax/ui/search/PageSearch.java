@@ -186,18 +186,42 @@ public class PageSearch extends AbsTab {
 		} else if ( (button == Button.B_DELETE) ) {
 			
 			if (zGetPropMailView() == SearchView.BY_MESSAGE) {
-				locator = "css=div[id^='ztb__TV-SR-'] div[id$='__DELETE'] td[id$='_title']";
+				if (this.sIsElementPresent("css=div[id^='ztb__TV-SR-3'] div[id$='__DELETE'] td[id$='_title']")) {
+					locator = "css=div[id^='ztb__TV-SR-3'] div[id$='__DELETE'] td[id$='_title']";
+				} else if (this.sIsElementPresent("css=div[id^='ztb__TV-SR-2'] div[id$='__DELETE'] td[id$='_title']")) {
+					locator = "css=div[id^='ztb__TV-SR-2'] div[id$='__DELETE'] td[id$='_title']";
+				} else if (this.sIsElementPresent("css=div[id^='ztb__TV-SR-1'] div[id$='__DELETE'] td[id$='_title']")) {
+					locator = "css=div[id^='ztb__TV-SR-1'] div[id$='__DELETE'] td[id$='_title']";
+				}
 			} else {
-				locator = "css=div[id^='ztb__CLV-SR-'] div[id$='__DELETE'] td[id$='_title']";
+				if (this.sIsElementPresent("css=div[id^='ztb__CLV-SR-3'] div[id$='__DELETE'] td[id$='_title']")) {
+					locator = "css=div[id^='ztb__CLV-SR-3'] div[id$='__DELETE'] td[id$='_title']";
+				} else if (this.sIsElementPresent("css=div[id^='ztb__CLV-SR-2'] div[id$='__DELETE'] td[id$='_title']")) {
+					locator = "css=div[id^='ztb__CLV-SR-2'] div[id$='__DELETE'] td[id$='_title']";
+				} else if (this.sIsElementPresent("css=div[id^='ztb__CLV-SR-1'] div[id$='__DELETE'] td[id$='_title']")) {
+					locator = "css=div[id^='ztb__CLV-SR-1'] div[id$='__DELETE'] td[id$='_title']";
+				}
 			}
 			page = null;
 			
 		} else if (button == Button.B_SELECT_ALL) {
 
 			if (zGetPropMailView() == SearchView.BY_MESSAGE) {
-				locator = "css=div[id='zlhi__TV-SR-1__se']";
+				if (this.sIsElementPresent("css=div[id='zlhi__TV-SR-3__se']")) {
+					locator = "css=div[id='zlhi__TV-SR-3__se']";
+				} else if (this.sIsElementPresent("css=div[id='zlhi__TV-SR-2__se']")) {
+					locator = "css=div[id='zlhi__TV-SR-2__se']";
+				} else if (this.sIsElementPresent("css=div[id='zlhi__TV-SR-1__se']")) {
+					locator = "css=div[id='zlhi__TV-SR-1__se']";
+				}
 			} else {
-				locator = "css=div[id='zlhi__CLV-SR-1__se']";
+				if (this.sIsElementPresent("css=div[id='zlhi__CLV-SR-3__se']")) {
+					locator = "css=div[id='zlhi__CLV-SR-3__se']";
+				} else if (this.sIsElementPresent("css=div[id='zlhi__CLV-SR-2__se']")) {
+					locator = "css=div[id='zlhi__CLV-SR-2__se']";
+				} else if (this.sIsElementPresent("css=div[id='zlhi__CLV-SR-1__se']")) {
+					locator = "css=div[id='zlhi__CLV-SR-1__se']";
+				}
 			}
 			page = null;
 		}	
