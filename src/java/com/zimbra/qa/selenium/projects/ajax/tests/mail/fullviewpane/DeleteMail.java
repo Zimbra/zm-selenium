@@ -25,15 +25,15 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 
-public class DeleteMailInFullViewPane extends PrefGroupMailByMessageTest {
+public class DeleteMail extends PrefGroupMailByMessageTest {
 
-	public DeleteMailInFullViewPane() throws HarnessException {
-		logger.info("New "+ DeleteMailInFullViewPane.class.getCanonicalName());
+	public DeleteMail() throws HarnessException {
+		logger.info("New "+ DeleteMail.class.getCanonicalName());
 	}
 
 	@Test(	description = "Bug 77538 - Double click a mail and delete it", groups = { "functional" })
 
-	public void DeleteMailInFullViewPane_01() throws HarnessException {
+	public void DeleteMail_01() throws HarnessException {
 
 		// Data Setup	
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
