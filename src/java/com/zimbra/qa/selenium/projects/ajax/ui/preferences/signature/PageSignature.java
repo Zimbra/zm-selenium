@@ -23,6 +23,9 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.I18N;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
+import com.zimbra.qa.selenium.projects.ajax.ui.preferences.DialogSelectContact;
 
 
 
@@ -122,6 +125,10 @@ public class PageSignature extends AbsTab{
 		}else if(button== Button.B_DELETE){
 			locator = Locators.zDeleteSignature;
 			page = null;
+
+		}else if(button== Button.B_BROWSE){
+			locator = "css=div[id='Prefs_Pages_SIGNATURES'] div[class='DwtComposite'] div[class^='ZButton'] td[id$='_title']:contains('Browse...')";
+			 page = new DialogSelectContact(MyApplication, ((AppAjaxClient)MyApplication).zPageSignature);
 
 		}else {
 
