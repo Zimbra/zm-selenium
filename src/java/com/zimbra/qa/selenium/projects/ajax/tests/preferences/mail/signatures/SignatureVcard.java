@@ -143,7 +143,7 @@ public class SignatureVcard extends AjaxCommonTest {
 		SleepUtil.sleepSmall();
 		
 		
-		//Verify Attachment present in compose window
+		//Verify Attachment present in Reading pane
 		Assert.assertTrue(app.zPageMail.sIsElementPresent("css=a[class='AttLink']"),"vcf attachment link present");
 
 		//Verify Signature present in body
