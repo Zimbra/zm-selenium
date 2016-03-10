@@ -746,6 +746,9 @@ public class Button {
 	public static Button B_SPAM_MESSAGE =   new Button("B_SPAM_MESSAGE");
 	public static Button B_NOT_SPAM_MESSAGE =   new Button("B_NOT_SPAM_MESSAGE");
 	public static Button B_CONVERSATION_ACTION_DROPDOWN =	new Button("B_CONVERSATION_ACTION_DROPDOWN");
+	public static Button B_FLAG_MESSAGE 	=   new Button("B_FLAG_MESSAGE");
+	public static Button B_UNFLAG_MESSAGE 	=   new Button("B_UNFLAG_MESSAGE");
+
 
 	public static Button B_SEARCH_TYPE =	new Button("B_SEARCH_TYPE");
 	public static Button O_ACCOUNTS =	new Button("O_ACCOUNTS");
