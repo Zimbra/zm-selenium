@@ -85,6 +85,7 @@ public class ChangePassword extends AdminCommonTest {
 						+	"</AuthRequest>");
 		String token = app.zGetActiveAccount().soapSelectValue("//acct:AuthResponse//acct:authToken", null);
 		ZAssert.assertGreaterThan(token.trim().length(), 0, "Verify the token is returned");
+		app.zPageMain.logout();
 	}
 	
 	/**
@@ -135,5 +136,6 @@ public class ChangePassword extends AdminCommonTest {
 				+	"</AuthRequest>");
 		String token = app.zGetActiveAccount().soapSelectValue("//acct:AuthResponse//acct:authToken", null);
 		ZAssert.assertGreaterThan(token.trim().length(), 0, "Verify the token is returned");
+		app.zPageMain.logout();
 	}
 }
