@@ -54,6 +54,7 @@ public class PageBriefcase extends AbsTab {
 	public static class Locators {
 		
 		public static final String zBriefcaseZimletsPane = "ztih__main_Briefcase__ZIMLET_textCell";
+		public static final String zBriefcaseTagsPane = "ztih__main_Briefcase__TAG_textCell";
 		
 		public static final Locators zNewBriefcaseOverviewPaneIcon = new Locators("id=ztih__main_Briefcase__BRIEFCASE_textCell");
 		public static final Locators zBriefcaseFolder = new Locators("id=zti__main_Briefcase__16_textCell");
@@ -185,7 +186,12 @@ public class PageBriefcase extends AbsTab {
 				
 		// Click on Briefcase icon
 		zClickAt(PageMain.Locators.zAppbarBriefcase, "0,0");
-		zWaitTillElementPresent(Locators.zBriefcaseZimletsPane);
+		
+		if (ZimbraSeleniumProperties.getStringProperty("server.host").contains("local") == true) {
+			zWaitTillElementPresent(Locators.zBriefcaseTagsPane);
+		} else {
+			zWaitTillElementPresent(Locators.zBriefcaseZimletsPane);
+		}
 
 		logger.info("Navigated to "+ this.myPageName() + " page");
 

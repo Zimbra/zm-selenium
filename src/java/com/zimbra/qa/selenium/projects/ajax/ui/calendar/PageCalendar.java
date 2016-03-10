@@ -18,6 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
+
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -33,6 +34,7 @@ public class PageCalendar extends AbsTab {
 	public static class Locators {
 		
 		public static final String zCalendarZimletsPane = "ztih__main_Calendar__ZIMLET_textCell";
+		public static final String zCalendarTagsPane = "ztih__main_Calendar__TAG_textCell";
 
 		// Buttons
 		public static final String NewButton = "css=td#zb__CLWW__NEW_MENU_title";
@@ -2318,7 +2320,11 @@ public class PageCalendar extends AbsTab {
 
 		this.zClick(PageMain.Locators.zAppbarCal);
 		
-		zWaitTillElementPresent(Locators.zCalendarZimletsPane);
+		if (ZimbraSeleniumProperties.getStringProperty("server.host").contains("local") == true) {
+			zWaitTillElementPresent(Locators.zCalendarTagsPane);
+		} else {
+			zWaitTillElementPresent(Locators.zCalendarZimletsPane);
+		}
 
 		logger.info("Navigated to "+ this.myPageName() + " page");
 

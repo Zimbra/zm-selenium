@@ -26,30 +26,22 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-
 public class SelectFolder extends PrefGroupMailByMessageTest {
 
-	
 	public SelectFolder() {
 		logger.info("New "+ SelectFolder.class.getCanonicalName());
 		
-		// All tests start at the login page
 		super.startingPage = app.zPageMail;
 
-		// Make sure we are using an account with message view
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 3685575017990609879L;
-		{
-				    put("zimbraPrefGroupMailBy", "message");
-				}};
-
-
+		private static final long serialVersionUID = 3685575017990609879L; {
+		    put("zimbraPrefGroupMailBy", "message");
+		}};
 	}
 	
-	@Test(	description = "Left click on folder - verify messages in that folder are shown",
-			groups = { "functional88" })
+	@Test(	description = "Left click on folder - verify messages in that folder are shown", groups = { "functional" })
+	
 	public void SelectFolder_01() throws HarnessException {
-		
 		
 		//-- DATA
 		
@@ -71,7 +63,6 @@ public class SelectFolder extends PrefGroupMailByMessageTest {
                 	"<folder name='"+ foldername2 +"' l='"+ inbox.getId() +"'/>" +
                 "</CreateFolderRequest>");
 		FolderItem folder2 = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername2);
-
 		
 		// Create a message (folder1)
 		app.zGetActiveAccount().soapSend(
@@ -100,22 +91,14 @@ public class SelectFolder extends PrefGroupMailByMessageTest {
 							"simple text string in the body\n" + 
 						"</content>" +
 					"</m>" + "</AddMsgRequest>");
-
-
-		
 		
 		//-- GUI
-		
 
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
 
 		// Click on the tag from the tree
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, folder1);
-		
-
-		
-		
 		
 		//-- VERIFICATION
 
@@ -131,7 +114,6 @@ public class SelectFolder extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertTrue(found, "Verify the message in the subfolder appears");
 		
-		
 		// Verify the un-tagged message does not show
 		found = false;
 		for (MailItem m : messages) {
@@ -143,6 +125,4 @@ public class SelectFolder extends PrefGroupMailByMessageTest {
 		ZAssert.assertFalse(found, "Verify the message outside the subfolder does not appear");
 
 	}
-
-
 }

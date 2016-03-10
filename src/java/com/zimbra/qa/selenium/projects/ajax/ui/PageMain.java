@@ -25,7 +25,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 
-
 /**
  * @author Matt Rhoades
  *
@@ -45,18 +44,12 @@ public class PageMain extends AbsTab {
 		public static final String zAppbarPreferences	= "id=zb__App__Options_title";
 
 		public static final String zAppbarSocialLocator	= 		"css=div[id^='zb__App__com_zimbra_social_'] td[id$='_title']";
-		
-		// 8.0 D1: public static final String ButtonRefreshLocatorCSS = "css=div[id='CHECK_MAIL'] td[id='CHECK_MAIL_left_icon'] div[class='ImgRefresh']";
-		// 8.0 D2: public static final String ButtonRefreshLocatorCSS = "css=div[id='CHECK_MAIL'] td[id='CHECK_MAIL_left_icon'] div[class='ImgRefreshAll']";
 		public static final String ButtonRefreshLocatorCSS = "css=div[id='CHECK_MAIL'] td[id='CHECK_MAIL_left_icon']>div";
 	}
 	
-	
 	public PageMain(AbsApplication application) {
 		super(application);
-		
 		logger.info("new " + PageMain.class.getCanonicalName());
-
 	}
 	
 	public Toaster zGetToaster() throws HarnessException {
@@ -74,9 +67,25 @@ public class PageMain extends AbsTab {
 		return (new DialogError(zimbra, this.MyApplication, this));
 	}
 
-	public boolean zIsZimletLoaded() throws HarnessException {
+	public boolean zIsZimletsPanelLoaded() throws HarnessException {
         for (int i=0; i<=60; i++) {
             boolean present = sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']");
+            if (present == true) {
+                SleepUtil.sleepSmall();
+                return true;
+            } else {
+                SleepUtil.sleepMedium();
+                if (i == 60) {
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
+	
+	public boolean zIsTagsPanelLoaded() throws HarnessException {
+        for (int i=0; i<=60; i++) {
+            boolean present = sIsElementPresent("css=div[id$='parent-TAG'] td[id$='TAG_textCell']");
             if (present == true) {
                 SleepUtil.sleepSmall();
                 return true;
@@ -94,48 +103,42 @@ public class PageMain extends AbsTab {
 		return ("true".equals(sGetEval("this.browserbot.getUserWindow().top.appCtxt.getAppViewMgr().getCurrentViewComponent(this.browserbot.getUserWindow().top.ZmAppViewMgr.C_TREE_FOOTER) != null")));
 	}
 	
-	/* (non-Javadoc)
-	 * @see projects.admin.ui.AbsPage#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
-		// Look for the Logout button 
-		// check if zimlet + minical loaded
 		boolean present = sIsElementPresent(Locators.zLogoffPulldown);
 		if ( !present ) {
 			logger.info("Logoff button present = "+ present);
 			return (false);
 		}
-
-		boolean loaded = zIsZimletLoaded();
-		if ( !loaded) {
-			logger.info("zIsZimletLoaded() = "+ loaded);
-			return (false);
+				
+		if (ZimbraSeleniumProperties.getStringProperty("server.host").contains("local") == true) {
+			
+			boolean loaded = zIsTagsPanelLoaded();
+			if ( !loaded) {
+				logger.info("zIsTagsPanelLoaded() = "+ loaded);
+				return (false);
+			}
+			
+		} else {
+			
+			boolean loaded = zIsZimletsPanelLoaded();
+			if ( !loaded) {
+				logger.info("zIsZimletsPanelLoaded() = "+ loaded);
+				return (false);
+			}
 		}
-		
-//		boolean minical = zIsMinicalLoaded();
-//		if ( !minical ) {
-//			logger.debug("zIsMinicalLoaded() = "+ minical);
-//			return (false);
-//		}
 		
 		logger.info("isActive() = "+ true);
 		return (true);
 
 	}
 
-	/* (non-Javadoc)
-	 * @see projects.admin.ui.AbsPage#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/* (non-Javadoc)
-	 * @see projects.admin.ui.AbsPage#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
@@ -165,36 +168,31 @@ public class PageMain extends AbsTab {
 		zNavigateTo();
 
 		if (ZimbraSeleniumProperties.isWebDriver()) {
-			// Click on logout pulldown
 			getElement("css=div[id=DwtLinkButtonDropDownArrowTd").click();
-		}else{
+			
+		} else {
 		
 			if ( !sIsElementPresent(Locators.zLogoffPulldown) ) {
 				throw new HarnessException("The logoff button is not present " + Locators.zLogoffPulldown);
 			}
-
-			// Click on logout pulldown
 			zClickAt(Locators.zLogoffPulldown, "0,0");
 		}
 		
 		this.zWaitForBusyOverlay();
 		
 		if (ZimbraSeleniumProperties.isWebDriver()) {
-			// Click on logout pulldown
-			getElement("css=tr[id=POPUP_logOff]>td[id=logOff_title]").click();			
-		}else{
+			getElement("css=tr[id=POPUP_logOff]>td[id=logOff_title]").click();
+			
+		} else {
 			if ( !sIsElementPresent(Locators.zLogoffOption) ) {
 				throw new HarnessException("The logoff button is not present " + Locators.zLogoffOption);
 			}
 
-			// Click on logout pulldown
 			zClick(Locators.zLogoffOption);
 		}
 		
 		this.zWaitForBusyOverlay();
 
-		/* TODO: ... debugging to be removed */
-		//sWaitForPageToLoad();
 		((AppAjaxClient)MyApplication).zPageLogin.zWaitForActive();
 
 		((AppAjaxClient)MyApplication).zSetActiveAcount(null);
@@ -239,23 +237,18 @@ public class PageMain extends AbsTab {
 		
 		tracer.trace("Click pulldown "+ pulldown +" then "+ option);
 		
-		
-		
 		if (pulldown == null)
 			throw new HarnessException("Pulldown cannot be null!");
 
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-		
 		// Default behavior variables
 		String pulldownLocator = null; // If set, this will be expanded
 		String optionLocator = null; // If set, this will be clicked
 		AbsPage page = null; // If set, this page will be returned
 		
-
 		if (pulldown == Button.B_ACCOUNT) {
-			
 			
 			if (option == Button.O_PRODUCT_HELP) {
 
@@ -299,9 +292,6 @@ public class PageMain extends AbsTab {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
-		
-		
-		// Default behavior
 		if (pulldownLocator != null) {
 
 			// Make sure the locator exists

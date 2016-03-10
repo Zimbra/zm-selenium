@@ -18,9 +18,7 @@ package  com.zimbra.qa.selenium.projects.ajax.ui.contacts;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
-
 import org.apache.log4j.LogManager;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -32,6 +30,7 @@ public class PageContacts extends AbsTab {
 	
 	public static class Locators {
 		public static final String zContactsZimletsPane = "ztih__main_Contacts__ZIMLET_textCell";
+		public static final String zContactsTagsPane = "ztih__main_Contacts__TAG_textCell";
 	}
 	
 	public static class CONTEXT_MENU {
@@ -160,7 +159,12 @@ public class PageContacts extends AbsTab {
 		logger.info("Navigate to " + this.myPageName());
 
 		zClickAt(PageMain.Locators.zAppbarContact,"0,0");
-		zWaitTillElementPresent(Locators.zContactsZimletsPane);
+		
+		if (ZimbraSeleniumProperties.getStringProperty("server.host").contains("local") == true) {
+			zWaitTillElementPresent(Locators.zContactsTagsPane);
+		} else {
+			zWaitTillElementPresent(Locators.zContactsZimletsPane);
+		}
 
 		logger.info("Navigated to "+ this.myPageName() + " page");
 

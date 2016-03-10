@@ -20,13 +20,11 @@
 package com.zimbra.qa.selenium.projects.ajax.ui.tasks;
 
 import java.util.*;
-
 import com.thoughtworks.selenium.SeleniumException;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
-
 
 
 /**
@@ -37,11 +35,13 @@ public class PageTasks extends AbsTab{
 	
 	public static class Locators {
 		
+		public static final String zTasksZimletsPane = "ztih__main_Tasks__ZIMLET_textCell";
+		public static final String zTasksTagsPane = "ztih__main_Tasks__TAG_textCell";
+		
 		public static final String zl__TKL__rowsID = "zl__TKL-main__rows";
 		public static final String _newTaskBannerID = "_newTaskBannerId";
 		public static final String _upComingTaskListHdrID = "_upComingTaskListHdr";
 		public static final String zli__TKL__ = "zli__TKL-"; // Each task item:
-		public static final String zTasksZimletsPane = "ztih__main_Tasks__ZIMLET_textCell";
 		
 		public static final String zb__TKE1__SAVE_left_icon = "zb__TKE1__SAVE_left_icon";
 		public static final String taskListView = "css=div[id='zl__TKL-main__rows'][class='DwtListView-Rows']";
@@ -147,7 +147,12 @@ public class PageTasks extends AbsTab{
 		logger.info("Navigate to "+ this.myPageName());
 
 		this.zClickAt(PageMain.Locators.zAppbarTasks, "");
-		zWaitTillElementPresent(Locators.zTasksZimletsPane);
+		
+		if (ZimbraSeleniumProperties.getStringProperty("server.host").contains("local") == true) {
+			zWaitTillElementPresent(Locators.zTasksTagsPane);
+		} else {
+			zWaitTillElementPresent(Locators.zTasksZimletsPane);
+		}
 
 		logger.info("Navigated to "+ this.myPageName() + " page");
 

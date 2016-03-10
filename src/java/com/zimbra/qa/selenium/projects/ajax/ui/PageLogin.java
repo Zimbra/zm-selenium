@@ -146,7 +146,7 @@ public class PageLogin extends AbsTab {
 				
 				// 2nd login retry (sometime account creation remains fast and entire execution stucks due to non-existance of the account)
 				if (zIsVisiblePerPosition("css=div[id='ZLoginErrorPanel'] td:contains('The username or password is incorrect')", 0, 0) == true) {
-					logger.debug("1st login failed or account not created successfully, retrying using " + account.EmailAddress);
+					logger.debug("2nd login failed or account not created successfully, retrying using " + account.EmailAddress);
 					ZimbraAccount.ResetAccountZWC();
 					account = ZimbraAccount.AccountZWC();
 					zSetLoginName(account.EmailAddress);
