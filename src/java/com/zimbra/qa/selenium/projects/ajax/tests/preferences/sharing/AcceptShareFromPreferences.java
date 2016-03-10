@@ -54,6 +54,7 @@ public class AcceptShareFromPreferences extends AjaxCommonTest {
 		app.zPagePreferences.sClick("css=div[id='zl__SVP__rows'] a[id$='_accept']"); //Accept locator
 		SleepUtil.sleepSmall(); 
 		app.zPagePreferences.sClick("css=td[id='ZmAcceptShare_button5_title']"); // 'Yes' button locator
+		SleepUtil.sleepMedium(); 
 
 		//Soap verification
 		// Make sure that Active Account now has the share
