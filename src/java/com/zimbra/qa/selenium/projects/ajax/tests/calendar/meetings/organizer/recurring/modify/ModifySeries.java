@@ -26,6 +26,8 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogCustomRepeat;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogOpenRecurringItem;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
@@ -364,8 +366,8 @@ public class ModifySeries extends CalendarWorkWeekTest {
 
 		Calendar now = this.calendarWeekDayUTC;
 		String tz = ZTimeZone.TimeZoneEST.getID();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 1, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 2, 0, 0);
 		
 		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
 		String apptBody = ZimbraSeleniumProperties.getUniqueString();
@@ -404,8 +406,10 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		openRecurring.zClickButton(Button.B_OK);
 		
 		FormApptNew apptForm = new FormApptNew(app);		
-		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, "Tuesday", Button.B_END_BY_DATE_RADIO_BUTTON, "01/01/2020");
-		ZAssert.assertStringContains(app.zPageCalendar.zGetRecurringLink(), "Every Tuesday. End by Jan 1, 2020. Effective ", "Recurring link: Verify the appointment data");
+		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, "Tuesday", Button.B_END_BY_DATE_RADIO_BUTTON, "01/02/2020");
+		DialogCustomRepeat dlgCustomRepeat = (DialogCustomRepeat) new DialogCustomRepeat(DialogCustomRepeat.DialogWarningID.DialogCustomRepeat, app, ((AppAjaxClient) app).zPageCalendar);
+		dlgCustomRepeat.zClick("css=div[class='DwtDialog'][style*='display: block;'] div[id$='_buttons'] td[id^='OK'] td[id$='title']");
+		ZAssert.assertStringContains(app.zPageCalendar.zGetRecurringLink(), "Every Tuesday. End by Jan 2, 2020. Effective ", "Recurring link: Verify the appointment data");
         apptForm.zToolbarPressButton(Button.B_SEND);
         SleepUtil.sleepMedium();
 
@@ -428,7 +432,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		
 		ZAssert.assertEquals(ruleFrequency, "WEE", "Repeat frequency: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
-		ZAssert.assertEquals(untilDate, "20200102T045959Z", "Until date: Verify the appointment data");
+		ZAssert.assertEquals(untilDate, "20200103T045959Z", "Until date: Verify the appointment data");
 			
 		
 		// Attendee1: Search for the appointment (InvId)
@@ -449,7 +453,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(myStatus, "NE", "Verify that the attendee status shows as 'NEEDS ACTION'");
 		ZAssert.assertEquals(ruleFrequency, "WEE", "Repeat frequency: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
-		ZAssert.assertEquals(untilDate, "20200102T045959Z", "Until date: Verify the appointment data");
+		ZAssert.assertEquals(untilDate, "20200103T045959Z", "Until date: Verify the appointment data");
 		
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.Account1(), FolderItem.SystemFolder.Inbox).getId();
 		ZimbraAccount.Account1().soapSend(

@@ -16,6 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.calendar;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -73,7 +74,13 @@ public class zimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
 		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayOfWorkWeek(3), "Thu", "Third day matched");
 		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayOfWorkWeek(4), "Fri", "Fourth day matched");
 		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayOfWorkWeek(6), "Mon", "Fifth day matched");
-		app.zPageMain.zLogout();
 	}
+	
+	@AfterMethod(groups={"always"})
+	public void afterMethod() throws HarnessException {
+		zKillBrowserAndRelogin();
+		logger.info(app.zGetActiveAccount().EmailAddress);
+	}
+	
 	
 }

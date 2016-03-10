@@ -41,17 +41,6 @@ public class zimbraPrefCalendarWorkingHours extends AjaxCommonTest {
 			groups = { "functional" })
 	
 	public void zimbraPrefCalendarWorkingHours_01() throws HarnessException {
-/*		
-		// Modify the test account
-		ZimbraAdminAccount.GlobalAdmin().soapSend(
-				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
-			+		"<id>"+ app.zGetActiveAccount().ZimbraId +"</id>"
-			+		"<a n='zimbraPrefWarnOnExit'>TRUE</a>"
-			+	"</ModifyAccountRequest>");
-*/
-		// Logout and login to pick up the changes
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
 
 		// Navigate to preferences -> calendar
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
