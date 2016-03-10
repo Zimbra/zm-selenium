@@ -375,7 +375,28 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 				optionLocator = containerActionMenu + " div[id$='CREATE_APPT'] td[id$='_title']";
 				page = null;
 				
-				// FALL THROUGH
+				// FALL THROUGH O_NEW_FILTER
+
+			}else if (option == Button.O_NEW_FILTER) {
+				
+				optionLocator = containerActionMenu + " div[id$='ADD_FILTER_RULE'] td[id$='_title']";
+				page = null;
+				
+				// FALL THROUGH O_NEW_FILTER
+
+			}else if (option == Button.B_FLAG_MESSAGE) {
+				
+				optionLocator = containerActionMenu + " div[id$='FLAG'] td[id$='_title']";
+				page = null;
+				
+				// FALL THROUGH O_NEW_FILTER
+
+			}else if (option == Button.B_UNFLAG_MESSAGE) {
+				
+				optionLocator = containerActionMenu + " div[id$='UNFLAG'] td[id$='_title']";
+				page = null;
+				
+				// FALL THROUGH O_NEW_FILTER
 
 			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
