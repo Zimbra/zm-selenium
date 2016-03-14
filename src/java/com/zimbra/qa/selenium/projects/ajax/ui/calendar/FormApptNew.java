@@ -82,6 +82,7 @@ public class FormApptNew extends AbsForm {
 		public static final String Button_Save = "css=div[id^='ztb__APPT-'] td[id$='_SAVE_title']";
 		public static final String Button_SaveAndClose = "css=div[id^='ztb__APPT-'] td[id$='_SAVE_title']";
 		public static final String Button_Close = "css=div[id^='ztb__APPT-'] td[id$='_CANCEL_title']";
+		public static final String Button_Attach = "css=div[id^='ztb__APPT-'] td[id^='zb__APPT-1__ATTACHMENT_']";
 
 		public static final String OptionsDropdown = "css=div[id$='__COMPOSE_OPTIONS'] td[id$='COMPOSE_OPTIONS_title']";
 		public static final String SuggestionPreferencesMenu = "css=div[class='DwtMenu ZHasCheck ZHasIcon'] td[id$='_title']:contains('Suggestion Preferences')";
@@ -157,6 +158,7 @@ public class FormApptNew extends AbsForm {
 		public static final String ToolbarOptions= "css=td[id='zb__APPT-1__COMPOSE_OPTIONS_title']";
 		public static final String RequestResponse= "css=td[id$='_title']:contains('Request Responses')";
 		public static final String ConflictResourceNote = "css= div[id$='_location_status']:contains('One or more locations are not available at the selected time')";
+		public static final String BrowseAttachment = "css=tr[id$='_attachment_container'] input[name='__calAttUpload__']";
 
 		public static final String AttendeeField= "css=input[id$='_person_input']";
 		public static final String LocationField= "css=input[id$='_location_input']";
@@ -485,6 +487,21 @@ public class FormApptNew extends AbsForm {
 
 			// FALL THROUGH
 
+		} else if (button == Button.B_ATTACH) {
+
+			locator = Locators.Button_Attach;
+			page = null;
+			
+			
+		} else if (button == Button.B_BROWSE) {
+
+			locator = Locators.BrowseAttachment;
+
+			this.sClickAt(locator, "0,0");
+			SleepUtil.sleepSmall();
+
+			page = null;
+			
 		} else if (button == Button.B_CLOSE) {
 
 			locator = Locators.Button_Close;
