@@ -23,6 +23,7 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
+import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
@@ -1493,8 +1494,38 @@ public class PageContacts extends AbsTab {
 		return page;
 	}
 	
-	
+	//To check the presence of Contact using last name
+	public boolean zVerifyContactExists (String lastName) throws HarnessException {
 
+		boolean found = false;
+
+		for (int i=1; i<=5; i++) {
+
+			zToolbarPressButton(Button.B_REFRESH);
+
+			List<ContactItem> items=zListGetContacts();
+
+			for (ContactItem item : items ) {
+				if ( lastName.equals(item.lastName) ) {
+					found = true;
+					break;
+				} else {
+					logger.info("Contact is not displayed in current view");
+					Stafpostqueue sp = new Stafpostqueue();
+					sp.waitForPostqueue();
+				}
+			}
+
+			if (found = true) {
+				SleepUtil.sleepSmall();
+				logger.info("Conatct displayed in current view");
+				ZAssert.assertTrue(found, "Contact is not displayed in current view");
+				break;
+			}
+		}
+
+		return found;
+	}
 
 	private AbsPage newFormSelected() throws HarnessException {
 	    AbsPage page = null;

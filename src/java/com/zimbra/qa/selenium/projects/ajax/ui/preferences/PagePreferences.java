@@ -84,6 +84,15 @@ public class PagePreferences extends AbsTab {
 		public static final String zTrustedDeviceCount = "css=td[class='ZOptionsField'] span[id='Prefs_Pages_ACCOUNTS_TRUSTED_DEVICES_COUNT']:contains('You have 1 trusted device')";
 		public static final String zRevokeThisDeviceLink = "css=td[class='ZOptionsField'] a[id='Prefs_Pages_ACCOUNTS_TRUSTED_DEVICE_REVOKE_LINK']:contains('revoke this device')";
 		public static final String zChangePwdButton= "css=td[id='CHANGE_PASSWORD_title']";
+		
+		//Import/Export
+		public static final String zBrowseFileButton= "css=input#ZmImportView_FILE";
+		public static final String zImportButton= "css=div[id='IMPORT_BUTTON'] td[id$='_title']";
+		public static final String zImportDialog= "css=div[id='ErrorDialog']";
+		public static final String zImportDialogContent= "css=div[id='ErrorDialog'] div[id$='_content']";
+		public static final String zImportDialogOkButton= "css=div[id='ErrorDialog'] div[id$='_button2']";
+		
+		
 	}
 	
 	
@@ -563,9 +572,19 @@ public class PagePreferences extends AbsTab {
 			locator = Locators.zCancelButtonCustomDialog;
 			page = null;
 			
-		}else if ( button == Button.B_NO ) {
+		} else if ( button == Button.B_NO ) {
 			
 			locator = Locators.zNoButtonWarningDialog;
+			page = null;
+			
+		} else if ( button == Button.B_IMPORT ) {
+			
+			locator = Locators.zImportButton;
+			page = null;
+			
+		}  else if ( button == Button.B_IMPORT_OK ) {
+			
+			locator = Locators.zImportDialogOkButton;
 			page = null;
 			
 		} else {
