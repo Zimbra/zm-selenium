@@ -379,6 +379,56 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 		
 	}
 
+	
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
+
+		tracer.trace("Press the " + button + " button");
+
+		if (button == null)
+			throw new HarnessException("Button cannot be null!");
+
+		String locator = null;
+		AbsPage page = null;
+		
+		SleepUtil.sleepSmall();
+
+		if (button == Button.O_ATTACH_DROPDOWN) {
+			if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_dropdown']")) {
+				locator = "css=td[id='zb__COMPOSE-2___attachments_btn_dropdown']";
+			} else {
+				locator = "css=td[id='zb__COMPOSE-1___attachments_btn_dropdown']";
+			}
+			
+		} else if (button == Button.B_ATTACH) {
+			if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_title']")) {
+				locator = "css=td[id='zb__COMPOSE-2___attachments_btn_title']";
+			} else {
+				
+				logger.info(sIsElementPresent("css=td[id='zb__COMPOSE-1___attachments_btn_title']"));
+				locator = "css=td[id='zb__COMPOSE-1___attachments_btn_title']";
+			}
+			
+		} else if (button == Button.B_MY_COMPUTER) {
+			locator = "css=td[id$='_title']:contains('My Computer')";
+			
+		} else if (button == Button.B_ATTACH_INLINE) {
+			locator = "css=td[id$='_title']:contains('Attach Inline')";
+
+		} else {
+			throw new HarnessException("no logic defined for button " + button);
+		}
+
+		//Explicitly use sclick >> sclickat not working
+		this.sClick(locator);
+		
+		SleepUtil.sleepMedium();
+
+		return (page);
+	}
+	
+	
+	
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressPulldown("+ pulldown +", "+ option +")");
 		

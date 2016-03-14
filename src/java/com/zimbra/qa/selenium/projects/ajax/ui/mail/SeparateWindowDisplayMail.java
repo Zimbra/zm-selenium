@@ -20,6 +20,7 @@
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
 import java.util.*;
+
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
@@ -230,6 +231,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		} else if ( button == Button.B_REPLY ) {
 
 			locator = container + " div[id$='__REPLY'] td[id$='_title']";
+			
 			page = null;
 
 			// FALL THROUGH
@@ -270,7 +272,30 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		   locator = containerToolbar + " div[id$='__ACTIONS_MENU'] td[id$='_dropdown']>div";
 		   page = null;
 
-	   }else {
+	   }else if ( button == Button.B_SEND ) {
+			
+			if (sIsElementPresent("css=div[id^='ztb__COMPOSE-2'] div[id*='SEND'] td[id$='_title']")) {
+				locator = "css=div[id^='ztb__COMPOSE-2'] div[id*='SEND'] td[id$='_title']";
+			} else {
+				
+				locator = "css=div[id^='ztb__COMPOSE'] div[id*='SEND'] td[id$='_title']";
+				
+			}
+			
+			// Click on send
+			this.sClick(locator);
+			
+		//	this.zWaitForBusyOverlay();
+			
+			// Wait for the message to be delivered
+			Stafpostqueue sp = new Stafpostqueue();
+			sp.waitForPostqueue();
+		
+			SleepUtil.sleepSmall();
+			page = null;
+			
+		return(page);
+		}else {
 
 			throw new HarnessException("no logic defined for button "+ button);
 		}
