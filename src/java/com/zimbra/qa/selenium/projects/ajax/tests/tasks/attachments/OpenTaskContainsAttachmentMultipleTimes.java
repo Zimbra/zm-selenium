@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
+package com.zimbra.qa.selenium.projects.ajax.tests.tasks.attachments;
 
 import java.util.HashMap;
 

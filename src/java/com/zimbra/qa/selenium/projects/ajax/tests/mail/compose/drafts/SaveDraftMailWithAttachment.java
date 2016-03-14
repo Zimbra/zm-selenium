@@ -40,7 +40,7 @@ public class SaveDraftMailWithAttachment extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test(	description = "Save draft a mail with attachment and send a mail",
-			groups = { "windows" })
+			groups = { "sanity","windows" })
 	
 	public void SaveDraftMailWithAttachment_01() throws HarnessException {
 		
@@ -123,7 +123,7 @@ public class SaveDraftMailWithAttachment extends PrefGroupMailByMessageTest {
 	
 	
 	@Test(	description = "Open existing saved draft with attachment and send a mail",
-			groups = { "windows" })
+			groups = { "functional","windows" })
 	
 	public void OpenExistingSavedDraftMailWithAttachment_02() throws HarnessException {
 		

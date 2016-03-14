@@ -20,6 +20,7 @@
 package com.zimbra.qa.selenium.projects.ajax.ui.tasks;
 
 import java.util.*;
+
 import com.thoughtworks.selenium.SeleniumException;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -537,8 +538,13 @@ public class PageTasks extends AbsTab{
 
 			locator = "css=div#"+ id + " td[id$='_left_icon']>div";
 			page = null;
+			
+		}
+		
+		else if (button == Button.B_ATTACH) {
 
-			// FALL THROUGH
+			locator = "css=tr[id$='_attachment_container'] input[name='__calAttUpload__']";
+			page = null;
 
 		}else if (button == Button.B_MOVE) {
 			locator = "zb__TKL-main__MOVE_left_icon";
@@ -603,9 +609,11 @@ public class PageTasks extends AbsTab{
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
-		//
-		this.zClickAt(locator,"");
+		if (button == Button.B_ATTACH) {
+			this.sClickAt(locator,"");
+		} else {
+			this.zClickAt(locator,"");
+		}
 
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();

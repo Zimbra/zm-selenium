@@ -40,7 +40,7 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test(	description = "Reply to a mail with attachment - Verify existing attachment not sent",
-			groups = { "windows" })
+			groups = { "sanity","windows" })
 	
 	public void ReplyMailWithAttachment_01() throws HarnessException {
 		
