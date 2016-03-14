@@ -16,6 +16,9 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.create;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import org.testng.annotations.Test;
 
@@ -39,7 +42,7 @@ public class CreateMeetingWithAttachment extends CalendarWorkWeekTest {
 	}
 	
 	@Test(	description = "View invite which has attachment present as an organizer",
-			groups = { "functional" }
+			groups = {"smoke" }
 	)
 	public void CreateMeetingWithAttachment_01() throws HarnessException {
 		
@@ -90,70 +93,90 @@ public class CreateMeetingWithAttachment extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "104231")	
 	@Test(description = "Create invite by attaching file",
-			groups = { "functional" })
+			groups = { "windows" })
 			
 	
 public void CreateMeetingWithAttachment_02() throws HarnessException {
 		
-		// Create appointment data
-		AppointmentItem appt = new AppointmentItem();
-		// Create file item
-		final String fileName = "testtextfile.txt";
-		final String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
-		
-		String apptSubject, apptAttendee1, apptContent;
-		Calendar now = this.calendarWeekDayUTC;
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
-		apptContent = ZimbraSeleniumProperties.getUniqueString();
-		
-		appt.setSubject(apptSubject);
-		appt.setAttendees(apptAttendee1);
-		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
-		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
-		appt.setContent(apptContent);
 	
-		// Compose appointment and send it to invitee
-		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
-		apptForm.zFill(appt);
-		apptForm.zToolbarPressButton(Button.B_ATTACH);
-		apptForm.zToolbarPressButton(Button.B_BROWSE);
-		zUpload(filePath);
-
-		apptForm.zSubmit();
-		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
-        app.zPageMail.zNavigateTo();
-		// Refresh current view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-
-		// Go to draft		
-		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
-		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
+		try {
+			
 		
-		// Select the invitation and verify Accept/decline/Tentative buttons are not present
-		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
-		ZAssert.assertFalse(display.zHasADTButtons(), "Verify A/D/T buttons");
+			// Create appointment data
+			AppointmentItem appt = new AppointmentItem();
+			// Create file item
+			final String fileName = "testtextfile.txt";
+			final String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+			
+			String apptSubject, apptAttendee1, apptContent;
+			Calendar now = this.calendarWeekDayUTC;
+			apptSubject = ZimbraSeleniumProperties.getUniqueString();
+			apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
+			apptContent = ZimbraSeleniumProperties.getUniqueString();
+			
+			appt.setSubject(apptSubject);
+			appt.setAttendees(apptAttendee1);
+			appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
+			appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
+			appt.setContent(apptContent);
 		
-		// Verify appointment exists on the server
-		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
-		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
-		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
-		ZAssert.assertEquals(actual.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");
-		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
-
-		// Verify the attendee receives the meeting
-		AppointmentItem received = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
-		ZAssert.assertNotNull(received, "Verify the new appointment is created");
-		ZAssert.assertEquals(received.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
-		ZAssert.assertEquals(received.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");
-		ZAssert.assertEquals(received.getContent(), appt.getContent(), "Content: Verify the appointment data");
-
-		// Verify the attendee receives the invitation
-		MailItem invite = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ appt.getSubject() +")");
-		ZAssert.assertNotNull(invite, "Verify the invite is received");
-		ZAssert.assertEquals(invite.dSubject, appt.getSubject(), "Subject: Verify the appointment data");
-
+			// Compose appointment and send it to invitee
+			FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
+			apptForm.zFill(appt);
+			apptForm.zToolbarPressButton(Button.B_ATTACH);
+			apptForm.zToolbarPressButton(Button.B_BROWSE);
+			zUpload(filePath);
+	
+			apptForm.zSubmit();
+			// Verify appointment exists in current view
+	        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+	        app.zPageMail.zNavigateTo();
+			// Refresh current view
+			app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+	
+			// Go to draft		
+			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
+			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
+			
+			// Select the invitation and verify Accept/decline/Tentative buttons are not present
+			DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
+			ZAssert.assertFalse(display.zHasADTButtons(), "Verify A/D/T buttons");
+			
+			// Verify appointment exists on the server
+			AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
+			ZAssert.assertNotNull(actual, "Verify the new appointment is created");
+			ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
+			ZAssert.assertEquals(actual.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");
+			ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
+	
+			// Verify the attendee receives the meeting
+			AppointmentItem received = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
+			ZAssert.assertNotNull(received, "Verify the new appointment is created");
+			ZAssert.assertEquals(received.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
+			ZAssert.assertEquals(received.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");
+			ZAssert.assertEquals(received.getContent(), appt.getContent(), "Content: Verify the appointment data");
+	
+			// Verify the attendee receives the invitation
+			MailItem invite = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ appt.getSubject() +")");
+			ZAssert.assertNotNull(invite, "Verify the invite is received");
+			ZAssert.assertEquals(invite.dSubject, appt.getSubject(), "Subject: Verify the appointment data");
+			
+		} finally {
+			
+			Robot robot;
+			
+			try {
+				robot = new Robot();
+				robot.delay(250);
+				robot.keyPress(KeyEvent.VK_ESCAPE);
+				robot.keyRelease(KeyEvent.VK_ESCAPE);
+				robot.delay(50);
+				
+			} catch (AWTException e) {
+				e.printStackTrace();
+			}
+			
+		}
 	}
 
 }
