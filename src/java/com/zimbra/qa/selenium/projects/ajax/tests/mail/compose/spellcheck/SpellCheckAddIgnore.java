@@ -29,6 +29,7 @@ import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Locators;
 
 public class SpellCheckAddIgnore extends PrefGroupMailByMessageTest {
 
@@ -57,28 +58,25 @@ public class SpellCheckAddIgnore extends PrefGroupMailByMessageTest {
 		mailform.zFillField(Field.Body, misspelledWord);
 
 		//Spell check the message
-		mailform.zToolbarPressButton(Button.B_SPELL_CHECK);
-		SleepUtil.sleepMedium();		
+		mailform.zToolbarPressButton(Button.B_SPELL_CHECK);			
 
 		//CLick on the misspelled word
-		mailform.sClickAt("css=body[id='tinymce'] span[class='ZM-SPELLCHECK-MISSPELLED']:contains('"+misspelledWord+"')","");
+		mailform.sClickAt(Locators.zMisspelledWordCss+":contains('"+misspelledWord+"')","");
 
 		//Click on Add  to add the word to spell check dictionary
 		SleepUtil.sleepSmall();
-		mailform.sClickAt("css=div[id^='POPUP_'] div[id='add'] td[id$='_title']","");			
-		SleepUtil.sleepMedium();
+		mailform.sClickAt(Locators.zAddMisspelledWord,"");
 		
 		//To go out of Spell check view
 		mailform.zToolbarPressButton(Button.B_SPELL_CHECK);				
 
 		//Retyping the same word to check if the word has been added to the dictionary
 		mailform.zFillField(Field.Body, " "+misspelledWord);
-		mailform.zToolbarPressButton(Button.B_SPELL_CHECK);
-		SleepUtil.sleepMedium();
+		mailform.zToolbarPressButton(Button.B_SPELL_CHECK);		
 
 		//Check that the word is not highlighted now
 		ZAssert.assertFalse(
-				mailform.sIsElementPresent("css=body[id='tinymce'] span[class='ZM-SPELLCHECK-MISSPELLED']:contains('"+misspelledWord+"')"),
+				mailform.sIsElementPresent(Locators.zMisspelledWordCss+":contains('"+misspelledWord+"')"),
 				"The misspelled word is still getting highlighted.");
 		
 		//Send the mail
@@ -108,15 +106,13 @@ public class SpellCheckAddIgnore extends PrefGroupMailByMessageTest {
 
 		//Spell check the message
 		mailform.zToolbarPressButton(Button.B_SPELL_CHECK);
-		SleepUtil.sleepMedium();		
-
+		
 		//CLick on the misspelled word
-		mailform.sClickAt("css=body[id='tinymce'] span[class='ZM-SPELLCHECK-MISSPELLED']:contains('"+misspelledWord+"')","");
+		mailform.sClickAt(Locators.zMisspelledWordCss+":contains('"+misspelledWord+"')","0,0");
 
 		//Click on Add  to add the word to spell check dictionary
 		SleepUtil.sleepSmall();
-		mailform.sClickAt("css=div[id^='POPUP_'] div[id='ignore'] td[id$='_title']","");			
-		SleepUtil.sleepMedium();
+		mailform.sClickAt(Locators.zIgnoreMisspelledWord,"0,0");
 		
 		//To go out of Spell check view
 		mailform.zToolbarPressButton(Button.B_SPELL_CHECK);				
@@ -124,11 +120,10 @@ public class SpellCheckAddIgnore extends PrefGroupMailByMessageTest {
 		//Retyping the same word to check if the word has been added to the dictionary
 		mailform.zFillField(Field.Body, " "+misspelledWord);
 		mailform.zToolbarPressButton(Button.B_SPELL_CHECK);
-		SleepUtil.sleepMedium();
-
+		
 		//Check that the word is not highlighted now
 		ZAssert.assertFalse(
-				mailform.sIsElementPresent("css=body[id='tinymce'] span[class='ZM-SPELLCHECK-MISSPELLED']:contains('"+misspelledWord+"')"),
+				mailform.sIsElementPresent(Locators.zMisspelledWordCss+":contains('"+misspelledWord+"')"),
 				"Verify the misspelled word is not highlighted now");
 		
 		//Send the mail
