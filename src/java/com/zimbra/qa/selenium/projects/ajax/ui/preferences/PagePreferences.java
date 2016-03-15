@@ -36,9 +36,9 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning.DialogWarningID;
  */
 public class PagePreferences extends AbsTab {
 
-	
+
 	public static class Locators {
-		
+
 		public static final String zPreferencesMainID = "zov__main_Options";
 		// Preferences Toolbar: Save, Cancel
 		public static final String zToolbarSaveID = "zb__PREF__SAVE_title";
@@ -47,7 +47,7 @@ public class PagePreferences extends AbsTab {
 		public static final String zSaveChangesYes = "id=DWT241_title";
 		public static final String zSaveChangesNo = "id=DWT242_title";
 		public static final String zSaveChangesCancel = "id=DWT243_title";
-		
+
 		// Calendar
 		public static final String zCustomWorkHours = "css=td[id$='_CAL_WORKING_HOURS_CUSTOM'] input[name$='_normalCustom']";
 		public static final String zCustomizeButton = "css=td[id$='_CAL_CUSTOM_WORK_HOURS'] td[id$='_title']:contains('Customize')";
@@ -74,7 +74,7 @@ public class PagePreferences extends AbsTab {
 		public static final String zAppointmentDuration90 = "css=td[id$='_title']:contains('90')";
 		public static final String zAppointmentDuration120 = "css=td[id$='_title']:contains('120')";
 		public static final String zShareFolderType = "css=td[id$='_shareButton_title']";
-		
+
 		//Share dialogue
 		public static final String zDialogShareId = "ShareDialog";
 
@@ -84,18 +84,21 @@ public class PagePreferences extends AbsTab {
 		public static final String zTrustedDeviceCount = "css=td[class='ZOptionsField'] span[id='Prefs_Pages_ACCOUNTS_TRUSTED_DEVICES_COUNT']:contains('You have 1 trusted device')";
 		public static final String zRevokeThisDeviceLink = "css=td[class='ZOptionsField'] a[id='Prefs_Pages_ACCOUNTS_TRUSTED_DEVICE_REVOKE_LINK']:contains('revoke this device')";
 		public static final String zChangePwdButton= "css=td[id='CHANGE_PASSWORD_title']";
-		
+
 		//Import/Export
 		public static final String zBrowseFileButton= "css=input#ZmImportView_FILE";
 		public static final String zImportButton= "css=div[id='IMPORT_BUTTON'] td[id$='_title']";
 		public static final String zImportDialog= "css=div[id='ErrorDialog']";
 		public static final String zImportDialogContent= "css=div[id='ErrorDialog'] div[id$='_content']";
 		public static final String zImportDialogOkButton= "css=div[id='ErrorDialog'] div[id$='_button2']";
-		
-		
+
+		//Mail > composing 
+		public static final String zMandatorySpellCheck = "css=input[id$='_MAIL_MANDATORY_SPELLCHECK']";
+
+
 	}
-	
-	
+
+
 	public Boolean zVerifyDisable2FALink() throws HarnessException {
 		return sIsElementPresent(Locators.zDisable2FALink);
 	}
@@ -116,10 +119,10 @@ public class PagePreferences extends AbsTab {
 		return sIsElementPresent("css=td[class='ZOptionsField'] span[id='Prefs_Pages_ACCOUNTS_TRUSTED_DEVICES_COUNT']:contains('You have " + deviceCount + " trusted device')");
 	}
 
-	
+
 	public PagePreferences(AbsApplication application) {
 		super(application);
-		
+
 		logger.info("new " + PagePreferences.class.getCanonicalName());
 
 	}
@@ -134,7 +137,7 @@ public class PagePreferences extends AbsTab {
 		if ( !((AppAjaxClient)MyApplication).zPageMain.zIsActive() ) {
 			((AppAjaxClient)MyApplication).zPageMain.zNavigateTo();
 		}
-		
+
 		/*
 		 * Active:
 		 * <div id="zov__main_Options" style="position: absolute; overflow: auto; z-index: 300; left: 0px; top: 76px; width: 169px; height: 537px;" class="ZmOverview" parentid="z_shell">
@@ -142,20 +145,20 @@ public class PagePreferences extends AbsTab {
 		 * Not active:
 		 * <div id="zov__main_Options" style="position: absolute; overflow: auto; z-index: 300; left: -10000px; top: -10000px; width: 169px; height: 537px;" class="ZmOverview" parentid="z_shell">
 		 */
-		
-		
+
+
 		// If the "folders" tree is visible, then mail is active
 		String locator = null;
 		if (ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP) {
-		   locator = "css=div[id='zov__local@host.local:main_Options']";
+			locator = "css=div[id='zov__local@host.local:main_Options']";
 		} else {
 			locator = "css=div#"+ Locators.zPreferencesMainID;
 		}
-		
+
 		boolean loaded = this.sIsElementPresent(locator);
 		if ( !loaded )
 			return (loaded);
-		
+
 		boolean active = this.zIsVisiblePerPosition(locator, -1, 74);
 		return (active);
 
@@ -179,12 +182,12 @@ public class PagePreferences extends AbsTab {
 		if ( zIsActive() ) {
 			return;
 		}
-		
+
 		// Make sure we are logged into the Mobile app
 		if ( !((AppAjaxClient)MyApplication).zPageMain.zIsActive() ) {
 			((AppAjaxClient)MyApplication).zPageMain.zNavigateTo();
 		}
-		
+
 		logger.info("Navigate to "+ this.myPageName());
 
 		// Click on Preferences icon
@@ -195,7 +198,7 @@ public class PagePreferences extends AbsTab {
 		zClick(PageMain.Locators.zAppbarPreferences);
 		SleepUtil.sleepSmall();
 		zWaitForElementPresent(Locators.zToolbarSaveID);
-		
+
 		zWaitForActive();
 
 		logger.info("Navigated to "+ this.myPageName() + " page");
@@ -216,16 +219,16 @@ public class PagePreferences extends AbsTab {
 
 		// Check if the "Would you like to save your changes?" appears
 		//
-		
+
 		// Wait for the dialog to appear
 		SleepUtil.sleep(5000);
-		
+
 		// Check for the dialog
 		if ( zIsVisiblePerPosition("id=DWT240", 420, 200) ) {
 			logger.debug("zNavigateAway(" + savechanges +") - dialog is showing");
 
 			String locator = null;
-			
+
 			// "Would you like to save your changes?" is displayed.  
 			if ( savechanges == Button.B_YES ) {
 				locator = Locators.zSaveChangesYes;
@@ -236,24 +239,24 @@ public class PagePreferences extends AbsTab {
 			} else {
 				throw new HarnessException("zNavigateAway() not defined for button "+ savechanges);
 			}
-			
+
 			if ( locator == null ) {
 				throw new HarnessException("zNavigateAway() no locator for button "+ savechanges);
 			}
-			
+
 			if ( !sIsElementPresent(locator) ) {
 				throw new HarnessException("zNavigateAway() locator is not present "+ locator);
 			}
-			
+
 			zClick(locator);
-			
+
 		} else {
 			logger.debug("zNavigateAway(" + savechanges +") - dialog did not show");
 		}
-		
-		
+
+
 	}
-	
+
 
 	/**
 	 * Determine if a checkbox is checked or not
@@ -265,13 +268,13 @@ public class PagePreferences extends AbsTab {
 		logger.info("zGetCheckboxStatus(" + preference +")");
 
 		String locator = null;
-		
+
 		if ( preference.equals("zimbraPrefIncludeSpamInSearch")) {
-			
+
 			locator = "css=input[id$=_SEARCH_INCLUDES_SPAM]";
 
 		} else if (preference.equals("zimbraPrefIncludeTrashInSearch")) {
-			
+
 			locator = "css=input[id$=_SEARCH_INCLUDES_TRASH]";
 
 		} else if (preference.equals("zimbraPrefShowSearchString")) {
@@ -281,38 +284,38 @@ public class PagePreferences extends AbsTab {
 		} else if (preference.equals("zimbraPrefAutoAddAddressEnabled")) {
 
 			locator = "css=input[id$=_AUTO_ADD_ADDRESS]";
-			
+
 		}  else if (preference.equals("zimbraPrefAutocompleteAddressBubblesEnabled")) {
 
 			locator = "css=input[id$=_USE_ADDR_BUBBLES]";
-			
+
 		}else {
 			throw new HarnessException("zGetCheckboxStatus() not defined for preference "+ preference);
 		}
-		
+
 		if ( !sIsElementPresent(locator) ) {
 			throw new HarnessException("locator not present "+ locator);
 		}
-		
+
 		boolean checked = sIsChecked(locator);
 		logger.info("zGetCheckboxStatus(" + preference +") = "+ checked);
-		
+
 		return (checked);
 
 	}
-	
+
 	@Override
 	public AbsPage zListItem(Action action, String item) throws HarnessException {
 		throw new HarnessException(myPageName() + " does not have a Toolbar");
 	}
-	
+
 	@Override
 	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
 			throws HarnessException {
 
 		throw new HarnessException("Not applicaple for Preference");
 	}
-	
+
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item) throws HarnessException {
 		throw new HarnessException(myPageName() + " does not have a Toolbar");
@@ -321,59 +324,59 @@ public class PagePreferences extends AbsTab {
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
-		
+
 		tracer.trace("Click button "+ button);
 
 		if ( button == null )
 			throw new HarnessException("Button cannot be null!");
-		
-				
+
+
 		// Default behavior variables
 		//
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
-		
+
 		// Based on the button specified, take the appropriate action(s)
 		//
-		
+
 		if ( button == Button.B_SAVE ) {
-			
+
 			locator = "id="+ Locators.zToolbarSaveID;
 			page = null;
-			
+
 		} else if ( button == Button.B_CANCEL ) {
-			
+
 			locator = "id="+ Locators.zToolbarCancelID;
 			page = null;
-						
+
 		} else if ( button == Button.B_CHANGE_PASSWORD ) {
-			
-		//	locator = "css=td[id='CHANGE_PASSWORD_title']";
+
+			//	locator = "css=td[id='CHANGE_PASSWORD_title']";
 			locator = Locators.zChangePwdButton;
 			page = new SeparateWindowChangePassword(MyApplication);
-	
+
 		} else if ( button == Button.B_NEW_FILTER ) {
-			
+
 			locator = "css=div[id='zb__FRV__ADD_FILTER_RULE'] td[id$='_title']";
 			page = new DialogEditFilter(MyApplication,((AppAjaxClient) MyApplication).zPagePreferences);
-	
+
 		} else if ( button == Button.B_ACTIVITY_STREAM_SETTINGS ) {
 
 			locator = "css=div[id$='_ACTIVITY_STREAM_BUTTON'] td[id$='_title']";
 			page = new DialogActivityStream(MyApplication,((AppAjaxClient) MyApplication).zPagePreferences);
 
 		} else if ( button == Button.B_NEW_QUICK_COMMAND ) {
-			
+
 			locator = "css=div[id='zb__QCV__ADD_QUICK_COMMAND'] td[id$='_title']";
 			page = new DialogEditQuickCommand(MyApplication,((AppAjaxClient) MyApplication).zPagePreferences);
 
 		} else if ( button == Button.B_EDIT_QUICK_COMMAND ) {
-			
+
 			locator = "css=div[id='zb__QCV__EDIT_QUICK_COMMAND'] td[id$='_title']";
 			page = new DialogEditQuickCommand(MyApplication,((AppAjaxClient) MyApplication).zPagePreferences);
 
 		} else if ( button == Button.B_DELETE_QUICK_COMMAND ) {
-			
+
 			locator = "css=div[id='zb__QCV__REMOVE_QUICK_COMMAND'] td[id$='_title']";
 			page = new DialogWarning(DialogWarningID.QuickCommandConfirmDelete, MyApplication,((AppAjaxClient) MyApplication).zPagePreferences);
 
@@ -384,17 +387,17 @@ public class PagePreferences extends AbsTab {
 		// Make sure the button exists
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
-		
+
 		// Click it
 		this.zClick(locator);
-		
+
 		this.zWaitForBusyOverlay();
-		
+
 		if ( page != null ) {
 			page.zWaitForActive();
 			page.zWaitForBusyOverlay();
 		}
-		
+
 		SleepUtil.sleepMedium();
 
 		return (page);
@@ -404,106 +407,106 @@ public class PagePreferences extends AbsTab {
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		tracer.trace("Click pulldown "+ pulldown +" then "+ option);
 		AbsPage page = null;	// If set, this page will be returned
-		
+
 		// Default behavior
 		if ( pulldown != null ) {
 			if ( pulldown == Button.O_START_WEEK_ON ){
-						
-			// Make sure the locator exists
-			if ( !this.sIsElementPresent(Locators.zStartWeekOn) ) {
-				throw new HarnessException("pulldownLocator not present! "+ Locators.zStartWeekOn);
-			}
-			
-			this.zClick(Locators.zStartWeekOn);
 
-			this.zWaitForBusyOverlay();
-			
-			if ( option != null ) {
-				
-				if ( option == Button.O_START_WEEK_ON_TUESDAY ){
 				// Make sure the locator exists
-				if ( !this.sIsElementPresent(Locators.zStartWeekOnTuesday) ) {
-					throw new HarnessException("optionLocator not present! "+ Locators.zStartWeekOnTuesday);
+				if ( !this.sIsElementPresent(Locators.zStartWeekOn) ) {
+					throw new HarnessException("pulldownLocator not present! "+ Locators.zStartWeekOn);
 				}
-				
-				this.zClick(Locators.zStartWeekOnTuesday);
+
+				this.zClick(Locators.zStartWeekOn);
 
 				this.zWaitForBusyOverlay();
+
+				if ( option != null ) {
+
+					if ( option == Button.O_START_WEEK_ON_TUESDAY ){
+						// Make sure the locator exists
+						if ( !this.sIsElementPresent(Locators.zStartWeekOnTuesday) ) {
+							throw new HarnessException("optionLocator not present! "+ Locators.zStartWeekOnTuesday);
+						}
+
+						this.zClick(Locators.zStartWeekOnTuesday);
+
+						this.zWaitForBusyOverlay();
+					}
 				}
 			}
-		}
-			
+
 			if ( pulldown == Button.O_DEFAULT_APPOINTMENT_DURATION ){
-				
-			// Make sure the locator exists
-			if ( !this.sIsElementPresent(Locators.zDefaultAppointmentDuration) ) {
-				throw new HarnessException("pulldownLocator not present! "+ Locators.zDefaultAppointmentDuration);
-			}
-			
-			this.zClick(Locators.zDefaultAppointmentDuration);
 
-			this.zWaitForBusyOverlay();
-			
-			if ( option != null ) {
-				
-				if ( option == Button.O_APPOINTMENT_DURATION_90 ){
 				// Make sure the locator exists
-				if ( !this.sIsElementPresent(Locators.zAppointmentDuration90) ) {
-					throw new HarnessException("optionLocator not present! "+ Locators.zAppointmentDuration90);
+				if ( !this.sIsElementPresent(Locators.zDefaultAppointmentDuration) ) {
+					throw new HarnessException("pulldownLocator not present! "+ Locators.zDefaultAppointmentDuration);
 				}
-				
-				this.zClick(Locators.zAppointmentDuration90);
+
+				this.zClick(Locators.zDefaultAppointmentDuration);
 
 				this.zWaitForBusyOverlay();
+
+				if ( option != null ) {
+
+					if ( option == Button.O_APPOINTMENT_DURATION_90 ){
+						// Make sure the locator exists
+						if ( !this.sIsElementPresent(Locators.zAppointmentDuration90) ) {
+							throw new HarnessException("optionLocator not present! "+ Locators.zAppointmentDuration90);
+						}
+
+						this.zClick(Locators.zAppointmentDuration90);
+
+						this.zWaitForBusyOverlay();
+					}
 				}
 			}
+
 		}
-			
-	}
 		return (page);
 
 	}
-	
-	
-		public AbsPage zFolderPressPulldown(Button button) throws HarnessException {
-			logger.info(myPageName() + " zToolbarPressButton("+ button +")");
-			
-			tracer.trace("Click button "+ button);
 
-					
-			// Default behavior variables
-			//
-			//String locator = null;			// If set, this will be clicked
-			AbsPage page = null;	// If set, this page will be returned
-		
+
+	public AbsPage zFolderPressPulldown(Button button) throws HarnessException {
+		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+
+		tracer.trace("Click button "+ button);
+
+
+		// Default behavior variables
+		//
+		//String locator = null;			// If set, this will be clicked
+		AbsPage page = null;	// If set, this page will be returned
+
 		// Default behavior
 		if ( button != null ) {
 			if ( button == Button.O_SHARE_FOLDER_TYPE ){
-						
-			// Make sure the locator exists
-			if ( !this.sIsElementPresent(Locators.zShareFolderType) ) {
-				throw new HarnessException("pulldownLocator not present! "+ Locators.zShareFolderType);
-			}
-			
-			this.zClick(Locators.zShareFolderType);
-			this.zWaitForBusyOverlay();
-			SleepUtil.sleepSmall();
+
+				// Make sure the locator exists
+				if ( !this.sIsElementPresent(Locators.zShareFolderType) ) {
+					throw new HarnessException("pulldownLocator not present! "+ Locators.zShareFolderType);
+				}
+
+				this.zClick(Locators.zShareFolderType);
+				this.zWaitForBusyOverlay();
+				SleepUtil.sleepSmall();
 			}		
-	}
+		}
 		return page;
-}
-	
+	}
+
 	public void zSelectRadioButton (Button option) throws HarnessException {
-		
+
 		if ( option == null )
 			throw new HarnessException("Option cannot be null!");
-		
+
 		String locator = null;
-		
+
 		if ( option == Button.R_CUSTOM_WORK_HOURS ) {
-			
+
 			locator = Locators.zCustomWorkHours;
-			
+
 		} else {
 			throw new HarnessException("no logic defined for option "+ option);
 		}
@@ -511,23 +514,23 @@ public class PagePreferences extends AbsTab {
 		if ( locator == null ) {
 			throw new HarnessException("locator was null for option "+ option);
 		}
-		
+
 		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
-		
+
 	}
-	
+
 	public void zSelectCheckBox (Button option) throws HarnessException {
-		
+
 		if ( option == null )
 			throw new HarnessException("Option cannot be null!");
-		
+
 		String locator = null;
-		
+
 		if ( option == Button.B_MONDAY_CHECK_BOX ) {
-			
+
 			locator = Locators.zMondayCustomWorkHour;
-			
+
 		} else {
 			throw new HarnessException("no logic defined for option "+ option);
 		}
@@ -535,58 +538,58 @@ public class PagePreferences extends AbsTab {
 		if ( locator == null ) {
 			throw new HarnessException("locator was null for option "+ option);
 		}
-		
+
 		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
-		
-	}
-	
+
+	}	
+
 	public AbsPage zPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zPressButton("+ button +")");
-		
+
 		tracer.trace("Click button "+ button);
 
 		if ( button == null )
 			throw new HarnessException("Button cannot be null!");
-		
+
 		String locator = null;
 		AbsPage page = null;
-		
+
 		if ( button == Button.B_CUSTOMIZE ) {
-			
+
 			locator = Locators.zCustomizeButton;
 			page = null;
-			
+
 		} else if ( button == Button.B_YES ) {
-			
+
 			locator = Locators.zYesButtonWarningDialog;
 			page = null;
-		
+
 		} else if ( button == Button.B_OK ) {
-			
+
 			locator = Locators.zOKButtonCustomDialog;
 			page = null;
-		
+
 		} else if ( button == Button.B_CANCEL ) {
-			
+
 			locator = Locators.zCancelButtonCustomDialog;
 			page = null;
-			
+
 		} else if ( button == Button.B_NO ) {
-			
+
 			locator = Locators.zNoButtonWarningDialog;
 			page = null;
-			
+
 		} else if ( button == Button.B_IMPORT ) {
-			
+
 			locator = Locators.zImportButton;
 			page = null;
-			
+
 		}  else if ( button == Button.B_IMPORT_OK ) {
-			
+
 			locator = Locators.zImportDialogOkButton;
 			page = null;
-			
+
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
@@ -594,62 +597,62 @@ public class PagePreferences extends AbsTab {
 		if ( locator == null ) {
 			throw new HarnessException("locator was null for button "+ button);
 		}
-		
+
 		// Make sure the button exists
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
-		
+
 		// Click it
 		this.zClick(locator);
-		
+
 		this.zWaitForBusyOverlay();
-		
+
 		return (page);
 	}
-	
+
 	public void zCheckboxSet(Button checkbox, boolean status) throws HarnessException {
-		
+
 		logger.info(myPageName() + " zPressButton("+ checkbox +")");
-		
+
 		tracer.trace("Click button "+ checkbox);
 
 		if ( checkbox == null )
 			throw new HarnessException("Button cannot be null!");
-		
+
 		String locator = null;
-		
+
 		if ( checkbox == Button.C_SUNDAY_WORK_HOUR ) {
-			
+
 			locator = Locators.zSundayCustomWorkHour;
-		
+
 		} else if ( checkbox == Button.C_MONDAY_WORK_HOUR ) {
-			
+
 			locator = Locators.zMondayCustomWorkHour;
-			
+
 		} else if ( checkbox == Button.C_TUESDAY_WORK_HOUR ) {
-			
+
 			locator = Locators.zTuesdayCustomWorkHour;
-			
+
 		} else if ( checkbox == Button.C_WEDNESDAY_WORK_HOUR) {
-					
+
 			locator = Locators.zWednesdayCustomWorkHour;
-					
+
 		} else if ( checkbox == Button.C_THURSDAY_WORK_HOUR ) {
-			
+
 			locator = Locators.zThursdayCustomWorkHour;
-			
+
 		} else if ( checkbox == Button.C_FRIDAY_WORK_HOUR ) {
-			
+
 			locator = Locators.zFridayCustomWorkHour;
-			
+
 		} else if ( checkbox == Button.C_SATURDAY_WORK_HOUR ) {
-			
+
 			locator = Locators.zSaturdayCustomWorkHour;
-	
+
 		} else if ( checkbox == Button.C_MONDAY_WORK_WEEK ) {
-			
+
 			locator = Locators.zMondayWorkWeek;
-	
+
 		}else {
 			throw new HarnessException("no logic defined for checkbox "+ checkbox);
 		}
@@ -657,17 +660,17 @@ public class PagePreferences extends AbsTab {
 		if ( locator == null ) {
 			throw new HarnessException("locator was null for checkbox "+ checkbox);
 		}
-		
+
 		// Make sure the button exists
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("Button is not present checkbox="+ locator +" button="+ checkbox);
-	
+
 		if ( status == true ) {
 			this.sCheck(locator);
 		} else {
 			this.sUncheck(locator);
 		}
-		
+
 		this.zWaitForBusyOverlay();
 
 	}
@@ -680,25 +683,25 @@ public class PagePreferences extends AbsTab {
 		public String folder = null;
 		public String email = null;
 		public String with = null;
-		
+
 		public ShareItem() {	
 		}
-		
+
 		public String toString() {
 			return (String.format("name:%s with:%s item:%s type:%s role:%s folder:%s email:%s", name, with, item, type, role, folder, email));
 		}
-		
+
 	}
-	
+
 	// See https://bugzilla.zimbra.com/show_bug.cgi?id=65919
 	// parseUnacceptedShareItem and parseAcceptedShareItem can
 	// likely be combined once unique ID's are added to the DOM
 	//
-	
+
 	protected ShareItem parseUnacceptedShareItem(String itemLocator) throws HarnessException {
 		logger.info(myPageName() + " parseUnacceptedShareItem("+ itemLocator +")");
-		
-		
+
+
 		if ( !this.sIsElementPresent(itemLocator) ) {
 			throw new HarnessException("item is not present! "+ itemLocator);
 		}
@@ -716,46 +719,46 @@ public class PagePreferences extends AbsTab {
 				</td>
 				<td width="180">enus13186341276255@testdomain.com</td>
 			</tr>
-			
+
 		 */
-		
+
 		String locator = null;
-		
+
 		ShareItem item = new ShareItem();
-		
+
 		locator = itemLocator + " td";
 		if ( this.sIsElementPresent(locator) ) {
 			item.name = this.sGetText(locator);
 		}
-		
+
 		locator = itemLocator + " td[id$='_it']";
 		if ( this.sIsElementPresent(locator) ) {
 			item.item = this.sGetText(locator);
 		}
-		
+
 		locator = itemLocator + " td + td + td";
 		if ( this.sIsElementPresent(locator) ) {
 			item.type = this.sGetText(locator);
 		}
-		
+
 		locator = itemLocator + " td[id$='_ro']";
 		if ( this.sIsElementPresent(locator) ) {
 			item.role = this.sGetText(locator);
 		}
-		
+
 		locator = itemLocator + " td + td + td + td + td + td";
 		if ( this.sIsElementPresent(locator) ) {
 			item.email = this.sGetText(locator);
 		}
-		
-		
+
+
 		return (item);
 	}
-	
+
 	protected ShareItem parseAcceptedShareItem(String itemLocator) throws HarnessException {
 		logger.info(myPageName() + " parseAcceptedShareItem("+ itemLocator +")");
-		
-		
+
+
 		if ( !this.sIsElementPresent(itemLocator) ) {
 			throw new HarnessException("item is not present! "+ itemLocator);
 		}
@@ -773,50 +776,50 @@ public class PagePreferences extends AbsTab {
 			</tr>
 
 		 */
-		
+
 		String locator = null;
-		
+
 		ShareItem item = new ShareItem();
-		
+
 		locator = itemLocator + " td";
 		if ( this.sIsElementPresent(locator) ) {
 			item.name = this.sGetText(locator);
 		}
-		
+
 		locator = itemLocator + " td[id$='_it']";
 		if ( this.sIsElementPresent(locator) ) {
 			item.item = this.sGetText(locator);
 		}
-		
+
 		locator = itemLocator + " td + td + td";
 		if ( this.sIsElementPresent(locator) ) {
 			item.type = this.sGetText(locator);
 		}
-		
+
 		locator = itemLocator + " td[id$='_ro']";
 		if ( this.sIsElementPresent(locator) ) {
 			item.role = this.sGetText(locator);
 		}
-		
+
 		locator = itemLocator + " td[id$='_fo']";
 		if ( this.sIsElementPresent(locator) ) {
 			item.folder = this.sGetText(locator);
 		}
-		
+
 		locator = itemLocator + " td + td + td + td + td + td";
 		if ( this.sIsElementPresent(locator) ) {
 			item.email = this.sGetText(locator);
 		}
-		
-		
+
+
 		return (item);
 	}
-	
-	
+
+
 	protected ShareItem parseSharedByMeShareItem(String itemLocator) throws HarnessException {
 		logger.info(myPageName() + " parseAcceptedShareItem("+ itemLocator +")");
-		
-		
+
+
 		if ( !this.sIsElementPresent(itemLocator) ) {
 			throw new HarnessException("item is not present! "+ itemLocator);
 		}
@@ -837,59 +840,59 @@ public class PagePreferences extends AbsTab {
 			</tr>
 
 		 */
-		
+
 		String locator = null;
-		
+
 		ShareItem item = new ShareItem();
-		
+
 		locator = itemLocator + " td";
 		if ( this.sIsElementPresent(locator) ) {
 			item.with = this.sGetText(locator);
 		}
-		
+
 		locator = itemLocator + " td[id$='_it']";
 		if ( this.sIsElementPresent(locator) ) {
 			item.item = this.sGetText(locator);
 		}
-		
+
 		locator = itemLocator + " td + td + td";
 		if ( this.sIsElementPresent(locator) ) {
 			item.type = this.sGetText(locator);
 		}
-		
+
 		locator = itemLocator + " td[id$='_ro']";
 		if ( this.sIsElementPresent(locator) ) {
 			item.role = this.sGetText(locator);
 		}		
-		
+
 		return (item);
 	}
-	
+
 	/**
 	 * Get a list of share rows from the Preferences->Sharing page
 	 * @throws HarnessException 
 	 */
 	public List<ShareItem> zSharesGetUnaccepted() throws HarnessException {
 		logger.info(myPageName() + " zSharesGetUnaccepted()");
-		
+
 		List<ShareItem> items = new ArrayList<ShareItem>();
-		
-		
+
+
 		String rowsLocator = "css=div[id='zl__SVP__rows'] tr";
 		if ( !this.sIsElementPresent(rowsLocator) ) {
 			logger.info("No rows - return empty list");
 			return (items);
 		}
-		
+
 		int count = this.sGetCssCount(rowsLocator);
 		for (int i = 0; i < count; i++) {
 			String itemLocator = "css=div[id='zl__SVP__rows'] tr"+ StringUtils.repeat(" + tr", i);
 			ShareItem item = parseUnacceptedShareItem(itemLocator);
 			items.add(item);
 		}
-		
+
 		return (items);
-		
+
 	}
 
 	/**
@@ -898,25 +901,25 @@ public class PagePreferences extends AbsTab {
 	 */
 	public List<ShareItem> zSharesGetAccepted() throws HarnessException {
 		logger.info(myPageName() + " zSharesGetUnaccepted()");
-		
+
 		List<ShareItem> items = new ArrayList<ShareItem>();
-		
-		
+
+
 		String rowsLocator = "css=div[id='zl__SVM__rows'] tr";
 		if ( !this.sIsElementPresent(rowsLocator) ) {
 			logger.info("No rows - return empty list");
 			return (items);
 		}
-		
+
 		int count = this.sGetCssCount(rowsLocator);
 		for (int i = 0; i < count; i++) {
 			String itemLocator = "css=div[id='zl__SVM__rows'] tr"+ StringUtils.repeat(" + tr", i);
 			ShareItem item = parseAcceptedShareItem(itemLocator);
 			items.add(item);
 		}
-		
+
 		return (items);
-		
+
 	}
 
 	/**
@@ -925,25 +928,25 @@ public class PagePreferences extends AbsTab {
 	 */
 	public List<ShareItem> zSharesGetSharedByMe() throws HarnessException {
 		logger.info(myPageName() + " zSharesGetUnaccepted()");
-		
+
 		List<ShareItem> items = new ArrayList<ShareItem>();
-		
-		
+
+
 		String rowsLocator = "css=div[id='zl__SVP__rows'] tr";
 		if ( !this.sIsElementPresent(rowsLocator) ) {
 			logger.info("No rows - return empty list");
 			return (items);
 		}
-		
+
 		int count = this.sGetCssCount(rowsLocator);
 		for (int i = 0; i < count; i++) {
 			String itemLocator = "css=div[id='zl__SVG__rows'] tr"+ StringUtils.repeat(" + tr", i);
 			ShareItem item = parseSharedByMeShareItem(itemLocator);
 			items.add(item);
 		}
-		
+
 		return (items);
-		
+
 	}
 
 	public void zSetEmailAddress(String email) throws HarnessException {
@@ -955,13 +958,13 @@ public class PagePreferences extends AbsTab {
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("zSetEmailAddress " + locator + " is not present");
 		}
-		
+
 		// Seems that the client can't handle filling out the new mail form too quickly
 		// Click in the "To" fields, etc, to make sure the client is ready
 		this.sFocus(locator);
 		this.zClick(locator);
 		this.zWaitForBusyOverlay();
-		
+
 		//this.zKeyboard.zTypeCharacters(email);
 		this.sType(locator, email);
 		SleepUtil.sleepSmall();
@@ -970,7 +973,7 @@ public class PagePreferences extends AbsTab {
 		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 		SleepUtil.sleepMedium();
 		this.zWaitForBusyOverlay();
-	
+
 	}
 
 
@@ -978,29 +981,29 @@ public class PagePreferences extends AbsTab {
 		logger.info(myPageName() + " zClickButton("+ button +")");
 
 		String locator = null;
-		
+
 		if ( button == Button.B_OK ) {
-			
+
 			locator = "css=div[id='"+ Locators.zDialogShareId +"'] td[id^='OK'] td[id$='_title']";
-			
+
 		} else if ( button == Button.B_CANCEL ) {
-			
+
 			locator = "css=div[id='"+ Locators.zDialogShareId +"'] td[id^='Cancel'] td[id$='_title']";
 
 		} else {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
-		
+
 		this.zClick(locator);
 		SleepUtil.sleepSmall();
 		zWaitForBusyOverlay();
-		
+
 		// This dialog sends a message, so we need to check the queue
 		Stafpostqueue sp = new Stafpostqueue();
 		sp.waitForPostqueue();
 
 		return (null);
-	
+
 	}
 
 	public void zSetRole(ShareRole role) throws HarnessException {

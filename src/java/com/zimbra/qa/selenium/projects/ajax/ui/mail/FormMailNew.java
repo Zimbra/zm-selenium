@@ -92,6 +92,18 @@ public class FormMailNew extends AbsForm {
 		public static final String FormatAsHTMLMenu = "css=div[id^='zm__COMPOSE'] div[id$='NEW_MESSAGE__FORMAT_HTML'] tr[id^='POPUP_zmi__COMPOSE']";
 		public static final String FormatAsPlainTextMenu = "css=div[id^='zm__COMPOSE'] div[id$='NEW_MESSAGE__FORMAT_TEXT'] tr[id^='POPUP_zmi__COMPOSE']";
 		public static final String zOptionsdropdown = "css=[id^=zb__COMPOSE][id$=__COMPOSE_OPTIONS_dropdown]";
+		
+		//Spell check locators
+		public static final String zMisspelledWordCss = "css=body[id='tinymce'] span[class='ZM-SPELLCHECK-MISSPELLED']";
+		public static final String zAddMisspelledWord = "css=div[id^='POPUP_'] div[id='add'] td[id$='_title']";
+		public static final String zIgnoreMisspelledWord = "css=div[id^='POPUP_'] div[id='ignore'] td[id$='_title']";
+		
+		//Spell check warning dialog locators when Mandatory spell check is enabled
+		public static final String zSpellCheckWarningDialog = "css=div[id^='SpellCheckConfirm'][class='DwtDialog']";
+		public static final String zSpellCheckWarningDialogContent = "css=div[id^='SpellCheckConfirm'] [class='DwtMsgArea']";
+		public static final String zCorrectSpellingBtn = "css=div[id^='SpellCheckConfirm'][id$='_button5']";
+		public static final String zSendAnywayBtn = "css=div[id^='SpellCheckConfirm'][id$='_button4']";
+		
 	}
 
 	public static class Field {
