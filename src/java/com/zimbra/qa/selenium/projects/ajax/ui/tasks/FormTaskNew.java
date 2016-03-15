@@ -370,7 +370,7 @@ public class FormTaskNew extends AbsForm {
 
 		} else if (field == Field.HtmlBody) {
 			
-			SleepUtil.sleepVeryLong();
+			SleepUtil.sleepLong();
 			
 			String browser = SeleniumService.getInstance().getSeleniumBrowser();
 			try {

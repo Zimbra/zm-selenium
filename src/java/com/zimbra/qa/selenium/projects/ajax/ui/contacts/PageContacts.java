@@ -23,7 +23,6 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
-import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
@@ -1511,13 +1510,10 @@ public class PageContacts extends AbsTab {
 					break;
 				} else {
 					logger.info("Contact is not displayed in current view");
-					Stafpostqueue sp = new Stafpostqueue();
-					sp.waitForPostqueue();
 				}
 			}
 
 			if (found = true) {
-				SleepUtil.sleepSmall();
 				logger.info("Conatct displayed in current view");
 				ZAssert.assertTrue(found, "Contact is not displayed in current view");
 				break;
@@ -1534,13 +1530,6 @@ public class PageContacts extends AbsTab {
 	    if (selectedContactArrayList.size() == 0) {
 		  throw new HarnessException("No selected contact/contact group ");				
 	    }
-	
-	    /*if (selectedContactArrayList.size() > 1) {
-	      for (int i=0; i<selectedContactArrayList.size(); i++) {
-	    	  logger.info(selectedContactArrayList.get(i));
-	      }
-		  throw new HarnessException("Cannot edit more than one contact/contact group ");				
-	    }*/
 	
         String contactType = getContactType(selectedContactArrayList.get(0));
 	

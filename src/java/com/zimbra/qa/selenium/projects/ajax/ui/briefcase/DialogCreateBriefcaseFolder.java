@@ -120,10 +120,6 @@ public class DialogCreateBriefcaseFolder extends AbsDialog {
 		this.zClickAt(locator, "0,0");
 		
 		this.zWaitForBusyOverlay();
-
-		//Check the message queue
-		//Stafpostqueue sp = new Stafpostqueue();
-		//sp.waitForPostqueue();
 		
 		return (page);
 	}
