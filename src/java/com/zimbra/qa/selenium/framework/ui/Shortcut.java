@@ -81,6 +81,7 @@ public class Shortcut {
 	public static final Shortcut S_MAIL_MARKSPAM = new Shortcut("S_MAIL_MARKSPAM",		"ms");
 	public static final Shortcut S_MAIL_REPLY = new Shortcut("S_MAIL_REPLY",		"r");
 	public static final Shortcut S_MAIL_FOWARD = new Shortcut("S_MAIL_FOWARD",		"f");
+	public static final Shortcut S_MAIL_REPLYAll = new Shortcut("S_MAIL_REPLYAll",		"a");
 
 	// Folders shortcuts
 	public static final Shortcut S_NEWFOLDER = new Shortcut("S_NEWFOLDER", "nf");
