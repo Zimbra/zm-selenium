@@ -83,8 +83,7 @@ public class ZimbraPrefMandatorySpellCheckEnabled extends AjaxCommonTest {
 		mailform.zFillField(Field.Body, misspelledWord);
 
 		//Send the mail
-		mailform.zToolbarPressButton(Button.B_SEND);
-		SleepUtil.sleepMedium();
+		mailform.zToolbarPressButton(Button.B_SEND);		
 
 		//Check that misspelling warning dialog is displayed
 		ZAssert.assertTrue(mailform.sIsVisible(Locators.zSpellCheckWarningDialog), "Verify that misspelling warning dialog is displayed");
@@ -100,15 +99,13 @@ public class ZimbraPrefMandatorySpellCheckEnabled extends AjaxCommonTest {
 
 		//Click on Add  to add the word to spell check dictionary
 		SleepUtil.sleepSmall();
-		mailform.sClickAt(Locators.zAddMisspelledWord,"0,0");			
-		SleepUtil.sleepMedium();
+		mailform.sClickAt(Locators.zAddMisspelledWord,"0,0");		
 
 		//To go out of Spell check view
 		mailform.zToolbarPressButton(Button.B_SPELL_CHECK);	
 
 		//Send the mail
-		mailform.zToolbarPressButton(Button.B_SEND);
-		SleepUtil.sleepLong();
+		mailform.zToolbarPressButton(Button.B_SEND);		
 
 		//Check that misspelling warning dialog is not displayed again
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zSpellCheckWarningDialog), "Verify that misspelling warning dialog is displayed");
