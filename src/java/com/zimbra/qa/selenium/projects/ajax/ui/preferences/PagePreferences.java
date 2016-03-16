@@ -47,6 +47,10 @@ public class PagePreferences extends AbsTab {
 		public static final String zSaveChangesYes = "id=DWT241_title";
 		public static final String zSaveChangesNo = "id=DWT242_title";
 		public static final String zSaveChangesCancel = "id=DWT243_title";
+		
+		//General > Time zone and language
+		//Compose Direction
+		public static final String zShowComposeDirection = "css=input[id$='_SHOW_COMPOSE_DIRECTION_BUTTONS']";
 
 		// Calendar
 		public static final String zCustomWorkHours = "css=td[id$='_CAL_WORKING_HOURS_CUSTOM'] input[name$='_normalCustom']";
