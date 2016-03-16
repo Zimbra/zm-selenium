@@ -126,4 +126,73 @@ public class CreateMeetingByChangingBodyTextFormat extends CalendarWorkWeekTest 
 		
 	}
     
+    @Bugs(ids = "103797")	
+	@Test(description = " Description of a previous appointment comes up when changing mode from plain-text to html ",
+			groups = { "functional" })
+			
+	public void PlainText_To_HTML_02() throws HarnessException {
+    	
+		// Set mail Compose preference to Text format
+		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
+		ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
+		
+		// Logout and login to pick up the preference changes
+		app.zPageLogin.zNavigateTo();
+		this.startingPage.zNavigateTo();
+		
+		// Create appointment data
+		AppointmentItem appt = new AppointmentItem();
+		Calendar now = this.calendarWeekDayUTC;
+		
+		String apptSubject1, apptContent1, apptSubject2, apptContent2;
+		apptSubject1 = ZimbraSeleniumProperties.getUniqueString();
+		apptContent1 = ZimbraSeleniumProperties.getUniqueString();
+		
+		apptSubject2 = ZimbraSeleniumProperties.getUniqueString();
+		apptContent2 = ZimbraSeleniumProperties.getUniqueString();
+		
+		appt.setSubject(apptSubject1);
+		appt.setContent(apptContent1);
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
+		
+		// Compose appointment in enter body text in plain first.
+		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
+		apptForm.zFill(appt);
+		SleepUtil.sleepSmall();
+		//Change text format to HTML
+		apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_HTML);
+		SleepUtil.sleepSmall();
+		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), apptContent1, "Verify content is not lost");
+		apptForm.zSubmit();
+
+		// Verify the new appointment exists on the server
+		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
+		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
+		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
+		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
+		
+		appt.setSubject(apptSubject2);
+		appt.setContent(apptContent2);
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
+		
+		// Compose appointment in enter body text in plain first.
+		apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
+		apptForm.zFill(appt);
+		//Change text format to HTML
+		SleepUtil.sleepLong();
+		apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_HTML);
+		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), apptContent2, "Verify content is not lost");
+		apptForm.zSubmit();
+
+		
+		// Verify the new appointment exists on the server
+		actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
+		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
+		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
+		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
+		
+	}
+
 }

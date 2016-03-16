@@ -22,9 +22,9 @@ import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import org.testng.annotations.Test;
 
+import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
-import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -32,7 +32,6 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 
 public class CreateMeetingWithAttachment extends CalendarWorkWeekTest {
 
@@ -111,7 +110,7 @@ public void CreateMeetingWithAttachment_02() throws HarnessException {
 			String apptSubject, apptAttendee1, apptContent;
 			Calendar now = this.calendarWeekDayUTC;
 			apptSubject = ZimbraSeleniumProperties.getUniqueString();
-			apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
+			apptAttendee1 = ZimbraAccount.Account2().EmailAddress;
 			apptContent = ZimbraSeleniumProperties.getUniqueString();
 			
 			appt.setSubject(apptSubject);
@@ -130,17 +129,6 @@ public void CreateMeetingWithAttachment_02() throws HarnessException {
 			apptForm.zSubmit();
 			// Verify appointment exists in current view
 	        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
-	        app.zPageMail.zNavigateTo();
-			// Refresh current view
-			app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-	
-			// Go to draft		
-			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
-			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
-			
-			// Select the invitation and verify Accept/decline/Tentative buttons are not present
-			DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
-			ZAssert.assertFalse(display.zHasADTButtons(), "Verify A/D/T buttons");
 			
 			// Verify appointment exists on the server
 			AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
@@ -148,16 +136,21 @@ public void CreateMeetingWithAttachment_02() throws HarnessException {
 			ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 			ZAssert.assertEquals(actual.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");
 			ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
+			Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
+			ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the sent meeting");
 	
 			// Verify the attendee receives the meeting
-			AppointmentItem received = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
+			AppointmentItem received = AppointmentItem.importFromSOAP(ZimbraAccount.Account2(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 			ZAssert.assertNotNull(received, "Verify the new appointment is created");
 			ZAssert.assertEquals(received.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 			ZAssert.assertEquals(received.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");
 			ZAssert.assertEquals(received.getContent(), appt.getContent(), "Content: Verify the appointment data");
+			
+			 nodes = ZimbraAccount.Account2().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
+			ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the received meeting");
 	
 			// Verify the attendee receives the invitation
-			MailItem invite = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ appt.getSubject() +")");
+			MailItem invite = MailItem.importFromSOAP(ZimbraAccount.Account2(), "subject:("+ appt.getSubject() +")");
 			ZAssert.assertNotNull(invite, "Verify the invite is received");
 			ZAssert.assertEquals(invite.dSubject, appt.getSubject(), "Subject: Verify the appointment data");
 			

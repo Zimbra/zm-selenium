@@ -21,12 +21,13 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import org.testng.annotations.*;
+
+import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogSendUpdatetoAttendees;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 
 public class ModifyByAddingAttachment extends CalendarWorkWeekTest {	
@@ -80,17 +81,19 @@ public class ModifyByAddingAttachment extends CalendarWorkWeekTest {
 				zUpload(filePath);
 		
 		        apptForm.zToolbarPressButton(Button.B_SEND);
-		        DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
-		        sendUpdateDialog.zClickButton(Button.B_OK);
 		 
 		        // Verify that attendee1 present in the appointment
 		        AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 				ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
+				Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
+				ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the sent meeting");
 				
 				// Verify appointment is present in attendee1's calendar
 				AppointmentItem addeddAttendee = AppointmentItem.importFromSOAP(ZimbraAccount.Account1(), "subject:("+ apptSubject +")");
 				ZAssert.assertNotNull(addeddAttendee, "Verify meeting invite is present in attendee2's calendar");
-		
+				 nodes = ZimbraAccount.Account1().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
+				ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the received meeting");
+				
 	} finally {
 		
 		Robot robot;
