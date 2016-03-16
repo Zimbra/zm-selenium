@@ -386,6 +386,10 @@ public class ExecuteHarnessMain {
 		} else {
 			excludeGroups.add("network");
 		}
+		
+		if (OperatingSystem.isWindows() == true) {
+			groups.add("windows");
+		}
 
 		// If groups contains "performance", then enable performance metrics
 		// gathering
@@ -1632,7 +1636,7 @@ public class ExecuteHarnessMain {
 		try {
 
 			// Set the working conditions
-			ZimbraSeleniumProperties.setBaseDirectory(".");
+			ZimbraSeleniumProperties.setBaseDirectory("");
 			ZimbraSeleniumProperties
 					.setConfigProperties("conf/config.properties");
 
