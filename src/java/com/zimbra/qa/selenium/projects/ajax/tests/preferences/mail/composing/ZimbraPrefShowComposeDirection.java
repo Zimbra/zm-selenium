@@ -40,7 +40,7 @@ public class ZimbraPrefShowComposeDirection extends AjaxCommonTest {
 	@Bugs(ids = "103002")
 	@Test(
 			description = "Verify the presence and working of direction buttons in compose mail screen",
-			groups = { "functional1" }
+			groups = { "functional" }
 			)
 
 	public void ZimbraPrefShowComposeDirection_01() throws HarnessException {
@@ -64,7 +64,7 @@ public class ZimbraPrefShowComposeDirection extends AjaxCommonTest {
 
 		// Click save
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
-		
+
 		//Verification through SOAP
 		app.zGetActiveAccount().soapSend(
 				"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
@@ -74,10 +74,10 @@ public class ZimbraPrefShowComposeDirection extends AjaxCommonTest {
 		//Verifying that the 'zimbraPrefShowComposeDirection' is set to TRUE
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefShowComposeDirection']", null);
 		ZAssert.assertEquals(value, "TRUE", "Verify that Mandatory spell check is enabled");
-		
+
 		// Open the new mail form and enter the data
 		mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-		
+
 		mailform.zFillField(Field.To,app.zGetActiveAccount().EmailAddress);
 		mailform.zFillField(Field.Subject,"Check Direction buttons");
 		mailform.zFillField(Field.Body, "Left to Right");
@@ -87,10 +87,10 @@ public class ZimbraPrefShowComposeDirection extends AjaxCommonTest {
 		ZAssert.assertTrue(mailform.sIsElementPresent(Locators.zDirectionRightButton),"Direction buttons are not present even if they are enabled in preference");
 
 		//Verify the working of the direction buttons
-		
+
 		//Click on left direction button
 		mailform.sClick(Locators.zDirectionLeftButton);
-		
+
 		//Check the present of body content under 'dir=ltr' i.e. left to right tag
 		mailform.sSelectFrame(Locators.zBodyFrameCss);
 		ZAssert.assertStringContains(mailform.sGetText("css=body[id='tinymce'] div[dir='ltr']"), "Left", "Verify text is present in body when direction is left to right" );
@@ -99,12 +99,16 @@ public class ZimbraPrefShowComposeDirection extends AjaxCommonTest {
 
 		//Click on right direction button
 		mailform.sClick(Locators.zDirectionRightButton);
-		
+
 		//Check the present of body content under 'dir=rtl' i.e. right to left tag
 		mailform.sSelectFrame(Locators.zBodyFrameCss);
 		ZAssert.assertStringContains(mailform.sGetText("css=body[id='tinymce'] div[dir='rtl']"), "Left", "Verify text is present in body when direction is right to left" );
 		ZAssert.assertFalse(mailform.sIsElementPresent("css=body[id='tinymce'] div[dir='ltr']"),"Verify no text is present in body when direction is right to left" );
 		mailform.sSelectFrame("relative=top");
+
+		//Cancel the compose
+		mailform.zToolbarPressButton(Button.B_CANCEL);
+
 
 	}
 }
