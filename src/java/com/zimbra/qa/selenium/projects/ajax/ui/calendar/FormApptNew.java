@@ -1088,20 +1088,21 @@ public class FormApptNew extends AbsForm {
 
 					try {
 
-						if (this.sIsElementPresent("css=iframe[id$='ZmHtmlEditor1_body_ifr']")) {
-							locator = "css=body[id='tinymce']";
-							this.sSelectFrame("css=div[class='ZmApptComposeView'] div[id$='_notes'] iframe[id$='_body_ifr']"); // iframe index is 0 based
-							this.zClickAt(locator, "10,10");
-							this.sFocus(locator);
-							//this.sType(locator, value);
-							this.zKeyboard.zTypeCharacters(value);
-
-						} else if (this.sIsElementPresent("css=textarea[class='ZmHtmlEditorTextArea']")) {
+						if (this.sIsElementPresent("css=textarea[class='ZmHtmlEditorTextArea'][style*='display: block;']")) {
 							locator = "css=textarea[class='ZmHtmlEditorTextArea']";
 							this.sFocus(locator);
 							this.zClick(locator);
 							this.sType(locator, value);
 
+						} else if (this.sIsElementPresent("css=iframe[id$='ZmHtmlEditor1_body_ifr']")) {
+								locator = "css=body[id='tinymce']";
+								this.sSelectFrame("css=div[class='ZmApptComposeView'] div[id$='_notes'] iframe[id$='_body_ifr']"); // iframe index is 0 based
+								this.zClickAt(locator, "10,10");
+								this.sFocus(locator);
+								//this.sType(locator, value);
+								this.zKeyboard.zTypeCharacters(value);
+
+							
 						} else {
 							throw new HarnessException("Unable to locate compose body");
 						}
@@ -1200,6 +1201,10 @@ public class FormApptNew extends AbsForm {
 		if (appt.getAttendees() != null) {
 			zFillField(Field.Attendees, appt.getAttendees());
 		}
+		// Body
+		if (appt.getContent() != null) {
+			zFillField(Field.Body, appt.getContent());
+		}
 
 		// Forward To Attendees
 		if (appt.getToAttendees() != null) {
@@ -1261,10 +1266,6 @@ public class FormApptNew extends AbsForm {
 		 String locator = "css=input[id$='_privateCheckbox']";
 		 this.sUncheck(locator);
 		 this.zWaitForBusyOverlay();
-		}
-		// Body
-		if (appt.getContent() != null) {
-			zFillField(Field.Body, appt.getContent());
 		}
 
 	}
