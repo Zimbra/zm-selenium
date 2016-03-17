@@ -301,6 +301,13 @@ public class PageCalendar extends AbsTab {
 
 	}
 
+	public boolean zVerifyAttachmentExistsInAppointment (String fileName) throws HarnessException {
+		boolean isAttachmentExists = false;
+		isAttachmentExists = sIsElementPresent("css=td a[id*='_MSG_attLinks_']:contains('" + fileName + "')");
+		return isAttachmentExists;
+	}
+	
+	
 	public boolean zGetApptLocatorFreeBusyView(String attendeeEmail, String apptSubject) throws HarnessException {
 		boolean attendeeEmailRow, apptSubjectRow;
 		attendeeEmailRow = sIsElementPresent("css=div[id='zv__CLFB'] td[id$='_NAME_'] div[class='ZmSchedulerInputDisabled']:contains('" + attendeeEmail + "')");
