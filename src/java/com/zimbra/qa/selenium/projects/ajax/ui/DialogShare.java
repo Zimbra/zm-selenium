@@ -37,6 +37,10 @@ public class DialogShare extends AbsDialog {
 	public static class Locators {
 		public static final String zDialogShareId = "ShareDialog";
 		public static final String zButtonsId = "ShareDialog_buttons";
+		public static final String note = "css=div[id='ZmShareReply'] textarea";
+		public static final String Message = "css=td[id='ZmShareReplySelect_select_container']";
+		public static final String zAddNoteToStandardMessage = "//td[contains(@id,'_title') and contains(text(),'Add note to standard message')]";
+		
 	}
 	
 	
@@ -165,14 +169,25 @@ public class DialogShare extends AbsDialog {
 		}
 	}
 	
-	public void zSetMessageType(ShareMessageType type) throws HarnessException {
+	public void zSetMessageType(ShareMessageType type, String message) throws HarnessException {
 		logger.info(myPageName() + " zSetMessageType("+ type +")");
-
-		String locator = "implement me";
 		
-		// Make sure the locator exists
-		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("zSetRole "+ locator +" is not present");
+		if (type == null)
+			throw new HarnessException("folder must not be null");
+
+		if (type == ShareMessageType.AddNoteToStandardMsg){
+			
+			zClickAt(Locators.Message,"");
+			zClick(Locators.zAddNoteToStandardMessage);
+			this.sFocus(Locators.note);
+			this.zClick(Locators.note);
+			this.zWaitForBusyOverlay();
+			
+			//this.zKeyboard.zTypeCharacters(message);
+			this.sType(Locators.note, message);
+			SleepUtil.sleepSmall();
+			
+
 		}
 
 	}
