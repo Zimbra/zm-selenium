@@ -153,6 +153,23 @@ public void CreateMeetingWithAttachment_02() throws HarnessException {
 			MailItem invite = MailItem.importFromSOAP(ZimbraAccount.Account2(), "subject:("+ appt.getSubject() +")");
 			ZAssert.assertNotNull(invite, "Verify the invite is received");
 			ZAssert.assertEquals(invite.dSubject, appt.getSubject(), "Subject: Verify the appointment data");
+		
+	        //Login as attendee and accept the invite
+	        app.zPageMain.zLogout();
+			app.zPageLogin.zLogin(ZimbraAccount.Account2());
+			app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+			SleepUtil.sleepSmall();
+			app.zPageCalendar.zNavigateTo();
+			// Verify appointment exists in current view
+	        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+				
+			// open the appt
+	        app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN, apptSubject);
+	    	
+			// Verify the new appointment has an attachment 
+			ZAssert.assertTrue(app.zPageCalendar.zVerifyAttachmentExistsInAppointment(fileName), "Verify attachment exists in the appointment");
+
+
 			
 		} finally {
 			
