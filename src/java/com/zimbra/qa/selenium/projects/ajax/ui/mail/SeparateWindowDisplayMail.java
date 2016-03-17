@@ -383,7 +383,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 			} else if (option == Button.O_EDIT_AS_NEW) {
 				
-				optionLocator = containerActionMenu + " div[id='EDIT_AS_NEW'] td[id$='_title']";
+				optionLocator = containerActionMenu + " div[id$='EDIT_AS_NEW'] td[id$='_title']";
 				page = null;
 				
 				// FALL THROUGH
