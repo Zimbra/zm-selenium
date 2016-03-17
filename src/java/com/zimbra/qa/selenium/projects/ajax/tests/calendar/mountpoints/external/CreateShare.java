@@ -42,7 +42,7 @@ public class CreateShare extends AjaxCommonTest {
 
 	@Bugs(ids = "46674")
 	@Test(	description = "Share folder with external rights and add note to it", 
-			groups = { "functional1" })
+			groups = { "functional" })
 	public void CreateShare_01() throws HarnessException {
 
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
