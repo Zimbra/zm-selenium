@@ -46,7 +46,7 @@ public class FwdMailWithAnAttachment extends PrefGroupMailByMessageTest {
 	}
 
 	@Test(	description = "Fwd a mail  with an attachment by pressing Forward button>>attach - in separate window",
-			groups = { "windows" })
+			groups = { "windows","smoke" })
 	public void FwdMailWithAnAttachment_01() throws HarnessException {
 
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();		

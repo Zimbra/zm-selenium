@@ -41,7 +41,7 @@ public class ReplyMailWithAnAttachment extends PrefGroupMailByMessageTest {
 	}
 
 	@Test(	description = "Reply to a mail  with an attachment by pressing Reply button>>attach - in separate window",
-			groups = { "windows" })
+			groups = { "windows","smoke" })
 	public void ReplyMailWithAnAttachment_01() throws HarnessException {
 
 		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();		
