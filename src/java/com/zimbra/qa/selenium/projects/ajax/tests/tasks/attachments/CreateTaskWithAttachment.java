@@ -20,13 +20,9 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
-import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
-import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
@@ -60,9 +56,7 @@ public class CreateTaskWithAttachment extends PrefGroupMailByMessageTest {
 			// Create file item
 			final String fileName = "testtextfile.txt";
 			final String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
-			
-			FolderItem tasks = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Tasks);
-			
+						
 			// Click NEW button
 			FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
 
@@ -78,29 +72,13 @@ public class CreateTaskWithAttachment extends PrefGroupMailByMessageTest {
 			// Submit task
 			taskNew.zSubmit();
 
-			TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
+			TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);			
 			ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
-			ZAssert.assertEquals(task.gettaskBody().trim(), body.trim(), "Verify the task body");
-			
-			app.zGetActiveAccount().soapSend(
-						"<SearchRequest types='task' xmlns='urn:zimbraMail'>"
-				+			"<query>"+ subject + "</query>"
-				+		"</SearchRequest>");
-			
-			String id = app.zGetActiveAccount().soapSelectValue("//mail:m", "id");
-			
-			app.zGetActiveAccount().soapSend(
-						"<GetMsgRequest xmlns='urn:zimbraMail'>"
-				+			"<m id='"+ id +"' html='1'/>"
-				+		"</GetMsgRequest>");
+			ZAssert.assertEquals(task.gettaskBody().trim(), body.trim(), "Verify task body");
+			ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:GetMsgResponse//mail:mp[@cd='attachment']", "filename"), fileName, "Verify task attachment");
 	
-			Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
-			ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the sent mail");
-			
 			// Verify UI for attachment
-			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, tasks);
-			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);			
-			ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the tasks");
+			ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the task");
 
 		} finally {
 			
