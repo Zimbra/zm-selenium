@@ -17,7 +17,10 @@
 package com.zimbra.qa.selenium.projects.admin.tests.search;
 
 import java.util.List;
+
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -91,6 +94,7 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * 2. Verify the global search return the Account.
 	 * @throws HarnessException
 	 */
+	@Bugs( ids = "96768")
 	@Test(	description = "Verify search functionality of Account Object.",
 			groups = { "functional" })
 			public void HomeSearchFunctionalityAccount_02() throws HarnessException {
