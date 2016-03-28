@@ -53,6 +53,13 @@ public class PageManageDomains extends AbsTab {
 		public static final String EDIT_BUTTON="css=td[id='zmi__zb_currentApp__EDIT_title']:contains('Edit')";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=td[id='zmi__DMLV__EDIT_title']:contains('Edit')";
+		public static final String DOMAIN_EDIT_ACL="css=div[id^='zti__AppAdmin__CONFIGURATION__DOMAINS'] div[class='ZTreeItemTextCell']:contains('ACL')";
+		public static final String DOMAIN_ACCOUNTS_LIMITS="css=div[id^='zti__AppAdmin__CONFIGURATION__DOMAINS'] div[class='ZTreeItemTextCell']:contains('Account Limits')";
+		public static final String DOMAIN_ACCOUNTS_LIMITS_ADD = "css=div[id$='account_form_account_limits_tab'] td[class='ZWidgetTitle']:contains('Add')";
+		public static final String DOMAIN_ACCOUNTS_LIMITS_COS_NAME = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input";
+		public static final String DOMAIN_ACCOUNTS_LIMITS_COS_LIMIT = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input";
+		public static final String DOMAIN_ACCOUNTS_LIMITS_AT_COS_OK = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input";
+		
 	}
 
 	public static class TypeOfObject {
@@ -429,6 +436,37 @@ public class PageManageDomains extends AbsTab {
 
 		// Return the list of items
 		return (items);
+	}
+	
+	
+	public AbsPage zSetAccountLimitPerCos(String  cos_name, String limit) throws HarnessException {
+		logger.info(myPageName() + " zSetAccountLimitPerCos("+ cos_name +", "+ limit +")");
+
+		tracer.trace("Enter cos name and limit "+ cos_name +" then "+ limit);
+
+
+		// Default behavior variables
+		cos_name = null; // If set, this will be expanded
+		AbsPage page = null; // If set, this page will be returned
+
+		//Click on accounts limit tab
+		this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS,"");
+		
+		//Click on Add button
+		this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS_ADD,"");
+		
+		//Enter COS name
+		this.sType(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_NAME, cos_name);
+		
+		//Enter Limit
+		this.sType(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_LIMIT, limit);
+	
+		//Click on OK button
+		this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS_AT_COS_OK,"");
+		
+		// Return the specified page, or null if not set
+		return (page);
+
 	}
 
 }

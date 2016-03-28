@@ -32,6 +32,11 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
  *
  */
 public class PageEditDistributionList extends AbsTab {
+	
+	public static class Locators {
+		public static final String DL_EDIT_ACL="css=div[id^='zti__AppAdmin__Home__dlLstHV'] div[class='ZTreeItemTextCell']:contains('ACL')";
+		
+	}
 
 	public PageEditDistributionList(AbsApplication application) {
 		super(application);

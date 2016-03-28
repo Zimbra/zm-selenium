@@ -40,6 +40,7 @@ public class PageManageGlobalSettings extends AbsTab {
 		public static final String HOME="Home";
 		public static final String CONFIGURE="Configure";
 		public static final String GLOBAL_SETTINGS="Global Settings";
+		public static final String GLOBAL_SETTINGS_ACL="css=div[id^='zti__AppAdmin__CONFIGURATION__GSET'] div[class='ZTreeItemTextCell']:contains('ACL')";
 	}
 
 

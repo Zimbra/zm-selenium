@@ -38,6 +38,8 @@ public class PageEditCOS extends AbsTab {
 		public static final String zRequiredTwoFactorAuth="css=td[id$='_zimbraFeatureTwoFactorAuthRequired___container'] input";
 		public static final String zTwoFactorAuthNumScratchCodes="css=td[id$='_zimbraTwoFactorAuthNumScratchCodes___container'] input";
 		public static final String zEnableApplicationPasscodes="css=td[id$='_zimbraFeatureAppSpecificPasswordsEnabled___container'] input";
+		public static final String COS_EDIT_ACL="css=div[id^='zti__AppAdmin__Home__actLstHV'] div[class='ZTreeItemTextCell']:contains('ACL')";
+		
 	}
 
 	public PageEditCOS(AbsApplication application) {
