@@ -18,6 +18,7 @@ package com.zimbra.qa.selenium.projects.admin.tests.delegatedadmin;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -44,6 +45,7 @@ public class ChangePassword extends AdminCommonTest {
 	 * 3. Verify password is changed using SOAP.
 	 * @throws HarnessException
 	 */
+	@Bugs( ids = "78780")
 	@Test(	description = "Delegated Admin - Edit password  -- manage account > Gearbox > edit account > change password ",
 			groups = { "functional" })
 	public void ChangePassword_01() throws HarnessException {
