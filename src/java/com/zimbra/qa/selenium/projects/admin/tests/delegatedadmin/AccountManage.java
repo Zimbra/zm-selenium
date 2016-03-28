@@ -17,8 +17,8 @@
 package com.zimbra.qa.selenium.projects.admin.tests.delegatedadmin;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -48,7 +48,7 @@ public class AccountManage extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 
-
+	@Bugs( ids = "61658")
 	@Test(	description = "Delegated Admin's Create a basic account using New->Account",
 			groups = { "sanity" })
 	public void CreateAccount_01() throws HarnessException {
