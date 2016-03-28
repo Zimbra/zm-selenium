@@ -49,7 +49,7 @@ public class zimbraPrefCalendarWorkingHours extends AjaxCommonTest {
 		// Select custom work hours for e.g. Tuesday to Friday
 		app.zPagePreferences.zSelectRadioButton(Button.R_CUSTOM_WORK_HOURS);
 		app.zPagePreferences.zPressButton(Button.B_CUSTOMIZE);
-		app.zPagePreferences.zCheckboxSet(Button.C_MONDAY_WORK_HOUR, false);
+		app.zPagePreferences.zCheckboxSet(Button.C_FRIDAY_WORK_HOUR, false);
 		app.zPagePreferences.zPressButton(Button.B_OK);
 		
 		// Save preferences
@@ -64,7 +64,7 @@ public class zimbraPrefCalendarWorkingHours extends AjaxCommonTest {
 				+		"</GetPrefsRequest>");
 		
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefCalendarWorkingHours']", null);
-		ZAssert.assertEquals(value, "1:N:0800:1700,2:N:0800:1700,3:Y:0800:1700,4:Y:0800:1700,5:Y:0800:1700,6:Y:0800:1700,7:N:0800:1700", "Verify zimbraPrefCalendarWorkingHours value (Sunday, Monday & Saturday as non-working days)'");
+		ZAssert.assertEquals(value, "1:N:0800:1700,2:Y:0800:1700,3:Y:0800:1700,4:Y:0800:1700,5:Y:0800:1700,6:N:0800:1700,7:N:0800:1700", "Verify zimbraPrefCalendarWorkingHours value (Sunday, Monday & Saturday as non-working days)'");
 		
 		// if logout stucks then assume that browser dialog appeared
 		app.zPageMain.zLogout();
@@ -95,7 +95,7 @@ public class zimbraPrefCalendarWorkingHours extends AjaxCommonTest {
 				+		"</GetPrefsRequest>");
 		
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefCalendarWorkingHours']", null);
-		ZAssert.assertEquals(value, "1:N:0800:1700,2:N:0800:1700,3:Y:0800:1700,4:Y:0800:1700,5:Y:0800:1700,6:Y:0800:1700,7:N:0800:1700", "Verify zimbraPrefCalendarWorkingHours value (Sunday, Monday & Saturday as non-working days)'");
+		ZAssert.assertEquals(value, "1:N:0800:1700,2:N:0800:1700,3:Y:0800:1700,4:Y:0800:1700,5:Y:0800:1700,6:N:0800:1700,7:N:0800:1700", "Verify zimbraPrefCalendarWorkingHours value (Sunday, Monday & Saturday as non-working days)'");
 		app.zPageMain.zLogout();
 	}
 	
