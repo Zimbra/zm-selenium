@@ -33,6 +33,9 @@ public class FormEditDomain extends AbsForm {
 		public static final String DESCRIPTION_TEXT_BOX="css=input#ztabv__DOAMIN_EDIT_";
 		public static final String SAVE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__SAVE']";
 		public static final String CLOSE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__CLOSE']";
+		public static final String DOMAIN_EDIT_THEMES="css=div[id^='zti__AppAdmin__CONFIGURATION__DOMAINS'] div[class='ZTreeItemTextCell']:contains('Themes')";
+		public static final String DOMAIN_LOGO_URL="css=input[id^='ztabv__DOAMIN_EDIT_zimbraSkinLogoURL']";
+		
 	}
 
 	public FormEditDomain(AbsApplication application) {
@@ -93,5 +96,16 @@ public class FormEditDomain extends AbsForm {
 		}
 		sType(Locators.DESCRIPTION_TEXT_BOX+"description\\[0\\]_2", name);
 		}
+	
+	public void setLogoURL(String URL) throws HarnessException {
+		for(int i=12;i>=0;i--) {
+			if(sIsElementPresent(Locators.DOMAIN_EDIT_THEMES)) {
+				zClickAt(Locators.DOMAIN_EDIT_THEMES,"0,0");
+				sType(Locators.DOMAIN_LOGO_URL, URL);
+				return;
+			}
+		}
+	
 	}
+}
 
