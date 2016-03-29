@@ -70,7 +70,7 @@ public class SaveDraftMailWithInlineImagettachment extends PrefGroupMailByMessag
 			app.zPageMail.zPressButton(Button.B_ATTACH_INLINE);
 			zUploadInlineImageAttachment(filePath);
 			
-			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline attachment exists in the email");
+			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(), "Verify inline attachment exists in the Compose window");
 
 			// Send the message after saving as draft
 			mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
@@ -170,7 +170,7 @@ public class SaveDraftMailWithInlineImagettachment extends PrefGroupMailByMessag
 			app.zPageMail.zPressButton(Button.B_ATTACH_INLINE);
 			zUploadInlineImageAttachment(anotherFilePath);
 			
-			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline attachment exists in the email");
+			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(), "Verify inline attachment exists in the compose window");
 
 			mailform.zSubmit();
 			

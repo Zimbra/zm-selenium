@@ -70,7 +70,7 @@ public class CreateMailWithInlineImageAttachment extends PrefGroupMailByMessageT
 			zUploadInlineImageAttachment(filePath);
 			
 			//Verify inline image in compose window
-			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline image is present in compose window");
+			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(), "Verify inline image is present in compose window");
 
 			
 			//app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(fileName);

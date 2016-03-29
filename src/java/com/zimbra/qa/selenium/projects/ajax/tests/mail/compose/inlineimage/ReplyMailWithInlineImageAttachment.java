@@ -77,7 +77,7 @@ public class ReplyMailWithInlineImageAttachment extends PrefGroupMailByMessageTe
 			app.zPageMail.zPressButton(Button.B_ATTACH_INLINE);
 			zUploadInlineImageAttachment(filePath);
 			
-			app.zPageMail.zVerifyInlineImageAttachmentExistsInMail();
+			app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow();
 			
 			// Send the message
 			mailform.zSubmit();
