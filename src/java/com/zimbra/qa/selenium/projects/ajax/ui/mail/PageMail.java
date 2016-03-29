@@ -269,8 +269,16 @@ public class PageMail extends AbsTab {
 		return isAttachmentExists;
 	}
 		
-	public boolean zVerifyInlineImageAttachmentExistsInMail() throws HarnessException {
+	public boolean zVerifyInlineImageAttachmentExistsInComposeWindow() throws HarnessException {
 		String locator = Locators.zInlineImageAttachment;
+		boolean inlineimgloaded = this.sIsElementPresent(locator);
+		if (!inlineimgloaded)
+			return (false);
+		return (inlineimgloaded);
+	}
+	
+	public boolean zVerifyInlineImageAttachmentExistsInMail() throws HarnessException {
+		String locator = "css=img[pnsrc^='cid']&&[pnsrc$='@zimbra']";
 		boolean inlineimgloaded = this.sIsElementPresent(locator);
 		if (!inlineimgloaded)
 			return (false);
