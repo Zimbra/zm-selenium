@@ -41,7 +41,8 @@ public class DialogFindAttendees extends DialogWarning {
 		public static final String LocationPickerSerach="css=div[class='DwtDialog'] td[id$='_title']:contains('Search')";
 		public static final String SelectLocationFromPicker="css=div[class='DwtDialog'] td[id$='_title']:contains('Select')";
 		public static final String AddLocationFromPicker="css=div[class='DwtDialog']  td[id^='OK'] td[id$='_button2_title']";
-		
+		public static final String SearchResultArea = "css=div[id$='ContactPicker_chooser'] div[class$='ListView']";
+
 		
 		public static final String ShowOptionalLink = "css=div[id$='_show_optional']";
 		public static final String ContactPickerSerachField = "id=ZmContactPicker_searchField";
@@ -56,6 +57,7 @@ public class DialogFindAttendees extends DialogWarning {
 	public static class Field {
 
 		public static final Field ContactPickerSerachField = new Field("ContactPickerSerachField");
+		public static final Field Department = new Field("Search = department");
 		
 		private String field;
 
@@ -172,7 +174,15 @@ public class DialogFindAttendees extends DialogWarning {
 			locator = Locators.ContactPickerSerachField;
 
 			// calendar folder
-		}  else {
+		}  else if ( field == Field.Department ) {
+
+			locator = "css=input[id$='_searchDepartmentField']";
+
+			// FALL THROUGH
+
+		}  
+		  
+		  else {
 			throw new HarnessException("not implemented for field " + field);
 		}
 	
