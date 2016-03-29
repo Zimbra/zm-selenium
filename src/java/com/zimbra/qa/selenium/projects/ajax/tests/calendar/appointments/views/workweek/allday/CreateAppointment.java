@@ -16,6 +16,8 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.workweek.allday;
 
+import java.util.Calendar;
+
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
@@ -66,6 +68,45 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 
+	}
+
+	@Bugs(ids = "104312")
+	@Test(	description = "Create multi-day all day appointment in week view",
+			groups = { "smoke1" }
+	)
+	public void CreateAllDayAppointment_02() throws HarnessException {
+		
+		// Create appointment
+		String apptSubject;
+		apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		AppointmentItem appt = new AppointmentItem();
+		
+		appt.setSubject(apptSubject);
+		appt.setContent("content" + ZimbraSeleniumProperties.getUniqueString());
+		appt.setAttendees(ZimbraAccount.AccountA().EmailAddress);
+		appt.setIsAllDay(true);
+		Calendar now = this.calendarWeekDayUTC;
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 0, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 15, 0, 0, 0);
+		appt.setStartTime(startUTC);;
+		appt.setEndTime(endUTC);
+		// Open the new mail form
+		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
+		apptForm.zFill(appt);
+		apptForm.zSubmit();
+			
+		// Verify the new appointment exists on the server
+		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")");
+		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
+		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
+		ZAssert.assertEquals(app.zGetActiveAccount().soapMatch("//mail:GetAppointmentResponse//mail:comp", "allDay", "1"), true, "");
+		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+
+		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        
 	}
 	
 }
