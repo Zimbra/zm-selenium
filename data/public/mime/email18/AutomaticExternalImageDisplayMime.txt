@@ -1,0 +1,26 @@
+Date: Wed, 30 Mar 2016 11:47:09 +0400 (GMT+04:00)
+From: j2@zqa-061.eng.zimbra.com
+To: j1 <j1@zqa-061.eng.zimbra.com>
+Cc: j3 <j3@zqa-061.eng.zimbra.com>
+Subject: Display external image preference check
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="=_f1b86e24-b442-4587-8ae4-1aaa3030a6b2"
+X-Originating-IP: [10.137.244.61]
+X-Mailer: Zimbra 8.7.0_RC1_1583 (ZimbraWebClient - GC49 (Win)/8.7.0_RC1_1583)
+Thread-Index: K48u7T8aOkJJAJGP8waaj1HHHrQE9A==
+Thread-Topic: External Image Automatic Display check
+
+--=_f1b86e24-b442-4587-8ae4-1aaa3030a6b2
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+
+External Image Automatic Display check 
+
+--=_f1b86e24-b442-4587-8ae4-1aaa3030a6b2
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html><body><div style="font-family: arial, helvetica, sans-serif; font-size: 12pt; color: #000000"><div> <!--StartFragment--><img src="http://pnq-tms.lab.zimbra.com/portal/web/wp-content/uploads/2015/02/zimbra.jpg" alt="Portal : Lab Machine Configurations | Install/Upgrade | Automations | Jobs | Reports | Devices | Documents" data-mce-src="http://pnq-tms.lab.zimbra.com/portal/web/wp-content/uploads/2015/02/zimbra.jpg"><!--EndFragment--> </div><div><br data-mce-bogus="1"></div><div>External Image Automatic Display check<br data-mce-bogus="1"></div></div></body></html>
+--=_f1b86e24-b442-4587-8ae4-1aaa3030a6b2--
