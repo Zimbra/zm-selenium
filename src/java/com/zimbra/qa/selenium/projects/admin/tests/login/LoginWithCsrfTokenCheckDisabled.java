@@ -68,11 +68,10 @@ public class LoginWithCsrfTokenCheckDisabled extends AdminCommonTest {
 		}
 
 		finally {
-			
-			// Change zimbraCsrfTokenCheckEnabled value to true
+		
 			String zimbraCsrfTokenCheckEnabledValue = "TRUE";
 			
-			// Change to the new zimbraMailURL temp value
+			// Change zimbraCsrfTokenCheckEnabled value to false
 						ZimbraAdminAccount.GlobalAdmin().soapSend(
 								"<ModifyConfigRequest xmlns='urn:zimbraAdmin'>"
 										+		"<a n='zimbraCsrfTokenCheckEnabled'>"+ zimbraCsrfTokenCheckEnabledValue + "</a>"
