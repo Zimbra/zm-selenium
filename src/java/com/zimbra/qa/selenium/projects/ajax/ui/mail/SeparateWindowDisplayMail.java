@@ -27,6 +27,7 @@ import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning.DialogWarningID;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
 
 /**
  * Represents a "Launch in New Window" display of a message
@@ -38,60 +39,61 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 	public static class Locators {
 
+		public static final String zInlineImageAttachment = "css=img[data-mce-src^='cid']&&[data-mce-src$='@zimbra']";
 	}
-	
+
 	public String ContainerLocator = "css=div[id='zv__MSG-1__MSG']";
 
 
 	public SeparateWindowDisplayMail(AbsApplication application) {
 		super(application);
-		
+
 		// Set the title to null to start.
 		// Set the title with zSetSubject()
 		this.DialogWindowTitle = null;
-		
+
 	}
-	
+
 	public String zGetMailProperty(Field field) throws HarnessException {
 		logger.info(myPageName() + " zGetDisplayedValue(" + field + ")");
 
 		String container = "css=div[id='zv__MSG-1__MSG']";
 		String locator = null;
-		
+
 		if ( field == Field.From ) {
-			
+
 			//locator = container + " tr[id$='_from'] span[id$='_com_zimbra_email']";
 			locator = container + " td[id$='_from'] span:nth-child(1)>span[class='addrBubble']>span";
-			
+
 			if ( !this.sIsElementPresent(locator) ) {
 				locator = container + " tr[id$='_from']"; // No bubbles
 			}
-			
+
 		} else if ( field == Field.To ) {
-			
+
 			locator = container + " tr[id$='_to'] span[id$='_com_zimbra_email']";
 			if ( !this.sIsElementPresent(locator) ) {
 				locator = container + " tr[id$='_to']"; // No bubbles
 			}
-			
+
 		} else if ( field == Field.Cc ) {
-			
+
 			locator = container + " tr[id$='_cc'] span[id$='_com_zimbra_email']";
 			if ( !this.sIsElementPresent(locator) ) {
 				locator = container + " tr[id$='_cc']"; // No bubbles
 			}
-			
+
 		} else if ( field == Field.OnBehalfOf ) {		
 			locator = container + " span[id$='_obo_span'] span[class='addrBubble']>span";
 			//locator = container + " td[id$='_from']>span:nth-child(3)>span[class='addrBubble']";
-		
+
 			if ( !sIsElementPresent(locator) ) {
 				// no email zimlet case
 				locator = container + " span[id$='_obo_span']";
 			}
 
 		} else if ( field == Field.ResentFrom ) {
-			
+
 			//locator = container + "  td[id$='_from'] span[class='addrBubble'] span:contains(resentfrom)";
 			locator = container + " span[id$='_bwo_span'] span[class='addrBubble']>span";
 			if ( !sIsElementPresent(locator) ) {
@@ -100,46 +102,46 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			}
 
 		} else if ( field == Field.OnBehalfOfLabel ) {
-			
+
 			locator = container + " td[id$='_obo_label']";
 
 		} else if ( field == Field.ReplyTo ) {
-			
+
 			locator = container + " tr[id$='_reply to'] span[class='addrBubble'] span:contains(replyto)";
-			
+
 			if ( !sIsElementPresent(locator) ) {
 				// no email zimlet case
 				locator = container + " tr[id$='_reply to']";
 			}
 
 		} else if ( field == Field.Subject ) {
-			
+
 			locator = container + " tr[id='zv__MSG__MSG-1_hdrTableTopRow'] td[class~='SubjectCol']";
-			
+
 		} else if ( field == Field.ReceivedDate ) {
-			
+
 			locator = container + " tr[id$='_hdrTableTopRow'] td[class~='DateCol']";
 
 		} else if ( field == Field.ReceivedTime ) {
-			
+
 			String timeAndDateLocator = container + " tr[id$='_hdrTableTopRow'] td[class~='DateCol'] ";
 
 			// Make sure the subject is present
 			if ( !sIsElementPresent(timeAndDateLocator) )
 				throw new HarnessException("Unable to find the time and date field!");
-			
+
 			// Get the subject value
 			String time = this.sGetText(timeAndDateLocator).trim();
 			//String date = this.zGetMailProperty(Field.ReceivedDate);
-			
+
 			// Strip the date so that only the time remains
 			//String time = timeAndDate.replace(date, "").trim();
-			
+
 			logger.info("zGetDisplayedValue(" + field + ") = " + time);
 			return(time);
 
 		} else if ( field == Field.Body ) {
-			
+
 			/*
 			 * To get the body contents, need to switch iframes
 			 */
@@ -148,15 +150,15 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			return(text);
 
 		} else {
-			
+
 			throw new HarnessException("No logic defined for Field: "+ field);
-			
+
 		}
 
 		// Default behavior
 		//
 		String value = sGetText(locator);
-		
+
 		logger.info("zGetDisplayedValue(" + field + ") = " + value);
 		return(value);
 
@@ -176,7 +178,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 	 */
 	public void zWaitForActive() throws HarnessException {
 		super.zWaitForActive(PageLoadDelay);
-		
+
 		// Sometimes it takes a while for the separate window to load
 		// Look for the subject before returning
 		String locator = "css=div[id='zv__MSG-1__MSG'] tr[id='zv__MSG__MSG-1_hdrTableTopRow'] td[class*='SubjectCol']";
@@ -186,9 +188,9 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			if ( present ) {
 				return;
 			}
-			
+
 			SleepUtil.sleep(1000);
-			
+
 		}
 
 		throw new HarnessException("Page never became active!");
@@ -231,7 +233,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		} else if ( button == Button.B_REPLY ) {
 
 			locator = container + " div[id$='__REPLY'] td[id$='_title']";
-			
+
 			page = null;
 
 			// FALL THROUGH
@@ -267,34 +269,34 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 			// FALL THROUGH
 
-	   } else if ( button == Button.B_ACTIONS ) {
+		} else if ( button == Button.B_ACTIONS ) {
 
-		   locator = containerToolbar + " div[id$='__ACTIONS_MENU'] td[id$='_dropdown']>div";
-		   page = null;
+			locator = containerToolbar + " div[id$='__ACTIONS_MENU'] td[id$='_dropdown']>div";
+			page = null;
 
-	   }else if ( button == Button.B_SEND ) {
-			
+		}else if ( button == Button.B_SEND ) {
+
 			if (sIsElementPresent("css=div[id^='ztb__COMPOSE-2'] div[id*='SEND'] td[id$='_title']")) {
 				locator = "css=div[id^='ztb__COMPOSE-2'] div[id*='SEND'] td[id$='_title']";
 			} else {
-				
+
 				locator = "css=div[id^='ztb__COMPOSE'] div[id*='SEND'] td[id$='_title']";
-				
+
 			}
-			
+
 			// Click on send
 			this.sClick(locator);
-			
-		//	this.zWaitForBusyOverlay();
-			
+
+			//	this.zWaitForBusyOverlay();
+
 			// Wait for the message to be delivered
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
-		
+
 			SleepUtil.sleepSmall();
 			page = null;
-			
-		return(page);
+
+			return(page);
 		}else {
 
 			throw new HarnessException("no logic defined for button "+ button);
@@ -309,17 +311,17 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButtonWithPulldown("+ pulldown +", "+ option +")");
-		
+
 		tracer.trace("Click pulldown "+ pulldown +" then "+ option);
-		
-		
+
+
 		if (pulldown == null)
 			throw new HarnessException("Pulldown cannot be null!");
 
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
-		
-		
+
+
 		// Default behavior variables
 		String containerToolbar = "css=div[id^='ztb__MSG']";
 		String containerActionMenu = "css=div[id^='zm__MSG']";
@@ -328,99 +330,99 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		AbsPage page = null; // If set, this page will be returned
 
 		if ( pulldown == Button.B_ACTIONS ) {
-		
+
 			pulldownLocator = containerToolbar + " div[id$='__ACTIONS_MENU'] td[id$='_dropdown']>div";
 
 			if ( option == Button.B_PRINT ) {
-				
+
 				optionLocator = containerActionMenu + " div[id='PRINT'] td[id$='_title']";
 				page = null;
 				throw new HarnessException("implement me"); // Need to implement the print dialog
 
 				// FALL THROUGH
-				
+
 			} else if (option == Button.B_RESPORTSPAM) {
-				
+
 				optionLocator = containerActionMenu + " div[id='SPAM'] td[id$='_title']";
 				page = null;
-				
+
 				// FALL THROUGH
-				
+
 			} else if (option == Button.B_RESPORTNOTSPAM) {
-				
+
 				optionLocator = containerActionMenu + " div[id='SPAM'] td[id$='_title']";
 				page = null;
-				
+
 				// FALL THROUGH
-				
+
 			} else if (option == Button.O_MARK_AS_READ) {
-				
+
 				optionLocator = containerActionMenu + " div[id$='MARK_READ'] td[id$='_title']";
 				page = null;
-				
+
 				// FALL THROUGH
-				
+
 			} else if (option == Button.O_MARK_AS_UNREAD) {
-				
+
 				optionLocator = containerActionMenu + " div[id$='MARK_UNREAD'] td[id$='_title']";
 				page = null;
-				
+
 				// FALL THROUGH
-				
+
 			} else if (option == Button.O_SHOW_ORIGINAL) {
-				
+
 				optionLocator = containerActionMenu + " div[id='SHOW_ORIG'] td[id$='_title']";
 				page = null;
-				
+
 				// FALL THROUGH
 
 			} else if (option == Button.B_REDIRECT) {
-				
+
 				optionLocator = containerActionMenu + " div[id*='REDIRECT'] td[id$='_title']";
 				page = new SeparateWindowDialogRedirect(this.MyApplication, this);
 
 				// FALL THROUGH
 
 			} else if (option == Button.O_EDIT_AS_NEW) {
-				
+
 				optionLocator = containerActionMenu + " div[id$='EDIT_AS_NEW'] td[id$='_title']";
 				page = null;
-				
+
 				// FALL THROUGH
 
 			}else if (option == Button.O_CREATE_TASK) {
-				
+
 				optionLocator = containerActionMenu + " div[id$='CREATE_TASK'] td[id$='_title']";
 				page = null;
-				
+
 				// FALL THROUGH
 
 			}else if (option == Button.O_CREATE_APPOINTMENT) {
-				
+
 				optionLocator = containerActionMenu + " div[id$='CREATE_APPT'] td[id$='_title']";
 				page = null;
-				
+
 				// FALL THROUGH O_NEW_FILTER
 
 			}else if (option == Button.O_NEW_FILTER) {
-				
+
 				optionLocator = containerActionMenu + " div[id$='ADD_FILTER_RULE'] td[id$='_title']";
 				page = null;
-				
+
 				// FALL THROUGH O_NEW_FILTER
 
 			}else if (option == Button.B_FLAG_MESSAGE) {
-				
+
 				optionLocator = containerActionMenu + " div[id$='FLAG'] td[id$='_title']";
 				page = null;
-				
+
 				// FALL THROUGH O_NEW_FILTER
 
 			}else if (option == Button.B_UNFLAG_MESSAGE) {
-				
+
 				optionLocator = containerActionMenu + " div[id$='UNFLAG'] td[id$='_title']";
 				page = null;
-				
+
 				// FALL THROUGH O_NEW_FILTER
 
 			} else {
@@ -428,7 +430,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			}
 
 		} else if (pulldown == Button.B_TAG) {
-			
+
 			pulldownLocator = containerToolbar + " div[id$='__TAG_MENU'] td[id$='_dropdown']>div";
 
 			if (option == Button.O_TAG_NEWTAG) {
@@ -438,61 +440,61 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 				throw new HarnessException("implement me"); // Need to implement the 'new tag' dialog
 
 				// FALL THROUGH
-				
+
 			} else if (option == Button.O_TAG_REMOVETAG) {
 
 				optionLocator = "css=div[id$='__TAG_MENU|MENU'] div[id='message_removetag'] td[id$='_title']";
 				page = null;
 
 				// FALL THROUGH
-				
+
 			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
-			
+
 		} else {
-			
+
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
-			
+
 		}
-		
-		
+
+
 		if ( ZimbraSeleniumProperties.isWebDriver() ) {
 
 			// Webdriver
 			List<String> locators = new ArrayList<String>();
 			locators.add(pulldownLocator);
 			locators.add(optionLocator);
-			
+
 			// Click on:
 			// 1. pulldownLocator
 			// 2. optionLocator
 			//
 			this.sClick(locators);
-			
+
 		} else {
-			
+
 			// Selenium
 			if (pulldownLocator != null) {
 				this.zClickAt(pulldownLocator,"");
 				if (optionLocator != null) {
 					this.zClickAt(optionLocator,"");
 				}
-			
+
 			}
 		}
-		
+
 		if ( page != null ) {
 			page.zWaitForActive();
 		}
-			
+
 		return (page);
 
 	}
-			
 
 
-	
+
+
 	public AbsPage zToolbarPressPulldown(Button button, Object dynamic) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButton("+ button +", "+ dynamic +")");
 
@@ -520,7 +522,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			if ( !(dynamic instanceof String) ) 
 				throw new HarnessException("if button = B_TAG, then dynamic should be a tag name");
 			String tagname = (String)dynamic;
-			
+
 			pulldownLocator = container + " div[id$='__TAG_MENU'] td[id$='_dropdown']>div";
 			optionLocator = "css=div[id$='__TAG_MENU|MENU'] td[id$='_title']:contains("+ tagname +")";
 			page = null;
@@ -528,9 +530,9 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			// FALL THROUGH
 
 		} else {
-			
+
 			throw new HarnessException("no logic defined for button "+ button);
-			
+
 		}
 
 		if (pulldownLocator != null) {
@@ -542,16 +544,16 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 				this.zClickAt(optionLocator,"");
 
 			}
-			
+
 		}
-			
+
 		return (page);
 
 	}
 
 	public AbsPage zKeyboardShortcut(Shortcut shortcut) throws HarnessException {
 		logger.info(myPageName() + " zKeyboardShortcut("+ shortcut +")");
-		
+
 		if (shortcut == null)
 			throw new HarnessException("Shortcut cannot be null");
 
@@ -571,7 +573,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		zTypeCharacters(shortcut.getKeys());
 
 		return (page);	
-		
+
 	}
 
 	public boolean zHasShareADButtons() throws HarnessException {
@@ -587,13 +589,13 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			if ( !this.sIsElementPresent(locator) )
 				return (false);
 		}
-		
+
 		return (true);
 	}
 
 	public AbsPage zPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zDisplayPressButton("+ button +")");
-		
+
 		tracer.trace("Click "+ button);
 
 		AbsPage page = this;
@@ -601,14 +603,14 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		boolean doPostfixCheck = false;
 
 		if ( button == Button.B_VIEW_ENTIRE_MESSAGE ) {
-			
+
 			locator = this.ContainerLocator + " span[id$='_msgTruncation_link']";
 
 			if ( !this.sIsElementPresent(locator) )
 				throw new HarnessException("locator is not present for button "+ button +" : "+ locator);
-			
+
 			this.sClick(locator); // sClick() is required for this element
-			
+
 			this.zWaitForBusyOverlay();
 
 			return (page);
@@ -620,87 +622,87 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 			if ( !this.sIsElementPresent(locator) )
 				throw new HarnessException("locator is not present for button "+ button +" : "+ locator);
-			
+
 			this.sClick(locator); // sClick() is required for this element
-			
+
 			this.zWaitForBusyOverlay();
 
 			return (page);
 
 		} else if ( button == Button.B_ACCEPT ) {
-			
+
 			locator = DisplayMail.Locators.AcceptButton;
 			page = null;
 			doPostfixCheck = true;
-		
+
 		} else if ( button == Button.O_ACCEPT_NOTIFY_ORGANIZER ) {
-			
+
 			locator = DisplayMail.Locators.AcceptNotifyOrganizerMenu;
 			page = null;
 			doPostfixCheck = true;
-			
+
 		} else if ( button == Button.O_ACCEPT_EDIT_REPLY ) {
-			
+
 			locator = DisplayMail.Locators.AcceptEditReplyMenu;
 			page = null;
 			doPostfixCheck = true;
-			
+
 		} else if ( button == Button.O_ACCEPT_DONT_NOTIFY_ORGANIZER ) {
-			
+
 			locator = DisplayMail.Locators.AcceptDontNotifyOrganizerMenu;
 			page = null;
 			doPostfixCheck = true;
-			
+
 		} else if ( button == Button.B_TENTATIVE ) {
-			
+
 			locator = DisplayMail.Locators.TentativeButton;
 			page = null;
 			doPostfixCheck = true;
-		
+
 		} else if ( button == Button.O_TENTATIVE_NOTIFY_ORGANIZER ) {
-			
+
 			locator = DisplayMail.Locators.TentativeNotifyOrganizerMenu;
 			page = null;
 			doPostfixCheck = true;
-			
+
 		} else if ( button == Button.O_TENTATIVE_EDIT_REPLY ) {
-			
+
 			locator = DisplayMail.Locators.TentativeEditReplyMenu;
 			page = null;
 			doPostfixCheck = true;
-			
+
 		} else if ( button == Button.O_TENTATIVE_DONT_NOTIFY_ORGANIZER ) {
-			
+
 			locator = DisplayMail.Locators.TentativeDontNotifyOrganizerMenu;
 			page = null;
 			doPostfixCheck = true;
-			
+
 		} else if ( button == Button.B_DECLINE ) {
-			
+
 			locator = DisplayMail.Locators.DeclineButton;
 			page = null;
 			doPostfixCheck = true;
-			
+
 		} else if ( button == Button.O_DECLINE_NOTIFY_ORGANIZER ) {
-			
+
 			locator = DisplayMail.Locators.DeclineNotifyOrganizerMenu;
 			page = null;
 			doPostfixCheck = true;
-			
+
 		} else if ( button == Button.O_DECLINE_EDIT_REPLY ) {
-			
+
 			locator = DisplayMail.Locators.DeclineEditReplyMenu;
 			page = null;
 			doPostfixCheck = true;
-			
+
 		} else if ( button == Button.O_DECLINE_DONT_NOTIFY_ORGANIZER ) {
-			
+
 			locator = DisplayMail.Locators.DeclineDontNotifyOrganizerMenu;
 			page = null;
 			doPostfixCheck = true;
-			
+
 		} else if ( button == Button.B_PROPOSE_NEW_TIME ) {
-			
+
 			locator = DisplayMail.Locators.ProposeNewTimeButton;
 			page = null;
 
@@ -726,70 +728,67 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 				locator = "css=td[id='zb__COMPOSE-1___attachments_btn_dropdown']";
 			}
 			page = null;
-			
-			//Explicitly use sclick >> sclickat not working
-			this.sClick(locator);
-			
-			SleepUtil.sleepMedium();
 
-			return (page);
-			
+			//Explicitly use zClickAt 
+			this.zClickAt(locator, "0,0");
+			return(page);
+
+
+
 		} else if (button == Button.B_ATTACH) {
 			if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_title']")) {
 				locator = "css=td[id='zb__COMPOSE-2___attachments_btn_title']";
 			} else {
-				
+
 				logger.info(sIsElementPresent("css=td[id='zb__COMPOSE-1___attachments_btn_title']"));
 				locator = "css=td[id='zb__COMPOSE-1___attachments_btn_title']";
 			}
 			page = null;
 			//Explicitly use sclick >> sclickat not working
 			this.sClick(locator);
-			
+
 			SleepUtil.sleepMedium();
 
 			return (page);
-			
+
 		} else if (button == Button.B_MY_COMPUTER) {
 			locator = "css=td[id$='_title']:contains('My Computer')";
 			page = null;
 			//Explicitly use sclick >> sclickat not working
 			this.sClick(locator);
-			
+
 			SleepUtil.sleepMedium();
 
 			return (page);
-			
+
 		} else if (button == Button.B_ATTACH_INLINE) {
 			locator = "css=td[id$='_title']:contains('Attach Inline')";
 			page = null;
 			//Explicitly use sclick >> sclickat not working
-			this.sClick(locator);
-			
-			SleepUtil.sleepMedium();
+			this.zClickAt(locator, "0,0");
 
 			return (page);
 
 		} else  {
-			
+
 			throw new HarnessException("no implementation for button: "+ button);
 
 		}
-		
+
 		if ( locator == null )
 			throw new HarnessException("no locator defined for button "+ button);
-		
+
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("locator is not present for button "+ button +" : "+ locator);
-		
+
 		this.zClickAt(locator, "");
-		
-	//	this.zWaitForBusyOverlay();
+
+		//	this.zWaitForBusyOverlay();
 
 		if ( page != null ) {
 			page.zWaitForActive();
 		}
-		
+
 		if ( doPostfixCheck ) {
 			// Make sure the response is delivered before proceeding
 			Stafpostqueue sp = new Stafpostqueue();
@@ -798,26 +797,26 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 		return (page);
 	}
-public AbsPage zPressButtonPulldown(Button pulldown, Button option) throws HarnessException {
-		
+	public AbsPage zPressButtonPulldown(Button pulldown, Button option) throws HarnessException {
+
 		logger.info(myPageName() + " zPressButtonPulldown(" + pulldown + ", " + option + ")");
-		
+
 		tracer.trace("Click pulldown " + pulldown + " then " + option);
 
 		if (pulldown == null || option == null) throw new HarnessException("Button/options cannot be null!");
-		
+
 		String pulldownLocator = null;
 		String optionLocator = null;
 		AbsPage page = this;
 		boolean doPostfixCheck = false;
 
 		if ( pulldown == Button.B_ACCEPT ) {
-			
+
 			pulldownLocator = DisplayMail.Locators.AcceptDropdown;
 			page = null;
 			doPostfixCheck = true;
-			
-			
+
+
 			if (option == Button.O_ACCEPT_NOTIFY_ORGANIZER) {
 
 				optionLocator = DisplayMail.Locators.AcceptNotifyOrganizerMenu;
@@ -829,23 +828,23 @@ public AbsPage zPressButtonPulldown(Button pulldown, Button option) throws Harne
 				page = null;
 				doPostfixCheck = true;
 				//this.zSetWindowTitle("Reply");
-				
+
 			} else if (option == Button.O_ACCEPT_DONT_NOTIFY_ORGANIZER) {
 
 				optionLocator = DisplayMail.Locators.AcceptDontNotifyOrganizerMenu;
-				
+
 				page = null;
-				
+
 			} else {
-	
+
 				throw new HarnessException("No logic defined for pulldown " + pulldown + " and option " + option);
 
 			}
 
 		} else if ( pulldown == Button.B_TENTATIVE ) {
-			
+
 			pulldownLocator = DisplayMail.Locators.TentativeDropdown;
-			
+
 			if (option == Button.O_TENTATIVE_NOTIFY_ORGANIZER) {
 
 				optionLocator = DisplayMail.Locators.TentativeNotifyOrganizerMenu;
@@ -855,23 +854,23 @@ public AbsPage zPressButtonPulldown(Button pulldown, Button option) throws Harne
 
 				optionLocator = DisplayMail.Locators.TentativeEditReplyMenu;
 				page=null;
-				
+
 			} else if (option == Button.O_TENTATIVE_DONT_NOTIFY_ORGANIZER) {
 
 				optionLocator = DisplayMail.Locators.TentativeDontNotifyOrganizerMenu;
-				
+
 				page = null;
-				
+
 			} else {
-	
+
 				throw new HarnessException("No logic defined for pulldown " + pulldown + " and option " + option);
 
 			}
 
 		} else if ( pulldown == Button.B_DECLINE ) {
-			
+
 			pulldownLocator = DisplayMail.Locators.DeclineDropdown;
-			
+
 			if (option == Button.O_DECLINE_NOTIFY_ORGANIZER) {
 
 				optionLocator = DisplayMail.Locators.DeclineNotifyOrganizerMenu;
@@ -881,18 +880,18 @@ public AbsPage zPressButtonPulldown(Button pulldown, Button option) throws Harne
 
 				optionLocator = DisplayMail.Locators.DeclineEditReplyMenu;
 				page = null;
-				
+
 			} else if (option == Button.O_DECLINE_DONT_NOTIFY_ORGANIZER) {
 
 				optionLocator = DisplayMail.Locators.DeclineDontNotifyOrganizerMenu;
 				page = null;
 			}
-			
+
 		} else if ( pulldown == Button.B_CALENDAR ) {
-				
+
 			pulldownLocator = DisplayMail.Locators.CalendarDropdown;
 			page = null;
-					
+
 		} else {
 
 			throw new HarnessException("No logic defined for pulldown " + pulldown + " and option " + option);
@@ -900,18 +899,18 @@ public AbsPage zPressButtonPulldown(Button pulldown, Button option) throws Harne
 		}
 
 		// Click to dropdown and corresponding option
-		
+
 		//window.zSetWindowTitle("Reply");
 		zClickAt(pulldownLocator, "");
-		
+
 		zWaitForBusyOverlay();
 		this.zClickAt(optionLocator,"");
-	
-		
-		
-		
-	//	zWaitForBusyOverlay();
-		
+
+
+
+
+		//	zWaitForBusyOverlay();
+
 		if (page != null) {
 			page.zWaitForActive();
 		}
@@ -923,25 +922,35 @@ public AbsPage zPressButtonPulldown(Button pulldown, Button option) throws Harne
 		}
 
 		return (page);
-		
+
 	}
 	/* TODO: ... debugging to be removed */
 	public boolean waitForWindowDisplay( String pageTitle) throws HarnessException {
-	    		    	
-	    	sWaitForCondition("var x; for(var windowName in selenium.browserbot.openedWindows)"
-			+ "{var targetWindow = selenium.browserbot.openedWindows[windowName];"
-			+ "if(!selenium.browserbot._windowClosed(targetWindow)&&"
-			+ "(targetWindow.name.indexOf('"
-			+ pageTitle.split("\\.")[0]
-			+ "')!=-1||targetWindow.document.title.indexOf('"
-			+ pageTitle.split("\\.")[0]
-			+ "')!=-1)){x=windowName;}};x!=null;","60000");
+
+		sWaitForCondition("var x; for(var windowName in selenium.browserbot.openedWindows)"
+				+ "{var targetWindow = selenium.browserbot.openedWindows[windowName];"
+				+ "if(!selenium.browserbot._windowClosed(targetWindow)&&"
+				+ "(targetWindow.name.indexOf('"
+				+ pageTitle.split("\\.")[0]
+						+ "')!=-1||targetWindow.document.title.indexOf('"
+						+ pageTitle.split("\\.")[0]
+								+ "')!=-1)){x=windowName;}};x!=null;","60000");
 
 		sSelectWindow(pageTitle);
 
 		zWaitForElementPresent("css=html>body[class*='MsgBody']","30000");
 
 		return true;
+	}
+
+
+
+	public boolean zVerifyInlineImageAttachmentExistsInComposeWindow() throws HarnessException {
+		String locator = Locators.zInlineImageAttachment;
+		boolean inlineimgloaded = this.sIsElementPresent(locator);
+		if (!inlineimgloaded)
+			return (false);
+		return (inlineimgloaded);
 	}
 
 }

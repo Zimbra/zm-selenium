@@ -400,6 +400,10 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 				locator = "css=td[id='zb__COMPOSE-1___attachments_btn_dropdown']";
 			}
 			
+			logger.info(sIsElementPresent("css=td[id='zb__COMPOSE-1___attachments_btn_dropdown'])"));
+			this.zClickAt(locator, "0,0");
+			return(page);
+			
 		} else if (button == Button.B_ATTACH) {
 			if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_title']")) {
 				locator = "css=td[id='zb__COMPOSE-2___attachments_btn_title']";
@@ -414,6 +418,9 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			
 		} else if (button == Button.B_ATTACH_INLINE) {
 			locator = "css=td[id$='_title']:contains('Attach Inline')";
+			logger.info(sIsElementPresent("css=td[id$='_title']:contains('Attach Inline')"));
+			this.zClickAt(locator, "0,0");
+			return(page);
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
