@@ -15,7 +15,7 @@ public class AcceptShareFromPreferences extends AjaxCommonTest {
 		super.startingAccountPreferences = null;	
 	}
 
-	@Test( description = "Accept shared folder from preferences/sharing", groups = { "functional1" })
+	@Test( description = "Accept shared folder from preferences/sharing", groups = { "functional" })
 
 	public void AcceptShare_01() throws HarnessException {
 
