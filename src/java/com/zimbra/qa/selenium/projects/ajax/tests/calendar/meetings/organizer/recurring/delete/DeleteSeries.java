@@ -10,6 +10,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmationDeleteAppointment;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmDeleteOrganizer;
 
 public class DeleteSeries extends CalendarWorkWeekTest {
@@ -20,7 +21,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		super.startingAccountPreferences = null;
 	}
 	
-	@Bugs(ids = "69920")	
+	@Bugs(ids = "69920,75559")	
 	@Test(description = "Delete series from third instance and onwards", 
 			groups = { "functional" })
 	public void DeleteSeries_01() throws HarnessException {
@@ -44,7 +45,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 							"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
 							"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
 							"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-							"<at role='REQ' ptst='NE' rsvp='1' a='" + ZimbraAccount.AccountA().EmailAddress + "'/>" +
+							"<at role='REQ' ptst='NE' rsvp='1' a='" + ZimbraAccount.Account2().EmailAddress + "'/>" +
 							"<recur>" +
 								"<add>" +
 									"<rule freq='WEE'>" +
@@ -54,7 +55,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 								"</add>" +
 							"</recur>" +
 						"</inv>" +
-						"<e a='"+ ZimbraAccount.AccountA().EmailAddress +"' t='t'/>" +
+						"<e a='"+ ZimbraAccount.Account2().EmailAddress +"' t='t'/>" +
 						"<mp content-type='text/plain'>" +
 							"<content>"+ apptBody +"</content>" +
 						"</mp>" +
@@ -83,6 +84,24 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 	
 		String organizerInvId = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
 		ZAssert.assertNotNull(organizerInvId, "Verify that appointment is deleted");
+
+        //Login as attendee and verify that cancellation mail does not have A/D/T buttons
+        app.zPageMain.zLogout();
+        
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
+			+		"<id>"+ ZimbraAccount.Account2().ZimbraId +"</id>"
+			+		"<a n='zimbraPrefGroupMailBy'>message</a>"
+			+	"</ModifyAccountRequest>");
+		
+		//Login as attendee
+		app.zPageLogin.zLogin(ZimbraAccount.Account2());
+
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		
+		// Select the invitation and verify Accept/decline/Tentative buttons are not present
+		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
+		ZAssert.assertFalse(display.zHasADTButtons(), "Verify A/D/T buttons");
 		
 	}
 	
