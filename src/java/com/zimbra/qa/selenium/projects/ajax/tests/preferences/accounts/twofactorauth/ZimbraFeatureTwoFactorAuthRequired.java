@@ -80,7 +80,8 @@ public class ZimbraFeatureTwoFactorAuthRequired extends AjaxCommonTest {
 		//SleepUtil.sleepVeryLong();
 		this.app.zPagePreferences.zNavigateTo();
 		this.app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
-        ZAssert.assertTrue(app.zPagePreferences.zVerifyDisable2FALink(), "Verify Disable link is present");
+        ZAssert.assertFalse(app.zPagePreferences.zVerifyDisable2FALink(), "Verify Disable link is not present");
+        ZAssert.assertFalse(app.zPagePreferences.zVerifySetup2FALink(), "Verify set-up two factor auth link is also not present");
         
 	}
 
