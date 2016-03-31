@@ -157,8 +157,9 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountB().EmailAddress, "Verify the to field is correct");
-		ZAssert.assertStringContains(received.dSubject, subject, "Verify the subject field is correct");
-		ZAssert.assertStringContains(received.dSubject, "Fwd", "Verify the subject field contains the 'fwd' prefix");
+		//ZAssert.assertStringContains(received.dSubject, subject, "Verify the subject field is correct");
+		//ZAssert.assertStringContains(received.dSubject, "Fwd", "Verify the subject field contains the 'fwd' prefix");
+		ZAssert.assertStringContains(received.dSubject, "Fwd: " + subject, "Verify forward subject field is correct");
 	}
 
 }

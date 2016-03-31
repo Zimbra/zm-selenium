@@ -144,8 +144,9 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
-		ZAssert.assertStringContains(received.dSubject, subject, "Verify the subject field is correct");
-		ZAssert.assertStringContains(received.dSubject, "Re", "Verify the subject field contains the 'Re' prefix");
+		//ZAssert.assertStringContains(received.dSubject, subject, "Verify the subject field is correct");
+		//ZAssert.assertStringContains(received.dSubject, "Re", "Verify the subject field contains the 'Re' prefix");
+		ZAssert.assertStringContains(received.dSubject, "Re: " + subject, "Verify forward subject field is correct");
 	}
 
 }
