@@ -586,7 +586,16 @@ public class PageMail extends AbsTab {
 				locator = "css=div#zv__CLV-main td[id$='__se'] div[id$='__se']";
 			}
 			page = null;
+		}
+			else if ( button == Button.B_EML_ATTACHEMENT ) {
 
+
+				locator = "css=td a[id^='zv__TV__TV-main_MSG_attLinks']:contains('8989.eml')";
+
+
+				page = new SeparateWindowDisplayMail(this.MyApplication);
+				
+			
 		} else if (button == Button.B_SHIFT_SELECT_ALL) {
 
 			if (zGetPropMailView() == PageMailView.BY_MESSAGE) {

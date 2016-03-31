@@ -168,6 +168,11 @@ public class Button {
 	public static final Button B_MAIL_VIEW_READING_PANE_BOTTOM = new Button("B_MAIL_VIEW_READING_PANE_BOTTOM");
 	public static final Button B_MAIL_VIEW_READING_PANE_RIGHT = new Button("B_MAIL_VIEW_READING_PANE_RIGHT");
 	public static final Button B_MAIL_VIEW_READING_PANE_OFF = new Button("B_MAIL_VIEW_READING_PANE_OFF");
+	public static final Button B_MIME_ATTACHEMENT = new Button("B_MIME_ATTACHEMENT");
+	public static final Button B_ATTACH_PREVIEW = new Button("B_ATTACH_PREVIEW");
+	public static final Button B_EML_ATTACHEMENT = new Button ("B_EML_ATTACHEMENT");
+
+
 
 	// MailPage list buttons (sort by options)
 	public static final Button B_MAIL_LIST_SORTBY_FLAGGED = new Button("B_MAIL_LIST_SORTBY_FLAGGED");
