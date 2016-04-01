@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.admin.tests.domains;
 import org.testng.annotations.Test;
 
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -43,14 +44,13 @@ public class CreateDomain extends AdminCommonTest {
 	 * 2. Verify domain is created using SOAP.
 	 * @throws HarnessException
 	 */
+	@Bugs( ids = "58795")
 	@Test(	description = "Create a simple domain",
 			groups = { "sanity" })
 			public void CreateDomain_01() throws HarnessException {
 
 		// Create a new domain in the Admin Console
 		DomainItem domain = new DomainItem();
-
-
 
 		// Click "New" -> "Domain"
 		WizardCreateDomain wizard = 
