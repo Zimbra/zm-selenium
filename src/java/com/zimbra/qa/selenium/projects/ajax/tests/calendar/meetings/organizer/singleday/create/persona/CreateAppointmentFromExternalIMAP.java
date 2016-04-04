@@ -36,7 +36,7 @@ public class CreateAppointmentFromExternalIMAP extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "104525,50096")	
+	@Bugs(ids = "50096,104525")	
 	@Test(	description = "Appt. invite received from primary account though external account selected while creating appointment",
 			groups = { "smoke" })
 	
