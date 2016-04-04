@@ -96,8 +96,9 @@ public class PagePreferences extends AbsTab {
 		public static final String zImportDialogContent= "css=div[id='ErrorDialog'] div[id$='_content']";
 		public static final String zImportDialogOkButton= "css=div[id='ErrorDialog'] div[id$='_button2']";
 
-		//Mail > Displaying Images
+		//Mail > Displaying Messages
 		public static final String zDisplayExternalImage = "css=input[id$='_MAIL_DISPLAY_EXTERNAL_IMAGES']";
+		public static final String zDisplayMessageColor = "css=input[id$='_MAIL_COLOR_MESSAGES']";
 		
 		//Mail > composing 
 		public static final String zMandatorySpellCheck = "css=input[id$='_MAIL_MANDATORY_SPELLCHECK']";
