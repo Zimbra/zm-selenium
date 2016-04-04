@@ -17,7 +17,9 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
 
 import java.util.*;
+
 import org.testng.annotations.*;
+
 import com.zimbra.common.soap.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.*;
@@ -73,6 +75,7 @@ public class CreateTask extends AjaxCommonTest {
 		Shortcut shortcut = Shortcut.S_ESCAPE;
 		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "taskbody" + ZimbraSeleniumProperties.getUniqueString();
+		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		
 		//Click NEW button
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
@@ -91,6 +94,10 @@ public class CreateTask extends AjaxCommonTest {
 
 		//Click Yes button of warning dialog
 		warning.zClickButton(Button.B_YES);
+		
+		SleepUtil.sleepMedium();
+		// Refresh the tasks view
+		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
@@ -105,15 +112,20 @@ public class CreateTask extends AjaxCommonTest {
 
 		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "taskbody" + ZimbraSeleniumProperties.getUniqueString();
+		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
 		// Click NEW drop down and click Task
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_TASK);
+		SleepUtil.sleepMedium();
 
 		// Fill out the resulting form
 		taskNew.zFillField(Field.Subject, subject);
 		taskNew.zFillField(Field.Body, body);
 		taskNew.zSubmit();
-
+		SleepUtil.sleepMedium();
+		
+		// Refresh the tasks view
+		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(),subject);
 		ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
 		ZAssert.assertEquals(task.gettaskBody().trim(), body.trim(),"Verify the task body");
@@ -128,6 +140,7 @@ public class CreateTask extends AjaxCommonTest {
 		Shortcut shortcut = Shortcut.S_NEWTASK;
 		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
 		String body = "taskbody" + ZimbraSeleniumProperties.getUniqueString();
+	//	FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		
 		//Explicitly cliking of Task folder to refresh view
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -135,12 +148,17 @@ public class CreateTask extends AjaxCommonTest {
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 		
 		//Click NEW Task shortcut "NK"
-		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zKeyboardShortcut(shortcut);
+		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zKeyboardShortcut(shortcut);		
+		SleepUtil.sleepMedium();
 		
 		//Fill out resulting form		
 		taskNew.zFillField(Field.Subject, subject);
 		taskNew.zFillField(Field.Body, body);
-		taskNew.zSubmit();		
+		taskNew.zSubmit();	
+		SleepUtil.sleepMedium();
+		
+		// Refresh the tasks view
+		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
@@ -312,6 +330,8 @@ public class CreateTask extends AjaxCommonTest {
 		
 		// Click NEW button
 		FormTaskNew form = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
+		
+		SleepUtil.sleepMedium();
 
 		// Fill out the resulting form
 		form.zFillField(Field.Subject, subject);
@@ -323,6 +343,7 @@ public class CreateTask extends AjaxCommonTest {
 
 		// Change the priority
 		form.zToolbarPressPulldown(Button.B_PRIORITY, option);
+		SleepUtil.sleepMedium();
 		
 		form.zSubmit();
 		
