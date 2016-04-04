@@ -108,7 +108,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		
 		// Verify location free/busy status shows as ptst=DE
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
-		ZAssert.assertEquals(locationStatus, "AC", "Verify that the location status shows as 'ACCEPTED'"); //COVERAGE ALTHOUGH BUG 102271
+		ZAssert.assertEquals(locationStatus, "DE", "Verify that the location status shows as 'Declined'"); //COVERAGE ALTHOUGH BUG 102271
 			
 	}
 	
@@ -209,8 +209,8 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -235,8 +235,8 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
         
 		// Create appointment data
 		appt.setSubject(apptSubject2);
-		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0));
-		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0));
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
 		appt.setContent(apptContent);
 		appt.setLocation(apptLocation);
 		
