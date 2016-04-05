@@ -80,7 +80,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		app.zGetActiveAccount().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ apptId +"'/>");
         ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:GetAppointmentResponse//mail:comp", "ciFolder"), "3", "Verify appointment is in Trash folder");
         
-        SleepUtil.sleepLong(); // invite doesn't remove from attendee's calendar immidiately so testcase fails here
+        SleepUtil.sleepVeryLong(); // invite doesn't remove from attendee's calendar immidiately so testcase fails here
         ZimbraAccount.AccountA().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ apptId +"'/>");
         ZAssert.assertNull(ZimbraAccount.AccountA().soapSelectValue("//mail:GetAppointmentResponse//mail:comp", "ciFolder"), "Verify invite is removed from attendee's calendar");
         

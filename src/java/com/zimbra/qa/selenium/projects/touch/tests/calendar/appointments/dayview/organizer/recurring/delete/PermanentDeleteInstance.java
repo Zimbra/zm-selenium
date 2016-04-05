@@ -62,18 +62,19 @@ public class PermanentDeleteInstance extends CalendarWorkWeekTest {
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
 					"<m>"+
 						"<inv method='REQUEST' type='event' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"+
-							"<s d='"+ startUTC +"' tz='"+ tz +"'/>" +
-							"<e d='"+ endUTC +"' tz='"+ tz +"'/>" +
+							"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
+							"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
 							"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-							"<at role='REQ' ptst='NE' rsvp='1' a='" + apptAttendee1 + "' d='2'/>" +
+							"<at role='REQ' ptst='NE' rsvp='1' a='" + apptAttendee1 + "'/>" +
 							"<recur>" +
 								"<add>" +
-									"<rule freq='MON'>" +
+									"<rule freq='DAI'>" +
 										"<interval ival='1'/>" +
 									"</rule>" +
 								"</add>" +
 							"</recur>" +
 						"</inv>" +
+						"<e a='"+ ZimbraAccount.AccountA().EmailAddress +"' t='t'/>" +
 						"<mp content-type='text/plain'>" +
 							"<content>"+ apptBody +"</content>" +
 						"</mp>" +
@@ -86,14 +87,12 @@ public class PermanentDeleteInstance extends CalendarWorkWeekTest {
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_INSTANCE_MENU, apptSubject);
         app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
         app.zPageMail.zClickButton(Button.B_YES);
-
         
         app.zPageCalendar.zSelectFolder("Trash");
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_INSTANCE_MENU, apptSubject);
         app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
         app.zPageMail.zClickButton(Button.B_YES);
 
-        
  		app.zGetActiveAccount().soapSend(
  				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(7).toMillis() +"'>"
  			+		"<query>is:anywhere "+ apptSubject +"</query>"

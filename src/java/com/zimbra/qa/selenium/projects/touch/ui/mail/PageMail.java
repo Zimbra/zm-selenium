@@ -23,6 +23,7 @@ import org.openqa.selenium.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.touch.ui.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.touch.ui.*;
 
@@ -415,6 +416,10 @@ public class PageMail extends AbsTab {
 
 		this.sClickAt(locator, "");
 		SleepUtil.sleepMedium();
+		
+		// Wait for the message to be delivered
+		Stafpostqueue sp = new Stafpostqueue();
+		sp.waitForPostqueue();
 		
 		return (page);
 	}
@@ -1897,14 +1902,10 @@ public class PageMail extends AbsTab {
 		String locator = null;
 
 		if ( field == Field.Body ) {
-
 			locator = "css=div[class='x-unsized x-field-input x-has-height'] textarea[id^='ext-element-']";
-			 
 
 		} else {
-
 			throw new HarnessException("not implemented for field " + field);
-
 		}
 
 		// Make sure the button exists
@@ -1914,14 +1915,12 @@ public class PageMail extends AbsTab {
 		// Seems that the client can't handle filling out the new mail form too quickly
 		// Click in the "To" fields, etc, to make sure the client is ready
 		this.sFocus(locator);
-		this.zClick(locator);
+		this.zClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 
 		// Enter text
 		this.sType(locator, value);
-
 		this.zWaitForBusyOverlay();
-
 	}
 	
 	
