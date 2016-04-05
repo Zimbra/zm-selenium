@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.recurring.modify;
 
 import java.util.*;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
@@ -466,5 +464,113 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		
 	}
 	
+	@Bugs(ids = "101610")	
+	@Test(description = "Modifying daily custom series doesn't update new selection in custom repeat dialog ", 
+			groups = { "functional" })
+	public void ModifySeries_05() throws HarnessException {
+
+		// ------------------------ Test data ------------------------------------
+
+		Calendar now = this.calendarWeekDayUTC;
+		String tz = ZTimeZone.TimeZoneEST.getID();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		
+		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		String apptBody = ZimbraSeleniumProperties.getUniqueString();
+		
+		// --------------- Creating invitation (organizer) ----------------------------
+
+		app.zGetActiveAccount().soapSend(
+				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
+					"<m>"+
+						"<inv method='REQUEST' type='event' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"+
+							"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
+							"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
+							"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+							"<at role='REQ' ptst='NE' rsvp='1' a='" + ZimbraAccount.Account3().EmailAddress + "'/>" +
+							"<recur>" +
+								"<add>" +
+									"<rule freq='DAI'>" +
+										"<interval ival='1'/>" +
+										"<count num='10'/>" +
+									"</rule>" +
+								"</add>" +
+							"</recur>" +
+						"</inv>" +
+						"<e a='"+ ZimbraAccount.Account3().EmailAddress +"' t='t'/>" +
+						"<mp content-type='text/plain'>" +
+							"<content>"+ apptBody +"</content>" +
+						"</mp>" +
+						"<su>"+ apptSubject +"</su>" +
+					"</m>" +
+				"</CreateAppointmentRequest>");
+		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+		DialogOpenRecurringItem openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
+		openRecurring.zClickButton(Button.B_OPEN_THE_SERIES);
+		openRecurring.zClickButton(Button.B_OK);
+		FormApptNew apptForm = new FormApptNew(app);		
+		apptForm.zRepeat(Button.O_EVERY_DAY_MENU, Button.B_EVERY_X_DAYS_RADIO_BUTTON, "2", Button.B_END_AFTER_X_OCCURRENCES_RADIO_BUTTON, "10");
+		DialogCustomRepeat dlgCustomRepeat = (DialogCustomRepeat) new DialogCustomRepeat(DialogCustomRepeat.DialogWarningID.DialogCustomRepeat, app, ((AppAjaxClient) app).zPageCalendar);
+		dlgCustomRepeat.zClick("css=div[class='DwtDialog'][style*='display: block;'] div[id$='_buttons'] td[id^='OK'] td[id$='title']");
+		ZAssert.assertStringContains(app.zPageCalendar.zGetRecurringLink(), "Every 2 days. End after 10 occurrence(s)", "Recurring link: Verify the appointment data");
+        apptForm.zSubmit();
+        SleepUtil.sleepMedium();
+        
+	    this.app.zPageLogin.zNavigateTo();
+	    this.startingPage.zNavigateTo();
+		openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
+		openRecurring.zClickButton(Button.B_OPEN_THE_SERIES);
+		openRecurring.zClickButton(Button.B_OK);
+		apptForm = new FormApptNew(app);		
+		ZAssert.assertStringContains(app.zPageCalendar.zGetRecurringLink(), "Every 2 days. End after 10 occurrence(s)", "Recurring link: Verify the appointment data");
+
+        
+		// ---------------- Verification at organizer & invitee side both -------------------------------------       
+
+        app.zGetActiveAccount().soapSend(
+					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
+				+		"<query>"+ apptSubject +"</query>"
+				+	"</SearchRequest>");
+		
+		String organizerInvId = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
+				
+		// Get the appointment details
+		app.zGetActiveAccount().soapSend(
+					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
+		
+		String ruleFrequency = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:rule", "freq");
+		String interval = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:interval", "ival");
+		String countNumber = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:count", "num");
+		
+		ZAssert.assertEquals(ruleFrequency, "DAI", "Repeat frequency: Verify the appointment data");
+		ZAssert.assertEquals(interval, "2", "Repeat interval: Verify the appointment data");
+		ZAssert.assertEquals(countNumber, "10", "Count number: Verify the appointment data");
+			
+		
+		// Attendee1: Search for the appointment (InvId)
+		ZimbraAccount.Account3().soapSend(
+					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
+				+		"<query>"+ apptSubject +"</query>"
+				+	"</SearchRequest>");
+		String attendeeInvId = ZimbraAccount.Account3().soapSelectValue("//mail:appt", "invId");
+
+		ZimbraAccount.Account3().soapSend(
+					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
+		
+		String myStatus = ZimbraAccount.Account3().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account3().EmailAddress +"']", "ptst");
+		ruleFrequency = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:rule", "freq");
+		interval = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:interval", "ival");
+		countNumber = ZimbraAccount.Account3().soapSelectValue("//mail:appt//mail:count", "num");
+		
+		ZAssert.assertEquals(myStatus, "NE", "Verify that the attendee status shows as 'NEEDS ACTION'");
+		ZAssert.assertEquals(ruleFrequency, "DAI", "Repeat frequency: Verify the appointment data");
+		ZAssert.assertEquals(interval, "2", "Repeat interval: Verify the appointment data");
+		ZAssert.assertEquals(countNumber, "10", "Count number: Verify the appointment data");
+
+		
+	}
 	
 }
