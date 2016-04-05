@@ -101,26 +101,40 @@ public class ZimbraFeatureContactsDetailedSearchEnabled extends PrefGroupMailByM
 	public void ZimbraFeatureContactsDetailedSearchEnabled_02() throws HarnessException {
 
 		String department=ZimbraSeleniumProperties.getUniqueString();
+		ZimbraAccount account1 = new ZimbraAccount();
+		account1.provision();
+		account1.authenticate();
+
+		ZimbraAccount account2 = new ZimbraAccount();
+		account2.provision();
+		account2.authenticate();
+
+		ZimbraAccount account3 = new ZimbraAccount();
+		account3.provision();
+		account3.authenticate();
 		
 		// Add departments to three accounts	
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
-						+		"<id>"+ZimbraAccount.Account1().ZimbraId +"</id>"
+						+		"<id>"+account1.ZimbraId +"</id>"
 						+		"<a n='ou'>"+department+"</a>"
 						+	"</ModifyAccountRequest>");
 
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
-						+		"<id>"+ZimbraAccount.Account2().ZimbraId +"</id>"
+						+		"<id>"+account2.ZimbraId +"</id>"
 						+		"<a n='ou'>"+department+"</a>"
 						+	"</ModifyAccountRequest>");
 
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
-						+		"<id>"+ ZimbraAccount.Account3().ZimbraId +"</id>"
+						+		"<id>"+ account3.ZimbraId +"</id>"
 						+		"<a n='ou'>ProductManagement</a>"
 						+	"</ModifyAccountRequest>");
 
+		ZimbraDomain domain = new ZimbraDomain(account1.EmailAddress.split("@")[1]);
+		domain.provision();
+		domain.syncGalAccount();
 
 		app.zPageCalendar.zNavigateTo();
 		// Open the new mail form
@@ -136,8 +150,8 @@ public class ZimbraFeatureContactsDetailedSearchEnabled extends PrefGroupMailByM
         //Click on To button
 
 		//Check that correct addresses are filtered out		
-		ZAssert.assertTrue(dialogFindAttendees.sIsElementPresent(Locators.SearchResultArea+":contains('" + ZimbraAccount.Account1().EmailAddress + "')"),"Verify that correct addresses are filtered out");
-		ZAssert.assertTrue(dialogFindAttendees.sIsElementPresent(Locators.SearchResultArea+":contains('" + ZimbraAccount.Account2().EmailAddress + "')"),"Verify that correct addresses are filtered out");
+		ZAssert.assertTrue(dialogFindAttendees.sIsElementPresent(Locators.SearchResultArea+":contains('" + account1.EmailAddress + "')"),"Verify that correct addresses are filtered out");
+		ZAssert.assertTrue(dialogFindAttendees.sIsElementPresent(Locators.SearchResultArea+":contains('" + account2.EmailAddress + "')"),"Verify that correct addresses are filtered out");
 		
 		//Check that department names are also displayed
 		ZAssert.assertTrue(dialogFindAttendees.sIsElementPresent(Locators.SearchResultArea+":contains('" + department + "')"),"Verify that search result containing the department name is displayed ");
