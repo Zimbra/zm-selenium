@@ -182,15 +182,19 @@ public class PageCalendar extends AbsTab {
 	}
 	
 	public void zSelectFolder(String folderName) throws HarnessException {
-		
-		SleepUtil.sleepMedium();
-		
+				
 		logger.info(myPageName() + " zSelectFolder("+ folderName +")");
 		
 		if ( folderName == null ) 
 			throw new HarnessException("folder must not be null");
 		
 		String locator = "css=div[class='x-dock x-dock-vertical x-sized'] div[class='zcs-menu-label']:contains('" + folderName + "')";
+		
+		if ( folderName != "Calendar") {
+			this.sRefresh();
+			SleepUtil.sleepVeryLong();
+			SleepUtil.sleepLong();
+		}
 		
 		// Click to locations to select sub folder
 		this.sClickAt(Locators.LocationButton, "");
