@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning.DialogWarningID;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
 
 /**
  * Represents a "Launch in New Window" display of a message
@@ -717,7 +716,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		} else if ( button == Button.B_DECLINE_SHARE ) {
 
 			locator = this.ContainerLocator + " td[id$='__Shr__SHARE_DECLINE_title']";
-			page = new SeparateWindowDialog(DialogWarningID.ZmAcceptShare, MyApplication, this);
+			page = new SeparateWindowDialog(DialogWarningID.ZmDeclineShare, MyApplication, this);
 			((SeparateWindowDialog)page).zSetWindowTitle(this.DialogWindowTitle);
 			doPostfixCheck = true;
 

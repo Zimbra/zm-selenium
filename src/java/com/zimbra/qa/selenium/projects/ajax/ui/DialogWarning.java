@@ -73,6 +73,7 @@ public class DialogWarning extends AbsDialog {
 	   	public static final DialogWarningID ReloadApplication = new DialogWarningID("YesNoMsgDialog");
 	   	public static final DialogWarningID RevokeTrustedDevice = new DialogWarningID("OkCancel_title");
 	   	public static final DialogWarningID SwitchToTextComposeAppointment = new DialogWarningID("APPT_COMPOSE_1_formatWarning");
+	   	public static final DialogWarningID ZmDeclineShare = new DialogWarningID("css=div[class='ZmDeclineShareDialog']");
 	   	
 		protected String Id;
 		public DialogWarningID(String id) {
