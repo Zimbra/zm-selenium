@@ -1513,7 +1513,7 @@ public class PageContacts extends AbsTab {
 				}
 			}
 
-			if (found = true) {
+			if (found == true) {
 				logger.info("Conatct displayed in current view");
 				ZAssert.assertTrue(found, "Contact is not displayed in current view");
 				break;

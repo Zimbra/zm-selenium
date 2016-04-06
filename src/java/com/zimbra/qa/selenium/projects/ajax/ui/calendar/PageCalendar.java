@@ -289,7 +289,7 @@ public class PageCalendar extends AbsTab {
 				}
 			}
 
-			if (found = true) {
+			if (found == true) {
 				SleepUtil.sleepSmall();
 				logger.info("Appointment displayed in current view");
 				ZAssert.assertTrue(found, "Appointment not displayed in current view");
