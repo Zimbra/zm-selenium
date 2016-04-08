@@ -40,7 +40,7 @@ public class ModifyByAddingAttachment extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "104231")
 	@Test(description = "Modify meeting by adding attachment to an existing invite",
-			groups = {"smoke" })
+			groups = {"smoke", "windows" })
 			
 	public void ModifyByAddingAttachment_01() throws HarnessException {
 		

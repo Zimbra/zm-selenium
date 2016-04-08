@@ -21,7 +21,6 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
@@ -31,7 +30,6 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
 
 public class CreateMeetingWithAttachment extends CalendarWorkWeekTest {
 
@@ -42,12 +40,11 @@ public class CreateMeetingWithAttachment extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "104231")	
 	@Test(description = "Create invite by attaching file",
-			groups = { "sanity" })
+			groups = { "sanity", "windows" })
 			
 	public void CreateMeetingWithAttachment_02() throws HarnessException {
 	
 		try {
-			
 		
 			// Create appointment data
 			AppointmentItem appt = new AppointmentItem();
@@ -117,8 +114,6 @@ public class CreateMeetingWithAttachment extends CalendarWorkWeekTest {
 			// Verify the new appointment has an attachment 
 			ZAssert.assertTrue(app.zPageCalendar.zVerifyAttachmentExistsInAppointment(fileName), "Verify attachment exists in the appointment");
 
-
-			
 		} finally {
 			
 			Robot robot;
@@ -136,56 +131,4 @@ public class CreateMeetingWithAttachment extends CalendarWorkWeekTest {
 			
 		}
 	}
-	
-	
-	@Test(	description = "View invite which has attachment present as an organizer",
-			groups = {"smoke" }
-	)
-	public void ViewInviteWhichContainsAttachment_01() throws HarnessException {
-		
-		// Create appointment & subject
-		ZimbraAccount account = app.zGetActiveAccount();
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		
-		//upload file to server
-		String filename = "BasicExcel2007.xlsx";
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/Files/Basic01/"+ filename;
-		String dAttachmentId  = account.uploadFile(filePath);
-		//create date object
-		String tz = ZTimeZone.TimeZoneEST.getID();
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
-		app.zGetActiveAccount().soapSend(
-                "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
-                     "<m>"+
-                     	"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"+
-                     	"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
-                        "<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
-                     	"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-                    
-                     	"</inv>" +
-                     	"<e a='"+ ZimbraAccount.AccountA().EmailAddress +"' t='t'/>" +
-                     	"<mp content-type='text/plain'>" +
-                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
-                     	"</mp>" +
-                     	"<attach aid='"+dAttachmentId +"'/>"+
-                     "<su>"+ apptSubject +"</su>" +
-                     "</m>" +
-               "</CreateAppointmentRequest>");
-        
-		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
-			
-		// open the appt
-    	app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-    	
-		// Verify the new appointment has an attachment 
-		ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.zAttachmentsLabel),"Verify Attachments: label");
-		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
-		ZAssert.assertStringContains(actual.getGMultipart().toString(), filename , "check if multipart has above created file name" );	
-		
-	}
-
 }
