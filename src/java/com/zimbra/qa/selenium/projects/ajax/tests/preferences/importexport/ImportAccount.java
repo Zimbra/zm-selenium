@@ -43,7 +43,7 @@ public class ImportAccount extends AjaxCommonTest {
 
 	@Test(
 			description = "Verify the presence of mail, contacts, calendar appointments, tasks and Briefcase documents after importing an exported compressed file",
-			groups = { "sanity","windows" })
+			groups = { "sanity1" })
 
 	public void ImportAccount_01() throws HarnessException {		
 
@@ -54,7 +54,7 @@ public class ImportAccount extends AjaxCommonTest {
 		//Data present in the file to be imported
 		String mailSubject="test mail";
 		String folderName="testfolder";
-		String contactLastName="test2";
+		String contactFileAs="test2, test1";
 		String apptSubject="test invite";
 		String taskSubject="test task";
 		String docName="favicon.ico";
@@ -108,28 +108,23 @@ public class ImportAccount extends AjaxCommonTest {
 		//Go to Contacts tab
 		startingPage= app.zPageContacts;
 		startingPage.zNavigateTo();
-
-		//Check that the contact is present 
-		app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK,contacts);
-		ZAssert.assertTrue(app.zPageContacts.zVerifyContactExists(contactLastName), "Verify that contact is displayed");
+		app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, contacts);
+		ZAssert.assertTrue(app.zPageContacts.zVerifyContactExists(contactFileAs), "Verify that contact is displayed");
 
 		//Go to calendar tab and check the presence of appointment
 		startingPage= app.zPageCalendar;
 		startingPage.zNavigateTo();
-
 		ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify that appointment is displayed");
 
 		//Go to Tasks tab and check the presence of Task
 		startingPage= app.zPageTasks;
 		startingPage.zNavigateTo();
-
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK,tasks);
 		ZAssert.assertTrue(app.zPageTasks.isPresent(taskSubject), "Verify that task is displayed");
 
 		//Go to Briefcase tab and check the presence of document
 		startingPage= app.zPageBriefcase;
 		startingPage.zNavigateTo();
-
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK,briefcase);
 		ZAssert.assertTrue(app.zPageBriefcase.isPresentInListView(docName), "Verify that document in briefcase is displayed");	
 

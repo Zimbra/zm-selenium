@@ -1,4 +1,5 @@
 /*
+
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
@@ -39,7 +40,7 @@ public class ModifyByAddingAttachment extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "104231")
 	@Test(description = "Modify meeting by adding attachment to an existing invite",
-			groups = {"windows" })
+			groups = {"smoke" })
 			
 	public void ModifyByAddingAttachment_01() throws HarnessException {
 		

@@ -72,7 +72,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 
 	@Bugs(ids = "104312")
 	@Test(	description = "Create multi-day all day appointment in week view",
-			groups = { "smoke1" }
+			groups = { "smoke" }
 	)
 	public void CreateAllDayAppointment_02() throws HarnessException {
 		
