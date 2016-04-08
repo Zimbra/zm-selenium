@@ -43,7 +43,7 @@ public class ImportAccount extends AjaxCommonTest {
 
 	@Test(
 			description = "Verify the presence of mail, contacts, calendar appointments, tasks and Briefcase documents after importing an exported compressed file",
-			groups = { "sanity1" })
+			groups = { "sanity" })
 
 	public void ImportAccount_01() throws HarnessException {		
 
