@@ -57,6 +57,8 @@ public class ContactItem implements IItem {
 //	public String mobilePhone = null;
 //	public String namePrefix = null;
 //	public String homeURL = null;
+	
+	public String gFileAs;
 
 	public HashMap<String, String> ContactAttributes = new HashMap<String, String>();
 
@@ -93,6 +95,9 @@ public class ContactItem implements IItem {
 
 	@Override
 	public String getName() {
+		if ( fileAs == null ) {
+			return (gFileAs);
+		}
 		return (fileAs);
 	}
 
@@ -172,8 +177,14 @@ public class ContactItem implements IItem {
 		return (address);
 	}
 
+	// --------------------- GUI -----------------------------------
+	public String getGFileAs() {
+		return (gFileAs);
+	}
 
-
+	public void setGSubject(String fileAs) {
+		gFileAs = fileAs;
+	}
 	
 	/**
 	 * Create a basic contact in the account's default addressbook (Contacts)

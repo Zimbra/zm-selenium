@@ -352,6 +352,9 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	}
 
 	public String getSubject() {
+		if ( dSubject == null ) {
+			return (gSubject);
+		}
 		return (dSubject);
 	}
 

@@ -1493,8 +1493,7 @@ public class PageContacts extends AbsTab {
 		return page;
 	}
 	
-	//To check the presence of Contact using last name
-	public boolean zVerifyContactExists (String lastName) throws HarnessException {
+	public boolean zVerifyContactExists (String fileAs) throws HarnessException {
 
 		boolean found = false;
 
@@ -1502,10 +1501,10 @@ public class PageContacts extends AbsTab {
 
 			zToolbarPressButton(Button.B_REFRESH);
 
-			List<ContactItem> items=zListGetContacts();
+			List<ContactItem> items = zListGetContacts();
 
 			for (ContactItem item : items ) {
-				if ( lastName.equals(item.lastName) ) {
+				if ( fileAs.equals(item.fileAs) ) {
 					found = true;
 					break;
 				} else {

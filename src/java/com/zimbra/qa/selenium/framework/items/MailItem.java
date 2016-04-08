@@ -202,7 +202,6 @@ public class MailItem implements IItem {
 		myId=id;
 	}
 
-
 	public List<RecipientItem> dAllRecipients() {
 		List<RecipientItem> list = new ArrayList<RecipientItem>();
 		
@@ -267,7 +266,15 @@ public class MailItem implements IItem {
 		return (dAutoSendTime);
 	}
 
+	// --------------------- GUI -----------------------------------
+	public String getGSubject() {
+		return (gSubject);
+	}
 
+	public void setGSubject(String subject) {
+		gSubject = subject;
+	}
+	
 	/* (non-Javadoc)
 	 * @see framework.items.IItem#CreateSOAP(framework.util.ZimbraAccount)
 	 */
