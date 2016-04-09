@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.mountpoints.viewer.actions;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -89,12 +87,12 @@ public class VerifyDisabledUI extends CalendarWorkWeekTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 		
-		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
-		
-		// Mark ON to mounted calendar folder and select the appointment
+		// Mark ON/OFF to calendar folders
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
 		app.zTreeCalendar.zMarkOnOffMountedFolder(mountpointname);
+		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 		
 		// Verify Forward, Delete, Move & Tag Appointment menus are disabled
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, apptSubject);
@@ -107,6 +105,10 @@ public class VerifyDisabledUI extends CalendarWorkWeekTest {
 		// Verify Share Calendar menu is disabled
 		app.zTreeCalendar.zTreeItem(Action.A_RIGHTCLICK, mountpointname);
 		ZAssert.assertTrue(app.zPageCalendar.zVerifyDisabledControl(Button.O_SHARE_CALENDAR_DISABLED), "Verify 'Share Calendar' menu is disabled");
+		
+		// Mark ON/OFF to calendar folders
+		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
+		app.zTreeCalendar.zMarkOnOffMountedFolder(mountpointname);
 		
 	}
 
@@ -167,19 +169,18 @@ public class VerifyDisabledUI extends CalendarWorkWeekTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 		
-		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
-		
-		// Mark ON to mounted calendar folder and select the appointment
+		// Mark ON/OFF to calendar folders
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
 		app.zTreeCalendar.zMarkOnOffMountedFolder(mountpointname);
+		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Verify Forward, Delete, Move & Tag Appointment menus are disabled
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, apptSubject);
+		
 		ZAssert.assertTrue(app.zPageCalendar.zVerifyDisabledControl(Button.O_FORWARD_DISABLED), "Verify 'Forward' menu is disabled");
 		ZAssert.assertTrue(app.zPageCalendar.zVerifyDisabledControl(Button.O_MOVE_DISABLED), "Verify 'Move' menu is disabled");
-		//ZAssert.assertTrue(app.zPageCalendar.zVerifyDisabledControl(Button.O_CREATE_A_COPY_DISABLED), "Verify 'Create a copy' menu is disabled");
-		//ZAssert.assertTrue(app.zPageCalendar.zVerifyDisabledControl(Button.O_SHOW_ORIGINAL_DISABLED), "Verify 'Show Original' menu is disabled");
+		ZAssert.assertTrue(app.zPageCalendar.zVerifyDisabledControl(Button.O_CREATE_A_COPY_DISABLED), "Verify 'Create a copy' menu is disabled");
+		ZAssert.assertTrue(app.zPageCalendar.zVerifyDisabledControl(Button.O_SHOW_ORIGINAL_DISABLED), "Verify 'Show Original' menu is disabled");
 		
 	}
 	

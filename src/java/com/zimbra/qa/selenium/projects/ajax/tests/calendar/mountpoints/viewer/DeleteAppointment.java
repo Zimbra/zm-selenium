@@ -89,12 +89,12 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 		
-		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
-		
-		// Mark ON to mounted calendar folder and select the appointment
+		// Mark ON/OFF to calendar folders
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
 		app.zTreeCalendar.zMarkOnOffMountedFolder(mountpointname);
+				
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
 		
 		// Verify delete toolbar button is disabled
@@ -107,7 +107,10 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		DialogError dialog = app.zPageMain.zGetErrorDialog(DialogError.DialogErrorID.Zimbra);
 		ZAssert.assertNotNull(dialog, "Verify the PERM DENIED Error Dialog is not created");
 		ZAssert.assertFalse(dialog.zIsActive(), "Verify the PERM DENIED Error Dialog is not appear");
-
+		
+		// Mark ON/OFF to calendar folders
+		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
+		app.zTreeCalendar.zMarkOnOffMountedFolder(mountpointname);
 	}
 
 	
@@ -167,12 +170,12 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 		
-		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
-		
-		// Mark ON to mounted calendar folder and select the appointment
+		// Mark ON/OFF to calendar folders
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
 		app.zTreeCalendar.zMarkOnOffMountedFolder(mountpointname);
+		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
 		
 		// Verify delete toolbar button is disabled
@@ -185,9 +188,6 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		DialogError dialog = app.zPageMain.zGetErrorDialog(DialogError.DialogErrorID.Zimbra);
 		ZAssert.assertNotNull(dialog, "Verify the PERM DENIED Error Dialog is not created");
 		ZAssert.assertFalse(dialog.zIsActive(), "Verify the PERM DENIED Error Dialog is not appear");
-		
-		// Mark ON/OFF to mounted calendar folder and select the appointment
-		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
 
 	}
 

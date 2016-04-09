@@ -18,8 +18,11 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.mountpoints.manager;
 
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
+
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -92,7 +95,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 		
-		// Mark ON to mounted calendar folder and select the appointment
+		// Mark ON/OFF to calendar folders
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
 		app.zTreeCalendar.zMarkOnOffMountedFolder(mountpointname);
 		
@@ -112,9 +115,16 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		// Verify meeting invite is deleted from the owner's calendar
 		AppointmentItem ownerAppt = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ apptSubject +")");
 		ZAssert.assertNull(ownerAppt, "Verify meeting invite is deleted from the owner's calendar");
+		
+		// Mark ON/OFF to calendar folders
+		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
+		app.zTreeCalendar.zMarkOnOffMountedFolder(mountpointname);
 
 	}
-
+	
+	
+	@Bugs(ids = "104604")
+	
 	@DataProvider(name = "DataProviderShortcutKeys")
 	public Object[][] DataProviderShortcutKeys() {
 		return new Object[][] {
@@ -181,7 +191,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 		
-		// Mark ON to mounted calendar folder and select the appointment
+		// Mark ON/OFF to calendar folders
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
 		app.zTreeCalendar.zMarkOnOffMountedFolder(mountpointname);
 		
