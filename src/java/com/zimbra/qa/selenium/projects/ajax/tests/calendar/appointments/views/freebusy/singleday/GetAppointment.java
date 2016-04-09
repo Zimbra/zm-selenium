@@ -76,19 +76,14 @@ public class GetAppointment extends AjaxCommonTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 		
-		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
-		
-		//-- GUI Actions
+		// Refresh view
+        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Go to F/B view
-		SleepUtil.sleepMedium();
 		app.zPageCalendar.zToolbarPressPulldown(Button.B_LISTVIEW, Button.O_LISTVIEW_FREEBUSY);
 
-		//-- Verification
-		
 		// Verify the appointment appears on the page
-		SleepUtil.sleepMedium(); //test fails without sleep because calendar view rendering takes time 
+		SleepUtil.sleepVeryLong(); //test fails without sleep because calendar view rendering takes time 
 		ZAssert.assertTrue(app.zPageCalendar.zGetApptLocatorFreeBusyView(app.zGetActiveAccount().EmailAddress, apptSubject), "Verify attendee free/busy row exists");
 	    
 	}

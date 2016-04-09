@@ -281,8 +281,6 @@ public class PageCalendar extends AbsTab {
 				break;
 			} else {
 				logger.info("Appointment not displayed in current view");
-				Stafpostqueue sp = new Stafpostqueue();
-				sp.waitForPostqueue();
 			}
 
 			if (found == true) {

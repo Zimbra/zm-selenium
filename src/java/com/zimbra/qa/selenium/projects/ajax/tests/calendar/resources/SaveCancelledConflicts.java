@@ -9,26 +9,23 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraResource;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogWarningConflictingResources;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators;
-
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 public class SaveCancelledConflicts extends CalendarWorkWeekTest {
 
   public SaveCancelledConflicts() {
     logger.info("New " + SaveCancelledConflicts.class.getCanonicalName());
+    this.startingPage = this.app.zPageCalendar;
   }
   
-  @Bugs(ids="77991,75434")
-  @Test(description="unable to save when cancelling conflicts", groups={"functional"} )
+  @Bugs(ids = "77991,75434")
+  @Test(description = "Unable to save when cancelling conflicts", groups = {"functional"} )
   
   public void SaveCancelledConflicts_01() throws HarnessException  {
 	  
@@ -66,12 +63,8 @@ public class SaveCancelledConflicts extends CalendarWorkWeekTest {
 				"<su>"+ apptSubject1 +"</su>" +
 				"</m>" +
 		"</CreateAppointmentRequest>");
+		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		
-		SleepUtil.sleepVeryLong();
-
-		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject1), "Appointment not displayed in current view");
-
 		appt.setSubject(apptSubject2);
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0));
@@ -103,52 +96,4 @@ public class SaveCancelledConflicts extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(instance, null, "Verify that exception is not created");
 		
   	}
-  
-  
-  	public void SaveCancelledConflicts_02() throws HarnessException  {
-	  
-	    ZimbraAdminAccount.GlobalAdmin().soapSend(
-  	      "<ModifyAccountRequest xmlns='urn:zimbraAdmin'><id>" + 
-  	      this.app.zGetActiveAccount().ZimbraId + "</id>" + 
-  	      "<a n='zimbraPrefCalendarDefaultApptDuration'>30m</a>" + 
-  	      "</ModifyAccountRequest>");
-
-  	    this.app.zPageLogin.zNavigateTo();
-  	    this.startingPage.zNavigateTo();
-
-		String apptContent = ZimbraSeleniumProperties.getUniqueString();
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		Calendar now = Calendar.getInstance();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
-
-		// Create appointment
-		AppointmentItem appt = new AppointmentItem();
-		appt.setSubject(apptSubject);
-		appt.setStartTime(startUTC);
-		appt.setContent(apptContent);
-		
-		// Open the new mail form
-		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
-		ZAssert.assertNotNull(apptForm, "Verify the new form opened");
-
-		// Fill out the form with the data
-		apptForm.zFill(appt);
-
-		// Send the message
-		apptForm.zSubmit();
-			
-		// Verify the new appointment exists on the server
-		app.zGetActiveAccount().soapSend(
-				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ startUTC.addDays(7).toMillis() +"'>"
-			+	"<query>subject:("+ apptSubject +")</query>"
-			+	"</SearchRequest>");
-		String id = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
-		ZAssert.assertNotNull(id, "verify that appointment is synced to the server");
-      app.zGetActiveAccount().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ id +"'/>");
-		String endtime = app.zGetActiveAccount().soapSelectValue("//mail:e", "d");
-      ZAssert.assertEquals(startUTC.addMinutes(30).toyyyyMMddTHHmmss(), endtime, "verify that the duartion is 30 minutes");
-
-	}
-  
 }
-  

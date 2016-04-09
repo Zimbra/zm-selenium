@@ -235,7 +235,7 @@ public class PageMail extends AbsTab {
 
 		boolean found = false;
 
-		for (int i=1; i<=5; i++) {
+		for (int i=1; i<=3; i++) {
 
 			zToolbarPressButton(Button.B_REFRESH);
 
