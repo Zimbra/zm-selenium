@@ -331,6 +331,7 @@ public class PageCalendar extends AbsTab {
 				sIsElementPresent("css=td.appt_new_name:contains('" + apptSubject + "')") == true ||
 				sIsElementPresent("css=td.appt_allday_name:contains('" + apptSubject + "')") == true ||
 				sIsElementPresent("css=td.appt_allday_new_name:contains('" + apptSubject + "')") == true ||
+				sIsElementPresent("css=div[id='zl__CLL__rows'] td[id^='zlif__CLL']:contains('" + apptSubject + "')") == true ||
 				sIsElementPresent("css=span[id^='zli__CLM__']['_subject']:contains('" + apptSubject + "')") == true) {
 			return true;
 		} else {
