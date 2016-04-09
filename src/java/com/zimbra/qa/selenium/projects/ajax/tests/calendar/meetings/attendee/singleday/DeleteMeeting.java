@@ -20,6 +20,7 @@ import java.util.Calendar;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -119,7 +120,7 @@ public class DeleteMeeting extends CalendarWorkWeekTest {
 	    
 	}
 	
-	
+	@Bugs(ids = "104604")
 	@Test(	description = "Delete appointment in the week view - Notify Organizer",
 			groups = { "smoke" })
 

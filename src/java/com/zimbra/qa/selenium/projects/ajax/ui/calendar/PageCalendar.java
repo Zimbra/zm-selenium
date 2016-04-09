@@ -272,21 +272,17 @@ public class PageCalendar extends AbsTab {
 
 		boolean found = false;
 
-		for (int i=1; i<=5; i++) {
+		for (int i=1; i<=3; i++) {
 
 			zToolbarPressButton(Button.B_REFRESH);
 
-			List<AppointmentItem> items = zListGetAppointments();
-
-			for (AppointmentItem item : items ) {
-				if ( apptSubject.equals(item.getSubject()) ) {
-					found = true;
-					break;
-				} else {
-					logger.info("Appointment not displayed in current view");
-					Stafpostqueue sp = new Stafpostqueue();
-					sp.waitForPostqueue();
-				}
+			if ( zIsAppointmentExists(apptSubject) ) {
+				found = true;
+				break;
+			} else {
+				logger.info("Appointment not displayed in current view");
+				Stafpostqueue sp = new Stafpostqueue();
+				sp.waitForPostqueue();
 			}
 
 			if (found == true) {
@@ -333,9 +329,10 @@ public class PageCalendar extends AbsTab {
 	}
 
 	public boolean zIsAppointmentExists(String apptSubject) throws HarnessException {
-		SleepUtil.sleepMedium();
 		if (sIsElementPresent("css=td.appt_name:contains('" + apptSubject + "')") == true ||
 				sIsElementPresent("css=td.appt_new_name:contains('" + apptSubject + "')") == true ||
+				sIsElementPresent("css=td.appt_allday_name:contains('" + apptSubject + "')") == true ||
+				sIsElementPresent("css=td.appt_allday_new_name:contains('" + apptSubject + "')") == true ||
 				sIsElementPresent("css=span[id^='zli__CLM__']['_subject']:contains('" + apptSubject + "')") == true) {
 			return true;
 		} else {
