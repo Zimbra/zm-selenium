@@ -23,8 +23,6 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.ZAssert;
-
 
 /**
  * This class defines the top menu bar of the admin console application
@@ -43,25 +41,25 @@ public class PageMain extends AbsTab {
 		public static final String zSkinContainerDW			= "xpath=//*[@id='skin_container_dw']";
 		public static final String REFRESH_BUTTON = "css=div.ImgSearchRefreshWhite";
 		
-		public static final String HomeInstallLicense = "css=#ztabv__HOMEV_output_9 > div";
-		public static final String HomeConfigureBackups = "css=#ztabv__HOMEV_output_10 > div";
-
-		public static final String HomeInstallCertificate = "css=#ztabv__HOMEV_output_11 > div";
-
-		public static final String HomeConfigureDefaultCos = "css=#ztabv__HOMEV_output_12 > div";
-
-		public static final String HomeCreateDomain = "css=#ztabv__HOMEV_output_14 > div";
-
-		public static final String HomeConfigureGal = "css=#ztabv__HOMEV_output_15 > div";
-
-		public static final String HomeConfigureAuthentication = "css=#ztabv__HOMEV_output_16 > div";
-
-		public static final String HomeAddAcoount = "css=#ztabv__HOMEV_output_18 > div";
+		public static final String HomeInstallLicense="css=div[id^='ztabv__HOMEV_output'] div:contains('Install Licenses')";
 		
-		public static final String HomeManageAccount = "css=#ztabv__HOMEV_output_19 > div";
+		public static final String HomeConfigureBackups = "css=div[id^='ztabv__HOMEV_output'] div:contains('Configure Back-ups')"; 
+		
+		public static final String HomeInstallCertificate = "css=div[id^='ztabv__HOMEV_output'] div:contains('Install Certificates')";   
 
-		public static final String HomeMigrationCoexistance = "css=#ztabv__HOMEV_output_20 > div";
+		public static final String HomeConfigureDefaultCos = "css=div[id^='ztabv__HOMEV_output'] div:contains('Configure Default COS')";
 
+		public static final String HomeCreateDomain = "css=div[id^='ztabv__HOMEV_output'] div:contains('Create Domain')";
+
+		public static final String HomeConfigureGal = "css=div[id^='ztabv__HOMEV_output'] div:contains('Configure GAL')";
+
+		public static final String HomeConfigureAuthentication = "css=div[id^='ztabv__HOMEV_output'] div:contains('Configure Authentication')"; 
+
+		public static final String HomeAddAcoount = "css=div[id^='ztabv__HOMEV_output'] div:contains('Add Account')";
+		
+		public static final String HomeManageAccount = "css=div[id^='ztabv__HOMEV_output'] div:contains('Manage Accounts')";
+
+		public static final String HomeMigrationCoexistance = "css=div[id^='ztabv__HOMEV_output'] div:contains('Migration and Co-existence')";
 	}
 
 	public PageMain(AbsApplication application) {
