@@ -53,8 +53,8 @@ public class ZimbraPrefColorMessagesEnabled extends PrefGroupMailByMessageTest {
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		String subject1 = "subjectX"+ ZimbraSeleniumProperties.getUniqueString();
 		String subject2 = "subjectY"+ ZimbraSeleniumProperties.getUniqueString();
-		String tagName1 = "tagO" + ZimbraSeleniumProperties.getUniqueString();
-		String tagName2 = "tagB" + ZimbraSeleniumProperties.getUniqueString();
+		String tagName1 = "tagOrange";
+		String tagName2 = "tagBlue"; 
 
 		// Create a message
 		app.zGetActiveAccount().soapSend(
@@ -184,8 +184,8 @@ public class ZimbraPrefColorMessagesEnabled extends PrefGroupMailByMessageTest {
 		// Data for messages
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		String subject = "subjectZ"+ ZimbraSeleniumProperties.getUniqueString();		
-		String tagName1 = "tagA" + ZimbraSeleniumProperties.getUniqueString();
-		String tagName2 = "tagB" + ZimbraSeleniumProperties.getUniqueString();
+		String tagName1 = "tagA";
+		String tagName2 = "tagB";
 
 		// Create a message
 		app.zGetActiveAccount().soapSend(
