@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="ZimbraSelenium" default="jar" basedir=".">
 
-    <import file="../ant-global.xml" />
+    <import file="../zm-zcs/ant-global.xml" />
 	<property name="build.version" value="6.0.0" />
 
 	<property name="build.classes.dir" location="${build.dir}/classes" />
@@ -20,11 +20,11 @@
 	<property name="src.dir" location="src" />
 	<property name="src.java.dir" location="${src.dir}/java" />
 
-	<property name="zimbraqa.dir" location="../ZimbraQA" />
-	<property name="webclient.dir" location="../ZimbraWebClient" />
-	<property name="zimlet.dir" location="../Zimlet" />
+	<property name="server-conf.dir" location="../zm-store-conf" />
+	<property name="webclient.dir" location="../zm-web-client" />
+	<property name="zimlet.dir" location="../zm-zimlets" />
 
-	<path id="class.path">
+	<!--path id="class.path">
 		<pathelement location="${build.classes.dir}" />
 		<pathelement location="${build.resources.dir}" />
 
@@ -39,7 +39,7 @@
 		</fileset>
 		<fileset file="${common.jarfile}" />
 		<fileset file="${native.jarfile}" />
-	</path>
+	</path-->
 
 	<path id="all.java.path">
 		<pathelement location="${src.java.dir}" />
@@ -59,15 +59,15 @@
 		<mkdir dir="${build.classes.dir}" />
 	</target>
 
-	<target name="compile-ZimbraNative" description="Builds ZimbraNative">
+	<!--target name="compile-ZimbraNative" description="Builds ZimbraNative">
 		<ant dir="${native.dir}" target="jar" inheritAll="false" />
 	</target>
 
 	<target name="compile-ZimbraCommon" description="Builds ZimbraCommon">
 		<ant dir="${common.dir}" target="jar" inheritAll="false" />
-	</target>
+	</target-->
 
-	<target name="compile" depends="build-init,data-files,bundles-jar,coverage-jar,compile-ZimbraNative,compile-ZimbraCommon" description="Compiles the source code">
+	<target name="compile" depends="build-init,coverage-jar,bundles-jar,resolve" description="Compiles the source code">
 		<echo message="compiling framework..." />
 		<javac destdir="${build.classes.dir}" debug="true" classpathref="class.path" nowarn="on" encoding="iso-8859-1">
 			<src refid="all.java.path" />
@@ -91,18 +91,18 @@
 		</javadoc>
 	</target>
 
-	<target name="data-files" description="Copies sample data from ZimbraQA to ZimbraSelenium">
+<!--	<target name="data-files" description="Copies sample data from ZimbraQA to ZimbraSelenium">
 		<copy todir="data/public/Files">
 			<fileset dir="${zimbraqa.dir}/data/Files" />
 		</copy>
-	</target>
+	</target-->
 
 	<target name="bundles-classes" description="Copies the I18N properties files to build">
 		<copy todir="${build.resources.dir}">
 			<fileset dir="${webclient.dir}/WebRoot/messages/" />
 		</copy>
 		<copy todir="${build.resources.dir}">
-			<fileset dir="${server.dir}/conf/msgs/" />
+			<fileset dir="${server-conf.dir}/conf/msgs/" />
 		</copy>
 		<copy todir="${build.resources.dir}">
 			<fileset dir="${zimlet.dir}/src/zimlet/com_zimbra_attachcontacts/">
@@ -158,7 +158,7 @@
 		<jar destfile="${dist.lib.dir}/coverage.jar" basedir="${build.coverage.dir}" />
 	</target>
 
-	<target name="jar-staf-selenium" depends="jar, bundles-jar, coverage-jar" description="Creates the STAF jar file for the selenium service">
+	<target name="jar-staf-selenium" depends="jar, coverage-jar" description="Creates the STAF jar file for the selenium service">
 
 		<property name="build.staf.selenium" location="${build.dir}/staf/selenium" />
 		<property name="build.staf.selenium.jars.dir" location="${build.staf.selenium}/STAF-INF/jars" />
@@ -175,7 +175,7 @@
 			<fileset dir="${dist.lib.dir}">
 				<include name="coverage.jar" />
 			</fileset>
-			<fileset dir="jars">
+			<fileset dir="${build.deps.dir}">
 				<include name="commons-beanutils-1.7.jar" />
 				<include name="commons-configuration-1.5.jar" />
 				<include name="commons-lang-2.6.jar" />
@@ -194,7 +194,7 @@
 				<include name="ldtp-1.0.jar" />
 				<include name="jsch-0.1.53.jar" />
 			</fileset>
-			<fileset dir="${common.dir}/jars">
+			<fileset dir="${build.deps.dir}">
 				<include name="ant-tar-patched.jar" />
 				<include name="apache-log4j-extras-1.0.jar" />
 				<include name="commons-cli-1.2.jar" />
@@ -210,9 +210,12 @@
 				<include name="mariadb-java-client-*.jar" />
 				<include name="guava-*.jar" />
 				<include name="json.jar" />
+				<include name="zimbracommon.jar" />
+				<include name="zimbra-native.jar" />
+				<include name="commons-codec-1.7.jar" />
 			</fileset>
-			<fileset file="${common.jarfile}" />
-			<fileset file="${native.jarfile}" />
+			<!--fileset file="${common.jarfile}" />
+			<fileset file="${native.jarfile}" /-->
 		</copy>
 
 		<jar destfile="${dist.lib.dir}/zimbrastaf.jar" basedir="${build.staf.selenium}">
@@ -250,7 +253,7 @@
 		</java>
 	</target>
 
-	<target name="tgz-contents" depends="jar,jar-staf" description="Creates the TMS package contents folder">
+	<target name="tgz-contents" depends="jar" description="Creates the TMS package contents folder">
 		<echo message="Creating TMS TGZ contents ..." />
 		<copy file="${dist.lib.dir}/zimbraselenium.jar" todir="${tms.dir}/jars/"/>
 		<copy file="${dist.lib.dir}/zimbrastaf.jar" todir="${tms.dir}/jars/"/>
