@@ -36,7 +36,15 @@ xmlrpc-common-3.1.3.jar
 zimbracommon.jar
 zimbra-native.jar
 
-3. ant jar
+3. git clone ssh://git@stash.corp.synacor.com:7999/zimbra/zm-zcs.git
+
+4. git clone ssh://git@stash.corp.synacor.com:7999/zimbra/zm-sotre-conf.git
+
+5. git clone ssh://git@stash.corp.synacor.com:7999/zimbra/zm-web-client.git
+
+6. git clone ssh://git@stash.corp.synacor.com:7999/zimbra/zm-zimlet.git
+
+7. ant jar
 
 this creates three jars at C:\stash\zm-selenium\build\dist\lib
 
@@ -44,7 +52,7 @@ coverage.jar
 resources.jar
 zimbraselenium.jar
 
-4. For creating selng tgz 
+8. For creating selng tgz 
 ant jar-staf-selenium
 ant build-selng
 
