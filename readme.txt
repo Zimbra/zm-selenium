@@ -42,7 +42,7 @@ zimbra-native.jar
 
 5. git clone ssh://git@stash.corp.synacor.com:7999/zimbra/zm-web-client.git
 
-6. git clone ssh://git@stash.corp.synacor.com:7999/zimbra/zm-zimlet.git
+6. git clone ssh://git@stash.corp.synacor.com:7999/zimbra/zm-zimlets.git
 
 7. ant jar
 
