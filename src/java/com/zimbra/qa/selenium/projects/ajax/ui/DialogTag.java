@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
@@ -38,11 +38,15 @@ public class DialogTag extends AbsDialog {
 		public static final String zTitleId	 		= "CreateTagDialog_title";
 
 		public static final String zTagNameFieldId	= "CreateTagDialog_name";
+		
+		public static final String zTagNameFieldCss = "css=input[id='CreateTagDialog_name']";
 
 		public static final String zTagColorPulldownId = "ZmTagColorMenu_dropdown";
 		
 		public static final String zButtonsId 		= "CreateTagDialog_buttons";
-		public static final String zButtonOkId 		= "DWT178_title";
+		
+		public static final String zChooseNewTagButton = "css=div[id='ZmPickTagDialog_buttons'] td[id^='New_'] td[id$='_title']";
+		public static final String zButtonOkCss	= "css=div[id='CreateTagDialog_buttons'] td[id^='OK'] td[id$='_title']";
 		public static final String zButtonCancelId 	= "DWT179_title";
 
 

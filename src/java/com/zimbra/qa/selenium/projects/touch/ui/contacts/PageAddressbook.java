@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.ui.contacts;
@@ -564,7 +564,7 @@ public class PageAddressbook extends AbsTab {
 		        optionLocator = "css=div#zb__NEW_MENU_NEW_TAG td#zb__NEW_MENU_NEW_TAG_title";
 		        page = null;
 		   }    
-		   else if ( option == Button.O_NEW_ADDRESSBOOK ) {					   
+		   else if ( option == Button.O_NEW_CONTACTS_FOLDER ) {					   
 			    optionLocator = "css=div#zb__NEW_MENU_NEW_ADDRBOOK td#zb__NEW_MENU_NEW_ADDRBOOK_title";
 			    page = null;		    
 							    
