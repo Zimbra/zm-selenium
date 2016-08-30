@@ -1,22 +1,29 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.core;
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Capabilities;
@@ -31,13 +38,16 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+
 import com.thoughtworks.selenium.SeleniumException;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.admin.ui.AppAdminConsole;
 
 
@@ -94,7 +104,18 @@ public class AdminCommonTest {
 	public void commonTestBeforeSuite() throws HarnessException {
 		
 		logger.info("commonTestBeforeSuite");
-				
+		
+		// For coverage ?mode=mjsf&gzip=false
+		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			StafServicePROCESS staf = new StafServicePROCESS();
+			try {
+				staf.execute("zmprov mcf +zimbraHttpThrottleSafeIPs " + InetAddress.getLocalHost().getHostAddress());
+				staf.execute("zmmailboxdctl restart");
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		try
 		{
 			ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.ADMIN);
@@ -106,17 +127,14 @@ public class AdminCommonTest {
 				if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){				
 					_webDriver.manage().window().setPosition(new Point(0, 0));
 					_webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
-					//_webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
 					_webDriver.navigate().to(ZimbraSeleniumProperties.getBaseURL());
-
 				}
 				
 			}else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()) {
 				_webDriverBackedSelenium = ClientSessionFactory.session().webDriverBackedSelenium();
 				_webDriverBackedSelenium.windowMaximize();
 				_webDriverBackedSelenium.windowFocus();
-				_webDriverBackedSelenium.setTimeout("60000");// Use 60 second timeout for
+				_webDriverBackedSelenium.setTimeout("45000");// Use 45 second timeout for
 				_webDriverBackedSelenium.open(ZimbraSeleniumProperties.getBaseURL());
 			} else {
 				// Use 30 second timeout for opening the browser
@@ -126,7 +144,7 @@ public class AdminCommonTest {
 				ClientSessionFactory.session().selenium().windowMaximize();
 				ClientSessionFactory.session().selenium().windowFocus();
 				ClientSessionFactory.session().selenium().allowNativeXpath("true");
-				ClientSessionFactory.session().selenium().setTimeout("60000");
+				ClientSessionFactory.session().selenium().setTimeout("45000");
 				ClientSessionFactory.session().selenium().open(ZimbraSeleniumProperties.getBaseURL());
 			}
 			
@@ -157,6 +175,7 @@ public class AdminCommonTest {
 	 * 
 	 * @throws HarnessException
 	 */
+	@SuppressWarnings("deprecation")
 	@BeforeMethod( groups = { "always" } )
 	public void commonTestBeforeMethod() throws HarnessException {
 		logger.info("commonTestBeforeMethod: start");
@@ -171,6 +190,20 @@ public class AdminCommonTest {
 					app.zPageMain.logout();
 				app.zPageLogin.login(startingAccount);
 				
+			}
+			
+			// For coverage ?mode=mjsf&gzip=false
+			if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+				for (int i=0; i<=10; i++) {
+					if (ClientSessionFactory.session().selenium().isElementPresent("css=div[id='ztih__AppAdmin__Home_textCell']") == false) {
+						app.zPageLogin.sRefresh();
+						SleepUtil.sleepVeryVeryLong();
+						SleepUtil.sleepVeryVeryLong();
+						if (ClientSessionFactory.session().selenium().isElementPresent("css=div[id='ztih__AppAdmin__Home_textCell']") == true) {
+							break;
+						}
+					}
+				}
 			}
 			
 			// Confirm
@@ -246,5 +279,53 @@ public class AdminCommonTest {
 		
 		logger.info("commonTestAfterMethod: finish");
 	}
+	
+	public void zUpload (String filePath) throws HarnessException {
 
+		SleepUtil.sleepLong();
+
+		StringSelection ss = new StringSelection(filePath);
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
+	
+		Robot robot;
+		try {
+			robot = new Robot();
+			robot.keyPress(KeyEvent.VK_CONTROL);
+			robot.keyPress(KeyEvent.VK_V);
+			robot.keyRelease(KeyEvent.VK_V);
+			robot.keyRelease(KeyEvent.VK_CONTROL);
+			SleepUtil.sleepSmall();
+			robot.keyPress(KeyEvent.VK_END);
+			robot.keyRelease(KeyEvent.VK_END);
+			SleepUtil.sleepMedium();
+
+			robot.keyPress(KeyEvent.VK_ENTER);
+			robot.keyRelease(KeyEvent.VK_ENTER);
+		} catch (AWTException e) {
+			e.printStackTrace();
+		}
+
+		//app.zPageMail.zKeyboardTypeStringUpload(filePath);
+
+		SleepUtil.sleepVeryVeryLong(); //real uploading of the file takes longer time
+	}
+	
+	public void zDownload () throws HarnessException {
+
+		SleepUtil.sleepLong();
+
+	
+		Robot robot;
+		try {
+			robot = new Robot();
+			robot.keyPress(KeyEvent.VK_ENTER);
+			robot.keyRelease(KeyEvent.VK_ENTER);
+		} catch (AWTException e) {
+			e.printStackTrace();
+		}
+
+		//app.zPageMail.zKeyboardTypeStringUpload(filePath);
+
+		SleepUtil.sleepVeryLong(); //real uploading of the file takes longer time
+	}
 }

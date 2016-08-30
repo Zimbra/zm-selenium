@@ -1,39 +1,52 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.core;
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.*;
+
 import org.apache.log4j.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.testng.*;
 import org.testng.annotations.*;
 import org.xml.sax.SAXException;
+
 import com.thoughtworks.selenium.*;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
+import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.DialogErrorID;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactDistributionListNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactGroupNew;
 
 /**
  * The <code>AjaxCommonTest</code> class is the base test case class
@@ -48,7 +61,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.DialogErrorID;
  * </ol>
  * <p>
  * It is important to note that no re-authentication (i.e. logout
- * followed by login) will occur if {@link #startingAccountPreferences} is 
+ * followed by login) will occur if {@link #startingAccountPreferences} is
  * already the currently authenticated account.
  * <p>
  * The same rule applies to the {@link #startingPage}, as well.  If
@@ -60,37 +73,37 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.DialogErrorID;
  * <pre>
  * {@code
  * public class TestCaseClass extends AjaxCommonTest {
- * 
+ *
  *     public TestCaseClass() {
- *     
+ *
  *         // All tests start at the Mail page
  *         super.startingPage = app.zPageMail;
- *         
+ *
  *         // Create a new account to log into
  *         ZimbraAccount account = new ZimbraAccount();
  *         super.startingAccount = account;
- *         
+ *
  *         // ...
- *         
+ *
  *     }
- *     
+ *
  *     // ...
- * 
+ *
  * }
  * }
  * </pre>
- * 
+ *
  * @author Matt Rhoades
  *
  */
 public class AjaxCommonTest {
-	
+
 	protected static Logger logger = LogManager.getLogger(AjaxCommonTest.class);
 
 
 	private WebDriverBackedSelenium _webDriverBackedSelenium = null;
 	private WebDriver _webDriver = null;
-	
+
 	/**
 	 * The AdminConsole application object
 	 */
@@ -126,9 +139,9 @@ public class AjaxCommonTest {
 	 * </ol>
 	 * <p>
 	 * @throws HarnessException
-	 * @throws InterruptedException 
-	 * @throws IOException 
-	 * @throws SAXException  
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * @throws SAXException
 	 */
 	@SuppressWarnings("deprecation")
 	@BeforeSuite( groups = { "always" } )
@@ -139,20 +152,24 @@ public class AjaxCommonTest {
 		// Make sure there is a new default account
 		ZimbraAccount.ResetAccountZWC();
 
+		// Grant createDistList right to domain
+		StafServicePROCESS staf = new StafServicePROCESS();
+		staf.execute("zmprov grr domain " + ZimbraSeleniumProperties.getStringProperty("testdomain") + " dom " + ZimbraSeleniumProperties.getStringProperty("testdomain") + " createDistList");
+
 		try
 		{
-			
+
 			ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.AJAX);
 			DefaultSelenium _selenium = null;
-			
+
 			if (ZimbraSeleniumProperties.isWebDriver()) {
 				_webDriver = ClientSessionFactory.session().webDriver();
-				
+
 				Capabilities cp =  ((RemoteWebDriver)_webDriver).getCapabilities();
-				 if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){				
+				 if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){
 					_webDriver.manage().window().setPosition(new Point(0, 0));
 					_webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
-				}								
+				}
 			} else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()) {
 				_webDriverBackedSelenium = ClientSessionFactory.session()
 						.webDriverBackedSelenium();
@@ -160,8 +177,9 @@ public class AjaxCommonTest {
 				_webDriverBackedSelenium.windowFocus();
 				_webDriverBackedSelenium.setTimeout("80000");
 			} else {
-				_selenium = ClientSessionFactory.session().selenium();
-				_selenium.start();
+				_selenium = ClientSessionFactory.session().selenium();				
+				//_selenium.start();
+				_selenium.open(ZimbraSeleniumProperties.getBaseURL());
 				_selenium.windowMaximize();
 				_selenium.windowFocus();
 				_selenium.allowNativeXpath("true");
@@ -171,24 +189,24 @@ public class AjaxCommonTest {
 			int maxRetry = 10;
 			int retry = 0;
 			boolean appIsReady = false;
-			while (retry < maxRetry && !appIsReady) {       
+			while (retry < maxRetry && !appIsReady) {
 				try
 				{
 					logger.info("Retry #" + retry);
 					retry ++;
-					
+
 					if (ZimbraSeleniumProperties.isWebDriver()) {
 						//_webDriver.get(ZimbraSeleniumProperties.getBaseURL());
 						_webDriver.navigate().to(ZimbraSeleniumProperties.getBaseURL());
 						/*
-						if(ZimbraSeleniumProperties.getCalculatedBrowser().contains("iexplore")){	
+						if(ZimbraSeleniumProperties.getCalculatedBrowser().contains("iexplore")){
 							if(app.zPageMain.sIsElementPresent("id=overridelink")){
-								_webDriver.navigate().to("javascript:document.getElementById('overridelink').click()");						
+								_webDriver.navigate().to("javascript:document.getElementById('overridelink').click()");
 							}
 						}
 						*/
-					} 
-					else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()) 
+					}
+					else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium())
 						_webDriverBackedSelenium.open(ZimbraSeleniumProperties.getBaseURL());
 					else
 						_selenium.open(ZimbraSeleniumProperties.getBaseURL());
@@ -214,7 +232,7 @@ public class AjaxCommonTest {
 			logger.warn(e);
 		}
 
-		logger.info("commonTestBeforeSuite: finish");		
+		logger.info("commonTestBeforeSuite: finish");
 	}
 
 	/**
@@ -270,18 +288,18 @@ public class AjaxCommonTest {
 
 			// If the current test accounts preferences match, then the account can be used
 			if ( !ZimbraAccount.AccountZWC().compareAccountPreferences(startingAccountPreferences) ) {
-				
+
 				logger.info("commonTestBeforeMethod: startingAccountPreferences do not match active account");
 
 				// Reset the account
 				ZimbraAccount.ResetAccountZWC();
-				
+
 				// Create a new account
 				// Set the preferences accordingly
 				ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
 				ZimbraAccount.AccountZWC().modifyUserZimletPreferences(startingUserZimletPreferences);
 			}
-			
+
 		}
 
 		// If test account zimlet preferences are defined, then make sure the test account
@@ -289,15 +307,15 @@ public class AjaxCommonTest {
 		//
 		if ( (startingUserZimletPreferences != null) && (!startingUserZimletPreferences.isEmpty()) ) {
 			logger.info("commonTestBeforeMethod: startingAccountZimletPreferences are defined");
-			
+
 			// If the current test accounts preferences match, then the account can be used
 			if ( !ZimbraAccount.AccountZWC().compareUserZimletPreferences(startingUserZimletPreferences) ) {
-				
+
 				logger.info("commonTestBeforeMethod: startingAccountZimletPreferences do not match active account");
 
 				// Reset the account
 				ZimbraAccount.ResetAccountZWC();
-				
+
 				// Create a new account
 				// Set the preferences accordingly
 				ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
@@ -307,8 +325,8 @@ public class AjaxCommonTest {
 			ZimbraAccount.AccountZWC().modifyUserZimletPreferences(startingUserZimletPreferences);
 		}
 
-		
-		
+
+
 		// If AccountZWC is not currently logged in, then login now
 		if ( !ZimbraAccount.AccountZWC().equals(app.zGetActiveAccount()) ) {
 			logger.info("commonTestBeforeMethod: AccountZWC is not currently logged in");
@@ -321,10 +339,10 @@ public class AjaxCommonTest {
 					if ( !app.zPageLogin.zIsActive()) {
 						logger.error("Login page is not active ", ex);
 
-						app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());            
+						app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());
 						app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
 					}
-				}							
+				}
 		}
 
 		// If a startingPage is defined, then make sure we are on that page
@@ -342,7 +360,7 @@ public class AjaxCommonTest {
 			if ( !startingPage.zIsActive() ) {
 				throw new HarnessException("Unable to navigate to "+ startingPage.myPageName());
 			}
-			
+
 			logger.info("commonTestBeforeMethod: startingPage navigation done");
 
 		}
@@ -383,14 +401,14 @@ public class AjaxCommonTest {
 	 * <ol>
 	 * <li>Stop the DefaultSelenium client</li>
 	 * </ol>
-	 * 
+	 *
 	 * @throws HarnessException
-	 * @throws InterruptedException 
-	 * @throws IOException 
+	 * @throws InterruptedException
+	 * @throws IOException
 	 */
 	@SuppressWarnings("deprecation")
 	@AfterSuite( groups = { "always" } )
-	public void commonTestAfterSuite() throws HarnessException, IOException, InterruptedException {	
+	public void commonTestAfterSuite() throws HarnessException, IOException, InterruptedException {
 		logger.info("commonTestAfterSuite: start");
 
 		if (ZimbraSeleniumProperties.isWebDriver()) {
@@ -400,13 +418,13 @@ public class AjaxCommonTest {
 		} else {
 			ClientSessionFactory.session().selenium().stop();
 		}
-		
+
 		logger.info("commonTestAfterSuite: finish");
 	}
 
 	/**
 	 * Global AfterClass
-	 * 
+	 *
 	 * @throws HarnessException
 	 */
 	@AfterClass( groups = { "always" } )
@@ -429,7 +447,7 @@ public class AjaxCommonTest {
 
 	/**
 	 * Global AfterMethod
-	 * 
+	 *
 	 * @throws HarnessException
 	 */
 	@AfterMethod( groups = { "always" } )
@@ -446,7 +464,7 @@ public class AjaxCommonTest {
 		if ( ZimbraURI.needsReload() ) {
             logger.error("The URL does not match the base URL.  Reload app.");
             // app.zPageLogin.sDeleteAllVisibleCookies();
-            app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());            
+            app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());
             app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
 		}
 
@@ -458,10 +476,10 @@ public class AjaxCommonTest {
 		if ( (!app.zPageMain.zIsActive()) && (!app.zPageLogin.zIsActive()) ) {
             logger.error("Neither login page nor main page were active.  Reload app.", new Exception());
             // app.zPageLogin.sDeleteAllVisibleCookies();
-            app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());            
+            app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());
             app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
         }
-		
+
 		logger.info("commonTestAfterMethod: finish");
 	}
 
@@ -477,11 +495,11 @@ public class AjaxCommonTest {
        ZimbraAccount.ResetAccountZWC();
 
     }
-	
+
 	/**
 	 * A TestNG data provider for all supported character sets
 	 * @return
-	 * @throws HarnessException 
+	 * @throws HarnessException
 	 */
 	@DataProvider(name = "DataProviderSupportedCharsets")
 	public Object[][] DataProviderSupportedCharsets() throws HarnessException {
@@ -493,77 +511,155 @@ public class AjaxCommonTest {
 		StringBuilder settings = new StringBuilder();
 		for (Map.Entry<String, String> entry : startingAccountPreferences.entrySet()) {
 			settings.append(String.format("<a n='%s'>%s</a>", entry.getKey(), entry.getValue()));
-		}		
+		}
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
 				+		"<id>"+ string +"</id>"
 				+		settings.toString()
 				+	"</ModifyAccountRequest>");
 	}
-	
+
 	public void zUpload (String filePath) throws HarnessException {
-		
+
 		SleepUtil.sleepLong();
-		
-		if (ZimbraSeleniumProperties.isWebDriver()) {
-			/*
-				//put path to your image in a clipboard
-				StringSelection ss = new StringSelection(filePath);
-				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
-				SleepUtil.sleepLong();
-		
-				//imitate mouse events like ENTER, CTRL+C, CTRL+V
-				Robot robot;
-				try {
-					robot = new Robot();
-					robot.keyPress(KeyEvent.VK_CONTROL);
-					robot.keyPress(KeyEvent.VK_V);
-					robot.keyRelease(KeyEvent.VK_V);
-					robot.keyRelease(KeyEvent.VK_CONTROL);
-					robot.keyPress(KeyEvent.VK_TAB);
-					robot.keyRelease(KeyEvent.VK_TAB);
-					robot.keyPress(KeyEvent.VK_TAB);
-					robot.keyRelease(KeyEvent.VK_TAB);
-					robot.keyPress(KeyEvent.VK_ENTER);
-					robot.keyRelease(KeyEvent.VK_ENTER);
-					SleepUtil.sleepVeryLong();
-				} catch (AWTException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			*/
-			app.zPageMail.zKeyboardTypeStringUpload(filePath);
-			
-		} else {
-			app.zPageMail.zKeyboardTypeStringUpload(filePath);
+
+		StringSelection ss = new StringSelection(filePath);
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
+
+		Robot robot;
+		try {
+			robot = new Robot();
+			robot.keyPress(KeyEvent.VK_CONTROL);
+			robot.keyPress(KeyEvent.VK_V);
+			robot.keyRelease(KeyEvent.VK_V);
+			robot.keyRelease(KeyEvent.VK_CONTROL);
+			SleepUtil.sleepSmall();
+			robot.keyPress(KeyEvent.VK_END);
+			robot.keyRelease(KeyEvent.VK_END);
+			SleepUtil.sleepMedium();
+			robot.keyPress(KeyEvent.VK_ENTER);
+			robot.keyRelease(KeyEvent.VK_ENTER);
+		} catch (AWTException e) {
+			e.printStackTrace();
 		}
-		
-		SleepUtil.sleepVeryVeryLong(); //real uploading of the file takes time
+
+		//app.zPageMail.zKeyboardTypeStringUpload(filePath);
+
+		SleepUtil.sleepVeryVeryLong(); //real uploading of the file takes longer time
 	}
-	
+
 	public void zUploadInlineImageAttachment (String filePath) throws HarnessException {
-		
+
 		SleepUtil.sleepLong();
-		
+
 		if (ZimbraSeleniumProperties.isWebDriver()) {
 			app.zPageMail.zKeyboardTypeStringUpload(filePath);
 		} else {
 			app.zPageMail.zKeyboardTypeStringUpload(filePath);
 		}
-		
+
 		SleepUtil.sleepVeryVeryLong();
+	}
+
+	public AbsPage zToolbarPressPulldown (Button button, Button option) throws HarnessException {
+
+		logger.info("Click to zNewDropdownOptions("+ option +")");
+
+		if ( option == null )
+			throw new HarnessException("Button cannot be null!");
+
+		String locator = null;
+		AbsPage page = null;
+
+		if ( option == Button.O_NEW_MESSAGE) {
+			locator = "css=td[id='zb__NEW_MENU_NEW_MESSAGE_title']";
+			page = new FormMailNew(this.app);
+
+		} else if ( option == Button.O_NEW_CONTACT) {
+			locator = "css=td[id='zb__NEW_MENU_NEW_CONTACT_title']";
+			page = new FormContactNew(this.app);
+
+		} else if ( option == Button.O_NEW_CONTACTGROUP) {
+			locator = "css=td[id='zb__NEW_MENU_NEW_GROUP_title']";
+			page = new FormContactGroupNew(this.app);
+
+		} else if ( option == Button.O_NEW_DISTRIBUTION_LIST) {
+			locator = "css=td[id='zb__NEW_MENU_NEW_DISTRIBUTION_LIST_title']";
+			page = new FormContactDistributionListNew(this.app);
+
+		} else if ( option == Button.O_NEW_APPOINTMENT) {
+			locator = "css=td[id='zb__NEW_MENU_NEW_APPT_title']";
+			page = new FormApptNew(this.app);
+
+		} else if ( option == Button.O_NEW_TASK) {
+			locator = "css=td[id='zb__NEW_MENU_NEW_TASK_title']";
+			page = new FormTaskNew(this.app);
+
+		} else if ( option == Button.O_NEW_DOCUMENT) {
+			locator = "css=td[id='zb__NEW_MENU_NEW_DOC_title']";
+			page = new FormContactNew(this.app);
+
+		} else if ( option == Button.O_NEW_FOLDER) {
+			locator = "css=td[id='zb__NEW_MENU_NEW_FOLDER_title']";
+			page = new FormContactNew(this.app);
+
+		} else if ( option == Button.O_NEW_TAG) {
+			locator = "css=td[id='zb__NEW_MENU_NEW_TAG_title']";
+			page = new FormContactNew(this.app);
+
+		} else if ( option == Button.O_NEW_CONTACTS_FOLDER) {
+			locator = "css=td[id='zb__NEW_MENU_NEW_ADDRBOOK_title']";
+			page = new FormContactNew(this.app);
+
+		} else if ( option == Button.O_NEW_CALENDAR) {
+			locator = "css=td[id='zb__NEW_MENU_NEW_CALENDAR_title']";
+			page = new FormContactNew(this.app);
+
+		} else if ( option == Button.O_NEW_TASK_FOLDER) {
+			locator = "css=td[id='zb__NEW_MENU_NEW_TASK_FOLDER_title']";
+			page = new FormContactNew(this.app);
+
+		} else if ( option == Button.O_NEW_BRIEFCASE) {
+			locator = "css=td[id='zb__NEW_MENU_NEW_BRIEFCASE_title']";
+			page = new FormContactNew(this.app);
+	    }
+
+	    if ( locator == null )
+			throw new HarnessException("locator was null for option "+ option);
+
+		if ( !app.zPageMail.sIsElementPresent(locator) )
+			throw new HarnessException("Button is not present locator="+ locator +" button="+ option);
+
+		// Click to New dropdown
+		SleepUtil.sleepLong();
+		app.zPageMail.sClickAt("css=td[id='zb__NEW_MENU_dropdown'] div[class='ImgSelectPullDownArrow']", "");
+		SleepUtil.sleepSmall();
+		app.zPageMain.zCloseComposeTabs();
+		SleepUtil.sleepSmall();
+
+		// Select option
+		app.zPageMail.sClickAt(locator,"");
+		app.zPageMail.zWaitForBusyOverlay();
+
+		SleepUtil.sleepSmall();
+
+		if ( page != null ) {
+			page.zWaitForActive();
+		}
+
+		return (page);
 	}
 
 	@SuppressWarnings("deprecation")
 	public void zKillBrowserAndRelogin () {
-		
+
 		logger.error("Reset account");
 		ZimbraAccount.ResetAccountZWC();
-		
+
 		try {
 			String SeleniumBrowser;
 			SeleniumBrowser = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser",	ZimbraSeleniumProperties.getStringProperty("browser"));
-			
+
 			if (SeleniumBrowser.contains("iexplore")) {
 			    CommandLine.CmdExec("taskkill /f /t /im iexplore.exe");
 			} else if (SeleniumBrowser.contains("firefox")) {
@@ -573,13 +669,13 @@ public class AjaxCommonTest {
 			} else if (SeleniumBrowser.contains("chrome")) {
 				CommandLine.CmdExec("taskkill /f /t /im chrome.exe");
 			}
-			
+
 		} catch (IOException e) {
 			logger.error("Unable to kill browsers", e);
 		} catch (InterruptedException e) {
 			logger.error("Unable to kill browsers", e);
 		}
-		
+
 		try
 		{
 			if (ZimbraSeleniumProperties.getAppType() == AppType.AJAX) {
@@ -593,18 +689,18 @@ public class AjaxCommonTest {
 			} else if (ZimbraSeleniumProperties.getAppType() == AppType.MOBILE) {
 				ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.MOBILE);
 			}
-			
+
 			if(ZimbraSeleniumProperties.isWebDriver()) {
-				
+
 				_webDriver = ClientSessionFactory.session().webDriver();
 
 				Capabilities cp =  ((RemoteWebDriver)_webDriver).getCapabilities();
-				if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){				
+				if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){
 					_webDriver.manage().window().setPosition(new Point(0, 0));
 					_webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
 					_webDriver.navigate().to(ZimbraSeleniumProperties.getBaseURL());
 				}
-				
+
 			} else {
 
 				ClientSessionFactory.session().selenium().start();
@@ -614,14 +710,14 @@ public class AjaxCommonTest {
 				ClientSessionFactory.session().selenium().setTimeout("60000");
 				ClientSessionFactory.session().selenium().open(ZimbraSeleniumProperties.getBaseURL());
 			}
-			
+
 		} catch (SeleniumException e) {
 			logger.error("Unable to open app.", e);
 			throw e;
 		}
-		
+
 		try {
-			
+
 			if (ZimbraSeleniumProperties.getAppType() == AppType.AJAX) {
 				if (ZimbraAccount.AccountZWC() != null) {
 					((AppAjaxClient)app).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
@@ -629,10 +725,10 @@ public class AjaxCommonTest {
 					((AppAjaxClient)app).zPageLogin.zLogin(ZimbraAccount.Account10());
 				}
 			}
-			
+
 		} catch (HarnessException e) {
 			logger.error("Unable to navigate to app.", e);
 		}
-		
+
 	}
 }

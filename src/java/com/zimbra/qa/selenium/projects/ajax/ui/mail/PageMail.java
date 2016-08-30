@@ -1,7 +1,7 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
@@ -11,7 +11,7 @@
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
@@ -130,6 +130,10 @@ public class PageMail extends AbsTab {
 		public static final String zCloseButtonFullViewPane = "css=img[data-mce-src^='cid']&&[data-mce-src$='@zimbra']";
 		public static final String zDeleteButtonFullViewPane = "css=div[id^='ztb__MSG'] div[id$='DELETE'] tr td[id$='DELETE_title']";
 		
+		//Reading pane separator bar locators
+		public static final String zBottomReadingPaneSeparatorBar = "css=div[class='AppSash-vert']";
+		public static final String zRightReadingPaneSeparatorBar = "css=div[class='AppSash-horiz']";
+		
 		public static class CONTEXT_MENU {
 			// TODO: Until https://bugzilla.zimbra.com/show_bug.cgi?id=56273 is
 			// fixed, ContextMenuItem will be defined using the text content
@@ -235,7 +239,7 @@ public class PageMail extends AbsTab {
 
 		boolean found = false;
 
-		for (int i=1; i<=3; i++) {
+		for (int i=1; i<=2; i++) {
 
 			zToolbarPressButton(Button.B_REFRESH);
 
@@ -255,7 +259,7 @@ public class PageMail extends AbsTab {
 			if (found == true) {
 				SleepUtil.sleepSmall();
 				logger.info("Mail displayed in current view");
-				ZAssert.assertTrue(found, "Mail not displayed in current view");
+				ZAssert.assertTrue(found, "Mail displayed in current view");
 				break;
 			}
 		}
@@ -662,7 +666,30 @@ public class PageMail extends AbsTab {
 
 			return (null);
 
-		} else if ((button == Button.B_MAIL_LIST_GROUPBY_FROM)
+		}   else if ((button == Button.B_MAIL_VIEW_BY_CONVERSATION)
+				|| (button == Button.B_MAIL_VIEW_BY_MESSAGE)) { //Selecting the view
+
+			locator = "css=td[id$=VIEW_MENU_dropdown]>div[class='ImgSelectPullDownArrow']";
+			this.zClick(locator, (WebElement[]) null);			
+			this.zWaitForBusyOverlay();
+
+			/*// Click on Reading pane
+			locator = "css=td[id$=READING_PANE_1_dropdown]>div[class='ImgCascade']"; 
+			this.zClick(locator, (WebElement[]) null);
+			this.zWaitForBusyOverlay();*/
+
+			// Select view (message/conversation)
+			if (button == Button.B_MAIL_VIEW_BY_CONVERSATION) {
+				locator = "css=div#CLV td[id$='_title']";
+			} else if (button == Button.B_MAIL_VIEW_BY_MESSAGE) {
+				locator = "css=div#TV td[id$='_title']";
+			} 
+			this.zClick(locator, (WebElement[]) null);
+			this.zWaitForBusyOverlay();
+
+			return (null);
+
+		}	else if ((button == Button.B_MAIL_LIST_GROUPBY_FROM)
 				|| (button == Button.B_MAIL_LIST_GROUPBY_DATE)
 				|| (button == Button.B_MAIL_LIST_GROUPBY_SIZE)) {
 

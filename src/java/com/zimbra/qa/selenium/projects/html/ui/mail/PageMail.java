@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
@@ -247,7 +247,7 @@ public class PageMail extends AbsTab {
 
 		if ( pulldown == Button.B_NEW ) {
 
-			if ( option == Button.O_NEW_ADDRESSBOOK ) {
+			if ( option == Button.O_NEW_CONTACTS_FOLDER ) {
 				throw new HarnessException("implement me!");
 			} else if ( option == Button.O_NEW_APPOINTMENT ) {
 				throw new HarnessException("implement me!");
@@ -277,7 +277,7 @@ public class PageMail extends AbsTab {
 				throw new HarnessException("implement me!");
 			} else if ( option == Button.O_NEW_TASK ) {
 				throw new HarnessException("implement me!");
-			} else if ( option == Button.O_NEW_TASKFOLDER ) {
+			} else if ( option == Button.O_NEW_TASK_FOLDER ) {
 				throw new HarnessException("implement me!");
 			} else {
 				throw new HarnessException("no logic defined for pulldown/option "+ pulldown +"/"+ option);
