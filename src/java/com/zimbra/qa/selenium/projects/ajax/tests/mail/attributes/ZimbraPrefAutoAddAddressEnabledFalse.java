@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attributes;
@@ -27,7 +27,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
@@ -48,7 +48,8 @@ public class ZimbraPrefAutoAddAddressEnabledFalse extends AjaxCommonTest {
 	 * Verify receiver' addresses of out-going mails not added to "Emailed Contacts" folder automatically 
 	 * @throws HarnessException
 	 */
-	@Test(description = " send message to 1 receiver, the address should not be added into Emailed Contact", groups = { "smoke" })
+	@Test( description = " send message to 1 receiver, the address should not be added into Emailed Contact", groups = { "smoke" })
+	
 	public void SendEmailTo1Receiver() throws HarnessException {
 
 		ZimbraAccount receiver = new ZimbraAccount();
@@ -58,8 +59,8 @@ public class ZimbraPrefAutoAddAddressEnabledFalse extends AjaxCommonTest {
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(receiver));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
 		
 		
 		// Open the new mail form
@@ -88,7 +89,7 @@ public class ZimbraPrefAutoAddAddressEnabledFalse extends AjaxCommonTest {
 	 * Verify receiver' addresses of out-going mails not added to "Emailed Contacts" folder automatically 
 	 * @throws HarnessException
 	 */
-	@Test(description = " send message to 2 receivers, the address should not be added into Emailed Contact", groups = { "functional" })
+	@Test( description = " send message to 2 receivers, the address should not be added into Emailed Contact", groups = { "functional" })
 	public void SendEmailTo2Receivers() throws HarnessException {
 
 		ZimbraAccount receiver1 = new ZimbraAccount();
@@ -103,8 +104,8 @@ public class ZimbraPrefAutoAddAddressEnabledFalse extends AjaxCommonTest {
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(receiver1));
 		mail.dToRecipients.add(new RecipientItem(receiver2));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
 		
 		
 		// Open the new mail form

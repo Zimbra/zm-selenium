@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.email;
@@ -36,18 +36,18 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test(	description = "Hover over a contact in a message body",
+	@Test( description = "Hover over a contact in a message body",
 			groups = { "functional" })
 	public void HoverOverMessageBody_01() throws HarnessException {
 
-		final String email = "email" + ZimbraSeleniumProperties.getUniqueString() + "@foo.com";
-		final String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		final String email = "email" + ConfigProperties.getUniqueString() + "@foo.com";
+		final String subject = "subject" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
 						"<cn >" +
-							"<a n='firstName'>first"+ ZimbraSeleniumProperties.getUniqueString() +"</a>" +
-							"<a n='lastName'>last"+ ZimbraSeleniumProperties.getUniqueString() +"</a>" +
+							"<a n='firstName'>first"+ ConfigProperties.getUniqueString() +"</a>" +
+							"<a n='lastName'>last"+ ConfigProperties.getUniqueString() +"</a>" +
 							"<a n='email'>"+ email +"</a>" +
 						"</cn>" +
 				"</CreateContactRequest>" );
@@ -87,14 +87,14 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test(	description = "Hover over a GAL contact in a message body",
+	@Test( description = "Hover over a GAL contact in a message body",
 			groups = { "functional" })
 	public void HoverOverMessageBody_02() throws HarnessException {
 		
 		// Create a contact in the GAL
 		ZimbraAccount contactGAL = (new ZimbraAccount()).provision().authenticate();
 		
-		final String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		final String subject = "subject" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -132,11 +132,11 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Hover over a contact group in a message body",
+	@Test( description = "Hover over a contact group in a message body",
 			groups = { "functional" })
 	public void HoverOverMessageBody_03() throws HarnessException {
 
-		String groupName = "group" + ZimbraSeleniumProperties.getUniqueString();
+		String groupName = "group" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
 					"<cn >" +
@@ -148,7 +148,7 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 					"</cn>" +
 				"</CreateContactRequest>");
 
-		final String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		final String subject = "subject" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -183,12 +183,12 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test(	description = "Hover over an unknown email address",
+	@Test( description = "Hover over an unknown email address",
 			groups = { "functional" })
 	public void HoverOverMessageBody_04() throws HarnessException {
 
-		final String email = "email" + ZimbraSeleniumProperties.getUniqueString() + "@foo.com";
-		final String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		final String email = "email" + ConfigProperties.getUniqueString() + "@foo.com";
+		final String subject = "subject" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -225,18 +225,18 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test(	description = "Hover over a contact in a message body (zimbraFeatureGalEnabled=FALSE)",
+	@Test( description = "Hover over a contact in a message body (zimbraFeatureGalEnabled=FALSE)",
 			groups = { "functional" })
 	public void HoverOverMessageBody_05() throws HarnessException {
 
-		final String email = "email" + ZimbraSeleniumProperties.getUniqueString() + "@foo.com";
-		final String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		final String email = "email" + ConfigProperties.getUniqueString() + "@foo.com";
+		final String subject = "subject" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
 						"<cn >" +
-							"<a n='firstName'>first"+ ZimbraSeleniumProperties.getUniqueString() +"</a>" +
-							"<a n='lastName'>last"+ ZimbraSeleniumProperties.getUniqueString() +"</a>" +
+							"<a n='firstName'>first"+ ConfigProperties.getUniqueString() +"</a>" +
+							"<a n='lastName'>last"+ ConfigProperties.getUniqueString() +"</a>" +
 							"<a n='email'>"+ email +"</a>" +
 						"</cn>" +
 				"</CreateContactRequest>" );
@@ -277,15 +277,15 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Bugs(	ids = "80286" )
-	@Test(	description = "Hover over a GAL contact in a message body (zimbraFeatureGalEnabled=FALSE)",
+	@Bugs( ids = "80286" )
+	@Test( description = "Hover over a GAL contact in a message body (zimbraFeatureGalEnabled=FALSE)",
 			groups = { "functional" })
 	public void HoverOverMessageBody_06() throws HarnessException {
 
 		// Create a contact in the GAL
 		ZimbraAccount contactGAL = (new ZimbraAccount()).provision().authenticate();
 		
-		final String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		final String subject = "subject" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -323,11 +323,11 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Hover over a contact group in a message body (zimbraFeatureGalEnabled=FALSE)",
+	@Test( description = "Hover over a contact group in a message body (zimbraFeatureGalEnabled=FALSE)",
 			groups = { "functional" })
 	public void HoverOverMessageBody_07() throws HarnessException {
 
-		String groupName = "group" + ZimbraSeleniumProperties.getUniqueString();
+		String groupName = "group" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 			"<CreateContactRequest xmlns='urn:zimbraMail'>" +
 				"<cn >" +
@@ -339,7 +339,7 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 				"</cn>" +
 			"</CreateContactRequest>");
 
-		final String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		final String subject = "subject" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -374,13 +374,13 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Bugs(	ids = "80286" )
-	@Test(	description = "Hover over an unknown email address (zimbraFeatureGalEnabled=FALSE)",
+	@Bugs( ids = "80286" )
+	@Test( description = "Hover over an unknown email address (zimbraFeatureGalEnabled=FALSE)",
 			groups = { "functional" })
 	public void HoverOverMessageBody_08() throws HarnessException {
 
-		final String email = "email" + ZimbraSeleniumProperties.getUniqueString() + "@foo.com";
-		final String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		final String email = "email" + ConfigProperties.getUniqueString() + "@foo.com";
+		final String subject = "subject" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"

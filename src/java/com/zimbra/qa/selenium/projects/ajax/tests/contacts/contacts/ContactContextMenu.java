@@ -1,26 +1,24 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contacts;
 
-import java.util.ArrayList;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
-import com.zimbra.qa.selenium.framework.items.ContextMenuItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -28,9 +26,8 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.ContextMenu;
 import com.zimbra.qa.selenium.projects.ajax.ui.PagePrint;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageContacts;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
@@ -79,52 +76,37 @@ public class ContactContextMenu extends AjaxCommonTest  {
 
 	private ContactItem createSelectARandomContactItem(String ... tagIdArray) throws HarnessException {
 
-		String firstName = "first" + ZimbraSeleniumProperties.getUniqueString();		
-		String lastName = "last" + ZimbraSeleniumProperties.getUniqueString();
-	    String email = "email" +  ZimbraSeleniumProperties.getUniqueString() + "@zimbra.com";
+		String firstName = "first" + ConfigProperties.getUniqueString();		
+		String lastName = "last" + ConfigProperties.getUniqueString();
+	    String email = "email" +  ConfigProperties.getUniqueString() + "@zimbra.com";
 	
 	    return createSelectAContactItem(firstName, lastName, email, tagIdArray );
 	}
 	
 	
-	@Test(	description = "Right click a contact to show a menu",
+	@Test( description = "Right click a contact to show a menu",
 			groups = { "smoke" })
 	public void ShowContextMenu() throws HarnessException {
 		
 		ContactItem contactItem = createSelectARandomContactItem();
 		
         // Right click to show the menu
-        ContextMenu contextMenu= (ContextMenu) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, contactItem.fileAs); // contactItem.fileAs);
+        app.zPageContacts.zListItem(Action.A_RIGHTCLICK, contactItem.fileAs);
       
-        ArrayList <ContextMenuItem> list = contextMenu.zListGetContextMenuItems(PageContacts.CONTEXT_MENU.class);
-        
-        //verify all items in the context menu list
-        ZAssert.assertTrue(list.contains(PageContacts.CONTEXT_MENU.CONTACT_SEARCH),"Verify contact search in context menu");
-         ZAssert.assertTrue(list.contains(PageContacts.CONTEXT_MENU.CONTACT_NEW_EMAIL),"Verify new email in context menu");
-        ZAssert.assertTrue(list.contains(PageContacts.CONTEXT_MENU.CONTACT_EDIT),"Verify edit contact  in context menu");
-        ZAssert.assertTrue(list.contains(PageContacts.CONTEXT_MENU.CONTACT_FORWARD),"Verify forward email in context menu");
-        ZAssert.assertTrue(list.contains(PageContacts.CONTEXT_MENU.CONTACT_TAG),"Verify tag option in context menu");
-        ZAssert.assertTrue(list.contains(PageContacts.CONTEXT_MENU.CONTACT_DELETE),"Verify delete option in context menu");
-        ZAssert.assertTrue(list.contains(PageContacts.CONTEXT_MENU.CONTACT_MOVE),"Verify move option in context menu");
-        ZAssert.assertTrue(list.contains(PageContacts.CONTEXT_MENU.CONTACT_PRINT),"Verify print option in context menu");
-
-        //Verify all items enabled
-        ZAssert.assertTrue(contextMenu.isEnable(PageContacts.CONTEXT_MENU.CONTACT_SEARCH),"Verify contact search is enabled");
-        ZAssert.assertTrue(contextMenu.isEnable(PageContacts.CONTEXT_MENU.CONTACT_NEW_EMAIL),"Verify new email is enabled");
-        ZAssert.assertTrue(contextMenu.isEnable(PageContacts.CONTEXT_MENU.CONTACT_EDIT),"Verify edit contact is enabled");
-
-        
-        ZAssert.assertTrue(contextMenu.isEnable(PageContacts.CONTEXT_MENU.CONTACT_FORWARD),"Verify forward email is disabled");
-        
-        ZAssert.assertTrue(contextMenu.isEnable(PageContacts.CONTEXT_MENU.CONTACT_TAG),"Verify tag option is enabled");
-        ZAssert.assertTrue(contextMenu.isEnable(PageContacts.CONTEXT_MENU.CONTACT_DELETE),"Verify delete option is enabled");
-        ZAssert.assertTrue(contextMenu.isEnable(PageContacts.CONTEXT_MENU.CONTACT_MOVE),"Verify move option is enabled");
-        ZAssert.assertTrue(contextMenu.isEnable(PageContacts.CONTEXT_MENU.CONTACT_PRINT),"Verify print option is enabled");
+        // Verify all items in the context menu list
+        ZAssert.assertTrue(app.zPageContacts.sIsElementPresent(PageContacts.CONTEXT_MENU.CONTACT_SEARCH.locator),"Verify contact search in context menu");
+        ZAssert.assertTrue(app.zPageContacts.sIsElementPresent(PageContacts.CONTEXT_MENU.CONTACT_NEW_EMAIL.locator),"Verify new email in context menu");
+        ZAssert.assertTrue(app.zPageContacts.sIsElementPresent(PageContacts.CONTEXT_MENU.CONTACT_EDIT.locator),"Verify edit contact  in context menu");
+        ZAssert.assertTrue(app.zPageContacts.sIsElementPresent(PageContacts.CONTEXT_MENU.CONTACT_FORWARD.locator),"Verify forward email in context menu");
+        ZAssert.assertTrue(app.zPageContacts.sIsElementPresent(PageContacts.CONTEXT_MENU.CONTACT_TAG.locator),"Verify tag option in context menu");
+        ZAssert.assertTrue(app.zPageContacts.sIsElementPresent(PageContacts.CONTEXT_MENU.CONTACT_DELETE.locator),"Verify delete option in context menu");
+        ZAssert.assertTrue(app.zPageContacts.sIsElementPresent(PageContacts.CONTEXT_MENU.CONTACT_MOVE.locator),"Verify move option in context menu");
+        ZAssert.assertTrue(app.zPageContacts.sIsElementPresent(PageContacts.CONTEXT_MENU.CONTACT_PRINT.locator),"Verify print option in context menu");
    	}
 	
 
 
-	@Test(	description = "Right click then click New Email",
+	@Test( description = "Right click then click New Email",
 			groups = { "smoke" })
 	public void NewEmail() throws HarnessException {
 	
@@ -145,7 +127,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 	}
 	
 
-	@Test(	description = "Right click then click Advanced Search",
+	@Test( description = "Right click then click Advanced Search",
 			groups = { "deprecated" })
 	public void AdvancedSearch() throws HarnessException {
 	
@@ -162,7 +144,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
         pageAdvancedSearch.zToolbarPressButton(Button.B_CLOSE);
 	}
 
-	@Test(	description = "Right click then click Print",
+	@Test( description = "Right click then click Print",
 			groups = { "smoke-skip" })	
 	public void Print() throws HarnessException {
 		ContactItem contactItem = createSelectARandomContactItem();
@@ -180,13 +162,13 @@ public class ContactContextMenu extends AjaxCommonTest  {
 	    
 	}
 	
-	@Test(	description = "Right click then  click Find Emails->Received From contact",
+	@Test( description = "Right click then  click Find Emails->Received From contact",
 			groups = { "smoke" })
 	public void FindEmailsReceivedFromContact() throws HarnessException {
 		
 	    //Create  email sent to this contacts	
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String lastName = "lastname " + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String lastName = "lastname " + ConfigProperties.getUniqueString();
 		
 		// Send the message from AccountB to the ZWC user
 		ZimbraAccount.AccountB().soapSend(
@@ -195,7 +177,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>"+ "body" + ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
@@ -221,13 +203,13 @@ public class ContactContextMenu extends AjaxCommonTest  {
 		
 	}
 
-	@Test(	description = "Right click then  click Find Emails->Sent To contact",
+	@Test( description = "Right click then  click Find Emails->Sent To contact",
 			groups = { "smoke" })
 	public void FindEmailsSentToContact() throws HarnessException {
 
 	    //Create  email sent to this contacts	
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String lastName = "lastname " + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String lastName = "lastname " + ConfigProperties.getUniqueString();
 		
 		// Send the message from AccountA to the ZWC user
 		ZimbraAccount.AccountA().soapSend(
@@ -236,7 +218,7 @@ public class ContactContextMenu extends AjaxCommonTest  {
 					"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 					"<su>"+ subject +"</su>" +
 					"<mp ct='text/plain'>" +
-						"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+						"<content>"+ "body" + ConfigProperties.getUniqueString() +"</content>" +
 					"</mp>" +
 				"</m>" +
 			"</SendMsgRequest>");

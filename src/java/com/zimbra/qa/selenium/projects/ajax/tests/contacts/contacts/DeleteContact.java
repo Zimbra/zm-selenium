@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contacts;
@@ -49,7 +49,7 @@ public class DeleteContact extends AjaxCommonTest  {
 		
 	}
 	
-	@Test(	description = "Delete a contact item",
+	@Test( description = "Delete a contact item",
 			groups = { "smoke" })
 	public void ClickDeleteOnToolbar() throws HarnessException {
 
@@ -57,9 +57,9 @@ public class DeleteContact extends AjaxCommonTest  {
 		
 		// Create a contact item
 		ContactItem contact = new ContactItem();
-		contact.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
-		contact.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
-		contact.email = "email" + ZimbraSeleniumProperties.getUniqueString() + "@domain.com";
+		contact.firstName = "First" + ConfigProperties.getUniqueString();
+		contact.lastName = "Last" + ConfigProperties.getUniqueString();
+		contact.email = "email" + ConfigProperties.getUniqueString() + "@domain.com";
 
 		app.zGetActiveAccount().soapSend(
 	                "<CreateContactRequest xmlns='urn:zimbraMail'>" +
@@ -95,7 +95,7 @@ public class DeleteContact extends AjaxCommonTest  {
         
    	}
 
-	@Test(	description = "Delete a contact item selected with checkbox",
+	@Test( description = "Delete a contact item selected with checkbox",
 			groups = { "functional" })
 	public void DeleteContactSelectedWithCheckbox() throws HarnessException {
 
@@ -103,9 +103,9 @@ public class DeleteContact extends AjaxCommonTest  {
 		
 		// Create a contact item
 		ContactItem contact = new ContactItem();
-		contact.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
-		contact.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
-		contact.email = "email" + ZimbraSeleniumProperties.getUniqueString() + "@domain.com";
+		contact.firstName = "First" + ConfigProperties.getUniqueString();
+		contact.lastName = "Last" + ConfigProperties.getUniqueString();
+		contact.email = "email" + ConfigProperties.getUniqueString() + "@domain.com";
 
 		app.zGetActiveAccount().soapSend(
 	                "<CreateContactRequest xmlns='urn:zimbraMail'>" +
@@ -147,7 +147,7 @@ public class DeleteContact extends AjaxCommonTest  {
 	  };
 	}
 
-	@Test(	description = "Delete a contact item using keyboard short cut Del",
+	@Test( description = "Delete a contact item using keyboard short cut Del",
 			groups = { "functional" },
 			dataProvider = "DataProviderDeleteKeys")
 	public void UseShortcut(String name, int keyEvent) throws HarnessException {
@@ -158,9 +158,9 @@ public class DeleteContact extends AjaxCommonTest  {
 		
 		// Create a contact item
 		ContactItem contact = new ContactItem();
-		contact.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
-		contact.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
-		contact.email = "email" + ZimbraSeleniumProperties.getUniqueString() + "@domain.com";
+		contact.firstName = "First" + ConfigProperties.getUniqueString();
+		contact.lastName = "Last" + ConfigProperties.getUniqueString();
+		contact.email = "email" + ConfigProperties.getUniqueString() + "@domain.com";
 
 		app.zGetActiveAccount().soapSend(
 	                "<CreateContactRequest xmlns='urn:zimbraMail'>" +
@@ -199,7 +199,7 @@ public class DeleteContact extends AjaxCommonTest  {
 	
 	
 
-	@Test(	description = "Right click then click delete",
+	@Test( description = "Right click then click delete",
 			groups = { "smoke" })
 	public void DeleteFromContextMenu() throws HarnessException {
 		
@@ -208,9 +208,9 @@ public class DeleteContact extends AjaxCommonTest  {
 		
 		// Create a contact item
 		ContactItem contact = new ContactItem();
-		contact.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
-		contact.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
-		contact.email = "email" + ZimbraSeleniumProperties.getUniqueString() + "@domain.com";
+		contact.firstName = "First" + ConfigProperties.getUniqueString();
+		contact.lastName = "Last" + ConfigProperties.getUniqueString();
+		contact.email = "email" + ConfigProperties.getUniqueString() + "@domain.com";
 		contact.fileAs = contact.lastName + ", " + contact.firstName;
 
 		app.zGetActiveAccount().soapSend(
@@ -242,7 +242,7 @@ public class DeleteContact extends AjaxCommonTest  {
 
    	}
 
-	@Test(	description = "Delete multiple contact items",
+	@Test( description = "Delete multiple contact items",
 			groups = { "functional" })
 	public void DeleteMultipleContacts() throws HarnessException {
 
@@ -253,9 +253,9 @@ public class DeleteContact extends AjaxCommonTest  {
 		
 		// Create a contact items
 		ContactItem contact1 = new ContactItem();
-		contact1.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
-		contact1.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
-		contact1.email = "email" + ZimbraSeleniumProperties.getUniqueString() + "@domain.com";
+		contact1.firstName = "First" + ConfigProperties.getUniqueString();
+		contact1.lastName = "Last" + ConfigProperties.getUniqueString();
+		contact1.email = "email" + ConfigProperties.getUniqueString() + "@domain.com";
 		contact1.fileAs = contact1.lastName + ", " + contact1.firstName;
 
 		app.zGetActiveAccount().soapSend(
@@ -268,9 +268,9 @@ public class DeleteContact extends AjaxCommonTest  {
 	                "</CreateContactRequest>");
 
 		ContactItem contact2 = new ContactItem();
-		contact2.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
-		contact2.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
-		contact2.email = "email" + ZimbraSeleniumProperties.getUniqueString() + "@domain.com";
+		contact2.firstName = "First" + ConfigProperties.getUniqueString();
+		contact2.lastName = "Last" + ConfigProperties.getUniqueString();
+		contact2.email = "email" + ConfigProperties.getUniqueString() + "@domain.com";
 		contact2.fileAs = contact2.lastName + ", " + contact2.firstName;
 
 		app.zGetActiveAccount().soapSend(
@@ -283,9 +283,9 @@ public class DeleteContact extends AjaxCommonTest  {
 	                "</CreateContactRequest>");
 
 		ContactItem contact3 = new ContactItem();
-		contact3.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
-		contact3.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
-		contact3.email = "email" + ZimbraSeleniumProperties.getUniqueString() + "@domain.com";
+		contact3.firstName = "First" + ConfigProperties.getUniqueString();
+		contact3.lastName = "Last" + ConfigProperties.getUniqueString();
+		contact3.email = "email" + ConfigProperties.getUniqueString() + "@domain.com";
 		contact3.fileAs = contact3.lastName + ", " + contact3.firstName;
 
 		app.zGetActiveAccount().soapSend(

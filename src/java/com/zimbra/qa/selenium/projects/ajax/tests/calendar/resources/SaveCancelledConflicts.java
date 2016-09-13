@@ -1,3 +1,21 @@
+/*
+ * ***** BEGIN LICENSE BLOCK *****
+ *
+ * Zimbra Collaboration Suite Server
+ * Copyright (C) 2016 Synacor, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ *
+ * ***** END LICENSE BLOCK *****
+ */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 
 import com.zimbra.qa.selenium.framework.core.Bugs;
@@ -10,7 +28,7 @@ import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraResource;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogWarningConflictingResources;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
@@ -25,7 +43,7 @@ public class SaveCancelledConflicts extends CalendarWorkWeekTest {
   }
   
   @Bugs(ids = "77991,75434")
-  @Test(description = "Unable to save when cancelling conflicts", groups = {"functional"} )
+  @Test( description = "Unable to save when cancelling conflicts", groups = {"functional"} )
   
   public void SaveCancelledConflicts_01() throws HarnessException  {
 	  
@@ -33,10 +51,10 @@ public class SaveCancelledConflicts extends CalendarWorkWeekTest {
 		String apptLocation = location.EmailAddress;
 		String apptAttendeeEmail1 = ZimbraAccount.AccountA().EmailAddress;
 		String apptAttendeeEmail2 = ZimbraAccount.AccountA().EmailAddress;
-		String apptContent = ZimbraSeleniumProperties.getUniqueString();
+		String apptContent = ConfigProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
-		String apptSubject1 = ZimbraSeleniumProperties.getUniqueString();
-		String apptSubject2 = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject1 = ConfigProperties.getUniqueString();
+		String apptSubject2 = ConfigProperties.getUniqueString();
 			
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
@@ -58,7 +76,7 @@ public class SaveCancelledConflicts extends CalendarWorkWeekTest {
 				"</inv>" +
 				"<e a='"+ apptLocation +"' t='t'/>" +
 				"<mp content-type='text/plain'>" +
-				"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"<su>"+ apptSubject1 +"</su>" +
 				"</m>" +

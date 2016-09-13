@@ -1,3 +1,21 @@
+/*
+ * ***** BEGIN LICENSE BLOCK *****
+ *
+ * Zimbra Collaboration Suite Server
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ *
+ * ***** END LICENSE BLOCK *****
+ */
 package com.zimbra.qa.selenium.projects.touch.tests.mail.mail.message;
 
 import java.awt.AWTException;
@@ -18,15 +36,15 @@ public class MoveMessage extends PrefGroupMailByConversationTest{
 	public MoveMessage() {
 		logger.info("New "+ MoveMessage.class.getCanonicalName());
 	}
-	@Test(	description = "Move a mail by 'move conversation' button",
+	@Test( description = "Move a mail by 'move conversation' button",
 			groups = { "sanity" })
 
 
 	public void MoveMail_01() throws HarnessException, AWTException {
 
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		FolderItem userRoot = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		String folderName = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String folderName = "folder" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 						"<folder name='"+ folderName +"' l='"+ userRoot.getId() +"'/>" +
@@ -40,7 +58,7 @@ public class MoveMessage extends PrefGroupMailByConversationTest{
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-						"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 						"</m>" +
 				"</SendMsgRequest>");
@@ -66,12 +84,12 @@ public class MoveMessage extends PrefGroupMailByConversationTest{
 	}	
 
 	@Bugs( ids = "83506")
-	@Test(	description = "Move a mail into subfolder",
+	@Test( description = "Move a mail into subfolder",
 	groups = { "smoke" })
 	public void MoveMail_02() throws HarnessException {
 
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 		String locator = "css=div[class='zcs-menu-label']:contains('" + foldername + "')";
 
 		// Create a subfolder to move the message into
@@ -91,7 +109,7 @@ public class MoveMessage extends PrefGroupMailByConversationTest{
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-						"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 						"</m>" +
 				"</SendMsgRequest>");

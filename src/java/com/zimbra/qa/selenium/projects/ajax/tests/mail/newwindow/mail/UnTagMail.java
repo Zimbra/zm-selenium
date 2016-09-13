@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
@@ -35,11 +35,11 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Bugs(ids = "99519")
-	@Test(description = "Un-Tag a message using Toolbar -> Tag -> Remove Tag - in a separate window", groups = { "functional" })
+	@Test( description = "Un-Tag a message using Toolbar -> Tag -> Remove Tag - in a separate window", groups = { "functional" })
 	public void UnTagMail_01() throws HarnessException {
 
 		// Create the tag to delete
-		String tagname = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String tagname = "tag" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateTagRequest xmlns='urn:zimbraMail'>" + "<tag name='"
@@ -48,7 +48,7 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 		TagItem tag = TagItem.importFromSOAP(app.zGetActiveAccount(), tagname);
 		ZAssert.assertNotNull(tag, "Verify the tag was created");
 
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Add a message to the mailbox
 		FolderItem inboxFolder = FolderItem.importFromSOAP(
@@ -116,11 +116,11 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Remove a tag from a message using Keyboard shortcut u >>in a separate window", groups = { "functional" })
+	@Test( description = "Remove a tag from a message using Keyboard shortcut u >>in a separate window", groups = { "functional" })
 	public void UnTagMail_02() throws HarnessException {
 
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String tagname = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String tagname = "tag" + ConfigProperties.getUniqueString();
 
 		Shortcut shortcut = Shortcut.S_UNTAG;
 
@@ -200,11 +200,11 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Remove a tag from a message clicking 'x' from tag bubble >>in a separate window", groups = { "functional" })
+	@Test( description = "Remove a tag from a message clicking 'x' from tag bubble >>in a separate window", groups = { "functional" })
 	public void UnTagMail_03() throws HarnessException {
 
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String tagname = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String tagname = "tag" + ConfigProperties.getUniqueString();
 
 		// Create a tag
 		app.zGetActiveAccount().soapSend(

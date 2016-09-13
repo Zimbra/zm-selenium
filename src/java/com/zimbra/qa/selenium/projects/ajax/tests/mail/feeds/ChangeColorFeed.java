@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.feeds;
@@ -32,22 +32,20 @@ public class ChangeColorFeed extends PrefGroupMailByMessageTest {
 
 	public ChangeColorFeed() {
 		logger.info("New " + ChangeColorFeed.class.getCanonicalName());
-
 	}
 
-	@Test(
-			description = "Edit a feedfolder, change the color (Context menu -> Edit)", 
-			groups = { "functional" })
+	@Test( description = "Edit a feedfolder, change the color (Context menu -> Edit)", groups = { "functional" })
+	
 	public void ChangeColorFeed_01() throws HarnessException, MalformedURLException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		ZAssert.assertNotNull(inbox, "Verify the inbox is available");
 
 		// Create a subfolder in Inbox
-		String feedname = "feed" + ZimbraSeleniumProperties.getUniqueString();
+		String feedname = "feed" + ConfigProperties.getUniqueString();
 		
 		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
-		URL feedurl = new URL(ZimbraSeleniumProperties.getStringProperty("feed.rss"));
+		URL feedurl = new URL(ConfigProperties.getStringProperty("feed.rss"));
 
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
@@ -78,5 +76,4 @@ public class ChangeColorFeed extends PrefGroupMailByMessageTest {
 		String color = app.zGetActiveAccount().soapSelectValue("//mail:folder[@name='" + feed.getName() + "']", "color");
 		ZAssert.assertEquals(color, "8", "Verify the color of the folder is set to gray (8)");
 	}
-
 }

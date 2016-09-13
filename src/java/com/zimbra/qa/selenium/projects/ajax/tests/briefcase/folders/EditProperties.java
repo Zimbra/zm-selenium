@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.folders;
@@ -35,7 +35,7 @@ public class EditProperties extends FeatureBriefcaseTest {
 		super.startingPage = app.zPageBriefcase;		
 	}
 
-	@Test(description = "Edit Properties - Rename folder using context menu", groups = { "functional" })
+	@Test( description = "Edit Properties - Rename folder using context menu", groups = { "functional" })
 	public void EditProperties_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -47,7 +47,7 @@ public class EditProperties extends FeatureBriefcaseTest {
 
 		// Create the sub-folder
 		String subFolderName = "folder"
-				+ ZimbraSeleniumProperties.getUniqueString();
+				+ ConfigProperties.getUniqueString();
 
 		account.soapSend("<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+ "<folder name='" + subFolderName + "' l='"
@@ -69,7 +69,7 @@ public class EditProperties extends FeatureBriefcaseTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 		
 		// Set the name, click OK
-		String subFolderName2 = "renamedfolder" + ZimbraSeleniumProperties.getUniqueString();
+		String subFolderName2 = "renamedfolder" + ConfigProperties.getUniqueString();
 		
 		dialog.zSetNewName(subFolderName2);
 		

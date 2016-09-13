@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.accounts.twofactorauth;
@@ -28,6 +28,7 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+
 public class RevokeDevice extends AjaxCommonTest {
 
 	public RevokeDevice() {
@@ -36,15 +37,15 @@ public class RevokeDevice extends AjaxCommonTest {
 			private static final long serialVersionUID = 2485388299568483622L;
 			{				
 		 		put("zimbraFeatureTwoFactorAuthAvailable", "TRUE");
-		 		
 			}
 		};
-
 	}
 
-	@Test(	description = "Revoke the trusted computer and verify that totp is required after that",
+	@Test( description = "Revoke the trusted computer and verify that totp is required after that", priority=4, 
 			groups = { "functional", "network" })
+	
 	public void RevokeThisDevie_01() throws HarnessException {
+		
 		String totp, secret, tempToken;
 		
 		ZimbraAccount.AccountZWC().soapSend(
@@ -88,13 +89,13 @@ public class RevokeDevice extends AjaxCommonTest {
 	
 	@AfterMethod(groups={"always"})
 	public void beforeMethod() throws HarnessException {
-		zKillBrowserAndRelogin();
+		zFreshLogin();
 		logger.info(app.zGetActiveAccount().EmailAddress);
 	}
 	
 	@AfterMethod(groups={"always"})
 	public void afterMethod() throws HarnessException {
-		zKillBrowserAndRelogin();
+		zFreshLogin();
 		logger.info(app.zGetActiveAccount().EmailAddress);
 	}
 	

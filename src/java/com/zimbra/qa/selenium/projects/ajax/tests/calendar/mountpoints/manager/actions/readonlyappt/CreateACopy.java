@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.mountpoints.manager.actions.readonlyappt;
@@ -36,19 +36,19 @@ public class CreateACopy extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "80322")
-	@Test(	description = "Assistant right clicks to calendar invite from shared calendar and creates a copy of it",
+	@Test( description = "Assistant right clicks to calendar invite from shared calendar and creates a copy of it",
 			groups = { "functional" })
 			
 	public void CreateACopy_01() throws HarnessException {
 		
 		String organizer;
 		organizerTest = false;
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptContent = "body" + ZimbraSeleniumProperties.getUniqueString();
-		String newSubject = ZimbraSeleniumProperties.getUniqueString();
-		String newContent = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptContent = "body" + ConfigProperties.getUniqueString();
+		String newSubject = ConfigProperties.getUniqueString();
+		String newContent = ConfigProperties.getUniqueString();
 		
-		String mountPointName = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String mountPointName = "mountpoint" + ConfigProperties.getUniqueString();
 		
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
@@ -91,7 +91,7 @@ public class CreateACopy extends CalendarWorkWeekTest {
 		
 		// Mark ON to mounted calendar folder and select the appointment
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
-		app.zTreeCalendar.zMarkOnOffMountedFolder(mountPointName);
+		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountPointName);
 				
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.util;
@@ -26,7 +26,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 import com.zimbra.qa.selenium.framework.util.performance.PerfMetrics;
 
 public class ZimbraURI {
@@ -211,19 +211,9 @@ public class ZimbraURI {
 		return (getQueryFromString(myURI.getQuery()));
 	}
 
-	/**
-	 * Get the current browser location
-	 * @return
-	 * @throws URLSyntaxException
-	 */
-	@SuppressWarnings("deprecation")
 	public static URI getCurrentURI() {
 		String uri;
-		if (ZimbraSeleniumProperties.isWebDriver()){
-		    uri = ClientSessionFactory.session().webDriver().getCurrentUrl();
-		}else{
-		    uri = ClientSessionFactory.session().selenium().getLocation();
-		}
+		uri = ClientSessionFactory.session().webDriver().getCurrentUrl();
 		try {
 			return (new URI(uri));
 		} catch (URISyntaxException e) {
@@ -232,22 +222,13 @@ public class ZimbraURI {
 		}
 	}
 
-	/**
-	 * Get the 'base' URL being used for this test run.  For example,
-	 * https://server.  Or, for performance test run,
-	 * https://server?perfMetric=1
-	 * @return
-	 * @throws NumberFormatException 
-	 * @throws UnsupportedEncodingException 
-	 * @throws URLSyntaxException
-	 */
 	public static URI getBaseURI() {
 		
-		String scheme = ZimbraSeleniumProperties.getStringProperty("server.scheme", "http");
+		String scheme = ConfigProperties.getStringProperty("server.scheme", "http");
 		String userinfo = null;
-		//String host = ZimbraSeleniumProperties.getStringProperty("server.host", "localhost");
-		String host = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host",	ZimbraSeleniumProperties.getStringProperty("server.host"));
-		String port = ZimbraSeleniumProperties.getStringProperty("server.port", "7070");
+		//String host = ConfigProperties.getStringProperty("server.host", "localhost");
+		String host = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host",	ConfigProperties.getStringProperty("server.host"));
+		String port = ConfigProperties.getStringProperty("server.port", "7070");
 		
 		String path = null;
 		Map<String, String> queryMap = new HashMap<String, String>();
@@ -261,64 +242,35 @@ public class ZimbraURI {
 			queryMap.putAll(PerfMetrics.getInstance().getQueryMap());
 		}
 		
-		if ( ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP ) {
-		   logger.info("AppType is: " + ZimbraSeleniumProperties.getAppType());
 
-		      ZimbraDesktopProperties zdp = ZimbraDesktopProperties.getInstance();
-		      int maxRetry = 30;
-		      int retry = 0;
-		      while (retry < maxRetry && zdp.getSerialNumber() == null) {
-		         logger.debug("Local Config file is still not ready");
-		         SleepUtil.sleep(1000);
-		         retry ++;
-		         zdp = ZimbraDesktopProperties.getInstance();
-		      }
-
-		      port = zdp.getConnectionPort();
-		      host = ZimbraSeleniumProperties.getStringProperty("desktop.server.host", "localhost");
-		      path = "/desktop/login.jsp";
-		      queryMap.put("at", zdp.getSerialNumber());
+		if ( ConfigProperties.getAppType() == AppType.AJAX ) {
 
 		}
 
-		if ( ZimbraSeleniumProperties.getAppType() == AppType.AJAX ) {
-			
-			// FALL THROUGH
-
-		}
-
-		if ( ZimbraSeleniumProperties.getAppType() == AppType.HTML ) {
-			
+		if ( ConfigProperties.getAppType() == AppType.HTML ) {
 			path ="/h/";
-
 		}
 
-		if ( ZimbraSeleniumProperties.getAppType() == AppType.MOBILE ) {
-
+		if ( ConfigProperties.getAppType() == AppType.MOBILE ) {
 			path ="/m/";
-			
 		}
 		
-		if ( ZimbraSeleniumProperties.getAppType() == AppType.TOUCH ) {
-
+		if ( ConfigProperties.getAppType() == AppType.TOUCH ) {
 			path = "";
-			
 		}
 
-		if ( ZimbraSeleniumProperties.getAppType() == AppType.ADMIN ) {
-		
+		if ( ConfigProperties.getAppType() == AppType.ADMIN ) {
 			scheme = "https";
 			//path = "/zimbraAdmin/";
 			path = "";
-			port = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".admin.port",	ZimbraSeleniumProperties.getStringProperty("admin.port"));
-
+			port = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".admin.port",	ConfigProperties.getStringProperty("admin.port"));
 		}
 
 		String query = buildQueryFromMap(queryMap);
 		
 		try {
 			URI uri;
-			if ( ZimbraSeleniumProperties.getAppType() == AppType.TOUCH ) {
+			if ( ConfigProperties.getAppType() == AppType.TOUCH ) {
 				uri = new URI(scheme, userinfo, host, Integer.parseInt(port), path, "client=touch", fragment);
 			} else {
 				uri = new URI(scheme, userinfo, host, Integer.parseInt(port), path, query, fragment);
@@ -391,10 +343,10 @@ public class ZimbraURI {
 	
 	private static URI defaultURI() {
 		
-		String scheme = ZimbraSeleniumProperties.getStringProperty("server.scheme", "http");
-		// String host = ZimbraSeleniumProperties.getStringProperty("server.host", "localhost");
-		String host = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host",	ZimbraSeleniumProperties.getStringProperty("server.host"));
-		String port = ZimbraSeleniumProperties.getStringProperty("server.port", "7070");
+		String scheme = ConfigProperties.getStringProperty("server.scheme", "http");
+		// String host = ConfigProperties.getStringProperty("server.host", "localhost");
+		String host = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host",	ConfigProperties.getStringProperty("server.host"));
+		String port = ConfigProperties.getStringProperty("server.port", "7070");
 
 		try {
 			return (new URI(scheme, null, host, Integer.parseInt(port), null, null, null));

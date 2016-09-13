@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.gui;
@@ -55,7 +55,7 @@ public class NavigateAway extends AjaxCommonTest {
 		// This may cause problems if mail is not enabled for this account, but
 		// let's assume that configuration is very rare.
 		//
-		app.zPagePreferences.zClick(PageMain.Locators.zAppbarMail);
+		app.zPagePreferences.zClick(PageMain.Locators.zMailApp);
 
 		app.zPagePreferences.zWaitForBusyOverlay();
 		
@@ -117,7 +117,7 @@ public class NavigateAway extends AjaxCommonTest {
 		if ( 
 				(treeItemLocator == TreeItem.MobileDevices)
 				&&
-				ZimbraSeleniumProperties.zimbraGetVersionString().contains("FOSS")
+				ConfigProperties.zimbraGetVersionString().contains("FOSS")
 			) {
 			
 			// Mobile access is a NETWORK only feature
@@ -158,7 +158,7 @@ public class NavigateAway extends AjaxCommonTest {
 	}
 
 	@Bugs(ids = "103549")
-	@Test(description = "Set calendar custom work week and navigate away without saving", 
+	@Test( description = "Set calendar custom work week and navigate away without saving", 
 			groups = { "functional" })
 	
 	public void NavigateAway_02() throws HarnessException {
@@ -176,7 +176,7 @@ public class NavigateAway extends AjaxCommonTest {
 	}
 
 	@Bugs(ids = "103549")
-	@Test(description = "Change default appointment duration and navigate away without saving", 
+	@Test( description = "Change default appointment duration and navigate away without saving", 
 			groups = { "functional" })
 	
 	public void NavigateAway_03() throws HarnessException {

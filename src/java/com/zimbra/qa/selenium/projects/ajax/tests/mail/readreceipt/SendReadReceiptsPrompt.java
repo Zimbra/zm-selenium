@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.readreceipt;
@@ -37,7 +37,7 @@ public class SendReadReceiptsPrompt extends PrefGroupMailByMessageTest {
 
 	}
 	
-	@Test(	description = "zimbraPrefMailSendReadReceipts=prompt - verify prompt, verify receipt is sent",
+	@Test( description = "zimbraPrefMailSendReadReceipts=prompt - verify prompt, verify receipt is sent",
 			groups = { "functional" })
 	public void SendReadReceiptsPrompt_01() throws HarnessException {
 		
@@ -46,7 +46,7 @@ public class SendReadReceiptsPrompt extends PrefGroupMailByMessageTest {
 		sender.provision().authenticate();
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		
 		// Send the message from AccountA to the ZWC user
 		sender.soapSend(
@@ -56,7 +56,7 @@ public class SendReadReceiptsPrompt extends PrefGroupMailByMessageTest {
 				+			"<e t='n' a='"+ sender.EmailAddress +"'/>"
 				+			"<su>"+ subject +"</su>"
 				+			"<mp ct='text/plain'>"
-				+				"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>"
+				+				"<content>"+ "body" + ConfigProperties.getUniqueString() +"</content>"
 				+			"</mp>"
 				+		"</m>"
 				+	"</SendMsgRequest>");
@@ -88,7 +88,7 @@ public class SendReadReceiptsPrompt extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(	description = "zimbraPrefMailSendReadReceipts=prompt - verify prompt, verify receipt is not sent",
+	@Test( description = "zimbraPrefMailSendReadReceipts=prompt - verify prompt, verify receipt is not sent",
 			groups = { "functional" })
 	public void SendReadReceiptsPrompt_02() throws HarnessException {
 
@@ -98,7 +98,7 @@ public class SendReadReceiptsPrompt extends PrefGroupMailByMessageTest {
 		sender.provision().authenticate();
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		
 		// Send the message from AccountA to the ZWC user
 		sender.soapSend(
@@ -108,7 +108,7 @@ public class SendReadReceiptsPrompt extends PrefGroupMailByMessageTest {
 				+			"<e t='n' a='"+ sender.EmailAddress +"'/>"
 				+			"<su>"+ subject +"</su>"
 				+			"<mp ct='text/plain'>"
-				+				"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>"
+				+				"<content>"+ "body" + ConfigProperties.getUniqueString() +"</content>"
 				+			"</mp>"
 				+		"</m>"
 				+	"</SendMsgRequest>");

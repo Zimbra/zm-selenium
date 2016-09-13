@@ -1,26 +1,22 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.drafts;
 
-
-
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -29,11 +25,10 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
-
 
 public class AutoSaveDraftMail extends PrefGroupMailByMessageTest {
 
@@ -42,23 +37,20 @@ public class AutoSaveDraftMail extends PrefGroupMailByMessageTest {
 	public AutoSaveDraftMail() {
 		logger.info("New "+ AutoSaveDraftMail.class.getCanonicalName());
 
-		
-		
 		super.startingAccountPreferences.put("zimbraPrefAutoSaveDraftInterval", ""+ PrefAutoSaveDraftInterval +"s");
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
-
 	}
 
+	
 	@Bugs(ids = "66393")
-	@Test(	description = "Auto save a basic draft (subject only)",
+	@Test( description = "Auto save a basic draft (subject only)",
 			groups = { "smoke" })
+	
 	public void AutoSaveDraftMail_01() throws HarnessException {
 
-
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
-
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 
 		FormMailNew mailform = null;
 
@@ -88,11 +80,8 @@ public class AutoSaveDraftMail extends PrefGroupMailByMessageTest {
 			if ( (mailform != null) && (mailform.zIsActive()) ) {
 				// Close out the draft
 				mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
-				mailform.zToolbarPressButton(Button.B_CANCEL);
+				mailform.zToolbarPressButton(Button.B_CLOSE);
 			}
 		}
-
-
-
 	}
 }

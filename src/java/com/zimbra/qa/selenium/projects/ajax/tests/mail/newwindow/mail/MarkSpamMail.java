@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
@@ -35,12 +35,12 @@ public class MarkSpamMail extends PrefGroupMailByMessageTest {
 		
 		
 	}
-	@Bugs(	ids = "103950")
-	@Test(	description = "Mark a message as spam, using 'Spam' toolbar button - in separate window",
+	@Bugs( ids = "103950")
+	@Test( description = "Mark a message as spam, using 'Spam' toolbar button - in separate window",
 			groups = { "smoke" })
 	public void MarkSpamMail_01() throws HarnessException {
 		
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		
 		// Get the junk folder
 		FolderItem junk = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Junk);
@@ -53,7 +53,7 @@ public class MarkSpamMail extends PrefGroupMailByMessageTest {
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
@@ -102,12 +102,12 @@ public class MarkSpamMail extends PrefGroupMailByMessageTest {
 				
 	}
 
-	@Bugs(	ids = "103950")
-	@Test(	description = "Mark a message as spam, using keyboard shortcut (keyboard='ms') - in a separate window",
+	@Bugs( ids = "103950")
+	@Test( description = "Mark a message as spam, using keyboard shortcut (keyboard='ms') - in a separate window",
 			groups = { "functional" })
 	public void MarkSpamMail_02() throws HarnessException {
 		
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		
 		// Get the junk folder
 		FolderItem junk = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Junk);
@@ -120,7 +120,7 @@ public class MarkSpamMail extends PrefGroupMailByMessageTest {
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");

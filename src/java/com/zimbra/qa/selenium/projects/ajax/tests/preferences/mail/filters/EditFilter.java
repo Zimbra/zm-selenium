@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.DialogEditFilter;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences;
@@ -47,8 +47,8 @@ public class EditFilter extends AjaxCommonTest {
 			)
 	public void EditFilter_01() throws HarnessException {
 
-		String filterName = "filterIN"+ ZimbraSeleniumProperties.getUniqueString();
-		String conditionValue = "contains"+ ZimbraSeleniumProperties.getUniqueString();
+		String filterName = "filterIN"+ ConfigProperties.getUniqueString();
+		String conditionValue = "contains"+ ConfigProperties.getUniqueString();
 		
 		//Create a filter
 		app.zGetActiveAccount().soapSend(
@@ -104,8 +104,8 @@ public class EditFilter extends AjaxCommonTest {
 			)
 	public void EditFilter_02() throws HarnessException {
 
-		String filterName = "filterOUT"+ ZimbraSeleniumProperties.getUniqueString();
-		String conditionValue = "contains"+ ZimbraSeleniumProperties.getUniqueString();
+		String filterName = "filterOUT"+ ConfigProperties.getUniqueString();
+		String conditionValue = "contains"+ ConfigProperties.getUniqueString();
 		
 		//Create a filter
 		app.zGetActiveAccount().soapSend(

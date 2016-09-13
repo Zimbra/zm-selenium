@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
@@ -31,7 +31,7 @@ import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
 //import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
@@ -52,11 +52,11 @@ public class UnTagTask extends AjaxCommonTest{
 	}
 
 
-	@Test(description = "UnTag a Task using Toolbar -> Tag -> Remove Tag", groups = { "smoke" })
+	@Test( description = "UnTag a Task using Toolbar -> Tag -> Remove Tag", groups = { "smoke" })
 	public void UnTagTask_01() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>"
 						+		"<m >"
@@ -67,7 +67,7 @@ public class UnTagTask extends AjaxCommonTest{
 						+			"</inv>"
 						+			"<su>" + subject + "</su>"
 						+			"<mp ct='text/plain'>"
-						+				"<content>content" + ZimbraSeleniumProperties.getUniqueString() + "</content>"
+						+				"<content>content" + ConfigProperties.getUniqueString() + "</content>"
 						+			"</mp>"
 						+		"</m>"
 						+	"</CreateTaskRequest>");
@@ -82,7 +82,7 @@ public class UnTagTask extends AjaxCommonTest{
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Create a tag using GUI
-		String tagName = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String tagName = "tag" + ConfigProperties.getUniqueString();
 
 		// Click on New Tag and check for active
 		DialogTag dialogtag = (DialogTag)app.zPageTasks.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_NEWTAG);
@@ -136,12 +136,12 @@ public class UnTagTask extends AjaxCommonTest{
 	}
 
 
-	@Test(description = "UnTag a Task using shortcut u", groups = { "functional" })
+	@Test( description = "UnTag a Task using shortcut u", groups = { "functional" })
 	public void UnTagTask_02() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		Shortcut shortcut = Shortcut.S_UNTAG;
 
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>"
 						+		"<m >"
@@ -152,7 +152,7 @@ public class UnTagTask extends AjaxCommonTest{
 						+			"</inv>"
 						+			"<su>" + subject + "</su>"
 						+			"<mp ct='text/plain'>"
-						+				"<content>content" + ZimbraSeleniumProperties.getUniqueString() + "</content>"
+						+				"<content>content" + ConfigProperties.getUniqueString() + "</content>"
 						+			"</mp>"
 						+		"</m>"
 						+	"</CreateTaskRequest>");
@@ -167,7 +167,7 @@ public class UnTagTask extends AjaxCommonTest{
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Create a tag using GUI
-		String tagName = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String tagName = "tag" + ConfigProperties.getUniqueString();
 
 		// Click on New Tag and check for active
 		DialogTag dialogtag = (DialogTag)app.zPageTasks.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_NEWTAG);
@@ -227,12 +227,12 @@ public class UnTagTask extends AjaxCommonTest{
 		ZAssert.assertNotEqual(id1, tagID,"Verify that the tag is removed from the task ");
 	}
 
-	@Test(description = "Remove a tag from a task clicking 'x' from tag bubble", groups = { "functional" })
+	@Test( description = "Remove a tag from a task clicking 'x' from tag bubble", groups = { "functional" })
 	public void UnTagTask_03() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		//	Shortcut shortcut = Shortcut.S_UNTAG;
 
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>"
 						+		"<m >"
@@ -243,7 +243,7 @@ public class UnTagTask extends AjaxCommonTest{
 						+			"</inv>"
 						+			"<su>" + subject + "</su>"
 						+			"<mp ct='text/plain'>"
-						+				"<content>content" + ZimbraSeleniumProperties.getUniqueString() + "</content>"
+						+				"<content>content" + ConfigProperties.getUniqueString() + "</content>"
 						+			"</mp>"
 						+		"</m>"
 						+	"</CreateTaskRequest>");
@@ -258,7 +258,7 @@ public class UnTagTask extends AjaxCommonTest{
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Create a tag using GUI
-		String tagName = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String tagName = "tag" + ConfigProperties.getUniqueString();
 
 		// Click on New Tag and check for active
 		DialogTag dialogtag = (DialogTag)app.zPageTasks.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_NEWTAG);

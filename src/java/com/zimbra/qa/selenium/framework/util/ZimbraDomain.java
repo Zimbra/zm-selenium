@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.util;
@@ -121,14 +121,14 @@ public class ZimbraDomain {
 	public void createGalSyncAccount() throws HarnessException {
 		
 		// Create the Sync GAL Account
-		String galaccount = "galaccount"+ ZimbraSeleniumProperties.getUniqueString() + "@"+ DomainName;
-		String datasourcename = "datasource" + ZimbraSeleniumProperties.getUniqueString();
+		String galaccount = "galaccount"+ ConfigProperties.getUniqueString() + "@"+ DomainName;
+		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
 		
 		
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 					"<CreateGalSyncAccountRequest xmlns='urn:zimbraAdmin' name='"+ datasourcename + "' type='zimbra' domain='"+ DomainName +"' >"
 				+		"<account by='name'>"+ galaccount +"</account>"
-			 //	+		"<password>"+ ZimbraSeleniumProperties.getStringProperty("adminPwd", "test123") +"</password>"
+			 //	+		"<password>"+ ConfigProperties.getStringProperty("adminPwd", "test123") +"</password>"
 			 	+		"<password>"+ "test123" +"</password>"
 				+	"</CreateGalSyncAccountRequest>");
 		

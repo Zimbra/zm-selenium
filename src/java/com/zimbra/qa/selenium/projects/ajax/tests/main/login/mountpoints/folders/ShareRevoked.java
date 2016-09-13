@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.main.login.mountpoints.folders;
@@ -38,7 +38,7 @@ public class ShareRevoked extends AjaxCommonTest {
 		
 	}
 	
-	@BeforeMethod(	description = "Make sure the Owner account exists",
+	@BeforeMethod( description = "Make sure the Owner account exists",
 					groups = { "always" } )
 	public void CreateOwner() throws HarnessException {
 		Owner = new ZimbraAccount();
@@ -47,15 +47,15 @@ public class ShareRevoked extends AjaxCommonTest {
 	}
 	
 	
-	@Test(	description = "Login to the Ajax Client - with a mountpoint to a revoked share",
+	@Test( description = "Login to the Ajax Client - with a mountpoint to a revoked share",
 			groups = { "functional" })
 	public void ShareRevoked01() throws HarnessException {
 		
 		// Data setup
 		
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 		
 		FolderItem inbox = FolderItem.importFromSOAP(Owner, FolderItem.SystemFolder.Inbox);
 		
@@ -103,7 +103,7 @@ public class ShareRevoked extends AjaxCommonTest {
 		
 		
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// View the folder
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, mountpoint);

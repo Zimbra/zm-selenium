@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.document;
@@ -27,7 +27,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.PageBriefcase;
@@ -43,7 +43,7 @@ public class SendDocAttachment extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 	}
 
-	@Test(description = "Create document through SOAP - click Send as attachment, Cancel & verify through GUI", groups = { "functional" })
+	@Test( description = "Create document through SOAP - click Send as attachment, Cancel & verify through GUI", groups = { "functional" })
 	public void SendDocAttachment_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -83,7 +83,7 @@ public class SendDocAttachment extends FeatureBriefcaseTest {
 
 		// Click on Send as attachment
 		FormMailNew mailform;
-		if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("7.1."))
+		if (ConfigProperties.zimbraGetVersionString().contains("7.1."))
 			mailform = (FormMailNew) app.zPageBriefcase.zToolbarPressPulldown(
 					Button.B_SEND, Button.O_SEND_AS_ATTACHMENT, docItem);
 		else
@@ -115,7 +115,7 @@ public class SendDocAttachment extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(docItem.getName());
 	}
 
-	@Test(description = "Send document as attachment using Right Click Context Menu & verify through GUI", groups = { "functional" })
+	@Test( description = "Send document as attachment using Right Click Context Menu & verify through GUI", groups = { "functional" })
 	public void SendDocAttachment_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 

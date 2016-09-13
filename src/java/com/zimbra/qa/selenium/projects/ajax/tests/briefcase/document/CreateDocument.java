@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.document;
@@ -37,7 +37,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DocumentBriefcaseNew;
@@ -54,14 +54,15 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
 	}
-	
+
 	@Bugs(ids = "97124")
-	@Test(description = "Create document through GUI - verify through GUI", groups = { "sanity" })
+	@Test( description = "Create document through GUI - verify through GUI", 
+		groups = { "sanity" })
+	
 	public void CreateDocument_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create document item
 		DocumentItem docItem = new DocumentItem();
@@ -70,18 +71,15 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		String docText = docItem.getDocText();
 
 		// Open new document page
-		DocumentBriefcaseNew documentBriefcaseNew = (DocumentBriefcaseNew) app.zPageBriefcase
-				.zToolbarPressButton(Button.B_NEW, docItem);
+		DocumentBriefcaseNew documentBriefcaseNew = (DocumentBriefcaseNew) app.zPageBriefcase.zToolbarPressButton(Button.B_NEW, docItem);
 
 		try {
 			app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
 			app.zPageBriefcase.sWindowFocus();
 
 			// Fill out the document with the data
-			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name,
-					docName);
-			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Body,
-					docText);
+			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name, docName);
+			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Body, docText);
 
 			documentBriefcaseNew.zSubmit();
 		} finally {
@@ -89,7 +87,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 			app.zPageBriefcase.sWindowFocus();
 		}
 
-		// refresh briefcase page
+		// Refresh briefcase page
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Click on created document
@@ -97,15 +95,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 
 		// Click on open in a separate window icon in toolbar
 		DocumentBriefcaseOpen documentBriefcaseOpen;
-
-		if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("7.1."))
-			documentBriefcaseOpen = (DocumentBriefcaseOpen) app.zPageBriefcase
-					.zToolbarPressButton(Button.B_OPEN_IN_SEPARATE_WINDOW,
-							docItem);
-		else
-			documentBriefcaseOpen = (DocumentBriefcaseOpen) app.zPageBriefcase
-					.zToolbarPressPulldown(Button.B_ACTIONS,
-							Button.B_LAUNCH_IN_SEPARATE_WINDOW, docItem);
+		documentBriefcaseOpen = (DocumentBriefcaseOpen) app.zPageBriefcase.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW, docItem);
 
 		app.zPageBriefcase.isOpenDocLoaded(docItem);
 
@@ -123,58 +113,43 @@ public class CreateDocument extends FeatureBriefcaseTest {
 			// close
 			app.zPageBriefcase.zSelectWindow(docName);
 			app.zPageBriefcase.closeWindow();
-			
+
 		} finally {
 			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
 			app.zPageBriefcase.sWindowFocus();
 		}
 
-		ZAssert.assertStringContains(name, docName,
-				"Verify document name through GUI");
-
-		ZAssert.assertStringContains(text, docText,
-				"Verify document text through GUI");
+		ZAssert.assertStringContains(name, docName,	"Verify document name through GUI");
+		ZAssert.assertStringContains(text, docText,	"Verify document text through GUI");
 	}
 
-	@Test(description = "Create document using New menu pulldown menu - verify through SOAP & RestUtil", groups = { "functional" })
+	
+	@Test( description = "Create document using New menu pulldown menu - verify through SOAP & RestUtil", groups = { "functional" })
 	public void CreateDocument_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create document item
 		DocumentItem document = new DocumentItem();
-
 		String docName = document.getName();
 		String docText = document.getDocText();
 
-		// refresh briefcase page before creating a new document
-		app.zTreeBriefcase
-				.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
-
-		SleepUtil.sleepVerySmall();
+		// Refresh briefcase page before creating a new document
+		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
 
 		// Create a new document using New pull down menu
-		DocumentBriefcaseNew documentBriefcaseNew = (DocumentBriefcaseNew) app.zPageBriefcase
-				.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_DOCUMENT,
-						document);
+		DocumentBriefcaseNew documentBriefcaseNew = (DocumentBriefcaseNew) app.zPageBriefcase.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_DOCUMENT, document);
 
 		try {
 			app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
 			app.zPageBriefcase.sWindowFocus();
 
 			// Fill out the document with the data
-			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name,
-					docName);
-			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Body,
-					docText);
-
-			// Save and close
-			//app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
-
+			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name, docName);
+			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Body, docText);
 			documentBriefcaseNew.zSubmit();
-			
+
 		} finally {
 			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
 			app.zPageBriefcase.sWindowFocus();
@@ -182,7 +157,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 
 		app.zPageBriefcase.zWaitForWindowClosed(DocumentBriefcaseNew.pageTitle);
 
-		// refresh briefcase page
+		// Refresh briefcase page
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Display file through RestUtil
@@ -190,43 +165,33 @@ public class CreateDocument extends FeatureBriefcaseTest {
 				.displayFile(docName, new HashMap<String, String>() {
 					private static final long serialVersionUID = 1L;
 					{
-						put("fmt", PageBriefcase.Response.Format.NATIVE
-								.getFormat());
+						put("fmt", PageBriefcase.Response.Format.NATIVE.getFormat());
 					}
 				});
 
 		// Search for created document
-		account
-				.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>"
-						+ "<query>" + docName + "</query>" + "</SearchRequest>");
+		account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>" + "<query>" + docName + "</query>" + "</SearchRequest>");
 
 		String name = account.soapSelectValue("//mail:doc", "name");
 
-		ZAssert.assertNotNull(name,
-				"Verify the search response returns the document name");
+		ZAssert.assertNotNull(name,	"Verify the search response returns the document name");
+		ZAssert.assertStringContains(docName, name, "Verify document name through SOAP");
 
-		ZAssert.assertStringContains(docName, name,
-				"Verify document name through SOAP");
+		HtmlElement element = HtmlElement.clean(response.get(PageBriefcase.Response.ResponsePart.BODY));
+		HtmlElement.evaluate(element, "//body", null, Pattern.compile(".*" + docText + ".*"), 1);
 
-		HtmlElement element = HtmlElement.clean(response
-				.get(PageBriefcase.Response.ResponsePart.BODY));
-		HtmlElement.evaluate(element, "//body", null, Pattern.compile(".*"
-				+ docText + ".*"), 1);
-
-		ZAssert.assertStringContains(response
-				.get(PageBriefcase.Response.ResponsePart.BODY), docText,
-				"Verify document content through GUI");
+		ZAssert.assertStringContains(response.get(PageBriefcase.Response.ResponsePart.BODY), docText, "Verify document content through GUI");
 
 		// delete file upon test completion
 		app.zPageBriefcase.deleteFileByName(docName);
 	}
 
-	@Test(description = "Create document using keyboard shortcut - verify through SOAP & RestUtil", groups = { "functional" })
+	
+	@Test( description = "Create document using keyboard shortcut - verify through SOAP & RestUtil", groups = { "functional" })
 	public void CreateDocument_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create document item
 		DocumentItem document = new DocumentItem();
@@ -239,20 +204,17 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		// Open new document page using keyboard shortcut
 		app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
 		app.zPageBriefcase.sWindowFocus();
-		DocumentBriefcaseNew documentBriefcaseNew = (DocumentBriefcaseNew) app.zPageBriefcase
-				.zKeyboardShortcut(shortcut);
+		DocumentBriefcaseNew documentBriefcaseNew = (DocumentBriefcaseNew) app.zPageBriefcase.zKeyboardShortcut(shortcut);
 
 		try {
 			app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
 			app.zPageBriefcase.sWindowFocus();
 
 			// Fill out the document with the data
-			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name,
-					docName);
-			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Body,
-					docText);
+			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name, docName);
+			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Body, docText);
 			documentBriefcaseNew.zSubmit();
-			
+
 		} finally {
 			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
 			app.zPageBriefcase.sWindowFocus();
@@ -260,7 +222,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 
 		app.zPageBriefcase.zWaitForWindowClosed(DocumentBriefcaseNew.pageTitle);
 
-		// refresh briefcase page
+		// Refresh briefcase page
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Display file through RestUtil
@@ -274,33 +236,24 @@ public class CreateDocument extends FeatureBriefcaseTest {
 				});
 
 		// Search for created document
-		account
-				.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>"
-						+ "<query>" + docName + "</query>" + "</SearchRequest>");
+		account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>" + "<query>" + docName + "</query>" + "</SearchRequest>");
 
-		String name = account.soapSelectValue(
-				"//mail:SearchResponse//mail:doc", "name");
+		String name = account.soapSelectValue("//mail:SearchResponse//mail:doc", "name");
 
-		ZAssert.assertNotNull(name,
-				"Verify the search response returns the document name");
+		ZAssert.assertNotNull(name, "Verify the search response returns the document name");
+		ZAssert.assertStringContains(name, docName, "Verify document name through SOAP");
 
-		ZAssert.assertStringContains(name, docName,
-				"Verify document name through SOAP");
+		HtmlElement element = HtmlElement.clean(response.get(PageBriefcase.Response.ResponsePart.BODY));
+		HtmlElement.evaluate(element, "//body", null, Pattern.compile(".*" + docText + ".*"), 1);
 
-		HtmlElement element = HtmlElement.clean(response
-				.get(PageBriefcase.Response.ResponsePart.BODY));
-		HtmlElement.evaluate(element, "//body", null, Pattern.compile(".*"
-				+ docText + ".*"), 1);
-
-		ZAssert.assertStringContains(response
-				.get(PageBriefcase.Response.ResponsePart.BODY), docText,
-				"Verify document content through GUI");
+		ZAssert.assertStringContains(response.get(PageBriefcase.Response.ResponsePart.BODY), docText, "Verify document content through GUI");
 
 		// delete file upon test completion
 		app.zPageBriefcase.deleteFileByName(docName);
 	}
 
-	@Test(description = "Create document through GUI - verify through GUI", groups = { "functional" })
+	
+	@Test( description = "Create document through GUI - verify through GUI", groups = { "functional" })
 	public void CreateDocument_04() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -312,10 +265,9 @@ public class CreateDocument extends FeatureBriefcaseTest {
 
 		String docName = docItem.getName();
 		String docText = docItem.getDocText();
-		
-		app.zPageBriefcase
-		.zWaitForElementPresent(TreeBriefcase.Locators.briefcaseListView);
-		
+
+		app.zPageBriefcase.zWaitForElementPresent(TreeBriefcase.Locators.briefcaseListView);
+
 		app.zPageBriefcase.zIsVisiblePerPosition(TreeBriefcase.Locators.briefcaseTreeView+"16]",0,0);
 		app.zPageBriefcase.sMouseOver(TreeBriefcase.Locators.briefcaseTreeView+"16]");
 		app.zPageBriefcase.sFocus(TreeBriefcase.Locators.briefcaseTreeView+"16]");
@@ -325,81 +277,59 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		app.zPageBriefcase.zGetHtml(TreeBriefcase.Locators.briefcaseListView);
 		app.zPageBriefcase.sGetHtmlSource();
 		app.zPageBriefcase.sGetBodyText();
-		//String id1 = app.zPageBriefcase.sGetNextSiblingId("zli__BDLV__258");
-		//String id2 = app.zPageBriefcase.sGetPreviousSiblingId(id1);
-		
-		//ZAssert.assertStringContains("ccc", "vvv","Testing failure");	 
-		//app.zPageBriefcase.fireEvent(TreeBriefcase.Locators.briefcaseTreeView+"16]", "focus");
-		
-		String tagName = "tag" + ZimbraSeleniumProperties.getUniqueString();
+
+		String tagName = "tag" + ConfigProperties.getUniqueString();
 		Shortcut shortcut = Shortcut.S_NEWTAG;
-				
-		DialogTag dialog = (DialogTag) app.zPageBriefcase
-				.zKeyboardShortcut(shortcut);
-		
+
+		DialogTag dialog = (DialogTag) app.zPageBriefcase.zKeyboardShortcut(shortcut);
+
 		// Fill out the tag dialog input field
 		dialog.zSetTagName(tagName);
-		
+
 		SleepUtil.sleepVerySmall();
-		
+
 		dialog.zClickButton(Button.B_OK);
-		
+
 		// Open new document page
-		//app.zPageBriefcase.zKeyEvent("css=html body", "78","keydown");		
-		DocumentBriefcaseNew documentBriefcaseNew = (DocumentBriefcaseNew) app.zPageBriefcase
-			.zToolbarPressButton(Button.B_NEW, docItem);
-		
+		DocumentBriefcaseNew documentBriefcaseNew = (DocumentBriefcaseNew) app.zPageBriefcase.zToolbarPressButton(Button.B_NEW, docItem);
+
 		SleepUtil.sleepMedium();
-		
+
 		try {
 			app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
 			app.zPageBriefcase.sWindowFocus();
 
 			// Fill out the document with the data
-			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name,
-					docName);
-			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Body,
-					docText);
+			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name, docName);
+			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Body, docText);
 
 			// Save and close
 			app.zPageBriefcase.sWindowFocus();
 			documentBriefcaseNew.zSubmit();
-			
+
 		} finally {
 			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
 			app.zPageBriefcase.sWindowFocus();
 		}
-		
+
 		SleepUtil.sleepSmall();
-		
+
 		app.zPageBriefcase.zWaitForWindowClosed(DocumentBriefcaseNew.pageTitle);
 
-		// refresh briefcase page
+		// Refresh briefcase page
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Click on created document
 		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, docItem);
-		
-		// Mark a check box of the selected document to execute 
-		//GetCssCount() 
-		//GetAttribute()
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, docItem);
 
 		// Click on open in a separate window icon in toolbar
 		DocumentBriefcaseOpen documentBriefcaseOpen;
-		
+
 		//work around because of existing bug
 		docText = "";
 		docItem.setDocText(docText);
-		
-		if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("8."))
-			documentBriefcaseOpen = (DocumentBriefcaseOpen) app.zPageBriefcase
-					.zToolbarPressPulldown(Button.B_ACTIONS,
-							Button.B_LAUNCH_IN_SEPARATE_WINDOW, docItem);
-		else
-			documentBriefcaseOpen = (DocumentBriefcaseOpen) app.zPageBriefcase
-			.zToolbarPressButton(Button.B_OPEN_IN_SEPARATE_WINDOW,
-					docItem);
+		documentBriefcaseOpen = (DocumentBriefcaseOpen) app.zPageBriefcase.zToolbarPressButton(Button.B_OPEN_IN_SEPARATE_WINDOW, docItem);
 
 		//app.zPageBriefcase.isOpenDocLoaded(docItem);
 		app.zPageBriefcase.zWaitForWindow(docItem.getName());
@@ -416,26 +346,25 @@ public class CreateDocument extends FeatureBriefcaseTest {
 			text = documentBriefcaseOpen.retriveDocumentText();
 
 			SleepUtil.sleepSmall();
-			
+
 			// close
 			app.zPageBriefcase.zSelectWindow(docName);
 			app.zPageBriefcase.sWindowFocus();
 			app.zPageBriefcase.closeWindow();
-			
+
 		} finally {
 			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
 			app.zPageBriefcase.sWindowFocus();
 		}
 
-		ZAssert.assertStringContains(name, docName,
-				"Verify document name through GUI");
+		ZAssert.assertStringContains(name, docName, "Verify document name through GUI");
 
-		ZAssert.assertStringContains(text, docText,
-				"Verify document text through GUI");
+		ZAssert.assertStringContains(text, docText, "Verify document text through GUI");
 	}
 
+	
 	@Bugs(ids="81299")
-	@Test(description = "Create document using New menu pulldown menu - verify through SOAP & RestUtil", groups = { "functional" })
+	@Test( description = "Create document using New menu pulldown menu - verify through SOAP & RestUtil", groups = { "functional" })
 	public void CreateDocument_05() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -448,28 +377,24 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		String docName = document.getName();
 		String docText = document.getDocText();
 
-		// refresh briefcase page before creating a new document
+		// Refresh briefcase page before creating a new document
 		app.zTreeBriefcase
 				.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
 
 		SleepUtil.sleepVerySmall();
 
 		// Create a new document using New pull down menu
-		DocumentBriefcaseNew documentBriefcaseNew = (DocumentBriefcaseNew) app.zPageBriefcase
-				.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_DOCUMENT,
-						document);
+		DocumentBriefcaseNew documentBriefcaseNew = (DocumentBriefcaseNew) app.zPageBriefcase.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_DOCUMENT, document);
 
 		try {
 			app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
 			app.zPageBriefcase.sWindowFocus();
 
 			// Fill out the document with the data
-			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name,
-					docName);
-			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Body,
-					docText);
+			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name, docName);
+			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Body, docText);
 			documentBriefcaseNew.zSubmit();
-			
+
 		} finally {
 			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
 			app.zPageBriefcase.sWindowFocus();
@@ -477,44 +402,40 @@ public class CreateDocument extends FeatureBriefcaseTest {
 
 		app.zPageBriefcase.zWaitForWindowClosed(DocumentBriefcaseNew.pageTitle);
 
-		// refresh briefcase page
+		// Refresh briefcase page
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Search for created document
-		account
-				.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>"
-						+ "<query>" + docName + "</query>" + "</SearchRequest>");
+		account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>" + "<query>" + docName + "</query>" + "</SearchRequest>");
 
 		String name = account.soapSelectValue("//mail:doc", "name");
 		String modifiedDate = account.soapSelectValue("//mail:doc", "cd");
 		Date modDate = new Date(Long.parseLong(modifiedDate));
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		
+
 		ZAssert.assertNotNull(name, "Verify the search response returns the document name");
 		ZAssert.assertStringContains(docName, name, "Verify document name through SOAP");
 		ZAssert.assertEquals(dateFormat.format(modDate), dateFormat.format(date), "modified date is displayed correctly");
-		
+
 		// delete file upon test completion
 		app.zPageBriefcase.deleteFileByName(docName);
 	}
-	
+
 	@AfterMethod(groups = { "always" })
 	public void afterMethod() throws HarnessException {
 		logger.info("Checking for the opened window ...");
 
 		// Check if the window is still open
 		List<String> windows = app.zPageBriefcase.sGetAllWindowNames();
-		if (!(ZimbraSeleniumProperties.isWebDriver()||ZimbraSeleniumProperties.isWebDriverBackedSelenium())){
-			for (String window : windows) {
-				if (!window.isEmpty() && !window.contains("null")
-					&& !window.contains(PageBriefcase.pageTitle)
-					&& !window.contains("main_app_window")
-					&& !window.contains("undefined")) {				
-					logger.warn(window + " window was still active. Closing ...");
-					app.zPageBriefcase.zSelectWindow(window);
-					app.zPageBriefcase.sWindowFocus();
-					app.zPageBriefcase.closeWindow();
-				}
+		for (String window : windows) {
+			if (!window.isEmpty() && !window.contains("null")
+				&& !window.contains(PageBriefcase.pageTitle)
+				&& !window.contains("main_app_window")
+				&& !window.contains("undefined")) {
+				logger.warn(window + " window was still active. Closing ...");
+				app.zPageBriefcase.zSelectWindow(window);
+				app.zPageBriefcase.sWindowFocus();
+				app.zPageBriefcase.closeWindow();
 			}
 		}
 		app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);

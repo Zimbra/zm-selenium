@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts;
@@ -28,7 +28,7 @@ public class ViewContact extends TouchCommonTest  {
 		super.startingPage = app.zPageAddressbook;
 	}
 
-	@Test(	description = "View a contact",
+	@Test( description = "View a contact",
 			groups = { "sanity" })
 	
 	public void ViewContact_01() throws HarnessException {		         		
@@ -36,28 +36,28 @@ public class ViewContact extends TouchCommonTest  {
 		//-- Data
 		
 		// Create a contact item
-		String firstname = "first"+ ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "last"+ ZimbraSeleniumProperties.getUniqueString();
-		String email = "email"+ ZimbraSeleniumProperties.getUniqueString() + "@example.com";
-		String company = "company"+ ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "first"+ ConfigProperties.getUniqueString();
+		String lastname = "last"+ ConfigProperties.getUniqueString();
+		String email = "email"+ ConfigProperties.getUniqueString() + "@example.com";
+		String company = "company"+ ConfigProperties.getUniqueString();
 		
-		String prefix = "prefix" + ZimbraSeleniumProperties.getUniqueString();
-		String middleName = "middleName" + ZimbraSeleniumProperties.getUniqueString();
-		String maidenName = "maidenName" + ZimbraSeleniumProperties.getUniqueString();
-		String suffix = "suffix" + ZimbraSeleniumProperties.getUniqueString();
-		String nickname = "nickname" + ZimbraSeleniumProperties.getUniqueString();
+		String prefix = "prefix" + ConfigProperties.getUniqueString();
+		String middleName = "middleName" + ConfigProperties.getUniqueString();
+		String maidenName = "maidenName" + ConfigProperties.getUniqueString();
+		String suffix = "suffix" + ConfigProperties.getUniqueString();
+		String nickname = "nickname" + ConfigProperties.getUniqueString();
 		
-		String jobTitle = "jobTitle" + ZimbraSeleniumProperties.getUniqueString();
-		String department = "department" + ZimbraSeleniumProperties.getUniqueString();
+		String jobTitle = "jobTitle" + ConfigProperties.getUniqueString();
+		String department = "department" + ConfigProperties.getUniqueString();
 		
 		String homePhone = "0123456789";
 		
-		String workAddressCity = "city" + ZimbraSeleniumProperties.getUniqueString();
-		String workAddressState = "state" + ZimbraSeleniumProperties.getUniqueString();
+		String workAddressCity = "city" + ConfigProperties.getUniqueString();
+		String workAddressState = "state" + ConfigProperties.getUniqueString();
 		String workAddressZipcode = "27513";
-		String workAddressCountry = "country" + ZimbraSeleniumProperties.getUniqueString();
+		String workAddressCountry = "country" + ConfigProperties.getUniqueString();
 				
-		String otherUrl = "http://"+ ZimbraSeleniumProperties.getUniqueString()+".org";
+		String otherUrl = "http://"+ ConfigProperties.getUniqueString()+".org";
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" +

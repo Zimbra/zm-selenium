@@ -1,44 +1,40 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
+
 package com.zimbra.qa.selenium.framework.util;
 
 import java.io.*;
 import java.net.*;
 import java.util.*;
-
 import net.sf.json.*;
-
 import org.apache.log4j.*;
 import org.dom4j.*;
 import org.dom4j.io.*;
-
+import org.openqa.selenium.JavascriptExecutor;
 import com.ibm.staf.STAFResult;
 import com.zimbra.qa.selenium.framework.core.*;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 import com.zimbra.qa.selenium.framework.util.staf.*;
 
 public class CodeCoverage {
-	protected static Logger logger = LogManager.getLogger(CodeCoverage.class);
 	
-	protected static final List<AppType> supportedAppTypes = Arrays.asList(
-																	AppType.AJAX,
-																	AppType.ADMIN,
-																	AppType.OCTOPUS
-																	);
+	protected static Logger logger = LogManager.getLogger(CodeCoverage.class);
+	protected static final List<AppType> supportedAppTypes = Arrays.asList(AppType.AJAX, AppType.ADMIN);
+	
 	/**
 	 * The cumulative code coverage object
 	 * A map with the application JS filename as the key
@@ -240,11 +236,6 @@ public class CodeCoverage {
 		logger.info("CodeCoverage: took an additional "+ durationTotalGet() +" seconds of processing time");
 	}
 
-	/**
-	 * Update the coverage data
-	 * @throws HarnessException 
-	 */
-	@SuppressWarnings("deprecation")
 	public void calculateCoverage(String method) throws HarnessException {
 		logger.info("calculateCoverage()");
 
@@ -259,32 +250,17 @@ public class CodeCoverage {
 			// Log the name of the method
 			logger.info("METHOD: "+ method);
 
-
-			// COVERAGE_SCRIPT returns a JSON object
-			// The key is the file name
-			// The values (coverage) is the coverage counts, null = not covered, 1 = covered 1 times, 2 = covered 2 times, etc.
-			// Example:
-			//
-
 			if ( cumulativeCoverage == null ) {
 
 				// First time in, just initialize the object
 				logger.debug("initalizing coverage object");
 				try {
 					
-					cumulativeCoverage = (JSONObject) JSONSerializer.toJSON(ClientSessionFactory.session().selenium().getEval(COVERAGE_SCRIPT));
+					cumulativeCoverage = (JSONObject) JSONSerializer.toJSON(((JavascriptExecutor) ClientSessionFactory.session().webDriver()).executeScript(COVERAGE_SCRIPT));
 					
 				} catch (JSONException e) {
 					
-					/*
-					throw new HarnessException("JSON = ("+ ClientSessionFactory.session().selenium().getEval(COVERAGE_SCRIPT) +")", e);
-					*/
-					
-					// If there is invalid JSON, just log the error and JSON object and return
-					// Don't disable coverage.  Will it recover in the next test case?
-					// Don't throw the exception, that makes the test case appear as 'failed'
-					//
-					logger.error("JSONException: ["+ ClientSessionFactory.session().selenium().getEval(COVERAGE_SCRIPT) +"]", e);
+					logger.error("JSONException: [" + ((JavascriptExecutor) ClientSessionFactory.session().webDriver()).executeScript(COVERAGE_SCRIPT), e);
 					cumulativeCoverage = null;
 					return;
 
@@ -305,22 +281,11 @@ public class CodeCoverage {
 				
 				// Get the latest coverage
 				logger.debug("getting updates to coverage object");
-				jsonCoverage = (JSONObject) JSONSerializer.toJSON(ClientSessionFactory.session().selenium().getEval(COVERAGE_SCRIPT));
+				jsonCoverage = (JSONObject) JSONSerializer.toJSON(((JavascriptExecutor) ClientSessionFactory.session().webDriver()).executeScript(COVERAGE_SCRIPT));
 
 			} catch (JSONException e) {
 				
-				/*
-				logger.error("Unable to calculate code coverage.  Disabling code coverage", e);
-				logger.error(ClientSessionFactory.session().selenium().getEval(COVERAGE_SCRIPT));
-				isDisabled = true;
-				throw e;
-				*/
-				
-				// If there is invalid JSON, just log the error and JSON object and return
-				// Don't disable coverage.  Will it recover in the next test case?
-				// Don't throw the exception, that makes the test case appear as 'failed'
-				//
-				logger.error("JSONException: ["+ ClientSessionFactory.session().selenium().getEval(COVERAGE_SCRIPT) +"]", e);
+				logger.error("JSONException: [" + ((JavascriptExecutor) ClientSessionFactory.session().webDriver()).executeScript(COVERAGE_SCRIPT), e);
 				return;
 
 			}
@@ -355,12 +320,9 @@ public class CodeCoverage {
 		}
 	}
 	
-	// For logging, report how many new files were touched and how many new lines were touched
-	//
-	@SuppressWarnings("deprecation")
 	private void traceCoverage(JSONObject oldJSON, JSONObject newJSON) {
-		logger.info("CodeCoverage: URL="+ ClientSessionFactory.session().selenium().getLocation());
 		
+		logger.info("CodeCoverage: URL="+ ClientSessionFactory.session().webDriver().getCurrentUrl());
 		
 		int countFiles = 0;			// # of new files touched
 		int countLines = 0;			// # of new lines touched
@@ -525,7 +487,7 @@ public class CodeCoverage {
 
 		try {
 			
-			URL url = new URL("https://" + ZimbraSeleniumProperties.getStringProperty("server.host","qa60.lab.zimbra.com") +"/"+ jsFilename);
+			URL url = new URL("https://" + ConfigProperties.getStringProperty("server.host","qa60.lab.zimbra.com") +"/"+ jsFilename);
 			URLConnection uc = url.openConnection();
 			BufferedReader reader = null;
 			
@@ -603,7 +565,6 @@ public class CodeCoverage {
 
 	private static final String WebappsZimbra = "/opt/zimbra/jetty/webapps/zimbra";
 	private static final String WebappsZimbraAdmin = "/opt/zimbra/jetty/webapps/zimbraAdmin";
-	private static final String WebappsOctopus = "/opt/zimbra/jetty/webapps/zimbra";
 	private String WebappsOriginal = null;
 	private String WebappsInstrumented = null;
 	
@@ -654,12 +615,10 @@ public class CodeCoverage {
 			}
 
 			
-			if ( ZimbraSeleniumProperties.getAppType().equals(AppType.AJAX) ) {
+			if ( ConfigProperties.getAppType().equals(AppType.AJAX) ) {
 				instrumentServer(WebappsZimbra);
-			} else if ( ZimbraSeleniumProperties.getAppType().equals(AppType.ADMIN) ) {
+			} else if ( ConfigProperties.getAppType().equals(AppType.ADMIN) ) {
 				instrumentServer(WebappsZimbraAdmin);
-			} else if ( ZimbraSeleniumProperties.getAppType().equals(AppType.OCTOPUS) ) {
-				instrumentServer(WebappsOctopus);
 			}
 		
 		} finally {
@@ -676,8 +635,8 @@ public class CodeCoverage {
 		// Check that JScoverage is installed correctly
 		instrumentServerCheck();
 
-		WebappsOriginal		= appfolder + ZimbraSeleniumProperties.getUniqueString();
-		WebappsInstrumented	= "/opt/zimbra/jetty/webapps/instrumented" + ZimbraSeleniumProperties.getUniqueString();
+		WebappsOriginal		= appfolder + ConfigProperties.getUniqueString();
+		WebappsInstrumented	= "/opt/zimbra/jetty/webapps/instrumented" + ConfigProperties.getUniqueString();
 
 		try {
 			StafServicePROCESS staf = new StafServicePROCESS();
@@ -691,7 +650,7 @@ public class CodeCoverage {
 			
 			
 			// NULL characters in JS files prevent instrumentation. Hence remove NULL characters.
-			//if ( ZimbraSeleniumProperties.getAppType().equals(AppType.ADMIN) ) {
+			//if ( ConfigProperties.getAppType().equals(AppType.ADMIN) ) {
 				staf.execute("find " + appfolder + "/js -type f -exec sed -i" +  " 's/\\\\x0//g' {} +");
 				//staf.execute("sed -i " +  "'s/\\\\x0//g' " + appfolder + "/js/Admin_all.js");
 				//staf.execute("sed -i " +  "'s/\\\\x0//g' " + appfolder + "/js/zimbraAdmin/accounts/controller/ZaAccountListController.js");
@@ -740,12 +699,10 @@ public class CodeCoverage {
 				return;
 			}
 
-			if ( ZimbraSeleniumProperties.getAppType().equals(AppType.AJAX) ) {
+			if ( ConfigProperties.getAppType().equals(AppType.AJAX) ) {
 				instrumentServerUndo(WebappsZimbra);
-			} else if ( ZimbraSeleniumProperties.getAppType().equals(AppType.ADMIN) ) {
+			} else if ( ConfigProperties.getAppType().equals(AppType.ADMIN) ) {
 				instrumentServerUndo(WebappsZimbraAdmin);
-			} else if ( ZimbraSeleniumProperties.getAppType().equals(AppType.OCTOPUS) ) {
-				instrumentServerUndo(WebappsOctopus);
 			}
 
 		} finally {
@@ -759,7 +716,7 @@ public class CodeCoverage {
 
 	private void instrumentServerUndo(String appfolder) throws HarnessException {
 
-		WebappsInstrumented	= "/opt/zimbra/jetty/webapps/instrumented" + ZimbraSeleniumProperties.getUniqueString();
+		WebappsInstrumented	= "/opt/zimbra/jetty/webapps/instrumented" + ConfigProperties.getUniqueString();
 
 		try {
 
@@ -808,9 +765,9 @@ public class CodeCoverage {
 		// But, if not specified, default to the non-specific property
 		// i.e. "coverage.query"
 		//
-		String property = ZimbraSeleniumProperties.getStringProperty("coverage.query", "");
-		String appPoperty = ZimbraSeleniumProperties.getStringProperty(
-				"coverage.query."+ ZimbraSeleniumProperties.getAppType(), null );
+		String property = ConfigProperties.getStringProperty("coverage.query", "");
+		String appPoperty = ConfigProperties.getStringProperty(
+				"coverage.query."+ ConfigProperties.getAppType(), null );
 		if ( appPoperty != null ) {
 			property = appPoperty; // Override the default
 		}
@@ -834,8 +791,8 @@ public class CodeCoverage {
 	private CodeCoverage() {
 		logger.info("new "+ CodeCoverage.class.getCanonicalName());
 		
-		if ( !supportedAppTypes.contains(ZimbraSeleniumProperties.getAppType())) {
-			logger.info("CodeCoverage(): code coverage does not support type "+ ZimbraSeleniumProperties.getAppType() +".  Disabling.");
+		if ( !supportedAppTypes.contains(ConfigProperties.getAppType())) {
+			logger.info("CodeCoverage(): code coverage does not support type "+ ConfigProperties.getAppType() +".  Disabling.");
 			isDisabled = true;
 			return;
 		}
@@ -883,11 +840,11 @@ public class CodeCoverage {
 
 		// Get the settings form config.properties
 		//
-		Tool = ZimbraSeleniumProperties.getStringProperty("coverage.tool", "/usr/local/bin/jscoverage");
-		EnableSourceCodeReport = ZimbraSeleniumProperties.getStringProperty("coverage.reportsource", "false").equalsIgnoreCase("true");
-		String timeout = ZimbraSeleniumProperties.getStringProperty("coverage.maxpageload.msec", "10000");
-		ZimbraSeleniumProperties.setStringProperty("selenium.maxpageload.msec", timeout);
-		InstrumentServer = ZimbraSeleniumProperties.getStringProperty("coverage.instrument", "true").equalsIgnoreCase("true");
+		Tool = ConfigProperties.getStringProperty("coverage.tool", "/usr/local/bin/jscoverage");
+		EnableSourceCodeReport = ConfigProperties.getStringProperty("coverage.reportsource", "false").equalsIgnoreCase("true");
+		String timeout = ConfigProperties.getStringProperty("coverage.maxpageload.msec", "10000");
+		ConfigProperties.setStringProperty("selenium.maxpageload.msec", timeout);
+		InstrumentServer = ConfigProperties.getStringProperty("coverage.instrument", "true").equalsIgnoreCase("true");
 
 
 	}
@@ -898,7 +855,7 @@ public class CodeCoverage {
 	private boolean isDisabled = false;
 		
 	public boolean isEnabled() {
-		String v = ZimbraSeleniumProperties.getStringProperty("coverage.enabled", "false");
+		String v = ConfigProperties.getStringProperty("coverage.enabled", "false");
 		logger.info("coverage.enabled="+v);
 		if ( isDisabled ) {
 			logger.info("isDiabled is true, therefore Code Coverage is disabled");

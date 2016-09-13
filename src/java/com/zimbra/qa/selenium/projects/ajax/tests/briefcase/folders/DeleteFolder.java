@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.folders;
@@ -35,7 +35,7 @@ public class DeleteFolder extends FeatureBriefcaseTest {
 		super.startingPage = app.zPageBriefcase;
 	}
 
-	@Test(description = "Delete a briefcase sub-folder - Right click, Delete", groups = { "smoke" })
+	@Test( description = "Delete a briefcase sub-folder - Right click, Delete", groups = { "smoke" })
 	public void DeleteFolder_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -51,7 +51,7 @@ public class DeleteFolder extends FeatureBriefcaseTest {
 
 		// Create the sub-folder
 		String briefcaseSubFolderName = "folder"
-				+ ZimbraSeleniumProperties.getUniqueString();
+				+ ConfigProperties.getUniqueString();
 
 		account.soapSend("<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+ "<folder name='" + briefcaseSubFolderName + "' l='"
@@ -80,7 +80,7 @@ public class DeleteFolder extends FeatureBriefcaseTest {
 				"Verify the subfolder's parent is now the trash folder ID");
 	}
 
-	@Test(description = "Delete a a top level briefcase folder - Right click, Delete", groups = { "smoke" })
+	@Test( description = "Delete a a top level briefcase folder - Right click, Delete", groups = { "smoke" })
 	public void DeleteFolder_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -99,7 +99,7 @@ public class DeleteFolder extends FeatureBriefcaseTest {
 
 		// Create a top level briefcase folder
 		String briefcaseTopLevelFolderName = "folder"
-				+ ZimbraSeleniumProperties.getUniqueString();
+				+ ConfigProperties.getUniqueString();
 
 		account.soapSend("<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+ "<folder name='" + briefcaseTopLevelFolderName + "' l='"
@@ -129,7 +129,7 @@ public class DeleteFolder extends FeatureBriefcaseTest {
 	}
 
 	@Bugs(ids = "80600")
-	@Test(description = "Delete a briefcase sub-folder from list view and hitting toolbar delete button", groups = { "functional" })
+	@Test( description = "Delete a briefcase sub-folder from list view and hitting toolbar delete button", groups = { "functional" })
 	public void DeleteFolder_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -145,7 +145,7 @@ public class DeleteFolder extends FeatureBriefcaseTest {
 
 		// Create the sub-folder
 		String briefcaseSubFolderName = "folder"
-				+ ZimbraSeleniumProperties.getUniqueString();
+				+ ConfigProperties.getUniqueString();
 
 		account.soapSend("<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+ "<folder name='" + briefcaseSubFolderName + "' l='"

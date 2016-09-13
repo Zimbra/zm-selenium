@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.quickreply;
@@ -34,7 +34,7 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 
 	}
 	
-	@Test(	description = "Quick Reply (Forward) a conversation (1 message, 1 recipient)",
+	@Test( description = "Quick Reply (Forward) a conversation (1 message, 1 recipient)",
 			groups = { "smoke" })
 	public void QuickForward_01() throws HarnessException {
 		
@@ -48,9 +48,9 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 		
 
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String content = "content" + ZimbraSeleniumProperties.getUniqueString();
-		String forward = "quickforward" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String content = "content" + ConfigProperties.getUniqueString();
+		String forward = "quickforward" + ConfigProperties.getUniqueString();
 		
 		account1.soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -92,7 +92,7 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 
 	}
 
-	@Test(	description = "Quick Reply (forward) a conversation (1 message, 2 recipients)",
+	@Test( description = "Quick Reply (forward) a conversation (1 message, 2 recipients)",
 			groups = { "functional" })
 	public void QuickForward_02() throws HarnessException {
 		
@@ -115,9 +115,9 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String content = "content" + ZimbraSeleniumProperties.getUniqueString();
-		String forward = "quickforward" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String content = "content" + ConfigProperties.getUniqueString();
+		String forward = "quickforward" + ConfigProperties.getUniqueString();
 		
 		account1.soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -165,7 +165,7 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 
 	}
 
-	@Test(	description = "Quick Reply (forward) a conversation (1 message, 1 recipient, 1 CC, 1 BCC)",
+	@Test( description = "Quick Reply (forward) a conversation (1 message, 1 recipient, 1 CC, 1 BCC)",
 			groups = { "functional" })
 	public void QuickForward_03() throws HarnessException {
 		
@@ -191,9 +191,9 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String content = "content" + ZimbraSeleniumProperties.getUniqueString();
-		String forward = "quickforward" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String content = "content" + ConfigProperties.getUniqueString();
+		String forward = "quickforward" + ConfigProperties.getUniqueString();
 		
 		account1.soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -249,7 +249,7 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 	}
 
 	
-	@Test(	description = "Quick Forward two a 3 message conversation - first message",
+	@Test( description = "Quick Forward two a 3 message conversation - first message",
 			groups = { "functional" })
 	public void QuickForward_10() throws HarnessException {
 		
@@ -272,11 +272,11 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 		
 
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String content1 = "onecontent" + ZimbraSeleniumProperties.getUniqueString();
-		String content2 = "twocontent" + ZimbraSeleniumProperties.getUniqueString();
-		String content3 = "threecontent" + ZimbraSeleniumProperties.getUniqueString();
-		String forward = "quickforward" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String content1 = "onecontent" + ConfigProperties.getUniqueString();
+		String content2 = "twocontent" + ConfigProperties.getUniqueString();
+		String content3 = "threecontent" + ConfigProperties.getUniqueString();
+		String forward = "quickforward" + ConfigProperties.getUniqueString();
 		
 		account1.soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -346,7 +346,7 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 
 	}
 
-	@Test(	description = "Quick Forward two a 3 message conversation - middle message",
+	@Test( description = "Quick Forward two a 3 message conversation - middle message",
 			groups = { "functional" })
 	public void QuickForward_11() throws HarnessException {
 		
@@ -368,11 +368,11 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 		
 
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String content1 = "onecontent" + ZimbraSeleniumProperties.getUniqueString();
-		String content2 = "twocontent" + ZimbraSeleniumProperties.getUniqueString();
-		String content3 = "threecontent" + ZimbraSeleniumProperties.getUniqueString();
-		String forward = "quickforward" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String content1 = "onecontent" + ConfigProperties.getUniqueString();
+		String content2 = "twocontent" + ConfigProperties.getUniqueString();
+		String content3 = "threecontent" + ConfigProperties.getUniqueString();
+		String forward = "quickforward" + ConfigProperties.getUniqueString();
 		
 		account1.soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -441,7 +441,7 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 
 	}
 
-	@Test(	description = "Quick Forward two a 3 message conversation - last message",
+	@Test( description = "Quick Forward two a 3 message conversation - last message",
 			groups = { "functional" })
 	public void QuickForward_12() throws HarnessException {
 		
@@ -463,11 +463,11 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 		
 
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String content1 = "onecontent" + ZimbraSeleniumProperties.getUniqueString();
-		String content2 = "twocontent" + ZimbraSeleniumProperties.getUniqueString();
-		String content3 = "threecontent" + ZimbraSeleniumProperties.getUniqueString();
-		String forward = "quickforward" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String content1 = "onecontent" + ConfigProperties.getUniqueString();
+		String content2 = "twocontent" + ConfigProperties.getUniqueString();
+		String content3 = "threecontent" + ConfigProperties.getUniqueString();
+		String forward = "quickforward" + ConfigProperties.getUniqueString();
 		
 		account1.soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +

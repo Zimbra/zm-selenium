@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.folders;
@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
 
@@ -40,13 +40,14 @@ public class CreateCalendar extends AjaxCommonTest {
 	}
 
 
-	@Test(	description = "Create a new calendar by clicking 'new folder' on folder tree", 
+	@Test( description = "Create a new calendar by clicking 'new folder' on folder tree", 
 			groups = { "sanity" })
+	
 	public void CreateCalendar_01() throws HarnessException {
 
 		
 		// Set the new calendar name
-		String calendarname = "calendar" + ZimbraSeleniumProperties.getUniqueString();
+		String calendarname = "calendar" + ConfigProperties.getUniqueString();
 
 		
 		// Click on the "New Calendar" button in the calendar tree
@@ -64,13 +65,13 @@ public class CreateCalendar extends AjaxCommonTest {
 		
 	}
 
-	@Test(	description = "Create a new calendar using keyboard shortcuts", 
+	@Test( description = "Create a new calendar using keyboard shortcuts", 
 			groups = { "functional" })
 	public void CreateCalendar_02() throws HarnessException {
 
 		
 		// Set the new calendar name
-		String calendarname = "calendar" + ZimbraSeleniumProperties.getUniqueString();
+		String calendarname = "calendar" + ConfigProperties.getUniqueString();
 
 
 		// Click on the "New Calendar" button in the calendar tree
@@ -88,12 +89,12 @@ public class CreateCalendar extends AjaxCommonTest {
 
 	}
 
-	@Test(	description = "Create a new folder using context menu from root folder", 
+	@Test( description = "Create a new folder using context menu from root folder", 
 			groups = { "functional" })
 	public void CreateCalendar_03() throws HarnessException {
 
 		// Set the new calendar name
-		String calendarname = "calendar" + ZimbraSeleniumProperties.getUniqueString();
+		String calendarname = "calendar" + ConfigProperties.getUniqueString();
 
 		// Determine the calendar folder
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.UserRoot);
@@ -114,12 +115,12 @@ public class CreateCalendar extends AjaxCommonTest {
 		
 	}
 
-	@Test(	description = "Create a new folder using mail app New -> New Folder", 
+	@Test( description = "Create a new folder using mail app New -> New Folder", 
 			groups = { "functional" })
 	public void CreateCalendar_04() throws HarnessException {
 
 		// Set the new calendar name
-		String calendarname = "calendar" + ZimbraSeleniumProperties.getUniqueString();
+		String calendarname = "calendar" + ConfigProperties.getUniqueString();
 
 		// Create a new folder in the inbox
 		// using the context menu + New Folder

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
@@ -33,7 +33,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew;
@@ -55,13 +55,14 @@ public class CreateHtmlTask extends AjaxCommonTest {
 	}
 
 	
-	@Test(	description = "Create Simple Html task through GUI - verify through soap", groups = { "sanity" })
+	@Test( description = "Create Simple Html task through GUI - verify through soap", 
+			groups = { "sanity" })
 	
 	public void CreateHtmlTask_01() throws HarnessException {
 
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
-		//String taskHtmlbody = "task<b>bold"+ ZimbraSeleniumProperties.getUniqueString() + "</b>task";
-		String taskHtmlbody = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
+		//String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString() + "</b>task";
+		String taskHtmlbody = "body" + ConfigProperties.getUniqueString();
 
 		// Click NEW button
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
@@ -80,14 +81,15 @@ public class CreateHtmlTask extends AjaxCommonTest {
 	}
 
 	
-	@Test(description = "Create new Html task using keyboard shortcut Esc- Verify through Soap", groups = { "smoke" })
+	@Test( description = "Create new Html task using keyboard shortcut Esc- Verify through Soap", 
+			groups = { "smoke" })
 	
 	public void CreateHtmlTask_02() throws HarnessException {
 
 		Shortcut shortcut = Shortcut.S_ESCAPE;
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
-		//String taskHtmlbody = "task<b>bold"+ ZimbraSeleniumProperties.getUniqueString() + "</b>task";
-		String taskHtmlbody = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
+		//String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString() + "</b>task";
+		String taskHtmlbody = "body" + ConfigProperties.getUniqueString();
 
 		//Click NEW button
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
@@ -112,13 +114,14 @@ public class CreateHtmlTask extends AjaxCommonTest {
 	}
 
 	
-	@Test(	description = "Create Html task using New menu pulldown  - verify through SOAP",	groups = { "smoke" })
+	@Test( description = "Create Html task using New menu pulldown  - verify through SOAP",	
+			groups = { "smoke" })
 	
 	public void CreateHtmlTask_03() throws HarnessException {
 
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
-		//String taskHtmlbody = "task<b>bold"+ ZimbraSeleniumProperties.getUniqueString() + "</b>task";
-		String taskHtmlbody = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
+		//String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString() + "</b>task";
+		String taskHtmlbody = "body" + ConfigProperties.getUniqueString();
 
 		// Click NEW drop down and click Task
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_TASK);
@@ -137,14 +140,15 @@ public class CreateHtmlTask extends AjaxCommonTest {
 	}
 
 	
-	@Test(description = "Create new Html task using keyboard shortcut 'NK'- Verify through Soap", groups = { "smoke" })
+	@Test( description = "Create new Html task using keyboard shortcut 'NK'- Verify through Soap",
+			groups = { "smoke" })
 	
 	public void CreateHtmlTask_04() throws HarnessException {
 
 		Shortcut shortcut = Shortcut.S_NEWTASK;
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
-		//String taskHtmlbody = "task<b>bold"+ ZimbraSeleniumProperties.getUniqueString() + "</b>task";
-		String taskHtmlbody = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
+		//String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString() + "</b>task";
+		String taskHtmlbody = "body" + ConfigProperties.getUniqueString();
 		
 		//Explicitly cliking of Task folder to refresh view
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -168,17 +172,18 @@ public class CreateHtmlTask extends AjaxCommonTest {
 	}
 
 	
-	@Test(	description = "Create Html Tasks, using 'Right Click' Html Mail subject -> 'Create Task'-Verify through Soap", groups = { "smoke" })
+	@Test( description = "Create Html Tasks, using 'Right Click' Html Mail subject -> 'Create Task'-Verify through Soap", 
+			groups = { "smoke" })
 	
 	public void CreateHtmlTask_05() throws HarnessException {
 
 		app.zPageMail.zNavigateTo();
 		
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
-		String bodyText = "bodyText" + ZimbraSeleniumProperties.getUniqueString();
-		//String taskHtmlbody = "task<b>bold"+ ZimbraSeleniumProperties.getUniqueString() + "</b>task";
-		String taskHtmlbody = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
+		String bodyText = "bodyText" + ConfigProperties.getUniqueString();
+		//String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString() + "</b>task";
+		String taskHtmlbody = "body" + ConfigProperties.getUniqueString();
 		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+"<div>"+taskHtmlbody+"</div>"+"</div>"+"</body>"+"</html>");
 
 
@@ -203,7 +208,7 @@ public class CreateHtmlTask extends AjaxCommonTest {
 		MailItem mail = MailItem.importFromSOAP(ZimbraAccount.AccountA(),"subject:(" + subject + ")");
 
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inboxFolder);
 
 		SleepUtil.sleepMedium();
@@ -228,16 +233,17 @@ public class CreateHtmlTask extends AjaxCommonTest {
 	}
 	
 	
-	@Test(description = "Create Html task with attachment through RestUtil - verify through GUI", groups = { "smoke" })
+	@Test( description = "Create Html task with attachment through RestUtil - verify through GUI", 
+			groups = { "smoke" })
 	
 	public void CreateHtmlTask_06() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 		FolderItem taskFolder = FolderItem.importFromSOAP(account, SystemFolder.Tasks);
 
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
-		String taskHtmlbody = "task<b>bold"+ ZimbraSeleniumProperties.getUniqueString()+"</b>task";
+		String subject = "task"+ ConfigProperties.getUniqueString();
+		String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
 		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+taskHtmlbody+"</div>"+"</body>"+"</html>");		
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/Files/Basic01/BasicExcel2007.xlsx";
+		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/Files/Basic01/BasicExcel2007.xlsx";
 		
 		// Upload file to server through RestUtil
 		String attachmentId = account.uploadFile(filePath);	
@@ -253,7 +259,7 @@ public class CreateHtmlTask extends AjaxCommonTest {
 				"<su>"+ subject +"</su>" +
 				"<mp ct='multipart/alternative'>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"<mp ct='text/html'>" +
 				"<content>"+contentHTML+"</content>" +
@@ -277,17 +283,18 @@ public class CreateHtmlTask extends AjaxCommonTest {
 	}
 	
 	
-	@Test(description = "Create Html task with attachment through RestUtil - verify through Soap", groups = { "smoke" })
+	@Test( description = "Create Html task with attachment through RestUtil - verify through Soap", 
+			groups = { "smoke" })
 	
 	public void CreateHtmlTask_07() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 		FolderItem taskFolder = FolderItem.importFromSOAP(account, SystemFolder.Tasks);
 
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
-		String taskHtmlbody = "task<b>bold"	+ ZimbraSeleniumProperties.getUniqueString() + "</b>task";
+		String subject = "task" + ConfigProperties.getUniqueString();
+		String taskHtmlbody = "task<b>bold"	+ ConfigProperties.getUniqueString() + "</b>task";
 		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<body>"
 				+ "<div>" + taskHtmlbody + "</div>" + "</body>" + "</html>");
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 		+ "/data/public/Files/Basic01/BasicExcel2007.xlsx";
 		FileItem file = new FileItem(filePath);
 		String fileName = file.getName();
@@ -306,7 +313,7 @@ public class CreateHtmlTask extends AjaxCommonTest {
 				"<su>"+ subject +"</su>" +
 				"<mp ct='multipart/alternative'>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"<mp ct='text/html'>" +
 				"<content>"+contentHTML+"</content>" +

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
@@ -38,14 +38,15 @@ public class AddLocation extends CalendarWorkWeekTest {
 	    super.startingAccountPreferences = null;
 	}
 	
-	@Test(description = "Search Location and add into existing meeting invite",
-			groups = { "smoke" })
+	
+	@Test( description = "Search Location and add into existing meeting invite",	groups = { "smoke" })
+	
 	public void AddLocation_01() throws HarnessException {
 		
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		
 		String tz = ZTimeZone.TimeZoneEST.getID();
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee = ZimbraAccount.AccountA().EmailAddress;
 		String apptLocation1 = location.EmailAddress;
     	
@@ -65,7 +66,7 @@ public class AddLocation extends CalendarWorkWeekTest {
                      	"</inv>" +
                      	"<e a='"+ ZimbraAccount.AccountA().EmailAddress +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
-                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     		"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
@@ -97,18 +98,18 @@ public class AddLocation extends CalendarWorkWeekTest {
 		// Verify location free/busy status
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation1 +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify location status shows accepted");
-		
 	}
 	
-	@Test(description = "Add location to existing appointment and verify F/B",
-			groups = { "smoke" })
+	
+	@Test( description = "Add location to existing appointment and verify F/B", groups = { "smoke" })
+	
 	public void AddLocation_02() throws HarnessException {
 		
 		// Create a meeting
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		
 		String tz = ZTimeZone.TimeZoneEST.getID();
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee = ZimbraAccount.AccountA().EmailAddress;
 		String apptLocation = location.EmailAddress;
 		
@@ -128,7 +129,7 @@ public class AddLocation extends CalendarWorkWeekTest {
                      	"</inv>" +
                      	"<e a='"+ ZimbraAccount.AccountA().EmailAddress +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
-                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     		"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
@@ -148,28 +149,27 @@ public class AddLocation extends CalendarWorkWeekTest {
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
 		ZAssert.assertEquals(actual.getAttendees(), apptAttendee, "Attendees: Verify the appointment data");
-		ZAssert.assertEquals(actual.getLocation(), apptLocation, "Location: Verify the appointment data");
+		ZAssert.assertStringContains(actual.getLocation(), apptLocation, "Location: Verify the appointment data");
 		
 		// Verify location free/busy status
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify location status shows accepted");
-		
 	}
 
+	
 	@Bugs(ids = "60789")
-	@Test(description = " Name lost when using autocomplete to enter location",
-	groups = { "smoke" }
-	)
+	@Test( description = "Name lost when using autocomplete to enter location", groups = { "smoke" } )
+	
 	public void AddLocation_03() throws HarnessException {
+		
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
-		String locationName = "Conf - Promontory E - Taurus (E17) (Seats 10)";
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		String locationName = ConfigProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
 		String apptLocation = location.EmailAddress;
 		
 	    ZimbraAdminAccount.GlobalAdmin().soapSend(
-	    	      "<ModifyCalendarResourceRequest xmlns='urn:zimbraAdmin'><id>" + 
-	    	      location.ZimbraId + "</id>" + 
-	    	      "<a n='displayName'>" + locationName + "</a>" + 
+	    	      "<ModifyCalendarResourceRequest xmlns='urn:zimbraAdmin'><id>" + location.ZimbraId + "</id>" + 
+		    	      "<a n='displayName'>" + locationName + "</a>" + 
 	    	      "</ModifyCalendarResourceRequest>");
 	    
 		ZimbraDomain domain = new ZimbraDomain(location.EmailAddress.split("@")[1]);
@@ -192,7 +192,7 @@ public class AddLocation extends CalendarWorkWeekTest {
 	                 	"</inv>" +
 	                 	"<e a='"+ ZimbraAccount.AccountA().EmailAddress +"' t='t'/>" +
 	                 	"<mp content-type='text/plain'>" +
-	                 		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+	                 		"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
 	                 	"</mp>" +
 	                 "<su>"+ apptSubject +"</su>" +
 	                 "</m>" +
@@ -215,16 +215,22 @@ public class AddLocation extends CalendarWorkWeekTest {
 		apptForm.zAutocompleteSelectItem(found);
         ZAssert.assertTrue(apptForm.zVerifyLocation(locationName), "Verify appointment location");
 		apptForm.zSubmit();
-		SleepUtil.sleepVeryLong();
-	    // Verify Location present in the appointment
+		SleepUtil.sleepLong();
+		
+		// Organizer: Search for the appointment (InvId)
+		app.zGetActiveAccount().soapSend(
+					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
+				+		"<query>"+ apptSubject +"</query>"
+				+	"</SearchRequest>");
+		
+		ZAssert.assertTrue(app.zGetActiveAccount().soapSelectValue("//mail:appt", "loc").contains(apptLocation), "Location: Verify the appointment data");
+		
+		// Verify Location present in the appointment
 	    AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
-		ZAssert.assertStringContains(actual.getLocation(), apptLocation, "Location: Verify the appointment data");
 		
 		// Verify location free/busy status
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify Location free/busy status");
-
 	}
-	
 }

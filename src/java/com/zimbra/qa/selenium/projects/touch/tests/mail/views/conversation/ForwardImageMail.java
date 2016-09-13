@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.tests.mail.views.conversation;
@@ -38,7 +38,7 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 	public void ForwardInlineImageMail_01() throws HarnessException {
 		
 		String subject = "inline image testing";		
-		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email13/inline image.txt";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email13/inline image.txt";
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
 		
 		// Select the mail from inbox
@@ -63,9 +63,9 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 		String startTextOfBody = "body of the inline image starts..";
 		String endTextOfBody = "body of the inline image ends..";;
 		String imgSrc = "cid:c44b200d9264f34d048f41c1280beee5b1e7dd38@zimbra";
-		String modifiedContent = "modified body" + ZimbraSeleniumProperties.getUniqueString();
+		String modifiedContent = "modified body" + ConfigProperties.getUniqueString();
 		
-		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email13/inline image.txt";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email13/inline image.txt";
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
 		
 		// Select the mail from inbox
@@ -107,7 +107,7 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 	public void ForwardExternalImageMail_03() throws HarnessException {
 		
 		String subject = "external image testing";		
-		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email13/external image.txt";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email13/external image.txt";
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
 		
 		// Select the mail from inbox
@@ -133,9 +133,9 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 		String startTextOfBody = "body of the image starts..";
 		String endTextOfBody = "body of the image ends..";
 		String imgSrc = "http://fileswwwzimbracom.s3.amazonaws.com/_res/images/try/Try-Page-Collab-8-5.png";
-		String modifiedContent = "modified body" + ZimbraSeleniumProperties.getUniqueString();
+		String modifiedContent = "modified body" + ConfigProperties.getUniqueString();
 		
-		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email13/external image.txt";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email13/external image.txt";
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
 		
 		// Select the mail from inbox

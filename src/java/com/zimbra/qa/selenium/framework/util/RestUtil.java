@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.util;
@@ -105,8 +105,8 @@ public class RestUtil {
 	public RestUtil() {
 		logger.info("new RestUtil()");
 		
-		scheme = ZimbraSeleniumProperties.getStringProperty("server.scheme", "http");
-		String p = ZimbraSeleniumProperties.getStringProperty("server.port", "80");
+		scheme = ConfigProperties.getStringProperty("server.scheme", "http");
+		String p = ConfigProperties.getStringProperty("server.port", "80");
 		port = Integer.parseInt(p);
 		path = "service/home/~/";
 	}
@@ -122,25 +122,11 @@ public class RestUtil {
 			authToken = null;
 		} else {
 		//	host = account.ZimbraMailHost;
-			host = ZimbraSeleniumProperties.getStringProperty("server.host", null);
+			host = ConfigProperties.getStringProperty("server.host", null);
 			authToken = account.MyAuthToken;			
 		}
 		return (account);
 	}
-
-	/**
-    * Set the host and auth token to the values associated with the specified account
-    * @param account
-    * @return
-    */
-   public ZimbraAccount setZDAuthentication(ZimbraAccount account) {
-      ZimbraDesktopProperties zdp = ZimbraDesktopProperties.getInstance();
-      port = Integer.parseInt(zdp.getConnectionPort());
-      host = account.ZimbraMailClientHost;
-      authToken = account.MyClientAuthToken;       
-
-      return (account);
-   }
 
    /**
 	 * Use the specified file for the HTTP POST
@@ -704,7 +690,7 @@ public class RestUtil {
 			try {
 									
 				// Create the output file
-				result = File.createTempFile("temp" + ZimbraSeleniumProperties.getUniqueString(), ".dat");
+				result = File.createTempFile("temp" + ConfigProperties.getUniqueString(), ".dat");
 
 				reader = new BufferedReader(new FileReader(in));
 				writer = new PrintWriter(new FileWriter(result));

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
@@ -32,11 +32,11 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 	
 	//TODO: Remove x from groups to enable when feature is implemented  
 	@Bugs(ids = "38449")
-	@Test(	description = "Mute a message (conversation) using Actions -> Mute",
+	@Test( description = "Mute a message (conversation) using Actions -> Mute",
 			groups = { "smoke" })
 	public void MuteMessage_01() throws HarnessException {
 		
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 	
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
@@ -45,7 +45,7 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 					"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 					"<su>"+ subject +"</su>" +
 					"<mp ct='text/plain'>" +
-						"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 					"</mp>" +
 				"</m>" +
 			"</SendMsgRequest>");
@@ -71,7 +71,7 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 	
 	//TODO: Remove x from groups to enable when feature is implemented  
 	@Bugs( ids = "38449")
-	@Test(	description = "Mute message, using 'Mute' shortcut key",
+	@Test( description = "Mute message, using 'Mute' shortcut key",
 			groups = { "functional" })
 	public void MuteMessage_02() throws HarnessException {
 		throw new HarnessException("See bug https://bugzilla.zimbra.com/show_bug.cgi?id=65844");
@@ -79,11 +79,11 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 	
 	
 	//TODO: Remove x from groups to enable when feature is implemented  
-	@Test(	description = "Mute message, using 'Right Click' -> 'Mute'",
+	@Test( description = "Mute message, using 'Right Click' -> 'Mute'",
 			groups = { "smoke" })
 	public void MuteMessage_03() throws HarnessException {
 		
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
@@ -92,7 +92,7 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 					"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 					"<su>"+ subject +"</su>" +
 					"<mp ct='text/plain'>" +
-						"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 					"</mp>" +
 				"</m>" +
 			"</SendMsgRequest>");

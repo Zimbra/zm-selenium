@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.compose;
@@ -35,20 +35,17 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Bugs(	ids = "101612")
-	@Test(	description = "Send a mail using HTML editor - in a separate window",
-			groups = { "sanity" })
-			public void CreateMailHtml_01() throws HarnessException {
-
+	@Bugs( ids = "101612")
+	@Test( description = "Send a mail using HTML editor - in a separate window", 
+		groups = { "sanity" })
+	
+	public void CreateMailHtml_01() throws HarnessException {
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		/* TODO: ... debugging to be removed */ 
-		//mail.dBodyHtml = "body" + ZimbraSeleniumProperties.getUniqueString();
-
-
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		
 		// Open the new mail form
 		SeparateWindowFormMailNew window = null;
 
@@ -67,7 +64,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 			window.zFill(mail);
 			
 			/* TODO: ... debugging to be removed */ 
-			mail.dBodyHtml = "body" + ZimbraSeleniumProperties.getUniqueString();
+			mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
 			window.sSelectWindow("Zimbra: Compose");
 			String locator = "css=iframe[id*=ifr]";
 			window.zWaitForElementPresent(locator, "5000");
@@ -90,13 +87,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 			}
 
 		}
-
-		// Sometimes, the harness is too fast for the client.
-		// Since we are composing in a new window, there is no
-		// busy overlay to block.
-		//
-		// Add a loop, while waiting for the message
-		//
+		
 		for (int i = 0; i < 30; i++) {
 
 			ZimbraAccount.AccountA().soapSend(
@@ -112,10 +103,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 			SleepUtil.sleep(1000);
 
 		}
-
-		// Can't use importFromSOAP, since that only parses the text part
-		// MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mail.dSubject +")");
-
+		
 		ZimbraAccount.AccountA().soapSend(
 						"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
 				+			"<query>subject:("+ mail.dSubject +")</query>"

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.recurring.modify;
@@ -38,7 +38,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		super.startingAccountPreferences = null;
 	}
 	
-	@Test(description = "Modify series from every day to every week", 
+	@Test( description = "Modify series from every day to every week", 
 			groups = { "functional" })
 	public void ModifySeries_01() throws HarnessException {
 
@@ -49,8 +49,8 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptBody = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptBody = ConfigProperties.getUniqueString();
 		
 		// --------------- Creating invitation (organizer) ----------------------------
 
@@ -140,7 +140,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Test(description = "Modify summary of a daily recurring series", 
+	@Test( description = "Modify summary of a daily recurring series", 
 			groups = { "functional" })
 	public void ModifySeries_02() throws HarnessException {
 
@@ -152,9 +152,9 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		
 		AppointmentItem appt = new AppointmentItem();
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String modifiedSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptBody = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String modifiedSubject = ConfigProperties.getUniqueString();
+		String apptBody = ConfigProperties.getUniqueString();
 		
 		// --------------- Creating invitation (organizer) ----------------------------
 
@@ -244,7 +244,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		
 	}
 
-	@Test(description = "Modify summary of a daily recurring series", 
+	@Test( description = "Modify summary of a daily recurring series", 
 			groups = { "functional" })
 	public void ModifySeries_03() throws HarnessException {
 
@@ -256,9 +256,9 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		
 		AppointmentItem appt = new AppointmentItem();
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String modifiedSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptBody = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String modifiedSubject = ConfigProperties.getUniqueString();
+		String apptBody = ConfigProperties.getUniqueString();
 		
 		// --------------- Creating invitation (organizer) ----------------------------
 
@@ -356,7 +356,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 	}
 
 	@Bugs(ids = "100575")
-	@Test(description = "Modify series by setting end date", 
+	@Test( description = "Modify series by setting end date", 
 			groups = { "functional" })
 	public void ModifySeries_04() throws HarnessException {
 
@@ -367,8 +367,8 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 1, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 2, 0, 0);
 		
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptBody = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptBody = ConfigProperties.getUniqueString();
 		
 		// --------------- Creating invitation (organizer) ----------------------------
 
@@ -465,7 +465,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "101610")	
-	@Test(description = "Modifying daily custom series doesn't update new selection in custom repeat dialog ", 
+	@Test( description = "Modifying daily custom series doesn't update new selection in custom repeat dialog ", 
 			groups = { "functional" })
 	public void ModifySeries_05() throws HarnessException {
 
@@ -476,8 +476,8 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptBody = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptBody = ConfigProperties.getUniqueString();
 		
 		// --------------- Creating invitation (organizer) ----------------------------
 

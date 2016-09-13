@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 
 
 public class AccountItem implements IItem {
@@ -47,12 +47,12 @@ public class AccountItem implements IItem {
 		
 		accountAttrs = new HashMap<String, String>();
 		
-		localName = "email" + ZimbraSeleniumProperties.getUniqueString();
-		domainName = ZimbraSeleniumProperties.getStringProperty("testdomain");
+		localName = "email" + ConfigProperties.getUniqueString();
+		domainName = ConfigProperties.getStringProperty("testdomain");
 		Id = null;
 		
 		// Surname is required in Admin Console
-		accountAttrs.put("sn", "Lastname"+ ZimbraSeleniumProperties.getUniqueString());
+		accountAttrs.put("sn", "Lastname"+ ConfigProperties.getUniqueString());
 
 	}
 */	
@@ -65,7 +65,7 @@ public class AccountItem implements IItem {
 			domainName = emailAddress.split("@")[1];
 		} else {
 			localName = "a_" + emailAddress; //"a" is prefixed to make sure account appears at the top of manage list.
-			domainName = ZimbraSeleniumProperties.getStringProperty("testdomain");
+			domainName = ConfigProperties.getStringProperty("testdomain");
 		}
 
 		//Id = null;

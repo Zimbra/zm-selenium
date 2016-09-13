@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.drafts;
@@ -29,7 +29,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
@@ -42,13 +42,12 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		logger.info("New "+ SaveDraftMail.class.getCanonicalName());
 	}
 
-	@Test(	description = "Save a basic draft (subject only)",
-			groups = { "smoke" })
-			public void SaveDraftMail_01() throws HarnessException {
-
+	@Test( description = "Save a basic draft (subject only)", groups = { "smoke" })
+	
+	public void SaveDraftMail_01() throws HarnessException {
 
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
 
 		// Open the new mail form
@@ -72,9 +71,9 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		// Verify the draft data matches
 		ZAssert.assertEquals(draft.dSubject, subject, "Verify the subject field is correct");
 		ZAssert.assertEquals(draft.dFolderId, draftsFolder.getId(), "Verify the draft is saved in the drafts folder");
-
-
 	}
+	
+	
 	/**
 	 * Test Case: Save draft using keyboard shortcut 'Escape''
 	 * 1.Compose Text mail
@@ -85,13 +84,14 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 	 * @throws HarnessException
 	 */
 
-	@Test(description = "Save draft using keyboard shortcut 'Escape'", groups = { "functional" })
+	@Test( description = "Save draft using keyboard shortcut 'Escape'", groups = { "functional" })
+	
 	public void SaveDraftMail_02() throws HarnessException {
 
 		Shortcut shortcut = Shortcut.S_ESCAPE;
 		// Create the message data to be sent
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -117,27 +117,18 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		// Verify the draft data matches
 		ZAssert.assertEquals(draft.dSubject, subject,"Verify the subject field is correct");
 		ZAssert.assertEquals(draft.dFolderId, draftsFolder.getId(),"Verify the draft is saved in the drafts folder");
-
 	}
+	
 
-	@Test(
-			description = "Save draft with To", 
-			groups = { "functional" })
-			public void SaveDraftMail_03() throws HarnessException {
-
-
-		//-- DATA
-
+	@Test( description = "Save draft with To", groups = { "functional" })
+	
+	public void SaveDraftMail_03() throws HarnessException {
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
-
-
-		//-- GUI
-
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -167,28 +158,19 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertTrue(found, "Verify the To field contains the correct address(es)");
-
 	}
 
-	@Test(
-			description = "Save draft with 2 To", 
-			groups = { "functional" })
-			public void SaveDraftMail_04() throws HarnessException {
-
-
-		//-- DATA
-
+	
+	@Test( description = "Save draft with two receipients in To field", groups = { "functional" })
+	
+	public void SaveDraftMail_04() throws HarnessException {
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountB()));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
-
-
-		//-- GUI
-
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -205,7 +187,6 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
 			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
 		}
-
 
 		// Get the message from the server
 		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(),"subject:(" + mail.dSubject + ")");
@@ -223,28 +204,19 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertTrue(foundA, "Verify the To field contains the first correct address(es)");
 		ZAssert.assertTrue(foundB, "Verify the To field contains the second correct address(es)");
-
 	}
 
-	@Test(
-			description = "Save draft with Cc", 
-			groups = { "functional" })
-			public void SaveDraftMail_05() throws HarnessException {
+	
+	@Test( description = "Save draft with Cc", groups = { "functional" })
 
-
-		//-- DATA
-
+	public void SaveDraftMail_05() throws HarnessException {
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA(), RecipientType.To));
 		mail.dCcRecipients.add(new RecipientItem(ZimbraAccount.AccountB(), RecipientType.Cc));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
-
-
-		//-- GUI
-
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -262,7 +234,6 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
 		}
 
-
 		// Get the message from the server
 		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(),"subject:(" + mail.dSubject + ")");
 
@@ -274,29 +245,20 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertTrue(found, "Verify the Cc field contains the correct address(es)");
-
 	}
 
-	@Test(
-			description = "Save draft with 2 Cc", 
-			groups = { "functional" })
-			public void SaveDraftMail_06() throws HarnessException {
 
-
-		//-- DATA
-
+	@Test( description = "Save draft with 2 Cc", groups = { "functional" })
+	
+	public void SaveDraftMail_06() throws HarnessException {
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem((new ZimbraAccount()).provision().authenticate()));
 		mail.dCcRecipients.add(new RecipientItem(ZimbraAccount.AccountA(), RecipientType.Cc));
 		mail.dCcRecipients.add(new RecipientItem(ZimbraAccount.AccountB(), RecipientType.Cc));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
-
-
-		//-- GUI
-
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -311,7 +273,6 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		mailform.zToolbarPressButton(Button.B_CANCEL);
 		SleepUtil.sleepMedium();
 		
-				
 		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
 			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
 		}
@@ -336,31 +297,23 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertTrue(foundA, "Verify the Cc field contains the first correct address(es)");
 		ZAssert.assertTrue(foundB, "Verify the Cc field contains the second correct address(es)");
-
 	}
 
 
-	@Test(
-			description = "Save draft with Bcc", 
-			groups = { "functional" })
-			public void SaveDraftMail_07() throws HarnessException {
-
-
-		//-- DATA
-
+	@Test( description = "Save draft with Bcc", groups = { "functional" })
+	
+	public void SaveDraftMail_07() throws HarnessException {
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
 		mail.dBccRecipients.add(new RecipientItem(ZimbraAccount.AccountB(), RecipientType.Bcc));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
-
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
 
 		//-- GUI
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
-
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -391,29 +344,20 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertTrue(found, "Verify the Bcc field contains the correct address(es)");
-
 	}
 
-	@Test(
-			description = "Save draft with 2 Bcc", 
-			groups = { "functional" })
-			public void SaveDraftMail_08() throws HarnessException {
-
-
-		//-- DATA
-
+	
+	@Test( description = "Save draft with 2 Bcc", groups = { "functional" })
+	
+	public void SaveDraftMail_08() throws HarnessException {
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem((new ZimbraAccount()).provision().authenticate()));
 		mail.dBccRecipients.add(new RecipientItem(ZimbraAccount.AccountA(), RecipientType.Bcc));
 		mail.dBccRecipients.add(new RecipientItem(ZimbraAccount.AccountB(), RecipientType.Bcc));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
-
-
-		//-- GUI
-
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -449,6 +393,4 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertTrue(foundB, "Verify the Bcc field contains the second correct address(es)");
 
 	}
-
-
 }

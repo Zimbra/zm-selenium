@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders.retention;
@@ -28,19 +28,17 @@ public class CreateRetention extends PrefGroupMailByMessageTest {
 
 	public CreateRetention() {
 		logger.info("New " + CreateRetention.class.getCanonicalName());
-
 	}
 
-	@Test(
-			description = "Save a new basic retention on a folder (Context menu -> Edit -> Retention)", 
-			groups = { "smoke" }
-			)
+	@Test( description = "Save a new basic retention on a folder (Context menu -> Edit -> Retention)", 
+			groups = { "smoke" } )
+	
 	public void CreateRetention_01() throws HarnessException {
 
 		//-- Data
 		
 		// Create the subfolder
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
@@ -85,6 +83,7 @@ public class CreateRetention extends PrefGroupMailByMessageTest {
 		
 	}
 
+	
 	@DataProvider(name = "DataProviderRetentions")
 	public Object[][] DataProviderRetentions() {
 	  return new Object[][] {
@@ -95,18 +94,15 @@ public class CreateRetention extends PrefGroupMailByMessageTest {
 	  };
 	}
 	
-
-	@Test(
-			description = "Create day, week, month, year retentions", 
-			groups = { "functional" },
-			dataProvider = "DataProviderRetentions"
-				)
+	@Test( description = "Create day, week, month, year retentions", 
+			groups = { "functional" }, dataProvider = "DataProviderRetentions" )
+	
 	public void CreateRetention_02(DialogEditFolder.RetentionRangeUnits units, String expected) throws HarnessException {
 
 		//-- Data
 		
 		// Create the subfolder
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"

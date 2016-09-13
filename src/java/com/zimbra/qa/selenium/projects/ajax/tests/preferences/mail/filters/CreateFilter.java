@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.DialogEditFilter;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.DialogEditFilter.ConditionConstraint;
@@ -33,27 +33,23 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.DialogEditFilter.Filt
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-
 public class CreateFilter extends AjaxCommonTest {
 
 	public CreateFilter() {
-		
 		super.startingPage = app.zPagePreferences;
 		super.startingAccountPreferences = null;
-		
 	}
 
-    @Bugs(ids="97040")
-	@Test(
-			description = "Create a basic Incoming Message Filter",
-			groups = { "functional" }
-			)
+	@Bugs(ids="97040")
+	@Test( description = "Create a basic Incoming Message Filter",	
+			groups = { "sanity" } )
+    
 	public void CreateFilter_01() throws HarnessException {
 
-		String filterName = "filter"+ ZimbraSeleniumProperties.getUniqueString();
-		String conditionValue = "contains"+ ZimbraSeleniumProperties.getUniqueString();
+		String filterName = "filter"+ ConfigProperties.getUniqueString();
+		String conditionValue = "contains"+ ConfigProperties.getUniqueString();
 		
-		//Create a folder
+		// Create a folder
 		String folderName = "JiraIn";  //		
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailFilters);
 		
@@ -73,29 +69,25 @@ public class CreateFilter extends AjaxCommonTest {
 		dialog.zClickButton(Button.B_OK);		
 		
 		// Verify the filter is created through SOAP
-		app.zGetActiveAccount().soapSend(
-						"<GetFilterRulesRequest xmlns='urn:zimbraMail'/>");
+		app.zGetActiveAccount().soapSend("<GetFilterRulesRequest xmlns='urn:zimbraMail'/>");
 		
 		Element[] rules = app.zGetActiveAccount().soapSelectNodes("//mail:GetFilterRulesResponse//mail:filterRule[@name='" + filterName +"']");
 		ZAssert.assertEquals(rules.length, 1, "Verify the Incoming filter rule exists in the server");
 		
-		//Verify that filter is created through UI
-		
+		// Verify that filter is created through UI
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(PagePreferences.Locators.zFilterRowCss +":contains("+ filterName +")"), "Incoming filter is not created successfully!");
 		
 	}
     
     
-    @Test(
-			description = "Create a basic Outgoing Message Filter",
-			groups = { "functional" }
-			)
+    @Test( description = "Create a basic Outgoing Message Filter",	groups = { "smoke" } )
+    
 	public void CreateFilter_02() throws HarnessException {
 
 		String filterName = "Outfilter";
-		String conditionValue = "contains"+ ZimbraSeleniumProperties.getUniqueString();
+		String conditionValue = "contains"+ ConfigProperties.getUniqueString();
 		
-		//Create a folder
+		// Create a folder
 		String folderName = "JiraOut";  //		
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailFilters);
 		
@@ -118,15 +110,12 @@ public class CreateFilter extends AjaxCommonTest {
 		dialog.zClickButton(Button.B_OK);		
 		
 		// Verify the filter is created through SOAP
-		app.zGetActiveAccount().soapSend(
-						"<GetOutgoingFilterRulesRequest xmlns='urn:zimbraMail'/>");
+		app.zGetActiveAccount().soapSend("<GetOutgoingFilterRulesRequest xmlns='urn:zimbraMail'/>");
 		
 		Element[] rules = app.zGetActiveAccount().soapSelectNodes("//mail:GetOutgoingFilterRulesResponse//mail:filterRule[@name='" + filterName +"']");
 		ZAssert.assertEquals(rules.length, 1, "Verify the Outgoing filter rule exists in the server");
 		
 		//Verify that filter is created through UI		
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(PagePreferences.Locators.zFilterRowCss +":contains("+ filterName +")"), "Outgoing filter is not created successfully!");
-		
 	}
-    
 }

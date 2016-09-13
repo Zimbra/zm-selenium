@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.create;
@@ -37,7 +37,7 @@ public class CreateMeetingWithRSVPOnOff extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "101999")
-	@Test(description = "Verify organizer does not recieve email notification when attendee responds to the meeting invite while 'Request Response' remains OFF", 
+	@Test( description = "Verify organizer does not recieve email notification when attendee responds to the meeting invite while 'Request Response' remains OFF", 
 			groups = { "smoke" })
 	
 	public void CreateMeetingWithRSVPOff_01() throws HarnessException {
@@ -45,8 +45,8 @@ public class CreateMeetingWithRSVPOnOff extends CalendarWorkWeekTest {
 		// Create appointment data 
 		ZimbraAccount apptAttendee1,organizer;
 		String apptAttendee1EmailAddress; 
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptContent = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptContent = ConfigProperties.getUniqueString();
 		
 		organizer = app.zGetActiveAccount();
 		apptAttendee1 = ZimbraAccount.AccountA();
@@ -110,7 +110,7 @@ public class CreateMeetingWithRSVPOnOff extends CalendarWorkWeekTest {
 	
 	
 	@Bugs(ids = "101999")
-	@Test(description = "Verify organizer receives email notification when attendee responds to the meeting invite while 'Request Response' remains ON", 
+	@Test( description = "Verify organizer receives email notification when attendee responds to the meeting invite while 'Request Response' remains ON", 
 			groups = { "functional" })
 	
 	public void CreateMeetingWithRSVPOn_01() throws HarnessException {
@@ -118,8 +118,8 @@ public class CreateMeetingWithRSVPOnOff extends CalendarWorkWeekTest {
 		// Create appointment data 
 		ZimbraAccount apptAttendee1,organizer;
 		String apptAttendee1EmailAddress; 
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptContent = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptContent = ConfigProperties.getUniqueString();
 		
 		organizer = app.zGetActiveAccount();
 		apptAttendee1 = ZimbraAccount.AccountA();
@@ -130,7 +130,7 @@ public class CreateMeetingWithRSVPOnOff extends CalendarWorkWeekTest {
 		AppointmentItem appt = new AppointmentItem();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
 		
 		// Create appointment data
 		appt.setSubject(apptSubject);

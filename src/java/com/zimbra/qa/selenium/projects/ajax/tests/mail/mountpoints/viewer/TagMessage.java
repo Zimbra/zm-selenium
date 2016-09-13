@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mountpoints.viewer;
@@ -36,7 +36,7 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test(	description = "Verify Permission Denied on Tag a shared mail (read-only share)",
+	@Test( description = "Verify Permission Denied on Tag a shared mail (read-only share)",
 			groups = { "functional" })
 	public void TagMessage_01() throws HarnessException {
 		
@@ -44,9 +44,9 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 		//-- DATA Setup
 		//
 		
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 		
 		FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox);
 		
@@ -132,7 +132,7 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test(	description = "Verify Permission Denied on Tag (keyboard='t') a shared mail (read-only share)",
+	@Test( description = "Verify Permission Denied on Tag (keyboard='t') a shared mail (read-only share)",
 			groups = { "deprecated" }) // See bug: http://bugzilla.zimbra.com/show_bug.cgi?id=79887
 	public void TagMessage_02() throws HarnessException {
 		
@@ -140,9 +140,9 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 		//-- DATA Setup
 		//
 		
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 		
 		FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox);
 		

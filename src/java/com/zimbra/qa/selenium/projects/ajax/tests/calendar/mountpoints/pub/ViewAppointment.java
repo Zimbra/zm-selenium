@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.mountpoints.pub;
@@ -31,14 +31,14 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "47629")
-	@Test(description = " HTML view of public shared calendar not showing appointments",
+	@Test( description = " HTML view of public shared calendar not showing appointments",
 			groups = { "sanity" })
 			
 	public void ViewAppointment_01() throws HarnessException {
 		
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptContent = ZimbraSeleniumProperties.getUniqueString();
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptContent = ConfigProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
 		
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
@@ -83,10 +83,10 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 
-        if ( ZimbraSeleniumProperties.getStringProperty("server.host") != ZimbraSeleniumProperties.getStringProperty("store.host") ) {
-        	app.zPageCalendar.sOpen("https://" + ZimbraSeleniumProperties.getStringProperty("store.host") + "/home/" + ZimbraAccount.AccountA().EmailAddress + "/Calendar/" + foldername + ".html");
+        if ( ConfigProperties.getStringProperty("server.host") != ConfigProperties.getStringProperty("store.host") ) {
+        	app.zPageCalendar.sOpen("https://" + ConfigProperties.getStringProperty("store.host") + "/home/" + ZimbraAccount.AccountA().EmailAddress + "/Calendar/" + foldername + ".html");
 		} else {
-			app.zPageCalendar.sOpen("https://" + ZimbraSeleniumProperties.getStringProperty("server.host") + ":8443/home/" + ZimbraAccount.AccountA().EmailAddress + "/Calendar/" + foldername + ".html");
+			app.zPageCalendar.sOpen("https://" + ConfigProperties.getStringProperty("server.host") + ":8443/home/" + ZimbraAccount.AccountA().EmailAddress + "/Calendar/" + foldername + ".html");
 		}
         
         ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent("css=div[class^='ZhCalMonthAppt']:contains('" + apptSubject + "')"), "Appointment is visible");

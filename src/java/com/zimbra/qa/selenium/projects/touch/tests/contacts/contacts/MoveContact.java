@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts;
@@ -30,7 +30,7 @@ public class MoveContact extends TouchCommonTest  {
 		super.startingPage = app.zPageAddressbook;
 	}
 	
-	@Test(	description = "Move a contact item to EmailedContacts Address Book",
+	@Test( description = "Move a contact item to EmailedContacts Address Book",
 			groups = { "sanity" })
 	
 	public void MoveContact_01() throws HarnessException {
@@ -39,9 +39,9 @@ public class MoveContact extends TouchCommonTest  {
 		
 		// Create a contact item
 		ContactItem contact = new ContactItem();
-		contact.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
-		contact.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
-		contact.email = "email" + ZimbraSeleniumProperties.getUniqueString() + "@domain.com";
+		contact.firstName = "First" + ConfigProperties.getUniqueString();
+		contact.lastName = "Last" + ConfigProperties.getUniqueString();
+		contact.email = "email" + ConfigProperties.getUniqueString() + "@domain.com";
 
 		app.zGetActiveAccount().soapSend(
 	                "<CreateContactRequest xmlns='urn:zimbraMail'>" +

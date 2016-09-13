@@ -1,35 +1,37 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
-
-import org.apache.log4j.*;
-import org.json.*;
-
-import com.thoughtworks.selenium.SeleniumException;
+import java.util.Set;
+import net.sf.json.JSONException;
+import net.sf.json.JSONObject;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriverException;
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-
-import org.openqa.selenium.JavascriptExecutor;
-
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
-
 
 /**
  * This utility class helps the harness determine the dynamically generated
@@ -45,11 +47,9 @@ import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
  *
  */
 
-@SuppressWarnings("deprecation")
 public class ZimbraDOM {
 	public static Logger logger = LogManager.getLogger(ZimbraDOM.class);
 
-	
 	////
 	// Hints:
 	//
@@ -90,7 +90,6 @@ public class ZimbraDOM {
 	private static final String PART = 
 		"var ids = ZmId.lookup()," +
 		"len = ids.length," +
-	//	"backMap = ZmId._getBackMap()," +
 		"text = \"\\n\\n{\"," +
 		"i; " +
 		"for (i = 0; i < len; i++) " +
@@ -112,17 +111,8 @@ public class ZimbraDOM {
 	
 	private static final String SCRIPT;
 	
-	static{
-	    if(ZimbraSeleniumProperties.isWebDriver()){
-	       	SCRIPT = "var AjxUtil = top.AjxUtil; " +
-	       		 "var AjxStringUtil = top.AjxStringUtil;" +
-			 "var ZmId = top.ZmId;" + PART + "return text";
-	     
-	    }else{	
-		SCRIPT = "var AjxUtil = this.browserbot.getUserWindow().top.AjxUtil; " +
-			 "var AjxStringUtil = this.browserbot.getUserWindow().top.AjxStringUtil;" +
-			 "var ZmId = this.browserbot.getUserWindow().top.ZmId;" + PART;			
-	    }	  
+	static {
+       	SCRIPT = "var AjxUtil = top.AjxUtil; " + "var AjxStringUtil = top.AjxStringUtil;" + "var ZmId = top.ZmId;" + PART + "return text";
 	}
 	
 	/**
@@ -145,14 +135,14 @@ public class ZimbraDOM {
 			js.append("domIds;");			
 			command = js.toString();
 			
-			logger.debug("Selenium.getEval("+ command +")");
-			String value = ClientSessionFactory.session().selenium().getEval(command);
+			//String value = ClientSessionFactory.session().selenium().getEval(command);
+			String value = ((JavascriptExecutor)ClientSessionFactory.session().webDriver()).executeScript(SCRIPT).toString();
 			logger.info("Selenium.getEval("+ command +") = "+ value);
 			
 			return (value);
 
-		} catch (SeleniumException e) {
-			throw new HarnessException("Selenium.getEval("+ command +") threw SeleniumException", e);
+		} catch (WebDriverException e) {
+			throw new HarnessException("Selenium.getEval("+ command +") threw WebDriverException", e);
 		}
 
 	}
@@ -308,19 +298,6 @@ public class ZimbraDOM {
 		return (ZimbraDOM.getIDs(this.MyJSON));
 	}
 	
-	////
-	// END: object methods
-	////
-
-	
-	
-	
-	
-	////
-	// BEGIN: static methods
-	////
-
-
 	/**
 	 * For debugging.  Log the current IDs to the info log.
 	 * @return
@@ -329,15 +306,8 @@ public class ZimbraDOM {
 	public static String showIDs() throws HarnessException{
 		try {
 			final String response;
-			if(ZimbraSeleniumProperties.isWebDriver()){
-			    response = ((JavascriptExecutor)ClientSessionFactory.session().webDriver()).executeScript
-				    (SCRIPT).toString();
-			}else{
-			    response = ClientSessionFactory.session().selenium().getEval(SCRIPT);
-    			}
-
+			response = ((JavascriptExecutor)ClientSessionFactory.session().webDriver()).executeScript(SCRIPT).toString();
 			logger.info("\n...showIds response: " + response);
-
 			return response;
 		} catch (Exception ex) {
 			throw new HarnessException(ex);				

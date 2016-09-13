@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.url;
@@ -45,14 +45,14 @@ public class GetMessage extends AjaxCommonTest {
 		}};
 	}
 	
-	@Test(	description = "Receive a mail with a basic URL",
+	@Test( description = "Receive a mail with a basic URL",
 			groups = { "smoke" })
 	public void GetMessage_01() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		String url = "http://www.zimbra.com";
-		String body = "text " + System.getProperty("line.separator") + url + System.getProperty("line.separator") + "text"+ ZimbraSeleniumProperties.getUniqueString() + System.getProperty("line.separator") ;
+		String body = "text " + System.getProperty("line.separator") + url + System.getProperty("line.separator") + "text"+ ConfigProperties.getUniqueString() + System.getProperty("line.separator") ;
 		
 		// Send the message from AccountA to the ZWC user
 		ZimbraAccount.AccountA().soapSend(
@@ -87,12 +87,12 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Test(	description = "Receive a mail with two URLs in body",
+	@Test( description = "Receive a mail with two URLs in body",
 			groups = { "functional" })
 	public void GetMessage_02() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		String url1 = "http://www.zimbra.com";
 		String url2 = "http://www.google.com";
 		String body = "url1: " + url1 + " url2: "+ url2;
@@ -134,12 +134,12 @@ public class GetMessage extends AjaxCommonTest {
 
 	
 
-	@Test(	description = "Validate the url zimlet matches valid URLs",
+	@Test( description = "Validate the url zimlet matches valid URLs",
 			groups = { "functional" })
 	public void GetMessage_03() throws HarnessException {
 
 		final String subject = "subject12955323015009";
-		final String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/url01/valid_url.txt";
+		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/url01/valid_url.txt";
 		final String url1 = "http://www.zimbra.com";
 		final String url2 = "https://www.zimbra.com";
 		
@@ -171,12 +171,12 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Test(	description = "Validate the url zimlet does not match invalid URLs",
+	@Test( description = "Validate the url zimlet does not match invalid URLs",
 			groups = { "functional" })
 	public void GetMessage_04() throws HarnessException {
 
 		final String subject = "subject12976223025009";
-		final String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/url01/invalid_url.txt";
+		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/url01/invalid_url.txt";
 		
 		// Inject the example message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
@@ -202,7 +202,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 	@Bugs(ids="86667")
-	@Test(	description = "Receive a mail with a url in subject reference bug 86667",
+	@Test( description = "Receive a mail with a url in subject reference bug 86667",
 			groups = { "deprecated" })
 	public void GetMessage_05() throws HarnessException {
 		
@@ -217,7 +217,7 @@ public class GetMessage extends AjaxCommonTest {
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
@@ -241,14 +241,14 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 	@Bugs(ids = "29018,67927")
-	@Test(	description = "Receive a mail with a URL in angled brackets",
+	@Test( description = "Receive a mail with a URL in angled brackets",
 			groups = { "functional" })
 	public void GetMessage_06() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		String url = "http://www.zimbra.com";
-		String body = "text &lt;" + url + "&gt; text "+ ZimbraSeleniumProperties.getUniqueString();
+		String body = "text &lt;" + url + "&gt; text "+ ConfigProperties.getUniqueString();
 				
 		
 		// Send the message from AccountA to the ZWC user

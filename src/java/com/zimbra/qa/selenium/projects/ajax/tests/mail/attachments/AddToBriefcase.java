@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attachments;
@@ -41,13 +41,13 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");				
 	}
 	
-	@Test(	description = "Add JPG attachment to Briefcase when viewing email in the current window",
+	@Test( description = "Add JPG attachment to Briefcase when viewing email in the current window",
 			groups = { "functional" })
 			
 	public void AddToBriefcase_01() throws HarnessException {
 
 		// -- Data Setup
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email09/mime.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email09/mime.txt";
 		subject = "subject03431362517016470";
 		filename = "screenshot.JPG";
 		account = app.zGetActiveAccount();
@@ -107,12 +107,14 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(name, filename, "Verify saved to Briefcase mail attachment name through SOAP");
 	}
 	
-	@Test(description = "Add txt attachment to Briefcase when viewing email in a separate window",
+	
+	@Test( description = "Add txt attachment to Briefcase when viewing email in a separate window",
 			groups = { "functional" })
 			
 	public void AddToBriefcase_02() throws HarnessException {
+		
 	    	// -- Data Setup
- 		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
+ 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
  		subject = "subject151615738";
  		filename = "file.txt";
  		account = app.zGetActiveAccount();
@@ -153,10 +155,10 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 	 	//Open message in a separate window
 		SeparateWindow window = (SeparateWindow)app.zPageMail.zToolbarPressButton(Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 		try {
+			
 			window.zWaitForActive();
 			app.zPageMail.zSelectWindow("_blank");
-			SleepUtil.sleepVeryLong();
-			
+			SleepUtil.sleepMedium();
 			app.zPageCalendar.zWaitForElementAppear("css=div[id*=zv__MSG__MSG][id*=_attLinks_]");
 			
 			DialogAddToBriefcase dialog = (DialogAddToBriefcase)app.zPageMail.zToolbarPressButton(Button.B_BRIEFCASE);
@@ -166,7 +168,8 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 			
         } finally {
         	if ( window != null ) {
-        		window.zCloseWindow();
+        		window.zCloseWindow("Zimbra :" + subject);
+        		window = null;
     		}
         	app.zPageMail.zSelectWindow(null);
        	}
@@ -180,8 +183,8 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 		String name = account.soapSelectValue("//mail:doc", "name");
 				
 		//Verify the search response returns the file name
-		ZAssert.assertNotNull(name,
-			"Verify the search response returns the document name");
+		ZAssert.assertNotNull(name, "Verify the search response returns the document name");
+		
 		//Verify saved to Briefcase file and mail attachment name are matched
 		ZAssert.assertEquals(name, filename, "Verify saved to Briefcase mail attachment name through SOAP");
 	}	
@@ -195,9 +198,8 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 		
 		// delete message
 		MailItem received = MailItem.importFromSOAP(account, "in:inbox subject:("+ subject +")");
-		account.soapSend(
-			"<ItemActionRequest xmlns='urn:zimbraMail'>" +
-			"<action op='move' id='"+ received.getId() +"' l='"+ FolderItem.importFromSOAP(account, SystemFolder.Trash).getId() +"'/>" +
-			"</ItemActionRequest>");
+		account.soapSend("<ItemActionRequest xmlns='urn:zimbraMail'>" 
+						+ "<action op='move' id='"+ received.getId() +"' l='"+ FolderItem.importFromSOAP(account, SystemFolder.Trash).getId() +"'/>" 
+						+ "</ItemActionRequest>");
 	}
 }

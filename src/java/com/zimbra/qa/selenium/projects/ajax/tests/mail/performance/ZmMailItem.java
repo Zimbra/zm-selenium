@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.performance;
@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.performance.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.LmtpInject;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
 
@@ -47,11 +47,11 @@ public class ZmMailItem extends AjaxCommonTest {
 	}
 	
 	
-	@Test(	description = "Measure the performance for preview pane, text message, initial load",
+	@Test( description = "Measure the performance for preview pane, text message, initial load",
 			groups = { "performance" })
 	public void ZmMailItem_01() throws HarnessException {
 		
-		String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
+		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
 		String subject = "Subject13155016716713";
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
@@ -71,11 +71,11 @@ public class ZmMailItem extends AjaxCommonTest {
 
 	}
 
-	@Test(	description = "Measure the performance for preview pane, text message, 1 message",
+	@Test( description = "Measure the performance for preview pane, text message, 1 message",
 			groups = { "performance" })
 	public void ZmMailItem_02() throws HarnessException {
 		
-		String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
+		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
 		String subject = "Subject13155016716713";
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
@@ -95,11 +95,11 @@ public class ZmMailItem extends AjaxCommonTest {
 
 	}
 	
-	@Test(	description = "Measure the performance for preview pane,  message with 1 attachment",
+	@Test( description = "Measure the performance for preview pane,  message with 1 attachment",
 			groups = { "performance" })
 	public void ZmMailItem_03() throws HarnessException {
 		
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
 		final String subject = "subject151615738";
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -116,11 +116,11 @@ public class ZmMailItem extends AjaxCommonTest {
 	}
 	
 	
-	@Test(	description = "Measure the performance for preview pane,  message with 3 attachment",
+	@Test( description = "Measure the performance for preview pane,  message with 3 attachment",
 			groups = { "performance" })
 	public void ZmMailItem_04() throws HarnessException {
 		
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email05/mime02.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime02.txt";
 		final String subject = "subject151111738";
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 		

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.tests.delegatedadmin;
@@ -48,13 +48,13 @@ public class AccountManage extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Bugs( ids = "61658")
-	@Test(	description = "Delegated Admin's Create a basic account using New->Account",
+	@Test( description = "Delegated Admin's Create a basic account using New->Account",
 			groups = { "sanity" })
 	public void CreateAccount_01() throws HarnessException {
 
 		app.provisionAuthenticateDA();
 		this.startingPage.zNavigateTo();
-		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 
 		// Click "New" -> "Account" at Delelgated Admin manage account page
 		WizardCreateAccount wizard = 
@@ -82,7 +82,7 @@ public class AccountManage extends AdminCommonTest {
 	 * 5. Verify account is edited using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Delegated Admin's : Edit Account name  - Manage Account View",
+	@Test( description = "Delegated Admin's : Edit Account name  - Manage Account View",
 			groups = { "sanity" })
 	public void EditAccount_01() throws HarnessException {
 
@@ -106,7 +106,7 @@ public class AccountManage extends AdminCommonTest {
 		form.zClickTreeItem(FormEditAccount.TreeItem.GENERAL_INFORMATION);
 
 		// Edit the name.
-		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
 		form.setNameAsDA(editedName);
 
 		// Submit the form.
@@ -115,7 +115,7 @@ public class AccountManage extends AdminCommonTest {
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-						+			"<account by='name'>"+ editedName+"@" + ZimbraSeleniumProperties.getStringProperty("testdomain", "testdomain.com")+"</account>"
+						+			"<account by='name'>"+ editedName+"@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com")+"</account>"
 						+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "Verify the account is edited successfully at DA");
@@ -132,7 +132,7 @@ public class AccountManage extends AdminCommonTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Delegated Admin's: Delete a basic account -- Manage Account View",
+	@Test( description = "Delegated Admin's: Delete a basic account -- Manage Account View",
 			groups = { "sanity" })
 	public void DeleteAccount_01() throws HarnessException {
 

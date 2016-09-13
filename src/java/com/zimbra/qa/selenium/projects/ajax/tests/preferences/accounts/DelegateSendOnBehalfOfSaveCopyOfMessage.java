@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.accounts;
@@ -34,13 +34,13 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 
 	}
 
-	@Test(	description = "Save a copy of sent messages to owner's Sent folder",
+	@Test( description = "Save a copy of sent messages to owner's Sent folder",
 			groups = { "functional" })
 	
 	public void DelegateSendOnBehalfOfSaveCopyOfMessage_01() throws HarnessException {
 
 		// Mail data
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		// The grantor - new account
 		ZimbraAccount grantor = null;
@@ -73,7 +73,7 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 		// Fill out the form with the data
 		mailform.zFillField(Field.To, ZimbraAccount.AccountB().EmailAddress);
 		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, "body" + ZimbraSeleniumProperties.getUniqueString());
+		mailform.zFillField(Field.Body, "body" + ConfigProperties.getUniqueString());
 		mailform.zFillField(Field.From, grantor.EmailAddress);	
 		mailform.zSubmit();
 
@@ -88,13 +88,13 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 		
 	}
 	
-	@Test(	description = "Save a copy of sent messages to delegate's Sent folder",
+	@Test( description = "Save a copy of sent messages to delegate's Sent folder",
 			groups = { "functional" })
 	
 	public void DelegateSendOnBehalfOfSaveCopyOfMessage_02() throws HarnessException {
 
 		// Mail data
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		// The grantor - new account
 		ZimbraAccount grantor = null;
@@ -128,7 +128,7 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 		// Fill out the form with the data
 		mailform.zFillField(Field.To, ZimbraAccount.AccountB().EmailAddress);
 		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, "body" + ZimbraSeleniumProperties.getUniqueString());
+		mailform.zFillField(Field.Body, "body" + ConfigProperties.getUniqueString());
 		mailform.zFillField(Field.From, grantor.EmailAddress);	
 		mailform.zSubmit();
 
@@ -143,13 +143,13 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 		
 	}
 	
-	@Test(	description = "Save a copy of sent messages to delegate's Sent folder and granter's Sent folder",
+	@Test( description = "Save a copy of sent messages to delegate's Sent folder and granter's Sent folder",
 			groups = { "functional" })
 	
 	public void DelegateSendOnBehalfOfSaveCopyOfMessage_03() throws HarnessException {
 
 		// Mail data
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		// The grantor - new account
 		ZimbraAccount grantor = null;
@@ -185,7 +185,7 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 		// Fill out the form with the data
 		mailform.zFillField(Field.To, ZimbraAccount.AccountB().EmailAddress);
 		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, "body" + ZimbraSeleniumProperties.getUniqueString());
+		mailform.zFillField(Field.Body, "body" + ConfigProperties.getUniqueString());
 		mailform.zFillField(Field.From, grantor.EmailAddress);	
 		mailform.zSubmit();
 
@@ -200,13 +200,13 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 		
 	}
 	
-	@Test(	description = "Don't save a copy of sent messages",
+	@Test( description = "Don't save a copy of sent messages",
 			groups = { "functional" })
 	
 	public void DelegateSendOnBehalfOfSaveCopyOfMessage_04() throws HarnessException {
 
 		// Mail data
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		// The grantor - new account
 		ZimbraAccount grantor = null;
@@ -240,7 +240,7 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 		// Fill out the form with the data
 		mailform.zFillField(Field.To, ZimbraAccount.AccountB().EmailAddress);
 		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, "body" + ZimbraSeleniumProperties.getUniqueString());
+		mailform.zFillField(Field.Body, "body" + ConfigProperties.getUniqueString());
 		mailform.zFillField(Field.From, grantor.EmailAddress);	
 		mailform.zSubmit();
 

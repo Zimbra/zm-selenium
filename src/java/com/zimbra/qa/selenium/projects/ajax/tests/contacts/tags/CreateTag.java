@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.tags;
@@ -39,13 +39,14 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 
 	}
 	
-	@Test(	description = "Create a new tag by clicking 'new tag' on folder tree",
+	@Test( description = "Create a new tag by clicking 'new tag' on folder tree",
 			groups = { "sanity" })
+	
 	public void CreateTag_01() throws HarnessException {
 		
 		
 		// Set the new tag name
-		String name = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String name = "tag" + ConfigProperties.getUniqueString();
 		
 		DialogTag dialog = (DialogTag)app.zTreeContacts.zPressButton(Button.B_TREE_NEWTAG);
 		ZAssert.assertNotNull(dialog, "Verify the new dialog opened");
@@ -65,7 +66,7 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 
 	
 	
-	@Test(	description = "Create a new tag using keyboard shortcuts",
+	@Test( description = "Create a new tag using keyboard shortcuts",
 			groups = { "functional" })
 	public void CreateTag_02() throws HarnessException {
 		
@@ -74,7 +75,7 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 		
 		
 		// Set the new tag name
-		String name = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String name = "tag" + ConfigProperties.getUniqueString();
 		
 		DialogTag dialog = (DialogTag)app.zPageContacts.zKeyboardShortcut(shortcut);
 		ZAssert.assertNotNull(dialog, "Verify the new dialog opened");
@@ -93,13 +94,17 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Create a new tag using context menu from a tag",
+	@Test( description = "Create a new tag using context menu from a tag",
 			groups = { "functional" })
 	public void CreateTag_03() throws HarnessException {
 		
+		// Work around due to duplicate dialog ids
+		app.zPageMain.sRefresh();
+		app.zPageContacts.zNavigateTo();
+		
 		// Set the new tag name
-		String name1 = "tag" + ZimbraSeleniumProperties.getUniqueString();
-		String name2 = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String name1 = "tag" + ConfigProperties.getUniqueString();
+		String name2 = "tag" + ConfigProperties.getUniqueString();
 		
 		// Create a tag to right click on
 		app.zGetActiveAccount().soapSend(
@@ -133,13 +138,13 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Create a new tag using mail app New -> New Tag",
+	@Test( description = "Create a new tag using mail app New -> New Tag",
 			groups = { "functional" })
 	public void CreateTag_04() throws HarnessException {
 		
 		
 		// Set the new folder name
-		String name = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String name = "tag" + ConfigProperties.getUniqueString();
 				
 		// Create a new folder in the inbox
 		// using the context menu + New Folder

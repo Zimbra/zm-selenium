@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.sort.folders;
@@ -39,7 +39,7 @@ public class SortPerFolder extends PrefGroupMailByMessageTest {
 	}
 	
 	@Bugs(ids = "30319")
-	@Test(	description = "Sort a list of messages by subject in folderA and by From in folderB",
+	@Test( description = "Sort a list of messages by subject in folderA and by From in folderB",
 			groups = { "functional" })
 	public void SortPerFolder_01() throws HarnessException {
 		
@@ -47,12 +47,12 @@ public class SortPerFolder extends PrefGroupMailByMessageTest {
 		
 		// Create the message data
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-		String subject1 = "bbbb" + ZimbraSeleniumProperties.getUniqueString(); 
-		String subject2 = "aaaa" + ZimbraSeleniumProperties.getUniqueString(); 
-		String subject3 = "bbbb" + ZimbraSeleniumProperties.getUniqueString(); 
-		String subject4 = "aaaa" + ZimbraSeleniumProperties.getUniqueString(); 
-		String foldername1 = "folder1" + ZimbraSeleniumProperties.getUniqueString();
-		String foldername2 = "folder2" + ZimbraSeleniumProperties.getUniqueString();
+		String subject1 = "bbbb" + ConfigProperties.getUniqueString(); 
+		String subject2 = "aaaa" + ConfigProperties.getUniqueString(); 
+		String subject3 = "bbbb" + ConfigProperties.getUniqueString(); 
+		String subject4 = "aaaa" + ConfigProperties.getUniqueString(); 
+		String foldername1 = "folder1" + ConfigProperties.getUniqueString();
+		String foldername2 = "folder2" + ConfigProperties.getUniqueString();
 		
 		// Create the folders
 		app.zGetActiveAccount().soapSend(

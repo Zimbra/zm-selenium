@@ -1,0 +1,860 @@
+Return-Path: aoak@testdomain.com
+Received: from edge02.testdomain.com (LHLO edge02.testdomain.com) (10.210.0.184) by
+ mbs01.testdomain.com with LMTP; Wed, 3 Jun 2015 06:10:08 -0500 (CDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by edge02.testdomain.com (Postfix) with ESMTP id 2C74DA6285;
+	Wed,  3 Jun 2015 06:10:08 -0500 (CDT)
+Authentication-Results: edge02.testdomain.com (amavisd-new);
+	dkim=pass (1024-bit key) header.d=testdomain.com
+Received: from edge02.testdomain.com ([127.0.0.1])
+	by localhost (edge02.testdomain.com [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id 09aUtgZ2miNx; Wed,  3 Jun 2015 06:10:02 -0500 (CDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by edge02.testdomain.com (Postfix) with ESMTP id 4CA30A628F;
+	Wed,  3 Jun 2015 06:10:02 -0500 (CDT)
+DKIM-Filter: OpenDKIM Filter v2.9.2 edge02.testdomain.com 4CA30A628F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testdomain.com;
+	s=C2AA288C-EE47-11E2-9BB0-E820BDD9BDBF; t=1433329802;
+	bh=B/oItpYb1NDWUiyGDqVFyrIuWdQP9tc3F0Se7O+AHnQ=;
+	h=Date:From:To:Message-ID:Subject:MIME-Version:Content-Type;
+	b=TBjgtCPoXSPRXOXMqILH4PXdT1/35Ri2EUuhGoJ+Xtnm+pm7CsGJfkWLXKvAXxN8e
+	 D4uofPsRo/y/jSvP5knEDkh1wnleN+l29RrSGcyNEV1jL+tJNsDs2dBTLFklqNmDDm
+	 x7kiGirStw0Moek+sSmLOJ8fOps6aaekdZ7qkjfA=
+X-Virus-Scanned: amavisd-new at edge02.testdomain.com
+Received: from edge02.testdomain.com ([127.0.0.1])
+	by localhost (edge02.testdomain.com [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id r9H1I7JU1NkW; Wed,  3 Jun 2015 06:10:01 -0500 (CDT)
+Received: from mbs01.testdomain.com (mbs01.testdomain.com [10.110.0.177])
+	by edge02.testdomain.com (Postfix) with ESMTP id 81D8DA6285;
+	Wed,  3 Jun 2015 06:10:01 -0500 (CDT)
+Date: Wed, 3 Jun 2015 06:10:01 -0500 (CDT)
+From: Ashwini Oak <aoak@testdomain.com>
+To: Rohan Ambasta <rambasta@testdomain.com>, pbhandolkar <pbhandolkar@testdomain.com>, 
+	pgajjar <pgajjar@testdomain.com>, Vikas Galande <vgalande@testdomain.com>, 
+	Pallavi Khairnar <pkhairnar@testdomain.com>, 
+	Swati Khosre <skhosre@testdomain.com>, Ankit Kumar <kumara@testdomain.com>, 
+	Satyam Kumar <kumars@testdomain.com>, 
+	Piyush Nimoria <pnimoria@testdomain.com>, 
+	Chinmay Pathak <pathakc@testdomain.com>, sprasad <sprasad@testdomain.com>, 
+	Dawood Shaikh <dshaikh@testdomain.com>, Rahul Yadav <ryadav@testdomain.com>, 
+	Abhishek Zambre <azambre@testdomain.com>, Santosh Rao <srao@testdomain.com>, 
+	Shashank Tewari <stewari@testdomain.com>, 
+	Irfan Shaikh <ishaikh@testdomain.com>, 
+	Zimbra India Managers <india-managers@testdomain.com>, 
+	"Site: Pune, India, Building: Godrej Castlemaine, Floor: 3rd Floor, Room: Jupiter" <conf-jupiter@testdomain.com>
+Message-ID: <60442451.2147237.1433329801326.JavaMail.zimbra@testdomain.com>
+Subject: Schedule for Generic Training
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2147236_442634702.1433329801321"
+X-Mailer: Zimbra 8.6.0_GA_1169 (ZimbraWebClient - FF38 (Win)/8.6.0_GA_1169)
+Thread-Topic: Schedule for Generic Training
+Thread-Index: L5ZHWMjkx/vy4+skVWyn+CdZY/b6Dw==
+X-Zimbra-DL: india-managers@testdomain.com
+
+------=_Part_2147236_442634702.1433329801321
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+The following is a new meeting request:
+
+Subject: Schedule for Generic Training 
+Organizer: "Ashwini Oak" <aoak@testdomain.com> 
+
+Location: "Conference Room: Jupiter/Pune (14 Seater)" <conf-jupiter@testdomain.com> 
+Resources: "Site: Pune, India, Building: Godrej Castlemaine, Floor: 3rd Floor, Room: Jupiter" <conf-jupiter@testdomain.com> (Site: Pune, India, Building: Godrej Castlemaine, Floor: 3rd Floor, Room: Jupiter) 
+Start: Tuesday, June 9, 2015, 11:00:00 AM GMT +05:30 Chennai, Kolkata, Mumbai, New Delhi
+ End: Wednesday, June 17, 2015, 1:00:00 PM GMT +05:30 Chennai, Kolkata, Mumbai, New Delhi
+ 
+Invitees: rambasta@testdomain.com; pbhandolkar@testdomain.com; pgajjar@testdomain.com; vgalande@testdomain.com; pkhairnar@testdomain.com; skhosre@testdomain.com; kumara@testdomain.com; kumars@testdomain.com; pnimoria@testdomain.com; pathakc@testdomain.com; sprasad@testdomain.com ... 
+
+
+*~*~*~*~*~*~*~*~*~*
+
+Dear All, 
+
+We have organized a training between 9th June to 17th June for a ll new joiners from Jan-2014. 
+Please find below the details for the training. 
+
+DAY 	DATE 	TOPICS 	NAME OF THE TRAINER 
+Day 1 - Tuesday 	June 9 th 	
+
+    * General Email flow 
+	Santosh Rao 
+
+
+    * ZCS Overview with system architecture 
+
+
+Day 2 - Wednesday 	June 10 th 	
+
+    * OpenLdap 
+	Shashank Tewari 
+
+
+    * Ldap Data Structure 
+
+
+
+    * Mysql 
+
+
+Day 3 - Thursday 	June 11 th 	
+
+    * MTA 
+	Irfan Shaikh 
+
+
+    * Antispam/Antivirus 
+
+
+
+    * zmconfigd 
+
+
+Day 4 - Friday 	June 12 th 	
+
+    * Mailboxd (Jetty) 
+	Santosh Rao 
+
+
+    * Zimbra Proxy 
+
+
+
+    * Zimbra Logger and Stats 
+
+
+Day 5 - Monday 	June 15 th 	
+
+    * Zimbra Backup and Restore 
+	Irfan Shaikh 
+
+
+    * SSL Certificates in Zimbra 
+
+
+Day 6 - Tuesday 	June 16 th 	
+
+    * Misc Topics 
+	Santosh Rao 
+
+
+    * Interfaces 
+
+
+
+    * Zimbra License 
+
+
+Day 7 - Wednesday 	June 17 th 	
+
+    * Zimbra Installation Training 
+	Santosh Rao, Irfan Shaikh & Shashank Tewari 
+
+
+    * Set up user to sync his email using imap/ZCO/Mobile/ZD 
+
+
+Regards, 
+Ashwini 
+
+------=_Part_2147236_442634702.1433329801321
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body id=3D'htmlmode'><h3>The following is a new meeting request:</h3=
+>
+
+<p>
+<table border=3D'0'>
+<tr><th align=3Dleft>Subject:</th><td>Schedule for Generic Training </td></=
+tr>
+<tr><th align=3Dleft>Organizer:</th><td>"Ashwini Oak" &lt;aoak@testdomain.com&g=
+t; </td></tr>
+</table>
+<p>
+<table border=3D'0'>
+<tr><th align=3Dleft>Location:</th><td>"Conference Room: Jupiter/Pune (14 S=
+eater)" &lt;conf-jupiter@testdomain.com&gt; </td></tr>
+<tr><th align=3Dleft>Resources:</th><td>"Site: Pune, India, Building: Godre=
+j Castlemaine, Floor: 3rd Floor, Room: Jupiter" &lt;conf-jupiter@testdomain.com=
+&gt; (Site: Pune, India, Building: Godrej Castlemaine, Floor: 3rd Floor, Ro=
+om: Jupiter) </td></tr>
+<tr><th align=3Dleft>Start:</th><td>Tuesday, June 9, 2015, 11:00:00 AM GMT =
++05:30 Chennai, Kolkata, Mumbai, New Delhi
+ </td></tr><tr><th align=3Dleft>End:</th><td>Wednesday, June 17, 2015, 1:00=
+:00 PM GMT +05:30 Chennai, Kolkata, Mumbai, New Delhi
+ </td></tr></table>
+<p>
+<table border=3D'0'>
+<tr><th align=3Dleft>Invitees:</th><td>rambasta@testdomain.com; pbhandolkar@zim=
+bra.com; pgajjar@testdomain.com; vgalande@testdomain.com; pkhairnar@testdomain.com; skh=
+osre@testdomain.com; kumara@testdomain.com; kumars@testdomain.com; pnimoria@testdomain.com;=
+ pathakc@testdomain.com; sprasad@testdomain.com ... </td></tr>
+</table>
+<div>*~*~*~*~*~*~*~*~*~*</div><br><div style=3D"font-family: arial, helveti=
+ca, sans-serif; font-size: 12pt; color: #000000"><div><span data-mce-style=
+=3D"font-size: 11pt;" style=3D"font-size: 11pt;">Dear All,</span><br></div>=
+<div><br data-mce-bogus=3D"1"></div><div><span data-mce-style=3D"font-famil=
+y: arial,helvetica,sans-serif; font-size: 11pt;" style=3D"font-family: aria=
+l,helvetica,sans-serif; font-size: 11pt;">We have organized a training betw=
+een 9th June to 17th June for all new joiners from&nbsp;<span style=3D"colo=
+r: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: nor=
+mal; letter-spacing: normal; line-height: normal; text-align: start; text-i=
+ndent: 0px; text-transform: none; white-space: normal; widows: 1; word-spac=
+ing: 0px; display: inline ! important; float: none; background-color: rgb(2=
+55, 255, 255);">Jan-2014.</span></span><br data-mce-bogus=3D"1"></div><div>=
+<span data-mce-style=3D"font-size: 11pt;" style=3D"font-size: 11pt;">Please=
+ find below the details for the training.</span><br data-mce-bogus=3D"1"></=
+div><div><br data-mce-bogus=3D"1"></div><div><table style=3D"width: 1218px;=
+ table-layout: fixed;" border=3D"1" height=3D"664" width=3D"1033"><tbody><t=
+r style=3D"height: 15.0pt;" data-mce-style=3D"height: 15.0pt;"><td style=3D=
+"height: 15.0pt; width: 125pt;" data-mce-style=3D"text-align: center;" widt=
+h=3D"167"><strong>DAY</strong></td><td style=3D"border-left: none; width: 1=
+04pt;" data-mce-style=3D"text-align: center;" width=3D"139"><strong>DATE</s=
+trong></td><td style=3D"border-left: none; width: 316pt;" data-mce-style=3D=
+"text-align: center;" width=3D"421"><strong>TOPICS</strong></td><td style=
+=3D"border-left: none; width: 231pt;" data-mce-style=3D"text-align: center;=
+" width=3D"308"><strong>NAME OF THE TRAINER</strong></td></tr><tr style=3D"=
+height: 15.0pt;" data-mce-style=3D"height: 15.0pt;"><td rowspan=3D"3" style=
+=3D"border-bottom: .5pt solid black; height: 45.0pt; border-top: none; widt=
+h: 125pt;" data-mce-style=3D"border-bottom: .5pt solid black; height: 45.0p=
+t; border-top: none; width: 125pt;" width=3D"167"><span data-mce-style=3D"f=
+ont-size: 11pt; font-family: arial,helvetica,sans-serif;" style=3D"font-siz=
+e: 11pt; font-family: arial,helvetica,sans-serif;">Day 1 - Tuesday </span><=
+/td><td rowspan=3D"3" style=3D"border-bottom: .5pt solid black; border-top:=
+ none; width: 104pt;" data-mce-style=3D"border-bottom: .5pt solid black; bo=
+rder-top: none; width: 104pt;" width=3D"139"><span data-mce-style=3D"font-s=
+ize: 11pt; font-family: arial,helvetica,sans-serif;" style=3D"font-size: 11=
+pt; font-family: arial,helvetica,sans-serif;">June 9<sup>th</sup> </span></=
+td><td style=3D"border-top: none; border-left: none; width: 316pt;" data-mc=
+e-style=3D"border-top: none; border-left: none; width: 316pt;" width=3D"421=
+"><ul><li><span data-mce-style=3D"font-size: 11pt; font-family: arial,helve=
+tica,sans-serif;" style=3D"font-size: 11pt; font-family: arial,helvetica,sa=
+ns-serif;">General Email flow </span></li></ul></td><td rowspan=3D"3" style=
+=3D"border-bottom: .5pt solid black; border-top: none; width: 231pt;" data-=
+mce-style=3D"border-bottom: .5pt solid black; border-top: none; width: 231p=
+t;" width=3D"308"><span data-mce-style=3D"font-size: 11pt; font-family: ari=
+al,helvetica,sans-serif;" style=3D"font-size: 11pt; font-family: arial,helv=
+etica,sans-serif;">Santosh Rao</span></td></tr><tr style=3D"height: 15.0pt;=
+" data-mce-style=3D"height: 15.0pt;"><td style=3D"height: 15.0pt; border-le=
+ft: none; width: 316pt;" data-mce-style=3D"height: 15.0pt; border-left: non=
+e; width: 316pt;" width=3D"421"><ul><li><span data-mce-style=3D"font-size: =
+11pt; font-family: arial,helvetica,sans-serif;" style=3D"font-size: 11pt; f=
+ont-family: arial,helvetica,sans-serif;">ZCS Overview with system architect=
+ure</span></li></ul></td></tr><tr style=3D"height: 15.0pt;" data-mce-style=
+=3D"height: 15.0pt;"><td style=3D"height: 15.0pt; border-left: none; width:=
+ 316pt;" data-mce-style=3D"height: 15.0pt; border-left: none; width: 316pt;=
+" width=3D"421"><span data-mce-style=3D"font-size: 11pt; font-family: arial=
+,helvetica,sans-serif;" style=3D"font-size: 11pt; font-family: arial,helvet=
+ica,sans-serif;">&nbsp;</span></td></tr><tr style=3D"height: 15.0pt;" data-=
+mce-style=3D"height: 15.0pt;"><td rowspan=3D"4" style=3D"border-bottom: .5p=
+t solid black; height: 60.0pt; border-top: none; width: 125pt;" data-mce-st=
+yle=3D"border-bottom: .5pt solid black; height: 60.0pt; border-top: none; w=
+idth: 125pt;" width=3D"167"><span data-mce-style=3D"font-size: 11pt; font-f=
+amily: arial,helvetica,sans-serif;" style=3D"font-size: 11pt; font-family: =
+arial,helvetica,sans-serif;">Day 2 - Wednesday</span></td><td rowspan=3D"4"=
+ style=3D"border-bottom: .5pt solid black; border-top: none; width: 104pt;"=
+ data-mce-style=3D"border-bottom: .5pt solid black; border-top: none; width=
+: 104pt;" width=3D"139"><span data-mce-style=3D"font-size: 11pt; font-famil=
+y: arial,helvetica,sans-serif;" style=3D"font-size: 11pt; font-family: aria=
+l,helvetica,sans-serif;">June 10<sup>th</sup> </span></td><td style=3D"bord=
+er-top: none; border-left: none; width: 316pt;" data-mce-style=3D"border-to=
+p: none; border-left: none; width: 316pt;" width=3D"421"><ul><li><span data=
+-mce-style=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;" st=
+yle=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;">OpenLdap&=
+nbsp; </span></li></ul></td><td rowspan=3D"4" style=3D"border-bottom: .5pt =
+solid black; border-top: none; width: 231pt;" data-mce-style=3D"border-bott=
+om: .5pt solid black; border-top: none; width: 231pt;" width=3D"308"><span =
+data-mce-style=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;=
+" style=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;">Shash=
+ank Tewari</span></td></tr><tr style=3D"height: 15.0pt;" data-mce-style=3D"=
+height: 15.0pt;"><td style=3D"height: 15.0pt; border-left: none; width: 316=
+pt;" data-mce-style=3D"height: 15.0pt; border-left: none; width: 316pt;" wi=
+dth=3D"421"><ul><li><span data-mce-style=3D"font-size: 11pt; font-family: a=
+rial,helvetica,sans-serif;" style=3D"font-size: 11pt; font-family: arial,he=
+lvetica,sans-serif;">Ldap Data Structure</span></li></ul></td></tr><tr styl=
+e=3D"height: 15.0pt;" data-mce-style=3D"height: 15.0pt;"><td style=3D"heigh=
+t: 15.0pt; border-left: none; width: 316pt;" data-mce-style=3D"height: 15.0=
+pt; border-left: none; width: 316pt;" width=3D"421"><ul><li><span data-mce-=
+style=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;" style=
+=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;">Mysql</span>=
+</li></ul></td></tr><tr style=3D"height: 15.0pt;" data-mce-style=3D"height:=
+ 15.0pt;"><td style=3D"height: 15.0pt; border-left: none; width: 316pt;" da=
+ta-mce-style=3D"height: 15.0pt; border-left: none; width: 316pt;" width=3D"=
+421"><span data-mce-style=3D"font-size: 11pt; font-family: arial,helvetica,=
+sans-serif;" style=3D"font-size: 11pt; font-family: arial,helvetica,sans-se=
+rif;">&nbsp;</span></td></tr><tr style=3D"height: 15.0pt;" data-mce-style=
+=3D"height: 15.0pt;"><td rowspan=3D"4" style=3D"border-bottom: .5pt solid b=
+lack; height: 60.0pt; border-top: none; width: 125pt;" data-mce-style=3D"bo=
+rder-bottom: .5pt solid black; height: 60.0pt; border-top: none; width: 125=
+pt;" width=3D"167"><span data-mce-style=3D"font-size: 11pt; font-family: ar=
+ial,helvetica,sans-serif;" style=3D"font-size: 11pt; font-family: arial,hel=
+vetica,sans-serif;">Day 3 - Thursday</span></td><td rowspan=3D"4" style=3D"=
+border-bottom: .5pt solid black; border-top: none; width: 104pt;" data-mce-=
+style=3D"border-bottom: .5pt solid black; border-top: none; width: 104pt;" =
+width=3D"139"><span data-mce-style=3D"font-size: 11pt; font-family: arial,h=
+elvetica,sans-serif;" style=3D"font-size: 11pt; font-family: arial,helvetic=
+a,sans-serif;">June 11<sup>th </sup></span></td><td style=3D"border-top: no=
+ne; border-left: none; width: 316pt;" data-mce-style=3D"border-top: none; b=
+order-left: none; width: 316pt;" width=3D"421"><ul><li><span data-mce-style=
+=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;" style=3D"fon=
+t-size: 11pt; font-family: arial,helvetica,sans-serif;">MTA</span></li></ul=
+></td><td rowspan=3D"4" style=3D"border-bottom: .5pt solid black; border-to=
+p: none; width: 231pt;" data-mce-style=3D"border-bottom: .5pt solid black; =
+border-top: none; width: 231pt;" width=3D"308"><span data-mce-style=3D"font=
+-size: 11pt; font-family: arial,helvetica,sans-serif;" style=3D"font-size: =
+11pt; font-family: arial,helvetica,sans-serif;">Irfan Shaikh</span></td></t=
+r><tr style=3D"height: 15.0pt;" data-mce-style=3D"height: 15.0pt;"><td styl=
+e=3D"height: 15.0pt; border-left: none; width: 316pt;" data-mce-style=3D"he=
+ight: 15.0pt; border-left: none; width: 316pt;" width=3D"421"><ul><li><span=
+ data-mce-style=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif=
+;" style=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;">Anti=
+spam/Antivirus</span></li></ul></td></tr><tr style=3D"height: 15.0pt;" data=
+-mce-style=3D"height: 15.0pt;"><td style=3D"height: 15.0pt; border-left: no=
+ne; width: 316pt;" data-mce-style=3D"height: 15.0pt; border-left: none; wid=
+th: 316pt;" width=3D"421"><ul><li><span data-mce-style=3D"font-size: 11pt; =
+font-family: arial,helvetica,sans-serif;" style=3D"font-size: 11pt; font-fa=
+mily: arial,helvetica,sans-serif;">zmconfigd</span></li></ul></td></tr><tr =
+style=3D"height: 15.0pt;" data-mce-style=3D"height: 15.0pt;"><td style=3D"h=
+eight: 15.0pt; border-left: none; width: 316pt;" data-mce-style=3D"height: =
+15.0pt; border-left: none; width: 316pt;" width=3D"421"><span data-mce-styl=
+e=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;" style=3D"fo=
+nt-size: 11pt; font-family: arial,helvetica,sans-serif;">&nbsp;</span></td>=
+</tr><tr style=3D"height: 15.0pt;" data-mce-style=3D"height: 15.0pt;"><td r=
+owspan=3D"4" style=3D"border-bottom: .5pt solid black; height: 60.0pt; bord=
+er-top: none; width: 125pt;" data-mce-style=3D"border-bottom: .5pt solid bl=
+ack; height: 60.0pt; border-top: none; width: 125pt;" width=3D"167"><span d=
+ata-mce-style=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;"=
+ style=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;">Day 4 =
+- Friday</span></td><td rowspan=3D"4" style=3D"border-bottom: .5pt solid bl=
+ack; border-top: none; width: 104pt;" data-mce-style=3D"border-bottom: .5pt=
+ solid black; border-top: none; width: 104pt;" width=3D"139"><span data-mce=
+-style=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;" style=
+=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;">June 12<sup>=
+th</sup> </span></td><td style=3D"border-top: none; border-left: none; widt=
+h: 316pt;" data-mce-style=3D"border-top: none; border-left: none; width: 31=
+6pt;" width=3D"421"><ul><li><span data-mce-style=3D"font-size: 11pt; font-f=
+amily: arial,helvetica,sans-serif;" style=3D"font-size: 11pt; font-family: =
+arial,helvetica,sans-serif;">Mailboxd (Jetty)</span></li></ul></td><td rows=
+pan=3D"4" style=3D"border-bottom: .5pt solid black; border-top: none; width=
+: 231pt;" data-mce-style=3D"border-bottom: .5pt solid black; border-top: no=
+ne; width: 231pt;" width=3D"308"><span data-mce-style=3D"font-size: 11pt; f=
+ont-family: arial,helvetica,sans-serif;" style=3D"font-size: 11pt; font-fam=
+ily: arial,helvetica,sans-serif;">Santosh Rao</span></td></tr><tr style=3D"=
+height: 15.0pt;" data-mce-style=3D"height: 15.0pt;"><td style=3D"height: 15=
+.0pt; border-left: none; width: 316pt;" data-mce-style=3D"height: 15.0pt; b=
+order-left: none; width: 316pt;" width=3D"421"><ul><li><span data-mce-style=
+=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;" style=3D"fon=
+t-size: 11pt; font-family: arial,helvetica,sans-serif;">Zimbra Proxy</span>=
+</li></ul></td></tr><tr style=3D"height: 15.0pt;" data-mce-style=3D"height:=
+ 15.0pt;"><td style=3D"height: 15.0pt; border-left: none; width: 316pt;" da=
+ta-mce-style=3D"height: 15.0pt; border-left: none; width: 316pt;" width=3D"=
+421"><ul><li><span data-mce-style=3D"font-size: 11pt; font-family: arial,he=
+lvetica,sans-serif;" style=3D"font-size: 11pt; font-family: arial,helvetica=
+,sans-serif;">Zimbra Logger and Stats</span></li></ul></td></tr><tr style=
+=3D"height: 15.0pt;" data-mce-style=3D"height: 15.0pt;"><td style=3D"height=
+: 15.0pt; border-left: none; width: 316pt;" data-mce-style=3D"height: 15.0p=
+t; border-left: none; width: 316pt;" width=3D"421"><span data-mce-style=3D"=
+font-size: 11pt; font-family: arial,helvetica,sans-serif;" style=3D"font-si=
+ze: 11pt; font-family: arial,helvetica,sans-serif;">&nbsp;</span></td></tr>=
+<tr style=3D"height: 15.0pt;" data-mce-style=3D"height: 15.0pt;"><td rowspa=
+n=3D"3" style=3D"border-bottom: .5pt solid black; height: 45.0pt; border-to=
+p: none; width: 125pt;" data-mce-style=3D"border-bottom: .5pt solid black; =
+height: 45.0pt; border-top: none; width: 125pt;" width=3D"167"><span data-m=
+ce-style=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;" styl=
+e=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;">Day 5&nbsp;=
+ - Monday </span></td><td rowspan=3D"3" style=3D"border-bottom: .5pt solid =
+black; border-top: none; width: 104pt;" data-mce-style=3D"border-bottom: .5=
+pt solid black; border-top: none; width: 104pt;" width=3D"139"><span data-m=
+ce-style=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;" styl=
+e=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;">June 15<sup=
+>th</sup></span></td><td style=3D"border-top: none; border-left: none; widt=
+h: 316pt;" data-mce-style=3D"border-top: none; border-left: none; width: 31=
+6pt;" width=3D"421"><ul><li><span data-mce-style=3D"font-size: 11pt; font-f=
+amily: arial,helvetica,sans-serif;" style=3D"font-size: 11pt; font-family: =
+arial,helvetica,sans-serif;">Zimbra Backup and Restore</span></li></ul></td=
+><td rowspan=3D"3" style=3D"border-bottom: .5pt solid black; border-top: no=
+ne; width: 231pt;" data-mce-style=3D"border-bottom: .5pt solid black; borde=
+r-top: none; width: 231pt;" width=3D"308"><span data-mce-style=3D"font-size=
+: 11pt; font-family: arial,helvetica,sans-serif;" style=3D"font-size: 11pt;=
+ font-family: arial,helvetica,sans-serif;">Irfan Shaikh</span></td></tr><tr=
+ style=3D"height: 15.0pt;" data-mce-style=3D"height: 15.0pt;"><td style=3D"=
+height: 15.0pt; border-left: none; width: 316pt;" data-mce-style=3D"height:=
+ 15.0pt; border-left: none; width: 316pt;" width=3D"421"><ul><li><span data=
+-mce-style=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;" st=
+yle=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;">SSL Certi=
+ficates in Zimbra</span></li></ul></td></tr><tr style=3D"height: 15.0pt;" d=
+ata-mce-style=3D"height: 15.0pt;"><td style=3D"height: 15.0pt; border-left:=
+ none; width: 316pt;" data-mce-style=3D"height: 15.0pt; border-left: none; =
+width: 316pt;" width=3D"421"><span data-mce-style=3D"font-size: 11pt; font-=
+family: arial,helvetica,sans-serif;" style=3D"font-size: 11pt; font-family:=
+ arial,helvetica,sans-serif;">&nbsp;</span></td></tr><tr style=3D"height: 1=
+5.0pt;" data-mce-style=3D"height: 15.0pt;"><td rowspan=3D"4" style=3D"borde=
+r-bottom: .5pt solid black; height: 60.0pt; border-top: none; width: 125pt;=
+" data-mce-style=3D"border-bottom: .5pt solid black; height: 60.0pt; border=
+-top: none; width: 125pt;" width=3D"167"><span data-mce-style=3D"font-size:=
+ 11pt; font-family: arial,helvetica,sans-serif;" style=3D"font-size: 11pt; =
+font-family: arial,helvetica,sans-serif;">Day 6&nbsp; - Tuesday </span></td=
+><td rowspan=3D"4" style=3D"border-bottom: .5pt solid black; border-top: no=
+ne; width: 104pt;" data-mce-style=3D"border-bottom: .5pt solid black; borde=
+r-top: none; width: 104pt;" width=3D"139"><span data-mce-style=3D"font-size=
+: 11pt; font-family: arial,helvetica,sans-serif;" style=3D"font-size: 11pt;=
+ font-family: arial,helvetica,sans-serif;">June 16<sup>th</sup></span></td>=
+<td style=3D"border-top: none; border-left: none; width: 316pt;" data-mce-s=
+tyle=3D"border-top: none; border-left: none; width: 316pt;" width=3D"421"><=
+ul><li><span data-mce-style=3D"font-size: 11pt; font-family: arial,helvetic=
+a,sans-serif;" style=3D"font-size: 11pt; font-family: arial,helvetica,sans-=
+serif;">Misc Topics</span></li></ul></td><td rowspan=3D"4" style=3D"border-=
+bottom: .5pt solid black; border-top: none; width: 231pt;" data-mce-style=
+=3D"border-bottom: .5pt solid black; border-top: none; width: 231pt;" width=
+=3D"308"><span data-mce-style=3D"font-size: 11pt; font-family: arial,helvet=
+ica,sans-serif;" style=3D"font-size: 11pt; font-family: arial,helvetica,san=
+s-serif;">Santosh Rao</span></td></tr><tr style=3D"height: 15.0pt;" data-mc=
+e-style=3D"height: 15.0pt;"><td style=3D"height: 15.0pt; border-left: none;=
+ width: 316pt;" data-mce-style=3D"height: 15.0pt; border-left: none; width:=
+ 316pt;" width=3D"421"><ul><li><span data-mce-style=3D"font-size: 11pt; fon=
+t-family: arial,helvetica,sans-serif;" style=3D"font-size: 11pt; font-famil=
+y: arial,helvetica,sans-serif;">Interfaces</span></li></ul></td></tr><tr st=
+yle=3D"height: 15.0pt;" data-mce-style=3D"height: 15.0pt;"><td style=3D"hei=
+ght: 15.0pt; border-left: none; width: 316pt;" data-mce-style=3D"height: 15=
+.0pt; border-left: none; width: 316pt;" width=3D"421"><ul><li><span data-mc=
+e-style=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;" style=
+=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;">Zimbra Licen=
+se</span></li></ul></td></tr><tr style=3D"height: 15.0pt;" data-mce-style=
+=3D"height: 15.0pt;"><td style=3D"height: 15.0pt; border-left: none; width:=
+ 316pt;" data-mce-style=3D"height: 15.0pt; border-left: none; width: 316pt;=
+" width=3D"421"><span data-mce-style=3D"font-size: 11pt; font-family: arial=
+,helvetica,sans-serif;" style=3D"font-size: 11pt; font-family: arial,helvet=
+ica,sans-serif;">&nbsp;</span></td></tr><tr style=3D"height: 15.0pt;" data-=
+mce-style=3D"height: 15.0pt;"><td rowspan=3D"3" style=3D"border-bottom: .5p=
+t solid black; height: 45.0pt; border-top: none; width: 125pt;" data-mce-st=
+yle=3D"border-bottom: .5pt solid black; height: 45.0pt; border-top: none; w=
+idth: 125pt;" width=3D"167"><span data-mce-style=3D"font-size: 11pt; font-f=
+amily: arial,helvetica,sans-serif;" style=3D"font-size: 11pt; font-family: =
+arial,helvetica,sans-serif;">Day 7 - Wednesday </span></td><td rowspan=3D"3=
+" style=3D"border-bottom: .5pt solid black; border-top: none; width: 104pt;=
+" data-mce-style=3D"border-bottom: .5pt solid black; border-top: none; widt=
+h: 104pt;" width=3D"139"><span data-mce-style=3D"font-size: 11pt; font-fami=
+ly: arial,helvetica,sans-serif;" style=3D"font-size: 11pt; font-family: ari=
+al,helvetica,sans-serif;">June 17<sup>th</sup></span></td><td style=3D"bord=
+er-top: none; border-left: none; width: 316pt;" data-mce-style=3D"border-to=
+p: none; border-left: none; width: 316pt;" width=3D"421"><ul><li><span data=
+-mce-style=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;" st=
+yle=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;">Zimbra In=
+stallation Training</span></li></ul></td><td rowspan=3D"3" style=3D"border-=
+bottom: .5pt solid black; border-top: none; width: 231pt;" data-mce-style=
+=3D"border-bottom: .5pt solid black; border-top: none; width: 231pt;" width=
+=3D"308"><span data-mce-style=3D"font-size: 11pt; font-family: arial,helvet=
+ica,sans-serif;" style=3D"font-size: 11pt; font-family: arial,helvetica,san=
+s-serif;">Santosh Rao, Irfan Shaikh &amp; Shashank Tewari</span></td></tr><=
+tr style=3D"height: 15.0pt;" data-mce-style=3D"height: 15.0pt;"><td style=
+=3D"height: 15.0pt; border-left: none; width: 316pt;" data-mce-style=3D"hei=
+ght: 15.0pt; border-left: none; width: 316pt;" width=3D"421"><ul><li><span =
+data-mce-style=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;=
+" style=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;">Set u=
+p user to sync his email using imap/ZCO/Mobile/ZD</span></li></ul></td></tr=
+><tr style=3D"height: 15.0pt;" data-mce-style=3D"height: 15.0pt;"><td style=
+=3D"height: 15.0pt; border-left: none; width: 316pt;" data-mce-style=3D"hei=
+ght: 15.0pt; border-left: none; width: 316pt;" width=3D"421"><span data-mce=
+-style=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;" style=
+=3D"font-size: 11pt; font-family: arial,helvetica,sans-serif;">&nbsp;</span=
+></td></tr></tbody></table></div><div><br data-mce-bogus=3D"1"></div><div><=
+span data-mce-style=3D"font-size: 11pt;" style=3D"font-size: 11pt;">Regards=
+,</span></div><div><span data-mce-style=3D"font-size: 11pt;" style=3D"font-=
+size: 11pt;">Ashwini</span><br data-mce-bogus=3D"1"></div></div></body></ht=
+ml>
+------=_Part_2147236_442634702.1433329801321
+Content-Type: text/calendar; charset=utf-8; method=REQUEST; name=meeting.ics
+Content-Transfer-Encoding: 7bit
+
+BEGIN:VCALENDAR
+PRODID:Zimbra-Calendar-Provider
+VERSION:2.0
+METHOD:REQUEST
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:16010101T000000
+TZOFFSETTO:+0530
+TZOFFSETFROM:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:5d760fcc-cb12-467f-972a-9a9b920e269e
+SUMMARY:Schedule for Generic Training
+LOCATION:"Conference Room: Jupiter/Pune (14 Seater)" <conf-jupiter@zimbra.co
+ m>
+ATTENDEE;CN=Rohan Ambasta;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TR
+ UE:mailto:rambasta@testdomain.com
+ATTENDEE;CN=pbhandolkar;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE
+ :mailto:pbhandolkar@testdomain.com
+ATTENDEE;CN=pgajjar;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:mai
+ lto:pgajjar@testdomain.com
+ATTENDEE;CN=Vikas Galande;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TR
+ UE:mailto:vgalande@testdomain.com
+ATTENDEE;CN=Pallavi Khairnar;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP
+ =TRUE:mailto:pkhairnar@testdomain.com
+ATTENDEE;CN=Swati Khosre;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRU
+ E:mailto:skhosre@testdomain.com
+ATTENDEE;CN=Ankit Kumar;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE
+ :mailto:kumara@testdomain.com
+ATTENDEE;CN=Satyam Kumar;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRU
+ E:mailto:kumars@testdomain.com
+ATTENDEE;CN=Piyush Nimoria;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=T
+ RUE:mailto:pnimoria@testdomain.com
+ATTENDEE;CN=Chinmay Pathak;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=T
+ RUE:mailto:pathakc@testdomain.com
+ATTENDEE;CN=sprasad;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:mai
+ lto:sprasad@testdomain.com
+ATTENDEE;CN=Dawood Shaikh;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TR
+ UE:mailto:dshaikh@testdomain.com
+ATTENDEE;CN=Rahul Yadav;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE
+ :mailto:ryadav@testdomain.com
+ATTENDEE;CN=Abhishek Zambre;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE:mailto:azambre@testdomain.com
+ATTENDEE;CN=Santosh Rao;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE
+ :mailto:srao@testdomain.com
+ATTENDEE;CN=Shashank Tewari;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE:mailto:stewari@testdomain.com
+ATTENDEE;CN=Irfan Shaikh;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRU
+ E:mailto:ishaikh@testdomain.com
+ATTENDEE;CN=Zimbra India Managers;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION
+ ;RSVP=TRUE:mailto:india-managers@testdomain.com
+ATTENDEE;CN="Site: Pune, India, Building: Godrej Castlemaine, Floor: 3rd Flo
+ or, Room: Jupiter";CUTYPE=RESOURCE;ROLE=NON-PARTICIPANT;PARTSTAT=NEEDS-ACTIO
+ N;RSVP=TRUE:mailto:conf-jupiter@testdomain.com
+ORGANIZER;CN=Ashwini Oak:mailto:aoak@testdomain.com
+DTSTART;TZID="Asia/Kolkata":20150609T110000
+DTEND;TZID="Asia/Kolkata":20150617T130000
+STATUS:CONFIRMED
+CLASS:PUBLIC
+X-MICROSOFT-CDO-INTENDEDSTATUS:BUSY
+TRANSP:OPAQUE
+LAST-MODIFIED:20150603T111001Z
+DTSTAMP:20150603T111001Z
+SEQUENCE:0
+DESCRIPTION:The following is a new meeting request:\n\nSubject: Schedule for
+  Generic Training \nOrganizer: "Ashwini Oak" <aoak@testdomain.com> \n\nLocation:
+  "Conference Room: Jupiter/Pune (14 Seater)" <conf-jupiter@testdomain.com> \nRes
+ ources: "Site: Pune\, India\, Building: Godrej Castlemaine\, Floor: 3rd Floo
+ r\, Room: Jupiter" <conf-jupiter@testdomain.com> (Site: Pune\, India\, Building:
+  Godrej Castlemaine\, Floor: 3rd Floor\, Room: Jupiter) \nStart: Tuesday\, J
+ une 9\, 2015\, 11:00:00 AM GMT +05:30 Chennai\, Kolkata\, Mumbai\, New Delhi
+ \n End: Wednesday\, June 17\, 2015\, 1:00:00 PM GMT +05:30 Chennai\, Kolkata
+ \, Mumbai\, New Delhi\n \nInvitees: rambasta@testdomain.com\; pbhandolkar@zimbra
+ .com\; pgajjar@testdomain.com\; vgalande@testdomain.com\; pkhairnar@testdomain.com\; skh
+ osre@testdomain.com\; kumara@testdomain.com\; kumars@testdomain.com\; pnimoria@zimbra.co
+ m\; pathakc@testdomain.com\; sprasad@testdomain.com ... \n\n\n*~*~*~*~*~*~*~*~*~*\n\
+ nDear All\, \n\nWe have organized a training between 9th June to 17th June f
+ or a ll new joiners from Jan-2014. \nPlease find below the details for the t
+ raining. \n\nDAY 	DATE 	TOPICS 	NAME OF THE TRAINER \nDay 1 - Tuesday 	June 
+ 9 th 	\n\n    * General Email flow \n	Santosh Rao \n\n\n    * ZCS Overview w
+ ith system architecture \n\n\nDay 2 - Wednesday 	June 10 th 	\n\n    * OpenL
+ dap \n	Shashank Tewari \n\n\n    * Ldap Data Structure \n\n\n\n    * Mysql \
+ n\n\nDay 3 - Thursday 	June 11 th 	\n\n    * MTA \n	Irfan Shaikh \n\n\n    *
+  Antispam/Antivirus \n\n\n\n    * zmconfigd \n\n\nDay 4 - Friday 	June 12 th
+  	\n\n    * Mailboxd (Jetty) \n	Santosh Rao \n\n\n    * Zimbra Proxy \n\n\n\
+ n    * Zimbra Logger and Stats \n\n\nDay 5 - Monday 	June 15 th 	\n\n    * Z
+ imbra Backup and Restore \n	Irfan Shaikh \n\n\n    * SSL Certificates in Zim
+ bra \n\n\nDay 6 - Tuesday 	June 16 th 	\n\n    * Misc Topics \n	Santosh Rao 
+ \n\n\n    * Interfaces \n\n\n\n    * Zimbra License \n\n\nDay 7 - Wednesday 
+ 	June 17 th 	\n\n    * Zimbra Installation Training \n	Santosh Rao\, Irfan S
+ haikh & Shashank Tewari \n\n\n    * Set up user to sync his email using imap
+ /ZCO/Mobile/ZD \n\n\nRegards\, \nAshwini \n
+X-ALT-DESC;FMTTYPE=text/html:<html><body id='htmlmode'><h3>The following is 
+ a new meeting request:</h3>\n\n<p>\n<table border='0'>\n<tr><th align=left>S
+ ubject:</th><td>Schedule for Generic Training </td></tr>\n<tr><th align=left
+ >Organizer:</th><td>"Ashwini Oak" &lt\;aoak@testdomain.com&gt\; </td></tr>\n</ta
+ ble>\n<p>\n<table border='0'>\n<tr><th align=left>Location:</th><td>"Confere
+ nce Room: Jupiter/Pune (14 Seater)" &lt\;conf-jupiter@testdomain.com&gt\; </td><
+ /tr>\n<tr><th align=left>Resources:</th><td>"Site: Pune\, India\, Building: 
+ Godrej Castlemaine\, Floor: 3rd Floor\, Room: Jupiter" &lt\;conf-jupiter@zim
+ bra.com&gt\; (Site: Pune\, India\, Building: Godrej Castlemaine\, Floor: 3rd
+  Floor\, Room: Jupiter) </td></tr>\n<tr><th align=left>Start:</th><td>Tuesda
+ y\, June 9\, 2015\, 11:00:00 AM GMT +05:30 Chennai\, Kolkata\, Mumbai\, New 
+ Delhi\n </td></tr><tr><th align=left>End:</th><td>Wednesday\, June 17\, 2015
+ \, 1:00:00 PM GMT +05:30 Chennai\, Kolkata\, Mumbai\, New Delhi\n </td></tr>
+ </table>\n<p>\n<table border='0'>\n<tr><th align=left>Invitees:</th><td>ramb
+ asta@testdomain.com\; pbhandolkar@testdomain.com\; pgajjar@testdomain.com\; vgalande@zim
+ bra.com\; pkhairnar@testdomain.com\; skhosre@testdomain.com\; kumara@testdomain.com\; ku
+ mars@testdomain.com\; pnimoria@testdomain.com\; pathakc@testdomain.com\; sprasad@zimbra.
+ com ... </td></tr>\n</table>\n<div>*~*~*~*~*~*~*~*~*~*</div><br><div style="
+ font-family: arial\, helvetica\, sans-serif\; font-size: 12pt\; color: #0000
+ 00"><div><span data-mce-style="font-size: 11pt\;" style="font-size: 11pt\;">
+ Dear All\,</span><br></div><div><br data-mce-bogus="1"></div><div><span data
+ -mce-style="font-family: arial\,helvetica\,sans-serif\; font-size: 11pt\;" s
+ tyle="font-family: arial\,helvetica\,sans-serif\; font-size: 11pt\;">We have
+  organized a training between 9th June to 17th June for all new joiners from
+ &nbsp\;<span style="color: rgb(0\, 0\, 0)\; font-style: normal\; font-varian
+ t: normal\; font-weight: normal\; letter-spacing: normal\; line-height: norm
+ al\; text-align: start\; text-indent: 0px\; text-transform: none\; white-spa
+ ce: normal\; widows: 1\; word-spacing: 0px\; display: inline ! important\; f
+ loat: none\; background-color: rgb(255\, 255\, 255)\;">Jan-2014.</span></spa
+ n><br data-mce-bogus="1"></div><div><span data-mce-style="font-size: 11pt\;"
+  style="font-size: 11pt\;">Please find below the details for the training.</
+ span><br data-mce-bogus="1"></div><div><br data-mce-bogus="1"></div><div><ta
+ ble style="width: 1218px\; table-layout: fixed\;" border="1" height="664" wi
+ dth="1033"><tbody><tr style="height: 15.0pt\;" data-mce-style="height: 15.0p
+ t\;"><td style="height: 15.0pt\; width: 125pt\;" data-mce-style="text-align:
+  center\;" width="167"><strong>DAY</strong></td><td style="border-left: none
+ \; width: 104pt\;" data-mce-style="text-align: center\;" width="139"><strong
+ >DATE</strong></td><td style="border-left: none\; width: 316pt\;" data-mce-s
+ tyle="text-align: center\;" width="421"><strong>TOPICS</strong></td><td styl
+ e="border-left: none\; width: 231pt\;" data-mce-style="text-align: center\;"
+  width="308"><strong>NAME OF THE TRAINER</strong></td></tr><tr style="height
+ : 15.0pt\;" data-mce-style="height: 15.0pt\;"><td rowspan="3" style="border-
+ bottom: .5pt solid black\; height: 45.0pt\; border-top: none\; width: 125pt\
+ ;" data-mce-style="border-bottom: .5pt solid black\; height: 45.0pt\; border
+ -top: none\; width: 125pt\;" width="167"><span data-mce-style="font-size: 11
+ pt\; font-family: arial\,helvetica\,sans-serif\;" style="font-size: 11pt\; f
+ ont-family: arial\,helvetica\,sans-serif\;">Day 1 - Tuesday </span></td><td 
+ rowspan="3" style="border-bottom: .5pt solid black\; border-top: none\; widt
+ h: 104pt\;" data-mce-style="border-bottom: .5pt solid black\; border-top: no
+ ne\; width: 104pt\;" width="139"><span data-mce-style="font-size: 11pt\; fon
+ t-family: arial\,helvetica\,sans-serif\;" style="font-size: 11pt\; font-fami
+ ly: arial\,helvetica\,sans-serif\;">June 9<sup>th</sup> </span></td><td styl
+ e="border-top: none\; border-left: none\; width: 316pt\;" data-mce-style="bo
+ rder-top: none\; border-left: none\; width: 316pt\;" width="421"><ul><li><sp
+ an data-mce-style="font-size: 11pt\; font-family: arial\,helvetica\,sans-ser
+ if\;" style="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\;">
+ General Email flow </span></li></ul></td><td rowspan="3" style="border-botto
+ m: .5pt solid black\; border-top: none\; width: 231pt\;" data-mce-style="bor
+ der-bottom: .5pt solid black\; border-top: none\; width: 231pt\;" width="308
+ "><span data-mce-style="font-size: 11pt\; font-family: arial\,helvetica\,san
+ s-serif\;" style="font-size: 11pt\; font-family: arial\,helvetica\,sans-seri
+ f\;">Santosh Rao</span></td></tr><tr style="height: 15.0pt\;" data-mce-style
+ ="height: 15.0pt\;"><td style="height: 15.0pt\; border-left: none\; width: 3
+ 16pt\;" data-mce-style="height: 15.0pt\; border-left: none\; width: 316pt\;"
+  width="421"><ul><li><span data-mce-style="font-size: 11pt\; font-family: ar
+ ial\,helvetica\,sans-serif\;" style="font-size: 11pt\; font-family: arial\,h
+ elvetica\,sans-serif\;">ZCS Overview with system architecture</span></li></u
+ l></td></tr><tr style="height: 15.0pt\;" data-mce-style="height: 15.0pt\;"><
+ td style="height: 15.0pt\; border-left: none\; width: 316pt\;" data-mce-styl
+ e="height: 15.0pt\; border-left: none\; width: 316pt\;" width="421"><span da
+ ta-mce-style="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\;"
+  style="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\;">&nbsp
+ \;</span></td></tr><tr style="height: 15.0pt\;" data-mce-style="height: 15.0
+ pt\;"><td rowspan="4" style="border-bottom: .5pt solid black\; height: 60.0p
+ t\; border-top: none\; width: 125pt\;" data-mce-style="border-bottom: .5pt s
+ olid black\; height: 60.0pt\; border-top: none\; width: 125pt\;" width="167"
+ ><span data-mce-style="font-size: 11pt\; font-family: arial\,helvetica\,sans
+ -serif\;" style="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif
+ \;">Day 2 - Wednesday</span></td><td rowspan="4" style="border-bottom: .5pt 
+ solid black\; border-top: none\; width: 104pt\;" data-mce-style="border-bott
+ om: .5pt solid black\; border-top: none\; width: 104pt\;" width="139"><span 
+ data-mce-style="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\
+ ;" style="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\;">Jun
+ e 10<sup>th</sup> </span></td><td style="border-top: none\; border-left: non
+ e\; width: 316pt\;" data-mce-style="border-top: none\; border-left: none\; w
+ idth: 316pt\;" width="421"><ul><li><span data-mce-style="font-size: 11pt\; f
+ ont-family: arial\,helvetica\,sans-serif\;" style="font-size: 11pt\; font-fa
+ mily: arial\,helvetica\,sans-serif\;">OpenLdap&nbsp\; </span></li></ul></td>
+ <td rowspan="4" style="border-bottom: .5pt solid black\; border-top: none\; 
+ width: 231pt\;" data-mce-style="border-bottom: .5pt solid black\; border-top
+ : none\; width: 231pt\;" width="308"><span data-mce-style="font-size: 11pt\;
+  font-family: arial\,helvetica\,sans-serif\;" style="font-size: 11pt\; font-
+ family: arial\,helvetica\,sans-serif\;">Shashank Tewari</span></td></tr><tr 
+ style="height: 15.0pt\;" data-mce-style="height: 15.0pt\;"><td style="height
+ : 15.0pt\; border-left: none\; width: 316pt\;" data-mce-style="height: 15.0p
+ t\; border-left: none\; width: 316pt\;" width="421"><ul><li><span data-mce-s
+ tyle="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\;" style="
+ font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\;">Ldap Data Str
+ ucture</span></li></ul></td></tr><tr style="height: 15.0pt\;" data-mce-style
+ ="height: 15.0pt\;"><td style="height: 15.0pt\; border-left: none\; width: 3
+ 16pt\;" data-mce-style="height: 15.0pt\; border-left: none\; width: 316pt\;"
+  width="421"><ul><li><span data-mce-style="font-size: 11pt\; font-family: ar
+ ial\,helvetica\,sans-serif\;" style="font-size: 11pt\; font-family: arial\,h
+ elvetica\,sans-serif\;">Mysql</span></li></ul></td></tr><tr style="height: 1
+ 5.0pt\;" data-mce-style="height: 15.0pt\;"><td style="height: 15.0pt\; borde
+ r-left: none\; width: 316pt\;" data-mce-style="height: 15.0pt\; border-left:
+  none\; width: 316pt\;" width="421"><span data-mce-style="font-size: 11pt\; 
+ font-family: arial\,helvetica\,sans-serif\;" style="font-size: 11pt\; font-f
+ amily: arial\,helvetica\,sans-serif\;">&nbsp\;</span></td></tr><tr style="he
+ ight: 15.0pt\;" data-mce-style="height: 15.0pt\;"><td rowspan="4" style="bor
+ der-bottom: .5pt solid black\; height: 60.0pt\; border-top: none\; width: 12
+ 5pt\;" data-mce-style="border-bottom: .5pt solid black\; height: 60.0pt\; bo
+ rder-top: none\; width: 125pt\;" width="167"><span data-mce-style="font-size
+ : 11pt\; font-family: arial\,helvetica\,sans-serif\;" style="font-size: 11pt
+ \; font-family: arial\,helvetica\,sans-serif\;">Day 3 - Thursday</span></td>
+ <td rowspan="4" style="border-bottom: .5pt solid black\; border-top: none\; 
+ width: 104pt\;" data-mce-style="border-bottom: .5pt solid black\; border-top
+ : none\; width: 104pt\;" width="139"><span data-mce-style="font-size: 11pt\;
+  font-family: arial\,helvetica\,sans-serif\;" style="font-size: 11pt\; font-
+ family: arial\,helvetica\,sans-serif\;">June 11<sup>th </sup></span></td><td
+  style="border-top: none\; border-left: none\; width: 316pt\;" data-mce-styl
+ e="border-top: none\; border-left: none\; width: 316pt\;" width="421"><ul><l
+ i><span data-mce-style="font-size: 11pt\; font-family: arial\,helvetica\,san
+ s-serif\;" style="font-size: 11pt\; font-family: arial\,helvetica\,sans-seri
+ f\;">MTA</span></li></ul></td><td rowspan="4" style="border-bottom: .5pt sol
+ id black\; border-top: none\; width: 231pt\;" data-mce-style="border-bottom:
+  .5pt solid black\; border-top: none\; width: 231pt\;" width="308"><span dat
+ a-mce-style="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\;" 
+ style="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\;">Irfan 
+ Shaikh</span></td></tr><tr style="height: 15.0pt\;" data-mce-style="height: 
+ 15.0pt\;"><td style="height: 15.0pt\; border-left: none\; width: 316pt\;" da
+ ta-mce-style="height: 15.0pt\; border-left: none\; width: 316pt\;" width="42
+ 1"><ul><li><span data-mce-style="font-size: 11pt\; font-family: arial\,helve
+ tica\,sans-serif\;" style="font-size: 11pt\; font-family: arial\,helvetica\,
+ sans-serif\;">Antispam/Antivirus</span></li></ul></td></tr><tr style="height
+ : 15.0pt\;" data-mce-style="height: 15.0pt\;"><td style="height: 15.0pt\; bo
+ rder-left: none\; width: 316pt\;" data-mce-style="height: 15.0pt\; border-le
+ ft: none\; width: 316pt\;" width="421"><ul><li><span data-mce-style="font-si
+ ze: 11pt\; font-family: arial\,helvetica\,sans-serif\;" style="font-size: 11
+ pt\; font-family: arial\,helvetica\,sans-serif\;">zmconfigd</span></li></ul>
+ </td></tr><tr style="height: 15.0pt\;" data-mce-style="height: 15.0pt\;"><td
+  style="height: 15.0pt\; border-left: none\; width: 316pt\;" data-mce-style=
+ "height: 15.0pt\; border-left: none\; width: 316pt\;" width="421"><span data
+ -mce-style="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\;" s
+ tyle="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\;">&nbsp\;
+ </span></td></tr><tr style="height: 15.0pt\;" data-mce-style="height: 15.0pt
+ \;"><td rowspan="4" style="border-bottom: .5pt solid black\; height: 60.0pt\
+ ; border-top: none\; width: 125pt\;" data-mce-style="border-bottom: .5pt sol
+ id black\; height: 60.0pt\; border-top: none\; width: 125pt\;" width="167"><
+ span data-mce-style="font-size: 11pt\; font-family: arial\,helvetica\,sans-s
+ erif\;" style="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\;
+ ">Day 4 - Friday</span></td><td rowspan="4" style="border-bottom: .5pt solid
+  black\; border-top: none\; width: 104pt\;" data-mce-style="border-bottom: .
+ 5pt solid black\; border-top: none\; width: 104pt\;" width="139"><span data-
+ mce-style="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\;" st
+ yle="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\;">June 12<
+ sup>th</sup> </span></td><td style="border-top: none\; border-left: none\; w
+ idth: 316pt\;" data-mce-style="border-top: none\; border-left: none\; width:
+  316pt\;" width="421"><ul><li><span data-mce-style="font-size: 11pt\; font-f
+ amily: arial\,helvetica\,sans-serif\;" style="font-size: 11pt\; font-family:
+  arial\,helvetica\,sans-serif\;">Mailboxd (Jetty)</span></li></ul></td><td r
+ owspan="4" style="border-bottom: .5pt solid black\; border-top: none\; width
+ : 231pt\;" data-mce-style="border-bottom: .5pt solid black\; border-top: non
+ e\; width: 231pt\;" width="308"><span data-mce-style="font-size: 11pt\; font
+ -family: arial\,helvetica\,sans-serif\;" style="font-size: 11pt\; font-famil
+ y: arial\,helvetica\,sans-serif\;">Santosh Rao</span></td></tr><tr style="he
+ ight: 15.0pt\;" data-mce-style="height: 15.0pt\;"><td style="height: 15.0pt\
+ ; border-left: none\; width: 316pt\;" data-mce-style="height: 15.0pt\; borde
+ r-left: none\; width: 316pt\;" width="421"><ul><li><span data-mce-style="fon
+ t-size: 11pt\; font-family: arial\,helvetica\,sans-serif\;" style="font-size
+ : 11pt\; font-family: arial\,helvetica\,sans-serif\;">Zimbra Proxy</span></l
+ i></ul></td></tr><tr style="height: 15.0pt\;" data-mce-style="height: 15.0pt
+ \;"><td style="height: 15.0pt\; border-left: none\; width: 316pt\;" data-mce
+ -style="height: 15.0pt\; border-left: none\; width: 316pt\;" width="421"><ul
+ ><li><span data-mce-style="font-size: 11pt\; font-family: arial\,helvetica\,
+ sans-serif\;" style="font-size: 11pt\; font-family: arial\,helvetica\,sans-s
+ erif\;">Zimbra Logger and Stats</span></li></ul></td></tr><tr style="height:
+  15.0pt\;" data-mce-style="height: 15.0pt\;"><td style="height: 15.0pt\; bor
+ der-left: none\; width: 316pt\;" data-mce-style="height: 15.0pt\; border-lef
+ t: none\; width: 316pt\;" width="421"><span data-mce-style="font-size: 11pt\
+ ; font-family: arial\,helvetica\,sans-serif\;" style="font-size: 11pt\; font
+ -family: arial\,helvetica\,sans-serif\;">&nbsp\;</span></td></tr><tr style="
+ height: 15.0pt\;" data-mce-style="height: 15.0pt\;"><td rowspan="3" style="b
+ order-bottom: .5pt solid black\; height: 45.0pt\; border-top: none\; width: 
+ 125pt\;" data-mce-style="border-bottom: .5pt solid black\; height: 45.0pt\; 
+ border-top: none\; width: 125pt\;" width="167"><span data-mce-style="font-si
+ ze: 11pt\; font-family: arial\,helvetica\,sans-serif\;" style="font-size: 11
+ pt\; font-family: arial\,helvetica\,sans-serif\;">Day 5&nbsp\; - Monday </sp
+ an></td><td rowspan="3" style="border-bottom: .5pt solid black\; border-top:
+  none\; width: 104pt\;" data-mce-style="border-bottom: .5pt solid black\; bo
+ rder-top: none\; width: 104pt\;" width="139"><span data-mce-style="font-size
+ : 11pt\; font-family: arial\,helvetica\,sans-serif\;" style="font-size: 11pt
+ \; font-family: arial\,helvetica\,sans-serif\;">June 15<sup>th</sup></span><
+ /td><td style="border-top: none\; border-left: none\; width: 316pt\;" data-m
+ ce-style="border-top: none\; border-left: none\; width: 316pt\;" width="421"
+ ><ul><li><span data-mce-style="font-size: 11pt\; font-family: arial\,helveti
+ ca\,sans-serif\;" style="font-size: 11pt\; font-family: arial\,helvetica\,sa
+ ns-serif\;">Zimbra Backup and Restore</span></li></ul></td><td rowspan="3" s
+ tyle="border-bottom: .5pt solid black\; border-top: none\; width: 231pt\;" d
+ ata-mce-style="border-bottom: .5pt solid black\; border-top: none\; width: 2
+ 31pt\;" width="308"><span data-mce-style="font-size: 11pt\; font-family: ari
+ al\,helvetica\,sans-serif\;" style="font-size: 11pt\; font-family: arial\,he
+ lvetica\,sans-serif\;">Irfan Shaikh</span></td></tr><tr style="height: 15.0p
+ t\;" data-mce-style="height: 15.0pt\;"><td style="height: 15.0pt\; border-le
+ ft: none\; width: 316pt\;" data-mce-style="height: 15.0pt\; border-left: non
+ e\; width: 316pt\;" width="421"><ul><li><span data-mce-style="font-size: 11p
+ t\; font-family: arial\,helvetica\,sans-serif\;" style="font-size: 11pt\; fo
+ nt-family: arial\,helvetica\,sans-serif\;">SSL Certificates in Zimbra</span>
+ </li></ul></td></tr><tr style="height: 15.0pt\;" data-mce-style="height: 15.
+ 0pt\;"><td style="height: 15.0pt\; border-left: none\; width: 316pt\;" data-
+ mce-style="height: 15.0pt\; border-left: none\; width: 316pt\;" width="421">
+ <span data-mce-style="font-size: 11pt\; font-family: arial\,helvetica\,sans-
+ serif\;" style="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\
+ ;">&nbsp\;</span></td></tr><tr style="height: 15.0pt\;" data-mce-style="heig
+ ht: 15.0pt\;"><td rowspan="4" style="border-bottom: .5pt solid black\; heigh
+ t: 60.0pt\; border-top: none\; width: 125pt\;" data-mce-style="border-bottom
+ : .5pt solid black\; height: 60.0pt\; border-top: none\; width: 125pt\;" wid
+ th="167"><span data-mce-style="font-size: 11pt\; font-family: arial\,helveti
+ ca\,sans-serif\;" style="font-size: 11pt\; font-family: arial\,helvetica\,sa
+ ns-serif\;">Day 6&nbsp\; - Tuesday </span></td><td rowspan="4" style="border
+ -bottom: .5pt solid black\; border-top: none\; width: 104pt\;" data-mce-styl
+ e="border-bottom: .5pt solid black\; border-top: none\; width: 104pt\;" widt
+ h="139"><span data-mce-style="font-size: 11pt\; font-family: arial\,helvetic
+ a\,sans-serif\;" style="font-size: 11pt\; font-family: arial\,helvetica\,san
+ s-serif\;">June 16<sup>th</sup></span></td><td style="border-top: none\; bor
+ der-left: none\; width: 316pt\;" data-mce-style="border-top: none\; border-l
+ eft: none\; width: 316pt\;" width="421"><ul><li><span data-mce-style="font-s
+ ize: 11pt\; font-family: arial\,helvetica\,sans-serif\;" style="font-size: 1
+ 1pt\; font-family: arial\,helvetica\,sans-serif\;">Misc Topics</span></li></
+ ul></td><td rowspan="4" style="border-bottom: .5pt solid black\; border-top:
+  none\; width: 231pt\;" data-mce-style="border-bottom: .5pt solid black\; bo
+ rder-top: none\; width: 231pt\;" width="308"><span data-mce-style="font-size
+ : 11pt\; font-family: arial\,helvetica\,sans-serif\;" style="font-size: 11pt
+ \; font-family: arial\,helvetica\,sans-serif\;">Santosh Rao</span></td></tr>
+ <tr style="height: 15.0pt\;" data-mce-style="height: 15.0pt\;"><td style="he
+ ight: 15.0pt\; border-left: none\; width: 316pt\;" data-mce-style="height: 1
+ 5.0pt\; border-left: none\; width: 316pt\;" width="421"><ul><li><span data-m
+ ce-style="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\;" sty
+ le="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\;">Interface
+ s</span></li></ul></td></tr><tr style="height: 15.0pt\;" data-mce-style="hei
+ ght: 15.0pt\;"><td style="height: 15.0pt\; border-left: none\; width: 316pt\
+ ;" data-mce-style="height: 15.0pt\; border-left: none\; width: 316pt\;" widt
+ h="421"><ul><li><span data-mce-style="font-size: 11pt\; font-family: arial\,
+ helvetica\,sans-serif\;" style="font-size: 11pt\; font-family: arial\,helvet
+ ica\,sans-serif\;">Zimbra License</span></li></ul></td></tr><tr style="heigh
+ t: 15.0pt\;" data-mce-style="height: 15.0pt\;"><td style="height: 15.0pt\; b
+ order-left: none\; width: 316pt\;" data-mce-style="height: 15.0pt\; border-l
+ eft: none\; width: 316pt\;" width="421"><span data-mce-style="font-size: 11p
+ t\; font-family: arial\,helvetica\,sans-serif\;" style="font-size: 11pt\; fo
+ nt-family: arial\,helvetica\,sans-serif\;">&nbsp\;</span></td></tr><tr style
+ ="height: 15.0pt\;" data-mce-style="height: 15.0pt\;"><td rowspan="3" style=
+ "border-bottom: .5pt solid black\; height: 45.0pt\; border-top: none\; width
+ : 125pt\;" data-mce-style="border-bottom: .5pt solid black\; height: 45.0pt\
+ ; border-top: none\; width: 125pt\;" width="167"><span data-mce-style="font-
+ size: 11pt\; font-family: arial\,helvetica\,sans-serif\;" style="font-size: 
+ 11pt\; font-family: arial\,helvetica\,sans-serif\;">Day 7 - Wednesday </span
+ ></td><td rowspan="3" style="border-bottom: .5pt solid black\; border-top: n
+ one\; width: 104pt\;" data-mce-style="border-bottom: .5pt solid black\; bord
+ er-top: none\; width: 104pt\;" width="139"><span data-mce-style="font-size: 
+ 11pt\; font-family: arial\,helvetica\,sans-serif\;" style="font-size: 11pt\;
+  font-family: arial\,helvetica\,sans-serif\;">June 17<sup>th</sup></span></t
+ d><td style="border-top: none\; border-left: none\; width: 316pt\;" data-mce
+ -style="border-top: none\; border-left: none\; width: 316pt\;" width="421"><
+ ul><li><span data-mce-style="font-size: 11pt\; font-family: arial\,helvetica
+ \,sans-serif\;" style="font-size: 11pt\; font-family: arial\,helvetica\,sans
+ -serif\;">Zimbra Installation Training</span></li></ul></td><td rowspan="3" 
+ style="border-bottom: .5pt solid black\; border-top: none\; width: 231pt\;" 
+ data-mce-style="border-bottom: .5pt solid black\; border-top: none\; width: 
+ 231pt\;" width="308"><span data-mce-style="font-size: 11pt\; font-family: ar
+ ial\,helvetica\,sans-serif\;" style="font-size: 11pt\; font-family: arial\,h
+ elvetica\,sans-serif\;">Santosh Rao\, Irfan Shaikh &amp\; Shashank Tewari</s
+ pan></td></tr><tr style="height: 15.0pt\;" data-mce-style="height: 15.0pt\;"
+ ><td style="height: 15.0pt\; border-left: none\; width: 316pt\;" data-mce-st
+ yle="height: 15.0pt\; border-left: none\; width: 316pt\;" width="421"><ul><l
+ i><span data-mce-style="font-size: 11pt\; font-family: arial\,helvetica\,san
+ s-serif\;" style="font-size: 11pt\; font-family: arial\,helvetica\,sans-seri
+ f\;">Set up user to sync his email using imap/ZCO/Mobile/ZD</span></li></ul>
+ </td></tr><tr style="height: 15.0pt\;" data-mce-style="height: 15.0pt\;"><td
+  style="height: 15.0pt\; border-left: none\; width: 316pt\;" data-mce-style=
+ "height: 15.0pt\; border-left: none\; width: 316pt\;" width="421"><span data
+ -mce-style="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\;" s
+ tyle="font-size: 11pt\; font-family: arial\,helvetica\,sans-serif\;">&nbsp\;
+ </span></td></tr></tbody></table></div><div><br data-mce-bogus="1"></div><di
+ v><span data-mce-style="font-size: 11pt\;" style="font-size: 11pt\;">Regards
+ \,</span></div><div><span data-mce-style="font-size: 11pt\;" style="font-siz
+ e: 11pt\;">Ashwini</span><br data-mce-bogus="1"></div></div></body></html>
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER;RELATED=START:-PT5M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+END:VCALENDAR
+------=_Part_2147236_442634702.1433329801321--

@@ -1,25 +1,23 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.resetmeetingstatus;
 
 import java.util.Calendar;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -27,7 +25,6 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 
 public class ResetStatusAfterModifyingCalendar extends CalendarWorkWeekTest {	
 	
@@ -37,16 +34,16 @@ public class ResetStatusAfterModifyingCalendar extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "98476,49881")
-	@Test(description = "Check reset status of meeting after modifying calendar",
+	@Test( description = "Check reset status of meeting after modifying calendar",
 			groups = { "functional" })
 			
 	public void ResetStatusAfterModifyingCalendar_01() throws HarnessException {
 		
 		// Create a meeting
 		String tz = ZTimeZone.TimeZoneEST.getID();
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee1 = ZimbraAccount.Account1().EmailAddress;
-		String apptCalendar = ZimbraSeleniumProperties.getUniqueString();
+		String apptCalendar = ConfigProperties.getUniqueString();
 		
 		// Create new calendar folder
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
@@ -72,7 +69,7 @@ public class ResetStatusAfterModifyingCalendar extends CalendarWorkWeekTest {
                      	"</inv>" +
                      	"<e a='"+ ZimbraAccount.Account1().EmailAddress +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
-                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     		"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
@@ -94,24 +91,20 @@ public class ResetStatusAfterModifyingCalendar extends CalendarWorkWeekTest {
 		
         // Add attendee2 and re-send the appointment
 		app.zPageCalendar.zNavigateTo();
-		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
+		SleepUtil.sleepMedium();
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);       
-        if(ZimbraSeleniumProperties.isWebDriver()){
-            String locator = "css=td[id$='_folderSelect'] td[id$='_select_container']";
-            apptForm.sClickAt(locator, "");            
+        String locator = "css=td[id$='_folderSelect'] td[id$='_select_container']";
+        apptForm.sClickAt(locator, "");            
 
-            locator = "//div[@id='z_shell']/div[contains(@id,'_Menu_') and contains(@class, 'DwtMenu')]";   
-            int count = apptForm.sGetXpathCount(locator);           
-            for  (int  i = 1; i <= count; i++) {
+        locator = "//div[@id='z_shell']/div[contains(@id,'_Menu_') and contains(@class, 'DwtMenu')]";   
+        int count = apptForm.sGetXpathCount(locator);           
+        for  (int  i = 1; i <= count; i++) {
         	String calPullDown = locator + "[position()=" + i + "]//tr//*[contains(text(),'" + apptCalendar + "')]";
         	if(apptForm.zIsVisiblePerPosition(calPullDown, 0, 0)){
         	    apptForm.sClickAt(calPullDown, "");
         	    break;
         	}        	
-            }            
-        }else{
-            apptForm.zFillField(Field.CalendarFolder, apptCalendar);
-        }
+        } 
         apptForm.zToolbarPressButton(Button.B_SEND);
         SleepUtil.sleepVeryLong(); 
         

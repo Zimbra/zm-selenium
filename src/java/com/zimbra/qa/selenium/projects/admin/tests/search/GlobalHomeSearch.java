@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.tests.search;
@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.items.AliasItem;
@@ -50,7 +50,7 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * 2. Verify the global search return the cos.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify search functionality of COS.",
+	@Test( description = "Verify search functionality of COS.",
 			groups = { "functional" })
 			public void HomeSearchFunctionalityCOS_01() throws HarnessException {
 
@@ -95,12 +95,12 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Bugs( ids = "96768")
-	@Test(	description = "Verify search functionality of Account Object.",
+	@Test( description = "Verify search functionality of Account Object.",
 			groups = { "functional" })
 			public void HomeSearchFunctionalityAccount_02() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-				AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+				AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 				ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 								"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
@@ -139,7 +139,7 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * 2. Verify the global search return the resource.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify search functionality of Resource Object.",
+	@Test( description = "Verify search functionality of Resource Object.",
 			groups = { "functional" })
 			public void HomeSearchFunctionalityResource_03() throws HarnessException {
 
@@ -186,7 +186,7 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * 2. Verify the global search return the DL.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify search functionality of DL Object.",
+	@Test( description = "Verify search functionality of DL Object.",
 			groups = { "functional" })
 			public void HomeSearchFunctionalityDL_04() throws HarnessException {
 
@@ -229,11 +229,11 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * 2. Verify the global search return the alias.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify search functionality of Alias Object.",
+	@Test( description = "Verify search functionality of Alias Object.",
 			groups = { "functional" })
 			public void HomeSearchFunctionalityAlias_05() throws HarnessException {
 
-		AccountItem target = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
 
@@ -276,7 +276,7 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * 2. Verify the global search return the Account.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify search functionality of domain Object.",
+	@Test( description = "Verify search functionality of domain Object.",
 			groups = { "functional" })
 			public void HomeSearchFunctionalityDomain_06() throws HarnessException {
 

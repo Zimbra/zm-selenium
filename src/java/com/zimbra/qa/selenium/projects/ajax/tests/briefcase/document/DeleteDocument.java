@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.document;
@@ -29,7 +29,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DialogConfirm;
 
@@ -44,7 +44,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 	}
 
-	@Test(description = "Create document through SOAP - delete & check trash", groups = { "smoke" })
+	@Test( description = "Create document through SOAP - delete & check trash", groups = { "smoke" })
 	public void DeleteDocument_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -127,7 +127,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 				"Verify the document was moved to the trash folder");
 	}
 
-	@Test(description = "Create document through SOAP - delete using Delete Key & verify through GUI", groups = { "functional" })
+	@Test( description = "Create document through SOAP - delete using Delete Key & verify through GUI", groups = { "functional" })
 	public void DeleteDocument_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -189,7 +189,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 						"Verify document was deleted through GUI");
 	}
 
-	@Test(description = "Create document through SOAP - delete using Backspace Key & verify through GUI", groups = { "functional" })
+	@Test( description = "Create document through SOAP - delete using Backspace Key & verify through GUI", groups = { "functional" })
 	public void DeleteDocument_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -251,7 +251,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 						"Verify document was deleted through GUI");
 	}
 
-	@Test(description = "Create document through SOAP - delete using Right Click context menu & verify through GUI", groups = { "functional" })
+	@Test( description = "Create document through SOAP - delete using Right Click context menu & verify through GUI", groups = { "functional" })
 	public void DeleteDocument_04() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -308,7 +308,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 						"Verify document was deleted through GUI");
 	}
 
-	@Test(description = "Delete multiple documents(3) by selecting check box and delete using toolbar", groups = { "functional" })
+	@Test( description = "Delete multiple documents(3) by selecting check box and delete using toolbar", groups = { "functional" })
 	public void DeleteDocument_05() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -321,14 +321,14 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 		// Create documents using SOAP
 		DocumentItem[] docItems = {
 				new DocumentItem("docName1"
-						+ ZimbraSeleniumProperties.getUniqueString()),
+						+ ConfigProperties.getUniqueString()),
 				new DocumentItem("docName2"
-						+ ZimbraSeleniumProperties.getUniqueString()),
+						+ ConfigProperties.getUniqueString()),
 				new DocumentItem("docName3"
-						+ ZimbraSeleniumProperties.getUniqueString()) };
+						+ ConfigProperties.getUniqueString()) };
 
 		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<body>"
-				+ ZimbraSeleniumProperties.getUniqueString() + "</body>"
+				+ ConfigProperties.getUniqueString() + "</body>"
 				+ "</html>");
 
 		for (int i = 0; i < docItems.length; i++) {
@@ -405,7 +405,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 	}
 
 	@Bugs(ids = "43836")
-	@Test(description = "can not delete documents in briefcase with the same file name", groups = { "functional" })
+	@Test( description = "can not delete documents in briefcase with the same file name", groups = { "functional" })
 	public void DeleteDocument_06() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -521,7 +521,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 	}
 
 	@Bugs(ids = "103343")
-	@Test(description = "Create document with 3 versions through SOAP - delete using Right Click context menu & verify through GUI", groups = { "functional" })
+	@Test( description = "Create document with 3 versions through SOAP - delete using Right Click context menu & verify through GUI", groups = { "functional" })
 	public void DeleteDocument_07() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -535,9 +535,9 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 		String docTextV1 = "textVersion1" + docItem.getDocText();
 		String docTextV2 = "textVersion2" + docItem.getDocText();
 		String docTextV3 = "textVersion3" + docItem.getDocText();
-		String notesV1 = "notesVersion1" + ZimbraSeleniumProperties.getUniqueString();
-		String notesV2 = "notesVersion2" + ZimbraSeleniumProperties.getUniqueString();
-		String notesV3 = "notesVersion3" + ZimbraSeleniumProperties.getUniqueString();
+		String notesV1 = "notesVersion1" + ConfigProperties.getUniqueString();
+		String notesV2 = "notesVersion2" + ConfigProperties.getUniqueString();
+		String notesV3 = "notesVersion3" + ConfigProperties.getUniqueString();
 		String nodeCollapsed = "css=div[id^=zlif__BDLV-main__] div[class='ImgNodeCollapsed']";
 		String nodeExpanded = "css=div[id^=zlif__BDLV-main__] div[class='ImgNodeExpanded']";
 		String locator = "css=tr[id^='zlif__BDLV-main__'] div[id^='zlif__BDLV-main__']:contains('#2:')";

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.url;
@@ -47,12 +47,12 @@ public class HoverOverURL extends AjaxCommonTest {
 
 	}
 	
-	@Test(	description = "Hover over a URL",
+	@Test( description = "Hover over a URL",
 			groups = { "functional" })
 	public void HoverOverURL_01() throws HarnessException {
 
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String server = "server" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String server = "server" + ConfigProperties.getUniqueString();
 		String body = "http://www."+ server +".com";
 		
 		// Send the message from AccountA to the ZWC user
@@ -90,12 +90,12 @@ public class HoverOverURL extends AjaxCommonTest {
 	}
 	
 	
-	@Test(	description = "Hover over a URL - verify tooltip content",
+	@Test( description = "Hover over a URL - verify tooltip content",
 			groups = { "functional" })
 	public void HoverOverURL_02() throws HarnessException {
 
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String server = "server" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String server = "server" + ConfigProperties.getUniqueString();
 		String body = "http://www."+ server +".com";
 		
 		// Send the message from AccountA to the ZWC user
@@ -138,13 +138,13 @@ public class HoverOverURL extends AjaxCommonTest {
 
 	
 	@Bugs(ids = "82303")
-	@Test(	description = "Hover over a URL with 'javascript' in the path.  Verify no change to JAVASCRIPT-BLOCKED",
+	@Test( description = "Hover over a URL with 'javascript' in the path.  Verify no change to JAVASCRIPT-BLOCKED",
 			groups = { "functional" })
 	public void HoverOverURL_03() throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "bug82303";
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug82303/mime.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug82303/mime.txt";
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 		
 		// Refresh current view

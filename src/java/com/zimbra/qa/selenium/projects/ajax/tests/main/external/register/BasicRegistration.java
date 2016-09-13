@@ -1,30 +1,27 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.main.external.register;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-
-
 
 public class BasicRegistration extends AjaxCommonTest {
 	
@@ -34,26 +31,18 @@ public class BasicRegistration extends AjaxCommonTest {
 		// All tests start at the login page
 		super.startingPage = app.zPageLogin;
 		super.startingAccountPreferences = null;
-		
 	}
 	
+	@Bugs(ids = "103011")
+	@Test( description = "Register as and external user", priority=3, groups = { "smoke" })
 	
-	@Bugs(ids = "103011" )
-	
-	@Test(	description = "Register as and external user",
-			groups = { "smoke" })
 	public void BasicRegistration_01() throws HarnessException {
 		
-		
-		
-		//-- Data Setup
-		
-		
 		ZimbraExternalAccount external = new ZimbraExternalAccount();
-		external.setEmailAddress("external" + ZimbraSeleniumProperties.getUniqueString() + "@example.com");
+		external.setEmailAddress("external" + ConfigProperties.getUniqueString() + "@example.com");
 		
 		FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountZWC(), FolderItem.SystemFolder.Inbox);
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
 
 		// Create a subfolder in Inbox
 		ZimbraAccount.AccountZWC().soapSend(
@@ -96,9 +85,7 @@ public class BasicRegistration extends AjaxCommonTest {
 		external.setURL(response);
 		
 		
-		
 		//-- GUI Actions
-		
 		
 		// Navigate to the registration page
 		app.zPageExternalRegistration.zSetURL(external.getRegistrationURL());
@@ -106,17 +93,11 @@ public class BasicRegistration extends AjaxCommonTest {
 		app.zPageExternalRegistration.zLogin(external);
 
 		
-		
 		//-- Verification
-		
 		
 		// After logging in, make sure the page appears correctly
 		app.zPageExternalMain.zWaitForActive();
 		boolean loaded = app.zPageExternalMain.zIsActive();
 		ZAssert.assertTrue(loaded, "Verify that the main page became active");
-		
-		
 	}
-
-
 }

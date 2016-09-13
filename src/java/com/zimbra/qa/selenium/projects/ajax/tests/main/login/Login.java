@@ -1,44 +1,39 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.main.login;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
-
 public class Login extends AjaxCommonTest {
 	
 	public Login() {
 		logger.info("New "+ Login.class.getCanonicalName());
-		
-		// All tests start at the login page
 		super.startingPage = app.zPageLogin;
 		super.startingAccountPreferences = null;
-		
 	}
 	
-	@Test(	description = "Login to the Ajax Client",
-			groups = { "functional" })
+	@Test( description = "Login to the Ajax Client", 
+			groups = { "sanity" })
+	
 	public void Login01() throws HarnessException {
 		
 		// Login
@@ -49,13 +44,15 @@ public class Login extends AjaxCommonTest {
 		
 	}
 
-	@Test(	description = "Login to the Ajax Client, with a mounted folder",
+	
+	@Test( description = "Login to the Ajax Client, with a mounted folder",
 			groups = { "functional" })
+	
 	public void Login02() throws HarnessException {
 		
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 		
 		FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox);
 		ZAssert.assertNotNull(inbox, "Verify other account's inbox exists");
@@ -92,7 +89,7 @@ public class Login extends AjaxCommonTest {
 				+			"<e t='t' a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>"
 				+			"<su>"+ subject +"</su>"
 				+			"<mp ct='text/plain'>"
-				+				"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>"
+				+				"<content>"+ "body" + ConfigProperties.getUniqueString() +"</content>"
 				+			"</mp>"
 				+		"</m>"
 				+	"</SendMsgRequest>");
@@ -122,9 +119,11 @@ public class Login extends AjaxCommonTest {
 		
 	}
 
-	@Bugs(	ids = "59847")
-	@Test(	description = "Login to the Ajax Client, with a mounted folder of a deleted account",
+	
+	@Bugs( ids = "59847")
+	@Test( description = "Login to the Ajax Client, with a mounted folder of a deleted account",
 			groups = { "functional" })
+	
 	public void Login03() throws HarnessException {
 		
 		// Create Account2
@@ -133,9 +132,9 @@ public class Login extends AjaxCommonTest {
 		account.authenticate();
 		
 		
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 		
 		FolderItem inbox = FolderItem.importFromSOAP(account, FolderItem.SystemFolder.Inbox);
 		ZAssert.assertNotNull(inbox, "Verify other account's inbox exists");
@@ -214,10 +213,11 @@ public class Login extends AjaxCommonTest {
 				  };
 		}
 
-	@Bugs(	ids = "66788")
-	@Test(	description = "Change the zimbraMailURL and login",
+	@Bugs( ids = "66788")
+	@Test( description = "Change the zimbraMailURL and login",
 			groups = { "inprogress" },
 			dataProvider = "DataProvider_zimbraMailURL")
+	
 	public void Login04(String zimbraMailURLtemp, String notused) throws HarnessException {
 		
 		String zimbraMailURL = null;
@@ -245,11 +245,10 @@ public class Login extends AjaxCommonTest {
 			SleepUtil.sleep(60000);
 			
 			staf.execute("zmcontrol status");
-
 			
 			// Open the login page
 			// (use the base URL, since leftovers from the previous test may affect the URL)
-			app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
+			app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
 			
 			// Login
 			app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());		
@@ -257,7 +256,6 @@ public class Login extends AjaxCommonTest {
 			// Verify main page becomes active
 			ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
 
-			
 		} finally {
 			
 			if ( zimbraMailURL != null ) {
@@ -281,15 +279,10 @@ public class Login extends AjaxCommonTest {
 
 				
 				// Open the base URL
-				app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
+				app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
 
 			}
 
 		}
-		
-		
-		
 	}
-
-
 }

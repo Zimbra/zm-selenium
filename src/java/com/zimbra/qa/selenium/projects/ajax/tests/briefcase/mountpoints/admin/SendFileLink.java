@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.mountpoints.admin;
@@ -29,7 +29,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DialogConfirm;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
@@ -41,7 +41,7 @@ public class SendFileLink extends FeatureBriefcaseTest {
 
 		super.startingPage = app.zPageBriefcase;
 
-		//if(ZimbraSeleniumProperties.zimbraGetVersionString().contains("FOSS")){
+		//if(ConfigProperties.zimbraGetVersionString().contains("FOSS")){
 		    super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 		//}
 		   
@@ -51,14 +51,14 @@ public class SendFileLink extends FeatureBriefcaseTest {
 	}
 	
 	@Bugs(ids="46371")
-	@Test(description = "Briefcase linking problems upon renames", groups = { "functional" })
+	@Test( description = "Briefcase linking problems upon renames", groups = { "functional" })
 	public void SendFileLink_01() throws HarnessException {
 
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/other/testtextfile.txt";
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testtextfile.txt";
+		String foldername = "folder" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 
 		FileItem fileItem = new FileItem(filePath);
 

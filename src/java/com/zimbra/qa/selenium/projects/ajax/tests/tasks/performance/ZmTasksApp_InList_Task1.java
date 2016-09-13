@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.performance;
@@ -23,7 +23,7 @@ import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.RestUtil;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.performance.PerfKey;
 import com.zimbra.qa.selenium.framework.util.performance.PerfMetrics;
 import com.zimbra.qa.selenium.framework.util.performance.PerfToken;
@@ -49,11 +49,11 @@ public class ZmTasksApp_InList_Task1 extends AjaxCommonTest {
      };
    }
 
-   @Test(description = "Measure the time to load Tasks page with 1 task",
+   @Test( description = "Measure the time to load Tasks page with 1 task",
          groups = {"performance"}, dataProvider = "DataProvider_LoadingApp_1Task")
    public void ZmTasksApp_01(String logMessage) throws HarnessException {
 
-      String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
+      String subject = "task"+ ConfigProperties.getUniqueString();
 
       app.zGetActiveAccount().soapSend(
             "<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -65,7 +65,7 @@ public class ZmTasksApp_InList_Task1 extends AjaxCommonTest {
             "</inv>" +
             "<su>"+ subject +"</su>" +
             "<mp ct='text/plain'>" +
-            "<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+            "<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
             "</mp>" +
             "</m>" +
       "</CreateTaskRequest>");
@@ -82,12 +82,12 @@ public class ZmTasksApp_InList_Task1 extends AjaxCommonTest {
       app.zPageTasks.zWaitForActive();
    }
 
-   @Test(description="Measure the time to load Tasks page with 100 tasks",
+   @Test( description="Measure the time to load Tasks page with 100 tasks",
          groups={"performance"})
    public void ZmTasksApp_02() throws HarnessException {
 
       // Import 100 appointments using Tasks.ics and REST to speed up the setup
-	   String filename = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/ics/100tasks.ics";
+	   String filename = ConfigProperties.getBaseDirectory() + "/data/public/ics/100tasks.ics";
 
 	   RestUtil rest = new RestUtil();
 	   rest.setAuthentication(app.zGetActiveAccount());

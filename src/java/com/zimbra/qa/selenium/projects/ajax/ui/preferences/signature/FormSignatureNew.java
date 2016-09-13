@@ -1,24 +1,20 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature;
-
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
@@ -27,7 +23,6 @@ import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.I18N;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
@@ -160,32 +155,9 @@ public class FormSignatureNew extends AbsForm {
 			return;
 
 		} else if (field == Field.SignatureHtmlBody) {
-			//locator = Locators.zHtmlBodyField;
-		    if(ZimbraSeleniumProperties.isWebDriver()){
 			sClickAt("//div[contains(@class,'ZmHtmlEditor')]","");
 			zTypeFormattedText("css=iframe[id*=ifr]", value);
-		    }else{
-			locator = "css=body[id='tinymce']";
-			try{
-				sSelectFrame(Locators.zFrame);
-				this.sFocus(locator);
-				this.zClickAt(locator,"");
-				Robot zRobot;
-				try {
-					zRobot = new Robot();
-					zRobot.keyPress(KeyEvent.VK_CONTROL);
-					zRobot.keyPress(KeyEvent.VK_A);
-					zRobot.keyRelease(KeyEvent.VK_CONTROL);
-					zRobot.keyRelease(KeyEvent.VK_A);
-				} catch (AWTException e) {
-					e.printStackTrace();
-				}
-				this.zKeyboard.zTypeCharacters(value);
-			}finally{
-				sSelectFrame("relative=top");
-			}
-		    }
-		return;
+		    return;
 
 		} else {
 
@@ -194,25 +166,11 @@ public class FormSignatureNew extends AbsForm {
 
 		// Make sure the button exists
 		if (!this.sIsElementPresent(locator))
-			throw new HarnessException("Field is not present field=" + field
-					+ " locator=" + locator);
+			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
-		// Enter text
-		if(ZimbraSeleniumProperties.isWebDriver()){
-		    this.zClickAt(locator,"");
-		    clearField(locator);
-		    sType(locator, value);
-		}else{
-		    this.sFocus(locator);
-		    this.zClickAt(locator,"");
-		    sType(locator, value);
-
-		    if (!(sGetValue(locator).equalsIgnoreCase(value))) {
-				this.sFocus(locator);
-				this.zClickAt(locator,"");
-				sType(locator, value);
-		    }
-		}
+	    this.zClickAt(locator,"");
+	    clearField(locator);
+	    sType(locator, value);
 		this.zWaitForBusyOverlay();
 
 	}

@@ -1,104 +1,108 @@
-/*
- * ***** BEGIN LICENSE BLOCK *****
+/*
+ * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
- * ***** END LICENSE BLOCK *****
- */
-package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts;
+ * If not, see <https://www.gnu.org/licenses/>.
+ * ***** END LICENSE BLOCK *****
+ */
+package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts;
 import org.testng.annotations.Test;import com.zimbra.qa.selenium.framework.core.Bugs;import com.zimbra.qa.selenium.framework.items.ContactItem;import com.zimbra.qa.selenium.framework.items.FolderItem;import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.ui.contacts.FormContactNew;
 import com.zimbra.qa.selenium.projects.touch.ui.contacts.FormContactNew.Field;
-import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;import com.zimbra.qa.selenium.projects.touch.ui.contacts.PageAddressbook.Locators;
+import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;import com.zimbra.qa.selenium.projects.touch.ui.contacts.PageAddressbook.Locators;
 public class CreateContact extends TouchCommonTest  {	
 	public CreateContact() {
 		logger.info("New "+ CreateContact.class.getCanonicalName());
 		super.startingPage = app.zPageAddressbook;
 	}
-	@Test(description = "Create a contact with basic fields",
+	
+	@Test( description = "Create a contact with basic fields",
 			groups = { "sanity" })
-	public void CreateContact_01() throws HarnessException {
+	
+	public void CreateContact_01() throws HarnessException {
 		//-- DATA		
 		// Generate basic attribute values for new account
-		String contactFirst = "First" + ZimbraSeleniumProperties.getUniqueString();
-		String contactLast = "Last"+ ZimbraSeleniumProperties.getUniqueString();
-		String contactCompany = "Company"+ ZimbraSeleniumProperties.getUniqueString();
+		String contactFirst = "First" + ConfigProperties.getUniqueString();
+		String contactLast = "Last"+ ConfigProperties.getUniqueString();
+		String contactCompany = "Company"+ ConfigProperties.getUniqueString();
 		//-- GUI Action		
 		// Click +(Add) button
-		FormContactNew formContactNew = (FormContactNew)app.zPageAddressbook.zToolbarPressButton(Button.B_NEW);
+		FormContactNew formContactNew = (FormContactNew)app.zPageAddressbook.zToolbarPressButton(Button.B_NEW);
         // Fill in the form
 		formContactNew.zFillField(Field.FirstName, contactFirst);
 		formContactNew.zFillField(Field.LastName, contactLast);
-		formContactNew.zFillField(Field.Company, contactCompany);
+		formContactNew.zFillField(Field.Company, contactCompany);
 		// Click Save button
-		formContactNew.zSubmit();
+		formContactNew.zSubmit();
 		//-- Data Verification
 		
 		// Search the created contact 
 		app.zGetActiveAccount().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='contact'>"
 				+		"<query>#firstname:"+ contactFirst +"</query>"
-				+	"</SearchRequest>");
-		String contactId = app.zGetActiveAccount().soapSelectValue("//mail:cn", "id");
+				+	"</SearchRequest>");
+		String contactId = app.zGetActiveAccount().soapSelectValue("//mail:cn", "id");
 		// Make sure if the data is found by search request
 		ZAssert.assertNotNull(contactId, "Verify the contact is returned in the search");
 		app.zGetActiveAccount().soapSend(
 				"<GetContactsRequest xmlns='urn:zimbraMail'>"
 			+		"<cn id='"+ contactId +"'/>"
-			+	"</GetContactsRequest>");
+			+	"</GetContactsRequest>");
 		// Get all the contact data stored in Zimbra server
 		String lastname = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='lastName']", null);
 		String firstname = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='firstName']", null);
-		String company = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='company']", null);
+		String company = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='company']", null);
 		// Make sure those are equal to one you created from GUI
 		ZAssert.assertEquals(lastname, contactLast, "Verify the last name was saved correctly");
 		ZAssert.assertEquals(firstname, contactFirst, "Verify the first name was saved correctly");
-		ZAssert.assertEquals(company, contactCompany, "Verify the company was saved correctly");
-	}
+		ZAssert.assertEquals(company, contactCompany, "Verify the company was saved correctly");
+	}
 	
-	@Test(description = "Create a contact with all fields",
+		
+	@Test( description = "Create a contact with all fields",
 			groups = { "smoke" })	
-	public void CreateContact_02() throws HarnessException {				
-		//-- DATA
+
+	public void CreateContact_02() throws HarnessException {				
+		//-- DATA
 		// Generate all attributes value for new contact
-		String contactFirst = "First" + ZimbraSeleniumProperties.getUniqueString();
-		String contactLast = "Last"+ ZimbraSeleniumProperties.getUniqueString();
-		String contactCompany = "Company"+ ZimbraSeleniumProperties.getUniqueString();
+		String contactFirst = "First" + ConfigProperties.getUniqueString();
+		String contactLast = "Last"+ ConfigProperties.getUniqueString();
+		String contactCompany = "Company"+ ConfigProperties.getUniqueString();
 		String contactPrefix = "Mr";
-		String contactMiddleName = "MiddleName" + ZimbraSeleniumProperties.getUniqueString();
-		String contactMaidenName = "MadenName" + ZimbraSeleniumProperties.getUniqueString();
+		String contactMiddleName = "MiddleName" + ConfigProperties.getUniqueString();
+		String contactMaidenName = "MadenName" + ConfigProperties.getUniqueString();
 		String contactSuffix = "Sr" ;
-		String contactNickname = "Nickname" + ZimbraSeleniumProperties.getUniqueString();
-		String contactJobTitle = "JobTitle" + ZimbraSeleniumProperties.getUniqueString();
-		String contactDepartment = "Department" + ZimbraSeleniumProperties.getUniqueString();
-		String contactEmail = "Email" + ZimbraSeleniumProperties.getUniqueString() + "@testdomain.com";
+		String contactNickname = "Nickname" + ConfigProperties.getUniqueString();
+		String contactJobTitle = "JobTitle" + ConfigProperties.getUniqueString();
+		String contactDepartment = "Department" + ConfigProperties.getUniqueString();
+		String contactEmail = "Email" + ConfigProperties.getUniqueString() + "@testdomain.com";
 		String contactMobilePhone = "1-408-555-1212";
 		String contactOtherStreet = "123 Main St.";
-		String contactOtherCity = "City" + ZimbraSeleniumProperties.getUniqueString();
-		String contactOtherState = "State" + ZimbraSeleniumProperties.getUniqueString();
+		String contactOtherCity = "City" + ConfigProperties.getUniqueString();
+		String contactOtherState = "State" + ConfigProperties.getUniqueString();
 		String contactOtherZipcode = "94402";
-		String contactOtherCountry = "Country" + ZimbraSeleniumProperties.getUniqueString();
-		String contactWorkUrl = "http://"+ ZimbraSeleniumProperties.getUniqueString()+".com";
-		//-- GUI Action
+		String contactOtherCountry = "Country" + ConfigProperties.getUniqueString();
+		String contactWorkUrl = "http://"+ ConfigProperties.getUniqueString()+".com";
+		//-- GUI Action
 		// Click +(Add) button
-		FormContactNew formContactNew = (FormContactNew)app.zPageAddressbook.zToolbarPressButton(Button.B_NEW);
+		FormContactNew formContactNew = (FormContactNew)app.zPageAddressbook.zToolbarPressButton(Button.B_NEW);
 		// Fill in the form		
 		// For basic attributes
 		formContactNew.zFillField(Field.FirstName, contactFirst);
 		formContactNew.zFillField(Field.LastName, contactLast);
-		formContactNew.zFillField(Field.Company, contactCompany);
+		formContactNew.zFillField(Field.Company, contactCompany);
 		// Show all hidden field:
-		formContactNew.zDisplayHiddenName();
+		formContactNew.zDisplayHiddenName();
 		// For extended attributes
 		formContactNew.zFillField(Field.NamePrefix, contactPrefix);
 		formContactNew.zFillField(Field.MiddleName, contactMiddleName);
@@ -117,22 +121,22 @@ public class CreateContact extends TouchCommonTest  {
 		formContactNew.zFillField(Field.OtherCountry, contactOtherCountry);
 		formContactNew.zFillField(Field.OtherZipcode, contactOtherZipcode);
 		formContactNew.zToolbarPressPulldown(Button.B_URL_TYPE, Button.O_WORK);
-		formContactNew.zFillField(Field.WorkURL, contactWorkUrl);
+		formContactNew.zFillField(Field.WorkURL, contactWorkUrl);
 		// Click Save button
-		formContactNew.zSubmit();
-		//-- Verification
+		formContactNew.zSubmit();
+		//-- Verification
 		// Search the created contact
 		app.zGetActiveAccount().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='contact'>"
 				+		"<query>#firstname:"+ contactFirst +"</query>"
-				+	"</SearchRequest>");
-		String contactId = app.zGetActiveAccount().soapSelectValue("//mail:cn", "id");
+				+	"</SearchRequest>");
+		String contactId = app.zGetActiveAccount().soapSelectValue("//mail:cn", "id");
 		// Make sure if the data is found by search request
-		ZAssert.assertNotNull(contactId, "Verify the contact is returned in the search");
+		ZAssert.assertNotNull(contactId, "Verify the contact is returned in the search");
 		app.zGetActiveAccount().soapSend(
 					"<GetContactsRequest xmlns='urn:zimbraMail'>"
 				+		"<cn id='"+ contactId +"'/>"
-				+	"</GetContactsRequest>");
+				+	"</GetContactsRequest>");
 		// Get all the contact data stored in Zimbra server
 		String lastname = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='lastName']", null);
 		String firstname = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='firstName']", null);
@@ -151,8 +155,8 @@ public class CreateContact extends TouchCommonTest  {
 		String otherstate = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='otherState']", null);
 		String othercountry = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='otherCountry']", null);
 		String otherzipcode = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='otherPostalCode']", null);
-		String workurl = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='workURL']", null);
-		//-- Data Verification
+		String workurl = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='workURL']", null);
+		//-- Data Verification
 		// Make sure those are equal to one you created from GUI
 		ZAssert.assertEquals(lastname, contactLast, "Verify the last name was saved correctly");
 		ZAssert.assertEquals(firstname, contactFirst, "Verify the first name was saved correctly");
@@ -172,5 +176,5 @@ public class CreateContact extends TouchCommonTest  {
 		ZAssert.assertEquals(othercountry, contactOtherCountry, "Verify the other country was saved correctly");
 		ZAssert.assertEquals(otherzipcode, contactOtherZipcode, "Verify the other zipcode was saved correctly");
 		ZAssert.assertEquals(workurl, contactWorkUrl, "Verify the work url was saved correctly");
-	}		@Bugs( ids = "82461")	@Test(description = "Create a contact in emailed contacts folder",			groups = { "functional" })	public void CreateContact_03() throws HarnessException {		//-- DATA				// Generate basic attribute values for new account		String contactFirst = "First" + ZimbraSeleniumProperties.getUniqueString();		String contactLast = "Last"+ ZimbraSeleniumProperties.getUniqueString();		String contactCompany = "Company"+ ZimbraSeleniumProperties.getUniqueString();		String locator = "css=div[class='zcs-menu-label']:contains('Emailed Contacts')";		//-- GUI Action				// Click on emailed contacts folder		app.zPageAddressbook.zClickAt(Locators.zNavigationButton, "");		app.zPageAddressbook.zClickAt(locator, "");				// Click +(Add) button		FormContactNew formContactNew = (FormContactNew)app.zPageAddressbook.zToolbarPressButton(Button.B_NEW);		        // Fill in the form		formContactNew.zFillField(Field.FirstName, contactFirst);		formContactNew.zFillField(Field.LastName, contactLast);		formContactNew.zFillField(Field.Company, contactCompany);		// Click Save button		formContactNew.zSubmit();		//-- Data Verification		// The Emailed Contacts folder		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.EmailedContacts);				//-- Verification                //verify contact deleted        ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #firstname:"+ contactFirst);        ZAssert.assertNotNull(actual, "Verify the contact exists in the emailed contacts folder");        ZAssert.assertEquals(actual.getFolderId(), folder.getId(), "Verify the contact is in the Emailed Contacts");	}
+	}		@Bugs( ids = "82461")	@Test( description = "Create a contact in emailed contacts folder",			groups = { "functional" })	public void CreateContact_03() throws HarnessException {		//-- DATA				// Generate basic attribute values for new account		String contactFirst = "First" + ConfigProperties.getUniqueString();		String contactLast = "Last"+ ConfigProperties.getUniqueString();		String contactCompany = "Company"+ ConfigProperties.getUniqueString();		String locator = "css=div[class='zcs-menu-label']:contains('Emailed Contacts')";		//-- GUI Action				// Click on emailed contacts folder		app.zPageAddressbook.zClickAt(Locators.zNavigationButton, "");		app.zPageAddressbook.zClickAt(locator, "");				// Click +(Add) button		FormContactNew formContactNew = (FormContactNew)app.zPageAddressbook.zToolbarPressButton(Button.B_NEW);		        // Fill in the form		formContactNew.zFillField(Field.FirstName, contactFirst);		formContactNew.zFillField(Field.LastName, contactLast);		formContactNew.zFillField(Field.Company, contactCompany);		// Click Save button		formContactNew.zSubmit();		//-- Data Verification		// The Emailed Contacts folder		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.EmailedContacts);				//-- Verification                //verify contact deleted        ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #firstname:"+ contactFirst);        ZAssert.assertNotNull(actual, "Verify the contact exists in the emailed contacts folder");        ZAssert.assertEquals(actual.getFolderId(), folder.getId(), "Verify the contact is in the Emailed Contacts");	}
 }

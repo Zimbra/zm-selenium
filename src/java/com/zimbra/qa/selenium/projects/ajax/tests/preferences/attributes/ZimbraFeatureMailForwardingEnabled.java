@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.attributes;
@@ -43,7 +43,7 @@ public class ZimbraFeatureMailForwardingEnabled extends AjaxCommonTest {
 		
 	}
 	@Bugs(ids="98850")
-	@Test(	description = "Verify preferences does not show 'Forward a copy to', if zimbraFeatureMailForwardingEnabled=FALSE",
+	@Test( description = "Verify preferences does not show 'Forward a copy to', if zimbraFeatureMailForwardingEnabled=FALSE",
 			groups = { "functional" })
 	public void zimbraFeatureMailForwardingEnabled_01() throws HarnessException {
 		
@@ -80,7 +80,7 @@ public class ZimbraFeatureMailForwardingEnabled extends AjaxCommonTest {
 
 
 	@Bugs(ids = "71403")
-	@Test(	description = "Bug 71403: Verify duplicate message lables do not exist in preferences ('When a message arrives')",
+	@Test( description = "Bug 71403: Verify duplicate message lables do not exist in preferences ('When a message arrives')",
 			groups = { "functional" })
 	public void zimbraFeatureMailForwardingEnabled_02() throws HarnessException {
 		

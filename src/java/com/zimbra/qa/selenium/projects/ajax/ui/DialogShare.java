@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
@@ -40,6 +40,7 @@ public class DialogShare extends AbsDialog {
 		public static final String note = "css=div[id='ZmShareReply'] textarea";
 		public static final String Message = "css=td[id='ZmShareReplySelect_select_container']";
 		public static final String zAddNoteToStandardMessage = "//td[contains(@id,'_title') and contains(text(),'Add note to standard message')]";
+		public static final String zDoNotSendMailAboutThisShare = "//td[contains(@id,'_title') and contains(text(),'Do not send mail about this share')]";
 		
 	}
 	
@@ -190,6 +191,10 @@ public class DialogShare extends AbsDialog {
 
 		}
 
+		else if (type == ShareMessageType.DoNotSendMsg){
+			zClickAt(Locators.Message,"");
+			zClick(Locators.zDoNotSendMailAboutThisShare);
+		}
 	}
 	
 

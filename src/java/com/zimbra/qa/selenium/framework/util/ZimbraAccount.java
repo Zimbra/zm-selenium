@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.util;
@@ -56,7 +56,7 @@ import com.zimbra.common.soap.XmlParseException;
 import com.zimbra.common.util.ByteUtil;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.I18N;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 
 @SuppressWarnings("deprecation")
@@ -100,8 +100,8 @@ public class ZimbraAccount {
 	public ZimbraAccount(String email, String password) {
 
 		if ( email == null ) {
-			DisplayName = ZimbraSeleniumProperties.getStringProperty("locale").toLowerCase().replace("_", "") + ZimbraSeleniumProperties.getUniqueString();
-			email = DisplayName + "@" + ZimbraSeleniumProperties.getStringProperty("testdomain", "testdomain.com");
+			DisplayName = ConfigProperties.getStringProperty("locale").toLowerCase().replace("_", "") + ConfigProperties.getUniqueString();
+			email = DisplayName + "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com");
 		} else {
 			DisplayName = email.split("@")[0];
 		}
@@ -109,7 +109,7 @@ public class ZimbraAccount {
 		EmailAddress = email;
 
 		if ( password == null ) {
-			//password = ZimbraSeleniumProperties.getStringProperty("adminPwd", "test123");
+			//password = ConfigProperties.getStringProperty("adminPwd", "test123");
 			password = "test123";
 		}
 		Password = password;
@@ -352,8 +352,8 @@ public class ZimbraAccount {
 	@SuppressWarnings("serial")
 	private static final Map<String, String> accountAttrs = new HashMap<String, String>() {{
 		
-		put("zimbraPrefLocale", ZimbraSeleniumProperties.getStringProperty("locale"));
-		put("zimbraPrefTimeZoneId", ZimbraSeleniumProperties.getStringProperty("zimbraPrefTimeZoneId", "America/Los_Angeles"));
+		put("zimbraPrefLocale", ConfigProperties.getStringProperty("locale"));
+		put("zimbraPrefTimeZoneId", ConfigProperties.getStringProperty("zimbraPrefTimeZoneId", "America/Los_Angeles"));
 
 		// The following settings are specific to the test harness
 		// and deviate from the default settings to work around
@@ -391,7 +391,7 @@ public class ZimbraAccount {
 		}
 		
 		// If the storeHost value is set, use that value for the ZimbraMailHost
-		String storeHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
+		String storeHost = ConfigProperties.getStringProperty("store.host", null);
 		if ( storeHost != null ) {
 			ZimbraMailHost = storeHost;
 		}
@@ -426,7 +426,7 @@ public class ZimbraAccount {
 			domain.provision();
 			
 			// If the storeHost value is set, use that value for the ZimbraMailHost
-			String storeHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
+			String storeHost = ConfigProperties.getStringProperty("store.host", null);
 			if ( storeHost != null ) {
 				ZimbraMailHost = storeHost;
 			}
@@ -477,7 +477,7 @@ public class ZimbraAccount {
 			}
 			
 			// If SOAP trace logging is specified, turn it on
-			if ( ZimbraSeleniumProperties.getStringProperty("soap.trace.enabled", "false").toLowerCase().equals("true") ) {
+			if ( ConfigProperties.getStringProperty("soap.trace.enabled", "false").toLowerCase().equals("true") ) {
 				
 				ZimbraAdminAccount.GlobalAdmin().soapSend(
 							"<AddAccountLoggerRequest xmlns='urn:zimbraAdmin'>"
@@ -1102,11 +1102,9 @@ public class ZimbraAccount {
 		  * @return
 		  * @throws HarnessException
 		  */
-		 public Element sendSOAP(Element context, Element request)
-		 throws HarnessException {
+		 public Element sendSOAP(Element context, Element request) throws HarnessException {
 
 			 setTransport(request);
-
 
 			 // Remember the context, request, envelope and response for logging purposes
 			 requestBody = request;
@@ -1137,7 +1135,7 @@ public class ZimbraAccount {
 		 public void doPostfixDelay() throws HarnessException {
 
 			 // If disabled, don't do anything
-			 boolean enabled = ZimbraSeleniumProperties.getStringProperty("postfix.check", "true").equals("true");
+			 boolean enabled = ConfigProperties.getStringProperty("postfix.check", "true").equals("true");
 			 if ( !enabled ) {
 				 logger.debug("postfix.check was not true ... skipping queue check");
 				 return;
@@ -1328,11 +1326,11 @@ public class ZimbraAccount {
 			 // TODO: need to get URI settings from config.properties
 
 
-			 String scheme = ZimbraSeleniumProperties.getStringProperty("server.scheme", "http");
+			 String scheme = ConfigProperties.getStringProperty("server.scheme", "http");
 			 String userInfo = null;
-			 //String host = ZimbraSeleniumProperties.getStringProperty("server.host", "zqa-062.lab.zimbra.com");
-			 String host = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host",	ZimbraSeleniumProperties.getStringProperty("server.host"));
-			 String p = ZimbraSeleniumProperties.getStringProperty("server.port", "80");
+			 //String host = ConfigProperties.getStringProperty("server.host", "zqa-062.lab.zimbra.com");
+			 String host = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host",	ConfigProperties.getStringProperty("server.host"));
+			 String p = ConfigProperties.getStringProperty("server.port", "80");
 			 int port = Integer.parseInt(p);
 			 String path = "/";
 			 String query = null;
@@ -1346,7 +1344,7 @@ public class ZimbraAccount {
 				 // https://server.com:7071/service/admin/soap/
 				 scheme = "https";
 				 path = "/service/admin/soap/";
-				 port = Integer.parseInt(ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".admin.port", ZimbraSeleniumProperties.getStringProperty("admin.port")));
+				 port = Integer.parseInt(ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".admin.port", ConfigProperties.getStringProperty("admin.port")));
 
 			 } else if ( namespace.equals("urn:zimbraAccount") ) {
 
@@ -1364,7 +1362,7 @@ public class ZimbraAccount {
 				 path = "/service/soap/";
 
 			 } else if ( namespace.equals("urn:zimbraOffline") &&
-					 ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP) {
+					 ConfigProperties.getAppType() == AppType.DESKTOP) {
 				 // This is only for desktop
 				 path = "/service/soap/";
 
@@ -1697,8 +1695,8 @@ public class ZimbraAccount {
 	public static void main(String[] args) throws HarnessException {
 
 
-		//String domain = ZimbraSeleniumProperties.getStringProperty("server.host","zqa-062.eng.zimbra.com");
-		String domain = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host",	ZimbraSeleniumProperties.getStringProperty("server.host"));
+		//String domain = ConfigProperties.getStringProperty("server.host","zqa-062.eng.zimbra.com");
+		String domain = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host",	ConfigProperties.getStringProperty("server.host"));
 
 		// Configure log4j using the basic configuration
 		BasicConfigurator.configure();

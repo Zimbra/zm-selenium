@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.autocomplete;
@@ -32,8 +32,8 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
 public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 
-	private String FirstName = "James" + ZimbraSeleniumProperties.getUniqueString();
-	private String LastName = "Smith" + ZimbraSeleniumProperties.getUniqueString();
+	private String FirstName = "James" + ConfigProperties.getUniqueString();
+	private String LastName = "Smith" + ConfigProperties.getUniqueString();
 	private ZimbraAccount SampleAccount = null;
 	
 	
@@ -45,13 +45,13 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	
 	}
 	
-	@Test(	description = "Autocomplete using the GAL - First Name",
+	@Test( description = "Autocomplete using the GAL - First Name",
 			groups = { "functional" })
 	public void AutoCompleteGAL_01() throws HarnessException {
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		if ( SampleAccount == null ) {
 			SampleAccount = new ZimbraAccount();
@@ -90,13 +90,13 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete using the GAL - Partial First Name",
+	@Test( description = "Autocomplete using the GAL - Partial First Name",
 			groups = { "functional" })
 	public void AutoCompleteGAL_02() throws HarnessException {
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		if ( SampleAccount == null ) {
 			SampleAccount = new ZimbraAccount();
@@ -137,13 +137,13 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete using the GAL - Last Name",
+	@Test( description = "Autocomplete using the GAL - Last Name",
 			groups = { "functional" })
 	public void AutoCompleteGAL_03() throws HarnessException {
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		if ( SampleAccount == null ) {
 			SampleAccount = new ZimbraAccount();
@@ -184,13 +184,13 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete using the GAL - Partial Last Name",
+	@Test( description = "Autocomplete using the GAL - Partial Last Name",
 			groups = { "functional" })
 	public void AutoCompleteGAL_04() throws HarnessException {
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		if ( SampleAccount == null ) {
 			SampleAccount = new ZimbraAccount();
@@ -231,13 +231,13 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete using the GAL - Full Name",
+	@Test( description = "Autocomplete using the GAL - Full Name",
 			groups = { "functional" })
 	public void AutoCompleteGAL_05() throws HarnessException {
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		if ( SampleAccount == null ) {
 			SampleAccount = new ZimbraAccount();
@@ -278,13 +278,13 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete using the GAL - First Name and Last Initial",
+	@Test( description = "Autocomplete using the GAL - First Name and Last Initial",
 			groups = { "functional" })
 	public void AutoCompleteGAL_07() throws HarnessException {
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		if ( SampleAccount == null ) {
 			SampleAccount = new ZimbraAccount();
@@ -326,19 +326,19 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(	description = "Autocomplete using the GAL - Multiple Matches",
+	@Test( description = "Autocomplete using the GAL - Multiple Matches",
 			groups = { "functional" })
 	public void AutoCompleteGAL_08() throws HarnessException {
 		int count = 3;
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
-		String firstname = "Ethan" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "Ethan" + ConfigProperties.getUniqueString();
 		for (int i = 0; i < count; i++) {
 			ZimbraAccount account = new ZimbraAccount();
-			account.DisplayName = firstname + " Johnson" + ZimbraSeleniumProperties.getUniqueString();
+			account.DisplayName = firstname + " Johnson" + ConfigProperties.getUniqueString();
 			account.provision();
 			account.authenticate();
 		}
@@ -364,13 +364,13 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete using the GAL - No Matches",
+	@Test( description = "Autocomplete using the GAL - No Matches",
 			groups = { "functional" })
 	public void AutoCompleteGAL_09() throws HarnessException {
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -392,13 +392,13 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Bugs(	ids = "45815")
-	@Test(	description = "Autocomplete using the GAL - Apostrophe character",
+	@Bugs( ids = "45815")
+	@Test( description = "Autocomplete using the GAL - Apostrophe character",
 			groups = { "functional" })
 	public void AutoCompleteGAL_10() throws HarnessException {
 		
-		final String givenName = "Thomas" + ZimbraSeleniumProperties.getUniqueString();
-		final String sn = "O'Connor" + ZimbraSeleniumProperties.getUniqueString();
+		final String givenName = "Thomas" + ConfigProperties.getUniqueString();
+		final String sn = "O'Connor" + ConfigProperties.getUniqueString();
 		final String displayName = givenName + " " + sn;
 		
 		// Create a GAL Entry
@@ -418,8 +418,8 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -452,7 +452,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	}
 
 	@Bugs(ids = "47045")
-	@Test(	description = "Autocomplete including a period/dot '.' in the string",
+	@Test( description = "Autocomplete including a period/dot '.' in the string",
 			groups = { "functional" })
 	public void AutoCompleteGAL_Bug47045A() throws HarnessException {
 		
@@ -466,8 +466,8 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		
 
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -501,7 +501,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	}
 
 	@Bugs(ids = "47045")
-	@Test(	description = "Autocomplete including a period/dot '.' in the string",
+	@Test( description = "Autocomplete including a period/dot '.' in the string",
 			groups = { "functional" })
 	public void AutoCompleteGAL_Bug47045B() throws HarnessException {
 		
@@ -515,8 +515,8 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		
 
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -550,12 +550,12 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	}
 
 	@Bugs(ids = "40959, 65081")
-	@Test(	description = "Autocomplete on 'mike m' should not return all 'mike' names, only those with last name starting with 'm'",
+	@Test( description = "Autocomplete on 'mike m' should not return all 'mike' names, only those with last name starting with 'm'",
 			groups = { "functional" })
 	public void AutoCompleteGAL_Bug40959() throws HarnessException {
 		
 		final String givenName1 = "Mike";
-		final String sn1 = "Carter" + ZimbraSeleniumProperties.getUniqueString();
+		final String sn1 = "Carter" + ConfigProperties.getUniqueString();
 		final String displayName1 = givenName1 + " " + sn1;
 		Map<String,String> attrs1 = new HashMap<String, String>() {
 			private static final long serialVersionUID = -919087202049217526L;
@@ -566,7 +566,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 			}};
 
 		final String givenName2 = "Mike";
-		final String sn2 = "Mitchell" + ZimbraSeleniumProperties.getUniqueString();
+		final String sn2 = "Mitchell" + ConfigProperties.getUniqueString();
 		final String displayName2 = givenName2 + " " + sn2;
 		Map<String,String> attrs2 = new HashMap<String, String>() {
 			private static final long serialVersionUID = -939077202049217526L;
@@ -577,7 +577,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 			}};
 
 		final String givenName3 = "Mike";
-		final String sn3 = "Murphy" + ZimbraSeleniumProperties.getUniqueString();
+		final String sn3 = "Murphy" + ConfigProperties.getUniqueString();
 		final String displayName3 = givenName3 + " " + sn3;
 		Map<String,String> attrs3 = new HashMap<String, String>() {
 			private static final long serialVersionUID = -939077202049216526L;
@@ -605,8 +605,8 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);

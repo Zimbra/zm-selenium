@@ -1,29 +1,27 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.briefcase;
 
 import org.openqa.selenium.WebElement;
-
 import com.zimbra.qa.selenium.framework.items.DocumentItem;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsForm;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DocumentBriefcaseNew.Field;
 
@@ -97,13 +95,8 @@ public class DocumentBriefcaseEdit extends AbsForm {
 			this.sMouseOver(nameFieldLocator);
 			this.sFocus(nameFieldLocator);
 			this.zClickAt(nameFieldLocator, "0,0");
-			
-			if (ZimbraSeleniumProperties.isWebDriver()) {
-				this.clearField(nameFieldLocator);
-			}
-			
+			this.clearField(nameFieldLocator);
 			this.sType(nameFieldLocator, value);
-			
 			logger.info("typed: " + value);
 
 		} else if (field == Field.Body) {
@@ -114,11 +107,7 @@ public class DocumentBriefcaseEdit extends AbsForm {
 			if (!this.sIsElementPresent(iframeLocator))
 				throw new HarnessException("Locator is not present: "
 						+ iframeLocator);
-			if (ZimbraSeleniumProperties.isWebDriver()) {
-				// String locator = Locators.zBodyField;
-				// sSelectFrame(Locators.zFrame);
-				// this.sType(locator, value);
-
+				
 				WebElement we = getElement(iframeLocator);
 				this.sMouseOver(iframeLocator);
 				this.sFocus(iframeLocator);
@@ -132,23 +121,7 @@ public class DocumentBriefcaseEdit extends AbsForm {
 								+ "if (navigator.userAgent.indexOf('Firefox')!=-1 || navigator.userAgent.indexOf('Chrome')!=-1){iframe_body.innerHTML=bodytext;}"
 								+ "else if(navigator.userAgent.indexOf('MSIE')!=-1){iframe_body.innerHTML=bodytext;}"
 								+ "else {iframe_body.innerHTML=bodytext;}", we);
-
-			} else {
-				this.sMouseOver(iframeLocator);
-				this.sFocus(iframeLocator);
-				this.zClickAt(iframeLocator, "0,0");
-
-				this.sGetEval("var bodytext=\""
-						+ value
-						+ "\";"
-						+ "var iframe_locator=\""
-						+ iframeLocator
-						+ "\";"
-						+ "var iframe_body=selenium.browserbot.findElement(iframe_locator).contentWindow.document.body;"
-						+ "if (browserVersion.isFirefox || browserVersion.isChrome){iframe_body.textContent=bodytext;}"
-						+ "else if(browserVersion.isIE){iframe_body.innerText=bodytext;}"
-						+ "else {iframe_body.innerText=bodytext;}");
-			}
+			
 		} else {
 			throw new HarnessException("Not implemented field: " + field);
 		}

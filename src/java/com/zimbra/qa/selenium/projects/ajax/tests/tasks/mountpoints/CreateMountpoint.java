@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.mountpoints;
@@ -29,7 +29,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogShareAccept;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
@@ -51,7 +51,7 @@ public class CreateMountpoint extends AjaxCommonTest{
 		
 	}
 	
-	@Test(	description = "Receive an invitation to a shared folder, accept it.",
+	@Test( description = "Receive an invitation to a shared folder, accept it.",
 			groups = { "smoke" })
 	public void CreateMountpoint_01() throws HarnessException {
 		
@@ -60,7 +60,7 @@ public class CreateMountpoint extends AjaxCommonTest{
 		FolderItem ownerTask = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
 		// Create the subTaskList
-		String ownerFoldername = "ownertaskList" + ZimbraSeleniumProperties.getUniqueString();
+		String ownerFoldername = "ownertaskList" + ConfigProperties.getUniqueString();
 		
 		// Owner creates a folder, shares it with current user, and sends invitation
 		Owner.soapSend(
@@ -79,7 +79,7 @@ public class CreateMountpoint extends AjaxCommonTest{
 				+	"</FolderActionRequest>");
 		
 
-		String shareMessageSubject = "shared"+ ZimbraSeleniumProperties.getUniqueString();
+		String shareMessageSubject = "shared"+ ConfigProperties.getUniqueString();
 		String shareElement = String.format(
 					"<share xmlns='urn:zimbraShare' version='0.1' action='new' >"
 				+		"<grantee id='%s' email='%s' name='%s' />"
@@ -113,7 +113,7 @@ public class CreateMountpoint extends AjaxCommonTest{
 		app.zPageMail.zNavigateTo();
 
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Click the inbox
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);

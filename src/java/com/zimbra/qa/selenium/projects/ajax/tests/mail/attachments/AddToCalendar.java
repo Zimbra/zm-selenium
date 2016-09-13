@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attachments;
@@ -40,14 +40,15 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		super.startingPage =  app.zPageMail;
 	}
 	
-	@Test(	description = "Receive an ics file in the email and add to calendar",
+	
+	@Test( description = "Receive an ics file in the email and add to calendar",
 			groups = { "functional" })
 			
 	public void AddToCalendar_01() throws HarnessException {
 
 		// -- Data Setup
 		String apptSubject = "ics appointment";
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email08/mime01.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email08/mime01.txt";
 		final String subject = "Import ics using add to calendar";
 		final String attachmentname = "AddToCalendar.ics";
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -110,11 +111,12 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(apptName, apptSubject, "Verify correct appointment returned'");
 	}
 	
+	
 	@Bugs(ids = "49734")
-	@Test(description = "JS error (t is undefined) while click to 'Add to Calendar' when viewing in separate window",
+	@Test( description = "JS error (t is undefined) while click to 'Add to Calendar' when viewing in separate window",
 			groups = { "functional" })
 			
-	public void AddToCalendar_NewWindow_01() throws HarnessException {
+	public void AddToCalendar_NewWindow_02() throws HarnessException {
 
 		// -- Data Setup
 		String subject = "separate window invite ics attachment";
@@ -123,7 +125,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		ZDate endUTC   = new ZDate(2013, 07, 10, 12, 0, 0);
 		final String attachmentname = "separate window.ics";
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Calendar);
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email08/mime03.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email08/mime03.txt";
 		
 		// Inject the message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
@@ -146,8 +148,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		try {
 			window.zWaitForActive();
 			app.zPageMail.zSelectWindow("_blank");
-			SleepUtil.sleepVeryLong();
-			
+			SleepUtil.sleepMedium();
 			app.zPageCalendar.zWaitForElementAppear("id=zv__MSG__MSG-1_attLinks_2_calendar");
 			
 			DialogAddToCalendar dialog = (DialogAddToCalendar)app.zPageMail.zToolbarPressButton(Button.B_ADD_TO_CALENDAR);
@@ -157,7 +158,8 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 			
         } finally {
         	if ( window != null ) {
-        		window.zCloseWindow();
+        		window.zCloseWindow("Zimbra :" + subject);
+        		window = null;
     		}
         	app.zPageMail.zSelectWindow(null);
        	}
@@ -181,10 +183,10 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	
 	
 	@Bugs(ids = "51442")
-	@Test(description = "Js error (ZmNewCalendarDialog is not defined) while pressing New Calendar from new window and can't open new calendar dialog",
+	@Test( description = "Js error (ZmNewCalendarDialog is not defined) while pressing New Calendar from new window and can't open new calendar dialog",
 			groups = { "functional" })
 			
-	public void AddToCalendar_NewWindow_02() throws HarnessException {
+	public void AddToCalendar_NewWindow_03() throws HarnessException {
 		
 		// Login
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
@@ -195,10 +197,8 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		ZDate startUTC = new ZDate(2013, 06, 25, 12, 0, 0);
 		ZDate endUTC   = new ZDate(2013, 07, 10, 12, 0, 0);
 		final String attachmentname = "separate window.ics";
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email08/mime06.txt";
-		
-		
+		String foldername = "folder" + ConfigProperties.getUniqueString();
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email08/mime06.txt";
 		
 		// Inject the message
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(mimeFile));
@@ -246,7 +246,8 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 			
         } finally {
         	if ( window != null ) {
-        		window.zCloseWindow();
+        		window.zCloseWindow("Zimbra :" + subject);
+        		window = null;
     		}
         	app.zPageMail.zSelectWindow(null);
        	}
@@ -268,10 +269,11 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	
 	}
 	
-	@Test(description = "Bug 49734 - JS error (t is undefined) while click to 'Add to Calendar' when viewing in separate window",
+	
+	@Test( description = "Bug 49734 - JS error (t is undefined) while click to 'Add to Calendar' when viewing in separate window",
 			groups = { "functional" })
 			
-	public void AddToCalendar_rfc822Attachment_01() throws HarnessException {
+	public void AddToCalendar_rfc822Attachment_04() throws HarnessException {
 
 		// -- Data Setup
 		String subject = "rfc822 attachment invite";
@@ -279,7 +281,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		ZDate startUTC = new ZDate(2013, 06, 25, 12, 0, 0);
 		ZDate endUTC   = new ZDate(2013, 07, 10, 12, 0, 0);
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Calendar);
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email08/mime04.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email08/mime04.txt";
 		
 		// Inject the message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
@@ -293,7 +295,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		try {
 			window.zWaitForActive();
 			app.zPageMail.zSelectWindow("_blank");
-			SleepUtil.sleepLong();
+			SleepUtil.sleepMedium();
 			
 			DialogAddToCalendar dialog = (DialogAddToCalendar)app.zPageMail.zToolbarPressButton(Button.B_ADD_TO_CALENDAR);
 			dialog.zChooseCalendarFolder(folder.getId());
@@ -302,7 +304,8 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 			
         } finally {
         	if ( window != null ) {
-        		window.zCloseWindow();
+        		window.zCloseWindow("Zimbra :" + subject);
+        		window = null;
     		}
         	app.zPageMail.zSelectWindow(null);
        	}
@@ -324,19 +327,21 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	
 	}
 	
-	@Test(description = "Bug 77131 - Cannot 'add to calendar' an ics into a shared calendar",
+	
+	@Bugs(ids = "106600")
+	@Test( description = "Bug 77131 - Cannot 'add to calendar' an ics into a shared calendar",
 			groups = { "functional" })
 			
-	public void AddToCalendar_SharedCalendar_01() throws HarnessException {
+	public void AddToCalendar_SharedCalendar_05() throws HarnessException {
 		
 		// -- Data Setup
 		String apptSubject = "ics appointment";
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 		ZDate startUTC = new ZDate(2013, 02, 21, 12, 0, 0);
 		ZDate endUTC   = new ZDate(2013, 02, 21, 12, 0, 0);
 		
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email08/mime05.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email08/mime05.txt";
 		final String subject = "Importing ics using add to calendar";
 		final String attachmentname = "AddToCalendar.ics";
 		
@@ -419,36 +424,35 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(apptName, apptSubject, "Verify correct appointment returned'");
 	}
 	
+	
 	@Bugs(ids = "102578,49715")
-	@Test(description = "Links in email messages to .ics files should provide method to add to calendar",
+	@Test( description = "Links in email messages to .ics files should provide method to add to calendar",
 			groups = { "functional" })
 			
-	public void AddToCalendar_icsLink_01() throws HarnessException {
+	public void AddToCalendar_icsLink_06() throws HarnessException {
 
 		// -- Data Setup
 		String subject = "AddToCalendar_icsLink_01";
-		String newCalFolder = "Calendar" + ZimbraSeleniumProperties.getUniqueString();
+		String newCalFolder = "Calendar" + ConfigProperties.getUniqueString();
 		ZDate startUTC = new ZDate(2014, 3, 12, 12, 0, 0);
 		ZDate endUTC   = new ZDate(2014, 3, 12, 12, 0, 0);
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email08/mime02.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email08/mime02.txt";
 		
 		// Inject the message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
-		
 		app.zPageMail.zVerifyMailExists(subject);
 
-		//Adding additional code to go to Cal tab and click explicitly on Calendar header, so that new folder will create in upper level.
+		// Adding additional code to go to Cal tab and click explicitly on Calendar header, so that new folder will create in upper level.
 		app.zPageCalendar.zNavigateTo();				
-		SleepUtil.sleepMedium();
 		app.zPageCalendar.zClickAt(PageCalendar.Locators.Cal_FirstOverviewHeader,"");
 		
-		//Navigate to Mail Tab again		
+		// Navigate to Mail Tab again		
 		app.zPageMail.zNavigateTo();
-		SleepUtil.sleepMedium();
 		app.zPageMail.zVerifyMailExists(subject);
+		
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		app.zPageMail.zToolbarPressPulldown(Button.B_ICS_LINK_IN_BODY, Button.B_CREATE_NEW_CALENDAR);
+		app.zPageMail.zDisplayMailRightClick("body div span a", Button.B_CREATE_NEW_CALENDAR);
 		DialogCreateFolder dialog = new DialogCreateFolder(app, app.zPageCalendar);
 		dialog.zEnterFolderName(newCalFolder);
 		dialog.zClickButton(Button.B_OK);
@@ -461,7 +465,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		
 		//-- Verification
 		app.zGetActiveAccount().soapSend(
-				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
+				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-60).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(60).toMillis() +"'>"
 			+		"<query>"+ "in:" + newCalFolder +"</query>"
 			+	"</SearchRequest>");
 		

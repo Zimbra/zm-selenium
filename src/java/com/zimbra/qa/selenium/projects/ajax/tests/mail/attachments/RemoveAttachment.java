@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attachments;
@@ -40,13 +40,13 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 	}
 	
 	
-	@Test(	description = "Remove an attachment from a mail",
+	@Test( description = "Remove an attachment from a mail",
 			groups = { "functional" })
 	public void RemoveAttachment_01() throws HarnessException {
 
 		//-- Data Setup
 		
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
 		final String subject = "subject151615738";
 		final String attachmentname = "file.txt";
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -102,7 +102,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 		id = account.soapSelectValue("//mail:m", "id");
 		
 		
-		try{
+		try {
 			
 			int i = 0;
 			do {
@@ -117,7 +117,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 			} while ( (i++ < 10) && (nodes.length > 0) );
 			
 		    
-		}catch(Exception ex){
+		} catch(Exception ex) {
 		    logger.error(ex);
 		}
 		
@@ -126,13 +126,13 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(	description = "Remove all attachments (2 attachments) from a mail",
+	@Test( description = "Remove all attachments (2 attachments) from a mail",
 			groups = { "functional" })
 	public void RemoveAttachment_02() throws HarnessException {
 
 		//-- Data Setup
 		
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email06/mime.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email06/mime.txt";
 		final String subject = "subject135219672356274";
 		ZimbraAccount account = app.zGetActiveAccount();
 		
@@ -178,7 +178,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 		id = account.soapSelectValue("//mail:m", "id");
 		
 		
-		try{
+		try {
 			
 			int i = 0;
 			do {
@@ -193,7 +193,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 			} while ( (i++ < 10) && (nodes.length > 0) );
 			
 		    
-		}catch(Exception ex){
+		} catch(Exception ex) {
 		    logger.error(ex);
 		}
 		
@@ -202,14 +202,14 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Bugs(	ids = "81565")
-	@Test(	description = "Remove an attachment from a meeting invite",
+	@Bugs( ids = "81565")
+	@Test( description = "Remove an attachment from a meeting invite",
 			groups = { "functional" })
 	public void RemoveAttachment_03() throws HarnessException {
 
 		//-- Data Setup
 		
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug81565/mime1.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug81565/mime1.txt";
 		final String subject = "Bug81565";
 		final String attachmentname = "Capture.PNG";
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -265,7 +265,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 		id = account.soapSelectValue("//mail:m", "id");
 		
 		
-		try{
+		try {
 			
 			int i = 0;
 			do {
@@ -280,7 +280,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 			} while ( (i++ < 10) && (nodes.length > 0) );
 			
 		    
-		}catch(Exception ex){
+		} catch(Exception ex) {
 		    logger.error(ex);
 		}
 		
@@ -289,14 +289,14 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Bugs(	ids = "81565")
-	@Test(	description = "Remove all attachments (2 attachments) from a meeting invite",
+	@Bugs( ids = "81565")
+	@Test( description = "Remove all attachments (2 attachments) from a meeting invite",
 			groups = { "functional" })
 	public void RemoveAttachment_04() throws HarnessException {
 
 		//-- Data Setup
 		
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug81565/mime2.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug81565/mime2.txt";
 		final String subject = "Bug81565B";
 		ZimbraAccount account = app.zGetActiveAccount();
 		
@@ -342,7 +342,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 		id = account.soapSelectValue("//mail:m", "id");
 		
 		
-		try{
+		try {
 			
 			int i = 0;
 			do {
@@ -357,7 +357,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 			} while ( (i++ < 10) && (nodes.length > 0) );
 			
 		    
-		}catch(Exception ex){
+		} catch(Exception ex) {
 		    logger.error(ex);
 		}
 		
@@ -367,12 +367,12 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 	}
 	
 	@Bugs(ids = "83243")
-	@Test(description = "Remove an attachment from a mail from Show Conversation view", groups = { "functional" })
+	@Test( description = "Remove an attachment from a mail from Show Conversation view", groups = { "functional" })
 	public void RemoveAttachment_05() throws HarnessException {
 
 		// -- Data Setup
 
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email16/mime02.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email16/mime02.txt";
 		final String subject = "remove attachment from conversation view";
 		final String attachmentname = "remove.txt";
 		ZimbraAccount account = app.zGetActiveAccount();

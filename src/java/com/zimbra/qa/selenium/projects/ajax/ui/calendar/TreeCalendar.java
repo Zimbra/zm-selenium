@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
@@ -21,7 +21,6 @@ package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.items.SavedSearchFolderItem;
@@ -41,12 +40,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogDeleteTag.DialogDeleteTagID
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder;
 
-
-
-/**
- * @author zimbra
- *
- */
 public class TreeCalendar extends AbsTree {
 
 	public static class Locators {
@@ -393,6 +386,7 @@ public class TreeCalendar extends AbsTree {
 			}
 		}
 		
+		SleepUtil.sleepMedium();
 		
 		// Return the specified page, or null if not set
 		return (page);
@@ -515,26 +509,14 @@ public class TreeCalendar extends AbsTree {
 		throw new HarnessException("Must use FolderItem or SavedSearchFolderItem or ZimletItem as argument, but was "+ folder.getClass());
 	}
 	
-	public void zMarkOnOffMountedFolder(String folderName) throws HarnessException {
-		
-		tracer.trace("Click on folder "+ folderName);
-		
-		SleepUtil.sleepSmall();
-		this.sClickAt("css=div[id='main_Calendar-parent-CALENDAR'] div[id^='zti__main_Calendar__'] td[id$='_textCell']:contains('" + folderName + "')", "");
-		this.sClickAt("css=div[id='main_Calendar-parent-CALENDAR'] div[class^='DwtTreeItem DwtTreeItem-selected'] td[id$='_checkboxCell'] div[class='ImgMenuCheck']", "");
-		this.zWaitForBusyOverlay();
-		SleepUtil.sleepLong(); //Let calendar UI refresh
-	}
-	
 	public void zMarkOnOffCalendarFolder(String folderName) throws HarnessException {
 		
 		tracer.trace("Click on folder "+ folderName);
 		
-		SleepUtil.sleepSmall();
-		this.sClickAt("css=div[id='main_Calendar-parent-CALENDAR'] div[id^='zti__main_Calendar__'] td[id$='_textCell']:contains('" + folderName + "')", "");
-		this.sClickAt("css=div[id='main_Calendar-parent-CALENDAR'] div[class^='DwtTreeItem DwtTreeItem-selected'] td[id$='_checkboxCell'] div[class='ImgMenuCheck']", "");
+		FolderItem folderID = FolderItem.importFromSOAP(MyApplication.zGetActiveAccount(), folderName);
+		this.sClickAt("css=div[id='zti__main_Calendar__" + folderID.getId() + "_checkbox']", "");
 		this.zWaitForBusyOverlay();
-		SleepUtil.sleepMedium(); //Let calendar UI refresh
+		SleepUtil.sleepMedium();
 	}
 	
 	public void zVerifyCalendarChecked(Boolean status, String folderId) throws HarnessException {

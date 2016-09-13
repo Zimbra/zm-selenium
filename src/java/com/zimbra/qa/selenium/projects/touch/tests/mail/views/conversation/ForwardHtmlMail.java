@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.tests.mail.views.conversation;
@@ -36,9 +36,9 @@ public class ForwardHtmlMail extends PrefGroupMailByConversationTest {
 			
 	public void ForwardHtmlMail_01() throws HarnessException {
 		
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "text <strong>bold"+ ZimbraSeleniumProperties.getUniqueString() +"</strong> text";
-		String modifiedContent = "modified body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "text <strong>bold"+ ConfigProperties.getUniqueString() +"</strong> text";
+		String modifiedContent = "modified body" + ConfigProperties.getUniqueString();
 		
 		String htmlBody = XmlStringUtil.escapeXml(
 				"<html>" +

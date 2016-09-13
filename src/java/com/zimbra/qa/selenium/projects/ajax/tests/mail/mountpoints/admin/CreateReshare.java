@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mountpoints.admin;
@@ -41,7 +41,7 @@ public class CreateReshare extends PrefGroupMailByMessageTest {
 	 * 3. Verify Account3 can view the folder contents
 	 */
 	@Bugs(ids = "68760")
-	@Test(	description = "Reshare a folder that is shared as admin",
+	@Test( description = "Reshare a folder that is shared as admin",
 			groups = { "functional" })
 	public void CreateReshare_01() throws HarnessException {
 
@@ -55,7 +55,7 @@ public class CreateReshare extends PrefGroupMailByMessageTest {
 		Destination.authenticate();
 
 		FolderItem ownerInbox = FolderItem.importFromSOAP(Owner, FolderItem.SystemFolder.Inbox);
-		String ownerFoldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String ownerFoldername = "folder" + ConfigProperties.getUniqueString();
 
 
 		// Owner shares a folder to the test account with admin rights
@@ -76,7 +76,7 @@ public class CreateReshare extends PrefGroupMailByMessageTest {
 		
 		// Test account creates a mountpoint
 		//
-		String mountpointFoldername = "mountpoint"+ ZimbraSeleniumProperties.getUniqueString();
+		String mountpointFoldername = "mountpoint"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountpointFoldername +"' view='message' rid='"+ ownerFolderid +"' zid='"+ Owner.ZimbraId +"'/>"

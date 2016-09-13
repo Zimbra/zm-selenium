@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
@@ -35,8 +35,7 @@ public class ContextMenu extends AbsDisplay {
 	
 	public void  zSelect(ContextMenuItem cmi) throws HarnessException {
 		logger.info(myPageName() + " zSelect("+ cmi.text +")");
-				
-		this.zClick(cmi.locator);
+		this.sClick(cmi.locator);
         zWaitForBusyOverlay();
 	}
 
@@ -57,7 +56,6 @@ public class ContextMenu extends AbsDisplay {
          page.zWaitForActive();
          
       }
-
       return page;
     }
 
@@ -65,9 +63,7 @@ public class ContextMenu extends AbsDisplay {
 	public ContextMenuItem getContextMenuItem  (String parentLocator, Class contextMenuItemObject)throws HarnessException {
 		   ContextMenuItem cmi=null;
 		   
-		   
 	       if (parentLocator.startsWith("DWT")){
-				  //most likely separator 
 			   cmi = ContextMenuItem.C_SEPARATOR;		
 			   return cmi;
 		   }
@@ -79,25 +75,16 @@ public class ContextMenu extends AbsDisplay {
 	    	   try {   			    		 
 	    		 cmi = (ContextMenuItem) f.get(null); 
 	    		 
-	    	    	
 		         //if (cmi.locator.equals(locator)) {
 	    		 if (locator.startsWith(cmi.locator)) {
 		        	 String cssLocator= "css=td[id='" + parentLocator ;
 			 
 			        //verify image, text, and shortcut 		   
-		        	 if (! this.sIsElementPresent(cssLocator + "_left_icon" + "'] " +cmi.image))
-		        	 {
+		        	 if (! this.sIsElementPresent(cssLocator + "_left_icon" + "'] " +cmi.image)) {
 		        		 throw new HarnessException("cannot find " +  cssLocator + "_left_icon" + "'] " +cmi.image);
 		        	 }
 				
-		        	/* TODO locale
-		        	 * if (! this.sIsElementPresent(cssLocator + "_title" + "']:contains('" +cmi.text + "')")) 
-		        	 {
-		        		 throw new HarnessException("cannot find " +  cssLocator + "_title" + "']:contains('" +cmi.text + "')");
-		        	 }
-				    */   
-		        	 if (! this.sIsElementPresent(cssLocator + "_dropdown" +"']" +cmi.shortcut))
-		        	 {
+		        	 if (! this.sIsElementPresent(cssLocator + "_dropdown" +"']" +cmi.shortcut)) {
 		        		 throw new HarnessException("cannot find " + cssLocator + "_dropdown" +"']" +cmi.shortcut);
 		        	 }
 		              	 
@@ -106,9 +93,7 @@ public class ContextMenu extends AbsDisplay {
 	    	   }   	
 	    	   //exception occurs for non-ContextMenuItem fields
 	    	   catch (Exception e) {}    		        	
-	    
-	       }	   
-		  
+	       }
 			
 		   if (cmi == null) {
 			   throw new HarnessException("cannot find context menu " + locator);
@@ -148,19 +133,10 @@ public class ContextMenu extends AbsDisplay {
 			ContextMenuItem ci  = getContextMenuItem(id, contextMenuItemObjects);		    						
 			list.add(ci);
 			ci.parentLocator = id;
-			/*if ( PageContacts.CONTEXT_MENU.CONTEXT_MENUITEM_ARRAY[i-1]!= null) { 
-			  PageContacts.CONTEXT_MENU.CONTEXT_MENUITEM_ARRAY[i-1].parentLocator=id;
-			}*/
-		}
-
-        
-		
+		}		
 		return list;		
 	}
 	
-	/* (non-Javadoc)
-	 * @see framework.ui.AbsDialog#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.performance;
@@ -46,21 +46,21 @@ public class ZmCalendarApp_ViewList_Appointment1 extends AjaxCommonTest {
 	}
 	
 	
-	@Test(	description = "Measure the time to load the Calendar, list view, initial view",
+	@Test( description = "Measure the time to load the Calendar, list view, initial view",
 			groups = { "performance" })
 	public void ZmCalendarApp_01() throws HarnessException {
 		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
 		
 		// Create an appointment
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		AppointmentItem.createAppointmentSingleDay(
 				app.zGetActiveAccount(),
 				startDate,
 				60,
 				null,
 				subject,
-				"content" + ZimbraSeleniumProperties.getUniqueString(),
-				"location" + ZimbraSeleniumProperties.getUniqueString(),
+				"content" + ConfigProperties.getUniqueString(),
+				"location" + ConfigProperties.getUniqueString(),
 				null);
 
 
@@ -79,21 +79,21 @@ public class ZmCalendarApp_ViewList_Appointment1 extends AjaxCommonTest {
 
 	}
 
-	@Test(	description = "Measure the time to load the Calendar, list view, 1 appointment",
+	@Test( description = "Measure the time to load the Calendar, list view, 1 appointment",
 			groups = { "performance" })
 	public void ZmCalendarApp_02() throws HarnessException {
 		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
 		
 		// Create an appointment
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		AppointmentItem.createAppointmentSingleDay(
 				app.zGetActiveAccount(),
 				startDate,
 				60,
 				null,
 				subject,
-				"content" + ZimbraSeleniumProperties.getUniqueString(),
-				"location" + ZimbraSeleniumProperties.getUniqueString(),
+				"content" + ConfigProperties.getUniqueString(),
+				"location" + ConfigProperties.getUniqueString(),
 				null);
 
 
@@ -112,7 +112,7 @@ public class ZmCalendarApp_ViewList_Appointment1 extends AjaxCommonTest {
 
 	}
 
-	@Test(	description = "Measure the time to load the Calendar, list view, 100 appointment",
+	@Test( description = "Measure the time to load the Calendar, list view, 100 appointment",
 			groups = { "performance" })
 	public void ZmCalendarApp_03() throws HarnessException {
 		
@@ -124,7 +124,7 @@ public class ZmCalendarApp_ViewList_Appointment1 extends AjaxCommonTest {
 		Calendar friday = Calendar.getInstance();		friday.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);			friday.add(Calendar.DATE, 7);
 
 		// Import 100 appointments using Calendar.ics and REST
-		String filename = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/ics/calendar03/Calendar.ics";
+		String filename = ConfigProperties.getBaseDirectory() + "/data/public/ics/calendar03/Calendar.ics";
 		File file = null;
 
 		// Modify the ICS in two ways:

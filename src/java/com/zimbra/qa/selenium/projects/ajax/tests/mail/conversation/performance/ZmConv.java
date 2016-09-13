@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.performance;
@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.performance.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.LmtpInject;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
 
@@ -46,11 +46,11 @@ public class ZmConv extends AjaxCommonTest {
 	}
 	
 	
-	@Test(	description = "Measure the performance for conversation view, preview pane, text message, initial load",
+	@Test( description = "Measure the performance for conversation view, preview pane, text message, initial load",
 			groups = { "performance" })
 	public void ZmMailItem_01() throws HarnessException {
 		
-		String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/conversation02";
+		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/conversation02";
 		String subject = "Conversation13155016716714";
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));

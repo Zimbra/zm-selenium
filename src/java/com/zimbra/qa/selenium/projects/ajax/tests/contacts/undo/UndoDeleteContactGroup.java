@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.undo;
@@ -41,7 +41,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Undone deleted a contact group", groups = { "functional" })
+	@Test( description = "Undone deleted a contact group", groups = { "functional" })
 	public void UndoDeleteContactGroup_01() throws HarnessException {
 
 		// The contacts folder
@@ -71,7 +71,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Undone deleted contact group by clicking Delete on Context Menu", groups = { "functional" })
+	@Test( description = "Undone deleted contact group by clicking Delete on Context Menu", groups = { "functional" })
 	public void UndoDeleteContactGroup_02() throws HarnessException {
 
 		// The contacts folder
@@ -97,7 +97,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		ZAssert.assertEquals(actual.getFolderId(), contacts.getId(), "Verify the contact is back in the contacts folder");
 	}
 
-	@Test(description = "Undone deleted  contact group selected by checkbox", groups = { "functional" })
+	@Test( description = "Undone deleted  contact group selected by checkbox", groups = { "functional" })
 	public void UndoDeleteContactGroup_03()throws HarnessException {
 
 		// The contacts folder
@@ -127,7 +127,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "undone deleted a contact group use shortcut Del", groups = { "functional" })
+	@Test( description = "undone deleted a contact group use shortcut Del", groups = { "functional" })
 	public void UndoDeleteContactGroup_04() throws HarnessException {
 
 		// The contacts folder
@@ -157,7 +157,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Undone deleted multiple contact groups at once", groups = { "functional" })
+	@Test( description = "Undone deleted multiple contact groups at once", groups = { "functional" })
 	public void UndoDeleteContactGroup_05() throws HarnessException {
 
 		// The contacts folder
@@ -200,7 +200,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Undone Deleted contact + contact group at once", groups = { "functional" })
+	@Test( description = "Undone Deleted contact + contact group at once", groups = { "functional" })
 	public void UndoDeleteContactGroup_06() throws HarnessException {
 
 		// The contacts folder

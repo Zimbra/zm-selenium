@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.tests.contacts.folders;
@@ -32,7 +32,7 @@ public class MoveFolder extends PrefGroupMailByMessageTest {
 		super.startingPage = app.zPageAddressbook;
 	}
 
-	@Test(description = "Move and existing contact folder",
+	@Test( description = "Move and existing contact folder",
 			groups = { "smoke" })
 	
 	public void MoveFolder_01() throws HarnessException  {
@@ -40,7 +40,7 @@ public class MoveFolder extends PrefGroupMailByMessageTest {
 		// Create a folder
 		FolderItem userRoot = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
 		
-		String folderName = "ab"+ ZimbraSeleniumProperties.getUniqueString();
+		String folderName = "ab"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 						"<folder name='"+ folderName + "' view='contact' l='"+ userRoot.getId() +"'/>" +
@@ -48,7 +48,7 @@ public class MoveFolder extends PrefGroupMailByMessageTest {
 		FolderItem addressbook = FolderItem.importFromSOAP(app.zGetActiveAccount(), folderName);
 		
 		// Create a second folder
-		String folderName1 = "ab"+ ZimbraSeleniumProperties.getUniqueString();
+		String folderName1 = "ab"+ ConfigProperties.getUniqueString();
 		app.zPageAddressbook.zRefresh();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +

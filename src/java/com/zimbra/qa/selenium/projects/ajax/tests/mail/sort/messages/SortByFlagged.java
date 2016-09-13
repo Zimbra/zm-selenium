@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.sort.messages;
@@ -37,14 +37,14 @@ public class SortByFlagged extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefReadingPaneLocation", "bottom");
 	}
 	
-	@Test(	description = "Sort a list of messages by unflagged",
+	@Test( description = "Sort a list of messages by unflagged",
 			groups = { "functional" })
 	public void SortByFlagged_01() throws HarnessException {
 		
 		// Create the message data
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-		String subjectA = "flagged" + ZimbraSeleniumProperties.getUniqueString(); // flagged
-		String subjectB = "unflagged" + ZimbraSeleniumProperties.getUniqueString(); // not flagged
+		String subjectA = "flagged" + ConfigProperties.getUniqueString(); // flagged
+		String subjectB = "unflagged" + ConfigProperties.getUniqueString(); // not flagged
 		
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -120,14 +120,14 @@ public class SortByFlagged extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(	description = "Sort a list of messages by flagged",
+	@Test( description = "Sort a list of messages by flagged",
 			groups = { "functional" })
 	public void SortByFlagged_02() throws HarnessException {
 		
 		// Create the message data
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-		String subjectA = "flagged" + ZimbraSeleniumProperties.getUniqueString(); // flagged
-		String subjectB = "unflagged" + ZimbraSeleniumProperties.getUniqueString(); // not flagged
+		String subjectA = "flagged" + ConfigProperties.getUniqueString(); // flagged
+		String subjectB = "unflagged" + ConfigProperties.getUniqueString(); // not flagged
 		
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"

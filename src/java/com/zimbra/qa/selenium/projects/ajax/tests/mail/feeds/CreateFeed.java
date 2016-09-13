@@ -1,25 +1,23 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.feeds;
 
 import java.net.*;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -30,21 +28,16 @@ public class CreateFeed extends PrefGroupMailByMessageTest {
 
 	public CreateFeed() {
 		logger.info("New "+ CreateFeed.class.getCanonicalName());
-
-		
-		
 	}
 
+	@Test( description = "Create a new feed by clicking 'new folder' on folder tree", groups = { "smoke" })
+		
+	public void CreateFeed_01() throws HarnessException, MalformedURLException {
 
-	@Test(	description = "Create a new feed by clicking 'new folder' on folder tree",
-			groups = { "functional" })
-			public void CreateFeed_01() throws HarnessException, MalformedURLException {
-
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
 
 		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
-		String feed = ZimbraSeleniumProperties.getStringProperty("feed.rss");
-
+		String feed = ConfigProperties.getStringProperty("feed.rss");
 
 		// Click on the "new folder" button
 		DialogCreateFolder createFolderDialog = (DialogCreateFolder)app.zTreeMail.zPressButton(Button.B_TREE_NEWFOLDER);
@@ -55,18 +48,11 @@ public class CreateFeed extends PrefGroupMailByMessageTest {
 
 		createFolderDialog.zClickButton(Button.B_OK);
 
-		
-
 		// Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 		ZAssert.assertNotNull(folder, "Verify the feed exists on the server");
 
 		ZAssert.assertEquals(folder.getName(), foldername, "Verify the server and client feed names match");
 
-		// getUrl() doesn't seem to be implemented in Helix
-		//	   ZAssert.assertEquals(folder.getUrl(), feed.toString(), "Verify the server and client feed URLs match");
-
 	}
-
-
 }

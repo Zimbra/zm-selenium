@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.mountpoints;
@@ -27,7 +27,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare.ShareRole;
@@ -51,14 +51,14 @@ public class EditShare extends AjaxCommonTest {
 	}
 
 
-	@Test(	description = "Share and edit folder with admin rights",
+	@Test( description = "Share and edit folder with admin rights",
 			groups = { "smoke" })
 	public void EditShare_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
 		// Create the subTaskList
-		String name = "taskList" + ZimbraSeleniumProperties.getUniqueString();
+		String name = "taskList" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount()
 		.soapSend(
@@ -100,8 +100,8 @@ public class EditShare extends AjaxCommonTest {
 		String granteeType = ZimbraAccount.AccountA().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/Tasks/"+ name + "']", "granteeType");
 		ZAssert.assertEquals(granteeType, "usr","Verify the grantee type is 'user'");		
 
-		//Need to do Refresh by clicking on getmail button to see folder in the list 
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		//Need to do Refresh to see folder in the list 
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		//Edit
 		//Right click folder, click Edit Properties

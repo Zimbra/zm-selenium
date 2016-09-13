@@ -8,7 +8,7 @@ Content-Transfer-Encoding: 7bit
 
 testing with ics in message body...
 
-http://zqa-tms.eng.vmware.com/files/Service/Cal/sample1.ics
+https://www.mozilla.org/media/caldata/IndiaHolidays.ics
 
 Tony Publiski
 Zimbra Support

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui;
@@ -61,7 +61,7 @@ public class SeparateWindow extends AbsSeparateWindow {
 		     
 		}
 	/**
-	 * Call this before the Show Original is opened
+	 * Call this before the Window is opened
 	 */
 	public void zInitializeWindowNames() throws HarnessException {
 		logger.info(myPageName() + " zInitializeWindowNames()");
@@ -90,26 +90,12 @@ public class SeparateWindow extends AbsSeparateWindow {
 				// Main window
 				logger.info("Already existing Name: "+ name);
 				
-			} else if ( name.contains("selenium_blank") ) {
-				
-				// Show Original, etc.
-				logger.info("Found my Name: "+ name);
-				this.DialogWindowName = name;
-				this.DialogWindowID = name;
-				return;
-				
-			} else if ( name.contains("undefined") ) {
-				
-				// Product Help
-				logger.info("Found my Name: "+ name);
-				this.DialogWindowName = name;
-				this.DialogWindowID = name;
-				return;
-				
 			} else {
 				
-				logger.info("Unhandled window name: "+ name);
-				
+				logger.info("Found my Name: "+ name);
+				this.DialogWindowName = name;
+				this.DialogWindowID = name;
+				return;
 			}
 			
 		}
@@ -142,7 +128,8 @@ public class SeparateWindow extends AbsSeparateWindow {
 				logger.info("Waiting a second ...");
 				SleepUtil.sleep(1000);
 			}
-		}else if ( DialogWindowName.contains("selenium_blank")){
+			
+		} else if ( DialogWindowName.contains("selenium_blank")){
 			if (DialogWindowName != null ) {
 				this.sSelectWindow(DialogWindowName);
 				this.sWindowFocus();
@@ -150,17 +137,17 @@ public class SeparateWindow extends AbsSeparateWindow {
 				return;
 			}
 
-		}else{
-
-		throw new HarnessException("Window never became active!");
+		} else {
+			throw new HarnessException("Window never became active!");
 		}
 	}
 	
 	public boolean zIsActive() throws HarnessException {
 		logger.info(myPageName() + " zIsActive()");
 
-		if ( this.DialogWindowName == null )
-			throw new HarnessException("Window Title is null.  Use zSetWindowName() first.");
+		if ( this.DialogWindowName == null ) {
+			//throw new HarnessException("Window Title is null.  Use zSetWindowName() first.");
+		}
 		
 		for (String name : super.sGetAllWindowNames()) {
 			logger.info("Window name: "+ name);

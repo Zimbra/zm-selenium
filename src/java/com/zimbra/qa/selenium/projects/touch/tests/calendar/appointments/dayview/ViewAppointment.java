@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.tests.calendar.appointments.dayview;
@@ -34,7 +34,7 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test(description = "View appointment and verify reading pane shows invite details correctly",
+	@Test( description = "View appointment and verify reading pane shows invite details correctly",
 			groups = { "sanity" })
 			
 	public void ViewAppointment_01() throws HarnessException {
@@ -44,8 +44,8 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 		tz = ZTimeZone.TimeZoneEST.getID();
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		apptContent = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
+		apptContent = ConfigProperties.getUniqueString();
 		apptLocation = location.EmailAddress;
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		

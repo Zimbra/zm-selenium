@@ -1,38 +1,36 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui;
 
 import java.util.Date;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.*;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties.*;
 
 public class PageLogin extends AbsTab {
 
 	public static class Locators {
 
 		// Buttons
-		public static final String zBtnLogin = "css=input[class*=LoginButton]";
+		public static final String zBtnLogin = "css=input[class^=ZLoginButton]";
 
 		// Desktop-specific
 		public static final String zAddNewAccountButton = "css=td div[class*='ZPanel'][onclick*='OnAdd()']";
 		public static final String zMyAccountsTab = "css=div[class$='ctive ZPanelFirstTab']";
-		public static final String zBtnLoginDesktop = "css=div[id*='loginButton']";
 		public static final String zDeleteButton = "css=div[class*='ZPanelInfoInner'] a[href*='OnDelete']";
 
 		// Text Input
@@ -58,15 +56,12 @@ public class PageLogin extends AbsTab {
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		AppType appType = ZimbraSeleniumProperties.getAppType();
+		AppType appType = ConfigProperties.getAppType();
 		String locator = null;
 
 		switch (appType) {
 		case AJAX:
 			locator = Locators.zBtnLogin;
-			break;
-		case DESKTOP:
-			locator = Locators.zAddNewAccountButton;
 			break;
 		default:
 			throw new HarnessException("Please add a support for appType: " + appType);
@@ -129,9 +124,8 @@ public class PageLogin extends AbsTab {
 			
 			zSetLoginName(account.EmailAddress);
 			zSetLoginPassword(account.Password);
-
-			// Click the Login button
 			sClickAt(Locators.zBtnLogin, "");
+			
 			SleepUtil.sleepMedium();
 			
 			// 1st login retry (sometime account creation remains fast and entire execution stucks due to non-existance of the account)
@@ -161,7 +155,7 @@ public class PageLogin extends AbsTab {
 				logger.debug("1st login retry - successfully logged in using " + account.EmailAddress);
 			}
 			
-			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(150000);
+			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(100000);
 
 			((AppAjaxClient)MyApplication).zSetActiveAcount(account);
 
@@ -248,9 +242,7 @@ public class PageLogin extends AbsTab {
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("Login field does not exist "+ locator);
 		}
-		if (ZimbraSeleniumProperties.isWebDriver()){
-		    clearField(locator);
-		}
+		clearField(locator);
 		sType(locator, name);
 	}
 
@@ -267,9 +259,7 @@ public class PageLogin extends AbsTab {
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("Password field does not exist "+ locator);
 		}
-		if (ZimbraSeleniumProperties.isWebDriver()){
-		    clearField(locator);
-		}
+		clearField(locator);
 		sType(locator, password);
 	}
 
@@ -281,19 +271,14 @@ public class PageLogin extends AbsTab {
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("totp code field does not exist "+ locator);
 		}
-		if (ZimbraSeleniumProperties.isWebDriver()){
-		    clearField(locator);
-		}
+		clearField(locator);
 		sType(locator, totpCode);
 	}
 
 	public void zMarkTrustThisComputer() throws HarnessException {
-		
 		tracer.trace("Click on Trust this computer");
-		
 		SleepUtil.sleepSmall();
 		this.sClick(Locators.zTrustThisComputer);
-	
 	}
 	
 	public Boolean zVerifyTrustThisComputer() throws HarnessException {

@@ -1,4 +1,3 @@
-
 1. Create .zcs-deps folder at %UserProfile% in windows 
 2. Copy following jars there:
 

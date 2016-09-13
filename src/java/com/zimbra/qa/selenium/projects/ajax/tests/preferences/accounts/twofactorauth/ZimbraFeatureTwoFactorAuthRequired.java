@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.accounts.twofactorauth;
@@ -31,19 +31,16 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeI
 public class ZimbraFeatureTwoFactorAuthRequired extends AjaxCommonTest {
 
 	public ZimbraFeatureTwoFactorAuthRequired() {
-		
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			private static final long serialVersionUID = 2485388299568483623L;
 			{				
 		 		put("zimbraFeatureTwoFactorAuthAvailable", "TRUE");
 			}
 		};
-
 	}
 
-	
-	@Test(description = "Verify that after setting zimbraFeatureTwoFactorAuthRequired to true, user is not allowed to acces mailbox till 2fa setup is completed ",
-			groups = { "sanity", "network" } )
+	@Test( description = "Verify that after setting zimbraFeatureTwoFactorAuthRequired to true, user is not allowed to acces mailbox till 2fa setup is completed ",
+			priority=4, groups = { "sanity", "network" } )
 	
 	public void ZimbraFeatureTwoFactorAuthRequired_01() throws HarnessException {
 
@@ -57,27 +54,32 @@ public class ZimbraFeatureTwoFactorAuthRequired extends AjaxCommonTest {
 		
 		app.zPageMain.zLogout();
 		app.zPageLogin.zSetupAfterLogin(ZimbraAccount.AccountZWC());
-		//setup dialog is visible
+		
 		Dialog2FactorAuthEnable dialog = (Dialog2FactorAuthEnable) new Dialog2FactorAuthEnable(app, app.zPageLogin);
 		dialog.zClickButton(Button.B_BEGIN_SETUP);
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
+
 		dialog.zSetUserPassword(ZimbraAccount.AccountZWC().Password);
-		dialog.zClickButton(Button.B_NEXT);
-		SleepUtil.sleepSmall(); //was not clicking on Next button twice
-		dialog.zClickButton(Button.B_NEXT);
 		SleepUtil.sleepSmall();
+		dialog.zClickButton(Button.B_NEXT);
+		SleepUtil.sleepMedium();
+		
+		dialog.zClickButton(Button.B_NEXT);
 		String secretKey = dialog.zGetSecretKey();
 		String totp = CommandLine.cmdExecOnServer(ZimbraAccount.AccountZWC().EmailAddress, secretKey);
+		
 		dialog.zClickButton(Button.B_NEXT);
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 		dialog.zSetTotpCode(totp);
+		SleepUtil.sleepMedium();
+		
 		dialog.zClickButton(Button.B_NEXT);
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
+		
 		dialog.zClickButton(Button.B_FINISH);
 		SleepUtil.sleepVeryLong();
 
 		//-- VERIFICATION
-		//SleepUtil.sleepVeryLong();
 		this.app.zPagePreferences.zNavigateTo();
 		this.app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
         ZAssert.assertFalse(app.zPagePreferences.zVerifyDisable2FALink(), "Verify Disable link is not present");
@@ -87,7 +89,7 @@ public class ZimbraFeatureTwoFactorAuthRequired extends AjaxCommonTest {
 
 	@AfterMethod(groups={"always"})
 	public void afterMethod() throws HarnessException {
-		zKillBrowserAndRelogin();
+		zFreshLogin();
 		logger.info(app.zGetActiveAccount().EmailAddress);
 	}
 }

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday;
@@ -37,7 +37,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "69132")
-	@Test(description = "Cancel meeting using Delete toolbar button",
+	@Test( description = "Cancel meeting using Delete toolbar button",
 			groups = { "smoke" })
 			
 	public void CancelMeeting_01() throws HarnessException {
@@ -49,8 +49,8 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject = "app" + ZimbraSeleniumProperties.getUniqueString();
-		apptBody = "body" + ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = "app" + ConfigProperties.getUniqueString();
+		apptBody = "body" + ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		
 		// Absolute dates in UTC zone
@@ -118,7 +118,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 	}
 
 	@Bugs(ids = "69132")
-	@Test(description = "Cancel meeting using keyboard shortcuts Del & Backspace",
+	@Test( description = "Cancel meeting using keyboard shortcuts Del & Backspace",
 			groups = { "functional" },
 			dataProvider = "DataProviderShortcutKeys")
 	public void CancelMeeting_02(String name, int keyEvent) throws HarnessException {
@@ -129,8 +129,8 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
+		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		
 		// Absolute dates in UTC zone
@@ -190,7 +190,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "69132")
-	@Test(description = "Don't cancel the meeting (press Cancel button from cancellation dialog)",
+	@Test( description = "Don't cancel the meeting (press Cancel button from cancellation dialog)",
 			groups = { "functional" })
 	public void CancelMeeting_03() throws HarnessException {
 		
@@ -198,8 +198,8 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject = "appt" + ZimbraSeleniumProperties.getUniqueString();
-		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = "appt" + ConfigProperties.getUniqueString();
+		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		
 		// Absolute dates in UTC zone
@@ -253,7 +253,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 	
 	
 	@Bugs(ids = "69132")
-	@Test(description = "Cancel appointment without modifying cancellation message content",
+	@Test( description = "Cancel appointment without modifying cancellation message content",
 			groups = { "functional" })
 	public void CancelMeeting_04() throws HarnessException {
 		
@@ -264,8 +264,8 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
+		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		
 		// Absolute dates in UTC zone
@@ -332,7 +332,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "69132,77548")
-	@Test(description = "Modify meeting cancellation message while cancelling appointment",
+	@Test( description = "Modify meeting cancellation message while cancelling appointment",
 			groups = { "functional" })
 	public void CancelMeeting_05() throws HarnessException {
 		
@@ -343,10 +343,10 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1, modifyApptBody;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject = "appt" + ZimbraSeleniumProperties.getUniqueString();
-		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = "appt" + ConfigProperties.getUniqueString();
+		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
-		modifyApptBody = "Modified" + ZimbraSeleniumProperties.getUniqueString();
+		modifyApptBody = "Modified" + ConfigProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;

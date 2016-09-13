@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.toaster;
@@ -38,14 +38,14 @@ public class EditContact extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Edit a contact item, click Edit on toolbar and verify toast msg", groups = { "functional" })
+	@Test( description = "Edit a contact item, click Edit on toolbar and verify toast msg", groups = { "functional" })
 	public void EditContactToastMsg_01() throws HarnessException {
 
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
 
 		// The new first name
-		String firstname = "new" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "new" + ConfigProperties.getUniqueString();
 
 		// Refresh
 		app.zPageContacts.zRefresh();
@@ -59,7 +59,7 @@ public class EditContact extends AjaxCommonTest {
 		// Change the first name
 		form.zFillField(Field.FirstName, firstname);
 		
-		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
 			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
@@ -73,14 +73,14 @@ public class EditContact extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Edit a contact item, Right click then click Edit and verify toast msg", groups = { "functional" })
+	@Test( description = "Edit a contact item, Right click then click Edit and verify toast msg", groups = { "functional" })
 	public void EditContactToastMsg_02() throws HarnessException {
 
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
 
 		// The new first name
-		String firstname = "new" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "new" + ConfigProperties.getUniqueString();
 
 		// Refresh
 		app.zPageContacts.zRefresh();
@@ -91,7 +91,7 @@ public class EditContact extends AjaxCommonTest {
 		// Change the first name
 		form.zFillField(Field.FirstName, firstname);
 		
-		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
 			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
@@ -105,14 +105,14 @@ public class EditContact extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Edit a contact item, double click the contact and verify toast msg", groups = { "functional" })
+	@Test( description = "Edit a contact item, double click the contact and verify toast msg", groups = { "functional" })
 	public void EditContactToastMsg_03() throws HarnessException {
 
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
 
 		// The new first name
-		String firstname = "new" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "new" + ConfigProperties.getUniqueString();
 
 		// Refresh
 		app.zPageContacts.zRefresh();
@@ -123,7 +123,7 @@ public class EditContact extends AjaxCommonTest {
 		// Change the first name
 		form.zFillField(Field.FirstName, firstname);
 		
-		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
 			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {

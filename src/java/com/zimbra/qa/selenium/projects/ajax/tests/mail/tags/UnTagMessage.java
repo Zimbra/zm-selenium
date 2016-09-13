@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.tags;
@@ -33,11 +33,11 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Remove a tag from a message using Toolbar -> Tag ->Remove Tag", groups = { "smoke" })
+	@Test( description = "Remove a tag from a message using Toolbar -> Tag ->Remove Tag", groups = { "smoke" })
 	public void UnTagMessage_01() throws HarnessException {
 
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String tagname = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String tagname = "tag" + ConfigProperties.getUniqueString();
 
 		// Create a tag
 		app.zGetActiveAccount().soapSend(
@@ -83,11 +83,11 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 
 	}
 	
-	@Test(description = "Remove a tag from a message using Keyboard shortcut u", groups = { "functional" })
+	@Test( description = "Remove a tag from a message using Keyboard shortcut u", groups = { "functional" })
 	public void UnTagMessage_02() throws HarnessException {
 
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String tagname = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String tagname = "tag" + ConfigProperties.getUniqueString();
 		
 		Shortcut shortcut = Shortcut.S_UNTAG;
 
@@ -137,11 +137,11 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 
 	}
 	
-	@Test(description = "Remove a tag from a message clicking 'x' from tag bubble", groups = { "functional" })
+	@Test( description = "Remove a tag from a message clicking 'x' from tag bubble", groups = { "functional" })
 	public void UnTagMessage_03() throws HarnessException {
 
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String tagname = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String tagname = "tag" + ConfigProperties.getUniqueString();
 		
 		
 

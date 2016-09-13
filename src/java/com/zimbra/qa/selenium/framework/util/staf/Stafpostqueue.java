@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.util.staf;
@@ -38,9 +38,9 @@ public class Stafpostqueue extends StafServicePROCESS {
 	public void waitForPostqueue() throws HarnessException {
 		
 		// Start: Dev env hack
-		if ( "false".equalsIgnoreCase(ZimbraSeleniumProperties.getStringProperty("postqueue.use.staf", "true")) ) {
+		if ( "false".equalsIgnoreCase(ConfigProperties.getStringProperty("staf", "true")) ) {
 			logger.info("In dev environment, waiting for message to be delivered ...");
-			int delay = Integer.parseInt(ZimbraSeleniumProperties.getStringProperty("postqueue.sleep.nonstaf.msec", "5000"));
+			int delay = Integer.parseInt(ConfigProperties.getStringProperty("postqueue.sleep.nonstaf.msec", "5000"));
 			SleepUtil.sleep(delay);
 			return;
 		}
@@ -53,11 +53,11 @@ public class Stafpostqueue extends StafServicePROCESS {
 		// if so, set it to @domain.com
 		if ( (emailaddress == null) || (emailaddress.equals("")) ) {
 			logger.warn("Unable to determine current user account.  Use @testdomain.com instead");
-			emailaddress = "@" + ZimbraSeleniumProperties.getStringProperty("testdomain", "testdomain.com");
+			emailaddress = "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com");
 		}
 
-		int max = Integer.parseInt(ZimbraSeleniumProperties.getStringProperty("postqueue.sleep.max.msec", "30000"));
-		int interval = Integer.parseInt(ZimbraSeleniumProperties.getStringProperty("postqueue.sleep.interval.msec", "1000"));
+		int max = Integer.parseInt(ConfigProperties.getStringProperty("postqueue.sleep.max.msec", "30000"));
+		int interval = Integer.parseInt(ConfigProperties.getStringProperty("postqueue.sleep.interval.msec", "1000"));
 		for (int i = 0; i < max; i += interval) {
 			
 			// Check the server queue if it is empty

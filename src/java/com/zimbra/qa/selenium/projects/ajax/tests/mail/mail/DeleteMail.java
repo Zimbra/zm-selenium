@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
@@ -35,19 +35,17 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 	public DeleteMail() {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());
-		
-		
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
-
-		
 	}
+	
+	
 	@Bugs( ids = "98054")
-	@Test(	description = "Delete a mail using toolbar delete button",
+	@Test( description = "Delete a mail using toolbar delete button",
 			groups = { "smoke" })
 	public void DeleteMail_01() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 				
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -55,7 +53,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
@@ -86,12 +84,14 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	
 	}
 
-	@Test(	description = "Delete a mail using checkbox and toolbar delete button",
+	
+	@Test( description = "Delete a mail using checkbox and toolbar delete button",
 			groups = { "functional" })
+	
 	public void DeleteMail_02() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 				
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -99,7 +99,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
@@ -138,13 +138,13 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	  };
 	}
 	
-	@Test(	description = "Delete a mail by selecting and typing 'delete' keyboard",
+	@Test( description = "Delete a mail by selecting and typing 'delete' keyboard",
 			groups = { "functional" },
 			dataProvider = "DataProviderDeleteKeys")
 	public void DeleteMail_03(String name, int keyEvent) throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 				
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -152,7 +152,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
@@ -185,12 +185,12 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Delete a mail by selecting and typing '.t' shortcut",
+	@Test( description = "Delete a mail by selecting and typing '.t' shortcut",
 			groups = { "functional" } )
 	public void DeleteMail_04() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 				
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -198,7 +198,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
@@ -230,14 +230,14 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Delete multiple messages (3) by select and toolbar delete",
+	@Test( description = "Delete multiple messages (3) by select and toolbar delete",
 			groups = { "functional" })
 	public void DeleteMail_05() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject1 = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		String subject2 = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		String subject3 = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject1 = "subject"+ ConfigProperties.getUniqueString();
+		String subject2 = "subject"+ ConfigProperties.getUniqueString();
+		String subject3 = "subject"+ ConfigProperties.getUniqueString();
 				
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -245,7 +245,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject1 +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
@@ -256,7 +256,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject2 +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
@@ -267,7 +267,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject3 +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
@@ -314,12 +314,12 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(	description = "Delete a mail using context menu delete button",
+	@Test( description = "Delete a mail using context menu delete button",
 			groups = { "functional" })
 	public void DeleteMail_06() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 				
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -327,7 +327,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
@@ -357,15 +357,15 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(	ids = "53564")
-	@Test(	description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut",
+	@Bugs( ids = "53564")
+	@Test( description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut",
 			groups = { "functional" } )
 	public void HardDeleteMail_01() throws HarnessException {
 		app.zGetActiveAccount().soapSend(
 				"<GetFolderRequest xmlns='urn:zimbraMail'/>");
 
 		// Create the message data to be sent
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 				
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>"
@@ -373,7 +373,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 				+			"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>"
 				+			"<su>"+ subject +"</su>"
 				+			"<mp ct='text/plain'>"
-				+				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>"
+				+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>"
 				+			"</mp>"
 				+		"</m>"
 				+	"</SendMsgRequest>");
@@ -405,15 +405,15 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Bugs(	ids = "53564")
-	@Test(	description = "Hard-delete multiple messages (3) by selecting and typing 'shift-del' shortcut",
+	@Bugs( ids = "53564")
+	@Test( description = "Hard-delete multiple messages (3) by selecting and typing 'shift-del' shortcut",
 			groups = { "functional" })
 	public void HardDeleteMail_02() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject1 = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		String subject2 = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		String subject3 = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject1 = "subject"+ ConfigProperties.getUniqueString();
+		String subject2 = "subject"+ ConfigProperties.getUniqueString();
+		String subject3 = "subject"+ ConfigProperties.getUniqueString();
 				
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -421,7 +421,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject1 +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
@@ -432,7 +432,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject2 +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
@@ -443,7 +443,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject3 +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
@@ -493,7 +493,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Delete a mail from trash - confirm warning dialog",
+	@Test( description = "Delete a mail from trash - confirm warning dialog",
 			groups = { "functional" })
 	public void DeleteMailFromTrash_01() throws HarnessException {
 		
@@ -502,7 +502,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		//
 		
 		// Create the message data to be sent
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash);
 		
 		// Add a message to the trash
@@ -565,7 +565,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(	description = "Delete multiple messages (3) from trash by select and toolbar delete - confirm warning dialog",
+	@Test( description = "Delete multiple messages (3) from trash by select and toolbar delete - confirm warning dialog",
 			groups = { "functional" })
 	public void DeleteMailFromTrash_02() throws HarnessException {
 		
@@ -575,9 +575,9 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		
 		
 		// Create the message data to be sent
-		String subject1 = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		String subject2 = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		String subject3 = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject1 = "subject"+ ConfigProperties.getUniqueString();
+		String subject2 = "subject"+ ConfigProperties.getUniqueString();
+		String subject3 = "subject"+ ConfigProperties.getUniqueString();
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash);
 
 		// Add a message to the trash
@@ -698,12 +698,12 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 	
 	@Bugs(ids = "79188")
-	@Test(	description = "Delete a message from drafts",
+	@Test( description = "Delete a message from drafts",
 			groups = { "functional" })
 	public void DeleteMailFromDrafts_01() throws HarnessException {
 		
 		//-- DATA
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		
 		app.zGetActiveAccount().soapSend(
@@ -712,7 +712,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 						"<e t='t' a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>body "+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>body "+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SaveDraftRequest>");

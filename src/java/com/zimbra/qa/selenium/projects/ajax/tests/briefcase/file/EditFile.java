@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.file;
@@ -32,7 +32,7 @@ import com.zimbra.qa.selenium.framework.util.HtmlElement;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.PageBriefcase;
 
@@ -43,14 +43,14 @@ public class EditFile extends FeatureBriefcaseTest {
 
 		super.startingPage = app.zPageBriefcase;
 
-		//if(ZimbraSeleniumProperties.zimbraGetVersionString().contains("FOSS")){
+		//if(ConfigProperties.zimbraGetVersionString().contains("FOSS")){
 		    super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 		//}
 	
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");				
 	}
 
-	@Test(description = "Upload file through RestUtil - Rename File using Right Click Context Menu & verify through GUI", groups = { "smoke" })
+	@Test( description = "Upload file through RestUtil - Rename File using Right Click Context Menu & verify through GUI", groups = { "smoke" })
 	public void EditFile_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -58,7 +58,7 @@ public class EditFile extends FeatureBriefcaseTest {
 				SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/testtextfile.txt";
 
 		IItem fileItem = new FileItem(filePath);
@@ -88,7 +88,7 @@ public class EditFile extends FeatureBriefcaseTest {
 		
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ZimbraSeleniumProperties.zimbraGetVersionString().contains(
+		if(ConfigProperties.zimbraGetVersionString().contains(
     			"FOSS")){
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
@@ -101,7 +101,7 @@ public class EditFile extends FeatureBriefcaseTest {
 				fileItem);
 
 		String fileName2 = "renameFile"
-				+ ZimbraSeleniumProperties.getUniqueString();
+				+ ConfigProperties.getUniqueString();
 
 		app.zPageBriefcase.rename(fileName2);
 
@@ -111,7 +111,7 @@ public class EditFile extends FeatureBriefcaseTest {
 				"Verify new file name through GUI");
 	}
 
-	@Test(description = "Upload file, edit name - verify the content remains the same", groups = { "functional" })
+	@Test( description = "Upload file, edit name - verify the content remains the same", groups = { "functional" })
 	public void EditFile_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -119,7 +119,7 @@ public class EditFile extends FeatureBriefcaseTest {
 				SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/testtextfile.txt";
 
 		FileItem fileItem = new FileItem(filePath);
@@ -147,7 +147,7 @@ public class EditFile extends FeatureBriefcaseTest {
 				fileItem);
 
 		String fileName2 = "renameFile"
-				+ ZimbraSeleniumProperties.getUniqueString();
+				+ ConfigProperties.getUniqueString();
 
 		app.zPageBriefcase.rename(fileName2);
 		app.zPageBriefcase.zClick("css=div[id='zl__BDLV-main__rows']");	
@@ -170,7 +170,7 @@ public class EditFile extends FeatureBriefcaseTest {
 				"Verify document content through GUI");
 	}
 
-	@Test(description = "Upload file through RestUtil - Verify 'Edit' toolbar button is disabled", groups = { "functional" })
+	@Test( description = "Upload file through RestUtil - Verify 'Edit' toolbar button is disabled", groups = { "functional" })
 	public void EditFile_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -178,7 +178,7 @@ public class EditFile extends FeatureBriefcaseTest {
 				SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/testtextfile.txt";
 
 		IItem fileItem = new FileItem(filePath);
@@ -208,7 +208,7 @@ public class EditFile extends FeatureBriefcaseTest {
 		
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ZimbraSeleniumProperties.zimbraGetVersionString().contains(
+		if(ConfigProperties.zimbraGetVersionString().contains(
     			"FOSS")){
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
@@ -225,7 +225,7 @@ public class EditFile extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(fileItem.getName());
 	}
 
-	@Test(description = "Upload file through RestUtil - Verify 'Edit' context menu is disabled", groups = { "functional" })
+	@Test( description = "Upload file through RestUtil - Verify 'Edit' context menu is disabled", groups = { "functional" })
 	public void EditFile_04() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -233,7 +233,7 @@ public class EditFile extends FeatureBriefcaseTest {
 				SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/testtextfile.txt";
 
 		IItem fileItem = new FileItem(filePath);
@@ -274,7 +274,7 @@ public class EditFile extends FeatureBriefcaseTest {
 	}
 
 	@Bugs(ids = "54706")
-	@Test(description = "'Restore As Current Version' does not restore notes", groups = { "functional" })
+	@Test( description = "'Restore As Current Version' does not restore notes", groups = { "functional" })
 	public void EditFile_05() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -282,11 +282,11 @@ public class EditFile extends FeatureBriefcaseTest {
 				SystemFolder.Briefcase);
 
 		// Create file item
-		String file1Path = ZimbraSeleniumProperties.getBaseDirectory()
+		String file1Path = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/restoreversion.txt";
 
-		String notesV1 = "notesVersion1" + ZimbraSeleniumProperties.getUniqueString();
-		String notesV2 = "notesVersion2" + ZimbraSeleniumProperties.getUniqueString();
+		String notesV1 = "notesVersion1" + ConfigProperties.getUniqueString();
+		String notesV2 = "notesVersion2" + ConfigProperties.getUniqueString();
 		String nodeCollapsed = "css=div[id^=zlif__BDLV-main__] div[class='ImgNodeCollapsed']";
 		String nodeExpanded = "css=div[id^=zlif__BDLV-main__] div[class='ImgNodeExpanded']";
 		String locator = "css=tr[id^='zlif__BDLV-main__'] div[id^='zlif__BDLV-main__']:contains('#1:')";
@@ -328,7 +328,7 @@ public class EditFile extends FeatureBriefcaseTest {
 	}
 
 	@Bugs(ids = "74644")
-	@Test(description = "Cannot rename the file's latest version", groups = { "functional" })
+	@Test( description = "Cannot rename the file's latest version", groups = { "functional" })
 	public void EditFile_06() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -336,11 +336,11 @@ public class EditFile extends FeatureBriefcaseTest {
 				SystemFolder.Briefcase);
 
 		// Create file item
-		String file1Path = ZimbraSeleniumProperties.getBaseDirectory()
+		String file1Path = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/restoreversion.txt";
 
-		String notesV1 = "notesVersion1" + ZimbraSeleniumProperties.getUniqueString();
-		String notesV2 = "notesVersion2" + ZimbraSeleniumProperties.getUniqueString();
+		String notesV1 = "notesVersion1" + ConfigProperties.getUniqueString();
+		String notesV2 = "notesVersion2" + ConfigProperties.getUniqueString();
 		String nodeCollapsed = "css=div[id^=zlif__BDLV-main__] div[class='ImgNodeCollapsed']";
 		String nodeExpanded = "css=div[id^=zlif__BDLV-main__] div[class='ImgNodeExpanded']";
 		String locator = "css=tr[id^='zlif__BDLV-main__'] div[id^='zlif__BDLV-main__']:contains('#2:')";
@@ -374,7 +374,7 @@ public class EditFile extends FeatureBriefcaseTest {
 		app.zPageBriefcase.zListItem(Action.A_RIGHTCLICK, Button.B_RENAME, locator);
 
 		String fileName2 = "renameFile"
-				+ ZimbraSeleniumProperties.getUniqueString();
+				+ ConfigProperties.getUniqueString();
 
 		app.zPageBriefcase.rename(fileName2);
 		app.zPageBriefcase.zClick("css=div[id='zl__BDLV-main__rows']");	

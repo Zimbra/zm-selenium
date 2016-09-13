@@ -1,3 +1,21 @@
+/*
+ * ***** BEGIN LICENSE BLOCK *****
+ *
+ * Zimbra Collaboration Suite Server
+ * Copyright (C) 2016 Synacor, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ *
+ * ***** END LICENSE BLOCK *****
+ */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.calendar;
 
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
@@ -7,7 +25,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
@@ -24,12 +42,12 @@ public class ModifyDefaultAppointmentDuration extends CalendarWorkWeekTest {
 	    this.startingPage = this.app.zPagePreferences;
 	 }
   
-	 @Test(description = "Modify calendar default appointment duration", groups = {"functional"} )
+	 @Test( description = "Modify calendar default appointment duration", groups = {"functional"} )
 	
 	 public void ModifyDefaultAppointmentDuration_01() throws HarnessException  {
 		 
 		 Calendar now = this.calendarWeekDayUTC;
-		 String apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		 String apptSubject = ConfigProperties.getUniqueString();
 		 ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		 
 		 // Go to calendar preference

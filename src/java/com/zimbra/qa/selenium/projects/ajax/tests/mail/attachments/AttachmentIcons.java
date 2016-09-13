@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attachments;
@@ -36,12 +36,12 @@ public class AttachmentIcons extends PrefGroupMailByMessageTest {
 	}
 	
 	
-	@Test(	description = "Verify icon: ImgGenericDoc",
+	@Test( description = "Verify icon: ImgGenericDoc",
 			groups = { "functional" })
 	public void ImgGenericDoc_01() throws HarnessException {
 		
 		// This mime contains an attachment that should map to ImgGenericDoc
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
 		final String subject = "subject151615738";
 		
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
@@ -71,12 +71,12 @@ public class AttachmentIcons extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(	description = "Verify icon: ImgImageDoc",
+	@Test( description = "Verify icon: ImgImageDoc",
 			groups = { "functional" })
 	public void ImgImageDoc_01() throws HarnessException {
 		
 		// This mime contains an attachment that should map to ImgGenericDoc
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email05/mime03.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime03.txt";
 		final String subject = "subject13330659993903";
 		
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.mountpoints.admin.actions;
@@ -30,24 +30,19 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 
-
 public class create extends CalendarWorkWeekTest {
 
-	public create() {
-		
+	public create() {		
 		super.startingPage = app.zPageCalendar;
-		super.startingAccountPreferences = null;
-		
+		super.startingAccountPreferences = null;		
 	}
 
 	@Bugs(ids = "75771")
-	@Test(
-			description = "Verify sending invite using OBO although user2 granted OBO rights to user1",
-			groups = { "functional" }
-			)
+	@Test( description = "Verify sending invite using OBO although user2 granted OBO rights to user1", groups = { "functional" })
+	
 	public void create_01() throws HarnessException {
 		
-		String mountPointName = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String mountPointName = "mountpoint" + ConfigProperties.getUniqueString();
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), SystemFolder.Calendar);
 
 		// Share it
@@ -71,13 +66,13 @@ public class create extends CalendarWorkWeekTest {
 	      + " <ace d='" + app.zGetActiveAccount().EmailAddress + "' right='sendOnBehalfOf' gt='usr'/>"
 	      + "</GrantRightsRequest>");
 		
-		String persona = ZimbraSeleniumProperties.getUniqueString();
+		String persona = ConfigProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
 		String apptSubject, apptAttendee1, apptContent;
 		Calendar now = this.calendarWeekDayUTC;
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountB().EmailAddress;
-		apptContent = ZimbraSeleniumProperties.getUniqueString();
+		apptContent = ConfigProperties.getUniqueString();
 		
 		//Create persona
 		app.zGetActiveAccount().soapSend(
@@ -111,23 +106,18 @@ public class create extends CalendarWorkWeekTest {
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 		apptForm.zFillField(Field.From, persona);
-        if(ZimbraSeleniumProperties.isWebDriver()){
-            String locator = "css=td[id$='_folderSelect'] td[id$='_select_container']";
-            apptForm.sClickAt(locator, "");            
+        String locator = "css=td[id$='_folderSelect'] td[id$='_select_container']";
+        apptForm.sClickAt(locator, "");            
 
-            locator = "//div[@id='z_shell']/div[contains(@id,'_Menu_') and contains(@class, 'DwtMenu')]";   
-            int count = apptForm.sGetXpathCount(locator);           
-            for  (int  i = 1; i <= count; i++) {
+        locator = "//div[@id='z_shell']/div[contains(@id,'_Menu_') and contains(@class, 'DwtMenu')]";   
+        int count = apptForm.sGetXpathCount(locator);           
+        for  (int  i = 1; i <= count; i++) {
         	String calPullDown = locator + "[position()=" + i + "]//tr//*[contains(text(),'" + mountPointName + "')]";
         	if(apptForm.zIsVisiblePerPosition(calPullDown, 0, 0)){
         	    apptForm.sClickAt(calPullDown, "");
         	    break;
         	}        	
-            }            
-        }else{
-            apptForm.zFillField(Field.CalendarFolder, mountPointName);
         }
-		
 		apptForm.zSubmit();
 		
 		// Verify appointment exists on the server

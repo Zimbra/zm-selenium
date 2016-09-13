@@ -1,3 +1,21 @@
+/*
+ * ***** BEGIN LICENSE BLOCK *****
+ *
+ * Zimbra Collaboration Suite Server
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ *
+ * ***** END LICENSE BLOCK *****
+ */
 package com.zimbra.qa.selenium.framework.util;
 
 import java.util.*;
@@ -12,11 +30,11 @@ public class SendEmail
    {
       
 	  // Sender's email ID needs to be mentioned
-	  // String from = ZimbraSeleniumProperties.getConfigProperties().getString("emailFrom");
+	  // String from = ConfigProperties.getConfigProperties().getString("emailFrom");
 	  String from = "pnq-lab@zimbra.com";
 	      
 	  // Recipient's email ID needs to be mentioned.
-      String to = ZimbraSeleniumProperties.getConfigProperties().getString("emailTo");
+      String to = ConfigProperties.getConfigProperties().getString("emailTo");
 
       // Assuming you are sending email from localhost
       String host = "mail.zimbra.com";
@@ -32,7 +50,7 @@ public class SendEmail
       // Get the default Session object.
       Session session = Session.getDefaultInstance(properties);
 
-      try{
+      try {
          // Create a default MimeMessage object.
          MimeMessage message = new MimeMessage(session);
 

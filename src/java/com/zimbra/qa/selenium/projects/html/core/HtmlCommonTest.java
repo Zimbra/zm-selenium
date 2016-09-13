@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.html.core;
@@ -19,86 +19,23 @@ package com.zimbra.qa.selenium.projects.html.core;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.*;
-
 import org.apache.log4j.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.testng.annotations.*;
 import org.xml.sax.SAXException;
-
-import com.thoughtworks.selenium.*;
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.html.ui.AppHtmlClient;
 
-/**
- * The <code>HtmlCommonTest</code> class is the base test case class
- * for normal HTML client test case classes.
- * <p>
- * The HtmlCommonTest provides two basic functionalities:
- * <ol>
- * <li>{@link AbsTab} {@link #startingPage} - navigate to this
- * page before each test case method</li>
- * <li>{@link ZimbraAccount} {@link #startingAccountPreferences} - ensure this
- * account is authenticated before each test case method</li>
- * </ol>
- * <p>
- * It is important to note that no re-authentication (i.e. logout
- * followed by login) will occur if {@link #startingAccountPreferences} is 
- * already the currently authenticated account.
- * <p>
- * The same rule applies to the {@link #startingPage}, as well.  If
- * the "Contact App" is the specified starting page, and the contact
- * app is already opened, albiet in a "new contact" view, then the
- * "new contact" view will not be closed.
- * <p>
- * Typical usage:<p>
- * <pre>
- * {@code
- * public class TestCaseClass extends HtmlCommonTest {
- * 
- *     public TestCaseClass() {
- *     
- *         // All tests start at the Mail page
- *         super.startingPage = app.zPageMail;
- *         
- *         // Create a new account to log into
- *         ZimbraAccount account = new ZimbraAccount();
- *         super.startingAccount = account;
- *         
- *         // ...
- *         
- *     }
- *     
- *     // ...
- * 
- * }
- * }
- * </pre>
- * 
- * @author Matt Rhoades
- *
- */
-
-@SuppressWarnings("deprecation")
 public class HtmlCommonTest {
-	protected static Logger logger = LogManager.getLogger(HtmlCommonTest.class);
-
-
-	// Web Driver integration
-	private WebDriver _webDriver = null;
-	private DefaultSelenium _selenium = null;
-
 	
-	/**
-	 * The Html application object
-	 */
+	protected static Logger logger = LogManager.getLogger(HtmlCommonTest.class);
 	protected AppHtmlClient app = null;
 
-
-
-	// Configurable from config file or input parameters
+	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
+	WebElement we = null;
 
 	/**
 	 * BeforeMethod variables
@@ -136,34 +73,18 @@ public class HtmlCommonTest {
 		logger.info("commonTestBeforeSuite: start");
 
 
-		ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.HTML);
+		ConfigProperties.setAppType(ConfigProperties.AppType.HTML);
 
-		try
-		{
-			
-			if (ZimbraSeleniumProperties.isWebDriver()) {
-
-				_webDriver = ClientSessionFactory.session().webDriver();
-
-				Capabilities cp =  ((RemoteWebDriver)_webDriver).getCapabilities();
-				if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){				
-					_webDriver.manage().window().setPosition(new Point(0, 0));
-					_webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
-				}								
-
-			} else {
-
-				_selenium = ClientSessionFactory.session().selenium();
-
-				_selenium.start();
-				_selenium.windowMaximize();
-				_selenium.windowFocus();
-				_selenium.allowNativeXpath("true");
-				_selenium.setTimeout("30000");// Use 30 second timeout for opening the browser
+		try {
+			webDriver = ClientSessionFactory.session().webDriver();
 	
+			Capabilities cp =  ((RemoteWebDriver)webDriver).getCapabilities();
+			if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){				
+				webDriver.manage().window().setPosition(new Point(0, 0));
+				webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
 			}
 			
-		} catch (SeleniumException e) {
+		} catch (WebDriverException e) {
 			logger.error("Unable to mobile app.", e);
 			throw new HarnessException(e);
 		}
@@ -175,20 +96,13 @@ public class HtmlCommonTest {
 			try
 			{
 				logger.info("Retry #" + retry);
-
-				if (ZimbraSeleniumProperties.isWebDriver()) {
-					//_webDriver.get(ZimbraSeleniumProperties.getBaseURL());
-					_webDriver.navigate().to(ZimbraSeleniumProperties.getBaseURL());
-				} 
-				else {
-					_selenium.open(ZimbraSeleniumProperties.getBaseURL());
-				}
-
+				webDriver.navigate().to(ConfigProperties.getBaseURL());
+				
 				// If we made it here, everything is ok
 				logger.info("App is ready!");
 				break; // for ( int retry = 0; retry ...
 				
-			} catch (SeleniumException e) {
+			} catch (WebDriverException e) {
 				if ( retry >= maxRetry ) {
 					logger.error("Unable to open browser app.  Is a valid cert installed?", e);
 					throw new HarnessException(e);
@@ -203,11 +117,6 @@ public class HtmlCommonTest {
 		logger.info("commonTestBeforeSuite: finish");		
 	}
 
-	/**
-	 * Global BeforeClass
-	 *
-	 * @throws HarnessException
-	 */
 	@BeforeClass( groups = { "always" } )
 	public void commonTestBeforeClass() throws HarnessException {
 		logger.info("commonTestBeforeClass: start");
@@ -216,18 +125,6 @@ public class HtmlCommonTest {
 
 	}
 
-
-	/**
-	 * Global BeforeMethod
-	 * <p>
-	 * <ol>
-	 * <li>For all tests, make sure {@link #startingPage} is active</li>
-	 * <li>For all tests, make sure {@link #startingAccountPreferences} is logged in</li>
-	 * <li>For all tests, make any compose tabs are closed</li>
-	 * </ol>
-	 * <p>
-	 * @throws HarnessException
-	 */
 	@BeforeMethod( groups = { "always" } )
 	public void commonTestBeforeMethod() throws HarnessException {
 		logger.info("commonTestBeforeMethod: start");
@@ -298,30 +195,13 @@ public class HtmlCommonTest {
 
 	}
 
-	/**
-	 * Global AfterSuite
-	 * <p>
-	 * <ol>
-	 * <li>Stop the DefaultSelenium client</li>
-	 * </ol>
-	 * 
-	 * @throws HarnessException
-	 */
 	@AfterSuite( groups = { "always" } )
 	public void commonTestAfterSuite() throws HarnessException {
 		logger.info("commonTestAfterSuite: start");
-
-		ClientSessionFactory.session().selenium().stop();
-
+		webDriver.quit();
 		logger.info("commonTestAfterSuite: finish");
-
 	}
 
-	/**
-	 * Global AfterClass
-	 *
-	 * @throws HarnessException
-	 */
 	@AfterClass( groups = { "always" } )
 	public void commonTestAfterClass() throws HarnessException {
 		logger.info("commonTestAfterClass: start");

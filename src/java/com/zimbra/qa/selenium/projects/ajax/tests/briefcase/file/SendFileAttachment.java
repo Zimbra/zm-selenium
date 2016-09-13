@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.file;
@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.PageBriefcase;
@@ -39,14 +39,14 @@ public class SendFileAttachment extends FeatureBriefcaseTest {
 
 		super.startingPage = app.zPageBriefcase;
 
-		//if(ZimbraSeleniumProperties.zimbraGetVersionString().contains("FOSS")){
+		//if(ConfigProperties.zimbraGetVersionString().contains("FOSS")){
 		    super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 		//}
 		
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");				
 	}
 
-	@Test(description = "Upload file through RestUtil - click Send as attachment, Cancel & verify through GUI", groups = { "functional" })
+	@Test( description = "Upload file through RestUtil - click Send as attachment, Cancel & verify through GUI", groups = { "functional" })
 	public void SendFileAttachment_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -54,7 +54,7 @@ public class SendFileAttachment extends FeatureBriefcaseTest {
 				SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/structure.jpg";
 
 		FileItem fileItem = new FileItem(filePath);
@@ -77,7 +77,7 @@ public class SendFileAttachment extends FeatureBriefcaseTest {
 		// Click on uploaded file
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ZimbraSeleniumProperties.zimbraGetVersionString().contains(
+		if(ConfigProperties.zimbraGetVersionString().contains(
     			"FOSS")){
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
@@ -87,7 +87,7 @@ public class SendFileAttachment extends FeatureBriefcaseTest {
 		*/
 		// Click on Send as attachment
 		FormMailNew mailform;
-		if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("7.1."))
+		if (ConfigProperties.zimbraGetVersionString().contains("7.1."))
 			mailform = (FormMailNew) app.zPageBriefcase.zToolbarPressPulldown(
 					Button.B_SEND, Button.O_SEND_AS_ATTACHMENT, fileItem);
 		else
@@ -115,7 +115,7 @@ public class SendFileAttachment extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(fileItem.getName());
 	}
 
-	@Test(description = "Send File as attachment using Right Click Context Menu & verify through GUI", groups = { "functional" })
+	@Test( description = "Send File as attachment using Right Click Context Menu & verify through GUI", groups = { "functional" })
 	public void SendFileAttachment_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -123,7 +123,7 @@ public class SendFileAttachment extends FeatureBriefcaseTest {
 				SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/structure.jpg";
 
 		FileItem fileItem = new FileItem(filePath);
@@ -148,7 +148,7 @@ public class SendFileAttachment extends FeatureBriefcaseTest {
 		// Click on uploaded file
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ZimbraSeleniumProperties.zimbraGetVersionString().contains(
+		if(ConfigProperties.zimbraGetVersionString().contains(
     			"FOSS")){
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 

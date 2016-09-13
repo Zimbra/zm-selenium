@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.tests.resources;
@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.ResourceItem;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditResource;
@@ -50,7 +50,7 @@ public class EditResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = " Edit Resource name  -- Manage resource View -- Location",
+	@Test( description = " Edit Resource name  -- Manage resource View -- Location",
 			groups = { "smoke" })
 			public void EditResource_01() throws HarnessException {
 
@@ -77,7 +77,7 @@ public class EditResource extends AdminCommonTest {
 		form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		//Edit the name.
-		String editedName = "editedResource_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 		
 		//Submit the form.
@@ -103,7 +103,7 @@ public class EditResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = " Edit Resource name  -- Manage resource View -- Location",
+	@Test( description = " Edit Resource name  -- Manage resource View -- Location",
 			groups = { "functional" })
 			public void EditResource_02() throws HarnessException {
 
@@ -141,7 +141,7 @@ public class EditResource extends AdminCommonTest {
 		//form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		//Edit the name.
-		String editedName = "editedResource_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 		
 		//Submit the form.
@@ -168,7 +168,7 @@ public class EditResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit Resource name -- Manage resource View/Right Click Menu -- Location",
+	@Test( description = "Edit Resource name -- Manage resource View/Right Click Menu -- Location",
 			groups = { "functional" })
 			public void EditResource_03() throws HarnessException {
 
@@ -195,7 +195,7 @@ public class EditResource extends AdminCommonTest {
 		form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		//Edit the name.
-		String editedName = "editedResource_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 		
 		//Submit the form.
@@ -221,7 +221,7 @@ public class EditResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit Resource name -- Manage resource View/Right Click Menu -- Equipment",
+	@Test( description = "Edit Resource name -- Manage resource View/Right Click Menu -- Equipment",
 			groups = { "functional" })
 			public void EditResource_04() throws HarnessException {
 
@@ -248,7 +248,7 @@ public class EditResource extends AdminCommonTest {
 		form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		//Edit the name.
-		String editedName = "editedResource_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 		
 		//Submit the form.
@@ -274,7 +274,7 @@ public class EditResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = " Edit Resource name  -- Manage resource View -- Location",
+	@Test( description = " Edit Resource name  -- Manage resource View -- Location",
 			groups = { "functional" })
 			public void EditResource_05() throws HarnessException {
 
@@ -305,7 +305,7 @@ public class EditResource extends AdminCommonTest {
 		form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		//Edit the name.
-		String editedName = "editedResource_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 		
 		//Submit the form.
@@ -331,7 +331,7 @@ public class EditResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = " Edit Resource name  -- Manage resource View -- Equipment",
+	@Test( description = " Edit Resource name  -- Manage resource View -- Equipment",
 			groups = { "functional" })
 			public void EditResource_06() throws HarnessException {
 
@@ -362,7 +362,7 @@ public class EditResource extends AdminCommonTest {
 		form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		//Edit the name.
-		String editedName = "editedResource_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 		
 		//Submit the form.
@@ -388,7 +388,7 @@ public class EditResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit Resource name -- Manage resource View/Right Click Menu -- Location",
+	@Test( description = "Edit Resource name -- Manage resource View/Right Click Menu -- Location",
 			groups = { "functional" })
 			public void EditResource_07() throws HarnessException {
 
@@ -419,7 +419,7 @@ public class EditResource extends AdminCommonTest {
 		form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		//Edit the name.
-		String editedName = "editedResource_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 		
 		//Submit the form.
@@ -445,7 +445,7 @@ public class EditResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit Resource name -- Manage resource View/Right Click Menu -- Equipment",
+	@Test( description = "Edit Resource name -- Manage resource View/Right Click Menu -- Equipment",
 			groups = { "functional" })
 			public void EditResource_08() throws HarnessException {
 
@@ -476,7 +476,7 @@ public class EditResource extends AdminCommonTest {
 		form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		//Edit the name.
-		String editedName = "editedResource_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 		
 		//Submit the form.

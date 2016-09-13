@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose;
@@ -34,14 +34,14 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test(	description = "Reply to a message sent to test account (To field) - verify only the sender is used",
+	@Test( description = "Reply to a message sent to test account (To field) - verify only the sender is used",
 			groups = { "functional" })
 	public void ReplyMail_01() throws HarnessException {
 
 		//-- DATA
 		
 		// Send a message to the account
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -49,7 +49,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 							"<e t='c' a='"+ ZimbraAccount.AccountB().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
@@ -84,14 +84,14 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(	description = "Reply to a message sent to test account (cc field) - verify only the sender is used",
+	@Test( description = "Reply to a message sent to test account (cc field) - verify only the sender is used",
 			groups = { "functional" })
 	public void ReplyMail_02() throws HarnessException {
 
 		//-- DATA
 		
 		// Send a message to the account
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -99,7 +99,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 							"<e t='c' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
@@ -134,14 +134,14 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(	description = "Reply to a message sent from test account (From field) - verify only the sender is used",
+	@Test( description = "Reply to a message sent from test account (From field) - verify only the sender is used",
 			groups = { "functional" })
 	public void ReplyMail_03() throws HarnessException {
 
 		//-- DATA
 		
 		// Send a message to the account
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -149,7 +149,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 							"<e t='c' a='"+ ZimbraAccount.AccountB().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
@@ -203,7 +203,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(	description = "Reply to a message - Verify no drafts saved",
+	@Test( description = "Reply to a message - Verify no drafts saved",
 			groups = { "functional" })
 	public void ReplyMail_04() throws HarnessException {
 
@@ -211,7 +211,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		FolderItem drafts = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Drafts);
 		
 		// Send a message to the account
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -219,7 +219,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 							"<e t='c' a='"+ ZimbraAccount.AccountB().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");

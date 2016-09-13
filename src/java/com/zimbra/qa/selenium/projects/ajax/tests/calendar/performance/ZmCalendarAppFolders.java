@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.performance;
@@ -37,7 +37,7 @@ public class ZmCalendarAppFolders extends AjaxCommonTest {
 
 	}
 
-	@Test(	description = "Measure the time to load the calendar app, 1 calendar",
+	@Test( description = "Measure the time to load the calendar app, 1 calendar",
 			groups = { "performance" })
 	public void ZmCalendarAppFolders_01() throws HarnessException {
 
@@ -45,7 +45,7 @@ public class ZmCalendarAppFolders extends AjaxCommonTest {
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.UserRoot);
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-					"<folder name='cal"+ ZimbraSeleniumProperties.getUniqueString() + "' view='appointment' l='"+ root.getId() +"'/>" +
+					"<folder name='cal"+ ConfigProperties.getUniqueString() + "' view='appointment' l='"+ root.getId() +"'/>" +
 				"</CreateFolderRequest>");
 
 
@@ -68,7 +68,7 @@ public class ZmCalendarAppFolders extends AjaxCommonTest {
 
 	}
 
-	@Test(	description = "Measure the time to load the calendar app, 100 calendars",
+	@Test( description = "Measure the time to load the calendar app, 100 calendars",
 			groups = { "performance" })
 	public void ZmCalendarAppFolders_02() throws HarnessException {
 
@@ -77,7 +77,7 @@ public class ZmCalendarAppFolders extends AjaxCommonTest {
 		for (int i = 0; i < 100; i++) {
 			app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-						"<folder name='cal"+ ZimbraSeleniumProperties.getUniqueString() + "' view='appointment' l='"+ root.getId() +"'/>" +
+						"<folder name='cal"+ ConfigProperties.getUniqueString() + "' view='appointment' l='"+ root.getId() +"'/>" +
 					"</CreateFolderRequest>");
 		}
 

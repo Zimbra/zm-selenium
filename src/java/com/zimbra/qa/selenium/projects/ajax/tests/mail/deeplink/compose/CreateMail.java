@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.deeplink.compose;
@@ -32,8 +32,8 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Bugs(	ids = "21624")
-	@Test(	description = "Create a mail using the deep link URL",
+	@Bugs( ids = "21624")
+	@Test( description = "Create a mail using the deep link URL",
 			groups = { "smoke" })
 	public void CreateMail_01() throws HarnessException {
 		
@@ -44,8 +44,8 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 		
 		// Create the message data to be sent
 		final String to = ZimbraAccount.AccountA().EmailAddress;
-		final String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		final String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		final String subject = "subject" + ConfigProperties.getUniqueString();
+		final String body = "body" + ConfigProperties.getUniqueString();
 		
 		
 		
@@ -78,7 +78,7 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Create a mail with cc and bcc using the deep link URL",
+	@Test( description = "Create a mail with cc and bcc using the deep link URL",
 			groups = { "functional" })
 	public void CreateMail_02() throws HarnessException {
 		
@@ -88,8 +88,8 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 		
 		
 		// Create the message data to be sent
-		final String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		final String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		final String subject = "subject" + ConfigProperties.getUniqueString();
+		final String body = "body" + ConfigProperties.getUniqueString();
 		
 		
 		
@@ -136,8 +136,8 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Bugs(	ids = "82734")
-	@Test(	description = "Create a mail with two 'to' adn two 'cc' addresses using the deep link URL",
+	@Bugs( ids = "82734")
+	@Test( description = "Create a mail with two 'to' adn two 'cc' addresses using the deep link URL",
 			groups = { "functional" })
 	public void CreateMail_03() throws HarnessException {
 		
@@ -151,8 +151,8 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 		final ZimbraAccount account2 = (new ZimbraAccount()).provision().authenticate();
 		final ZimbraAccount account3 = (new ZimbraAccount()).provision().authenticate();
 		final ZimbraAccount account4 = (new ZimbraAccount()).provision().authenticate();
-		final String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		final String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		final String subject = "subject" + ConfigProperties.getUniqueString();
+		final String body = "body" + ConfigProperties.getUniqueString();
 		
 		
 		
@@ -214,7 +214,7 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(	description = "Create a mail with two 'to' adn two 'cc' addresses (comma separated) using the deep link URL",
+	@Test( description = "Create a mail with two 'to' adn two 'cc' addresses (comma separated) using the deep link URL",
 			groups = { "functional" })
 	public void CreateMail_04() throws HarnessException {
 		
@@ -228,8 +228,8 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 		final ZimbraAccount account2 = (new ZimbraAccount()).provision().authenticate();
 		final ZimbraAccount account3 = (new ZimbraAccount()).provision().authenticate();
 		final ZimbraAccount account4 = (new ZimbraAccount()).provision().authenticate();
-		final String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		final String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		final String subject = "subject" + ConfigProperties.getUniqueString();
+		final String body = "body" + ConfigProperties.getUniqueString();
 		
 		
 		
@@ -306,8 +306,8 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 	  };
 	}
 	
-	@Bugs(	ids = "76182,80816")
-	@Test(	description = "Create a mail with to with angled brackets, i.e. to=First Last<email@domain.com>",
+	@Bugs( ids = "76182,80816")
+	@Test( description = "Create a mail with to with angled brackets, i.e. to=First Last<email@domain.com>",
 			dataProvider = "DataProviderMailtoBrackets",
 			groups = { "functional" })
 	public void CreateMail_05(String name, String value) throws HarnessException {
@@ -318,8 +318,8 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 		
 		
 		// Create the message data to be sent
-		final String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		final String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		final String subject = "subject" + ConfigProperties.getUniqueString();
+		final String body = "body" + ConfigProperties.getUniqueString();
 		
 		
 		

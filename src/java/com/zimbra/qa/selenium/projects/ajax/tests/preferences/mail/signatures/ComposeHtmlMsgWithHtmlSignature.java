@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
@@ -30,7 +30,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
@@ -38,8 +38,8 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
 
 public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
-	String sigName = "signame" + ZimbraSeleniumProperties.getUniqueString();
-	String sigBody = "signature<b>bold"+ ZimbraSeleniumProperties.getUniqueString() + "</b>signature";
+	String sigName = "signame" + ConfigProperties.getUniqueString();
+	String sigBody = "signature<b>bold"+ ConfigProperties.getUniqueString() + "</b>signature";
 	String contentHTML = XmlStringUtil.escapeXml("<html>" + "<head></head>"
 			+ "<body>" + sigBody + "</body>" + "</html>");
 
@@ -79,7 +79,7 @@ public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
 	 * Send mail to self and verify signature through soap. 
 	 * @throws HarnessException
 	 */
-	@Test(description = " Compose Html Msg with html signature and Verify signature thropugh soap", groups = { "functional" })
+	@Test( description = " Compose Html Msg with html signature and Verify signature thropugh soap", groups = { "functional" })
 	public void ComposeHtmlMsgWithHtmlSignature_01() throws HarnessException {
 
 		// Signature is created
@@ -89,9 +89,9 @@ public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountZWC()));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		//mail.dBodyHtml = "body<b>bold"+ ZimbraSeleniumProperties.getUniqueString()+"</b>body";
-		mail.dBodyHtml = "bodybold"+ ZimbraSeleniumProperties.getUniqueString()+"body";
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		//mail.dBodyHtml = "body<b>bold"+ ConfigProperties.getUniqueString()+"</b>body";
+		mail.dBodyHtml = "bodybold"+ ConfigProperties.getUniqueString()+"body";
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);

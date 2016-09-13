@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.DialogEditFilter;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.DialogEditFilter.ConditionConstraint;
@@ -51,12 +51,12 @@ public class MoveIntoFolderFilters extends AjaxCommonTest {
 			)
 	public void MoveIntoFolderFilters_01() throws HarnessException {
 
-		String filterName = "FromContains "+ ZimbraSeleniumProperties.getUniqueString();
+		String filterName = "FromContains "+ ConfigProperties.getUniqueString();
 		String conditionValue[] = ZimbraAccount.AccountC().EmailAddress.split("@");
 		
-		String subject1 = "subject1From "+ ZimbraSeleniumProperties.getUniqueString();
-    	String subject2 = "subject2From "+ ZimbraSeleniumProperties.getUniqueString();
-		String bodyText = "text" + ZimbraSeleniumProperties.getUniqueString();
+		String subject1 = "subject1From "+ ConfigProperties.getUniqueString();
+    	String subject2 = "subject2From "+ ConfigProperties.getUniqueString();
+		String bodyText = "text" + ConfigProperties.getUniqueString();
 		
 		//Create a folder
 		String folderName = "FromContains";  //		
@@ -148,11 +148,11 @@ public class MoveIntoFolderFilters extends AjaxCommonTest {
 			)
 	public void MoveIntoFolderFilters_02() throws HarnessException {
 
-		String filterName = "SubjectContains "+ ZimbraSeleniumProperties.getUniqueString();
+		String filterName = "SubjectContains "+ ConfigProperties.getUniqueString();
 		
-		String subject1 = "subject1Subject "+ ZimbraSeleniumProperties.getUniqueString();
-    	String subject2 = "subject2Subject "+ ZimbraSeleniumProperties.getUniqueString();
-		String bodyText = "text" + ZimbraSeleniumProperties.getUniqueString();
+		String subject1 = "subject1Subject "+ ConfigProperties.getUniqueString();
+    	String subject2 = "subject2Subject "+ ConfigProperties.getUniqueString();
+		String bodyText = "text" + ConfigProperties.getUniqueString();
 		
 		String conditionValue[] = subject1.split(" ");
 		
@@ -246,13 +246,13 @@ public class MoveIntoFolderFilters extends AjaxCommonTest {
 			)
 	public void MoveIntoFolderFilters_03() throws HarnessException {
 
-		String filterName = "BodyContains "+ ZimbraSeleniumProperties.getUniqueString();
+		String filterName = "BodyContains "+ ConfigProperties.getUniqueString();
 		String conditionValue = "Body Condition";
 		
-		String subject1 = "subject1Body "+ ZimbraSeleniumProperties.getUniqueString();
-    	String subject2 = "subject2Body "+ ZimbraSeleniumProperties.getUniqueString();
-		String bodyText1 = "text Body Condition" + ZimbraSeleniumProperties.getUniqueString();
-		String bodyText2 = "Body text" + ZimbraSeleniumProperties.getUniqueString();
+		String subject1 = "subject1Body "+ ConfigProperties.getUniqueString();
+    	String subject2 = "subject2Body "+ ConfigProperties.getUniqueString();
+		String bodyText1 = "text Body Condition" + ConfigProperties.getUniqueString();
+		String bodyText2 = "Body text" + ConfigProperties.getUniqueString();
 		
 		//Create a folder
 		String folderName = "BodyContains";  //		
@@ -343,12 +343,12 @@ public class MoveIntoFolderFilters extends AjaxCommonTest {
 			)
 	public void MoveIntoFolderFilters_04() throws HarnessException {
 
-		String filterName = "ToContains "+ ZimbraSeleniumProperties.getUniqueString();
+		String filterName = "ToContains "+ ConfigProperties.getUniqueString();
 		String conditionValue[] = ZimbraAccount.AccountB().EmailAddress.split("@");
 		
-		String subject1 = "subject1To "+ ZimbraSeleniumProperties.getUniqueString();
-    	String subject2 = "subject2To "+ ZimbraSeleniumProperties.getUniqueString();
-		String bodyText = "text" + ZimbraSeleniumProperties.getUniqueString();
+		String subject1 = "subject1To "+ ConfigProperties.getUniqueString();
+    	String subject2 = "subject2To "+ ConfigProperties.getUniqueString();
+		String bodyText = "text" + ConfigProperties.getUniqueString();
 		
 		//Create a folder
 		String folderName = "ToContains";  //		

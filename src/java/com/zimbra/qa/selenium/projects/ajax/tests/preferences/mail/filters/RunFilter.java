@@ -24,29 +24,24 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
-
 
 public class RunFilter extends AjaxCommonTest {
 
 	public RunFilter() {
-		
 		super.startingPage = app.zPageMail;
 		super.startingAccountPreferences = null;
-		
 	}
 
-   	@Test(
-			description = "Create an incoming filter, run it and check the results.",
-			groups = { "functional" }
-			)
+   	@Test( description = "Create an incoming filter, run it and check the results", groups = { "smoke" } )
+   	
 	public void RunFilter_01() throws HarnessException {
    		
-    	String subject1 = "subject1 "+ ZimbraSeleniumProperties.getUniqueString();
-    	String subject2 = "subject2 "+ ZimbraSeleniumProperties.getUniqueString();
-		String bodyText = "text" + ZimbraSeleniumProperties.getUniqueString();
+    	String subject1 = "subject1 "+ ConfigProperties.getUniqueString();
+    	String subject2 = "subject2 "+ ConfigProperties.getUniqueString();
+		String bodyText = "text" + ConfigProperties.getUniqueString();
 		
 		// Send two messages with different subjects to the account
 		ZimbraAccount.AccountA().soapSend(
@@ -81,7 +76,7 @@ public class RunFilter extends AjaxCommonTest {
 		
 		//Create a filter which checks the subject and Move it to Trash if subject matches
 		
-		String filterName = "MoveToTrash"+ ZimbraSeleniumProperties.getUniqueString();
+		String filterName = "MoveToTrash"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<ModifyFilterRulesRequest xmlns='urn:zimbraMail'>" 
 						+	"<filterRules>" 
@@ -135,15 +130,13 @@ public class RunFilter extends AjaxCommonTest {
 	}
     
     
-   	@Test(
-			description = "Create an Outgoinging filter, run it and check the results.",
-			groups = { "functional" }
-			)
+   	@Test( description = "Create an Outgoinging filter, run it and check the results", groups = { "functional" } )
+   	
 	public void RunFilter_02() throws HarnessException {   	
     	
-    	String subject3 = "subject3 "+ ZimbraSeleniumProperties.getUniqueString();
-    	String subject4 = "subject4 "+ ZimbraSeleniumProperties.getUniqueString();
-		String bodyText = "text" + ZimbraSeleniumProperties.getUniqueString();
+    	String subject3 = "subject3 "+ ConfigProperties.getUniqueString();
+    	String subject4 = "subject4 "+ ConfigProperties.getUniqueString();
+		String bodyText = "text" + ConfigProperties.getUniqueString();
 		
 		// Send two messages from active account to two different accounts
 		app.zGetActiveAccount().soapSend(
@@ -184,7 +177,7 @@ public class RunFilter extends AjaxCommonTest {
 		
 		//Create a filter which checks the To field and Move it to Trash if To field matches
 		
-		String filterName = "MoveToTrashOut"+ ZimbraSeleniumProperties.getUniqueString();
+		String filterName = "MoveToTrashOut"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<ModifyOutgoingFilterRulesRequest xmlns='urn:zimbraMail'>" 
 						+	"<filterRules>" 

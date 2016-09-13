@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.create;
@@ -37,7 +37,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "102271")
-	@Test(description = "Verify sending appt invite when Equipment resource has conflicts shows conflict dialog", 
+	@Test( description = "Verify sending appt invite when Equipment resource has conflicts shows conflict dialog", 
 			groups = { "functional" })
 	public void CreateMeetingWithEquipmentConflict_01() throws HarnessException {
 		
@@ -49,10 +49,10 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
 		String apptEquipment = equipment.EmailAddress;
 		
-		String apptContent = ZimbraSeleniumProperties.getUniqueString();
+		String apptContent = ConfigProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
-		apptSubject1 = ZimbraSeleniumProperties.getUniqueString();
-		apptSubject2 = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject1 = ConfigProperties.getUniqueString();
+		apptSubject2 = ConfigProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -71,7 +71,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
                      	"</inv>" +
                      	"<e a='"+ apptEquipment +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
-                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     		"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
                      "<su>"+ apptSubject1 +"</su>" +
                      "</m>" +
@@ -115,7 +115,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 			
     }
 	
-	@Test(description = "Verify Saving meeting invite when Equipment resource has conflicts shows conflict dialog",  
+	@Test( description = "Verify Saving meeting invite when Equipment resource has conflicts shows conflict dialog",  
 			groups = { "functional" })
 	public void CreateMeetingWithequipmentConflict_02() throws HarnessException {
 		
@@ -127,10 +127,10 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
 		String apptEquipment = equipment.EmailAddress;
 		
-		String apptContent = ZimbraSeleniumProperties.getUniqueString();
+		String apptContent = ConfigProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
-		apptSubject1 = ZimbraSeleniumProperties.getUniqueString();
-		apptSubject2 = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject1 = ConfigProperties.getUniqueString();
+		apptSubject2 = ConfigProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -149,7 +149,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
                      	"</inv>" +
                      	"<e a='"+ apptEquipment +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
-                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     		"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
                      "<su>"+ apptSubject1 +"</su>" +
                      "</m>" +
@@ -194,7 +194,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 	}
 	
 	
-	@Test(description = "Verify Cancelling create appt when Equipment resource has conflicts shows conflict dialog", 
+	@Test( description = "Verify Cancelling create appt when Equipment resource has conflicts shows conflict dialog", 
 			groups = { "functional" })
 	public void CreateMeetingWithequipmentConflict_03() throws HarnessException {
 
@@ -206,10 +206,10 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
 		String apptEquipment = equipment.EmailAddress;
 		
-		String apptContent = ZimbraSeleniumProperties.getUniqueString();
+		String apptContent = ConfigProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
-		apptSubject1 = ZimbraSeleniumProperties.getUniqueString();
-		apptSubject2 = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject1 = ConfigProperties.getUniqueString();
+		apptSubject2 = ConfigProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -228,7 +228,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
                      	"</inv>" +
                      	"<e a='"+ apptEquipment +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
-                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     		"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
                      "<su>"+ apptSubject1 +"</su>" +
                      "</m>" +
@@ -270,7 +270,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
         apptForm.zCloseModifiedApptTab();
 	}
 	
-	@Test(description = "Verify organizer can close modified appointment with Equipment Conflict",  
+	@Test( description = "Verify organizer can close modified appointment with Equipment Conflict",  
 			groups = { "functional" })
 	public void CreateMeetingWithequipmentConflict_04() throws HarnessException {
 		
@@ -282,10 +282,10 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
 		String apptEquipment = equipment.EmailAddress;
 		
-		String apptContent = ZimbraSeleniumProperties.getUniqueString();
+		String apptContent = ConfigProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
-		apptSubject1 = ZimbraSeleniumProperties.getUniqueString();
-		apptSubject2 = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject1 = ConfigProperties.getUniqueString();
+		apptSubject2 = ConfigProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -304,7 +304,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
                      	"</inv>" +
                      	"<e a='"+ apptEquipment +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
-                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     		"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
                      "<su>"+ apptSubject1 +"</su>" +
                      "</m>" +

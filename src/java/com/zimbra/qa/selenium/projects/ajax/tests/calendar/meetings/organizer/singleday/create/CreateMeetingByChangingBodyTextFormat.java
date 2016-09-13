@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.create;
@@ -36,7 +36,7 @@ public class CreateMeetingByChangingBodyTextFormat extends CalendarWorkWeekTest 
 	}
 	
     @Bugs(ids = "103714")	
-	@Test(description = "Compose a meeting with body text as plain, change to HTML and verify if text is not lost",
+	@Test( description = "Compose a meeting with body text as plain, change to HTML and verify if text is not lost",
 			groups = { "smoke" })
 			
 	public void PlainText_To_HTML_01() throws HarnessException {
@@ -54,8 +54,8 @@ public class CreateMeetingByChangingBodyTextFormat extends CalendarWorkWeekTest 
 		Calendar now = this.calendarWeekDayUTC;
 		
 		String apptSubject, apptContent;
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		apptContent = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
+		apptContent = ConfigProperties.getUniqueString();
 		
 		appt.setSubject(apptSubject);
 		appt.setContent(apptContent);
@@ -81,7 +81,7 @@ public class CreateMeetingByChangingBodyTextFormat extends CalendarWorkWeekTest 
 	}
 
     @Bugs(ids = "103714")	
-	@Test(description = "Compose a meeting with body text as plain, change to HTML and verify if text is not lost",
+	@Test( description = "Compose a meeting with body text as plain, change to HTML and verify if text is not lost",
 			groups = { "smoke" })
 			
 	public void HTML_To_PlainText_01() throws HarnessException {
@@ -99,8 +99,8 @@ public class CreateMeetingByChangingBodyTextFormat extends CalendarWorkWeekTest 
 		Calendar now = this.calendarWeekDayUTC;
 		
 		String apptSubject, apptContent;
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		apptContent = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
+		apptContent = ConfigProperties.getUniqueString();
 		
 		appt.setSubject(apptSubject);
 		appt.setContent(apptContent);
@@ -127,7 +127,7 @@ public class CreateMeetingByChangingBodyTextFormat extends CalendarWorkWeekTest 
 	}
     
     @Bugs(ids = "103797")	
-	@Test(description = " Description of a previous appointment comes up when changing mode from plain-text to html ",
+	@Test( description = " Description of a previous appointment comes up when changing mode from plain-text to html ",
 			groups = { "functional" })
 			
 	public void PlainText_To_HTML_02() throws HarnessException {
@@ -145,11 +145,11 @@ public class CreateMeetingByChangingBodyTextFormat extends CalendarWorkWeekTest 
 		Calendar now = this.calendarWeekDayUTC;
 		
 		String apptSubject1, apptContent1, apptSubject2, apptContent2;
-		apptSubject1 = ZimbraSeleniumProperties.getUniqueString();
-		apptContent1 = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject1 = ConfigProperties.getUniqueString();
+		apptContent1 = ConfigProperties.getUniqueString();
 		
-		apptSubject2 = ZimbraSeleniumProperties.getUniqueString();
-		apptContent2 = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject2 = ConfigProperties.getUniqueString();
+		apptContent2 = ConfigProperties.getUniqueString();
 		
 		appt.setSubject(apptSubject1);
 		appt.setContent(apptContent1);

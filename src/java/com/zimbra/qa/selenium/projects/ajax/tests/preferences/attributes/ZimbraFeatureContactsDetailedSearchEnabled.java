@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.attributes;
@@ -28,21 +28,19 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormAddressPicker.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormAddressPicker.Locators;
 
-
 public class ZimbraFeatureContactsDetailedSearchEnabled extends PrefGroupMailByMessageTest {
 
 	public ZimbraFeatureContactsDetailedSearchEnabled() {
 		logger.info("New "+ ZimbraFeatureContactsDetailedSearchEnabled.class.getCanonicalName());
-
 		super.startingAccountPreferences.put("ZimbraFeatureContactsDetailedSearchEnabled", "TRUE");		
 	}
 
 	@Bugs(ids = "70708")
-	@Test(	description = "Filter addresses using department name after selecting \"To:\" while composing mail",
-	groups = { "functional" })
+	@Test( description = "Filter addresses using department name after selecting \"To:\" while composing mail", groups = { "functional" })
+	
 	public void ZimbraFeatureContactsDetailedSearchEnabled_01() throws HarnessException {
 
-		String department=ZimbraSeleniumProperties.getUniqueString();
+		String department=ConfigProperties.getUniqueString();
 
 		//-- Data
 
@@ -96,11 +94,11 @@ public class ZimbraFeatureContactsDetailedSearchEnabled extends PrefGroupMailByM
 	}		
 
 	@Bugs(ids = "70708")
-	@Test(	description = "Filter addresses using department name after selecting \"To:\" while composing appointments",
-	groups = { "functional" })
+	@Test( description = "Filter addresses using department name after selecting \"To:\" while composing appointments", groups = { "functional" })
+	
 	public void ZimbraFeatureContactsDetailedSearchEnabled_02() throws HarnessException {
 
-		String department=ZimbraSeleniumProperties.getUniqueString();
+		String department=ConfigProperties.getUniqueString();
 		ZimbraAccount account1 = new ZimbraAccount();
 		account1.provision();
 		account1.authenticate();

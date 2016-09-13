@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.util;
@@ -39,10 +39,10 @@ import org.xml.sax.SAXException;
 
 import com.zimbra.qa.selenium.framework.util.OperatingSystem;
 import com.zimbra.qa.selenium.framework.util.OperatingSystem.OsType;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 
 public class BuildUtility {
-	private static final StringBuilder _buildBaseUrl = new StringBuilder(ZimbraSeleniumProperties.getStringProperty("buildServer"));
+	private static final StringBuilder _buildBaseUrl = new StringBuilder(ConfigProperties.getStringProperty("buildServer"));
    private static final String _buildUrl = new StringBuilder(_buildBaseUrl).append("/cgi-bin/build/builds.cgi").toString();
    protected static Logger logger = LogManager.getLogger(BuildUtility.class);
    public class Build {
@@ -234,7 +234,7 @@ public class BuildUtility {
             String fileExtension = null;
             String productName = null;
 
-            AppType appType = ZimbraSeleniumProperties.getAppType();
+            AppType appType = ConfigProperties.getAppType();
 
             switch (appType) {
             case DESKTOP:

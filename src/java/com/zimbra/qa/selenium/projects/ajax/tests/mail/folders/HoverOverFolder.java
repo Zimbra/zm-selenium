@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders;
@@ -33,14 +33,14 @@ public class HoverOverFolder extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test(	description = "Hover over a folder to show the tooltip",
+	@Test( description = "Hover over a folder to show the tooltip",
 			groups = { "functional" })
 	public void TooltipFolder_01() throws HarnessException {
 		
 		//-- Data
 		
 		// Create a subfolder with a message in it		
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
                 	"<folder name='"+ foldername +"' l='"+ FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox).getId() +"'/>" +
@@ -53,7 +53,7 @@ public class HoverOverFolder extends PrefGroupMailByMessageTest {
     		+		"<m l='"+ subfolder.getId() +"' f='u'>"
         	+			"<content>From: foo@foo.com\n"
         	+				"To: foo@foo.com \n"
-        	+				"Subject: subject"+ ZimbraSeleniumProperties.getUniqueString() +"\n"
+        	+				"Subject: subject"+ ConfigProperties.getUniqueString() +"\n"
         	+				"MIME-Version: 1.0 \n"
         	+				"Content-Type: text/plain; charset=utf-8 \n"
         	+				"Content-Transfer-Encoding: 7bit\n"
@@ -79,14 +79,14 @@ public class HoverOverFolder extends PrefGroupMailByMessageTest {
 
 	}	
 
-	@Test(	description = "Hover over a folder - Verify contents",
+	@Test( description = "Hover over a folder - Verify contents",
 			groups = { "functional" })
 	public void TooltipFolder_02() throws HarnessException {
 		
 		//-- Data
 		
 		// Create a subfolder with a message in it		
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
                 	"<folder name='"+ foldername +"' l='"+ FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox).getId() +"'/>" +
@@ -99,7 +99,7 @@ public class HoverOverFolder extends PrefGroupMailByMessageTest {
     		+		"<m l='"+ subfolder.getId() +"' f='u'>"
         	+			"<content>From: foo@foo.com\n"
         	+				"To: foo@foo.com \n"
-        	+				"Subject: subject"+ ZimbraSeleniumProperties.getUniqueString() +"\n"
+        	+				"Subject: subject"+ ConfigProperties.getUniqueString() +"\n"
         	+				"MIME-Version: 1.0 \n"
         	+				"Content-Type: text/plain; charset=utf-8 \n"
         	+				"Content-Transfer-Encoding: 7bit\n"
@@ -155,14 +155,14 @@ public class HoverOverFolder extends PrefGroupMailByMessageTest {
 
 	}	
 
-	@Test(	description = "Hover over an empty folder",
+	@Test( description = "Hover over an empty folder",
 			groups = { "functional" })
 	public void TooltipFolder_03() throws HarnessException {
 		
 		//-- Data
 		
 		// Create a subfolder with a message in it		
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
                 	"<folder name='"+ foldername +"' l='"+ FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox).getId() +"'/>" +
@@ -197,7 +197,7 @@ public class HoverOverFolder extends PrefGroupMailByMessageTest {
 	  };
 	}
 	
-	@Test(	description = "Hover over the system folders",
+	@Test( description = "Hover over the system folders",
 			groups = { "functional" },
 			dataProvider = "DataProviderSystemFolders")
 	public void TooltipFolder_10(String foldername, SystemFolder foldertype) throws HarnessException {
@@ -212,7 +212,7 @@ public class HoverOverFolder extends PrefGroupMailByMessageTest {
 					"<SaveDraftRequest xmlns='urn:zimbraMail'>"
 	    		+		"<m >"
 	        	+			"<e t='t' a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>"
-	        	+			"<su>subject"+ ZimbraSeleniumProperties.getUniqueString() +"</su>"
+	        	+			"<su>subject"+ ConfigProperties.getUniqueString() +"</su>"
 				+			"<mp ct='text/plain'>"
 				+				"<content>content</content>"
 				+			"</mp>"
@@ -227,7 +227,7 @@ public class HoverOverFolder extends PrefGroupMailByMessageTest {
 	    		+		"<m l='"+ subfolder.getId() +"' f='u'>"
 	        	+			"<content>From: foo@foo.com\n"
 	        	+				"To: foo@foo.com \n"
-	        	+				"Subject: subject"+ ZimbraSeleniumProperties.getUniqueString() +"\n"
+	        	+				"Subject: subject"+ ConfigProperties.getUniqueString() +"\n"
 	        	+				"MIME-Version: 1.0 \n"
 	        	+				"Content-Type: text/plain; charset=utf-8 \n"
 	        	+				"Content-Transfer-Encoding: 7bit\n"

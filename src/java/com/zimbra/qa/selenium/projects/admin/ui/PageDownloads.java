@@ -19,9 +19,7 @@ package com.zimbra.qa.selenium.projects.admin.ui;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-import sun.misc.BASE64Encoder;
-
+import java.util.Base64;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
@@ -29,7 +27,7 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 
 /**
  * This class defines the Downloads page (click on "Downloads" in the header)
@@ -134,9 +132,9 @@ public class PageDownloads extends AbsTab {
 	 */
 	public void zOpenIndexHTML() throws HarnessException {
 
-		String base = ZimbraSeleniumProperties.getBaseURL();
+		String base = ConfigProperties.getBaseURL();
 		String path = "/downloads/index.html";
-		String id = ZimbraSeleniumProperties.getUniqueString();
+		String id = ConfigProperties.getUniqueString();
 		
 		this.sOpenWindow(base + path, id);
 		this.zSelectWindow(id);
@@ -145,7 +143,6 @@ public class PageDownloads extends AbsTab {
 		// Make sure the page is active
 		if ( !this.sIsElementPresent(Locators.IndexHtmlTitleLocator) )
 			throw new HarnessException("index.html never became active/focused");
-		
 	}
 	
 
@@ -156,9 +153,8 @@ public class PageDownloads extends AbsTab {
 	}
 
 	public int getAuthResponse(URL url) throws IOException{
-        BASE64Encoder enc = new sun.misc.BASE64Encoder();
 		String userpassword = "admin" + ":" + "test123";
-        String encodedAuthorization = enc.encode(userpassword.getBytes());
+        String encodedAuthorization = new String(Base64.getEncoder().encode(userpassword.getBytes()));
         HttpURLConnection connection = (HttpURLConnection )url.openConnection();
         connection.setRequestProperty("Authorization", "Basic " + encodedAuthorization);
         int code = connection.getResponseCode();

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
@@ -26,11 +26,6 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
-
-/**
- * @author zimbra
- * 
- */
 
 public class TreeBriefcase extends AbsTree {
 
@@ -147,23 +142,14 @@ public class TreeBriefcase extends AbsTree {
 		return (page);
 	}
 
-	public AbsPage zTreeItem(Action action, IItem item, boolean isRowAdded)
-			throws HarnessException {
+	public AbsPage zTreeItem(Action action, IItem item, boolean isRowAdded)	throws HarnessException {
 
 		tracer.trace("Click " + action + " on folder " + item.getName());
 
 		String treeItemLocator = Locators.briefcaseTreeView + "]";
-
 		AbsPage page = zTreeItem(action, item);
-
 		zWaitForElementPresent(treeItemLocator);
-
-		String listItemLocator = "css=div[id^=zl__BDLV][class=DwtListView-Rows]";
-
-		if (isRowAdded)
-			listItemLocator += ">div[id^=zli__BDLV][class^=Row]";
-
-		zWaitForElementPresent(listItemLocator);
+		SleepUtil.sleepMedium();
 
 		return page;
 	}
@@ -190,29 +176,10 @@ public class TreeBriefcase extends AbsTree {
 					+ "_imageCell]";
 
 		} else if (item instanceof LinkItem) {
-			page = new DialogFindShares(MyApplication,
-					((AppAjaxClient) MyApplication).zPageBriefcase);
-			if (ZimbraSeleniumProperties.isWebDriver()) {
-				clickBy(By.id("ztih__main_Briefcase__BRIEFCASE"),
-					By.linkText("Find Shares..."));
-				return page;
-			}else{
-				locator = "css=div[id=ztih__main_Briefcase__BRIEFCASE] a[id$=_addshare_link]";
-				page = new DialogFindShares(MyApplication,
-					((AppAjaxClient) MyApplication).zPageBriefcase);
-			}
-			
-			if (!this.sIsElementPresent(locator)) {
-				throw new HarnessException("Unable to locate link in the tree "
-						+ locator);
-			}
-
-			this.sClickAt(locator, "0,0");
-
-			zWaitForBusyOverlay();
-
+			page = new DialogFindShares(MyApplication, ((AppAjaxClient) MyApplication).zPageBriefcase);
+			clickBy(By.id("ztih__main_Briefcase__BRIEFCASE"), By.linkText("Find Shares..."));
 			return page;
-
+			
 		} else {
 			throw new HarnessException("Must use IItem as argument, but was "
 					+ item.getClass());
@@ -284,19 +251,15 @@ public class TreeBriefcase extends AbsTree {
 			locator = "css=div[class^=ImgNewTag ZWidget]";
 
 			if (!this.sIsElementPresent(locator)) {
-				throw new HarnessException("Unable to locate folder in tree "
-						+ locator);
+				throw new HarnessException("Unable to locate folder in tree " + locator);
 			}
-			page = new DialogTag(MyApplication,
-					((AppAjaxClient) MyApplication).zPageBriefcase);
+			page = new DialogTag(MyApplication,	((AppAjaxClient) MyApplication).zPageBriefcase);
+			
 		} else if (button == Button.B_TREE_BRIEFCASE_EXPANDCOLLAPSE) {
 
 			locator = null;
 			page = null;
 
-			// TODO: implement me
-
-			// FALL THROUGH
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
 		}
@@ -304,9 +267,6 @@ public class TreeBriefcase extends AbsTree {
 		if (locator == null) {
 			throw new HarnessException("locator was null for button " + button);
 		}
-
-		// Default behavior, process the locator by clicking on it
-		//
 
 		// Click it
 		this.zClickAt(locator, "0,0");
@@ -426,6 +386,8 @@ public class TreeBriefcase extends AbsTree {
 				page.zWaitForActive();
 			}
 		}
+		
+		SleepUtil.sleepMedium();
 
 		// Return the specified page, or null if not set
 		return (page);

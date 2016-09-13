@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.util;
@@ -31,7 +31,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 		
 		// In the dev environment, they may need a config value to override
 		// the default, so use that value here
-		ZimbraMailHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
+		ZimbraMailHost = ConfigProperties.getStringProperty("store.host", null);
 	}
 	
 	
@@ -48,7 +48,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			domain.provision();
 			
 			// If the storeHost value is set, use that value for the ZimbraMailHost
-			String storeHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
+			String storeHost = ConfigProperties.getStringProperty("store.host", null);
 			if ( storeHost != null ) {
 				ZimbraMailHost = storeHost;
 			}
@@ -64,7 +64,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			}
 			
 			// Create a new account in the Admin Console using SOAP
-			AccountItem account = new AccountItem(email,ZimbraSeleniumProperties.getStringProperty("testdomain"));
+			AccountItem account = new AccountItem(email,ConfigProperties.getStringProperty("testdomain"));
 			ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 					"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 					+			"<name>" + account.getEmailAddress() + "</name>"
@@ -111,7 +111,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 
 					
 			// If SOAP trace logging is specified, turn it on
-			if ( ZimbraSeleniumProperties.getStringProperty("soap.trace.enabled", "false").toLowerCase().equals("true") ) {
+			if ( ConfigProperties.getStringProperty("soap.trace.enabled", "false").toLowerCase().equals("true") ) {
 				
 				ZimbraAdminAccount.GlobalAdmin().soapSend(
 							"<AddAccountLoggerRequest xmlns='urn:zimbraAdmin'>"
@@ -152,7 +152,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			domain.provision();
 			
 			// If the storeHost value is set, use that value for the ZimbraMailHost
-			String storeHost = ZimbraSeleniumProperties.getStringProperty("store.host", null);
+			String storeHost = ConfigProperties.getStringProperty("store.host", null);
 			if ( storeHost != null ) {
 				ZimbraMailHost = storeHost;
 			}
@@ -194,7 +194,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			ZimbraMailHost = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:account/admin:a[@n='zimbraMailHost']", null);
 
 			// If SOAP trace logging is specified, turn it on
-			if ( ZimbraSeleniumProperties.getStringProperty("soap.trace.enabled", "false").toLowerCase().equals("true") ) {
+			if ( ConfigProperties.getStringProperty("soap.trace.enabled", "false").toLowerCase().equals("true") ) {
 				
 				ZimbraAdminAccount.GlobalAdmin().soapSend(
 							"<AddAccountLoggerRequest xmlns='urn:zimbraAdmin'>"
@@ -276,8 +276,8 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 	public static synchronized ZimbraAdminAccount AdminConsoleAdmin() {
 		if ( _AdminConsoleAdmin == null ) {
 			try {
-				String name = "globaladmin"+ ZimbraSeleniumProperties.getUniqueString();
-				String domain = ZimbraSeleniumProperties.getStringProperty("server.host","zqa-062.eng.zimbra.com");
+				String name = "globaladmin"+ ConfigProperties.getUniqueString();
+				String domain = ConfigProperties.getStringProperty("server.host","zqa-062.eng.zimbra.com");
 				_AdminConsoleAdmin = new ZimbraAdminAccount(name +"@"+ domain);
 				_AdminConsoleAdmin.provision();
 				_AdminConsoleAdmin.authenticate();
@@ -317,8 +317,8 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 	 */
 	public static synchronized ZimbraAdminAccount GlobalAdmin() {
 		if ( _GlobalAdmin == null ) {
-			//String name = "globaladmin@" + ZimbraSeleniumProperties.getStringProperty("");
-			String name = "globaladmin@" + ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host",	ZimbraSeleniumProperties.getStringProperty("server.host"));
+			//String name = "globaladmin@" + ConfigProperties.getStringProperty("");
+			String name = "globaladmin@" + ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host",	ConfigProperties.getStringProperty("server.host"));
 			_GlobalAdmin = new ZimbraAdminAccount(name);
 			_GlobalAdmin.authenticate();
 		}
@@ -326,27 +326,18 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 	}
 	private static ZimbraAdminAccount _GlobalAdmin = null;
 
-
-	/**
-	 * @param args
-	 * @throws HarnessException 
-	 */
 	public static void main(String[] args) throws HarnessException {
 
 		// Configure log4j using the basic configuration
 		BasicConfigurator.configure();
-
-
 
 		// Use the pre-provisioned global admin account to send a basic request
 		ZimbraAdminAccount.GlobalAdmin().soapSend("<GetVersionInfoRequest xmlns='urn:zimbraAdmin'/>");
 		if ( !ZimbraAdminAccount.GlobalAdmin().soapMatch("//admin:GetVersionInfoResponse", null, null) )
 			throw new HarnessException("GetVersionInfoRequest did not return GetVersionInfoResponse");
 
-
-
 		// Create a new global admin account
-		String domain = ZimbraSeleniumProperties.getStringProperty("server.host","zqa-062.eng.zimbra.com");
+		String domain = ConfigProperties.getStringProperty("server.host","zqa-062.eng.zimbra.com");
 		ZimbraAdminAccount admin = new ZimbraAdminAccount("admin"+ System.currentTimeMillis() +"@"+ domain);
 		admin.provision();	// Create the account (CreateAccountRequest)
 		admin.authenticate();		// Authenticate the account (AuthRequest)
@@ -356,23 +347,15 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 		if ( !admin.soapMatch("//admin:GetServiceStatusResponse", null, null) )
 			throw new HarnessException("GetServiceStatusRequest did not return GetServiceStatusResponse");
 
-
 		logger.info("Done!");
 	}
-
 	
 	public void grantRightRequest(AccountItem account , String right)throws HarnessException {
-
-	// grant given right creation request
 	
-	ZimbraAdminAccount.GlobalAdmin().soapSend(
-     "<GrantRightRequest xmlns='urn:zimbraAdmin'>" 
-		+	"<target  by='name' type='domain'>" + account.getDomainName() + "</target>"
-		+	"<grantee  by='name' type='usr'>" + account.getEmailAddress() + "</grantee>" 
-		+	"<right>"+ right + "</right>" 
-	+ "</GrantRightRequest>");
-	
-	
-	
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+				"<GrantRightRequest xmlns='urn:zimbraAdmin'>" + "<target  by='name' type='domain'>"
+						+ account.getDomainName() + "</target>" + "<grantee  by='name' type='usr'>"
+						+ account.getEmailAddress() + "</grantee>" + "<right>" + right + "</right>"
+						+ "</GrantRightRequest>");
 	}
 }

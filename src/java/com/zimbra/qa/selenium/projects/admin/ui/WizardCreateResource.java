@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
@@ -20,20 +20,13 @@
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import java.awt.event.KeyEvent;
-
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.AbsWizard;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.admin.items.ResourceItem;
 
-
-/**
- * @author Matt Rhoades
- *
- */
 public class WizardCreateResource extends AbsWizard {
 	public static class Locators {
 		public static final String zdlg_RESOURCE_NAME = "zdlgv__NEW_RES_displayName";
@@ -62,22 +55,13 @@ public class WizardCreateResource extends AbsWizard {
 
 		ResourceItem resource = (ResourceItem)item;
 
-
 		String CN = resource.getLocalName();
 		String domain = resource.getDomainName();
 
-
 		sType(Locators.zdlg_RESOURCE_NAME, CN);
 		sType(Locators.zdlg_RESOURCE_LOCAL_NAME, CN);
-
-		/**
-		 * If you use normal type method domain is taken as default domain name.
-		 * Below line of code is not grid friendly but this is only solution working currently.
-		 */
-		if(ZimbraSeleniumProperties.isWebDriver()) {
-			SleepUtil.sleepSmall();
-			this.clearField(Locators.zdlg_RESOURCE_DOMAIN_NAME);
-		}
+		SleepUtil.sleepSmall();
+		this.clearField(Locators.zdlg_RESOURCE_DOMAIN_NAME);
 		zType(Locators.zdlg_RESOURCE_DOMAIN_NAME,"");
 		zType(Locators.zdlg_RESOURCE_DOMAIN_NAME,domain);
 

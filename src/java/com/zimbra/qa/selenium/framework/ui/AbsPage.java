@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.ui;
@@ -19,11 +19,8 @@ package com.zimbra.qa.selenium.framework.ui;
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-
 import org.apache.log4j.*;
-
 import com.zimbra.qa.selenium.framework.util.*;
-
 
 /**
  * A <code>AbsPage</code> object represents any of the GUI classes, such as
@@ -41,69 +38,21 @@ public abstract class AbsPage extends AbsSeleniumObject {
 	protected static Logger logger = LogManager.getLogger(AbsPage.class);
 
 	protected static final int PageLoadDelay = 60000; // wait 60 seconds for pages to load
-
-	
-	@Deprecated
-	public enum PopupButton {
-		Yes, No, Cancel, Help
-	}
-	
-	@Deprecated
-	public enum ListNavButton {
-		Previous, Next
-	}
-		
-
-	/**
-	 * A pointer to the application that created this object
-	 */
 	protected AbsApplication MyApplication = null;
-
-	/**
-	 * A Keyboard object to send keyboard input to the screen
-	 */
 	public Keyboard zKeyboard = new Keyboard();
-
-	/**
-	 * Create this page object that exists in the specified application
-	 * @param application
-	 */
 	public AbsPage(AbsApplication application) {
 		MyApplication = application;
-		
 		logger.info("new "+ AbsPage.class.getCanonicalName());
-
 	}
-	
-	/**
-	 * Return the unique name for this page class
-	 * @return
-	 */
-	public abstract String myPageName();
-	
-	/**
-	 * Determines if this page is active, usually by detecting
-	 * whether a GUI element is present or not.
-	 * <p>
-	 * @return true if active.  false if not.
-	 * @throws HarnessException
-	 */
-	public abstract boolean zIsActive() throws HarnessException;
 
-	/**
-	 * Wait for this page to become active (default PageLoadDelay)
-	 * @throws HarnessException
-	 */
+	public abstract String myPageName();
+	public abstract boolean zIsActive() throws HarnessException;
 	public void zWaitForActive() throws HarnessException {
 		zWaitForActive(PageLoadDelay);
 	}
-	
-	/**
-	 * Wait for this page to become active
-	 * @throws HarnessException
-	 */
+
 	public void zWaitForActive(long millis) throws HarnessException {
-		
+
 		for (int time = 0; time <= millis; time += SleepUtil.SleepGranularity) {
 			if ( zIsActive() ) {
 				return; // Page became active
@@ -113,54 +62,42 @@ public abstract class AbsPage extends AbsSeleniumObject {
 
 		throw new HarnessException("Page never became active: msec="+ millis);
 	}
-	
-	/**
-	 * Hover over a specified button
-	 * @param button
-	 * @return
-	 * @throws HarnessException
-	 */
+
 	public AbsTooltip zHoverOver(Button button) throws HarnessException {
 		throw new HarnessException("implement me");
-	}		
-	
-	/**
-	 * Drag and Drop a locator onto another locator
-	 * @param locatorSource The locator item to drag
-	 * @param locatorDestination The locator item to drop onto
-	 * @throws HarnessException
-	 */
+	}
+
 	public void zDragAndDrop(String locatorSource, String locatorDestination) throws HarnessException {
 
 		if ( !this.sIsElementPresent(locatorSource) ) {
 			throw new HarnessException("locator (source) cannot be found: "+ locatorSource);
 		}
-		
+
 		if ( !this.sIsElementPresent(locatorDestination) ) {
 			throw new HarnessException("locator (destination) cannot be found: "+ locatorDestination);
 		}
-		
+
 		SleepUtil.sleep(2000);
-		
+
 		/*
-		
+
 		// Get the coordinates for the locators
 		Coordinate destination = new Coordinate(
-				this.sGetElementPositionLeft(locatorDestination), 
+				this.sGetElementPositionLeft(locatorDestination),
 				this.sGetElementPositionTop(locatorDestination));
-		
+
 		Coordinate source = new Coordinate(
-				this.sGetElementPositionLeft(locatorSource), 
+				this.sGetElementPositionLeft(locatorSource),
 				this.sGetElementPositionTop(locatorSource));
-		
+
 		Coordinate relative = new Coordinate(
 				destination.X - source.X,
 				destination.Y - source.Y);
-		
+
 		logger.info("x,y coordinate of the objectToBeDroppedInto=" + destination);
 		logger.info("x,y coordinate of the objectToBeDragged=" + source);
 		logger.info("x,y coordinate of the objectToBeDroppedInto relative to objectToBeDragged = " + relative);
-		
+
 		// Hold the mouse down on the source
 		this.sMouseDownAt(locatorSource, relative.toString());
 
@@ -177,16 +114,16 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		SleepUtil.sleep(1000);
 		// Release the mouse
 		this.sMouseUpAt(locatorDestination, relative.toString());
-		
+
 		*/
-		
+
 		this.sMouseDownAt(locatorSource,"");
 		SleepUtil.sleep(1000);
 
 		// Drag the mouse to the destination, plus the offset
 		this.sMouseMoveAt(locatorDestination,"");
 
-		// Wait a bit for things to happen 
+		// Wait a bit for things to happen
 		SleepUtil.sleep(1000 * 3);
 
 		this.sMouseMoveAt(locatorDestination,"");
@@ -198,29 +135,15 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		this.sMouseUpAt(locatorDestination,"");
 
 		// Wait for the client to come back
-		this.zWaitForBusyOverlay();		
+		this.zWaitForBusyOverlay();
 
 	}
 
-	/**
-	 * Using java robot to do mouse click on the coordinate.
-	 * This is needed for example to bring up the browser test window to the front most, becauase
-	 * when using selenium to fire the mouse event, it won't bring the test window to the front most
-	 * Usage instance: Mac OS Before Suite
-	 * @param x coordinate x
-	 * @param y coordinate y
-	 * @throws HarnessException 
-	 */
 	public void zMouseClick(int x, int y) throws HarnessException {
 	   Mouse mouse = new Mouse();
 	   mouse.leftClick(x, y);
 	}
 
-	/**
-    * An object for interfacing with the Mouse
-    * @author Jeffry Hidayat
-    *
-    */
 	public static class Mouse {
 	   private static Logger logger = LogManager.getLogger(Mouse.class);
 	   public Mouse() {
@@ -233,9 +156,6 @@ public abstract class AbsPage extends AbsSeleniumObject {
 	      robotMouse.click(x, y);
 	   }
 
-	   //// ***
-      // Start: Robot methods
-      //// ***
       private static class RobotMouse {
          private static Logger logger = LogManager.getLogger(RobotMouse.class);
          private Robot robot;
@@ -258,77 +178,47 @@ public abstract class AbsPage extends AbsSeleniumObject {
           }
       }
 	}
-	
-	/**
-	 * An object for interfacing with the keyboard
-	 * @author Matt Rhoades
-	 *
-	 */
+
 	public static class Keyboard {
 		private static Logger logger = LogManager.getLogger(Keyboard.class);
-		
+
 		public Keyboard() {
 			logger.info("new " + Keyboard.class.getCanonicalName());
 		}
 
-		
-		/**
-		 * Using Robot, type a key event
-		 * @param keyEvent java.awt.event.KeyEvent
-		 * @throws HarnessException
-		 */
 		public void zTypeKeyEvent(int keyEvent) throws HarnessException {
 			logger.info("zTypeKeyEvent("+ keyEvent +")");
 
 			RobotKeyboard keyboard = new RobotKeyboard();
 			keyboard.doType(keyEvent);
-			
-			// So events don't run into each other (i.e. "n" followed by "m" doesn't become "nm")
-			// Sleep after typing the event
 			SleepUtil.sleepMedium();
 
 		}
-		
+
 		public void zSelectAll() throws HarnessException {
 			logger.info("zTypeKeyEvent(CTRL A)");
-			
 			RobotKeyboard keyboard = new RobotKeyboard();
-			
 			keyboard.robot.keyPress(KeyEvent.VK_CONTROL);
 			keyboard.robot.keyPress(KeyEvent.VK_A);
 			keyboard.robot.keyRelease(KeyEvent.VK_CONTROL);
 			keyboard.robot.keyRelease(KeyEvent.VK_A);
-			
-			SleepUtil.sleepSmall();
-
 		}
-		
-		/**
-		 * Using Robot, type a series of characters
-		 * @param chars
-		 * @throws HarnessException
-		 */
+
 		public void zTypeCharacters(String chars) throws HarnessException {
 			logger.info("zTypeCharacters("+ chars +")");
 
 			RobotKeyboard keyboard = new RobotKeyboard();
 			keyboard.type(chars);
-
-			// For some reason, need a sleep here otherwise selenium
-	    	// can't recognize the typed string
-	    	// e.g. if the string is foo123, then getValue(locator) will only return foo1 (23 missing)
-	    	//
 			SleepUtil.sleepMedium();
-
 		}
-		
+
 		public void zTypeCharactersUpload(String chars, String upload) throws HarnessException, InterruptedException {
 			logger.info("zTypeCharacters("+ chars +")");
 			RobotKeyboard keyboard = new RobotKeyboard();
 			keyboard.typeUpload(chars, upload);
 			SleepUtil.sleepMedium();
 		}
-		
+
 		private static class RobotKeyboard {
 			private static Logger logger = LogManager.getLogger(RobotKeyboard.class);
 
@@ -349,40 +239,58 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		    public void type(String characters) {
 		    	logger.info("type("+ characters +")");
 		    	if (characters.equals("<Delete>")) {
-		    	   doType(KeyEvent.VK_DELETE);
-		    	} else if (characters.equals("<ESC>")) {
-		    	   doType(KeyEvent.VK_ESCAPE);
-		    	} else if (characters.equals("<SHIFT><DEL>")) {
+		    		doType(KeyEvent.VK_DELETE);
 		    		
-		    		// http://forums.oracle.com/forums/thread.sjpa?threadID=2230592&tstart=0
+		    	} else if (characters.equals("<ESC>")) {
+		    		doType(KeyEvent.VK_ESCAPE);
+		    		
+		    	} else if (characters.equals("<ENTER>")) {
+		    		doType(KeyEvent.VK_ENTER);
+		    		
+			    } else if (characters.equals("<SHIFT><DEL>")) {
 		    		if ( (!numLockHasBeenProcessed) && (Toolkit.getDefaultToolkit().getLockingKeyState(KeyEvent.VK_NUM_LOCK)) ) {
 		    			logger.info("Setting KeyEvent.VK_NUM_LOCK=false");
 		    			Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_NUM_LOCK, false);
 		    			numLockHasBeenProcessed = true;
 		    		}
-
 		    		doType(KeyEvent.VK_SHIFT, KeyEvent.VK_DELETE);
+
+		    	} else if (characters.equals("<SHIFT><DOWN>")) {
+		    		if ( (!numLockHasBeenProcessed) && (Toolkit.getDefaultToolkit().getLockingKeyState(KeyEvent.VK_NUM_LOCK)) ) {
+		    			logger.info("Setting KeyEvent.VK_NUM_LOCK=false");
+		    			Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_NUM_LOCK, false);
+		    			numLockHasBeenProcessed = true;
+		    		}
+		    		doType(KeyEvent.VK_SHIFT, KeyEvent.VK_DOWN);
+		    		
+		    	} else if (characters.equals("<CTRL><O>")) {
+		    		if ( (!numLockHasBeenProcessed) && (Toolkit.getDefaultToolkit().getLockingKeyState(KeyEvent.VK_NUM_LOCK)) ) {
+		    			logger.info("Setting KeyEvent.VK_NUM_LOCK=false");
+		    			Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_NUM_LOCK, false);
+		    			numLockHasBeenProcessed = true;
+		    		}
+		    		doType(KeyEvent.VK_CONTROL, KeyEvent.VK_O);
 
 		    	} else {
 		    	   for (char c : characters.toCharArray()) {
 		    	      try {
-		    	    	  Thread.sleep(50);
+		    	    	  Thread.sleep(100);
 		    	    	  type(c);
-		    	    	  Thread.sleep(50);
-		    	      }catch (Exception e) {
+		    	    	  Thread.sleep(100);
+		    	      } catch (Exception e) {
 		    	    	  logger.warn(e);
 					}
 		    	   }
 		    	}
-		    	
+
 		    }
-		    
+
 		    public void typeUpload(String characters, String upload) {
+
 		    	logger.info("type("+ characters +")");
 		    	try {
 		    		Thread.sleep(500);
 				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 		    	for (char c : characters.toCharArray()) {
@@ -390,10 +298,11 @@ public abstract class AbsPage extends AbsSeleniumObject {
 	    	    	  Thread.sleep(100);
 	    	    	  type(c);
 	    	    	  Thread.sleep(100);
-	    	      }catch (Exception e) {
+	    	      } catch (Exception e) {
 	    	    	  logger.warn(e);
 	    	      }
-	    	   }
+				}
+
 		    	RobotKeyboard keyboard;
 				try {
 					Thread.sleep(3000);
@@ -401,18 +310,16 @@ public abstract class AbsPage extends AbsSeleniumObject {
 					keyboard.robot.keyPress(KeyEvent.VK_ENTER);
 					keyboard.robot.keyRelease(KeyEvent.VK_ENTER);
 				} catch (HarnessException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		    	
+
 		    }
 
 		    private void type(char character) {
 		    	logger.info("type("+ character +")");
-		    	
+
 		        switch (character) {
 		        case 'a': doType(KeyEvent.VK_A); break;
 		        case 'b': doType(KeyEvent.VK_B); break;
@@ -491,10 +398,10 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		        //case '(': doType(KeyEvent.VK_LEFT_PARENTHESIS); break;
 		        // case ')': doType(KeyEvent.VK_RIGHT_PARENTHESIS); break;
 		        case '(': doType(KeyEvent.VK_SHIFT,KeyEvent.VK_9); break;
-		        case ')': doType(KeyEvent.VK_SHIFT,KeyEvent.VK_0); break;		      
+		        case ')': doType(KeyEvent.VK_SHIFT,KeyEvent.VK_0); break;
 		       // case '_': doType(KeyEvent.VK_UNDERSCORE); break;
 		        case '_': doType(KeyEvent.VK_SHIFT, KeyEvent.VK_MINUS); break;
-		        
+
 		        case '+': doType(KeyEvent.VK_PLUS); break;
 		        case '\t': doType(KeyEvent.VK_TAB); break;
 		        case '\n': doType(KeyEvent.VK_ENTER); break;
@@ -518,7 +425,7 @@ public abstract class AbsPage extends AbsSeleniumObject {
 
 		        // Swedish
 		        case '\u00c5': doTypeAltCode("143"); break;
-		        
+
 		        // Spanish ... http://www.asciitable.com/
 		        case '\u00e1': doTypeAltCode("160"); break;
 		        case '\u00e9': doTypeAltCode("130"); break;
@@ -527,9 +434,9 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		        case '\u00fa': doTypeAltCode("163"); break;
 		        case '\u00d1': doTypeAltCode("165"); break;
 		        case '\u00f1': doTypeAltCode("164"); break;
-		        
+
 		        default:
-		                throw new IllegalArgumentException("Cannot type character " + character);
+		        	throw new IllegalArgumentException("Cannot type character " + character);
 		        }
 		    }
 
@@ -547,14 +454,10 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		        robot.keyRelease(keyCodes[offset]);
 		    }
 
-		    /**
-		     * Type Alt+code, ALT+160
-		     * @param code
-		     */
 		    private void doTypeAltCode(String code) {
-		    	
+
 		    	robot.keyPress(KeyEvent.VK_ALT);
-		    	
+
 		    	for (int i = 0; i < code.length(); i ++) {
 			        switch (code.charAt(i)) {
 			        case '1': doType(KeyEvent.VK_NUMPAD1); break;
@@ -569,12 +472,9 @@ public abstract class AbsPage extends AbsSeleniumObject {
 			        case '0': doType(KeyEvent.VK_NUMPAD0); break;
 			        }
 		    	}
-		    	
+
 		    	robot.keyRelease(KeyEvent.VK_ALT);
 		    }
 		}
-
-
 	}
-
 }

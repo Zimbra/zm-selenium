@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.tests.calendar.appointments.dayview.organizer.singleday.create;
@@ -32,7 +32,7 @@ public class CreateMeetingWithDL extends CalendarWorkWeekTest {
 	    super.startingAccountPreferences = null;
 	}
 
-	@Test(description = "Create meeting invite using DL",
+	@Test( description = "Create meeting invite using DL",
 			groups = { "smoke" })
 	
 	public void CreateMeetingWithDL_01() throws HarnessException {
@@ -41,7 +41,7 @@ public class CreateMeetingWithDL extends CalendarWorkWeekTest {
 		AppointmentItem appt = new AppointmentItem();
 	
 		String apptSubject, apptContent;
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
 		
 		// Create a DL
 		ZimbraAccount account1 = (new ZimbraAccount()).provision().authenticate();
@@ -51,7 +51,7 @@ public class CreateMeetingWithDL extends CalendarWorkWeekTest {
 		DL.addMember(account2);
 		
 		// Create appointment data
-		apptContent = ZimbraSeleniumProperties.getUniqueString();
+		apptContent = ConfigProperties.getUniqueString();
 		appt.setSubject(apptSubject);
 		appt.setContent(apptContent);
 	

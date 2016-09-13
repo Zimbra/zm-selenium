@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.mountpoints.viewer.actions;
@@ -35,17 +35,17 @@ public class Reply extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "82558")
-	@Test(description = "Grantee replies to appointment from grantor's calendar",
+	@Test( description = "Grantee replies to appointment from grantor's calendar",
 			groups = { "functional" })
 	
 	public void Reply_01() throws HarnessException {
 		
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptContent = ZimbraSeleniumProperties.getUniqueString();
-		String replyContent = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptContent = ConfigProperties.getUniqueString();
+		String replyContent = ConfigProperties.getUniqueString();
 		
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 		
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
@@ -98,7 +98,7 @@ public class Reply extends CalendarWorkWeekTest {
 		
 		// Mark ON to mounted calendar folder and select the appointment
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
-		app.zTreeCalendar.zMarkOnOffMountedFolder(mountpointname);
+		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountpointname);
 		
 		// Reply to appointment
         FormMailNew mailComposeForm = (FormMailNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_REPLY_MENU, apptSubject);

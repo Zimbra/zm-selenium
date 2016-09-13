@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.document;
@@ -32,7 +32,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DocumentBriefcaseEdit;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DocumentBriefcaseNew;
@@ -43,18 +43,17 @@ public class EditDocument extends FeatureBriefcaseTest {
 
 	public EditDocument() {
 		logger.info("New " + EditDocument.class.getCanonicalName());
-
 		super.startingPage = app.zPageBriefcase;
-
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");			
 	}
 
-	@Test(description = "Create document through SOAP - edit name & verify through GUI", groups = { "smoke" })
+	@Test( description = "Create document through SOAP - edit name & verify through GUI", groups = { "smoke" })
+	
 	public void EditDocument_01() throws HarnessException {
+		
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create document item
 		DocumentItem docItem1 = new DocumentItem();
@@ -79,16 +78,14 @@ public class EditDocument extends FeatureBriefcaseTest {
 
 		// refresh briefcase page
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-
-		SleepUtil.sleepVerySmall();
+		SleepUtil.sleepSmall();
 
 		// Click on created document
 		
 		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, docItem1);
 
 		// Click on Edit document icon in toolbar
-		DocumentBriefcaseEdit documentBriefcaseEdit = (DocumentBriefcaseEdit) app.zPageBriefcase
-				.zToolbarPressButton(Button.B_EDIT_FILE, docItem1);
+		DocumentBriefcaseEdit documentBriefcaseEdit = (DocumentBriefcaseEdit) app.zPageBriefcase.zToolbarPressButton(Button.B_EDIT_FILE, docItem1);
 
 		app.zPageBriefcase.isEditDocLoaded(docItem1);
 
@@ -112,30 +109,17 @@ public class EditDocument extends FeatureBriefcaseTest {
 		// refresh briefcase page
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
-		// Verify document was saved with new data
-		// String name = app.zPageBriefcase.getText(docName2);
-		// ZAssert.assertStringContains(name, docName2,
-
 		// "Verify document name through GUI");
-		ZAssert.assertTrue(app.zPageBriefcase.waitForPresentInListView(docItem2
-				.getName()), "Verify document name through GUI");
+		ZAssert.assertTrue(app.zPageBriefcase.waitForPresentInListView(docItem2.getName()), "Verify document name through GUI");
 
 		// delete file upon test completion
 		app.zPageBriefcase.deleteFileByName(docItem2.getName());
-
-		/*
-		 * //name =ClientSessionFactory.session().selenium().getText(
-		 * "css=div[id='zl__BDLV__rows'][class='DwtListView-Rows'] td[width*='auto'] div[id^=zlif__BDLV__]"
-		 * );//ClientSessionFactory.session().selenium().isElementPresent(
-		 * "css=div[id='zl__BDLV__rows'][class='DwtListView-Rows'] td[width*='auto']>div:contains[id*='zlif__BDLV__']"
-		 * );//ClientSessionFactory.session().selenium().isElementPresent(
-		 * "css=div[id='zl__BDLV__rows'][class='DwtListView-Rows'] div:contains('name')"
-		 * );
-		 */
 	}
 
+	
 	@Bugs(ids = "97124")
-	@Test(description = "Create document through SOAP - edit text & name & verify through GUI", groups = { "smoke" })
+	@Test( description = "Create document through SOAP - edit text & name & verify through GUI", groups = { "smoke" })
+	
 	public void EditDocument_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -209,7 +193,7 @@ public class EditDocument extends FeatureBriefcaseTest {
 
 		// Click on open in a separate window icon in toolbar
 		DocumentBriefcaseOpen documentBriefcaseOpen;
-		if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("7.1."))
+		if (ConfigProperties.zimbraGetVersionString().contains("7.1."))
 			documentBriefcaseOpen = (DocumentBriefcaseOpen) app.zPageBriefcase
 					.zToolbarPressButton(Button.B_OPEN_IN_SEPARATE_WINDOW,
 							docItem2);
@@ -246,8 +230,10 @@ public class EditDocument extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(docItem2.getName());
 	}
 
+	
 	@Bugs(ids = "97124")
-	@Test(description = "Create document & edit text through SOAP & verify through GUI", groups = { "smoke" })
+	@Test( description = "Create document & edit text through SOAP & verify through GUI", groups = { "smoke" })
+	
 	public void EditDocument_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -293,7 +279,7 @@ public class EditDocument extends FeatureBriefcaseTest {
 				"Verify the search response returns the document version");
 
 		docItem.setDocText("editText"
-				+ ZimbraSeleniumProperties.getUniqueString());
+				+ ConfigProperties.getUniqueString());
 
 		// Edit document through SOAP
 		account
@@ -322,7 +308,7 @@ public class EditDocument extends FeatureBriefcaseTest {
 
 		// Click on open in a separate window icon in toolbar
 		DocumentBriefcaseOpen documentBriefcaseOpen;
-		if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("7.1."))
+		if (ConfigProperties.zimbraGetVersionString().contains("7.1."))
 			documentBriefcaseOpen = (DocumentBriefcaseOpen) app.zPageBriefcase
 					.zToolbarPressButton(Button.B_OPEN_IN_SEPARATE_WINDOW,
 							docItem);
@@ -354,8 +340,10 @@ public class EditDocument extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(docItem.getName());
 	}
 
+	
 	@Bugs(ids = "97124")
-	@Test(description = "Create document through SOAP - edit text & verify through GUI", groups = { "smoke" })
+	@Test( description = "Create document through SOAP - edit text & verify through GUI", groups = { "smoke" })
+	
 	public void EditDocument_04() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -401,8 +389,8 @@ public class EditDocument extends FeatureBriefcaseTest {
 		try {
 			app.zPageBriefcase.zSelectWindow(docItem.getName());
 			
-			editText = "editText" + ZimbraSeleniumProperties.getUniqueString();
-			newName = "newname" + ZimbraSeleniumProperties.getUniqueString();
+			editText = "editText" + ConfigProperties.getUniqueString();
+			newName = "newname" + ConfigProperties.getUniqueString();
 			
 			// Fill out the document with the new data
 			documentBriefcaseEdit.zFillField(DocumentBriefcaseNew.Field.Name,
@@ -431,7 +419,7 @@ public class EditDocument extends FeatureBriefcaseTest {
 
 		// Click on open in a separate window icon in toolbar
 		DocumentBriefcaseOpen documentBriefcaseOpen;
-		if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("7.1."))
+		if (ConfigProperties.zimbraGetVersionString().contains("7.1."))
 			documentBriefcaseOpen = (DocumentBriefcaseOpen) app.zPageBriefcase
 					.zToolbarPressButton(Button.B_OPEN_IN_SEPARATE_WINDOW,
 							docItem);
@@ -465,7 +453,9 @@ public class EditDocument extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(docItem.getName());
 	}
 
-	@Test(description = "Create document through SOAP - Edit Document using Right Click Context Menu & verify through GUI", groups = { "functional" })
+	
+	@Test( description = "Create document through SOAP - Edit Document using Right Click Context Menu & verify through GUI", groups = { "functional" })
+	
 	public void EditDocument_05() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -513,7 +503,7 @@ public class EditDocument extends FeatureBriefcaseTest {
 
 			// Fill out the document with the new data
 			editDocName = "editDocName"
-					+ ZimbraSeleniumProperties.getUniqueString();
+					+ ConfigProperties.getUniqueString();
 
 			//documentBriefcaseEdit.typeDocumentName(editDocName);
 			documentBriefcaseEdit.zFillField(DocumentBriefcaseNew.Field.Name, editDocName);

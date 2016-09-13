@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attributes.zimbraPrefShowSelectionCheckboxTrue;
@@ -55,14 +55,14 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 	
 	
 
-	@Test(	description = "Move all mails by selecting 'select all', then clicking toolbar 'Move' button",
+	@Test( description = "Move all mails by selecting 'select all', then clicking toolbar 'Move' button",
 			groups = { "functional" })
 	public void MoveMessage_02() throws HarnessException {
 
 		
 		//-- DATA
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		
 		// Create 5 emails in the inbox
 		for (int i = 0; i < 5; i++) {
@@ -88,7 +88,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		// Create a subfolder to move the message into
 		// i.e. Inbox/subfolder
 		//
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 						"<folder name='" + foldername +"' l='"+ inbox.getId() +"'/>" +
@@ -126,14 +126,14 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(	description = "Move all mails by selecting 'shift-select all', then clicking toolbar 'Move' button",
+	@Test( description = "Move all mails by selecting 'shift-select all', then clicking toolbar 'Move' button",
 			groups = { "functional" })
 	public void MoveMessage_01() throws HarnessException {
 
 		
 		//-- DATA
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		
 		// Create 15 emails in the inbox
 		for (int i = 0; i < 25; i++) {
@@ -159,7 +159,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		// Create a subfolder to move the message into
 		// i.e. Inbox/subfolder
 		//
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 						"<folder name='" + foldername +"' l='"+ inbox.getId() +"'/>" +

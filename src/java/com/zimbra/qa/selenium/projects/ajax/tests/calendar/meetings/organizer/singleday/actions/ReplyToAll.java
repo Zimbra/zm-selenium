@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.actions;
@@ -27,7 +27,7 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
@@ -40,7 +40,7 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 	    super.startingAccountPreferences = null;
 	}
 	
-	@Test(description = "Check when attendees get the reply when organizer ReplyAll to a meeting",
+	@Test( description = "Check when attendees get the reply when organizer ReplyAll to a meeting",
 			groups = { "functional" })
 	public void ReplyToAll_01() throws HarnessException {
 		
@@ -50,8 +50,8 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject = "appt" + ZimbraSeleniumProperties.getUniqueString();
-		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = "appt" + ConfigProperties.getUniqueString();
+		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -97,7 +97,7 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 	
 	
 	@Bugs(ids = "57418")
-	@Test(description = "Verify if optional attendees appear as CC contact in the mail when organizer replies all to meeting",
+	@Test( description = "Verify if optional attendees appear as CC contact in the mail when organizer replies all to meeting",
 			groups = { "functional" })
 	public void ReplyToAll_02() throws HarnessException {
 		
@@ -107,7 +107,7 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 		// Creating object for meeting data
 		String tz, apptSubject, apptAttendee1,apptAttendee2;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject = "appt" + ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = "appt" + ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		apptAttendee2 = ZimbraAccount.AccountB().EmailAddress;
 		
@@ -127,7 +127,7 @@ public class ReplyToAll extends CalendarWorkWeekTest {
                      	"</inv>" +
                      	"<e a='"+ ZimbraAccount.AccountA().EmailAddress +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
-                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     		"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +

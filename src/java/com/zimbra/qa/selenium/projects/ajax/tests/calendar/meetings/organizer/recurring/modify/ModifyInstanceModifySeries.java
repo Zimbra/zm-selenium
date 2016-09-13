@@ -1,3 +1,21 @@
+/*
+ * ***** BEGIN LICENSE BLOCK *****
+ *
+ * Zimbra Collaboration Suite Server
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ *
+ * ***** END LICENSE BLOCK *****
+ */
 
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.recurring.modify;
 
@@ -24,7 +42,7 @@ public class ModifyInstanceModifySeries extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "66800")	
-	@Test(description = "Delete series from third instance and onwards", 
+	@Test( description = "Delete series from third instance and onwards", 
 			groups = { "functional" })
 	public void ModifyInstanceModifySeries_01() throws HarnessException {
 
@@ -35,13 +53,13 @@ public class ModifyInstanceModifySeries extends CalendarWorkWeekTest {
 		AppointmentItem appt = new AppointmentItem();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptBody = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptBody = ConfigProperties.getUniqueString();
 		
 		ZDate modifiedStartUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 		ZDate modifiedEndUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
-		String modifiedSecondInstanceBody = ZimbraSeleniumProperties.getUniqueString();
-		String modifiedFourthInstanceBody = ZimbraSeleniumProperties.getUniqueString();
+		String modifiedSecondInstanceBody = ConfigProperties.getUniqueString();
+		String modifiedFourthInstanceBody = ConfigProperties.getUniqueString();
 		
 		
 		// --------------- Creating invitation (organizer) ----------------------------
@@ -128,7 +146,7 @@ public class ModifyInstanceModifySeries extends CalendarWorkWeekTest {
 	}
 
 	@Bugs(ids = "66800")	
-	@Test(description = "Delete series from third instance and onwards", 
+	@Test( description = "Delete series from third instance and onwards", 
 			groups = { "functional" })
 	public void ModifyInstanceModifySeries_02() throws HarnessException {
 
@@ -139,13 +157,13 @@ public class ModifyInstanceModifySeries extends CalendarWorkWeekTest {
 		AppointmentItem appt = new AppointmentItem();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptBody = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptBody = ConfigProperties.getUniqueString();
 		
 		ZDate modifiedStartUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 		ZDate modifiedEndUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
-		String modifiedSecondInstanceBody = ZimbraSeleniumProperties.getUniqueString();
-		String modifiedSixthInstanceBody = ZimbraSeleniumProperties.getUniqueString();
+		String modifiedSecondInstanceBody = ConfigProperties.getUniqueString();
+		String modifiedSixthInstanceBody = ConfigProperties.getUniqueString();
 		
 		
 		// --------------- Creating invitation (organizer) ----------------------------

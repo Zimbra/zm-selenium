@@ -3,9 +3,9 @@
 * NEW ...ajax.tests.calendar.meetings.organizer.singleday.resetmeetingstatus.ResetStatusAfterUpdatingEquipment.ResetStatusAfterUpdatingEquipment_01 -- http://bugzilla.zimbra.com/enter_bug.cgi
 
 * NEW ...ajax.tests.calendar.appointments.quickadd.CreateAllDayAppointment.CreateAllDayAppointment_01 -- http://bugzilla.zimbra.com/enter_bug.cgi
-* 81945 VERIFIED ...ajax.tests.calendar.meetings.organizer.allday.minicalendar.CreateAllDayMeeting.CreateAllDayMeeting_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=81945 ( jsojitra@zimbra.com )
-* 81945 VERIFIED ...ajax.tests.calendar.meetings.organizer.singleday.minicalendar.CreateMeeting.CreateMeeting_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=81945 ( jsojitra@zimbra.com )
-* 88287 VERIFIED ...ajax.tests.calendar.meetings.organizer.suggestions.SuggestATime.SuggestATime_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=88287 ( jsojitra@zimbra.com )
+* 81945 VERIFIED ...ajax.tests.calendar.meetings.organizer.allday.minicalendar.CreateAllDayMeeting.CreateAllDayMeeting_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=81945 ( jsojitra@testdomain.com )
+* 81945 VERIFIED ...ajax.tests.calendar.meetings.organizer.singleday.minicalendar.CreateMeeting.CreateMeeting_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=81945 ( jsojitra@testdomain.com )
+* 88287 VERIFIED ...ajax.tests.calendar.meetings.organizer.suggestions.SuggestATime.SuggestATime_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=88287 ( jsojitra@testdomain.com )
 	
 Fails due to bug 99622
 * NEW ...ajax.tests.calendar.appointments.views.day.singleday.CreateAppointment.CreateAppointment_02 -- http://bugzilla.zimbra.com/enter_bug.cgi
@@ -22,7 +22,7 @@ Scrip error
 * NEW ...ajax.tests.calendar.resources.AddLocation.AddLocation_01 -- http://bugzilla.zimbra.com/enter_bug.cgi
 
 Fails due to bug 99264 
-* 78884 VERIFIED ...ajax.tests.calendar.bugs.Bug68726.Bug68726_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=78884 ( jsojitra@zimbra.com )
+* 78884 VERIFIED ...ajax.tests.calendar.bugs.Bug68726.Bug68726_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=78884 ( jsojitra@testdomain.com )
 
 
 * NEW ...ajax.tests.calendar.bugs.Bug60134.Bug60134_01 -- http://bugzilla.zimbra.com/enter_bug.cgi
@@ -31,11 +31,11 @@ Fails due to bug 99264
 * NEW ...ajax.tests.calendar.resources.AddEquipment.AddEquipment_01 -- http://bugzilla.zimbra.com/enter_bug.cgi
 * NEW ...ajax.tests.calendar.resources.AddEquipment.AddEquipment_02 -- http://bugzilla.zimbra.com/enter_bug.cgi
 * NEW ...ajax.tests.calendar.resources.AddLocation.AddLocation_01 -- http://bugzilla.zimbra.com/enter_bug.cgi
-* 57039 VERIFIED ...ajax.tests.calendar.attributes.ZimbraCalResLocationDisplayName.ZimbraCalResLocationDisplayName_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=57039 ( rupali@zimbra.com )
-* 78884 VERIFIED ...ajax.tests.calendar.bugs.Bug65926.Bug65926_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=78884 ( jsojitra@zimbra.com )
-* 78884 VERIFIED ...ajax.tests.calendar.bugs.Bug65926.Bug65926_02 -- http://bugzilla.zimbra.com/show_bug.cgi?id=78884 ( jsojitra@zimbra.com )
-* 64852 VERIFIED ...ajax.tests.calendar.meetings.organizer.singleday.create.CreateMeetingWithEquipmentConflict.CreateMeetingWithEquipmentConflict_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=64852 ( jsojitra@zimbra.com )
-* 36130 VERIFIED ...ajax.tests.calendar.meetings.organizer.singleday.create.CreateMeetingWithLocationConflict.CreateMeetingWithLocationConflict_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=36130 ( jsojitra@zimbra.com )
-* 81945 VERIFIED ...ajax.tests.calendar.meetings.organizer.singleday.quickadd.SuggestALocation.SuggestALocation_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=81945 ( jsojitra@zimbra.com )
-* 74365 VERIFIED ...ajax.tests.calendar.resources.ResourceConflictWhenOOO.LocationConflictWhenOOO_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=74365 ( pkhairnar@zimbra.com )
+* 57039 VERIFIED ...ajax.tests.calendar.attributes.ZimbraCalResLocationDisplayName.ZimbraCalResLocationDisplayName_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=57039 ( rupali@testdomain.com )
+* 78884 VERIFIED ...ajax.tests.calendar.bugs.Bug65926.Bug65926_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=78884 ( jsojitra@testdomain.com )
+* 78884 VERIFIED ...ajax.tests.calendar.bugs.Bug65926.Bug65926_02 -- http://bugzilla.zimbra.com/show_bug.cgi?id=78884 ( jsojitra@testdomain.com )
+* 64852 VERIFIED ...ajax.tests.calendar.meetings.organizer.singleday.create.CreateMeetingWithEquipmentConflict.CreateMeetingWithEquipmentConflict_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=64852 ( jsojitra@testdomain.com )
+* 36130 VERIFIED ...ajax.tests.calendar.meetings.organizer.singleday.create.CreateMeetingWithLocationConflict.CreateMeetingWithLocationConflict_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=36130 ( jsojitra@testdomain.com )
+* 81945 VERIFIED ...ajax.tests.calendar.meetings.organizer.singleday.quickadd.SuggestALocation.SuggestALocation_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=81945 ( jsojitra@testdomain.com )
+* 74365 VERIFIED ...ajax.tests.calendar.resources.ResourceConflictWhenOOO.LocationConflictWhenOOO_01 -- http://bugzilla.zimbra.com/show_bug.cgi?id=74365 ( pkhairnar@testdomain.com )
 

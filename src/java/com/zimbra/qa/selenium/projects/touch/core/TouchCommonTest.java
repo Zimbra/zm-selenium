@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.core;
@@ -20,83 +20,24 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.*;
-
 import org.apache.log4j.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.testng.*;
 import org.testng.annotations.*;
 import org.xml.sax.SAXException;
-
-import com.thoughtworks.selenium.*;
-import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.ui.AppTouchClient;
 
-/**
- * The <code>AjaxCommonTest</code> class is the base test case class
- * for normal Ajax client test case classes.
- * <p>
- * The AjaxCommonTest provides two basic functionalities:
- * <ol>
- * <li>{@link AbsTab} {@link #startingPage} - navigate to this
- * page before each test case method</li>
- * <li>{@link ZimbraAccount} {@link #startingAccountPreferences} - ensure this
- * account is authenticated before each test case method</li>
- * </ol>
- * <p>
- * It is important to note that no re-authentication (i.e. logout
- * followed by login) will occur if {@link #startingAccountPreferences} is 
- * already the currently authenticated account.
- * <p>
- * The same rule applies to the {@link #startingPage}, as well.  If
- * the "Contact App" is the specified starting page, and the contact
- * app is already opened, albiet in a "new contact" view, then the
- * "new contact" view will not be closed.
- * <p>
- * Typical usage:<p>
- * <pre>
- * {@code
- * public class TestCaseClass extends TouchCommonTest {
- * 
- *     public TestCaseClass() {
- *     
- *         // All tests start at the Mail page
- *         super.startingPage = app.zPageMail;
- *         
- *         // Create a new account to log into
- *         ZimbraAccount account = new ZimbraAccount();
- *         super.startingAccount = account;
- *         
- *         // ...
- *         
- *     }
- *     
- *     // ...
- * 
- * }
- * }
- * </pre>
- * 
- * @author Matt Rhoades
- *
- */
 public class TouchCommonTest {
-	
+
 	protected static Logger logger = LogManager.getLogger(TouchCommonTest.class);
-
-
-	private WebDriverBackedSelenium _webDriverBackedSelenium = null;
-	private WebDriver _webDriver = null;
-	
-	/**
-	 * The AdminConsole application object
-	 */
 	protected AppTouchClient app = null;
-
-
+	
+	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
+	WebElement we = null;
 
 	/**
 	 * BeforeMethod variables
@@ -110,9 +51,6 @@ public class TouchCommonTest {
 	protected Map<String, String> startingUserPreferences = null;
 	protected Map<String, String> startingUserZimletPreferences = null;
 
-	
-	
-	
 	protected TouchCommonTest() {
 		logger.info("New "+ TouchCommonTest.class.getCanonicalName());
 
@@ -123,98 +61,35 @@ public class TouchCommonTest {
 		startingUserZimletPreferences = new HashMap<String, String>();
 	}
 
-	/**
-	 * Global BeforeSuite
-	 * <p>
-	 * <ol>
-	 * <li>Start the DefaultSelenium client</li>
-	 * </ol>
-	 * <p>
-	 * @throws HarnessException
-	 * @throws InterruptedException 
-	 * @throws IOException 
-	 * @throws SAXException  
-	 */
-	@SuppressWarnings("deprecation")
 	@BeforeSuite( groups = { "always" } )
 	public void commonTestBeforeSuite()
 	throws HarnessException, IOException, InterruptedException, SAXException {
 		logger.info("commonTestBeforeSuite: start");
-
-
-
-      // Make sure there is a new default account
 		ZimbraAccount.ResetAccountZTC();
-
 
 		try
 		{
-			
-			ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.TOUCH);
-			DefaultSelenium _selenium = null;
-			
-			if (ZimbraSeleniumProperties.isWebDriver()) {
-				_webDriver = ClientSessionFactory.session().webDriver();
-				
-				/*
-				Set<String> handles = _webDriver.getWindowHandles(); 
-				String script = "if (window.screen){var win = window.open(window.location); win.moveTo(0,0);win.resizeTo(window.screen.availWidth, window.screen.availHeight);};"; 
-				((JavascriptExecutor) _webDriver).executeScript(script); 
-				Set<String> newHandles = _webDriver.getWindowHandles(); 
-				newHandles.removeAll(handles); 
-				_webDriver.switchTo().window(newHandles.iterator().next());
-							 							 
-				_webDriver.manage().window().setSize(new Dimension(800,600));
-				 
-				Selenium selenium = new WebDriverBackedSelenium(_webDriver, _webDriver.getCurrentUrl());
-				selenium.windowMaximize();
-						
-				int width = Integer.parseInt(selenium.getEval("screen.width;"));
-				int height = Integer.parseInt(selenium.getEval("screen.height;"));
-				_webDriver.manage().window().setPosition(new Point(0, 0));
-				_webDriver.manage().window().setSize(new Dimension(width,height));
-				*/
-				
-				Capabilities cp =  ((RemoteWebDriver)_webDriver).getCapabilities();
-				 if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){				
-					_webDriver.manage().window().setPosition(new Point(0, 0));
-					_webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
-				}								
-			} else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()) {
-				_webDriverBackedSelenium = ClientSessionFactory.session()
-						.webDriverBackedSelenium();
-				_webDriverBackedSelenium.windowMaximize();
-				_webDriverBackedSelenium.windowFocus();
-				_webDriverBackedSelenium.setTimeout("50000");// Use 50 second timeout for
-			} else {
-				_selenium = ClientSessionFactory.session().selenium();
-				_selenium.start();
-				_selenium.windowMaximize();
-				_selenium.windowFocus();
-				_selenium.allowNativeXpath("true");
-				_selenium.setTimeout("50000");// Use 50 second timeout for opening the browser
+			ConfigProperties.setAppType(ConfigProperties.AppType.TOUCH);
+
+			webDriver = ClientSessionFactory.session().webDriver();
+			Capabilities cp =  ((RemoteWebDriver)webDriver).getCapabilities();
+			 if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){
+				webDriver.manage().window().setPosition(new Point(0, 0));
+				webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
 			}
+
 			// Dynamic wait for App to be ready
 			int maxRetry = 10;
 			int retry = 0;
 			boolean appIsReady = false;
-			while (retry < maxRetry && !appIsReady) {       
-				try
-				{
+			while (retry < maxRetry && !appIsReady) {
+				try {
 					logger.info("Retry #" + retry);
 					retry ++;
-					
-					if (ZimbraSeleniumProperties.isWebDriver()) {
-						//_webDriver.get(ZimbraSeleniumProperties.getBaseURL());
-						_webDriver.navigate().to(ZimbraSeleniumProperties.getBaseURL());
-					} 
-					else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()) 
-						_webDriverBackedSelenium.open(ZimbraSeleniumProperties.getBaseURL());
-					else
-						_selenium.open(ZimbraSeleniumProperties.getBaseURL());
-
+					webDriver.navigate().to(ConfigProperties.getBaseURL());
 					appIsReady = true;
-				} catch (SeleniumException e) {
+					
+				} catch (WebDriverException e) {
 					if (retry == maxRetry) {
 						logger.error("Unable to open admin app." +
 								"  Is a valid cert installed?", e);
@@ -228,13 +103,13 @@ public class TouchCommonTest {
 			}
 			logger.info("App is ready!");
 
-		} catch (SeleniumException e) {
+		} catch (WebDriverException e) {
 			throw new HarnessException("Unable to open app", e);
 		} catch (Exception e) {
 			logger.warn(e);
 		}
 
-		logger.info("commonTestBeforeSuite: finish");		
+		logger.info("commonTestBeforeSuite: finish");
 	}
 
 	/**
@@ -295,38 +170,38 @@ public class TouchCommonTest {
 
 			// If the current test accounts preferences match, then the account can be used
 			if ( !ZimbraAccount.AccountZTC().compareAccountPreferences(startingAccountPreferences) ) {
-				
+
 				logger.debug("commonTestBeforeMethod: startingAccountPreferences do not match active account");
 
 				// Reset the account
 				ZimbraAccount.ResetAccountZTC();
-				
+
 				// Create a new account
 				// Set the preferences accordingly
 				ZimbraAccount.AccountZTC().modifyAccountPreferences(startingAccountPreferences);
 				ZimbraAccount.AccountZTC().modifyUserZimletPreferences(startingUserZimletPreferences);
 
 			}
-			
+
 		}
-		
+
 		// If AccountZTC is not currently logged in, then login now
 		if ( !ZimbraAccount.AccountZTC().equals(app.zGetActiveAccount()) ) {
 			logger.debug("commonTestBeforeMethod: AccountZTC is not currently logged in");
 
 			if ( app.zPageMain.zIsActive() )
-				try{
+				try {
 					app.zPageMain.zLogout();
 
-				}catch(Exception ex){
+				} catch(Exception ex) {
 					if ( !app.zPageLogin.zIsActive()) {
 						logger.error("Login page is not active ", ex);
 
 						/* Commenting below code because touch client always asks for navigate away */
-						//app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());            
-						//app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
+						//app.zPageLogin.sOpen(ConfigProperties.getLogoutURL());
+						//app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
 					}
-				}							
+				}
 		}
 
 		// If a startingPage is defined, then make sure we are on that page
@@ -349,38 +224,13 @@ public class TouchCommonTest {
 
 	}
 
-	/**
-	 * Global AfterSuite
-	 * <p>
-	 * <ol>
-	 * <li>Stop the DefaultSelenium client</li>
-	 * </ol>
-	 * 
-	 * @throws HarnessException
-	 */
-	@SuppressWarnings("deprecation")
 	@AfterSuite( groups = { "always" } )
-	public void commonTestAfterSuite() throws HarnessException {	
+	public void commonTestAfterSuite() throws HarnessException {
 		logger.info("commonTestAfterSuite: start");
-
-		if (ZimbraSeleniumProperties.isWebDriver()) {
-			_webDriver.quit();
-		} else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()) {
-			_webDriverBackedSelenium.stop();
-		} else {
-			ClientSessionFactory.session().selenium().stop();
-		}
-		
-
+		webDriver.quit();
 		logger.info("commonTestAfterSuite: finish");
-
 	}
 
-	/**
-	 * Global AfterClass
-	 * 
-	 * @throws HarnessException
-	 */
 	@AfterClass( groups = { "always" } )
 	public void commonTestAfterClass() throws HarnessException {
 		logger.info("commonTestAfterClass: start");
@@ -401,7 +251,7 @@ public class TouchCommonTest {
 
 	/**
 	 * Global AfterMethod
-	 * 
+	 *
 	 * @throws HarnessException
 	 */
 	@AfterMethod( groups = { "always" } )
@@ -418,10 +268,10 @@ public class TouchCommonTest {
 		if ( ZimbraURI.needsReload() ) {
             logger.error("The URL does not match the base URL.  Reload app.");
             // app.zPageLogin.sDeleteAllVisibleCookies();
-            
+
             /* Commenting below code because touch client always asks for navigate away */
-            //app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());            
-            //app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
+            //app.zPageLogin.sOpen(ConfigProperties.getLogoutURL());
+            //app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
 		}
 
 		// If neither the main page or login page are active, then
@@ -432,12 +282,12 @@ public class TouchCommonTest {
 		if ( (!app.zPageMain.zIsActive()) && (!app.zPageLogin.zIsActive()) ) {
             logger.error("Neither login page nor main page were active.  Reload app.", new Exception());
             // app.zPageLogin.sDeleteAllVisibleCookies();
-            
+
             /* Commenting below code because touch client always asks for navigate away */
-            //app.zPageLogin.sOpen(ZimbraSeleniumProperties.getLogoutURL());            
-            //app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
+            //app.zPageLogin.sOpen(ConfigProperties.getLogoutURL());
+            //app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
         }
-		
+
 		logger.info("commonTestAfterMethod: finish");
 	}
 
@@ -453,11 +303,11 @@ public class TouchCommonTest {
        ZimbraAccount.ResetAccountZTC();
 
     }
-	
+
 	/**
 	 * A TestNG data provider for all supported character sets
 	 * @return
-	 * @throws HarnessException 
+	 * @throws HarnessException
 	 */
 	@DataProvider(name = "DataProviderSupportedCharsets")
 	public Object[][] DataProviderSupportedCharsets() throws HarnessException {
@@ -469,19 +319,18 @@ public class TouchCommonTest {
 		StringBuilder settings = new StringBuilder();
 		for (Map.Entry<String, String> entry : startingAccountPreferences.entrySet()) {
 			settings.append(String.format("<a n='%s'>%s</a>", entry.getKey(), entry.getValue()));
-		}		
+		}
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
 				+		"<id>"+ string +"</id>"
 				+		settings.toString()
 				+	"</ModifyAccountRequest>");
 	}
-	
-	@SuppressWarnings("deprecation")
+
 	public boolean zVerifyToastMessage(String toastMessage) throws HarnessException {
 		SleepUtil.sleepMedium();
 		Boolean elementPresent = false;
-		if (ClientSessionFactory.session().selenium().isElementPresent("css=div[class='zcs-toast-message-text']:contains('" + toastMessage + "')") == true) {
+		if (webDriver.findElement(By.cssSelector("css=div[class='zcs-toast-message-text']:contains('" + toastMessage + "')")) != null) {
 			elementPresent = true;
 		} else {
 			elementPresent = false;

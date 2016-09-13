@@ -1,7 +1,7 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
@@ -11,18 +11,15 @@
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.tasks;
 
-import com.zimbra.qa.selenium.framework.core.SeleniumService;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
 
@@ -345,75 +342,75 @@ public class FormTaskNew extends AbsForm {
 
 		String locator = null;
 
-
 		if (field == Field.Subject) {
-
-		   if (ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP) {
-		      locator = Locators.zTasksubjFieldDesktop;
-		   } else {
-		      locator = Locators.zTasksubjField;
-		   }
-
+		     locator = Locators.zTasksubjField;
+		     
 		} else if (field == Field.Body) {
 
 			locator = "css=div[class='ZmTaskEditView'] div[id$='_notes'] textarea[id$='_body']";
 			this.sFocus(locator);
 			this.zClick(locator);
-			sType(locator, value);
-
-			if (!(sGetValue(locator).equalsIgnoreCase(value))) {
-				this.sFocus(locator);
-				this.zClick(locator);
-				sType(locator, value);
-			}
+			this.zKeyboard.zTypeCharacters(value);
 			return;
 
 		} else if (field == Field.HtmlBody) {
-			
-			SleepUtil.sleepLong();
-			
-			String browser = SeleniumService.getInstance().getSeleniumBrowser();
-			try {
+						
+			int frames = this.sGetCssCount("css=iframe");
+			logger.info("Body: # of frames: " + frames);
+				
+			if (this.zIsVisiblePerPosition("css=textarea[class='ZmHtmlEditorTextArea']", 10, 10)) {
 
-				if (browser.equalsIgnoreCase("iexplore")) {
+				locator = "css=textarea[class='ZmHtmlEditorTextArea']";
 
-					locator = Locators.zFrame;
+				this.sFocus(locator);
+				this.zClickAt(locator, "10,10");
+				this.zWaitForBusyOverlay();
+				this.sType(locator, value);
 
-					this.sFocus(locator);
-					this.zClickAt(locator, "");
-					zTypeFormattedText(locator, value);
-					this.zWaitForBusyOverlay();
-
-					return;
-
-				} else {
-
-					//sSelectFrame("css=div[id^='zv__TKE-'] iframe[id$='_content_ifr']");
-					sSelectFrame("css=div[class='ZmTaskEditView'] div[id$='_notes'] iframe[id$='_body_ifr']");
-
-					locator = "css=body[id='tinymce']";
-					this.sFocus(locator);
-					this.zClickAt(locator, "");
-
-					// this.sType(locator, value);
-					this.zKeyboard.zTypeCharacters(value);
-
-					return;
-				}
-			} finally {
-				//sSelectWindow("Zimbra: Tasks");
-				// sSelectWindow(null);
-				this.sSelectFrame("relative=top");
+				return;
 			}
 
-		}else if (field == Field.DueDate) {
+			if (frames >= 1) {
+
+				try {
+
+					if (this.sIsElementPresent("css=iframe[id$='ZmHtmlEditor1_body_ifr']")) {
+						
+						sSelectFrame("css=div[class='ZmTaskEditView'] div[id$='_notes'] iframe[id$='_body_ifr']");
+
+						locator = "css=body[id='tinymce']";
+						this.zClickAt(locator, "10,10");
+						this.sFocus(locator);
+						this.zKeyboard.zTypeCharacters(value);
+						
+					} else {
+						throw new HarnessException("Unable to locate compose body");
+					}
+
+				} finally {
+					
+					this.sSelectFrame("relative=top");
+
+				}
+
+				// Is this requried?
+				this.zWaitForBusyOverlay();
+
+				return;
+
+			} else {
+				throw new HarnessException("Compose //iframe count was " + frames);
+			}
+
+
+		} else if (field == Field.DueDate) {
 			locator = "css=input[id$='_endDateField']";
 			this.sFocus(locator);
 			this.zClickAt(locator,"0,0");
 			sType(locator, value);
 			return;
-		}else {
-
+			
+		} else {
 			throw new HarnessException("not implemented for field " + field);
 		}
 
@@ -429,10 +426,6 @@ public class FormTaskNew extends AbsForm {
 		this.sClick(locator);
 		sType(locator, value);
 
-		if(!(sGetValue(locator).equalsIgnoreCase(value))){
-			sType(locator, value);
-		}
-
 		this.zWaitForBusyOverlay();
 
 	}
@@ -440,29 +433,7 @@ public class FormTaskNew extends AbsForm {
 
 	@Override
 	public void zFill(IItem item) throws HarnessException {
-	/*	logger.info(myPageName() + ".zFill(ZimbraItem)");
-		logger.info(item.prettyPrint());
-
-		// Make sure the item is a MailItem
-		if ( !(item instanceof TaskItem) ) {
-			throw new HarnessException("Invalid item type - must be TaskItem");
-		}
-
-		// Convert object to MailItem
-		TaskItem task = (TaskItem) item;
-
-		// Fill out the form
-		//
-
-		// Handle the subject
-		if ( task.gettaskSubject() != null ) {
-
-			zFillField(Field.Subject, task.gettaskSubject());
-
-		}*/
-
-		// TODO: more
-
+		
 	}
 
 	@Override

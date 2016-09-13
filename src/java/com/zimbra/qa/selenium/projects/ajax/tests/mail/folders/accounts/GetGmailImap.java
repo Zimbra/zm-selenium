@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 
@@ -48,7 +48,7 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test(	description = "View an external Gmail - IMAP",
+	@Test( description = "View an external Gmail - IMAP",
 			groups = { "smoke" })
 	public void GetExternalGmailIMAP_01() throws HarnessException {
 
@@ -58,7 +58,7 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 		String subject = "Your account settings in one place at My Account" ;
 
 		// Create the folder to put the data source
-		String foldername = "external" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "external" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -69,10 +69,10 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
 
 		// Create the data source
-		String datasourcename = "datasource" + ZimbraSeleniumProperties.getUniqueString();
+		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
 		String datasourceHost = "imap.gmail.com";
-		String datasourceImapPort = ZimbraSeleniumProperties.getStringProperty("server.imap.port");
-		String datasourceImapType = ZimbraSeleniumProperties.getStringProperty("server.imap.type");
+		String datasourceImapPort = ConfigProperties.getStringProperty("server.imap.port");
+		String datasourceImapType = ConfigProperties.getStringProperty("server.imap.type");
 
 		app.zGetActiveAccount().soapSend(
 			"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"

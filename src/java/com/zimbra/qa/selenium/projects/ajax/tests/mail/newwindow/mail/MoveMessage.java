@@ -3,17 +3,17 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 
@@ -53,12 +53,12 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 
 
 
-	@Test(	description = "Move a mail from New Window by using Move -> New folder",
+	@Test( description = "Move a mail from New Window by using Move -> New folder",
 			groups = { "functional" })
 	public void MoveMail_01() throws HarnessException {
 
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 
@@ -70,7 +70,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-						"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 						"</m>" +
 				"</SendMsgRequest>");
@@ -142,12 +142,12 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 
 
 
-	@Test(	description = "Move a mail from new window by selecting message, then clicking toolbar 'Move' button",
+	@Test( description = "Move a mail from new window by selecting message, then clicking toolbar 'Move' button",
 			groups = { "functional" })
 	public void MoveMail_02() throws HarnessException {
 
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 
 		// Create a subfolder to move the message into
 		// i.e. Inbox/subfolder
@@ -166,7 +166,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-						"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 						"</m>" +
 				"</SendMsgRequest>");
@@ -222,11 +222,11 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(	description = "Move a mail from new window by using 'move to trash' ",
+	@Test( description = "Move a mail from new window by using 'move to trash' ",
 			groups = { "functional" })
 	public void MoveMail_03() throws HarnessException {
 
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
 		// Send a message to the account
@@ -236,7 +236,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-						"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 						"</m>" +
 				"</SendMsgRequest>");

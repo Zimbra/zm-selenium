@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.ui;
@@ -19,26 +19,21 @@ package com.zimbra.qa.selenium.projects.touch.ui;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.Date;
-
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
-import com.thoughtworks.selenium.SeleniumException;
-import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
+import org.openqa.selenium.WebDriverException;
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.*;
-
+import com.zimbra.qa.selenium.framework.util.ConfigProperties.*;
 
 public class PageLogin extends AbsTab {
-	
-	private WebDriverBackedSelenium _webDriverBackedSelenium = null;
-	private WebDriver _webDriver = null;
+
+	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
 
 	public static class Locators {
 
@@ -53,7 +48,7 @@ public class PageLogin extends AbsTab {
 		// Displayed text
 		public static final String zDisplayedusername = "css=form[name='loginForm'] label[for='username']";
 		public static final String zDisplayedcopyright = "css=div[class='copyright']";
-		
+
 		// Toolbar links
 		public static final String zLogoutLink = "css=[id='skin_container_logoff']>a";
 
@@ -70,11 +65,11 @@ public class PageLogin extends AbsTab {
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		AppType appType = ZimbraSeleniumProperties.getAppType();
+		AppType appType = ConfigProperties.getAppType();
 		String locator = null;
 
 		switch (appType) {
-		
+
 		case TOUCH:
 			locator = Locators.zBtnLogin;
 			break;
@@ -82,7 +77,7 @@ public class PageLogin extends AbsTab {
 			throw new HarnessException("Please add a support for appType: " + appType);
 		}
 
-		// Look for the login button. 
+		// Look for the login button.
 		boolean present = sIsElementPresent(locator);
 		if ( !present ) {
 			logger.debug("isActive() present = "+ present);
@@ -104,20 +99,19 @@ public class PageLogin extends AbsTab {
 		return (this.getClass().getName());
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
 		if ( zIsActive() ) {
 			// This page is already active.
 			return;
-			
+
 		} else if ( !zIsVisiblePerPosition(Locators.zBtnLogin, 10, 10) ) {
-			
+
 			try {
 				String SeleniumBrowser;
-				SeleniumBrowser = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".browser",	ZimbraSeleniumProperties.getStringProperty("browser"));
-				
+				SeleniumBrowser = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".browser",	ConfigProperties.getStringProperty("browser"));
+
 				if (SeleniumBrowser.contains("iexplore")) {
 				    CommandLine.CmdExec("taskkill /f /t /im iexplore.exe");
 				} else if (SeleniumBrowser.contains("firefox")) {
@@ -127,63 +121,39 @@ public class PageLogin extends AbsTab {
 				} else if (SeleniumBrowser.contains("chrome")) {
 					CommandLine.CmdExec("taskkill /f /t /im chrome.exe");
 				}
-				
+
 			} catch (IOException e) {
 				throw new HarnessException("Unable to kill browsers", e);
 			} catch (InterruptedException e) {
 				throw new HarnessException("Unable to kill browsers", e);
 			}
-			
+
 			try
 			{
-				ZimbraSeleniumProperties.setAppType(ZimbraSeleniumProperties.AppType.TOUCH);
+				ConfigProperties.setAppType(ConfigProperties.AppType.TOUCH);
 
-				if(ZimbraSeleniumProperties.isWebDriver()) {
-					
-					_webDriver = ClientSessionFactory.session().webDriver();
+				webDriver = ClientSessionFactory.session().webDriver();
 
-					Capabilities cp =  ((RemoteWebDriver)_webDriver).getCapabilities();
-					if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){				
-						_webDriver.manage().window().setPosition(new Point(0, 0));
-						_webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
-						//_webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-						_webDriver.navigate().to(ZimbraSeleniumProperties.getBaseURL());
-					}
-					
-				} else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()) {
-					
-					_webDriverBackedSelenium = ClientSessionFactory.session().webDriverBackedSelenium();
-					_webDriverBackedSelenium.windowMaximize();
-					_webDriverBackedSelenium.windowFocus();
-					_webDriverBackedSelenium.setTimeout("60000");
-					_webDriverBackedSelenium.open(ZimbraSeleniumProperties.getBaseURL());
-					
-				} else {
-
-					@SuppressWarnings("unused")
-					String timeout = ZimbraSeleniumProperties.getStringProperty("selenium.maxpageload.msec", "30000");
-
-					ClientSessionFactory.session().selenium().start();
-					ClientSessionFactory.session().selenium().windowMaximize();
-					ClientSessionFactory.session().selenium().windowFocus();
-					ClientSessionFactory.session().selenium().allowNativeXpath("true");
-					ClientSessionFactory.session().selenium().setTimeout("60000");
-					ClientSessionFactory.session().selenium().open(ZimbraSeleniumProperties.getBaseURL());
+				Capabilities cp =  ((RemoteWebDriver)webDriver).getCapabilities();
+				if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){
+					webDriver.manage().window().setPosition(new Point(0, 0));
+					webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
+					webDriver.navigate().to(ConfigProperties.getBaseURL());
 				}
-				
-			} catch (SeleniumException e) {
+
+			} catch (WebDriverException e) {
 				logger.error("Unable to open touch app. Is a valid cert installed?", e);
 				throw e;
 			}
-			
+
 			((AppTouchClient)MyApplication).zPageLogin.zNavigateTo();
-			
+
 		}
 
 		//Make sure the application is loaded first
 		if ( !MyApplication.zIsLoaded() )
 			throw new HarnessException("Touch client application is not active!");
-		
+
 		// Look for the login button.
 		boolean present = sIsElementPresent(Locators.zBtnLogin);
 		if ( !present ) {
@@ -231,9 +201,9 @@ public class PageLogin extends AbsTab {
 		zNavigateTo();
 
 		Date start = new Date();
-		
+
 		try {
-			
+
 			zSetLoginName(account.EmailAddress);
 			zSetLoginPassword(account.Password);
 
@@ -243,24 +213,19 @@ public class PageLogin extends AbsTab {
 			// Wait for the app to load
 			/* TODO: ... debugging to be removed */
 			//sWaitForPageToLoad();
-			
+
 			((AppTouchClient)MyApplication).zPageMain.zWaitForActive(180000);
 
 			((AppTouchClient)MyApplication).zSetActiveAcount(account);
 
 
 		} finally {
-			
+
 			SleepMetrics.RecordProcessing((new Throwable()).getStackTrace(), start, new Date());
 
 		}
 	}
-	
-	/**
-	 * Add the specified name to the login name field
-	 * @param name
-	 * @throws HarnessException
-	 */
+
 	public void zSetLoginName(String name) throws HarnessException {
 		String locator = Locators.zInputUsername;
 		if ( name == null ) {
@@ -270,17 +235,10 @@ public class PageLogin extends AbsTab {
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("Login field does not exist "+ locator);
 		}
-		if (ZimbraSeleniumProperties.isWebDriver()){
-		    clearField(locator);
-		}
+		clearField(locator);
 		sType(locator, name);
 	}
 
-	/**
-	 * Add the specified password to the login password field
-	 * @param name
-	 * @throws HarnessException
-	 */
 	public void zSetLoginPassword(String password) throws HarnessException {
 		String locator = Locators.zInputPassword;
 		if ( password == null ) {
@@ -289,14 +247,9 @@ public class PageLogin extends AbsTab {
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("Password field does not exist "+ locator);
 		}
-		if (ZimbraSeleniumProperties.isWebDriver()){
-		    clearField(locator);
-		}
+		clearField(locator);
 		sType(locator, password);
 	}
-
-
-
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {

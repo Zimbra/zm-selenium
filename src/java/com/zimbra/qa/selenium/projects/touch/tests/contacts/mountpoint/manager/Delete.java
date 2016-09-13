@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.tests.contacts.mountpoint.manager;
@@ -33,13 +33,13 @@ public class Delete extends TouchCommonTest  {
 		super.startingPage = app.zPageAddressbook;
 	}
 
-	@Test(	description = "Delete a contact item in mount folder with manager rights",
+	@Test( description = "Delete a contact item in mount folder with manager rights",
 			groups = { "functional" })
 
 	public void Delete_01() throws HarnessException {
 
 		// Owner creates a folder, shares it with current user
-		String ownerFoldername = "ownerfolder"+ ZimbraSeleniumProperties.getUniqueString();
+		String ownerFoldername = "ownerfolder"+ ConfigProperties.getUniqueString();
 
 
 		ZimbraAccount.AccountA().soapSend(
@@ -54,9 +54,9 @@ public class Delete extends TouchCommonTest  {
 
 
 		ContactItem contact = new ContactItem();
-		contact.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
-		contact.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
-		contact.email = "email" + ZimbraSeleniumProperties.getUniqueString() + "@domain.com";
+		contact.firstName = "First" + ConfigProperties.getUniqueString();
+		contact.lastName = "Last" + ConfigProperties.getUniqueString();
+		contact.email = "email" + ConfigProperties.getUniqueString() + "@domain.com";
 
 		ZimbraAccount.AccountA().soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
@@ -77,7 +77,7 @@ public class Delete extends TouchCommonTest  {
 
 
 		// Current user creates the mountpoint that points to the share
-		String mountpointname = "mountpoint"+ ZimbraSeleniumProperties.getUniqueString();
+		String mountpointname = "mountpoint"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 						+		"<link l='1' name='"+ mountpointname +"' view='contact' rid='"+ ownerFolder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"

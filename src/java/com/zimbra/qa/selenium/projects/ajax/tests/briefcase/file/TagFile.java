@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.file;
@@ -35,14 +35,14 @@ public class TagFile extends FeatureBriefcaseTest {
 		// All tests start at the Briefcase page
 		super.startingPage = app.zPageBriefcase;
 
-		//if(ZimbraSeleniumProperties.zimbraGetVersionString().contains("FOSS")){
+		//if(ConfigProperties.zimbraGetVersionString().contains("FOSS")){
 		    super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 		//}
 			    
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 	}
 
-	@Test(description = "Tag a File using Toolbar -> Tag -> New Tag", groups = { "smoke" })
+	@Test( description = "Tag a File using Toolbar -> Tag -> New Tag", groups = { "smoke" })
 	public void TagFile_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -50,7 +50,7 @@ public class TagFile extends FeatureBriefcaseTest {
 				SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/testtextfile.txt";
 
 		FileItem fileItem = new FileItem(filePath);
@@ -73,7 +73,7 @@ public class TagFile extends FeatureBriefcaseTest {
 		// Click on created File
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ZimbraSeleniumProperties.zimbraGetVersionString().contains(
+		if(ConfigProperties.zimbraGetVersionString().contains(
     			"FOSS")){
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
@@ -85,7 +85,7 @@ public class TagFile extends FeatureBriefcaseTest {
 		// app.zPageBriefcase.zHeader(Action.A_BRIEFCASE_HEADER_CHECKBOX);
 
 		// Create a tag using GUI
-		String tagName = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String tagName = "tag" + ConfigProperties.getUniqueString();
 
 		// Click on New Tag
 		DialogTag dialogTag = (DialogTag) app.zPageBriefcase
@@ -147,7 +147,7 @@ public class TagFile extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(fileName);
 	}
 
-	@Test(description = "Tag uploaded File using pre-existing Tag", groups = { "functional" })
+	@Test( description = "Tag uploaded File using pre-existing Tag", groups = { "functional" })
 	public void TagFile_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -155,7 +155,7 @@ public class TagFile extends FeatureBriefcaseTest {
 				SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/testtextfile.txt";
 
 		FileItem fileItem = new FileItem(filePath);
@@ -171,7 +171,7 @@ public class TagFile extends FeatureBriefcaseTest {
 				+ attachmentId + "'/></doc></SaveDocumentRequest>");
 
 		// Create a tag
-		String tagName = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String tagName = "tag" + ConfigProperties.getUniqueString();
 
 		account.soapSend("<CreateTagRequest xmlns='urn:zimbraMail'>"
 				+ "<tag name='" + tagName + "' color='1' />"
@@ -190,7 +190,7 @@ public class TagFile extends FeatureBriefcaseTest {
 		// Click on uploaded file
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ZimbraSeleniumProperties.zimbraGetVersionString().contains(
+		if(ConfigProperties.zimbraGetVersionString().contains(
     			"FOSS")){
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
@@ -225,7 +225,7 @@ public class TagFile extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(fileName);
 	}
 
-	@Test(description = "Tag uploaded File using Right Click context menu", groups = { "functional" })
+	@Test( description = "Tag uploaded File using Right Click context menu", groups = { "functional" })
 	public void TagFile_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -233,7 +233,7 @@ public class TagFile extends FeatureBriefcaseTest {
 				SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/testtextfile.txt";
 
 		FileItem fileItem = new FileItem(filePath);
@@ -249,7 +249,7 @@ public class TagFile extends FeatureBriefcaseTest {
 				+ attachmentId + "'/></doc></SaveDocumentRequest>");
 
 		// Create a tag
-		String tagName = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String tagName = "tag" + ConfigProperties.getUniqueString();
 
 		account.soapSend("<CreateTagRequest xmlns='urn:zimbraMail'>"
 				+ "<tag name='" + tagName + "' color='1' />"
@@ -269,7 +269,7 @@ public class TagFile extends FeatureBriefcaseTest {
 		// Click on uploaded file
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ZimbraSeleniumProperties.zimbraGetVersionString().contains(
+		if(ConfigProperties.zimbraGetVersionString().contains(
     			"FOSS")){
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 

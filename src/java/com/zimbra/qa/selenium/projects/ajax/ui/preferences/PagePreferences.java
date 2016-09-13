@@ -33,8 +33,8 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZDate;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogInformational;
@@ -49,10 +49,10 @@ import com.zimbra.qa.selenium.projects.ajax.ui.PageMain;
  */
 public class PagePreferences extends AbsTab {
 
-
 	public static class Locators {
 
 		public static final String zPreferencesMainID = "zov__main_Options";
+		
 		// Preferences Toolbar: Save, Cancel
 		public static final String zToolbarSaveID = "zb__PREF__SAVE_title";
 		public static final String zToolbarCancelID = "zb__PREF__CANCEL_title";
@@ -61,7 +61,7 @@ public class PagePreferences extends AbsTab {
 		public static final String zSaveChangesNo = "id=DWT242_title";
 		public static final String zSaveChangesCancel = "id=DWT243_title";
 
-		//General > Time zone and language
+		// General > Time zone and language
 		public static final String zTimezone = "css=td[id='Prefs_Select_DEFAULT_TIMEZONE_dropdown']";
 		public static final String zDownArrow = "css=div[id='Prefs_Select_DEFAULT_TIMEZONE_Menu_1'] div[class='ImgDownArrowSmall']";
 		public static final String zUpArrow = "css=div[id='Prefs_Select_DEFAULT_TIMEZONE_Menu_1'] div[class='ImgUpArrowSmall']";
@@ -107,7 +107,7 @@ public class PagePreferences extends AbsTab {
 		public static final String zWestCentralAfrica = "css=div[id='Prefs_Select_DEFAULT_TIMEZONE_Menu_1'] td[class='ZWidgetTitle']:contains('GMT +01:00 West Central Africa')";
 		public static final String zNamibia = "css=div[id='Prefs_Select_DEFAULT_TIMEZONE_Menu_1'] td[class='ZWidgetTitle']:contains('GMT +01:00 Namibia')";
 		public static final String zBelgradeBrtislavaBudapestLjubljanaPrague = "css=div[id='Prefs_Select_DEFAULT_TIMEZONE_Menu_1'] td[class='ZWidgetTitle']:contains('GMT +01:00 Belgrade, Bratislava, Budapest, Ljubljana, Prague')";
-		public static final String zAmsterdamBerlinBernRomeStockholmVienna = "css=div[id='Prefs_Select_DEFAULT_TIMEZONE_Menu_1'] td[class='ZWidgetTitle']:contains('GMT +01:00 Brussels, Copenhagen, Madrid, Paris')";
+		public static final String zAmsterdamBerlinBernRomeStockholmVienna = "css=div[id='Prefs_Select_DEFAULT_TIMEZONE_Menu_1'] td[class='ZWidgetTitle']:contains('GMT +01:00 Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna')";
 		public static final String zBrusselsCopenhagenMadridParis = "css=div[id='Prefs_Select_DEFAULT_TIMEZONE_Menu_1'] td[class='ZWidgetTitle']:contains('GMT +01:00 Brussels, Copenhagen, Madrid, Paris')";
 		public static final String zSarajevoSkopjeWarsawZagreb = "css=div[id='Prefs_Select_DEFAULT_TIMEZONE_Menu_1'] td[class='ZWidgetTitle']:contains('GMT +01:00 Sarajevo, Skopje, Warsaw, Zagreb')";
 		public static final String zEgypt = "css=div[id='Prefs_Select_DEFAULT_TIMEZONE_Menu_1'] td[class='ZWidgetTitle']:contains('GMT +02:00 Egypt')";
@@ -303,14 +303,9 @@ public class PagePreferences extends AbsTab {
 
 	public PagePreferences(AbsApplication application) {
 		super(application);
-
 		logger.info("new " + PagePreferences.class.getCanonicalName());
-
 	}
 
-	/* (non-Javadoc)
-	 * @see projects.admin.ui.AbsPage#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -319,18 +314,9 @@ public class PagePreferences extends AbsTab {
 			((AppAjaxClient)MyApplication).zPageMain.zNavigateTo();
 		}
 
-		/*
-		 * Active:
-		 * <div id="zov__main_Options" style="position: absolute; overflow: auto; z-index: 300; left: 0px; top: 76px; width: 169px; height: 537px;" class="ZmOverview" parentid="z_shell">
-		 *
-		 * Not active:
-		 * <div id="zov__main_Options" style="position: absolute; overflow: auto; z-index: 300; left: -10000px; top: -10000px; width: 169px; height: 537px;" class="ZmOverview" parentid="z_shell">
-		 */
-
-
 		// If the "folders" tree is visible, then mail is active
 		String locator = null;
-		if (ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP) {
+		if (ConfigProperties.getAppType() == AppType.DESKTOP) {
 			locator = "css=div[id='zov__local@host.local:main_Options']";
 		} else {
 			locator = "css=div#"+ Locators.zPreferencesMainID;
@@ -345,43 +331,35 @@ public class PagePreferences extends AbsTab {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see projects.admin.ui.AbsPage#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/* (non-Javadoc)
-	 * @see projects.admin.ui.AbsPage#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
-		// Check if this page is already active.
 		if ( zIsActive() ) {
 			return;
 		}
 
-		// Make sure we are logged into the Mobile app
 		if ( !((AppAjaxClient)MyApplication).zPageMain.zIsActive() ) {
 			((AppAjaxClient)MyApplication).zPageMain.zNavigateTo();
 		}
 
 		logger.info("Navigate to "+ this.myPageName());
-
-		// Click on Preferences icon
-		if ( !sIsElementPresent(PageMain.Locators.zAppbarPreferences) ) {
-			throw new HarnessException("Can't locate preferences icon");
+		
+		for (int i=0; i<=3; i++) {
+			if (zIsActive()) {
+				break;
+			} else {
+				this.sClickAt(PageMain.Locators.zPreferencesTab, "");
+				this.zWaitForBusyOverlay();
+				SleepUtil.sleepLong();
+			}
 		}
 
-		zClick(PageMain.Locators.zAppbarPreferences);
-		SleepUtil.sleepSmall();
 		zWaitForElementPresent(Locators.zToolbarSaveID);
-
-		zWaitForActive();
-
 		logger.info("Navigated to "+ this.myPageName() + " page");
 
 	}
@@ -919,11 +897,9 @@ public class PagePreferences extends AbsTab {
 					+ " locator=" + locator);
 
            else {
-			if (ZimbraSeleniumProperties.isWebDriver()) {
-				this.sClickAt(locator, "");
-				this.clearField(locator);
-				this.sClickAt(locator, "");
-			}
+			this.sClickAt(locator, "");
+			this.clearField(locator);
+			this.sClickAt(locator, "");
 
 			if (field == Field.StartDate || field == Field.EndDate
 					|| field == Field.StartTime || field == Field.EndTime) {

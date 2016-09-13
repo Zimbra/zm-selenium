@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders.accounts;
@@ -47,7 +47,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test(	description = "View an external folder - POP",
+	@Test( description = "View an external folder - POP",
 			groups = { "smoke" })
 	public void GetExternalPOP_01() throws HarnessException {
 		
@@ -58,7 +58,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		external.authenticate();
 		
 		// Add a message to the inbox
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		external.soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -76,7 +76,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 			+	"</AddMsgRequest>");
 
 		// Create the folder to put the data source
-		String foldername = "external" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "external" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -87,10 +87,10 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
 		
 		// Create the data source
-		String datasourcename = "datasource" + ZimbraSeleniumProperties.getUniqueString();
-		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("store.host");
-		String datasourcePopPort = ZimbraSeleniumProperties.getStringProperty("server.pop.port");
-		String datasourcePopType = ZimbraSeleniumProperties.getStringProperty("server.pop.type");
+		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
+		String datasourceHost = ConfigProperties.getStringProperty("store.host");
+		String datasourcePopPort = ConfigProperties.getStringProperty("server.pop.port");
+		String datasourcePopType = ConfigProperties.getStringProperty("server.pop.type");
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
@@ -157,7 +157,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test(	description = "POP: get updates from the external account - 'refresh' button",
+	@Test( description = "POP: get updates from the external account - 'refresh' button",
 			groups = { "functional" })
 	public void GetExternalPOP_02() throws HarnessException {
 		
@@ -167,7 +167,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		external.authenticate();
 		
 		// Add a message to the inbox
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		external.soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -185,7 +185,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 			+	"</AddMsgRequest>");
 
 		// Create the folder to put the data source
-		String foldername = "external" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "external" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -196,10 +196,10 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
 		
 		// Create the data source
-		String datasourcename = "datasource" + ZimbraSeleniumProperties.getUniqueString();
-		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("store.host");
-		String datasourcePopPort = ZimbraSeleniumProperties.getStringProperty("server.pop.port");
-		String datasourcePopType = ZimbraSeleniumProperties.getStringProperty("server.pop.type");
+		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
+		String datasourceHost = ConfigProperties.getStringProperty("store.host");
+		String datasourcePopPort = ConfigProperties.getStringProperty("server.pop.port");
+		String datasourcePopType = ConfigProperties.getStringProperty("server.pop.type");
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
@@ -232,7 +232,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		SleepUtil.sleepMedium();
 		
 		// Add another message
-		String subject2 = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject2 = "subject" + ConfigProperties.getUniqueString();
 		external.soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
     		+		"<m l='"+ FolderItem.importFromSOAP(external, SystemFolder.Inbox).getId() +"' f='u'>"
@@ -278,7 +278,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 	}	
 
 
-	@Test(	description = "POP: get updates from the external account - right click -> sync",
+	@Test( description = "POP: get updates from the external account - right click -> sync",
 			groups = { "functional" })
 	public void GetExternalPOP_03() throws HarnessException {
 		
@@ -288,7 +288,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		external.authenticate();
 		
 		// Add a message to the inbox
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		external.soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -306,7 +306,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 			+	"</AddMsgRequest>");
 
 		// Create the folder to put the data source
-		String foldername = "external" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "external" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -317,10 +317,10 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
 		
 		// Create the data source
-		String datasourcename = "datasource" + ZimbraSeleniumProperties.getUniqueString();
-		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("store.host");
-		String datasourcePopPort = ZimbraSeleniumProperties.getStringProperty("server.pop.port");
-		String datasourcePopType = ZimbraSeleniumProperties.getStringProperty("server.pop.type");
+		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
+		String datasourceHost = ConfigProperties.getStringProperty("store.host");
+		String datasourcePopPort = ConfigProperties.getStringProperty("server.pop.port");
+		String datasourcePopType = ConfigProperties.getStringProperty("server.pop.type");
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
@@ -353,7 +353,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		SleepUtil.sleepMedium();
 		
 		// Add another message
-		String subject2 = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject2 = "subject" + ConfigProperties.getUniqueString();
 		external.soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
     		+		"<m l='"+ FolderItem.importFromSOAP(external, SystemFolder.Inbox).getId() +"' f='u'>"

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.tests.domains;
@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
 import com.zimbra.qa.selenium.projects.admin.ui.DialogForDeleteOperationDomain;
@@ -46,7 +46,7 @@ public class DeleteDomain extends AdminCommonTest {
 	 * 4. Verify domain is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify delete domain operation --  Manage Domain List View",
+	@Test( description = "Verify delete domain operation --  Manage Domain List View",
 			groups = { "smoke" })
 			public void DeleteDomain_01() throws HarnessException {
 
@@ -92,7 +92,7 @@ public class DeleteDomain extends AdminCommonTest {
 	 * 4. Verify domain is deleted using SOAP..
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify delete domain operation",
+	@Test( description = "Verify delete domain operation",
 			groups = { "functional" })
 			public void DeleteDomain_02() throws HarnessException {
 
@@ -136,12 +136,12 @@ public class DeleteDomain extends AdminCommonTest {
 	 * 3. Verify domain alias is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify delete domain alias operation - Manage Domain list view",
+	@Test( description = "Verify delete domain alias operation - Manage Domain list view",
 			groups = { "functional" })
 			public void DeleteDomain_03() throws HarnessException {
 		
 		
-		String targetDomain = ZimbraSeleniumProperties.getStringProperty("testdomain");
+		String targetDomain = ConfigProperties.getStringProperty("testdomain");
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
 				+	"<domain by='name'>" + targetDomain + "</domain>"
@@ -199,12 +199,12 @@ public class DeleteDomain extends AdminCommonTest {
 	 * 3. Verify domain alias is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify delete domain alias operation - Manage Domain list view",
+	@Test( description = "Verify delete domain alias operation - Manage Domain list view",
 			groups = { "functional" })
 			public void DeleteDomain_04() throws HarnessException {
 		
 		
-		String targetDomain = ZimbraSeleniumProperties.getStringProperty("testdomain");
+		String targetDomain = ConfigProperties.getStringProperty("testdomain");
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
 				+	"<domain by='name'>" + targetDomain + "</domain>"

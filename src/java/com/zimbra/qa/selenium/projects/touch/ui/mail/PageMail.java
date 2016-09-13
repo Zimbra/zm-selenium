@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.ui.mail;
@@ -247,9 +247,6 @@ public class PageMail extends AbsTab {
 		return elementPresent;
 	}
 
-	/* (non-Javadoc)
-	 * @see projects.admin.ui.AbsPage#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -272,17 +269,11 @@ public class PageMail extends AbsTab {
 		return (false);
 	}
 
-	/* (non-Javadoc)
-	 * @see projects.admin.ui.AbsPage#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/* (non-Javadoc)
-	 * @see projects.admin.ui.AbsPage#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
@@ -1083,7 +1074,7 @@ public class PageMail extends AbsTab {
 
 	@Override
 	public AbsPage zKeyboardShortcut(Shortcut shortcut) throws HarnessException {
-		String	keyCode;
+
 		if (shortcut == null)
 			throw new HarnessException("Shortcut cannot be null");
 
@@ -1141,24 +1132,9 @@ public class PageMail extends AbsTab {
 
 		} else if(shortcut== Shortcut.S_ESCAPE) {
 
-			//page = new DialogWarning(
-			//		DialogWarning.DialogWarningID.SaveCurrentMessageAsDraft,
-			//		this.MyApplication,
-			//		((AppTouchClient)this.MyApplication).zPageMail);	
-
-			if ( ZimbraSeleniumProperties.isWebDriver() ) {
-
-				WebElement we = getElement("css=div#z_banner");
-				we.sendKeys(Keys.ESCAPE);
-				this.zWaitForBusyOverlay();
-
-			} else {
-
-				keyCode = "27";
-				zKeyDown(keyCode);
-				this.zWaitForBusyOverlay();
-
-			}
+			WebElement we = getElement("css=div#z_banner");
+			we.sendKeys(Keys.ESCAPE);
+			this.zWaitForBusyOverlay();
 
 			return page;
 		}

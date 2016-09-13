@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.tests.accounts;
@@ -47,12 +47,12 @@ public class CreateAccount extends AdminCommonTest {
 	 */
 	
 	@Bugs( ids = "100779")
-	@Test(	description = "Create a basic account using New->Account",
+	@Test( description = "Create a basic account using New->Account",
 			groups = { "sanity" })
 			public void CreateAccount_01() throws HarnessException {
 
 		// Create a new account in the Admin Console
-		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 
 
 
@@ -85,12 +85,12 @@ public class CreateAccount extends AdminCommonTest {
 	 * 2. Verify account is created using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Create a global admin account",
+	@Test( description = "Create a global admin account",
 			groups = { "sanity","network" })
 			public void CreateAccount_02() throws HarnessException {
 
 		// Create a new account in the Admin Console
-		AccountItem account = new AccountItem("global_admin" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("global_admin" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 
 		// Click "New" -> "Admin Account"
 		WizardCreateAdminAccount wizard = 

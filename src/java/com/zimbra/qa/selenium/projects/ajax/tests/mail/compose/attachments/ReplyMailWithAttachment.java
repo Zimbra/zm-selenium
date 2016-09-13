@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.attachments;
@@ -21,6 +21,7 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 import com.zimbra.common.soap.Element;
@@ -38,93 +39,99 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 		logger.info("New "+ ReplyMailWithAttachment.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
-	
-	@Test(	description = "Reply to a mail with attachment - Verify existing attachment not sent",
-			groups = { "sanity","windows" })
-	
+
+	@Test( description = "Reply to a mail with attachment - Verify existing attachment not sent",
+			groups = { "sanity" })
+
 	public void ReplyMailWithAttachment_01() throws HarnessException {
-		
-		try {
-		
-			//-- DATA
-			final String mimeSubject = "subjectAttachment";
-			final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
-			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
-			final String mimeAttachmentName = "samplejpg.jpg";
-	
-			LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
-	
-			MailItem original = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ mimeSubject +")");
-			ZAssert.assertNotNull(original, "Verify the message is received correctly");
-	
-			//-- GUI
-	
-			// Refresh current view
-			app.zPageMail.zVerifyMailExists(mimeSubject);
-							
-			// Select the item
-			app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);
-			
-			// Reply to the item
-			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
-			
-			mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
-			
-			final String fileName = "structure.jpg";
-			final String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
-			
-			app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
-			app.zPageMail.zPressButton(Button.B_MY_COMPUTER);
-			zUpload(filePath);
-			
-			// Send the message
-			mailform.zSubmit();
-	
-			//-- Verification
-			
-			// From the receiving end, verify the message details
-			MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "from:("+ app.zGetActiveAccount().EmailAddress +") subject:("+ mimeSubject +")");
-			ZAssert.assertNotNull(received, "Verify the message is received correctly");
-			
-			ZimbraAccount.AccountA().soapSend(
-					"<GetMsgRequest xmlns='urn:zimbraMail'>"
-					+		"<m id='"+ received.getId() +"'/>"
-					+	"</GetMsgRequest>");
-	
-			String getFilename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
-			ZAssert.assertEquals(getFilename, fileName, "Verify existing attachment exists in the replied mail");
-			
-			getFilename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment'][2]", "filename");
-			ZAssert.assertNull(getFilename, "Verify existing attachment doesn't exists in the replied mail");
-			
-			Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
-			ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the replied mail");
-			
-			nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + mimeAttachmentName + "']");
-			ZAssert.assertEquals(nodes.length, 0, "Verify attachment doesn't exist in the replied mail");
-			
-			// Verify UI for attachment
-			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
-			app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);
-			ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the email");
-			ZAssert.assertFalse(app.zPageMail.zVerifyAttachmentExistsInMail(mimeAttachmentName), "Verify attachment doesn't exists in the email");
-		
-		} finally {
-			
-			Robot robot;
-			
+
+		if (OperatingSystem.isWindows() == true) {
+
 			try {
-				robot = new Robot();
-				robot.delay(250);
-				robot.keyPress(KeyEvent.VK_ESCAPE);
-				robot.keyRelease(KeyEvent.VK_ESCAPE);
-				robot.delay(50);
-				
-			} catch (AWTException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+				//-- DATA
+				final String mimeSubject = "subjectAttachment";
+				final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
+				FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
+				final String mimeAttachmentName = "samplejpg.jpg";
+
+				LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+
+				MailItem original = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ mimeSubject +")");
+				ZAssert.assertNotNull(original, "Verify the message is received correctly");
+
+				//-- GUI
+
+				// Refresh current view
+				app.zPageMail.zVerifyMailExists(mimeSubject);
+
+				// Select the item
+				app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);
+
+				// Reply to the item
+				FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
+
+				mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
+
+				final String fileName = "structure.jpg";
+				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+
+				app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
+				app.zPageMail.zPressButton(Button.B_MY_COMPUTER);
+				zUpload(filePath);
+
+				// Send the message
+				mailform.zSubmit();
+
+				//-- Verification
+
+				// From the receiving end, verify the message details
+				MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "from:("+ app.zGetActiveAccount().EmailAddress +") subject:("+ mimeSubject +")");
+				ZAssert.assertNotNull(received, "Verify the message is received correctly");
+
+				ZimbraAccount.AccountA().soapSend(
+						"<GetMsgRequest xmlns='urn:zimbraMail'>"
+						+		"<m id='"+ received.getId() +"'/>"
+						+	"</GetMsgRequest>");
+
+				String getFilename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
+				ZAssert.assertEquals(getFilename, fileName, "Verify existing attachment exists in the replied mail");
+
+				getFilename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment'][2]", "filename");
+				ZAssert.assertNull(getFilename, "Verify existing attachment doesn't exists in the replied mail");
+
+				Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
+				ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the replied mail");
+
+				nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + mimeAttachmentName + "']");
+				ZAssert.assertEquals(nodes.length, 0, "Verify attachment doesn't exist in the replied mail");
+
+				// Verify UI for attachment
+				app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
+				app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);
+				ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the email");
+				ZAssert.assertFalse(app.zPageMail.zVerifyAttachmentExistsInMail(mimeAttachmentName), "Verify attachment doesn't exists in the email");
+
+			} finally {
+
+				Robot robot;
+
+				try {
+					robot = new Robot();
+					robot.delay(250);
+					robot.keyPress(KeyEvent.VK_ESCAPE);
+					robot.keyRelease(KeyEvent.VK_ESCAPE);
+					robot.delay(50);
+
+				} catch (AWTException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
-			
+
+		} else {
+			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
 		}
 	}
 }

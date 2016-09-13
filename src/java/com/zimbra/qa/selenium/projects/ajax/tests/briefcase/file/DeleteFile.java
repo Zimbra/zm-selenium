@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.file;
@@ -28,7 +28,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DialogConfirm;
 
@@ -39,14 +39,14 @@ public class DeleteFile extends FeatureBriefcaseTest {
 
 		super.startingPage = app.zPageBriefcase;
 		
-		//if(ZimbraSeleniumProperties.zimbraGetVersionString().contains("FOSS")){
+		//if(ConfigProperties.zimbraGetVersionString().contains("FOSS")){
 		    super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 		//}
 			    
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");	
 	}		
 
-	@Test(description = "Upload file through RestUtil - delete & verify through GUI", groups = { "smoke" })
+	@Test( description = "Upload file through RestUtil - delete & verify through GUI", groups = { "smoke" })
 	public void DeleteFile_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -54,7 +54,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 				SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/testtextfile.txt";
 
 		FileItem fileItem = new FileItem(filePath);
@@ -85,7 +85,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 		// Click on created document
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ZimbraSeleniumProperties.zimbraGetVersionString().contains(
+		if(ConfigProperties.zimbraGetVersionString().contains(
 	    		"FOSS")){
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
@@ -116,7 +116,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 				"Verify document was deleted through GUI");
 	}
 
-	@Test(description = "Upload file through RestUtil - delete using Delete Key & check trash", groups = { "functional" })
+	@Test( description = "Upload file through RestUtil - delete using Delete Key & check trash", groups = { "functional" })
 	public void DeleteFile_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -127,7 +127,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 				SystemFolder.Trash);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/testtextfile.txt";
 
 		FileItem fileItem = new FileItem(filePath);
@@ -155,7 +155,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 		// Click on created document
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ZimbraSeleniumProperties.zimbraGetVersionString().contains(
+		if(ConfigProperties.zimbraGetVersionString().contains(
     			"FOSS")){
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
@@ -195,7 +195,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 				+ fileName + " id: " + id);		
 	}
 	
-	@Test(description = "Upload file through RestUtil - delete using <Backspace> Key & check trash", groups = { "functional" })
+	@Test( description = "Upload file through RestUtil - delete using <Backspace> Key & check trash", groups = { "functional" })
 	public void DeleteFile_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -206,7 +206,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 				SystemFolder.Trash);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/testtextfile.txt";
 
 		FileItem fileItem = new FileItem(filePath);
@@ -234,7 +234,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 		// Click on created document
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ZimbraSeleniumProperties.zimbraGetVersionString().contains(
+		if(ConfigProperties.zimbraGetVersionString().contains(
     			"FOSS")){
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
@@ -274,7 +274,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 				+ fileName + " id: " + id);		
 	}
 	
-	@Test(description = "Upload file through RestUtil - delete using Right Click context menu", groups = { "functional" })
+	@Test( description = "Upload file through RestUtil - delete using Right Click context menu", groups = { "functional" })
 	public void DeleteFile_04() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -282,7 +282,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 				SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/testtextfile.txt";
 
 		FileItem fileItem = new FileItem(filePath);
@@ -307,7 +307,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 		// Click on created file
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ZimbraSeleniumProperties.zimbraGetVersionString().contains(
+		if(ConfigProperties.zimbraGetVersionString().contains(
     			"FOSS")){
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
@@ -332,7 +332,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 	}
 
 	@Bugs(ids = "46889")
-	@Test(description = "Cannot delete uploaded file if it was already deleted once before", groups = { "functional" })
+	@Test( description = "Cannot delete uploaded file if it was already deleted once before", groups = { "functional" })
 	public void DeleteFile_05() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -340,7 +340,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 				SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/testtextfile.txt";
 
 		FileItem fileItem = new FileItem(filePath);

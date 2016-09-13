@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.util;
@@ -34,14 +34,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
-
-import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 
 @SuppressWarnings("resource")
 public class TestStatusReporter extends TestListenerAdapter {  
@@ -92,7 +89,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 				currentFileName=fileName;
 				try {
 					if (raf != null)  raf.close();
-					raf = new RandomAccessFile(ZimbraSeleniumProperties.getBaseDirectory() + "/src/java/" + fileName,"r");
+					raf = new RandomAccessFile(ConfigProperties.getBaseDirectory() + "/src/java/" + fileName,"r");
 					longArray.clear();
 					furthestReadLong=0;
 				}
@@ -260,7 +257,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 
 
 
-			}catch (Exception e) {
+			} catch (Exception e) {
 				logger.warn(e);
 			}
 
@@ -300,11 +297,11 @@ public class TestStatusReporter extends TestListenerAdapter {
 
 
 	public TestStatusReporter(String atype, ByteArrayOutputStream baos, PrintStream ps) throws Exception{  
-		path   = ZimbraSeleniumProperties.getStringProperty("ZimbraLogRoot")+"\\"  +
-		ZimbraSeleniumProperties.zimbraGetVersionString()  + "\\"  + 
+		path   = ConfigProperties.getStringProperty("testOutputDirectory")+"\\"  +
+		ConfigProperties.zimbraGetVersionString()  + "\\"  + 
 		atype +"\\" + 
-		ZimbraSeleniumProperties.getStringProperty("browser") + "\\" +  
-		ZimbraSeleniumProperties.getStringProperty("locale") ;
+		ConfigProperties.getStringProperty("browser") + "\\" +  
+		ConfigProperties.getStringProperty("locale") ;
 
 
 		mkDir(path);
@@ -528,13 +525,12 @@ public class TestStatusReporter extends TestListenerAdapter {
 
 	}
 
-	@SuppressWarnings("deprecation")
 	private void generateReport() {
 		long duration = ((new Date()).getTime() - startDate.getTime())/1000;
 
 		String version = "unknown";
 		try {
-			version = ZimbraSeleniumProperties.zimbraGetVersionString();
+			version = ConfigProperties.zimbraGetVersionString();
 		} catch (HarnessException ex) {
 			LogManager.getLogger(TestStatusReporter.class).error("unable to get version", ex);
 		}
@@ -552,7 +548,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 		String lines = "\n--------------------------------------------\n";
 		String uri = (bodyfileXpPath.replace("T:/",
 		"http://tms.lab.zimbra.com/testlogs/")).replace("\\", "/");
-		uri = ZimbraSeleniumProperties.getStringProperty("TestURL") + uri;
+		uri = ConfigProperties.getStringProperty("TestURL") + uri;
 
 		StringBuffer body = new StringBuffer( "");
 		body.append("\n" + version);			
@@ -564,15 +560,13 @@ public class TestStatusReporter extends TestListenerAdapter {
 		body.append("\nFail: " + failed);
 		body.append("\nSkip: " + skipped);
 		body.append("\nPass: " + passed);			
-		body.append("\nbrowser: " + ClientSessionFactory.session().currentBrowserName());
-		body.append("\nlocale: " + ZimbraSeleniumProperties.getStringProperty("locale")); 		
-		body.append("\nserver: " +ZimbraSeleniumProperties.getStringProperty("server.host"));
+		//body.append("\nbrowser: " + ClientSessionFactory.session().currentBrowserName());
+		body.append("\nlocale: " + ConfigProperties.getStringProperty("locale")); 		
+		body.append("\nserver: " +ConfigProperties.getStringProperty("server.host"));
 		body.append("\nclient: " + System.getenv("COMPUTERNAME")) ;
 		body.append("\nduration: " + duration + " sec");
 		body.append("\nstart at: " + startDate);
 		body.append("\nend at: " + new Date());
-
-
 
 		body.append("\n\n" + lines + "LOGS: " + lines );
 		body.append("\n" + "Initialization: " + uri+ "/start.txt");
@@ -774,7 +768,6 @@ public class TestStatusReporter extends TestListenerAdapter {
 
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void onTestFailure(ITestResult tr) {
 		String fullTestName = tr.getTestClass().getName() + "." + tr.getName();
@@ -784,7 +777,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 
 		printToFile(failDir , fullTestName);
 
-		ClientSessionFactory.session().selenium().captureScreenshot(path + "\\" + failDir + "\\"+ fullTestName + ".png");
+		//ClientSessionFactory.session().selenium().captureScreenshot(path + "\\" + failDir + "\\"+ fullTestName + ".png");
 
 		classInProgressPrintWriter.println( "<br>\t" + new Date().toString() + " FAILED" );
 		classInProgressPrintWriter.println( "<br>\t" + "<a href='../fail/" + fullTestName + ".png' target=newWindow><img src='../fail/" + fullTestName + ".png' width=100 height=100 border=0></a>" 
@@ -817,7 +810,6 @@ public class TestStatusReporter extends TestListenerAdapter {
 		return result;
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void onConfigurationSkip(ITestResult tr) {
 		String fullTestName = tr.getTestClass().getName() + "." + tr.getName();
@@ -830,7 +822,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 		confSkipArray.add(fullTestName); 
 
 		printToFile(confSkipDir , fullTestName);
-		ClientSessionFactory.session().selenium().captureScreenshot(path + "\\" + skipDir + "\\"+ fullTestName + ".png");
+		//ClientSessionFactory.session().selenium().captureScreenshot(path + "\\" + skipDir + "\\"+ fullTestName + ".png");
 
 		classInProgressPrintWriter.println( "<br>\t" + new Date().toString() + " CONFIG SKIPPED" );
 

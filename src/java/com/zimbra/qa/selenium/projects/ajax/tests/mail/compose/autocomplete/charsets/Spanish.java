@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.autocomplete.charsets;
@@ -44,7 +44,7 @@ public class Spanish extends PrefGroupMailByMessageTest {
 	}
 	
 	@Bugs(ids = "48736")
-	@Test(	description = "Autocomplete using Spanish characters in the name - local contact",
+	@Test( description = "Autocomplete using Spanish characters in the name - local contact",
 			groups = { "functional" })
 	public void AutoComplete_01() throws HarnessException {
 		
@@ -69,8 +69,8 @@ public class Spanish extends PrefGroupMailByMessageTest {
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -103,12 +103,12 @@ public class Spanish extends PrefGroupMailByMessageTest {
 	}
 
 	@Bugs(ids = "48736")
-	@Test(	description = "Autocomplete using Spanish characters in the name - GAL contact",
+	@Test( description = "Autocomplete using Spanish characters in the name - GAL contact",
 			groups = { "functional" })
 	public void AutoComplete_02() throws HarnessException {
 		
-		final String givenName = "Ñáéíóúñ" + ZimbraSeleniumProperties.getUniqueString();
-		final String sn = "Wilson" + ZimbraSeleniumProperties.getUniqueString();
+		final String givenName = "Ñáéíóúñ" + ConfigProperties.getUniqueString();
+		final String sn = "Wilson" + ConfigProperties.getUniqueString();
 		final String displayName = givenName + " " + sn;
 		
 		// Create a GAL Entry
@@ -127,8 +127,8 @@ public class Spanish extends PrefGroupMailByMessageTest {
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -162,7 +162,7 @@ public class Spanish extends PrefGroupMailByMessageTest {
 
 
 	@Bugs(ids = "65065")
-	@Test(	description = "Autocomplete using Spanish characters in the name - local contact",
+	@Test( description = "Autocomplete using Spanish characters in the name - local contact",
 			groups = { "functional" })
 	public void AutoComplete_03() throws HarnessException {
 		
@@ -187,8 +187,8 @@ public class Spanish extends PrefGroupMailByMessageTest {
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);

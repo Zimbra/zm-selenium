@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.contacts;
@@ -22,38 +22,20 @@ import java.util.*;
 
 
 public class DisplayContactGroup extends AbsDisplay {
-	public static String ALPHABET_PREFIX = "css=table[id$='alphabet'] td[_idx=";
-	public static String ALPHABET_POSTFIX = "]";
+	public static String ALPHABET_PREFIX = "css=td[id^='ZmContactSplitView'] td[_idx='";
+	public static String ALPHABET_POSTFIX = "']";
 
-	/**
-	 * Defines Selenium locators for various objects in {@link DisplayContactGroup}
-	 */
 	public static class Locators {
 		public static final String zLocator = "xpath=//div[@class='ZmContactInfoView']";
-
 	}
 
-	/**
-	 * The various displayed fields 
-	 */
 	public static enum Field {
-     FileAs,
-     Company,
-     Email    
+		FileAs, Company, Email    
 	}
 	
-
-	/**
-	 * Protected constructor for this object.  Only classes within
-	 * this package should create DisplayContact objects.
-	 * 
-	 * @param application
-	 */
 	protected DisplayContactGroup(AbsApplication application) {
 		super(application);
-		
 		logger.info("new " + DisplayContactGroup.class.getCanonicalName());
-	   
 	}
 	
 	@Override
@@ -64,19 +46,10 @@ public class DisplayContactGroup extends AbsDisplay {
 	@Override
 	public AbsPage zPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zDisplayPressButton("+ button +")");
-		
 		tracer.trace("Click "+ button);
-		
        	throw new HarnessException("implement me");
 	}
 	
-
-
-	/**
-	 * Get the string value of the specified field
-	 * @return the displayed string value
-	 * @throws HarnessException
-	 */
 	public String zGetContactProperty(Field field) throws HarnessException {
 		logger.info("DisplayContactGroup.zGetContactProperty(" + field + ")");
 
@@ -116,8 +89,6 @@ public class DisplayContactGroup extends AbsDisplay {
 		
 		logger.info("DisplayContactGroup.zGetContactProperty(" + field + ") = " + value);
 		return(value);
-
-		
 	}
 
 	@Override
@@ -125,9 +96,7 @@ public class DisplayContactGroup extends AbsDisplay {
 		return sIsElementPresent("css=div#zv__CNS-main");
 	}
 	
-
     private void getAllLocators(ArrayList<String> array, Field field) throws HarnessException {
-  	   //String css= "css=div[id$='_content'][class='ZmContactInfoView'] table:nth-of-type(2) tbody tr";
   	   String css= "css=div[id$='_content'][class='ZmContactInfoView']>div.DwtComposite>table";
  
   	   int count= this.sGetCssCount(css);

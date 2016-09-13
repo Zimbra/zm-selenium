@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
@@ -29,14 +29,14 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
 public class ForwardMsgWithTextSignature extends AjaxCommonTest {
-	String sigName = "signame" + ZimbraSeleniumProperties.getUniqueString();
-	String sigBody = "sigbody" + ZimbraSeleniumProperties.getUniqueString();
+	String sigName = "signame" + ConfigProperties.getUniqueString();
+	String sigBody = "sigbody" + ConfigProperties.getUniqueString();
 
 	@SuppressWarnings("serial")
 	public ForwardMsgWithTextSignature() {
@@ -74,7 +74,7 @@ public class ForwardMsgWithTextSignature extends AjaxCommonTest {
 	 * Verify signature in forwarded msg through soap
 	 * @throws HarnessException
 	 */
-	@Test(description = " Forward Msg with text signature and Verify signature through soap", groups = { "functional" })
+	@Test( description = " Forward Msg with text signature and Verify signature through soap", groups = { "functional" })
 	public void ForwardMsgWithTextSignature_01() throws HarnessException {
 
 		// Signature is created
@@ -82,7 +82,7 @@ public class ForwardMsgWithTextSignature extends AjaxCommonTest {
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
 		ZAssert.assertEquals(signature.getName(), this.sigName,"verified Text Signature is created");
 
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 
 		// Send a message to the account(self)
@@ -92,7 +92,7 @@ public class ForwardMsgWithTextSignature extends AjaxCommonTest {
 				"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 				"<su>"+ subject +"</su>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() + "\n\n"+signature.dBodyText+"\n</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() + "\n\n"+signature.dBodyText+"\n</content>" +
 				"</mp>" +
 				"</m>" +
 		"</SendMsgRequest>");
@@ -103,7 +103,7 @@ public class ForwardMsgWithTextSignature extends AjaxCommonTest {
 		MailItem mail = MailItem.importFromSOAP(ZimbraAccount.AccountZWC(),"in:inbox subject:(" + subject + ")");
 
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inboxFolder);
 
 		// Select the item

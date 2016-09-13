@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.tests.navigation;
@@ -45,7 +45,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Install Licenses Link"
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Navigate to Install License",
+	@Test( description = "Navigate to Install License",
 			groups = { "obsolete" })
 			public void NavigateHomePageLinks_01() throws HarnessException {
 		
@@ -63,7 +63,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Configure Backup"
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Navigate to Configure Backup",
+	@Test( description = "Navigate to Configure Backup",
 			groups = { "sanity","network" })
 			public void NavigateHomePageLinks_02() throws HarnessException {
 		
@@ -81,7 +81,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Install License --> Install certificate Wizard"
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Navigate to Install certificate wizard",
+	@Test( description = "Navigate to Install certificate wizard",
 			groups = { "sanity" })
 			public void NavigateHomePageLinks_03() throws HarnessException {
 
@@ -104,7 +104,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Configure Default COS"
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Navigate to Configure default COS",
+	@Test( description = "Navigate to Configure default COS",
 			groups = { "sanity" })
 			public void NavigateHomePageLinks_04() throws HarnessException {
 		
@@ -127,7 +127,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> create Domain wizard
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Navigate to create Domain wizard",
+	@Test( description = "Navigate to create Domain wizard",
 			groups = { "sanity" })
 			public void NavigateHomePageLinks_05() throws HarnessException {
 		
@@ -152,7 +152,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Configure GAL wizard
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Navigate to Configure GAL wizard",
+	@Test( description = "Navigate to Configure GAL wizard",
 			groups = { "sanity" })
 			public void NavigateHomePageLinks_06() throws HarnessException {
 
@@ -177,7 +177,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Configure Authentication wizard
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Navigate to Configure Authentication wizard",
+	@Test( description = "Navigate to Configure Authentication wizard",
 			groups = { "sanity" })
 			public void NavigateHomePageLinks_07() throws HarnessException {
 
@@ -200,7 +200,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> create account wizard from Home page Link
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Navigate to create account wizard",
+	@Test( description = "Navigate to create account wizard",
 			groups = { "sanity" })
 			public void NavigateHomePageLinks_08() throws HarnessException {
 	
@@ -222,7 +222,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Configure manage accounts from Home page links
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Navigate to Configure manage accounts",
+	@Test( description = "Navigate to Configure manage accounts",
 			groups = { "sanity" })
 			public void NavigateHomePageLinks_09() throws HarnessException {
 		
@@ -242,7 +242,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> to migration and co Existance wizard from Home page Links
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Navigate to migration and co Existance wizard",
+	@Test( description = "Navigate to migration and co Existance wizard",
 			groups = { "sanity" })
 			public void NavigateHomePageLinks_10() throws HarnessException {
 		

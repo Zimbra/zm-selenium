@@ -1,26 +1,24 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.accounts.twofactorauth;
 
 import java.util.HashMap;
-
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -28,22 +26,23 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
+
 public class DisableZimbraTwoFactorAuth extends AjaxCommonTest {
 
 	public DisableZimbraTwoFactorAuth() {
-		
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			private static final long serialVersionUID = 2485388299568483622L;
 			{				
 		 		put("zimbraFeatureTwoFactorAuthAvailable", "TRUE");
 			}
 		};
-
 	}
 
-	@Test(	description = "Disable two factor auth from preferences",
+	@Test( description = "Disable two factor auth from preferences", priority=4,
 			groups = { "sanity", "network" })
+	
 	public void DisableZimbraTwoFactorAuth_01() throws HarnessException {
+		
 		String totp, secret, tempToken;
 		
 		app.zPageMain.zLogout();
@@ -82,7 +81,7 @@ public class DisableZimbraTwoFactorAuth extends AjaxCommonTest {
 	
 	@AfterMethod(groups={"always"})
 	public void afterMethod() throws HarnessException {
-		zKillBrowserAndRelogin();
+		zFreshLogin();
 		logger.info(app.zGetActiveAccount().EmailAddress);
 	}
 

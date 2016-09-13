@@ -1,21 +1,21 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
+
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
 
 import org.testng.annotations.Test;
 
@@ -33,29 +33,25 @@ public class CreateFilter extends PrefGroupMailByMessageTest {
 
 	public CreateFilter() {
 		logger.info("New " + CreateFilter.class.getCanonicalName());
-
 		super.startingAccountPreferences.put("zimbraPrefMarkMsgRead", ""+ delaySeconds);
-
 	}
 
-	
 	@Bugs(ids="88916")
-	@Test(description = "Verify Add Filter dialog from new window action menu -> Create Filter", groups = { "functional" })
+	@Test( description = "Verify Add Filter dialog from new window action menu -> Create Filter", groups = { "smoke" })
 	public void CreatefilterFromNewWindow() throws HarnessException {
 
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
-		ZimbraAccount.AccountA()
-				.soapSend(
-						"<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>"
-								+ "<e t='t' a='"
-								+ app.zGetActiveAccount().EmailAddress + "'/>"
-								+ "<su>" + subject + "</su>"
-								+ "<mp ct='text/plain'>" + "<content>content"
-								+ ZimbraSeleniumProperties.getUniqueString()
-								+ "</content>" + "</mp>" + "</m>"
-								+ "</SendMsgRequest>");
+		ZimbraAccount.AccountA().soapSend(
+			"<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>"
+					+ "<e t='t' a='"
+					+ app.zGetActiveAccount().EmailAddress + "'/>"
+					+ "<su>" + subject + "</su>"
+					+ "<mp ct='text/plain'>" + "<content>content"
+					+ ConfigProperties.getUniqueString()
+					+ "</content>" + "</mp>" + "</m>"
+					+ "</SendMsgRequest>");
 
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(subject);
@@ -68,29 +64,25 @@ public class CreateFilter extends PrefGroupMailByMessageTest {
 		try {
 
 			// Choose Actions -> Launch in Window
-			window = (SeparateWindowDisplayMail) app.zPageMail
-					.zToolbarPressPulldown(Button.B_ACTIONS,
-							Button.B_LAUNCH_IN_SEPARATE_WINDOW);
+			window = (SeparateWindowDisplayMail) app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(subject);
-			window.zWaitForActive(); // Make sure the window is there
+			window.zWaitForActive();
 
-			ZAssert.assertTrue(window.zIsActive(),
-					"Verify the window is active");
+			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_NEW_FILTER);
 
 			SleepUtil.sleepMedium();
 
 			DialogEditFilter dialog = new DialogEditFilter(app,((AppAjaxClient) app).zPageMail);
-			ZAssert.assertTrue(dialog.zIsActive(),"Add filter dialog should active");
+			ZAssert.assertTrue(dialog.zIsActive(), "Add filter dialog should active");
 			
 
 		} finally {
 
 			// Make sure to close the window
 			if (window != null) {
-				window.zCloseWindow();
 				window = null;
 			}
 

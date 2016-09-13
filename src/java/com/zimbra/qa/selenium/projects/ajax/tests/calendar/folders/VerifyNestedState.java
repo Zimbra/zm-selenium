@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.folders;
@@ -29,15 +29,15 @@ public class VerifyNestedState extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test(description = "Grantee opens appointment from grantor's calendar and close it without making any changes",
+	@Test( description = "Grantee opens appointment from grantor's calendar and close it without making any changes",
 			groups = { "functional" })
 			
 	public void VerifyNestedState_01() throws HarnessException {
 		
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptContent = ZimbraSeleniumProperties.getUniqueString();
-		String foldername1 = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		String foldername2 = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptContent = ConfigProperties.getUniqueString();
+		String foldername1 = "folder" + ConfigProperties.getUniqueString();
+		String foldername2 = "folder" + ConfigProperties.getUniqueString();
 		
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);

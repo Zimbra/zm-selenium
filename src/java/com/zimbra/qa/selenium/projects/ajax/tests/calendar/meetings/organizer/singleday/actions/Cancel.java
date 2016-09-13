@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.actions;
@@ -35,7 +35,7 @@ public class Cancel extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "69132")
-	@Test(description = "Cancel meeting using context menu",
+	@Test( description = "Cancel meeting using context menu",
 			groups = { "functional" })
 	public void CancelMeeting_01() throws HarnessException {
 		
@@ -46,8 +46,8 @@ public class Cancel extends CalendarWorkWeekTest {
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
+		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		
 		// Absolute dates in UTC zone
@@ -103,16 +103,16 @@ public class Cancel extends CalendarWorkWeekTest {
 
 	
 	@Bugs(ids = "65749")
-	@Test(description = "Reply to Cancelled Appointments not using zimbraPrefFromAddress",
+	@Test( description = "Reply to Cancelled Appointments not using zimbraPrefFromAddress",
 			groups = { "functional" })
 	public void CancelMeeting_02() throws HarnessException {
 		
 		String tz, apptSubject, apptBody, apptAttendee1, fromAddress;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
+		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
-		fromAddress = ZimbraSeleniumProperties.getUniqueString() + "." + ZimbraSeleniumProperties.getUniqueString() + "@" + ZimbraSeleniumProperties.getStringProperty("testdomain", "testdomain.com");
+		fromAddress = ConfigProperties.getUniqueString() + "." + ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com");
 		
 	    ZimbraAdminAccount.GlobalAdmin().soapSend(
 	    	      "<ModifyAccountRequest xmlns='urn:zimbraAdmin'><id>" + 

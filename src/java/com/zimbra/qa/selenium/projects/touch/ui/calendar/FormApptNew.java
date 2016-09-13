@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.ui.calendar;
@@ -32,7 +32,7 @@ import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 public class FormApptNew extends AbsForm {
 	
 	public static String locatorValue;
-	public WebDriver _webDriver = null;
+	public WebDriver webDriver = ClientSessionFactory.session().webDriver();;
 	
 	PageCalendar pageCal = new PageCalendar(MyApplication);
 
@@ -748,14 +748,6 @@ public class FormApptNew extends AbsForm {
 		return (page);
 	}
 
-	/**
-	 * Fill in the form field with the specified text
-	 * 
-	 * @param field
-	 * @param value
-	 * @throws HarnessException
-	 */
-	@SuppressWarnings("deprecation")
 	public void zFillField(Field field, String value) throws HarnessException {
 
 		tracer.trace("Set " + field + " to " + value);
@@ -922,13 +914,9 @@ public class FormApptNew extends AbsForm {
 		
 		// body
 		} else if (field == Field.Body) {
-			if (ZimbraSeleniumProperties.isWebDriver()) {
-				_webDriver = ClientSessionFactory.session().webDriver();
-				if (_webDriver instanceof JavascriptExecutor) {
-					((JavascriptExecutor) _webDriver).executeScript("return document.querySelector('div[contenteditable]').innerHTML = '" + value + "';");
-				}
-			} else {
-				ClientSessionFactory.session().selenium().getEval("this.browserbot.getCurrentWindow().document.querySelector('div[contenteditable]').innerHTML = '" + value + "';");
+			webDriver = ClientSessionFactory.session().webDriver();
+			if (webDriver instanceof JavascriptExecutor) {
+				((JavascriptExecutor) webDriver).executeScript("return document.querySelector('div[contenteditable]').innerHTML = '" + value + "';");
 			}
 			return;
 		} else {
@@ -948,11 +936,9 @@ public class FormApptNew extends AbsForm {
 			this.sClickAt(locator, "");
 			zRepeat(locator);
 		} else {
-			if (ZimbraSeleniumProperties.isWebDriver()) {
-				this.sClickAt(locator, "");
-				this.clearField(locator);
-				this.sClickAt(locator, "");
-			}
+			this.sClickAt(locator, "");
+			this.clearField(locator);
+			this.sClickAt(locator, "");
 			this.sType(locator, value);
 			SleepUtil.sleepSmall();
 

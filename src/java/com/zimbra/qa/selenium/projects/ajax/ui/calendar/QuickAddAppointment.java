@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
@@ -99,30 +99,17 @@ public class QuickAddAppointment extends AbsTab {
 		String stringFormat;
 
 		if (field == Field.StartDate || field == Field.EndDate) {
-			// TODO: need INTL
 			stringFormat = value.toMM_DD_YYYY();
 		} else if (field == Field.StartTime || field == Field.EndTime) {
-			// TODO: need INTL
 			stringFormat = value.tohh_mm_aa();
 		} else {
-			throw new HarnessException(
-					"zFillField() not implemented for field: " + field);
+			throw new HarnessException("zFillField() not implemented for field: " + field);
 		}
 
 		zFillField(field, stringFormat);
 	}
 
-
-	/**
-	 * Fill in the form field with the specified text
-	 *
-	 * @param field
-	 * @param value
-	 * @throws HarnessException
-	 */
 	public void zFillField(Field field, String value) throws HarnessException {
-
-		SleepUtil.sleepMedium();
 
 		tracer.trace("Set " + field + " to " + value);
 
@@ -199,17 +186,23 @@ public class QuickAddAppointment extends AbsTab {
 
 		// Make sure the button exists
 		if (!this.sIsElementPresent(locator))
-			throw new HarnessException("Field is not present field=" + field
-					+ " locator=" + locator);
+			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
 		if (isRepeat != null) {
 			this.sClickAt(locator, "");
 			zRecurringOptions(locator, value, isRepeat);
+			
+		} else if (field == Field.StartDate || field == Field.EndDate || field == Field.StartTime || field == Field.EndTime) {
+			SleepUtil.sleepLong();
+			this.clearField(locator);
+			this.sFocus(locator);
+			this.zClickAt(locator, "");
+			this.sTypeDateTime(locator, value);
+			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
+			SleepUtil.sleepMedium();
 		} else {
-		    if(ZimbraSeleniumProperties.isWebDriver()){
-		    	this.clearField(locator);
-		    	SleepUtil.sleepSmall();
-		    }
+	    	this.clearField(locator);
+	    	SleepUtil.sleepSmall();
 		    this.sType(locator, value);
 		}
 		this.zWaitForBusyOverlay();
@@ -247,6 +240,7 @@ public class QuickAddAppointment extends AbsTab {
 		this.zRightClickAt("css=div[class='calendar_hour_scroll'] td[class='calendar_grid_body_time_td'] div[id$='_10']", "");
 		SleepUtil.sleepSmall();
 		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_ALLDAY_APPT_title']", "");
+		SleepUtil.sleepMedium();
 	}
 
 	public void zNewAllDayAppointmentUsingMiniCal() throws HarnessException {		
@@ -275,15 +269,12 @@ public class QuickAddAppointment extends AbsTab {
 
 	public void zFill(IItem item) throws HarnessException {
 
-		SleepUtil.sleepSmall();
-
 		logger.info(myPageName() + ".zFill(ZimbraItem)");
 		logger.info(item.prettyPrint());
 
 		// Make sure the item is a MailItem
 		if (!(item instanceof AppointmentItem)) {
-			throw new HarnessException(
-					"Invalid item type - must be AppointmentItem");
+			throw new HarnessException("Invalid item type - must be AppointmentItem");
 		}
 
 		AppointmentItem appt = (AppointmentItem) item;
@@ -300,15 +291,14 @@ public class QuickAddAppointment extends AbsTab {
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER); //see intermittent bug 81945
-			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 		}
 
 		// Start date-time
 		if (appt.getStartTime() != null) {
 			zFillField(Field.StartDate, appt.getStartTime());
 
-			// web driver fails for all day appointment
-			if (com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.quickadd.CreateAllDayAppointment.allDayTest = false) {
+			if (com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.quickadd.CreateAllDayAppointment.allDayTest == false
+					|| com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.allday.minicalendar.CreateAllDayMeeting.allDayTest == false) {
 				zFillField(Field.StartTime, appt.getStartTime());
 			}
 		}
@@ -317,8 +307,8 @@ public class QuickAddAppointment extends AbsTab {
 		if (appt.getEndTime() != null) {
 			zFillField(Field.EndDate, appt.getEndTime());
 
-			// web driver fails for all day appointment
-			if (com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.quickadd.CreateAllDayAppointment.allDayTest = false) {
+			if (com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.quickadd.CreateAllDayAppointment.allDayTest == false
+					|| com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.allday.minicalendar.CreateAllDayMeeting.allDayTest == false) {
 				zFillField(Field.EndTime, appt.getEndTime());
 			}
 		}
@@ -372,14 +362,12 @@ public class QuickAddAppointment extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, Button option, String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, String item) throws HarnessException {
 		return null;
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, Button option, Button subOption,
-			String item) throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, Button subOption, String item) throws HarnessException {
 		return null;
 	}
 

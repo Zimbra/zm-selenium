@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.items;
@@ -196,10 +196,10 @@ public class ContactItem implements IItem {
 	public static ContactItem createContactItem(ZimbraAccount account) throws HarnessException {
 		
 		// Create a contact item
-		String firstName = "first" + ZimbraSeleniumProperties.getUniqueString();
-		String lastName = "last" + ZimbraSeleniumProperties.getUniqueString();
-		String email = "email" +  ZimbraSeleniumProperties.getUniqueString() + "@zimbra.com";
-		String company = "company" + ZimbraSeleniumProperties.getUniqueString();
+		String firstName = "first" + ConfigProperties.getUniqueString();
+		String lastName = "last" + ConfigProperties.getUniqueString();
+		String email = "email" +  ConfigProperties.getUniqueString() + "@zimbra.com";
+		String company = "company" + ConfigProperties.getUniqueString();
 
 		StringBuilder attrs = new StringBuilder();
 		

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.day.singleday.tags;
@@ -44,16 +44,16 @@ public class UnTagAppointment extends AjaxCommonTest {
 	}
 
 	
-	@Test(description = "Untag an appointment using toolbar button in day view",
+	@Test( description = "Untag an appointment using toolbar button in day view",
 			groups = { "functional" })
 	public void UnTagAppointment_01() throws HarnessException {
 		
 		// Create objects
 		String apptSubject, apptBody, tag1, tagID;
 		TagItem tag;
-		tag1 = ZimbraSeleniumProperties.getUniqueString();
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		tag1 = ConfigProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
+		apptBody = ConfigProperties.getUniqueString();
 		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
 		
 		// Create new appointment
@@ -105,16 +105,16 @@ public class UnTagAppointment extends AjaxCommonTest {
 		
 	}
 	
-	@Test(description = "Untag tagged appointment using context menu in day view",
+	@Test( description = "Untag tagged appointment using context menu in day view",
 			groups = { "functional" })
 	public void UnTagAppointment_02() throws HarnessException, AWTException {
 		
 		// Create objects
 		String apptSubject, apptBody, tag1, tagID;
 		TagItem tag;
-		tag1 = ZimbraSeleniumProperties.getUniqueString();
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		tag1 = ConfigProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
+		apptBody = ConfigProperties.getUniqueString();
 		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
 		
 		// Create new appointment

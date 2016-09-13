@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.search.folders;
@@ -39,25 +39,26 @@ public class SelectFolder extends PrefGroupMailByMessageTest {
 		}};
 	}
 	
-	@Test(	description = "Left click on folder - verify messages in that folder are shown", groups = { "functional" })
+	@Test( description = "Left click on folder - verify messages in that folder are shown", 
+			groups = { "functional" })
 	
 	public void SelectFolder_01() throws HarnessException {
 		
 		//-- DATA
 		
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-		String subject1 = "subjecta" + ZimbraSeleniumProperties.getUniqueString();
-		String subject2 = "subjectb" + ZimbraSeleniumProperties.getUniqueString();
+		String subject1 = "subjecta" + ConfigProperties.getUniqueString();
+		String subject2 = "subjectb" + ConfigProperties.getUniqueString();
 
 		// Create twp folders
-		String foldername1 = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername1 = "folder" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
                 	"<folder name='"+ foldername1 +"' l='"+ inbox.getId() +"'/>" +
                 "</CreateFolderRequest>");
 		FolderItem folder1 = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername1);
 
-		String foldername2 = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername2 = "folder" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
                 	"<folder name='"+ foldername2 +"' l='"+ inbox.getId() +"'/>" +
@@ -95,7 +96,7 @@ public class SelectFolder extends PrefGroupMailByMessageTest {
 		//-- GUI
 
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on the tag from the tree
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, folder1);

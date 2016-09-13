@@ -19,7 +19,7 @@ package com.zimbra.qa.selenium.projects.admin.items;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 
 public class DomainItem implements IItem {
 
@@ -29,7 +29,7 @@ public class DomainItem implements IItem {
 	public DomainItem() {
 		super();
 
-		domainName = "adomain" + ZimbraSeleniumProperties.getUniqueString() + ".com";
+		domainName = "adomain" + ConfigProperties.getUniqueString() + ".com";
 		Id = null;
 
 	}

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.util.performance;
@@ -32,7 +32,7 @@ import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.OperatingSystem;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 
 
 /**
@@ -196,7 +196,7 @@ public class PerfDatabase {
 	protected int getAppType() throws HarnessException {
 		getAppTypeTable();
 
-		String type = ZimbraSeleniumProperties.getAppType().toString().toLowerCase();
+		String type = ConfigProperties.getAppType().toString().toLowerCase();
 		if (!appTable.containsKey(type)) {
 			throw new HarnessException("Unknown app type: "+ type +".  Maybe INSERT INTO apps ('name') VALUES ('"+ type +"') ?");
 		}
@@ -324,7 +324,7 @@ public class PerfDatabase {
 	protected int getBrowserID() throws HarnessException {
 		getBrowserTable();
 		
-		String browser = ZimbraSeleniumProperties.getCalculatedBrowser();
+		String browser = ConfigProperties.getCalculatedBrowser();
 
 		if (!browserTable.containsKey(browser)) {
 			insertBrowser(browser);
@@ -776,9 +776,9 @@ public class PerfDatabase {
 		protected DatabaseConnection() throws HarnessException {	
 			logger.info("New "+ this.getClass().getCanonicalName());			
 
-			dbURL = ZimbraSeleniumProperties.getStringProperty("performance.metrics.db.url", dbDefaultURL);
-			dbUsername = ZimbraSeleniumProperties.getStringProperty("performance.metrics.db.username", dbDefaultUsername);
-			dbUserpass = ZimbraSeleniumProperties.getStringProperty("performance.metrics.db.userpass", dbDefaultUserpass);
+			dbURL = ConfigProperties.getStringProperty("performance.metrics.db.url", dbDefaultURL);
+			dbUsername = ConfigProperties.getStringProperty("performance.metrics.db.username", dbDefaultUsername);
+			dbUserpass = ConfigProperties.getStringProperty("performance.metrics.db.userpass", dbDefaultUserpass);
 
 
 		}

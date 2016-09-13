@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders.accounts;
@@ -49,7 +49,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test(	description = "View an external folder - IMAP",
+	@Test( description = "View an external folder - IMAP",
 			groups = { "smoke" })
 	public void GetExternalIMAP_01() throws HarnessException {
 		
@@ -59,7 +59,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		external.authenticate();
 		
 		// Add a message to the inbox
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		external.soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -77,7 +77,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 			+	"</AddMsgRequest>");
 
 		// Create the folder to put the data source
-		String foldername = "external" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "external" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -88,10 +88,10 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
 		
 		// Create the data source
-		String datasourcename = "datasource" + ZimbraSeleniumProperties.getUniqueString();
-		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("store.host");
-		String datasourceImapPort = ZimbraSeleniumProperties.getStringProperty("server.imap.port");
-		String datasourceImapType = ZimbraSeleniumProperties.getStringProperty("server.imap.type");
+		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
+		String datasourceHost = ConfigProperties.getStringProperty("store.host");
+		String datasourceImapPort = ConfigProperties.getStringProperty("server.imap.port");
+		String datasourceImapType = ConfigProperties.getStringProperty("server.imap.type");
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
@@ -186,7 +186,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 	}	
 
 
-	@Test(	description = "IMAP: get updates from the external account - 'refresh' button",
+	@Test( description = "IMAP: get updates from the external account - 'refresh' button",
 			groups = { "functional" })
 	public void GetExternalIMAP_02() throws HarnessException {
 		
@@ -196,7 +196,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		external.authenticate();
 		
 		// Add a message to the inbox
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		external.soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -214,7 +214,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 			+	"</AddMsgRequest>");
 
 		// Create the folder to put the data source
-		String foldername = "external" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "external" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -225,10 +225,10 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
 		
 		// Create the data source
-		String datasourcename = "datasource" + ZimbraSeleniumProperties.getUniqueString();
-		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("store.host");
-		String datasourceImapPort = ZimbraSeleniumProperties.getStringProperty("server.imap.port");
-		String datasourceImapType = ZimbraSeleniumProperties.getStringProperty("server.imap.type");
+		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
+		String datasourceHost = ConfigProperties.getStringProperty("store.host");
+		String datasourceImapPort = ConfigProperties.getStringProperty("server.imap.port");
+		String datasourceImapType = ConfigProperties.getStringProperty("server.imap.type");
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
@@ -290,7 +290,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		app.zTreeMail.zClickAt("css=td[id='zti__main_Mail__" + externalInbox +"_textCell']", "");
 		
 		// Add another message
-		String subject2 = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject2 = "subject" + ConfigProperties.getUniqueString();
 		external.soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
     		+		"<m l='"+ FolderItem.importFromSOAP(external, SystemFolder.Inbox).getId() +"' f='u'>"
@@ -336,7 +336,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 	}	
 
 	
-	@Test(	description = "IMAP: get updates from the external account - right click -> sync",
+	@Test( description = "IMAP: get updates from the external account - right click -> sync",
 			groups = { "functional" })
 	public void GetExternalIMAP_03() throws HarnessException {
 		
@@ -346,7 +346,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		external.authenticate();
 		
 		// Add a message to the inbox
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		external.soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -364,7 +364,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 			+	"</AddMsgRequest>");
 
 		// Create the folder to put the data source
-		String foldername = "external" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "external" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -375,10 +375,10 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
 		
 		// Create the data source
-		String datasourcename = "datasource" + ZimbraSeleniumProperties.getUniqueString();
-		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("store.host");
-		String datasourceImapPort = ZimbraSeleniumProperties.getStringProperty("server.imap.port");
-		String datasourceImapType = ZimbraSeleniumProperties.getStringProperty("server.imap.type");
+		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
+		String datasourceHost = ConfigProperties.getStringProperty("store.host");
+		String datasourceImapPort = ConfigProperties.getStringProperty("server.imap.port");
+		String datasourceImapType = ConfigProperties.getStringProperty("server.imap.type");
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
@@ -424,7 +424,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		app.zTreeMail.zClickAt("css=td[id='zti__main_Mail__" + externalInbox +"_textCell']", "");
 		
 		// Add another message
-		String subject2 = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject2 = "subject" + ConfigProperties.getUniqueString();
 		external.soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
     		+		"<m l='"+ FolderItem.importFromSOAP(external, SystemFolder.Inbox).getId() +"' f='u'>"

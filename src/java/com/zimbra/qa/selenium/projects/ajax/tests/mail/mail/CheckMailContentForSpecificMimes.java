@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
@@ -33,8 +33,8 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 		logger.info("New "+ CheckMailContentForSpecificMimes.class.getCanonicalName());
 	}
 
-	@Bugs(	ids = "13911,11684")
-	@Test(	description = "Verify bug 13911",
+	@Bugs( ids = "13911,11684")
+	@Test( description = "Verify bug 13911",
 			groups = { "functional" })
 	
 	public void CheckMailContentForSpecificMime_01() throws HarnessException {
@@ -43,7 +43,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 		String bodyBeforeImage = "K\u00e6re alle"; 
 		String bodyAfterImage = "Problemet best\u00E5r";
 
-		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug13911";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug13911";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 		
 		// Refresh current view
@@ -59,8 +59,8 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 
 	}
 	
-	@Bugs(	ids = "21415")
-	@Test(	description = "Verify bug 21415", groups = { "functional" })
+	@Bugs( ids = "21415")
+	@Test( description = "Verify bug 21415", groups = { "functional" })
 	
 	public void CheckMailContentForSpecificMime_02() throws HarnessException {
 
@@ -68,7 +68,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 		String beginningContent = "Uso Interno";
 		String endingContent = "Esta mensagem";
 
-		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug21415";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug21415";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 		
 		// Refresh current view
@@ -86,8 +86,8 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 
 	}
 	
-	@Bugs(	ids = "21415")
-	@Test(	description = "Verify bug 21415", groups = { "functional" })
+	@Bugs( ids = "21415")
+	@Test( description = "Verify bug 21415", groups = { "functional" })
 	
 	public void CheckMailContentForSpecificMime_03() throws HarnessException {
 
@@ -95,7 +95,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 		String beginningContent = "Change 77406";
 		String endingContent = "SkinResources.java";
 
-		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug21415";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug21415";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 
 		// Refresh current view
@@ -113,14 +113,14 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 		
 	}
 	
-	@Bugs(	ids = "25624")
-	@Test(	description = "Verify bug 25624", groups = { "functional" })
+	@Bugs( ids = "25624")
+	@Test( description = "Verify bug 25624", groups = { "functional" })
 	
 	public void CheckMailContentForSpecificMime_04() throws HarnessException {
 
 		String subject = "subject13001430504373";
 
-		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug25624";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug25624";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 
 		// Refresh current view
@@ -133,14 +133,14 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 		ZAssert.assertStringContains(body, "Hi Candace", "Verify the message content is not blank");
 	}
 	
-	@Bugs(	ids = "27796")
-	@Test(	description = "Verify bug 27796", groups = { "functional" })
+	@Bugs( ids = "27796")
+	@Test( description = "Verify bug 27796", groups = { "functional" })
 	
 	public void CheckMailContentForSpecificMime_05() throws HarnessException {
 
 		String subject = "subject13001430504374";
 
-		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug27796";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug27796";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 
 		
@@ -157,13 +157,13 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 	}
 	
 	@Bugs(ids="83527")
-	@Test(	description = "Verify bug 34401", groups = { "functional" })
+	@Test( description = "Verify bug 34401", groups = { "functional" })
 	
 	public void CheckMailContentForSpecificMime_06() throws HarnessException {
 
 		String subject = "subject13002239738283";
 
-		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug31535";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug31535";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 
 		// Refresh current view
@@ -177,15 +177,15 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 		HtmlElement.evaluate(bodyElement, "//body//img", "class", "InlineImage", 1);
 	}
 	
-	@Bugs(	ids = "66192")
-	@Test(	description = "Blank body with JS error on viewing some messages", groups = { "functional" })
+	@Bugs( ids = "66192")
+	@Test( description = "Blank body with JS error on viewing some messages", groups = { "functional" })
 	
 	public void CheckMailContentForSpecificMime_07() throws HarnessException {
 
 		String subject = "Fwd: test bug66192";
 		String bodytext = "Kind regards,";
 	
-		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug66192";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug66192";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 				
 		// Refresh current view

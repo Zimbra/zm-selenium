@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.performance;
@@ -44,7 +44,7 @@ public class ZmMailApp extends AjaxCommonTest {
 		
 	}
 	
-	@Test(	description = "Measure the time to load the mail app, message view, initial load",
+	@Test( description = "Measure the time to load the mail app, message view, initial load",
 			groups = { "performance" })
 	public void ZmMailApp_01() throws HarnessException {
 		
@@ -65,11 +65,11 @@ public class ZmMailApp extends AjaxCommonTest {
 		
 	}
 
-	@Test(	description = "Measure the time to load the mail app, message view, 1 message",
+	@Test( description = "Measure the time to load the mail app, message view, 1 message",
 			groups = { "performance" })
 	public void ZmMailApp_02() throws HarnessException {
 		
-		String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
+		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(mime));
 
 		// Fill out the login page
@@ -89,11 +89,11 @@ public class ZmMailApp extends AjaxCommonTest {
 		
 	}
 
-	@Test(	description = "Measure the time to load the mail app, message view, 100 messages",
+	@Test( description = "Measure the time to load the mail app, message view, 100 messages",
 			groups = { "performance" })
 	public void ZmMailApp_03() throws HarnessException {
 		
-		String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email03";
+		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email03";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(mime));
 
 		// Fill out the login page

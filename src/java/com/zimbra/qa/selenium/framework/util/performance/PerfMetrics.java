@@ -1,28 +1,26 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.util.performance;
 
 import java.util.*;
-
 import org.apache.log4j.*;
-
+import org.openqa.selenium.JavascriptExecutor;
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.util.*;
-
 
 /**
  * Measure application load/rendering times
@@ -47,7 +45,7 @@ public class PerfMetrics {
 		
 		// Print the server version
 		try {
-			traceLog.info("Server Version: "+ ZimbraSeleniumProperties.zimbraGetVersionString());
+			traceLog.info("Server Version: "+ ConfigProperties.zimbraGetVersionString());
 		} catch (HarnessException e) {
 			logger.warn("Unable to determine the server version to log into the perf output.", e);
 		}
@@ -148,8 +146,8 @@ public class PerfMetrics {
 		// But, if not specified, default to the non-specific property
 		// i.e. "coverage.query"
 		//
-		String property = ZimbraSeleniumProperties.getStringProperty("performance.metrics.query", "");
-		String appPoperty = ZimbraSeleniumProperties.getStringProperty("performance.metrics.query."+ ZimbraSeleniumProperties.getAppType(), null );
+		String property = ConfigProperties.getStringProperty("performance.metrics.query", "");
+		String appPoperty = ConfigProperties.getStringProperty("performance.metrics.query."+ ConfigProperties.getAppType(), null );
 		if ( appPoperty != null ) {
 			property = appPoperty; // Override the default
 		}
@@ -166,17 +164,10 @@ public class PerfMetrics {
 		return (map);
 	}
 
-	/**
-	 * Get the perf metric value.  See http://bugzilla.zimbra.com/show_bug.cgi?id=61972
-	 * @param key
-	 * @param type
-	 * @return
-	 */
-	@SuppressWarnings("deprecation")
 	private String getValue(String id) {
 		String value = "";
 		try {
-			value = ClientSessionFactory.session().selenium().getEval("this.browserbot.getCurrentWindow().document.getElementById('"+ id +"').innerHTML");
+			value = (String) ((JavascriptExecutor) ClientSessionFactory.session().webDriver()).executeScript("this.browserbot.getCurrentWindow().document.getElementById('"+ id +"').innerHTML");
 		} catch (Exception e) {
 			logger.debug(e);
 		}

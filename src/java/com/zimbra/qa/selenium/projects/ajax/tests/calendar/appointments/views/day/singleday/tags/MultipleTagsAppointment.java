@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.day.singleday.tags;
@@ -42,7 +42,7 @@ public class MultipleTagsAppointment extends AjaxCommonTest {
 		}};
 	}
 
-	@Test(description = "Apply multiple tags to appointment using toolbar button in day view and remove all tags in day view",
+	@Test( description = "Apply multiple tags to appointment using toolbar button in day view and remove all tags in day view",
 			groups = { "functional" })
 	public void MultipleTagsAppointment_01() throws HarnessException {
 		
@@ -50,10 +50,10 @@ public class MultipleTagsAppointment extends AjaxCommonTest {
 		String tz, apptSubject, apptBody, tag1, tag2, tagID1, tagID2;
 		TagItem getTag1, getTag2;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		tag1 = ZimbraSeleniumProperties.getUniqueString();
-		tag2 = ZimbraSeleniumProperties.getUniqueString();
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		tag1 = ConfigProperties.getUniqueString();
+		tag2 = ConfigProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
+		apptBody = ConfigProperties.getUniqueString();
 		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
 		
 		// Create new appointment

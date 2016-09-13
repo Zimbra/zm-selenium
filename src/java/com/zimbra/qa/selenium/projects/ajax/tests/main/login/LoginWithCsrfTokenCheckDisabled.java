@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.main.login;
@@ -22,7 +22,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
@@ -37,8 +37,8 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCommonTest {
 
 	}
 
-	@Test(	description = "Login to the webclient after disabling csrf check",
-			groups = { "smoke" })
+	@Test( description = "Login to the webclient after disabling csrf check", priority=5, groups = { "smoke" })
+
 	public void LoginWithCsrfTokenCheckDisabled_01() throws HarnessException {
 		try {
 
@@ -53,12 +53,9 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCommonTest {
 			// Restart zimbra services
 			StafServicePROCESS staf = new StafServicePROCESS();
 			staf.execute("zmmailboxdctl restart");
-
-			// Wait for the service to come up
-			SleepUtil.sleep(60000);
+			SleepUtil.sleepVeryLong();
 
 			staf.execute("zmcontrol status");
-
 			SleepUtil.sleepMedium();
 
 			// Login
@@ -69,20 +66,32 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCommonTest {
 		}
 
 		finally {
-		
-			String zimbraCsrfTokenCheckEnabledValue = "TRUE";
-			
-			// Change zimbraCsrfTokenCheckEnabled value to false
-						ZimbraAdminAccount.GlobalAdmin().soapSend(
-								"<ModifyConfigRequest xmlns='urn:zimbraAdmin'>"
-										+		"<a n='zimbraCsrfTokenCheckEnabled'>"+ zimbraCsrfTokenCheckEnabledValue + "</a>"
-										+	"</ModifyConfigRequest>");
 
-						StafServicePROCESS staf = new StafServicePROCESS();
+			String zimbraCsrfTokenCheckEnabledValue = "TRUE";
+
+			// Change zimbraCsrfTokenCheckEnabled value to false
+			ZimbraAdminAccount.GlobalAdmin().soapSend(
+					"<ModifyConfigRequest xmlns='urn:zimbraAdmin'>"
+							+		"<a n='zimbraCsrfTokenCheckEnabled'>"+ zimbraCsrfTokenCheckEnabledValue + "</a>"
+							+	"</ModifyConfigRequest>");
+
+			StafServicePROCESS staf = new StafServicePROCESS();
+			staf.execute("zmmailboxdctl restart");
+			SleepUtil.sleepVeryLong();
+
+			for (int i=0; i<=10; i++) {
+				app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
+				if (app.zPageLogin.sIsElementPresent("css=input[class='zLoginField']") == true || app.zPageLogin.sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']") == true) {
+					break;
+				} else {
+					SleepUtil.sleepLong();
+					if (i == 5) {
 						staf.execute("zmmailboxdctl restart");
-						
-			// Open the base URL
-			app.zPageLogin.sOpen(ZimbraSeleniumProperties.getBaseURL());
+						SleepUtil.sleepVeryLong();
+					}
+					continue;
+				}
+			}
 		}
 
 	}

@@ -1,7 +1,7 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
@@ -11,7 +11,7 @@
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.search.savedsearch;
@@ -41,17 +41,17 @@ public class MoveSavedSearch extends AjaxCommonTest  {
 
 	}
 
-	@Bugs(	ids = "102547")
-	@Test(	description = "Move a saved search",
+	@Bugs( ids = "102547")
+	@Test( description = "Move a saved search",
 			groups = { "smoke" })
+	
 	public void MoveSavedSearch_01() throws HarnessException {
 
-
 		// Create the message data to be moved
-		String name1 = "search" + ZimbraSeleniumProperties.getUniqueString();
-		String name2 = "search" + ZimbraSeleniumProperties.getUniqueString();
-		String query1 = "subject:(" + ZimbraSeleniumProperties.getUniqueString() + ")";
-		String query2 = "subject:(" + ZimbraSeleniumProperties.getUniqueString() + ")";
+		String name1 = "search" + ConfigProperties.getUniqueString();
+		String name2 = "search" + ConfigProperties.getUniqueString();
+		String query1 = "subject:(" + ConfigProperties.getUniqueString() + ")";
+		String query2 = "subject:(" + ConfigProperties.getUniqueString() + ")";
 
 
 		app.zGetActiveAccount().soapSend(
@@ -66,11 +66,10 @@ public class MoveSavedSearch extends AjaxCommonTest  {
 				"</CreateSearchFolderRequest>");
 		SavedSearchFolderItem item2 = SavedSearchFolderItem.importFromSOAP(app.zGetActiveAccount(), name2);
 
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo(); //see bug 102547
+		app.zPageLogin.sRefresh();
+		app.zPageMail.zNavigateTo(); //see bug 102547
 
 		// Right click on the search, select delete
-		// TODO: can the folder move dialog be reused?  Or, do we need DialogMoveSavedSearchFolder class?
 		DialogMove dialog = (DialogMove) app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_MOVE, item1);
 
 		// Rename the search

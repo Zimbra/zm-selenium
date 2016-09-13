@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversations;
@@ -34,7 +34,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 	
 
 	@Bugs(ids = "97098")
-	@Test(	description = "Reply to a conversation with a draft", groups = { "functional" })
+	@Test( description = "Reply to a conversation with a draft", groups = { "functional" })
 	
 	public void ReplyToConversationWithDraft_01() throws HarnessException {
 
@@ -51,7 +51,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 				id = Integer.parseInt(m.getId());
 			}
 		}
-		String body = "draft"+ ZimbraSeleniumProperties.getUniqueString();
+		String body = "draft"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<SaveDraftRequest xmlns='urn:zimbraMail'>" +
 					"<m origid='"+ id +"' rt='r'>" +
@@ -98,7 +98,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 	
 
 	@Bugs(ids = "81920")
-	@Test(	description = "Reply to a conversation with a trashed message",	groups = { "functional" })
+	@Test( description = "Reply to a conversation with a trashed message",	groups = { "functional" })
 	
 	public void ReplyToConversationWithDraft_02() throws HarnessException {
 
@@ -159,7 +159,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 
 	
 	@Bugs(ids = "81920")
-	@Test(	description = "Reply to a conversation with a spammed message",	groups = { "functional" })
+	@Test( description = "Reply to a conversation with a spammed message",	groups = { "functional" })
 	
 	public void ReplyToConversationWithDraft_03() throws HarnessException {
 
@@ -220,7 +220,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 
 	
 	@Bugs(ids = "81920")
-	@Test(	description = "Reply to a conversation with a sent message", groups = { "functional" })
+	@Test( description = "Reply to a conversation with a sent message", groups = { "functional" })
 	
 	public void ReplyToConversationWithDraft_04() throws HarnessException {
 
@@ -239,7 +239,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 		}
 		
 		// Reply to the last message
-		String body = "firstreply"+ ZimbraSeleniumProperties.getUniqueString();
+		String body = "firstreply"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 					"<m origid='"+ id +"' rt='r'>" +

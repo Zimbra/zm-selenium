@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
@@ -38,14 +38,14 @@ public class AddEquipment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test(description = "Add Equipment to existing appointment by typing equipment name and verify F/B",
+	@Test( description = "Add Equipment to existing appointment by typing equipment name and verify F/B",
 			groups = { "smoke" })
 	public void AddEquipment_01() throws HarnessException {
 		
 		// Create a meeting
 		AppointmentItem appt = new AppointmentItem();
 		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
 		String apptEquipment = equipment.EmailAddress;
 		
 		// Absolute dates in UTC zone
@@ -64,7 +64,7 @@ public class AddEquipment extends CalendarWorkWeekTest {
                      	"</inv>" +
                      	"<e a='"+ ZimbraAccount.AccountA().EmailAddress +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
-                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     		"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
@@ -78,7 +78,6 @@ public class AddEquipment extends CalendarWorkWeekTest {
        
         // Modify the meeting , add equipment by typing in the field 
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-        apptForm.zClickAt(Locators.ShowEquipmentLink,"");
         apptForm.zFill(appt);
 		List<AutocompleteEntry> entries = apptForm.zAutocompleteFillField(Field.Equipment, apptEquipment);
 		AutocompleteEntry found = null;
@@ -106,12 +105,12 @@ public class AddEquipment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(equipmentStatus, "AC", "Verify equipment status shows accepted");
 		
 	}
-	@Test(description = "Add equipment to exisiting appt by from Serach equipment dialog",
+	@Test( description = "Add equipment to exisiting appt by from Serach equipment dialog",
 			groups = { "functional" })
 	public void AddEquipment_02() throws HarnessException {
 		
 		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
 		String apptEquipment = equipment.EmailAddress;
 		
 		// Absolute dates in UTC zone
@@ -130,7 +129,7 @@ public class AddEquipment extends CalendarWorkWeekTest {
                      	"</inv>" +
                      	"<e a='"+ ZimbraAccount.AccountA().EmailAddress +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
-                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     		"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
@@ -141,20 +140,20 @@ public class AddEquipment extends CalendarWorkWeekTest {
         
         // Add equipment from 'Search Equipment' dialog and send the meeting
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-        apptForm.sClick(Locators.ShowEquipmentLink);
-        //apptForm.zClick(Locators.ShowEquipmentLink);
+        apptForm.sClickAt(Locators.ShowEquipmentLink, "0,0");
         apptForm.zToolbarPressButton(Button.B_EQUIPMENT);
         
         DialogFindEquipment dialogFindEquipment = (DialogFindEquipment) new DialogFindEquipment(app, app.zPageCalendar);
         dialogFindEquipment.zType(Locators.EquipmentName, apptEquipment);
         dialogFindEquipment.zClickButton(Button.B_SEARCH_EQUIPMENT);
-        SleepUtil.sleepMedium(); // Increased delay to avoid failure
+        SleepUtil.sleepLong(); // Increased delay to avoid failure
         
         dialogFindEquipment.zClickButton(Button.B_SELECT_EQUIPMENT);
+        SleepUtil.sleepMedium(); // Test fails constantly, lets see by putting sleep in near by places
         dialogFindEquipment.zClickButton(Button.B_OK);
+        SleepUtil.sleepMedium(); // Test fails constantly, lets see by putting sleep in near by places
         apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepVeryLong(); // test fails while checking free/busy status, waitForPostqueue is not sufficient here
-        // Tried sleepLong() as well but although fails so using sleepVeryLong()
+        SleepUtil.sleepVeryVeryLong(); // Test fails while checking free/busy status, waitForPostqueue is not sufficient here
  
         // Verify equipment present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

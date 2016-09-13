@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contactgroups;
@@ -42,7 +42,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 	}
 	
 	
-	@Test(	description = "Create a new contact group by right click on existing contact", groups = { "smoke" })
+	@Test( description = "Create a new contact group by right click on existing contact", groups = { "smoke" })
 	
 	public void CreateContactGroupWith1Contact() throws HarnessException {			
 		
@@ -52,7 +52,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
 		
 		// The contact group name
-		String groupname = "group" + ZimbraSeleniumProperties.getUniqueString();
+		String groupname = "group" + ConfigProperties.getUniqueString();
 		
 		//-- GUI
 		
@@ -84,7 +84,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 
 	
 	@Bugs(ids = "77882")
-	@Test(	description = "Add a contact to an existing group", groups = { "smoke" })
+	@Test( description = "Add a contact to an existing group", groups = { "smoke" })
 	
 	public void Add1ContactToExistingContactGroup() throws HarnessException {			
 		
@@ -123,7 +123,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 
 	
 	@Bugs(ids = "77882")
-	@Test(	description = "Add 3 contacts to an existing group", groups = { "functional" })
+	@Test( description = "Add 3 contacts to an existing group", groups = { "functional" })
 	
 	public void Add3ContactsToExistingContactGroup() throws HarnessException {
 		
@@ -180,7 +180,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 	}
 	
 	
-	@Test(	description = "Create a contact group with 3 contacts",	groups = { "functional" })
+	@Test( description = "Create a contact group with 3 contacts",	groups = { "functional" })
 	
 	public void CreateContactGroupWith3Contacts() throws HarnessException {			
 		
@@ -195,7 +195,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 		ContactItem.createContactItem(app.zGetActiveAccount());
 		
 		// Create a contact group
-		String groupname = "group"+ ZimbraSeleniumProperties.getUniqueString();
+		String groupname = "group"+ ConfigProperties.getUniqueString();
 		
 		//-- GUI
 		
@@ -244,7 +244,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 
 	
 	@Bugs(ids = "65500,15646")
-	@Test(	description = "Create a contact group with 1 contact + 1 group", groups = { "functional" })
+	@Test( description = "Create a contact group with 1 contact + 1 group", groups = { "functional" })
 	
 	public void CreateContactGroupWith1ContactAnd1ContactGroup() throws HarnessException {			
 		
@@ -256,7 +256,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 		
-		String groupname = "group" + ZimbraSeleniumProperties.getUniqueString();
+		String groupname = "group" + ConfigProperties.getUniqueString();
 		
 		
 		//-- GUI
@@ -303,7 +303,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 	
 	
 	@Bugs(ids = "77882,15646")
-	@Test(	description = "Add 1 contact + 1 group to an existing group", groups = { "functional" })
+	@Test( description = "Add 1 contact + 1 group to an existing group", groups = { "functional" })
 	
 	public void Add1ContactAnd1GroupToExistingContactGroup() throws HarnessException {
 		

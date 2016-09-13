@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail.headers;
@@ -38,7 +38,7 @@ public class ExpandDL extends PrefGroupMailByMessageTest {
 	}
 	
 	
-	@Test(	description = "Verify the Expand icon a DL in the To field",
+	@Test( description = "Verify the Expand icon a DL in the To field",
 			groups = { "smoke" })
 	public void ExpandDL_01() throws HarnessException {
 		
@@ -52,7 +52,7 @@ public class ExpandDL extends PrefGroupMailByMessageTest {
 		distribution.addMember(account2);
 
 		// Send a message to the DL with the test account in the CC
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 					"<m>" +
@@ -60,7 +60,7 @@ public class ExpandDL extends PrefGroupMailByMessageTest {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>"+ "body" + ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
@@ -99,7 +99,7 @@ public class ExpandDL extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test(	description = "Expand a DL in the To field",
+	@Test( description = "Expand a DL in the To field",
 			groups = { "smoke" })
 	public void ExpandDL_02() throws HarnessException {
 		
@@ -113,7 +113,7 @@ public class ExpandDL extends PrefGroupMailByMessageTest {
 		distribution.addMember(account2);
 
 		// Send a message to the DL with the test account in the CC
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 					"<m>" +
@@ -121,7 +121,7 @@ public class ExpandDL extends PrefGroupMailByMessageTest {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>"+ "body" + ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");

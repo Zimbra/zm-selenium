@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
@@ -21,7 +21,6 @@ package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
-
 import com.zimbra.qa.selenium.framework.core.SeleniumService;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.RecipientItem;
@@ -33,28 +32,17 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.SeparateWindowDialog;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-
-
-/**
- * Represents a "Compose in New Window" form
- * <p>
- * @author Matt Rhoades
- *
- */
 public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 	public static class Locators {
 
 	}
 	
-
-
 	public SeparateWindowFormMailNew(AbsApplication application) {
 		super(application);
 		
@@ -62,9 +50,6 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 		
 	}
 	
-	/* (non-Javadoc)
-	 * @see framework.ui.AbsDialog#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
@@ -84,14 +69,10 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 		}
 		
 		if ( mail.dBodyHtml != null ) {
-		    if(ZimbraSeleniumProperties.isWebDriver()){
-				sSelectWindow(this.DialogWindowID);
-				String locator = "css=iframe[id*=ifr]";
-				sClickAt(locator,"");
-				zTypeFormattedText(locator, mail.dBodyHtml);					
-		    } else {
-		    	zFillField(Field.Body, mail.dBodyHtml);
-		    }
+			sSelectWindow(this.DialogWindowID);
+			String locator = "css=iframe[id*=ifr]";
+			sClickAt(locator,"");
+			zTypeFormattedText(locator, mail.dBodyHtml);
 		}
 				
 		StringBuilder to = null;
@@ -485,39 +466,11 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			throw new HarnessException("no logic defined for pulldown "+ pulldown);
 		}
 
-		// Default behavior
-
-		if ( ZimbraSeleniumProperties.isWebDriver() ) {
-
-			// Webdriver
-			List<String> locators = new ArrayList<String>();
-			locators.add(pulldownLocator);
-			locators.add(optionLocator);
-			
-			// Click on:
-			// 1. pulldownLocator
-			// 2. optionLocator
-			//
-			this.sClick(locators);
-			
-		} else {
-			
-			// Selenium
-			if ( pulldownLocator != null ) {
-							
-				zClickAt(pulldownLocator, "");
-
-				if ( optionLocator != null ) {
-
-					zClickAt(optionLocator, "");
-
-				}
-				
-			}
-
-		}
+		List<String> locators = new ArrayList<String>();
+		locators.add(pulldownLocator);
+		locators.add(optionLocator);
+		this.sClick(locators);
 		
-		// Return the specified page, or null if not set
 		return (page);
 	}
 
@@ -553,25 +506,11 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 		
 	}
 	
-	/* TODO: ... debugging to be removed */
 	public boolean waitForComposeWindow() throws HarnessException {
-	    	String pageTitle = "Zimbra: Compose";
-	    	if (ZimbraSeleniumProperties.isWebDriver()){
-	    	    sWaitForPopUp(pageTitle,"30000");
-	    	}else{
-	    	    sWaitForCondition("var x; for(var windowName in selenium.browserbot.openedWindows)"
-			+ "{var targetWindow = selenium.browserbot.openedWindows[windowName];"
-			+ "if(!selenium.browserbot._windowClosed(targetWindow)&&"
-			+ "(targetWindow.name.indexOf('"
-			+ pageTitle.split("\\.")[0]
-			+ "')!=-1||targetWindow.document.title.indexOf('"
-			+ pageTitle.split("\\.")[0]
-			+ "')!=-1)){x=windowName;}};x!=null;","60000");
-	    	}
+		String pageTitle = "Zimbra: Compose";
+		sWaitForPopUp(pageTitle,"30000");	
 		sSelectWindow(pageTitle);
-
 		zWaitForElementPresent("css=textarea[id*='DWT'][class='DwtHtmlEditorTextArea']","10000");
-
 		return true;
 	}
 

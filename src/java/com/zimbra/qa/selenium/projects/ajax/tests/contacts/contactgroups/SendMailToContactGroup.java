@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contactgroups;
@@ -39,17 +39,17 @@ public class SendMailToContactGroup extends AjaxCommonTest  {
 	}
 	
 	@Bugs(ids="97157")
-	@Test(	description = "Right click then click New Email",
+	@Test( description = "Right click then click New Email",
 			groups = { "smoke" })
 	public void NewEmail() throws HarnessException {
 
 		//--  Data
 		
 		// The message subject
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		
 		// Create a contact group
-		String groupName = "group" + ZimbraSeleniumProperties.getUniqueString();
+		String groupName = "group" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
 					"<cn >" +
@@ -72,7 +72,7 @@ public class SendMailToContactGroup extends AjaxCommonTest  {
         FormMailNew formMailNew = (FormMailNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_NEW, groupName);        
 
         formMailNew.zFillField(Field.Subject, subject);
-        formMailNew.zFillField(Field.Body, "body"+ ZimbraSeleniumProperties.getUniqueString());
+        formMailNew.zFillField(Field.Body, "body"+ ConfigProperties.getUniqueString());
         formMailNew.zSubmit();
         
         

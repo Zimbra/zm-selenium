@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
@@ -254,30 +254,11 @@ public class DialogSendLater extends AbsDialog {
 			throw new HarnessException("locator was null for field "+ field);
 		}
 		
-		// Default behavior, enter value into locator field
-		//
-		
-		// Make sure the button exists
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
 		
-		if(ZimbraSeleniumProperties.isWebDriver()){
-			
-			this.clearField(locator);
-			this.sType(locator, value);
-			
-		} else {
-			
-			// Seems that the client can't handle filling out the new mail form too quickly
-			// Click in the "To" fields, etc, to make sure the client is ready
-			this.sFocus(locator);
-			this.zClick(locator);
-			this.zWaitForBusyOverlay();
-	
-			// Enter text
-			this.sType(locator, value);
-			
-		}
+		this.clearField(locator);
+		this.sType(locator, value);
 		
 		this.zWaitForBusyOverlay();
 		

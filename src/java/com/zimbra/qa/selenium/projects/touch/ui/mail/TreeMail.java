@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.ui.mail;
@@ -33,7 +33,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsTree;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 import com.zimbra.qa.selenium.projects.touch.ui.*;
 
 public class TreeMail extends AbsTree {
@@ -728,9 +728,6 @@ public class TreeMail extends AbsTree {
 		return (page);
 	}
 
-	/* (non-Javadoc)
-	 * @see framework.ui.AbsTree#zTreeItem(framework.ui.Action, framework.items.FolderItem)
-	 */
 	public AbsPage zTreeItem(Action action, IItem folder) throws HarnessException {
 		
 		// Validate the arguments
@@ -966,7 +963,7 @@ public class TreeMail extends AbsTree {
 		// Create a list of items to return
 		List<ZimletItem> items = new ArrayList<ZimletItem>();
 
-		String treeLocator = ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP ?
+		String treeLocator = ConfigProperties.getAppType() == AppType.DESKTOP ?
 				Locators.ztih__main_Mail__ZIMLET_ID_Desktop :
 					Locators.ztih__main_Mail__ZIMLET_ID;
 
@@ -980,7 +977,7 @@ public class TreeMail extends AbsTree {
 			String zimletLocator = null;
 			String imageLocator = null;
 			String nameLocator = null;
-			if (ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP) {
+			if (ConfigProperties.getAppType() == AppType.DESKTOP) {
 				zimletLocator = "zti__main_Mail_zimlets__" + zimletNum +"_z_div";
 				imageLocator = "xpath=(//*[@id='zti__main_Mail_zimlets__"+ zimletNum +"_z_imageCell']/div)@class";
 				nameLocator = "zti__main_Mail_zimlets__"+ zimletNum +"_z_textCell";
@@ -1045,7 +1042,7 @@ public class TreeMail extends AbsTree {
 		if ( section == FolderSection.Zimlets ) {
 
 			// What is the current state of the section?
-			if (ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP) {
+			if (ConfigProperties.getAppType() == AppType.DESKTOP) {
 				locator = "css=div[class*='ZmOverviewZimletHeader'] div[class^='ImgNode']@class";
 			} else {
 				locator = "xpath=(//td[@id='"+ Locators.ztih__main_Mail__ZIMLET_nodeCell_ID +"']/div)@class"; 
@@ -1062,7 +1059,7 @@ public class TreeMail extends AbsTree {
 					return (page);
 				}
 
-				if (ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP) {
+				if (ConfigProperties.getAppType() == AppType.DESKTOP) {
 					locator = "css=div[class*='ZmOverviewZimletHeader'] div[class^='ImgNode']";
 				} else {
 					locator = "css=td[id="+ Locators.ztih__main_Mail__ZIMLET_nodeCell_ID +"] div";
@@ -1086,10 +1083,6 @@ public class TreeMail extends AbsTree {
 		return (page);
 	}
 
-
-	/* (non-Javadoc)
-	 * @see framework.ui.AbsTree#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
@@ -1105,7 +1098,7 @@ public class TreeMail extends AbsTree {
 
 		// Zimlets seem to be loaded last
 		// So, wait for the zimlet div to load
-		String locator = ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP ?
+		String locator = ConfigProperties.getAppType() == AppType.DESKTOP ?
 				Locators.ztih__main_Mail__ZIMLET_ID_Desktop :
 					Locators.ztih__main_Mail__ZIMLET_ID;
 

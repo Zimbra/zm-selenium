@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.attachments;
@@ -20,7 +20,10 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
+
+import org.testng.SkipException;
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -42,61 +45,67 @@ public class CreateTaskWithAttachment extends PrefGroupMailByMessageTest {
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 		}};
 	}
-	
+
 	@Bugs(ids = "104231")
-	@Test(	description = "Create task with attachment", groups = { "sanity","windows" })
-	
+	@Test( description = "Create task with attachment", 
+		groups = { "sanity" })
+
 	public void CreateTaskWithAttachment_01() throws HarnessException {
-		
-		try {
-			
-			String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
-			String body = "taskbody"+ ZimbraSeleniumProperties.getUniqueString();
-			
-			// Create file item
-			final String fileName = "testtextfile.txt";
-			final String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
-						
-			// Click NEW button
-			FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
 
-			// Fill out the resulting form
-			taskNew.zFillField(Field.Subject, subject);
-			taskNew.zFillField(Field.Body, body);
-			
-			// Upload the file
-			app.zPageTasks.zToolbarPressButton(Button.B_Attachment);
-			app.zPageTasks.zToolbarPressButton(Button.B_ATTACH);
-			zUpload(filePath);
-			
-			// Submit task
-			taskNew.zSubmit();
+		if (OperatingSystem.isWindows() == true) {
 
-			TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);			
-			ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
-			ZAssert.assertEquals(task.gettaskBody().trim(), body.trim(), "Verify task body");
-			ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:GetMsgResponse//mail:mp[@cd='attachment']", "filename"), fileName, "Verify task attachment");
-	
-			// Verify UI for attachment
-			ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the task");
-
-		} finally {
-			
-			Robot robot;
-			
 			try {
-				robot = new Robot();
-				robot.delay(250);
-				robot.keyPress(KeyEvent.VK_ESCAPE);
-				robot.keyRelease(KeyEvent.VK_ESCAPE);
-				robot.delay(50);
-				
-			} catch (AWTException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+				String subject = "task" + ConfigProperties.getUniqueString();
+				String body = "taskbody"+ ConfigProperties.getUniqueString();
+
+				// Create file item
+				final String fileName = "testtextfile.txt";
+				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+
+				// Click NEW button
+				FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
+
+				// Fill out the resulting form
+				taskNew.zFillField(Field.Subject, subject);
+				taskNew.zFillField(Field.Body, body);
+
+				// Upload the file
+				app.zPageTasks.zToolbarPressButton(Button.B_Attachment);
+				app.zPageTasks.zToolbarPressButton(Button.B_ATTACH);
+				zUpload(filePath);
+
+				// Submit task
+				taskNew.zSubmit();
+
+				TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
+				ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
+				ZAssert.assertEquals(task.gettaskBody().trim(), body.trim(), "Verify task body");
+				ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:GetMsgResponse//mail:mp[@cd='attachment']", "filename"), fileName, "Verify task attachment");
+
+				// Verify UI for attachment
+				ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the task");
+
+			} finally {
+
+				Robot robot;
+
+				try {
+					robot = new Robot();
+					robot.delay(250);
+					robot.keyPress(KeyEvent.VK_ESCAPE);
+					robot.keyRelease(KeyEvent.VK_ESCAPE);
+					robot.delay(50);
+
+				} catch (AWTException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
-			
+
+		} else {
+			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
 		}
 	}
-
 }

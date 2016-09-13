@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.tests.distributionlists;
@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.DistributionListItem;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditDistributionList;
@@ -49,7 +49,7 @@ public class EditDistributionList extends AdminCommonTest {
 	 * 5. Verify dl is edit using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit Distribution List name - Manage Distribution List view",
+	@Test( description = "Edit Distribution List name - Manage Distribution List view",
 			groups = { "smoke" })
 	public void EditDistributionList_01() throws HarnessException {
 
@@ -76,7 +76,7 @@ public class EditDistributionList extends AdminCommonTest {
 		form.zClickTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		//Edit the name.
-		String editedName = "editedDL_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
 		//Submit the form.
@@ -103,7 +103,7 @@ public class EditDistributionList extends AdminCommonTest {
 	 * 5. Verify dl is edited using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit Distribution List name - Manage Distribution List view + Right Click Menu",
+	@Test( description = "Edit Distribution List name - Manage Distribution List view + Right Click Menu",
 			groups = { "functional" })
 	public void EditDistributionList_02() throws HarnessException {
 
@@ -129,7 +129,7 @@ public class EditDistributionList extends AdminCommonTest {
 		form.zClickTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		//Edit the name.
-		String editedName = "editedDL_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
 		//Submit the form.
@@ -156,7 +156,7 @@ public class EditDistributionList extends AdminCommonTest {
 	 * 5. Verify dl is edit using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit Admin Distribution List name - Manage Distribution List view",
+	@Test( description = "Edit Admin Distribution List name - Manage Distribution List view",
 			groups = { "functional" })
 	public void EditDistributionList_03() throws HarnessException {
 
@@ -184,7 +184,7 @@ public class EditDistributionList extends AdminCommonTest {
 		form.zClickTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		//Edit the name.
-		String editedName = "editedDL_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
 		//Submit the form.
@@ -211,7 +211,7 @@ public class EditDistributionList extends AdminCommonTest {
 	 * 5. Verify dl is edit using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit Dynamic Admin Distribution List name - Manage Distribution List view",
+	@Test( description = "Edit Dynamic Admin Distribution List name - Manage Distribution List view",
 			groups = { "functional" })
 	public void EditDistributionList_04() throws HarnessException {
 
@@ -242,7 +242,7 @@ public class EditDistributionList extends AdminCommonTest {
 		form.zClickTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		//Edit the name.
-		String editedName = "editedDL_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
 		//Submit the form.
@@ -273,7 +273,7 @@ public class EditDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Bugs(ids = "97150")
-	@Test(	description = "Edit dynamic Distribution List name - Manage Distribution List view",
+	@Test( description = "Edit dynamic Distribution List name - Manage Distribution List view",
 			groups = { "functional" })
 	public void EditDistributionList_05() throws HarnessException {
 
@@ -304,7 +304,7 @@ public class EditDistributionList extends AdminCommonTest {
 		form.zClickTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		//Edit the name.
-		String editedName = "editedDL_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
 		//Submit the form.
@@ -333,7 +333,7 @@ public class EditDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Bugs(ids = "97150")
-	@Test(	description = "Edit Dynamic Distribution List name - Manage Distribution List view + Right Click Menu",
+	@Test( description = "Edit Dynamic Distribution List name - Manage Distribution List view + Right Click Menu",
 			groups = { "functional" })
 	public void EditDistributionList_06() throws HarnessException {
 
@@ -364,7 +364,7 @@ public class EditDistributionList extends AdminCommonTest {
 		form.zClickTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		//Edit the name.
-		String editedName = "editedDL_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
 		//Submit the form.

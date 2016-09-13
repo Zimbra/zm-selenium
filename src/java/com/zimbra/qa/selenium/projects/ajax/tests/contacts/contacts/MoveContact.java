@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contacts;
@@ -39,7 +39,7 @@ public class MoveContact extends AjaxCommonTest  {
 		
 	}
 
-	@Test(	description = "Move a contact item to sub addressbook by click tool bar Move",
+	@Test( description = "Move a contact item to sub addressbook by click tool bar Move",
 			groups = { "smoke" })
 	public void MoveContact_01() throws HarnessException {
  
@@ -48,7 +48,7 @@ public class MoveContact extends AjaxCommonTest  {
 		
 		// Create the sub addressbook
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		String foldername = "ab"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "ab"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 					"<folder name='" + foldername +"' l='"+ root.getId() +"' view='contact'/>" +
@@ -85,7 +85,7 @@ public class MoveContact extends AjaxCommonTest  {
 	
 
 
-	@Test(	description = "Move a contact item to sub addressbook by click shortcut m",
+	@Test( description = "Move a contact item to sub addressbook by click shortcut m",
 			groups = { "functional" })
 	public void MoveContact_02() throws HarnessException {
 
@@ -93,7 +93,7 @@ public class MoveContact extends AjaxCommonTest  {
 		
 		// Create the sub addressbook
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		String foldername = "ab"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "ab"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 					"<folder name='" + foldername +"' l='"+ root.getId() +"' view='contact'/>" +
@@ -131,7 +131,7 @@ public class MoveContact extends AjaxCommonTest  {
         
    	}
 
-	@Test(	description = "Move a contact item to sub addressbook by click Move on context menu",
+	@Test( description = "Move a contact item to sub addressbook by click Move on context menu",
 			groups = { "functional" })
 	public void MoveContact_03() throws HarnessException {
 		
@@ -141,7 +141,7 @@ public class MoveContact extends AjaxCommonTest  {
 		
 		// Create the sub addressbook
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		String foldername = "ab"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "ab"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 					"<folder name='" + foldername +"' l='"+ root.getId() +"' view='contact'/>" +
@@ -182,7 +182,7 @@ public class MoveContact extends AjaxCommonTest  {
 
 	
 	
-	@Test(	description = "Move a contact item to trash folder by expand Move dropdown on toolbar, then select Trash",
+	@Test( description = "Move a contact item to trash folder by expand Move dropdown on toolbar, then select Trash",
 			groups = { "functional" })
 	public void MoveContact_04() throws HarnessException {
 	
@@ -220,7 +220,7 @@ public class MoveContact extends AjaxCommonTest  {
 
    	}
 	
-	@Test(	description = "Move a contact item to Emailed Contacts by expand Move dropdown on toolbar, then select Trash",
+	@Test( description = "Move a contact item to Emailed Contacts by expand Move dropdown on toolbar, then select Trash",
 			groups = { "functional" })
 	public void MoveContact_05() throws HarnessException {
 	
@@ -270,7 +270,7 @@ public class MoveContact extends AjaxCommonTest  {
 		
 		// Create the sub addressbook
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		String foldername = "ab"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "ab"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 					"<folder name='" + foldername +"' l='"+ root.getId() +"' view='contact'/>" +

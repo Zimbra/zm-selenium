@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.tests.delegatedadmin;
@@ -46,7 +46,7 @@ public class ChangePassword extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Bugs( ids = "78780")
-	@Test(	description = "Delegated Admin - Edit password  -- manage account > Gearbox > edit account > change password ",
+	@Test( description = "Delegated Admin - Edit password  -- manage account > Gearbox > edit account > change password ",
 			groups = { "functional" })
 	public void ChangePassword_01() throws HarnessException {
 
@@ -72,7 +72,7 @@ public class ChangePassword extends AdminCommonTest {
 		form.zClickTreeItem(FormEditAccount.TreeItem.GENERAL_INFORMATION);
 
 		//Edit the password
-		String editedPassword = "password_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedPassword = "password_" + ConfigProperties.getUniqueString();
 		form.setPassword(editedPassword);
 
 		//Submit the form.
@@ -98,7 +98,7 @@ public class ChangePassword extends AdminCommonTest {
 	 * 3. Verify password is changed using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit password  -- manage account >> right click",
+	@Test( description = "Edit password  -- manage account >> right click",
 			groups = { "functional" })
 	public void ChangePassword_02() throws HarnessException {
 
@@ -106,7 +106,7 @@ public class ChangePassword extends AdminCommonTest {
 		this.startingPage.zNavigateTo();
 
 		// Create a new account in the Delegated Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		
 		// Create a new account in the Delegated Admin 
 		String new_account = ZimbraAccount.AccountZWC().EmailAddress;

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.tests.aliases;
@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.*;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
@@ -45,11 +45,11 @@ public class EditAlias extends AdminCommonTest {
 	 * 2. Verify alias is created using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit a basic alias",
+	@Test( description = "Edit a basic alias",
 			groups = { "smoke" })
 	public void EditAlias_01() throws HarnessException {
 
-		AccountItem target = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
 
@@ -85,7 +85,7 @@ public class EditAlias extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Bugs( ids = "58191")
-	@Test(	description = "Bug 58191 - JavaScript error while clicking on alias of resource",
+	@Test( description = "Bug 58191 - JavaScript error while clicking on alias of resource",
 			groups = { "functional" })
 	public void EditAlias_02() throws HarnessException {
 	

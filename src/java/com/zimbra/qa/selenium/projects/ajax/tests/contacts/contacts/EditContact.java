@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contacts;
@@ -42,7 +42,7 @@ public class EditContact extends AjaxCommonTest  {
 		
 	}
 	
-	@Test(	description = "Edit a contact item, click Edit on toolbar",
+	@Test( description = "Edit a contact item, click Edit on toolbar",
 			groups = { "smoke" })
 	public void ClickToolbarEdit() throws HarnessException {
 		
@@ -52,7 +52,7 @@ public class EditContact extends AjaxCommonTest  {
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
 		
 		// The new first name
-		String firstname = "new" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "new" + ConfigProperties.getUniqueString();
 		
 		
 		
@@ -81,7 +81,7 @@ public class EditContact extends AjaxCommonTest  {
 	}
 
 	
-	@Test(	description = "Edit a contact item, Right click then click Edit",
+	@Test( description = "Edit a contact item, Right click then click Edit",
 			groups = { "functional" })
 	public void ClickContextMenuEdit() throws HarnessException {
 		
@@ -91,7 +91,7 @@ public class EditContact extends AjaxCommonTest  {
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
 		
 		// The new first name
-		String firstname = "new" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "new" + ConfigProperties.getUniqueString();
 		
 		
 		
@@ -116,7 +116,7 @@ public class EditContact extends AjaxCommonTest  {
         
 	}
 
-	@Test(	description = "Edit a contact item, double click the contact",
+	@Test( description = "Edit a contact item, double click the contact",
 			groups = { "functional" })
 	public void DoubleClickContact() throws HarnessException {
 		
@@ -126,7 +126,7 @@ public class EditContact extends AjaxCommonTest  {
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
 		
 		// The new first name
-		String firstname = "new" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "new" + ConfigProperties.getUniqueString();
 		
 		
 		
@@ -153,7 +153,7 @@ public class EditContact extends AjaxCommonTest  {
         
 	}
 
-	@Test(	description = "Cancel Editing a contact by click Close",
+	@Test( description = "Cancel Editing a contact by click Close",
 			groups = { "functional"})
 	public void NoEditClickToolbarClose() throws HarnessException {
 		
@@ -188,7 +188,7 @@ public class EditContact extends AjaxCommonTest  {
 	
 	}
 
-	@Test(	description = "Cancel an edited contact by click Close, then click No",
+	@Test( description = "Cancel an edited contact by click Close, then click No",
 			groups = { "functional"})
 	public void ClickToolbarCloseThenClickNo() throws HarnessException {
 		
@@ -198,7 +198,7 @@ public class EditContact extends AjaxCommonTest  {
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
 		
 		// The new first name
-		String firstname = "new" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "new" + ConfigProperties.getUniqueString();
 		
 		
 		//-- GUI
@@ -233,7 +233,7 @@ public class EditContact extends AjaxCommonTest  {
 
 	}
 
-	@Test(	description = "Cancel an edited contact by click Close, then click Cancel",
+	@Test( description = "Cancel an edited contact by click Close, then click Cancel",
 			groups = { "functional"})
 	public void ClickToolbarCloseThenClickCancel() throws HarnessException {
 		
@@ -243,7 +243,7 @@ public class EditContact extends AjaxCommonTest  {
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
 		
 		// The new first name
-		String firstname = "new" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "new" + ConfigProperties.getUniqueString();
 		
 		
 		//-- GUI
@@ -281,7 +281,7 @@ public class EditContact extends AjaxCommonTest  {
 
      }
 
-	@Test(	description = "Cancel an edited contact by click Close, then click Yes",
+	@Test( description = "Cancel an edited contact by click Close, then click Yes",
 			groups = { "functional"})
 	public void ClickToolbarCloseThenClickYes() throws HarnessException {
 		
@@ -291,7 +291,7 @@ public class EditContact extends AjaxCommonTest  {
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
 		
 		// The new first name
-		String firstname = "new" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "new" + ConfigProperties.getUniqueString();
 		
 		
 		//-- GUI
