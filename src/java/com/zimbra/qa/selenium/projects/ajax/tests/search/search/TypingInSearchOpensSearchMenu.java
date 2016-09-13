@@ -1,19 +1,21 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.search.search;
 
+import java.awt.event.KeyEvent;
+
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 import org.testng.annotations.Test;
@@ -33,8 +35,9 @@ public class TypingInSearchOpensSearchMenu extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox",	"TRUE");
 	}
 	
-	@Bugs(	ids = "102600" )
-	@Test(description = "Typing in: in search input and pressing down arrow >> it opens Search menu list as well", groups = { "functional" })
+	@Bugs( ids = "102600" )
+	@Test( description = "Typing in: in search input and pressing down arrow >> it opens Search menu list as well", 
+			groups = { "functional" })
 	
 	public void TypingInSearchOpensSearchMenu_01() throws HarnessException {
 
@@ -43,7 +46,8 @@ public class TypingInSearchOpensSearchMenu extends PrefGroupMailByMessageTest {
 		SleepUtil.sleepMedium();
 		
 		//Press Down arrow
-		app.zPageSearch.sKeyDown(Locators.zSearchInput, "40");
+		app.zPageSearch.sFocus(Locators.zSearchInput);
+		app.zPageSearch.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 
 		//Verify only Search input menu should open and Search drop down should not open
 		ZAssert.assertTrue(app.zPageSearch.sIsElementPresent(PageSearch.Locators.zSearchInputMenu),"In:menu should open");

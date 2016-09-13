@@ -21,17 +21,12 @@ package com.zimbra.qa.selenium.projects.ajax.ui.tasks;
 
 import java.util.*;
 
-import com.thoughtworks.selenium.SeleniumException;
+import org.openqa.selenium.WebDriverException;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
-
-/**
- * @author Matt Rhoades
- * 
- */
 public class PageTasks extends AbsTab{
 	
 	public static class Locators {
@@ -42,18 +37,14 @@ public class PageTasks extends AbsTab{
 		public static final String zl__TKL__rowsID = "zl__TKL-main__rows";
 		public static final String _newTaskBannerID = "_newTaskBannerId";
 		public static final String _upComingTaskListHdrID = "_upComingTaskListHdr";
-		public static final String zli__TKL__ = "zli__TKL-"; // Each task item:
+		public static final String zli__TKL__ = "zli__TKL-";
 		
 		public static final String zb__TKE1__SAVE_left_icon = "zb__TKE1__SAVE_left_icon";
 		public static final String taskListView = "css=div[id='zl__TKL-main__rows'][class='DwtListView-Rows']";
 		public static final String zTasksTab = "zb__App__Tasks";
-		//public static final String zNewTask = "zb__TKL-main__NEW_MENU_left_icon";
-		//public static final String zNewTaskDropDown = "css=td[id='zb__TKL-main__NEW_MENU_dropdown']>div";
-		//public static final String zNewTaskMenuItem ="css=div#zb__TKL-main__NEW_MENU_NEW_TASK";
 		public static final String zNewTask = "css=div[id='zb__NEW_MENU'] td[id='zb__NEW_MENU_title']:contains('New Task')";
 		public static final String zNewTaskDropDown = "css=div[id='zb__NEW_MENU'] td[id='zb__NEW_MENU_dropdown']>div";
 		public static final String zNewTagMenuItem= "css=div[id='zb__NEW_MENU_NEW_TAG'] tr[id^='POPUP_'] td[id$='_title']";
-		//public static final String zMarkAsCompleted = "css=div#zb__TKL-main__MARK_AS_COMPLETED";
 		public static final String zMarkAsCompleted = "css=div[id^='ztb__TKL'] tr[id^='ztb__TKL'] td[id$='_title']:contains('Mark as Completed')";
 		public static String zMarkAsCompletedId = null;
 		public static final String zNewTaskMenuItem ="css=div[id='zb__NEW_MENU_NEW_TASK'] td[id$='_title']";
@@ -61,20 +52,15 @@ public class PageTasks extends AbsTab{
 		public static final String zDeleteTaskMenuItem ="css=div[id='zm__Tasks'] tr[id='POPUP_zmi__Tasks__DELETE']";
 		public static final String zMoveTaskMenuItem ="css=div[id='zm__Tasks'] tr[id='POPUP_zmi__Tasks__MOVE']";
 		public static final String zNewTaskListMenuItem="css=div[id$='NEWFOLDER']";
-		//public static final String zMoveTaskDropDown="css=td#zb__TKL-main__MOVE_MENU_dropdown>div";
-		//public static final String zMoveTaskDropDown="css=td#zcs5_dropdown>div";
 		public static String zMoveTaskDropDownId = null;
 		public static final String zEditTaskMenuItem ="css=div[id='zm__Tasks'] tr[id='POPUP_zmi__Tasks__EDIT']";
-		//public static final String zFilterByTaskDropDown="css=tr[id='ztb__TKL-main_items'] div[id='zb__TKL-main__SORTBY_MENU'] td[id='zb__TKL-main__SORTBY_MENU_dropdown']>div";
 		public static String zFilterByTaskDropDownId = null;
 		public static final String zFilterByTaskDropDown="css=tr[id='ztb__TKL-main_items'] div[id='zb__TKL-main__VIEW_MENU'] td[id='zb__TKL-main__VIEW_MENU_dropdown']>div";
-		//	public static final String zToDoListTaskMenuItem ="css=div[id^='POPUP_DWT'] div[id^='DWT'] tr[id='POPUP_TKVT']";
 		public static final String zToDoListTaskMenuItem ="css=div[id='TKVT'] tr[id='POPUP_TKVT']";
 		public static final String zShowOrigTaskMenuItem ="css=div[id='zm__Tasks'] tr[id='POPUP_zmi__Tasks__SHOW_ORIG'] td[id$='_title']";
 		public static final String zPrintTaskMenuItem ="css=div[id='zm__Tasks'] tr[id='POPUP_zmi__Tasks__PRINT_TASK'] td[id$='_title']";
 		public static String zPrintTaskDropDownId = null;
 		public static final String zTaskBodyField = "css=div[class='ZmTaskEditView'] div[id$='_notes'] textarea[id$='_body']";
-		//public static final String zPrintTaskDropDown="css=td#zcs8_dropdown>div";
 		public static final String zPrintTaskFolder ="css=tr[id='POPUP_PRINT_TASKFOLDER'] td[id$='_title']";
 		public static final String zCloseButton="css=div[id^='ztb__TKV']  tr[id^='ztb__TKV'] td[id$='_title']:contains('Close')";
 		public static final String zAttachmentInputBox = "css=input[name='__calAttUpload__']";		
@@ -93,11 +79,6 @@ public class PageTasks extends AbsTab{
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see projects.admin.ui.AbsPage#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -117,39 +98,35 @@ public class PageTasks extends AbsTab{
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see projects.admin.ui.AbsPage#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see projects.admin.ui.AbsPage#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 		
-		// Check if this page is already active.
 		if (zIsActive()) {
 			return;
 		}
 
-		// Make sure we are logged into the Mobile app
 		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
 			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
 		}
 
 		logger.info("Navigate to "+ this.myPageName());
 
-		this.zClickAt(PageMain.Locators.zAppbarTasks, "");
+		for (int i=0; i<=3; i++) {
+			if (zIsActive()) {
+				break;
+			} else {
+				this.sClickAt(PageMain.Locators.zTasksApp, "");
+				this.zWaitForBusyOverlay();
+				SleepUtil.sleepLong();
+			}
+		}
 		
-		if (ZimbraSeleniumProperties.getStringProperty("server.host").contains("local") == true) {
+		if (ConfigProperties.getStringProperty("server.host").contains("local") == true) {
 			zWaitTillElementPresent(Locators.zTasksTagsPane);
 		} else {
 			zWaitTillElementPresent(Locators.zTasksZimletsPane);
@@ -209,7 +186,7 @@ public class PageTasks extends AbsTab{
 				if ( !id.startsWith(Locators.zli__TKL__) )
 					continue; // _newTaskBannerId, etc.
 
-			} catch (SeleniumException e) {
+			} catch (WebDriverException e) {
 				logger.warn("No ID on item: "+ itemLocator);
 				continue;
 			}
@@ -378,7 +355,7 @@ public class PageTasks extends AbsTab{
 				if ( !id.startsWith(Locators.zli__TKL__) )
 					continue; // _newTaskBannerId, etc.
 
-			} catch (SeleniumException e) {
+			} catch (WebDriverException e) {
 				logger.warn("No ID on item: "+ itemLocator);
 				continue;
 			}
@@ -1018,7 +995,7 @@ public class PageTasks extends AbsTab{
 				if ( !id.startsWith(Locators.zli__TKL__) )
 					continue; // _newTaskBannerId, etc.
 
-			} catch (SeleniumException e) {
+			} catch (WebDriverException e) {
 				logger.warn("No ID on item: "+ itemLocator);
 				continue;
 			}
@@ -1163,15 +1140,15 @@ public class PageTasks extends AbsTab{
 
 	/*public String  GetShowOrigBodyText(String EmailAddress, String calItemId) throws HarnessException{
 
-		try{
-			sOpenWindow(ZimbraSeleniumProperties.getBaseURL() + "/home/" + EmailAddress + "/Tasks/?id=" + calItemId + "&mime=text/plain&noAttach=1","ShowOrignal");
+		try {
+			sOpenWindow(ConfigProperties.getBaseURL() + "/home/" + EmailAddress + "/Tasks/?id=" + calItemId + "&mime=text/plain&noAttach=1","ShowOrignal");
 			sWaitForPopUp("ShowOrignal", "3000");
 			sSelectWindow("ShowOrignal");
 			String showOrigBody=sGetBodyText().replaceAll("\\n", "").trim().replaceAll(" ", "");
 			sClose();
 			return showOrigBody;
 
-		}finally{
+		} finally {
 			ClientSessionFactory.session().selenium().selectWindow("null");	
 		}
 	}*/

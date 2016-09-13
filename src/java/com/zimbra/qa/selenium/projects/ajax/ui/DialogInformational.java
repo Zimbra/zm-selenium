@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui;
@@ -22,6 +22,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 
 public class DialogInformational extends AbsDialog {
@@ -82,19 +83,18 @@ public class DialogInformational extends AbsDialog {
 
 			locator = buttonsTableLocator + " td[id^='CANCEL_'] td[id$='_title']";
 
-		}else if (button == Button.B_CLOSE) {
+		} else if (button == Button.B_CLOSE) {
 
-			//locator = "css=div[class='ZmShortcutsPanel'][style*='left: 453px'] div[class='actions'] span[class='link'][onclick*='closeCallback();']";
-			locator = "css=div[class='ZmShortcutsPanel'] div[class='actions'] span[class='link'][onclick*='closeCallback();']";
-			sClick(locator);
+			locator = "css=div[class='ZmShortcutsPanel'] span[class='link']:contains('Close')";
+			sClickAt(locator, "");
 			return page;
 
-		}else if (button == Button.B_NEWWINDOW) {
+		} else if (button == Button.B_NEWWINDOW) {
 
-			locator = "css=div[class='ZmShortcutsPanel'][style*='left: 453px'] div[class='actions'] span[class='link'][onclick*='newWindowCallback();']";
+			locator = "css=div[class='ZmShortcutsPanel'] span[class='link']:contains('New Window')";
 			page = new SeparateWindow(this.MyApplication);
-			((SeparateWindow)page).zInitializeWindowNames();
-			sClick(locator);
+			sClickAt(locator, "");
+			SleepUtil.sleepVeryLong();
 			return page;
 
 		}  else {
@@ -102,13 +102,10 @@ public class DialogInformational extends AbsDialog {
 		}
 
 		// Click it
-		zClickAt(locator,"0,0");
-		
-
-		// If the app is busy, wait for it to become active
+		sClickAt(locator,"0,0");
+		SleepUtil.sleepSmall();
 		zWaitForBusyOverlay();
 
-		// This dialog might send message(s), so wait for the queue
 		Stafpostqueue sp = new Stafpostqueue();
 		sp.waitForPostqueue();
 

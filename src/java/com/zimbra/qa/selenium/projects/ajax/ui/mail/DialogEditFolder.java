@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
@@ -360,19 +360,13 @@ public class DialogEditFolder extends AbsDialog {
 	
 	public void zRetentionSetRangeValue(int value) throws HarnessException {
 		logger.info(myPageName() + " zRetentionSetRangeValue(" + value +")");
-
 		tracer.trace("Set retention range value " + value);
-
-		// Set the range
+		
 		String locator = "css=div[id='FolderProperties'] input[id$='_keepValue']";
-		
-		if ( ZimbraSeleniumProperties.isWebDriver() ) {
-			this.clearField(locator);
-		}
-		
+
+		this.clearField(locator);
 		this.sType(locator, "" + value);
 		this.zWaitForBusyOverlay();
-		
 	}
 	
 	public void zRetentionSetRangeUnits(RetentionRangeUnits units) throws HarnessException {
@@ -481,19 +475,12 @@ public class DialogEditFolder extends AbsDialog {
 	
 	public void zDisposalSetRangeValue(int value) throws HarnessException {
 		logger.info(myPageName() + " zDisposalSetRangeValue(" + value +")");
-
 		tracer.trace("Set disposal range value " + value);
 
-		// Set the range
 		String locator = "css=div[id='FolderProperties'] input[id$='_purgeValue']";
-		
-		if ( ZimbraSeleniumProperties.isWebDriver() ) {
-			this.clearField(locator);
-		}
-		
+		this.clearField(locator);
 		this.sType(locator, "" + value);
 		this.zWaitForBusyOverlay();
-		
 	}
 	
 	public void zDisposalSetRangeUnits(RetentionRangeUnits units) throws HarnessException {

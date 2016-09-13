@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attributes;
@@ -32,14 +32,14 @@ public class ZimbraPrefColorMessagesEnabledTrue extends PrefGroupMailByMessageTe
 	}
 
 	
-	@Test(	description = "ZimbraPrefColorMessagesEnabledTrue=TRUE: Display messages with 1 tag",
+	@Test( description = "ZimbraPrefColorMessagesEnabledTrue=TRUE: Display messages with 1 tag",
 			groups = { "functional" })
 	public void ZimbraPrefColorMessagesEnabledTrue_01() throws HarnessException {
 		
 		//-- DATA
 		
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String tagname = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String tagname = "tag" + ConfigProperties.getUniqueString();
 
 		// Create a tag
 		app.zGetActiveAccount().soapSend(
@@ -106,15 +106,15 @@ public class ZimbraPrefColorMessagesEnabledTrue extends PrefGroupMailByMessageTe
 		
 	}
 	
-	@Test(	description = "ZimbraPrefColorMessagesEnabledTrue=TRUE: Display messages with 2 tags",
+	@Test( description = "ZimbraPrefColorMessagesEnabledTrue=TRUE: Display messages with 2 tags",
 			groups = { "functional" })
 	public void ZimbraPrefColorMessagesEnabledTrue_02() throws HarnessException {
 		
 		//-- DATA
 		
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String tagname1 = "tag" + ZimbraSeleniumProperties.getUniqueString();
-		String tagname2 = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String tagname1 = "tag" + ConfigProperties.getUniqueString();
+		String tagname2 = "tag" + ConfigProperties.getUniqueString();
 
 		// Create a tag
 		app.zGetActiveAccount().soapSend(

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.toaster;
@@ -22,7 +22,7 @@ import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactGroupNew;
@@ -41,14 +41,14 @@ public class CreateContactGroup extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Create a basic contact group with 2 addresses.  New -> Contact Group and verify toast msg", groups = { "functional" })
+	@Test( description = "Create a basic contact group with 2 addresses.  New -> Contact Group and verify toast msg", groups = { "functional" })
 	public void CreateContactGroupToastMsg_01() throws HarnessException {
 
 		// -- Data
 
-		String groupName = "group" + ZimbraSeleniumProperties.getUniqueString();
-		String member1 = "m" + ZimbraSeleniumProperties.getUniqueString()+ "@example.com";
-		String member2 = "m" + ZimbraSeleniumProperties.getUniqueString()+ "@example.com";
+		String groupName = "group" + ConfigProperties.getUniqueString();
+		String member1 = "m" + ConfigProperties.getUniqueString()+ "@example.com";
+		String member2 = "m" + ConfigProperties.getUniqueString()+ "@example.com";
 
 		// -- GUI
 		// Refresh the addressbook
@@ -62,7 +62,7 @@ public class CreateContactGroup extends AjaxCommonTest {
 		form.zFillField(Field.FreeFormAddress, member1);
 		form.zFillField(Field.FreeFormAddress, member2);
 		
-		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
 			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
@@ -76,11 +76,11 @@ public class CreateContactGroup extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Create a contact group with existing contacts and verify toast msg", groups = { "functional" })
+	@Test( description = "Create a contact group with existing contacts and verify toast msg", groups = { "functional" })
 	public void CreateContactGroupToastMsg_02() throws HarnessException {
 
 		// The contact group name
-		String groupName = "group" + ZimbraSeleniumProperties.getUniqueString();
+		String groupName = "group" + ConfigProperties.getUniqueString();
 
 		// Create two contacts
 		ContactItem contact1 = ContactItem.createContactItem(app.zGetActiveAccount());
@@ -107,7 +107,7 @@ public class CreateContactGroup extends AjaxCommonTest {
 		form.zToolbarPressButton(Button.B_SEARCH);
 		form.zToolbarPressButton(Button.B_CONTACTGROUP_ADD_SEARCH_RESULT);
 		
-		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
 			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {

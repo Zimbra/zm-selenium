@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
@@ -39,13 +39,13 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 
 
 
-	@Test(	description = "Mark a message as unread by clicking on it, then using 'mu' hotkeys",
+	@Test( description = "Mark a message as unread by clicking on it, then using 'mu' hotkeys",
 			groups = { "functional" })
 	public void MarkUnReadMail_01() throws HarnessException {
 		
 
 		// Create the message data to be sent
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		app.zGetActiveAccount().soapSend(
@@ -101,13 +101,13 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Bugs(	ids = "103950")
-	@Test(	description = "Mark a message as unread by action menu -> mark read",
+	@Bugs( ids = "103950")
+	@Test( description = "Mark a message as unread by action menu -> mark read",
 			groups = { "functional" })
 	public void MarkUnReadMail_02() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		app.zGetActiveAccount().soapSend(
@@ -166,12 +166,12 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 	}
 		
 	@Bugs(ids = "64133")
-	@Test(	description = "Verify mark unread is enabled in the separate window",
+	@Test( description = "Verify mark unread is enabled in the separate window",
 			groups = { "functional" })
 	public void MarkUnReadMail_03() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		app.zGetActiveAccount().soapSend(

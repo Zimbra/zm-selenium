@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
@@ -46,12 +46,13 @@ public class CreateTask extends AjaxCommonTest {
 	}
 
 	
-	@Test(	description = "Create Simple task through GUI - verify through soap", groups = { "sanity" })
+	@Test( description = "Create Simple task through GUI - verify through soap", 
+			groups = { "sanity" })
 	
 	public void CreateTask_01() throws HarnessException {
 
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "taskbody"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
+		String body = "taskbody"+ ConfigProperties.getUniqueString();
 
 		// Click NEW button
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
@@ -68,13 +69,14 @@ public class CreateTask extends AjaxCommonTest {
 	}
 
 	
-	@Test(description = "Create new task using keyboard shortcut Esc- Verify through Soap", groups = { "smoke" })
+	@Test( description = "Create new task using keyboard shortcut Esc- Verify through Soap", 
+			groups = { "smoke" })
 	
 	public void CreateTask_02() throws HarnessException {
 
 		Shortcut shortcut = Shortcut.S_ESCAPE;
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "taskbody" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
+		String body = "taskbody" + ConfigProperties.getUniqueString();
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		
 		//Click NEW button
@@ -106,12 +108,13 @@ public class CreateTask extends AjaxCommonTest {
 	}
 	
 	
-	@Test(	description = "Create task using New menu pulldown  - verify through SOAP",	groups = { "smoke" })
+	@Test( description = "Create task using New menu pulldown  - verify through SOAP",	
+			groups = { "smoke" })
 	
 	public void CreateTask_03() throws HarnessException {
 
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "taskbody" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
+		String body = "taskbody" + ConfigProperties.getUniqueString();
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
 		// Click NEW drop down and click Task
@@ -133,13 +136,14 @@ public class CreateTask extends AjaxCommonTest {
 	}
 	
 	
-	@Test(	description = "Create new task using NK keyboard shortcut key", groups = { "smoke" })
+	@Test( description = "Create new task using NK keyboard shortcut key", 
+			groups = { "smoke" })
 	
 	public void CreateTask_04() throws HarnessException {
 
 		Shortcut shortcut = Shortcut.S_NEWTASK;
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "taskbody" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
+		String body = "taskbody" + ConfigProperties.getUniqueString();
 	//	FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		
 		//Explicitly cliking of Task folder to refresh view
@@ -167,12 +171,13 @@ public class CreateTask extends AjaxCommonTest {
 	}
 	
 	
-	@Test(	description = "Create Tasks, using 'Right Click' Mail subject -> 'Create Task'-Verify through Soap", groups = { "smoke" })
+	@Test( description = "Create Tasks, using 'Right Click' Mail subject -> 'Create Task'-Verify through Soap", 
+			groups = { "smoke" })
 	
 	public void CreateTask_05() throws HarnessException {
 		
 		app.zPageMail.zNavigateTo();
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();	
+		String subject = "subject"+ ConfigProperties.getUniqueString();	
 
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
@@ -181,7 +186,7 @@ public class CreateTask extends AjaxCommonTest {
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
@@ -190,7 +195,7 @@ public class CreateTask extends AjaxCommonTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		SleepUtil.sleepMedium();
 		
@@ -209,18 +214,19 @@ public class CreateTask extends AjaxCommonTest {
 	}
 	
 	
-	@Test(	description = "Create Simple task with attachment through RestUtil - verify through GUI", groups = { "smoke" })
+	@Test( description = "Create Simple task with attachment through RestUtil - verify through GUI", 
+			groups = { "smoke" })
 	
 	public void CreateTask_06() throws HarnessException {
 
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
 		
 		
 		ZimbraAccount account = app.zGetActiveAccount();
 		FolderItem taskFolder = FolderItem.importFromSOAP(account,SystemFolder.Tasks);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/Files/Basic01/BasicExcel2007.xlsx";
+		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/Files/Basic01/BasicExcel2007.xlsx";
 		// Upload file to server through RestUtil
 		String attachmentId = account.uploadFile(filePath);		
 		
@@ -235,7 +241,7 @@ public class CreateTask extends AjaxCommonTest {
 				"</inv>" +
 				"<su>"+ subject +"</su>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"<attach aid='"+attachmentId+"'>"+
 				"</attach>"+
@@ -255,17 +261,18 @@ public class CreateTask extends AjaxCommonTest {
 	}
 	
 	
-	@Test(	description = "Create Simple task  with attachment through RestUtil - verify through soap",groups = { "smoke" })
+	@Test( description = "Create Simple task  with attachment through RestUtil - verify through soap",
+			groups = { "smoke" })
 	
 	public void CreateTask_07() throws HarnessException {
 
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
 		
 		ZimbraAccount account = app.zGetActiveAccount();
 		FolderItem taskFolder = FolderItem.importFromSOAP(account,SystemFolder.Tasks);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/Files/Basic01/BasicExcel2007.xlsx";
+		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/Files/Basic01/BasicExcel2007.xlsx";
 		FileItem file = new FileItem(filePath);
 		String fileName = file.getName();
 		
@@ -282,7 +289,7 @@ public class CreateTask extends AjaxCommonTest {
 				"</inv>" +
 				"<su>"+ subject +"</su>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"<attach aid='"+attachmentId+"'>"+
 				"</attach>"+
@@ -319,14 +326,15 @@ public class CreateTask extends AjaxCommonTest {
 	}
 	
 
-	@Test(	description = "Create a task with different priorities high/normal/low", groups = { "functional" },	dataProvider = "DataProvidePriorities")
+	@Test( description = "Create a task with different priorities high/normal/low", 
+			groups = { "functional" },	dataProvider = "DataProvidePriorities")
 	
 	public void CreateTask_10(Button option, String verify) throws HarnessException {
 		
 		//-- DATA
 		
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "taskbody"+ ZimbraSeleniumProperties.getUniqueString();		
+		String subject = "task" + ConfigProperties.getUniqueString();
+		String body = "taskbody"+ ConfigProperties.getUniqueString();		
 		
 		// Click NEW button
 		FormTaskNew form = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.folders;
@@ -44,7 +44,7 @@ public class DeleteFolder extends AjaxCommonTest {
 	
 	
 	
-	@Test(	description = "Delete a top level addressbook - Right click, Delete",
+	@Test( description = "Delete a top level addressbook - Right click, Delete",
 			groups = { "smoke" })
 	public void DeleteTopLevelFolderFromContextmenu() throws HarnessException {
 		
@@ -53,7 +53,7 @@ public class DeleteFolder extends AjaxCommonTest {
 		FolderItem userRoot = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
-		String name = "ab"+ ZimbraSeleniumProperties.getUniqueString();
+		String name = "ab"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 						"<folder name='"+ name + "' view='contact' l='"+ userRoot.getId() +"'/>" +
@@ -82,7 +82,7 @@ public class DeleteFolder extends AjaxCommonTest {
 				
 
 	
-	@Test(	description = "Delete a sub folder - Right click, Delete",
+	@Test( description = "Delete a sub folder - Right click, Delete",
 			groups = { "functional" })
 	public void DeleteSubFolderFromContextmenu() throws HarnessException {
 		
@@ -91,7 +91,7 @@ public class DeleteFolder extends AjaxCommonTest {
 		FolderItem contact = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
-		String name = "ab"+ ZimbraSeleniumProperties.getUniqueString();
+		String name = "ab"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 						"<folder name='"+ name + "' view='contact' l='"+ contact.getId() +"'/>" +
@@ -119,7 +119,7 @@ public class DeleteFolder extends AjaxCommonTest {
 			
 	}
 	
-	@Test(	description = "Drag one sub folder to Trash folder", groups = { "functional" })
+	@Test( description = "Drag one sub folder to Trash folder", groups = { "functional" })
 	public void DnDFromSubFolderToTrash() throws HarnessException {
 		
 		//-- Data
@@ -127,7 +127,7 @@ public class DeleteFolder extends AjaxCommonTest {
 		FolderItem contact = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
-		String name = "ab"+ ZimbraSeleniumProperties.getUniqueString();
+		String name = "ab"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 						"<folder name='"+ name + "' view='contact' l='"+ contact.getId() +"'/>" +
@@ -156,7 +156,7 @@ public class DeleteFolder extends AjaxCommonTest {
 
 	}
 
-	@Test(	description = "Delete an addressbook folder- Use shortcut Del",
+	@Test( description = "Delete an addressbook folder- Use shortcut Del",
 			groups = { "deprecated" })
 	public void UseShortcutDel() throws HarnessException {
 		
@@ -165,7 +165,7 @@ public class DeleteFolder extends AjaxCommonTest {
 		FolderItem userRoot = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
-		String name = "ab"+ ZimbraSeleniumProperties.getUniqueString();
+		String name = "ab"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 						"<folder name='"+ name + "' view='contact' l='"+ userRoot.getId() +"'/>" +

@@ -1,24 +1,20 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contactgroups;
-
-
-
-
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -32,40 +28,33 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageContacts;
 
-
-
 /**
  * These test cases verify the contact lists display the correct contact gropus
  * @author Matt Rhoades
- *
  */
+
 public class GetContactGroup extends AjaxCommonTest  {
 	
-
 	public GetContactGroup() {
 		logger.info("New "+ GetContactGroup.class.getCanonicalName());
-		
-		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
-
 		super.startingAccountPreferences = null;		
-		
 	}
 	
 
-	@Test(	description = "Click Alphabetbar button All: Verify contact groups started with digit and A-Z listed ",
+	@Test( description = "Click Alphabetbar button All: Verify contact groups started with digit and A-Z listed",
 			groups = { "smoke" })
+	
 	public void GetContactGroup_01_All_Button() throws HarnessException {
 	
 		String groupname;
-
 		
 		//-- Data
-		String member = "email" + ZimbraSeleniumProperties.getUniqueString() + "@example.com";
+		String member = "email" + ConfigProperties.getUniqueString() + "@example.com";
 		
 		// Create three contact groups
 
-		groupname = "Bp" + ZimbraSeleniumProperties.getUniqueString();
+		groupname = "Bp" + ConfigProperties.getUniqueString();
    		app.zGetActiveAccount().soapSend(
    	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
    	            		"<cn >" +
@@ -78,7 +67,7 @@ public class GetContactGroup extends AjaxCommonTest  {
    		ContactGroupItem group1 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
    		
 
-		groupname = "5" + ZimbraSeleniumProperties.getUniqueString();
+		groupname = "5" + ConfigProperties.getUniqueString();
    		app.zGetActiveAccount().soapSend(
    	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
    	            		"<cn >" +
@@ -91,7 +80,7 @@ public class GetContactGroup extends AjaxCommonTest  {
    		ContactGroupItem group2 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
    		
 
-		groupname = "b" + ZimbraSeleniumProperties.getUniqueString();
+		groupname = "b" + ConfigProperties.getUniqueString();
    		app.zGetActiveAccount().soapSend(
    	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
    	            		"<cn >" +
@@ -142,7 +131,7 @@ public class GetContactGroup extends AjaxCommonTest  {
 		
 	}
 
-	@Test(	description = "Click Alphabetbar button All: Verify contact groups started with digit and A-Z listed ",
+	@Test( description = "Click Alphabetbar button All: Verify contact groups started with digit and A-Z listed",
 			groups = { "smoke" })
 	public void GetContactGroup_03_123_Button() throws HarnessException {
 	
@@ -150,11 +139,11 @@ public class GetContactGroup extends AjaxCommonTest  {
 
 		
 		//-- Data
-		String member = "email" + ZimbraSeleniumProperties.getUniqueString() + "@example.com";
+		String member = "email" + ConfigProperties.getUniqueString() + "@example.com";
 		
 		// Create three contact groups
 
-		groupname = "Bp" + ZimbraSeleniumProperties.getUniqueString();
+		groupname = "Bp" + ConfigProperties.getUniqueString();
    		app.zGetActiveAccount().soapSend(
    	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
    	            		"<cn >" +
@@ -167,7 +156,7 @@ public class GetContactGroup extends AjaxCommonTest  {
    		ContactGroupItem group1 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
    		
 
-		groupname = "5" + ZimbraSeleniumProperties.getUniqueString();
+		groupname = "5" + ConfigProperties.getUniqueString();
    		app.zGetActiveAccount().soapSend(
    	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
    	            		"<cn >" +
@@ -180,7 +169,7 @@ public class GetContactGroup extends AjaxCommonTest  {
    		ContactGroupItem group2 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
    		
 
-		groupname = "b" + ZimbraSeleniumProperties.getUniqueString();
+		groupname = "b" + ConfigProperties.getUniqueString();
    		app.zGetActiveAccount().soapSend(
    	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
    	            		"<cn >" +
@@ -232,7 +221,7 @@ public class GetContactGroup extends AjaxCommonTest  {
 	}
 
 	@Bugs(ids="100227")
-	@Test(	description = "Click Alphabetbar button Z: Verify only contact groups started with Z|z is listed ",
+	@Test( description = "Click Alphabetbar button Z: Verify only contact groups started with Z|z is listed",
 			groups = { "functional" })
 	public void GetContactGroup_02_B_Button() throws HarnessException {
 		
@@ -240,11 +229,11 @@ public class GetContactGroup extends AjaxCommonTest  {
 
 		
 		//-- Data
-		String member = "email" + ZimbraSeleniumProperties.getUniqueString() + "@example.com";
+		String member = "email" + ConfigProperties.getUniqueString() + "@example.com";
 		
 		// Create three contact groups
 
-		groupname = "Bp" + ZimbraSeleniumProperties.getUniqueString();
+		groupname = "Bp" + ConfigProperties.getUniqueString();
    		app.zGetActiveAccount().soapSend(
    	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
    	            		"<cn >" +
@@ -257,7 +246,7 @@ public class GetContactGroup extends AjaxCommonTest  {
    		ContactGroupItem group1 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
    		
 
-		groupname = "5" + ZimbraSeleniumProperties.getUniqueString();
+		groupname = "5" + ConfigProperties.getUniqueString();
    		app.zGetActiveAccount().soapSend(
    	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
    	            		"<cn >" +
@@ -270,7 +259,7 @@ public class GetContactGroup extends AjaxCommonTest  {
    		ContactGroupItem group2 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
    		
 
-		groupname = "b" + ZimbraSeleniumProperties.getUniqueString();
+		groupname = "b" + ConfigProperties.getUniqueString();
    		app.zGetActiveAccount().soapSend(
    	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
    	            		"<cn >" +
@@ -321,7 +310,7 @@ public class GetContactGroup extends AjaxCommonTest  {
 		
 	}
 	
-	@Test(	description = "Click all Alphabetbar buttons: Verify only contact group started with the alphabet is listed ",
+	@Test( description = "Click all Alphabetbar buttons: Verify only contact group started with the alphabet is listed",
 			groups = { "functional" })
 	public void GetContactGroup_04_Iterate_Buttons() throws HarnessException {
 	
@@ -341,14 +330,14 @@ public class GetContactGroup extends AjaxCommonTest  {
 			Button b = entry.getValue();
 
 			
-			String groupname = c + ZimbraSeleniumProperties.getUniqueString();
+			String groupname = c + ConfigProperties.getUniqueString();
 	   		app.zGetActiveAccount().soapSend(
 	   	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
 	   	            		"<cn >" +
 	   	            			"<a n='type'>group</a>" +
 	   	            			"<a n='nickname'>" + groupname +"</a>" +
 	   	            			"<a n='fileAs'>8:" + groupname +"</a>" +
-	   	            			"<m type='I' value='email" + ZimbraSeleniumProperties.getUniqueString() + "@example.com' />" +
+	   	            			"<m type='I' value='email" + ConfigProperties.getUniqueString() + "@example.com' />" +
 	   	            		"</cn>" +
 	   	            "</CreateContactRequest>");
 	   		ContactGroupItem group = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
@@ -29,9 +29,9 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
-
+import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
 
 /**
  * Admin Console -> Manage Accounts -> Accounts
@@ -50,14 +50,22 @@ public class PageManageAccounts extends AbsTab {
 		public static final String NEW_MENU="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgNewAccount']";
 		public static final String NEW_ADMIN_USER="css=td[id='zmi__zb_currentApp__NEW_ADMIN_title']:contains('New Administrator')";
 		public static final String DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
+		//public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgEdit']";
 		public static final String EDIT_BUTTON="css=td[id='zmi__zb_currentApp__EDIT_title']:contains('Edit')";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id^='zm__ACLV__MENU_POP'] div[class='ImgDelete']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=td[id='zmi__ACLV__EDIT_title']:contains('Edit')";
 		public static final String RIGHT_CLICK_MENU_CHANGE_PASSWORD_BUTTON = "css=td[id='zmi__ACLV__CHNG_PWD_title']";
 		public static final String CHANGE_PASSWORD_BUTTON="css=td[id='zmi__zb_currentApp__CHNG_PWD_title']";
 		public static final String ADVANCED="css=div[id='zti__AppAdmin__Home__actLstHV__1__12_textCell']";
-
-				}
+		public static final String RIGHT_CLICK_MENU_VIEW_MAIL_BUTTON="css=td[id='zmi__ACLV__VIEW_MAIL_title']";
+		public static final String VIEW_MAIL="css=td[id='zmi__zb_currentApp__VIEW_MAIL_title']";	
+		public static final String RIGHT_CLICK_INVALIDATE_SESSIONS="css=td[id='zmi__ACLV__EXPIRE_SESSION_title']";
+		public static final String INVALIDATE_SESSIONS="css=td[id='zmi__zb_currentApp__EXPIRE_SESSION_title']";
+		public static final String INVALIDATE_SESSIONS_YES="css=td[id^='zdlg__MSG__GLOBAL__confirm']:contains('Yes')";
+		public static final String MUST_CHANGE_PASSWORD ="css=input[id='ztabv__ACCT_EDIT_zimbraPasswordMustChange']";
+		
+		
+	}
 
 	public PageManageAccounts(AbsApplication application) {
 		super(application);
@@ -244,6 +252,14 @@ public class PageManageAccounts extends AbsTab {
 			locator=Locators.RIGHT_CLICK_MENU_CHANGE_PASSWORD_BUTTON;
 			page = new WizardChangePassword(this);
 			
+		}else if(button == Button.B_VIEW_MAIL) {
+
+			locator=Locators.RIGHT_CLICK_MENU_VIEW_MAIL_BUTTON;
+			
+		}else if(button == Button.B_INVALIDATE_SESSIONS) {
+
+			locator=Locators.RIGHT_CLICK_INVALIDATE_SESSIONS;
+			
 		}else if ( button == Button.B_HOME_ACCOUNT) {
 
 			// New button
@@ -331,6 +347,12 @@ public class PageManageAccounts extends AbsTab {
 
 				page = new FormEditAccount(this.MyApplication);
 
+			}  else if(option == Button.B_VIEW_MAIL) {
+				optionLocator = Locators.VIEW_MAIL;
+				
+			} else if(option == Button.B_INVALIDATE_SESSIONS) {
+				optionLocator = Locators.INVALIDATE_SESSIONS;
+				
 			}
 
 			else {
@@ -422,7 +444,7 @@ public class PageManageAccounts extends AbsTab {
 			final String accountLocator = rowsLocator + "["+ i +"]";
 			String locator;
 
-			AccountItem item = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+			AccountItem item = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 
 			// Type (image)
 			// ImgAdminUser ImgAccount ImgSystemResource (others?)
@@ -458,4 +480,52 @@ public class PageManageAccounts extends AbsTab {
 			return true;
 		return false;
 	}
+	
+	public AbsPage zPreferenceCheckboxSet(Button button, boolean status) throws HarnessException {
+		logger.info(myPageName() + " zPreferenceSet("+ button +")");
+		tracer.trace("Click page button "+ button);
+
+		AbsPage page = null;
+		String locator = null;
+
+		SleepUtil.sleepSmall();
+
+		if ( button == Button.B_MUST_CHANGE_PASSWORD ) {
+
+			locator = Locators.MUST_CHANGE_PASSWORD;
+
+		} 
+		// Make sure the locator was set
+		if ( locator == null ) {
+			throw new HarnessException("Button "+ button +" not implemented");
+		}
+
+		// Make sure the locator exists
+		if ( !this.sIsElementPresent(locator) ) {
+			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
+		}
+
+		if ( this.sIsChecked(locator) == status ) {
+			logger.debug("checkbox status matched. not doing anything");
+			return (page);
+		}
+
+		if ( status == true ) {
+			this.sClickAt(locator,"");
+
+		} else {
+			this.sUncheck(locator);
+		}
+
+		SleepUtil.sleepSmall();
+		return (page);
+	}
+	
+	public Toaster zGetToaster() throws HarnessException {
+		SleepUtil.sleepMedium();
+		Toaster toaster = new Toaster(this.MyApplication);
+		logger.info("toaster is active: "+ toaster.zIsActive());
+		return (toaster);
+	}
+
 }

@@ -1,30 +1,28 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.briefcase;
 
 import org.openqa.selenium.WebElement;
-
 import com.zimbra.qa.selenium.framework.items.DocumentItem;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsForm;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 
 public class DocumentBriefcaseNew extends AbsForm {
@@ -98,8 +96,7 @@ public class DocumentBriefcaseNew extends AbsForm {
 
 			// Make sure the locator exists
 			if (!this.sIsElementPresent(nameFieldLocator))
-				throw new HarnessException("Locator is not present: "
-						+ nameFieldLocator);
+				throw new HarnessException("Locator is not present: " + nameFieldLocator);
 
 			this.sMouseOver(nameFieldLocator);
 			this.sFocus(nameFieldLocator);
@@ -113,21 +110,13 @@ public class DocumentBriefcaseNew extends AbsForm {
 
 			// Make sure the locator exists
 			if (!this.sIsElementPresent(iframeLocator))
-				throw new HarnessException("Locator is not present: "
-						+ iframeLocator);
-			
-			if (ZimbraSeleniumProperties.isWebDriver()) {				
-				//String locator = Locators.zBodyField;
-				//sSelectFrame(Locators.zFrame);
-				//this.sType(locator, value);
-				
+				throw new HarnessException("Locator is not present: " + iframeLocator);
+
 				WebElement we = getElement(iframeLocator);
 				this.sMouseOver(iframeLocator);
 				this.sFocus(iframeLocator);
 				this.zClickAt(iframeLocator,"0,0");
-
-				this
-					.executeScript("var bodytext=\""
+				this.executeScript("var bodytext=\""
 							+ value
 							+ "\";"
 							+ "var iframe_locator=\""
@@ -137,40 +126,6 @@ public class DocumentBriefcaseNew extends AbsForm {
 							+ "if (navigator.userAgent.indexOf('Firefox')!=-1 || navigator.userAgent.indexOf('Chrome')!=-1){iframe_body.innerHTML=bodytext;}"
 							+ "else if(navigator.userAgent.indexOf('MSIE')!=-1){iframe_body.innerHTML=bodytext;}"
 							+ "else {iframe_body.innerHTML=bodytext;}", we);
-				
-			} else if (ZimbraSeleniumProperties.isWebDriverBackedSelenium()){
-				this.sMouseOver(iframeLocator);
-				this.sFocus(iframeLocator);
-				this.zClickAt(iframeLocator,"0,0");
-
-				this
-					.sGetEval("var bodytext=\""
-							+ value
-							+ "\";"
-							+ "var iframe_locator=\""
-							+ iframeLocator
-							+ "\";"
-							+ "var iframe_body=document.getElementById('DWT11').contentWindow.document.body;"
-							+ "if (navigator.userAgent.indexOf('Firefox')!=-1 || navigator.userAgent.indexOf('Chrome')!=-1){iframe_body.innerHTML=bodytext;}"
-							+ "else if(navigator.userAgent.indexOf('MSIE')!=-1){iframe_body.innerHTML=bodytext;}"
-							+ "else {iframe_body.innerHTML=bodytext;}");
-			} else {
-				this.sMouseOver(iframeLocator);
-				this.sFocus(iframeLocator);
-				this.zClickAt(iframeLocator,"0,0");
-				
-				this
-					.sGetEval("var bodytext=\""
-						+ value
-						+ "\";"
-						+ "var iframe_locator=\""
-						+ iframeLocator
-						+ "\";"
-						+ "var iframe_body=selenium.browserbot.findElement(iframe_locator).contentWindow.document.body;"
-						+ "if (browserVersion.isFirefox || browserVersion.isChrome){iframe_body.textContent=bodytext;}"
-						+ "else if(browserVersion.isIE){iframe_body.innerText=bodytext;}"
-						+ "else {iframe_body.innerText=bodytext;}");
-			}
 		} else {
 			throw new HarnessException("Not implemented field: " + field);
 		}
@@ -205,14 +160,14 @@ public class DocumentBriefcaseNew extends AbsForm {
 			// TODO: Add Version Notes dialog hasn't existed in ZD 7.0.1, thus
 			// ignoring below the Add Version Notes dialog for Desktop.
 			// Please remove this if condition block once it is available in ZD.
-			
+
 				// add version notes
 				DialogAddVersionNotes dlgAddNotes = new DialogAddVersionNotes(
 						MyApplication,
 						((AppAjaxClient) MyApplication).zPageBriefcase);
 
 				dlgAddNotes.zDismissAddVersionNotesDlg(pageTitle);
-			
+
 		}
 		SleepUtil.sleepMedium();
 	}

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.folders;
@@ -39,15 +39,17 @@ public class CreateFolder extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 	}
 
-	@Test(description = "Create a new folder by clicking 'Create a new briefcase' on folders tree", groups = { "sanity" })
+	@Test( description = "Create a new folder by clicking 'Create a new briefcase' on folders tree", 
+			groups = { "sanity" })
+	
 	public void CreateFolder_01() throws HarnessException {
+		
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseRootFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseRootFolder = FolderItem.importFromSOAP(account,	SystemFolder.Briefcase);
 
 		// Set the new folder name
-		_folderName = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		_folderName = "folder" + ConfigProperties.getUniqueString();
 
 		DialogCreateBriefcaseFolder createFolderDialog = (DialogCreateBriefcaseFolder) app.zTreeBriefcase
 				.zPressPulldown(Button.B_TREE_FOLDERS_OPTIONS, Button.B_TREE_NEWFOLDER);
@@ -60,18 +62,16 @@ public class CreateFolder extends FeatureBriefcaseTest {
 		SleepUtil.sleepVerySmall();
 
 		// refresh briefcase page
-		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder,
-				false);
+		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder, false);
 
 		// Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(account, _folderName);
 		ZAssert.assertNotNull(folder, "Verify the new form opened");
 
-		ZAssert.assertEquals(folder.getName(), _folderName,
-				"Verify the server and client folder names match");
+		ZAssert.assertEquals(folder.getName(), _folderName, "Verify the server and client folder names match");
 	}
 	@Bugs(ids = "67061")
-	@Test(description = "According to Comment#1 in the bug 67061 Create a new folder using 'nf' keyboard shortcut is for mail only", groups = { "skip" })
+	@Test( description = "According to Comment#1 in the bug 67061 Create a new folder using 'nf' keyboard shortcut is for mail only", groups = { "skip" })
 	public void CreateFolder_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -81,7 +81,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 		Shortcut shortcut = Shortcut.S_NEWFOLDER;
 
 		// Set the new folder name
-		_folderName = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		_folderName = "folder" + ConfigProperties.getUniqueString();
 
 		// "NEW Folder" shortcut opens "Create New Folder" dialog
 		// due to the bug #63029 it opens dialog with Mail tree view
@@ -111,7 +111,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 				"Verify the server and client folder names match");
 	}
 
-	@Test(description = "Create a new folder using context menu from root folder", groups = { "functional" })
+	@Test( description = "Create a new folder using context menu from root folder", groups = { "functional" })
 	public void CreateFolder_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -119,7 +119,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 				SystemFolder.Briefcase);
 
 		// Set the new folder name
-		_folderName = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		_folderName = "folder" + ConfigProperties.getUniqueString();
 
 		DialogCreateBriefcaseFolder createFolderDialog = (DialogCreateBriefcaseFolder) app.zTreeBriefcase
 				.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_NEWFOLDER,
@@ -144,7 +144,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 				"Verify the server and client folder names match");
 	}
 
-	@Test(description = "Create a new Briefcase folder using Briefcase app toolbar pulldown: New -> New Briefcase", groups = { "functional" })
+	@Test( description = "Create a new Briefcase folder using Briefcase app toolbar pulldown: New -> New Briefcase", groups = { "functional" })
 	public void CreateFolder_04() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -152,7 +152,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 				SystemFolder.Briefcase);
 
 		// Set the new folder name
-		_folderName = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		_folderName = "folder" + ConfigProperties.getUniqueString();
 
 		// refresh briefcase page
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder,false);

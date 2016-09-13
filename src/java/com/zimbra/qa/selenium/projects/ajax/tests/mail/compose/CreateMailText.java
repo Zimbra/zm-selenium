@@ -1,25 +1,24 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
+
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose;
 
 import java.util.ArrayList;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -28,29 +27,23 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-
 public class CreateMailText extends PrefGroupMailByMessageTest {
 
 	public CreateMailText() {
 		logger.info("New "+ CreateMailText.class.getCanonicalName());
-		
-		
-		
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
-		
 	}
 	
-	@Test(	description = "Send a mail using Text editor",
+	@Test( description = "Send a mail using Text editor", 
 			groups = { "sanity" })
+	
 	public void CreateMailText_01() throws HarnessException {
-		
 		
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
-		
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -62,18 +55,12 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		// Send the message
 		mailform.zSubmit();
 
-		
-
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mail.dSubject +")");
 
-      logger.debug("===========received is: " + received);
-      logger.debug("===========app is: " + app);
-		// TODO: add checks for TO, Subject, Body
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
 		ZAssert.assertEquals(received.dSubject, mail.dSubject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(received.dBodyText, mail.dBodyText, "Verify the body field is correct");
-		
 	}
 
 	
@@ -86,7 +73,8 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	  };
 	}
 	
-	@Test(	description = "Send a mail using Text editor using keyboard shortcuts",
+	
+	@Test( description = "Send a mail using Text editor using keyboard shortcuts",
 			groups = { "functional" },
 			dataProvider = "DataProvideNewMessageShortcuts")
 	
@@ -96,8 +84,8 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zKeyboardShortcut(shortcut);
@@ -119,18 +107,17 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Send a mail with CC",
-			groups = { "functional" })
+	
+	@Test( description = "Send a mail with CC", groups = { "functional" })
+	
 	public void CreateMailText_03() throws HarnessException {
-		
 		
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA(), RecipientItem.RecipientType.To));
 		mail.dCcRecipients.add(new RecipientItem(ZimbraAccount.AccountB(), RecipientItem.RecipientType.Cc));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
-		
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -162,21 +149,19 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		
 		MailItem ccReceived = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ mail.dSubject +")");
 		ZAssert.assertNotNull(ccReceived, "Verify the CC recipient receives the message");
-		
-		
 	}
 
-	@Test(	description = "Send a mail with BCC",
-			groups = { "functional" })
+	
+	@Test( description = "Send a mail with BCC", groups = { "functional" })
+	
 	public void CreateMailText_04() throws HarnessException {
-		
 		
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA(), RecipientItem.RecipientType.To));
 		mail.dBccRecipients.add(new RecipientItem(ZimbraAccount.AccountB(), RecipientItem.RecipientType.Bcc));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
 		
 		
 		// Open the new mail form
@@ -188,8 +173,6 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		
 		// Send the message
 		mailform.zSubmit();
-
-		
 				
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:("+ mail.dSubject +")");
 		ZAssert.assertNotNull(sent, "Verify the message is in the sent folder");
@@ -206,7 +189,6 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		MailItem bccReceived = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ mail.dSubject +")");
 		ZAssert.assertNotNull(bccReceived, "Verify the BCC recipient receives the message");
 		
-		
 	}
 
 
@@ -219,17 +201,18 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	  };
 	}
 
-	@Test(	description = "Send a mail with different priorities high/normal/low",
+	@Test( description = "Send a mail with different priorities high/normal/low",
 			groups = { "functional" },
 			dataProvider = "DataProvidePriorities")
+	
 	public void CreateMailText_05(Button option, String verify) throws HarnessException {
 		
 		// option: Button.B_PRIORITY_HIGH/NORMAL/LOW
 		// verify: the f field in the GetMsgResponse
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		
 		// Open the new mail form
@@ -247,23 +230,20 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		// Send the message
 		mailform.zSubmit();
 
-		
-
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received");
 		
 		ZAssert.assertStringContains(received.getFlags(), verify, "Verify the correct priority was sent");
-		
-		
 	}
 
-	@Test(	description = "Send a mail to 100 recipients",
-			groups = { "deprecated" } // The harness doesn't handle the postqueue for such a large message
-		)
+	
+	@Test( description = "Send a mail to 100 recipients",
+			groups = { "deprecated" } ) // The harness doesn't handle the postqueue for such a large message
+
 	public void CreateMailText_06() throws HarnessException {
 		
 		//-- Data
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Create 100 accounts
 		StringBuilder destination = new StringBuilder(ZimbraAccount.AccountA().EmailAddress);
@@ -275,7 +255,6 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			destination.append("; ").append(account.EmailAddress);
 		}
 		
-
 		//-- GUI steps
 		
 		// Open the new mail form
@@ -283,21 +262,15 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 
 		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, "body" + ZimbraSeleniumProperties.getUniqueString());
+		mailform.zFillField(Field.Body, "body" + ConfigProperties.getUniqueString());
 		mailform.zFillField(Field.To, destination.toString());
 		
 		mailform.zSubmit();
 		
-		
 		//-- Verification
-		
 
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received");
-
 		
 	}
-
-
-
 }

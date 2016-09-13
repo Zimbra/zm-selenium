@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
@@ -33,7 +33,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.DisplayTask;
@@ -55,19 +55,19 @@ public class EditHtmlTask extends AjaxCommonTest{
 		}};
 	}
 
-	@Test(	
-			description = "Create Html task through SOAP - edit subject and verify through Soap",
+	
+	@Test( description = "Create Html task through SOAP - edit subject and verify through Soap",
 			groups = { "smoke" })
+	
 	public void EditHtmlTask_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
+		String subject = "task"+ ConfigProperties.getUniqueString();
+		String editSubject = "Edittask"+ ConfigProperties.getUniqueString();
 
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
-		String editSubject = "Edittask"+ ZimbraSeleniumProperties.getUniqueString();
-
-		String taskHtmlbody = "task<b>bold"+ ZimbraSeleniumProperties.getUniqueString()+"</b>task";
-		String editTaskHtmlbody = "Edittask"+ ZimbraSeleniumProperties.getUniqueString();
+		String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
+		String editTaskHtmlbody = "Edittask"+ ConfigProperties.getUniqueString();
 		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+taskHtmlbody+"</div>"+"</body>"+"</html>");		
 
 		app.zGetActiveAccount().soapSend(
@@ -81,7 +81,7 @@ public class EditHtmlTask extends AjaxCommonTest{
 				"<su>"+ subject +"</su>" +
 				"<mp ct='multipart/alternative'>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"<mp ct='text/html'>" +
 				"<content>"+contentHTML+"</content>" +
@@ -100,15 +100,10 @@ public class EditHtmlTask extends AjaxCommonTest{
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Click edit
-		FormTaskNew taskedit = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_EDIT);
-		//Reason:With "?dev=1&debug=0", Tinymce editor in HTML mode takes more time to load 
-		//removing incompatible to webdriver refernece
-		//if(ClientSessionFactory.session().selenium().getEval("window.tinyMCE").equalsIgnoreCase("null")){
-			SleepUtil.sleepVeryLong();
-		//}else{
-		//	SleepUtil.sleepMedium();
-		//}
+		SleepUtil.sleepVeryLong();
+		
 		//Fill new subject in subject field
+		FormTaskNew taskedit = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_EDIT);
 		taskedit.zFillField(Field.Subject, editSubject);
 		taskedit.zFillField(Field.HtmlBody, editTaskHtmlbody);
 		taskedit.zSubmit();
@@ -123,6 +118,7 @@ public class EditHtmlTask extends AjaxCommonTest{
 
 	}
 
+	
 	/**
 	 * 	1. Go to Tasks
 	 * 	2. Create a new html task with no due date
@@ -133,17 +129,19 @@ public class EditHtmlTask extends AjaxCommonTest{
 	 * @throws HarnessException
 	 */
 	@Bugs(ids="64647")
-	@Test(	description = "Create Html task through SOAP - edit duedate >> Refresh task >>verify Due Date in list view through GUI",groups = { "functional" })
+	@Test( description = "Create Html task through SOAP - edit duedate >> Refresh task >>verify Due Date in list view through GUI",
+			groups = { "functional" })
+	
 	public void EditHtmlTask_02() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		FolderItem trashFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task"+ ConfigProperties.getUniqueString();
 		ZDate dueDate      = new ZDate(2015, 11, 17, 12, 0, 0);
 
 		//Create task
-		String taskHtmlbody = "task<b>bold"+ ZimbraSeleniumProperties.getUniqueString()+"</b>task";
+		String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
 		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+taskHtmlbody+"</div>"+"</body>"+"</html>");		
 
 		app.zGetActiveAccount().soapSend(
@@ -157,7 +155,7 @@ public class EditHtmlTask extends AjaxCommonTest{
 				"<su>"+ subject +"</su>" +
 				"<mp ct='multipart/alternative'>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"<mp ct='text/html'>" +
 				"<content>"+contentHTML+"</content>" +
@@ -194,14 +192,18 @@ public class EditHtmlTask extends AjaxCommonTest{
 		ZAssert.assertEquals(actual.zGetTaskListViewProperty(com.zimbra.qa.selenium.projects.ajax.ui.tasks.DisplayTask.Field.DueDate), dueDate.toMM_DD_YYYY(), "Verify the due date matches after refresh");
 
 	}
-	@Test(	description = "Create Html task through SOAP - Edit html task using Right Click Context Menu & verify through GUI",groups = { "functional" })
+	
+	
+	@Test( description = "Create Html task through SOAP - Edit html task using Right Click Context Menu & verify through GUI",
+			groups = { "functional" })
+	
 	public void EditHtmlTask_03() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
-		String editSubject = "Edittask"+ ZimbraSeleniumProperties.getUniqueString();
-		String taskHtmlbody = "task<b>bold"+ ZimbraSeleniumProperties.getUniqueString()+"</b>task";
-		String editTaskHtmlbody = "task<b>bold"+ ZimbraSeleniumProperties.getUniqueString()+"</b>task";
+		String subject = "task"+ ConfigProperties.getUniqueString();
+		String editSubject = "Edittask"+ ConfigProperties.getUniqueString();
+		String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
+		String editTaskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
 		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+taskHtmlbody+"</div>"+"</body>"+"</html>");		
 
 		app.zGetActiveAccount().soapSend(
@@ -215,7 +217,7 @@ public class EditHtmlTask extends AjaxCommonTest{
 				"<su>"+ subject +"</su>" +
 				"<mp ct='multipart/alternative'>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"<mp ct='text/html'>" +
 				"<content>"+contentHTML+"</content>" +
@@ -273,13 +275,16 @@ public class EditHtmlTask extends AjaxCommonTest{
 
 	}
 	
-	@Test(	description = "Create Html task through SOAP - Edit> convert Html to Plain Text and veirfy Warning dialog and its content",groups = { "functional" })
+	
+	@Test( description = "Create Html task through SOAP - Edit> convert Html to Plain Text and veirfy Warning dialog and its content",
+			groups = { "functional" })
+	
 	public void EditHtmlTask_04() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
-		String taskHtmlbody = "task<b>bold"+ ZimbraSeleniumProperties.getUniqueString()+"</b>task";
+		String subject = "task"+ ConfigProperties.getUniqueString();
+		String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
 		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+taskHtmlbody+"</div>"+"</body>"+"</html>");		
 
 		app.zGetActiveAccount().soapSend(
@@ -293,7 +298,7 @@ public class EditHtmlTask extends AjaxCommonTest{
 				"<su>"+ subject +"</su>" +
 				"<mp ct='multipart/alternative'>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"<mp ct='text/html'>" +
 				"<content>"+contentHTML+"</content>" +
@@ -313,14 +318,8 @@ public class EditHtmlTask extends AjaxCommonTest{
 
 		// Click edit
 		FormTaskNew taskedit = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_EDIT);
+		SleepUtil.sleepVeryLong();
 		
-		//Reason:With "?dev=1&debug=0", Tinymce editor in HTML mode takes more time to load 
-		//removing incompatible to webdriver refernece
-		//if(ClientSessionFactory.session().selenium().getEval("window.tinyMCE").equalsIgnoreCase("null")){
-			SleepUtil.sleepVeryLong();
-		//}else{
-		//	SleepUtil.sleepMedium();
-		//}
 		DialogWarning dialogWarning = (DialogWarning)  taskedit.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_OPTION_FORMAT_AS_TEXT);
 		ZAssert.assertNotNull(dialogWarning, "Verify the dialog is returned");
 		String text = "Switching to text will discard all HTML formatting. Continue?";

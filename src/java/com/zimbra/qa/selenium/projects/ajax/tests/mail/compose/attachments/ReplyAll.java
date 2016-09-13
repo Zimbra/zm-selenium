@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.attachments;
@@ -37,14 +37,14 @@ public class ReplyAll extends PrefGroupMailByMessageTest {
 
 	}
 	
-	@Test(	description = "Reply to a mail with attachment - Verify no attachment sent",
+	@Test( description = "Reply to a mail with attachment - Verify no attachment sent",
 			groups = { "functional" })
 	public void Reply_01() throws HarnessException {
 		
 
 		//-- DATA
 		final String mimeSubject = "subject1397778577518254677";
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email15/mime.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email15/mime.txt";
 
 		final String subject = "subject13625192398933";
 
@@ -70,7 +70,7 @@ public class ReplyAll extends PrefGroupMailByMessageTest {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>"+ "body" + ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 						"<attach>" +
 							"<mp mid='"+ original.getId() +"' part='"+ partID +"'/>" +

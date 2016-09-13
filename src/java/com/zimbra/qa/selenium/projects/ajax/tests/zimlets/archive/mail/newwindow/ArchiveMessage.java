@@ -1,23 +1,24 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.archive.mail.newwindow;
 
 import org.testng.annotations.*;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -30,14 +31,13 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 		logger.info("New "+ ArchiveMessage.class.getCanonicalName());
 	}
 	
-	// See https://bugzilla.zimbra.com/show_bug.cgi?id=79929 (Archive button removed from new window)
-	
-	@Test(	description = "Archive a message",
-			groups = { "deprecated" })
+	@Bugs(ids = "80238")
+	@Test( description = "Archive a message",
+			groups = { "smoke" })
 	public void ArchiveMessage_01() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
 		
 		// Add a message to the inbox
@@ -98,12 +98,12 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 
 	}
 
-	@Test(	description = "Verify the 'archive' button is not present in separate window",
+	@Test( description = "Verify the 'archive' button is not present in separate window",
 			groups = { "functional" })
 	public void ArchiveMessage_02() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
 		
 		// Add a message to the inbox
@@ -134,7 +134,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(subject);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			

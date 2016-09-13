@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.viewappt;
@@ -33,7 +33,7 @@ public class ProposeNewTime extends CalendarWorkWeekTest {
 		super.startingAccountPreferences = null;
 	}
 	
-	@Test(description = "View meeting invite by opening it and propose new time to organizer", 
+	@Test( description = "View meeting invite by opening it and propose new time to organizer", 
 			groups = { "functional" })
 			
 	public void MeetingProposeNewTime_01() throws HarnessException {
@@ -42,9 +42,9 @@ public class ProposeNewTime extends CalendarWorkWeekTest {
 
 		String organizerEmailAddress, apptAttendee1EmailAddress, apptAttendee2EmailAddress;
 		ZimbraAccount organizer, apptAttendee1, apptAttendee2; 
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptBody = ZimbraSeleniumProperties.getUniqueString();
-		String modifiedBody = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptBody = ConfigProperties.getUniqueString();
+		String modifiedBody = ConfigProperties.getUniqueString();
 		
 		apptAttendee1 = app.zGetActiveAccount();
 		apptAttendee1EmailAddress = app.zGetActiveAccount().EmailAddress;

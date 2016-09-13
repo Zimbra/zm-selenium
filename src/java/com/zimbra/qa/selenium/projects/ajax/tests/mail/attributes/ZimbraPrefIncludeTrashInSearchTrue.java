@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attributes;
@@ -44,18 +44,18 @@ public class ZimbraPrefIncludeTrashInSearchTrue extends PrefGroupMailByMessageTe
 		
 		//-- DATA setup
 		
-		String query = "query" + ZimbraSeleniumProperties.getUniqueString();
+		String query = "query" + ConfigProperties.getUniqueString();
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
 		FolderItem trashFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash);
 		
 		MailItem message1 = new MailItem();
-		message1.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		message1.dSubject = "subject" + ConfigProperties.getUniqueString();
 		message1.dFromRecipient = new RecipientItem("foo@example.com", RecipientType.From);
 		message1.dToRecipients.add(new RecipientItem("bar@example.com", RecipientType.To));
 		message1.dBodyText = query; 
 		
 		MailItem message2 = new MailItem();
-		message2.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		message2.dSubject = "subject" + ConfigProperties.getUniqueString();
 		message2.dFromRecipient = new RecipientItem("foo@example.com", RecipientType.From);
 		message2.dToRecipients.add(new RecipientItem("bar@example.com", RecipientType.To));
 		message2.dBodyText = query; 

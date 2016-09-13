@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.autocomplete;
@@ -54,19 +54,19 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	 */
 	
 	@Bugs(ids = "102053")
-	@Test(	description = "Forget an autocomplete address - invalid email",
+	@Test( description = "Forget an autocomplete address - invalid email",
 			groups = { "functional" })
 	
 	public void AutoCompleteForget_01() throws HarnessException {
 		
 		// Create a contact
-		String emailaddress = "foo"+ ZimbraSeleniumProperties.getUniqueString() + "@testdomain.zimbra.com";
+		String emailaddress = "foo"+ ConfigProperties.getUniqueString() + "@testdomain.zimbra.com";
 
 		// Send a message to the invalid email
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -136,14 +136,14 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Verify the 'forget' link for Contacts",
+	@Test( description = "Verify the 'forget' link for Contacts",
 			groups = { "functional" })
 	public void AutoCompleteForget_02() throws HarnessException {
 		
 		// Create two contacts
-		String emailaddress = "admin@" + ZimbraSeleniumProperties.getStringProperty("server.host");
-		String firstname = "Michael" + ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "Williams" + ZimbraSeleniumProperties.getUniqueString();
+		String emailaddress = "admin@" + ConfigProperties.getStringProperty("server.host");
+		String firstname = "Michael" + ConfigProperties.getUniqueString();
+		String lastname = "Williams" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 					"<CreateContactRequest xmlns='urn:zimbraMail'>"
@@ -158,9 +158,9 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 				"<SendMsgRequest xmlns='urn:zimbraMail'>"
 			+		"<m>"
 			+			"<e t='t' a='"+ emailaddress +"'/>"
-			+			"<su>subject"+ ZimbraSeleniumProperties.getUniqueString() +"</su>"
+			+			"<su>subject"+ ConfigProperties.getUniqueString() +"</su>"
 			+			"<mp ct='text/plain'>"
-			+				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>"
+			+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>"
 			+			"</mp>"
 			+		"</m>"
 			+	"</SendMsgRequest>");
@@ -170,8 +170,8 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 		// Send a message to the invalid email
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -205,13 +205,13 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	}
 
 	@Bugs(ids = "97118")
-	@Test(	description = "Verify the 'forget' link for GAL",
+	@Test( description = "Verify the 'forget' link for GAL",
 			groups = { "functional" })
 	
 	public void AutoCompleteForget_03() throws HarnessException {
 		
-		final String givenName = "Christopher" + ZimbraSeleniumProperties.getUniqueString();
-		final String sn = "White" + ZimbraSeleniumProperties.getUniqueString();
+		final String givenName = "Christopher" + ConfigProperties.getUniqueString();
+		final String sn = "White" + ConfigProperties.getUniqueString();
 		final String displayName = givenName + " " + sn;
 		
 		// Create a GAL Entry
@@ -231,9 +231,9 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 				"<SendMsgRequest xmlns='urn:zimbraMail'>"
 			+		"<m>"
 			+			"<e t='t' a='"+ account.EmailAddress +"'/>"
-			+			"<su>subject"+ ZimbraSeleniumProperties.getUniqueString() +"</su>"
+			+			"<su>subject"+ ConfigProperties.getUniqueString() +"</su>"
 			+			"<mp ct='text/plain'>"
-			+				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>"
+			+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>"
 			+			"</mp>"
 			+		"</m>"
 			+	"</SendMsgRequest>");
@@ -243,8 +243,8 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 		// Send a message to the invalid email
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -288,7 +288,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	 */
 	
 	@Bugs(ids = "97123")
-	@Test(	description = "Verify 'forget' functionality resets the ranking order - Contacts",
+	@Test( description = "Verify 'forget' functionality resets the ranking order - Contacts",
 			groups = { "functional" })
 	
 	public void AutoCompleteForget_04() throws HarnessException {
@@ -299,8 +299,8 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 		contact1.authenticate();
 		
 		String emailaddress1 = contact1.EmailAddress;
-		String firstname1 = "PaulOne" + ZimbraSeleniumProperties.getUniqueString();
-		String lastname1 = "Harris" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname1 = "PaulOne" + ConfigProperties.getUniqueString();
+		String lastname1 = "Harris" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 					"<CreateContactRequest xmlns='urn:zimbraMail'>"
@@ -316,9 +316,9 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 				"<SendMsgRequest xmlns='urn:zimbraMail'>"
 			+		"<m>"
 			+			"<e t='t' a='"+ emailaddress1 +"'/>"
-			+			"<su>subject"+ ZimbraSeleniumProperties.getUniqueString() +"</su>"
+			+			"<su>subject"+ ConfigProperties.getUniqueString() +"</su>"
 			+			"<mp ct='text/plain'>"
-			+				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>"
+			+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>"
 			+			"</mp>"
 			+		"</m>"
 			+	"</SendMsgRequest>");
@@ -330,8 +330,8 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 		contact2.authenticate();
 		
 		String emailaddress2 = contact2.EmailAddress;
-		String firstname2 = "PaulTwo" + ZimbraSeleniumProperties.getUniqueString();
-		String lastname2 = "Harris" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname2 = "PaulTwo" + ConfigProperties.getUniqueString();
+		String lastname2 = "Harris" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 					"<CreateContactRequest xmlns='urn:zimbraMail'>"
@@ -347,9 +347,9 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 				"<SendMsgRequest xmlns='urn:zimbraMail'>"
 			+		"<m>"
 			+			"<e t='t' a='"+ emailaddress2 +"'/>"
-			+			"<su>subject"+ ZimbraSeleniumProperties.getUniqueString() +"</su>"
+			+			"<su>subject"+ ConfigProperties.getUniqueString() +"</su>"
 			+			"<mp ct='text/plain'>"
-			+				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>"
+			+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>"
 			+			"</mp>"
 			+		"</m>"
 			+	"</SendMsgRequest>");
@@ -358,9 +358,9 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 				"<SendMsgRequest xmlns='urn:zimbraMail'>"
 			+		"<m>"
 			+			"<e t='t' a='"+ emailaddress2 +"'/>"
-			+			"<su>subject"+ ZimbraSeleniumProperties.getUniqueString() +"</su>"
+			+			"<su>subject"+ ConfigProperties.getUniqueString() +"</su>"
 			+			"<mp ct='text/plain'>"
-			+				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>"
+			+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>"
 			+			"</mp>"
 			+		"</m>"
 			+	"</SendMsgRequest>");
@@ -371,8 +371,8 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 		// Send a message to the invalid email
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -462,14 +462,14 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	 * @throws HarnessException
 	 */
 	@Bugs(ids = "97118")
-	@Test(	description = "Verify 'forget' functionality resets the ranking order - GAL",
+	@Test( description = "Verify 'forget' functionality resets the ranking order - GAL",
 			groups = { "functional" })
 	
 	public void AutoCompleteForget_05() throws HarnessException {
 		
 		// Create a GAL Entry
-		final String givenName1 = "Mark" + ZimbraSeleniumProperties.getUniqueString();
-		final String sn1 = "Martin" + ZimbraSeleniumProperties.getUniqueString();
+		final String givenName1 = "Mark" + ConfigProperties.getUniqueString();
+		final String sn1 = "Martin" + ConfigProperties.getUniqueString();
 		final String displayName1 = givenName1 + " " + sn1;
 		
 		// Create a GAL Entry
@@ -490,15 +490,15 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 				"<SendMsgRequest xmlns='urn:zimbraMail'>"
 			+		"<m>"
 			+			"<e t='t' a='"+ account1.EmailAddress +"'/>"
-			+			"<su>subject"+ ZimbraSeleniumProperties.getUniqueString() +"</su>"
+			+			"<su>subject"+ ConfigProperties.getUniqueString() +"</su>"
 			+			"<mp ct='text/plain'>"
-			+				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>"
+			+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>"
 			+			"</mp>"
 			+		"</m>"
 			+	"</SendMsgRequest>");
 
-		final String givenName2 = "Mark" + ZimbraSeleniumProperties.getUniqueString();
-		final String sn2 = "Martin" + ZimbraSeleniumProperties.getUniqueString();
+		final String givenName2 = "Mark" + ConfigProperties.getUniqueString();
+		final String sn2 = "Martin" + ConfigProperties.getUniqueString();
 		final String displayName2 = givenName2 + " " + sn2;
 		
 		// Create a GAL Entry
@@ -519,9 +519,9 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 				"<SendMsgRequest xmlns='urn:zimbraMail'>"
 			+		"<m>"
 			+			"<e t='t' a='"+ account2.EmailAddress +"'/>"
-			+			"<su>subject"+ ZimbraSeleniumProperties.getUniqueString() +"</su>"
+			+			"<su>subject"+ ConfigProperties.getUniqueString() +"</su>"
 			+			"<mp ct='text/plain'>"
-			+				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>"
+			+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>"
 			+			"</mp>"
 			+		"</m>"
 			+	"</SendMsgRequest>");
@@ -530,9 +530,9 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 				"<SendMsgRequest xmlns='urn:zimbraMail'>"
 			+		"<m>"
 			+			"<e t='t' a='"+ account2.EmailAddress +"'/>"
-			+			"<su>subject"+ ZimbraSeleniumProperties.getUniqueString() +"</su>"
+			+			"<su>subject"+ ConfigProperties.getUniqueString() +"</su>"
 			+			"<mp ct='text/plain'>"
-			+				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>"
+			+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>"
 			+			"</mp>"
 			+		"</m>"
 			+	"</SendMsgRequest>");
@@ -542,8 +542,8 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 		// Send a message to the invalid email
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);

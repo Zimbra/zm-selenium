@@ -1,51 +1,43 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.date;
 
-import java.util.*;
-
-import org.openqa.selenium.*;
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.*;
-
 
 public class HoverOver extends PrefGroupMailByMessageTest {
-
 	
 	public HoverOver() throws HarnessException {
 		logger.info("New "+ HoverOver.class.getCanonicalName());
-		
 	}
 	
-	@Test(	description = "Hover over a date in a message body",
+	@Test( description = "Hover over a date in a message body",
 			groups = { "functional" })
+	
 	public void HoverOver_01() throws HarnessException {
 
 		//-- DATA Setup
 		final String date = "12/25/2016";
-		final String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		final String subject = "subject" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -72,36 +64,32 @@ public class HoverOver extends PrefGroupMailByMessageTest {
 
 		// Hover over the email address
 		String locator = "css=span[id$='_com_zimbra_date']:contains("+ date + ")";
-		app.zPageMail.sMouseOver(locator, (WebElement[]) null);
-		
-		
+		app.zPageMail.zDisplayMailHoverOver(locator);
 		
 		//-- VERIFICATION
-		
-		
-		// Verify the contact tool tip opens
 		TooltipContact tooltip = new TooltipContact(app);
 		tooltip.zWaitForActive();
 		
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
-		
-		
 	}
 	
-	@Test(	description = "Hovor over a date string in the body, such as today, tomorrow, last night, etc.",
+	
+	@Test( description = "Hovor over a date string in the body, such as today, tomorrow, last night, etc.",
 			groups = { "functional" })
-	public void HoverOver_11() throws HarnessException {
-		String newline = String.format("%n");
+	
+	public void HoverOver_02() throws HarnessException {
 		
+		String newline = String.format("%n");
 
-		List<String> values = Arrays.asList("today,tonight,this morning,tomorrow night,tomorrow morning,tomorrow,last night,yesterday morning,yesterday,this Monday,next Monday,Last Monday,first Monday in April,third Monday".split(","));
+		String[] values = { "today", "tonight", "this morning", "tomorrow night", "tomorrow morning", "tomorrow", "last night", 
+							"yesterday morning", "yesterday", "this Monday", "next Monday", "Last Monday", "first Monday in April", "third Monday" };
 		
 		// Create the message content, with one term on each line
-		StringBuffer content = new StringBuffer(ZimbraSeleniumProperties.getUniqueString()).append(newline);
+		StringBuffer content = new StringBuffer(ConfigProperties.getUniqueString()).append(newline);
 		for (String s : values) {
 			content.append(s).append(newline);
 		}
-		String subject = "subject " + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject " + ConfigProperties.getUniqueString();
 
 		// Send the message from AccountA to the ZWC user
 		ZimbraAccount.AccountA().soapSend(
@@ -114,30 +102,19 @@ public class HoverOver extends PrefGroupMailByMessageTest {
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
-
-		
 		
 		// GUI Actions
-		
-		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
-
-		// Select the message so that it shows in the reading pane
-		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-
-		HtmlElement bodyElement = display.zGetMailPropertyAsHtml(Field.Body);
-
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		// VERIFICATION
-		//
-		for (String value : values) {
-
-			// Verify the data is present
-			HtmlElement.evaluate(bodyElement, "//span//span", null, value, 1);
+		for (int i=1; i<=values.length; i++) {
+			
+			System.out.println("Verify " + values[i] + " hover tooltip shows");
 
 			// Hover over the email address
-			String locator = "css=span[id$='_com_zimbra_date']:contains("+ value + ")";
-			app.zPageMail.sMouseOver(locator, (WebElement[]) null);
+			String locator = "body div span:nth-of-type(" + i + ")";
+			app.zPageMail.zDisplayMailHoverOver(locator);
 			
 			// Verify the contact tool tip opens
 			TooltipContact tooltip = new TooltipContact(app);
@@ -149,10 +126,5 @@ public class HoverOver extends PrefGroupMailByMessageTest {
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 			
 		}
-		
-
 	}
-
-
-
 }

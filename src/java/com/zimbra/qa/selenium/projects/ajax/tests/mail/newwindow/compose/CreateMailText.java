@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.compose;
@@ -37,7 +37,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test(	description = "Send a mail using Text editor - in a separate window",
+	@Test( description = "Send a mail using Text editor - in a separate window",
 			groups = { "smoke" })
 	public void CreateMailText_01() throws HarnessException {
 		
@@ -45,8 +45,8 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
 		
 		
 		// Open the new mail form
@@ -125,7 +125,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	  };
 	}
 	
-	@Test(	description = "Send a mail using Text editor using keyboard shortcuts - in separate window",
+	@Test( description = "Send a mail using Text editor using keyboard shortcuts - in separate window",
 			groups = { "functional" },
 			dataProvider = "DataProvideNewMessageShortcuts")
 	public void CreateMailText_02(Shortcut shortcut, String keys) throws HarnessException {
@@ -134,8 +134,8 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
 		
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		
@@ -181,7 +181,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Send a mail with CC - in a separate window",
+	@Test( description = "Send a mail with CC - in a separate window",
 			groups = { "functional" })
 	public void CreateMailText_03() throws HarnessException {
 		
@@ -190,8 +190,8 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA(), RecipientItem.RecipientType.To));
 		mail.dCcRecipients.add(new RecipientItem(ZimbraAccount.AccountB(), RecipientItem.RecipientType.Cc));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		SeparateWindowFormMailNew window = null;
@@ -251,7 +251,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Send a mail with BCC",
+	@Test( description = "Send a mail with BCC",
 			groups = { "deprecated" })
 	public void CreateMailText_04() throws HarnessException {
 		
@@ -260,8 +260,8 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA(), RecipientItem.RecipientType.To));
 		mail.dBccRecipients.add(new RecipientItem(ZimbraAccount.AccountB(), RecipientItem.RecipientType.Bcc));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
 		
 		
 		// Open the new mail form
@@ -325,7 +325,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	  };
 	}
 
-	@Test(	description = "Send a mail with different priorities high/normal/low - in a separate window",
+	@Test( description = "Send a mail with different priorities high/normal/low - in a separate window",
 			groups = { "functional" },
 			dataProvider = "DataProvidePriorities")
 	public void CreateMailText_05(Button option, String verify) throws HarnessException {
@@ -334,8 +334,8 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		// verify: the f field in the GetMsgResponse
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		
 		// Open the new mail form

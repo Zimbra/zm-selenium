@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
@@ -41,6 +41,9 @@ public class PageManageGlobalSettings extends AbsTab {
 		public static final String CONFIGURE="Configure";
 		public static final String GLOBAL_SETTINGS="Global Settings";
 		public static final String GLOBAL_SETTINGS_ACL="css=div[id^='zti__AppAdmin__CONFIGURATION__GSET'] div[class='ZTreeItemTextCell']:contains('ACL')";
+		public static final String GENERAL_INFORMATION="css=div[id^='zti__AppAdmin__CONFIGURATION__GSET'] div[class='ZTreeItemTextCell']:contains('General Information')";
+		public static final String ZIMBRA_FILE_UPLOAD_MAX_SIZE="css=td[id='ztabv__GSET_EDIT_zimbraFileUploadMaxSize___label']";
+		public static final String ZIMBRA_FILE_UPLOAD_MAX_SIZE_TEXT_FIELD="css=input[id='ztabv__GSET_EDIT_zimbraFileUploadMaxSize']";
 	}
 
 

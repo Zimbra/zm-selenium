@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversations;
@@ -36,7 +36,7 @@ public class ReplyAllConversationText extends PrefGroupMailByConversationTest {
 		
 	}
 	
-	@Test(	description = "Reply-All to a conversation",
+	@Test( description = "Reply-All to a conversation",
 			groups = { "smoke" })
 	public void ReplyAllConversationText_01() throws HarnessException {
 
@@ -47,7 +47,7 @@ public class ReplyAllConversationText extends PrefGroupMailByConversationTest {
 		ZimbraAccount account2 = (new ZimbraAccount()).provision().authenticate();
 		ZimbraAccount account3 = (new ZimbraAccount()).provision().authenticate();
 		
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		account1.soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 					"<m >" +
@@ -56,7 +56,7 @@ public class ReplyAllConversationText extends PrefGroupMailByConversationTest {
 						"<e t='c' a='"+ account3.EmailAddress +"'/>" +
 						"<su>RE: "+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>body"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>body"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
@@ -70,7 +70,7 @@ public class ReplyAllConversationText extends PrefGroupMailByConversationTest {
 						"<e t='c' a='"+ account3.EmailAddress +"'/>" +
 						"<su>RE: "+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>body"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>body"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");

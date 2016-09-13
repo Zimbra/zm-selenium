@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders;
@@ -24,18 +24,15 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-
 public class ExpandFolder extends PrefGroupMailByMessageTest {
 
 	public ExpandFolder() {
 		logger.info("New "+ ExpandFolder.class.getCanonicalName());
-		
-
-		
 	}
 	
-	@Test(	description = "Expand a subfolder",
+	@Test( description = "Expand a subfolder",
 			groups = { "smoke" })
+	
 	public void ExpandFolder_01() throws HarnessException {
 		
 		
@@ -43,8 +40,8 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 		
 		
 		final FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-		final String foldername1 = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		final String foldername2 = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		final String foldername1 = "folder" + ConfigProperties.getUniqueString();
+		final String foldername2 = "folder" + ConfigProperties.getUniqueString();
 
 		// Create this folder structure
 		// +- Inbox
@@ -73,16 +70,8 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
     		+		"</meta>"
 			+	"</SetMailboxMetadataRequest>");
 
-		// Login/Logout to pick up the metadata
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
-		
-		//-- GUI
-		
-		
-		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-
+		// Refresh UI
+		app.zPageLogin.sRefresh();
 		
 		// Expand folder1
 		app.zTreeMail.zTreeItem(Action.A_TREE_EXPAND, folder1);
@@ -104,7 +93,7 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringContains(value, folder1.getId() + ":true", "Verify the mailbox metadata saves the folder as expanded");
 	}	
 
-	@Test(	description = "Expand 2 subfolders",
+	@Test( description = "Expand 2 subfolders",
 			groups = { "functional" })
 	public void ExpandFolder_02() throws HarnessException {
 		
@@ -113,10 +102,10 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 		
 		
 		final FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-		final String foldername1 = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		final String foldername2 = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		final String foldername3 = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		final String foldername4 = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		final String foldername1 = "folder" + ConfigProperties.getUniqueString();
+		final String foldername2 = "folder" + ConfigProperties.getUniqueString();
+		final String foldername3 = "folder" + ConfigProperties.getUniqueString();
+		final String foldername4 = "folder" + ConfigProperties.getUniqueString();
 
 		// Create this folder structure
 		// +- Inbox
@@ -157,9 +146,8 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
     		+		"</meta>"
 			+	"</SetMailboxMetadataRequest>");
 
-		// Login/Logout to pick up the metadata
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageLogin.sRefresh();
 
 		//-- GUI
 		
@@ -193,7 +181,7 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 
 	}	
 
-	@Test(	description = "Expand-All subfolders",
+	@Test( description = "Expand-All subfolders",
 			groups = { "functional" })
 	public void ExpandAllFolders_01() throws HarnessException {
 		
@@ -202,10 +190,10 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 		
 		
 		final FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-		final String foldername1 = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		final String foldername2 = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		final String foldername3 = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		final String foldername4 = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		final String foldername1 = "folder" + ConfigProperties.getUniqueString();
+		final String foldername2 = "folder" + ConfigProperties.getUniqueString();
+		final String foldername3 = "folder" + ConfigProperties.getUniqueString();
+		final String foldername4 = "folder" + ConfigProperties.getUniqueString();
 
 		// Create this folder structure
 		// +- Inbox
@@ -246,9 +234,8 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
     		+		"</meta>"
 			+	"</SetMailboxMetadataRequest>");
 
-		// Login/Logout to pick up the metadata
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageLogin.sRefresh();
 
 		//-- GUI
 		

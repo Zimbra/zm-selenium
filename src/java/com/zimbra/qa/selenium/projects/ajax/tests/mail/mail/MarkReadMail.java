@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
@@ -33,13 +33,13 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefMarkMsgRead", "" + delaySeconds);
 	}
 	
-	@Test(	description = "Mark a message as read by clicking on it then waiting",
+	@Test( description = "Mark a message as read by clicking on it then waiting",
 			groups = { "smoke" })
 	
 	public void MarkReadMail_01() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -47,7 +47,7 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
@@ -73,14 +73,14 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Verify that if the message is not read for less than zimbraPrefMarkMsgRead, it is not read",
+	@Test( description = "Verify that if the message is not read for less than zimbraPrefMarkMsgRead, it is not read",
 			groups = { "functional" })
 	
 	public void MarkReadMail_02() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject1 = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		String subject2 = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject1 = "subject"+ ConfigProperties.getUniqueString();
+		String subject2 = "subject"+ ConfigProperties.getUniqueString();
 		
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -88,7 +88,7 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject1 +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
@@ -99,7 +99,7 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject2 +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
@@ -125,13 +125,13 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(	description = "Mark a message as read by clicking on it, then using 'mr' hotkeys",
+	@Test( description = "Mark a message as read by clicking on it, then using 'mr' hotkeys",
 			groups = { "functional" })
 	
 	public void MarkReadMail_03() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -139,7 +139,7 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
@@ -162,12 +162,12 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Mark a message as read by context menu -> mark read",
+	@Test( description = "Mark a message as read by context menu -> mark read",
 			groups = { "functional" })
 	
 			public void MarkReadMail_04() throws HarnessException {
 		// Create the message data to be sent
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -175,7 +175,7 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 				"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 				"<su>"+ subject +"</su>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"</m>" +
 		"</SendMsgRequest>");

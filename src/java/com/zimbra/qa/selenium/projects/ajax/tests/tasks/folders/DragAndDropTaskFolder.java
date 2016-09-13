@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.folders;
@@ -28,7 +28,7 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 
@@ -48,14 +48,14 @@ public class DragAndDropTaskFolder extends AjaxCommonTest {
 
 	
 	@Bugs(ids="69661")
-	@Test(description = "Drag one Task folder and Drop into other", groups = { "smoke" })
+	@Test( description = "Drag one Task folder and Drop into other", groups = { "smoke" })
 	public void DragAndDropTaskFolder_01() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		ZAssert.assertNotNull(taskFolder, "Verify the task is available");
 		
 		// Create the subTaskList
-		String name1 = "taskList1" + ZimbraSeleniumProperties.getUniqueString();
-		String name2 = "taskList2" + ZimbraSeleniumProperties.getUniqueString();
+		String name1 = "taskList1" + ConfigProperties.getUniqueString();
+		String name2 = "taskList2" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +

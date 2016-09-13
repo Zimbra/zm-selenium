@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
@@ -38,12 +38,12 @@ public class OpenMail extends PrefGroupMailByMessageTest {
 
 	}
 	
-	@Test(	description = "Double click a mail",
+	@Test( description = "Double click a mail",
 			groups = { "smoke" })
 	public void OpenMail_01() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		
 		// Send the message from AccountA to the ZWC user
 		ZimbraAccount.AccountA().soapSend(
@@ -53,7 +53,7 @@ public class OpenMail extends PrefGroupMailByMessageTest {
 							"<e t='c' a='"+ ZimbraAccount.AccountB().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>"+ "body" + ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
@@ -71,16 +71,16 @@ public class OpenMail extends PrefGroupMailByMessageTest {
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_DOUBLECLICK, mail.dSubject);
 	
 		// Verify the To, From, Subject, Body
-		ZAssert.assertEquals(	actual.zGetMailProperty(Field.Subject), mail.dSubject, "Verify the subject matches");
-		ZAssert.assertNotNull(	actual.zGetMailProperty(Field.ReceivedDate), "Verify the date is displayed");
-		ZAssert.assertNotNull(	actual.zGetMailProperty(Field.ReceivedTime), "Verify the time is displayed");
-		ZAssert.assertEquals(	actual.zGetMailProperty(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
-		ZAssert.assertEquals(	actual.zGetMailProperty(Field.Cc), ZimbraAccount.AccountB().EmailAddress, "Verify the Cc matches");
-		ZAssert.assertEquals(	actual.zGetMailProperty(Field.To), app.zGetActiveAccount().EmailAddress, "Verify the To matches");
+		ZAssert.assertEquals(actual.zGetMailProperty(Field.Subject), mail.dSubject, "Verify the subject matches");
+		ZAssert.assertNotNull(actual.zGetMailProperty(Field.ReceivedDate), "Verify the date is displayed");
+		ZAssert.assertNotNull(actual.zGetMailProperty(Field.ReceivedTime), "Verify the time is displayed");
+		ZAssert.assertEquals(actual.zGetMailProperty(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
+		ZAssert.assertEquals(actual.zGetMailProperty(Field.Cc), ZimbraAccount.AccountB().EmailAddress, "Verify the Cc matches");
+		ZAssert.assertEquals(actual.zGetMailProperty(Field.To), app.zGetActiveAccount().EmailAddress, "Verify the To matches");
 		
 		// The body could contain HTML, even though it is only displaying text (e.g. <br> may be present)
 		// do a contains, rather than equals.
-		ZAssert.assertStringContains(	actual.zGetMailProperty(Field.Body), mail.dBodyText, "Verify the body matches");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), mail.dBodyText, "Verify the body matches");
 		
 	}
 

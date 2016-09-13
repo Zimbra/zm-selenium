@@ -1,25 +1,24 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.actions;
 
+import java.io.File;
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
@@ -40,16 +39,16 @@ public class Forward extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test(description = "Forward a meeting invite by changing content",
+	@Test( description = "Forward a meeting invite by changing content",
 			groups = { "smoke" })
 			
 	public void ForwardMeeting_01() throws HarnessException {
 				
 		// Creating a meeting
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptContent = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptContent = ConfigProperties.getUniqueString();
 		
-		String ForwardContent = ZimbraSeleniumProperties.getUniqueString();
+		String ForwardContent = ConfigProperties.getUniqueString();
 		String attendee1 = ZimbraAccount.AccountA().EmailAddress;
 		String attendee2 = ZimbraAccount.AccountB().EmailAddress;
 		
@@ -115,14 +114,14 @@ public class Forward extends CalendarWorkWeekTest {
 	
 	
 	@Bugs(ids="50663")
-	@Test(description = "Forward a meeting invite after accepting it",
-			groups = { "fucntional" })
+	@Test( description = "Forward a meeting invite after accepting it",
+			groups = { "functional" })
 			
 	public void ForwardMeeting_02() throws HarnessException {
 				
 		// Creating a meeting
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptContent = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptContent = ConfigProperties.getUniqueString();
 		
 		String attendee1 = ZimbraAccount.AccountA().EmailAddress;
 		String attendee2 = ZimbraAccount.AccountB().EmailAddress;
@@ -198,6 +197,53 @@ public class Forward extends CalendarWorkWeekTest {
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 		ZAssert.assertTrue(display.zHasADTButtons(), "Verify A/D/T buttons");
 
+	}
+
+	@Bugs(ids="100340")
+	@Test( description = "forwarding invite shows html source in meeting notes section",
+			groups = { "functional" })
+			
+	public void ForwardMeeting_03() throws HarnessException {
+		
+		app.zPageMain.zLogout();
+		ZimbraAccount.AccountZWC().soapSend(
+				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
+			+		"<pref name='zimbraPrefComposeFormat'>"+ "text" +"</pref>"
+			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "FALSE" +"</pref>"
+			+	"</ModifyPrefsRequest>");
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		
+		String attendee2 = ZimbraAccount.Account2().EmailAddress;
+		
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug100340/bug100340.txt";
+		final String apptSubject = "Schedule for Generic Training";
+		final String apptContent = "<div>";
+
+		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		
+		// Verify mail exists
+		app.zPageMail.zVerifyMailExists(apptSubject);
+		
+		// Forward invite
+		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK,inbox);
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
+		FormMailNew mailForm = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
+		
+		// Fill out the form with the data
+		FormApptNew apptForm = new FormApptNew(app);
+		ZAssert.assertStringDoesNotContain(apptForm.zGetApptBodyHtml(), "<div>", "Verify populated appointment does not contain <div> tag");
+		ZAssert.assertStringDoesNotContain(apptForm.zGetApptBodyHtml(), "<br>", "Verify populated appointment does not contain <br> tag");
+		ZAssert.assertStringDoesNotContain(apptForm.zGetApptBodyHtml(), "<td>", "Verify populated appointment does not contain <td> tag");
+		apptForm.zFillField(Field.To, attendee2);
+		apptForm.zSubmit();
+		
+		// Logout and login as AccountB
+		app.zPageMain.zLogout();
+		app.zPageLogin.zLogin(ZimbraAccount.Account2());
+		
+		// Verify mail exists
+		app.zPageMail.zVerifyMailExists("Fwd: " + apptSubject);
 	}
 	
 }

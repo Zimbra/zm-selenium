@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.core;
@@ -68,7 +68,7 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 		
 		
 		// Create a tag
-		String tagname = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String tagname = "tag" + ConfigProperties.getUniqueString();
 		ZimbraAccount.AccountZWC().soapSend(
 					"<CreateTagRequest xmlns='urn:zimbraMail'>"
 				+		"<tag name='"+ tagname +"' color='1' />"
@@ -78,7 +78,7 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 		ZAssert.assertNotNull(tag, "Verify the tag was created");
 
 		// Create a subfolder
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
 		ZimbraAccount.AccountZWC().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='"+ foldername +"' l='1' view='message'/>"
@@ -95,8 +95,8 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 		actions.add(new QuickCommandAction(QuickCommandAction.TypeId.actionFileInto, folder.getId(), true));
 
 
-		String name = "name" + ZimbraSeleniumProperties.getUniqueString();
-		String description = "description" + ZimbraSeleniumProperties.getUniqueString();
+		String name = "name" + ConfigProperties.getUniqueString();
+		String description = "description" + ConfigProperties.getUniqueString();
 		
 		command1 = new QuickCommand(name, description, ItemTypeId.MSG, true);
 		command1.addActions(actions);
@@ -121,7 +121,7 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 		
 		
 		// Create a tag
-		String tagname = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String tagname = "tag" + ConfigProperties.getUniqueString();
 		ZimbraAccount.AccountZWC().soapSend(
 					"<CreateTagRequest xmlns='urn:zimbraMail'>"
 				+		"<tag name='"+ tagname +"' color='1' />"
@@ -131,7 +131,7 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 		ZAssert.assertNotNull(tag, "Verify the tag was created");
 
 		// Create a subfolder
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
 		ZimbraAccount.AccountZWC().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='"+ foldername +"' l='1' view='contact'/>"
@@ -146,8 +146,8 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 		actions.add(new QuickCommandAction(QuickCommandAction.TypeId.actionFileInto, folder.getId(), true));
 
 
-		String name = "name" + ZimbraSeleniumProperties.getUniqueString();
-		String description = "description" + ZimbraSeleniumProperties.getUniqueString();
+		String name = "name" + ConfigProperties.getUniqueString();
+		String description = "description" + ConfigProperties.getUniqueString();
 		
 		command2 = new QuickCommand(name, description, ItemTypeId.CONTACT, true);
 		command2.addActions(actions);
@@ -173,7 +173,7 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 		
 		
 		// Create a tag
-		String tagname = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String tagname = "tag" + ConfigProperties.getUniqueString();
 		ZimbraAccount.AccountZWC().soapSend(
 					"<CreateTagRequest xmlns='urn:zimbraMail'>"
 				+		"<tag name='"+ tagname +"' color='1' />"
@@ -183,7 +183,7 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 		ZAssert.assertNotNull(tag, "Verify the tag was created");
 
 		// Create a subfolder
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
 		ZimbraAccount.AccountZWC().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='"+ foldername +"' l='1' view='appointment'/>"
@@ -200,8 +200,8 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 		actions.add(new QuickCommandAction(QuickCommandAction.TypeId.actionFileInto, folder.getId(), true));
 
 
-		String name = "name" + ZimbraSeleniumProperties.getUniqueString();
-		String description = "description" + ZimbraSeleniumProperties.getUniqueString();
+		String name = "name" + ConfigProperties.getUniqueString();
+		String description = "description" + ConfigProperties.getUniqueString();
 		
 		command3 = new QuickCommand(name, description, ItemTypeId.APPT, true);
 		command3.addActions(actions);

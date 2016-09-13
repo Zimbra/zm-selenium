@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.attachments;
@@ -20,6 +20,7 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 import com.zimbra.common.soap.Element;
@@ -36,85 +37,91 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 		logger.info("New "+ CreateMailWithAttachment.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
-	
-	@Test(	description = "Send a mail by adding attachment",
-			groups = { "sanity","windows" })
-	
-	public void CreateMailWithAttachment_01() throws HarnessException {
-		
-		try {
-		
-			// Create the message data to be sent
-			MailItem mail = new MailItem();
-			mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
-			mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-			mail.dBodyHtml = "body" + ZimbraSeleniumProperties.getUniqueString();
-			
-			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
-			
-			// Create file item
-			final String fileName = "testtextfile.txt";
-			final String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
-			
-			// Open the new mail form
-			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-			ZAssert.assertNotNull(mailform, "Verify the new form opened");
-			
-			// Fill out the form with the data
-			mailform.zFill(mail);
-			
-			// Upload the file
-			app.zPageMail.zPressButton(Button.B_ATTACH);
-			zUpload(filePath);
-			
-			// Send the message
-			mailform.zSubmit();
-			
-			ZimbraAccount.AccountA().soapSend(
-							"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
-					+			"<query>subject:("+ mail.dSubject +")</query>"
-					+		"</SearchRequest>");
-			String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
-			
-			ZimbraAccount.AccountA().soapSend(
-							"<GetMsgRequest xmlns='urn:zimbraMail'>"
-					+			"<m id='"+ id +"' html='1'/>"
-					+		"</GetMsgRequest>");
-	
-			String from = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a");
-			String to = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='t']", "a");
-			String subject = ZimbraAccount.AccountA().soapSelectValue("//mail:su", null);
-			String html = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null);
-			
-			ZAssert.assertEquals(from, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
-			ZAssert.assertEquals(to, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
-			ZAssert.assertEquals(subject, mail.dSubject, "Verify the subject field is correct");
-			ZAssert.assertStringContains(html, mail.dBodyHtml, "Verify the html content");
-			
-			Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
-			ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the sent mail");
-			
-			// Verify UI for attachment
-			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
-			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);			
-			ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the email");
 
-		} finally {
-			
-			Robot robot;
-			
+	@Test( description = "Send a mail by adding attachment",
+			groups = { "sanity" })
+
+	public void CreateMailWithAttachment_01() throws HarnessException {
+
+		if (OperatingSystem.isWindows() == true) {
+
 			try {
-				robot = new Robot();
-				robot.delay(250);
-				robot.keyPress(KeyEvent.VK_ESCAPE);
-				robot.keyRelease(KeyEvent.VK_ESCAPE);
-				robot.delay(50);
-				
-			} catch (AWTException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+				// Create the message data to be sent
+				MailItem mail = new MailItem();
+				mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
+				mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+				mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
+
+				FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
+
+				// Create file item
+				final String fileName = "testtextfile.txt";
+				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+
+				// Open the new mail form
+				FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+				ZAssert.assertNotNull(mailform, "Verify the new form opened");
+
+				// Fill out the form with the data
+				mailform.zFill(mail);
+
+				// Upload the file
+				app.zPageMail.zPressButton(Button.B_ATTACH);
+				zUpload(filePath);
+
+				// Send the message
+				mailform.zSubmit();
+
+				ZimbraAccount.AccountA().soapSend(
+								"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
+						+			"<query>subject:("+ mail.dSubject +")</query>"
+						+		"</SearchRequest>");
+				String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
+
+				ZimbraAccount.AccountA().soapSend(
+								"<GetMsgRequest xmlns='urn:zimbraMail'>"
+						+			"<m id='"+ id +"' html='1'/>"
+						+		"</GetMsgRequest>");
+
+				String from = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a");
+				String to = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='t']", "a");
+				String subject = ZimbraAccount.AccountA().soapSelectValue("//mail:su", null);
+				String html = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null);
+
+				ZAssert.assertEquals(from, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
+				ZAssert.assertEquals(to, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
+				ZAssert.assertEquals(subject, mail.dSubject, "Verify the subject field is correct");
+				ZAssert.assertStringContains(html, mail.dBodyHtml, "Verify the html content");
+
+				Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
+				ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the sent mail");
+
+				// Verify UI for attachment
+				app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
+				app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+				ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the email");
+
+			} finally {
+
+				Robot robot;
+
+				try {
+					robot = new Robot();
+					robot.delay(250);
+					robot.keyPress(KeyEvent.VK_ESCAPE);
+					robot.keyRelease(KeyEvent.VK_ESCAPE);
+					robot.delay(50);
+
+				} catch (AWTException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
-			
+
+		} else {
+			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
 		}
 	}
 

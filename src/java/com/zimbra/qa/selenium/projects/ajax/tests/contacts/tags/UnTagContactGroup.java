@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.tags;
@@ -39,7 +39,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 	}
 
 
-	@Test(	description = "Untag a contact group by click Tag->Remove tag on toolbar ",
+	@Test( description = "Untag a contact group by click Tag->Remove tag on toolbar",
 			groups = { "smoke" })
 	public void UnTagContactGroup_01() throws HarnessException {
 		
@@ -86,7 +86,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 
 	}
 
-	@Test(	description = "Untag a contact group by click Tag->Remove tag on Context Menu",
+	@Test( description = "Untag a contact group by click Tag->Remove tag on Context Menu",
 			groups = { "smoke" })
 	public void UnTagContactGroup_02() throws HarnessException {
 		
@@ -131,7 +131,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 
    	}
 
-	@Test(	description = "Untag a double-tagged-contact group by click Tag->Remove tag->tag name on toolbar ",
+	@Test( description = "Untag a double-tagged-contact group by click Tag->Remove tag->tag name on toolbar",
 			groups = { "functional" })
 	public void UnTagContactGroup_03() throws HarnessException {			
 		
@@ -189,7 +189,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 
 
 
-	@Test(	description = "Untag a double-tagged-contact group by right click on group, click Tag ->Remove tag->tag name on context menu ",
+	@Test( description = "Untag a double-tagged-contact group by right click on group, click Tag ->Remove tag->tag name on context menu",
 			groups = { "functional" })
 	public void UnTagContactGroup_04() throws HarnessException {			
 		
@@ -237,13 +237,13 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		
 		String t = app.zGetActiveAccount().soapSelectValue("//mail:cn", "t");
 		ZAssert.assertNotNull(t, "Verify the contact has tags");
-		ZAssert.assertStringDoesNotContain(t, tag1.getId(), "Verify the contact has one tag");
-		ZAssert.assertStringContains(t, tag2.getId(), "Verify the contact has one tag");
+		ZAssert.assertStringDoesNotContain(t, tag1.getId(), "Verify tag1 is removed from contact");
+		ZAssert.assertStringContains(t, tag2.getId(), "Verify tag2 present in contact");
 
 
    	}
 	
-	@Test(	description = "remove all tags from a double-tagged-contact group by click Tag->Remove tag->All Tags on toolbar ",
+	@Test( description = "Remove all tags from a double-tagged-contact group by click Tag->Remove tag->All Tags on toolbar",
 			groups = { "smoke" })
 	public void UnTagContactGroup_05() throws HarnessException {			
 		
@@ -297,10 +297,13 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 
    	}
 	
-	@Test(	description = "Remove all tags from a double-tagged-contact group by right click on group, click Tag ->Remove tag->All Tags on context menu ",
+	@Test( description = "Remove all tags from a double-tagged-contact group by right click on group, click Tag ->Remove tag->All Tags on context menu",
 			groups = { "smoke" })
 	public void UnTagContactGroup_06() throws HarnessException {			
 		
+		// Work around due to duplicate dialog ids
+		app.zPageMain.sRefresh();
+		app.zPageContacts.zNavigateTo();
 		
 		//-- Data
 		
@@ -346,13 +349,13 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 				"</GetContactsRequest>");
 		
 		String t = app.zGetActiveAccount().soapSelectValue("//mail:cn", "t");
-		ZAssert.assertNull(t, "Verify the contact has tags");
+		ZAssert.assertNull(t, "Verify the contact has no tags");
 
 
    	}
 
 	
-	@Test(	description = "Remove all tags from a double-tagged-contact group by click short cut u ",
+	@Test( description = "Remove all tags from a double-tagged-contact group by click short cut u",
 			groups = { "functional" })
 	public void UnTagContactGroup_07() throws HarnessException {			
 		
@@ -408,7 +411,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 	}
 	
 	
-	@Test(	description = "Remove all tags from a single-tagged-contact group by click short cut u ",
+	@Test( description = "Remove all tags from a single-tagged-contact group by click short cut u",
 			groups = { "functional" })
 	public void UnTagContactGroup_08() throws HarnessException {			
 		

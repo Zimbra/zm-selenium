@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.autocomplete.charsets;
@@ -28,12 +28,8 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-
 public class Cyrillic extends PrefGroupMailByMessageTest {
 
-
-	
-	
 	public Cyrillic() {
 		logger.info("New "+ Cyrillic.class.getCanonicalName());
 		
@@ -43,8 +39,9 @@ public class Cyrillic extends PrefGroupMailByMessageTest {
 	}
 	
 	@Bugs(ids = "48736")
-	@Test(	description = "Autocomplete using Cyrillic characters in the name - local contact",
+	@Test( description = "Autocomplete using Cyrillic characters in the name - local contact",
 			groups = { "functional" })
+	
 	public void AutoComplete_01() throws HarnessException {
 		
 		// Create a contact
@@ -69,8 +66,8 @@ public class Cyrillic extends PrefGroupMailByMessageTest {
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -79,29 +76,9 @@ public class Cyrillic extends PrefGroupMailByMessageTest {
 		// Fill out the form with the data
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, body);
-
-		// Set the To field
-		// Don't use the autocomplete code, since the Cyrillic will be rejected
-		//mailform.zFillField(Field.To, firstname);
-		//mailform.zAutocompleteFillField(Field.To, ";");
-		//workaround
 		mailform.zAutocompleteFillField(Field.To, firstname);
-
-		// Type ';'
-		if  (ZimbraSeleniumProperties.isWebDriver()) {
-			
-		    mailform.sType("css=div>input[id^=zv__COMPOSE][id$=_to_control]", ";");
-		    
-		} else {
-			
-			SleepUtil.sleepSmall();
-		    mailform.sKeyDown("css=div>input[id^=zv__COMPOSE][id$=_to_control]", "\\59");
-		    
-		}
-
-		// Send the message
+		mailform.sType("css=div>input[id^=zv__COMPOSE][id$=_to_control]", ";");
 		mailform.zSubmit();
-
 		
 		// Log into the destination account and make sure the message is received
 		MailItem received = MailItem.importFromSOAP(contact, "subject:("+ subject +")");
@@ -110,12 +87,13 @@ public class Cyrillic extends PrefGroupMailByMessageTest {
 	}
 
 	@Bugs(ids = "48736")
-	@Test(	description = "Autocomplete using Cyrillic characters in the name - GAL contact",
+	@Test( description = "Autocomplete using Cyrillic characters in the name - GAL contact",
 			groups = { "functional" })
+	
 	public void AutoComplete_02() throws HarnessException {
 		
-		final String givenName = "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f" + ZimbraSeleniumProperties.getUniqueString();
-		final String sn = "Wilson" + ZimbraSeleniumProperties.getUniqueString();
+		final String givenName = "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f" + ConfigProperties.getUniqueString();
+		final String sn = "Wilson" + ConfigProperties.getUniqueString();
 		final String displayName = givenName + " " + sn;
 		
 		// Create a GAL Entry
@@ -134,8 +112,8 @@ public class Cyrillic extends PrefGroupMailByMessageTest {
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -144,36 +122,13 @@ public class Cyrillic extends PrefGroupMailByMessageTest {
 		// Fill out the form with the data
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, body);
-
-		// Set the To field
-		// Don't use the autocomplete code, since the Cyrillic will be rejected
-		//mailform.zFillField(Field.To, contact.getPref("givenName"));
-		//mailform.zAutocompleteFillField(Field.To, ";");
-		//workaround
 		mailform.zAutocompleteFillField(Field.To, givenName);
-		
-		// Type ';'
-		if  (ZimbraSeleniumProperties.isWebDriver()) {
-			
-		    mailform.sType("css=div>input[id^=zv__COMPOSE][id$=_to_control]", ";");
-		    
-		} else {
-			
-			SleepUtil.sleepSmall();
-		    mailform.sKeyDown("css=div>input[id^=zv__COMPOSE][id$=_to_control]", "\\59");
-		    
-		}
-
-		// Send the message
+		mailform.sType("css=div>input[id^=zv__COMPOSE][id$=_to_control]", ";");
 		mailform.zSubmit();
-
 		
 		// Log into the destination account and make sure the message is received
 		MailItem received = MailItem.importFromSOAP(contact, "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
 		
 	}
-
-
-
 }

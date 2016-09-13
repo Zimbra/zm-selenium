@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.feeds;
@@ -31,10 +31,10 @@ public class GetFeed extends PrefGroupMailByMessageTest {
 
 	public GetFeed() {
 		logger.info("New " + GetFeed.class.getCanonicalName());
-
 	}
 
-	@Test(description = "Verify a feed appears in the folder tree", groups = { "functional" })
+	@Test( description = "Verify a feed appears in the folder tree", groups = { "smoke" })
+	
 	public void GetFeed_01() throws HarnessException, MalformedURLException {
 
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(),
@@ -43,10 +43,10 @@ public class GetFeed extends PrefGroupMailByMessageTest {
 				SystemFolder.Inbox);
 
 		String foldername = "folder"
-				+ ZimbraSeleniumProperties.getUniqueString();
+				+ ConfigProperties.getUniqueString();
 
 		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
-		String feed = ZimbraSeleniumProperties.getStringProperty("feed.rss");
+		String feed = ConfigProperties.getStringProperty("feed.rss");
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>"
@@ -77,7 +77,8 @@ public class GetFeed extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Reload a feed", groups = { "functional" })
+	@Test( description = "Reload a feed", groups = { "functional" })
+	
 	public void GetFeed_02() throws HarnessException, MalformedURLException {
 
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(),
@@ -86,10 +87,10 @@ public class GetFeed extends PrefGroupMailByMessageTest {
 				SystemFolder.Inbox);
 
 		String foldername = "folder"
-				+ ZimbraSeleniumProperties.getUniqueString();
+				+ ConfigProperties.getUniqueString();
 
 		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
-		String url = ZimbraSeleniumProperties.getStringProperty("feed.rss");
+		String url = ConfigProperties.getStringProperty("feed.rss");
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>"

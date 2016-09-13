@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.freebusy.singleday;
@@ -42,13 +42,13 @@ public class GetAppointment extends AjaxCommonTest {
 	}
 	
 	@Bugs(ids = "69132")
-	@Test(	description = "View a basic appointment in the free busy view",
+	@Test( description = "View a basic appointment in the free busy view",
 			groups = { "functional" })
 	public void GetAppointment_01() throws HarnessException {
 		
 		// Create the appointment on the server
 		// Create the message data to be sent
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();

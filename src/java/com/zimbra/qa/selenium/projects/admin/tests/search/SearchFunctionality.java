@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.tests.search;
@@ -23,7 +23,7 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.items.DistributionListItem;
@@ -46,12 +46,12 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * 2. Verify the account is present in the all results search.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify search functionality of all results.",
+	@Test( description = "Verify search functionality of all results.",
 			groups = { "smoke" })
 			public void SearchFunctionality_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
@@ -89,12 +89,12 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * 2. Verify the account is present in the "Accounts" search.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify search functionality of Accounts.",
+	@Test( description = "Verify search functionality of Accounts.",
 			groups = { "smoke" })
 			public void SearchFunctionality_02() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
@@ -131,7 +131,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * 2. Verify the DL is present in the "DL" search.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify search functionality of DL",
+	@Test( description = "Verify search functionality of DL",
 			groups = { "smoke" })
 			public void SearchFunctionality_03() throws HarnessException {
 
@@ -173,7 +173,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * 2. Verify the Domain is present in the "DL" search.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify search functionality of Domain",
+	@Test( description = "Verify search functionality of Domain",
 			groups = { "smoke" })
 			public void SearchFunctionality_04() throws HarnessException {
 
@@ -214,12 +214,12 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * 2. Verify the account is present in the "locked out account" search.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify search functionality of locked out accounts.",
+	@Test( description = "Verify search functionality of locked out accounts.",
 			groups = { "smoke" })
 			public void SearchFunctionality_05() throws HarnessException {
 	
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
@@ -257,12 +257,12 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * 2. Verify the account is present in the "non-active account" search.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify search functionality of non-active accounts.",
+	@Test( description = "Verify search functionality of non-active accounts.",
 			groups = { "smoke" })
 			public void SearchFunctionality_06() throws HarnessException {
 	
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
@@ -300,12 +300,12 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * 2. Verify the account is present in the "admin account" search.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify search functionality of admin accounts.",
+	@Test( description = "Verify search functionality of admin accounts.",
 			groups = { "smoke" })
 			public void SearchFunctionality_07() throws HarnessException {
 	
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("global_admin" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("global_admin" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
@@ -314,7 +314,7 @@ public class SearchFunctionality extends AdminCommonTest {
 				+		"</CreateAccountRequest>");
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem del_admin_account = new AccountItem("delegated_admin" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem del_admin_account = new AccountItem("delegated_admin" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + del_admin_account.getEmailAddress() + "</name>"
@@ -361,12 +361,12 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * 2. Verify the account is present in the "closed account" search.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify search functionality of closed accounts.",
+	@Test( description = "Verify search functionality of closed accounts.",
 			groups = { "smoke" })
 			public void SearchFunctionality_08() throws HarnessException {
 	
 		// Create a new closed account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
@@ -404,12 +404,12 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * 2. Verify the account is present in the "maintenance account" search.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify search functionality of maintenance accounts.",
+	@Test( description = "Verify search functionality of maintenance accounts.",
 			groups = { "smoke" })
 			public void SearchFunctionality_9() throws HarnessException {
 	
 		// Create a new maintenance account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"

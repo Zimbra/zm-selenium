@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
@@ -32,15 +32,15 @@ public class SendMailWithSpecialCharacter extends PrefGroupMailByMessageTest {
 		logger.info("New " + SendMailWithSpecialCharacter.class.getCanonicalName());
 	}
 
-	@Bugs(	ids = "82073")
-	@Test(	description = "Send a mail with the '&' character in the subject - verify no '&amp;'", groups = { "functional" } )
+	@Bugs( ids = "82073")
+	@Test( description = "Send a mail with the '&' character in the subject - verify no '&amp;'", groups = { "functional" } )
 	
 	public void SendMailWithSpecialCharacter_01() throws HarnessException {
 
 		//-- DATA
 		
-		String subject = ZimbraSeleniumProperties.getUniqueString() + " & " + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = ConfigProperties.getUniqueString() + " & " + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 
 		//-- GUI
 		
@@ -64,8 +64,8 @@ public class SendMailWithSpecialCharacter extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Bugs(	ids = "82073")
-	@Test(	description = "Receive a mail with the '&' character in the subject - verify no '&amp;'", groups = { "functional" } )
+	@Bugs( ids = "82073")
+	@Test( description = "Receive a mail with the '&' character in the subject - verify no '&amp;'", groups = { "functional" } )
 	
 	public void ReceiveMailWithSpecialCharacter_02() throws HarnessException {
 
@@ -73,7 +73,7 @@ public class SendMailWithSpecialCharacter extends PrefGroupMailByMessageTest {
 		
 		String subject = "13680547408344 & 13680547408345";
 		
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug82073/mime1.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug82073/mime1.txt";
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
 		//-- GUI

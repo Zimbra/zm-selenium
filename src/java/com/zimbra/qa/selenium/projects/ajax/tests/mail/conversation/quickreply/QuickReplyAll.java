@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.quickreply;
@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByConversationTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
@@ -39,7 +39,7 @@ public class QuickReplyAll extends PrefGroupMailByConversationTest {
 
 	}
 	
-	@Test(	description = "Quick Reply to a conversation (1 message, 1 recipient)",
+	@Test( description = "Quick Reply to a conversation (1 message, 1 recipient)",
 			groups = { "smoke" })
 	public void QuickReplyAll_01() throws HarnessException {
 		
@@ -49,9 +49,9 @@ public class QuickReplyAll extends PrefGroupMailByConversationTest {
 		
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String content = "content" + ZimbraSeleniumProperties.getUniqueString();
-		String reply = "quickreply" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String content = "content" + ConfigProperties.getUniqueString();
+		String reply = "quickreply" + ConfigProperties.getUniqueString();
 		
 		account1.soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -90,7 +90,7 @@ public class QuickReplyAll extends PrefGroupMailByConversationTest {
 
 	}
 
-	@Test(	description = "Quick Reply to a conversation (1 message, 2 recipients)",
+	@Test( description = "Quick Reply to a conversation (1 message, 2 recipients)",
 			groups = { "functional" })
 	public void QuickReplyAll_02() throws HarnessException {
 		
@@ -105,9 +105,9 @@ public class QuickReplyAll extends PrefGroupMailByConversationTest {
 
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String content = "content" + ZimbraSeleniumProperties.getUniqueString();
-		String reply = "quickreply" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String content = "content" + ConfigProperties.getUniqueString();
+		String reply = "quickreply" + ConfigProperties.getUniqueString();
 		
 		account1.soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -154,7 +154,7 @@ public class QuickReplyAll extends PrefGroupMailByConversationTest {
 
 	}
 
-	@Test(	description = "Quick Reply to a conversation (1 message, 1 recipient, 1 CC, 1 BCC)",
+	@Test( description = "Quick Reply to a conversation (1 message, 1 recipient, 1 CC, 1 BCC)",
 			groups = { "functional" })
 	public void QuickReplyAll_03() throws HarnessException {
 		
@@ -176,9 +176,9 @@ public class QuickReplyAll extends PrefGroupMailByConversationTest {
 
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String content = "content" + ZimbraSeleniumProperties.getUniqueString();
-		String reply = "quickreply" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String content = "content" + ConfigProperties.getUniqueString();
+		String reply = "quickreply" + ConfigProperties.getUniqueString();
 		
 		account1.soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -231,7 +231,7 @@ public class QuickReplyAll extends PrefGroupMailByConversationTest {
 
 	}
 
-	@Test(	description = "Quick Reply-All to a 3 message conversation - first message",
+	@Test( description = "Quick Reply-All to a 3 message conversation - first message",
 			groups = { "functional" })
 	public void QuickReplyAll_10() throws HarnessException {
 		
@@ -257,11 +257,11 @@ public class QuickReplyAll extends PrefGroupMailByConversationTest {
 		
 
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String content1 = "onecontent" + ZimbraSeleniumProperties.getUniqueString();
-		String content2 = "twocontent" + ZimbraSeleniumProperties.getUniqueString();
-		String content3 = "threecontent" + ZimbraSeleniumProperties.getUniqueString();
-		String reply = "quickreply" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String content1 = "onecontent" + ConfigProperties.getUniqueString();
+		String content2 = "twocontent" + ConfigProperties.getUniqueString();
+		String content3 = "threecontent" + ConfigProperties.getUniqueString();
+		String reply = "quickreply" + ConfigProperties.getUniqueString();
 		
 		account1.soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -334,7 +334,7 @@ public class QuickReplyAll extends PrefGroupMailByConversationTest {
 
 	}
 
-	@Test(	description = "Quick Reply-All to a 3 message conversation - middle message",
+	@Test( description = "Quick Reply-All to a 3 message conversation - middle message",
 			groups = { "functional" })
 	public void QuickReplyAll_11() throws HarnessException {
 		
@@ -360,11 +360,11 @@ public class QuickReplyAll extends PrefGroupMailByConversationTest {
 		
 
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String content1 = "onecontent" + ZimbraSeleniumProperties.getUniqueString();
-		String content2 = "twocontent" + ZimbraSeleniumProperties.getUniqueString();
-		String content3 = "threecontent" + ZimbraSeleniumProperties.getUniqueString();
-		String reply = "quickreply" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String content1 = "onecontent" + ConfigProperties.getUniqueString();
+		String content2 = "twocontent" + ConfigProperties.getUniqueString();
+		String content3 = "threecontent" + ConfigProperties.getUniqueString();
+		String reply = "quickreply" + ConfigProperties.getUniqueString();
 		
 		account1.soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -437,7 +437,7 @@ public class QuickReplyAll extends PrefGroupMailByConversationTest {
 
 	}
 
-	@Test(	description = "Quick Reply-All to a 3 message conversation - last message",
+	@Test( description = "Quick Reply-All to a 3 message conversation - last message",
 			groups = { "functional" })
 	public void QuickReplyAll_12() throws HarnessException {
 		
@@ -463,11 +463,11 @@ public class QuickReplyAll extends PrefGroupMailByConversationTest {
 		
 
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String content1 = "onecontent" + ZimbraSeleniumProperties.getUniqueString();
-		String content2 = "twocontent" + ZimbraSeleniumProperties.getUniqueString();
-		String content3 = "threecontent" + ZimbraSeleniumProperties.getUniqueString();
-		String reply = "quickreply" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String content1 = "onecontent" + ConfigProperties.getUniqueString();
+		String content2 = "twocontent" + ConfigProperties.getUniqueString();
+		String content3 = "threecontent" + ConfigProperties.getUniqueString();
+		String reply = "quickreply" + ConfigProperties.getUniqueString();
 		
 		account1.soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +

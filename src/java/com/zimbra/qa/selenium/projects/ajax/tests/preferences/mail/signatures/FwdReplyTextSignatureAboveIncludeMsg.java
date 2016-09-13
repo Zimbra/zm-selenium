@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
@@ -31,15 +31,15 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
 
 public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
-	String sigName = "signame" + ZimbraSeleniumProperties.getUniqueString();
-	String sigBody = "sigbody" + ZimbraSeleniumProperties.getUniqueString();
+	String sigName = "signame" + ConfigProperties.getUniqueString();
+	String sigBody = "sigbody" + ConfigProperties.getUniqueString();
 
 	@SuppressWarnings("serial")
 	public FwdReplyTextSignatureAboveIncludeMsg() {
@@ -82,7 +82,7 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 	 * Verify signature should place above included message while fwd'ing msg
 	 * @throws HarnessException
 	 */
-	@Test(description = "Verify Text Signature AboveIncludedMsg While Fwd'ing- Verify through GUI ", groups = { "functional" })
+	@Test( description = "Verify Text Signature AboveIncludedMsg While Fwd'ing- Verify through GUI ", groups = { "functional" })
 	public void FwdMsgWithTextSignatureAboveIncludeMsg_01() throws HarnessException {
 
 		// Signature is created
@@ -90,7 +90,7 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
 		ZAssert.assertEquals(signature.getName(), this.sigName,"verified Text Signature is created");
 
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		// Send a message to the account(self)
 		ZimbraAccount.AccountZWC().soapSend(
@@ -99,13 +99,13 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 				"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 				"<su>"+ subject +"</su>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"</m>" +
 		"</SendMsgRequest>");
 
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inboxFolder);
 
 		// Select message
@@ -135,7 +135,7 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 	 * @throws HarnessException
 	 */
 
-	@Test(description = "Verify Text Signature AboveIncludedMsg While Replying Msg ", groups = { "functional" })
+	@Test( description = "Verify Text Signature AboveIncludedMsg While Replying Msg ", groups = { "functional" })
 	public void ReplyMsgWithTextSignatureAboveIncludeMsg_02() throws HarnessException {
 
 		// Signature is created
@@ -144,7 +144,7 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
 		ZAssert.assertEquals(signature.getName(), this.sigName,"verified Text Signature is created");
 
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 
 		// Send a message to the account(self)
@@ -154,13 +154,13 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 				"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 				"<su>"+ subject +"</su>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"</m>" +
 		"</SendMsgRequest>");
 
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inboxFolder);
 
 		// Select message
@@ -189,7 +189,7 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 	 * Verify signature should place above included message while Replying msg
 	 * @throws HarnessException
 	 */
-	@Test(description = "Verify Text Signature AboveIncludedMsg While ReplyingAll Msg ", groups = { "functional" })
+	@Test( description = "Verify Text Signature AboveIncludedMsg While ReplyingAll Msg ", groups = { "functional" })
 	public void ReplyAllMsgWithTextSignatureAboveIncludeMsg_03() throws HarnessException {
 
 		// Signature is created
@@ -197,7 +197,7 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
 		ZAssert.assertEquals(signature.getName(), this.sigName,"verified Text Signature is created");
 
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 
 		// Send a message to the account(self)
@@ -207,13 +207,13 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 				"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 				"<su>"+ subject +"</su>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"</m>" +
 		"</SendMsgRequest>");
 
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inboxFolder);
 
 		// Select message

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.tests.downloads;
@@ -26,7 +26,7 @@ import java.util.List;
 
 import org.testng.annotations.Test;
 
-import com.thoughtworks.selenium.SeleniumException;
+import org.openqa.selenium.WebDriverException;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 
@@ -74,7 +74,7 @@ public class DownloadsIndex extends AdminCommonTest {
 
 
 
-	@Test(	description = "Verify the Downloads Index opens",
+	@Test( description = "Verify the Downloads Index opens",
 			groups = { "functional"  })
 	public void DownloadsIndex_01() throws HarnessException {
 
@@ -106,13 +106,13 @@ public class DownloadsIndex extends AdminCommonTest {
 		}
 	}
 
-	@Test(	description = "Verify the Downloads Tab contains the correct FOSS vs NETWORK links",
+	@Test( description = "Verify the Downloads Tab contains the correct FOSS vs NETWORK links",
 			groups = { "functional"  })
 	public void DownloadsIndex_02() throws HarnessException {
 	
 		String windowTitle = "Zimbra Collaboration Suite :: Downloads";
 
-		try{
+		try {
 		app.zPageDownloads.zOpenIndexHTML();
 		SleepUtil.sleep(10000);
 		// This method throws an exception if the page doesn't open
@@ -121,7 +121,7 @@ public class DownloadsIndex extends AdminCommonTest {
 		
 		// If NETWORK, make sure NETWORK-only links appear and FOSS-only links do not appear
 		// If FOSS, make sure FOSS-only links appear and NETWORK-only links do not appear
-		if ( ZimbraSeleniumProperties.zimbraGetVersionString().contains("NETWORK") ) {
+		if ( ConfigProperties.zimbraGetVersionString().contains("NETWORK") ) {
 			
 			for ( String locator : NetworkOnlyLocators ) {
 				ZAssert.assertTrue(app.zPageDownloads.sIsElementPresent(locator), "Verify the network-only locator exists: "+ locator);
@@ -131,7 +131,7 @@ public class DownloadsIndex extends AdminCommonTest {
 				ZAssert.assertFalse(app.zPageDownloads.sIsElementPresent(locator), "Verify the foss-only locator does not exists: "+ locator);
 			}
 
-		} else if ( ZimbraSeleniumProperties.zimbraGetVersionString().contains("FOSS") ) {
+		} else if ( ConfigProperties.zimbraGetVersionString().contains("FOSS") ) {
 			
 			for ( String locator : NetworkOnlyLocators ) {
 				ZAssert.assertFalse(app.zPageDownloads.sIsElementPresent(locator), "Verify the network-only locator does not exists: "+ locator);
@@ -144,19 +144,19 @@ public class DownloadsIndex extends AdminCommonTest {
 			app.zPageDownloads.sClose();
 			app.zPageDownloads.sSelectWindow(null);
 		} else {
-			throw new HarnessException("Unable to find NETWORK or FOSS in version string: "+ ZimbraSeleniumProperties.zimbraGetVersionString());
+			throw new HarnessException("Unable to find NETWORK or FOSS in version string: "+ ConfigProperties.zimbraGetVersionString());
 		}
-		}catch(Exception e) {
+		} catch(Exception e) {
 			
 			throw new HarnessException(e);
-		}finally{
+		} finally {
 		app.zPageDownloads.zSeparateWindowClose(windowTitle);
 		app.zPageDownloads.sSelectWindow(null);
 		}
 	}
 	
 
-	@Test(	description = "Verify the downloads links return 200 rather than 404",
+	@Test( description = "Verify the downloads links return 200 rather than 404",
 			groups = { "functional"  })
 	public void DownloadsIndex_03() throws HarnessException {
 
@@ -172,21 +172,21 @@ public class DownloadsIndex extends AdminCommonTest {
 			// Determine which links should be present
 			List<String> locators = new ArrayList<String>();
 			
-			if ( ZimbraSeleniumProperties.zimbraGetVersionString().contains("NETWORK") ) {
+			if ( ConfigProperties.zimbraGetVersionString().contains("NETWORK") ) {
 				
 				locators.addAll(Arrays.asList(NetworkOnlyLocators));			
 				
-			} else if ( ZimbraSeleniumProperties.zimbraGetVersionString().contains("FOSS") ) {
+			} else if ( ConfigProperties.zimbraGetVersionString().contains("FOSS") ) {
 				
 				locators.addAll(Arrays.asList(FossOnlyLocators));			
 
 			} else {
-				throw new HarnessException("Unable to find NETWORK or FOSS in version string: "+ ZimbraSeleniumProperties.zimbraGetVersionString());
+				throw new HarnessException("Unable to find NETWORK or FOSS in version string: "+ ConfigProperties.zimbraGetVersionString());
 			}
 
 			for (String locator : locators ) {
 				String href = app.zPageDownloads.sGetAttribute(locator +"@href");
-				String page = ZimbraSeleniumProperties.getBaseURL() + href;
+				String page = ConfigProperties.getBaseURL() + href;
 				
 				HttpURLConnection  connection = null;
 				try {
@@ -194,7 +194,7 @@ public class DownloadsIndex extends AdminCommonTest {
 					URL url = new URL(page);
 					int authResponse = app.zPageDownloads.getAuthResponse(url);
 
-			        // 200 and 400 are acceptabl
+			        // 200 and 400 are acceptable
 			        ZAssert.assertStringContains("200 400", ""+authResponse, "Verify the download URL is valid: "+ url.toString());
 			        
 				} catch (MalformedURLException e) {
@@ -211,9 +211,9 @@ public class DownloadsIndex extends AdminCommonTest {
 			}
 			app.zPageDownloads.sClose();
 			app.zPageDownloads.sSelectWindow(null);
-		} catch (SeleniumException e) {
+		} catch (WebDriverException e) {
 			throw new HarnessException(e);
-		}finally{
+		} finally {
 		app.zPageDownloads.zSeparateWindowClose(windowTitle);
 		app.zPageDownloads.sSelectWindow(null);
 

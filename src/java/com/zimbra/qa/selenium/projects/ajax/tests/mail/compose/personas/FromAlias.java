@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.personas;
@@ -40,12 +40,12 @@ public class FromAlias extends PrefGroupMailByMessageTest {
 	@BeforeMethod( groups = { "always" } )
 	public void addAliasToActiveAccount() throws HarnessException {
 		
-		AliasFromDisplay = "alias" + ZimbraSeleniumProperties.getUniqueString();
+		AliasFromDisplay = "alias" + ConfigProperties.getUniqueString();
 		AliasEmailAddress = AliasFromDisplay + 
 					"@" +
-					ZimbraSeleniumProperties.getStringProperty("testdomain", "testdomain.com");
+					ConfigProperties.getStringProperty("testdomain", "testdomain.com");
 		
-		String identity = "identity" + ZimbraSeleniumProperties.getUniqueString();
+		String identity = "identity" + ConfigProperties.getUniqueString();
 		
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<AddAccountAliasRequest xmlns='urn:zimbraAdmin'>"
@@ -74,12 +74,12 @@ public class FromAlias extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Send a mail using an alias as From",
+	@Test( description = "Send a mail using an alias as From",
 			groups = { "functional" })
 	public void FromAlias_01() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -89,7 +89,7 @@ public class FromAlias extends PrefGroupMailByMessageTest {
 		mailform.zFillField(Field.From, AliasEmailAddress);
 		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, "content" + ZimbraSeleniumProperties.getUniqueString());
+		mailform.zFillField(Field.Body, "content" + ConfigProperties.getUniqueString());
 		mailform.zSubmit();
 		
 		// Verify the message shows as from the alias

@@ -1,1 +1,1 @@
-test attachment content
+test text file content

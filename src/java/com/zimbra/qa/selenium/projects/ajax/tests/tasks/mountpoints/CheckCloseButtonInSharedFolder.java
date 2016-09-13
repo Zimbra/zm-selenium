@@ -1,27 +1,24 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.mountpoints;
 
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
-
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderMountpointItem;
@@ -32,7 +29,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.PageTasks.Locators;
 
@@ -49,19 +46,19 @@ public class CheckCloseButtonInSharedFolder extends AjaxCommonTest {
 				put("zimbraPrefGroupMailBy", "message");
 				put("zimbraPrefShowSelectionCheckbox", "TRUE");
 			}
-		};			
+		};
 
 	}
 
 
-	@Bugs(	ids = "73226")
-	@Test(	description = "Verify Close button on Share Task Window and its functionality",	groups = { "functional" })
-	
+	@Bugs( ids = "73226")
+	@Test( description = "Verify Close button on Share Task Window and its functionality",	groups = { "functional" })
+
 	public void CheckCloseButtonInSharedFolder_01() throws HarnessException {
 
-		String foldername = "tasklist" + ZimbraSeleniumProperties.getUniqueString();
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "tasklist" + ConfigProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 
 		FolderItem task = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Tasks );
 
@@ -92,7 +89,7 @@ public class CheckCloseButtonInSharedFolder extends AjaxCommonTest {
 				"</inv>" +
 				"<su>"+ subject +"</su>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"</m>" +
 		"</CreateTaskRequest>");
@@ -119,28 +116,27 @@ public class CheckCloseButtonInSharedFolder extends AjaxCommonTest {
 		// Select the item
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 		app.zPageTasks.zListItem(Action.A_DOUBLECLICK, subject);
+		SleepUtil.sleepMedium();
 		
-		SleepUtil.sleepMedium();		
-		//Verify Full task view along with Close button
+		// Verify Full task view along with Close button
 		ZAssert.assertTrue(app.zPageTasks.sGetEval("window.appCtxt.getCurrentViewType()").equalsIgnoreCase("TKV"),"Verify Full Pane view is open");
 		ZAssert.assertTrue(app.zPageTasks.sIsElementPresent(Locators.zCloseButton), "Verify Close button is there");
 
+		// After closing Task list view should show
 		app.zPageTasks.zToolbarPressButton(Button.B_CLOSE);
-
-		//After closing Task list view should show.
 		ZAssert.assertTrue(app.zPageTasks.sGetEval("window.appCtxt.getCurrentViewType()").equalsIgnoreCase("TKL"),"Verify List view is open");
 
 	}
-	
-	
-	@Bugs(	ids = "75277")
-	@Test(	description = "Verify Close button on Share Task Window and its functionality",	groups = { "functional" })
-	
+
+
+	@Bugs( ids = "75277")
+	@Test( description = "Verify Close button on Share Task Window and its functionality",	groups = { "smoke" })
+
 	public void CheckCloseButtonInSharedFolder_02() throws HarnessException {
 
-		String foldername = "tasklist" + ZimbraSeleniumProperties.getUniqueString();
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "tasklist" + ConfigProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 
 		FolderItem task = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Tasks );
 
@@ -171,7 +167,7 @@ public class CheckCloseButtonInSharedFolder extends AjaxCommonTest {
 				"</inv>" +
 				"<su>"+ subject +"</su>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"</m>" +
 		"</CreateTaskRequest>");
@@ -198,20 +194,14 @@ public class CheckCloseButtonInSharedFolder extends AjaxCommonTest {
 		// Select the item
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 		app.zPageTasks.zListItem(Action.A_DOUBLECLICK, subject);
+		SleepUtil.sleepMedium();
 
-		SleepUtil.sleepMedium();		
-		//Verify Full task view along with Close button
-		ZAssert.assertTrue(app.zPageTasks.sGetEval("window.appCtxt.getCurrentViewType()").equalsIgnoreCase("TKV"),"Verify Full Pane view is open");
+		// Verify Full task view along with Close button
+		ZAssert.assertTrue(app.zPageTasks.sGetEval("window.appCtxt.getCurrentViewType()").equalsIgnoreCase("TKV"), "Verify Full Pane view is open");
 		ZAssert.assertTrue(app.zPageTasks.sIsElementPresent(Locators.zCloseButton), "Verify Close button is there");
 
-
-		//Closing window using Esc shortcut key
-		String EscapekeyCode = "27";
-		app.zPageTasks.zKeyDown(EscapekeyCode);
-
-		//After closing Task list view should show.
-		ZAssert.assertTrue(app.zPageTasks.sGetEval("window.appCtxt.getCurrentViewType()").equalsIgnoreCase("TKL"),"Verify List view is open");
-
+		// After closing Task list view should show.
+		app.zPageTasks.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ESCAPE);
+		ZAssert.assertTrue(app.zPageTasks.sGetEval("window.appCtxt.getCurrentViewType()").equalsIgnoreCase("TKL"), "Verify List view is open");
 	}
-
 }

@@ -1,23 +1,25 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.items;
 
 import java.util.*;
+
 import org.apache.log4j.*;
+
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.util.*;
 
@@ -93,12 +95,11 @@ public class AppointmentItem implements IItem {
 		TheLocator = locator;
 	}
 
-public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) throws HarnessException {
-
+	
+	public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) throws HarnessException {
 
 		if ( GetAppointmentResponse == null )
 			throw new HarnessException("Element cannot be null");
-
 
 		AppointmentItem appt = null;
 
@@ -156,6 +157,11 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 
 				// Display
 				appt.dDisplay = compElement.getAttribute("fb");
+				
+				// All day
+				if ( appt.dAllDay != null ) {
+					appt.dAllDay = compElement.getAttribute("allDay");
+				}
 			}
 
 			Element oElement = ZimbraAccount.SoapClient.selectNode(m, "//mail:or");
@@ -455,12 +461,20 @@ public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) thr
 	}
 
 	public boolean getIsAllDay() {
-		return (dIsAllDay);
+		if (dAllDay != null && dAllDay.equals("1")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public boolean setIsAllDay(boolean isAllDay) {
-		dIsAllDay = true;
-		return (dIsAllDay);
+		if ( (dAllDay != null && dAllDay.equals("1")) || (dAllDay == null && isAllDay == true)) {
+			dAllDay = "1";
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public String getRecurring() {

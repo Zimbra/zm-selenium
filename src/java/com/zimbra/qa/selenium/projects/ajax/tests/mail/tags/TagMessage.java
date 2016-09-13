@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.tags;
@@ -38,7 +38,7 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 			groups = { "smoke" })
 	public void TagMessage_01() throws HarnessException {
 
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Add a message to the mailbox
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app
@@ -63,7 +63,7 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
-		String tagName = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String tagName = "tag" + ConfigProperties.getUniqueString();
 
 		// Click new tag
 		DialogTag dialogTag = (DialogTag) app.zPageMail.zToolbarPressPulldown(
@@ -98,8 +98,8 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 
 		// Add a message to the mailbox
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		String tagname = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		String tagname = "tag" + ConfigProperties.getUniqueString();
 		
 		// Create a tag
 		app.zGetActiveAccount().soapSend(
@@ -164,8 +164,8 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 
 		// Add a message to the mailbox
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		String tagname = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		String tagname = "tag" + ConfigProperties.getUniqueString();
 		
 		// Create a tag
 		app.zGetActiveAccount().soapSend(

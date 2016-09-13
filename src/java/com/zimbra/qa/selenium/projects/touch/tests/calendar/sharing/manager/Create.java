@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.tests.calendar.sharing.manager;
@@ -36,7 +36,7 @@ public class Create extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "95890")
-	@Test(description = "Create a basic meeting with attendee and location on shared mailbox",
+	@Test( description = "Create a basic meeting with attendee and location on shared mailbox",
 			groups = { "smoke" })
 
 	public void CreateMeeting_01() throws HarnessException {
@@ -45,11 +45,11 @@ public class Create extends CalendarWorkWeekTest {
 		AppointmentItem appt = new AppointmentItem();
 		
 		String apptSubject, apptLocation, apptAttendee1, apptContent, mountPointName;
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		apptLocation = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
+		apptLocation = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
-		apptContent = ZimbraSeleniumProperties.getUniqueString();
-		mountPointName = ZimbraSeleniumProperties.getUniqueString();
+		apptContent = ConfigProperties.getUniqueString();
+		mountPointName = ConfigProperties.getUniqueString();
 
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;

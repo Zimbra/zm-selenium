@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.workweek.singleday;
@@ -42,11 +42,11 @@ public class DragAndDropAppointment extends CalendarWorkWeekTest {
 		}};
 	}
 	
-	@Test(	description = "Drag and Drop a appointment from calendar to different calendar",
+	@Test( description = "Drag and Drop a appointment from calendar to different calendar",
 			groups = { "smoke" })
 	public void DragAndDropAppointment_01() throws HarnessException {
 
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 
 		// Create a calendar to move the appointment into
 		//
@@ -63,8 +63,8 @@ public class DragAndDropAppointment extends CalendarWorkWeekTest {
 
 		// Creating objects for appointment data
 		String tz = ZTimeZone.TimeZoneEST.getID();
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptBody = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptBody = ConfigProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -107,7 +107,7 @@ public class DragAndDropAppointment extends CalendarWorkWeekTest {
 		
 	}
 
-	@Test(	description = "Drag and Drop a appointment from one time to a different time",
+	@Test( description = "Drag and Drop a appointment from one time to a different time",
 			groups = { "smoke" })
 	public void DragAndDropAppointment_02() throws HarnessException {
 
@@ -121,8 +121,8 @@ public class DragAndDropAppointment extends CalendarWorkWeekTest {
 		
 		// Creating objects for appointment data
 		String tz = ZTimeZone.TimeZoneEST.getID();
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptBody = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptBody = ConfigProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -153,7 +153,7 @@ public class DragAndDropAppointment extends CalendarWorkWeekTest {
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 
-		String otherSubject = ZimbraSeleniumProperties.getUniqueString();
+		String otherSubject = ConfigProperties.getUniqueString();
 		ZDate otherStartUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		ZDate otherEndUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
         app.zGetActiveAccount().soapSend(
@@ -165,7 +165,7 @@ public class DragAndDropAppointment extends CalendarWorkWeekTest {
     		+				"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" 
     		+			"</inv>" 
     		+			"<mp content-type='text/plain'>" 
-    		+				"<content>" + ZimbraSeleniumProperties.getUniqueString() + "</content>" 
+    		+				"<content>" + ConfigProperties.getUniqueString() + "</content>" 
     		+			"</mp>"
     		+			"<su>" + otherSubject + "</su>" 
     		+		"</m>" 

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.quickreply.personas;
@@ -38,17 +38,17 @@ public class FromAlias extends PrefGroupMailByConversationTest {
 	}
 	
 	@Bugs(ids = "73698")
-	@Test(	description = "Send a quick reply with alias as from",
+	@Test( description = "Send a quick reply with alias as from",
 			groups = { "functional" })
 	public void FromAlias_01() throws HarnessException {
 		
 		
 		//-- Data setup
 		
-		String aliasFromDisplay = "alias" + ZimbraSeleniumProperties.getUniqueString();
+		String aliasFromDisplay = "alias" + ConfigProperties.getUniqueString();
 		String aliasEmailAddress = aliasFromDisplay + 
 					"@" +
-					ZimbraSeleniumProperties.getStringProperty("testdomain", "testdomain.com");
+					ConfigProperties.getStringProperty("testdomain", "testdomain.com");
 		
 		
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
@@ -76,9 +76,9 @@ public class FromAlias extends PrefGroupMailByConversationTest {
 		
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String content = "content" + ZimbraSeleniumProperties.getUniqueString();
-		String reply = "quickreply" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String content = "content" + ConfigProperties.getUniqueString();
+		String reply = "quickreply" + ConfigProperties.getUniqueString();
 		
 		account1.soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +

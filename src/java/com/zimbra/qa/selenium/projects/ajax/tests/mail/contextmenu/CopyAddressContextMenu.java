@@ -1,3 +1,21 @@
+/*
+ * ***** BEGIN LICENSE BLOCK *****
+ *
+ * Zimbra Collaboration Suite Server
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ *
+ * ***** END LICENSE BLOCK *****
+ */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.contextmenu;
 
 import org.testng.annotations.*;
@@ -9,18 +27,17 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-
 public class CopyAddressContextMenu extends PrefGroupMailByMessageTest {
 
 	public CopyAddressContextMenu() {
-		logger.info("New "
-				+ CopyAddressContextMenu.class.getCanonicalName());
-
+		logger.info("New " + CopyAddressContextMenu.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
-
 	}
 
-	@Test(description = "Right click BCc bubble address>>Copy", groups = { "Incomplete" })
+	
+	@Test( description = "Right click BCc bubble address >> Copy", 
+			groups = { "functional" })
+	
 	public void CopyToAddressContextMenu() throws HarnessException {
 
 		// Create the message data to be sent

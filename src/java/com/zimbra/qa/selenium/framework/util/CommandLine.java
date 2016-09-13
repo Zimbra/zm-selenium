@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.util;
@@ -218,12 +218,12 @@ public class CommandLine {
 	}
 
 	 public static String cmdExecOnServer(String email, String secret) {
-	        String host = ZimbraSeleniumProperties.getStringProperty("store.host");
+	        String host = ConfigProperties.getStringProperty("store.host");
 	        String user = "root";
 	        String password = "zimbra";
 	        String command1 = "su - zimbra -c 'zmtotp -a " + email + " -s " + secret + "'";
 	        String totp = "0";
-	        try{
+	        try {
 	             
 	            java.util.Properties config = new java.util.Properties(); 
 	            config.put("StrictHostKeyChecking", "no");
@@ -256,7 +256,7 @@ public class CommandLine {
 	            session.disconnect();
 	            System.out.println(totp);
 	            
-	        }catch(Exception e){
+	        } catch(Exception e){
 	            e.printStackTrace();
 	        }
 	    	

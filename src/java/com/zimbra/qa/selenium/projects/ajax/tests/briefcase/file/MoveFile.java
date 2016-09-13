@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.file;
@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import org.testng.annotations.AfterMethod;
@@ -39,7 +39,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 
 		super.startingPage = app.zPageBriefcase;
 
-		//if(ZimbraSeleniumProperties.zimbraGetVersionString().contains("FOSS")){
+		//if(ConfigProperties.zimbraGetVersionString().contains("FOSS")){
 		    super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 		//}
 	
@@ -49,7 +49,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 		// super.startingAccountPreferences.put("zimbraPrefGroupMailBy", "message");
 	}
 
-	@Test(description = "Upload file through RestUtil - move & verify through GUI", groups = { "smoke" })
+	@Test( description = "Upload file through RestUtil - move & verify through GUI", groups = { "smoke" })
 	public void MoveFile_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -58,7 +58,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 
 		String briefcaseFolderId = folderItem.getId();
 
-		String name = "subFolder" + ZimbraSeleniumProperties.getUniqueString();
+		String name = "subFolder" + ConfigProperties.getUniqueString();
 
 		// Create a subfolder to move the file into i.e. Briefcase/subfolder
 		account.soapSend("<CreateFolderRequest xmlns='urn:zimbraMail'>"
@@ -74,7 +74,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, subFolderItem);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/testtextfile.txt";
 
 		FileItem fileItem = new FileItem(filePath);
@@ -104,7 +104,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 		
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ZimbraSeleniumProperties.zimbraGetVersionString().contains(
+		if(ConfigProperties.zimbraGetVersionString().contains(
     			"FOSS")){
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
@@ -113,7 +113,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 		}
 		*/
 		// Click on 'Move selected item' icon in toolbar
-		if (ZimbraSeleniumProperties.zimbraGetVersionString().contains("7.2.")){
+		if (ConfigProperties.zimbraGetVersionString().contains("7.2.")){
 		    DialogMove chooseFolder = (DialogMove) app.zPageBriefcase
 			    .zToolbarPressButton(Button.B_MOVE, fileItem);
 
@@ -146,7 +146,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 				"Verify document was moved to the selected folder");
 	}
 
-	@Test(description = "Move File using 'm' keyboard shortcut", groups = { "functional" })
+	@Test( description = "Move File using 'm' keyboard shortcut", groups = { "functional" })
 	public void MoveFile_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -158,8 +158,8 @@ public class MoveFile extends FeatureBriefcaseTest {
 		Shortcut shortcut = Shortcut.S_MOVE;
 
 		String[] subFolderNames = {
-				"subFolderName1" + ZimbraSeleniumProperties.getUniqueString(),
-				"subFolderName2" + ZimbraSeleniumProperties.getUniqueString() };
+				"subFolderName1" + ConfigProperties.getUniqueString(),
+				"subFolderName2" + ConfigProperties.getUniqueString() };
 
 		FolderItem[] subFolders = new FolderItem[subFolderNames.length];
 
@@ -178,7 +178,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 				true);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/testtextfile.txt";
 
 		FileItem fileItem = new FileItem(filePath);
@@ -216,7 +216,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ZimbraSeleniumProperties.zimbraGetVersionString().contains(
+		if(ConfigProperties.zimbraGetVersionString().contains(
     			"FOSS")){
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
@@ -252,7 +252,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 				+ subFolders[1].getName());
 	}
 
-	@Test(description = "Upload file through RestUtil - move using Right Click Context Menu & verify through GUI", groups = { "functional" })
+	@Test( description = "Upload file through RestUtil - move using Right Click Context Menu & verify through GUI", groups = { "functional" })
 	public void MoveFile_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -261,7 +261,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 
 		String briefcaseFolderId = folderItem.getId();
 
-		String name = "subFolder" + ZimbraSeleniumProperties.getUniqueString();
+		String name = "subFolder" + ConfigProperties.getUniqueString();
 
 		// Create a subfolder to move the message into i.e. Briefcase/subfolder
 		account.soapSend("<CreateFolderRequest xmlns='urn:zimbraMail'>"
@@ -277,7 +277,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, subFolderItem);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/testtextfile.txt";
 
 		FileItem fileItem = new FileItem(filePath);
@@ -307,7 +307,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 		
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ZimbraSeleniumProperties.zimbraGetVersionString().contains(
+		if(ConfigProperties.zimbraGetVersionString().contains(
     			"FOSS")){
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 

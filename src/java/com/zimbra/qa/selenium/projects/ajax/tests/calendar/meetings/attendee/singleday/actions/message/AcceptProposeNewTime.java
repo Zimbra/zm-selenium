@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.actions.message;
@@ -36,7 +36,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		super.startingAccountPreferences = null;
 	}
 	
-	@Test(description = "Rt-click to appointment -> Propose New Time and accept the new time using message view", 
+	@Test( description = "Rt-click to appointment -> Propose New Time and accept the new time using message view", 
 			groups = { "functional" })
 	public void AcceptProposeNewTime_01() throws HarnessException {
 
@@ -44,10 +44,10 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 
 		String organizerEmailAddress, apptAttendee1EmailAddress, apptAttendee2EmailAddress;
 		ZimbraAccount organizer, apptAttendee1; 
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptBody = ZimbraSeleniumProperties.getUniqueString();
-		String modifiedSubject = ZimbraSeleniumProperties.getUniqueString();
-		String modifiedBody = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptBody = ConfigProperties.getUniqueString();
+		String modifiedSubject = ConfigProperties.getUniqueString();
+		String modifiedBody = ConfigProperties.getUniqueString();
 		
 		apptAttendee1 = app.zGetActiveAccount();
 		apptAttendee1EmailAddress = app.zGetActiveAccount().EmailAddress;

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders;
@@ -36,12 +36,12 @@ public class EmptyFolder extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Empty a folder (context menu)", groups = { "smoke" })
+	@Test( description = "Empty a folder (context menu)", groups = { "smoke" })
 	public void EmptyFolder_01() throws HarnessException {
 
 		String foldername = "folder"
-				+ ZimbraSeleniumProperties.getUniqueString();
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+				+ ConfigProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(),
 				FolderItem.SystemFolder.Inbox);

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.AbsWizard;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
 
 /**
@@ -51,7 +51,7 @@ public class WizardCreateDomainAlias extends AbsWizard {
 		DomainItem alias = (DomainItem)item;
 
 		String domainAlias = alias.getName();
-		String targetDomain = ZimbraSeleniumProperties.getStringProperty("testdomain");
+		String targetDomain = ConfigProperties.getStringProperty("testdomain");
 
 		for(int i=10;i>=1;i--) {
 			if(sIsElementPresent("zdlgv__UNDEFINE"+i+Locators.TARGET_DOMAIN_NAME)) {
@@ -72,7 +72,7 @@ public class WizardCreateDomainAlias extends AbsWizard {
 
 		DomainItem alias = (DomainItem)item;
 
-		String targetDomain = ZimbraSeleniumProperties.getStringProperty("server.host");
+		String targetDomain = ConfigProperties.getStringProperty("server.host");
 
 		for(int i=10;i>=1;i--) {
 			if(sIsElementPresent("zdlgv__UNDEFINE"+i+Locators.TARGET_DOMAIN_NAME)) {

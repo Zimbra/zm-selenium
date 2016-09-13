@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.performance;
@@ -36,7 +36,7 @@ public class ZmBriefcaseAppFolders extends FeatureBriefcaseTest {
 
 	}
 
-	@Test(	description = "Measure the time to load the briefcase app, 1 briefcase",
+	@Test( description = "Measure the time to load the briefcase app, 1 briefcase",
 			groups = { "performance" })
 	public void ZmBriefcaseAppFolders_01() throws HarnessException {
 
@@ -44,12 +44,12 @@ public class ZmBriefcaseAppFolders extends FeatureBriefcaseTest {
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.UserRoot);
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-					"<folder name='case"+ ZimbraSeleniumProperties.getUniqueString() + "' view='document' l='"+ root.getId() +"'/>" +
+					"<folder name='case"+ ConfigProperties.getUniqueString() + "' view='document' l='"+ root.getId() +"'/>" +
 				"</CreateFolderRequest>");
 
 
 		// Sync the changes to the client (notification block)
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmBriefcaseAppOverviewPanel, "Load the briefcase app, 1 briefcase");
 
@@ -66,7 +66,7 @@ public class ZmBriefcaseAppFolders extends FeatureBriefcaseTest {
 
 	}
 
-	@Test(	description = "Measure the time to load the briefcase app, 100 briefcases",
+	@Test( description = "Measure the time to load the briefcase app, 100 briefcases",
 			groups = { "performance" })
 	public void ZmBriefcaseAppFolders_02() throws HarnessException {
 
@@ -75,13 +75,13 @@ public class ZmBriefcaseAppFolders extends FeatureBriefcaseTest {
 		for (int i = 0; i < 100; i++) {
 			app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-						"<folder name='case"+ ZimbraSeleniumProperties.getUniqueString() + "' view='document' l='"+ root.getId() +"'/>" +
+						"<folder name='case"+ ConfigProperties.getUniqueString() + "' view='document' l='"+ root.getId() +"'/>" +
 					"</CreateFolderRequest>");
 		}
 
 
 		// Sync the changes to the client (notification block)
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmBriefcaseAppOverviewPanel, "Load the briefcase app, 100 briefcases");
 

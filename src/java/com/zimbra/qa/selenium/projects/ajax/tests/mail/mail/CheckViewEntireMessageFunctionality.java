@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
@@ -34,12 +34,12 @@ public class CheckViewEntireMessageFunctionality extends PrefGroupMailByMessageT
 	}
 	
 	@Bugs( ids = "102052")
-	@Test(	description = "Can't read long message due to missing of 'View entire message' link", groups = { "smoke" })
+	@Test( description = "Can't read long message due to missing of 'View entire message' link", groups = { "smoke" })
 	
 	public void CheckViewEntireMessageFunctionality_01() throws HarnessException  {	
 			
 		final String subject = "Bug39246";
-		final String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/private/mime/viewEntireMessage_Bug39246.txt";
+		final String mime = ConfigProperties.getBaseDirectory() + "/data/private/mime/viewEntireMessage_Bug39246.txt";
 		
 		// Inject the example message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));

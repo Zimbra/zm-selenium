@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.tests.domains;
@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
@@ -50,12 +50,12 @@ public class EditDomainAlias extends AdminCommonTest {
 	 * 5. Verify domain is edited using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify delete domain operation --  Manage Domain List View",
+	@Test( description = "Verify delete domain operation --  Manage Domain List View",
 			groups = { "smoke" })
 			public void EditDomainAlias_01() throws HarnessException {
 		
 		
-		String targetDomain = ZimbraSeleniumProperties.getStringProperty("testdomain");
+		String targetDomain = ConfigProperties.getStringProperty("testdomain");
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
 				+	"<domain by='name'>" + targetDomain + "</domain>"
@@ -98,7 +98,7 @@ public class EditDomainAlias extends AdminCommonTest {
 
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDomainResponse/admin:domain/admin:a[@n='zimbraMailCatchAllForwardingAddress']", 1);
-		ZAssert.assertStringContains(response.toString(), ZimbraSeleniumProperties.getStringProperty("server.host"), "Verify description is edited correctly");
+		ZAssert.assertStringContains(response.toString(), ConfigProperties.getStringProperty("server.host"), "Verify description is edited correctly");
 	
 	}
 
@@ -111,12 +111,12 @@ public class EditDomainAlias extends AdminCommonTest {
 	 * 4. Verify domain is deleted using SOAP..
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify delete domain operation",
+	@Test( description = "Verify delete domain operation",
 			groups = { "functional" })
 			public void EditDomainAlias_02() throws HarnessException {
 		
 		
-		String targetDomain = ZimbraSeleniumProperties.getStringProperty("testdomain");
+		String targetDomain = ConfigProperties.getStringProperty("testdomain");
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
 				+	"<domain by='name'>" + targetDomain + "</domain>"
@@ -159,7 +159,7 @@ public class EditDomainAlias extends AdminCommonTest {
 
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDomainResponse/admin:domain/admin:a[@n='zimbraMailCatchAllForwardingAddress']", 1);
-		ZAssert.assertStringContains(response.toString(), ZimbraSeleniumProperties.getStringProperty("server.host"), "Verify description is edited correctly");
+		ZAssert.assertStringContains(response.toString(), ConfigProperties.getStringProperty("server.host"), "Verify description is edited correctly");
 	}
 
 	/**
@@ -172,12 +172,12 @@ public class EditDomainAlias extends AdminCommonTest {
 	 * 5. Verify domain is edited using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit domain name  - Search list View",
+	@Test( description = "Edit domain name  - Search list View",
 			groups = { "functional" })
 			public void EditdomainAlias_03() throws HarnessException {
 		
 		
-		String targetDomain = ZimbraSeleniumProperties.getStringProperty("testdomain");
+		String targetDomain = ConfigProperties.getStringProperty("testdomain");
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
 				+	"<domain by='name'>" + targetDomain + "</domain>"
@@ -224,7 +224,7 @@ public class EditDomainAlias extends AdminCommonTest {
 
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDomainResponse/admin:domain/admin:a[@n='zimbraMailCatchAllForwardingAddress']", 1);
-		ZAssert.assertStringContains(response.toString(), ZimbraSeleniumProperties.getStringProperty("server.host"), "http://bugzilla.zimbra.com/show_bug.cgi?id=79446");
+		ZAssert.assertStringContains(response.toString(), ConfigProperties.getStringProperty("server.host"), "http://bugzilla.zimbra.com/show_bug.cgi?id=79446");
 		
 	}
 	
@@ -236,12 +236,12 @@ public class EditDomainAlias extends AdminCommonTest {
 	 * 3. Verify domain name is changed using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit domain name -- right click",
+	@Test( description = "Edit domain name -- right click",
 			groups = { "functional" })
 			public void EditdomainAlias_04() throws HarnessException {
 		
 		
-		String targetDomain = ZimbraSeleniumProperties.getStringProperty("testdomain");
+		String targetDomain = ConfigProperties.getStringProperty("testdomain");
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
 				+	"<domain by='name'>" + targetDomain + "</domain>"
@@ -287,7 +287,7 @@ public class EditDomainAlias extends AdminCommonTest {
 				+	"</GetDomainRequest>");
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDomainResponse/admin:domain/admin:a[@n='zimbraMailCatchAllForwardingAddress']", 1);
-		ZAssert.assertStringContains(response.toString(), ZimbraSeleniumProperties.getStringProperty("server.host"), "http://bugzilla.zimbra.com/show_bug.cgi?id=79446");
+		ZAssert.assertStringContains(response.toString(), ConfigProperties.getStringProperty("server.host"), "http://bugzilla.zimbra.com/show_bug.cgi?id=79446");
 		
 	}
 

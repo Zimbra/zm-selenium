@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.toaster;
@@ -46,14 +46,14 @@ public class DeleteContact extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Delete a contact item from toolbar and verify toast msg", groups = { "functional" })
+	@Test( description = "Delete a contact item from toolbar and verify toast msg", groups = { "functional" })
 	public void DeleteContactToastMsg_01() throws HarnessException {
 
 		// Create a contact item
 		ContactItem contact = new ContactItem();
-		contact.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
-		contact.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
-		contact.email = "email" + ZimbraSeleniumProperties.getUniqueString()+ "@domain.com";
+		contact.firstName = "First" + ConfigProperties.getUniqueString();
+		contact.lastName = "Last" + ConfigProperties.getUniqueString();
+		contact.email = "email" + ConfigProperties.getUniqueString()+ "@domain.com";
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >"
@@ -79,14 +79,14 @@ public class DeleteContact extends AjaxCommonTest {
 		ZAssert.assertStringContains(toastMsg, "1 contact moved to Trash","Verify toast message: Contact Moved to Trash");
 	}
 
-	@Test(description = "Delete a contact item selected with checkbox and  verify toast msg", groups = { "functional" })
+	@Test( description = "Delete a contact item selected with checkbox and  verify toast msg", groups = { "functional" })
 	public void DeleteContactToastMsg_02() throws HarnessException {
 
 		// Create a contact item
 		ContactItem contact = new ContactItem();
-		contact.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
-		contact.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
-		contact.email = "email" + ZimbraSeleniumProperties.getUniqueString()+ "@domain.com";
+		contact.firstName = "First" + ConfigProperties.getUniqueString();
+		contact.lastName = "Last" + ConfigProperties.getUniqueString();
+		contact.email = "email" + ConfigProperties.getUniqueString()+ "@domain.com";
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >"
@@ -120,14 +120,14 @@ public class DeleteContact extends AjaxCommonTest {
 				new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE }, };
 	}
 
-	@Test(description = "Delete a contact item using keyboard short cut Del and verify toast mesg", groups = { "functional" }, dataProvider = "DataProviderDeleteKeys")
+	@Test( description = "Delete a contact item using keyboard short cut Del and verify toast mesg", groups = { "functional" }, dataProvider = "DataProviderDeleteKeys")
 	public void DeleteContactToastMsg_03(String name, int keyEvent) throws HarnessException {
 
 		// Create a contact item
 		ContactItem contact = new ContactItem();
-		contact.firstName = "First"	+ ZimbraSeleniumProperties.getUniqueString();
-		contact.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
-		contact.email = "email" + ZimbraSeleniumProperties.getUniqueString()+ "@domain.com";
+		contact.firstName = "First"	+ ConfigProperties.getUniqueString();
+		contact.lastName = "Last" + ConfigProperties.getUniqueString();
+		contact.email = "email" + ConfigProperties.getUniqueString()+ "@domain.com";
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >"
@@ -154,14 +154,14 @@ public class DeleteContact extends AjaxCommonTest {
 		ZAssert.assertStringContains(toastMsg, "1 contact moved to Trash","Verify toast message: Contact Moved to Trash");
 	}
 
-	@Test(description = "Right click then click delete and verify toast msg", groups = { "functional" })
+	@Test( description = "Right click then click delete and verify toast msg", groups = { "functional" })
 	public void DeleteContactToastMsg_04() throws HarnessException {
 
 		// Create a contact item
 		ContactItem contact = new ContactItem();
-		contact.firstName = "First"	+ ZimbraSeleniumProperties.getUniqueString();
-		contact.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
-		contact.email = "email" + ZimbraSeleniumProperties.getUniqueString()+ "@domain.com";
+		contact.firstName = "First"	+ ConfigProperties.getUniqueString();
+		contact.lastName = "Last" + ConfigProperties.getUniqueString();
+		contact.email = "email" + ConfigProperties.getUniqueString()+ "@domain.com";
 		contact.fileAs = contact.lastName + ", " + contact.firstName;
 
 		app.zGetActiveAccount().soapSend(
@@ -185,14 +185,14 @@ public class DeleteContact extends AjaxCommonTest {
 		ZAssert.assertStringContains(toastMsg, "1 contact moved to Trash","Verify toast message: Contact Moved to Trash");
 	}
 
-	@Test(description = "Delete multiple contact items and verify toast msg", groups = { "functional" })
+	@Test( description = "Delete multiple contact items and verify toast msg", groups = { "functional" })
 	public void DeleteContactToastMsg_05() throws HarnessException {
 
 		// Create a contact items
 		ContactItem contact1 = new ContactItem();
-		contact1.firstName = "First"+ ZimbraSeleniumProperties.getUniqueString();
-		contact1.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
-		contact1.email = "email" + ZimbraSeleniumProperties.getUniqueString()+ "@domain.com";
+		contact1.firstName = "First"+ ConfigProperties.getUniqueString();
+		contact1.lastName = "Last" + ConfigProperties.getUniqueString();
+		contact1.email = "email" + ConfigProperties.getUniqueString()+ "@domain.com";
 		contact1.fileAs = contact1.lastName + ", " + contact1.firstName;
 
 		app.zGetActiveAccount().soapSend(
@@ -204,9 +204,9 @@ public class DeleteContact extends AjaxCommonTest {
 
 		ContactItem contact2 = new ContactItem();
 		contact2.firstName = "First"
-			+ ZimbraSeleniumProperties.getUniqueString();
-		contact2.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
-		contact2.email = "email" + ZimbraSeleniumProperties.getUniqueString()
+			+ ConfigProperties.getUniqueString();
+		contact2.lastName = "Last" + ConfigProperties.getUniqueString();
+		contact2.email = "email" + ConfigProperties.getUniqueString()
 		+ "@domain.com";
 		contact2.fileAs = contact2.lastName + ", " + contact2.firstName;
 
@@ -219,9 +219,9 @@ public class DeleteContact extends AjaxCommonTest {
 
 		ContactItem contact3 = new ContactItem();
 		contact3.firstName = "First"
-			+ ZimbraSeleniumProperties.getUniqueString();
-		contact3.lastName = "Last" + ZimbraSeleniumProperties.getUniqueString();
-		contact3.email = "email" + ZimbraSeleniumProperties.getUniqueString()
+			+ ConfigProperties.getUniqueString();
+		contact3.lastName = "Last" + ConfigProperties.getUniqueString();
+		contact3.email = "email" + ConfigProperties.getUniqueString()
 		+ "@domain.com";
 		contact3.fileAs = contact3.lastName + ", " + contact3.firstName;
 

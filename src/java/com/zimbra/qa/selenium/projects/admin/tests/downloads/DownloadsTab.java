@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.tests.downloads;
@@ -95,7 +95,7 @@ public class DownloadsTab extends AdminCommonTest {
 
 
 
-	@Test(	description = "Verify the Downloads Tab contains the correct FOSS vs NETWORK links",
+	@Test( description = "Verify the Downloads Tab contains the correct FOSS vs NETWORK links",
 			groups = { "functional" })
 	public void DownloadsTab_01() throws HarnessException {
 		
@@ -106,7 +106,7 @@ public class DownloadsTab extends AdminCommonTest {
 		
 		// If NETWORK, make sure NETWORK-only links appear and FOSS-only links do not appear
 		// If FOSS, make sure FOSS-only links appear and NETWORK-only links do not appear
-		if ( ZimbraSeleniumProperties.zimbraGetVersionString().contains("NETWORK") ) {
+		if ( ConfigProperties.zimbraGetVersionString().contains("NETWORK") ) {
 			
 			for ( String locator : NetworkOnlyLocators ) {
 				ZAssert.assertTrue(app.zPageDownloads.sIsElementPresent(locator), "Verify the network-only locator exists: "+ locator);
@@ -116,7 +116,7 @@ public class DownloadsTab extends AdminCommonTest {
 				ZAssert.assertFalse(app.zPageDownloads.sIsElementPresent(locator), "Verify the foss-only locator does not exists: "+ locator);
 			}
 
-		} else if ( ZimbraSeleniumProperties.zimbraGetVersionString().contains("FOSS") ) {
+		} else if ( ConfigProperties.zimbraGetVersionString().contains("FOSS") ) {
 			
 			for ( String locator : NetworkOnlyLocators ) {
 				ZAssert.assertFalse(app.zPageDownloads.sIsElementPresent(locator), "Verify the network-only locator does not exists: "+ locator);
@@ -127,37 +127,37 @@ public class DownloadsTab extends AdminCommonTest {
 			}
 
 		} else {
-			throw new HarnessException("Unable to find NETWORK or FOSS in version string: "+ ZimbraSeleniumProperties.zimbraGetVersionString());
+			throw new HarnessException("Unable to find NETWORK or FOSS in version string: "+ ConfigProperties.zimbraGetVersionString());
 		}
 		
 
 	}
 	
 	@Bugs( ids = "100755")
-	@Test(	description = "Verify the downloads links return 200 rather than 404",
+	@Test( description = "Verify the downloads links return 200 rather than 404",
 			groups = { "functional" })
 	public void DownloadsTab_02() throws HarnessException {
 
 		// Determine which links should be present
 		List<String> locators = new ArrayList<String>();
 		
-		if ( ZimbraSeleniumProperties.zimbraGetVersionString().contains("NETWORK") ) {
+		if ( ConfigProperties.zimbraGetVersionString().contains("NETWORK") ) {
 			
 			locators.addAll(Arrays.asList(NetworkOnlyLocators));
 			locators.addAll(Arrays.asList(CommonLocators));
 			
-		} else if ( ZimbraSeleniumProperties.zimbraGetVersionString().contains("FOSS") ) {
+		} else if ( ConfigProperties.zimbraGetVersionString().contains("FOSS") ) {
 			
 			locators.addAll(Arrays.asList(FossOnlyLocators));
 			locators.addAll(Arrays.asList(CommonLocators));
 
 		} else {
-			throw new HarnessException("Unable to find NETWORK or FOSS in version string: "+ ZimbraSeleniumProperties.zimbraGetVersionString());
+			throw new HarnessException("Unable to find NETWORK or FOSS in version string: "+ ConfigProperties.zimbraGetVersionString());
 		}
 
 		for (String locator : locators ) {
 			String href = app.zPageDownloads.sGetAttribute("xpath="+ locator +"@href");
-			String page = ZimbraSeleniumProperties.getBaseURL() + href;
+			String page = ConfigProperties.getBaseURL() + href;
 			
 			HttpURLConnection  connection = null;
 			try {

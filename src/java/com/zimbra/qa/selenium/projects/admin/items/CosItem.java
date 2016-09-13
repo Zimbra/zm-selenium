@@ -22,7 +22,7 @@ import org.apache.log4j.Logger;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 
 public class CosItem implements IItem {
 
@@ -35,7 +35,7 @@ public class CosItem implements IItem {
 	public CosItem() {
 		super();
 
-		cosName = "a_cos" + ZimbraSeleniumProperties.getUniqueString();
+		cosName = "a_cos" + ConfigProperties.getUniqueString();
 		Id = null;
 
 	}

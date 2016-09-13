@@ -1,3 +1,21 @@
+/*
+ * ***** BEGIN LICENSE BLOCK *****
+ *
+ * Zimbra Collaboration Suite Server
+ * Copyright (C) 2016 Synacor, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ *
+ * ***** END LICENSE BLOCK *****
+ */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.calendar;
 
 import com.zimbra.qa.selenium.framework.core.Bugs;
@@ -10,7 +28,7 @@ import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmationDeclineAppointment;
 import java.util.Calendar;
@@ -26,11 +44,11 @@ public class ShowHideDeclinedMeetings extends CalendarWorkWeekTest {
   }
   
   @Bugs(ids="27661")
-  @Test(description="Allow declined meetings to be hidden/shown based on preference", groups={"functional"} )
+  @Test( description="Allow declined meetings to be hidden/shown based on preference", groups={"functional"} )
   
   public void ShowHideDeclinedMeetings_01() throws HarnessException {
 	  
-    String apptSubject = ZimbraSeleniumProperties.getUniqueString();
+    String apptSubject = ConfigProperties.getUniqueString();
     
     Calendar now = this.calendarWeekDayUTC;
     ZDate startUTC = new ZDate(now.get(1), now.get(2) + 1, now.get(5), 12, 0, 0);

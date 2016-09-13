@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.util;
@@ -78,12 +78,11 @@ public class SleepUtil {
 	 */
 	public static void sleepVerySmall() {
 
-		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true){
-
-			sleep(ZimbraSeleniumProperties.getIntProperty("very_small_wait", 800));
-
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			sleep(ConfigProperties.getIntProperty("very_small_wait", 800));
+		} else {
+			sleep(ConfigProperties.getIntProperty("very_small_wait", 500));
 		}
-		sleep(ZimbraSeleniumProperties.getIntProperty("very_small_wait", 500));
 	}
 
 	/**
@@ -91,48 +90,59 @@ public class SleepUtil {
 	 */
 	public static void sleepSmall() {
 
-		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true){
-
-			sleep(ZimbraSeleniumProperties.getIntProperty("very_small_wait", 1500));
-
-		}
-		sleep(ZimbraSeleniumProperties.getIntProperty("small_wait", 1000));
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			sleep(ConfigProperties.getIntProperty("small_wait", 1200));
+		} else {
+			sleep(ConfigProperties.getIntProperty("small_wait", 1000));
+		}	
 	}
 
 	/**
 	 * Sleep a 2000 msec
 	 */
 	public static void sleepMedium() {
-		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true){
-
-			sleep(ZimbraSeleniumProperties.getIntProperty("very_small_wait", 3000));
-
+		
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			sleep(ConfigProperties.getIntProperty("medium_wait", 2500));
+		} else {
+			sleep(ConfigProperties.getIntProperty("medium_wait", 2000));
 		}
-		sleep(ZimbraSeleniumProperties.getIntProperty("medium_wait", 2000));
 	}
 
 	/**
 	 * Sleep a 4000 msec
 	 */
 	public static void sleepLong() {
-		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true){
-
-			sleep(ZimbraSeleniumProperties.getIntProperty("very_small_wait", 5000));
-
+		
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			sleep(ConfigProperties.getIntProperty("long_wait", 5000));
+		} else {
+			sleep(ConfigProperties.getIntProperty("long_wait", 4000));
 		}
-		sleep(ZimbraSeleniumProperties.getIntProperty("long_wait", 4000));
+	}
+	
+	/**
+	 * Sleep a 6000 msec
+	 */
+	public static void sleepLongMedium() {
+		
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			sleep(ConfigProperties.getIntProperty("long_medium_wait", 7000));
+		} else {
+			sleep(ConfigProperties.getIntProperty("long_medium_wait", 6000));
+		}
 	}
 
 	/**
 	 * Sleep a 10,000 msec
 	 */
 	public static void sleepVeryLong() {
-		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true){
-
-			sleep(ZimbraSeleniumProperties.getIntProperty("very_small_wait", 12000));
-
+		
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			sleep(ConfigProperties.getIntProperty("very_long_wait", 13000));
+		} else {
+			sleep(ConfigProperties.getIntProperty("very_long_wait", 10000));
 		}
-		sleep(ZimbraSeleniumProperties.getIntProperty("very_long_wait", 10000));
 	}
 	
 	
@@ -140,12 +150,12 @@ public class SleepUtil {
 	 * Sleep a 15,000 msec
 	 */
 	public static void sleepVeryVeryLong() {
-		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true){
-
-			sleep(ZimbraSeleniumProperties.getIntProperty("very_small_wait", 20000));
-
+		
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			sleep(ConfigProperties.getIntProperty("very_long_wait", 18000));
+		} else {
+			sleep(ConfigProperties.getIntProperty("very_long_wait", 15000));
 		}
-		sleep(ZimbraSeleniumProperties.getIntProperty("very_long_wait", 15000));
 	}
 
 

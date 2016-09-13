@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
@@ -28,7 +28,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 public class MessageDisplayShowsFromAsUnknown extends AjaxCommonTest {
@@ -47,8 +47,8 @@ public class MessageDisplayShowsFromAsUnknown extends AjaxCommonTest {
 		}};
 	}
 	
-	@Bugs(	ids = "16213")
-	@Test(	description = "Verify bug 16213 - Message display should show From=Unknown",
+	@Bugs( ids = "16213")
+	@Test( description = "Verify bug 16213 - Message display should show From=Unknown",
 			groups = { "functional" })
 	
 	public void MessageDisplayShowsFromAsUnknown_01() throws HarnessException {
@@ -56,7 +56,7 @@ public class MessageDisplayShowsFromAsUnknown extends AjaxCommonTest {
 		String subject = "Encoding test";
 		String from = "Unknown";
 
-		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug16213";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug16213";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 
 		// Refresh current view

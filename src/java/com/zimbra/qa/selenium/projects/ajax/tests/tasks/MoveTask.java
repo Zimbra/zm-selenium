@@ -46,12 +46,12 @@ public class MoveTask extends AjaxCommonTest {
 		}};
 	}
 	//@Bugs(ids="61471")
-	@Test(description = "Create task through SOAP - move & verify through GUI", groups = { "smoke" })
+	@Test( description = "Create task through SOAP - move & verify through GUI", groups = { "smoke" })
 	public void MoveTask_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
-		String name = "TaskFolder" + ZimbraSeleniumProperties.getUniqueString();
+		String name = "TaskFolder" + ConfigProperties.getUniqueString();
 
 		// Create a subfolder to move the message into i.e. tasks/subfolder
 		String taskFolderID = taskFolder.getId();
@@ -66,7 +66,7 @@ public class MoveTask extends AjaxCommonTest {
 		// refresh task page
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>"
@@ -78,7 +78,7 @@ public class MoveTask extends AjaxCommonTest {
 				+			"</inv>"
 				+			"<su>" + subject + "</su>"
 				+			"<mp ct='text/plain'>"
-				+				"<content>content" + ZimbraSeleniumProperties.getUniqueString() + "</content>"
+				+				"<content>content" + ConfigProperties.getUniqueString() + "</content>"
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateTaskRequest>");
@@ -127,12 +127,12 @@ public class MoveTask extends AjaxCommonTest {
 		ZAssert.assertNotNull(movetask,	"Verify the task is moved to the selected folder");
 		
 	}
-	@Test(description = "Move a task by selecting task, then click 'm' shortcut", groups = { "functional" })
+	@Test( description = "Move a task by selecting task, then click 'm' shortcut", groups = { "functional" })
 	public void MoveTask_02() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
-		String name = "TaskFolder" + ZimbraSeleniumProperties.getUniqueString();
+		String name = "TaskFolder" + ConfigProperties.getUniqueString();
 
 		// Create a subfolder to move the message into i.e. tasks/subfolder
 		String taskFolderID = taskFolder.getId();
@@ -147,7 +147,7 @@ public class MoveTask extends AjaxCommonTest {
 		// refresh task page
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>"
@@ -159,7 +159,7 @@ public class MoveTask extends AjaxCommonTest {
 				+			"</inv>"
 				+			"<su>" + subject + "</su>"
 				+			"<mp ct='text/plain'>"
-				+				"<content>content" + ZimbraSeleniumProperties.getUniqueString() + "</content>"
+				+				"<content>content" + ConfigProperties.getUniqueString() + "</content>"
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateTaskRequest>");
@@ -212,12 +212,12 @@ public class MoveTask extends AjaxCommonTest {
 	}
 	
 
-	@Test(description = "Create task through SOAP - move using Right Click Context Menu & verify through GUI", groups = { "functional" })
+	@Test( description = "Create task through SOAP - move using Right Click Context Menu & verify through GUI", groups = { "functional" })
 	public void MoveTask_03() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
-		String name = "TaskFolder" + ZimbraSeleniumProperties.getUniqueString();
+		String name = "TaskFolder" + ConfigProperties.getUniqueString();
 
 		// Create a subfolder to move the message into i.e. tasks/subfolder
 		String taskFolderID = taskFolder.getId();
@@ -232,7 +232,7 @@ public class MoveTask extends AjaxCommonTest {
 		// refresh task page
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>"
@@ -244,7 +244,7 @@ public class MoveTask extends AjaxCommonTest {
 				+			"</inv>"
 				+			"<su>" + subject + "</su>"
 				+			"<mp ct='text/plain'>"
-				+				"<content>content" + ZimbraSeleniumProperties.getUniqueString() + "</content>"
+				+				"<content>content" + ConfigProperties.getUniqueString() + "</content>"
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateTaskRequest>");
@@ -296,12 +296,12 @@ public class MoveTask extends AjaxCommonTest {
 		ZAssert.assertNotNull(movetask,	"Verify the task is moved to the selected folder");
 	}
 	
-	@Test(description = "Move a task by using Move -> New folder & verify through GUI", groups = { "functional" })
+	@Test( description = "Move a task by using Move -> New folder & verify through GUI", groups = { "functional" })
 	public void MoveTask_04() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		String name = "TaskFolder" + ZimbraSeleniumProperties.getUniqueString();	
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
+		String name = "TaskFolder" + ConfigProperties.getUniqueString();	
+		String subject = "task" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>"
@@ -313,7 +313,7 @@ public class MoveTask extends AjaxCommonTest {
 				+			"</inv>"
 				+			"<su>" + subject + "</su>"
 				+			"<mp ct='text/plain'>"
-				+				"<content>content" + ZimbraSeleniumProperties.getUniqueString() + "</content>"
+				+				"<content>content" + ConfigProperties.getUniqueString() + "</content>"
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateTaskRequest>");

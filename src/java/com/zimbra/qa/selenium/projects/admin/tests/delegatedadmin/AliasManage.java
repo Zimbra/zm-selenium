@@ -1,23 +1,25 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.tests.delegatedadmin;
 
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -46,13 +48,13 @@ public class AliasManage extends AdminCommonTest {
 	 * 2. Verify alias is created using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Delegated Admin: Create a basic alias",
+	@Test( description = "Delegated Admin: Create a basic alias",
 			groups = { "smoke" })
 	public void CreateAlias_01() throws HarnessException {
 
 		app.provisionAuthenticateDA();
 
-		AccountItem target = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
 		// Navigate to craete alias page
@@ -68,6 +70,9 @@ public class AliasManage extends AdminCommonTest {
 
 		// Fill out the wizard	
 		wizard.zCompleteWizard(alias);
+		
+		// Wait for alias creation
+		SleepUtil.sleepMedium();
 
 		// Verify the alias exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -85,13 +90,13 @@ public class AliasManage extends AdminCommonTest {
 	 * 2. Verify edit account page opened up
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Delegated Admin: Edit alias",
+	@Test( description = "Delegated Admin: Edit alias",
 			groups = { "functional" })
 	public void EditAlias_01() throws HarnessException {
 
 		app.provisionAuthenticateDA();
 
-		AccountItem target = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
 		// Create a new account in the Admin Console using SOAP
@@ -139,13 +144,13 @@ public class AliasManage extends AdminCommonTest {
 	 * 5. Verify alias is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Delegated Admin: Verify delete alias operation  -- Manage alias View",
+	@Test( description = "Delegated Admin: Verify delete alias operation  -- Manage alias View",
 			groups = { "functional" })
 	public void DeleteAlias_01() throws HarnessException {
 
 		app.provisionAuthenticateDA();
 
-		AccountItem target = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
 
@@ -175,6 +180,9 @@ public class AliasManage extends AdminCommonTest {
 
 		// Click Ok on "Delete Items" dialog
 		dialog.zClickButton(Button.B_OK);
+		
+		// Wait for alias deletion
+		SleepUtil.sleepMedium();
 
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageAliases.zListGetAccounts();
@@ -202,12 +210,12 @@ public class AliasManage extends AdminCommonTest {
 	 * 5. Verify alias is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Delegated Admin: Verify delete alias operation-- Manage alias View/Right Click Menu",
+	@Test( description = "Delegated Admin: Verify delete alias operation-- Manage alias View/Right Click Menu",
 			groups = { "functional" })
 	public void DeleteAlias_02() throws HarnessException {
 
 		app.provisionAuthenticateDA();
-		AccountItem target = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
 
@@ -238,6 +246,9 @@ public class AliasManage extends AdminCommonTest {
 		// Click Ok on "Delete Items" dialog
 		dialog.zClickButton(Button.B_OK);
 
+		// Wait for alias deletion
+		SleepUtil.sleepMedium();
+				
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageAliases.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the alias list is returned");

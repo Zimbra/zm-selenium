@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
@@ -32,13 +32,19 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 public class PageMain extends AbsTab {
 
 	public static class Locators {
-		public static final String zSkinContainerLogo		= "xpath=//*[@id='skin_container_logo']";
+		public static final String zSkinContainerLogo		= "xpath=//*[@id='skin_container_logo']";		
 		public static final String zSkinContainerUsername	= "css=div[id='skin_container_username']";
-		//public static final String zSkinContainerLogoff		= "css=table[class='skin_table'] span[onclick='ZaZimbraAdmin.logOff();']";
+		
+		public static final String zSkinContainerLogoff		= "css=table[class='skin_table'] span[onclick='ZaZimbraAdmin.logOff();']";
 		public static final String zLogoffDropDownArrow		="css=div.ImgNodeExpandedWhite";
 		public static final String zLogOff = "zmi__ZA_LOGOFF__LOGOFF_title";
-		public static final String zSkinContainerHelp		= "xpath=//*[@id='skin_container_help']";
+		
 		public static final String zSkinContainerDW			= "xpath=//*[@id='skin_container_dw']";
+		
+		//Help Drop down
+		public static final String zSkinContainerHelpDropDownArrow	= "css=div[id='skin_container_help'] div[class='ImgNodeExpandedWhite']";
+		public static final String zHelpCenterOption = "css=div[id='zm__ZA_HELP'] div[id='zaHelpCenter'] td[id$='_title']";
+		
 		public static final String REFRESH_BUTTON = "css=div.ImgSearchRefreshWhite";
 		
 		public static final String HomeInstallLicense="css=div[id^='ztabv__HOMEV_output'] div:contains('Install Licenses')";
@@ -60,6 +66,8 @@ public class PageMain extends AbsTab {
 		public static final String HomeManageAccount = "css=div[id^='ztabv__HOMEV_output'] div:contains('Manage Accounts')";
 
 		public static final String HomeMigrationCoexistance = "css=div[id^='ztabv__HOMEV_output'] div:contains('Migration and Co-existence')";
+		
+		public static final String zHelpButton = "css=div[id^='zb__ZaCurrentAppBar__HELP_'] td[id$='_title']";
 	}
 
 	public PageMain(AbsApplication application) {

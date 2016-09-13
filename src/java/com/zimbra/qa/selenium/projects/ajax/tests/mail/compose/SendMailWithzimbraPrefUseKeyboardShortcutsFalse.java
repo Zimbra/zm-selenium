@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose;
@@ -35,13 +35,13 @@ public class SendMailWithzimbraPrefUseKeyboardShortcutsFalse extends PrefGroupMa
 	}
 	
 	@Bugs(ids = "76547")
-	@Test(	description = "Send a mail using Text editor - zimbraPrefUseKeyboardShortcuts = FALSE",
+	@Test( description = "Send a mail using Text editor - zimbraPrefUseKeyboardShortcuts = FALSE",
 			groups = { "functional" })
 	
 	public void SendMailWithzimbraPrefUseKeyboardShortcutsFalse_01() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		
 		
 		// Open the new mail form
@@ -50,13 +50,8 @@ public class SendMailWithzimbraPrefUseKeyboardShortcutsFalse extends PrefGroupMa
 		
 		// Fill out the form with the data
 		mailform.zFillField(FormMailNew.Field.Subject, subject);
-		mailform.zFillField(FormMailNew.Field.Body, "body" + ZimbraSeleniumProperties.getUniqueString());
+		mailform.zFillField(FormMailNew.Field.Body, "body" + ConfigProperties.getUniqueString());
 
-		// Selenium JS can't repro the bug.  I suppose the To: field is still enabled
-		// at the JS level.  But, clicking manually into the field doesn't work.
-		//
-		// Maybe WebDriver will be better at repro, since it mimics real usage better.
-		//
 		mailform.sFocus(FormMailNew.Locators.zToField);
 		mailform.zClick(FormMailNew.Locators.zToField);
 		mailform.zWaitForBusyOverlay();

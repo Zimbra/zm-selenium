@@ -3,17 +3,17 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 
@@ -36,12 +36,12 @@ public class CheckXSSAfterSelectingMail extends PrefGroupMailByMessageTest {
 		logger.info("New "+ CheckXSSAfterSelectingMail.class.getCanonicalName());
 	}
 	
-	@Bugs(	ids = "102637" )	
-	@Test(description = "Persistent XSS: unsafe content not filtered by defange", groups = { "functional" })
+	@Bugs( ids = "102637" )	
+	@Test( description = "Persistent XSS: unsafe content not filtered by defange", groups = { "functional" })
 	
 	public void CheckXSSAfterSelectingMail_01() throws HarnessException {
 
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory()	+ "/data/public/mime/XSS.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory()	+ "/data/public/mime/XSS.txt";
 		final String subject = "test xss";
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));

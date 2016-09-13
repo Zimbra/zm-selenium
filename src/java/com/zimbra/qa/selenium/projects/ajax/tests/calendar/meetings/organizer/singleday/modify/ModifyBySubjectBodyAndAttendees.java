@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.modify;
@@ -34,7 +34,7 @@ public class ModifyBySubjectBodyAndAttendees extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "69132")
-	@Test(	description = "Modify meeting subject, body and attendees",
+	@Test( description = "Modify meeting subject, body and attendees",
 			groups = { "smoke" })
 			
 	public void ModifyMeetingBySubjectBodyAndAttendees_01() throws HarnessException {
@@ -44,13 +44,13 @@ public class ModifyBySubjectBodyAndAttendees extends CalendarWorkWeekTest {
 		
 		String tz, apptSubject, apptBody, apptAttendee1, modifiedApptSubject, modifiedApptBody, apptAttendee2;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
+		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		apptAttendee2 = ZimbraAccount.AccountB().EmailAddress;
 		
-		modifiedApptSubject = ZimbraSeleniumProperties.getUniqueString();
-        modifiedApptBody = ZimbraSeleniumProperties.getUniqueString();
+		modifiedApptSubject = ConfigProperties.getUniqueString();
+        modifiedApptBody = ConfigProperties.getUniqueString();
         
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;

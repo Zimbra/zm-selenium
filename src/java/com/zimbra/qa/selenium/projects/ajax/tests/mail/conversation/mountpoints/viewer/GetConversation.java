@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.mountpoints.viewer;
@@ -41,12 +41,12 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 
 	}
 	
-	@Test(	description = "View a conversation in a mountpoint",
+	@Test( description = "View a conversation in a mountpoint",
 			groups = { "functional" })
 	public void GetMail_01() throws HarnessException {
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 		
 		FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox);
 		
@@ -114,17 +114,17 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 		
 	}
 
-	@Test(	description = "View the contents of a conversation in a mountpoint",
+	@Test( description = "View the contents of a conversation in a mountpoint",
 			groups = { "functional" })
 	public void GetMail_02() throws HarnessException {
 		
 		
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String fragment1 = "content" + ZimbraSeleniumProperties.getUniqueString();
-		String fragment2 = "content" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String fragment1 = "content" + ConfigProperties.getUniqueString();
+		String fragment2 = "content" + ConfigProperties.getUniqueString();
 		
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 		
 		FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox);
 		

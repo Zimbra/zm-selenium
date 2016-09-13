@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.search.search;
@@ -41,15 +41,15 @@ public class SearchGAL extends AjaxCommonTest {
 	}
 
 
-	@Test(	description = "Search for a GAL contact",
+	@Test( description = "Search for a GAL contact",
 			groups = { "functional" })
 			public void SearchGAL_01() throws HarnessException {
 
 		//-- Data
 
 		// Create a GAL Account
-		final String first = "first"+ ZimbraSeleniumProperties.getUniqueString();
-		final String last = "last"+ ZimbraSeleniumProperties.getUniqueString();
+		final String first = "first"+ ConfigProperties.getUniqueString();
+		final String last = "last"+ ConfigProperties.getUniqueString();
 		ZimbraAccount accountGAL = new ZimbraAccount();
 		Map<String,String> attrs = new HashMap<String, String>() {
 			private static final long serialVersionUID = -939087302049217526L;
@@ -90,13 +90,13 @@ public class SearchGAL extends AjaxCommonTest {
 
 	}
 
-	@Test(	description = "Search for a non-existing GAL contact",
+	@Test( description = "Search for a non-existing GAL contact",
 			groups = { "functional" })
 			public void SearchGAL_02() throws HarnessException {
 
 		//-- Data
 
-		String doesnotexist = "contact" + ZimbraSeleniumProperties.getUniqueString();
+		String doesnotexist = "contact" + ConfigProperties.getUniqueString();
 
 		//-- GUI
 

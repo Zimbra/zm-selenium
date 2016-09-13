@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.attributes;
@@ -37,8 +37,8 @@ public class ZimbraPrefMarkMsgReadNever extends PrefGroupMailByConversationTest 
 
 	}
 	
-	@Bugs(	ids = "78178")
-	@Test(	description = "Verify a conversation (1 message) is not marked read if zimbraPrefMarkMsgRead=Never",
+	@Bugs( ids = "78178")
+	@Test( description = "Verify a conversation (1 message) is not marked read if zimbraPrefMarkMsgRead=Never",
 			groups = { "functional" })
 	public void MarkReadConversation_01() throws HarnessException {
 		
@@ -47,7 +47,7 @@ public class ZimbraPrefMarkMsgReadNever extends PrefGroupMailByConversationTest 
 		
 		
 		// Create the message data to be sent
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -55,7 +55,7 @@ public class ZimbraPrefMarkMsgReadNever extends PrefGroupMailByConversationTest 
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
@@ -94,8 +94,8 @@ public class ZimbraPrefMarkMsgReadNever extends PrefGroupMailByConversationTest 
 		
 	}
 
-	@Bugs(	ids = "78178")
-	@Test(	description = "Verify a conversation (multiple message) is not marked read if zimbraPrefMarkMsgRead=Never",
+	@Bugs( ids = "78178")
+	@Test( description = "Verify a conversation (multiple message) is not marked read if zimbraPrefMarkMsgRead=Never",
 			groups = { "functional" })
 	public void MarkReadConversation_02() throws HarnessException {
 

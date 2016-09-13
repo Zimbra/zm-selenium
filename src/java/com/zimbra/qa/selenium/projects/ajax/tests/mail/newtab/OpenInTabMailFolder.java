@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newtab;
@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
@@ -41,12 +41,12 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 		super.startingPage = app.zPageMail;
 	}
 
-	@Test(	description = "Verify Open in new tab option for mail app - Inbox",
+	@Test( description = "Verify Open in new tab option for mail app - Inbox",
 			groups = { "smoke" })
 	public void OpenInTabMailFolder_01() throws HarnessException {
 
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Send the message from AccountA to the ZWC user
 		ZimbraAccount.AccountA().soapSend(
@@ -55,7 +55,7 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-						"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+						"<content>"+ "body" + ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 						"</m>" +
 				"</SendMsgRequest>");
@@ -85,12 +85,12 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(	description = "Verify Open in new tab option for mail app - Draft",
+	@Test( description = "Verify Open in new tab option for mail app - Draft",
 			groups = { "functional" })
 	public void OpenInTabMailFolder_02() throws HarnessException {
 
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -132,7 +132,7 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(	description = "Verify Open in new tab option for mail app - Custom folder",
+	@Test( description = "Verify Open in new tab option for mail app - Custom folder",
 			groups = { "functional" })
 	public void OpenInTabMailFolder_03() throws HarnessException {
 
@@ -140,7 +140,7 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(inbox, "Verify the inbox is available");
 
 		// Create the subfolder
-		String name1 = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String name1 = "folder" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -151,7 +151,7 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(subfolder1, "Verify the subfolder is available");
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 				
 		// Add message to the new subfolder
 		app.zGetActiveAccount().soapSend(

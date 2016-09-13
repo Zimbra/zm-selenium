@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.tests.delegatedadmin;
@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.DistributionListItem;
 import com.zimbra.qa.selenium.projects.admin.ui.DialogForDeleteOperation;
@@ -52,7 +52,7 @@ public class DistributionListManage extends AdminCommonTest {
 	 */
 
 
-	@Test(	description = "Delegated Admin's Create a basic DL using New->Distribution List",
+	@Test( description = "Delegated Admin's Create a basic DL using New->Distribution List",
 			groups = { "sanity" })
 	public void CreateDistributionList_01() throws HarnessException {
 
@@ -86,7 +86,7 @@ public class DistributionListManage extends AdminCommonTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Delegated Admin's: Delete a basic DL -- Manage distribution list View",
+	@Test( description = "Delegated Admin's: Delete a basic DL -- Manage distribution list View",
 			groups = { "sanity" })
 	public void DeleteDistributionList_01() throws HarnessException {
 
@@ -139,7 +139,7 @@ public class DistributionListManage extends AdminCommonTest {
 	 * 5. Verify distribution list is edited using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Delegated Admin's : Edit distribution list name  - Manage distribution list View",
+	@Test( description = "Delegated Admin's : Edit distribution list name  - Manage distribution list View",
 			groups = { "sanity" })
 	public void EditDistributionList_01() throws HarnessException {
 
@@ -168,7 +168,7 @@ public class DistributionListManage extends AdminCommonTest {
 		form.zClickTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		//Edit the name.
-		String editedName = "editedDL_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
 		//Submit the form.

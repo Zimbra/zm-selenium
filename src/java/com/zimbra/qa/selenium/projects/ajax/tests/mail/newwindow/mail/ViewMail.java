@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
@@ -34,7 +34,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 public class ViewMail extends PrefGroupMailByMessageTest {
 
 	boolean injected = false;
-	final String mimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email00";
+	final String mimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00";
 	
 	public ViewMail() throws HarnessException {
 		logger.info("New "+ ViewMail.class.getCanonicalName());
@@ -50,8 +50,8 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	// For now, just comment out until they can be implemented.
 	//
 	
-//	@Bugs(	ids = "57047" )
-//	@Test(	description = "Receive a mail with Sender: specified",
+//	@Bugs( ids = "57047" )
+//	@Test( description = "Receive a mail with Sender: specified",
 //			groups = { "functional" })
 //	public void ViewMail_01() throws HarnessException {
 //		
@@ -78,14 +78,14 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 //
 //		// Verify the To, From, Subject, Body
-//		ZAssert.assertEquals(	actual.zGetMailProperty(Field.OnBehalfOf), from, "Verify the On-Behalf-Of matches the 'From:' header");
-//		ZAssert.assertEquals(	actual.zGetMailProperty(Field.From), sender, "Verify the From matches the 'Sender:' header");
+//		ZAssert.assertEquals(actual.zGetMailProperty(Field.OnBehalfOf), from, "Verify the On-Behalf-Of matches the 'From:' header");
+//		ZAssert.assertEquals(actual.zGetMailProperty(Field.From), sender, "Verify the From matches the 'Sender:' header");
 //		
 //
 //		
 //	}
 //
-//	@Test(	description = "Receive a mail with Reply-To: specified",
+//	@Test( description = "Receive a mail with Reply-To: specified",
 //			groups = { "functional" })
 //	public void ViewMail_02() throws HarnessException {
 //		
@@ -112,15 +112,15 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 //
 //		// Verify the To, From, Subject, Body
-//		ZAssert.assertEquals(	actual.zGetMailProperty(Field.ReplyTo), replyto, "Verify the Reply-To matches the 'Reply-To:' header");
-//		ZAssert.assertEquals(	actual.zGetMailProperty(Field.From), from, "Verify the From matches the 'From:' header");
+//		ZAssert.assertEquals(actual.zGetMailProperty(Field.ReplyTo), replyto, "Verify the Reply-To matches the 'Reply-To:' header");
+//		ZAssert.assertEquals(actual.zGetMailProperty(Field.From), from, "Verify the From matches the 'From:' header");
 //		
 //
 //		
 //	}
 //
-//	@Bugs(	ids = "61575")
-//	@Test(	description = "Receive a mail with Resent-From: specified",
+//	@Bugs( ids = "61575")
+//	@Test( description = "Receive a mail with Resent-From: specified",
 //			groups = { "functional" })
 //	public void ViewMail_03() throws HarnessException {
 //		
@@ -146,19 +146,19 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 //
 //		// Verify the To, From, Subject, Body
-//		ZAssert.assertEquals(	actual.zGetMailProperty(Field.ResentFrom), resentfrom, "Verify the Resent-From matches the 'Resent-From:' header");
-//		ZAssert.assertEquals(	actual.zGetMailProperty(Field.From), from, "Verify the From matches the 'From:' header");
+//		ZAssert.assertEquals(actual.zGetMailProperty(Field.ResentFrom), resentfrom, "Verify the Resent-From matches the 'Resent-From:' header");
+//		ZAssert.assertEquals(actual.zGetMailProperty(Field.From), from, "Verify the From matches the 'From:' header");
 //		
 //
 //		
 //	}
 //
-//	@Bugs(	ids = "64444")
-//	@Test(	description = "Receive a mail with only audio/vav content",
+//	@Bugs( ids = "64444")
+//	@Test( description = "Receive a mail with only audio/vav content",
 //			groups = { "functional" })
 //	public void ViewMail_04() throws HarnessException {
 //		
-//		final String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug64444";
+//		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug64444";
 //		final String subject = "subject13150123168433";
 //		final String from = "from13160123168433@testdomain.com";
 //		final String to = "to3163210168433@testdomain.com";
@@ -177,19 +177,19 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 //
 //		// Verify the To, From, Subject, Body
-//		ZAssert.assertEquals(	actual.zGetMailProperty(Field.From), from, "Verify the From matches the 'From:' header");
-//		ZAssert.assertEquals(	actual.zGetMailProperty(Field.To), to, "Verify the From matches the 'From:' header");
+//		ZAssert.assertEquals(actual.zGetMailProperty(Field.From), from, "Verify the From matches the 'From:' header");
+//		ZAssert.assertEquals(actual.zGetMailProperty(Field.To), to, "Verify the From matches the 'From:' header");
 //		
 //
 //		
 //	}
 //
-//	@Bugs(	ids = "66565")
-//	@Test(	description = "Receive a mail formatting in the subject",
+//	@Bugs( ids = "66565")
+//	@Test( description = "Receive a mail formatting in the subject",
 //			groups = { "functional" })
 //	public void ViewMail_05() throws HarnessException {
 //		
-//		final String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug66565";
+//		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug66565";
 //		final String subject = "subject13197565510464";
 //		final String subjectText = "<u><i> subject13197565510464 </i></u>";
 //
@@ -207,7 +207,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 //
 //		// Verify the Subject
-//		ZAssert.assertEquals(	actual.zGetMailProperty(Field.Subject), subjectText, "Verify the Subject matches");
+//		ZAssert.assertEquals(actual.zGetMailProperty(Field.Subject), subjectText, "Verify the Subject matches");
 //		
 //		// Verify the <u> and <i> elements are not in the DOM (only in text)
 //		//
@@ -235,15 +235,15 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		
 //	}
 //
-//	@Bugs(	ids = "65933,65623")
-//	@Test(	description = "Verify message with only HTML part",
+//	@Bugs( ids = "65933,65623")
+//	@Test( description = "Verify message with only HTML part",
 //			groups = { "functional" })
 //	public void ViewMail_06() throws HarnessException {
 //
 //		// Inject the sample mime
 //		String subject = "subject13188948451403";
 //		String content = "Welcome to the NetWorker Listserv list";
-//		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65933";
+//		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65933";
 //		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
 //
 //		
@@ -258,15 +258,15 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		
 //	}
 //
-//	@Bugs(	ids = "65933,65623")
-//	@Test(	description = "Verify message with only HTML part and charset",
+//	@Bugs( ids = "65933,65623")
+//	@Test( description = "Verify message with only HTML part and charset",
 //			groups = { "functional" })
 //	public void ViewMail_07() throws HarnessException {
 //
 //		// Inject the sample mime
 //		String subject = "subject13189485723753";
 //		String content = "Enrico Medici";
-//		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65623";
+//		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65623";
 //		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
 //
 //		
@@ -281,15 +281,15 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		
 //	}
 //
-//	@Bugs(	ids = "65079")
-//	@Test(	description = "Verify message with only HTML part and charset",
+//	@Bugs( ids = "65079")
+//	@Test( description = "Verify message with only HTML part and charset",
 //			groups = { "functional" })
 //	public void ViewMail_08() throws HarnessException {
 //
 //		// Inject the sample mime
 //		String subject = "subject13189993282183";
 //		String content = "Incident Title";
-//		String MimeFolder = ZimbraSeleniumProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug65079";
+//		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug65079";
 //		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
 //
 //		
@@ -304,11 +304,11 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		
 //	}
 //
-//	@Test(	description = "zimbraPrefMessageViewHtmlPreferred=TRUE: Receive message with text only parts - should be rendered as text",
+//	@Test( description = "zimbraPrefMessageViewHtmlPreferred=TRUE: Receive message with text only parts - should be rendered as text",
 //			groups = { "functional" })
 //	public void ViewMail_09() throws HarnessException {
 //		
-//		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email04/mimeTextOnly.txt";
+//		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email04/mimeTextOnly.txt";
 //		final String subject = "subject13214016725788";
 //		final String content = "The Ming Dynasty";
 //
@@ -324,15 +324,15 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 //
 //		// Verify the To, From, Subject, Body
-//		ZAssert.assertStringContains(	actual.zGetMailProperty(Field.Body), content, "Verify the text content");
+//		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), content, "Verify the text content");
 //		
 //	}
 //
-//	@Test(	description = "zimbraPrefMessageViewHtmlPreferred=TRUE: Receive message with html only parts - should be rendered as html",
+//	@Test( description = "zimbraPrefMessageViewHtmlPreferred=TRUE: Receive message with html only parts - should be rendered as html",
 //			groups = { "functional" })
 //	public void ViewMail_10() throws HarnessException {
 //		
-//		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email04/mimeHtmlOnly.txt";
+//		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email04/mimeHtmlOnly.txt";
 //		final String subject = "subject13214016672655";
 //		final String content = "Bold";
 //
@@ -348,16 +348,16 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 //
 //		// Verify the To, From, Subject, Body
-//		ZAssert.assertStringContains(	actual.zGetMailProperty(Field.Body), content, "Verify the text content");
+//		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), content, "Verify the text content");
 //		
 //		
 //	}
 //	
-//	@Test(	description = "zimbraPrefMessageViewHtmlPreferred=TRUE: Receive message with text and html  parts - should be rendered as html",
+//	@Test( description = "zimbraPrefMessageViewHtmlPreferred=TRUE: Receive message with text and html  parts - should be rendered as html",
 //			groups = { "functional" })
 //	public void ViewMail_11() throws HarnessException {
 //		
-//		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email04/mimeTextAndHtml.txt";
+//		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email04/mimeTextAndHtml.txt";
 //		final String subject = "subject13214016621403";
 //		final String content = "Bold";
 //
@@ -373,18 +373,18 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 //
 //		// Verify the To, From, Subject, Body
-//		ZAssert.assertStringContains(	actual.zGetMailProperty(Field.Body), content, "Verify the text content");
+//		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), content, "Verify the text content");
 //		
 //		
 //	}
 //
 //
 //	@Bugs(ids = "67854")
-//	@Test(	description = "Verify empty message shows 'no content'",
+//	@Test( description = "Verify empty message shows 'no content'",
 //			groups = { "functional" })
 //	public void ViewMail_12() throws HarnessException {
 //		
-//		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug67854";
+//		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug67854";
 //		final String subject = "subject13218526621403";
 //		final String content = "The message has no text content.";
 //		
@@ -411,11 +411,11 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //	}
 //
 //	@Bugs(ids = "72248")
-//	@Test(	description = "Verify multipart/alternative with only 1 part",
+//	@Test( description = "Verify multipart/alternative with only 1 part",
 //			groups = { "functional" })
 //	public void ViewMail_13() throws HarnessException {
 //		
-//		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug72248";
+//		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug72248";
 //		final String subject = "subject13217218621403";
 //		final String content = "content1328844621403";
 //		
@@ -439,11 +439,11 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //
 //	}
 
-	@Test(	description = "Verify multipart/alternative with text and html parts",
+	@Test( description = "Verify multipart/alternative with text and html parts",
 			groups = { "functional" })
 	public void ViewMail_14() throws HarnessException {
 		
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug72233";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug72233";
 		final String subject = "bug72233";
 		// final String textcontent = "text1328844621404";
 		final String htmlcontent = "html1328844621404";

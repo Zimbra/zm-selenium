@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.attachments;
@@ -21,6 +21,7 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 import com.zimbra.common.soap.Element;
@@ -38,117 +39,123 @@ public class ReplyAllMailWithAttachment extends PrefGroupMailByMessageTest {
 		logger.info("New "+ ReplyAllMailWithAttachment.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
-	
-	@Test(	description = "Reply to a mail with attachment - Verify both attachment sent",
-			groups = { "sanity","windows" })
-	
-	public void ReplyAllMailWithAttachment_01() throws HarnessException {
-		
-		try {
 
-			//-- DATA
-			final String mimeSubject = "subjectAttachment";
-			final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
-			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
-			final String mimeAttachmentName = "samplejpg.jpg";
-			
-			LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
-	
-			MailItem original = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ mimeSubject +")");
-			ZAssert.assertNotNull(original, "Verify the message is received correctly");
-	
-			//-- GUI
-	
-			// Refresh current view
-			app.zPageMail.zVerifyMailExists(mimeSubject);
-							
-			// Select the item
-			app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);
-			
-			// Reply to all the item
-			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLYALL);
-			
-			mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
-			mailform.zFillField(Field.To, ZimbraAccount.AccountB().EmailAddress);
-			
-			final String fileName = "structure.jpg";
-			final String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
-			
-			app.zPageMail.zPressButton(Button.B_ATTACH);
-			zUpload(filePath);
-			
-			app.zPageMail.sClickAt("css=div[id^='zv__COMPOSE'] td a:contains('Add attachments from original message')", "0,0");
-			SleepUtil.sleepMedium();
-			
-			// Send the message
-			mailform.zSubmit();
-	
-			//-- Verification
-			
-			// From the receiving end, verify the message details
-			MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "from:("+ app.zGetActiveAccount().EmailAddress +") subject:("+ mimeSubject +")");
-			ZAssert.assertNotNull(received, "Verify the message is received correctly");
-			
-			ZimbraAccount.AccountA().soapSend(
-					"<GetMsgRequest xmlns='urn:zimbraMail'>"
-					+		"<m id='"+ received.getId() +"'/>"
-					+	"</GetMsgRequest>");
-	
-			String filename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
-			ZAssert.assertEquals(filename, fileName, "Verify existing attachment exists in the replied mail");
-			
-			filename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment'][2]", "filename");
-			ZAssert.assertEquals(filename, mimeAttachmentName, "Verify newly added attachment exists in the replied mail");
-			
-			Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
-			ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the replied mail");
-			
-			nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + mimeAttachmentName + "']");
-			ZAssert.assertEquals(nodes.length, 1, "Verify newly added attachment exist in the replied mail");
-			
-			// From the receiving end, verify the message details
-			MailItem receivedB = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "from:("+ app.zGetActiveAccount().EmailAddress +") subject:("+ mimeSubject +")");
-			ZAssert.assertNotNull(receivedB, "Verify the message is received correctly");
-			
-			ZimbraAccount.AccountB().soapSend(
-					"<GetMsgRequest xmlns='urn:zimbraMail'>"
-					+		"<m id='"+ receivedB.getId() +"'/>"
-					+	"</GetMsgRequest>");
-					
-			String getFilename = ZimbraAccount.AccountB().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
-			ZAssert.assertEquals(getFilename, fileName, "Verify existing attachment exists in the replied mail");
-			
-			getFilename = ZimbraAccount.AccountB().soapSelectValue("//mail:mp[@cd='attachment'][2]", "filename");
-			ZAssert.assertEquals(getFilename, mimeAttachmentName, "Verify newly added attachment exists in the replied mail");
-			
-			nodes = ZimbraAccount.AccountB().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
-			ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the replied mail");
-			
-			nodes = ZimbraAccount.AccountB().soapSelectNodes("//mail:mp[@filename='" + mimeAttachmentName + "']");
-			ZAssert.assertEquals(nodes.length, 1, "Verify newly added attachment exist in the replied mail");
-			
-			// Verify UI for attachment
-			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
-			app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);
-			ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the email");
-			ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(mimeAttachmentName), "Verify attachment exists in the email");
-		
-		} finally {
-			
-			Robot robot;
-			
+	@Test( description = "Reply to a mail with attachment - Verify both attachment sent",
+			groups = { "sanity" })
+
+	public void ReplyAllMailWithAttachment_01() throws HarnessException {
+
+		if (OperatingSystem.isWindows() == true) {
+
 			try {
-				robot = new Robot();
-				robot.delay(250);
-				robot.keyPress(KeyEvent.VK_ESCAPE);
-				robot.keyRelease(KeyEvent.VK_ESCAPE);
-				robot.delay(50);
-				
-			} catch (AWTException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+				//-- DATA
+				final String mimeSubject = "subjectAttachment";
+				final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
+				FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
+				final String mimeAttachmentName = "samplejpg.jpg";
+
+				LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+
+				MailItem original = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ mimeSubject +")");
+				ZAssert.assertNotNull(original, "Verify the message is received correctly");
+
+				//-- GUI
+
+				// Refresh current view
+				app.zPageMail.zVerifyMailExists(mimeSubject);
+
+				// Select the item
+				app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);
+
+				// Reply to all the item
+				FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLYALL);
+
+				mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
+				mailform.zFillField(Field.To, ZimbraAccount.AccountB().EmailAddress);
+
+				final String fileName = "structure.jpg";
+				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+
+				app.zPageMail.zPressButton(Button.B_ATTACH);
+				zUpload(filePath);
+
+				app.zPageMail.sClickAt("css=div[id^='zv__COMPOSE'] td a:contains('Add attachments from original message')", "0,0");
+				SleepUtil.sleepMedium();
+
+				// Send the message
+				mailform.zSubmit();
+
+				//-- Verification
+
+				// From the receiving end, verify the message details
+				MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "from:("+ app.zGetActiveAccount().EmailAddress +") subject:("+ mimeSubject +")");
+				ZAssert.assertNotNull(received, "Verify the message is received correctly");
+
+				ZimbraAccount.AccountA().soapSend(
+						"<GetMsgRequest xmlns='urn:zimbraMail'>"
+						+		"<m id='"+ received.getId() +"'/>"
+						+	"</GetMsgRequest>");
+
+				String filename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
+				ZAssert.assertEquals(filename, fileName, "Verify existing attachment exists in the replied mail");
+
+				filename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment'][2]", "filename");
+				ZAssert.assertEquals(filename, mimeAttachmentName, "Verify newly added attachment exists in the replied mail");
+
+				Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
+				ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the replied mail");
+
+				nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + mimeAttachmentName + "']");
+				ZAssert.assertEquals(nodes.length, 1, "Verify newly added attachment exist in the replied mail");
+
+				// From the receiving end, verify the message details
+				MailItem receivedB = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "from:("+ app.zGetActiveAccount().EmailAddress +") subject:("+ mimeSubject +")");
+				ZAssert.assertNotNull(receivedB, "Verify the message is received correctly");
+
+				ZimbraAccount.AccountB().soapSend(
+						"<GetMsgRequest xmlns='urn:zimbraMail'>"
+						+		"<m id='"+ receivedB.getId() +"'/>"
+						+	"</GetMsgRequest>");
+
+				String getFilename = ZimbraAccount.AccountB().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
+				ZAssert.assertEquals(getFilename, fileName, "Verify existing attachment exists in the replied mail");
+
+				getFilename = ZimbraAccount.AccountB().soapSelectValue("//mail:mp[@cd='attachment'][2]", "filename");
+				ZAssert.assertEquals(getFilename, mimeAttachmentName, "Verify newly added attachment exists in the replied mail");
+
+				nodes = ZimbraAccount.AccountB().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
+				ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the replied mail");
+
+				nodes = ZimbraAccount.AccountB().soapSelectNodes("//mail:mp[@filename='" + mimeAttachmentName + "']");
+				ZAssert.assertEquals(nodes.length, 1, "Verify newly added attachment exist in the replied mail");
+
+				// Verify UI for attachment
+				app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
+				app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);
+				ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the email");
+				ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(mimeAttachmentName), "Verify attachment exists in the email");
+
+			} finally {
+
+				Robot robot;
+
+				try {
+					robot = new Robot();
+					robot.delay(250);
+					robot.keyPress(KeyEvent.VK_ESCAPE);
+					robot.keyRelease(KeyEvent.VK_ESCAPE);
+					robot.delay(50);
+
+				} catch (AWTException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
-			
+
+		} else {
+			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
 		}
 	}
 

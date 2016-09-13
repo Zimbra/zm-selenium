@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
@@ -35,13 +35,9 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "69132")
-	@Test(description = "Create simple meeting with location resource",
-			groups = { "smoke" })
+	@Test( description = "Create simple meeting with location resource",	groups = { "smoke" })
+	
 	public void CreateMeetingWithSingleLocation_01() throws HarnessException {
-		
-		
-		//-- Data Setup
-		
 		
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();
@@ -49,10 +45,10 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 		
 		String apptSubject, apptAttendee1, apptLocation1, apptContent;
 		Calendar now = this.calendarWeekDayUTC;
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		apptLocation1 = location.EmailAddress;
-		apptContent = "content" + ZimbraSeleniumProperties.getUniqueString();
+		apptContent = "content" + ConfigProperties.getUniqueString();
 		
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee1);
@@ -61,11 +57,6 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0));
 		appt.setContent(apptContent);
 	
-		
-		
-		//-- GUI Actions
-		
-		
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
@@ -73,12 +64,8 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 		SleepUtil.sleepVeryLong(); // test fails while checking free/busy status, waitForPostqueue is not sufficient here
         // Tried sleepLong() as well but although fails so using sleepVeryLong()
 		
-		
-		// Because the response from the resource may
-		// take some time, make sure the response is
-		// received in the inbox before proceeding
+		// Because the response from the resource may take some time, make sure the response is received in the inbox before proceeding
 		for (int i = 0; i < 10; i++) {
-			
 			app.zGetActiveAccount().soapSend(
 						"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 					+		"<query>in:inbox subject:(aa"+ apptSubject +")</query>"
@@ -86,17 +73,10 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 			
 			String id = app.zGetActiveAccount().soapSelectValue("//mail:m", "id");
 			if ( id != null ) {
-				// found it
 				break;
 			}
-			
 			SleepUtil.sleep(1000);
 		}
-		
-		
-		
-		//-- Verification
-		
 		
 		// Verify appointment exists on the server
 		SleepUtil.sleepSmall(); //test fails without sleep
@@ -104,19 +84,18 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 		ZAssert.assertEquals(actual.getAttendees(), appt.getAttendees(), "Attendees: Verify the appointment data");
-		ZAssert.assertEquals(actual.getLocation(), appt.getLocation(), "Location: Verify the appointment data");
+		ZAssert.assertStringContains(actual.getLocation(), appt.getLocation(), "Location: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
 		
 		// Verify location free/busy status shows as psts=AC	
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation1 +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify that the location status shows as 'ACCEPTED'");
-		
-        
 	}
 	
+	
 	@Bugs(ids = "69132")
-	@Test(description = "Create simple meeting with two location resource",
-			groups = { "functional" })
+	@Test( description = "Create simple meeting with two location resource",	groups = { "functional" })
+	
 	public void CreateMeetingWithMultiLocation_02() throws HarnessException {
 		
 		// Create appointment data
@@ -126,10 +105,10 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 		
 		String apptSubject, apptAttendee1, apptLocation, apptContent;
 		Calendar now = this.calendarWeekDayUTC;
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		apptLocation = location1.EmailAddress + " " + location2.EmailAddress;
-		apptContent = ZimbraSeleniumProperties.getUniqueString();
+		apptContent = ConfigProperties.getUniqueString();
 		
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee1);
@@ -143,11 +122,8 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 		apptForm.zFill(appt);
 		apptForm.zSubmit();
 		
-		// Because the response from the resource may
-		// take some time, make sure the response is
-		// received in the inbox before proceeding
+		// Because the response from the resource may take some time, make sure the response is received in the inbox before proceeding
 		for (int i = 0; i < 10; i++) {
-			
 			app.zGetActiveAccount().soapSend(
 						"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 					+		"<query>in:inbox subject:(aa"+ apptSubject +") from:("+ location1.EmailAddress +")</query>"
@@ -163,10 +139,8 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 			String id2 = app.zGetActiveAccount().soapSelectValue("//mail:m", "id");
 
 			if ( (id1 != null) && (id2 != null) ) {
-				// found it
 				break;
 			}
-			
 			SleepUtil.sleep(1000);
 		}
 
@@ -174,19 +148,18 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 		SleepUtil.sleepSmall(); //test fails without sleep
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
-		ZAssert.assertEquals(actual.getLocation().replace(";", ""), appt.getLocation(), "Location: Verify the appointment data");
+		ZAssert.assertStringContains(actual.getLocation().replace(";", ""), appt.getLocation(), "Location: Verify the appointment data");
 		
 		// Verify both location free/busy status
 		String locationStatus1 = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ location1.EmailAddress +"']", "ptst");
 		String locationStatus2 = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ location2.EmailAddress +"']", "ptst");
 		ZAssert.assertEquals(locationStatus1, "AC", "Verify that the location1 status shows as 'ACCEPTED'");
 		ZAssert.assertEquals(locationStatus2, "AC", "Verify that the location2 status shows as 'ACCEPTED'");
-		
-		
 	}
 	
-	@Test(description = "Create simple meeting with floating location resource",
-			groups = { "functional" })
+	
+	@Test( description = "Create simple meeting with floating location resource", groups = { "functional" })
+	
 	public void CreateMeetingWithFloatingLocation_03() throws HarnessException {
 		
 		// Create appointment data
@@ -194,10 +167,10 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 		
 		String apptSubject, apptAttendee1, apptLocation, apptContent;
 		Calendar now = this.calendarWeekDayUTC;
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
-		apptLocation = ZimbraSeleniumProperties.getUniqueString() + " " + ZimbraSeleniumProperties.getUniqueString();
-		apptContent = ZimbraSeleniumProperties.getUniqueString();
+		apptLocation = ConfigProperties.getUniqueString() + " " + ConfigProperties.getUniqueString();
+		apptContent = ConfigProperties.getUniqueString();
 		
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee1);

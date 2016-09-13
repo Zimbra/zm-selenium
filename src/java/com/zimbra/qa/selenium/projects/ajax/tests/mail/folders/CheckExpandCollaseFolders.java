@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders;
@@ -29,7 +29,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.tests.mail.mail.GetMail;
 
@@ -51,7 +51,7 @@ public class CheckExpandCollaseFolders extends PrefGroupMailByMessageTest {
 	}
 
 	@Bugs( ids = "57468")
-	@Test(	description = "Verify collapsed folders remain collapsed when getting mail",
+	@Test( description = "Verify collapsed folders remain collapsed when getting mail",
 			groups = { "functional" })
 	
 	public void CheckExpandCollaseFolders_01() throws HarnessException {
@@ -60,7 +60,7 @@ public class CheckExpandCollaseFolders extends PrefGroupMailByMessageTest {
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		ZAssert.assertNotNull(inbox, "Verify the inbox is available");
 
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
                 	"<folder name='"+ foldername +"' l='"+ inbox.getId() +"'/>" +
@@ -77,9 +77,9 @@ public class CheckExpandCollaseFolders extends PrefGroupMailByMessageTest {
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-							"<su>"+ "subject" + ZimbraSeleniumProperties.getUniqueString() +"</su>" +
+							"<su>"+ "subject" + ConfigProperties.getUniqueString() +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>content" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>content" + ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");

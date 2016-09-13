@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.actions;
@@ -36,15 +36,15 @@ public class Move extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "102771")
-	@Test(description = "Move meeting invite using context menu",
+	@Test( description = "Move meeting invite using context menu",
 			groups = { "functional" })
 
 	public void MoveMeeting_01() throws HarnessException {
 		
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
+		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		
 		// Absolute dates in UTC zone
@@ -54,7 +54,7 @@ public class Move extends CalendarWorkWeekTest {
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		
 		//creating folder data to move appt to
-		String name1 = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String name1 = "folder" + ConfigProperties.getUniqueString();
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"

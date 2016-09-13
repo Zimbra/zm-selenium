@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.date;
@@ -45,12 +45,12 @@ public class GetMessage extends AjaxCommonTest {
 
 	}
 	
-	@Test(	description = "Receive a mail with a basic date",
+	@Test( description = "Receive a mail with a basic date",
 			groups = { "smoke" })
 	public void GetMessage_01() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		String date = "12/25/2014";
 		String body = "text " + date + " text";
 		
@@ -83,12 +83,12 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Test(	description = "Receive a mail with two dates in body",
+	@Test( description = "Receive a mail with two dates in body",
 			groups = { "functional" })
 	public void GetMessage_02() throws HarnessException {
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		String date1 = "12/25/2014";
 		String date2 = "1/1/2015";
 		String body = "date1: " + date1 + " date2: "+ date2;
@@ -125,12 +125,12 @@ public class GetMessage extends AjaxCommonTest {
 
 	
 
-	@Test(	description = "Validate the date zimlet matches valid dates",
+	@Test( description = "Validate the date zimlet matches valid dates",
 			groups = { "functional" })
 	public void GetMessage_03() throws HarnessException {
 
 		final String subject = "subject12912323015009";
-		final String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/date01/en_us_valid_dates.txt";
+		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/date01/en_us_valid_dates.txt";
 		
 		// Inject the example message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
@@ -163,12 +163,12 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Test(	description = "Validate the date zimlet does not match invalid dates",
+	@Test( description = "Validate the date zimlet does not match invalid dates",
 			groups = { "functional" })
 	public void GetMessage_04() throws HarnessException {
 
 		final String subject = "subject1293323025009";
-		final String mime = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/date01/en_us_invalid_dates.txt";
+		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/date01/en_us_invalid_dates.txt";
 		
 		// Inject the example message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
@@ -192,7 +192,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 	@Bugs(ids="86667")
-	@Test(	description = "Receive a mail with a date in subject(as Per bug this is invalid test case",
+	@Test( description = "Receive a mail with a date in subject(as Per bug this is invalid test case",
 			groups = { "deprecated" })
 	public void GetMessage_05() throws HarnessException {
 		
@@ -207,7 +207,7 @@ public class GetMessage extends AjaxCommonTest {
 					"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 					"<su>"+ subject +"</su>" +
 					"<mp ct='text/plain'>" +
-						"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 					"</mp>" +
 				"</m>" +
 			"</SendMsgRequest>");
@@ -230,7 +230,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Test(	description = "Receive a mail with a date string, such as today, tomorrow, last night, etc.",
+	@Test( description = "Receive a mail with a date string, such as today, tomorrow, last night, etc.",
 			groups = { "functional" })
 	public void GetMessage_11() throws HarnessException {
 		String newline = String.format("%n");
@@ -270,11 +270,11 @@ format7.rule = now week={weekord},{dayname}
 		List<String> values = Arrays.asList("today,tonight,this morning,tomorrow night,tomorrow morning,tomorrow,last night,yesterday morning,yesterday,this Monday,next Monday,Last Monday,first Monday in April,third Monday".split(","));
 		
 		// Create the message content, with one term on each line
-		StringBuffer content = new StringBuffer(ZimbraSeleniumProperties.getUniqueString()).append(newline);
+		StringBuffer content = new StringBuffer(ConfigProperties.getUniqueString()).append(newline);
 		for (String s : values) {
 			content.append(s).append(newline);
 		}
-		String subject = "subject " + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject " + ConfigProperties.getUniqueString();
 
 		// Send the message from AccountA to the ZWC user
 		ZimbraAccount.AccountA().soapSend(

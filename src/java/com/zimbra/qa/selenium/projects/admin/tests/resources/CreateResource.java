@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.tests.resources;
@@ -45,7 +45,7 @@ public class CreateResource extends AdminCommonTest {
 	 * 2. Verify resource is created using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Create a basic resource",
+	@Test( description = "Create a basic resource",
 			groups = { "obsolete" })
 			public void CreateResource_01() throws HarnessException {
 
@@ -79,7 +79,7 @@ public class CreateResource extends AdminCommonTest {
 	 * 2. Verify resource is created using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Create a basic resource using Manage Accounts --> Resources --> Gear box --> New",
+	@Test( description = "Create a basic resource using Manage Accounts --> Resources --> Gear box --> New",
 			groups = { "sanity" })
 			public void CreateResource_02() throws HarnessException {
 
@@ -113,7 +113,7 @@ public class CreateResource extends AdminCommonTest {
 	 * 2. Verify resource is created using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Create a basic Location resource",
+	@Test( description = "Create a basic Location resource",
 			groups = { "sanity" })
 			public void CreateResource_03() throws HarnessException {
 
@@ -148,7 +148,7 @@ public class CreateResource extends AdminCommonTest {
 	 * 2. Verify resource is created using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Create a basic Equipment resource",
+	@Test( description = "Create a basic Equipment resource",
 			groups = { "sanity" })
 			public void CreateResource_04() throws HarnessException {
 

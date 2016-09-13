@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversations;
@@ -33,13 +33,13 @@ public class DragAndDropConversation extends PrefGroupMailByConversationTest {
 	
 	}
 	
-	@Test(	description = "Drag and Drop a conversation",
+	@Test( description = "Drag and Drop a conversation",
 			groups = { "smoke" })
 	public void DragAndDropConversation01() throws HarnessException {
 		
 		// Create a subfolder
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -48,9 +48,9 @@ public class DragAndDropConversation extends PrefGroupMailByConversationTest {
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String content1 = "contentA" + ZimbraSeleniumProperties.getUniqueString();
-		String content2 = "contentB" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String content1 = "contentA" + ConfigProperties.getUniqueString();
+		String content2 = "contentB" + ConfigProperties.getUniqueString();
 		
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -116,14 +116,14 @@ public class DragAndDropConversation extends PrefGroupMailByConversationTest {
 		
 	}
 
-	@Test(	description = "Drag and Drop a conversation - verify sent messages are not moved",
+	@Test( description = "Drag and Drop a conversation - verify sent messages are not moved",
 			groups = { "functional" })
 	public void DragAndDropConversation02() throws HarnessException {
 		
 		// Create a subfolder
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Sent);
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -132,9 +132,9 @@ public class DragAndDropConversation extends PrefGroupMailByConversationTest {
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String content1 = "contentA" + ZimbraSeleniumProperties.getUniqueString();
-		String content2 = "contentB" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String content1 = "contentA" + ConfigProperties.getUniqueString();
+		String content2 = "contentB" + ConfigProperties.getUniqueString();
 		
 		// Send a message from A -> user
 		ZimbraAccount.AccountA().soapSend(
@@ -211,14 +211,14 @@ public class DragAndDropConversation extends PrefGroupMailByConversationTest {
 		
 	}
 	
-	@Test(	description = "Drag and Drop a conversation - verify trashed messages are not moved",
+	@Test( description = "Drag and Drop a conversation - verify trashed messages are not moved",
 			groups = { "functional" })
 	public void DragAndDropConversation03() throws HarnessException {
 		
 		// Create a subfolder
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -227,9 +227,9 @@ public class DragAndDropConversation extends PrefGroupMailByConversationTest {
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String content1 = "contentA" + ZimbraSeleniumProperties.getUniqueString();
-		String content2 = "contentB" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String content1 = "contentA" + ConfigProperties.getUniqueString();
+		String content2 = "contentB" + ConfigProperties.getUniqueString();
 		
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.personas;
@@ -31,7 +31,7 @@ public class FromExternalPOP extends PrefGroupMailByMessageTest {
 		logger.info("New "+ FromExternalPOP.class.getCanonicalName());
 	}
 	
-	@Test(	description = "Compose message from - External POP",
+	@Test( description = "Compose message from - External POP",
 			groups = { "smoke" })
 	
 	public void FromExternalPOP_01() throws HarnessException {
@@ -42,7 +42,7 @@ public class FromExternalPOP extends PrefGroupMailByMessageTest {
 		external.authenticate();
 
 		// Create the folder to put the data source
-		String foldername = "external" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "external" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -53,10 +53,10 @@ public class FromExternalPOP extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
 		
 		// Create the data source
-		String datasourcename = "datasource" + ZimbraSeleniumProperties.getUniqueString();
-		String datasourceHost = ZimbraSeleniumProperties.getStringProperty("server.host");
-		String datasourcePopPort = ZimbraSeleniumProperties.getStringProperty("server.pop.port");
-		String datasourcePopType = ZimbraSeleniumProperties.getStringProperty("server.pop.type");
+		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
+		String datasourceHost = ConfigProperties.getStringProperty("server.host");
+		String datasourcePopPort = ConfigProperties.getStringProperty("server.pop.port");
+		String datasourcePopType = ConfigProperties.getStringProperty("server.pop.type");
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
@@ -70,7 +70,7 @@ public class FromExternalPOP extends PrefGroupMailByMessageTest {
 		startingPage.zNavigateTo();
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -80,7 +80,7 @@ public class FromExternalPOP extends PrefGroupMailByMessageTest {
 		mailform.zFillField(Field.From, external.EmailAddress);
 		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, "content" + ZimbraSeleniumProperties.getUniqueString());
+		mailform.zFillField(Field.Body, "content" + ConfigProperties.getUniqueString());
 		mailform.zSubmit();
 		SleepUtil.sleepLong(); // search request doesn't find mail
 

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contactgroups;
@@ -42,7 +42,7 @@ public class MoveContactGroup extends AjaxCommonTest  {
 	}
 	
 	
-	@Test(	description = "Move a contact group to folder Emailed Contacts by click Move dropdown on toolbar",
+	@Test( description = "Move a contact group to folder Emailed Contacts by click Move dropdown on toolbar",
 			groups = { "smoke" })
 	public void MoveToEmailedContactsFromMoveDropdownOnToolbar() throws HarnessException {
 
@@ -51,7 +51,7 @@ public class MoveContactGroup extends AjaxCommonTest  {
 		
 		// Create the sub addressbook
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		String foldername = "ab"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "ab"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 					"<folder name='" + foldername +"' l='"+ root.getId() +"' view='contact'/>" +
@@ -89,7 +89,7 @@ public class MoveContactGroup extends AjaxCommonTest  {
 
 	
 
-	@Test(	description = "Move a contact group to folder Emailed Contacts by click Move on Context menu",
+	@Test( description = "Move a contact group to folder Emailed Contacts by click Move on Context menu",
 			groups = { "functional" })
 	public void MoveToEmailedContactsClickMoveOnContextmenu() throws HarnessException {
 
@@ -98,7 +98,7 @@ public class MoveContactGroup extends AjaxCommonTest  {
 		
 		// Create the sub addressbook
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		String foldername = "ab"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "ab"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 					"<folder name='" + foldername +"' l='"+ root.getId() +"' view='contact'/>" +
@@ -134,7 +134,7 @@ public class MoveContactGroup extends AjaxCommonTest  {
     
    	}
 
-	@Test(	description = "Move a contact group to folder Emailed Contacts with shortcut m",
+	@Test( description = "Move a contact group to folder Emailed Contacts with shortcut m",
 			groups = { "functional" })
 	public void MoveToEmailedContactsClickShortcutm() throws HarnessException {
 
@@ -143,7 +143,7 @@ public class MoveContactGroup extends AjaxCommonTest  {
 		
 		// Create the sub addressbook
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		String foldername = "ab"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "ab"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 					"<folder name='" + foldername +"' l='"+ root.getId() +"' view='contact'/>" +
@@ -186,7 +186,7 @@ public class MoveContactGroup extends AjaxCommonTest  {
    	}
 
 
-	@Test(	description = "Move a group to folder Emailed Contacts by click toolbar Edit then open folder dropdown",
+	@Test( description = "Move a group to folder Emailed Contacts by click toolbar Edit then open folder dropdown",
 			groups = { "functional" })
 	public void MoveToEmailedContactsClickToolbarEditThenFolderDropdown() throws HarnessException {
 
@@ -195,7 +195,7 @@ public class MoveContactGroup extends AjaxCommonTest  {
 		
 		// Create the sub addressbook
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		String foldername = "ab"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "ab"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 					"<folder name='" + foldername +"' l='"+ root.getId() +"' view='contact'/>" +

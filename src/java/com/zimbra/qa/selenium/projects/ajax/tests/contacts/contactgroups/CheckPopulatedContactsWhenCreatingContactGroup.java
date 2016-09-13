@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contactgroups;
@@ -39,14 +39,14 @@ public class CheckPopulatedContactsWhenCreatingContactGroup extends AjaxCommonTe
 	}
 	
 	@Bugs(ids = "65606,60652")
-	@Test(	description = "Contacts are not populated while creating a new contact group",
+	@Test( description = "Contacts are not populated while creating a new contact group",
 			groups = { "functional" })
 	
 	public void CheckPopulatedContactsWhenCreatingContactGroup_01() throws HarnessException {
 		
 		//-- Data
 		
-		String groupname = "group" + ZimbraSeleniumProperties.getUniqueString();
+		String groupname = "group" + ConfigProperties.getUniqueString();
 		
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());

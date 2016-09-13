@@ -1,3 +1,21 @@
+/*
+ * ***** BEGIN LICENSE BLOCK *****
+ *
+ * Zimbra Collaboration Suite Server
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ *
+ * ***** END LICENSE BLOCK *****
+ */
 package com.zimbra.qa.selenium.projects.touch.tests.mail.mail.conversation.messageaction;
 
 import java.awt.AWTException;
@@ -17,12 +35,12 @@ public class MarkNotSpamMessage extends PrefGroupMailByConversationTest{
 	public MarkNotSpamMessage() {
 		logger.info("New "+ MarkNotSpamMessage.class.getCanonicalName());
 	}
-	@Test(	description = "Mark message as not spam, from option menu",
+	@Test( description = "Mark message as not spam, from option menu",
 			groups = { "smoke" })
 
 	public void MarkNotSpamMessage_01() throws HarnessException, AWTException {
 
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
@@ -31,7 +49,7 @@ public class MarkNotSpamMessage extends PrefGroupMailByConversationTest{
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-						"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 						"</m>" +
 				"</SendMsgRequest>");

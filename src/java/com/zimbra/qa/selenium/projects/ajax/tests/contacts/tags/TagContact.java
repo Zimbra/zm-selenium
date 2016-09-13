@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.tags;
@@ -37,28 +37,26 @@ public class TagContact extends  ContactsPrefShowSelectionCheckbox  {
 		
 	}
 	
-	/**
-	 * @throws HarnessException
-	 */
+
 	@BeforeClass( groups = { "always" } )
 	public void TagContactBeforeClass() throws HarnessException {
 		logger.info("TagContactBeforeClass: start");
-		
-		// Rest the ZWC user
 		ZimbraAccount.ResetAccountZWC();
-		
 		logger.info("TagContactBeforeClass: finish");
 	}
 	
-	@Test(	description = "Tag a contact, click pulldown menu Tag->New Tag",
+	@Test( description = "Tag a contact, click pulldown menu Tag->New Tag",
 			groups = { "smoke" })
 	public void ClickPulldownMenuTagNewTag() throws HarnessException {
 		
-		
+		// Work around due to duplicate dialog ids
+		app.zPageMain.sRefresh();
+		app.zPageContacts.zNavigateTo();
+				
 		//-- Data
 		
 		// Tag Name
-		String tagName = "tag"+ ZimbraSeleniumProperties.getUniqueString();
+		String tagName = "tag"+ ConfigProperties.getUniqueString();
 
 		// Create a contact via Soap then select
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
@@ -92,7 +90,7 @@ public class TagContact extends  ContactsPrefShowSelectionCheckbox  {
 		
    	}
 	
-	@Test(	description = "Right click then click Tag Contact->New Tag",
+	@Test( description = "Right click then click Tag Contact->New Tag",
 			groups = { "smoke" })	
 	public void ClickContextMenuTagContactNewTag() throws HarnessException {
 		
@@ -100,7 +98,7 @@ public class TagContact extends  ContactsPrefShowSelectionCheckbox  {
 		//-- Data
 		
 		// Tag Name
-		String tagName = "tag"+ ZimbraSeleniumProperties.getUniqueString();
+		String tagName = "tag"+ ConfigProperties.getUniqueString();
 
 		// Create a contact via Soap then select
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
@@ -136,7 +134,7 @@ public class TagContact extends  ContactsPrefShowSelectionCheckbox  {
 
 	}
 
-	@Test(	description = "Right click then click Tag Contact->a tag name",
+	@Test( description = "Right click then click Tag Contact->a tag name",
 			groups = { "functional" })	
 	public void ClickContextMenuTagContactExistingTag() throws HarnessException {
 		
@@ -176,7 +174,7 @@ public class TagContact extends  ContactsPrefShowSelectionCheckbox  {
 		
 	}
 
-	@Test(	description = "click pulldown menu Tag->A tag name",
+	@Test( description = "click pulldown menu Tag->A tag name",
 			groups = { "smoke" })	
 	public void ClickPulldownMenuTagExistingTag() throws HarnessException {
 		
@@ -216,7 +214,7 @@ public class TagContact extends  ContactsPrefShowSelectionCheckbox  {
 		
 	}
 
-	@Test(	description = "Double tag a contact ",
+	@Test( description = "Double tag a contact ",
 			groups = { "functional" })	
 	public void DoubleTag() throws HarnessException {
 		
@@ -260,7 +258,7 @@ public class TagContact extends  ContactsPrefShowSelectionCheckbox  {
 	}
 
 	
-	@Test(	description = "Tag a contact by dnd on an existing tag",
+	@Test( description = "Tag a contact by dnd on an existing tag",
 			groups = { "functional" })
 	public void DnDOnExistingTag() throws HarnessException {
 		

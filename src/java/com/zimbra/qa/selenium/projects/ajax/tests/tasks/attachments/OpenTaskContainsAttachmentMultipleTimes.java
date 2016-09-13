@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.attachments;
@@ -31,7 +31,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 public class OpenTaskContainsAttachmentMultipleTimes extends AjaxCommonTest {
@@ -48,18 +48,18 @@ public class OpenTaskContainsAttachmentMultipleTimes extends AjaxCommonTest {
 		}};
 	}
 	
-	@Bugs(	ids = "75283")
-	@Test(description = "Same attachment keeps on adding while opening same task multiple times", groups = { "smoke" })
+	@Bugs( ids = "75283")
+	@Test( description = "Same attachment keeps on adding while opening same task multiple times", groups = { "smoke" })
 	
 	public void OpenTaskContainsAttachmentMultipleTimes_01() throws HarnessException {
 
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
 
 		ZimbraAccount account = app.zGetActiveAccount();
 		FolderItem taskFolder = FolderItem.importFromSOAP(account,SystemFolder.Tasks);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/Files/Basic01/BasicExcel2007.xlsx";
+		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/Files/Basic01/BasicExcel2007.xlsx";
 		FileItem file = new FileItem(filePath);
 		String fileName = file.getName();
 
@@ -77,7 +77,7 @@ public class OpenTaskContainsAttachmentMultipleTimes extends AjaxCommonTest {
 				"</inv>" +
 				"<su>"+ subject +"</su>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"<attach aid='"+attachmentId+"'>"+
 				"</attach>"+

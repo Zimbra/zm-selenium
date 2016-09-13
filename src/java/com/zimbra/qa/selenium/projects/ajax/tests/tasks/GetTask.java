@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
@@ -48,14 +48,14 @@ public class GetTask extends AjaxCommonTest {
 
 	}
 	
-	@Test(	description = "View a simple task",
+	@Test( description = "View a simple task",
 			groups = { "smoke" })
 	public void GetTask_01() throws HarnessException {
 		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		
 		// Create a basic task to delete
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task"+ ConfigProperties.getUniqueString();
 				
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -67,7 +67,7 @@ public class GetTask extends AjaxCommonTest {
 			        	"</inv>" +
 			        	"<su>"+ subject +"</su>" +
 			        	"<mp ct='text/plain'>" +
-			        		"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+			        		"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 			        	"</mp>" +
 					"</m>" +
 				"</CreateTaskRequest>");
@@ -96,15 +96,15 @@ public class GetTask extends AjaxCommonTest {
 	
 	}
 	//@Bugs(ids="72236")
-	@Test(	description = "Verify Text Only Task that can display the body in the preview pane",
+	@Test( description = "Verify Text Only Task that can display the body in the preview pane",
 			groups = { "smoke" })
 	public void GetTask_02() throws HarnessException {
 		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		
 		// Create a basic task to delete
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
-		String content = "content"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task"+ ConfigProperties.getUniqueString();
+		String content = "content"+ ConfigProperties.getUniqueString();
 				
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -142,7 +142,7 @@ public class GetTask extends AjaxCommonTest {
 		
 	}
 
-	@Test(	description = "Verify Multipart/alternative (text and html) task that can be display the body in preview pane",
+	@Test( description = "Verify Multipart/alternative (text and html) task that can be display the body in preview pane",
 			groups = { "smoke" })
 			public void GetTask_03() throws HarnessException {
 
@@ -150,9 +150,9 @@ public class GetTask extends AjaxCommonTest {
 		
 
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String bodyText = "text" + ZimbraSeleniumProperties.getUniqueString();
-		String bodyHTML = "text<strong style=" + (char)34 + (char)34 + ">bold"+ ZimbraSeleniumProperties.getUniqueString() +"</strong>text";
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String bodyText = "text" + ConfigProperties.getUniqueString();
+		String bodyHTML = "text<strong style=" + (char)34 + (char)34 + ">bold"+ ConfigProperties.getUniqueString() +"</strong>text";
 		String contentHTML = XmlStringUtil.escapeXml(
 				"<html>" +
 				"<head></head>" +
@@ -210,19 +210,19 @@ public class GetTask extends AjaxCommonTest {
 	}
 
 	@Bugs(ids="72236")
-	@Test(	description = "Get a task with all fields - verify task contents",
+	@Test( description = "Get a task with all fields - verify task contents",
 			groups = { "smoke" })
 	public void GetTask_04() throws HarnessException {
 		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		
 		// Create a basic task to delete
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
-		String location = "location"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task"+ ConfigProperties.getUniqueString();
+		String location = "location"+ ConfigProperties.getUniqueString();
 		ZDate startDate    = new ZDate(2015, 1, 15, 12, 0, 0);
 		ZDate dueDate      = new ZDate(2015, 1, 17, 12, 0, 0);
 		ZDate reminderDate = new ZDate(2015, 1, 16, 12, 0, 0);
-		String content = "content"+ ZimbraSeleniumProperties.getUniqueString();
+		String content = "content"+ ConfigProperties.getUniqueString();
 				
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -276,15 +276,15 @@ public class GetTask extends AjaxCommonTest {
 	}
 
 
-	@Test(	description = "Click on task folder to receive any new tasks",
+	@Test( description = "Click on task folder to receive any new tasks",
 			groups = { "functional" })
 	public void GetTask_05() throws HarnessException {
 		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		
 		// Create a basic task to delete
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
-		String content = "content"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task"+ ConfigProperties.getUniqueString();
+		String content = "content"+ ConfigProperties.getUniqueString();
 				
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -336,17 +336,17 @@ public class GetTask extends AjaxCommonTest {
 	 * @throws HarnessException
 	 */
 	@Bugs(ids="63357")
-	@Test(	description = "Task list view fields (Percentage) are not updated after editing ",
+	@Test( description = "Task list view fields (Percentage) are not updated after editing ",
 			groups = { "smoke" })
 	public void GetTask_06() throws HarnessException {
 		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		
 		
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
-		String content = "content"+ ZimbraSeleniumProperties.getUniqueString();
-		String newsubject = "newtask"+ ZimbraSeleniumProperties.getUniqueString();
-		String newcontent = "content"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task"+ ConfigProperties.getUniqueString();
+		String content = "content"+ ConfigProperties.getUniqueString();
+		String newsubject = "newtask"+ ConfigProperties.getUniqueString();
+		String newcontent = "content"+ ConfigProperties.getUniqueString();
 		
 				
 		app.zGetActiveAccount().soapSend(
@@ -385,27 +385,14 @@ public class GetTask extends AjaxCommonTest {
 		
 		//Create new task through GUI 
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
+		SleepUtil.sleepVeryLong();
 		
-		//Reason:With "?dev=1&debug=0", Tinymce editor in HTML mode takes more time to load
-		//removing incompatible to webdriver refernece
-		//if(ClientSessionFactory.session().selenium().getEval("window.tinyMCE").equalsIgnoreCase("null")){
-			SleepUtil.sleepVeryLong();
-		//}else{
-		//	SleepUtil.sleepMedium();
-		//}
 		// Fill out the resulting form
 		taskNew.zFillField(com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew.Field.Subject, newsubject);
 		taskNew.zFillField(com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew.Field.Body, newcontent);
-				
-		/**
-		 * Purposefully  add this locator for this test case only
-		 * Does not find generic locator for save button, its keep on changing
-		 * css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='__SAVE_title'] doesn't working for updated task 
-		 */
-		
+
 		//Click Save
 		app.zPageTasks.zClickAt("css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')", "0,0");
-		
 		SleepUtil.sleepMedium();
 		
 		//Verify new task
@@ -429,15 +416,15 @@ public class GetTask extends AjaxCommonTest {
 	 */
 	@Bugs(ids="64681,72236")
 	
-	@Test(	description = "No refresh after task is marked complete in filter to-do list",
+	@Test( description = "No refresh after task is marked complete in filter to-do list",
 			groups = { "functional" })
 	public void GetTask_07() throws HarnessException {
 		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		
 		
-		String subject = "atask"+ ZimbraSeleniumProperties.getUniqueString();
-		String content = "content"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "atask"+ ConfigProperties.getUniqueString();
+		String content = "content"+ ConfigProperties.getUniqueString();
 		ZDate dueDate      = new ZDate(2015, 1, 17, 12, 0, 0);
 						
 		app.zGetActiveAccount().soapSend(
@@ -495,13 +482,13 @@ public class GetTask extends AjaxCommonTest {
 		}
 	
 	//@Bugs(ids="72236")
-	@Test(	description = "Verify Html Only Task that can display the html body in the preview pane",
+	@Test( description = "Verify Html Only Task that can display the html body in the preview pane",
 			groups = { "smoke" })
 	public void GetTask_08() throws HarnessException {
 		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String bodyHTML = "text<strong style=" + (char)34 + (char)34 + ">bold"+ ZimbraSeleniumProperties.getUniqueString() +"</strong>text";
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String bodyHTML = "text<strong style=" + (char)34 + (char)34 + ">bold"+ ConfigProperties.getUniqueString() +"</strong>text";
 		String contentHTML = XmlStringUtil.escapeXml(
 				"<html>" +
 				"<head></head>" +

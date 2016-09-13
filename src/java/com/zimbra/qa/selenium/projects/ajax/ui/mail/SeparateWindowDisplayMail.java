@@ -1,26 +1,25 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
- * 
+ *
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
 import java.util.*;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
@@ -39,6 +38,12 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 	public static class Locators {
 
 		public static final String zInlineImageAttachment = "css=img[data-mce-src^='cid']&&[data-mce-src$='@zimbra']";
+		public static final String zIncludeOriginalAsAttachmentMenuMail	= "css=td[id='zmi__COMPOSE-1_REPLY__INC_ATTACHMENT_title']:contains('Include Original As Attachment')";
+		public static final String zOptionsdropdown = "css=[id^=zb__COMPOSE][id$=__COMPOSE_OPTIONS_dropdown]";
+		public static final String FormatAsHTMLMenu = "css=div[id^='zm__COMPOSE'] div[id$='NEW_MESSAGE__FORMAT_HTML'] tr[id^='POPUP_zmi__COMPOSE']";
+		public static final String FormatAsPlainTextMenu = "css=div[id^='zm__COMPOSE'] div[id$='NEW_MESSAGE__FORMAT_TEXT'] tr[id^='POPUP_zmi__COMPOSE']";
+		public static final String zSaveDraftIconBtn	= "css=[id^=zb__COMPOSE][id$=__SAVE_DRAFT_title]";
+		public static final String zCancelIconBtn		= "css=[id^=zb__COMPOSE][id$=__CANCEL_title]";
 	}
 
 	public String ContainerLocator = "css=div[id='zv__MSG-1__MSG']";
@@ -82,7 +87,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 				locator = container + " tr[id$='_cc']"; // No bubbles
 			}
 
-		} else if ( field == Field.OnBehalfOf ) {		
+		} else if ( field == Field.OnBehalfOf ) {
 			locator = container + " span[id$='_obo_span'] span[class='addrBubble']>span";
 			//locator = container + " td[id$='_from']>span:nth-child(3)>span[class='addrBubble']";
 
@@ -164,17 +169,11 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 	}
 
 
-	/* (non-Javadoc)
-	 * @see framework.ui.AbsDialog#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/* (non-Javadoc)
-	 * @see com.zimbra.qa.selenium.framework.ui.AbsPage#zWaitForActive()
-	 */
 	public void zWaitForActive() throws HarnessException {
 		super.zWaitForActive(PageLoadDelay);
 
@@ -189,9 +188,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			}
 
 			SleepUtil.sleep(1000);
-
 		}
-
 		throw new HarnessException("Page never became active!");
 
 	}
@@ -209,7 +206,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		//
 		String container = "css=div[id^='ztb__MSG']";
 		String locator = null;			// If set, this will be clicked
-		String containerToolbar = "css=div[id^='ztb__MSG']";		
+		String containerToolbar = "css=div[id^='ztb__MSG']";
 		AbsPage page = null;	// If set, this page will be returned
 
 		// Based on the button specified, take the appropriate action(s)
@@ -229,6 +226,11 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 			// FALL THROUGH
 
+		} else if ( button == Button.B_SAVE_DRAFT ) {
+
+			locator = Locators.zSaveDraftIconBtn;
+			page = this;
+
 		} else if ( button == Button.B_REPLY ) {
 
 			locator = container + " div[id$='__REPLY'] td[id$='_title']";
@@ -236,6 +238,17 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			page = null;
 
 			// FALL THROUGH
+
+		} else if ( button == Button.B_CANCEL ) {
+
+			locator = Locators.zCancelIconBtn;
+			page = new DialogWarning(DialogWarning.DialogWarningID.SaveCurrentMessageAsDraft, this.MyApplication, ((AppAjaxClient)this.MyApplication).zPageMail);
+			this.sClickAt(locator, "0,0");
+
+			this.zWaitForBusyOverlay();
+
+			// Return the page, if specified
+			return (page);
 
 		} else if ( button == Button.B_REPLYALL ) {
 
@@ -273,7 +286,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			locator = containerToolbar + " div[id$='__ACTIONS_MENU'] td[id$='_dropdown']>div";
 			page = null;
 
-		}else if ( button == Button.B_SEND ) {
+		} else if ( button == Button.B_SEND ) {
 
 			if (sIsElementPresent("css=div[id^='ztb__COMPOSE-2'] div[id*='SEND'] td[id$='_title']")) {
 				locator = "css=div[id^='ztb__COMPOSE-2'] div[id*='SEND'] td[id$='_title']";
@@ -296,7 +309,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			page = null;
 
 			return(page);
-		}else {
+		} else {
 
 			throw new HarnessException("no logic defined for button "+ button);
 		}
@@ -389,35 +402,35 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 				// FALL THROUGH
 
-			}else if (option == Button.O_CREATE_TASK) {
+			} else if (option == Button.O_CREATE_TASK) {
 
 				optionLocator = containerActionMenu + " div[id$='CREATE_TASK'] td[id$='_title']";
 				page = null;
 
 				// FALL THROUGH
 
-			}else if (option == Button.O_CREATE_APPOINTMENT) {
+			} else if (option == Button.O_CREATE_APPOINTMENT) {
 
 				optionLocator = containerActionMenu + " div[id$='CREATE_APPT'] td[id$='_title']";
 				page = null;
 
 				// FALL THROUGH O_NEW_FILTER
 
-			}else if (option == Button.O_NEW_FILTER) {
+			} else if (option == Button.O_NEW_FILTER) {
 
 				optionLocator = containerActionMenu + " div[id$='ADD_FILTER_RULE'] td[id$='_title']";
 				page = null;
 
 				// FALL THROUGH O_NEW_FILTER
 
-			}else if (option == Button.B_FLAG_MESSAGE) {
+			} else if (option == Button.B_FLAG_MESSAGE) {
 
 				optionLocator = containerActionMenu + " div[id$='FLAG'] td[id$='_title']";
 				page = null;
 
 				// FALL THROUGH O_NEW_FILTER
 
-			}else if (option == Button.B_UNFLAG_MESSAGE) {
+			} else if (option == Button.B_UNFLAG_MESSAGE) {
 
 				optionLocator = containerActionMenu + " div[id$='UNFLAG'] td[id$='_title']";
 				page = null;
@@ -451,37 +464,37 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
 
+		} else if ( pulldown == Button.B_OPTIONS ) {
+
+			if (option == Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT) {
+
+				pulldownLocator = Locators.zOptionsdropdown;
+				optionLocator = Locators.zIncludeOriginalAsAttachmentMenuMail;
+
+				page = null;
+
+			} else if (option == Button.O_FORMAT_AS_HTML) {
+
+			pulldownLocator = Locators.zOptionsdropdown;
+			optionLocator = Locators.FormatAsHTMLMenu;
+
+			page = null;
+
+			} else if(option == Button.O_FORMAT_AS_PLAIN_TEXT) {
+
+				pulldownLocator = Locators.zOptionsdropdown;
+				optionLocator = Locators.FormatAsPlainTextMenu;
+			}
 		} else {
 
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 
 		}
 
-
-		if ( ZimbraSeleniumProperties.isWebDriver() ) {
-
-			// Webdriver
-			List<String> locators = new ArrayList<String>();
-			locators.add(pulldownLocator);
-			locators.add(optionLocator);
-
-			// Click on:
-			// 1. pulldownLocator
-			// 2. optionLocator
-			//
-			this.sClick(locators);
-
-		} else {
-
-			// Selenium
-			if (pulldownLocator != null) {
-				this.zClickAt(pulldownLocator,"");
-				if (optionLocator != null) {
-					this.zClickAt(optionLocator,"");
-				}
-
-			}
-		}
+		List<String> locators = new ArrayList<String>();
+		locators.add(pulldownLocator);
+		locators.add(optionLocator);
+		this.sClick(locators);
 
 		if ( page != null ) {
 			page.zWaitForActive();
@@ -492,6 +505,62 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 	}
 
 
+	public void zFillField(Field field, String value) throws HarnessException {
+		logger.info(myPageName() + "zFillField("+ field +", "+ value +")");
+
+		tracer.trace("Set "+ field +" to "+ value);
+
+		String locator = null;
+
+		if (field == Field.Body) {
+
+			SleepUtil.sleepLong();
+
+			int frames = sGetCssCountNewWindow("css=iframe");
+
+			logger.debug("Body: # of frames: " + frames);
+
+				if (frames == 0) {
+
+					// //
+					// Text compose
+					// //
+
+					sTypeNewWindow("css=textarea[class='ZmHtmlEditorTextArea']", value);
+
+					return;
+
+				} else if (frames == 1) {
+
+					// //
+					// HTML compose
+					// //
+					try {
+
+						sSelectFrame("index=0"); // iframe index is 0 based
+
+						locator = "css=body[id='tinymce']";
+
+						if (!sIsElementPresent(locator))
+							throw new HarnessException("Unable to locate compose body");
+
+						sFocus(locator);
+						sClick(locator);
+						// this.sType(locator, value);
+						zTypeCharacters(value);
+
+					} finally {
+						this.sSelectFrame("relative=top");
+					}
+
+					return;
+
+				} else {
+					throw new HarnessException("Compose //iframe count was " + frames);
+				}
+			}
+
+	}
 
 
 	public AbsPage zToolbarPressPulldown(Button button, Object dynamic) throws HarnessException {
@@ -513,12 +582,9 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		String optionLocator = null; // If set, this will be clicked
 		AbsPage page = null; // If set, this page will be returned
 
-		// Based on the button specified, take the appropriate action(s)
-		//
-
 		if ( button == Button.B_TAG ) {
 
-			if ( !(dynamic instanceof String) ) 
+			if ( !(dynamic instanceof String) )
 				throw new HarnessException("if button = B_TAG, then dynamic should be a tag name");
 			String tagname = (String)dynamic;
 
@@ -526,24 +592,15 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			optionLocator = "css=div[id$='__TAG_MENU|MENU'] td[id$='_title']:contains("+ tagname +")";
 			page = null;
 
-			// FALL THROUGH
-
 		} else {
-
 			throw new HarnessException("no logic defined for button "+ button);
-
 		}
 
 		if (pulldownLocator != null) {
-
 			this.zClickAt(pulldownLocator,"");
-
 			if (optionLocator != null) {
-
 				this.zClickAt(optionLocator,"");
-
 			}
-
 		}
 
 		return (page);
@@ -561,23 +618,20 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		AbsPage page = null;
 
 		if (shortcut== Shortcut.S_ESCAPE) {
-
 			// Close the window
 			zKeyDown("27");
 			return page;
-
 		}
-
 
 		zTypeCharacters(shortcut.getKeys());
 
-		return (page);	
+		return (page);
 
 	}
 
 	public boolean zHasShareADButtons() throws HarnessException {
-		// Haven't fully baked this method.  
-		// Maybe it works.  
+		// Haven't fully baked this method.
+		// Maybe it works.
 		// Maybe it needs to check "visible" and/or x/y/z coordinates
 
 		List<String> locators = Arrays.asList(
@@ -728,7 +782,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			}
 			page = null;
 
-			//Explicitly use zClickAt 
+			//Explicitly use zClickAt
 			this.zClickAt(locator, "0,0");
 			return(page);
 

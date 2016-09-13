@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
@@ -22,7 +22,6 @@ package com.zimbra.qa.selenium.projects.admin.ui;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
@@ -30,14 +29,8 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
 
-
-/**
- * @author Matt Rhoades
- *
- */
 public class PageManageDomains extends AbsTab {
 
 	public static class Locators {
@@ -56,9 +49,11 @@ public class PageManageDomains extends AbsTab {
 		public static final String DOMAIN_EDIT_ACL="css=div[id^='zti__AppAdmin__CONFIGURATION__DOMAINS'] div[class='ZTreeItemTextCell']:contains('ACL')";
 		public static final String DOMAIN_ACCOUNTS_LIMITS="css=div[id^='zti__AppAdmin__CONFIGURATION__DOMAINS'] div[class='ZTreeItemTextCell']:contains('Account Limits')";
 		public static final String DOMAIN_ACCOUNTS_LIMITS_ADD = "css=div[id$='account_form_account_limits_tab'] td[class='ZWidgetTitle']:contains('Add')";
-		public static final String DOMAIN_ACCOUNTS_LIMITS_COS_NAME = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input";
-		public static final String DOMAIN_ACCOUNTS_LIMITS_COS_LIMIT = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input";
-		public static final String DOMAIN_ACCOUNTS_LIMITS_AT_COS_OK = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input";
+		public static final String DOMAIN_ACCOUNTS_LIMITS_COS_NAME = "css=table[id='zdlgv__UNDEFINE1_group_table']  tbody tr td[id='zdlgv__UNDEFINE1_cos___container'] input";
+		public static final String DOMAIN_ACCOUNTS_LIMITS_COS_LIMIT = "css=table[id='zdlgv__UNDEFINE1_group_table'] tbody tr td[id='zdlgv__UNDEFINE1_limits___container'] input";
+		public static final String MAXIMUM_ACCOUNTS_FOR_DOMAIN = "css=input[id='ztabv__DOAMIN_EDIT_zimbraDomainMaxAccounts']";
+		public static final String DOMAIN_ACCOUNTS_LIMITS_AT_COS_OK = "css=td[id^='zdlg__UNDEFINE']:contains('OK')";
+		
 		
 	}
 
@@ -137,12 +132,8 @@ public class PageManageDomains extends AbsTab {
 		sIsElementPresent(Locators.DOMAINS);
 		SleepUtil.sleepLong();
 		zClickAt(Locators.DOMAINS, "");
-
-		if(ZimbraSeleniumProperties.isWebDriver())
-			SleepUtil.sleepMedium();
-		else
-			zWaitForActive();
-
+		SleepUtil.sleepMedium();
+		zWaitForActive();
 	}
 
 	@Override
@@ -446,7 +437,6 @@ public class PageManageDomains extends AbsTab {
 
 
 		// Default behavior variables
-		cos_name = null; // If set, this will be expanded
 		AbsPage page = null; // If set, this page will be returned
 
 		//Click on accounts limit tab
@@ -455,12 +445,21 @@ public class PageManageDomains extends AbsTab {
 		//Click on Add button
 		this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS_ADD,"");
 		
+		SleepUtil.sleepLong();
+		
 		//Enter COS name
-		this.sType(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_NAME, cos_name);
+		if ( this.sIsElementPresent(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_NAME) ) {
+			this.sFocus(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_NAME);
+			this.sType(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_NAME, cos_name);	
+		}	
 		
 		//Enter Limit
-		this.sType(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_LIMIT, limit);
-	
+		if ( this.sIsElementPresent(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_LIMIT) ) {
+			this.sFocus(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_LIMIT);
+			this.sType(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_LIMIT, limit);
+		
+		}
+		
 		//Click on OK button
 		this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS_AT_COS_OK,"");
 		
@@ -468,5 +467,113 @@ public class PageManageDomains extends AbsTab {
 		return (page);
 
 	}
+	
+	public AbsPage zSetAccountLimitOnDomain(String limit) throws HarnessException {
+		logger.info(myPageName() + " zSetAccountLimitPerCos("+ limit +")");
+
+		tracer.trace("Enter cos name and limit "+ limit);
+
+
+		// Default behavior variables
+		AbsPage page = null; // If set, this page will be returned
+		
+
+		//Click on accounts limit tab
+		this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS,"");
+		
+		SleepUtil.sleepMedium();
+			
+		//Enter Limit
+		if ( this.sIsElementPresent(Locators.MAXIMUM_ACCOUNTS_FOR_DOMAIN) ) {
+			this.sFocus(Locators.MAXIMUM_ACCOUNTS_FOR_DOMAIN);
+			this.sType(Locators.MAXIMUM_ACCOUNTS_FOR_DOMAIN, limit);
+		
+		}
+		
+		// Return the specified page, or null if not set
+		return (page);
+
+	}
+	
+	public AbsPage zSetAccountLimit(String limit) throws HarnessException {
+		logger.info(myPageName() + " zSetAccountLimitPerCos("+ limit +")");
+
+		tracer.trace("Enter cos name and limit "+ limit);
+
+
+		// Default behavior variables
+		AbsPage page = null; // If set, this page will be returned
+
+		//Click on accounts limit tab
+		this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS,"");
+		
+		SleepUtil.sleepMedium();
+			
+		//Enter Limit
+		if ( this.sIsElementPresent(Locators.MAXIMUM_ACCOUNTS_FOR_DOMAIN) ) {
+			this.sFocus(Locators.MAXIMUM_ACCOUNTS_FOR_DOMAIN);
+			this.sType(Locators.MAXIMUM_ACCOUNTS_FOR_DOMAIN, limit);
+		
+		}
+		
+		// Return the specified page, or null if not set
+		return (page);
+
+	}
+	
+	
+	/**
+	 * Press the toolbar button
+	 * @param button
+	 * @return
+	 * @throws HarnessException
+	 */
+	public AbsPage zToolbarPressButton(Button button, String cos_name,String limit) throws HarnessException {
+		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+		
+		tracer.trace("Click button "+ button);
+
+		// Fallthrough objects
+		AbsPage page = null;
+		
+		//Click on accounts limit tab
+		this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS,"");
+		
+		if ( button == Button.B_ACCOUNTS_LIMIT_PER_DOMAIN ) {
+			
+			this.sFocus(Locators.MAXIMUM_ACCOUNTS_FOR_DOMAIN);
+			this.sType(Locators.MAXIMUM_ACCOUNTS_FOR_DOMAIN, limit);
+			page = this;
+		
+		} else if ( button == Button.B_ACCOUNTS_LIMIT_PER_COS ) {
+
+			//Click on Add button
+			this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS_ADD,"");
+			
+			SleepUtil.sleepLong();
+			
+			//Enter COS name
+			if ( this.sIsElementPresent(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_NAME) ) {
+				this.sFocus(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_NAME);
+				this.sType(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_NAME, cos_name);	
+			}	
+			
+			//Enter Limit
+			if ( this.sIsElementPresent(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_LIMIT) ) {
+				this.sFocus(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_LIMIT);
+				this.sType(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_LIMIT, limit);
+				
+				//Click on OK button
+				this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS_AT_COS_OK,"");
+		} 
+			page = this;
+		}
+		else {
+			throw new HarnessException("no logic defined for button "+ button);
+		}
+
+		return page;
+	}
 
 }
+

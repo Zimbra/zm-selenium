@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
@@ -33,18 +33,18 @@ public class PageMain extends AbsTab {
 
 	public static class Locators {
 				
-		public static final String zLogoffPulldown		= "css=td[id='skin_dropMenu'] div[class='DwtLinkButtonDropDownArrow']";
-		public static final String zLogoffOption		= "css=tr[id='POPUP_logOff'] td[id$='_title']";
+		public static final String zLogoffPulldown = "css=td[id='skin_dropMenu'] div[class='DwtLinkButtonDropDownArrow']";
+		public static final String zLogoffOption = "css=tr[id='POPUP_logOff'] td[id$='_title']";
 		
-		public static final String zAppbarMail			= "id=zb__App__Mail_title";
-		public static final String zAppbarContact		= "id=zb__App__Contacts_title";
-		public static final String zAppbarCal			= "id=zb__App__Calendar_title";
-		public static final String zAppbarTasks			= "id=zb__App__Tasks_title";
-		public static final String zAppbarBriefcase		= "css=td[id=zb__App__Briefcase_title]";
-		public static final String zAppbarPreferences	= "id=zb__App__Options_title";
+		public static final String zMailApp	= "id=zb__App__Mail_title";
+		public static final String zContactsApp = "id=zb__App__Contacts_title";
+		public static final String zCalendarApp = "id=zb__App__Calendar_title";
+		public static final String zTasksApp = "id=zb__App__Tasks_title";
+		public static final String zBriefcaseApp = "css=td[id=zb__App__Briefcase_title]";
+		public static final String zPreferencesTab	= "id=zb__App__Options_title";
 
-		public static final String zAppbarSocialLocator	= 		"css=div[id^='zb__App__com_zimbra_social_'] td[id$='_title']";
-		public static final String ButtonRefreshLocatorCSS = "css=div[id='CHECK_MAIL'] td[id='CHECK_MAIL_left_icon']>div";
+		public static final String zSocialTab	= "css=div[id^='zb__App__com_zimbra_social_'] td[id$='_title']";
+		public static final String zRefreshButton = "css=div[id='CHECK_MAIL'] td[id='CHECK_MAIL_left_icon']>div";
 	}
 	
 	public PageMain(AbsApplication application) {
@@ -112,7 +112,7 @@ public class PageMain extends AbsTab {
 			return (false);
 		}
 				
-		if (ZimbraSeleniumProperties.getStringProperty("server.host").contains("local") == true) {
+		if (ConfigProperties.getStringProperty("server.host").contains("local") == true) {
 			
 			boolean loaded = zIsTagsPanelLoaded();
 			if ( !loaded) {
@@ -143,7 +143,6 @@ public class PageMain extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if ( zIsActive() ) {
-			// This page is already active
 			return;
 		}
 
@@ -152,7 +151,7 @@ public class PageMain extends AbsTab {
 		}
 		((AppAjaxClient)MyApplication).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 		
-		zWaitForActive(120000);
+		zWaitForActive(100000);
 		
 	}
 
@@ -167,36 +166,15 @@ public class PageMain extends AbsTab {
 
 		zNavigateTo();
 
-		if (ZimbraSeleniumProperties.isWebDriver()) {
-			getElement("css=div[id=DwtLinkButtonDropDownArrowTd").click();
+		SleepUtil.sleepMedium();
+		getElement("css=td[class='DwtLinkButtonDropDownArrowTd']").click();
 			
-		} else {
-		
-			if ( !sIsElementPresent(Locators.zLogoffPulldown) ) {
-				throw new HarnessException("The logoff button is not present " + Locators.zLogoffPulldown);
-			}
-			zClickAt(Locators.zLogoffPulldown, "0,0");
-		}
-		
+		this.zWaitForBusyOverlay();
+		getElement("css=tr[id=POPUP_logOff]>td[id=logOff_title]").click();
 		this.zWaitForBusyOverlay();
 		
-		if (ZimbraSeleniumProperties.isWebDriver()) {
-			getElement("css=tr[id=POPUP_logOff]>td[id=logOff_title]").click();
-			
-		} else {
-			if ( !sIsElementPresent(Locators.zLogoffOption) ) {
-				throw new HarnessException("The logoff button is not present " + Locators.zLogoffOption);
-			}
-
-			zClick(Locators.zLogoffOption);
-		}
-		
-		this.zWaitForBusyOverlay();
-
 		((AppAjaxClient)MyApplication).zPageLogin.zWaitForActive();
-
 		((AppAjaxClient)MyApplication).zSetActiveAcount(null);
-
 	}
 
 	@Override
@@ -211,7 +189,7 @@ public class PageMain extends AbsTab {
 
 		if (button == Button.B_REFRESH) {
 			
-			locator = Locators.ButtonRefreshLocatorCSS;
+			locator = Locators.zRefreshButton;
 			page = null;
 			
 		} else {
@@ -248,6 +226,8 @@ public class PageMain extends AbsTab {
 		String optionLocator = null; // If set, this will be clicked
 		AbsPage page = null; // If set, this page will be returned
 		
+		SleepUtil.sleepMedium();
+		
 		if (pulldown == Button.B_ACCOUNT) {
 			
 			if (option == Button.O_PRODUCT_HELP) {
@@ -268,67 +248,49 @@ public class PageMain extends AbsTab {
 				
 			} else if (option == Button.O_ABOUT) {
 
-					pulldownLocator = "css=div#skin_outer td#skin_dropMenu div.DwtLinkButtonDropDownArrow";
-					optionLocator = "css=div[id^='POPUP'] div[id='about'] td[id$='_title']";
-					page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, this.MyApplication, this);
-
-					// FALL THROUGH
+				pulldownLocator = "css=div#skin_outer td#skin_dropMenu div.DwtLinkButtonDropDownArrow";
+				optionLocator = "css=div[id^='POPUP'] div[id='about'] td[id$='_title']";
+				page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, this.MyApplication, this);
 					
-			}else if (option == Button.O_SHORTCUT) {
+			} else if (option == Button.O_SHORTCUT) {
 
 				pulldownLocator = "css=div#skin_outer td#skin_dropMenu div.DwtLinkButtonDropDownArrow";
 				optionLocator = "css=div[id^='POPUP'] div[id='showCurrentShortcuts'] td[id$='_title']";
 				page = new DialogInformational(DialogInformational.DialogWarningID.ShortcutDialog, this.MyApplication, this);
-
-				// FALL THROUGH
 				
 		} else {
 				
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
 			
-
 		} else {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
-
-			this.zClickAt(pulldownLocator, "0,0");
-
-			// If the app is busy, wait for it to become active
+			this.sClickAt(pulldownLocator, "0,0");
 			zWaitForBusyOverlay();
 
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
-
-				this.zClickAt(optionLocator, "0,0");
-
-				// If the app is busy, wait for it to become active
+				this.sClickAt(optionLocator, "0,0");
 				zWaitForBusyOverlay();
 				
 			}
 
 		}
 		
-		// If we click on pulldown/option and the page is specified, then
-		// wait for the page to go active
 		if (page != null) {
-			
 			page.zWaitForActive();
-			
 		}
 
-		// Return the specified page, or null if not set
 		return (page);
 
 	}

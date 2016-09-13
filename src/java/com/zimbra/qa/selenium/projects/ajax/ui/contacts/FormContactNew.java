@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.contacts;
@@ -64,7 +64,8 @@ public class FormContactNew extends AbsForm {
 		public static String zPostalCode1EditField = "css=div#EDITCONTACTFORM_ADDRESS_0_ZIP input";
 		public static String zCountry1EditField = "css=div#EDITCONTACTFORM_ADDRESS_0_COUNTRY input";
 		public static String zURL1EditField = "css=div#EDITCONTACTFORM_URL_0 input";
-		public static String zOther1EditField = "css=div#EDITCONTACTFORM_OTHER_0 input";
+		public static String zOther1EditField = "css=div[id='editcontactform_OTHER_0'] input";
+		public static String zOther2EditField = "css=div[id='editcontactform_OTHER_1'] input";
 		public static String zNotesEditField = "css=textarea#EDITCONTACTFORM_NOTES_input";
         public static String zLocation = "css=td#EDITCONTACTFORM_FOLDER_title";
 
@@ -79,6 +80,15 @@ public class FormContactNew extends AbsForm {
         public static String zFileAsCompanyLastCommaFirst = "td.ZWidgetTitle:contains('Company (Last, First)')";
         public static String zFileAsCompanyFirstLast = "td.ZWidgetTitle:contains('Company (First Last)')";
        
+        //Other field locators
+        public static String zAddNewOtherRowBtn = "css=div[id$='_OTHER'] div[id$='_add'] td[id$='_add_left_icon'] div[class='ImgAdd']";
+        public static String zOther1DatePickerPullDown = "css=div[id$='_OTHER_0_picker'] div[class='ImgSelectPullDownArrow']";
+        public static String zOther2DatePickerPullDown = "css=div[id$='_OTHER_1_picker'] div[class='ImgSelectPullDownArrow']";
+        public static String zOther2OptionsPullDown = "css=div[id$='_OTHER_1_select'] td[id$='_dropdown'] div[class='ImgSelectPullDownArrow']";
+        public static String zAnniversaryOption = "css=table[class='ZWidgetTable ZMenuItemTable ZMenuItemBorder'] tr td:contains('Anniversary')";
+        public static String zDay20InDatePicker = "css=div.DwtMenu div.DwtComposite div.DwtCalendar td.DwtCalendarBody td.DwtCalendarDay[id^='c:20:']";
+        
+        
 		public static final String zPrefixCheckbox = "td.ZWidgetTitle:contains('Prefix')";
 		public static final String zMiddleCheckbox = "td.ZWidgetTitle:contains('Middle')";
 		public static final String zMaidenCheckbox = "td.ZWidgetTitle:contains('Maiden')";

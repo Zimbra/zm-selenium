@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.srchhighlighter;
@@ -41,7 +41,7 @@ public class ViewMessage extends AjaxCommonTest {
 
 	}
 	
-	@Test(	description = "Search for mail content.  Verify search terms are highlighted.",
+	@Test( description = "Search for mail content.  Verify search terms are highlighted.",
 			groups = { "functional" })
 	
 	public void ViewMessage_01() throws HarnessException {
@@ -49,8 +49,8 @@ public class ViewMessage extends AjaxCommonTest {
 		//-- DATA
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String term = "search" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String term = "search" + ConfigProperties.getUniqueString();
 		
 		// Send the message from AccountA to the ZWC user
 		ZimbraAccount.AccountA().soapSend(

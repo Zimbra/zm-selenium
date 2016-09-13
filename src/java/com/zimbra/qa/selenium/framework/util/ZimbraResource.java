@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.util;
@@ -54,7 +54,7 @@ public class ZimbraResource extends ZimbraAccount {
 	// Set the default Equipment settings
 	@SuppressWarnings("serial")
 	private static final Map<String, String> equipmentAttrs = new HashMap<String, String>() {{
-		put("zimbraPrefLocale", ZimbraSeleniumProperties.getStringProperty("locale"));
+		put("zimbraPrefLocale", ConfigProperties.getStringProperty("locale"));
 		put("zimbraCalResAutoAcceptDecline", "TRUE");
 		put("zimbraCalResAutoDeclineIfBusy", "TRUE");
 	}};
@@ -62,7 +62,7 @@ public class ZimbraResource extends ZimbraAccount {
 	// Set the default Location settings
 	@SuppressWarnings("serial")
 	private static final Map<String, String> locationAttrs = new HashMap<String, String>() {{
-		put("zimbraPrefLocale", ZimbraSeleniumProperties.getStringProperty("locale"));
+		put("zimbraPrefLocale", ConfigProperties.getStringProperty("locale"));
 		put("zimbraCalResAutoAcceptDecline", "TRUE");
 		put("zimbraCalResAutoDeclineIfBusy", "TRUE");
 	}};
@@ -90,7 +90,7 @@ public class ZimbraResource extends ZimbraAccount {
 		ZimbraMailHost = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:calresource/admin:a[@n='zimbraMailHost']", null);
 
 		// If the adminHost value is set, use that value for the ZimbraMailHost
-		String adminHost = ZimbraSeleniumProperties.getStringProperty("adminHost", null);
+		String adminHost = ConfigProperties.getStringProperty("adminHost", null);
 		if ( adminHost != null ) {
 			ZimbraMailHost = adminHost;
 		}
@@ -163,7 +163,7 @@ public class ZimbraResource extends ZimbraAccount {
 			ZimbraMailHost = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:calresource/admin:a[@n='zimbraMailHost']", null);
 
 			// If the adminHost value is set, use that value for the ZimbraMailHost
-			String adminHost = ZimbraSeleniumProperties.getStringProperty("adminHost", null);
+			String adminHost = ConfigProperties.getStringProperty("adminHost", null);
 			if ( adminHost != null ) {
 				ZimbraMailHost = adminHost;
 			}

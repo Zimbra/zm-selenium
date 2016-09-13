@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.mountpoints.viewer.actions;
@@ -33,7 +33,7 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test(description = "Grantee with view rights launches grantor's calendar in the new window",
+	@Test( description = "Grantee with view rights launches grantor's calendar in the new window",
 			groups = { "functional" })
 			
 	public void LaunchInSeparateWindow_01() throws HarnessException {
@@ -41,7 +41,7 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();
 
 		// Owner creates a folder, shares it with current user with viewer rights
-		String ownerFoldername = "ownerfolder"+ ZimbraSeleniumProperties.getUniqueString();        
+		String ownerFoldername = "ownerfolder"+ ConfigProperties.getUniqueString();        
 		Owner.soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + ownerFoldername +"' l='1' view='appointment'/>"
@@ -59,7 +59,7 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 		
 
 		// Current user creates the mountpoint that points to the share
-		String mountpointFoldername = "mountpoint"+ ZimbraSeleniumProperties.getUniqueString();
+		String mountpointFoldername = "mountpoint"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountpointFoldername +"' view='appointment' rid='"+ ownerFolder.getId() +"' zid='"+ Owner.ZimbraId +"'/>"
@@ -72,7 +72,7 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		SeparateWindow window = null;
 		
-		try{
+		try {
 			// Launch shared folder in separate window through context menu
 			window = (SeparateWindow)app.zTreeCalendar.zTreeItem(Action.A_RIGHTCLICK, Button.B_LAUNCH_IN_SEPARATE_WINDOW, mountpoint);
 			window.zWaitForActive();
@@ -87,7 +87,7 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 			window.zCloseWindow();
 			window = null;
 			
-		}finally {
+		} finally {
 			if (window != null) {
 				window.zCloseWindow();
 				window = null;
@@ -95,15 +95,15 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 		}
 	}
 
-	@Test(description = "Grantee with view rights launches grantor's calendar with appt in the new window and clicks on the appt",
+	@Test( description = "Grantee with view rights launches grantor's calendar with appt in the new window and clicks on the appt",
 			groups = { "functional" })
 
 	public void LaunchInSeparateWindow_02() throws HarnessException {
 
 		String apptSubject = "Test";
-		String apptContent = ZimbraSeleniumProperties.getUniqueString();
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String apptContent = ConfigProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
@@ -189,7 +189,7 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 			window.zCloseWindow();
 			window = null;
 
-		}finally {
+		} finally {
 			if (window != null) {
 				window.zCloseWindow();
 				window = null;

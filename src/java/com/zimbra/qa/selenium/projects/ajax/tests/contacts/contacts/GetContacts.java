@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contacts;
@@ -42,7 +42,7 @@ public class GetContacts extends AjaxCommonTest  {
 		
 	}
 	
-	@Test(	description = "Click Alphabetbar button All: Verify contact started with digit and A-Z listed ",
+	@Test( description = "Click Alphabetbar button All: Verify contact started with digit and A-Z listed ",
 			groups = { "functional" })
 	public void GetContact_01_All_Button() throws HarnessException {
 		
@@ -52,11 +52,11 @@ public class GetContacts extends AjaxCommonTest  {
 		
 		// Create three contact
 
-		lastname = "B" + ZimbraSeleniumProperties.getUniqueString();
+		lastname = "B" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
 						"<cn >" +
-							"<a n='firstName'>first"+ ZimbraSeleniumProperties.getUniqueString() +"</a>" +
+							"<a n='firstName'>first"+ ConfigProperties.getUniqueString() +"</a>" +
 							"<a n='lastName'>"+ lastname +"</a>" +
 							"<a n='email'>email@domain.com</a>" +
 						"</cn>" +
@@ -64,11 +64,11 @@ public class GetContacts extends AjaxCommonTest  {
    		ContactItem contact1 = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#lastname:"+ lastname);
    		
 
-   		lastname = "5" + ZimbraSeleniumProperties.getUniqueString();
+   		lastname = "5" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
 						"<cn >" +
-						"<a n='firstName'>first"+ ZimbraSeleniumProperties.getUniqueString() +"</a>" +
+						"<a n='firstName'>first"+ ConfigProperties.getUniqueString() +"</a>" +
 							"<a n='lastName'>"+ lastname +"</a>" +
 							"<a n='email'>email@domain.com</a>" +
 						"</cn>" +
@@ -76,11 +76,11 @@ public class GetContacts extends AjaxCommonTest  {
    		ContactItem contact2 = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#lastname:"+ lastname);
    		
 
-   		lastname = "b" + ZimbraSeleniumProperties.getUniqueString();
+   		lastname = "b" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
 						"<cn >" +
-						"<a n='firstName'>first"+ ZimbraSeleniumProperties.getUniqueString() +"</a>" +
+						"<a n='firstName'>first"+ ConfigProperties.getUniqueString() +"</a>" +
 							"<a n='lastName'>"+ lastname +"</a>" +
 							"<a n='email'>email@domain.com</a>" +
 						"</cn>" +
@@ -125,7 +125,7 @@ public class GetContacts extends AjaxCommonTest  {
 		ZAssert.assertTrue(found3, "Verify contact starting with b is listed");
 	}
 
-	@Test(	description = "Click Alphabetbar button 123: Verify contact started with digit listed and A-Z not-listed ",
+	@Test( description = "Click Alphabetbar button 123: Verify contact started with digit listed and A-Z not-listed ",
 			groups = { "functional" })
 	public void GetContact_03_123_Button() throws HarnessException {
 		
@@ -135,11 +135,11 @@ public class GetContacts extends AjaxCommonTest  {
 		
 		// Create three contact
 
-		lastname = "B" + ZimbraSeleniumProperties.getUniqueString();
+		lastname = "B" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
 						"<cn >" +
-						"<a n='firstName'>first"+ ZimbraSeleniumProperties.getUniqueString() +"</a>" +
+						"<a n='firstName'>first"+ ConfigProperties.getUniqueString() +"</a>" +
 							"<a n='lastName'>"+ lastname +"</a>" +
 							"<a n='email'>email@domain.com</a>" +
 						"</cn>" +
@@ -147,11 +147,11 @@ public class GetContacts extends AjaxCommonTest  {
    		ContactItem contact1 = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#lastname:"+ lastname);
    		
 
-   		lastname = "5" + ZimbraSeleniumProperties.getUniqueString();
+   		lastname = "5" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
 						"<cn >" +
-						"<a n='firstName'>first"+ ZimbraSeleniumProperties.getUniqueString() +"</a>" +
+						"<a n='firstName'>first"+ ConfigProperties.getUniqueString() +"</a>" +
 							"<a n='lastName'>"+ lastname +"</a>" +
 							"<a n='email'>email@domain.com</a>" +
 						"</cn>" +
@@ -159,11 +159,11 @@ public class GetContacts extends AjaxCommonTest  {
    		ContactItem contact2 = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#lastname:"+ lastname);
    		
 
-   		lastname = "b" + ZimbraSeleniumProperties.getUniqueString();
+   		lastname = "b" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
 						"<cn >" +
-						"<a n='firstName'>first"+ ZimbraSeleniumProperties.getUniqueString() +"</a>" +
+						"<a n='firstName'>first"+ ConfigProperties.getUniqueString() +"</a>" +
 							"<a n='lastName'>"+ lastname +"</a>" +
 							"<a n='email'>email@domain.com</a>" +
 						"</cn>" +
@@ -208,7 +208,7 @@ public class GetContacts extends AjaxCommonTest  {
 		ZAssert.assertFalse(found3, "Verify contact starting with b is not listed");
 	}
 
-	@Test(	description = "Click Alphabetbar button B: Verify only contact started with B|b is listed ",
+	@Test( description = "Click Alphabetbar button B: Verify only contact started with B|b is listed ",
 			groups = { "functional" })
 	public void GetContact_02_B_Button() throws HarnessException {
 		
@@ -218,11 +218,11 @@ public class GetContacts extends AjaxCommonTest  {
 		
 		// Create three contact
 
-		lastname = "B" + ZimbraSeleniumProperties.getUniqueString();
+		lastname = "B" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
 						"<cn >" +
-						"<a n='firstName'>first"+ ZimbraSeleniumProperties.getUniqueString() +"</a>" +
+						"<a n='firstName'>first"+ ConfigProperties.getUniqueString() +"</a>" +
 							"<a n='lastName'>"+ lastname +"</a>" +
 							"<a n='email'>email@domain.com</a>" +
 						"</cn>" +
@@ -230,11 +230,11 @@ public class GetContacts extends AjaxCommonTest  {
    		ContactItem contact1 = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#lastname:"+ lastname);
    		
 
-   		lastname = "5" + ZimbraSeleniumProperties.getUniqueString();
+   		lastname = "5" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
 						"<cn >" +
-						"<a n='firstName'>first"+ ZimbraSeleniumProperties.getUniqueString() +"</a>" +
+						"<a n='firstName'>first"+ ConfigProperties.getUniqueString() +"</a>" +
 							"<a n='lastName'>"+ lastname +"</a>" +
 							"<a n='email'>email@domain.com</a>" +
 						"</cn>" +
@@ -242,11 +242,11 @@ public class GetContacts extends AjaxCommonTest  {
    		ContactItem contact2 = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#lastname:"+ lastname);
    		
 
-   		lastname = "b" + ZimbraSeleniumProperties.getUniqueString();
+   		lastname = "b" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
 						"<cn >" +
-						"<a n='firstName'>first"+ ZimbraSeleniumProperties.getUniqueString() +"</a>" +
+						"<a n='firstName'>first"+ ConfigProperties.getUniqueString() +"</a>" +
 							"<a n='lastName'>"+ lastname +"</a>" +
 							"<a n='email'>email@domain.com</a>" +
 						"</cn>" +
@@ -292,7 +292,7 @@ public class GetContacts extends AjaxCommonTest  {
 	}
 
 	
-	@Test(	description = "Click all Alphabetbar buttons: Verify only contact started with the alphabet is listed ",
+	@Test( description = "Click all Alphabetbar buttons: Verify only contact started with the alphabet is listed ",
 			groups = { "functional" })
 	public void GetContact_04_Iterate_Buttons() throws HarnessException {
 		
@@ -312,11 +312,11 @@ public class GetContacts extends AjaxCommonTest  {
 			Button b = entry.getValue();
 
 			
-			String lastname = c + ZimbraSeleniumProperties.getUniqueString();
+			String lastname = c + ConfigProperties.getUniqueString();
 	   		app.zGetActiveAccount().soapSend(
 					"<CreateContactRequest xmlns='urn:zimbraMail'>" +
 							"<cn >" +
-							"<a n='firstName'>first"+ ZimbraSeleniumProperties.getUniqueString() +"</a>" +
+							"<a n='firstName'>first"+ ConfigProperties.getUniqueString() +"</a>" +
 								"<a n='lastName'>"+ lastname +"</a>" +
 								"<a n='email'>email@domain.com</a>" +
 							"</cn>" +

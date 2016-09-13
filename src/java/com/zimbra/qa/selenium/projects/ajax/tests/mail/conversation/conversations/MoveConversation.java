@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversations;
@@ -46,7 +46,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		logger.info("New "+ MoveConversation.class.getCanonicalName());
 	}
 	
-	@Test(	description = "Move a conversation by selecting message, then clicking toolbar 'Move' button",
+	@Test( description = "Move a conversation by selecting message, then clicking toolbar 'Move' button",
 			groups = { "smoke" })
 	public void MoveConversation_01() throws HarnessException {
 		
@@ -60,7 +60,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		// i.e. Inbox/subfolder
 		//
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 						"<folder name='" + foldername +"' l='"+ inbox.getId() +"'/>" +
@@ -95,7 +95,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		
 	}
 
-	@Test(	description = "Move a conversation by selecting message, then click 'm' shortcut",
+	@Test( description = "Move a conversation by selecting message, then click 'm' shortcut",
 			groups = { "functional" })
 	public void MoveConversation_02() throws HarnessException {
 		
@@ -109,7 +109,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		// i.e. Inbox/subfolder
 		//
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 						"<folder name='" + foldername +"' l='"+ inbox.getId() +"'/>" +
@@ -151,7 +151,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test(	description = "Move a conversation by using 'move to trash' shortcut '.t'",
+	@Test( description = "Move a conversation by using 'move to trash' shortcut '.t'",
 			groups = { "functional" })
 	public void MoveConversation_03() throws HarnessException {
 		
@@ -194,7 +194,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test(	description = "Move a conversation by using 'move to inbox' shortcut '.i'",
+	@Test( description = "Move a conversation by using 'move to inbox' shortcut '.i'",
 			groups = { "functional" })
 	public void MoveConversation_04() throws HarnessException {
 		
@@ -202,7 +202,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		//-- DATA
 		
 		// Create a subfolder
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -253,7 +253,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		
 	}
 
-	@Test(	description = "Move a conversation by using Move -> New folder",
+	@Test( description = "Move a conversation by using Move -> New folder",
 			groups = { "functional" })
 	public void MoveConversation_05() throws HarnessException {
 		
@@ -261,7 +261,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		//-- DATA
 		
 		// Create a subfolder
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 
 		// Create a conversation
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
@@ -305,7 +305,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 
 
 	
-	@Test(	description = "Move a conversation - 1 message in inbox, 1 message in sent, 1 message in subfolder",
+	@Test( description = "Move a conversation - 1 message in inbox, 1 message in sent, 1 message in subfolder",
 			groups = { "functional" })
 	public void MoveConversation_10() throws HarnessException {
 		
@@ -329,7 +329,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 				"</ItemActionRequest>");
 
 		// Create a message in a subfolder
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 						"<folder name='" + foldername +"' l='"+ inbox.getId() +"'/>" +
@@ -349,14 +349,14 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 							"<e t='t' a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>" +
 							"<su>RE: "+ c.getSubject() +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>"+ "body" + ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
 		String idSent = app.zGetActiveAccount().soapSelectValue("//mail:m", "id");
 
 		// Create a folder to move the converation to
-		String destinationname = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String destinationname = "folder"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 						"<folder name='" + destinationname +"' l='"+ inbox.getId() +"'/>" +

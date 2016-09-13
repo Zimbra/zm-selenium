@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contacts;
@@ -24,155 +24,149 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
-import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraCharsets.ZCharset;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
+import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew.Field;
-
-
-//TODO: add more in ContactItem.java
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew.Locators;
 
 public class CreateContact extends AjaxCommonTest  {
 
 	public CreateContact() {
 		logger.info("New "+ CreateContact.class.getCanonicalName());
-		
-		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
-
-		// Make sure we are using an account with conversation view
-		super.startingAccountPreferences = null;		
-		
+		super.startingAccountPreferences = null;
 	}
-	
-	
 
-	
-	@Test(	description = "Create a basic contact item by click New in page Addressbook ",
+	@Test( description = "Create a basic contact item by click New in page Addressbook ",
 			groups = { "sanity" })
+	
 	public void ClickNew() throws HarnessException {
-		
+
 		//-- DATA
-		
-		String contactFirst = "First" + ZimbraSeleniumProperties.getUniqueString();
-		String contactLast = "Last"+ ZimbraSeleniumProperties.getUniqueString();
-		String contactEmail = "email"+ ZimbraSeleniumProperties.getUniqueString() + "@domain.com";
-		
-		
-		
+
+		String contactFirst = "First" + ConfigProperties.getUniqueString();
+		String contactLast = "Last"+ ConfigProperties.getUniqueString();
+		String contactEmail = "email"+ ConfigProperties.getUniqueString() + "@domain.com";
+
+
+
 		//-- GUI Action
-		
+
 		// app.zPageContacts.zRefresh();
-		
+
 		FormContactNew formContactNew = (FormContactNew)app.zPageContacts.zToolbarPressButton(Button.B_NEW);
-		
-        // Fill in the form
+
+		// Fill in the form
 		formContactNew.zFillField(Field.FirstName, contactFirst);
 		formContactNew.zFillField(Field.LastName, contactLast);
 		formContactNew.zFillField(Field.Email, contactEmail);
 		formContactNew.zSubmit();
 
-		
+
 		//-- Data Verification
-		
+
 		app.zGetActiveAccount().soapSend(
-					"<SearchRequest xmlns='urn:zimbraMail' types='contact'>"
-				+		"<query>#firstname:"+ contactFirst +"</query>"
-				+	"</SearchRequest>");
+				"<SearchRequest xmlns='urn:zimbraMail' types='contact'>"
+						+		"<query>#firstname:"+ contactFirst +"</query>"
+						+	"</SearchRequest>");
 		String contactId = app.zGetActiveAccount().soapSelectValue("//mail:cn", "id");
-		
+
 		ZAssert.assertNotNull(contactId, "Verify the contact is returned in the search");
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<GetContactsRequest xmlns='urn:zimbraMail'>"
-			+		"<cn id='"+ contactId +"'/>"
-			+	"</GetContactsRequest>");
-	
+						+		"<cn id='"+ contactId +"'/>"
+						+	"</GetContactsRequest>");
+
 		String lastname = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='lastName']", null);
 		String firstname = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='firstName']", null);
 		String email = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='email']", null);
-		
+
 		ZAssert.assertEquals(lastname, contactLast, "Verify the last name was saved correctly");
 		ZAssert.assertEquals(firstname, contactFirst, "Verify the first name was saved correctly");
 		ZAssert.assertEquals(email, contactEmail, "Verify the email was saved correctly");
-		
-		
+
+
 	}
-	
-	@Test(	description = "Create a basic contact item by use PullDown Menu->Contacts",
+
+	@Test( description = "Create a basic contact item by use PullDown Menu->Contacts",
 			groups = { "functional" })
-	public void CreateContactFromPulldownMenu() throws HarnessException {				
-		
+	public void CreateContactFromPulldownMenu() throws HarnessException {
+
 		//-- DATA
 		ContactItem contact = new ContactItem();
-		contact.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
-		contact.lastName = "Last"+ ZimbraSeleniumProperties.getUniqueString();
-		contact.email = "email"+ ZimbraSeleniumProperties.getUniqueString() + "@domain.com";
-		
-		
-		
+		contact.firstName = "First" + ConfigProperties.getUniqueString();
+		contact.lastName = "Last"+ ConfigProperties.getUniqueString();
+		contact.email = "email"+ ConfigProperties.getUniqueString() + "@domain.com";
+
+
+
 		//-- GUI Action
-		
+
 		// app.zPageContacts.zRefresh();
-		
+
 		FormContactNew formContactNew = (FormContactNew)app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACT);
-		
-        // Fill in the form
+
+		// Fill in the form
 		formContactNew.zFill(contact);
 
 		// Save it
 		formContactNew.zSubmit();
 
-		
-		
+
+
 		//-- Data Verification
-		
+
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
-		
+
 		ZAssert.assertEquals(actual.lastName, contact.lastName, "Verify the last name was saved correctly");
 		ZAssert.assertEquals(actual.firstName, contact.firstName, "Verify the last name was saved correctly");
 		ZAssert.assertEquals(actual.email, contact.email, "Verify the last name was saved correctly");
 
 	}
-	
-	@Test(	description = "Cancel creating a contact item - Click Yes",
+
+	@Test( description = "Cancel creating a contact item - Click Yes",
 			groups = { "functional" })
 	public void CancelCreateContactClickYes() throws HarnessException {
-		
+
 		//-- DATA
 
 		ContactItem contact = new ContactItem();
-		contact.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
-		contact.lastName = "Last"+ ZimbraSeleniumProperties.getUniqueString();
-		contact.email = "email"+ ZimbraSeleniumProperties.getUniqueString() + "@domain.com";
+		contact.firstName = "First" + ConfigProperties.getUniqueString();
+		contact.lastName = "Last"+ ConfigProperties.getUniqueString();
+		contact.email = "email"+ ConfigProperties.getUniqueString() + "@domain.com";
 
-		
+
 		//-- GUI action
-		
+
 		FormContactNew formContactNew = (FormContactNew)app.zPageContacts.zToolbarPressButton(Button.B_NEW);
-		
+
 		// Fill the fields
 		formContactNew.zFill(contact);
-		
+
 		// Click Cancel
 		DialogWarning dialogWarning = (DialogWarning)formContactNew.zToolbarPressButton(Button.B_CANCEL);
-		
-	    // Click Yes in popup dialog 
-	    dialogWarning.zClickButton(Button.B_YES);
-	    
-	    
+
+		// Click Yes in popup dialog
+		dialogWarning.zClickButton(Button.B_YES);
+
+
 		//-- Data Verification
-		
-	    //verify toasted message 'contact created'
-        Toaster toast = app.zPageMain.zGetToaster();
-        String toastMsg = toast.zGetToastMessage();
-        ZAssert.assertStringContains(toastMsg, "Contact Created", "Verify toast message 'Contact Created'");
-  
-	    // Verify contact  created  	    
+
+		//verify toasted message 'contact created'
+		Toaster toast = app.zPageMain.zGetToaster();
+		String toastMsg = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMsg, "Contact Created", "Verify toast message 'Contact Created'");
+
+		// Verify contact  created
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
-		
+
 		ZAssert.assertEquals(actual.lastName, contact.lastName, "Verify the last name was saved correctly");
 		ZAssert.assertEquals(actual.firstName, contact.firstName, "Verify the last name was saved correctly");
 		ZAssert.assertEquals(actual.email, contact.email, "Verify the last name was saved correctly");
@@ -180,152 +174,148 @@ public class CreateContact extends AjaxCommonTest  {
 
 	}
 
-	@Test(	description = "Cancel creating a contact item - Click No",
+	@Test( description = "Cancel creating a contact item - Click No",
 			groups = { "functional" })
-	public void CancelCreateContactClickNo() throws HarnessException {	
-		
+	public void CancelCreateContactClickNo() throws HarnessException {
+
 		//-- DATA
 
 		ContactItem contact = new ContactItem();
-		contact.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
-		contact.lastName = "Last"+ ZimbraSeleniumProperties.getUniqueString();
-		contact.email = "email"+ ZimbraSeleniumProperties.getUniqueString() + "@domain.com";
+		contact.firstName = "First" + ConfigProperties.getUniqueString();
+		contact.lastName = "Last"+ ConfigProperties.getUniqueString();
+		contact.email = "email"+ ConfigProperties.getUniqueString() + "@domain.com";
 
-		
+
 		//-- GUI action
-		
+
 		FormContactNew formContactNew = (FormContactNew)app.zPageContacts.zToolbarPressButton(Button.B_NEW);
-		
+
 		// Fill the fields
 		formContactNew.zFill(contact);
-		
+
 		// Click Cancel
 		DialogWarning dialogWarning = (DialogWarning)formContactNew.zToolbarPressButton(Button.B_CANCEL);
-		
-	    // Click Yes in popup dialog 
-	    dialogWarning.zClickButton(Button.B_NO);
-	    
-	    
+
+		// Click Yes in popup dialog
+		dialogWarning.zClickButton(Button.B_NO);
+
+
 		//-- Data Verification
-		
-	    // Verify contact  created  	    
+
+		// Verify contact  created
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
 		ZAssert.assertNull(actual, "Verify the contact is not created");
 
 	}
 
-	@Test(	description = "Cancel creating a contact item - Click Cancel",
+	@Test( description = "Cancel creating a contact item - Click Cancel",
 			groups = { "functional" })
-	public void CancelCreateContactClickCancel() throws HarnessException {		
+	public void CancelCreateContactClickCancel() throws HarnessException {
 
 		//-- DATA
 
 		ContactItem contact = new ContactItem();
-		contact.firstName = "First" + ZimbraSeleniumProperties.getUniqueString();
-		contact.lastName = "Last"+ ZimbraSeleniumProperties.getUniqueString();
-		contact.email = "email"+ ZimbraSeleniumProperties.getUniqueString() + "@domain.com";
+		contact.firstName = "First" + ConfigProperties.getUniqueString();
+		contact.lastName = "Last"+ ConfigProperties.getUniqueString();
+		contact.email = "email"+ ConfigProperties.getUniqueString() + "@domain.com";
 
-		
+
 		//-- GUI action
-		
+
 		FormContactNew formContactNew = (FormContactNew)app.zPageContacts.zToolbarPressButton(Button.B_NEW);
-		
+
 		// Fill the fields
 		formContactNew.zFill(contact);
-		
+
 		// Click Cancel
 		DialogWarning dialogWarning = (DialogWarning)formContactNew.zToolbarPressButton(Button.B_CANCEL);
-		
-	    // Click Yes in popup dialog 
-	    dialogWarning.zClickButton(Button.B_CANCEL);
-	    
-	    // Verify the contact form comes back
-	    ZAssert.assertTrue(formContactNew.zIsActive(), "Verify the contact form comes back");
-	    
-	    // Save the contact
-	    formContactNew.zSubmit();
-	    
-	    
+
+		// Click Yes in popup dialog
+		dialogWarning.zClickButton(Button.B_CANCEL);
+
+		// Verify the contact form comes back
+		ZAssert.assertTrue(formContactNew.zIsActive(), "Verify the contact form comes back");
+
+		// Save the contact
+		formContactNew.zSubmit();
+
+
 		//-- Data Verification
-		
+
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
-		
+
 		ZAssert.assertEquals(actual.lastName, contact.lastName, "Verify the last name was saved correctly");
 		ZAssert.assertEquals(actual.firstName, contact.firstName, "Verify the last name was saved correctly");
 		ZAssert.assertEquals(actual.email, contact.email, "Verify the last name was saved correctly");
 
 	}
 
-	@Test(	description = "create a contact item with all attribute",
-			groups = { "smoke" })
+	@Test( description = "create a contact item with all attribute",
+			groups = { "functional" })
 	public void CreateContactWithAllAttributes() throws HarnessException {
-		
+
 		//-- Data
-		
-		String firstname = "first" + ZimbraSeleniumProperties.getUniqueString();
+
+		String firstname = "first" + ConfigProperties.getUniqueString();
 
 		// Create a contact Item
 		HashMap<String, String> attributes = new HashMap<String, String>();
 		attributes.put("firstName", firstname);
-		attributes.put("lastName", "lastname" + ZimbraSeleniumProperties.getUniqueString());
-		attributes.put("email", "email" + ZimbraSeleniumProperties.getUniqueString() + "@zimbra.com");
-		attributes.put("company", "company" + ZimbraSeleniumProperties.getUniqueString());
-		attributes.put("middleName", "middleName" + ZimbraSeleniumProperties.getUniqueString());
-		attributes.put("nickname", "nickname" + ZimbraSeleniumProperties.getUniqueString());
+		attributes.put("lastName", "lastname" + ConfigProperties.getUniqueString());
+		attributes.put("email", "email" + ConfigProperties.getUniqueString() + "@zimbra.com");
+		attributes.put("company", "company" + ConfigProperties.getUniqueString());
+		attributes.put("middleName", "middleName" + ConfigProperties.getUniqueString());
+		attributes.put("nickname", "nickname" + ConfigProperties.getUniqueString());
 		attributes.put("nameSuffix", "Sr");
 		attributes.put("namePrefix", "Mr");
-		attributes.put("department", "department" + ZimbraSeleniumProperties.getUniqueString());
-		attributes.put("jobTitle", "jobTitle" + ZimbraSeleniumProperties.getUniqueString());
+		attributes.put("department", "department" + ConfigProperties.getUniqueString());
+		attributes.put("jobTitle", "jobTitle" + ConfigProperties.getUniqueString());
 		attributes.put("homeStreet", "123 Main St.");
 		attributes.put("homeCity", "Anytown");
 		attributes.put("homeCountry", "USA");
 		attributes.put("homePostalCode", "95124");
 		attributes.put("birthday", "1985-05-24");
-		attributes.put("notes", "notes" + ZimbraSeleniumProperties.getUniqueString());
-		attributes.put("maidenName", "maidenName" + ZimbraSeleniumProperties.getUniqueString());
-//		attributes.put("mobilePhone", "1-408-555-1212");
+		attributes.put("notes", "notes" + ConfigProperties.getUniqueString());
+		attributes.put("maidenName", "maidenName" + ConfigProperties.getUniqueString());
+		//attributes.put("mobilePhone", "1-408-555-1212");
 		attributes.put("imAddress1", "free2rhyme@yahoo.com");
 		attributes.put("homeURL", "http://www.zimbra.com");
-		
-		
-
-
 
 		//-- GUI
 		FormContactNew formContactNew = (FormContactNew)app.zPageContacts.zToolbarPressButton(Button.B_NEW);
-				
+
 		// show all hidden field for names:
 		formContactNew.zDisplayHiddenName();
-		
+
 		// fill items
 		for (Entry<String, String> entry : attributes.entrySet()) {
 			String key = entry.getKey();
 			String value = entry.getValue();
 			formContactNew.zFillField(Field.fromString(key), value);
 		}
-		
-		// Save the contact
-        formContactNew.zSubmit();
-		
-        
-        //-- Verificaiton
-        
-        //verify toasted message 'contact created'  
-        ZAssert.assertStringContains(app.zPageMain.zGetToaster().zGetToastMessage(), "Contact Created", "Verify toast message 'Contact Created'");
 
-        
+		// Save the contact
+		formContactNew.zSubmit();
+
+
+		//-- Verificaiton
+
+		//verify toasted message 'contact created'
+		ZAssert.assertStringContains(app.zPageMain.zGetToaster().zGetToastMessage(), "Contact Created", "Verify toast message 'Contact Created'");
+
+
 		//-- Data Verification
-		
+
 		ContactItem contact = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);
 		ZAssert.assertNotNull(contact, "Verify the contact was saved correctly");
 
 		for (Entry<String,String> entry : attributes.entrySet()) {
-			
+
 			// Verify each attribute was saved correctly
 			String key = entry.getKey();
 			String expected = attributes.get(key);
 			String actual = contact.ContactAttributes.get(key);
-			
+
 			if ( key.equals("imAddress1") ) {
 				// IM address will be prepended with xmpp:// (for example), so just make sure the address is there
 				ZAssert.assertStringContains(actual, expected, "Verify the attribute "+ key +" was saved correctly");
@@ -337,59 +327,135 @@ public class CreateContact extends AjaxCommonTest  {
 	}
 
 
-	@Bugs(ids="99776")	
+	@Bugs(ids="99776")
 	@Test(
-			description = "Create a contacts with non-ASCII special characters", 
+			description = "Create a contacts with non-ASCII special characters",
 			groups = { "functional", "charsets" },
 			dataProvider = "DataProviderSupportedCharsets")
 	public void CreateContact_07(ZCharset charset, String charsetSample) throws HarnessException {
-		
+
 		//-- DATA
-		
+
 		String contactFirst = charsetSample;
 		String contactLast = charsetSample;
 		String contactEmail = charsetSample + "@domain.com";
-		
-		
-		
+
+
 		//-- GUI Action
-		
+
 		// app.zPageContacts.zRefresh();
-		
+
 		FormContactNew formContactNew = (FormContactNew)app.zPageContacts.zToolbarPressButton(Button.B_NEW);
-		
-        // Fill in the form
+
+		// Fill in the form
 		formContactNew.zFillField(Field.FirstName, contactFirst);
 		formContactNew.zFillField(Field.LastName, contactLast);
 		formContactNew.zFillField(Field.Email, contactEmail);
 		formContactNew.zSubmit();
 
-		
+
 		//-- Data Verification
-		
+
 		app.zGetActiveAccount().soapSend(
-					"<SearchRequest xmlns='urn:zimbraMail' types='contact'>"
-				+		"<query>#firstname:"+ contactFirst +"</query>"
-				+	"</SearchRequest>");
+				"<SearchRequest xmlns='urn:zimbraMail' types='contact'>"
+						+		"<query>#firstname:"+ contactFirst +"</query>"
+						+	"</SearchRequest>");
 		String contactId = app.zGetActiveAccount().soapSelectValue("//mail:cn", "id");
-		
+
 		ZAssert.assertNotNull(contactId, "Verify the contact is returned in the search");
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<GetContactsRequest xmlns='urn:zimbraMail'>"
-			+		"<cn id='"+ contactId +"'/>"
-			+	"</GetContactsRequest>");
-	
+						+		"<cn id='"+ contactId +"'/>"
+						+	"</GetContactsRequest>");
+
 		String lastname = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='lastName']", null);
 		String firstname = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='firstName']", null);
 		String email = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='"+ contactId +"']//mail:a[@n='email']", null);
-		
+
 		ZAssert.assertEquals(lastname, contactLast, "Verify the last name was saved correctly");
 		ZAssert.assertEquals(firstname, contactFirst, "Verify the first name was saved correctly");
 		ZAssert.assertEquals(email, contactEmail, "Verify the email was saved correctly");
-		
-		
+
+
 	}
-	
+
+	@Bugs(ids="66497")
+	@Test( description = "Create contact by selecting birthday and anniversary date using date picker.",
+	groups = { "functional" })
+
+	public void CreateContactBySelectingDateUsingDatePicker() throws HarnessException {
+
+		//-- Data
+
+		String firstname = "first" + ConfigProperties.getUniqueString();
+
+		// Create a contact Item
+		HashMap<String, String> attributes = new HashMap<String, String>();
+		attributes.put("firstName", firstname);
+		attributes.put("lastName", "lastname" + ConfigProperties.getUniqueString());
+		attributes.put("email", "email" + ConfigProperties.getUniqueString() + "@zimbra.com");	
+
+		//-- GUI
+		FormContactNew formContactNew = (FormContactNew)app.zPageContacts.zToolbarPressButton(Button.B_NEW);		
+
+		// fill items
+		for (Entry<String, String> entry : attributes.entrySet()) {
+			String key = entry.getKey();
+			String value = entry.getValue();
+			formContactNew.zFillField(Field.fromString(key), value);
+		}
+
+		// Add birthday as 20th of the current month from date picker
+		formContactNew.sClickAt(Locators.zOther1DatePickerPullDown, "0,0");
+		formContactNew.sClick(Locators.zDay20InDatePicker);
+
+		// Add another row in Others filed to add Anniversary date
+		formContactNew.sClickAt(Locators.zAddNewOtherRowBtn, "0,0");
+
+		// Select the Anniversary Option from drop down
+		formContactNew.sClick(Locators.zOther2OptionsPullDown);
+		formContactNew.sClickAt(Locators.zAnniversaryOption,"0,0");
+
+		// Select Anniversary date as 20th
+		formContactNew.sClickAt(Locators.zOther2DatePickerPullDown, "0,0");
+		formContactNew.sClick(Locators.zDay20InDatePicker);
+
+		// Verify that selected dates are entered in the fields
+		ZAssert.assertStringContains(formContactNew.sGetValue(Locators.zOther1EditField), "20", "Entered date is not matching with the date entered through date picker");
+		ZAssert.assertStringContains(formContactNew.sGetValue(Locators.zOther2EditField), "20", "Entered date is not matching with the date entered through date picker");
+
+		// Save the contact
+		formContactNew.zSubmit();
+
+
+		//-- Verificaiton
+
+		//verify toasted message 'contact created'
+		ZAssert.assertStringContains(app.zPageMain.zGetToaster().zGetToastMessage(), "Contact Created", "Verify toast message 'Contact Created'");
+
+
+		//-- Data Verification
+
+		ContactItem contact = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);
+		ZAssert.assertNotNull(contact, "Verify the contact was saved correctly");
+
+		for (Entry<String,String> entry : attributes.entrySet()) {
+
+			// Verify each attribute was saved correctly
+			String key = entry.getKey();
+			String expected = attributes.get(key);
+			String actual = contact.ContactAttributes.get(key);
+
+			if ( key.equals("imAddress1") ) {
+				// IM address will be prepended with xmpp:// (for example), so just make sure the address is there
+				ZAssert.assertStringContains(actual, expected, "Verify the attribute "+ key +" was saved correctly");
+			} else {
+				ZAssert.assertEquals(actual, expected, "Verify the attribute "+ key +" was saved correctly");
+			}
+		}
+
+	}
+
 
 }

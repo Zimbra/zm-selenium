@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.sharing;
@@ -32,7 +32,7 @@ public class AutoShareRemoval extends AjaxCommonTest {
 		super.startingAccountPreferences = null;				
 	}
 
-	@Test(	description = "check for autoshare removal prompt message and press 'ok' to revoke", groups = { "functional" })
+	@Test( description = "check for autoshare removal prompt message and press 'ok' to revoke", groups = { "functional" })
 
 	public void AutoShareRemoval_01() throws HarnessException {
 
@@ -42,7 +42,7 @@ public class AutoShareRemoval extends AjaxCommonTest {
 		delegate.authenticate();
 
 		// Create folder
-		String ownerFoldername = "ownerfolder"+ ZimbraSeleniumProperties.getUniqueString();
+		String ownerFoldername = "ownerfolder"+ ConfigProperties.getUniqueString();
 		FolderItem ownerInbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
 		ZAssert.assertNotNull(ownerInbox, "Verify the new owner folder exists");
 

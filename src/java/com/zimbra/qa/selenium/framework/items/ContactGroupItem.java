@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.items;
@@ -85,10 +85,6 @@ public class ContactGroupItem extends ContactItem implements IItem {
 		return(groupMembers);
 	}
 	
-	
-	/* (non-Javadoc)
-	 * @see com.zimbra.qa.selenium.framework.items.ContactItem#getName()
-	 */
 	@Override
 	public String getName() {
 		return (groupName);
@@ -223,12 +219,12 @@ public class ContactGroupItem extends ContactItem implements IItem {
 	public static ContactGroupItem createContactGroupItem(ZimbraAccount account) throws HarnessException {
 
 		// Create a contact group
-		String unique = ZimbraSeleniumProperties.getUniqueString(); // group name is max 20 chars
+		String unique = ConfigProperties.getUniqueString(); // group name is max 20 chars
 		String groupname = "group"+ unique.substring(unique.length() - 10);
 
 		// Create 2 members
-		String member1 = "member"+ ZimbraSeleniumProperties.getUniqueString() + "@zimbra.com";
-		String member2 = "member"+ ZimbraSeleniumProperties.getUniqueString() + "@zimbra.com";
+		String member1 = "member"+ ConfigProperties.getUniqueString() + "@zimbra.com";
+		String member2 = "member"+ ConfigProperties.getUniqueString() + "@zimbra.com";
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("<m type='I' value='").append(member1).append("'/>");

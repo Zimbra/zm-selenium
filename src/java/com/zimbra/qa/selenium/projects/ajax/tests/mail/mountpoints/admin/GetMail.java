@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mountpoints.admin;
@@ -43,12 +43,12 @@ public class GetMail extends PrefGroupMailByMessageTest {
 
 	}
 	
-	@Test(	description = "View a mail in a mountpoint",
+	@Test( description = "View a mail in a mountpoint",
 			groups = { "functional" })
 	public void GetMail_01() throws HarnessException {
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 		
 		FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox);
 		
@@ -125,12 +125,12 @@ public class GetMail extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "View the contents of a mail in a mountpoint",
+	@Test( description = "View the contents of a mail in a mountpoint",
 			groups = { "functional" })
 	public void GetMail_02() throws HarnessException {
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 		
 		FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox);
 		
@@ -162,7 +162,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
             	+				"Content-Type: text/plain; charset=utf-8 \n"
             	+				"Content-Transfer-Encoding: 7bit\n"
             	+				"\n"
-            	+				"content"+ ZimbraSeleniumProperties.getUniqueString() +"\n"
+            	+				"content"+ ConfigProperties.getUniqueString() +"\n"
             	+			"</content>"
             	+		"</m>"
 				+	"</AddMsgRequest>");
@@ -188,16 +188,16 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 	
 			// Verify the To, From, Subject, Body
-			ZAssert.assertEquals(	actual.zGetMailProperty(Field.Subject), mail.dSubject, "Verify the subject matches");
-			ZAssert.assertNotNull(	actual.zGetMailProperty(Field.ReceivedDate), "Verify the date is displayed");
-			ZAssert.assertNotNull(	actual.zGetMailProperty(Field.ReceivedTime), "Verify the time is displayed");
-			ZAssert.assertEquals(	actual.zGetMailProperty(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
-			ZAssert.assertEquals(	actual.zGetMailProperty(Field.Cc), ZimbraAccount.AccountB().EmailAddress, "Verify the Cc matches");
-			ZAssert.assertEquals(	actual.zGetMailProperty(Field.To), app.zGetActiveAccount().EmailAddress, "Verify the To matches");
+			ZAssert.assertEquals(actual.zGetMailProperty(Field.Subject), mail.dSubject, "Verify the subject matches");
+			ZAssert.assertNotNull(actual.zGetMailProperty(Field.ReceivedDate), "Verify the date is displayed");
+			ZAssert.assertNotNull(actual.zGetMailProperty(Field.ReceivedTime), "Verify the time is displayed");
+			ZAssert.assertEquals(actual.zGetMailProperty(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
+			ZAssert.assertEquals(actual.zGetMailProperty(Field.Cc), ZimbraAccount.AccountB().EmailAddress, "Verify the Cc matches");
+			ZAssert.assertEquals(actual.zGetMailProperty(Field.To), app.zGetActiveAccount().EmailAddress, "Verify the To matches");
 			
 			// The body could contain HTML, even though it is only displaying text (e.g. <br> may be present)
 			// do a contains, rather than equals.
-			ZAssert.assertStringContains(	actual.zGetMailProperty(Field.Body), mail.dBodyText, "Verify the body matches");
+			ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), mail.dBodyText, "Verify the body matches");
 
 		} finally {
 			

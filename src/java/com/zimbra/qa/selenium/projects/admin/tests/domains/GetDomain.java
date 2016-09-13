@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.tests.domains;
@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
@@ -45,7 +45,7 @@ public class GetDomain extends AdminCommonTest {
 	 * 2. Verify domain is present in the list.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify created domain is present in the domain list view",
+	@Test( description = "Verify created domain is present in the domain list view",
 			groups = { "smoke" })
 	public void GetDomain_01() throws HarnessException {
 
@@ -86,12 +86,12 @@ public class GetDomain extends AdminCommonTest {
 	 * 4. Verify domain alias is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify delete domain alias operation - Search list view",
+	@Test( description = "Verify delete domain alias operation - Search list view",
 			groups = { "functional" })
 			public void GetDomain_02() throws HarnessException {
 		
 		
-		String targetDomain = ZimbraSeleniumProperties.getStringProperty("testdomain");
+		String targetDomain = ConfigProperties.getStringProperty("testdomain");
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
 				+	"<domain by='name'>" + targetDomain + "</domain>"
@@ -142,7 +142,7 @@ public class GetDomain extends AdminCommonTest {
 	 * 2. Verify domain is present in the list.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify created domain is present in the domain list view",
+	@Test( description = "Verify created domain is present in the domain list view",
 			groups = { "smoke" })
 	public void GetDomain_03() throws HarnessException {
 
@@ -189,12 +189,12 @@ public class GetDomain extends AdminCommonTest {
 	 * 4. Verify domain alias is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Verify delete domain alias operation - Search list view",
+	@Test( description = "Verify delete domain alias operation - Search list view",
 			groups = { "functional" })
 			public void GetDomain_04() throws HarnessException {
 		
 		
-		String targetDomain = ZimbraSeleniumProperties.getStringProperty("testdomain");
+		String targetDomain = ConfigProperties.getStringProperty("testdomain");
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
 				+	"<domain by='name'>" + targetDomain + "</domain>"

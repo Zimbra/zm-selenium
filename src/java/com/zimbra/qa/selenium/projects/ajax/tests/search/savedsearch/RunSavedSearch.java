@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.search.savedsearch;
@@ -45,15 +45,15 @@ public class RunSavedSearch extends AjaxCommonTest  {
 	}
 	
 	
-	@Test(	description = "Run a saved search",
+	@Test( description = "Run a saved search",
 			groups = { "smoke" })
 	public void RunSavedSearch_01() throws HarnessException {				
 				
 			
 		// Create the message data to be sent
-		String name = "search" + ZimbraSeleniumProperties.getUniqueString();
-		String subject1 = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String subject2 = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String name = "search" + ConfigProperties.getUniqueString();
+		String subject1 = "subject" + ConfigProperties.getUniqueString();
+		String subject2 = "subject" + ConfigProperties.getUniqueString();
 		String query = "subject:(" + subject1 + ")";
 		
 
@@ -64,7 +64,7 @@ public class RunSavedSearch extends AjaxCommonTest  {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject1 +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content1"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>content1"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
@@ -75,7 +75,7 @@ public class RunSavedSearch extends AjaxCommonTest  {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject2 +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content1"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>content1"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");

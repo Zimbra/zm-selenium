@@ -1,3 +1,21 @@
+/*
+ * ***** BEGIN LICENSE BLOCK *****
+ *
+ * Zimbra Collaboration Suite Server
+ * Copyright (C) 2016 Synacor, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ *
+ * ***** END LICENSE BLOCK *****
+ */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.create;
 
 import com.zimbra.qa.selenium.framework.core.Bugs;
@@ -10,7 +28,7 @@ import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraResource;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
@@ -26,7 +44,7 @@ public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends Calend
   }
   
   @Bugs(ids="71542")
-  @Test(description="Unable to create appointment in shared calendars if mail feature is disabled", groups={"functional"} )
+  @Test( description="Unable to create appointment in shared calendars if mail feature is disabled", groups={"functional"} )
   
   public void CreateMeetingInSharedCalendarWithMailFeatureDisabled_01() throws HarnessException {
 	  
@@ -36,11 +54,11 @@ public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends Calend
 		AppointmentItem appt = new AppointmentItem();
 		
 		String apptSubject, apptLocation, apptAttendee1, apptContent, mountPointName;
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
 		apptLocation = location.EmailAddress;
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
-		apptContent = ZimbraSeleniumProperties.getUniqueString();
-		mountPointName = ZimbraSeleniumProperties.getUniqueString();
+		apptContent = ConfigProperties.getUniqueString();
+		mountPointName = ConfigProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -112,7 +130,7 @@ public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends Calend
 		
 		// Verify appointment exists in UI
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
-		app.zTreeCalendar.zMarkOnOffMountedFolder(mountPointName);
+		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountPointName);
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), true,"Verify appointment is visible in UI");
   }
 }

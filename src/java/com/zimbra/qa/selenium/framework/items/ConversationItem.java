@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
@@ -96,10 +96,10 @@ public class ConversationItem extends MailItem {
 	 * @throws HarnessException 
 	 */
 	public static ConversationItem createConversationItem(ZimbraAccount account) throws HarnessException {
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		String body1 = "body" + ZimbraSeleniumProperties.getUniqueString();
-		String body2 = "reply" + ZimbraSeleniumProperties.getUniqueString();
-		String body3 = "forward" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		String body1 = "body" + ConfigProperties.getUniqueString();
+		String body2 = "reply" + ConfigProperties.getUniqueString();
+		String body3 = "forward" + ConfigProperties.getUniqueString();
 		
 		// Send a message to the test account and AccountB
 		ZimbraAccount.AccountA().soapSend(

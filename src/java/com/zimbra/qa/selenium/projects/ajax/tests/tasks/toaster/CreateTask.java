@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.toaster;
@@ -21,7 +21,7 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew;
@@ -43,11 +43,11 @@ public class CreateTask extends AjaxCommonTest {
 		};
 	}
 
-	@Test(description = "Verify Toaster message on Create Task", groups = { "functional" })
+	@Test( description = "Verify Toaster message on Create Task", groups = { "functional" })
 	public void CreateTask_01() throws HarnessException {
 
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "taskbody" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
+		String body = "taskbody" + ConfigProperties.getUniqueString();
 
 		// Click NEW button
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
@@ -56,7 +56,7 @@ public class CreateTask extends AjaxCommonTest {
 		taskNew.zFillField(Field.Subject, subject);
 		taskNew.zFillField(Field.Body, body);
 		
-		if (ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".coverage.enabled", ZimbraSeleniumProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
 			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageTasks.zClickAt("css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')", "0,0");
 		} else {

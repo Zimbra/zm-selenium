@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.spellcheck;
@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
@@ -39,12 +39,12 @@ public class SpellCheckAddIgnore extends PrefGroupMailByMessageTest {
 	}
 	
 	@Bugs(ids = "47151")
-	@Test(	description = "Spell Check a misspelled word and add it to spell-check dictionary.",
+	@Test( description = "Spell Check a misspelled word and add it to spell-check dictionary.",
 			groups = { "functional" })
 	
 	public void SpellCheckAddIgnore_01() throws HarnessException {
 
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		String misspelledWord="addword";
 
 		// Open the new mail form
@@ -86,12 +86,12 @@ public class SpellCheckAddIgnore extends PrefGroupMailByMessageTest {
 	
 	
 	@Bugs(ids = "47151")
-	@Test(	description = "Spell Check a misspelled word and ignore it.",
+	@Test( description = "Spell Check a misspelled word and ignore it.",
 			groups = { "functional" })
 	
 	public void SpellCheckAddIgnore_02() throws HarnessException {
 
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		String misspelledWord="IgnoreWord";
 
 		// Open the new mail form

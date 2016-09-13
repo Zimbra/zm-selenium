@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.tests.mail.folders;
@@ -31,12 +31,12 @@ public class DeleteFolder extends PrefGroupMailByMessageTest {
 		logger.info("New "+ CreateFolder.class.getCanonicalName());
 	}
 
-	@Test(description = "Delete mail folder",
+	@Test( description = "Delete mail folder",
 			groups = { "smoke" })
 	
 	public void DeleteFolder_01() throws HarnessException  {
 	
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		
 		// Send the message from AccountA to the ZWC user
 		ZimbraAccount.AccountA().soapSend(
@@ -45,7 +45,7 @@ public class DeleteFolder extends PrefGroupMailByMessageTest {
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>"+ "body" + ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
@@ -54,7 +54,7 @@ public class DeleteFolder extends PrefGroupMailByMessageTest {
 		// Create a folder
 		FolderItem userRoot = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
-		String folderName = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String folderName = "folder" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +

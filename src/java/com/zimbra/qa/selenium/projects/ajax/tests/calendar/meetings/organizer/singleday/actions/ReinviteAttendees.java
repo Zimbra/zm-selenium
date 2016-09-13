@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.actions;
@@ -34,13 +34,13 @@ public class ReinviteAttendees extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "21181")
-	@Test(description = "Resend a meeting invite using context menu",
+	@Test( description = "Resend a meeting invite using context menu",
 			groups = { "smoke" })
 	public void ReinviteAttendees_01() throws HarnessException {
 		
 		// Creating a meeting
 		String tz = ZTimeZone.TimeZoneEST.getID();
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -58,7 +58,7 @@ public class ReinviteAttendees extends CalendarWorkWeekTest {
                      	"</inv>" +
                      	"<e a='"+ ZimbraAccount.AccountA().EmailAddress +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
-                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     		"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +

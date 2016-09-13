@@ -1,3 +1,21 @@
+/*
+ * ***** BEGIN LICENSE BLOCK *****
+ *
+ * Zimbra Collaboration Suite Server
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ *
+ * ***** END LICENSE BLOCK *****
+ */
 package com.zimbra.qa.selenium.projects.touch.tests.mail.mountpoints;
 
 import org.testng.annotations.Test;
@@ -18,16 +36,16 @@ public class MoveMount extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(	description = "Move a mountpoint to a folder",
+	@Test( description = "Move a mountpoint to a folder",
 			groups = { "functional" })
 	
 	public void MoveMountpoint_01() throws HarnessException {
 		FolderItem userRoot = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		String folderName = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String folderName = "folder" + ConfigProperties.getUniqueString();
 		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();
 
 		// Owner creates a folder, shares it with current user
-		String ownerFoldername = "ownerfolder"+ ZimbraSeleniumProperties.getUniqueString();
+		String ownerFoldername = "ownerfolder"+ ConfigProperties.getUniqueString();
 
 		FolderItem ownerInbox = FolderItem.importFromSOAP(Owner, FolderItem.SystemFolder.Inbox);
 		ZAssert.assertNotNull(ownerInbox, "Verify the new owner folder exists");
@@ -49,7 +67,7 @@ public class MoveMount extends PrefGroupMailByMessageTest {
 
 
 		// Current user creates the mountpoint that points to the share
-		String mountpointname = "mountpoint"+ ZimbraSeleniumProperties.getUniqueString();
+		String mountpointname = "mountpoint"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 						+		"<link l='1' name='"+ mountpointname +"' view='message' rid='"+ ownerFolder.getId() +"' zid='"+ Owner.ZimbraId +"'/>"

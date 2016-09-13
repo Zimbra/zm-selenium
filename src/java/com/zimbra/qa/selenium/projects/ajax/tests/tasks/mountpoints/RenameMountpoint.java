@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.mountpoints;
@@ -29,7 +29,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogRenameFolder;
 
@@ -51,14 +51,14 @@ public class RenameMountpoint extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Rename a mountpoint (Right Click -> Rename)", groups = { "smoke" })
+	@Test( description = "Rename a mountpoint (Right Click -> Rename)", groups = { "smoke" })
 	public void RenameMountpoint_01() throws HarnessException {
 
 		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();
 
 		// Owner creates a folder, shares it with current user
 		String ownerFoldername = "ownerfolder"
-				+ ZimbraSeleniumProperties.getUniqueString();
+				+ ConfigProperties.getUniqueString();
 
 		
 		FolderItem ownerTask = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -78,7 +78,7 @@ public class RenameMountpoint extends PrefGroupMailByMessageTest {
 				+ "</FolderActionRequest>");
 
 		// Current user creates the mountpoint that points to the share
-		String mountpointFoldername = "mountpoint"+ ZimbraSeleniumProperties.getUniqueString();
+		String mountpointFoldername = "mountpoint"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 						+ "<link l='1' name='" + mountpointFoldername
@@ -91,14 +91,14 @@ public class RenameMountpoint extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(mountpoint, "Verify the subfolder is available");
 
 		// Click Get Mail button
-		app.zPageMail.zToolbarPressButton(Button.B_GETMAIL);
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		DialogRenameFolder dialog = (DialogRenameFolder) app.zTreeTasks
 				.zTreeItem(Action.A_RIGHTCLICK, Button.B_RENAME, mountpoint);
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 
 		// Set the name, click OK
-		String mountpointFoldername2 = "mountpoint"	+ ZimbraSeleniumProperties.getUniqueString();
+		String mountpointFoldername2 = "mountpoint"	+ ConfigProperties.getUniqueString();
 		dialog.zSetNewName(mountpointFoldername2);
 		dialog.zClickButton(Button.B_OK);
 

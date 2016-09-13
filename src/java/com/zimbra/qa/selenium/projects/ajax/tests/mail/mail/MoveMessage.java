@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
@@ -51,12 +51,12 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test(	description = "Move a mail by selecting message, then clicking toolbar 'Move' button",
+	@Test( description = "Move a mail by selecting message, then clicking toolbar 'Move' button",
 			groups = { "smoke" })
 	public void MoveMail_01() throws HarnessException {
 
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 
 		// Create a subfolder to move the message into
 		// i.e. Inbox/subfolder
@@ -75,7 +75,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
@@ -104,12 +104,12 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Move a mail by selecting message, then click 'm' shortcut",
+	@Test( description = "Move a mail by selecting message, then click 'm' shortcut",
 			groups = { "functional" })
 	public void MoveMail_02() throws HarnessException {
 		
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 		
 		// Create a subfolder to move the message into
 		// i.e. Inbox/subfolder
@@ -128,7 +128,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
@@ -164,11 +164,11 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(	description = "Move a mail by using 'move to trash' shortcut '.t'",
+	@Test( description = "Move a mail by using 'move to trash' shortcut '.t'",
 			groups = { "functional" })
 	public void MoveMail_03() throws HarnessException {
 		
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
@@ -177,7 +177,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
@@ -209,12 +209,12 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(	description = "Move a mail by using 'move to inbox' shortcut '.i'",
+	@Test( description = "Move a mail by using 'move to inbox' shortcut '.i'",
 			groups = { "functional" })
 	public void MoveMail_04() throws HarnessException {
 		
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 		
 		// Create a subfolder to move the message into
 		// i.e. Inbox/subfolder
@@ -272,12 +272,12 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Move a mail by using Move -> New folder",
+	@Test( description = "Move a mail by using Move -> New folder",
 			groups = { "functional" })
 	public void MoveMail_05() throws HarnessException {
 		
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 		
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 
@@ -289,7 +289,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");

@@ -20,7 +20,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 
 
 /**
@@ -308,7 +308,7 @@ public class AppAdminConsole extends AbsApplication {
 
 	public void provisionAuthenticateDA() throws HarnessException {
 		// Create a new AdminAccount
-		ZimbraAdminAccount accounta = new ZimbraAdminAccount("admin"+ ZimbraSeleniumProperties.getUniqueString() + "@" + ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		ZimbraAdminAccount accounta = new ZimbraAdminAccount("admin"+ ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain"));
 
 		accounta.provisionDA(accounta.EmailAddress);
 		  

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.actions;
@@ -29,7 +29,7 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Locators;
@@ -60,8 +60,8 @@ public class ReplyToMeetingInviteWithIncludeOriginalAsAttachment extends Calenda
 		// Creating object for appointment data
 		String tz, apptSubject, apptBody, apptAttendee;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
+		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee = ZimbraAccount.AccountA().EmailAddress;
 		
 		// Absolute dates in UTC zone
@@ -91,7 +91,7 @@ public class ReplyToMeetingInviteWithIncludeOriginalAsAttachment extends Calenda
         // Open appointment & close it
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_REPLY_TO_ALL_MENU, apptSubject);
         FormMailNew mailComposeForm = (FormMailNew) new FormMailNew(app).zToolbarPressButton(Button.B_OPTIONS);
-        ZAssert.assertEquals(app.zPageMail.sIsElementPresent(Locators.zIncludeOriginalAsAttachmentMenu), false, "Verify 'Include Original As Attachment' menu remains disabled");
+        ZAssert.assertEquals(app.zPageMail.sIsElementPresent(Locators.zIncludeOriginalAsAttachmentReply), false, "Verify 'Include Original As Attachment' menu remains disabled");
 		
 	}
 }

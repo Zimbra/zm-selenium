@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.document;
@@ -35,7 +35,7 @@ public class TagDocument extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");				
 	}
 
-	@Test(description = "Tag a Document using Toolbar -> Tag -> New Tag", groups = { "smoke" })
+	@Test( description = "Tag a Document using Toolbar -> Tag -> New Tag", groups = { "smoke" })
 	public void TagDocument_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -75,7 +75,7 @@ public class TagDocument extends FeatureBriefcaseTest {
 		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, docItem);
 
 		// Create a tag using GUI
-		String tagName = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String tagName = "tag" + ConfigProperties.getUniqueString();
 
 		// Click on New Tag
 		DialogTag dialogTag = (DialogTag) app.zPageBriefcase
@@ -129,7 +129,7 @@ public class TagDocument extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(docName);
 	}
 
-	@Test(description = "Tag a Document using pre-existing Tag", groups = { "functional" })
+	@Test( description = "Tag a Document using pre-existing Tag", groups = { "functional" })
 	public void TagDocument_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -160,7 +160,7 @@ public class TagDocument extends FeatureBriefcaseTest {
 						+ "</SaveDocumentRequest>");
 
 		// Create a tag
-		String tagName = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String tagName = "tag" + ConfigProperties.getUniqueString();
 
 		account.soapSend("<CreateTagRequest xmlns='urn:zimbraMail'>"
 				+ "<tag name='" + tagName + "' color='1' />"
@@ -200,7 +200,7 @@ public class TagDocument extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(docName);
 	}
 
-	@Test(description = "Tag a Document using Right Click context menu", groups = { "functional" })
+	@Test( description = "Tag a Document using Right Click context menu", groups = { "functional" })
 	public void TagDocument_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -231,7 +231,7 @@ public class TagDocument extends FeatureBriefcaseTest {
 						+ "</SaveDocumentRequest>");
 
 		// Create a tag
-		String tagName = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String tagName = "tag" + ConfigProperties.getUniqueString();
 
 		account.soapSend("<CreateTagRequest xmlns='urn:zimbraMail'>"
 				+ "<tag name='" + tagName + "' color='1' />"

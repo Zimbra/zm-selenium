@@ -16,11 +16,8 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.contacts;
 
-import java.awt.AWTException;
-import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -299,29 +296,8 @@ public class FormContactDistributionListNew extends AbsForm {
 		if ( field == Field.DistributionListName ) {
 
 			locator = "css=div[id$='_groupNameParent'] input[id$='_groupName']";
-
-			if(ZimbraSeleniumProperties.isWebDriver()){
-				clearField(locator);
-				sType(locator, value);
-
-			} else {
-				this.sClickAt(locator,"");
-				Robot keyboard = null;
-				try {
-					keyboard = new Robot();
-				} catch (AWTException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				keyboard.keyPress(KeyEvent.VK_CONTROL);
-				keyboard.keyPress(KeyEvent.VK_A);
-				keyboard.keyRelease(KeyEvent.VK_A);
-				keyboard.keyRelease(KeyEvent.VK_CONTROL);
-				//this.sType(locator, value);
-				this.zKeyboard.zTypeCharacters(value);
-				this.zWaitForBusyOverlay();
-			}
-
+			clearField(locator);
+			sType(locator, value);
 			return;
 
 		} else if ( field == Field.SearchField ) {

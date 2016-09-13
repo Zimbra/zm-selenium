@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
@@ -52,14 +52,14 @@ public class DeleteTask extends AjaxCommonTest {
 		
 	}
 	
-	@Test(	description = "Delete a task using toolbar delete button",
+	@Test( description = "Delete a task using toolbar delete button",
 			groups = { "smoke" })
 	public void DeleteTask_01() throws HarnessException {
 		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		
 		// Create a basic task to delete
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task"+ ConfigProperties.getUniqueString();
 				
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -71,7 +71,7 @@ public class DeleteTask extends AjaxCommonTest {
 			        	"</inv>" +
 			        	"<su>"+ subject +"</su>" +
 			        	"<mp ct='text/plain'>" +
-			        		"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+			        		"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 			        	"</mp>" +
 					"</m>" +
 				"</CreateTaskRequest>");
@@ -106,14 +106,14 @@ public class DeleteTask extends AjaxCommonTest {
 	
 	}
 
-	@Test(	description = "Delete a task using checkbox and toolbar delete button",
+	@Test( description = "Delete a task using checkbox and toolbar delete button",
 			groups = { "smoke" })
 	public void DeleteTask_02() throws HarnessException {
 		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		
 		// Create a basic task to delete
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task"+ ConfigProperties.getUniqueString();
 				
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -125,7 +125,7 @@ public class DeleteTask extends AjaxCommonTest {
 			        	"</inv>" +
 			        	"<su>"+ subject +"</su>" +
 			        	"<mp ct='text/plain'>" +
-			        		"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+			        		"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 			        	"</mp>" +
 					"</m>" +
 				"</CreateTaskRequest>");
@@ -169,7 +169,7 @@ public class DeleteTask extends AjaxCommonTest {
 	  };
 	}
 	
-	@Test(	description = "Delete a task by selecting and typing 'delete' keyboard",
+	@Test( description = "Delete a task by selecting and typing 'delete' keyboard",
 			groups = { "smoke" },
 			dataProvider = "DataProviderDeleteKeys")
 	public void DeleteTask_03(String name, int keyEvent) throws HarnessException {
@@ -177,7 +177,7 @@ public class DeleteTask extends AjaxCommonTest {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		
 		// Create a basic task to delete
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task"+ ConfigProperties.getUniqueString();
 				
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -189,7 +189,7 @@ public class DeleteTask extends AjaxCommonTest {
 			        	"</inv>" +
 			        	"<su>"+ subject +"</su>" +
 			        	"<mp ct='text/plain'>" +
-			        		"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+			        		"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 			        	"</mp>" +
 					"</m>" +
 				"</CreateTaskRequest>");
@@ -228,14 +228,14 @@ public class DeleteTask extends AjaxCommonTest {
 	
 	}
 	@Bugs(ids="56467")
-	@Test(	description = "Delete a task by selecting and typing '.t' shortcut",
+	@Test( description = "Delete a task by selecting and typing '.t' shortcut",
 			groups = { "functional" } )
 	public void DeleteTask_04() throws HarnessException {
 		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		
 		// Create a basic task to delete
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task"+ ConfigProperties.getUniqueString();
 				
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -247,7 +247,7 @@ public class DeleteTask extends AjaxCommonTest {
 			        	"</inv>" +
 			        	"<su>"+ subject +"</su>" +
 			        	"<mp ct='text/plain'>" +
-			        		"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+			        		"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 			        	"</mp>" +
 					"</m>" +
 				"</CreateTaskRequest>");
@@ -285,16 +285,16 @@ public class DeleteTask extends AjaxCommonTest {
 	
 	}
 
-	@Test(	description = "Delete multiple tasks (3) by select and toolbar delete",
+	@Test( description = "Delete multiple tasks (3) by select and toolbar delete",
 			groups = { "functional" })
 	public void DeleteTask_05() throws HarnessException {
 		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
 		// Create the message data to be sent
-		String subject1 = "task"+ ZimbraSeleniumProperties.getUniqueString();
-		String subject2 = "task"+ ZimbraSeleniumProperties.getUniqueString();
-		String subject3 = "task"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject1 = "task"+ ConfigProperties.getUniqueString();
+		String subject2 = "task"+ ConfigProperties.getUniqueString();
+		String subject3 = "task"+ ConfigProperties.getUniqueString();
 				
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -306,7 +306,7 @@ public class DeleteTask extends AjaxCommonTest {
 			        	"</inv>" +
 			        	"<su>"+ subject1 +"</su>" +
 			        	"<mp ct='text/plain'>" +
-			        		"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+			        		"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 			        	"</mp>" +
 					"</m>" +
 				"</CreateTaskRequest>");
@@ -321,7 +321,7 @@ public class DeleteTask extends AjaxCommonTest {
 			        	"</inv>" +
 			        	"<su>"+ subject2 +"</su>" +
 			        	"<mp ct='text/plain'>" +
-			        		"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+			        		"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 			        	"</mp>" +
 					"</m>" +
 				"</CreateTaskRequest>");
@@ -336,7 +336,7 @@ public class DeleteTask extends AjaxCommonTest {
 			        	"</inv>" +
 			        	"<su>"+ subject3 +"</su>" +
 			        	"<mp ct='text/plain'>" +
-			        		"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+			        		"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 			        	"</mp>" +
 					"</m>" +
 				"</CreateTaskRequest>");
@@ -391,7 +391,7 @@ public class DeleteTask extends AjaxCommonTest {
 	}
 
 
-	@Test(	description = "Delete a task using context menu delete button",
+	@Test( description = "Delete a task using context menu delete button",
 			groups = { "smoke" })
 	public void DeleteTask_06() throws HarnessException {
 
@@ -399,7 +399,7 @@ public class DeleteTask extends AjaxCommonTest {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		
 		// Create a basic task to delete
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task"+ ConfigProperties.getUniqueString();
 				
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -411,7 +411,7 @@ public class DeleteTask extends AjaxCommonTest {
 			        	"</inv>" +
 			        	"<su>"+ subject +"</su>" +
 			        	"<mp ct='text/plain'>" +
-			        		"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+			        		"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 			        	"</mp>" +
 					"</m>" +
 				"</CreateTaskRequest>");
@@ -449,14 +449,14 @@ public class DeleteTask extends AjaxCommonTest {
 	}
 	
 	@Bugs(ids="61625")
-	@Test(	description = "Hard-delete a task by selecting and typing 'shift-del' shortcut",
+	@Test( description = "Hard-delete a task by selecting and typing 'shift-del' shortcut",
 			groups = { "functional" })
 	public void HardDeleteTask_07() throws HarnessException {
 
 		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);		
 		// Create a basic task to delete
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task"+ ConfigProperties.getUniqueString();
 				
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -468,7 +468,7 @@ public class DeleteTask extends AjaxCommonTest {
 			        	"</inv>" +
 			        	"<su>"+ subject +"</su>" +
 			        	"<mp ct='text/plain'>" +
-			        		"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+			        		"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 			        	"</mp>" +
 					"</m>" +
 				"</CreateTaskRequest>");
@@ -519,15 +519,15 @@ public class DeleteTask extends AjaxCommonTest {
 	}
 
 	@Bugs(ids="61625")
-	@Test(	description = "Hard-delete multiple tasks(3) by selecting and typing 'shift-del' shortcut",
+	@Test( description = "Hard-delete multiple tasks(3) by selecting and typing 'shift-del' shortcut",
 			groups = { "functional" })
 	public void HardDeleteTask_08() throws HarnessException {
 		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);		
 		// Create a basic task to delete
-		String subject1 = "task1"+ ZimbraSeleniumProperties.getUniqueString();
-		String subject2 = "task2"+ ZimbraSeleniumProperties.getUniqueString();
-		String subject3 = "task3"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject1 = "task1"+ ConfigProperties.getUniqueString();
+		String subject2 = "task2"+ ConfigProperties.getUniqueString();
+		String subject3 = "task3"+ ConfigProperties.getUniqueString();
 				
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -539,7 +539,7 @@ public class DeleteTask extends AjaxCommonTest {
 			        	"</inv>" +
 			        	"<su>"+ subject1 +"</su>" +
 			        	"<mp ct='text/plain'>" +
-			        		"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+			        		"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 			        	"</mp>" +
 					"</m>" +
 				"</CreateTaskRequest>");
@@ -554,7 +554,7 @@ public class DeleteTask extends AjaxCommonTest {
 			        	"</inv>" +
 			        	"<su>"+ subject2 +"</su>" +
 			        	"<mp ct='text/plain'>" +
-			        		"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+			        		"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 			        	"</mp>" +
 					"</m>" +
 				"</CreateTaskRequest>");
@@ -569,7 +569,7 @@ public class DeleteTask extends AjaxCommonTest {
 			        	"</inv>" +
 			        	"<su>"+ subject3 +"</su>" +
 			        	"<mp ct='text/plain'>" +
-			        		"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+			        		"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 			        	"</mp>" +
 					"</m>" +
 				"</CreateTaskRequest>");
@@ -625,14 +625,14 @@ public class DeleteTask extends AjaxCommonTest {
 		ZAssert.assertEquals(nodes.length, 0, "Verify the task3 is not in the  tasks/trash");
 
 	}
-	@Test(	description = "Create task through SOAP - delete using Backspace Key & verify through GUI",
+	@Test( description = "Create task through SOAP - delete using Backspace Key & verify through GUI",
 			groups = { "functional" } )
 	public void DeleteTask_09() throws HarnessException {
 		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		
 		// Create a basic task to delete
-		String subject = "task"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task"+ ConfigProperties.getUniqueString();
 				
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -644,7 +644,7 @@ public class DeleteTask extends AjaxCommonTest {
 			        	"</inv>" +
 			        	"<su>"+ subject +"</su>" +
 			        	"<mp ct='text/plain'>" +
-			        		"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+			        		"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 			        	"</mp>" +
 					"</m>" +
 				"</CreateTaskRequest>");
@@ -681,17 +681,17 @@ public class DeleteTask extends AjaxCommonTest {
 	
 	}
 	
-	@Test(description = "Delete Attachment from edit window and - verify through GUI", groups = { "smoke" })
+	@Test( description = "Delete Attachment from edit window and - verify through GUI", groups = { "smoke" })
 	public void DeleteAttachment_10() throws HarnessException {
 
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
 
 
 		ZimbraAccount account = app.zGetActiveAccount();
 		FolderItem taskFolder = FolderItem.importFromSOAP(account,SystemFolder.Tasks);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/Files/Basic01/BasicExcel2007.xlsx";
+		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/Files/Basic01/BasicExcel2007.xlsx";
 		// Upload file to server through RestUtil
 		String attachmentId = account.uploadFile(filePath);		
 
@@ -706,7 +706,7 @@ public class DeleteTask extends AjaxCommonTest {
 				"</inv>" +
 				"<su>"+ subject +"</su>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"<attach aid='"+attachmentId+"'>"+
 				"</attach>"+

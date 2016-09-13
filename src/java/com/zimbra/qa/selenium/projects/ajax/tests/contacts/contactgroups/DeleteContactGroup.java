@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contactgroups;
@@ -41,7 +41,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 	}
 	
 	
-	@Test(	description = "Delete a contact group by click Delete button on toolbar", groups = { "smoke" })
+	@Test( description = "Delete a contact group by click Delete button on toolbar", groups = { "smoke" })
 	
 	public void ClickDeleteOnToolbar_01() throws HarnessException {
 
@@ -76,7 +76,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
    	}
 
 	
-	@Test(	description = "Delete a contact group by click Delete on Context Menu",	groups = { "functional" })
+	@Test( description = "Delete a contact group by click Delete on Context Menu",	groups = { "functional" })
 	
 	public void ClickDeleteOnContextMenu_02() throws HarnessException {
 
@@ -107,7 +107,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
    	}
 	
 
-	@Test(	description = "Delete a contact group selected by checkbox by click Delete button on toolbar", groups = { "functional" })
+	@Test( description = "Delete a contact group selected by checkbox by click Delete button on toolbar", groups = { "functional" })
 	
 	public void DeleteContactGroupSelectedWithCheckbox_03() throws HarnessException {
 
@@ -141,7 +141,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
    	}
 	
 
-	@Test(	description = "Delete a contact group use shortcut Del", groups = { "functional" })
+	@Test( description = "Delete a contact group use shortcut Del", groups = { "functional" })
 	
 	public void UseShortcutDel_04() throws HarnessException {
 
@@ -175,7 +175,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
    	}
 	
 	
-	@Test(	description = "Delete a contact group use shortcut backspace", groups = { "functional" })
+	@Test( description = "Delete a contact group use shortcut backspace", groups = { "functional" })
 	
 	public void  UseShortcutBackspace_05() throws HarnessException {
 
@@ -209,7 +209,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
    	}
 
 	
-	@Test(	description = "Delete multiple contact groups at once",	groups = { "functional" })
+	@Test( description = "Delete multiple contact groups at once",	groups = { "functional" })
 	
 	public void DeleteMultipleContactGroups_06() throws HarnessException {
 
@@ -253,7 +253,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 	}
 	
 
-	@Test(	description = "Delete contact + contact group at once",	groups = { "functional" })
+	@Test( description = "Delete contact + contact group at once",	groups = { "functional" })
 	
 	public void DeleteMixOfContactAndGroup_07() throws HarnessException {
 
@@ -291,7 +291,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 	}
 	
 	
-	@Test(	description = "Move a contact group to folder Trash by expand Move dropdown then select Trash", groups = { "functional" })
+	@Test( description = "Move a contact group to folder Trash by expand Move dropdown then select Trash", groups = { "functional" })
 	
 	public void MoveToTrashFromMoveDropdownOnToolbar_08() throws HarnessException {
 
@@ -324,7 +324,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
    	}
 	
 	
-	@Test(	description = "Click Delete Toolbar button in Edit Contact Group form",
+	@Test( description = "Click Delete Toolbar button in Edit Contact Group form",
 			groups = { "functional" })
 	
 	public void DeleteContactGroupFromEditContactGroupUI_09() throws HarnessException {

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.tests.mail.mail.message;
@@ -30,15 +30,15 @@ public class QuickReply extends PrefGroupMailByMessageTest {
 
 	}
 	
-	@Test(	description = "Quick Reply to a conversation (1 message, 1 recipient)",
+	@Test( description = "Quick Reply to a conversation (1 message, 1 recipient)",
 			groups = { "smoke" })
 	
 	public void QuickReply_01() throws HarnessException {
 						
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String content = "content" + ZimbraSeleniumProperties.getUniqueString();
-		String reply = "quickreply" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String content = "content" + ConfigProperties.getUniqueString();
+		String reply = "quickreply" + ConfigProperties.getUniqueString();
 		
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -75,15 +75,15 @@ public class QuickReply extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test(	description = "Bug 92120: Verify quick reply text area clears the content after replying to the message.",
+	@Test( description = "Bug 92120: Verify quick reply text area clears the content after replying to the message.",
 			groups = { "functional" })
 	
 	public void QuickReply_02() throws HarnessException {
 				
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String content = "content" + ZimbraSeleniumProperties.getUniqueString();
-		String reply = "quickreply" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String content = "content" + ConfigProperties.getUniqueString();
+		String reply = "quickreply" + ConfigProperties.getUniqueString();
 		String locator = "css=div[id='ext-textareainput-1'] textarea[id^='ext-element-87']";
 		
 		ZimbraAccount.AccountA().soapSend(

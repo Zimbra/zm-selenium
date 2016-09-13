@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.file;
@@ -31,14 +31,14 @@ public class UnTagFile extends FeatureBriefcaseTest {
 		// All tests start at the Briefcase page
 		super.startingPage = app.zPageBriefcase;
 
-		//if(ZimbraSeleniumProperties.zimbraGetVersionString().contains("FOSS")){
+		//if(ConfigProperties.zimbraGetVersionString().contains("FOSS")){
 		    super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 		//}
 			
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 	}
 
-	@Test(description = "Remove a tag from a File using Toolbar -> Tag -> Remove Tag", groups = { "smoke" })
+	@Test( description = "Remove a tag from a File using Toolbar -> Tag -> Remove Tag", groups = { "smoke" })
 	public void UnTagFile_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -46,7 +46,7 @@ public class UnTagFile extends FeatureBriefcaseTest {
 				SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ZimbraSeleniumProperties.getBaseDirectory()
+		String filePath = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/testtextfile.txt";
 
 		FileItem fileItem = new FileItem(filePath);
@@ -83,7 +83,7 @@ public class UnTagFile extends FeatureBriefcaseTest {
 		 */
 
 		// Create a tag
-		String tagName = "tag" + ZimbraSeleniumProperties.getUniqueString();
+		String tagName = "tag" + ConfigProperties.getUniqueString();
 
 		/*
 		 * //this flow needs page reload account.soapSend(
@@ -142,7 +142,7 @@ public class UnTagFile extends FeatureBriefcaseTest {
 		// Click on created file
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ZimbraSeleniumProperties.zimbraGetVersionString().contains(
+		if(ConfigProperties.zimbraGetVersionString().contains(
     			"FOSS")){
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
@@ -180,7 +180,7 @@ public class UnTagFile extends FeatureBriefcaseTest {
 		// Click on tagged file
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ZimbraSeleniumProperties.zimbraGetVersionString().contains(
+		if(ConfigProperties.zimbraGetVersionString().contains(
     			"FOSS")){
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 

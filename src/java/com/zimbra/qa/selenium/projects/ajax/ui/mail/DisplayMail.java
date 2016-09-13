@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
@@ -107,7 +107,7 @@ public class DisplayMail extends AbsDisplay {
 		Cc,
 		OnBehalfOf,
 		OnBehalfOfLabel,
-		Bcc,			// Does this show in any mail views?  Maybe in Sent?
+		Bcc, // Does this show in any mail views?  Maybe in Sent?
 		Subject,
 		Body
 	}
@@ -1044,21 +1044,15 @@ public class DisplayMail extends AbsDisplay {
 			
 		} else if ( field == Field.Body ) {
 
-			/*
-			 * To get the body contents, need to switch iframes
-			 */
 			try {
 				
 				this.sSelectFrame("//iframe[contains(@id, '_body__iframe')]");
-				
 				String bodyLocator = "css=body";
 				
 				// Make sure the body is present
 				if ( !this.sIsElementPresent(bodyLocator) )
 					throw new HarnessException("Unable to find the message body!");
 				
-				// Get the body value
-				// String body = this.sGetText(bodyLocator).trim();
 				String html = this.zGetHtml(bodyLocator);
 				
 				logger.info("DisplayMail.zGetBody(" + bodyLocator + ") = " + html);

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.mountpoints;
@@ -36,11 +36,11 @@ public class CreateShare extends AjaxCommonTest  {
 
 	}
 	
-	@Test(	description = "Share an addressbook - Viewer",
+	@Test( description = "Share an addressbook - Viewer",
 			groups = { "smoke" })
 	public void CreateShare_01() throws HarnessException {
 		
-		String addressbookname = "addressbook" + ZimbraSeleniumProperties.getUniqueString();
+		String addressbookname = "addressbook" + ConfigProperties.getUniqueString();
 
 
 		// Create an addressbook
@@ -55,7 +55,7 @@ public class CreateShare extends AjaxCommonTest  {
 
 		
 		
-		//Need to do Refresh by clicking on getmail button to see folder in the list 
+		//Need to do Refresh to see folder in the list 
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 

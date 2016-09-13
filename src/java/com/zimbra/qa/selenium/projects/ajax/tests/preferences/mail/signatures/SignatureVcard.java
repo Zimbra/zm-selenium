@@ -3,17 +3,17 @@ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 import org.testng.Assert;
@@ -42,7 +42,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.DialogSelectContact;
@@ -58,13 +58,13 @@ public class SignatureVcard extends AjaxCommonTest {
 		super.startingAccountPreferences = null;
 	}
 
-	@Test(description = "Verify Signature Vcard thoough GUI", groups = { "functional" })
+	@Test( description = "Verify Signature Vcard thoough GUI", groups = { "functional" })
 	public void SignatureVcard_01() throws HarnessException {
 
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
-		String sigName = "signame" + ZimbraSeleniumProperties.getUniqueString();
-		String sigBody = "sigbody" + ZimbraSeleniumProperties.getUniqueString();
+		String sigName = "signame" + ConfigProperties.getUniqueString();
+		String sigBody = "sigbody" + ConfigProperties.getUniqueString();
 
 		// click on signature from left pane
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK,TreeItem.MailSignatures);
@@ -114,8 +114,8 @@ public class SignatureVcard extends AjaxCommonTest {
 
 		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountZWC()));
-		mail.dSubject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		mail.dBodyText = "body" + ZimbraSeleniumProperties.getUniqueString();
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);

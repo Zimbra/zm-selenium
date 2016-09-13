@@ -37,7 +37,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
@@ -58,13 +58,13 @@ public class UpdateLicense extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Bugs( ids = "106019")
-	@Test(	description = "Upload new license in admin console",
+	@Test( description = "Upload new license in admin console",
 	groups = { "smoke" })
 	public void UpdateLicense_01() throws HarnessException {
 
 		// Create file item
 		final String fileName = "regular.xml";
-		final String filePath = ZimbraSeleniumProperties.getBaseDirectory() + "\\data\\private\\license\\" + fileName;
+		final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\private\\license\\" + fileName;
 		FileItem fileItem = new FileItem(filePath);
 
 		// Verify navigation path - configure >> global settings >> License
@@ -112,7 +112,7 @@ public class UpdateLicense extends AdminCommonTest {
 		staf.execute("zmlicense -a");
 
 		// Create a new account after activation of license
-		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"

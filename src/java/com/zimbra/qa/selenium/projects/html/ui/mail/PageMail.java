@@ -130,7 +130,7 @@ public class PageMail extends AbsTab {
 
 			// FALL THROUGH
 
-		} else if ( button == Button.B_GETMAIL ) {
+		} else if ( button == Button.B_REFRESH ) {
 
 			locator = Locators.LocatorGetMail;
 			page = null;

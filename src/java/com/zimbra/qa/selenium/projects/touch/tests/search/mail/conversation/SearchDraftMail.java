@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.tests.search.mail.conversation;
@@ -28,7 +28,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
 
 public class SearchDraftMail extends PrefGroupMailByConversationTest {
@@ -38,15 +38,15 @@ public class SearchDraftMail extends PrefGroupMailByConversationTest {
 
 	}
 	
-	@Bugs(	ids = "93246")
+	@Bugs( ids = "93246")
 	@Test( description = "Bug 93246: Draft message content showing blank from search results",
 			groups = { "smoke" })
 			
 	public void SearchDraftMail_01() throws HarnessException, AWTException {
 		
 		//-- DATA
-				String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-				String body = "body"+ ZimbraSeleniumProperties.getUniqueString();
+				String subject = "subject"+ ConfigProperties.getUniqueString();
+				String body = "body"+ ConfigProperties.getUniqueString();
 				
 				app.zGetActiveAccount().soapSend(
 						"<SaveDraftRequest xmlns='urn:zimbraMail'>" +

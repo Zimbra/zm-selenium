@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.mountpoints.manager;
@@ -31,7 +31,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 
@@ -52,13 +52,13 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 
 	}
 
-	@Test(	description = "Drag task  from shared folder and drop into local task folder (manager rights)",
+	@Test( description = "Drag task  from shared folder and drop into local task folder (manager rights)",
 			groups = { "functional" })
 			public void DragAndDropSharedTaskToLocalFolder() throws HarnessException {
 
-		String foldername = "tasklist" + ZimbraSeleniumProperties.getUniqueString();
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "tasklist" + ConfigProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 
 		FolderItem task = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Tasks );
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -90,7 +90,7 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 				"</inv>" +
 				"<su>"+ subject +"</su>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"</m>" +
 		"</CreateTaskRequest>");
@@ -160,13 +160,13 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 	}
 
 
-	@Test(	description = "Drag task from local task folder to shared folder(manager rights)",
+	@Test( description = "Drag task from local task folder to shared folder(manager rights)",
 			groups = { "functional" })
 			public void DragAndDropTaskToSharedFolder() throws HarnessException {
 
-		String foldername = "tasklist" + ZimbraSeleniumProperties.getUniqueString();
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "tasklist" + ConfigProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 
 		FolderItem task = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Tasks );
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -198,7 +198,7 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 				"</inv>" +
 				"<su>"+ subject +"</su>" +
 				"<mp ct='text/plain'>" +
-				"<content>content"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 				"</mp>" +
 				"</m>" +
 		"</CreateTaskRequest>");

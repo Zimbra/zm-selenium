@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.autocomplete;
@@ -42,7 +42,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 	
 	}
 	
-	@Test(	description = "Autocomplete using a Contact - First Name",
+	@Test( description = "Autocomplete using a Contact - First Name",
 			groups = { "functional" })
 	public void AutoCompleteContacts_01() throws HarnessException {
 		
@@ -51,8 +51,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		contact.provision();
 		contact.authenticate();
 
-		String firstname = "Michael" + ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "Williams" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "Michael" + ConfigProperties.getUniqueString();
+		String lastname = "Williams" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 					"<CreateContactRequest xmlns='urn:zimbraMail'>"
@@ -66,8 +66,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -99,7 +99,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete using the Contacts - Partial First Name",
+	@Test( description = "Autocomplete using the Contacts - Partial First Name",
 			groups = { "functional" })
 	public void AutoCompleteContacts_02() throws HarnessException {
 		
@@ -108,8 +108,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		contact.provision();
 		contact.authenticate();
 
-		String firstname = "Michael" + ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "Williams" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "Michael" + ConfigProperties.getUniqueString();
+		String lastname = "Williams" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 					"<CreateContactRequest xmlns='urn:zimbraMail'>"
@@ -124,8 +124,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		
 		
@@ -159,7 +159,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete using a Contact - Last Name",
+	@Test( description = "Autocomplete using a Contact - Last Name",
 			groups = { "functional" })
 	public void AutoCompleteContacts_03() throws HarnessException {
 		
@@ -168,8 +168,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		contact.provision();
 		contact.authenticate();
 
-		String firstname = "Michael" + ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "Williams" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "Michael" + ConfigProperties.getUniqueString();
+		String lastname = "Williams" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 					"<CreateContactRequest xmlns='urn:zimbraMail'>"
@@ -184,8 +184,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		
 		
@@ -219,7 +219,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete using a Contact - Partial Last Name",
+	@Test( description = "Autocomplete using a Contact - Partial Last Name",
 			groups = { "functional" })
 	public void AutoCompleteContacts_04() throws HarnessException {
 		
@@ -228,8 +228,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		contact.provision();
 		contact.authenticate();
 
-		String firstname = "Michael" + ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "Williams" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "Michael" + ConfigProperties.getUniqueString();
+		String lastname = "Williams" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 					"<CreateContactRequest xmlns='urn:zimbraMail'>"
@@ -244,8 +244,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		
 		
@@ -279,7 +279,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete using a Contact - Full Name",
+	@Test( description = "Autocomplete using a Contact - Full Name",
 			groups = { "functional" })
 	public void AutoCompleteContacts_05() throws HarnessException {
 		
@@ -288,8 +288,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		contact.provision();
 		contact.authenticate();
 
-		String firstname = "Michael" + ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "Williams" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "Michael" + ConfigProperties.getUniqueString();
+		String lastname = "Williams" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 					"<CreateContactRequest xmlns='urn:zimbraMail'>"
@@ -304,8 +304,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		
 		
@@ -339,7 +339,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete using a Contact - First Name and Last Initial",
+	@Test( description = "Autocomplete using a Contact - First Name and Last Initial",
 			groups = { "functional" })
 	public void AutoCompleteContacts_07() throws HarnessException {
 		
@@ -348,8 +348,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		contact.provision();
 		contact.authenticate();
 
-		String firstname = "Michael" + ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "Williams" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "Michael" + ConfigProperties.getUniqueString();
+		String lastname = "Williams" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 					"<CreateContactRequest xmlns='urn:zimbraMail'>"
@@ -364,8 +364,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		
 		
@@ -400,16 +400,16 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(	description = "Autocomplete using a Contact - Multiple Matches",
+	@Test( description = "Autocomplete using a Contact - Multiple Matches",
 			groups = { "functional" })
 	public void AutoCompleteContacts_08() throws HarnessException {
 		int count = 3;
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
-		String firstname = "Jayden" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "Jayden" + ConfigProperties.getUniqueString();
 		for (int i = 0; i < count; i++) {
 			
 			// Create a contact
@@ -417,7 +417,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 			contact.provision();
 			contact.authenticate();
 
-			String lastname = "Jones" + ZimbraSeleniumProperties.getUniqueString();
+			String lastname = "Jones" + ConfigProperties.getUniqueString();
 			
 			app.zGetActiveAccount().soapSend(
 						"<CreateContactRequest xmlns='urn:zimbraMail'>"
@@ -454,7 +454,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete using a Contact - No Matches",
+	@Test( description = "Autocomplete using a Contact - No Matches",
 			groups = { "functional" })
 	public void AutoCompleteContacts_09() throws HarnessException {
 		
@@ -463,8 +463,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		contact.provision();
 		contact.authenticate();
 
-		String firstname = "Michael" + ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "Williams" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "Michael" + ConfigProperties.getUniqueString();
+		String lastname = "Williams" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 					"<CreateContactRequest xmlns='urn:zimbraMail'>"
@@ -479,8 +479,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -503,7 +503,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 	}
 
 	@Bugs(ids = "47045")
-	@Test(	description = "Autocomplete including a period/dot '.' in the string",
+	@Test( description = "Autocomplete including a period/dot '.' in the string",
 			groups = { "functional" })
 	public void AutoCompleteContactsBug47045A() throws HarnessException {
 		
@@ -512,8 +512,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		contact.provision();
 		contact.authenticate();
 
-		String firstname = "Michael" + ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "Williams" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "Michael" + ConfigProperties.getUniqueString();
+		String lastname = "Williams" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 					"<CreateContactRequest xmlns='urn:zimbraMail'>"
@@ -528,8 +528,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -563,7 +563,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 	}
 
 	@Bugs(ids = "47045")
-	@Test(	description = "Autocomplete including a period/dot '.' in the string",
+	@Test( description = "Autocomplete including a period/dot '.' in the string",
 			groups = { "functional" })
 	public void AutoCompleteContactsBug47045B() throws HarnessException {
 		
@@ -572,8 +572,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		contact.provision();
 		contact.authenticate();
 
-		String firstname = "Michael" + ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "Williams" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "Michael" + ConfigProperties.getUniqueString();
+		String lastname = "Williams" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 					"<CreateContactRequest xmlns='urn:zimbraMail'>"
@@ -588,8 +588,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -622,7 +622,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete should not match trashed contacts",
+	@Test( description = "Autocomplete should not match trashed contacts",
 			groups = { "functional" })
 	public void AutoCompleteContacts_Bug47044A() throws HarnessException {
 		
@@ -631,8 +631,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		contact.provision();
 		contact.authenticate();
 
-		String firstname = "Richard" + ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "Moore" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "Richard" + ConfigProperties.getUniqueString();
+		String lastname = "Moore" + ConfigProperties.getUniqueString();
 		
 		// Create a contact
 		app.zGetActiveAccount().soapSend(
@@ -657,8 +657,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -687,7 +687,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(	description = "Autocomplete should not match deleted contacts",
+	@Test( description = "Autocomplete should not match deleted contacts",
 			groups = { "functional" })
 	public void AutoCompleteContacts_Bug47044B() throws HarnessException {
 		
@@ -696,8 +696,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		contact.provision();
 		contact.authenticate();
 
-		String firstname = "Richard" + ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "Moore" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "Richard" + ConfigProperties.getUniqueString();
+		String lastname = "Moore" + ConfigProperties.getUniqueString();
 		
 		// Create a contact
 		app.zGetActiveAccount().soapSend(
@@ -722,8 +722,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -753,7 +753,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 	}
 
 	@Bugs(ids = "47044")
-	@Test(	description = "Autocomplete should not match contacts in trashed addressbook",
+	@Test( description = "Autocomplete should not match contacts in trashed addressbook",
 			groups = { "functional" })
 	public void AutoCompleteContacts_Bug47044C() throws HarnessException {
 		
@@ -763,10 +763,10 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		contact.provision();
 		contact.authenticate();
 
-		String firstname = "Richard" + ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "Moore" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "Richard" + ConfigProperties.getUniqueString();
+		String lastname = "Moore" + ConfigProperties.getUniqueString();
 		
-		String foldername = "addressbook" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "addressbook" + ConfigProperties.getUniqueString();
 		
 		// Create an addressbook
 		app.zGetActiveAccount().soapSend(
@@ -797,8 +797,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -829,7 +829,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(	description = "Autocomplete should match contacts in addressbooks and subaddressbooks",
+	@Test( description = "Autocomplete should match contacts in addressbooks and subaddressbooks",
 			groups = { "functional" })
 	public void AutoCompleteContacts_10() throws HarnessException {
 		
@@ -839,13 +839,13 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		contact1.provision();
 		contact1.authenticate();
 
-		String firstname = "Charles" + ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "Anderson" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "Charles" + ConfigProperties.getUniqueString();
+		String lastname = "Anderson" + ConfigProperties.getUniqueString();
 				
 		// Create an addressbook
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
-				+		"<folder name='addressbook" + ZimbraSeleniumProperties.getUniqueString() +"' l='"+ FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Contacts).getId() +"' view='contact'/>"
+				+		"<folder name='addressbook" + ConfigProperties.getUniqueString() +"' l='"+ FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Contacts).getId() +"' view='contact'/>"
 				+	"</CreateFolderRequest>");
 		String folderID = app.zGetActiveAccount().soapSelectValue("//mail:folder", "id");
 
@@ -864,13 +864,13 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		contact2.provision();
 		contact2.authenticate();
 
-		firstname = "Charles" + ZimbraSeleniumProperties.getUniqueString();
-		lastname = "Thomas" + ZimbraSeleniumProperties.getUniqueString();
+		firstname = "Charles" + ConfigProperties.getUniqueString();
+		lastname = "Thomas" + ConfigProperties.getUniqueString();
 				
 		// Create an addressbook
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
-				+		"<folder name='subaddressbook" + ZimbraSeleniumProperties.getUniqueString() +"' l='"+ folderID +"' view='contact'/>"
+				+		"<folder name='subaddressbook" + ConfigProperties.getUniqueString() +"' l='"+ folderID +"' view='contact'/>"
 				+	"</CreateFolderRequest>");
 		String subfolderID = app.zGetActiveAccount().soapSelectValue("//mail:folder", "id");
 
@@ -890,8 +890,8 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);

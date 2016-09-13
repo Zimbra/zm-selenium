@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.attachments;
@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 
@@ -37,11 +37,11 @@ public class GetAttachment extends PrefGroupMailByConversationTest {
 	}
 	
 	
-	@Test(	description = "Receive a conversation with one attachment",
+	@Test( description = "Receive a conversation with one attachment",
 			groups = { "smoke" })
 	public void GetAttachment_01() throws HarnessException {
 		
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
 		final String subject = "subject151615738";
 		final String attachmentname = "file.txt";
 		
@@ -75,11 +75,11 @@ public class GetAttachment extends PrefGroupMailByConversationTest {
 		
 	}
 
-	@Test(	description = "Receive a conversation with three attachments",
+	@Test( description = "Receive a conversation with three attachments",
 			groups = { "functional" })
 	public void GetAttachment_02() throws HarnessException {
 		
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email05/mime02.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime02.txt";
 		final String subject = "subject151111738";
 		final String attachmentname1 = "file01.txt";
 		final String attachmentname2 = "file02.txt";

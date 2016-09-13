@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.create;
@@ -37,7 +37,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "102271")
-	@Test(description = "Verify sending appt invite when Location resource has conflicts shows conflict dialog", 
+	@Test( description = "Verify sending appt invite when Location resource has conflicts shows conflict dialog", 
 			groups = { "functional"})
 	public void CreateMeetingWithLocationConflict_01() throws HarnessException {
 		
@@ -46,14 +46,14 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		
 		String tz, apptSubject1,apptSubject2 , apptAttendeeEmail;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject1 = "app" + ZimbraSeleniumProperties.getUniqueString();
+		apptSubject1 = "app" + ConfigProperties.getUniqueString();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
 		String apptLocation = location.EmailAddress;
 		
-		String apptContent = ZimbraSeleniumProperties.getUniqueString();
+		String apptContent = ConfigProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
-		apptSubject1 = ZimbraSeleniumProperties.getUniqueString();
-		apptSubject2 = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject1 = ConfigProperties.getUniqueString();
+		apptSubject2 = ConfigProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -72,7 +72,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
                      	"</inv>" +
                      	"<e a='"+ apptLocation +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
-                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     		"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
                      "<su>"+ apptSubject1 +"</su>" +
                      "</m>" +
@@ -112,7 +112,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 			
 	}
 	
-	@Test(description = "Verify Cancelling create appt when Location resource has conflicts shows conflict dialog", 
+	@Test( description = "Verify Cancelling create appt when Location resource has conflicts shows conflict dialog", 
 			groups = { "functional" })
 	public void CreateMeetingWithLocationConflict_02() throws HarnessException {
 
@@ -121,14 +121,14 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		
 		String tz, apptSubject1,apptSubject2 , apptAttendeeEmail;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject1 = "app" + ZimbraSeleniumProperties.getUniqueString();
+		apptSubject1 = "app" + ConfigProperties.getUniqueString();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
 		String apptLocation = location.EmailAddress;
 		
-		String apptContent = ZimbraSeleniumProperties.getUniqueString();
+		String apptContent = ConfigProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
-		apptSubject1 = ZimbraSeleniumProperties.getUniqueString();
-		apptSubject2 = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject1 = ConfigProperties.getUniqueString();
+		apptSubject2 = ConfigProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -147,7 +147,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
                      	"</inv>" +
                      	"<e a='"+ apptLocation +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
-                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     		"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
                      "<su>"+ apptSubject1 +"</su>" +
                      "</m>" +
@@ -189,7 +189,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
         apptForm.zCloseModifiedApptTab();
 	}
 	
-	@Test(description = "Verify Saving meeting invite when Location resource has conflicts shows conflict dialog",  
+	@Test( description = "Verify Saving meeting invite when Location resource has conflicts shows conflict dialog",  
 			groups = { "functional" })
 	public void CreateMeetingWithLocationConflict_03() throws HarnessException {
 		
@@ -198,14 +198,14 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		
 		String tz, apptSubject1,apptSubject2 , apptAttendeeEmail;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject1 = "app" + ZimbraSeleniumProperties.getUniqueString();
+		apptSubject1 = "app" + ConfigProperties.getUniqueString();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
 		String apptLocation = location.EmailAddress;
 		
-		String apptContent = ZimbraSeleniumProperties.getUniqueString();
+		String apptContent = ConfigProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
-		apptSubject1 = ZimbraSeleniumProperties.getUniqueString();
-		apptSubject2 = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject1 = ConfigProperties.getUniqueString();
+		apptSubject2 = ConfigProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -224,7 +224,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
                      	"</inv>" +
                      	"<e a='"+ apptLocation +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
-                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     		"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
                      "<su>"+ apptSubject1 +"</su>" +
                      "</m>" +
@@ -272,7 +272,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 	}
 	
-	@Test(description = "Verify organizer can close modified appointment with location Conflict",  
+	@Test( description = "Verify organizer can close modified appointment with location Conflict",  
 			groups = { "functional" })
 	public void CreateMeetingWithLocationConflict_04() throws HarnessException {
 		
@@ -281,14 +281,14 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		
 		String tz, apptSubject1,apptSubject2 , apptAttendeeEmail;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject1 = "app" + ZimbraSeleniumProperties.getUniqueString();
+		apptSubject1 = "app" + ConfigProperties.getUniqueString();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
 		String apptLocation = location.EmailAddress;
 		
-		String apptContent = ZimbraSeleniumProperties.getUniqueString();
+		String apptContent = ConfigProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
-		apptSubject1 = ZimbraSeleniumProperties.getUniqueString();
-		apptSubject2 = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject1 = ConfigProperties.getUniqueString();
+		apptSubject2 = ConfigProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -307,7 +307,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
                      	"</inv>" +
                      	"<e a='"+ apptLocation +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
-                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     		"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
                      "<su>"+ apptSubject1 +"</su>" +
                      "</m>" +

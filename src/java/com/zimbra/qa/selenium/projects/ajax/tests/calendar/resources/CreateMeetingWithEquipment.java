@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
@@ -38,13 +38,9 @@ public class CreateMeetingWithEquipment extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "69132")
-	@Test(description = "Create simple meeting with equipment",
-			groups = { "smoke" })
+	@Test( description = "Create simple meeting with equipment",	groups = { "smoke" })
+	
 	public void CreateMeetingWithEquipment_01() throws HarnessException {
-		
-		
-		//-- Data Setup
-		
 		
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();
@@ -52,10 +48,10 @@ public class CreateMeetingWithEquipment extends CalendarWorkWeekTest {
 		ZimbraResource equipment1 = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
 		
 		String apptSubject, apptAttendee1, apptEquipment1, apptContent;
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		apptEquipment1 = equipment1.EmailAddress;
-		apptContent = ZimbraSeleniumProperties.getUniqueString();
+		apptContent = ConfigProperties.getUniqueString();
 		
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee1);
@@ -64,11 +60,6 @@ public class CreateMeetingWithEquipment extends CalendarWorkWeekTest {
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0));
 		appt.setContent(apptContent);
 	
-		
-		
-		//-- GUI Actions
-		
-		
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
@@ -87,29 +78,18 @@ public class CreateMeetingWithEquipment extends CalendarWorkWeekTest {
 		SleepUtil.sleepVeryLong(); // test fails while checking free/busy status, waitForPostqueue is not sufficient here
         // Tried sleepLong() as well but although fails so using sleepVeryLong()
 		
-		// Because the response from the resource may
-		// take some time, make sure the response is
-		// received in the inbox before proceeding
+		// Because the response from the resource may take some time, make sure the response is received in the inbox before proceeding
 		for (int i = 0; i < 10; i++) {
-			
 			app.zGetActiveAccount().soapSend(
 						"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 					+		"<query>in:inbox subject:(aa"+ apptSubject +")</query>"
 					+	"</SearchRequest>");
-			
 			String id = app.zGetActiveAccount().soapSelectValue("//mail:m", "id");
 			if ( id != null ) {
-				// found it
 				break;
 			}
-			
 			SleepUtil.sleep(1000);
 		}
-		
-		
-		
-		//-- Verification
-		
 		
 		// Verify appointment exists on the server
 		SleepUtil.sleepSmall(); //test fails without sleep
@@ -117,7 +97,7 @@ public class CreateMeetingWithEquipment extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 		ZAssert.assertEquals(actual.getAttendees(), appt.getAttendees(), "Attendees: Verify the appointment data");
-		ZAssert.assertEquals(actual.getEquipment(), appt.getEquipment(), "Equipment: Verify the appointment data");
+		ZAssert.assertStringContains(actual.getEquipment(), appt.getEquipment(), "Equipment: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
 		
 		// Verify equipment free/busy status shows as psts=AC	

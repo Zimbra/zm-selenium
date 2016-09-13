@@ -1,7 +1,7 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
@@ -11,7 +11,7 @@
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.util.staf;
@@ -45,7 +45,7 @@ public class StafAbstract {
 	public StafAbstract() {
 		logger.info("new "+ StafAbstract.class.getCanonicalName());
 
-		StafServer = ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host"));
+		StafServer = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host", ConfigProperties.getStringProperty("server.host"));
 		StafService = "PING";
 		StafParms = "PING";
 
@@ -98,21 +98,21 @@ public class StafAbstract {
 	        {
 	        	if (StafParms.indexOf("postqueue") >=0 ) {
 	    			if (StafServer.indexOf(".lab.zimbra.com") >=0 ) {
-	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-10, StafServer.indexOf(".com")+4), ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".mta.host", ZimbraSeleniumProperties.getStringProperty("mta.host")));
+	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-10, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".mta.host", ConfigProperties.getStringProperty("mta.host")));
 	    			} else if (StafServer.indexOf(".eng.zimbra.com") >=0 ) {
-	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-7, StafServer.indexOf(".com")+4), ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".mta.host", ZimbraSeleniumProperties.getStringProperty("mta.host")));
+	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-7, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".mta.host", ConfigProperties.getStringProperty("mta.host")));
 	    			}
 	        	} else if (StafParms.indexOf("zmmemcachedctl") >=0 ) {
 	    			if (StafServer.indexOf(".lab.zimbra.com") >=0 ) {
-	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-10, StafServer.indexOf(".com")+4), ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")));
+	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-10, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host", ConfigProperties.getStringProperty("server.host")));
 	    			} else if (StafServer.indexOf(".eng.zimbra.com") >=0 ) {
-	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-7, StafServer.indexOf(".com")+4), ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".server.host", ZimbraSeleniumProperties.getStringProperty("server.host")));
+	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-7, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host", ConfigProperties.getStringProperty("server.host")));
 	    			}
 	    		} else if (StafParms.indexOf("zmmailbox") >=0 || StafParms.indexOf("zmtlsctl") >=0 || StafParms.indexOf("zm") >=0 || StafParms.indexOf("zmprov") >=0 || StafParms.indexOf("SYSTEM") >=0) {
 	    			if (StafServer.indexOf(".lab.zimbra.com") >=0 ) {
-	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-10, StafServer.indexOf(".com")+4), ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".store.host", ZimbraSeleniumProperties.getStringProperty("store.host")));
+	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-10, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".store.host", ConfigProperties.getStringProperty("store.host")));
 	    			} else if (StafParms.indexOf(".eng.zimbra.com") >=0 ) {
-	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-7, StafServer.indexOf(".com")+4), ZimbraSeleniumProperties.getStringProperty(ZimbraSeleniumProperties.getLocalHost() + ".store.host", ZimbraSeleniumProperties.getStringProperty("store.host")));
+	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-7, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".store.host", ConfigProperties.getStringProperty("store.host")));
 	    			}
 	    		}
 

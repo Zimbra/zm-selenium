@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contacts;
@@ -41,17 +41,17 @@ public class ViewContact extends AjaxCommonTest  {
 
 
 	//First Last 
-	@Test(	description = "View a contact, file as First Last",
+	@Test( description = "View a contact, file as First Last",
 			groups = { "functional" })
 	public void EditContact_02_FileAsFirstLast() throws HarnessException {		         		
 
 		//-- Data
 		
 		// Create a contact item
-		String firstname = "first"+ ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "last"+ ZimbraSeleniumProperties.getUniqueString();
-		String email = "email"+ ZimbraSeleniumProperties.getUniqueString() + "@example.com";
-		String company = "company"+ ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "first"+ ConfigProperties.getUniqueString();
+		String lastname = "last"+ ConfigProperties.getUniqueString();
+		String email = "email"+ ConfigProperties.getUniqueString() + "@example.com";
+		String company = "company"+ ConfigProperties.getUniqueString();
 		
 		String expected = String.format("%s %s", firstname, lastname);
 
@@ -104,17 +104,17 @@ public class ViewContact extends AjaxCommonTest  {
 	}
 
 	//Last, First
-	@Test(	description = "View a contact, file as Last, First",
+	@Test( description = "View a contact, file as Last, First",
 			groups = { "functional" })
 	public void EditContact_01_FileAsLastFirst() throws HarnessException {		         		
 
 		//-- Data
 		
 		// Create a contact item
-		String firstname = "first"+ ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "last"+ ZimbraSeleniumProperties.getUniqueString();
-		String email = "email"+ ZimbraSeleniumProperties.getUniqueString() + "@example.com";
-		String company = "company"+ ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "first"+ ConfigProperties.getUniqueString();
+		String lastname = "last"+ ConfigProperties.getUniqueString();
+		String email = "email"+ ConfigProperties.getUniqueString() + "@example.com";
+		String company = "company"+ ConfigProperties.getUniqueString();
 		
 		String expected = String.format("%s, %s", lastname, firstname);
 
@@ -167,17 +167,17 @@ public class ViewContact extends AjaxCommonTest  {
 	}
 
 	//Company(Last, First)
-	@Test(	description = "View a contact, file as Company(Last, First)",
+	@Test( description = "View a contact, file as Company(Last, First)",
 			groups = { "functional" })
 	public void EditContact_06_FileAsCompanyLastFirst() throws HarnessException {		         		
 
 		//-- Data
 		
 		// Create a contact item
-		String firstname = "first"+ ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "last"+ ZimbraSeleniumProperties.getUniqueString();
-		String email = "email"+ ZimbraSeleniumProperties.getUniqueString() + "@example.com";
-		String company = "company"+ ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "first"+ ConfigProperties.getUniqueString();
+		String lastname = "last"+ ConfigProperties.getUniqueString();
+		String email = "email"+ ConfigProperties.getUniqueString() + "@example.com";
+		String company = "company"+ ConfigProperties.getUniqueString();
 		
 		String expected = String.format("%s (%s, %s)", company, lastname, firstname);
 
@@ -230,17 +230,17 @@ public class ViewContact extends AjaxCommonTest  {
 	}
 
 	//Company
-	@Test(	description = "View a contact, file as Company",
+	@Test( description = "View a contact, file as Company",
 			groups = { "functional" })
 	public void EditContact_03_FileAsCompany() throws HarnessException {		         		
 
 		//-- Data
 		
 		// Create a contact item
-		String firstname = "first"+ ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "last"+ ZimbraSeleniumProperties.getUniqueString();
-		String email = "email"+ ZimbraSeleniumProperties.getUniqueString() + "@example.com";
-		String company = "company"+ ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "first"+ ConfigProperties.getUniqueString();
+		String lastname = "last"+ ConfigProperties.getUniqueString();
+		String email = "email"+ ConfigProperties.getUniqueString() + "@example.com";
+		String company = "company"+ ConfigProperties.getUniqueString();
 		
 		String expected = String.format("%s", company);
 
@@ -294,17 +294,17 @@ public class ViewContact extends AjaxCommonTest  {
 	}
 
 	//Last, First (Company)
-	@Test(	description = "View a contact, file as Last, First (Company)",
+	@Test( description = "View a contact, file as Last, First (Company)",
 			groups = { "functional" })
 	public void EditContact_04_FileAsLastFirstCompany() throws HarnessException {		         		
 
 		//-- Data
 		
 		// Create a contact item
-		String firstname = "first"+ ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "last"+ ZimbraSeleniumProperties.getUniqueString();
-		String email = "email"+ ZimbraSeleniumProperties.getUniqueString() + "@example.com";
-		String company = "company"+ ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "first"+ ConfigProperties.getUniqueString();
+		String lastname = "last"+ ConfigProperties.getUniqueString();
+		String email = "email"+ ConfigProperties.getUniqueString() + "@example.com";
+		String company = "company"+ ConfigProperties.getUniqueString();
 		
 		String expected = String.format("%s, %s (%s)", lastname, firstname, company);
 				
@@ -359,17 +359,17 @@ public class ViewContact extends AjaxCommonTest  {
 
 
 	//First Last (Company)
-	@Test(	description = "View a contact, file as First Last (Company)",
+	@Test( description = "View a contact, file as First Last (Company)",
 			groups = { "functional" })
 	public void EditContact_05_FileAsFirstLastCompany() throws HarnessException {		         		
 
 		//-- Data
 		
 		// Create a contact item
-		String firstname = "first"+ ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "last"+ ZimbraSeleniumProperties.getUniqueString();
-		String email = "email"+ ZimbraSeleniumProperties.getUniqueString() + "@example.com";
-		String company = "company"+ ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "first"+ ConfigProperties.getUniqueString();
+		String lastname = "last"+ ConfigProperties.getUniqueString();
+		String email = "email"+ ConfigProperties.getUniqueString() + "@example.com";
+		String company = "company"+ ConfigProperties.getUniqueString();
 		
 		String expected = String.format("%s %s (%s)", firstname, lastname, company);
 
@@ -422,17 +422,17 @@ public class ViewContact extends AjaxCommonTest  {
 	}
 
 	//Company (First Last)
-	@Test(	description = "View a contact, file as Company (First Last)",
+	@Test( description = "View a contact, file as Company (First Last)",
 			groups = { "functional" })
 	public void EditContact_07_FileAsCompanyFirstLast() throws HarnessException {		         		
 
 		//-- Data
 		
 		// Create a contact item
-		String firstname = "first"+ ZimbraSeleniumProperties.getUniqueString();
-		String lastname = "last"+ ZimbraSeleniumProperties.getUniqueString();
-		String email = "email"+ ZimbraSeleniumProperties.getUniqueString() + "@example.com";
-		String company = "company"+ ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "first"+ ConfigProperties.getUniqueString();
+		String lastname = "last"+ ConfigProperties.getUniqueString();
+		String email = "email"+ ConfigProperties.getUniqueString() + "@example.com";
+		String company = "company"+ ConfigProperties.getUniqueString();
 		
 		String expected = String.format("%s (%s %s)", company, firstname, lastname);
 

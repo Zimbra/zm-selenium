@@ -1,7 +1,7 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
@@ -11,7 +11,7 @@
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.create;
@@ -37,7 +37,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageMail;
 	}
 
-	@Test(description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=text & zimbraPrefForwardReplyInOriginalFormat=TRUE",
+	@Test( description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=text & zimbraPrefForwardReplyInOriginalFormat=TRUE",
 			groups = { "functional" })
 
 	public void CreateMeetingUsingMessage_01() throws HarnessException {
@@ -50,7 +50,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 			+	"</ModifyPrefsRequest>");
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email10/mimeHtmlOnly1.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email10/mimeHtmlOnly1.txt";
 		final String subject = "1 html mail";
 		final String content = "Bold and Italics";
 		String apptAttendee1 = "foo@testdomain.com";
@@ -105,7 +105,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 	}
 
 	@Bugs(ids = "80922")
-	@Test(description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=text & zimbraPrefForwardReplyInOriginalFormat=FALSE",
+	@Test( description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=text & zimbraPrefForwardReplyInOriginalFormat=FALSE",
 			groups = { "functional" })
 
 	public void CreateMeetingUsingMessage_02() throws HarnessException {
@@ -118,7 +118,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 			+	"</ModifyPrefsRequest>");
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email10/mimeHtmlOnly2.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email10/mimeHtmlOnly2.txt";
 		final String subject = "2 html mail";
 		final String content = "Bold and Italics";
 
@@ -165,7 +165,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 	}
 
-	@Test(description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=text & zimbraPrefForwardReplyInOriginalFormat=FALSE",
+	@Test( description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=text & zimbraPrefForwardReplyInOriginalFormat=FALSE",
 			groups = { "functional" })
 
 	public void CreateMeetingUsingMessage_03() throws HarnessException {
@@ -178,7 +178,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 			+	"</ModifyPrefsRequest>");
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email10/mimeTextOnly1.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email10/mimeTextOnly1.txt";
 		final String subject = "1 plain mail";
 		final String content = "The Ming Dynasty";
 		final String fullContent = "The Ming Dynasty, also Empire of the Great Ming, was the ruling dynasty of China from 1368 to 1644.";
@@ -226,7 +226,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 	}
 
-	@Test(description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=text & zimbraPrefForwardReplyInOriginalFormat=TRUE",
+	@Test( description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=text & zimbraPrefForwardReplyInOriginalFormat=TRUE",
 			groups = { "functional" })
 
 	public void CreateMeetingUsingMessage_04() throws HarnessException {
@@ -239,7 +239,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 			+	"</ModifyPrefsRequest>");
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email10/mimeTextOnly2.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email10/mimeTextOnly2.txt";
 		final String subject = "2 plain mail";
 		final String content = "The Ming Dynasty";
 		final String fullContent = "The Ming Dynasty, also Empire of the Great Ming, was the ruling dynasty of China from 1368 to 1644.";
@@ -287,7 +287,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 	}
 
-	@Test(description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=TRUE",
+	@Test( description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=TRUE",
 			groups = { "functional" })
 
 	public void CreateMeetingUsingMessage_05() throws HarnessException {
@@ -300,7 +300,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 			+	"</ModifyPrefsRequest>");
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email10/mimeHtmlOnly3.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email10/mimeHtmlOnly3.txt";
 		final String subject = "3 html mail";
 		final String content = "Bold and Italics";
 
@@ -347,7 +347,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 	}
 
-	@Test(description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=FALSE",
+	@Test( description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=FALSE",
 			groups = { "functional" })
 
 	public void CreateMeetingUsingMessage_06() throws HarnessException {
@@ -360,7 +360,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 			+	"</ModifyPrefsRequest>");
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email10/mimeHtmlOnly4.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email10/mimeHtmlOnly4.txt";
 		final String subject = "4 html mail";
 		final String content = "Bold and Italics";
 
@@ -407,7 +407,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 	}
 
-	@Test(description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=TRUE",
+	@Test( description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=TRUE",
 			groups = { "functional" })
 
 	public void CreateMeetingUsingMessage_07() throws HarnessException {
@@ -420,7 +420,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 			+	"</ModifyPrefsRequest>");
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email10/mimeTextOnly3.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email10/mimeTextOnly3.txt";
 		final String subject = "3 plain mail";
 		final String content = "The Ming Dynasty";
 		final String fullContent = "The Ming Dynasty, also Empire of the Great Ming, was the ruling dynasty of China from 1368 to 1644.";
@@ -468,7 +468,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 	}
 
 	@Bugs(ids = "80922")
-	@Test(description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=FALSE",
+	@Test( description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=FALSE",
 			groups = { "functional" })
 
 	public void CreateMeetingUsingMessage_08() throws HarnessException {
@@ -481,7 +481,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 			+	"</ModifyPrefsRequest>");
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email10/mimeTextOnly4.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email10/mimeTextOnly4.txt";
 		final String subject = "4 plain mail";
 		final String content = "The Ming Dynasty";
 		final String fullContent = "The Ming Dynasty, also Empire of the Great Ming, was the ruling dynasty of China from 1368 to 1644.";
@@ -531,7 +531,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 	}
 
 	@Bugs(ids = "76043")
-	@Test(description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=TRUE",
+	@Test( description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=TRUE",
 			groups = { "functional" })
 
 	public void CreateMeetingUsingMessage_09() throws HarnessException {
@@ -544,7 +544,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 			+	"</ModifyPrefsRequest>");
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 
-		final String mimeFile = ZimbraSeleniumProperties.getBaseDirectory() + "/data/public/mime/email16/mime.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email16/mime.txt";
 		final String subject = "ZCS 8 triage";
 		final String content = "Dev is aggressively";
 		// Absolute dates in UTC zone

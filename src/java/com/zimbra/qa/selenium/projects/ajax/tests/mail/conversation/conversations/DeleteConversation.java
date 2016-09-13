@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversations;
@@ -35,7 +35,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
 	}
 	
-	@Test(	description = "Delete a conversation",
+	@Test( description = "Delete a conversation",
 			groups = { "smoke" })
 	public void DeleteConversation_01() throws HarnessException {
 		
@@ -67,7 +67,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 	}
 
 	
-	@Test(	description = "Delete a conversation using checkbox and toolbar delete button",
+	@Test( description = "Delete a conversation using checkbox and toolbar delete button",
 			groups = { "functional" })
 	public void DeleteConversation_02() throws HarnessException {
 		
@@ -102,7 +102,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 	  };
 	}
 	
-	@Test(	description = "Delete a conversation by selecting and typing 'delete' keyboard",
+	@Test( description = "Delete a conversation by selecting and typing 'delete' keyboard",
 			groups = { "functional" },
 			dataProvider = "DataProviderDeleteKeys")
 	public void DeleteConversation_03(String name, int keyEvent) throws HarnessException {
@@ -130,7 +130,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 
 	}
 
-	@Test(	description = "Delete a conversation by selecting and typing '.t' shortcut",
+	@Test( description = "Delete a conversation by selecting and typing '.t' shortcut",
 			groups = { "functional" } )
 	public void DeleteConversation_04() throws HarnessException {
 		
@@ -155,7 +155,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		}
 	}
 
-	@Test(	description = "Delete multiple messages (3) by select and toolbar delete",
+	@Test( description = "Delete multiple messages (3) by select and toolbar delete",
 			groups = { "functional" })
 	public void DeleteConversation_05() throws HarnessException {
 		
@@ -196,7 +196,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test(	description = "Delete a mail using context menu delete button",
+	@Test( description = "Delete a mail using context menu delete button",
 			groups = { "functional" })
 	public void DeleteConversation_06() throws HarnessException {
 		
@@ -219,8 +219,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Bugs(	ids = "53564")
-	@Test(	description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut",
+	@Bugs( ids = "53564")
+	@Test( description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut",
 			groups = { "functional" } )
 	public void HardDeleteConversation_01() throws HarnessException {
 		
@@ -248,8 +248,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 	}
 
 	
-	@Bugs(	ids = "53564")
-	@Test(	description = "Hard-delete multiple messages (3) by selecting and typing 'shift-del' shortcut",
+	@Bugs( ids = "53564")
+	@Test( description = "Hard-delete multiple messages (3) by selecting and typing 'shift-del' shortcut",
 			groups = { "functional" })
 	public void HardDeleteConversation_02() throws HarnessException {
 		
@@ -297,7 +297,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 
 
 	
-	@Test(	description = "Delete a conversation - 1 message in inbox, 1 message in sent, 1 message in subfolder",
+	@Test( description = "Delete a conversation - 1 message in inbox, 1 message in sent, 1 message in subfolder",
 			groups = { "functional" })
 	public void DeleteConversation_10() throws HarnessException {
 		
@@ -318,7 +318,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 				"</ItemActionRequest>");
 
 		// Create a message in a subfolder
-		String foldername = "folder"+ ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 						"<folder name='" + foldername +"' l='"+ inbox.getId() +"'/>" +
@@ -338,7 +338,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 							"<e t='t' a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>" +
 							"<su>RE: "+ c.getSubject() +"</su>" +
 							"<mp ct='text/plain'>" +
-								"<content>"+ "body" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+								"<content>"+ "body" + ConfigProperties.getUniqueString() +"</content>" +
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
@@ -368,12 +368,12 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 	}
 
 	@Bugs(ids = "79188")
-	@Test(	description = "Delete a conversation - 1 message in inbox, 1 message in draft",
+	@Test( description = "Delete a conversation - 1 message in inbox, 1 message in draft",
 			groups = { "functional" })
 	public void DeleteConversation_11() throws HarnessException {
 		
 		//-- DATA
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		// Create a conversation (1 message in inbox, 1 draft response)
 		ZimbraAccount.AccountA().soapSend(
@@ -382,7 +382,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>body "+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>body "+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
@@ -395,7 +395,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 						"<e t='t' a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>" +
 						"<su>RE: "+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>body "+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>body "+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SaveDraftRequest>");
@@ -443,14 +443,14 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 	}
 
 	
-	@Bugs(	ids = "82704")
-	@Test(	description = "Delete a conversation (1 message) that receives a new message : Delete Toolbar button",
+	@Bugs( ids = "82704")
+	@Test( description = "Delete a conversation (1 message) that receives a new message : Delete Toolbar button",
 			groups = { "functional" })
 	public void DeleteConversation_21() throws HarnessException {
 		
-		final String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		final String content1 = "content1"+ ZimbraSeleniumProperties.getUniqueString();
-		final String content2 = "content2"+ ZimbraSeleniumProperties.getUniqueString();
+		final String subject = "subject"+ ConfigProperties.getUniqueString();
+		final String content1 = "content1"+ ConfigProperties.getUniqueString();
+		final String content2 = "content2"+ ConfigProperties.getUniqueString();
 		final FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		final FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 		String folderid;
@@ -507,14 +507,14 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 
 	}
 
-	@Bugs(	ids = "82704")
-	@Test(	description = "Delete a conversation (1 message) that receives a new message : Right click -> Delete",
+	@Bugs( ids = "82704")
+	@Test( description = "Delete a conversation (1 message) that receives a new message : Right click -> Delete",
 			groups = { "functional" })
 	public void DeleteConversation_22() throws HarnessException {
 		
-		final String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		final String content1 = "content1"+ ZimbraSeleniumProperties.getUniqueString();
-		final String content2 = "content2"+ ZimbraSeleniumProperties.getUniqueString();
+		final String subject = "subject"+ ConfigProperties.getUniqueString();
+		final String content1 = "content1"+ ConfigProperties.getUniqueString();
+		final String content2 = "content2"+ ConfigProperties.getUniqueString();
 		final FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		final FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 		String folderid;
@@ -568,15 +568,15 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 
 	}
 
-	@Bugs(	ids = "82704")
-	@Test(	description = "Delete a conversation (2 messages) that receives a new message : Delete Toolbar button",
+	@Bugs( ids = "82704")
+	@Test( description = "Delete a conversation (2 messages) that receives a new message : Delete Toolbar button",
 			groups = { "functional" })
 	public void DeleteConversation_23() throws HarnessException {
 		
-		final String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		final String content1 = "content1"+ ZimbraSeleniumProperties.getUniqueString();
-		final String content2 = "content2"+ ZimbraSeleniumProperties.getUniqueString();
-		final String content3 = "content3"+ ZimbraSeleniumProperties.getUniqueString();
+		final String subject = "subject"+ ConfigProperties.getUniqueString();
+		final String content1 = "content1"+ ConfigProperties.getUniqueString();
+		final String content2 = "content2"+ ConfigProperties.getUniqueString();
+		final String content3 = "content3"+ ConfigProperties.getUniqueString();
 		final FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		final FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 		String folderid;
@@ -653,18 +653,18 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 
 	}
 
-	@Bugs(	ids = "82704")
-	@Test(	description = "Delete a conversation (2 messages) that receives a new message : Right click -> Delete",
+	@Bugs( ids = "82704")
+	@Test( description = "Delete a conversation (2 messages) that receives a new message : Right click -> Delete",
 			groups = { "functional" })
 	public void DeleteConversation_24() throws HarnessException {
 		
 		//-- DATA
 		
 		// Create the conversation
-		final String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
-		final String content1 = "content1"+ ZimbraSeleniumProperties.getUniqueString();
-		final String content2 = "content2"+ ZimbraSeleniumProperties.getUniqueString();
-		final String content3 = "content3"+ ZimbraSeleniumProperties.getUniqueString();
+		final String subject = "subject"+ ConfigProperties.getUniqueString();
+		final String content1 = "content1"+ ConfigProperties.getUniqueString();
+		final String content2 = "content2"+ ConfigProperties.getUniqueString();
+		final String content3 = "content3"+ ConfigProperties.getUniqueString();
 		final FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		final FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 	

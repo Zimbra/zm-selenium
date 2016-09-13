@@ -1,7 +1,7 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
@@ -11,7 +11,7 @@
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui;
@@ -19,8 +19,8 @@ package com.zimbra.qa.selenium.projects.ajax.ui;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties.AppType;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageContacts;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.PageBriefcase;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar;
@@ -144,7 +144,7 @@ public class DialogMove extends AbsDialog {
 
 		if (MyTab instanceof PageMail) {
 
-		   if (ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP) {
+		   if (ConfigProperties.getAppType() == AppType.DESKTOP) {
 		      locator = "css=div[id='" + Locators.zDialogId+ "'] td[id^='zti__" +
 		            MyApplication.zGetActiveAccount().EmailAddress +
 		            ":ZmChooseFolderDialog_Mail___'][id$=':" +
@@ -156,7 +156,7 @@ public class DialogMove extends AbsDialog {
 
 		} else if (MyTab instanceof PageContacts) {
 			
-			   if (ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP) {
+			   if (ConfigProperties.getAppType() == AppType.DESKTOP) {
 			      locator = "css=div[id='" + Locators.zDialogId
 	            + "'] td[id^='zti__" + MyApplication.zGetActiveAccount().EmailAddress +
 	            ":ZmChooseFolderDialog_Contacts__'][id$=':"
@@ -185,7 +185,7 @@ public class DialogMove extends AbsDialog {
 			}
 
 		}else if (MyTab instanceof PageTasks){
-			if (ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP) {
+			if (ConfigProperties.getAppType() == AppType.DESKTOP) {
 			   locator = "css=div[id='" + Locators.zDialogId + "'] td[id^='zti__" +
 			         MyApplication.zGetActiveAccount().EmailAddress +
 			         ":ZmChooseFolderDialog_Tasks___'][id$='" +
@@ -196,7 +196,7 @@ public class DialogMove extends AbsDialog {
 			}
 
 		}else if (MyTab instanceof PageBriefcase ) {
-			if (ZimbraSeleniumProperties.getAppType() == AppType.DESKTOP) {
+			if (ConfigProperties.getAppType() == AppType.DESKTOP) {
 			   locator = "css=div[id='" + Locators.zDialogId + "'] td[id='zti__"+
 			         MyApplication.zGetActiveAccount().EmailAddress +
 			         ":ZmChooseFolderDialog_Briefcase___'][id$='" +

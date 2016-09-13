@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose;
@@ -35,7 +35,7 @@ public class ReplyFromSentFolderWithReplyToHeader extends PrefGroupMailByMessage
 		logger.info("New "+ ReplyFromSentFolderWithReplyToHeader.class.getCanonicalName());
 	}
 	
-	@Test(	description = "Reply to all from the sent folder (alias in Reply-to header)",
+	@Test( description = "Reply to all from the sent folder (alias in Reply-to header)",
 			groups = { "functional" })
 	
 	public void ReplyFromSentFolderWithReplyToHeader_01() throws HarnessException {
@@ -51,11 +51,11 @@ public class ReplyFromSentFolderWithReplyToHeader extends PrefGroupMailByMessage
 		
 		//-- Data setup
 		
-		String aliasFromDisplay = "alias" + ZimbraSeleniumProperties.getUniqueString();
+		String aliasFromDisplay = "alias" + ConfigProperties.getUniqueString();
 		String aliasEmailAddress = 
 					aliasFromDisplay + 
 					"@" +
-					ZimbraSeleniumProperties.getStringProperty("testdomain", "testdomain.com");
+					ConfigProperties.getStringProperty("testdomain", "testdomain.com");
 		
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<AddAccountAliasRequest xmlns='urn:zimbraAdmin'>"
@@ -77,7 +77,7 @@ public class ReplyFromSentFolderWithReplyToHeader extends PrefGroupMailByMessage
 		
 		// Send a message from the account
 		
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 					"<m>" +
@@ -86,7 +86,7 @@ public class ReplyFromSentFolderWithReplyToHeader extends PrefGroupMailByMessage
 						"<e t='r' a='"+ aliasEmailAddress +"' p='"+ aliasFromDisplay +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>content" + ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
@@ -158,7 +158,7 @@ public class ReplyFromSentFolderWithReplyToHeader extends PrefGroupMailByMessage
 		}
 	}
 	
-	@Test(	description = "Reply to all from the sent folder (primary address in Reply-to header)",
+	@Test( description = "Reply to all from the sent folder (primary address in Reply-to header)",
 			groups = { "functional" })
 	public void ReplyFromSentFolderWithReplyToHeader_02() throws HarnessException {
 
@@ -173,7 +173,7 @@ public class ReplyFromSentFolderWithReplyToHeader extends PrefGroupMailByMessage
 		
 		//-- Data setup
 		
-		String replyToDisplay = "alias" + ZimbraSeleniumProperties.getUniqueString();
+		String replyToDisplay = "alias" + ConfigProperties.getUniqueString();
 		
 		
 		// Modify the from address in the primary identity
@@ -194,7 +194,7 @@ public class ReplyFromSentFolderWithReplyToHeader extends PrefGroupMailByMessage
 
 		// Send a message from the account
 		
-		String subject = "subject"+ ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 					"<m>" +
@@ -203,7 +203,7 @@ public class ReplyFromSentFolderWithReplyToHeader extends PrefGroupMailByMessage
 						"<e t='r' a='"+ app.zGetActiveAccount().EmailAddress +"' p='"+ replyToDisplay +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content" + ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+							"<content>content" + ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");

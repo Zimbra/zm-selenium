@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.quickadd;
@@ -32,10 +32,7 @@ public class CreateAppointmentWithLocation extends CalendarWorkWeekTest {
 	public CreateAppointmentWithLocation() {
 		logger.info("New "+ CreateAppointmentWithLocation.class.getCanonicalName());
 
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with work week view
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			private static final long serialVersionUID = -2913827779459595178L;
 		{
@@ -43,10 +40,11 @@ public class CreateAppointmentWithLocation extends CalendarWorkWeekTest {
 		}};
 	}
 	
+	
 	@Bugs(ids = "101584")
-	@Test(	description = "Create appointment with location using quick add dialog",
-			groups = { "functional" }
-	)
+	@Test( description = "Create appointment with location using quick add dialog",
+			groups = { "functional" } )
+	
 	public void CreateAppointmentWithLocation_01() throws HarnessException {
 		
 		// Create appointment
@@ -56,10 +54,11 @@ public class CreateAppointmentWithLocation extends CalendarWorkWeekTest {
 	
 		AppointmentItem appt = new AppointmentItem();
 		Calendar now = this.calendarWeekDayUTC;
-		appt.setSubject(ZimbraSeleniumProperties.getUniqueString());
+		appt.setSubject(ConfigProperties.getUniqueString());
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
 		appt.setLocation(locationName);
+		
 		// Quick add appointment dialog
 		QuickAddAppointment quickAddAppt = new QuickAddAppointment(app) ;
 		quickAddAppt.zNewAppointment();
@@ -78,8 +77,6 @@ public class CreateAppointmentWithLocation extends CalendarWorkWeekTest {
 		// Verify equipment free/busy status
 		String equipmentStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertEquals(equipmentStatus, "AC", "Verify Location free/busy status");
-	
-
 	}
 
 }

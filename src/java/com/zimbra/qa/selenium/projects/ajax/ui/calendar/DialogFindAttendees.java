@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
@@ -21,7 +21,6 @@ import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
@@ -190,22 +189,12 @@ public class DialogFindAttendees extends DialogWarning {
 			throw new HarnessException("locator was null for field " + field);
 		}
 	
-		// Default behavior, enter value into locator field
-		//
-
 		// Make sure the button exists
 		if (!this.sIsElementPresent(locator))
-			throw new HarnessException("Field is not present field=" + field
-					+ " locator=" + locator);
+			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 	
-		
-			if (ZimbraSeleniumProperties.isWebDriver()) {
-				this.sClickAt(locator, "");
-				this.clearField(locator);
-				this.sClickAt(locator, "");
-			}
 			this.sClickAt(locator, "");
-			this.sType(locator, value);
+			this.clearField(locator);
 			SleepUtil.sleepSmall();
 
 		this.zWaitForBusyOverlay();

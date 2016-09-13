@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose;
@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning.DialogWarningID;
@@ -47,13 +47,13 @@ public class SendLater extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test(	description = "Send a mail later using Send -> Send Later",
+	@Test( description = "Send a mail later using Send -> Send Later",
 			groups = { "smoke" })
 	public void SendLater_01() throws HarnessException {
 		
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		
 		
 		// Open the new mail form
@@ -62,7 +62,7 @@ public class SendLater extends PrefGroupMailByMessageTest {
 		
 		// Fill out the form with the data
 		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, "body" + ZimbraSeleniumProperties.getUniqueString());
+		mailform.zFillField(Field.Body, "body" + ConfigProperties.getUniqueString());
 		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 
 		DialogSendLater dialog = (DialogSendLater)mailform.zToolbarPressPulldown(Button.B_SEND, Button.O_SEND_SEND_LATER);
@@ -84,13 +84,13 @@ public class SendLater extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test(	description = "Send a mail later using Send -> Send Later - specify time in future",
+	@Test( description = "Send a mail later using Send -> Send Later - specify time in future",
 			groups = { "smoke" })
 	public void SendLater_02() throws HarnessException {
 		
 		// Create the message data to be sent
 		GregorianCalendar calendar = new GregorianCalendar(2016, 11, 25, 12, 0, 0); // Dec 25, 2015 at noon local time
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
 
 		// Open the new mail form
@@ -99,7 +99,7 @@ public class SendLater extends PrefGroupMailByMessageTest {
 		
 		// Fill out the form with the data
 		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, "body" + ZimbraSeleniumProperties.getUniqueString());
+		mailform.zFillField(Field.Body, "body" + ConfigProperties.getUniqueString());
 		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 
 		DialogSendLater dialog = (DialogSendLater)mailform.zToolbarPressPulldown(Button.B_SEND, Button.O_SEND_SEND_LATER);
@@ -118,13 +118,13 @@ public class SendLater extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(	description = "Send a mail now using Send -> Send",
+	@Test( description = "Send a mail now using Send -> Send",
 			groups = { "smoke" })
 	public void SendLater_03() throws HarnessException {
 		
 		
 		// Create the message data to be sent
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		
 		
 		// Open the new mail form
@@ -133,7 +133,7 @@ public class SendLater extends PrefGroupMailByMessageTest {
 		
 		// Fill out the form with the data
 		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, "body" + ZimbraSeleniumProperties.getUniqueString());
+		mailform.zFillField(Field.Body, "body" + ConfigProperties.getUniqueString());
 		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 
 		mailform.zToolbarPressPulldown(Button.B_SEND, Button.O_SEND_SEND);

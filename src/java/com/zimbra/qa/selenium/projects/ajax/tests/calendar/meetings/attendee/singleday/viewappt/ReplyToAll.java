@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.viewappt;
@@ -35,14 +35,14 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "102475")
-	@Test(description = "View meeting invite by opening it and reply to all by sending message",
+	@Test( description = "View meeting invite by opening it and reply to all by sending message",
 			groups = { "functional" })
 			
 	public void ReplyToAllMeeting_01() throws HarnessException {
 		
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptBody = ZimbraSeleniumProperties.getUniqueString();
-		String modifiedBody = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptBody = ConfigProperties.getUniqueString();
+		String modifiedBody = ConfigProperties.getUniqueString();
 
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);

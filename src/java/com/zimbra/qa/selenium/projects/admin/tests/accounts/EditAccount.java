@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.admin.tests.accounts;
@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditAccount;
@@ -50,12 +50,12 @@ public class EditAccount extends AdminCommonTest {
 	 * 5. Verify account is edited using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit Account name  - Manage Account View",
+	@Test( description = "Edit Account name  - Manage Account View",
 			groups = { "smoke" })
 	public void EditAccount_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
@@ -72,7 +72,7 @@ public class EditAccount extends AdminCommonTest {
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
 		//Edit the name.
-		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
 		//Submit the form.
@@ -97,12 +97,12 @@ public class EditAccount extends AdminCommonTest {
 	 * 3. Verify account name is changed using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit account name -- right click",
+	@Test( description = "Edit account name -- right click",
 			groups = { "functional" })
 	public void EditAccount_02() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
@@ -119,7 +119,7 @@ public class EditAccount extends AdminCommonTest {
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		//Edit the name.
-		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
 		//Submit the form.
@@ -146,12 +146,12 @@ public class EditAccount extends AdminCommonTest {
 	 * 5. Verify account is edited using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit delegated admin account name  - Manage Account View",
+	@Test( description = "Edit delegated admin account name  - Manage Account View",
 			groups = { "functional" })
 	public void EditAccount_03() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("delegated_admin" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("delegated_admin" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
@@ -169,7 +169,7 @@ public class EditAccount extends AdminCommonTest {
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
 		//Edit the name.
-		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
 		//Submit the form.
@@ -196,12 +196,12 @@ public class EditAccount extends AdminCommonTest {
 	 * 5. Verify account is edited using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit global admin Account name  - Manage Account View",
+	@Test( description = "Edit global admin Account name  - Manage Account View",
 			groups = { "smoke" })
 	public void EditAccount_04() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("global_admin" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("global_admin" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
@@ -220,7 +220,7 @@ public class EditAccount extends AdminCommonTest {
 
 
 		//Edit the name.
-		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
 		//Submit the form.
@@ -249,12 +249,12 @@ public class EditAccount extends AdminCommonTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit a basic account - Search List View",
+	@Test( description = "Edit a basic account - Search List View",
 			groups = { "functional" })
 	public void EditAccount_05() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
@@ -278,7 +278,7 @@ public class EditAccount extends AdminCommonTest {
 		FormEditAccount form = (FormEditAccount) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
 		//Edit the name.
-		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
 		//Submit the form.
@@ -307,13 +307,13 @@ public class EditAccount extends AdminCommonTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit a basic account - Search List View",
+	@Test( description = "Edit a basic account - Search List View",
 			groups = { "functional" })
 	public void EditAccount_06() throws HarnessException {
 
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
@@ -338,7 +338,7 @@ public class EditAccount extends AdminCommonTest {
 
 
 		//Edit the name.
-		String editedName = "editedAccount_" + ZimbraSeleniumProperties.getUniqueString();
+		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
 		//Submit the form.
@@ -364,12 +364,12 @@ public class EditAccount extends AdminCommonTest {
 	 * 3. Verify two factor authentication attributes are changed using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Edit account - Two Factor Authentication",
+	@Test( description = "Edit account - Two Factor Authentication",
 			groups = { "sanity", "network" })
 	public void EditAccount_07() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ZimbraSeleniumProperties.getUniqueString(),ZimbraSeleniumProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"

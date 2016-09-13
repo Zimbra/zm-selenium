@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.tests.contacts.tags;
@@ -38,7 +38,7 @@ public class RenameTag extends TouchCommonTest  {
 	 * @throws HarnessException
 	 */
 	
-	@Test(	description = "Rename a tag item", 
+	@Test( description = "Rename a tag item", 
 			groups = { "smoke" })
 	
 	public void RenameTag_01() throws HarnessException {
@@ -48,7 +48,7 @@ public class RenameTag extends TouchCommonTest  {
 		ZAssert.assertNotNull(tag, "Verify the tag was created");
 		
 		String tagName = tag.getName();
-		String newTagName= "Tag" + ZimbraSeleniumProperties.getUniqueString();;
+		String newTagName= "Tag" + ConfigProperties.getUniqueString();;
 		
 		// Refresh to get the tag into the client
 		app.zPageMail.zRefresh();		

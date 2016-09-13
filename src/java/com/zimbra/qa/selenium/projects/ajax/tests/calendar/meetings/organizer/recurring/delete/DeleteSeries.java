@@ -1,3 +1,21 @@
+/*
+ * ***** BEGIN LICENSE BLOCK *****
+ *
+ * Zimbra Collaboration Suite Server
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ *
+ * ***** END LICENSE BLOCK *****
+ */
 
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.recurring.delete;
 
@@ -22,7 +40,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "69920,75559")	
-	@Test(description = "Delete series from third instance and onwards", 
+	@Test( description = "Delete series from third instance and onwards", 
 			groups = { "functional" })
 	public void DeleteSeries_01() throws HarnessException {
 
@@ -33,8 +51,8 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptBody = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptBody = ConfigProperties.getUniqueString();
 		
 		// --------------- Creating invitation (organizer) ----------------------------
 

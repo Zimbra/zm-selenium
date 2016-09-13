@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.mountpoints.viewer.viewappt;
@@ -33,17 +33,17 @@ public class VerifyDisabledUI extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test(	description = "Verify Save, Tag, Accepted and Actions -> Edit, Forward, Delete, Propose New Time & Delete menus are non-functional on mountpoint appointment (read-only share)",
+	@Test( description = "Verify Save, Tag, Accepted and Actions -> Edit, Forward, Delete, Propose New Time & Delete menus are non-functional on mountpoint appointment (read-only share)",
 			groups = { "functional" })
 			
 	public void VerifyDisabledUI_01() throws HarnessException {
 		
 		organizerTest = false;
 		
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptBody = ZimbraSeleniumProperties.getUniqueString();
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptBody = ConfigProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 		
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
@@ -96,7 +96,7 @@ public class VerifyDisabledUI extends CalendarWorkWeekTest {
 		
 		// Mark ON to mounted calendar folder and select the appointment
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar"); //need to localize it
-		app.zTreeCalendar.zMarkOnOffMountedFolder(mountpointname);
+		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountpointname);
 		
 		// Verify Save, Tag, Accepted, Edit, Forward, Delete, Propose New Time & Delete menus are disabled
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN_MENU, apptSubject);
@@ -114,17 +114,17 @@ public class VerifyDisabledUI extends CalendarWorkWeekTest {
 	}
 
 	@Bugs(ids = "99947")
-	@Test(	description = "Verify  disabled Create a copy, Move, Forward & Show Original menus for private appointment on mountpoint appointment (read-only share)",
+	@Test( description = "Verify  disabled Create a copy, Move, Forward & Show Original menus for private appointment on mountpoint appointment (read-only share)",
 			groups = { "functional" })
 			
 	public void VerifyDisabledUI_02() throws HarnessException {
 		
 		organizerTest = false;
 		
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		String apptBody = ZimbraSeleniumProperties.getUniqueString();
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointname = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptBody = ConfigProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
@@ -176,7 +176,7 @@ public class VerifyDisabledUI extends CalendarWorkWeekTest {
 		
 		// Mark ON to mounted calendar folder and select the appointment
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar"); //need to localize it
-		app.zTreeCalendar.zMarkOnOffMountedFolder(mountpointname);
+		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountpointname);
 		
 		// Verify Save, Tag, Accepted, Edit, Forward, Delete, Propose New Time & Delete menus are disabled
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN_MENU, apptSubject);

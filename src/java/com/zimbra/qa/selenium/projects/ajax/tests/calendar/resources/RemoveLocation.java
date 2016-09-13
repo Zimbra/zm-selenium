@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
@@ -33,7 +33,7 @@ public class RemoveLocation extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "77588,96593")
-	@Test(description = "Remove location from existing appointment and verify F/B",
+	@Test( description = "Remove location from existing appointment and verify F/B",
 			groups = { "smoke" })
 	
 	public void RemoveLocation_01() throws HarnessException {
@@ -43,7 +43,7 @@ public class RemoveLocation extends CalendarWorkWeekTest {
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		
 		String tz = ZTimeZone.TimeZoneEST.getID();
-		String apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee = ZimbraAccount.AccountA().EmailAddress;
 		String apptLocation = location.EmailAddress;
 		
@@ -65,7 +65,7 @@ public class RemoveLocation extends CalendarWorkWeekTest {
                      	"<e a='"+ ZimbraAccount.AccountA().EmailAddress +"' t='t'/>" +
                      	"<e a='"+ apptLocation +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
-                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     		"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +

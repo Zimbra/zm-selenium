@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 /**
@@ -212,7 +212,9 @@ public class FolderItem extends AFolderItem implements IItem, IOctListViewItem {
 		
 		Element fElement = ZimbraAccount.SoapClient.selectNode(response, "//mail:folder");
 		if ( fElement == null )
-			throw new HarnessException("response did not contain folder "+ response.prettyPrint());
+			fElement = ZimbraAccount.SoapClient.selectNode(response, "//mail:link");
+			if ( fElement == null )
+				throw new HarnessException("response did not contain folder "+ response.prettyPrint());
 		
 		FolderItem item = null;
 		
@@ -278,7 +280,10 @@ public class FolderItem extends AFolderItem implements IItem, IOctListViewItem {
 
 		// cannot find folder name on the server
 		if (id == null) {
-           return null;
+			id = account.soapSelectValue("//mail:link[@name='"+ name +"']", "id");
+			if (id == null) {
+				return null;
+			}
 		}
 
 		// Get just the folder specified

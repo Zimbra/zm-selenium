@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.autocomplete;
@@ -61,10 +61,10 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 		Owner.authenticate();
 		
 		
-		ContactFirstName = "Jayden" + ZimbraSeleniumProperties.getUniqueString();
-		ContactLastName = "Brown" + ZimbraSeleniumProperties.getUniqueString();
-		String ownerFolderName = "folder" + ZimbraSeleniumProperties.getUniqueString();
-		String mountpointName = "mountpoint" + ZimbraSeleniumProperties.getUniqueString();
+		ContactFirstName = "Jayden" + ConfigProperties.getUniqueString();
+		ContactLastName = "Brown" + ConfigProperties.getUniqueString();
+		String ownerFolderName = "folder" + ConfigProperties.getUniqueString();
+		String mountpointName = "mountpoint" + ConfigProperties.getUniqueString();
 		
 		
 		// Create a folder to share
@@ -108,7 +108,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test(	description = "Autocomplete using a Shared Contact - First Name",
+	@Test( description = "Autocomplete using a Shared Contact - First Name",
 			groups = { "functional" })
 	public void AutoCompleteSharedContacts_01() throws HarnessException {
 		
@@ -116,8 +116,8 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -149,15 +149,15 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete using the Shared Contacts - Partial First Name",
+	@Test( description = "Autocomplete using the Shared Contacts - Partial First Name",
 			groups = { "functional" })
 	public void AutoCompleteSharedContacts_02() throws HarnessException {
 		
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		
 		
@@ -191,7 +191,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete using a Shared Contact - Last Name",
+	@Test( description = "Autocomplete using a Shared Contact - Last Name",
 			groups = { "functional" })
 	public void AutoCompleteSharedContacts_03() throws HarnessException {
 		
@@ -199,8 +199,8 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		
 		
@@ -234,7 +234,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete using a Shared Contact - Partial Last Name",
+	@Test( description = "Autocomplete using a Shared Contact - Partial Last Name",
 			groups = { "functional" })
 	public void AutoCompleteSharedContacts_04() throws HarnessException {
 		
@@ -242,8 +242,8 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		
 		
@@ -277,7 +277,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete using a Shared Contact - Full Name",
+	@Test( description = "Autocomplete using a Shared Contact - Full Name",
 			groups = { "functional" })
 	public void AutoCompleteSharedContacts_05() throws HarnessException {
 		
@@ -285,8 +285,8 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		
 		
@@ -320,7 +320,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete using a Shared Contact - First Name and Last Initial",
+	@Test( description = "Autocomplete using a Shared Contact - First Name and Last Initial",
 			groups = { "functional" })
 	public void AutoCompleteSharedContacts_07() throws HarnessException {
 		
@@ -328,8 +328,8 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		
 		
@@ -364,12 +364,12 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(	description = "Autocomplete using a Shared Contact - Multiple Matches",
+	@Test( description = "Autocomplete using a Shared Contact - Multiple Matches",
 			groups = { "functional" })
 	public void AutoCompleteSharedContacts_08() throws HarnessException {
 		int count = 3;
 		
-		String firstname = "William" + ZimbraSeleniumProperties.getUniqueString();
+		String firstname = "William" + ConfigProperties.getUniqueString();
 		for (int i = 0; i < count; i++) {
 			
 			// Create a contact
@@ -377,7 +377,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 			contact.provision();
 			contact.authenticate();
 
-			String lastname = "Jones" + ZimbraSeleniumProperties.getUniqueString();
+			String lastname = "Jones" + ConfigProperties.getUniqueString();
 			
 			Owner.soapSend(
 						"<CreateContactRequest xmlns='urn:zimbraMail'>"
@@ -393,8 +393,8 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 
 		// Open the new mail form
@@ -418,7 +418,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test(	description = "Autocomplete using a Shared Contact - No Matches",
+	@Test( description = "Autocomplete using a Shared Contact - No Matches",
 			groups = { "functional" })
 	public void AutoCompleteSharedContacts_09() throws HarnessException {
 		
@@ -426,8 +426,8 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 
 		
 		// Message properties
-		String subject = "subject" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "body" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);

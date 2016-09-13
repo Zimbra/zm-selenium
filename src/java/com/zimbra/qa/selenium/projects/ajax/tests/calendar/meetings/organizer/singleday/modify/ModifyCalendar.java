@@ -1,7 +1,7 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
@@ -11,15 +11,13 @@
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.modify;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
@@ -28,7 +26,6 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 
 public class ModifyCalendar extends CalendarWorkWeekTest {
 
@@ -38,7 +35,7 @@ public class ModifyCalendar extends CalendarWorkWeekTest {
 	}
 
 	@Bugs(ids = "102771")
-	@Test(	description = "Modify meeting calendar",
+	@Test( description = "Modify meeting calendar",
 			groups = { "functional" })
 
 	public void ModifyMeetingCalendar_01() throws HarnessException {
@@ -46,10 +43,10 @@ public class ModifyCalendar extends CalendarWorkWeekTest {
 		// Create data
 		String tz, apptSubject, apptBody, apptAttendee, apptCalendar;
 		tz = ZTimeZone.TimeZoneEST.getID();
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
-		apptBody = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
+		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee = ZimbraAccount.AccountA().EmailAddress;
-		apptCalendar = ZimbraSeleniumProperties.getUniqueString();
+		apptCalendar = ConfigProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -89,21 +86,17 @@ public class ModifyCalendar extends CalendarWorkWeekTest {
 
         // Open appointment and modify calendar folder
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-        if(ZimbraSeleniumProperties.isWebDriver()){
-            String locator = "css=td[id$='_folderSelect'] td[id$='_select_container']";
-            apptForm.sClickAt(locator, "");
+        String locator = "css=td[id$='_folderSelect'] td[id$='_select_container']";
+        apptForm.sClickAt(locator, "");
 
-            locator = "//div[@id='z_shell']/div[contains(@id,'_Menu_') and contains(@class, 'DwtMenu')]";
-            int count = apptForm.sGetXpathCount(locator);
-            for  (int  i = 1; i <= count; i++) {
-        	String calPullDown = locator + "[position()=" + i + "]//tr//*[contains(text(),'" + apptCalendar + "')]";
-        	if(apptForm.zIsVisiblePerPosition(calPullDown, 0, 0)){
-        	    apptForm.sClickAt(calPullDown, "");
-        	    break;
-        	}
-            }
-        }else{
-            apptForm.zFillField(Field.CalendarFolder, apptCalendar);
+        locator = "//div[@id='z_shell']/div[contains(@id,'_Menu_') and contains(@class, 'DwtMenu')]";
+        int count = apptForm.sGetXpathCount(locator);
+        for  (int  i = 1; i <= count; i++) {
+	    	String calPullDown = locator + "[position()=" + i + "]//tr//*[contains(text(),'" + apptCalendar + "')]";
+	    	if(apptForm.zIsVisiblePerPosition(calPullDown, 0, 0)){
+	    	    apptForm.sClickAt(calPullDown, "");
+	    	    break;
+	    	}
         }
         apptForm.zToolbarPressButton(Button.B_SEND);
 

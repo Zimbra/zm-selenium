@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.framework.util;
@@ -39,12 +39,12 @@ public class ZimbraDistributionList {
 
 		EmailAddress = email;
 		if ( (email == null) || (email.trim().length() == 0) ) {
-			EmailAddress = "dl" + ZimbraSeleniumProperties.getUniqueString() + "@" + ZimbraSeleniumProperties.getStringProperty("testdomain", "testdomain.com");
+			EmailAddress = "dl" + ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com");
 		}
 
 		Password = password;
 		if ( (password == null) || (password.trim().length() == 0) ) {
-			//password = ZimbraSeleniumProperties.getStringProperty("adminPwd", "test123");
+			//password = ConfigProperties.getStringProperty("adminPwd", "test123");
 			password = "test123";
 		}
 	}
@@ -65,13 +65,13 @@ public class ZimbraDistributionList {
 			ZimbraAdminAccount.GlobalAdmin().soapSend(
 						"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 					+		"<name>"+ this.EmailAddress +"</name>"
-					+		"<a n='description'>description"+ ZimbraSeleniumProperties.getUniqueString() +"</a>"
+					+		"<a n='description'>description"+ ConfigProperties.getUniqueString() +"</a>"
 					+	"</CreateDistributionListRequest>");
 
 			ZimbraId = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:dl", "id");
 
 			// You can't add a logger to a DL
-//			if ( ZimbraSeleniumProperties.getStringProperty("soap.trace.enabled", "false").toLowerCase().equals("true") ) {
+//			if ( ConfigProperties.getStringProperty("soap.trace.enabled", "false").toLowerCase().equals("true") ) {
 //				
 //				ZimbraAdminAccount.GlobalAdmin().soapSend(
 //							"<AddAccountLoggerRequest xmlns='urn:zimbraAdmin'>"

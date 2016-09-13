@@ -45,13 +45,15 @@ public class CreateTaskFolder extends AjaxCommonTest {
 		}};
 	}	
 
-	@Test(description = "Create a new tasklist by clicking 'Create a new task' on task folders tree", groups = { "sanity" })
+	@Test( description = "Create a new tasklist by clicking 'Create a new task' on task folders tree", 
+			groups = { "sanity" })
+	
 	public void CreateTaskFolder_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(account,SystemFolder.Tasks);
 		
-		_folderName = "taskfolder" + ZimbraSeleniumProperties.getUniqueString();
+		_folderName = "taskfolder" + ConfigProperties.getUniqueString();
 		
 		//Create folder
 		//DialogCreateTaskFolder createTaskFolderDialog =(DialogCreateTaskFolder)app.zTreeTasks.zPressButton(Button.B_TREE_NEWTASKLIST);
@@ -73,13 +75,13 @@ public class CreateTaskFolder extends AjaxCommonTest {
 		ZAssert.assertEquals(folder.getName(), _folderName,"Verify the server and client folder names match");
 	}
 	
-	@Test(description = "Create a new tasklist using tasks app New -> New Task Folder", groups = { "functional" })
+	@Test( description = "Create a new tasklist using tasks app New -> New Task Folder", groups = { "functional" })
 	public void CreateTaskFolder_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(account,SystemFolder.Tasks);
 		
-		_folderName = "taskfolder" + ZimbraSeleniumProperties.getUniqueString();
+		_folderName = "taskfolder" + ConfigProperties.getUniqueString();
 		
 		//Create folder
 		DialogCreateTaskFolder createTaskFolderDialog =(DialogCreateTaskFolder)app.zPageTasks.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_TASK_FOLDER);

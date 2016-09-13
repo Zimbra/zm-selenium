@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday;
@@ -34,7 +34,7 @@ public class MoveMeeting extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Test(description = "Move meeting invite using toolbar menu as organizer",
+	@Test( description = "Move meeting invite using toolbar menu as organizer",
 			groups = { "functional" })
 			
 	public void MoveMeeting_01() throws HarnessException {
@@ -43,7 +43,7 @@ public class MoveMeeting extends CalendarWorkWeekTest {
 
 		// Creating object for meeting data
 		String apptSubject,apptAttendee1;
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		
 		// Absolute dates in UTC zone
@@ -54,7 +54,7 @@ public class MoveMeeting extends CalendarWorkWeekTest {
 		
 		// create folder data to move appt to
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		String name1 = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String name1 = "folder" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+	  	"<folder name='"+ name1 +"' l='"+ root.getId() +"' view='appointment'/>"
@@ -76,7 +76,7 @@ public class MoveMeeting extends CalendarWorkWeekTest {
                      	"</inv>" +
                      	"<e a='"+ ZimbraAccount.AccountA().EmailAddress +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
-                     		"<content>"+ ZimbraSeleniumProperties.getUniqueString() +"</content>" +
+                     		"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
                      	"</mp>" +
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +

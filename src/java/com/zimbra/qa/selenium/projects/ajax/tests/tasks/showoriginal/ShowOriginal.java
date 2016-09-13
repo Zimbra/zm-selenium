@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.showoriginal;
@@ -46,13 +46,13 @@ public class ShowOriginal extends AjaxCommonTest {
 	}
 
 	@Bugs(ids = "51017")
-	@Test(description = "Show Original Pop Up should Get Open With Proper Content", groups = { "smoke" })
+	@Test( description = "Show Original Pop Up should Get Open With Proper Content", groups = { "smoke" })
 	public void ShowOriginal_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
 		// Create a basic task
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" + "<m >" + "<inv>"
@@ -60,7 +60,7 @@ public class ShowOriginal extends AjaxCommonTest {
 				+ app.zGetActiveAccount().EmailAddress + "'/>"
 				+ "</comp>" + "</inv>" + "<su>" + subject + "</su>"
 				+ "<mp ct='text/plain'>" + "<content>content"
-				+ ZimbraSeleniumProperties.getUniqueString()
+				+ ConfigProperties.getUniqueString()
 				+ "</content>" + "</mp>" + "</m>"
 				+ "</CreateTaskRequest>");
 

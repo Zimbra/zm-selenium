@@ -244,10 +244,8 @@
 		public static final Button O_INCLUDE_ORIGINAL_MESSAGE = new Button("O_INCLUDE_ORIGINAL_MESSAGE");
 		public static final Button O_INCLUDE_LAST_MESSAGE_ONLY = new Button("O_INCLUDE_LAST_MESSAGE_ONLY");
 		public static final Button O_INCLUDE_ORIGINAL_AS_ATTACHMENT = new Button("O_INCLUDE_ORIGINAL_AS_ATTACHMENT");
-		public static final Button O_FORWARD_USE_PRIFIX = new Button("O_FORWARD_USE_PRIFIX");
-		public static final Button O_REPLY_USE_PRIFIX = new Button("O_REPLY_USE_PRIFIX");
-		public static final Button O_FORWARD_INCLUDE_HEADERS = new Button("O_FORWARD_INCLUDE_HEADERS");
-		public static final Button O_REPLY_INCLUDE_HEADERS = new Button("O_REPLY_INCLUDE_HEADERS");
+		public static final Button O_USE_PRIFIX = new Button("O_USE_PRIFIX");
+		public static final Button O_INCLUDE_HEADERS = new Button("O_INCLUDE_HEADERS");
 		public static final Button O_PRIORITY_HIGH = new Button("O_PRIORITY_HIGH");
 		public static final Button O_PRIORITY_NORMAL = new Button("O_PRIORITY_NORMAL");
 		public static final Button O_PRIORITY_LOW = new Button("O_PRIORITY_LOW");

@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.feeds;
@@ -27,28 +27,22 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogMove;
 
-
 public class MoveFeed extends PrefGroupMailByMessageTest {
 
 	public MoveFeed() {
 		logger.info("New "+ MoveFeed.class.getCanonicalName());
-		
-		
-		
-		
-		
 	}
 	
-	@Test(	description = "Move a feed folder - Right click, Move",
-			groups = { "smoke" })
+	@Test( description = "Move a feed folder - Right click, Move", groups = { "smoke" })
+	
 	public void MoveFeed_01() throws HarnessException, MalformedURLException {
 		
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		ZAssert.assertNotNull(inbox, "Verify the inbox is available");
 		
-		String feedname = "feed" + ZimbraSeleniumProperties.getUniqueString();
+		String feedname = "feed" + ConfigProperties.getUniqueString();
 		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
-		URL feedurl = new URL(ZimbraSeleniumProperties.getStringProperty("feed.rss"));
+		URL feedurl = new URL(ConfigProperties.getStringProperty("feed.rss"));
 
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
@@ -59,7 +53,7 @@ public class MoveFeed extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(feed, "Verify the subfolder is available");
 
 		// Create destination folder
-		String foldername = "folder" + ZimbraSeleniumProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -83,11 +77,6 @@ public class MoveFeed extends PrefGroupMailByMessageTest {
 		feed = FolderItem.importFromSOAP(app.zGetActiveAccount(), feedname);
 		ZAssert.assertNotNull(feed, "Verify the subfolder is again available");
 		ZAssert.assertEquals(folder.getId(), feed.getParentId(), "Verify the subfolder's parent is now the other subfolder");
-
 		
 	}
-
-	
-
-
 }

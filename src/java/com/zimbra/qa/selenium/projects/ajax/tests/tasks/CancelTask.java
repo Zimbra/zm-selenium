@@ -1,17 +1,17 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
@@ -30,7 +30,7 @@ import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZimbraSeleniumProperties;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew.Field;
@@ -57,11 +57,11 @@ public class CancelTask extends AjaxCommonTest {
 	 * Task should not show in list 
 	 * @throws HarnessException
 	 */
-	@Test(description = "Cancel composing of new task through GUI", groups = { "functional" })
+	@Test( description = "Cancel composing of new task through GUI", groups = { "functional" })
 	public void CancelTask_01() throws HarnessException {
 
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "taskbody" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
+		String body = "taskbody" + ConfigProperties.getUniqueString();
 		
 		//Click NEW button
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
@@ -93,12 +93,12 @@ public class CancelTask extends AjaxCommonTest {
 		ZAssert.assertNull(found, "Verify the task is no longer present in task list");
 
 	}
-	@Test(description = "Cancel composing of new task using Esc shortcut", groups = { "functional" })
+	@Test( description = "Cancel composing of new task using Esc shortcut", groups = { "functional" })
 	public void CancelTask_02() throws HarnessException {
 
 		Shortcut shortcut = Shortcut.S_ESCAPE;
-		String subject = "task" + ZimbraSeleniumProperties.getUniqueString();
-		String body = "taskbody" + ZimbraSeleniumProperties.getUniqueString();
+		String subject = "task" + ConfigProperties.getUniqueString();
+		String body = "taskbody" + ConfigProperties.getUniqueString();
 		
 		//Click NEW button
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
@@ -145,7 +145,7 @@ public class CancelTask extends AjaxCommonTest {
 	 * user click on cancel 
 	 */
 	@Bugs(ids = "74670")
-	@Test(description = "cancelling empty attachment task in 2nd attempt", groups = { "functional" })
+	@Test( description = "cancelling empty attachment task in 2nd attempt", groups = { "functional" })
 	public void Bug_74670() throws HarnessException {
 
 		//1st attempt
