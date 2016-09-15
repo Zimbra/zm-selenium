@@ -917,7 +917,6 @@ public class FormMailNew extends AbsForm {
 
 		// Handle the subject
 		if ( mail.dSubject != null ) {
-
 			zFillField(Field.Subject, mail.dSubject);
 
 		}

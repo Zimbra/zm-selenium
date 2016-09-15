@@ -75,6 +75,7 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + subject;
 
 		try {
 
@@ -83,7 +84,7 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 					.zToolbarPressPulldown(Button.B_ACTIONS,
 							Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive(); // Make sure the window is there
 
 			ZAssert.assertTrue(window.zIsActive(),
@@ -91,14 +92,14 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 
 			window.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_REMOVETAG);
 
-			window.zCloseWindow();
+			window.zCloseWindow(windowTitle);
 			window = null;
 
 		} finally {
 
 			// Make sure to close the window
 			if (window != null) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 
@@ -155,6 +156,7 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + subject;
 
 		try {
 
@@ -163,7 +165,7 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 					.zToolbarPressPulldown(Button.B_ACTIONS,
 							Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive(); // Make sure the window is there
 
 			ZAssert.assertTrue(window.zIsActive(),
@@ -174,14 +176,14 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 			app.zPageMail.zKeyboardShortcut(shortcut);
 			SleepUtil.sleepMedium();
 
-			window.zCloseWindow();
+			window.zCloseWindow(windowTitle);
 			window = null;
 
 		} finally {
 
 			// Make sure to close the window
 			if (window != null) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 
@@ -237,6 +239,7 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + subject;
 
 		try {
 
@@ -245,7 +248,7 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 					.zToolbarPressPulldown(Button.B_ACTIONS,
 							Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive(); // Make sure the window is there
 
 			ZAssert.assertTrue(window.zIsActive(),
@@ -255,14 +258,14 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 
 			app.zPageMail.sClickAt(Locators.zUntagBubble, "");
 			SleepUtil.sleepMedium();
-			window.zCloseWindow();
+			window.zCloseWindow(windowTitle);
 			window = null;
 
 		} finally {
 
 			// Make sure to close the window
 			if (window != null) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 

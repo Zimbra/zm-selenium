@@ -99,17 +99,19 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 				ZAssert.assertTrue(mailform.zHasAttachment(subject),"Original message is not present as attachment");
 
 				SeparateWindowFormMailNew window = null;
-				//Open it in new window
+				String windowTitle = "Zimbra: Reply";
+				
+				// Open it in new window
 				try {
 
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
-					window.zSetWindowTitle("Reply");
-					window.zWaitForWindow("Zimbra: Reply");
+					window.zSetWindowTitle(windowTitle);
+					window.zWaitForWindow(windowTitle);
 					ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 
 					// Select the window
-					window.sSelectWindow("Zimbra: Reply");
+					window.sSelectWindow(windowTitle);
 
 					//Verify that the message is included as attachment in new window
 					ZAssert.assertTrue(mailform.zHasAttachment(subject),"Original message is not present as attachment");
@@ -131,14 +133,14 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 					ZAssert.assertFalse(mailform.zHasAttachment(subject),"Included original message attachment is still present");
 
 					//Close the new window
-					window.zCloseWindow();
+					window.zCloseWindow(windowTitle);
 					window = null;
 
 				} finally {
 
 					// Make sure to close the window
 					if (window != null) {
-						window.zCloseWindow();
+						window.zCloseWindow(windowTitle);
 						window = null;
 					}
 				}
@@ -226,30 +228,32 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 				ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present after selecting Use Prefix from Options!");
 
 				SeparateWindowFormMailNew window = null;
+				String windowTitle = "Zimbra: Reply";
+				
 				//Open it in new window
 				try {
 
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
-					window.zSetWindowTitle("Reply");
-					window.zWaitForWindow("Zimbra: Reply");
+					window.zSetWindowTitle(windowTitle);
+					window.zWaitForWindow(windowTitle);
 					ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 
 					// Select the window
-					window.sSelectWindow("Zimbra: Reply");
+					window.sSelectWindow(windowTitle);
 
 					//Verify that the attachment is present in new window as well.
 					ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present in new window!");
 
 					//Close the new window
-					window.zCloseWindow();
+					window.zCloseWindow(windowTitle);
 					window = null;
 
 				} finally {
 
 					// Make sure to close the window
 					if (window != null) {
-						window.zCloseWindow();
+						window.zCloseWindow(windowTitle);
 						window = null;
 					}
 				}
@@ -328,7 +332,6 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 
 				//Check if a warning dialog is present. If Yes, Press Yes to continue
 				if(mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
-
 					mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
 				}
 
@@ -342,30 +345,32 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 				ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present after selecting Include Headers from Options!");
 
 				SeparateWindowFormMailNew window = null;
-				//Open it in new window
+				String windowTitle = "Zimbra: Reply";
+				
+				// Open it in new window
 				try {
 
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
-					window.zSetWindowTitle("Reply");
-					window.zWaitForWindow("Zimbra: Reply");
+					window.zSetWindowTitle(windowTitle);
+					window.zWaitForWindow(windowTitle);
 					ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 
 					// Select the window
-					window.sSelectWindow("Zimbra: Reply");
+					window.sSelectWindow(windowTitle);
 
 					//Verify that the attachment is present in new window as well.
 					ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present in new window!");
 
 					//Close the new window
-					window.zCloseWindow();
+					window.zCloseWindow(windowTitle);
 					window = null;
 
 				} finally {
 
 					// Make sure to close the window
 					if (window != null) {
-						window.zCloseWindow();
+						window.zCloseWindow(windowTitle);
 						window = null;
 					}
 				}

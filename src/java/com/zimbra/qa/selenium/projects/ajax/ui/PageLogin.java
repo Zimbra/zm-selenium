@@ -93,7 +93,6 @@ public class PageLogin extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if ( zIsActive() ) {
-			// This page is already active.
 			return;
 		}
 
@@ -106,11 +105,6 @@ public class PageLogin extends AbsTab {
 
 	}
 
-	/**
-	 * Login as the specified account
-	 * @param account
-	 * @throws HarnessException
-	 */
 	public void zLogin(ZimbraAccount account) throws HarnessException {
 		logger.debug("login(ZimbraAccount account)" + account.EmailAddress);
 
@@ -123,40 +117,31 @@ public class PageLogin extends AbsTab {
 		try {
 			
 			zSetLoginName(account.EmailAddress);
+			SleepUtil.sleepVerySmall();
 			zSetLoginPassword(account.Password);
-			sClickAt(Locators.zBtnLogin, "");
+			SleepUtil.sleepSmall();
+			sClick(Locators.zBtnLogin);
+			SleepUtil.sleepLong();
+			zWaitForBusyOverlay();
 			
-			SleepUtil.sleepMedium();
-			
-			// 1st login retry (sometime account creation remains fast and entire execution stucks due to non-existance of the account)
-			if (zIsVisiblePerPosition("css=div[id='ZLoginErrorPanel'] td:contains('The username or password is incorrect')", 0, 0) == true) {
-				logger.debug("1st login failed or account not created successfully, retrying using " + account.EmailAddress);
+			// 1st login retry (sometime account creation remains fast and entire execution stuck due to non-existence of the account)
+			if (zIsVisiblePerPosition(Locators.zBtnLogin, 0, 0) == true || zIsVisiblePerPosition("css=div[id='ZLoginErrorPanel'] td:contains('The username or password is incorrect')", 0, 0) == true) {
+				logger.error("1st login failed or account not created successfully, retried using " + account.EmailAddress);
 				ZimbraAccount.ResetAccountZWC();
 				account = ZimbraAccount.AccountZWC();
 				zSetLoginName(account.EmailAddress);
+				SleepUtil.sleepVerySmall();
 				zSetLoginPassword(account.Password);
-				sClickAt(Locators.zBtnLogin, "");
-				SleepUtil.sleepMedium();
-				
-				// 2nd login retry (sometime account creation remains fast and entire execution stucks due to non-existance of the account)
-				if (zIsVisiblePerPosition("css=div[id='ZLoginErrorPanel'] td:contains('The username or password is incorrect')", 0, 0) == true) {
-					logger.debug("2nd login failed or account not created successfully, retrying using " + account.EmailAddress);
-					ZimbraAccount.ResetAccountZWC();
-					account = ZimbraAccount.AccountZWC();
-					zSetLoginName(account.EmailAddress);
-					zSetLoginPassword(account.Password);
-					sClickAt(Locators.zBtnLogin, "");
-					SleepUtil.sleepMedium();
-				} else {
-					logger.debug("2nd login retry - successfully logged in using " + account.EmailAddress);
-				}
+				SleepUtil.sleepSmall();
+				sClick(Locators.zBtnLogin);
+				SleepUtil.sleepLong();
+				zWaitForBusyOverlay();
 				
 			} else {
-				logger.debug("1st login retry - successfully logged in using " + account.EmailAddress);
+				logger.info("1st login retry - successfully logged in using " + account.EmailAddress);
 			}
 			
 			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(100000);
-
 			((AppAjaxClient)MyApplication).zSetActiveAcount(account);
 
 		} finally {

@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mountpoints;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -17,6 +15,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mountpoints;
  * ***** END LICENSE BLOCK *****
  */
 
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mountpoints;
 
 import java.util.List;
 
@@ -39,15 +38,14 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
 
 public class DeclineShareFolder extends PrefGroupMailByMessageTest {
 
-
 	public DeclineShareFolder() {
 		logger.info("New " + DeclineShareFolder.class.getCanonicalName());
-
 	}
 
 	@Bugs( ids = "70082")
-	@Test( description = "Receive an invitation to a shared folder, Decline it - in a separate window",
-	groups = { "functional" })
+	@Test( description = "Receive an invitation to a shared folder, Decline it - in a separate window", 
+			groups = { "functional" })
+	
 	public void DeclineShareFolder_01() throws HarnessException {
 
 		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();
@@ -109,13 +107,14 @@ public class DeclineShareFolder extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, shareMessageSubject);
 
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + shareMessageSubject;
 
 		try {
 
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail) app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS,Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(shareMessageSubject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive(); // Make sure the window is there
 
 			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
@@ -138,10 +137,9 @@ public class DeclineShareFolder extends PrefGroupMailByMessageTest {
 
 			// Make sure to close the window
 			if (window != null) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
-
 		}
 
 		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(),FolderItem.SystemFolder.Sent);

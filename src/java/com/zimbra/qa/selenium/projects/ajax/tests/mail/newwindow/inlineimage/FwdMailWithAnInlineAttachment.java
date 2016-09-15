@@ -86,6 +86,7 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 			final String filePath = ConfigProperties.getBaseDirectory()+ "\\data\\public\\other\\" + fileName;
 
 			SeparateWindowDisplayMail window = null;
+			String windowTitle = "Zimbra: Forward";
 
 			try {
 
@@ -93,20 +94,20 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 				//	window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 				window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-				window.zSetWindowTitle(subject);
+				window.zSetWindowTitle(windowTitle);
 				window.zWaitForActive();		// Make sure the window is there
 
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 				window.zToolbarPressButton(Button.B_FORWARD);
 				SleepUtil.sleepMedium();
-				window.zSetWindowTitle("Zimbra: Forward");
+				window.zSetWindowTitle(windowTitle);
 				SleepUtil.sleepMedium();
 				//window.zWaitForActive();
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 
-				window.sSelectWindow("Zimbra: Forward");
+				window.sSelectWindow(windowTitle);
 				String locator = FormMailNew.Locators.zToField;
 				window.sClick(locator);
 				window.sType(locator, ZimbraAccount.AccountB().EmailAddress);
@@ -115,7 +116,7 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 				window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 				SleepUtil.sleepSmall();
 
-				window.sSelectWindow("Zimbra: Forward");
+				window.sSelectWindow(windowTitle);
 
 				//Add an attachment
 				// Click Attach>>inline image
@@ -127,7 +128,7 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 
 				//click Send
 				window.zToolbarPressButton(Button.B_SEND);
-				window.zSetWindowTitle(subject);
+				window.zSetWindowTitle(windowTitle);
 				window.zWaitForActive();
 				//close New window
 				window.zToolbarPressButton(Button.B_CLOSE);
@@ -140,7 +141,7 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 
 				// Make sure to close the window
 				if ( window != null ) {
-					window.zCloseWindow();
+					window.zCloseWindow(windowTitle);
 					window = null;
 				}
 

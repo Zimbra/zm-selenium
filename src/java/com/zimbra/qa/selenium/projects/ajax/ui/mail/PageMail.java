@@ -727,7 +727,7 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		this.sClickAt(locator,"10,10");
+		this.sClick(locator);
 		zWaitForBusyOverlay();
 		
 		if ( button == Button.B_EML_ATTACHEMENT ) {

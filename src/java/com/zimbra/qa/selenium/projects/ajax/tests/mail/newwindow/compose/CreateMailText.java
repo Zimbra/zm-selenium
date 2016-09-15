@@ -51,16 +51,14 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		
 		// Open the new mail form
 		SeparateWindowFormMailNew window = null;
+		String windowTitle = "Zimbra: Compose";
 		
 		try {
 			
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 			
-			window.zSetWindowTitle("Compose");
-			window.zWaitForActive();		// Make sure the window is there
-			/* TODO: ... debugging to be removed */
-			window.waitForComposeWindow();
-			
+			window.zSetWindowTitle(windowTitle);
+			window.zWaitForActive();			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
 			// Fill out the form with the data
@@ -76,18 +74,12 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 			
 		}
 		
-		// Sometimes, the harness is too fast for the client.
-		// Since we are composing in a new window, there is no
-		// busy overlay to block.
-		//
-		// Add a loop, while waiting for the message
-		//
 		for (int i = 0; i < 30; i++) {
 
 			ZimbraAccount.AccountA().soapSend(
@@ -141,12 +133,13 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		
 		// Open the new mail form
 		SeparateWindowFormMailNew window = null;
+		String windowTitle = "Zimbra: Compose";
 		
 		try {
 			
 			window = (SeparateWindowFormMailNew) app.zPageMail.zKeyboardShortcut(shortcut);
 
-			window.zSetWindowTitle("Compose");
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 			/* TODO: ... debugging to be removed */
 			window.waitForComposeWindow();
@@ -166,7 +159,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 			
@@ -195,12 +188,13 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		
 		// Open the new mail form
 		SeparateWindowFormMailNew window = null;
+		String windowTitle = "Zimbra: Compose";
 		
 		try {
 			
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 			
-			window.zSetWindowTitle("Compose");
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 			/* TODO: ... debugging to be removed */
 			window.waitForComposeWindow();
@@ -220,7 +214,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 			
@@ -266,12 +260,13 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		
 		// Open the new mail form
 		SeparateWindowFormMailNew window = null;
+		String windowTitle = "Zimbra: Compose";
 		
 		try {
 			
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 			
-			window.zSetWindowTitle("Compose");
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
@@ -289,7 +284,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 			
@@ -340,12 +335,13 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		
 		// Open the new mail form
 		SeparateWindowFormMailNew window = null;
+		String windowTitle = "Zimbra: Compose";
 		
 		try {
 			
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 			
-			window.zSetWindowTitle("Compose");
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 			/* TODO: ... debugging to be removed */
 			window.waitForComposeWindow();
@@ -371,7 +367,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 			

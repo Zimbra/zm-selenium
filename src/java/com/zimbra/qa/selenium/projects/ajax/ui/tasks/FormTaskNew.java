@@ -349,7 +349,7 @@ public class FormTaskNew extends AbsForm {
 
 			locator = "css=div[class='ZmTaskEditView'] div[id$='_notes'] textarea[id$='_body']";
 			this.sFocus(locator);
-			this.zClick(locator);
+			this.sClickAt(locator, "");
 			this.zKeyboard.zTypeCharacters(value);
 			return;
 
@@ -361,9 +361,8 @@ public class FormTaskNew extends AbsForm {
 			if (this.zIsVisiblePerPosition("css=textarea[class='ZmHtmlEditorTextArea']", 10, 10)) {
 
 				locator = "css=textarea[class='ZmHtmlEditorTextArea']";
-
 				this.sFocus(locator);
-				this.zClickAt(locator, "10,10");
+				this.sClickAt(locator, "");
 				this.zWaitForBusyOverlay();
 				this.sType(locator, value);
 
@@ -379,9 +378,9 @@ public class FormTaskNew extends AbsForm {
 						sSelectFrame("css=div[class='ZmTaskEditView'] div[id$='_notes'] iframe[id$='_body_ifr']");
 
 						locator = "css=body[id='tinymce']";
-						this.zClickAt(locator, "10,10");
+						this.sClickAt(locator, "");
 						this.sFocus(locator);
-						this.zKeyboard.zTypeCharacters(value);
+						this.sType(locator, value);
 						
 					} else {
 						throw new HarnessException("Unable to locate compose body");
@@ -393,9 +392,7 @@ public class FormTaskNew extends AbsForm {
 
 				}
 
-				// Is this requried?
 				this.zWaitForBusyOverlay();
-
 				return;
 
 			} else {
@@ -423,7 +420,7 @@ public class FormTaskNew extends AbsForm {
 			this.sFocus(locator);
 		}
 
-		this.sClick(locator);
+		this.sClickAt(locator, "");
 		sType(locator, value);
 
 		this.zWaitForBusyOverlay();

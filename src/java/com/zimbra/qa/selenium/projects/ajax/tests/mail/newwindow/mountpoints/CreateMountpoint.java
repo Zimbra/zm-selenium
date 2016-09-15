@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mountpoints;
 
-
 import java.util.List;
 
 import org.testng.annotations.Test;
@@ -35,21 +34,16 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.SeparateWindowDialog;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
 
-
 public class CreateMountpoint extends PrefGroupMailByMessageTest {
 
-	
-	
 	public CreateMountpoint() {
 		logger.info("New "+ CreateMountpoint.class.getCanonicalName());
-		
-		
 	}
 	
 	@Bugs( ids = "101616")
-	
 	@Test( description = "Receive an invitation to a shared folder, accept it - in a separate window",
 			groups = { "smoke" })
+	
 	public void CreateMountpoint_01() throws HarnessException {
 		
 		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();
@@ -110,17 +104,16 @@ public class CreateMountpoint extends PrefGroupMailByMessageTest {
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, shareMessageSubject);
 
-		
-		
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + shareMessageSubject;
 		
 		try {
 			
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
-			window.zSetWindowTitle(shareMessageSubject);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zSetWindowTitle(windowTitle);
+			window.zWaitForActive();
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
@@ -142,13 +135,10 @@ public class CreateMountpoint extends PrefGroupMailByMessageTest {
 			
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
-			
 		}
-		
-		
 		
 		FolderItem found = null;
 		
@@ -165,12 +155,6 @@ public class CreateMountpoint extends PrefGroupMailByMessageTest {
 		}
 		
 		ZAssert.assertNotNull(found, "Verify the mountpoint is in the folder list");
-		
 	}
-
-	
-	
-
-	
 
 }

@@ -89,13 +89,14 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + subject;
 
 		try {
 
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
@@ -111,14 +112,14 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 
 
 
-			window.zCloseWindow();
+			window.zCloseWindow(windowTitle);
 			window = null;
 
 		} finally {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 
@@ -181,13 +182,14 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + subject;
 
 		try {
 
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
@@ -195,14 +197,14 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			// Click move -> subfolder
 			app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, subfolder);
 
-			window.zCloseWindow();
+			window.zCloseWindow(windowTitle);
 			window = null;
 
 		} finally {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 
@@ -252,13 +254,14 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + subject;
 
 		try {
 
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
@@ -266,14 +269,14 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			// Click move -> subfolder
 			app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, trash);
 
-			window.zCloseWindow();
+			window.zCloseWindow(windowTitle);
 			window = null;
 
 		} finally {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 

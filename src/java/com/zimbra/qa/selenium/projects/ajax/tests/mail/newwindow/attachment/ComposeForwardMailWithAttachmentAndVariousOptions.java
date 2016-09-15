@@ -95,19 +95,20 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				// Verify that the message is included as attachment
 				ZAssert.assertTrue(mailform.zHasAttachment(subject),"Original message is not present as attachment");
 
-				//Open it in new window
+				// Open it in new window
 				SeparateWindowFormMailNew window = null;
+				String windowTitle = "Zimbra: Forward";
 				
 				try {
 
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
-					window.zSetWindowTitle("Forward");
-					window.zWaitForWindow("Zimbra: Forward");
+					window.zSetWindowTitle(windowTitle);
+					window.zWaitForWindow(windowTitle);
 					ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 
 					// Select the window
-					window.sSelectWindow("Zimbra: Forward");
+					window.sSelectWindow(windowTitle);
 
 					// Verify that the message is included as attachment in new window
 					ZAssert.assertTrue(mailform.zHasAttachment(subject),"Original message is not present as attachment");
@@ -128,14 +129,14 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 					ZAssert.assertFalse(mailform.zHasAttachment(subject),"Included original message attachment is still present");
 
 					// Close the new window
-					window.zCloseWindow();
+					window.zCloseWindow(windowTitle);
 					window = null;
 
 				} finally {
 
 					// Make sure to close the window
 					if (window != null) {
-						window.zCloseWindow();
+						window.zCloseWindow(windowTitle);
 						window = null;
 					}
 				}
@@ -221,32 +222,33 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				// Verify that the attachment is still present
 				ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present after selecting Use Prefix from Options!");
 
-				//Open it in new window
+				// Open it in new window
 				SeparateWindowFormMailNew window = null;
+				String windowTitle = "Zimbra: Forward";
 				
 				try {
 
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
-					window.zSetWindowTitle("Forward");
-					window.zWaitForWindow("Zimbra: Forward");
+					window.zSetWindowTitle(windowTitle);
+					window.zWaitForWindow(windowTitle);
 					ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 
 					// Select the window
-					window.sSelectWindow("Zimbra: Forward");
+					window.sSelectWindow(windowTitle);
 
 					// Verify that the attachment is present in new window as well.
 					ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present in new window!");
 
 					// Close the new window
-					window.zCloseWindow();
+					window.zCloseWindow(windowTitle);
 					window = null;
 
 				} finally {
 
 					// Make sure to close the window
 					if (window != null) {
-						window.zCloseWindow();
+						window.zCloseWindow(windowTitle);
 						window = null;
 					}
 				}
@@ -342,30 +344,31 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 
 				// Open message in a separate window
 				SeparateWindowFormMailNew window = null;
+				String windowTitle = "Zimbra: Forward";
 								
 				try {
 
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
-					window.zSetWindowTitle("Forward");
-					window.zWaitForWindow("Zimbra: Forward");
+					window.zSetWindowTitle(windowTitle);
+					window.zWaitForWindow(windowTitle);
 					ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 
 					// Select the window
-					window.sSelectWindow("Zimbra: Forward");
+					window.sSelectWindow(windowTitle);
 
 					// Verify that the attachment is present in new window as well.
 					ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present in new window!");
 
 					// Close the new window
-					window.zCloseWindow();
+					window.zCloseWindow(windowTitle);
 					window = null;
 
 				} finally {
 
 					// Make sure to close the window
 					if (window != null) {
-						window.zCloseWindow();
+						window.zCloseWindow(windowTitle);
 						window = null;
 					}
 				}

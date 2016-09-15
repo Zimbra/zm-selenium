@@ -66,24 +66,28 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + subject;
 
 		try {
 
 			// Choose Actions -> Launch in Window
-			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
+			window = (SeparateWindowDisplayMail) app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS,
+					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 			window.zToolbarPressButton(Button.B_FORWARD);
 			SleepUtil.sleepMedium();
-			window.zSetWindowTitle("Zimbra: Forward");
+			
+			windowTitle = "Zimbra: Forward";
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
-			window.sSelectWindow("Zimbra: Forward");
+			window.sSelectWindow(windowTitle);
 			String locator = FormMailNew.Locators.zToField;
 			window.sClick(locator);
 			window.sType(locator, ZimbraAccount.AccountB().EmailAddress);
@@ -92,7 +96,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 			window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 			SleepUtil.sleepSmall();			
 			window.zToolbarPressButton(Button.B_SEND);			
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			window.zToolbarPressButton(Button.B_CLOSE);
 
@@ -105,7 +109,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 
@@ -150,15 +154,15 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + subject;
 
 		try {
 
 			// Choose Actions -> Launch in Window
-			window = (SeparateWindowDisplayMail) app.zPageMail
-					.zToolbarPressPulldown(Button.B_ACTIONS,
-							Button.B_LAUNCH_IN_SEPARATE_WINDOW);
+			window = (SeparateWindowDisplayMail) app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS,
+					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive(); // Make sure the window is there
 
 			ZAssert.assertTrue(window.zIsActive(),
@@ -166,11 +170,13 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 
 			window.zKeyboardShortcut(Shortcut.S_MAIL_FOWARD);
 			SleepUtil.sleepMedium();
-			window.zSetWindowTitle("Zimbra: Forward");
+			
+			windowTitle = "Zimbra: Forward";
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
-			window.sSelectWindow("Zimbra: Forward");
+			window.sSelectWindow(windowTitle);
 			String locator = FormMailNew.Locators.zToField;
 			window.sClick(locator);
 			window.sType(locator, ZimbraAccount.AccountB().EmailAddress);
@@ -179,7 +185,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 			window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 			SleepUtil.sleepSmall();			
 			window.zToolbarPressButton(Button.B_SEND);			
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			window.zToolbarPressButton(Button.B_CLOSE);
 
@@ -192,7 +198,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 

@@ -60,22 +60,21 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 
 				// Create file item
 				final String fileName = "testtextfile.txt";
-				final String filePath = ConfigProperties.getBaseDirectory()
-						+ "\\data\\public\\other\\" + fileName;
+				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 				SeparateWindowFormMailNew window = null;
+				String windowTitle = "Zimbra: Compose";
 
 				// Open the new mail form
 				try {
 
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 
-					window.zSetWindowTitle("Compose");
+					window.zSetWindowTitle(windowTitle);
 					window.zWaitForActive(); // Make sure the window is there
 
 					window.waitForComposeWindow();
 
-					ZAssert.assertTrue(window.zIsActive(),
-							"Verify the window is active");
+					ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 					// Fill out the form with the data
 					window.zFill(mail);
@@ -84,9 +83,8 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 					zUpload(filePath);
 
 					// TODO: ... debugging to be removed
-					mail.dBodyHtml = "body"
-							+ ConfigProperties.getUniqueString();
-					window.sSelectWindow("Zimbra: Compose");
+					mail.dBodyHtml = "body"	+ ConfigProperties.getUniqueString();
+					window.sSelectWindow(windowTitle);
 					String locator = "css=iframe[id*=ifr]";
 					window.zWaitForElementPresent(locator, "5000");
 					window.sClickAt(locator, "");
@@ -95,15 +93,14 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 					// Send the message
 					window.zToolbarPressButton(Button.B_SEND);
 
-					if (window.zWaitForWindowClosed("Zimbra: Compose")) {
-						// Window closes automatically
+					if (window.zWaitForWindowClosed(windowTitle)) {
 						window = null;
 					}
 				} finally {
 
 					// Make sure to close the window
 					if (window != null) {
-						window.zCloseWindow();
+						window.zCloseWindow(windowTitle);
 						window = null;
 					}
 

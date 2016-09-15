@@ -51,12 +51,13 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 		// Open the new mail form
 		SeparateWindowFormMailNew window = null;
+		String windowTitle = "Zimbra: Compose";
 
 		try {
 
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 
-			window.zSetWindowTitle("Compose");
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 
 			/* TODO: ... debugging to be removed */
@@ -79,7 +80,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 
@@ -118,12 +119,13 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		// Open the new mail form
 		// Open the new mail form
 		SeparateWindowFormMailNew window = null;
+		String windowTitle = "Zimbra: Compose";
 
 		try {
 
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 
-			window.zSetWindowTitle("Compose");
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 
 			
@@ -147,7 +149,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 
@@ -194,18 +196,21 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 		// Reply the item
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: Compose";
 
 		try {
 
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 			window.zToolbarPressButton(Button.B_REPLY);
 			SleepUtil.sleepMedium();
-			window.zSetWindowTitle("Zimbra: Reply");
+			
+			windowTitle = "Zimbra: Reply";
+			window.zSetWindowTitle(windowTitle);
 			SleepUtil.sleepMedium();
 			//window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
@@ -225,7 +230,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 
@@ -267,20 +272,23 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		// Reply the item
+		
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: Compose";
 
 		try {
 
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 			window.zToolbarPressButton(Button.B_REPLY);
 			SleepUtil.sleepMedium();
-			window.zSetWindowTitle("Zimbra: Reply");
+			
+			windowTitle = "Zimbra: Reply";
+			window.zSetWindowTitle(windowTitle);
 			SleepUtil.sleepMedium();
 			//window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
@@ -302,7 +310,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 
