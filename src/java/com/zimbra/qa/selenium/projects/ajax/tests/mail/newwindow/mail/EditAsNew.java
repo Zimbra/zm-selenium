@@ -70,17 +70,19 @@ public class EditAsNew extends PrefGroupMailByMessageTest {
 		MailItem mail = new MailItem();
 		mail.dBodyHtml = "body"+ ConfigProperties.getUniqueString();
 		//SeparateWindowFormMailNew window = null;
+		
+		String windowTitle = "Zimbra: " + subject;
 
 		try {
 
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();	// Make sure the window is there
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");			
 
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_EDIT_AS_NEW);
-			window.zSetWindowTitle("Zimbra: Compose");
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			window.sSelectWindow("Zimbra: Compose");
@@ -98,7 +100,7 @@ public class EditAsNew extends PrefGroupMailByMessageTest {
 			
 			SleepUtil.sleepSmall();			
 			window.zToolbarPressButton(Button.B_SEND);			
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			window.zToolbarPressButton(Button.B_CLOSE);
 
@@ -111,7 +113,7 @@ public class EditAsNew extends PrefGroupMailByMessageTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 

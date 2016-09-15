@@ -114,7 +114,6 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 					robot.delay(50);
 
 				} catch (AWTException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 

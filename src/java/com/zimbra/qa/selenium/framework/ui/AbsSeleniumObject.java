@@ -147,53 +147,65 @@ public abstract class AbsSeleniumObject {
 		logger.info("zIsVisiblePerPosition(" + locator + ")");
 		return elementVisiblePerPosition(locator);
 	}
+	
 
-
-	public void zClick(String locator, WebElement... elements) throws HarnessException {
-	    logger.info("zClick(" + locator + ")");
-
-	    WebElement we = null;
-
-		if (elements != null && elements.length > 0) {
-		    we = elements[0];
-		} else {
-		    we = getElement(locator);
-		}
+	public void sClick(String locator, WebElement... elements) throws HarnessException {
+	    logger.info("click(" + locator + ")");
+	    zIsBusyOverlay();
+	    SleepUtil.sleepSmall();
 
 	    try {
-		    Actions builder = new Actions(webDriver());
-		    Action action = builder.click(we).build();
-		    action.perform();
-		    
-	    } catch(Exception ex) {
+		    logger.info("click()");
+		    WebElement we = null;
+		    if (elements != null && elements.length > 0) {
+		    	we = elements[0];
+		    } else {
+		    	we = getElement(locator);
+		    }
+		    we.click();
+
+	    } catch (Exception ex) {
 	    	throw new HarnessException("Unable to click on locator " + locator, ex);
 	    }
 	}
-
-
-	public void zClickAt(String locator, String coord, WebElement... elements) throws HarnessException {
-	    logger.info("zClickAt(" + locator + "," + coord + ")");
-
-	    WebElement we = null;
-		if (elements != null && elements.length > 0) {
-		    we = elements[0];
-		} else {
-		    we = getElement(locator);
-		}
+	
+	
+	public void sClickAt(String locator, String coord, WebElement... elements) throws HarnessException {
+	    logger.info("sClickAt(" + locator + "," + coord + ")");
+	    zIsBusyOverlay();
+	    SleepUtil.sleepSmall();
 
 	    try {
+		    WebElement we = null;
+		    if (elements != null && elements.length > 0) {
+		    	we = elements[0];
+		    } else {
+		    	we = getElement(locator);
+		    }
+
 		    Actions builder = new Actions(webDriver());
 		    Action action = builder.moveToElement(we).click(we).build();
 		    action.perform();
 
-	    } catch(Exception ex) {
+	    } catch (Exception ex) {
 	    	throw new HarnessException("Unable to clickAt on locator " + locator, ex);
 	    }
 	}
 
 
+	public void zClick(String locator, WebElement... elements) throws HarnessException {
+		sClick(locator, elements);
+	}
+
+
+	public void zClickAt(String locator, String coord, WebElement... elements) throws HarnessException {
+		sClickAt(locator, coord, elements);
+	}
+
+
 	public void zRightClick(String locator, WebElement... elements) throws HarnessException {
 	    logger.info("zRightClick(" + locator + ")");
+	    SleepUtil.sleepSmall();
 
 	    WebElement we = null;
 		if (elements != null && elements.length > 0) {
@@ -213,29 +225,9 @@ public abstract class AbsSeleniumObject {
 	}
 
 
-	public void zCheckboxSet(String locator, boolean status) throws HarnessException {
-		logger.info("zCheckboxSet(" + locator + ")");
-		
-		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException(locator + " not present!");
-		}
-
-		if ( this.sIsChecked(locator) == status ) {
-			logger.debug("checkbox status matched.  not doing anything");
-			return;
-		}
-		if ( status == true ) {
-			this.sCheck(locator);
-		} else {
-			this.sUncheck(locator);
-		}
-
-		this.zWaitForBusyOverlay();
-	}
-
-
 	public void zRightClickAt(String locator, String coord, WebElement... elements) throws HarnessException {
 		logger.info("zRightClickAt(" + locator + "," + coord + ")");
+		SleepUtil.sleepSmall();
 
 	    WebElement we = null;
 		if (elements != null && elements.length > 0) {
@@ -253,7 +245,29 @@ public abstract class AbsSeleniumObject {
 	    	throw new HarnessException("Unable to rightClickAt on locator " + locator, ex);
 	    }
 	}
+	
+	
+	public void zCheckboxSet(String locator, boolean status) throws HarnessException {
+		logger.info("zCheckboxSet(" + locator + ")");
+		SleepUtil.sleepSmall();
+		
+		if ( !this.sIsElementPresent(locator) ) {
+			throw new HarnessException(locator + " not present!");
+		}
 
+		if ( this.sIsChecked(locator) == status ) {
+			logger.debug("checkbox status matched.  not doing anything");
+			return;
+		}
+		if ( status == true ) {
+			this.sCheck(locator);
+		} else {
+			this.sUncheck(locator);
+		}
+
+		this.zWaitForBusyOverlay();
+	}
+	
 
 	public void zSelectWindow(String windowID) throws HarnessException {
 		logger.info("zSelectWindow(" + windowID + ")");
@@ -291,6 +305,7 @@ public abstract class AbsSeleniumObject {
 
 	public void zType(String locator, String value, WebElement... elements) throws HarnessException {
 	    logger.info("zType(" + locator + "," + value + ")");
+	    SleepUtil.sleepSmall();
 
 	    WebElement we = null;
 		logger.info("getElement");
@@ -501,46 +516,6 @@ public abstract class AbsSeleniumObject {
 	}
 
 
-	public void sClickAt(String locator, String coord, WebElement... elements) throws HarnessException {
-	    logger.info("sClickAt(" + locator + "," + coord + ")");
-
-	    try {
-		    WebElement we = null;
-		    if (elements != null && elements.length > 0) {
-		    	we = elements[0];
-		    } else {
-		    	we = getElement(locator);
-		    }
-
-		    Actions builder = new Actions(webDriver());
-		    Action action = builder.moveToElement(we).click(we).build();
-		    action.perform();
-
-	    } catch (Exception ex) {
-	    	throw new HarnessException("Unable to clickAt on locator " + locator, ex);
-	    }
-	}
-
-
-	public void sClick(String locator, WebElement... elements) throws HarnessException {
-	    logger.info("click(" + locator + ")");
-
-	    try {
-		    logger.info("click()");
-		    WebElement we = null;
-		    if (elements != null && elements.length > 0) {
-		    	we = elements[0];
-		    } else {
-		    	we = getElement(locator);
-		    }
-		    we.click();
-
-	    } catch (Exception ex) {
-	    	throw new HarnessException("Unable to click on locator " + locator, ex);
-	    }
-	}
-
-
 	public void sClose() throws HarnessException {
 	    logger.info("close()");
 		webDriver().close();
@@ -551,7 +526,6 @@ public abstract class AbsSeleniumObject {
 	    logger.info("doubleClick(" + locator + ")");
 
 	    try {
-		    logger.info("doubleClick()");
 		    WebElement we = null;
 		    if (elements != null && elements.length > 0) {
 		    	we = elements[0];
@@ -586,7 +560,6 @@ public abstract class AbsSeleniumObject {
 		try {
 
 			logger.info("waitForPageToLoad(" + timeout + ")");
-			logger.info("executeScript:readyState");
 
 			Wait<WebDriver> wait = new FluentWait<WebDriver>(webDriver()).withTimeout(10, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
 

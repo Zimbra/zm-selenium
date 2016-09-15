@@ -84,6 +84,7 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 			final String filePath = ConfigProperties.getBaseDirectory()+ "\\data\\public\\other\\" + fileName;
 
 			SeparateWindowDisplayMail window = null;
+			String windowTitle = "Zimbra: Reply";
 
 			try {
 
@@ -91,14 +92,14 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 				//	window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 				window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-				window.zSetWindowTitle(subject);
+				window.zSetWindowTitle(windowTitle);
 				window.zWaitForActive();		// Make sure the window is there
 
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 				window.zToolbarPressButton(Button.B_REPLY);
 				SleepUtil.sleepMedium();
-				window.zSetWindowTitle("Zimbra: Reply");
+				window.zSetWindowTitle(windowTitle);
 				SleepUtil.sleepMedium();
 				//window.zWaitForActive();
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
@@ -114,7 +115,7 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 
 				//click Send
 				window.zToolbarPressButton(Button.B_SEND);
-				window.zSetWindowTitle(subject);
+				window.zSetWindowTitle(windowTitle);
 				window.zWaitForActive();
 				//close New window
 				window.zToolbarPressButton(Button.B_CLOSE);
@@ -127,7 +128,7 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 
 				// Make sure to close the window
 				if ( window != null ) {
-					window.zCloseWindow();
+					window.zCloseWindow(windowTitle);
 					window = null;
 				}
 

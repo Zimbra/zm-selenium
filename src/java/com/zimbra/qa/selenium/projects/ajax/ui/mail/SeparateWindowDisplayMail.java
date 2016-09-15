@@ -758,8 +758,8 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 			locator = DisplayMail.Locators.ProposeNewTimeButton;
 			page = null;
-
 			doPostfixCheck = true;
+			
 		} else if ( button == Button.B_ACCEPT_SHARE ) {
 
 			locator = this.ContainerLocator + " td[id$='__Shr__SHARE_ACCEPT_title']";
@@ -874,6 +874,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 				optionLocator = DisplayMail.Locators.AcceptNotifyOrganizerMenu;
 				page = null;
+				doPostfixCheck = true;
 
 			} else if (option == Button.O_ACCEPT_EDIT_REPLY) {
 
@@ -902,11 +903,13 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 				optionLocator = DisplayMail.Locators.TentativeNotifyOrganizerMenu;
 				page = null;
+				doPostfixCheck = true;
 
 			} else if (option == Button.O_TENTATIVE_EDIT_REPLY) {
 
 				optionLocator = DisplayMail.Locators.TentativeEditReplyMenu;
 				page=null;
+				doPostfixCheck = true;
 
 			} else if (option == Button.O_TENTATIVE_DONT_NOTIFY_ORGANIZER) {
 
@@ -928,11 +931,13 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 				optionLocator = DisplayMail.Locators.DeclineNotifyOrganizerMenu;
 				page = null;
+				doPostfixCheck = true;
 
 			} else if (option == Button.O_DECLINE_EDIT_REPLY) {
 
 				optionLocator = DisplayMail.Locators.DeclineEditReplyMenu;
 				page = null;
+				doPostfixCheck = true;
 
 			} else if (option == Button.O_DECLINE_DONT_NOTIFY_ORGANIZER) {
 
@@ -958,9 +963,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 		zWaitForBusyOverlay();
 		this.zClickAt(optionLocator,"");
-
-
-
 
 		//	zWaitForBusyOverlay();
 

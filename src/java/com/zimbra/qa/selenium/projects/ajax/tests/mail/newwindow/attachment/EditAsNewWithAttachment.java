@@ -68,7 +68,8 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 					+ "\\data\\public\\other\\" + fileName;
 
 			SeparateWindowDisplayMail window = null;
-
+			String windowTitle = "Zimbra: Compose";
+			
 			MailItem mail = new MailItem();
 			mail.dBodyHtml = "body"+ ConfigProperties.getUniqueString();
 
@@ -81,10 +82,10 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 				window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_EDIT_AS_NEW);
-				window.zSetWindowTitle("Zimbra: Compose");
+				window.zSetWindowTitle(windowTitle);
 				window.zWaitForActive();
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-				window.sSelectWindow("Zimbra: Compose");
+				window.sSelectWindow(windowTitle);
 
 				window.zPressButton(Button.B_ATTACH);
 
@@ -116,7 +117,7 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 
 				// Make sure to close the window
 				if ( window != null ) {
-					window.zCloseWindow();
+					window.zCloseWindow(windowTitle);
 					window = null;
 				}
 

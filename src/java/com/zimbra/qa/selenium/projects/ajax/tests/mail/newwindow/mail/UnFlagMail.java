@@ -71,13 +71,14 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + subject;
 
 		try {
 
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail) app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS,Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive(); // Make sure the window is there
 
 			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
@@ -91,7 +92,7 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 
 			// Make sure to close the window
 			if (window != null) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 
@@ -151,13 +152,14 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + subject;
 
 		try {
 
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail) app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS,Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive(); // Make sure the window is there
 
 			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
@@ -171,7 +173,7 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 
 			// Make sure to close the window
 			if (window != null) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 

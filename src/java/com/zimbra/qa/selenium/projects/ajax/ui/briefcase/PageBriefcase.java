@@ -121,8 +121,7 @@ public class PageBriefcase extends AbsTab {
 		}
 
 		public static enum Format {
-			HTML("html"), TEXT("text"), TGZ("tgz"), XML("xml"), JSON("json"), NATIVE(
-					"native"), RAW("raw");
+			HTML("html"), TEXT("text"), TGZ("tgz"), XML("xml"), JSON("json"), NATIVE("native"), RAW("raw");
 
 			private String fmt;
 

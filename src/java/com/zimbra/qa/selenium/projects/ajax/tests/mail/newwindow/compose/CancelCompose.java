@@ -36,19 +36,18 @@ public class CancelCompose extends PrefGroupMailByMessageTest {
 	
 	@Test( description = "Compose a message in a separate window - click Cancel",
 			groups = { "smoke" })
+	
 	public void CancelCompose_01() throws HarnessException {
 		
-		
-		
-		
 		SeparateWindowFormMailNew window = null;
+		String windowTitle = "Zimbra: Compose";
 		
 		try {
 			
 			// Open the new mail form
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 			
-			window.zSetWindowTitle("Compose");
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
@@ -58,7 +57,7 @@ public class CancelCompose extends PrefGroupMailByMessageTest {
 			//ZAssert.assertFalse(window.zIsActive(), "Verify the window is closed");
 			// get title by calling getTitle() method once it's implemented, 
 			// for now just hardcoding window title name
-			boolean status = window.zIsClosed("Zimbra: Compose");
+			boolean status = window.zIsClosed(windowTitle);
 			ZAssert.assertTrue(status, "Verify the window is closed");
 			
 			window = null;
@@ -67,7 +66,7 @@ public class CancelCompose extends PrefGroupMailByMessageTest {
 			
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 			

@@ -104,8 +104,8 @@ public class UploadFile extends FeatureBriefcaseTest {
 				// Click on Upload File button in the Toolbar
 				DialogUploadFile dlg = (DialogUploadFile) app.zPageBriefcase.zToolbarPressButton(Button.B_UPLOAD_FILE, fileItem);
 
-				SleepUtil.sleepSmall();
-				app.zPageBriefcase.sClickAt("css=div[class='ZmUploadDialog'] input[name='uploadFile']", "");
+				SleepUtil.sleepMedium();
+				app.zPageBriefcase.sClickAt("css=div[class='ZmUploadDialog'] input[name='uploadFile']", "10,10");
 
 				zUpload(filePath);
 

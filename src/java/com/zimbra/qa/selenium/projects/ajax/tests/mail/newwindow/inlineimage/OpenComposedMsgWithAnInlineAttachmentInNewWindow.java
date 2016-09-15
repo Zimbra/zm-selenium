@@ -61,17 +61,18 @@ PrefGroupMailByMessageTest {
 			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(), "Verify inline image is present in compose window");
 
 			SeparateWindowFormMailNew window = null;
+			String windowTitle = "Zimbra: Compose";
 
 			try {
 
 				window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
-				window.zSetWindowTitle("Compose");
+				window.zSetWindowTitle(windowTitle);
 				window.waitForComposeWindow();
 				ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 
 				// Select the window
-				window.sSelectWindow("Zimbra: Compose");
+				window.sSelectWindow(windowTitle);
 
 				// Verify Inline Attachment should not disappeared  New compose window
 				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(),"Verify inline image is present in New compose window");
@@ -81,7 +82,7 @@ PrefGroupMailByMessageTest {
 
 				// Make sure to close the window
 				if (window != null) {
-					window.zCloseWindow();
+					window.zCloseWindow(windowTitle);
 					window = null;
 				}
 			}

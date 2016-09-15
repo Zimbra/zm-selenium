@@ -532,7 +532,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 	
 	public void zCloseWindow(String title) throws HarnessException {
 		logger.info(myPageName() + " zCloseWindow(" + title +")");
-
+		
 		try {
 
 			if ( this.DialogWindowID == null || this.DialogWindowID.equals("null") ) {
@@ -546,8 +546,13 @@ public abstract class AbsSeparateWindow extends AbsPage {
 				return;
 			}
 			
-			super.sClose();
-
+			for (String winHandle : webDriver().getWindowHandles()) {
+			    webDriver().switchTo().window(winHandle);
+			    if (webDriver().switchTo().window(winHandle).getTitle().equals(title)) {
+			    	webDriver().close();
+			    }
+			}
+			
 		} finally {
 			super.zSelectWindow(MainWindowID);
 		}

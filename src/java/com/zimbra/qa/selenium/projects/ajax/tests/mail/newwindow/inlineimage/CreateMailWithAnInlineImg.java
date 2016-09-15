@@ -59,13 +59,15 @@ public class CreateMailWithAnInlineImg extends PrefGroupMailByMessageTest {
 				final String fileName = "samplejpg.jpg";
 				final String filePath = ConfigProperties.getBaseDirectory()	+ "\\data\\public\\other\\" + fileName;
 				SeparateWindowFormMailNew window = null;
+				
+				String windowTitle = "Zimbra: Compose";
 
 				// Open the new mail form
 				try {
 
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 
-					window.zSetWindowTitle("Compose");
+					window.zSetWindowTitle(windowTitle);
 					window.zWaitForActive(); // Make sure the window is there
 
 					window.waitForComposeWindow();
@@ -77,7 +79,7 @@ public class CreateMailWithAnInlineImg extends PrefGroupMailByMessageTest {
 
 					// TODO: ... debugging to be removed
 					mail.dBodyHtml = "body"+ ConfigProperties.getUniqueString();
-					window.sSelectWindow("Zimbra: Compose");
+					window.sSelectWindow(windowTitle);
 					String locator = "css=iframe[id*=ifr]";
 					window.zWaitForElementPresent(locator, "5000");
 					window.sClickAt(locator, "");
@@ -91,7 +93,7 @@ public class CreateMailWithAnInlineImg extends PrefGroupMailByMessageTest {
 					// Send the message
 					window.zToolbarPressButton(Button.B_SEND);
 
-					if (window.zWaitForWindowClosed("Zimbra: Compose")) {
+					if (window.zWaitForWindowClosed(windowTitle)) {
 						// Window closes automatically
 						window = null;
 					}
@@ -99,18 +101,12 @@ public class CreateMailWithAnInlineImg extends PrefGroupMailByMessageTest {
 
 					// Make sure to close the window
 					if (window != null) {
-						window.zCloseWindow();
+						window.zCloseWindow(windowTitle);
 						window = null;
 					}
 
 				}
 
-				// Sometimes, the harness is too fast for the client.
-				// Since we are composing in a new window, there is no
-				// busy overlay to block.
-				//
-				// Add a loop, while waiting for the message
-				//
 				for (int i = 0; i < 30; i++) {
 
 					ZimbraAccount.AccountA().soapSend(

@@ -63,24 +63,27 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + subject;
 
 		try {
 
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 			window.zToolbarPressButton(Button.B_REPLY);
 			SleepUtil.sleepMedium();
-			window.zSetWindowTitle("Zimbra: Reply");
+			
+			windowTitle = "Zimbra: Reply";
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			window.zToolbarPressButton(Button.B_SEND);			
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			window.zToolbarPressButton(Button.B_CLOSE);
 
@@ -93,7 +96,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 
@@ -140,15 +143,15 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + subject;
 
 		try {
 
 			// Choose Actions -> Launch in Window
-			window = (SeparateWindowDisplayMail) app.zPageMail
-					.zToolbarPressPulldown(Button.B_ACTIONS,
-							Button.B_LAUNCH_IN_SEPARATE_WINDOW);
+			window = (SeparateWindowDisplayMail) app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS,
+					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive(); // Make sure the window is there
 
 			ZAssert.assertTrue(window.zIsActive(),
@@ -158,12 +161,13 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 
 			window.zKeyboardShortcut(Shortcut.S_MAIL_REPLY);
 			SleepUtil.sleepMedium();
-			window.zSetWindowTitle("Zimbra: Reply");
+			
+			windowTitle = "Zimbra: Reply";
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
-			ZAssert.assertTrue(window.zIsActive(),
-					"Verify the Reply window is active");
+			ZAssert.assertTrue(window.zIsActive(), "Verify the Reply window is active");
 			window.zToolbarPressButton(Button.B_SEND);
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			window.zToolbarPressButton(Button.B_CLOSE);
 
@@ -176,7 +180,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 
@@ -220,15 +224,15 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + subject;
 
 		try {
 
 			// Choose Actions -> Launch in Window
-			window = (SeparateWindowDisplayMail) app.zPageMail
-					.zToolbarPressPulldown(Button.B_ACTIONS,
-							Button.B_LAUNCH_IN_SEPARATE_WINDOW);
+			window = (SeparateWindowDisplayMail) app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS,
+					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive(); // Make sure the window is there
 
 			ZAssert.assertTrue(window.zIsActive(),
@@ -238,12 +242,13 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 
 			window.zKeyboardShortcut(Shortcut.S_MAIL_REPLYAll);
 			SleepUtil.sleepMedium();
-			window.zSetWindowTitle("Zimbra: Reply");
+			
+			windowTitle = "Zimbra: Reply";
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
-			ZAssert.assertTrue(window.zIsActive(),
-					"Verify the Reply window is active");
+			ZAssert.assertTrue(window.zIsActive(), "Verify the Reply window is active");
 			window.zToolbarPressButton(Button.B_SEND);
-			window.zSetWindowTitle(subject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			window.zToolbarPressButton(Button.B_CLOSE);
 
@@ -256,7 +261,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 

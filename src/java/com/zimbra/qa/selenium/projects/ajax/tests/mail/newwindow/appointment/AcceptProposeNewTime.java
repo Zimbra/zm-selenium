@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.appointment;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -17,17 +15,14 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.appointment;
  * ***** END LICENSE BLOCK *****
  */
 
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.appointment;
 
 import java.util.*;
-
 import org.testng.annotations.Test;
-
-
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
@@ -97,39 +92,35 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		
 		// --------------- Login to attendee & propose new time ----------------------------------------------------
 		
-			app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
-			SeparateWindowDisplayMail window = null;
+		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + apptSubject;
 
-			try {
+		try {
 
-				// Choose Actions -> Launch in Window
-				window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-				SleepUtil.sleepLong();
-				SleepUtil.sleepLong();
-				
-				window.zSetWindowTitle(apptSubject);
-				window.zWaitForActive();		// Make sure the window is there
+			// Choose Actions -> Launch in Window
+			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
+			SleepUtil.sleepVeryLong();
+			
+			window.zSetWindowTitle(windowTitle);
+			window.zWaitForActive();		// Make sure the window is there
 
-				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
-				// Click Accept > Don't Notify Organizer
-				window.zPressButton(Button.B_PROPOSE_NEW_TIME);
-				SleepUtil.sleepLong();
+			// Click Accept > Don't Notify Organizer
+			window.zPressButton(Button.B_PROPOSE_NEW_TIME);
+			SleepUtil.sleepLong();
 
-				// The dialog will send a message, so wait for delivery
-				Stafpostqueue sp = new Stafpostqueue();
-				sp.waitForPostqueue();
+		} finally {
 
-			} finally {
-
-				// Make sure to close the window
-				if ( window != null ) {
-					window.zCloseWindow();
-					window = null;
-				}
-
+			// Make sure to close the window
+			if ( window != null ) {
+				window.zCloseWindow(windowTitle);
+				window = null;
 			}
+
+		}
 			
 			
 

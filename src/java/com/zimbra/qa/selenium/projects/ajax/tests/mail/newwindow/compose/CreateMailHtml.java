@@ -48,12 +48,13 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 		
 		// Open the new mail form
 		SeparateWindowFormMailNew window = null;
+		String windowTitle = "Zimbra: Compose";
 
 		try {
 
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 
-			window.zSetWindowTitle("Compose");
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 
 			window.waitForComposeWindow();
@@ -63,9 +64,8 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 			// Fill out the form with the data
 			window.zFill(mail);
 			
-			/* TODO: ... debugging to be removed */ 
 			mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
-			window.sSelectWindow("Zimbra: Compose");
+			window.sSelectWindow(windowTitle);
 			String locator = "css=iframe[id*=ifr]";
 			window.zWaitForElementPresent(locator, "5000");
 			window.sClickAt(locator,"");
@@ -74,7 +74,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 			// Send the message
 			window.zToolbarPressButton(Button.B_SEND);
 			
-			if(window.zWaitForWindowClosed("Zimbra: Compose")){
+			if(window.zWaitForWindowClosed(windowTitle)){
 			    // Window closes automatically
 			    window = null;
 			}
@@ -82,7 +82,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 

@@ -53,18 +53,19 @@ public class OpenComposedMessageInNewWindow extends PrefGroupMailByMessageTest {
 		mailform.zFillField(Field.Body, body);	
 
 		SeparateWindowFormMailNew window = null;
+		String windowTitle = "Zimbra: Compose";
 
 		try {
 
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
-			window.zSetWindowTitle("Compose");
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 			window.waitForComposeWindow();			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 			//Select the window
-			window.sSelectWindow("Zimbra: Compose");					
+			window.sSelectWindow(windowTitle);					
 
 			// Verify the data appearing in fields in New window
 			ZAssert.assertEquals(mailform.sGetText(Locators.zBubbleToField),ZimbraAccount.AccountA().EmailAddress, "To field doesn't match");
@@ -104,7 +105,7 @@ public class OpenComposedMessageInNewWindow extends PrefGroupMailByMessageTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 		}

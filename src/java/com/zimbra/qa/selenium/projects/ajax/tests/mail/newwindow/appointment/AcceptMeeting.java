@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.appointment;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -17,15 +15,14 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.appointment;
  * ***** END LICENSE BLOCK *****
  */
 
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.appointment;
+
 import java.util.*;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowFormMailNew;
@@ -119,18 +116,17 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		// Select the invitation
-
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
-
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + apptSubject;
 
 		try {
 
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(apptSubject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
@@ -138,15 +134,11 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 			// Click Accept
 			window.zPressButton(Button.B_ACCEPT);
 
-			// The dialog will send a message, so wait for delivery
-			Stafpostqueue sp = new Stafpostqueue();
-			sp.waitForPostqueue();
-
 		} finally {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 
@@ -222,18 +214,17 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 		app.zPageMail.zVerifyMailExists(apptSubject);
 
 		// Select the invitation
-
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
-
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + apptSubject;
 
 		try {
 
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(apptSubject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
@@ -241,15 +232,11 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 			// Click Accept
 			window.zPressButton(Button.B_ACCEPT);
 
-			// The dialog will send a message, so wait for delivery
-			Stafpostqueue sp = new Stafpostqueue();
-			sp.waitForPostqueue();
-
 		} finally {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 
@@ -319,20 +306,17 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 
 		// Refresh the view
 		app.zPageMail.zVerifyMailExists(apptSubject);
-
-
-
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
-
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + apptSubject;
 
 		try {
 
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(apptSubject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
@@ -340,15 +324,11 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 			// Click Accept > Notify Organizer
 			window.zPressButtonPulldown(Button.B_ACCEPT, Button.O_ACCEPT_NOTIFY_ORGANIZER);
 
-			// The dialog will send a message, so wait for delivery
-			Stafpostqueue sp = new Stafpostqueue();
-			sp.waitForPostqueue();
-
 		} finally {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 
@@ -458,19 +438,18 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 		// Refresh the view
 		app.zPageMail.zVerifyMailExists(apptSubject);
 
-
 		// Select the invitation
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
-
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + apptSubject;
 
 		try {
 
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-			window.zSetWindowTitle(apptSubject);
+			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();		// Make sure the window is there
 
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
@@ -478,15 +457,11 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 			// Click Accept > Don't Notify Organizer
 			window.zPressButtonPulldown(Button.B_ACCEPT, Button.O_ACCEPT_DONT_NOTIFY_ORGANIZER);
 
-			// The dialog will send a message, so wait for delivery
-			Stafpostqueue sp = new Stafpostqueue();
-			sp.waitForPostqueue();
-
 		} finally {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 
