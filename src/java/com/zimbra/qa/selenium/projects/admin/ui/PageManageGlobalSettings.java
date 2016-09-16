@@ -98,10 +98,10 @@ public class PageManageGlobalSettings extends AbsTab {
 		}
 
 		// Click on Addresses -> Accounts
-		zClickAt(Locators.CONFIGURE_ICON,"");
+		sClick(Locators.CONFIGURE_ICON);
 		SleepUtil.sleepSmall();
 		sIsElementPresent(Locators.GLOBAL_SETTING);
-		zClickAt(Locators.GLOBAL_SETTING, "");
+		zClick(Locators.GLOBAL_SETTING);
 
 		zWaitForActive();
 
