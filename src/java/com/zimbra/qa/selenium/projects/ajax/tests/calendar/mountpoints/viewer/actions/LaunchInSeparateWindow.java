@@ -33,10 +33,12 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
+	
 	@Test( description = "Grantee with view rights launches grantor's calendar in the new window",
 			groups = { "functional" })
 			
 	public void LaunchInSeparateWindow_01() throws HarnessException {
+		
 		String body = null;
 		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();
 
@@ -83,10 +85,6 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 			ZAssert.assertStringContains(body, "Sunday Monday Tuesday Wednesday Thursday Friday Saturday" , "Verify weekday names are shown in new window");
 			ZAssert.assertStringContains(body, ownerFoldername, "Verify owners calender name is displayed in new window");
 
-			// Close all newly opened windows
-			window.zCloseWindow();
-			window = null;
-			
 		} finally {
 			if (window != null) {
 				window.zCloseWindow();
@@ -184,10 +182,6 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 			ZAssert.assertStringContains(bodyOfAppt , apptSubject , "Verify appt shows correct subject");
 			ZAssert.assertStringContains(bodyOfAppt , app.zGetActiveAccount().EmailAddress , "Verify appt shows correct Email Address");
 			ZAssert.assertStringContains(bodyOfAppt , apptContent , "Verify appt shows correct appt content");
-
-			// Close newly opened windows
-			window.zCloseWindow();
-			window = null;
 
 		} finally {
 			if (window != null) {

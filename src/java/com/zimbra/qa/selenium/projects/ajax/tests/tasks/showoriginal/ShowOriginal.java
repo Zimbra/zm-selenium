@@ -46,7 +46,9 @@ public class ShowOriginal extends AjaxCommonTest {
 	}
 
 	@Bugs(ids = "51017")
-	@Test( description = "Show Original Pop Up should Get Open With Proper Content", groups = { "smoke" })
+	@Test( description = "Show Original Pop Up should Get Open With Proper Content", 
+		groups = { "smoke" })
+	
 	public void ShowOriginal_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -83,11 +85,7 @@ public class ShowOriginal extends AjaxCommonTest {
 
 			// Verify show original window with proper content.
 			String ShowOrigBody = window.sGetBodyText();
-			ZAssert.assertStringContains(ShowOrigBody, subject,"Verify subject in showorig window");
-			
-			//Close Show Original window
-			window.zCloseWindow();
-			window = null;
+			ZAssert.assertStringContains(ShowOrigBody, subject,"Verify subject in show original window");
 
 		} finally {
 

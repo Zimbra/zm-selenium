@@ -56,6 +56,7 @@ public class NewWindowCancelAutoDraftSave extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 		
 		SeparateWindowFormMailNew window = null;
+		String windowTitle = "Zimbra: Forward";
 
 		try {
 
@@ -63,7 +64,7 @@ public class NewWindowCancelAutoDraftSave extends PrefGroupMailByMessageTest {
 			SleepUtil.sleepLong();
 
 			//Select the window
-			window.sSelectWindow("Zimbra: Forward");				
+			window.sSelectWindow(windowTitle);				
 
 			//Go to draft and check for draft message
 			mailform.zToolbarPressButton(Button.B_CANCEL);	
@@ -75,7 +76,7 @@ public class NewWindowCancelAutoDraftSave extends PrefGroupMailByMessageTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 

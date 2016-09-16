@@ -145,6 +145,8 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(item, "Verify one attachment is in the message");
 		
 		SeparateWindow window = (SeparateWindow)app.zPageMail.zToolbarPressButton(Button.B_LAUNCH_IN_SEPARATE_WINDOW);
+		String windowTitle = "Zimbra: " + subject;
+		
 		try {
 			window.zWaitForActive();
 			app.zPageMail.zSelectWindow("_blank");
@@ -158,7 +160,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 			
         } finally {
         	if ( window != null ) {
-        		window.zCloseWindow("Zimbra :" + subject);
+        		window.zCloseWindow(windowTitle);
         		window = null;
     		}
         	app.zPageMail.zSelectWindow(null);
@@ -219,6 +221,8 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(item, "Verify one attachment is in the message");
 		
 		SeparateWindow window = (SeparateWindow)app.zPageMail.zToolbarPressButton(Button.B_LAUNCH_IN_SEPARATE_WINDOW);
+		String windowTitle = "Zimbra: " + subject;
+		
 		try {
 			window.zWaitForActive();
 			app.zPageMail.zSelectWindow("_blank");
@@ -246,7 +250,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 			
         } finally {
         	if ( window != null ) {
-        		window.zCloseWindow("Zimbra :" + subject);
+        		window.zCloseWindow(windowTitle);
         		window = null;
     		}
         	app.zPageMail.zSelectWindow(null);
@@ -291,6 +295,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		SeparateWindow window = (SeparateWindow)app.zPageMail.zToolbarPressButton(Button.B_RFC822_ATTACHMENT_LINK);
+		String windowTitle = "Zimbra: " + subject;
 				
 		try {
 			window.zWaitForActive();
@@ -304,7 +309,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 			
         } finally {
         	if ( window != null ) {
-        		window.zCloseWindow("Zimbra :" + subject);
+        		window.zCloseWindow(windowTitle);
         		window = null;
     		}
         	app.zPageMail.zSelectWindow(null);

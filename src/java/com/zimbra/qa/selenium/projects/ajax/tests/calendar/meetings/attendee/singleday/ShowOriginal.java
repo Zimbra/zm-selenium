@@ -41,8 +41,10 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 		}};
 	}
 	
+	
 	@Test( description = "check context menu for Show Original option and check of the its displayed", 
 			groups = { "functional" })
+	
 	public void ShowOriginal_01() throws HarnessException {
 		
 		organizerTest = false;
@@ -89,9 +91,12 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 			ZAssert.assertStringContains(body, "BEGIN:VCALENDAR", "Verify Begin Header in Show original view");
 			ZAssert.assertStringContains(body, "END:VCALENDAR", "Verify Begin Header in Show original view");
 			ZAssert.assertStringContains(body, "ORGANIZER:mailto:"+ZimbraAccount.AccountA().EmailAddress,"Verify organizer is present in Show original view");
-	    } finally {
-   		 if ( window != null )
-			 window.zCloseWindow();
+	    
+		} finally {
+   		 	if ( window != null ) {
+				window.zCloseWindow();
+				window = null;
+   		 	}
 		}
         
 	}

@@ -24,7 +24,6 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.SeparateWindow;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-
 public class Print extends AjaxCommonTest {
 
 	public Print() {
@@ -34,10 +33,9 @@ public class Print extends AjaxCommonTest {
 	}
 
 
-	@Test(
-			description = "Print the shortcuts preference page",
-			groups = { "functional" }
-			)
+	@Test( description = "Print the shortcuts preference page", 
+			groups = { "functional" } )
+	
 	public void Print_01() throws HarnessException {
 
 		

@@ -108,8 +108,11 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 			ZAssert.assertStringContains(body, "END:VCALENDAR", "Verify END header in show original");
 			ZAssert.assertStringContains(body, "ORGANIZER:mailto:" + ZimbraAccount.AccountA().EmailAddress, "Verify organizer value in show original");
 			
-	    } finally {
-	    	if ( window != null ) window.zCloseWindow();
+		} finally {
+   		 	if ( window != null ) {
+				window.zCloseWindow();
+				window = null;
+   		 	}
 		}
 		
 	}

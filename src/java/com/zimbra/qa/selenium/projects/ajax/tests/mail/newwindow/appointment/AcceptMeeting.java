@@ -25,12 +25,8 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowFormMailNew;
 
 public class AcceptMeeting extends CalendarWorkWeekTest {
-
-	@SuppressWarnings("unused")
-	private static final SeparateWindowFormMailNew SeparateWindowFormMailNew = null;
 
 	public AcceptMeeting() {
 		logger.info("New "+ AcceptMeeting.class.getCanonicalName());
