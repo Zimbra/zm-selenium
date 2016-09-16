@@ -25,6 +25,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.ui.Checkbox;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
@@ -48,6 +49,7 @@ public class PageManageMTA extends AbsTab {
 		public static final String ENABLE_MILTER_SERVER = "css=input[id='ztabv__GSET_EDIT_zimbraMilterServerEnabled']";
 		public static final String CLIENTS_IP_ADDRESS = "css=input[id$='_zimbraMtaRestriction_reject_unknown_client_hostname']";		
 		public static final String SAVE = "css=td[id='zb__ZaCurrentAppBar__SAVE_title']";
+		public static final String CLOSE = "css=td[id='zb__ZaCurrentAppBar__CLOSE_title']";
 		public static final String SAVE_CSS = "div[id$='__SAVE']";
 
 	}
@@ -56,7 +58,7 @@ public class PageManageMTA extends AbsTab {
 	public PageManageMTA(AbsApplication application) {
 		super(application);
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see projects.admin.ui.AbsTab#isActive()
 	 */
@@ -105,7 +107,44 @@ public class PageManageMTA extends AbsTab {
 		zClickAt(Locators.GLOBAL_SETTINGS_MTA,"");
 		zWaitForActive();
 	}
+	
+	public void zCheckboxSet(Checkbox checkbox, boolean status) throws HarnessException {
+		logger.info("zCheckboxSet(" + checkbox + ") = " + status);
+		
+		if(checkbox == null) {
+			throw new HarnessException("Checkbox cannot be null!");
+		}
+		
+		String locator = null;
+		
+		switch(checkbox.toString()) {
+		
+		case "C_MTA_CLIENTS_IP_ADDRESS" :locator = Locators.CLIENTS_IP_ADDRESS;
+										 break;
+		case "C_MTA_TLS_AUTHENTICATION_ONLY":locator = Locators.TLS_AUTHENTICATION_ONLY;
+										 break;
+		case "C_MTA_ENABLE_MILTER_SERVER":locator=Locators.ENABLE_MILTER_SERVER;
+										 break;
+		default: new  HarnessException("implement the "+ checkbox);
+		}
+				
+		if ( !this.sIsElementPresent(locator) ) {
+			throw new HarnessException(locator + " not present!");
+		}
 
+		if ( this.sIsChecked(locator) == status ) {
+			logger.debug("checkbox status matched.  not doing anything");
+			return;
+		}
+		if ( status == true ) {
+			this.sCheck(locator);
+		} else {
+			this.sUncheck(locator);
+		}
+
+		this.zWaitForBusyOverlay();
+	}
+	
 	@Override
 	public AbsPage zListItem(Action action, String item)
 			throws HarnessException {
@@ -125,7 +164,38 @@ public class PageManageMTA extends AbsTab {
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		return null;
+		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+
+		tracer.trace("Press the "+ button +" button");
+
+		if ( button == null )
+			throw new HarnessException("Button cannot be null!");
+
+
+		// Default behavior variables
+
+		String locator = null;			// If set, this will be clicked
+		AbsPage page = null;			// If set, this page will be returned
+
+		// Based on the button specified, take the appropriate action(s)
+
+		switch(button.toString()) {
+
+		case "B_SAVE" : locator = Locators.SAVE;
+						this.sClick(locator);
+						SleepUtil.sleepSmall();
+						page = null;
+						break;
+
+		case "B_CLOSE": locator = Locators.CLOSE;
+						this.sClick(locator);
+						SleepUtil.sleepSmall();
+						page = new PageManageCOS(MyApplication);
+						break;
+
+		default : throw new HarnessException("no logic defined for button "+ button);
+		}
+		return page;
 	}
 
 	@Override
@@ -189,7 +259,7 @@ public class PageManageMTA extends AbsTab {
 		return null;
 	}
 
-	public boolean zVerifyHeader (String header) throws HarnessException {
+	public boolean zVerifyHeader(String header) throws HarnessException {
 		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;

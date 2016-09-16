@@ -33,6 +33,8 @@ import org.testng.annotations.Test;
 
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.ui.Checkbox;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -62,11 +64,10 @@ public class CheckMTASettings extends AdminCommonTest {
 	 */
 	@Bugs( ids = "104512")
 	@Test(	description = "Verify MTA restriction values after changing some MTA configuration through Command line and Admin console",
-	groups = { "functional" })
+			groups = { "functional" })
+	
 	public void CheckMTASettings_01() throws HarnessException {
-
-
-
+		
 		//MTA restriction value to be changed though SOAP
 		String MTARestriction1 = "check_client_access lmdb:/opt/zimbra/conf/postfix_rbl_override";
 		String MTARestriction2 = "reject_unknown_client_hostname";
@@ -101,16 +102,10 @@ public class CheckMTASettings extends AdminCommonTest {
 			SleepUtil.sleepMedium();
 
 			//Select client's IP address under under DNS check (an MTA restriction)
-			app.zPageManageMTA.zCheckboxSet(Locators.CLIENTS_IP_ADDRESS, true);			
-			if(!(app.zPageManageMTA.zIsElementDisabled(Locators.SAVE_CSS))) {
-
-				app.zPageManageMTA.sClick(Locators.SAVE);
-			} else {
-				app.zPageManageMTA.sClick(Locators.CLIENTS_IP_ADDRESS);
-				app.zPageManageMTA.sClick(Locators.CLIENTS_IP_ADDRESS);
-				app.zPageManageMTA.sClick(Locators.SAVE);
-			}			
-			SleepUtil.sleepMedium();
+			app.zPageManageMTA.zCheckboxSet(Checkbox.C_MTA_CLIENTS_IP_ADDRESS, true);			
+			
+			//Save the changes done
+			app.zPageManageMTA.zToolbarPressButton(Button.B_SAVE);
 
 			//Verify through UI that the MTA configuration change made above is present  
 			app.zPageManageMTA.sRefresh();
@@ -147,19 +142,11 @@ public class CheckMTASettings extends AdminCommonTest {
 			ZAssert.assertTrue((value1 && value2), "MTA restriction changes are not reflected in SOAP response");
 
 			//Change other two MTA setting(Enable milter server and disable TLS authentication) through Admin UI
-			app.zPageManageMTA.zCheckboxSet(Locators.ENABLE_MILTER_SERVER, true);
-			app.zPageManageMTA.zCheckboxSet(Locators.TLS_AUTHENTICATION_ONLY, false);
-			if(!(app.zPageManageMTA.zIsElementDisabled(Locators.SAVE_CSS))) {
-
-				app.zPageManageMTA.sClick(Locators.SAVE);
-			} else {
-				app.zPageManageMTA.sClick(Locators.TLS_AUTHENTICATION_ONLY);
-				app.zPageManageMTA.sClick(Locators.TLS_AUTHENTICATION_ONLY);
-				app.zPageManageMTA.sClick(Locators.ENABLE_MILTER_SERVER);
-				app.zPageManageMTA.sClick(Locators.ENABLE_MILTER_SERVER);
-				app.zPageManageMTA.sClick(Locators.SAVE);
-			}			
-			SleepUtil.sleepMedium();
+			app.zPageManageMTA.zCheckboxSet(Checkbox.C_MTA_ENABLE_MILTER_SERVER, true);
+			app.zPageManageMTA.zCheckboxSet(Checkbox.C_MTA_TLS_AUTHENTICATION_ONLY, false);
+			
+			//Save the changes done
+			app.zPageManageMTA.zToolbarPressButton(Button.B_SAVE);
 
 			//Verify through SOAP that these MTA configuration changes are reflected
 			ZimbraAdminAccount.GlobalAdmin().soapSend(
