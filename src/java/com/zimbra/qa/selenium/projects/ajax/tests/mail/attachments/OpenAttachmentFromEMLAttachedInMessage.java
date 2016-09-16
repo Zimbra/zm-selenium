@@ -48,6 +48,7 @@ public class OpenAttachmentFromEMLAttachedInMessage extends PrefGroupMailByMessa
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);	
 
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + subject;
 
 		try {
 
@@ -57,7 +58,7 @@ public class OpenAttachmentFromEMLAttachedInMessage extends PrefGroupMailByMessa
 			window.zSetWindowTitle(subjecteml);
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
-			//Verify that doc file attachement is present under eml file attached in a mail
+			//Verify that doc file attachment is present under eml file attached in a mail
 			ZAssert.assertTrue(window.sIsElementPresent("css=td a[id='zv__MSG__MSG-1_attLinks_2.1_main']:contains('fileconvE5cNFS.doc')"), "Verify .doc  present as attachment");
 			ZAssert.assertTrue(window.sIsElementPresent("css=td a[id='zv__MSG__MSG-1_attLinks_2.1_html']:contains('Preview')"), "Verify preview button exist");
 
@@ -65,7 +66,7 @@ public class OpenAttachmentFromEMLAttachedInMessage extends PrefGroupMailByMessa
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow("Zimbra :" + subject);
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 			app.zPageMail.zSelectWindow(null);

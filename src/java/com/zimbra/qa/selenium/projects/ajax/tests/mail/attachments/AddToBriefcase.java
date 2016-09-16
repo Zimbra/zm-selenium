@@ -154,6 +154,8 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 		
 	 	//Open message in a separate window
 		SeparateWindow window = (SeparateWindow)app.zPageMail.zToolbarPressButton(Button.B_LAUNCH_IN_SEPARATE_WINDOW);
+		String windowTitle = "Zimbra: " + subject;
+		
 		try {
 			
 			window.zWaitForActive();
@@ -168,7 +170,7 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 			
         } finally {
         	if ( window != null ) {
-        		window.zCloseWindow("Zimbra :" + subject);
+        		window.zCloseWindow(windowTitle);
         		window = null;
     		}
         	app.zPageMail.zSelectWindow(null);

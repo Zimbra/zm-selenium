@@ -80,6 +80,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 		} finally {
 			if (window != null)
 				window.zCloseWindow();
+				window = null;
 		}
 		
 		app.zPageCalendar.zToolbarPressButton(Button.B_CLOSE);

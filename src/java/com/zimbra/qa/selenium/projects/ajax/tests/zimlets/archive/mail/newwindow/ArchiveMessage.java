@@ -63,6 +63,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + subject;
 		
 		try {
 			
@@ -77,7 +78,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 			window.zToolbarPressButton(Button.B_ARCHIVE);
 			
 			if ( window.zIsActive() ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 			}
 			window = null;
 			
@@ -85,7 +86,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 			
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 			
@@ -129,6 +130,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		SeparateWindowDisplayMail window = null;
+		String windowTitle = "Zimbra: " + subject;
 		
 		try {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
@@ -147,7 +149,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 			
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 			

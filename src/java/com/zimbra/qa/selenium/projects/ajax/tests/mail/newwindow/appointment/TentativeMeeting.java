@@ -17,7 +17,6 @@
 
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.appointment;
 
-
 import java.util.*;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;

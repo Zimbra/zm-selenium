@@ -43,8 +43,9 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 	}
 	
 
-	@Test( description = "  Receive meeting invite -> Propose New Time  From New window to organizer and organizer accepts the new time using message view", 
-			groups = { "functional-skip" })
+	@Test( description = "Receive meeting invite -> Propose New Time  From New window to organizer and organizer accepts the new time using message view", 
+			groups = { "functional" })
+	
 	public void AcceptProposeNewTime_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -114,19 +115,11 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 
 		} finally {
 
-			// Make sure to close the window
 			if ( window != null ) {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
-
 		}
-			
-			
-
-	//	DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
-	//	display.zPressButton(Button.B_PROPOSE_NEW_TIME);
-		SleepUtil.sleepMedium();
 		
 		FormApptNew apptForm = new FormApptNew(app);
 		appt.setStartTime(modifiedStartUTC);
@@ -196,7 +189,5 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(apptAttendee1.soapSelectValue("//mail:s", "d"), modifiedStartUTC.toyyyyMMddTHHmmss(), "Verify modified start time of the appointment");
 		ZAssert.assertEquals(apptAttendee1.soapSelectValue("//mail:e", "d"), modifiedEndUTC.toyyyyMMddTHHmmss(), "Verify modified end time of the appointment");
 		ZAssert.assertEquals(myStatus, "AC", "Verify that the attendee1 status showing as 'ACCEPTED' for attendee");
-
 	}
-	
 }
