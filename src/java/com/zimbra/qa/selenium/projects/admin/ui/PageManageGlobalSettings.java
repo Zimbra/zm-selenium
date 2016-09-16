@@ -25,6 +25,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 
 /**
@@ -98,6 +99,7 @@ public class PageManageGlobalSettings extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.CONFIGURE_ICON,"");
+		SleepUtil.sleepSmall();
 		sIsElementPresent(Locators.GLOBAL_SETTING);
 		zClickAt(Locators.GLOBAL_SETTING, "");
 
