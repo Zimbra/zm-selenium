@@ -104,7 +104,7 @@ public class PageManageMTA extends AbsTab {
 			return;
 		}
 
-		zClickAt(Locators.GLOBAL_SETTINGS_MTA,"");
+		sClick(Locators.GLOBAL_SETTINGS_MTA);
 		zWaitForActive();
 	}
 	
