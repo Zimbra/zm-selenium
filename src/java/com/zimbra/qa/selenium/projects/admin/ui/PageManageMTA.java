@@ -119,13 +119,16 @@ public class PageManageMTA extends AbsTab {
 		
 		switch(checkbox.toString()) {
 		
-		case "C_MTA_CLIENTS_IP_ADDRESS" :locator = Locators.CLIENTS_IP_ADDRESS;
-										 break;
-		case "C_MTA_TLS_AUTHENTICATION_ONLY":locator = Locators.TLS_AUTHENTICATION_ONLY;
-										 break;
-		case "C_MTA_ENABLE_MILTER_SERVER":locator=Locators.ENABLE_MILTER_SERVER;
-										 break;
-		default: new  HarnessException("implement the "+ checkbox);
+			case "C_MTA_CLIENTS_IP_ADDRESS" :locator = Locators.CLIENTS_IP_ADDRESS;
+											break;
+											
+			case "C_MTA_TLS_AUTHENTICATION_ONLY":locator = Locators.TLS_AUTHENTICATION_ONLY;
+										 	break;
+										 	
+			case "C_MTA_ENABLE_MILTER_SERVER":locator=Locators.ENABLE_MILTER_SERVER;
+										 	break;
+										 	
+			default: new  HarnessException("Action for "+ checkbox + " is not implemented!");
 		}
 				
 		if ( !this.sIsElementPresent(locator) ) {
