@@ -44,7 +44,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 	
 	@Test( description = "Create a new contact group by right click on existing contact", groups = { "smoke" })
 	
-	public void CreateContactGroupWith1Contact() throws HarnessException {			
+	public void CreateContactGroupWith1Contact_01() throws HarnessException {			
 		
 		//-- Data
 		
@@ -57,7 +57,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Right click on the contact
 		DialogNewContactGroup dialog = (DialogNewContactGroup) app.zPageContacts.zListItem(
@@ -86,7 +86,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 	@Bugs(ids = "77882")
 	@Test( description = "Add a contact to an existing group", groups = { "smoke" })
 	
-	public void Add1ContactToExistingContactGroup() throws HarnessException {			
+	public void Add1ContactToExistingContactGroup_02() throws HarnessException {			
 		
 		//-- Data
 		
@@ -99,7 +99,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Right click on the contact -> Group -> Existing Group Name
 		app.zPageContacts.zListItem(
@@ -125,7 +125,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 	@Bugs(ids = "77882")
 	@Test( description = "Add 3 contacts to an existing group", groups = { "functional" })
 	
-	public void Add3ContactsToExistingContactGroup() throws HarnessException {
+	public void Add3ContactsToExistingContactGroup_03() throws HarnessException {
 		
 		//-- Data
 		
@@ -140,7 +140,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Check 3 contact items
 	    app.zPageContacts.zListItem(Action.A_CHECKBOX, contact1.getName());
@@ -182,7 +182,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 	
 	@Test( description = "Create a contact group with 3 contacts",	groups = { "functional" })
 	
-	public void CreateContactGroupWith3Contacts() throws HarnessException {			
+	public void CreateContactGroupWith3Contacts_04() throws HarnessException {			
 		
 		//-- Data
 		
@@ -200,7 +200,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Check 3 contact items
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact1.getName());
@@ -246,7 +246,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 	@Bugs(ids = "65500,15646")
 	@Test( description = "Create a contact group with 1 contact + 1 group", groups = { "functional" })
 	
-	public void CreateContactGroupWith1ContactAnd1ContactGroup() throws HarnessException {			
+	public void CreateContactGroupWith1ContactAnd1ContactGroup_05() throws HarnessException {			
 		
 		//-- Data
 		
@@ -262,7 +262,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Check 3 contact items
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, group.getName());
@@ -305,7 +305,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 	@Bugs(ids = "77882,15646")
 	@Test( description = "Add 1 contact + 1 group to an existing group", groups = { "functional" })
 	
-	public void Add1ContactAnd1GroupToExistingContactGroup() throws HarnessException {
+	public void Add1ContactAnd1GroupToExistingContactGroup_06() throws HarnessException {
 		
 		//-- Data
 		
@@ -319,7 +319,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Check 3 contact items
 	    app.zPageContacts.zListItem(Action.A_CHECKBOX, contact.getName());

@@ -37,7 +37,7 @@ public class DeleteFolder extends AjaxCommonTest {
 		super.startingPage = app.zPageContacts;
 		
 		// Enable user preference checkboxes
-		super.startingAccountPreferences = null;
+		
 		
 	}
 
@@ -46,7 +46,7 @@ public class DeleteFolder extends AjaxCommonTest {
 	
 	@Test( description = "Delete a top level addressbook - Right click, Delete",
 			groups = { "smoke" })
-	public void DeleteTopLevelFolderFromContextmenu() throws HarnessException {
+	public void DeleteTopLevelFolderFromContextmenu_01() throws HarnessException {
 		
 		//-- Data
 		
@@ -63,7 +63,7 @@ public class DeleteFolder extends AjaxCommonTest {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Delete the folder using context menu
 		app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_DELETE, folderItem);
@@ -84,7 +84,7 @@ public class DeleteFolder extends AjaxCommonTest {
 	
 	@Test( description = "Delete a sub folder - Right click, Delete",
 			groups = { "functional" })
-	public void DeleteSubFolderFromContextmenu() throws HarnessException {
+	public void DeleteSubFolderFromContextmenu_02() throws HarnessException {
 		
 		//-- Data
 		
@@ -101,7 +101,7 @@ public class DeleteFolder extends AjaxCommonTest {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Delete the folder using context menu
 		app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_DELETE, folderItem);
@@ -120,7 +120,7 @@ public class DeleteFolder extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Drag one sub folder to Trash folder", groups = { "functional" })
-	public void DnDFromSubFolderToTrash() throws HarnessException {
+	public void DnDFromSubFolderToTrash_03() throws HarnessException {
 		
 		//-- Data
 		
@@ -137,7 +137,7 @@ public class DeleteFolder extends AjaxCommonTest {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Delete the folder DND
 		app.zPageContacts.zDragAndDrop(
@@ -158,7 +158,7 @@ public class DeleteFolder extends AjaxCommonTest {
 
 	@Test( description = "Delete an addressbook folder- Use shortcut Del",
 			groups = { "deprecated" })
-	public void UseShortcutDel() throws HarnessException {
+	public void UseShortcutDel_04() throws HarnessException {
 		
 		//-- Data
 		
@@ -175,7 +175,7 @@ public class DeleteFolder extends AjaxCommonTest {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the folder
 		app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, folderItem);

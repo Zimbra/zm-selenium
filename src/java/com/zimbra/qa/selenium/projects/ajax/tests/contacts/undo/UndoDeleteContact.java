@@ -61,7 +61,7 @@ public class UndoDeleteContact extends AjaxCommonTest {
 				+ "</CreateContactRequest>");
 
 		// Refresh to get the contact into the client
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
@@ -102,7 +102,7 @@ public class UndoDeleteContact extends AjaxCommonTest {
 				+ "</CreateContactRequest>");
 
 		// Refresh to get the contact into the client
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact's checkbox
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact.firstName);
@@ -174,7 +174,7 @@ public class UndoDeleteContact extends AjaxCommonTest {
 				+ "</CreateContactRequest>");
 
 		// Refresh to get the contact into the client
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the item
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact1.fileAs);

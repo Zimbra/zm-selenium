@@ -29,7 +29,7 @@ public class SendEmail extends AjaxCommonTest  {
 	public SendEmail() {
 		logger.info("New "+ SendEmail.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
-		super.startingAccountPreferences = null;
+		
 	}
 
 	@Test( description = "Right click to DL and send email", groups = { "smoke" })

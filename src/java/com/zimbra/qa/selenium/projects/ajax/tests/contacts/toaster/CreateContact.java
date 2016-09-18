@@ -34,19 +34,19 @@ public class CreateContact extends AjaxCommonTest {
 		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
 		// Make sure we are using an account with conversation view
-		super.startingAccountPreferences = null;
 
 	}
 
-	@Test( description = "Create a basic contact item by click New in page Addressbook and verify toast msg ", groups = { "functional" })
-	
-	public void CreateContactToastMsg() throws HarnessException {
+	@Test(description = "Create a basic contact item by click New in page Addressbook and verify toast msg ", groups = {
+			"functional" })
+
+	public void CreateContactToastMsg_01() throws HarnessException {
 
 		// -- DATA
 
-		String contactFirst = "First"+ ConfigProperties.getUniqueString();
-		String contactLast = "Last"+ ConfigProperties.getUniqueString();
-		String contactEmail = "email"+ ConfigProperties.getUniqueString() + "@domain.com";
+		String contactFirst = "First" + ConfigProperties.getUniqueString();
+		String contactLast = "Last" + ConfigProperties.getUniqueString();
+		String contactEmail = "email" + ConfigProperties.getUniqueString() + "@domain.com";
 
 		// -- GUI Action
 
@@ -56,10 +56,13 @@ public class CreateContact extends AjaxCommonTest {
 		formContactNew.zFillField(Field.FirstName, contactFirst);
 		formContactNew.zFillField(Field.LastName, contactLast);
 		formContactNew.zFillField(Field.Email, contactEmail);
-		
-		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
-			app.zPageContacts.zClickAt("css=div#" + formContactNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
+				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so
+			// toast message disappears and testcase fails (JS COVERAGE)
+			app.zPageContacts.zClickAt(
+					"css=div#" + formContactNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
 			formContactNew.zSubmit();
 		}
@@ -67,7 +70,7 @@ public class CreateContact extends AjaxCommonTest {
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Contact Created","Verify toast message: Contact Created");
+		ZAssert.assertStringContains(toastMsg, "Contact Created", "Verify toast message: Contact Created");
 
 	}
 }

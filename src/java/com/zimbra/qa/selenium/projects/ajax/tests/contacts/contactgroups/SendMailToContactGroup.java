@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contactgroups;
 
-
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.core.Bugs;
@@ -27,68 +26,53 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-public class SendMailToContactGroup extends AjaxCommonTest  {
+public class SendMailToContactGroup extends AjaxCommonTest {
 	public SendMailToContactGroup() {
-		logger.info("New "+ SendMailToContactGroup.class.getCanonicalName());
-		
+		logger.info("New " + SendMailToContactGroup.class.getCanonicalName());
+
 		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
 
-		super.startingAccountPreferences = null;		
-		
 	}
-	
-	@Bugs(ids="97157")
-	@Test( description = "Right click then click New Email",
-			groups = { "smoke" })
-	public void NewEmail() throws HarnessException {
 
-		//--  Data
-		
+	@Bugs(ids = "97157")
+	@Test(description = "Right click then click New Email", groups = { "smoke" })
+	public void NewEmail_01() throws HarnessException {
+
+		// -- Data
+
 		// The message subject
-		String subject = "subject"+ ConfigProperties.getUniqueString();
-		
+		String subject = "subject" + ConfigProperties.getUniqueString();
+
 		// Create a contact group
 		String groupName = "group" + ConfigProperties.getUniqueString();
-		app.zGetActiveAccount().soapSend(
-				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
-					"<cn >" +
-						"<a n='type'>group</a>" +
-						"<a n='nickname'>" + groupName +"</a>" +
-						"<a n='fileAs'>8:" +  groupName +"</a>" +
-				        "<m type='I' value='" + ZimbraAccount.AccountA().EmailAddress + "' />" +
-				        "<m type='I' value='" + ZimbraAccount.AccountB().EmailAddress + "' />" +
-					"</cn>" +
-				"</CreateContactRequest>");
-		
-		
-		
-		//-- GUI
-		
+		app.zGetActiveAccount()
+				.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='type'>group</a>"
+						+ "<a n='nickname'>" + groupName + "</a>" + "<a n='fileAs'>8:" + groupName + "</a>"
+						+ "<m type='I' value='" + ZimbraAccount.AccountA().EmailAddress + "' />" + "<m type='I' value='"
+						+ ZimbraAccount.AccountB().EmailAddress + "' />" + "</cn>" + "</CreateContactRequest>");
+
+		// -- GUI
+
 		// Refresh
-		app.zPageContacts.zRefresh();
-		
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
+
 		// Right Click -> New Email
-        FormMailNew formMailNew = (FormMailNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_NEW, groupName);        
+		FormMailNew formMailNew = (FormMailNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_NEW,
+				groupName);
 
-        formMailNew.zFillField(Field.Subject, subject);
-        formMailNew.zFillField(Field.Body, "body"+ ConfigProperties.getUniqueString());
-        formMailNew.zSubmit();
-        
-        
-        //-- Verification
-        
-        MailItem message1 = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
-        ZAssert.assertNotNull(message1, "Verify the message is received by Account Bugs:97157");
+		formMailNew.zFillField(Field.Subject, subject);
+		formMailNew.zFillField(Field.Body, "body" + ConfigProperties.getUniqueString());
+		formMailNew.zSubmit();
 
-        MailItem message2 = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
-        ZAssert.assertNotNull(message2, "Verify the message is received by Account B");
-        
+		// -- Verification
+
+		MailItem message1 = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + subject + ")");
+		ZAssert.assertNotNull(message1, "Verify the message is received by Account Bugs:97157");
+
+		MailItem message2 = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + subject + ")");
+		ZAssert.assertNotNull(message2, "Verify the message is received by Account B");
 
 	}
-	
-
-	
 
 }
-

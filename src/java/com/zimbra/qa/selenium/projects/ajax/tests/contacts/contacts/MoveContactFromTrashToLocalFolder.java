@@ -30,17 +30,12 @@ public class MoveContactFromTrashToLocalFolder extends AjaxCommonTest  {
 	public MoveContactFromTrashToLocalFolder() {
 		logger.info("New "+ MoveContactFromTrashToLocalFolder.class.getCanonicalName());
 		
-		
-		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
-
-		// Enable user preference checkboxes
 		super.startingAccountPreferences = new HashMap<String , String>() {
-			private static final long serialVersionUID = -8102550098554063084L;
-
+		private static final long serialVersionUID = -8102550098554063084L;
 		{
-		    	put("zimbraPrefShowSelectionCheckbox", "TRUE");		         
-		   }};					
+		    put("zimbraPrefShowSelectionCheckbox", "TRUE");		         
+		}};					
 	}
 	
 	@Test( description = "Bug 102685 - Delete a contact item then moved it back to contact folder from trash",	groups = { "functional" })
@@ -68,7 +63,7 @@ public class MoveContactFromTrashToLocalFolder extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh to get the contact into the client
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);

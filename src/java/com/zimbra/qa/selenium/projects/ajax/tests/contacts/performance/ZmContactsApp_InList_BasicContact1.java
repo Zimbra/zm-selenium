@@ -39,7 +39,7 @@ public class ZmContactsApp_InList_BasicContact1 extends AjaxCommonTest {
       super.startingPage = app.zPageMail;
 
       // Make sure we are using an account with message view
-      super.startingAccountPreferences = null;
+      
    }
 
    @DataProvider(name = "DataProvider_LoadingApp_1Contact")

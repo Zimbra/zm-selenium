@@ -14,44 +14,65 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.contacts.dl.create;
+package com.zimbra.qa.selenium.projects.ajax.tests.contacts.dl.rename;
 
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactDistributionListNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactDistributionListNew.Field;
 
-public class CreateDLUsingCommaSeparatedEmailAddresses extends AjaxCommonTest  {
+public class RenameDL extends AjaxCommonTest  {
 
-	public CreateDLUsingCommaSeparatedEmailAddresses() {
-		logger.info("New "+ CreateDLUsingCommaSeparatedEmailAddresses.class.getCanonicalName());
+	public RenameDL() {
+		logger.info("New "+ RenameDL.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
-		
 	}
 
-	@Test( description = "Create user DL using comma separated email addresses", groups = { "smoke" })
 
-	public void CreateDLUsingCommaSeparatedEmailAddresses_01 () throws HarnessException {
+	@Test( description = "Rename DL", 
+			groups = { "functional" })
+
+	public void RenameDL_01 () throws HarnessException {
 
 		String firstContactEmail = ZimbraAccount.Account1().EmailAddress;
 		String secondContactEmail = ZimbraAccount.Account2().EmailAddress;
 
+		String dlFolder = "Distribution Lists";
 		String dlName = "dl" + ConfigProperties.getUniqueString();
+		String renamedDlName = "dl" + ConfigProperties.getUniqueString();
 		String fullDLName = dlName + "@" + ConfigProperties.getStringProperty("testdomain");
+		String renamedFullDLName = renamedDlName + "@" + ConfigProperties.getStringProperty("testdomain");
 
-		FormContactDistributionListNew FormContactDistributionListNew = (FormContactDistributionListNew) zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_DISTRIBUTION_LIST);
-		FormContactDistributionListNew.zFillField(Field.DistributionListName, dlName);
-		FormContactDistributionListNew.zFillField(Field.CommaSeparatedEmailsField, firstContactEmail + ", " + secondContactEmail);
-		FormContactDistributionListNew.zToolbarPressButton(Button.B_ADD_NEW);
+		// Create DL
+		app.zGetActiveAccount().soapSend(
+				"<CreateDistributionListRequest xmlns='urn:zimbraAccount'>"
+			+		"<name>" + fullDLName + "</name>"
+			+	"</CreateDistributionListRequest>");
+
+		// Add DL members
+		app.zGetActiveAccount().soapSend(
+				"<DistributionListActionRequest xmlns='urn:zimbraAccount'>"
+			+		"<dl by='name'>" + fullDLName + "</dl>"
+			+		"<action op='addMembers'>"
+         	+			"<dlm>" + firstContactEmail + "</dlm>"
+         	+			"<dlm>" + secondContactEmail + "</dlm>"
+         	+		"</action>"
+			+	"</DistributionListActionRequest>");
+
+		// Rename DL
+		app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, dlFolder);
+		FormContactDistributionListNew FormContactDistributionListNew = (FormContactDistributionListNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT_DISTRIBUTION_LIST, fullDLName);
+		FormContactDistributionListNew.zFillField(Field.DistributionListName, renamedDlName);
 		FormContactDistributionListNew.zSubmit();
 
-		// Verify DL
+		// Verify renamed DL
 		app.zGetActiveAccount().soapSend(
 				"<GetDistributionListRequest xmlns='urn:zimbraAccount' needOwners='1'>"
-			+		"<dl by='name'>" + fullDLName + "</dl>"
+			+		"<dl by='name'>" + renamedFullDLName + "</dl>"
 			+	"</GetDistributionListRequest>");
 
 		String dlId = app.zGetActiveAccount().soapSelectValue("//acct:dl", "id");
@@ -64,13 +85,13 @@ public class CreateDLUsingCommaSeparatedEmailAddresses extends AjaxCommonTest  {
 
 		ZAssert.assertEquals(ownerName, app.zGetActiveAccount().EmailAddress, "Verify the DL name is correct");
 		ZAssert.assertEquals(dlMailStatus, "enabled", "Verify the DL mail status");
-		ZAssert.assertEquals(dlSubscriptionPolicy, "ACCEPT", "Verify the DL subscription policy");
-		ZAssert.assertEquals(dlUnsubscriptionPolicy, "ACCEPT", "Verify the DL unsubscription policy");
+		ZAssert.assertEquals(dlSubscriptionPolicy, "REJECT", "Verify the DL subscription policy");
+		ZAssert.assertEquals(dlUnsubscriptionPolicy, "REJECT", "Verify the DL unsubscription policy");
 
-		// Verify DL members
+		// Verify renamed DL members
 		app.zGetActiveAccount().soapSend(
 				"<GetDistributionListMembersRequest xmlns='urn:zimbraAccount'>"
-			+		"<dl>" + fullDLName + "</dl>"
+			+		"<dl>" + renamedFullDLName + "</dl>"
 			+	"</GetDistributionListMembersRequest>");
 
 		boolean found1 = false;

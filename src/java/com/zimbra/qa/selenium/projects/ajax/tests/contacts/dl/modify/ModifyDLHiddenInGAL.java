@@ -30,11 +30,12 @@ public class ModifyDLHiddenInGAL extends AjaxCommonTest  {
 
 	public ModifyDLHiddenInGAL() {
 		logger.info("New "+ ModifyDLHiddenInGAL.class.getCanonicalName());
-		super.startingPage = app.zPageContacts;
-		super.startingAccountPreferences = null;
+		super.startingPage = app.zPageContacts;	
 	}
+	
 
-	@Test( description = "Modify DL using 'Private - List is Hidden in Global Address List", groups = { "functional" })
+	@Test( description = "Modify DL using 'Private - List is Hidden in Global Address List", 
+			groups = { "functional" })
 
 	public void HiddenDLInGALAutoComplete_01() throws HarnessException {
 

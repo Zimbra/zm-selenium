@@ -54,7 +54,7 @@ public class UndoMoveContact extends AjaxCommonTest {
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
 		
 		// Refresh to get the contact into the client
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);

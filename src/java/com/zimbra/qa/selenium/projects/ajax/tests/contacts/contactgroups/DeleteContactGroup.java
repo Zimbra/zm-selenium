@@ -41,7 +41,8 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 	}
 	
 	
-	@Test( description = "Delete a contact group by click Delete button on toolbar", groups = { "smoke" })
+	@Test( description = "Delete a contact group by click Delete button on toolbar", 
+			groups = { "smoke" })
 	
 	public void ClickDeleteOnToolbar_01() throws HarnessException {
 
@@ -56,7 +57,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
@@ -76,7 +77,8 @@ public class DeleteContactGroup extends AjaxCommonTest  {
    	}
 
 	
-	@Test( description = "Delete a contact group by click Delete on Context Menu",	groups = { "functional" })
+	@Test( description = "Delete a contact group by click Delete on Context Menu",	
+			groups = { "functional" })
 	
 	public void ClickDeleteOnContextMenu_02() throws HarnessException {
 
@@ -91,7 +93,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		//delete contact group by click Delete on Context menu
         app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, group.getName());
@@ -107,7 +109,8 @@ public class DeleteContactGroup extends AjaxCommonTest  {
    	}
 	
 
-	@Test( description = "Delete a contact group selected by checkbox by click Delete button on toolbar", groups = { "functional" })
+	@Test( description = "Delete a contact group selected by checkbox by click Delete button on toolbar", 
+			groups = { "functional" })
 	
 	public void DeleteContactGroupSelectedWithCheckbox_03() throws HarnessException {
 
@@ -122,7 +125,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the contact group
 		//app.zPageContacts.zListItem(Action.A_CHECKBOX, group.getName());
@@ -141,7 +144,8 @@ public class DeleteContactGroup extends AjaxCommonTest  {
    	}
 	
 
-	@Test( description = "Delete a contact group use shortcut Del", groups = { "functional" })
+	@Test( description = "Delete a contact group use shortcut Del", 
+			groups = { "functional" })
 	
 	public void UseShortcutDel_04() throws HarnessException {
 
@@ -156,7 +160,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
@@ -175,7 +179,8 @@ public class DeleteContactGroup extends AjaxCommonTest  {
    	}
 	
 	
-	@Test( description = "Delete a contact group use shortcut backspace", groups = { "functional" })
+	@Test( description = "Delete a contact group use shortcut backspace", 
+			groups = { "functional" })
 	
 	public void  UseShortcutBackspace_05() throws HarnessException {
 
@@ -190,7 +195,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
@@ -209,7 +214,8 @@ public class DeleteContactGroup extends AjaxCommonTest  {
    	}
 
 	
-	@Test( description = "Delete multiple contact groups at once",	groups = { "functional" })
+	@Test( description = "Delete multiple contact groups at once",	
+			groups = { "functional" })
 	
 	public void DeleteMultipleContactGroups_06() throws HarnessException {
 
@@ -226,7 +232,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, group3.getName());
@@ -253,7 +259,8 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 	}
 	
 
-	@Test( description = "Delete contact + contact group at once",	groups = { "functional" })
+	@Test( description = "Delete contact + contact group at once",	
+			groups = { "functional" })
 	
 	public void DeleteMixOfContactAndGroup_07() throws HarnessException {
 
@@ -269,7 +276,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the contact group		
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, group.getName());
@@ -291,7 +298,8 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 	}
 	
 	
-	@Test( description = "Move a contact group to folder Trash by expand Move dropdown then select Trash", groups = { "functional" })
+	@Test( description = "Move a contact group to folder Trash by expand Move dropdown then select Trash", 
+			groups = { "functional" })
 	
 	public void MoveToTrashFromMoveDropdownOnToolbar_08() throws HarnessException {
 
@@ -306,7 +314,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
@@ -340,7 +348,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Edit the group
 		FormContactGroupNew form = (FormContactGroupNew)app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_EDIT, group.getName());

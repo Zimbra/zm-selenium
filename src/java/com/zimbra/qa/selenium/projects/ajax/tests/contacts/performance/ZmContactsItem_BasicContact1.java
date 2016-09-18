@@ -36,7 +36,7 @@ public class ZmContactsItem_BasicContact1 extends AjaxCommonTest{
       super.startingPage = app.zPageContacts;
 
       // Make sure we are using an account with message view
-      super.startingAccountPreferences = null;
+      
    }
 
    @Test( description="Measure the time to view Basic contact item",

@@ -30,7 +30,7 @@ public class CreateDLByAddingMembersFromVariousOptions extends AjaxCommonTest  {
 	public CreateDLByAddingMembersFromVariousOptions() {
 		logger.info("New "+ CreateDLByAddingMembersFromVariousOptions.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
-		super.startingAccountPreferences = null;
+		
 	}
 
 	@Test( description = "Create DL by adding DL members from various options", 

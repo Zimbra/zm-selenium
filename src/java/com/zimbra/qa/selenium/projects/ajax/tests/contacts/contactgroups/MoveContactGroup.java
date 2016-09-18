@@ -16,11 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contactgroups;
 
-
-
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -29,214 +25,183 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogMove;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactGroupNew;
 
-
-public class MoveContactGroup extends AjaxCommonTest  {
+public class MoveContactGroup extends AjaxCommonTest {
 	public MoveContactGroup() {
-		logger.info("New "+ MoveContactGroup.class.getCanonicalName());
-		
+		logger.info("New " + MoveContactGroup.class.getCanonicalName());
+
 		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
 
-		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "FALSE");		
-		
+		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "FALSE");
+
 	}
-	
-	
-	@Test( description = "Move a contact group to folder Emailed Contacts by click Move dropdown on toolbar",
-			groups = { "smoke" })
-	public void MoveToEmailedContactsFromMoveDropdownOnToolbar() throws HarnessException {
 
+	@Test(description = "Move a contact group to folder Emailed Contacts by click Move dropdown on toolbar", groups = {
+			"smoke" })
+	public void MoveToEmailedContactsFromMoveDropdownOnToolbar_01() throws HarnessException {
 
-		//--  Data
-		
+		// -- Data
+
 		// Create the sub addressbook
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		String foldername = "ab"+ ConfigProperties.getUniqueString();
-		app.zGetActiveAccount().soapSend(
-				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-					"<folder name='" + foldername +"' l='"+ root.getId() +"' view='contact'/>" +
-				"</CreateFolderRequest>");
+		String foldername = "ab" + ConfigProperties.getUniqueString();
+		app.zGetActiveAccount().soapSend("<CreateFolderRequest xmlns='urn:zimbraMail'>" + "<folder name='" + foldername
+				+ "' l='" + root.getId() + "' view='contact'/>" + "</CreateFolderRequest>");
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
-		
+
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-		
-		
-		
-		//-- GUI
-		
+
+		// -- GUI
+
 		// Refresh
-		app.zPageContacts.zRefresh();
-		
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
+
 		// Select the group
-        app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
+		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
-		//delete contact group by click Delete on Context menu
-        app.zPageContacts.zToolbarPressPulldown(Button.B_MOVE, folder);
+		// delete contact group by click Delete on Context menu
+		app.zPageContacts.zToolbarPressPulldown(Button.B_MOVE, folder);
 
-        
-        //-- Verification
-        
-        ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
-        ZAssert.assertNotNull(actual, "Verify the contact group exists");
-        
-        // Verify the contact group is in the trash
-        ZAssert.assertEquals(actual.getFolderId(), folder.getId(), "Verify the contact group is in the sub addressbook");
-        
-           
+		// -- Verification
 
-   	}
+		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(),
+				"is:anywhere #nickname:" + group.getName());
+		ZAssert.assertNotNull(actual, "Verify the contact group exists");
 
-	
+		// Verify the contact group is in the trash
+		ZAssert.assertEquals(actual.getFolderId(), folder.getId(),
+				"Verify the contact group is in the sub addressbook");
 
-	@Test( description = "Move a contact group to folder Emailed Contacts by click Move on Context menu",
-			groups = { "functional" })
-	public void MoveToEmailedContactsClickMoveOnContextmenu() throws HarnessException {
+	}
 
+	@Test(description = "Move a contact group to folder Emailed Contacts by click Move on Context menu", groups = {
+			"functional" })
+	public void MoveToEmailedContactsClickMoveOnContextmenu_02() throws HarnessException {
 
-		//--  Data
-		
+		// -- Data
+
 		// Create the sub addressbook
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		String foldername = "ab"+ ConfigProperties.getUniqueString();
-		app.zGetActiveAccount().soapSend(
-				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-					"<folder name='" + foldername +"' l='"+ root.getId() +"' view='contact'/>" +
-				"</CreateFolderRequest>");
+		String foldername = "ab" + ConfigProperties.getUniqueString();
+		app.zGetActiveAccount().soapSend("<CreateFolderRequest xmlns='urn:zimbraMail'>" + "<folder name='" + foldername
+				+ "' l='" + root.getId() + "' view='contact'/>" + "</CreateFolderRequest>");
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
-		
+
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-		
-		
-		
-		//-- GUI
-		
+
+		// -- GUI
+
 		// Refresh
-		app.zPageContacts.zRefresh();
-		
-	    DialogMove dialogContactMove = (DialogMove) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_MOVE, group.getName());
-	     
-	    //enter the moved folder
-        dialogContactMove.zClickTreeFolder(folder);
-        dialogContactMove.zClickButton(Button.B_OK);
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
-        
-        //-- Verification
-        
-        ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
-        ZAssert.assertNotNull(actual, "Verify the contact group exists");
-        
-        // Verify the contact group is in the trash
-        ZAssert.assertEquals(actual.getFolderId(), folder.getId(), "Verify the contact group is in the sub addressbook");
-        
-           
-    
-   	}
+		DialogMove dialogContactMove = (DialogMove) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_MOVE,
+				group.getName());
 
-	@Test( description = "Move a contact group to folder Emailed Contacts with shortcut m",
-			groups = { "functional" })
-	public void MoveToEmailedContactsClickShortcutm() throws HarnessException {
+		// enter the moved folder
+		dialogContactMove.zClickTreeFolder(folder);
+		dialogContactMove.zClickButton(Button.B_OK);
 
+		// -- Verification
 
-		//--  Data
-		
+		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(),
+				"is:anywhere #nickname:" + group.getName());
+		ZAssert.assertNotNull(actual, "Verify the contact group exists");
+
+		// Verify the contact group is in the trash
+		ZAssert.assertEquals(actual.getFolderId(), folder.getId(),
+				"Verify the contact group is in the sub addressbook");
+
+	}
+
+	@Test(description = "Move a contact group to folder Emailed Contacts with shortcut m", groups = { "functional" })
+	public void MoveToEmailedContactsClickShortcutm_03() throws HarnessException {
+
+		// -- Data
+
 		// Create the sub addressbook
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		String foldername = "ab"+ ConfigProperties.getUniqueString();
-		app.zGetActiveAccount().soapSend(
-				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-					"<folder name='" + foldername +"' l='"+ root.getId() +"' view='contact'/>" +
-				"</CreateFolderRequest>");
+		String foldername = "ab" + ConfigProperties.getUniqueString();
+		app.zGetActiveAccount().soapSend("<CreateFolderRequest xmlns='urn:zimbraMail'>" + "<folder name='" + foldername
+				+ "' l='" + root.getId() + "' view='contact'/>" + "</CreateFolderRequest>");
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
-		
+
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-		
-		
-		
-		//-- GUI
-		
+
+		// -- GUI
+
 		// Refresh
-		app.zPageContacts.zRefresh();
-		
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
+
 		SleepUtil.sleepMedium();
-		
-	    DialogMove dialogContactMove = (DialogMove) app.zPageContacts.zKeyboardShortcut(Shortcut.S_MOVE);
-	    SleepUtil.sleepMedium();
-	     
-	    //enter the moved folder
-        dialogContactMove.zClickTreeFolder(folder);
-        SleepUtil.sleepMedium();
-        dialogContactMove.zClickButton(Button.B_OK);
-     
 
-        
-        //-- Verification
-        
-        ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
-        ZAssert.assertNotNull(actual, "Verify the contact group exists");
-        
-        // Verify the contact group is in the trash
-        ZAssert.assertEquals(actual.getFolderId(), folder.getId(), "Verify the contact group is in the sub addressbook");
-        
-           
-    
- 
-   	}
+		DialogMove dialogContactMove = (DialogMove) app.zPageContacts.zKeyboardShortcut(Shortcut.S_MOVE);
+		SleepUtil.sleepMedium();
 
+		// enter the moved folder
+		dialogContactMove.zClickTreeFolder(folder);
+		SleepUtil.sleepMedium();
+		dialogContactMove.zClickButton(Button.B_OK);
 
-	@Test( description = "Move a group to folder Emailed Contacts by click toolbar Edit then open folder dropdown",
-			groups = { "functional" })
-	public void MoveToEmailedContactsClickToolbarEditThenFolderDropdown() throws HarnessException {
+		// -- Verification
 
+		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(),
+				"is:anywhere #nickname:" + group.getName());
+		ZAssert.assertNotNull(actual, "Verify the contact group exists");
 
-		//--  Data
-		
+		// Verify the contact group is in the trash
+		ZAssert.assertEquals(actual.getFolderId(), folder.getId(),
+				"Verify the contact group is in the sub addressbook");
+
+	}
+
+	@Test(description = "Move a group to folder Emailed Contacts by click toolbar Edit then open folder dropdown", groups = {
+			"functional" })
+	public void MoveToEmailedContactsClickToolbarEditThenFolderDropdown_04() throws HarnessException {
+
+		// -- Data
+
 		// Create the sub addressbook
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		String foldername = "ab"+ ConfigProperties.getUniqueString();
-		app.zGetActiveAccount().soapSend(
-				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-					"<folder name='" + foldername +"' l='"+ root.getId() +"' view='contact'/>" +
-				"</CreateFolderRequest>");
+		String foldername = "ab" + ConfigProperties.getUniqueString();
+		app.zGetActiveAccount().soapSend("<CreateFolderRequest xmlns='urn:zimbraMail'>" + "<folder name='" + foldername
+				+ "' l='" + root.getId() + "' view='contact'/>" + "</CreateFolderRequest>");
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
-		
+
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-		
-		
-		
-		//-- GUI
-		
+
+		// -- GUI
+
 		// Refresh
-		app.zPageContacts.zRefresh();
-		
-		//Click Edit 	
-        FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zToolbarPressButton(Button.B_EDIT);
-	  
-        //click location's folder 
-        DialogMove dialogMove = (DialogMove) formContactGroupNew.zToolbarPressButton(Button.B_CHOOSE_ADDRESSBOOK);
-        
-	    //enter the moved folder
-        dialogMove.zClickTreeFolder(folder);
-        dialogMove.zClickButton(Button.B_OK);
-        
-        //click  Save button
-        formContactGroupNew.zToolbarPressButton(Button.B_SAVE);
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
+		// Click Edit
+		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts
+				.zToolbarPressButton(Button.B_EDIT);
 
-        
-        //-- Verification
-        
-        ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
-        ZAssert.assertNotNull(actual, "Verify the contact group exists");
-        
-        // Verify the contact group is in the trash
-        ZAssert.assertEquals(actual.getFolderId(), folder.getId(), "Verify the contact group is in the sub addressbook");
-        
+		// click location's folder
+		DialogMove dialogMove = (DialogMove) formContactGroupNew.zToolbarPressButton(Button.B_CHOOSE_ADDRESSBOOK);
+
+		// enter the moved folder
+		dialogMove.zClickTreeFolder(folder);
+		dialogMove.zClickButton(Button.B_OK);
+
+		// click Save button
+		formContactGroupNew.zToolbarPressButton(Button.B_SAVE);
+
+		// -- Verification
+
+		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(),
+				"is:anywhere #nickname:" + group.getName());
+		ZAssert.assertNotNull(actual, "Verify the contact group exists");
+
+		// Verify the contact group is in the trash
+		ZAssert.assertEquals(actual.getFolderId(), folder.getId(),
+				"Verify the contact group is in the sub addressbook");
 
 	}
 
 }
-

@@ -32,7 +32,7 @@ public class DeleteDL extends AjaxCommonTest  {
 	public DeleteDL() {
 		logger.info("New "+ DeleteDL.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
-		super.startingAccountPreferences = null;
+		
 	}
 
 	@Test( description = "Delete DL using toolbar button", groups = { "smoke" })

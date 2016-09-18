@@ -35,7 +35,7 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 		
 		// All tests start at the addressbook page
 		super.startingPage = app.zPageContacts;
-		super.startingAccountPreferences = null;
+		
 
 	}
 	
@@ -118,7 +118,7 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 
 		
 		// Refresh to get tag2
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Create a new tag using the context menu + New Tag
 		DialogTag dialog = (DialogTag)app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_NEWTAG, tag2);

@@ -30,7 +30,7 @@ public class AutoCompleteDL extends AjaxCommonTest  {
 	public AutoCompleteDL() {
 		logger.info("New "+ AutoCompleteDL.class.getCanonicalName());
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = null;
+		
 	}
 
 	@Test( description = "Auto complete DL and send mail to DL", groups = { "smoke" })

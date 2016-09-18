@@ -36,7 +36,7 @@ public class ContextMenuAddressbooks extends AjaxCommonTest {
 		super.startingPage = app.zPageContacts;
 		
 		// Enable user preference checkboxes
-		super.startingAccountPreferences = null;
+		
 		
 	}
 
@@ -50,7 +50,7 @@ public class ContextMenuAddressbooks extends AjaxCommonTest {
 			groups = { "functional" },
 			dataProvider = "DataProviderSystemFolders"
 			)
-	public void SystemFoldersDeleteButtonDisabledFromContextmenu(String name, SystemFolder systemFolder) throws HarnessException {
+	public void SystemFoldersDeleteButtonDisabledFromContextmenu_01(String name, SystemFolder systemFolder) throws HarnessException {
 		
 		FolderItem folder= FolderItem.importFromSOAP(app.zGetActiveAccount(), systemFolder);
 		ZAssert.assertNotNull(folder, "Verify can get the folder: "+ name);	
@@ -86,7 +86,7 @@ public class ContextMenuAddressbooks extends AjaxCommonTest {
 			groups = { "functional" },
 			dataProvider = "DataProviderSystemFolders"
 			)
-	public void CannotRenameSystemFolders(String name, SystemFolder systemFolder) throws HarnessException {
+	public void CannotRenameSystemFolders_02(String name, SystemFolder systemFolder) throws HarnessException {
 
 		FolderItem folder= FolderItem.importFromSOAP(app.zGetActiveAccount(), systemFolder);
 		ZAssert.assertNotNull(folder, "Verify can get the folder: "+ name);	

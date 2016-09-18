@@ -31,7 +31,7 @@ public class AutoCompleteDLExpandMembers extends AjaxCommonTest  {
 	public AutoCompleteDLExpandMembers() {
 		logger.info("New "+ AutoCompleteDLExpandMembers.class.getCanonicalName());
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = null;
+		
 	}
 
 	@Test( description = "Auto complete DL, expand members and send mail to all", groups = { "functional" })

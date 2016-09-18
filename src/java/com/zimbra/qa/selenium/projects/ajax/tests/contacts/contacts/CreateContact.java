@@ -40,13 +40,14 @@ public class CreateContact extends AjaxCommonTest  {
 	public CreateContact() {
 		logger.info("New "+ CreateContact.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
-		super.startingAccountPreferences = null;
+		
 	}
 
+	
 	@Test( description = "Create a basic contact item by click New in page Addressbook ",
 			groups = { "sanity" })
 	
-	public void ClickNew() throws HarnessException {
+	public void ClickNew_01() throws HarnessException {
 
 		//-- DATA
 
@@ -58,7 +59,7 @@ public class CreateContact extends AjaxCommonTest  {
 
 		//-- GUI Action
 
-		// app.zPageContacts.zRefresh();
+		// app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		FormContactNew formContactNew = (FormContactNew)app.zPageContacts.zToolbarPressButton(Button.B_NEW);
 
@@ -95,9 +96,11 @@ public class CreateContact extends AjaxCommonTest  {
 
 	}
 
+	
 	@Test( description = "Create a basic contact item by use PullDown Menu->Contacts",
 			groups = { "functional" })
-	public void CreateContactFromPulldownMenu() throws HarnessException {
+	
+	public void CreateContactFromPulldownMenu_02() throws HarnessException {
 
 		//-- DATA
 		ContactItem contact = new ContactItem();
@@ -109,7 +112,7 @@ public class CreateContact extends AjaxCommonTest  {
 
 		//-- GUI Action
 
-		// app.zPageContacts.zRefresh();
+		// app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		FormContactNew formContactNew = (FormContactNew)app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACT);
 
@@ -131,9 +134,11 @@ public class CreateContact extends AjaxCommonTest  {
 
 	}
 
+	
 	@Test( description = "Cancel creating a contact item - Click Yes",
 			groups = { "functional" })
-	public void CancelCreateContactClickYes() throws HarnessException {
+	
+	public void CancelCreateContactClickYes_03() throws HarnessException {
 
 		//-- DATA
 
@@ -170,13 +175,13 @@ public class CreateContact extends AjaxCommonTest  {
 		ZAssert.assertEquals(actual.lastName, contact.lastName, "Verify the last name was saved correctly");
 		ZAssert.assertEquals(actual.firstName, contact.firstName, "Verify the last name was saved correctly");
 		ZAssert.assertEquals(actual.email, contact.email, "Verify the last name was saved correctly");
-
-
 	}
 
+	
 	@Test( description = "Cancel creating a contact item - Click No",
 			groups = { "functional" })
-	public void CancelCreateContactClickNo() throws HarnessException {
+	
+	public void CancelCreateContactClickNo_04() throws HarnessException {
 
 		//-- DATA
 
@@ -208,9 +213,11 @@ public class CreateContact extends AjaxCommonTest  {
 
 	}
 
+	
 	@Test( description = "Cancel creating a contact item - Click Cancel",
 			groups = { "functional" })
-	public void CancelCreateContactClickCancel() throws HarnessException {
+	
+	public void CancelCreateContactClickCancel_05() throws HarnessException {
 
 		//-- DATA
 
@@ -250,9 +257,11 @@ public class CreateContact extends AjaxCommonTest  {
 
 	}
 
-	@Test( description = "create a contact item with all attribute",
+	
+	@Test( description = "Create a contact item with all attributes",
 			groups = { "functional" })
-	public void CreateContactWithAllAttributes() throws HarnessException {
+	
+	public void CreateContactWithAllAttributes_06() throws HarnessException {
 
 		//-- Data
 
@@ -328,10 +337,10 @@ public class CreateContact extends AjaxCommonTest  {
 
 
 	@Bugs(ids="99776")
-	@Test(
-			description = "Create a contacts with non-ASCII special characters",
+	@Test( description = "Create a contacts with non-ASCII special characters",
 			groups = { "functional", "charsets" },
 			dataProvider = "DataProviderSupportedCharsets")
+	
 	public void CreateContact_07(ZCharset charset, String charsetSample) throws HarnessException {
 
 		//-- DATA
@@ -343,7 +352,7 @@ public class CreateContact extends AjaxCommonTest  {
 
 		//-- GUI Action
 
-		// app.zPageContacts.zRefresh();
+		// app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		FormContactNew formContactNew = (FormContactNew)app.zPageContacts.zToolbarPressButton(Button.B_NEW);
 
@@ -379,12 +388,13 @@ public class CreateContact extends AjaxCommonTest  {
 
 
 	}
+	
 
 	@Bugs(ids="66497")
-	@Test( description = "Create contact by selecting birthday and anniversary date using date picker.",
-	groups = { "functional" })
+	@Test( description = "Create contact by selecting birthday and anniversary date using date picker",
+		groups = { "functional" })
 
-	public void CreateContactBySelectingDateUsingDatePicker() throws HarnessException {
+	public void CreateContactBySelectingDateUsingDatePicker_08() throws HarnessException {
 
 		//-- Data
 
@@ -408,7 +418,7 @@ public class CreateContact extends AjaxCommonTest  {
 
 		// Add birthday as 20th of the current month from date picker
 		formContactNew.sClickAt(Locators.zOther1DatePickerPullDown, "0,0");
-		formContactNew.sClick(Locators.zDay20InDatePicker);
+		formContactNew.sClickAt(Locators.zDay20InDatePicker, "");
 
 		// Add another row in Others filed to add Anniversary date
 		formContactNew.sClickAt(Locators.zAddNewOtherRowBtn, "0,0");
@@ -419,7 +429,7 @@ public class CreateContact extends AjaxCommonTest  {
 
 		// Select Anniversary date as 20th
 		formContactNew.sClickAt(Locators.zOther2DatePickerPullDown, "0,0");
-		formContactNew.sClick(Locators.zDay20InDatePicker);
+		formContactNew.sClickAt(Locators.zDay20InDatePicker, "");
 
 		// Verify that selected dates are entered in the fields
 		ZAssert.assertStringContains(formContactNew.sGetValue(Locators.zOther1EditField), "20", "Entered date is not matching with the date entered through date picker");
@@ -428,15 +438,7 @@ public class CreateContact extends AjaxCommonTest  {
 		// Save the contact
 		formContactNew.zSubmit();
 
-
-		//-- Verificaiton
-
-		//verify toasted message 'contact created'
-		ZAssert.assertStringContains(app.zPageMain.zGetToaster().zGetToastMessage(), "Contact Created", "Verify toast message 'Contact Created'");
-
-
 		//-- Data Verification
-
 		ContactItem contact = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);
 		ZAssert.assertNotNull(contact, "Verify the contact was saved correctly");
 

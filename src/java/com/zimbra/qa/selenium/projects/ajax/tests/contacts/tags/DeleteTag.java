@@ -33,7 +33,7 @@ public class DeleteTag extends PrefGroupMailByMessageTest {
 		
 		// All tests start at the addressbook page
 		super.startingPage = app.zPageContacts;
-		super.startingAccountPreferences = null;
+		
 
 	}
 	
@@ -50,7 +50,7 @@ public class DeleteTag extends PrefGroupMailByMessageTest {
 		
 		
 		// Click on Get Mail to refresh the folder list
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Delete the tag using context menu
 		DialogWarning dialog = (DialogWarning) app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_DELETE, tag);

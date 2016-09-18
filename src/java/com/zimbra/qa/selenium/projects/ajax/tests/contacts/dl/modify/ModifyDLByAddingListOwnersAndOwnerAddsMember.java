@@ -26,51 +26,56 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactDistributionListNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactDistributionListNew.Field;
 
-public class ModifyDLByAddingRemovingMembers extends AjaxCommonTest  {
+public class ModifyDLByAddingListOwnersAndOwnerAddsMember extends AjaxCommonTest  {
 
-	public ModifyDLByAddingRemovingMembers() {
-		logger.info("New "+ ModifyDLByAddingRemovingMembers.class.getCanonicalName());
+	public ModifyDLByAddingListOwnersAndOwnerAddsMember() {
+		logger.info("New "+ ModifyDLByAddingListOwnersAndOwnerAddsMember.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
-		super.startingAccountPreferences = null;
 	}
 
 	
-	@Test( description = "Modify DL by adding and removing members", 
+	@Test( description = "Modify DL by adding list owners and owner adds one more member", 
 			groups = { "functional" })
 
-	public void ModifyDLByAddingRemovingMembers_01 () throws HarnessException {
+	public void ModifyDLByAddingListOwnersAndOwnerAddsMember_01() throws HarnessException {
 
 		String dlFolder = "Distribution Lists";
 		String dlName = "dl" + ConfigProperties.getUniqueString();
 		String fullDLName = dlName + "@" + ConfigProperties.getStringProperty("testdomain");
-
+		
+		ZimbraAccount secondContact = ZimbraAccount.Account2();
 		String firstContactEmail = ZimbraAccount.Account1().EmailAddress;
-		String secondContactEmail = ZimbraAccount.Account2().EmailAddress;
+		String secondContactEmail = secondContact.EmailAddress;
 		String thirdContactEmail = ZimbraAccount.Account3().EmailAddress;
 
-		// Create DL
-		app.zGetActiveAccount().soapSend(
-				"<CreateDistributionListRequest xmlns='urn:zimbraAccount'>"
-			+		"<name>" + fullDLName + "</name>"
-			+	"</CreateDistributionListRequest>");
+		FormContactDistributionListNew FormContactDistributionListNew = (FormContactDistributionListNew) zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_DISTRIBUTION_LIST);
 
-		// Add DL members
-		app.zGetActiveAccount().soapSend(
-				"<DistributionListActionRequest xmlns='urn:zimbraAccount'>"
-			+		"<dl by='name'>" + fullDLName + "</dl>"
-			+		"<action op='addMembers'>"
-         	+			"<dlm>" + firstContactEmail + "</dlm>"
-         	+			"<dlm>" + secondContactEmail + "</dlm>"
-         	+		"</action>"
-			+	"</DistributionListActionRequest>");
+		FormContactDistributionListNew.zFillField(Field.DistributionListName, dlName);
+		FormContactDistributionListNew.zToolbarPressPulldown (Button.B_DISTRIBUTIONLIST_SEARCH_TYPE, Button.O_DISTRIBUTIONLIST_SEARCH_GAL);
+		FormContactDistributionListNew.zFillField(Field.SearchField, firstContactEmail);
+		FormContactDistributionListNew.zToolbarPressButton(Button.B_SEARCH);
+		FormContactDistributionListNew.zToolbarPressButton(Button.B_DISTRIBUTIONLIST_ADD_SEARCH_RESULT);
 
-		// Remove member 2
+		FormContactDistributionListNew.zFillField(Field.SearchField, secondContactEmail);
+		FormContactDistributionListNew.zToolbarPressButton(Button.B_SEARCH);
+		FormContactDistributionListNew.zToolbarPressButton(Button.B_DISTRIBUTIONLIST_ADD_SEARCH_RESULT);
+
+		// Modify DL by adding more owners
+		SleepUtil.sleepSmall();
+		app.zPageContacts.zToolbarPressButton(Button.B_DISTRIBUTIONLIST_PROPERTIES);
+		SleepUtil.sleepMedium();
+		app.zPageContacts.sType("css=input[id$='_dlListOwners']", app.zGetActiveAccount().EmailAddress + ";" + secondContactEmail);
+		SleepUtil.sleepSmall();
+		FormContactDistributionListNew.zSubmit();
+		
+		// Logout to current account and login as DL owner
+		app.zPageMain.zLogout();
+		app.zPageLogin.zLogin(secondContact);
+		app.zPageContacts.zNavigateTo();
 		app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, dlFolder);
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, fullDLName);
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, Button.B_EDIT, fullDLName);
-		app.zPageContacts.zClickAt("css=div[id='DelContact_2']", "0,0");
-		SleepUtil.sleepMedium();
-
+		
 		// Add member 3
 		FormContactDistributionListNew formContactDistributionListNew = new FormContactDistributionListNew(app);
 		formContactDistributionListNew.zFillField(Field.CommaSeparatedEmailsField, thirdContactEmail);
@@ -100,7 +105,7 @@ public class ModifyDLByAddingRemovingMembers extends AjaxCommonTest  {
 		}
 
 		ZAssert.assertTrue(found1, "Verify member 1 is in the DL");
-		ZAssert.assertFalse(found2, "Verify member 2 not in the DL");
+		ZAssert.assertTrue(found2, "Verify member 2 is in the DL");
 		ZAssert.assertTrue(found3, "Verify member 3 is in the DL");
 	}
 }

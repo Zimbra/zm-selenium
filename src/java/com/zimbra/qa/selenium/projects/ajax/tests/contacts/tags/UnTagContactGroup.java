@@ -34,7 +34,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
 
-		super.startingAccountPreferences = null;		
+				
 		
 	}
 
@@ -63,7 +63,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		SleepUtil.sleepMedium();
 		
 		// Select the contact group
@@ -110,7 +110,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		SleepUtil.sleepMedium();
 		
@@ -161,7 +161,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		SleepUtil.sleepMedium();
 		
 		// Select the contact group
@@ -219,7 +219,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		SleepUtil.sleepMedium();
 		
@@ -273,7 +273,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		SleepUtil.sleepMedium();
 		
 		// Select the contact group
@@ -330,7 +330,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		SleepUtil.sleepMedium();
 		
 		// Select the contact group
@@ -385,7 +385,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		SleepUtil.sleepMedium();
 		
@@ -436,7 +436,7 @@ public class UnTagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		SleepUtil.sleepMedium();
 		

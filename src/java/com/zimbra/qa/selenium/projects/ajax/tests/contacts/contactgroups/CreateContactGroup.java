@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contactgroups;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
@@ -35,9 +33,7 @@ public class CreateContactGroup extends AjaxCommonTest  {
 
 	public CreateContactGroup() {
 		logger.info("New "+ CreateContactGroup.class.getCanonicalName());
-		
 		super.startingPage = app.zPageContacts;
-		super.startingAccountPreferences = null;		
 	}
 	
 	
@@ -55,7 +51,7 @@ public class CreateContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh the addressbook
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// open contact group form
 		FormContactGroupNew form = (FormContactGroupNew)app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
@@ -107,7 +103,8 @@ public class CreateContactGroup extends AjaxCommonTest  {
 	}
 	
 	
-	@Test( description = "Create a basic contact group with 2 GAL addresses", groups = { "functional" })
+	@Test( description = "Create a basic contact group with 2 GAL addresses", 
+			groups = { "functional" })
 	
 	public void CreateContactGroup_02() throws HarnessException {
 		
@@ -118,7 +115,7 @@ public class CreateContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh the addressbook
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// open contact group form
 		FormContactGroupNew form = (FormContactGroupNew)app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
@@ -151,7 +148,8 @@ public class CreateContactGroup extends AjaxCommonTest  {
 	}
 	
 
-	@Test( description = "Create a contact group with existing contacts", groups = { "functional" })
+	@Test( description = "Create a contact group with existing contacts", 
+			groups = { "functional" })
 	
 	public void CreateContactGroup_03() throws HarnessException {
 		
@@ -167,7 +165,7 @@ public class CreateContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		//open contact group form
 		FormContactGroupNew form = (FormContactGroupNew)app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
@@ -199,7 +197,8 @@ public class CreateContactGroup extends AjaxCommonTest  {
 
 	}
 
-	@Test( description = "Create a contact group with GAL + existing contacts + new emails", groups = { "functional" })
+	@Test( description = "Create a contact group with GAL + existing contacts + new emails", 
+			groups = { "functional" })
 	
 	public void CreateContactGroup_04() throws HarnessException {			
 
@@ -217,7 +216,7 @@ public class CreateContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		//open contact group form
 		FormContactGroupNew form = (FormContactGroupNew)app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
@@ -255,7 +254,8 @@ public class CreateContactGroup extends AjaxCommonTest  {
 	}
 	
 	@Bugs(ids = "77968,70905,66623")
-	@Test( description="Create a new contact group from GAL search result",  groups= { "functional"  } )
+	@Test( description="Create a new contact group from GAL search result", 
+		groups= { "functional"  } )
 	
 	public void CreateContactGroupFromGALSearchResult_05() throws HarnessException{
 		
@@ -311,13 +311,8 @@ public class CreateContactGroup extends AjaxCommonTest  {
 			}
 		}
 		ZAssert.assertTrue(isFileAsEqual, "Verify group name (" + newGroup.fileAs + ") displayed");
-		//ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ groupName);
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newGroup.getName());
 		ZAssert.assertNotNull(actual, "Verify the group stil exists");
-
-		//verify the location is System folder "Contacts"
-		//ZAssert.assertEquals(app.zPageContacts.sGetText("css=td.companyFolder"), SystemFolder.Contacts.getName(), "Verify location (folder) is " + SystemFolder.Contacts.getName());
-		
 	}
 
 }

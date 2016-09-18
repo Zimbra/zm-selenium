@@ -31,7 +31,7 @@ public class CreateFolder extends AjaxCommonTest {
 
 		// All tests start at the login page
 		super.startingPage = app.zPageContacts;
-		super.startingAccountPreferences = null;
+		
 	}
 
 	@Test( description = "Create a new folder by clicking 'new folder' on folder tree", 
@@ -55,7 +55,8 @@ public class CreateFolder extends AjaxCommonTest {
 	}
  
 	
-	@Test( description = "Create a new folder using context menu from root folder", groups = { "sanity" } )
+	@Test( description = "Create a new folder using context menu from root folder", 
+			groups = { "sanity" } )
 	
 	public void ClickContextMenuNewAddressbook_02() throws HarnessException {
 		
@@ -78,7 +79,8 @@ public class CreateFolder extends AjaxCommonTest {
 	}
 	
 
-	@Test( description = "Create a new folder using context menu from root folder",	groups = { "smoke" } )
+	@Test( description = "Create a new folder using context menu from root folder",	
+			groups = { "smoke" } )
 	
 	public void CreateSubFolderUnderContactsClickContextMenuNewAddressbook_03() throws HarnessException {	
 		
@@ -101,7 +103,8 @@ public class CreateFolder extends AjaxCommonTest {
 	}
 
 	
-	@Test( description = "Create a new folder using   New -> New Addressbook", groups = { "functional" } )
+	@Test( description = "Create a new folder using   New -> New Addressbook", 
+			groups = { "functional" } )
 	
 	public void ClickMenuNewNewAddressbook_04() throws HarnessException {
 		

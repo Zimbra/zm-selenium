@@ -34,32 +34,27 @@ public class NavigateToAppContactsURL extends AjaxCommonTest {
 		super.startingPage = app.zPageContacts;
 
 		// Enable user preference checkboxes
-		super.startingAccountPreferences = null;
 
 	}
 
-	@Test( description = "?app=contacts in url", groups = { "smoke" })
-	
+	@Test(description = "?app=contacts in url", groups = { "smoke" })
+
 	public void NavigateToAppContactsURL_01() throws HarnessException {
-		
-		//Go to Mail tab
-				app.zPageMail.zNavigateTo();				
-				SleepUtil.sleepMedium();
 
-		String lastname;		
+		// Go to Mail tab
+		app.zPageMail.zNavigateTo();
+		SleepUtil.sleepMedium();
 
-		// Create  contact
+		String lastname;
+
+		// Create contact
 
 		lastname = "B" + ConfigProperties.getUniqueString();
-		app.zGetActiveAccount().soapSend(
-				"<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >"
-						+ "<a n='firstName'>first"
-						+ ConfigProperties.getUniqueString() + "</a>"
-						+ "<a n='lastName'>" + lastname + "</a>"
-						+ "<a n='email'>email@domain.com</a>" + "</cn>"
-						+ "</CreateContactRequest>");
-		ContactItem contact1 = ContactItem.importFromSOAP(
-				app.zGetActiveAccount(), "#lastname:" + lastname);
+		app.zGetActiveAccount()
+				.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='firstName'>first"
+						+ ConfigProperties.getUniqueString() + "</a>" + "<a n='lastName'>" + lastname + "</a>"
+						+ "<a n='email'>email@domain.com</a>" + "</cn>" + "</CreateContactRequest>");
+		ContactItem contact1 = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#lastname:" + lastname);
 
 		// -- GUI
 
@@ -68,7 +63,7 @@ public class NavigateToAppContactsURL extends AjaxCommonTest {
 		ZimbraURI uri = new ZimbraURI(ZimbraURI.getBaseURI());
 		uri.addQuery("app", "contacts");
 		app.zPageContacts.sOpen(uri.toString());
-		
+
 		SleepUtil.sleepMedium();
 
 		// click All

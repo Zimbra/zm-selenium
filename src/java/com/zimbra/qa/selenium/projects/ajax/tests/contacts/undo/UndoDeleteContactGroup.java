@@ -51,7 +51,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
@@ -81,7 +81,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// delete contact group by click Delete on Context menu
 		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE,group.getName());
@@ -107,7 +107,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, group.getName());
@@ -137,7 +137,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
@@ -169,7 +169,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		ContactGroupItem group3 = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, group1.getName());
@@ -211,7 +211,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
 
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, group.getName());
