@@ -155,15 +155,15 @@ public class DialogDelegate extends AbsDialog {
 		
 		String locator = null;
 		
-		if( right == Rights.SendAs ) {
+		if ( right == Rights.SendAs ) {
 			
 			locator = "css=input#ZmGrantRightsDialog_sendAs";
 			
-		}else if ( right == Rights.SendOnBehalfOf ){
+		} else if ( right == Rights.SendOnBehalfOf ) {
 
 			locator = "css=input#ZmGrantRightsDialog_sendObo";
 			
-		}else{
+		} else {
 			throw new HarnessException("zCheckRight: "+ right +" is not defined");
 		}
 		

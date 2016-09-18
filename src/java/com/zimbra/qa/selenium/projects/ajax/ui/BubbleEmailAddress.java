@@ -123,7 +123,7 @@ public class BubbleEmailAddress extends AbsBubble {
 			// Use zAutocompleteList() to get the list of displayed members
 			
 			
-			// FALL THROUGH
+			
 			
 		} else if ( action == Action.A_REMOVE ) {
 			
@@ -240,7 +240,7 @@ public class BubbleEmailAddress extends AbsBubble {
 
 			}
 			
-			// FALL THROUGH
+			
 			
 		} else {
 			throw new HarnessException("No logic for action "+ action);
@@ -332,7 +332,7 @@ public class BubbleEmailAddress extends AbsBubble {
 
 			}
 			
-			// FALL THROUGH
+			
 			
 		} else {
 			throw new HarnessException("No logic for action "+ action);

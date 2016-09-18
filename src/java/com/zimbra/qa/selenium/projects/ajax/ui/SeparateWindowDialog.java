@@ -78,7 +78,7 @@ public class SeparateWindowDialog extends AbsSeparateWindow {
 
 			locator = buttonsTableLocator + " td[id^='Yes_'] td[id$='_title']";
 			
-			if(MyDivId.contains("css=div[class=DwtConfirmDialog]")){
+			if (MyDivId.contains("css=div[class=DwtConfirmDialog]")) {
 				page = 	new FormMailNew(this.MyApplication);
 			}
 

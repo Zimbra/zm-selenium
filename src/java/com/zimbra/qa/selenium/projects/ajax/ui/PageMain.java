@@ -188,7 +188,6 @@ public class PageMain extends AbsTab {
 		AbsPage page = null;
 
 		if (button == Button.B_REFRESH) {
-			
 			locator = Locators.zRefreshButton;
 			page = null;
 			
@@ -202,8 +201,7 @@ public class PageMain extends AbsTab {
 
 		this.sClickAt(locator, "0,0");
 		this.zWaitForBusyOverlay();
-		
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 
 		return (page);
 		
@@ -221,12 +219,12 @@ public class PageMain extends AbsTab {
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
 		
-		SleepUtil.sleepMedium();
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
+		
+		SleepUtil.sleepLong(); // Intentional sleep due to failure and for reliability
 		
 		if (pulldown == Button.B_ACCOUNT) {
 			
@@ -236,13 +234,14 @@ public class PageMain extends AbsTab {
 				optionLocator = "css=div[id^='POPUP'] div[id='documentation'] td[id$='_title']";
 				
 				SeparateWindow window = new SeparateWindow(this.MyApplication);
-				window.zInitializeWindowNames();
 				
 				this.zClickAt(pulldownLocator, "0,0");
 				this.zWaitForBusyOverlay();
+				SleepUtil.sleepSmall();
 
 				this.zClickAt(optionLocator, "0,0");
 				this.zWaitForBusyOverlay();
+				SleepUtil.sleepSmall();
 
 				return (window);
 				
@@ -272,14 +271,17 @@ public class PageMain extends AbsTab {
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
+			
 			this.sClickAt(pulldownLocator, "0,0");
 			zWaitForBusyOverlay();
+			SleepUtil.sleepSmall();
 
 			if (optionLocator != null) {
 
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
+				
 				this.sClickAt(optionLocator, "0,0");
 				zWaitForBusyOverlay();
 				
@@ -290,6 +292,8 @@ public class PageMain extends AbsTab {
 		if (page != null) {
 			page.zWaitForActive();
 		}
+		
+		SleepUtil.sleepSmall();
 
 		return (page);
 
@@ -352,14 +356,14 @@ public class PageMain extends AbsTab {
 			
 			page = new FormMailNew(this.MyApplication);
 			
-			// FALL THROUGH
+			
 			
 		} else if ( uri.getQuery().get("view").equals("msg") ) {
 			
 			// page = new DisplayMail(this.MyApplication);
 			throw new HarnessException("implement me!");
 			
-			// FALL THROUGH
+			
 			
 		} else {
 			

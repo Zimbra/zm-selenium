@@ -31,7 +31,6 @@ public class DialogInformational extends AbsDialog {
 		
 		public static final DialogWarningID InformationalDialog = new DialogWarningID("ZmMsgDialog");
 		public static final DialogWarningID ShortcutDialog = new DialogWarningID("css=div[class='ZmShortcutsPanel'][style*='left: 460px']");
-	//	public static final com.zimbra.qa.selenium.projects.ajax.ui.DialogInformational.DialogWarningID ShortcutDialog = null;
 		protected String Id;
 		public DialogWarningID(String id) {
 			Id = id;
@@ -40,14 +39,10 @@ public class DialogInformational extends AbsDialog {
 	
 	protected String MyDivId = null;
 	
-	
 	public DialogInformational(DialogWarningID dialogId, AbsApplication application, AbsTab tab) {
-		super(application, tab);
-	
-		MyDivId = dialogId.Id;
-		
+		super(application, tab);	
+		MyDivId = dialogId.Id;		
 		logger.info("new " + DialogInformational.class.getCanonicalName());
-
 	}
 	
 	public String zGetWarningTitle() throws HarnessException {

@@ -21,6 +21,7 @@ package com.zimbra.qa.selenium.projects.ajax.ui;
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 /**
  * Represents a "Rename Tag" dialog box
@@ -52,11 +53,12 @@ public class DialogRenameTag extends AbsDialog {
 		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("Rename locator "+ locator +" is not present");
-		}		
+		}
+		SleepUtil.sleepSmall();
 		clearField(locator);
 		sType(locator, name);
+		SleepUtil.sleepSmall();
 	}
-	
 	
 	@Override
 	public AbsPage zClickButton(Button button) throws HarnessException {
@@ -80,30 +82,17 @@ public class DialogRenameTag extends AbsDialog {
 		}
 		
 		zClickAt(locator,"0,0");
-		
-		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
-
+		SleepUtil.sleepSmall();
+		
 		return (null);
 	}
 
 	@Override
 	public String zGetDisplayedText(String locator) throws HarnessException {
-		
-		// Need to implement for:
-		
-		// "Rename Tag: tagname"
-		// "New name:"
-		// OK
-		// Cancel
-		
 		throw new HarnessException("implement me");
 	}
 
-
-	/* (non-Javadoc)
-	 * @see framework.ui.AbsDialog#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
@@ -123,11 +112,7 @@ public class DialogRenameTag extends AbsDialog {
 			return (false);	// Not visible per position
 		}
 	
-		// Yes, visible
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 	}
-
-
-
 }

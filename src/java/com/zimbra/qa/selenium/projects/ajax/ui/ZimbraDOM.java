@@ -155,24 +155,24 @@ public class ZimbraDOM {
 		resp = showIDs().replaceAll("[\n\\{\\}]","");
 		final List<String> args = Arrays.asList(resp.split(","));
 		EnumMap<KEY,String> emap = null;
-		for(String arg : args){
+		for(String arg : args) {
 		    final String[] arr = arg.trim().split(":");
-		    if(arr[0].startsWith("zcs")){
+		    if (arr[0].startsWith("zcs")) {
 			emap = new EnumMap<KEY,String>(KEY.class); 
 			map.put(arr[0],emap);
 			continue;
 		    }
-		    if(arr[0].contains(KEY.app.getKEY())){
+		    if (arr[0].contains(KEY.app.getKEY())) {
 			emap.put(KEY.app, arr[1]);
-		    }else if(arr[0].contains(KEY.componentName.getKEY())){
+		    } else if (arr[0].contains(KEY.componentName.getKEY())) {
 			emap.put(KEY.componentName, arr[1]);
-		    }else if(arr[0].contains(KEY.componentType.getKEY())){
+		    } else if (arr[0].contains(KEY.componentType.getKEY())) {
 			emap.put(KEY.componentType, arr[1]);
-		    }else if(arr[0].contains(KEY.containingView.getKEY())){
+		    } else if (arr[0].contains(KEY.containingView.getKEY())) {
 			emap.put(KEY.containingView, arr[1]);
-		    }else if(arr[0].contains(KEY.skinComponent.getKEY())){
+		    } else if (arr[0].contains(KEY.skinComponent.getKEY())) {
 			emap.put(KEY.skinComponent, arr[1]);
-		    }else if(arr[0].contains(KEY.sequence.getKEY())){
+		    } else if (arr[0].contains(KEY.sequence.getKEY())) {
 			emap.put(KEY.sequence, arr[1]);
 		    }
 		}
@@ -325,44 +325,44 @@ public class ZimbraDOM {
 	 */
 	public static String getID(final String... params) throws HarnessException{
 	    String id = null;
-	    if(params == null || !(params.length > 0)){
+	    if (params == null || !(params.length > 0)) {
 		logger.info("...empty arguments list");		
-	    } else{		
-		if(ids == null || ids.isEmpty()){
+	    } else {		
+		if (ids == null || ids.isEmpty()) {
 		    getMapFromScript();
 		}
 		final List<String> args = Arrays.asList(params);
 		int i = 0;
-		while(i < 2){
+		while(i < 2) {
 		    final Set<Entry<String, EnumMap<KEY, String>>> set = ids.entrySet();
-		    for(Entry <String, EnumMap<KEY, String>> en : set){
+		    for(Entry <String, EnumMap<KEY, String>> en : set) {
 			final EnumMap<KEY, String> emap = en.getValue();
 			final Collection<String> vals = emap.values();
-			if(vals.containsAll(args)){
-			    if(id == null){
+			if (vals.containsAll(args)) {
+			    if (id == null) {
 				id = en.getKey();
 				logger.info("\n id = " + id + 
 				    "\n params provided: " + args +
 				    "\n available values: " + vals);
-				if(args.containsAll(vals)){
+				if (args.containsAll(vals)) {
 				    break;
 				}
-			    }else{
+			    } else {
 				logger.info("\n for provided params: " + args +
 				    "\n ...found more than one matches of id");
 				break;
 			    }
 			}		    
 		    }
-		    if(id==null){
-			if(i < 1){
+		    if (id==null) {
+			if (i < 1) {
 			    getMapFromScript();
-			}else{
+			} else {
 			    logger.info("\n for provided params: " + args +
 				    "...id is null ");
 			}
 			i++;
-		    }else{
+		    } else {
 			break;
 		    }
 		}

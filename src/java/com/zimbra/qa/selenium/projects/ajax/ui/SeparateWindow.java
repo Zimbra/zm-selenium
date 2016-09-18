@@ -129,7 +129,7 @@ public class SeparateWindow extends AbsSeparateWindow {
 				SleepUtil.sleep(1000);
 			}
 			
-		} else if ( DialogWindowName.contains("selenium_blank")){
+		} else if ( DialogWindowName.contains("selenium_blank")) {
 			if (DialogWindowName != null ) {
 				this.sSelectWindow(DialogWindowName);
 				this.sWindowFocus();

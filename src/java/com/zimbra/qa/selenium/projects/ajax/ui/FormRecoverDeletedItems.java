@@ -108,28 +108,28 @@ public class FormRecoverDeletedItems extends AbsForm {
 			locator = "css=div[class='ZmDumpsterDialog'] td[id$='_button1_title']";
 			page = null;
 			
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_SEARCH ) {
 
 			locator = "css=td#searchDumpsterButton_title";
 			page = null;
 			
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_RECOVER_TO ) {
 
 			locator = "css=td#zb__dumpsterMail__MOVE_left_icon";
 			page = new DialogMove(this.MyApplication, ((AppAjaxClient)this.MyApplication).zPageMail);
 			
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_DELETE ) {
 
 			locator = "css=td#zb__dumpsterMail__DELETE_title";
 			page = null;
 			
-			// FALL THROUGH
+			
 
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
@@ -195,7 +195,7 @@ public class FormRecoverDeletedItems extends AbsForm {
 			
 			locator = "css=td[class='DumpsterSearchInput'] input";
 			
-			// FALL THROUGH
+			
 			
 		} else {
 			throw new HarnessException("not implemented for field " + field);
@@ -266,7 +266,7 @@ public class FormRecoverDeletedItems extends AbsForm {
 			itemLocator = null;
 		}
 
-		if ( itemLocator == null ){							
+		if ( itemLocator == null ) {							
 			throw new HarnessException("subject locator is not present " + itemLocator);
 		}
 		
@@ -280,7 +280,7 @@ public class FormRecoverDeletedItems extends AbsForm {
 			// Return the displayed mail page object
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else {
 			throw new HarnessException("implement me!  action = "+ action);
