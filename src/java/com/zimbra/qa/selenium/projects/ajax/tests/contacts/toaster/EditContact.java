@@ -34,11 +34,10 @@ public class EditContact extends AjaxCommonTest {
 		super.startingPage = app.zPageContacts;
 
 		// Make sure we are using an account with conversation view
-		super.startingAccountPreferences = null;
 
 	}
 
-	@Test( description = "Edit a contact item, click Edit on toolbar and verify toast msg", groups = { "functional" })
+	@Test(description = "Edit a contact item, click Edit on toolbar and verify toast msg", groups = { "functional" })
 	public void EditContactToastMsg_01() throws HarnessException {
 
 		// Create a contact
@@ -48,7 +47,7 @@ public class EditContact extends AjaxCommonTest {
 		String firstname = "new" + ConfigProperties.getUniqueString();
 
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.getName());
@@ -58,22 +57,25 @@ public class EditContact extends AjaxCommonTest {
 
 		// Change the first name
 		form.zFillField(Field.FirstName, firstname);
-		
-		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
+
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
+				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so
+			// toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
 			form.zSubmit();
-		}		
+		}
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Contact Saved","Verify toast message: Contact Saved");
+		ZAssert.assertStringContains(toastMsg, "Contact Saved", "Verify toast message: Contact Saved");
 
 	}
 
-	@Test( description = "Edit a contact item, Right click then click Edit and verify toast msg", groups = { "functional" })
+	@Test(description = "Edit a contact item, Right click then click Edit and verify toast msg", groups = {
+			"functional" })
 	public void EditContactToastMsg_02() throws HarnessException {
 
 		// Create a contact
@@ -83,29 +85,32 @@ public class EditContact extends AjaxCommonTest {
 		String firstname = "new" + ConfigProperties.getUniqueString();
 
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Rigth Click -> "Edit"
-		FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_EDIT, contact.getName());
+		FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_EDIT,
+				contact.getName());
 
 		// Change the first name
 		form.zFillField(Field.FirstName, firstname);
-		
-		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
+
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
+				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so
+			// toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
 			form.zSubmit();
-		}		
+		}
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Contact Saved","Verify toast message: Contact Saved");
+		ZAssert.assertStringContains(toastMsg, "Contact Saved", "Verify toast message: Contact Saved");
 
 	}
 
-	@Test( description = "Edit a contact item, double click the contact and verify toast msg", groups = { "functional" })
+	@Test(description = "Edit a contact item, double click the contact and verify toast msg", groups = { "functional" })
 	public void EditContactToastMsg_03() throws HarnessException {
 
 		// Create a contact
@@ -115,25 +120,27 @@ public class EditContact extends AjaxCommonTest {
 		String firstname = "new" + ConfigProperties.getUniqueString();
 
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Double click contact
 		FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, contact.getName());
 
 		// Change the first name
 		form.zFillField(Field.FirstName, firstname);
-		
-		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
+
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
+				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so
+			// toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
 			form.zSubmit();
-		}		
+		}
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Contact Saved","Verify toast message: Contact Saved");
+		ZAssert.assertStringContains(toastMsg, "Contact Saved", "Verify toast message: Contact Saved");
 
 	}
 }

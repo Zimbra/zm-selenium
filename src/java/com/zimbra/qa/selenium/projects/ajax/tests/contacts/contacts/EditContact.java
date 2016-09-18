@@ -16,9 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contacts;
 
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -27,24 +25,18 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew.Field;
 
-
-
-
 public class EditContact extends AjaxCommonTest  {
+	
 	public EditContact() {
 		logger.info("New "+ EditContact.class.getCanonicalName());
-		
-		// All tests start at the Address page
 		super.startingPage =  app.zPageContacts;
-
-		// Make sure we are using an account with conversation view
-		super.startingAccountPreferences = null;		
-		
 	}
+	
 	
 	@Test( description = "Edit a contact item, click Edit on toolbar",
 			groups = { "smoke" })
-	public void ClickToolbarEdit() throws HarnessException {
+	
+	public void ClickToolbarEdit_01() throws HarnessException {
 		
 		//-- Data
 		
@@ -54,12 +46,10 @@ public class EditContact extends AjaxCommonTest  {
 		// The new first name
 		String firstname = "new" + ConfigProperties.getUniqueString();
 		
-		
-		
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.getName());
@@ -71,19 +61,17 @@ public class EditContact extends AjaxCommonTest  {
         form.zFillField(Field.FirstName, firstname);
         form.zToolbarPressButton(Button.B_SAVE);
         
-        
-        
         //-- Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
         ZAssert.assertEquals(actual.firstName, firstname, "Verify the new first name is saved");
-        
 	}
 
 	
 	@Test( description = "Edit a contact item, Right click then click Edit",
 			groups = { "functional" })
-	public void ClickContextMenuEdit() throws HarnessException {
+	
+	public void ClickContextMenuEdit_02() throws HarnessException {
 		
 		//-- Data
 		
@@ -93,12 +81,10 @@ public class EditContact extends AjaxCommonTest  {
 		// The new first name
 		String firstname = "new" + ConfigProperties.getUniqueString();
 		
-		
-		
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Rigth Click -> "Edit"
         FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_EDIT, contact.getName());        
@@ -113,12 +99,13 @@ public class EditContact extends AjaxCommonTest  {
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
         ZAssert.assertEquals(actual.firstName, firstname, "Verify the new first name is saved");
-        
 	}
 
+	
 	@Test( description = "Edit a contact item, double click the contact",
 			groups = { "functional" })
-	public void DoubleClickContact() throws HarnessException {
+	
+	public void DoubleClickContact_03() throws HarnessException {
 		
 		//-- Data
 		
@@ -128,12 +115,10 @@ public class EditContact extends AjaxCommonTest  {
 		// The new first name
 		String firstname = "new" + ConfigProperties.getUniqueString();
 		
-		
-		
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Double click contact
         FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, contact.getName());        
@@ -142,33 +127,27 @@ public class EditContact extends AjaxCommonTest  {
         form.zFillField(Field.FirstName, firstname);
         form.zToolbarPressButton(Button.B_SAVE);
         
-        
-        
         //-- Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
         ZAssert.assertEquals(actual.firstName, firstname, "Verify the new first name is saved");
-        
-
-        
 	}
 
+	
 	@Test( description = "Cancel Editing a contact by click Close",
 			groups = { "functional"})
-	public void NoEditClickToolbarClose() throws HarnessException {
+	
+	public void NoEditClickToolbarClose_04() throws HarnessException {
 		
 		//-- Data
 		
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
 		
-		
-		
-		
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.getName());
@@ -179,18 +158,16 @@ public class EditContact extends AjaxCommonTest  {
 		// Change the first name
         form.zToolbarPressButton(Button.B_CLOSE);
         
-        
-        
         //-- Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
-
-	
 	}
-
+	
+	
 	@Test( description = "Cancel an edited contact by click Close, then click No",
 			groups = { "functional"})
-	public void ClickToolbarCloseThenClickNo() throws HarnessException {
+	
+	public void ClickToolbarCloseThenClickNo_05() throws HarnessException {
 		
 		//-- Data
 		
@@ -200,11 +177,10 @@ public class EditContact extends AjaxCommonTest  {
 		// The new first name
 		String firstname = "new" + ConfigProperties.getUniqueString();
 		
-		
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.getName());
@@ -224,18 +200,16 @@ public class EditContact extends AjaxCommonTest  {
 	    // Click No in popup dialog 
         dialog.zClickButton(Button.B_NO);
 
-        
         //-- Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
-
-	
-
 	}
 
+	
 	@Test( description = "Cancel an edited contact by click Close, then click Cancel",
 			groups = { "functional"})
-	public void ClickToolbarCloseThenClickCancel() throws HarnessException {
+	
+	public void ClickToolbarCloseThenClickCancel_06() throws HarnessException {
 		
 		//-- Data
 		
@@ -245,11 +219,10 @@ public class EditContact extends AjaxCommonTest  {
 		// The new first name
 		String firstname = "new" + ConfigProperties.getUniqueString();
 		
-		
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.getName());
@@ -271,19 +244,17 @@ public class EditContact extends AjaxCommonTest  {
         
         // Click save
         form.zToolbarPressButton(Button.B_SAVE);
-
         
         //-- Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
+    }
 
 	
-
-     }
-
 	@Test( description = "Cancel an edited contact by click Close, then click Yes",
 			groups = { "functional"})
-	public void ClickToolbarCloseThenClickYes() throws HarnessException {
+	
+	public void ClickToolbarCloseThenClickYes_07() throws HarnessException {
 		
 		//-- Data
 		
@@ -293,11 +264,10 @@ public class EditContact extends AjaxCommonTest  {
 		// The new first name
 		String firstname = "new" + ConfigProperties.getUniqueString();
 		
-		
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.getName());
@@ -317,16 +287,9 @@ public class EditContact extends AjaxCommonTest  {
 	    // Click No in popup dialog 
         dialog.zClickButton(Button.B_YES);
         
-
-        
         //-- Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
-
-	
-
 	}
-
-	
 }
 

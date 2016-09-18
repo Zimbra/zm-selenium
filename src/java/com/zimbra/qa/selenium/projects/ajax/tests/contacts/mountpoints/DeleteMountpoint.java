@@ -35,7 +35,7 @@ public class DeleteMountpoint extends AjaxCommonTest {
 		
 		// All tests start at the login page
 		super.startingPage = app.zPageContacts;
-		super.startingAccountPreferences = null;
+		
 
 		
 	}

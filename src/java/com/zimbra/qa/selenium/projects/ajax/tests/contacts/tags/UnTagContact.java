@@ -32,13 +32,13 @@ public class UnTagContact extends AjaxCommonTest  {
 		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
 
-		super.startingAccountPreferences = null;		
+				
 		
 	}
 	
 	@Test( description = "Untag a contact by click Toolbar Tag, then select Remove Tag",
 			groups = { "smoke" })
-	public void ClickToolbarTagRemoveTag() throws HarnessException {
+	public void ClickToolbarTagRemoveTag_01() throws HarnessException {
 		
 		
 		
@@ -60,7 +60,7 @@ public class UnTagContact extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		SleepUtil.sleepMedium();
 		
 		// Select the contact
@@ -86,7 +86,7 @@ public class UnTagContact extends AjaxCommonTest  {
 	   
 	@Test( description = "Untag a contact by click Tag->Remove Tag on context menu",
 				groups = { "smoke" })
-	public void ClickContextMenuTagRemoveTag() throws HarnessException {
+	public void ClickContextMenuTagRemoveTag_02() throws HarnessException {
 		
 		
 		
@@ -108,7 +108,7 @@ public class UnTagContact extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		SleepUtil.sleepMedium();
 		

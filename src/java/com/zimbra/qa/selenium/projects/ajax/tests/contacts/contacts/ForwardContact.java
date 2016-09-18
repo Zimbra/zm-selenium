@@ -16,9 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contacts;
 
-
-
-
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.core.Bugs;
@@ -29,23 +26,18 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-
 public class ForwardContact extends AjaxCommonTest  {
 	public ForwardContact() {
 		logger.info("New "+ ForwardContact.class.getCanonicalName());
-		
-		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
-
-		super.startingAccountPreferences = null;		
-		
 	}
+	
 	
 	@Bugs(ids = "77708")
 	@Test( description = "Forward a contact by click Forward on the toolbar",
 			groups = { "deprecated" })
-	public void InDisplayViewClickForwardOnToolbar() throws HarnessException {
-		
+	
+	public void InDisplayViewClickForwardOnToolbar_01() throws HarnessException {
 		
 		//-- Data
 	
@@ -53,13 +45,12 @@ public class ForwardContact extends AjaxCommonTest  {
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
 
 		// Mail subject
-		String subject = "subject"+ ConfigProperties.getUniqueString();
-		
+		String subject = "subject"+ ConfigProperties.getUniqueString();		
 		
 		//-- GUI
 	
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 	
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
@@ -77,8 +68,6 @@ public class ForwardContact extends AjaxCommonTest  {
         formMail.zFillField(Field.Subject, subject);
         formMail.zSubmit();
         
-        
-        
         // Verification
         ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -86,16 +75,6 @@ public class ForwardContact extends AjaxCommonTest  {
 			+	"</SearchRequest>");
         String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
         
-        
-        /*
-        <mp part="TEXT" ct="multipart/mixed">
-          <mp body="1" s="0" part="1" ct="text/plain">
-            <content/>
-          </mp>
-          <mp s="250" filename="lastname, firstname.vcf" part="2" ct="text/directory" cd="attachment"/>
-        </mp>
-         */
-
         ZimbraAccount.AccountA().soapSend(
 				"<GetMsgRequest xmlns='urn:zimbraMail'>"
 			+		"<m id='"+ id +"'/>"
@@ -111,27 +90,26 @@ public class ForwardContact extends AjaxCommonTest  {
         // Make sure filename contains .vcf
         String filename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
         ZAssert.assertStringContains(filename, ".vcf", "Make sure filename contains .vcf");
-
    	}
 
+	
 	@Test( description = "Forward an editing contact by click Forward on the toolbar",
 			groups = { "deprecated" })
-	public void InEditViewClickForwardOnToolbar() throws HarnessException {
-		
-		
+	
+	public void InEditViewClickForwardOnToolbar_02() throws HarnessException {
+				
 		//-- Data
 	
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
 
 		// Mail subject
-		String subject = "subject"+ ConfigProperties.getUniqueString();
-		
+		String subject = "subject"+ ConfigProperties.getUniqueString();		
 		
 		//-- GUI
 	
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 	
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
@@ -152,8 +130,6 @@ public class ForwardContact extends AjaxCommonTest  {
         formMail.zFillField(Field.Subject, subject);
         formMail.zSubmit();
         
-        
-        
         // Verification
         ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -161,16 +137,6 @@ public class ForwardContact extends AjaxCommonTest  {
 			+	"</SearchRequest>");
         String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
         
-        
-        /*
-        <mp part="TEXT" ct="multipart/mixed">
-          <mp body="1" s="0" part="1" ct="text/plain">
-            <content/>
-          </mp>
-          <mp s="250" filename="lastname, firstname.vcf" part="2" ct="text/directory" cd="attachment"/>
-        </mp>
-         */
-
         ZimbraAccount.AccountA().soapSend(
 				"<GetMsgRequest xmlns='urn:zimbraMail'>"
 			+		"<m id='"+ id +"'/>"
@@ -186,13 +152,14 @@ public class ForwardContact extends AjaxCommonTest  {
         // Make sure filename contains .vcf
         String filename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
         ZAssert.assertStringContains(filename, ".vcf", "Make sure filename contains .vcf");
-
 			
    	}
+	
 
 	@Test( description = "Forward a contact by click Forward on the context menu",
 			groups = { "smoke" })
-	public void ClickForwardOnContextmenu() throws HarnessException {
+	
+	public void ClickForwardOnContextmenu_03() throws HarnessException {
 		
 		
 		//-- Data
@@ -207,7 +174,7 @@ public class ForwardContact extends AjaxCommonTest  {
 		//-- GUI
 	
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 	
         // Right Click -> Forward
         FormMailNew formMail = (FormMailNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_FORWARD, contact.fileAs);        
@@ -222,8 +189,6 @@ public class ForwardContact extends AjaxCommonTest  {
         formMail.zFillField(Field.Subject, subject);
         formMail.zSubmit();
         
-        
-        
         // Verification
         ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -231,16 +196,6 @@ public class ForwardContact extends AjaxCommonTest  {
 			+	"</SearchRequest>");
         String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
         
-        
-        /*
-        <mp part="TEXT" ct="multipart/mixed">
-          <mp body="1" s="0" part="1" ct="text/plain">
-            <content/>
-          </mp>
-          <mp s="250" filename="lastname, firstname.vcf" part="2" ct="text/directory" cd="attachment"/>
-        </mp>
-         */
-
         ZimbraAccount.AccountA().soapSend(
 				"<GetMsgRequest xmlns='urn:zimbraMail'>"
 			+		"<m id='"+ id +"'/>"
@@ -256,8 +211,5 @@ public class ForwardContact extends AjaxCommonTest  {
         // Make sure filename contains .vcf
         String filename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
         ZAssert.assertStringContains(filename, ".vcf", "Make sure filename contains .vcf");
-
 	}
-
 }
-

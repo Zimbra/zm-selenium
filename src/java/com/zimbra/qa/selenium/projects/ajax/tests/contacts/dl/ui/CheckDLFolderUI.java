@@ -28,7 +28,7 @@ public class CheckDLFolderUI extends AjaxCommonTest  {
 	public CheckDLFolderUI() {
 		logger.info("New "+ CheckDLFolderUI.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
-		super.startingAccountPreferences = null;
+		
 	}
 
 	@Test( description = "Right click to DL folder and check respected UI options", groups = { "functional" })

@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contacts;
 
-
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.items.*;
@@ -26,66 +25,50 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-public class SendMailToContact extends AjaxCommonTest  {
+public class SendMailToContact extends AjaxCommonTest {
 	public SendMailToContact() {
-		logger.info("New "+ SendMailToContact.class.getCanonicalName());
-		
+		logger.info("New " + SendMailToContact.class.getCanonicalName());
+
 		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
 
-		super.startingAccountPreferences = null;		
-		
 	}
-	
 
-	@Test( description = "Right click then click New Email",
-			groups = { "smoke" })
-	public void NewEmail() throws HarnessException {
+	@Test(description = "Right click then click New Email", groups = { "smoke" })
+	public void NewEmail_01() throws HarnessException {
 
-		//--  Data
-		
+		// -- Data
+
 		// The message subject
-		String subject = "subject"+ ConfigProperties.getUniqueString();
-		
+		String subject = "subject" + ConfigProperties.getUniqueString();
+
 		// Create a contact
 		String firstName = "First" + ConfigProperties.getUniqueString();
 		String lastName = "Last" + ConfigProperties.getUniqueString();
 
-		app.zGetActiveAccount().soapSend(
-	                "<CreateContactRequest xmlns='urn:zimbraMail'>" +
-	                		"<cn >" +
-	                			"<a n='firstName'>" + firstName +"</a>" +
-	                			"<a n='lastName'>" + lastName +"</a>" +
-	                			"<a n='email'>" + ZimbraAccount.AccountA().EmailAddress + "</a>" +
-                			"</cn>" +
-	                "</CreateContactRequest>");
-		
-		
-		
-		//-- GUI
-		
+		app.zGetActiveAccount()
+				.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='firstName'>" + firstName
+						+ "</a>" + "<a n='lastName'>" + lastName + "</a>" + "<a n='email'>"
+						+ ZimbraAccount.AccountA().EmailAddress + "</a>" + "</cn>" + "</CreateContactRequest>");
+
+		// -- GUI
+
 		// Refresh
-		app.zPageContacts.zRefresh();
-		
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
+
 		// Right Click -> New Email
-        FormMailNew formMailNew = (FormMailNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_NEW, firstName);        
+		FormMailNew formMailNew = (FormMailNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_NEW,
+				firstName);
 
-        formMailNew.zFillField(Field.Subject, subject);
-        formMailNew.zFillField(Field.Body, "body"+ ConfigProperties.getUniqueString());
-        formMailNew.zSubmit();
-        
-        
-        //-- Verification
-        
-        MailItem message1 = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
-        ZAssert.assertNotNull(message1, "Verify the message is received by Account A");
+		formMailNew.zFillField(Field.Subject, subject);
+		formMailNew.zFillField(Field.Body, "body" + ConfigProperties.getUniqueString());
+		formMailNew.zSubmit();
 
-        
+		// -- Verification
+
+		MailItem message1 = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + subject + ")");
+		ZAssert.assertNotNull(message1, "Verify the message is received by Account A");
 
 	}
-	
-
-	
 
 }
-

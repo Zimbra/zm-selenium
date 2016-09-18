@@ -27,19 +27,19 @@ import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactGroupNew.Field;
 
-
-public class EditContactGroup extends AjaxCommonTest  {
+public class EditContactGroup extends AjaxCommonTest {
 	public EditContactGroup() {
-		logger.info("New "+ EditContactGroup.class.getCanonicalName());
+		logger.info("New " + EditContactGroup.class.getCanonicalName());
 
 		// All tests start at the Address page
-		super.startingPage =  app.zPageContacts;
+		super.startingPage = app.zPageContacts;
 		// Make sure we are using an account with conversation view
-		super.startingAccountPreferences = null;		
 
 	}
-	@Bugs(ids="97157")
-	@Test( description = "Edit a contact group by click Edit on Toolbar button and verify Toast msg", groups = { "functional" })
+
+	@Bugs(ids = "97157")
+	@Test(description = "Edit a contact group by click Edit on Toolbar button and verify Toast msg", groups = {
+			"functional" })
 	public void EditContactGroupToastMsg_01() throws HarnessException {
 
 		// A new group name
@@ -47,33 +47,38 @@ public class EditContactGroup extends AjaxCommonTest  {
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
-		//-Refresh
-		app.zPageContacts.zRefresh();
+		// -Refresh
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
-		//Click Edit on Toolbar button	
-		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zToolbarPressButton(Button.B_EDIT);
+		// Click Edit on Toolbar button
+		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts
+				.zToolbarPressButton(Button.B_EDIT);
 
 		// Change the group name
 		formContactGroupNew.zFillField(Field.GroupName, newname);
-		
-		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
-			app.zPageContacts.zClickAt("css=div#" + formContactGroupNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
+				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so
+			// toast message disappears and testcase fails (JS COVERAGE)
+			app.zPageContacts.zClickAt(
+					"css=div#" + formContactGroupNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
 			formContactGroupNew.zSubmit();
-		}		
+		}
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Group Saved","Verify toast message: Group Saved bug:97157");
+		ZAssert.assertStringContains(toastMsg, "Group Saved", "Verify toast message: Group Saved bug:97157");
 	}
 
-	@Bugs(ids="97157")
-	@Test( description = "Edit a contact group by click Edit Group on Context Menu and verify toast msg", groups = { "functional" })
+	@Bugs(ids = "97157")
+	@Test(description = "Edit a contact group by click Edit Group on Context Menu and verify toast msg", groups = {
+			"functional" })
 	public void EditContactGroupToastMsg_02() throws HarnessException {
 
 		// A new group name
@@ -82,30 +87,35 @@ public class EditContactGroup extends AjaxCommonTest  {
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
-		// Right click -> Edit	
-		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_EDIT, group.getName());        
+		// Right click -> Edit
+		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK,
+				Button.B_EDIT, group.getName());
 
 		// Change the group name
 		formContactGroupNew.zFillField(Field.GroupName, newname);
-		
-		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
-			app.zPageContacts.zClickAt("css=div#" + formContactGroupNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
+				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so
+			// toast message disappears and testcase fails (JS COVERAGE)
+			app.zPageContacts.zClickAt(
+					"css=div#" + formContactGroupNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
 			formContactGroupNew.zSubmit();
 		}
-		
+
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Group Saved","Verify toast message: Group Saved bug:97157");
+		ZAssert.assertStringContains(toastMsg, "Group Saved", "Verify toast message: Group Saved bug:97157");
 
 	}
 
-	@Bugs(ids="97157")
-	@Test( description = "Edit a contact group by double click on the contact group and verify toast msg  ", groups = { "functional" })
+	@Bugs(ids = "97157")
+	@Test(description = "Edit a contact group by double click on the contact group and verify toast msg  ", groups = {
+			"functional" })
 	public void EditContactGroupToastMsg_03() throws HarnessException {
 
 		// A new group name
@@ -115,17 +125,21 @@ public class EditContactGroup extends AjaxCommonTest  {
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
-		// Double click	
-		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, group.getName());        
+		// Double click
+		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts
+				.zListItem(Action.A_DOUBLECLICK, group.getName());
 
 		// Change the group name
 		formContactGroupNew.zFillField(Field.GroupName, newname);
 
-		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
-			app.zPageContacts.zClickAt("css=div#" + formContactGroupNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
+				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+			// this method won't wait for some sec after submitting data so
+			// toast message disappears and testcase fails (JS COVERAGE)
+			app.zPageContacts.zClickAt(
+					"css=div#" + formContactGroupNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
 			formContactGroupNew.zSubmit();
 		}
@@ -133,9 +147,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Group Saved","Verify toast message: Group Saved bug:97157");
+		ZAssert.assertStringContains(toastMsg, "Group Saved", "Verify toast message: Group Saved bug:97157");
 	}
 
-} 
-
-
+}

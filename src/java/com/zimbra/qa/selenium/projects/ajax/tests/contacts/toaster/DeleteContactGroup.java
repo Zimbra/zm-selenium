@@ -47,14 +47,15 @@ public class DeleteContactGroup extends AjaxCommonTest {
 
 	}
 
-	@Test( description = "Delete a contact group by click Delete button on toolbar and verify toast msg", groups = { "functional" })
+	@Test(description = "Delete a contact group by click Delete button on toolbar and verify toast msg", groups = {
+			"functional" })
 	public void DeleteContactGroupToastMsg_01() throws HarnessException {
 
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
@@ -65,11 +66,13 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg,"1 contact group moved to Trash","Verify toast message: Contact group Moved to Trash");
+		ZAssert.assertStringContains(toastMsg, "1 contact group moved to Trash",
+				"Verify toast message: Contact group Moved to Trash");
 
 	}
 
-	@Test( description = "Delete a contact group by click Delete on Context Menu and verify toast msg", groups = { "functional" })
+	@Test(description = "Delete a contact group by click Delete on Context Menu and verify toast msg", groups = {
+			"functional" })
 	public void DeleteContactGroupToastMsg_02() throws HarnessException {
 
 		// Create a contact group
@@ -78,31 +81,32 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		// -- GUI
 
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// delete contact group by click Delete on Context menu
-		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE,
-				group.getName());
+		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, group.getName());
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg,"1 contact group moved to Trash","Verify toast message: Contact group Moved to Trash");
+		ZAssert.assertStringContains(toastMsg, "1 contact group moved to Trash",
+				"Verify toast message: Contact group Moved to Trash");
 	}
 
-	@Test( description = "Delete a contact group selected by checkbox by click Delete button on toolbar and verify toast msg", groups = { "functional" })
-	public void DeleteContactGroupToastMsg_03()throws HarnessException {
-		
+	@Test(description = "Delete a contact group selected by checkbox by click Delete button on toolbar and verify toast msg", groups = {
+			"functional" })
+	public void DeleteContactGroupToastMsg_03() throws HarnessException {
+
 		ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
 		// -- GUI
 
 		// Refresh
-		app.zPageContacts.zRefresh();
-		
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
+
 		// By default newly created contact will be checked.
 		// Select the contact group
-		//app.zPageContacts.zListItem(Action.A_CHECKBOX, group.getName());
+		// app.zPageContacts.zListItem(Action.A_CHECKBOX, group.getName());
 
 		// delete contact group by click Delete button on toolbar
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
@@ -110,12 +114,12 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg,"1 contact group moved to Trash","Verify toast message: Contact group Moved to Trash");
-
+		ZAssert.assertStringContains(toastMsg, "1 contact group moved to Trash",
+				"Verify toast message: Contact group Moved to Trash");
 
 	}
 
-	@Test( description = "Delete a contact group use shortcut Del and verify toast msg", groups = { "functional" })
+	@Test(description = "Delete a contact group use shortcut Del and verify toast msg", groups = { "functional" })
 	public void DeleteContactGroupToastMsg_04() throws HarnessException {
 
 		// Create a contact group
@@ -124,7 +128,7 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		// -- GUI
 
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
@@ -135,19 +139,19 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg,"1 contact group moved to Trash","Verify toast message: Contact group Moved to Trash");
-
+		ZAssert.assertStringContains(toastMsg, "1 contact group moved to Trash",
+				"Verify toast message: Contact group Moved to Trash");
 
 	}
 
-	@Test( description = "Delete a contact group use shortcut backspace and verify toast msg", groups = { "functional" })
+	@Test(description = "Delete a contact group use shortcut backspace and verify toast msg", groups = { "functional" })
 	public void DeleteContactGroupToastMsg_05() throws HarnessException {
 
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
@@ -158,11 +162,12 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg,"1 contact group moved to Trash","Verify toast message: Contact group Moved to Trash");
+		ZAssert.assertStringContains(toastMsg, "1 contact group moved to Trash",
+				"Verify toast message: Contact group Moved to Trash");
 	}
-	
-	@Bugs(ids="78829")
-	@Test( description = "Delete multiple contact groups at once and verify toast msg", groups = { "functional" })
+
+	@Bugs(ids = "78829")
+	@Test(description = "Delete multiple contact groups at once and verify toast msg", groups = { "functional" })
 	public void DeleteContactGroupToastMsg_06() throws HarnessException {
 
 		// Create a contact group
@@ -173,14 +178,13 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		// -- GUI
 
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact group
 		// By default newly created contact will be checked.
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, group3.getName());
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, group1.getName());
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, group2.getName());
-		
 
 		// delete contact group by click Delete button on toolbar
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
@@ -188,11 +192,12 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg,"3 contact groups moved to Trash","Verify toast message: 3 Contact groups Moved to Trash: Failing due to the bug http://bugzilla.zimbra.com/show_bug.cgi?id=78829");
-	
+		ZAssert.assertStringContains(toastMsg, "3 contacts moved to Trash",
+				"Verify toast message for moving contacts to contact group");
+
 	}
 
-	@Test( description = "Delete contact + contact group at once and verify toast msg", groups = { "functional" })
+	@Test(description = "Delete contact + contact group at once and verify toast msg", groups = { "functional" })
 	public void DeleteContactGroupToastMsg_07() throws HarnessException {
 
 		// Create a contact group
@@ -202,13 +207,12 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		// -- GUI
 
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact group
 		// By default newly created contact will be checked.
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact.getName());
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, group.getName());
-		
 
 		// delete contact group by click Delete button on toolbar
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
@@ -216,16 +220,17 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg,"2 contacts moved to Trash","Verify toast message: Contact group Moved to Trash");
-	
+		ZAssert.assertStringContains(toastMsg, "2 contacts moved to Trash",
+				"Verify toast message: Contact group Moved to Trash");
 
 	}
 
-	@Test( description = "Move a contact group to folder Trash by expand Move dropdown then select Trash and verify toast msg", groups = { "functional" })
+	@Test(description = "Move a contact group to folder Trash by expand Move dropdown then select Trash and verify toast msg", groups = {
+			"functional" })
 	public void DeleteContactGroupToastMsg_08() throws HarnessException {
 
 		// The trash folder
-		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Trash);
+		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
@@ -233,7 +238,7 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		// -- GUI
 
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
@@ -244,7 +249,8 @@ public class DeleteContactGroup extends AjaxCommonTest {
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg,"1 contact group moved to Trash","Verify toast message: Contact group Moved to Trash");
+		ZAssert.assertStringContains(toastMsg, "1 contact group moved to Trash",
+				"Verify toast message: Contact group Moved to Trash");
 
 	}
 

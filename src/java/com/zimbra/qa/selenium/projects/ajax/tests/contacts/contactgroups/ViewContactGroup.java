@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contactgroups;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.ContactGroupItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
+import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.DisplayContactGroup;
@@ -31,33 +32,26 @@ public class ViewContactGroup extends AjaxCommonTest  {
 
 		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
-		super.startingAccountPreferences = null;		
+				
 
 	}
 
 
-	@Test(
-			description = "View a contact group", 
-			groups = { "smoke" }
-			)
-	public void DisplayContactGroupInfo() throws HarnessException {
+	@Test( description = "View a contact group", 
+			groups = { "smoke" } )
+	
+	public void DisplayContactGroupInfo_01() throws HarnessException {
 
 		//-- Data
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 		
 		// Refresh
-		app.zPageContacts.zRefresh();		
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);		
 		
 		// Select the contact group
 		DisplayContactGroup groupView = (DisplayContactGroup) app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
-		// verify groupname
-		//
-		// The GUI view shows the group name surrounded in quotes, so do a 'contains'
-		//
-		ZAssert.assertStringContains(
-				groupView.zGetContactProperty(DisplayContactGroup.Field.Company),
-				group.getName(),
+		ZAssert.assertStringContains(groupView.zGetContactProperty(DisplayContactGroup.Field.Company), group.getName(),
 				"Verify contact group email (" + group.getName() + ") displayed");	
 
 		// verify group members

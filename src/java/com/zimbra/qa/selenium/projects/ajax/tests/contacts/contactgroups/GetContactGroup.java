@@ -30,353 +30,278 @@ import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageContacts;
 
 /**
  * These test cases verify the contact lists display the correct contact gropus
+ * 
  * @author Matt Rhoades
  */
 
-public class GetContactGroup extends AjaxCommonTest  {
-	
-	public GetContactGroup() {
-		logger.info("New "+ GetContactGroup.class.getCanonicalName());
-		super.startingPage = app.zPageContacts;
-		super.startingAccountPreferences = null;		
-	}
-	
+public class GetContactGroup extends AjaxCommonTest {
 
-	@Test( description = "Click Alphabetbar button All: Verify contact groups started with digit and A-Z listed",
-			groups = { "smoke" })
-	
-	public void GetContactGroup_01_All_Button() throws HarnessException {
-	
+	public GetContactGroup() {
+		logger.info("New " + GetContactGroup.class.getCanonicalName());
+		super.startingPage = app.zPageContacts;
+
+	}
+
+	@Test(description = "Click Alphabetbar button All: Verify contact groups started with digit and A-Z listed", groups = {
+			"smoke" })
+
+	public void GetContactGroup_All_Button_01() throws HarnessException {
+
 		String groupname;
-		
-		//-- Data
+
+		// -- Data
 		String member = "email" + ConfigProperties.getUniqueString() + "@example.com";
-		
+
 		// Create three contact groups
 
 		groupname = "Bp" + ConfigProperties.getUniqueString();
-   		app.zGetActiveAccount().soapSend(
-   	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
-   	            		"<cn >" +
-   	            			"<a n='type'>group</a>" +
-   	            			"<a n='nickname'>" + groupname +"</a>" +
-   	            			"<a n='fileAs'>8:" + groupname +"</a>" +
-   	            			"<m type='I' value='" + member + "' />" +
-   	            		"</cn>" +
-   	            "</CreateContactRequest>");
-   		ContactGroupItem group1 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
-   		
+		app.zGetActiveAccount()
+				.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='type'>group</a>"
+						+ "<a n='nickname'>" + groupname + "</a>" + "<a n='fileAs'>8:" + groupname + "</a>"
+						+ "<m type='I' value='" + member + "' />" + "</cn>" + "</CreateContactRequest>");
+		ContactGroupItem group1 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
 
 		groupname = "5" + ConfigProperties.getUniqueString();
-   		app.zGetActiveAccount().soapSend(
-   	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
-   	            		"<cn >" +
-   	            			"<a n='type'>group</a>" +
-   	            			"<a n='nickname'>" + groupname +"</a>" +
-   	            			"<a n='fileAs'>8:" + groupname +"</a>" +
-   	            			"<m type='I' value='" + member + "' />" +
-   	            		"</cn>" +
-   	            "</CreateContactRequest>");
-   		ContactGroupItem group2 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
-   		
+		app.zGetActiveAccount()
+				.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='type'>group</a>"
+						+ "<a n='nickname'>" + groupname + "</a>" + "<a n='fileAs'>8:" + groupname + "</a>"
+						+ "<m type='I' value='" + member + "' />" + "</cn>" + "</CreateContactRequest>");
+		ContactGroupItem group2 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
 
 		groupname = "b" + ConfigProperties.getUniqueString();
-   		app.zGetActiveAccount().soapSend(
-   	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
-   	            		"<cn >" +
-   	            			"<a n='type'>group</a>" +
-   	            			"<a n='nickname'>" + groupname +"</a>" +
-   	            			"<a n='fileAs'>8:" + groupname +"</a>" +
-   	            			"<m type='I' value='" + member + "' />" +
-   	            		"</cn>" +
-   	            "</CreateContactRequest>");
-   		ContactGroupItem group3 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
-   		
+		app.zGetActiveAccount()
+				.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='type'>group</a>"
+						+ "<a n='nickname'>" + groupname + "</a>" + "<a n='fileAs'>8:" + groupname + "</a>"
+						+ "<m type='I' value='" + member + "' />" + "</cn>" + "</CreateContactRequest>");
+		ContactGroupItem group3 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
 
+		// -- GUI
 
-   		//-- GUI
-   		
-   		app.zPageContacts.zRefresh();
-   		
-        //click All       
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
+
+		// click All
 		app.zPageContacts.zToolbarPressButton(Button.B_AB_ALL);
-					
-		
-		//-- Verification
-		
+
+		// -- Verification
+
 		// Verify group name and members displayed
 		List<ContactItem> items = app.zPageContacts.zListGetContacts();
-		
+
 		boolean found1 = false;
 		boolean found2 = false;
 		boolean found3 = false;
-		
+
 		for (ContactItem item : items) {
-			
-			if ( item.getName().equals(group1.getName()) ) {
+
+			if (item.getName().equals(group1.getName())) {
 				found1 = true;
 			}
-			if ( item.getName().equals(group2.getName()) ) {
+			if (item.getName().equals(group2.getName())) {
 				found2 = true;
 			}
-			if ( item.getName().equals(group3.getName()) ) {
+			if (item.getName().equals(group3.getName())) {
 				found3 = true;
 			}
 
 		}
-		
+
 		ZAssert.assertTrue(found1, "Verify contact group starting with B is listed");
 		ZAssert.assertTrue(found2, "Verify contact group starting with 5 is listed");
 		ZAssert.assertTrue(found3, "Verify contact group starting with b is listed");
-		
+
 	}
 
-	@Test( description = "Click Alphabetbar button All: Verify contact groups started with digit and A-Z listed",
-			groups = { "smoke" })
-	public void GetContactGroup_03_123_Button() throws HarnessException {
-	
+	@Test(description = "Click Alphabetbar button All: Verify contact groups started with digit and A-Z listed", groups = {
+			"smoke" })
+	public void GetContactGroup_123_Button_02() throws HarnessException {
+
 		String groupname;
 
-		
-		//-- Data
+		// -- Data
 		String member = "email" + ConfigProperties.getUniqueString() + "@example.com";
-		
+
 		// Create three contact groups
 
 		groupname = "Bp" + ConfigProperties.getUniqueString();
-   		app.zGetActiveAccount().soapSend(
-   	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
-   	            		"<cn >" +
-   	            			"<a n='type'>group</a>" +
-   	            			"<a n='nickname'>" + groupname +"</a>" +
-   	            			"<a n='fileAs'>8:" + groupname +"</a>" +
-   	            			"<m type='I' value='" + member + "' />" +
-   	            		"</cn>" +
-   	            "</CreateContactRequest>");
-   		ContactGroupItem group1 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
-   		
+		app.zGetActiveAccount()
+				.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='type'>group</a>"
+						+ "<a n='nickname'>" + groupname + "</a>" + "<a n='fileAs'>8:" + groupname + "</a>"
+						+ "<m type='I' value='" + member + "' />" + "</cn>" + "</CreateContactRequest>");
+		ContactGroupItem group1 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
 
 		groupname = "5" + ConfigProperties.getUniqueString();
-   		app.zGetActiveAccount().soapSend(
-   	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
-   	            		"<cn >" +
-   	            			"<a n='type'>group</a>" +
-   	            			"<a n='nickname'>" + groupname +"</a>" +
-   	            			"<a n='fileAs'>8:" + groupname +"</a>" +
-   	            			"<m type='I' value='" + member + "' />" +
-   	            		"</cn>" +
-   	            "</CreateContactRequest>");
-   		ContactGroupItem group2 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
-   		
+		app.zGetActiveAccount()
+				.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='type'>group</a>"
+						+ "<a n='nickname'>" + groupname + "</a>" + "<a n='fileAs'>8:" + groupname + "</a>"
+						+ "<m type='I' value='" + member + "' />" + "</cn>" + "</CreateContactRequest>");
+		ContactGroupItem group2 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
 
 		groupname = "b" + ConfigProperties.getUniqueString();
-   		app.zGetActiveAccount().soapSend(
-   	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
-   	            		"<cn >" +
-   	            			"<a n='type'>group</a>" +
-   	            			"<a n='nickname'>" + groupname +"</a>" +
-   	            			"<a n='fileAs'>8:" + groupname +"</a>" +
-   	            			"<m type='I' value='" + member + "' />" +
-   	            		"</cn>" +
-   	            "</CreateContactRequest>");
-   		ContactGroupItem group3 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
-   		
+		app.zGetActiveAccount()
+				.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='type'>group</a>"
+						+ "<a n='nickname'>" + groupname + "</a>" + "<a n='fileAs'>8:" + groupname + "</a>"
+						+ "<m type='I' value='" + member + "' />" + "</cn>" + "</CreateContactRequest>");
+		ContactGroupItem group3 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
 
+		// -- GUI
 
-   		//-- GUI
-   		
-   		app.zPageContacts.zRefresh();
-   		
-        //click All       
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
+
+		// click All
 		app.zPageContacts.zToolbarPressButton(Button.B_AB_123);
-					
-		
-		//-- Verification
-		
+
+		// -- Verification
+
 		// Verify group name and members displayed
 		List<ContactItem> items = app.zPageContacts.zListGetContacts();
-		
+
 		boolean found1 = false;
 		boolean found2 = false;
 		boolean found3 = false;
-		
+
 		for (ContactItem item : items) {
-			
-			if ( item.getName().equals(group1.getName()) ) {
+
+			if (item.getName().equals(group1.getName())) {
 				found1 = true;
 			}
-			if ( item.getName().equals(group2.getName()) ) {
+			if (item.getName().equals(group2.getName())) {
 				found2 = true;
 			}
-			if ( item.getName().equals(group3.getName()) ) {
+			if (item.getName().equals(group3.getName())) {
 				found3 = true;
 			}
 
 		}
-		
+
 		ZAssert.assertFalse(found1, "Verify contact group starting with B is not listed");
 		ZAssert.assertTrue(found2, "Verify contact group starting with 5 is listed");
 		ZAssert.assertFalse(found3, "Verify contact group starting with b is not listed");
-		
+
 	}
 
-	@Bugs(ids="100227")
-	@Test( description = "Click Alphabetbar button Z: Verify only contact groups started with Z|z is listed",
-			groups = { "functional" })
-	public void GetContactGroup_02_B_Button() throws HarnessException {
-		
+	@Bugs(ids = "100227")
+	@Test(description = "Click Alphabetbar button Z: Verify only contact groups started with Z|z is listed", groups = {
+			"functional" })
+	public void GetContactGroup_B_Button_03() throws HarnessException {
+
 		String groupname;
 
-		
-		//-- Data
+		// -- Data
 		String member = "email" + ConfigProperties.getUniqueString() + "@example.com";
-		
+
 		// Create three contact groups
 
 		groupname = "Bp" + ConfigProperties.getUniqueString();
-   		app.zGetActiveAccount().soapSend(
-   	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
-   	            		"<cn >" +
-   	            			"<a n='type'>group</a>" +
-   	            			"<a n='nickname'>" + groupname +"</a>" +
-   	            			"<a n='fileAs'>8:" + groupname +"</a>" +
-   	            			"<m type='I' value='" + member + "' />" +
-   	            		"</cn>" +
-   	            "</CreateContactRequest>");
-   		ContactGroupItem group1 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
-   		
+		app.zGetActiveAccount()
+				.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='type'>group</a>"
+						+ "<a n='nickname'>" + groupname + "</a>" + "<a n='fileAs'>8:" + groupname + "</a>"
+						+ "<m type='I' value='" + member + "' />" + "</cn>" + "</CreateContactRequest>");
+		ContactGroupItem group1 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
 
 		groupname = "5" + ConfigProperties.getUniqueString();
-   		app.zGetActiveAccount().soapSend(
-   	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
-   	            		"<cn >" +
-   	            			"<a n='type'>group</a>" +
-   	            			"<a n='nickname'>" + groupname +"</a>" +
-   	            			"<a n='fileAs'>8:" + groupname +"</a>" +
-   	            			"<m type='I' value='" + member + "' />" +
-   	            		"</cn>" +
-   	            "</CreateContactRequest>");
-   		ContactGroupItem group2 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
-   		
+		app.zGetActiveAccount()
+				.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='type'>group</a>"
+						+ "<a n='nickname'>" + groupname + "</a>" + "<a n='fileAs'>8:" + groupname + "</a>"
+						+ "<m type='I' value='" + member + "' />" + "</cn>" + "</CreateContactRequest>");
+		ContactGroupItem group2 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
 
 		groupname = "b" + ConfigProperties.getUniqueString();
-   		app.zGetActiveAccount().soapSend(
-   	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
-   	            		"<cn >" +
-   	            			"<a n='type'>group</a>" +
-   	            			"<a n='nickname'>" + groupname +"</a>" +
-   	            			"<a n='fileAs'>8:" + groupname +"</a>" +
-   	            			"<m type='I' value='" + member + "' />" +
-   	            		"</cn>" +
-   	            "</CreateContactRequest>");
-   		ContactGroupItem group3 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
-   		
+		app.zGetActiveAccount()
+				.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='type'>group</a>"
+						+ "<a n='nickname'>" + groupname + "</a>" + "<a n='fileAs'>8:" + groupname + "</a>"
+						+ "<m type='I' value='" + member + "' />" + "</cn>" + "</CreateContactRequest>");
+		ContactGroupItem group3 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
 
+		// -- GUI
 
-   		//-- GUI
-   		
-   		app.zPageContacts.zRefresh();
-   		
-        //click All       
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
+
+		// click All
 		app.zPageContacts.zToolbarPressButton(Button.B_AB_B);
-					
-		
-		//-- Verification
-		
+
+		// -- Verification
+
 		// Verify group name and members displayed
 		List<ContactItem> items = app.zPageContacts.zListGetContacts();
-		
+
 		boolean found1 = false;
 		boolean found2 = false;
 		boolean found3 = false;
-		
+
 		for (ContactItem item : items) {
-			
-			if ( item.getName().equals(group1.getName()) ) {
+
+			if (item.getName().equals(group1.getName())) {
 				found1 = true;
 			}
-			if ( item.getName().equals(group2.getName()) ) {
+			if (item.getName().equals(group2.getName())) {
 				found2 = true;
 			}
-			if ( item.getName().equals(group3.getName()) ) {
+			if (item.getName().equals(group3.getName())) {
 				found3 = true;
 			}
 
 		}
-		
+
 		ZAssert.assertTrue(found1, "Verify contact group starting with B is listed");
 		ZAssert.assertFalse(found2, "Verify contact group starting with 5 is not listed");
 		ZAssert.assertTrue(found3, "Verify contact group starting with b is listed");
-		
+
 	}
-	
-	@Test( description = "Click all Alphabetbar buttons: Verify only contact group started with the alphabet is listed",
-			groups = { "functional" })
-	public void GetContactGroup_04_Iterate_Buttons() throws HarnessException {
-	
-		// TODO: INTL ... this test case might breaks all INTL locales
-		
-		
-		//-- Data
-		
+
+	@Test(description = "Click all Alphabetbar buttons: Verify only contact group started with the alphabet is listed", groups = {
+			"functional" })
+	public void GetContactGroup_Iterate_Buttons_04() throws HarnessException {
+
+		// -- Data
+
 		// A map of buttons to ContactGroupItem
 		HashMap<Button, ContactGroupItem> groups = new HashMap<Button, ContactGroupItem>();
 
 		// Create contact groups with each letter
 
-		for ( Entry<Character, Button> entry : PageContacts.buttons.entrySet() ) {
-			
+		for (Entry<Character, Button> entry : PageContacts.buttons.entrySet()) {
+
 			Character c = entry.getKey();
 			Button b = entry.getValue();
 
-			
 			String groupname = c + ConfigProperties.getUniqueString();
-	   		app.zGetActiveAccount().soapSend(
-	   	            "<CreateContactRequest xmlns='urn:zimbraMail'>" +
-	   	            		"<cn >" +
-	   	            			"<a n='type'>group</a>" +
-	   	            			"<a n='nickname'>" + groupname +"</a>" +
-	   	            			"<a n='fileAs'>8:" + groupname +"</a>" +
-	   	            			"<m type='I' value='email" + ConfigProperties.getUniqueString() + "@example.com' />" +
-	   	            		"</cn>" +
-	   	            "</CreateContactRequest>");
-	   		ContactGroupItem group = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
+			app.zGetActiveAccount()
+					.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='type'>group</a>"
+							+ "<a n='nickname'>" + groupname + "</a>" + "<a n='fileAs'>8:" + groupname + "</a>"
+							+ "<m type='I' value='email" + ConfigProperties.getUniqueString() + "@example.com' />"
+							+ "</cn>" + "</CreateContactRequest>");
+			ContactGroupItem group = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
 
-	   		groups.put(b, group);
-	   		
+			groups.put(b, group);
+
 		}
-		
-		
-		//-- GUI
-		
-		// refresh
-		app.zPageContacts.zRefresh();
-		
 
-		
-		//-- Verification
-		
-		for ( Entry<Button, ContactGroupItem> entry : groups.entrySet() ) {
-			
+		// -- GUI
+
+		// refresh
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
+
+		// -- Verification
+
+		for (Entry<Button, ContactGroupItem> entry : groups.entrySet()) {
+
 			Button b = entry.getKey();
 			ContactGroupItem g = entry.getValue();
-			
+
 			// Click each button
 			app.zPageContacts.zToolbarPressButton(b);
-			
+
 			// Verify the group is listed
 			boolean found = false;
 			for (ContactItem i : app.zPageContacts.zListGetContacts()) {
-				if ( i.getName().equals(g.getName()) ) {
+				if (i.getName().equals(g.getName())) {
 					found = true;
 				}
 			}
 
-			ZAssert.assertTrue(found, "Verify contact group "+ g.getName() +" is listed");
-			
-		}
-		
-	
-    }   
-}
+			ZAssert.assertTrue(found, "Verify contact group " + g.getName() + " is listed");
 
+		}
+
+	}
+}

@@ -47,7 +47,7 @@ public class TagContactGroup extends AjaxCommonTest  {
 	
 	@Test( description = "Tag a contact group, click pulldown menu Tag->New Tag",
 			groups = { "smoke" })
-	public void  ClickPulldownMenuTagNewTag() throws HarnessException {
+	public void  ClickPulldownMenuTagNewTag_01() throws HarnessException {
 	
 		//-- Data
 		
@@ -61,7 +61,7 @@ public class TagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
@@ -92,7 +92,7 @@ public class TagContactGroup extends AjaxCommonTest  {
 		
 	@Test( description = "Right click then click Tag Contact->New Tag",
 			groups = { "functional" })
-	public void ClickContextMenuTagGroupNewTag() throws HarnessException {
+	public void ClickContextMenuTagGroupNewTag_02() throws HarnessException {
 		
 		//-- Data
 		
@@ -106,7 +106,7 @@ public class TagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Click Tag Group on context menu
         DialogTag dialogTag = (DialogTag) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_NEWTAG , group.getName());        
@@ -131,7 +131,7 @@ public class TagContactGroup extends AjaxCommonTest  {
 	
 	@Test( description = "Right click then click Tag Contact Group->a tag name",
 			groups = { "functional" })	
-	public void ClickContextMenuTagContactExistingTag() throws HarnessException {
+	public void ClickContextMenuTagContactExistingTag_03() throws HarnessException {
 		
 		//-- Data
 		
@@ -145,7 +145,7 @@ public class TagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Right Click -> Tag -> Existing Tag
 		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, tagItem, group.getName());        
@@ -168,7 +168,7 @@ public class TagContactGroup extends AjaxCommonTest  {
 
 	@Test( description = "Click pulldown menu Tag->A tag name",
 			groups = { "smoke" })	
-	public void ClickPulldownMenuTagExistingTag() throws HarnessException {
+	public void ClickPulldownMenuTagExistingTag_04() throws HarnessException {
 		
 		//-- Data
 		
@@ -182,7 +182,7 @@ public class TagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
@@ -208,7 +208,7 @@ public class TagContactGroup extends AjaxCommonTest  {
 	
 	@Test( description = "Double tag a group ",
 			groups = { "functional" })	
-	public void DoubleTag() throws HarnessException {
+	public void DoubleTag_05() throws HarnessException {
 		
 		//-- Data
 		
@@ -223,7 +223,7 @@ public class TagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
@@ -249,7 +249,7 @@ public class TagContactGroup extends AjaxCommonTest  {
 	}
 	@Test( description = "Tag a contact group by dnd on an existing tag",
 			groups = { "functional" })
-	public void DnDOnExistingTag() throws HarnessException {
+	public void DnDOnExistingTag_06() throws HarnessException {
 		
 		//-- Data
 		
@@ -263,7 +263,7 @@ public class TagContactGroup extends AjaxCommonTest  {
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 	    // Dnd on the new tag
 		app.zPageContacts.zDragAndDrop(

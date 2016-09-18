@@ -16,8 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contacts;
 
-
-
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -29,22 +27,16 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageContacts;
 
-
 public class GetContacts extends AjaxCommonTest  {
 	public GetContacts() {
 		logger.info("New "+ GetContacts.class.getCanonicalName());
-		
-		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
-
-		// Enable user preference checkboxes
-		super.startingAccountPreferences = null;
-		
 	}
 	
 	@Test( description = "Click Alphabetbar button All: Verify contact started with digit and A-Z listed ",
 			groups = { "functional" })
-	public void GetContact_01_All_Button() throws HarnessException {
+	
+	public void GetContact_All_Button_01() throws HarnessException {
 		
 		String lastname;
 		
@@ -91,7 +83,7 @@ public class GetContacts extends AjaxCommonTest  {
 
    		//-- GUI
    		
-   		app.zPageContacts.zRefresh();
+   		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
    		
         //click All       
 		app.zPageContacts.zToolbarPressButton(Button.B_AB_ALL);
@@ -125,9 +117,11 @@ public class GetContacts extends AjaxCommonTest  {
 		ZAssert.assertTrue(found3, "Verify contact starting with b is listed");
 	}
 
+	
 	@Test( description = "Click Alphabetbar button 123: Verify contact started with digit listed and A-Z not-listed ",
 			groups = { "functional" })
-	public void GetContact_03_123_Button() throws HarnessException {
+	
+	public void GetContact_123_Button_02() throws HarnessException {
 		
 		String lastname;
 		
@@ -174,7 +168,7 @@ public class GetContacts extends AjaxCommonTest  {
 
    		//-- GUI
    		
-   		app.zPageContacts.zRefresh();
+   		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
    		
         //click All       
 		app.zPageContacts.zToolbarPressButton(Button.B_AB_123);
@@ -207,10 +201,11 @@ public class GetContacts extends AjaxCommonTest  {
 		ZAssert.assertTrue(found2, "Verify contact starting with 5 is listed");
 		ZAssert.assertFalse(found3, "Verify contact starting with b is not listed");
 	}
+	
 
 	@Test( description = "Click Alphabetbar button B: Verify only contact started with B|b is listed ",
 			groups = { "functional" })
-	public void GetContact_02_B_Button() throws HarnessException {
+	public void GetContact_B_Button_03() throws HarnessException {
 		
 		String lastname;
 		
@@ -257,7 +252,7 @@ public class GetContacts extends AjaxCommonTest  {
 
    		//-- GUI
    		
-   		app.zPageContacts.zRefresh();
+   		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
    		
         //click All       
 		app.zPageContacts.zToolbarPressButton(Button.B_AB_B);
@@ -294,10 +289,8 @@ public class GetContacts extends AjaxCommonTest  {
 	
 	@Test( description = "Click all Alphabetbar buttons: Verify only contact started with the alphabet is listed ",
 			groups = { "functional" })
-	public void GetContact_04_Iterate_Buttons() throws HarnessException {
-		
-		// TODO: INTL ... this test case might breaks all INTL locales
-		
+	
+	public void GetContact_Iterate_Buttons_04() throws HarnessException {
 		
 		//-- Data
 		
@@ -331,7 +324,7 @@ public class GetContacts extends AjaxCommonTest  {
 		//-- GUI
 		
 		// refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 
 		

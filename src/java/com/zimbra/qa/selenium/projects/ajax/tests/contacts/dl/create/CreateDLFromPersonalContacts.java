@@ -30,7 +30,7 @@ public class CreateDLFromPersonalContacts extends AjaxCommonTest  {
 	public CreateDLFromPersonalContacts() {
 		logger.info("New "+ CreateDLFromPersonalContacts.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
-		super.startingAccountPreferences = null;
+		
 	}
 
 	@Test( description = "Create user DL with atleast 2 contacts from personal contacts", 

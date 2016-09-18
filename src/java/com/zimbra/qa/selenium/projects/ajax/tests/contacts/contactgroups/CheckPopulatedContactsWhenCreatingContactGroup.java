@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contactgroups;
 
 import java.util.*;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -35,8 +33,8 @@ public class CheckPopulatedContactsWhenCreatingContactGroup extends AjaxCommonTe
 	public CheckPopulatedContactsWhenCreatingContactGroup() {
 		logger.info("New "+ CheckPopulatedContactsWhenCreatingContactGroup.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
-		super.startingAccountPreferences = null;
 	}
+	
 	
 	@Bugs(ids = "65606,60652")
 	@Test( description = "Contacts are not populated while creating a new contact group",
@@ -54,7 +52,7 @@ public class CheckPopulatedContactsWhenCreatingContactGroup extends AjaxCommonTe
 		//-- GUI
 		
 		// Refresh
-		app.zPageContacts.zRefresh();
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// open contact group form
 		FormContactGroupNew formGroup = (FormContactGroupNew)app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
