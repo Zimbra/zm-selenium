@@ -101,7 +101,7 @@ public class TreeCalendar extends AbsTree {
 
 			this.zRightClick(actionLocator);
 
-			// FALL THROUGH
+			
 			
 		} else if ( (action == Action.A_RIGHTCLICK) && (option == Button.B_TREE_EDIT) ) {
 			
@@ -111,7 +111,7 @@ public class TreeCalendar extends AbsTree {
 
 			this.zRightClick(actionLocator);
 
-			// FALL THROUGH
+			
 
 		} else if ( (action == Action.A_RIGHTCLICK) && (option == Button.B_MOVE) ) {
 			
@@ -121,7 +121,7 @@ public class TreeCalendar extends AbsTree {
 
 			this.zRightClick(actionLocator);
 
-			// FALL THROUGH
+			
 
 		} else if ( (action == Action.A_RIGHTCLICK) && (option == Button.B_SHARE) ) {
 			
@@ -131,7 +131,7 @@ public class TreeCalendar extends AbsTree {
 
 			this.zRightClick(actionLocator);
 
-			// FALL THROUGH
+			
 
 		} else if ( (action == Action.A_RIGHTCLICK) && (option == Button.B_RELOAD) ) {
 			
@@ -141,7 +141,7 @@ public class TreeCalendar extends AbsTree {
 
 			this.zRightClick(actionLocator);
 
-			// FALL THROUGH
+			
 
 		} else if ( (action == Action.A_RIGHTCLICK) && (option == Button.B_LAUNCH_IN_SEPARATE_WINDOW) ) {
 			
@@ -165,7 +165,7 @@ public class TreeCalendar extends AbsTree {
 
 			this.zRightClick(actionLocator);
 
-			// FALL THROUGH
+			
 
 		} else {
 			throw new HarnessException("No logic defined for action "+ action +" with option "+ option);
@@ -270,13 +270,13 @@ public class TreeCalendar extends AbsTree {
 				optionLocator = "css=div[id='ZmActionMenu_calendar_CALENDAR'] div[id='ADD_EXTERNAL_CALENDAR'] td[id$='_title']";
 				page = null;
 				
-				// FALL THROUGH
+				
 				
 			} else {
 				throw new HarnessException("Pulldown/Option "+ pulldown +"/"+ option +" not implemented");
 			}
 
-			// FALL THROUGH
+			
 			
 		} else if ( pulldown == Button.B_TREE_TAGS_OPTIONS ) {
 			
@@ -291,7 +291,7 @@ public class TreeCalendar extends AbsTree {
 				throw new HarnessException("Pulldown/Option "+ pulldown +"/"+ option +" not implemented");
 			}
 
-			// FALL THROUGH
+			
 			
 		} else {
 			throw new HarnessException("Pulldown/Option "+ pulldown +"/"+ option +" not implemented");
@@ -373,7 +373,7 @@ public class TreeCalendar extends AbsTree {
 
 			return (page);
 
-		}else if (button == Button.B_TREE_SHOW_REMAINING_FOLDERS ) {
+		} else if (button == Button.B_TREE_SHOW_REMAINING_FOLDERS ) {
 
 			locator = "css=TODO#TODO";
 			page = null;
@@ -382,7 +382,7 @@ public class TreeCalendar extends AbsTree {
 				throw new HarnessException("Unable to find 'show remaining folders' in tree " + locator);
 			}
 			
-			// FALL THROUGH
+			
 			
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
@@ -488,7 +488,7 @@ public class TreeCalendar extends AbsTree {
 			return (zTreeItem(action, option, (SavedSearchFolderItem)folder));
 		} else if ( folder instanceof ZimletItem ) {
 			return (zTreeItem(action, option, (ZimletItem)folder));
-		}else if ( folder instanceof TagItem ) {
+		} else if ( folder instanceof TagItem ) {
 			return (zTreeItem(action, option, (TagItem)folder));
 		}
 

@@ -585,7 +585,7 @@ public class PageCalendar extends AbsTab {
 		logger.info(myPageName() + " zListItemGeneral("+ itemsLocator +", "+ action +", "+ subject +")");
 		tracer.trace(action +" on subject = "+ subject);
 
-		// Default behavior variables
+		
 		String locator = null;
 		AbsPage page = null;
 		
@@ -634,7 +634,7 @@ public class PageCalendar extends AbsTab {
 		if ( subject == null )
 			throw new HarnessException("subject cannot be null");
 
-		// Default behavior variables
+		
 		String locator = null;
 		AbsPage page = null;
 
@@ -697,7 +697,7 @@ public class PageCalendar extends AbsTab {
 		logger.info(myPageName() + " zListItemGeneral("+ action +", "+ option +", "+ subject +")");
 		tracer.trace(action +" then "+ option +" on subject = "+ subject);
 
-		// Default behavior variables
+		
 		String locator = null;
 		AbsPage page = null;
 		String optionLocator = null;
@@ -790,7 +790,7 @@ public class PageCalendar extends AbsTab {
 		logger.info(myPageName() + " zListItemGeneral("+ itemsLocator +", "+ action +", "+ option +", "+ subject +")");
 		tracer.trace(action +" then "+ option +" on subject = "+ subject);
 
-		// Default behavior variables
+		
 		String locator = null;
 		AbsPage page = null;
 		String optionLocator = null;
@@ -927,7 +927,7 @@ public class PageCalendar extends AbsTab {
 		if ( subject == null || subject.trim().length() == 0)
 			throw new HarnessException("subject cannot be null or blank");
 
-		// Default behavior variables
+		
 		String locator = null;
 		AbsPage page = null;
 		String optionLocator = null;
@@ -1222,9 +1222,9 @@ public class PageCalendar extends AbsTab {
 		if (pulldown == null)
 			throw new HarnessException("Button cannot be null!");
 
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		if ( pulldown == Button.B_NEW ) {
 

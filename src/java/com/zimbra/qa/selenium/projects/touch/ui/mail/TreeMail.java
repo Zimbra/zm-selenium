@@ -114,14 +114,14 @@ public class TreeMail extends AbsTree {
 				optionLocator += " div[id^='NEW_FOLDER'] td[id$='_title']";
 				//page = new DialogCreateFolder(MyApplication,((AppTouchClient) MyApplication).zPageMail);
 
-				// FALL THROUGH
+				
 
 			} else if ( (option == Button.O_MARK_AS_READ) || (option == Button.B_TREE_FOLDER_MARKASREAD) ) {
 
 				optionLocator += " div[id^='MARK_ALL_READ'] td[id$='_title']";
 				page = null;
 
-				// FALL THROUGH
+				
 
 			} else if (option == Button.B_DELETE) {
 
@@ -129,28 +129,28 @@ public class TreeMail extends AbsTree {
 				optionLocator += " div[id^='DELETE_WITHOUT_SHORTCUT'] td[id$='_title']";
 				page= null;
 
-				// FALL THROUGH
+				
 
 			} else if (option == Button.B_RENAME) {
 
 				optionLocator += " div[id^='RENAME_FOLDER'] td[id$='_title']";
 				//page = new DialogRenameFolder(MyApplication,((AppTouchClient) MyApplication).zPageMail);
 
-				// FALL THROUGH
+				
 
 			} else if (option == Button.B_MOVE) {
 
 				optionLocator += " div[id^='MOVE'] td[id$='_title']";
 				//page = new DialogMove(MyApplication,((AppTouchClient) MyApplication).zPageMail);
 
-				// FALL THROUGH
+				
 			
 			} else if (option == Button.B_TREE_FOLDER_EXPANDALL) {
 
 				optionLocator += " div[id^='EXPAND_ALL'] td[id$='_title']";
 				page = null;
 
-				// FALL THROUGH
+				
 
 			} else if (option == Button.B_TREE_FOLDER_GET_EXTERNAL) {
 
@@ -378,7 +378,7 @@ public class TreeMail extends AbsTree {
 			
 			locator = "css=td[id='zti__main_Mail__"+ tag.getId() +"_textCell']";
 
-			// FALL THROUGH
+			
 
 		} else if ( action == Action.A_RIGHTCLICK ) {
 
@@ -513,7 +513,7 @@ public class TreeMail extends AbsTree {
 				throw new HarnessException("Pulldown/Option "+ pulldown +"/"+ option +" not implemented");
 			}
 
-			// FALL THROUGH
+			
 			
 		} else if ( pulldown == Button.B_TREE_TAGS_OPTIONS ) {
 			
@@ -528,7 +528,7 @@ public class TreeMail extends AbsTree {
 				throw new HarnessException("Pulldown/Option "+ pulldown +"/"+ option +" not implemented");
 			}
 
-			// FALL THROUGH
+			
 			
 		} else {
 			throw new HarnessException("Pulldown/Option "+ pulldown +"/"+ option +" not implemented");
@@ -773,7 +773,7 @@ public class TreeMail extends AbsTree {
 			return (zTreeItem(action, option, (SavedSearchFolderItem)folder));
 		} else if ( folder instanceof ZimletItem ) {
 			return (zTreeItem(action, option, (ZimletItem)folder));
-		}else if ( folder instanceof TagItem ) {
+		} else if ( folder instanceof TagItem ) {
 			return (zTreeItem(action, option, (TagItem)folder));
 		}
 
@@ -1067,7 +1067,7 @@ public class TreeMail extends AbsTree {
 
 			}
 
-			// Fall through
+			
 
 		}
 

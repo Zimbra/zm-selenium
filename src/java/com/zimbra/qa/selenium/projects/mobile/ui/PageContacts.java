@@ -87,7 +87,6 @@ public class PageContacts extends AbsTab {
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
-		// Check if this page is already active.
 		if ( zIsActive() ) {
 			return;
 		}

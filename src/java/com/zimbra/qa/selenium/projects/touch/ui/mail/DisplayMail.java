@@ -193,17 +193,17 @@ public class DisplayMail extends AbsDisplay {
 			//page = new DialogShareDecline(MyApplication, ((AppTouchClient) MyApplication).zPageMail);
 			doPostfixCheck = true;
 
-		}else if ( button == Button.B_FORWARD) {
+		} else if ( button == Button.B_FORWARD) {
 
 			locator = Locators.zForwardButton;
 			page = null;
 			doPostfixCheck = true;
-		}else if ( button == Button.B_REPLY) {
+		} else if ( button == Button.B_REPLY) {
 
 			locator = Locators.zReplyButton;
 			page = null;
 			doPostfixCheck = true;
-		}else if ( button == Button.B_REPLYALL) {
+		} else if ( button == Button.B_REPLYALL) {
 
 			locator = Locators.zReplyAllButton;
 			page = null;
@@ -664,7 +664,7 @@ public class DisplayMail extends AbsDisplay {
 			String Subject=this.sGetValue(locator);
 			return (Subject);
 			
-			// FALL THROUGH
+			
 			
 		} else {
 			throw new HarnessException("not implemented for field "+ field);
@@ -913,7 +913,7 @@ public class DisplayMail extends AbsDisplay {
 		} else if ( this.zIsVisiblePerPosition(PageMail.Locators.IsConViewActiveCSS, 0, 0) ) {
 			if ( this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtBottomCSS, 0, 0) ) {
 				ContainerLocator = Locators.ConversationViewPreviewAtBottomCSS;
-			} else if ( this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtRightCSS, 0, 0) ){
+			} else if ( this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtRightCSS, 0, 0) ) {
 				ContainerLocator = Locators.ConversationViewPreviewAtRightCSS;
 			} else {
 				throw new HarnessException("Unable to determine the current open view");

@@ -240,7 +240,7 @@ public class FormContactNew extends AbsForm {
 		locators.add("css=div[class='form-add-field-button-text']:contains('Add Website URL')");
 	    
 		Iterator<String> iter = locators.iterator();
-		while( iter.hasNext() ){
+		while( iter.hasNext() ) {
 			
 			String lctr = (String) iter.next();
 			
@@ -456,10 +456,10 @@ public class FormContactNew extends AbsForm {
 			throw new HarnessException("Option cannot be null!");
 
 		
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 		
 
 		if ( pulldown == Button.B_EXPAND ) {

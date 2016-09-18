@@ -106,7 +106,7 @@ public class PageCreateTag extends AbsPage {
 		} else if ( button == Button.B_CANCEL ) {
 			locator = Locators.zCancelButton;
 			
-		}else if ( button == Button.B_DELETE ) {
+		} else if ( button == Button.B_DELETE ) {
 			locator = Locators.zDeleteButton;
 			
 		} else if ( button == Button.B_SUBFOLDER_ICON ) {
@@ -127,7 +127,7 @@ public class PageCreateTag extends AbsPage {
 			
 			
 
-		}else {
+		} else {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 

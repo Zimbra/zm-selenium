@@ -111,7 +111,7 @@ public class TreeContacts extends AbsTree {
 			return (zTreeItem(action, option, folder));
 		//} else if ( folder instanceof ZimletItem ) {
 		//	return (zTreeItem(action, option, (ZimletItem)folder));
-		}else if ( folder instanceof TagItem ) {
+		} else if ( folder instanceof TagItem ) {
 			return (zTreeItem(action, option, (TagItem)folder));
 		} else if ( folder instanceof FolderItem ) { // FolderItem needs to go last
 			return (zTreeItem(action, option, (FolderItem)folder));
@@ -382,7 +382,7 @@ public class TreeContacts extends AbsTree {
 
 		if ( action == Action.A_LEFTCLICK ) {
 
-			// FALL THROUGH
+			
 		} else if ( action == Action.A_RIGHTCLICK ) {
 
 			// Select the folder

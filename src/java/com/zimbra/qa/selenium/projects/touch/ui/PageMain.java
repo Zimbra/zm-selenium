@@ -146,7 +146,7 @@ public class PageMain extends AbsTab {
 				webDriver = ClientSessionFactory.session().webDriver();
 
 				Capabilities cp =  ((RemoteWebDriver)webDriver).getCapabilities();
-				if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){
+				if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())) {
 					webDriver.manage().window().setPosition(new Point(0, 0));
 					webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
 					webDriver.navigate().to(ConfigProperties.getBaseURL());
@@ -177,10 +177,10 @@ public class PageMain extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		// Default behavior variables
+		
 		//
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == Button.B_REFRESH) {
 
@@ -231,10 +231,10 @@ public class PageMain extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 
 		if (pulldown == Button.B_ACCOUNT) {
@@ -262,7 +262,7 @@ public class PageMain extends AbsTab {
 					optionLocator = "css=div[id^='POPUP'] div[id='about'] td[id$='_title']";
 					//page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, this.MyApplication, this);
 
-					// FALL THROUGH
+					
 
 			} else {
 
@@ -354,14 +354,14 @@ public class PageMain extends AbsTab {
 
 			page = new FormMailNew(this.MyApplication);
 
-			// FALL THROUGH
+			
 
 		} else if ( uri.getQuery().get("view").equals("msg") ) {
 
 			// page = new DisplayMail(this.MyApplication);
 			throw new HarnessException("implement me!");
 
-			// FALL THROUGH
+			
 
 		} else {
 
