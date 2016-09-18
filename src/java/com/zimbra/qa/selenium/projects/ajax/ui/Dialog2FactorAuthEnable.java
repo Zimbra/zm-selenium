@@ -56,7 +56,7 @@ public class Dialog2FactorAuthEnable extends AbsDialog {
 			
 			locator = "css=div[class='DwtDialog'] div[class='DwtDialogButtonBar'] td[id$='_button17_title']:contains('Begin Setup')";
 			
-			if ( !this.sIsElementPresent(locator) ){
+			if ( !this.sIsElementPresent(locator) ) {
 			
 				locator = "css=div[class='DwtDialog'] div[class='DwtDialogButtonBar'] td[id$='_button7_title']:contains('Begin Setup')";
 				
@@ -66,7 +66,7 @@ public class Dialog2FactorAuthEnable extends AbsDialog {
 			
 			locator = "css=div[class='DwtDialog'] div[class='DwtDialogButtonBar'] td[id$='_button18_title']:contains('Next')";
 			
-			if ( !this.sIsElementPresent(locator) ){
+			if ( !this.sIsElementPresent(locator) ) {
 				
 				locator = "css=div[class='DwtDialog'] div[class='DwtDialogButtonBar'] td[id$='_button8_title']:contains('Next')";
 				
@@ -76,7 +76,7 @@ public class Dialog2FactorAuthEnable extends AbsDialog {
 			
 			locator = "css=div[class='DwtDialog'] div[class='DwtDialogButtonBar'] td[id$='_button19_title']:contains('Finish')";
 			
-			if ( !this.sIsElementPresent(locator) ){
+			if ( !this.sIsElementPresent(locator) ) {
 				
 				locator = "css=div[class='DwtDialog'] div[class='DwtDialogButtonBar'] td[id$='_button9_title']:contains('Finish')";
 				

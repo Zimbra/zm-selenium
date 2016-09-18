@@ -136,7 +136,7 @@ public class DialogWarning extends AbsDialog {
 
 			locator = buttonsTableLocator + " td[id$='_button5_title']";
 
-			if(MyDivId.contains("css=div[class=DwtConfirmDialog]")){
+			if (MyDivId.contains("css=div[class=DwtConfirmDialog]")) {
 				page = 	new FormMailNew(this.MyApplication);
 			}
 
@@ -157,11 +157,11 @@ public class DialogWarning extends AbsDialog {
 
 			locator = "css=div[id='OkCancel'] div[id='OkCancel_button2'] td[id$='_button2_title']:contains('Revoke')";
 
-		}else if (button == Button.B_SAVE_WITH_CONFLICT) {
+		} else if (button == Button.B_SAVE_WITH_CONFLICT) {
 
 			locator = "css= div[id^='RESC_CONFLICT_DLG_button'] td[id^='RESC_CONFLICT_DLG_']:contains('Save')";
 
-		}else if (button == Button.B_CANCEL_CONFLICT) {
+		} else if (button == Button.B_CANCEL_CONFLICT) {
 
 			locator = "css= div[id^='RESC_CONFLICT_DLG_button'] td[id^='RESC_CONFLICT_DLG_']:contains('Cancel')";
 

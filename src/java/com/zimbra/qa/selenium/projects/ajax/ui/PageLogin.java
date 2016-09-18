@@ -26,12 +26,7 @@ public class PageLogin extends AbsTab {
 	public static class Locators {
 
 		// Buttons
-		public static final String zBtnLogin = "css=input[class^=ZLoginButton]";
-
-		// Desktop-specific
-		public static final String zAddNewAccountButton = "css=td div[class*='ZPanel'][onclick*='OnAdd()']";
-		public static final String zMyAccountsTab = "css=div[class$='ctive ZPanelFirstTab']";
-		public static final String zDeleteButton = "css=div[class*='ZPanelInfoInner'] a[href*='OnDelete']";
+		public static final String zBtnLogin = "css=input[class^='ZLoginButton']";
 
 		// Text Input
 		public static final String zInputUsername = "css=input[id='username']";
@@ -117,9 +112,7 @@ public class PageLogin extends AbsTab {
 		try {
 			
 			zSetLoginName(account.EmailAddress);
-			SleepUtil.sleepVerySmall();
 			zSetLoginPassword(account.Password);
-			SleepUtil.sleepSmall();
 			sClick(Locators.zBtnLogin);
 			SleepUtil.sleepLong();
 			zWaitForBusyOverlay();
@@ -195,7 +188,7 @@ public class PageLogin extends AbsTab {
 			SleepUtil.sleepMedium();
 			zSetLoginTOTPCode(totp);
 			
-			if ( trustThisComputer == true){
+			if ( trustThisComputer == true) {
 				zMarkTrustThisComputer();
 			}
 			

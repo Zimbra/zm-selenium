@@ -142,11 +142,11 @@ public class DialogShare extends AbsDialog {
 	public void zSetRole(ShareRole role) throws HarnessException {
 		logger.info(myPageName() + " zSetRole("+ role +")");
 		String locator =null;
-		if(role== ShareRole.Admin){
+		if (role== ShareRole.Admin) {
 			locator = "//div[@id='"+ Locators.zDialogShareId +"']//div[contains(@id,'_content')]//div/fieldset/div/table/tbody/tr[4]/td/input[contains(@id,'ShareRole_ADMIN')]";
-		}else if (role== ShareRole.Manager){
+		} else if (role== ShareRole.Manager) {
 			locator = "//div[@id='"+ Locators.zDialogShareId +"']//div[contains(@id,'_content')]//div/fieldset/div/table/tbody/tr[3]/td/input[contains(@id,'ShareRole_MANAGER')]";
-		}else{
+		} else {
 			throw new HarnessException("zSetRole "+ locator +" is not present");
 		}
 		this.sFocus(locator);
@@ -176,7 +176,7 @@ public class DialogShare extends AbsDialog {
 		if (type == null)
 			throw new HarnessException("folder must not be null");
 
-		if (type == ShareMessageType.AddNoteToStandardMsg){
+		if (type == ShareMessageType.AddNoteToStandardMsg) {
 			
 			zClickAt(Locators.Message,"");
 			zClick(Locators.zAddNoteToStandardMessage);
@@ -191,7 +191,7 @@ public class DialogShare extends AbsDialog {
 
 		}
 
-		else if (type == ShareMessageType.DoNotSendMsg){
+		else if (type == ShareMessageType.DoNotSendMsg) {
 			zClickAt(Locators.Message,"");
 			zClick(Locators.zDoNotSendMailAboutThisShare);
 		}

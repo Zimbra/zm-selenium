@@ -176,7 +176,7 @@ public class DialogMove extends AbsDialog {
 					Locators.zDialogId,
 					folder.getId());
 			
-			if (!sIsElementPresent(locator)){
+			if (!sIsElementPresent(locator)) {
 				locator = String.format(
 						"css=div[id='%s'] td[id='zti__ZmChooseFolderDialog_Calendar_CALENDAR__%s_textCell']",
 						Locators.zDialogId,
@@ -184,7 +184,7 @@ public class DialogMove extends AbsDialog {
 			
 			}
 
-		}else if (MyTab instanceof PageTasks){
+		} else if (MyTab instanceof PageTasks) {
 			if (ConfigProperties.getAppType() == AppType.DESKTOP) {
 			   locator = "css=div[id='" + Locators.zDialogId + "'] td[id^='zti__" +
 			         MyApplication.zGetActiveAccount().EmailAddress +
@@ -195,7 +195,7 @@ public class DialogMove extends AbsDialog {
 			   locator = "css=div[id='" + Locators.zDialogId + "'] div[class='DwtTreeItemLevel1ChildDiv'] td[id='zti__ZmChooseFolderDialog_Tasks__"+ folder.getId() + "_textCell']";
 			}
 
-		}else if (MyTab instanceof PageBriefcase ) {
+		} else if (MyTab instanceof PageBriefcase ) {
 			if (ConfigProperties.getAppType() == AppType.DESKTOP) {
 			   locator = "css=div[id='" + Locators.zDialogId + "'] td[id='zti__"+
 			         MyApplication.zGetActiveAccount().EmailAddress +

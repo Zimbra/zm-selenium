@@ -51,6 +51,8 @@ public class DialogRenameFolder extends AbsDialog {
 			throw new HarnessException("Rename locator "+ locator +" is not present");
 		}
 		
+		this.zWaitForBusyOverlay();
+		SleepUtil.sleepSmall();
 		this.clearField(locator);
 		this.sType(locator, name);
 		SleepUtil.sleepSmall();
@@ -82,27 +84,16 @@ public class DialogRenameFolder extends AbsDialog {
 		
 		this.zClick(locator);
 		zWaitForBusyOverlay();
+		SleepUtil.sleepSmall();
 		
 		return (null);
 	}
 
 	@Override
 	public String zGetDisplayedText(String locator) throws HarnessException {
-		
-		// Need to implement for:
-		
-		// "Rename Folder: foldername"
-		// "New name:"
-		// OK
-		// Cancel
-		
 		throw new HarnessException("implement me");
 	}
 
-
-	/* (non-Javadoc)
-	 * @see framework.ui.AbsDialog#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());

@@ -227,7 +227,7 @@ public class DialogShareFind extends AbsDialog {
 			locator = null;
 			page = null;
 			
-			// FALL THROUGH
+			
 			
 		} else {
 			throw new HarnessException("Action "+ action +" not yet implemented");

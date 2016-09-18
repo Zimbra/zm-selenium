@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.ui;
 
 import java.net.URI;
-
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.performance.PerfMetrics;
@@ -38,24 +37,16 @@ public class PageExternalRegistration extends PageLogin {
 	 */
 	protected ZimbraURI MyUrl = null;
 	
-	
-
 	public PageExternalRegistration(AbsApplication application) {
 		super(application);
-
 		logger.info("new " + PageExternalRegistration.class.getCanonicalName());
-
 	}
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
-		if ( !super.zIsActive() ) {
-			return (false);
-		}
-
 		String buttonText = this.sGetAttribute(Locators.zBtnLogin + "@value");
-		if ( ! ("Register".equals(buttonText)) ) { // TOOD: I18N
+		if ( ! ("Register".equals(buttonText)) ) {
 			logger.debug("button text does not equal 'Register': "+ buttonText);
 			return (false);
 		}
@@ -87,25 +78,14 @@ public class PageExternalRegistration extends PageLogin {
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
-		if ( zIsActive() ) {
-			// This page is already active.
-			return;
-		}
-
-
 		// Logout
 		if ( ((AppAjaxClient)MyApplication).zPageMain.zIsActive() ) {
 			((AppAjaxClient)MyApplication).zPageMain.zLogout();
 		}
 		
 		// Open MyURL
-		// TODO: need to add any URL's (i.e. code coverage)
 		this.sOpen(this.MyUrl.toString());
-
-		zWaitForActive();
-
 	}
-
 
 
 	/**
@@ -118,21 +98,17 @@ public class PageExternalRegistration extends PageLogin {
 
 		tracer.trace("Login to the "+ MyApplication.myApplicationName() +" using user/password "+ account.EmailAddress +"/"+ account.Password);
 
-		zNavigateTo();
-
 		zSetLoginName(account.EmailAddress);
 		zSetLoginPassword(account.Password);
 		zSetLoginPasswordConfirm(account.Password);
 
 		// Click the Login button
-		sClick(Locators.zBtnLogin);
+		sClick("css=input[class='zLoginButton']");
 
 		// Wait for the app to load
 		sWaitForPageToLoad();
 		((AppAjaxClient)MyApplication).zPageExternalMain.zWaitForActive();
-
 		((AppAjaxClient)MyApplication).zSetActiveAcount(account);
-
 	}
 	
 	/**
@@ -164,10 +140,5 @@ public class PageExternalRegistration extends PageLogin {
 		}
 		sType(locator, password);
 	}
-
-
-
-
-
-
+	
 }

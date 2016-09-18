@@ -63,7 +63,7 @@ public class ContextMenu extends AbsDisplay {
 	public ContextMenuItem getContextMenuItem  (String parentLocator, Class contextMenuItemObject)throws HarnessException {
 		   ContextMenuItem cmi=null;
 		   
-	       if (parentLocator.startsWith("DWT")){
+	       if (parentLocator.startsWith("DWT")) {
 			   cmi = ContextMenuItem.C_SEPARATOR;		
 			   return cmi;
 		   }

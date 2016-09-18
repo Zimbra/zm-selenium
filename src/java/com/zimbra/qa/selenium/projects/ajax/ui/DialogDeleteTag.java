@@ -84,7 +84,7 @@ public class DialogDeleteTag extends AbsDialog {
 
 			locator = "css=div [id='YesNoMsgDialog_button5'] td[id='YesNoMsgDialog_button5_title']";
 
-			if(MyDivId.contains("css=div[class=DwtConfirmDialog]")){
+			if (MyDivId.contains("css=div[class=DwtConfirmDialog]")) {
 				page = 	new FormMailNew(this.MyApplication);
 			}
 

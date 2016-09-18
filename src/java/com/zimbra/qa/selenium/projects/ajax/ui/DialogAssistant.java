@@ -69,7 +69,7 @@ public class DialogAssistant extends AbsDialog {
 			locator = buttonsTableLocator + " td[id^='Help_'] td[id$='_title']";
 			page = null; // TODO
 			
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_OK ) {
 			
@@ -77,21 +77,21 @@ public class DialogAssistant extends AbsDialog {
 			page = null; // TODO
 			postqueue = true; // The Assistant could send a message, so check the queue
 			
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_CANCEL ) {			
 			
 			locator = buttonsTableLocator + " td[id^='Cancel_'] td[id$='_title']";
 			page = null; // TODO
 			
-			// FALL THROUGH
+			
 
-		}else if ( button == Button.B_MORE_DETAILS ) {			
+		} else if ( button == Button.B_MORE_DETAILS ) {			
 			
 			locator = buttonsTableLocator + " td[id^='More Details'] td[id$='_title']";
 			page = null; // TODO
 			
-			// FALL THROUGH
+			
 
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
