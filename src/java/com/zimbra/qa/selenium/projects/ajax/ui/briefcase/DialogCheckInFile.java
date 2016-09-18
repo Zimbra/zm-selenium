@@ -92,7 +92,7 @@ public class DialogCheckInFile extends AbsDialog {
 					+ locator + " not visible!");
 		}
 		
-		// if(zIsActive())
+		// if (zIsActive())
 		// zGetDisplayedText("css=div[class=" + Locators.zDialogContentClassId +
 		// "]");
 		

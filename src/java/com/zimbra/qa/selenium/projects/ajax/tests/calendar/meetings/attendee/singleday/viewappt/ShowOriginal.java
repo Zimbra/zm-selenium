@@ -28,7 +28,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 	public ShowOriginal() {
 		logger.info("New "+ ShowOriginal.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "View meeting invite by opening it and view meeting show original", 
@@ -78,10 +78,14 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 			ZAssert.assertStringContains(body, "ORGANIZER:mailto:" + ZimbraAccount.AccountA().EmailAddress,	"Verify organizer email address in show original");
 			
 		} finally {
-			if (window != null)
+
+			if ( window != null ) {
 				window.zCloseWindow();
 				window = null;
+   		 	}
+			app.zPageMail.zSelectWindow(null);
 		}
+
 		
 		app.zPageCalendar.zToolbarPressButton(Button.B_CLOSE);
 	}

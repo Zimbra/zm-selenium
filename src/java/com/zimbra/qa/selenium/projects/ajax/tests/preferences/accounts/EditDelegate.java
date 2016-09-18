@@ -32,7 +32,7 @@ public class EditDelegate extends AjaxCommonTest {
 	public EditDelegate() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 		
 	}
 

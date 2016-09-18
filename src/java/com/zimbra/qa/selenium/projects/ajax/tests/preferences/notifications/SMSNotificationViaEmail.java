@@ -142,7 +142,7 @@ public class SMSNotificationViaEmail extends CalendarWorkWeekTest {
 			for (int i = 0; i < 40; i++) {
 				
 				received = MailItem.importFromSOAP(ZimbraAccount.Account3(), "in:inbox content:("+ subject +")");
-				if(received != null) {
+				if (received != null) {
 					found = true;
 					break;
 

@@ -42,7 +42,7 @@ public class CreateAppointment extends AjaxCommonTest {
 	}
 
 	
-	@Test(	
+	@Test(
 			description = "Create basic recurring appointment (every day) in day view", 
 			groups = { "smoke" } )
 	public void CreateRecurringAppointment_01() throws HarnessException {

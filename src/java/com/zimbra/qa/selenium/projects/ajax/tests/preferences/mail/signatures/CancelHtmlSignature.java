@@ -34,7 +34,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatu
 public class CancelHtmlSignature extends AjaxCommonTest{
 	public CancelHtmlSignature() throws HarnessException {
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 
 	@Test( description = "Cancel text signature through GUI", groups = { "smoke" })

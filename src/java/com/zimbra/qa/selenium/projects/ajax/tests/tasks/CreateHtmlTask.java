@@ -150,7 +150,7 @@ public class CreateHtmlTask extends AjaxCommonTest {
 		//String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString() + "</b>task";
 		String taskHtmlbody = "body" + ConfigProperties.getUniqueString();
 		
-		//Explicitly cliking of Task folder to refresh view
+		//Explicitly clicking of Task folder to refresh view
 		ZimbraAccount account = app.zGetActiveAccount();
 		FolderItem taskFolder = FolderItem.importFromSOAP(account,SystemFolder.Tasks);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);

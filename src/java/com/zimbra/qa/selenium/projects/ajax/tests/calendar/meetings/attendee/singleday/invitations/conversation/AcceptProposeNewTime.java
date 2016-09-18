@@ -34,7 +34,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 	public AcceptProposeNewTime() {
 		logger.info("New "+ AcceptProposeNewTime.class.getCanonicalName());
 		super.startingPage =  app.zPageMail;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Bugs(ids = "69132,96556,96748")

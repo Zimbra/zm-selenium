@@ -46,7 +46,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 	}
 
 	
-	@Test(	
+	@Test(
 			description = "Create basic recurring appointment (every day) in week view", 
 			groups = { "smoke" } )
 	public void CreateRecurringAppointment_01() throws HarnessException {

@@ -60,7 +60,7 @@ public class OpenComposedMessageInNewWindow extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			window.waitForComposeWindow();			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
@@ -100,14 +100,14 @@ public class OpenComposedMessageInNewWindow extends PrefGroupMailByMessageTest {
 			ZAssert.assertEquals(subjectSoap, subject, "Verify the subject field is correct");
 			ZAssert.assertStringContains(html, "New Text "+body, "Verify the html content");
 
-		}
-		finally {
+		} finally {
 
 			// Make sure to close the window
 			if ( window != null ) {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 		}
 	}
 }

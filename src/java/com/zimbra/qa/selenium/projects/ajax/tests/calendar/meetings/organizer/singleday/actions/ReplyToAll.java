@@ -37,7 +37,7 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 	public ReplyToAll() {
 		logger.info("New "+ ReplyToAll.class.getCanonicalName());
 	    super.startingPage =  app.zPageCalendar;
-	    super.startingAccountPreferences = null;
+	    
 	}
 	
 	@Test( description = "Check when attendees get the reply when organizer ReplyAll to a meeting",

@@ -85,15 +85,12 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 							Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive(); // Make sure the window is there
+			window.zWaitForActive();
 
 			ZAssert.assertTrue(window.zIsActive(),
 					"Verify the window is active");
 
 			window.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_REMOVETAG);
-
-			window.zCloseWindow(windowTitle);
-			window = null;
 
 		} finally {
 
@@ -102,6 +99,7 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 
 		}
 
@@ -166,18 +164,14 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 							Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive(); // Make sure the window is there
+			window.zWaitForActive();
 
 			ZAssert.assertTrue(window.zIsActive(),
 					"Verify the window is active");
 
-			// window.zToolbarPressPulldown(Button.B_TAG,
 			// Button.O_TAG_REMOVETAG);
 			app.zPageMail.zKeyboardShortcut(shortcut);
 			SleepUtil.sleepMedium();
-
-			window.zCloseWindow(windowTitle);
-			window = null;
 
 		} finally {
 
@@ -186,6 +180,7 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 
 		}
 
@@ -249,7 +244,7 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 							Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive(); // Make sure the window is there
+			window.zWaitForActive();
 
 			ZAssert.assertTrue(window.zIsActive(),
 					"Verify the window is active");
@@ -258,8 +253,6 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 
 			app.zPageMail.sClickAt(Locators.zUntagBubble, "");
 			SleepUtil.sleepMedium();
-			window.zCloseWindow(windowTitle);
-			window = null;
 
 		} finally {
 
@@ -268,6 +261,7 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 
 		}
 

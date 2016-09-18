@@ -34,7 +34,7 @@ public class GetReminder extends AjaxCommonTest {
 		super.startingPage = app.zPageMail;
 
 		// Make sure we are using an account with message view
-		super.startingAccountPreferences = null;
+		
 
 	}
 	

@@ -34,7 +34,7 @@ public class DragAndDropDialog extends AjaxCommonTest {
 		logger.info("New "+ DragAndDropDialog.class.getCanonicalName());
 		
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = null;
+		
 
 		
 	}

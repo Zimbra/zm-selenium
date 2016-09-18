@@ -89,7 +89,7 @@ public class FormEditDomain extends AbsForm {
 
 	public void setName(String name) throws HarnessException {
 		for(int i=12;i>=0;i--) {
-			if(sIsElementPresent(Locators.DESCRIPTION_TEXT_BOX+i+"_description\\[0\\]_2")) {
+			if (sIsElementPresent(Locators.DESCRIPTION_TEXT_BOX+i+"_description\\[0\\]_2")) {
 				sType(Locators.DESCRIPTION_TEXT_BOX+i+"_description\\[0\\]_2", name);
 				return;
 			}
@@ -99,7 +99,7 @@ public class FormEditDomain extends AbsForm {
 	
 	public void setLogoURL(String URL) throws HarnessException {
 		for(int i=12;i>=0;i--) {
-			if(sIsElementPresent(Locators.DOMAIN_EDIT_THEMES)) {
+			if (sIsElementPresent(Locators.DOMAIN_EDIT_THEMES)) {
 				zClickAt(Locators.DOMAIN_EDIT_THEMES,"0,0");
 				sType(Locators.DOMAIN_LOGO_URL, URL);
 				return;

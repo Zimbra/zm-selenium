@@ -33,7 +33,7 @@ public class ZmCalendarAppFolders extends AjaxCommonTest {
 
 
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = null;
+		
 
 	}
 

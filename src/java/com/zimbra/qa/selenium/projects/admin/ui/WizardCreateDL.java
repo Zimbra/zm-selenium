@@ -59,7 +59,7 @@ public class WizardCreateDL extends AbsWizard {
 		zType(Locators.zdlg_DL_NAME, CN);
 
 		
-		if(dl.getDynamicDL()){
+		if (dl.getDynamicDL()) {
 		clickNext(AbsWizard.Locators.DL_DIALOG);
 		sClick(Locators.zdlg_Check_Dynamic_group);
 		SleepUtil.sleepMedium();

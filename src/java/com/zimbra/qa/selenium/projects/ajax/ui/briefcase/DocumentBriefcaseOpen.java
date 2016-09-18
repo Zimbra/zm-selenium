@@ -99,7 +99,7 @@ public class DocumentBriefcaseOpen extends AbsDisplay {
 
 		List<String> windows = sGetAllWindowNames();
 		for (String window : windows) {
-			if(window.indexOf(pageTitle.split("\\.")[0])!=-1){
+			if (window.indexOf(pageTitle.split("\\.")[0])!=-1) {
 				pageTitle = window;
 			}
 		}

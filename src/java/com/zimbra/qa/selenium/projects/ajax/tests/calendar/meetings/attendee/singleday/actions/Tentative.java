@@ -29,7 +29,7 @@ public class Tentative extends CalendarWorkWeekTest {
 	public Tentative() {
 		logger.info("New "+ Tentative.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "Rt-click to appointment from the calendar app and mark as Tentative", 

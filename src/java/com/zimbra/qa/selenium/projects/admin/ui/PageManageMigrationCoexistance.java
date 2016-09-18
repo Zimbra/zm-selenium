@@ -96,7 +96,7 @@ public class PageManageMigrationCoexistance extends AbsTab {
 			throw new HarnessException("Button cannot be null!");
 
 
-		// Default behavior variables
+		
 		//
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
@@ -110,7 +110,7 @@ public class PageManageMigrationCoexistance extends AbsTab {
 			locator = PageMain.Locators.HomeMigrationCoexistance;
 			// Create the page
 			page = new WizardMigrationCoexistance(this);
-			// FALL THROUGH
+			
 
 		} 
 		else {
@@ -143,7 +143,7 @@ public class PageManageMigrationCoexistance extends AbsTab {
 	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
-		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
+		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}

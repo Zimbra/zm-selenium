@@ -21,7 +21,6 @@ import org.apache.log4j.LogManager;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
@@ -432,7 +431,7 @@ public class PageContacts extends AbsTab {
 
 			page = new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.MyApplication, ((AppAjaxClient)this.MyApplication).zPageContacts);
 
-	    } else if ( button == Button.B_CLOSE){
+	    } else if ( button == Button.B_CLOSE) {
  	    	locator = "css=div[id^=zb__CN][id$=__CANCEL]" ;
 		    if (zIsElementDisabled(locator)) {
 				throw new HarnessException("Tried clicking on " + locator + " but it was disabled ");
@@ -469,7 +468,7 @@ public class PageContacts extends AbsTab {
 		tracer.trace("Click the shortcut " + shortcut.getKeys() );
 
 
-		// Default behavior variables
+		
 		AbsPage page = null;	// If set, this page will be returned
 
 		if ( shortcut == Shortcut.S_NEWTAG) {
@@ -522,13 +521,11 @@ public class PageContacts extends AbsTab {
 		if ( pulldown == null )
 			throw new HarnessException("Button cannot be null!");
 
-
-		// Default behavior variables
-		//
-		String pulldownLocator = null;	// If set, this will be expanded
-		String optionLocator = null;	// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
-	   if ( pulldown == Button.B_TAG ) {
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
+	   
+		if ( pulldown == Button.B_TAG ) {
 
 	      if ( option == Button.O_TAG_NEWTAG ) {
 
@@ -546,92 +543,56 @@ public class PageContacts extends AbsTab {
 
 	      }
 
-	   } else if ( pulldown == Button.B_NEW ) {
+		} else if ( pulldown == Button.B_NEW ) {
 
 		   pulldownLocator = "css=div#zb__NEW_MENU td#zb__NEW_MENU_dropdown";
 		   if ( option == Button.O_NEW_CONTACT ) {
-
-			    // TODO: Bug 58365 for Desktop
-			    if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-                   optionLocator="css=div[class='ActionMenu ZHasIcon'] div[class*='ZMenuItem ZWidget ZHasLeftIcon ZHasText'] table[class*='ZWidgetTable ZMenuItemTable']:contains('Contact')";
-			    } else {
-                  optionLocator="css=div#zb__NEW_MENU_NEW_CONTACT";
-                }
+                optionLocator="css=div#zb__NEW_MENU_NEW_CONTACT";
 			    page = new FormContactNew(this.MyApplication);
-		   }
-		   else if ( option == Button.O_NEW_CONTACTGROUP) {
-
-			    // TODO: Bug 58365 for Desktop
-			    if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-			       optionLocator="css=div[class='ActionMenu ZHasIcon'] div[class*='ZMenuItem ZWidget ZHasLeftIcon ZHasText'] table[class*='ZWidgetTable ZMenuItemTable']:contains('Contact Group')";
-			    } else {
-			       optionLocator="css=div#zb__NEW_MENU_NEW_GROUP";
-			    }
+			    
+		   } else if ( option == Button.O_NEW_CONTACTGROUP) {
+			    optionLocator="css=div#zb__NEW_MENU_NEW_GROUP";
 				page = new FormContactGroupNew(this.MyApplication);
-		   }
-		   else if ( option == Button.O_NEW_TAG ) {
+		   
+		   } else if ( option == Button.O_NEW_TAG ) {
 		        optionLocator = "css=div#zb__NEW_MENU_NEW_TAG td#zb__NEW_MENU_NEW_TAG_title";
 		        page = new DialogTag(this.MyApplication, this);
-		   }
-		   else if ( option == Button.O_NEW_CONTACTS_FOLDER ) {
+		   
+		   } else if ( option == Button.O_NEW_CONTACTS_FOLDER ) {
 			    optionLocator = "css=div#zb__NEW_MENU_NEW_ADDRBOOK td#zb__NEW_MENU_NEW_ADDRBOOK_title";
 			    page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageContacts);
-
-
+			    
 		   } else {
-			   //option not suppored
 			   pulldownLocator=null;
 		   }
 
-	   }
+	   	}
 
-	// Default behavior
-		if ( pulldownLocator != null ) {
+	   	if ( pulldownLocator != null ) {
 
-			// Make sure the locator exists
 			if ( !sIsElementPresent(pulldownLocator) ) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
-
-			//central coordinate "x,y"
-			//String center= sGetElementWidth(pulldownLocator)/2 + "," + sGetElementHeight(pulldownLocator)/2;
-			if ( this.zIsBrowserMatch(BrowserMasks.BrowserMaskIE)){
-
-				// TODO check if the following code make the test case CreateContactGroup.GroupOfNewEmail() pass in wdc
-			    	/*
-			    	sGetEval("return var evObj = document.createEventObject();"
-						+ "var x = selenium.browserbot.findElementOrNull('" + pulldownLocator + "');"
-						+ "x.focus();x.blur();x.fireEvent('onclick');");
-			    	*/
-				//the following code failed in wdc, but pass in my machine :
-				sClickAt(pulldownLocator,"");
-			}
-			else {
-			    sClickAt(pulldownLocator,"10,20");
-			}
-
+			
+			sClickAt(pulldownLocator,"10,20");			
 			SleepUtil.sleepSmall();
 			zWaitForBusyOverlay();
-
+			
 			if ( optionLocator != null ) {
-             	// Make sure the locator exists and visible
-				zWaitForElementPresent(optionLocator);
 
+				zWaitForElementPresent(optionLocator);
+			
 				if (!zIsElementDisabled(optionLocator)) {
 				   zClick(optionLocator);
 				   SleepUtil.sleepSmall();
 				   zWaitForBusyOverlay();
 				}
-
+			
 			}
-
-			// If we click on pulldown/option and the page is specified, then
-			// wait for the page to go active
+			
 			if ( page != null ) {
-				//sWaitForPageToLoad();
 				page.zWaitForActive();
 			}
-
 		}
 
 		SleepUtil.sleepMedium();
@@ -672,8 +633,8 @@ public class PageContacts extends AbsTab {
 			}
 
 			sClickAt(pulldownLocator, "");
-			SleepUtil.sleepSmall();
 			zWaitForBusyOverlay();
+			SleepUtil.sleepSmall();
 
 			// find optionLocator
 			if ( pulldown == Button.B_TAG ) {
@@ -688,14 +649,12 @@ public class PageContacts extends AbsTab {
 				   sClickAt(optionLocator, "");
 				   zWaitForBusyOverlay();
 				}
-
 			}
 		}
 	   
 	   	SleepUtil.sleepSmall();
 	   
 	    return page;
-
 	}
 
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option, Object item) throws HarnessException {
@@ -761,7 +720,7 @@ public class PageContacts extends AbsTab {
 						   parentMenuid= sGetEval("window.document.getElementById('z_shell').children[" + i + "].id");
 
 						   if (sGetEval("window.document.getElementById('" + parentMenuid + "').getAttribute('class')").contains("ActionMenu ZHasIcon")
-								 && sIsVisible(parentMenuid)){
+								 && sIsVisible(parentMenuid)) {
 								 subOptionLocator = "css=div#" + parentMenuid + " td[id$=title]:contains(" + tagName + ")";
 								 break;
 						   }
@@ -1190,7 +1149,7 @@ public class PageContacts extends AbsTab {
 			ContextMenuItem cmi=null;
 
 
-			if (option == Button.B_DELETE){
+			if (option == Button.B_DELETE) {
                 cmi=CONTEXT_MENU.CONTACT_DELETE;
 
 			} else if (option == Button.O_DELETE_MENU) {
@@ -1235,10 +1194,9 @@ public class PageContacts extends AbsTab {
 		    SleepUtil.sleepSmall();
 
 		    locator = "css=div#zm__Contacts tr#" + cmi.locator;
-
 		    if (option == Button.B_NEW) {
 		    	locator = "css=div#zm__Contacts tr[id^=" + cmi.locator + "]";
-		    }else if (option == Button.B_FORWARD) {
+		    } else if (option == Button.B_FORWARD) {
 		    	locator = "css=div#zm__Contacts tr[id^=" + cmi.locator + "]";
 		    }
 
@@ -1253,16 +1211,15 @@ public class PageContacts extends AbsTab {
 			if (option == Button.B_EDIT) {
 				locator = "css=td[id='zb__CNS-main__EDIT_title']";
 				sClickAt(locator,"0,0");
+				zWaitForBusyOverlay();
 				SleepUtil.sleepMedium();
 				return null;
 			}
-
 		}
 
 		sClickAt(locator,"0,0");
-		SleepUtil.sleepMedium();
-
 		zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
 
 		if ( page != null ) {
 			page.zWaitForActive();

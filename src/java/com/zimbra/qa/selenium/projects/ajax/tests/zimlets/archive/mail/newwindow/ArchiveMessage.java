@@ -32,8 +32,9 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 	}
 	
 	@Bugs(ids = "80238")
-	@Test( description = "Archive a message",
+	@Test( description = "Archive a message from new window",
 			groups = { "smoke" })
+	
 	public void ArchiveMessage_01() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -71,16 +72,9 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(subject);
-			window.zWaitForActive();		// Make sure the window is there
-			
+			window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			
 			window.zToolbarPressButton(Button.B_ARCHIVE);
-			
-			if ( window.zIsActive() ) {
-				window.zCloseWindow(windowTitle);
-			}
-			window = null;
 			
 		} finally {
 			
@@ -89,6 +83,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 			
 		}
 		
@@ -101,6 +96,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 
 	@Test( description = "Verify the 'archive' button is not present in separate window",
 			groups = { "functional" })
+	
 	public void ArchiveMessage_02() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -152,6 +148,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 			
 		}
 		

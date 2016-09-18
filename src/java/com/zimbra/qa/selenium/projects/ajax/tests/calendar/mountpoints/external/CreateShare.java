@@ -36,7 +36,7 @@ public class CreateShare extends AjaxCommonTest {
 
 		// All tests start at the login page
 		super.startingPage = app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 
 	}
 

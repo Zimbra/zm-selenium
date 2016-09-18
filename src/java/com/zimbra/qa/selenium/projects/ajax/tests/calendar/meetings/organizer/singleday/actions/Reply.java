@@ -32,7 +32,7 @@ public class Reply extends CalendarWorkWeekTest {
 	public Reply() {
 		 logger.info("New "+ Reply.class.getCanonicalName());
 	     super.startingPage =  app.zPageCalendar;
-	     super.startingAccountPreferences = null;
+	     
 	}
 	
 	@Test( description = "Check Reply to a meeting is disabled for organizer ",

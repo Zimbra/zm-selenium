@@ -33,7 +33,7 @@ public class ZimbraCalResLocationDisplayName extends CalendarWorkWeekTest {
 	
 	public ZimbraCalResLocationDisplayName() {
 		logger.info("New "+ ZimbraCalResLocationDisplayName.class.getCanonicalName());
-	    super.startingAccountPreferences = null;
+	    
 	}
 	
 	@Bugs(ids = "57039")

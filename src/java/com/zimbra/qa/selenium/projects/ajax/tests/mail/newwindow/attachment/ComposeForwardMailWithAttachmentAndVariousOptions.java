@@ -42,7 +42,6 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 
 	public ComposeForwardMailWithAttachmentAndVariousOptions() {
 		logger.info("New "+ ComposeForwardMailWithAttachmentAndVariousOptions.class.getCanonicalName());
-		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
 	@Bugs(ids = "103903, 106583")
@@ -84,13 +83,9 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
 				SleepUtil.sleepLong();
 
-				//Include original message as attachment
+				// Include original message as attachment
 				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT);
-
-				// Check if a warning dialog is present. If Yes, Press Yes to continue
-				if (mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
-					mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
-				}
+				zCloseRandomDialogs(mailform);
 
 				// Verify that the message is included as attachment
 				ZAssert.assertTrue(mailform.zHasAttachment(subject),"Original message is not present as attachment");
@@ -98,6 +93,9 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				// Open it in new window
 				SeparateWindowFormMailNew window = null;
 				String windowTitle = "Zimbra: Forward";
+				
+				final String fileName = "inlineImage.jpg";
+				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 				
 				try {
 
@@ -113,14 +111,10 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 					// Verify that the message is included as attachment in new window
 					ZAssert.assertTrue(mailform.zHasAttachment(subject),"Original message is not present as attachment");
 
-					// Attach a new file
-					final String fileName = "inlineImage.jpg";
-					final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
-
 					app.zPageMail.zKeyboard.zTypeCharacters("<CTRL><O>");
-					zUpload(filePath);
+					zUploadFile(filePath);
 
-					//Include the original message in the body and not as attachment
+					// Include the original message in the body and not as attachment
 					mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_MESSAGE);
 					SleepUtil.sleepSmall();
 
@@ -128,17 +122,15 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 					ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present");
 					ZAssert.assertFalse(mailform.zHasAttachment(subject),"Included original message attachment is still present");
 
-					// Close the new window
-					window.zCloseWindow(windowTitle);
-					window = null;
-
 				} finally {
 
 					// Make sure to close the window
 					if (window != null) {
 						window.zCloseWindow(windowTitle);
+						window.zCloseWindow(fileName);
 						window = null;
 					}
+					app.zPageMail.zSelectWindow(null);
 				}
 
 			} finally {
@@ -213,11 +205,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 
 				// Select use prefix option from Options drop down
 				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_USE_PRIFIX);
-
-				// Check if a warning dialog is present. If Yes, Press Yes to continue
-				if(mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
-					mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
-				}
+				zCloseRandomDialogs(mailform);
 
 				// Verify that the attachment is still present
 				ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present after selecting Use Prefix from Options!");
@@ -240,17 +228,14 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 					// Verify that the attachment is present in new window as well.
 					ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present in new window!");
 
-					// Close the new window
-					window.zCloseWindow(windowTitle);
-					window = null;
-
 				} finally {
 
 					// Make sure to close the window
-					if (window != null) {
-						window.zCloseWindow(windowTitle);
+					if ( window != null ) {
+						window.zCloseWindow();
 						window = null;
 					}
+					app.zPageMail.zSelectWindow(null);
 				}
 
 			} finally {
@@ -324,11 +309,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 
 				// Select Include Headers from Options drop down
 				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_HEADERS);
-
-				// Check if a warning dialog is present. If Yes, Press Yes to continue
-				if(mailform.sIsVisible("css=div#OkCancel.DwtDialog") && mailform.sIsElementPresent("css=div#OkCancel.DwtDialog")) {
-					mailform.sClickAt("css=div#OkCancel.DwtDialog td[id^='OK']  td[id$='_title']","0,0");
-				}
+				zCloseRandomDialogs(mailform);
 
 				// Verify that the attachment is present after selecting Include Headers option
 				ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present after selecting Include Headers from Options!");
@@ -336,11 +317,10 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				// Select Include Headers from Options drop down again to include headers as it was set by-default
 				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_HEADERS);
 				SleepUtil.sleepMedium();
-
-				// Check if a warning dialog is present. If Yes, Press Yes to continue
-				if(mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
-					mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
-				}
+				zCloseRandomDialogs(mailform);
+				
+				// Verify that the attachment is present after selecting Include Headers option
+				ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present after selecting Include Headers from Options!");
 
 				// Open message in a separate window
 				SeparateWindowFormMailNew window = null;
@@ -360,17 +340,14 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 					// Verify that the attachment is present in new window as well.
 					ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present in new window!");
 
-					// Close the new window
-					window.zCloseWindow(windowTitle);
-					window = null;
-
 				} finally {
 
 					// Make sure to close the window
-					if (window != null) {
-						window.zCloseWindow(windowTitle);
+					if ( window != null ) {
+						window.zCloseWindow();
 						window = null;
 					}
+					app.zPageMail.zSelectWindow(null);
 				}
 
 			} finally {
@@ -392,6 +369,22 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 
 		} else {
 			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+		}
+	}
+	
+	
+	public void zCloseRandomDialogs(FormMailNew mailform) throws HarnessException {
+		
+		// Check if a warning dialog is present. If Yes, Press Yes to continue
+		if (mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
+			mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
+			SleepUtil.sleepMedium();
+		}
+		
+		// Check if a warning dialog is present. If Yes, Press Yes to continue
+		if (mailform.sIsVisible("css=div#OkCancel.DwtDialog") && mailform.sIsElementPresent("css=div#OkCancel.DwtDialog")) {
+			mailform.sClickAt("css=div#OkCancel.DwtDialog td[id^='OK']  td[id$='_title']","0,0");
+			SleepUtil.sleepMedium();
 		}
 	}
 }

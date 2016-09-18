@@ -48,7 +48,7 @@ public class EditHtmlSignature extends AjaxCommonTest {
 
 	public EditHtmlSignature() throws HarnessException {
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 
 	}
 

@@ -30,7 +30,7 @@ public class ExportContacts extends AjaxCommonTest {
 	public ExportContacts() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 
 

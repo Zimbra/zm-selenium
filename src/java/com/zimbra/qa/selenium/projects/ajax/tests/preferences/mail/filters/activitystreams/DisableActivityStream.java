@@ -33,7 +33,7 @@ public class DisableActivityStream extends AjaxCommonTest {
 	public DisableActivityStream() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 		
 	}
 

@@ -40,7 +40,7 @@ public class CreateSavedSearch extends AjaxCommonTest  {
 		super.startingPage = app.zPageMail;
 
 		// Make sure we are using an account with conversation view
-		super.startingAccountPreferences = null;		
+				
 		
 	}
 	

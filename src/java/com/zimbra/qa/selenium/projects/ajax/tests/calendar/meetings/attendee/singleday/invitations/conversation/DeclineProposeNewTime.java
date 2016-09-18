@@ -35,7 +35,7 @@ public class DeclineProposeNewTime extends CalendarWorkWeekTest {
 	public DeclineProposeNewTime() {
 		logger.info("New "+ DeclineProposeNewTime.class.getCanonicalName());
 		super.startingPage =  app.zPageMail;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Bugs(ids = "69132,96556,96748")

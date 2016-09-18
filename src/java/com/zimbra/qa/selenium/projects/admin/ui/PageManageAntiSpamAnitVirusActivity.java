@@ -86,7 +86,7 @@ public class PageManageAntiSpamAnitVirusActivity extends AbsTab {
 	@Override
 	public void zNavigateTo() throws HarnessException {
 		if ( zIsActive() ) {
-			// This page is already active.
+			
 			return;
 		}
 
@@ -128,7 +128,7 @@ public class PageManageAntiSpamAnitVirusActivity extends AbsTab {
 	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
-		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
+		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}

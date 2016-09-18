@@ -29,8 +29,10 @@ public class DeleteFolder extends PrefGroupMailByMessageTest {
 		logger.info("New "+ DeleteFolder.class.getCanonicalName());
 	}
 
+
 	@Test( description = "Delete a folder - Right click, Delete",
 			groups = { "smoke" })
+
 	public void DeleteFolder_01() throws HarnessException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
@@ -63,8 +65,10 @@ public class DeleteFolder extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(   description = "Deleting the folder where the Trash already has a folder with the same name",
+
+	@Test( description = "Deleting the folder where the Trash already has a folder with the same name",
 	      groups = { "functional" })
+
 	public void DeleteFolder_02() throws HarnessException {
 
 	   FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);

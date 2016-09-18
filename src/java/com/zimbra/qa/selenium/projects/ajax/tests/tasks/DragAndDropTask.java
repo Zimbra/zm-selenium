@@ -31,7 +31,7 @@ public class DragAndDropTask extends AjaxCommonTest {
 	public DragAndDropTask() {
 		logger.info("DragAndDropTask " + DragAndDropTask.class.getCanonicalName());		
 		super.startingPage = app.zPageTasks;
-		super.startingAccountPreferences = null;
+		
 		super.startingAccountPreferences = new HashMap<String , String>() {{
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 			put("zimbraPrefShowSelectionCheckbox", "TRUE");

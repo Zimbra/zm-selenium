@@ -32,7 +32,7 @@ public class UnTagTask extends AjaxCommonTest {
 		// All tests start at the Briefcase page
 		super.startingPage = app.zPageTasks;
 
-		super.startingAccountPreferences = null;
+		
 	}
 
 	@Test( description = "Remove a tag from a Document using Toolbar -> Tag -> Remove Tag", groups = { "smoke" })

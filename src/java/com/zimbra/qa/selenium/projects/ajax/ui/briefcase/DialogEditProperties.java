@@ -93,7 +93,7 @@ public class DialogEditProperties extends AbsDialog {
 
 			locator = "//div[@class='" + Locators.zEditPropertiesDialogId+ "']//div[contains(@id,'_buttons')]//td[text()='Cancel']";
 
-		}else if (button == Button.B_SHARE) {
+		} else if (button == Button.B_SHARE) {
 
 			locator = "//div[@class='" + Locators.zEditPropertiesDialogId+ "']//div[contains(@id,'_buttons')]//td[text()=''Add Share...']";
 

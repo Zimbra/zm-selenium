@@ -16,9 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.main;
 
-
-
-
 import org.testng.annotations.*;
 
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -26,19 +23,17 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
-
 public class ProductHelp extends AjaxCommonTest {
 
 	public ProductHelp() {
 		logger.info("New " + ProductHelp.class.getCanonicalName());
-
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = null;
-
 	}
 
+	
 	@Test( description = "Open 'Product Help'",
 			groups = { "functional" })
+	
 	public void ProductHelp_01() throws HarnessException {
 
 		SeparateWindow window = null;
@@ -54,23 +49,19 @@ public class ProductHelp extends AjaxCommonTest {
 			for (String title : app.zPageMain.sGetAllWindowTitles()) {
 				logger.info("Window title: " + title);
 				if (title.contains("Zimbra: Inbox")) {
-					// Main window
 					logger.info("Already existing Name: " + title);
 
 				} else if (title.contains(windowTitle)) {
 					logger.info("zIsActive() = true ... title = " + title);
 					break;
-
-				}
-
-				else {
+					
+				} else {
 					throw new HarnessException("Window never became active!");
 				}
 			}
 			app.zPageMain.sSelectWindow(windowTitle);
 			app.zPageMain.zSeparateWindowClose(windowTitle);
 			app.zPageMain.sSelectWindow(null);
-
 
 		} finally {
 
@@ -79,8 +70,5 @@ public class ProductHelp extends AjaxCommonTest {
 			window.sSelectWindow(null);
 
 		}
-
 	}
-
-
 }

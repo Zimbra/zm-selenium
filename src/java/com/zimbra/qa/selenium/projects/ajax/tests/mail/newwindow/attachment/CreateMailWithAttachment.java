@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachment;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -16,6 +14,8 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachment;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
+
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachment;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -36,7 +36,6 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 
 	public CreateMailWithAttachment() {
 		logger.info("New "+ CreateMailWithAttachment.class.getCanonicalName());
-		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 		super.startingAccountPreferences.put("zimbraPrefComposeInNewWindow", "TRUE");
 	}
 
@@ -52,11 +51,8 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 				// Create the message data to be sent
 				MailItem mail = new MailItem();
 				mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
-				mail.dSubject = "subject"
-						+ ConfigProperties.getUniqueString();
-
-				FolderItem sent = FolderItem.importFromSOAP(
-						app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
+				mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+				FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 
 				// Create file item
 				final String fileName = "testtextfile.txt";
@@ -70,7 +66,7 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 
 					window.zSetWindowTitle(windowTitle);
-					window.zWaitForActive(); // Make sure the window is there
+					window.zWaitForActive();
 
 					window.waitForComposeWindow();
 
@@ -78,24 +74,20 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 
 					// Fill out the form with the data
 					window.zFill(mail);
+					
 					//Click Attach
 					window.zPressButton(Button.B_ATTACH);
-					zUpload(filePath);
+					zUpload(filePath, window);
 
-					// TODO: ... debugging to be removed
 					mail.dBodyHtml = "body"	+ ConfigProperties.getUniqueString();
 					window.sSelectWindow(windowTitle);
 					String locator = "css=iframe[id*=ifr]";
-					window.zWaitForElementPresent(locator, "5000");
 					window.sClickAt(locator, "");
 					window.zTypeFormattedText(locator, mail.dBodyHtml);
 
 					// Send the message
 					window.zToolbarPressButton(Button.B_SEND);
 
-					if (window.zWaitForWindowClosed(windowTitle)) {
-						window = null;
-					}
 				} finally {
 
 					// Make sure to close the window
@@ -103,19 +95,16 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 						window.zCloseWindow(windowTitle);
 						window = null;
 					}
+					app.zPageMail.zSelectWindow(null);
 
 				}
 
 				for (int i = 0; i < 30; i++) {
 
-					ZimbraAccount.AccountA().soapSend(
-							"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
-									+ "<query>subject:(" + mail.dSubject
-									+ ")</query>" + "</SearchRequest>");
-					com.zimbra.common.soap.Element node = ZimbraAccount.AccountA()
-							.soapSelectNode("//mail:m", 1);
+					ZimbraAccount.AccountA().soapSend("<SearchRequest types='message' xmlns='urn:zimbraMail'>"
+							+ "<query>subject:(" + mail.dSubject + ")</query>" + "</SearchRequest>");
+					com.zimbra.common.soap.Element node = ZimbraAccount.AccountA().soapSelectNode("//mail:m", 1);
 					if (node != null) {
-						// found the message
 						break;
 					}
 
@@ -123,10 +112,8 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 
 				}
 
-				ZimbraAccount.AccountA().soapSend(
-						"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
-								+ "<query>subject:(" + mail.dSubject + ")</query>"
-								+ "</SearchRequest>");
+				ZimbraAccount.AccountA().soapSend("<SearchRequest types='message' xmlns='urn:zimbraMail'>"
+						+ "<query>subject:(" + mail.dSubject + ")</query>" + "</SearchRequest>");
 				String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m","id");
 
 				ZimbraAccount.AccountA().soapSend(

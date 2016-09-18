@@ -17,11 +17,9 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
 
 import java.io.File;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -44,14 +42,12 @@ public class GetMail extends PrefGroupMailByMessageTest {
 
 	public GetMail() throws HarnessException {
 		logger.info("New "+ GetMail.class.getCanonicalName());
-		
-
-
 	}
 	
 	
 	@Test( description = "Open message in separate window",
 			groups = { "smoke" })
+	
 	public void GetMail_01() throws HarnessException {
 		
 		final String subject = "subject12996136534962";
@@ -84,7 +80,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
@@ -95,14 +91,15 @@ public class GetMail extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 			
 		}
-		
-		
 	}
+
 
 	@Test( description = "Open message in separate window - verify mail contents",
 			groups = { "smoke" })
+
 	public void GetMail_02() throws HarnessException {
 		
 		final String subject = "subject1291234112962";
@@ -136,20 +133,16 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
-			ZAssert.assertEquals(	window.zGetMailProperty(Field.Subject), subject, "Verify the subject matches");
-			//ZAssert.assertNotNull(	window.zGetMailProperty(Field.ReceivedDate), "Verify the date is displayed"); as per bug 75743 all date are  consistent
-			ZAssert.assertNotNull(	window.zGetMailProperty(Field.ReceivedTime), "Verify the time is displayed");
-			ZAssert.assertEquals(	window.zGetMailProperty(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
-			ZAssert.assertEquals(	window.zGetMailProperty(Field.Cc),"Cc:"+ ZimbraAccount.AccountB().EmailAddress, "Verify the Cc matches");
-			ZAssert.assertEquals(	window.zGetMailProperty(Field.To), "To:"+app.zGetActiveAccount().EmailAddress, "Verify the To matches");
-			
-			// The body could contain HTML, even though it is only displaying text (e.g. <br> may be present)
-			// do a contains, rather than equals.
-			ZAssert.assertStringContains(	window.zGetMailProperty(Field.Body), content, "Verify the body matches");
+			ZAssert.assertEquals(window.zGetMailProperty(Field.Subject), subject, "Verify the subject matches");
+			ZAssert.assertNotNull(window.zGetMailProperty(Field.ReceivedTime), "Verify the time is displayed");
+			ZAssert.assertEquals(window.zGetMailProperty(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
+			ZAssert.assertEquals(window.zGetMailProperty(Field.Cc),"Cc:"+ ZimbraAccount.AccountB().EmailAddress, "Verify the Cc matches");
+			ZAssert.assertEquals(window.zGetMailProperty(Field.To), "To:"+app.zGetActiveAccount().EmailAddress, "Verify the To matches");
+			ZAssert.assertStringContains(window.zGetMailProperty(Field.Body), content, "Verify the body matches");
 
 		} finally {
 			
@@ -158,22 +151,21 @@ public class GetMail extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 			
 		}
-		
-		
 	}
 
 
 	@Test( description = "Open html message in separate window - verify mail contents",
 			groups = { "smoke" })
-	public void GetMail_03() throws HarnessException {
 
+	public void GetMail_03() throws HarnessException {
 		
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String bodyText = "text" + ConfigProperties.getUniqueString();
-		String bodyHTML = "text <strong style=\"\">bold"+ ConfigProperties.getUniqueString() +"</strong> text";
+		String bodyHTML = "text <strong>bold"+ ConfigProperties.getUniqueString() +"</strong> text";
 		String contentHTML = XmlStringUtil.escapeXml(
 			"<html>" +
 				"<head></head>" +
@@ -214,20 +206,18 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
 			// Verify the To, From, Subject, Body		
-			ZAssert.assertEquals(	window.zGetMailProperty(Field.Subject), mail.dSubject, "Verify the subject matches");
-		//	ZAssert.assertNotNull(	window.zGetMailProperty(Field.ReceivedDate), "Verify the date is displayed");
-			ZAssert.assertNotNull(	window.zGetMailProperty(Field.ReceivedTime), "Verify the time is displayed");
-			ZAssert.assertEquals(	window.zGetMailProperty(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
-			ZAssert.assertEquals(	window.zGetMailProperty(Field.Cc), "Cc:"+ZimbraAccount.AccountB().EmailAddress, "Verify the Cc matches");
-			ZAssert.assertEquals(	window.zGetMailProperty(Field.To), "To:"+app.zGetActiveAccount().EmailAddress, "Verify the To matches");
-			ZAssert.assertStringContains(	window.zGetMailProperty(Field.Body), bodyHTML, "Verify the body matches");
+			ZAssert.assertEquals(window.zGetMailProperty(Field.Subject), mail.dSubject, "Verify the subject matches");
+			ZAssert.assertNotNull(window.zGetMailProperty(Field.ReceivedTime), "Verify the time is displayed");
+			ZAssert.assertEquals(window.zGetMailProperty(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
+			ZAssert.assertEquals(window.zGetMailProperty(Field.Cc), "Cc:"+ZimbraAccount.AccountB().EmailAddress, "Verify the Cc matches");
+			ZAssert.assertEquals(window.zGetMailProperty(Field.To), "To:"+app.zGetActiveAccount().EmailAddress, "Verify the To matches");
+			ZAssert.assertStringContains(window.zGetMailProperty(Field.Body), bodyHTML, "Verify the body matches");
 			
-
 		} finally {
 			
 			// Make sure to close the window
@@ -235,16 +225,15 @@ public class GetMail extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 			
 		}
-
-		
-		
 	}
 
 
 	@Test( description = "Receive a mail with Sender: specified",
 			groups = { "functional" })
+
 	public void ViewMail_01() throws HarnessException {
 		
 		final String subject = "subject12996131112962";
@@ -253,19 +242,16 @@ public class GetMail extends PrefGroupMailByMessageTest {
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFolder + "/mime_wSender.txt"));
 
-
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
 		ZAssert.assertEquals(from, mail.dFromRecipient.dEmailAddress, "Verify the from matches");
 		ZAssert.assertEquals(sender, mail.dSenderRecipient.dEmailAddress, "Verify the sender matches");
-
 		
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
 		
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + subject;
@@ -276,7 +262,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
@@ -289,22 +275,20 @@ public class GetMail extends PrefGroupMailByMessageTest {
 
 		} finally {
 			
-			// Make sure to close the window
 			if ( window != null ) {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 			
 		}
-
-		
-
-		
 	}
+
 	
 	@Bugs( ids = "86168")
 	@Test( description = "Receive a mail with Reply-To: specified",
 			groups = { "functional" })
+
 	public void ViewMail_02() throws HarnessException {
 		
 		final String subject = "subject13016959916873";
@@ -312,8 +296,6 @@ public class GetMail extends PrefGroupMailByMessageTest {
 		final String replyto = "replyto13016959916873@example.com";
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFolder + "/mime_wReplyTo.txt"));
-
-
 		
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -325,7 +307,6 @@ public class GetMail extends PrefGroupMailByMessageTest {
 		
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-
 		
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + subject;
@@ -336,7 +317,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
@@ -354,15 +335,16 @@ public class GetMail extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
-			
-		}
+			app.zPageMail.zSelectWindow(null);
 
-		
+		}
 	}
+
 
 	@Bugs( ids = "61575")
 	@Test( description = "Receive a mail with Resent-From: specified",
 			groups = { "functional" })
+
 	public void ViewMail_03() throws HarnessException {
 		
 		final String subject = "subject13147509564213";
@@ -371,8 +353,6 @@ public class GetMail extends PrefGroupMailByMessageTest {
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFolder + "/mime_wResentFrom.txt"));
 
-
-		
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
 		ZAssert.assertEquals(resentfrom, mail.dRedirectedFromRecipient.dEmailAddress, "Verify the Resent-From matches");
@@ -383,7 +363,6 @@ public class GetMail extends PrefGroupMailByMessageTest {
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + subject;
 		
@@ -393,7 +372,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
@@ -411,14 +390,10 @@ public class GetMail extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 			
 		}
 
-
-		
 	}
-
-
-
 
 }

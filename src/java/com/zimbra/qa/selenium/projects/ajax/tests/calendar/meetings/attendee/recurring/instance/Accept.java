@@ -31,7 +31,7 @@ public class Accept extends CalendarWorkWeekTest {
 	public Accept() {
 		logger.info("New "+ Accept.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Bugs(ids = "83240")

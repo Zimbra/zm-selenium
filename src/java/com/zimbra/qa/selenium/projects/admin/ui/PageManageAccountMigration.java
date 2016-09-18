@@ -88,14 +88,14 @@ public class PageManageAccountMigration extends AbsTab {
 
 
 		if ( zIsActive() ) {
-			// This page is already active.
+			
 
 			return;
 		}
 
 		// Click on Tools and Migration -> Downloads
 		zClickAt(Locators.TOOLS_AND_MIGRATION_ICON,"");
-		if(sIsElementPresent(Locators.ACCOUNTMIGRATION));
+		if (sIsElementPresent(Locators.ACCOUNTMIGRATION));
 		sClickAt(Locators.ACCOUNTMIGRATION, "");
 
 		zWaitForActive();
@@ -130,7 +130,7 @@ public class PageManageAccountMigration extends AbsTab {
 	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
-		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
+		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}

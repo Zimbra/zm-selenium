@@ -31,7 +31,7 @@ public class MoveCalendar extends CalendarWorkWeekTest {
 	public MoveCalendar() {
 		logger.info("New "+ MoveCalendar.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "Move a calendar - Right click, Move",

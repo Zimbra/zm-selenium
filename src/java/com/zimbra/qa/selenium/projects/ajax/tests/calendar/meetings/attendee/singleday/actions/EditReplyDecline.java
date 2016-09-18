@@ -31,7 +31,7 @@ public class EditReplyDecline extends CalendarWorkWeekTest {
 	public EditReplyDecline() {
 		logger.info("New "+ EditReplyDecline.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "Rt-click to appointment and Edit Reply -> Decline the meeting invite", 

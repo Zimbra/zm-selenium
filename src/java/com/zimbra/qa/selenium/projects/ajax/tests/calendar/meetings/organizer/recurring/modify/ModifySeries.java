@@ -35,7 +35,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 	public ModifySeries() {
 		logger.info("New "+ ModifySeries.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "Modify series from every day to every week", 

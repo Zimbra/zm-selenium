@@ -70,7 +70,7 @@ public class DialogOOOAlert extends AbsDialog {
 					+ locator + " not present!");
 		}
 
-		// if(zIsActive())
+		// if (zIsActive())
 		// zGetDisplayedText("css=div." + Locators.zDialogClass +
 		// ":contains(Out Of Office)");
 

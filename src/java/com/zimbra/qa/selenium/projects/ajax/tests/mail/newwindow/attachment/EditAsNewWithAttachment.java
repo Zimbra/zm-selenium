@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachment;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -17,9 +15,10 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachment;
  * ***** END LICENSE BLOCK *****
  */
 
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachment;
+
 import org.testng.SkipException;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -44,17 +43,11 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 
 			// Send a message to the account
-			ZimbraAccount.AccountA().soapSend(
-					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-							"<m>" +
-							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-							"<su>"+ subject +"</su>" +
-							"<mp ct='text/plain'>" +
-							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
-							"</mp>" +
-							"</m>" +
-					"</SendMsgRequest>");
-
+			ZimbraAccount.AccountA()
+					.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
+							+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
+							+ "<mp ct='text/plain'>" + "<content>content" + ConfigProperties.getUniqueString()
+							+ "</content>" + "</mp>" + "</m>" + "</SendMsgRequest>");
 
 			// Refresh current view
 			app.zPageMail.zVerifyMailExists(subject);
@@ -64,8 +57,7 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 
 			// Create file item
 			final String fileName = "testtextfile.txt";
-			final String filePath = ConfigProperties.getBaseDirectory()
-					+ "\\data\\public\\other\\" + fileName;
+			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
 			SeparateWindowDisplayMail window = null;
 			String windowTitle = "Zimbra: Compose";
@@ -78,7 +70,7 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 				// Choose Actions -> Launch in Window
 				window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 				window.zSetWindowTitle(subject);
-				window.zWaitForActive();	// Make sure the window is there
+				window.zWaitForActive();
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 				window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_EDIT_AS_NEW);
@@ -90,7 +82,7 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 				window.zPressButton(Button.B_ATTACH);
 
 				//Add an attachment
-				zUpload(filePath);
+				zUpload(filePath, window);
 
 				//Type in body
 				String	locator = "css=div[id^='zv__COMPOSE'] iframe[id$='_body_ifr']";
@@ -105,14 +97,7 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 
 				SleepUtil.sleepSmall();
 				window.zToolbarPressButton(Button.B_SEND);
-				window.zSetWindowTitle(subject);
-				window.zWaitForActive();
-				window.zToolbarPressButton(Button.B_CLOSE);
-				SleepUtil.sleepSmall();
-
-				// Window is closed automatically by the client
-				window = null;
-
+				
 			} finally {
 
 				// Make sure to close the window
@@ -120,35 +105,25 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 					window.zCloseWindow(windowTitle);
 					window = null;
 				}
-
+				app.zPageMail.zSelectWindow(null);
 			}
 
 			for (int i = 0; i < 30; i++) {
-
-				app.zGetActiveAccount().soapSend(
-						"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
-								+ "<query>subject:(" + subject + ")</query>"
-								+ "</SearchRequest>");
-				com.zimbra.common.soap.Element node = ZimbraAccount.AccountA()
-						.soapSelectNode("//mail:m", 1);
+				app.zGetActiveAccount().soapSend("<SearchRequest types='message' xmlns='urn:zimbraMail'>"
+						+ "<query>subject:(" + subject + ")</query>" + "</SearchRequest>");
+				com.zimbra.common.soap.Element node = ZimbraAccount.AccountA().soapSelectNode("//mail:m", 1);
 				if (node != null) {
-					// found the message
 					break;
 				}
-
 				SleepUtil.sleep(1000);
-
 			}
 
-			app.zGetActiveAccount().soapSend(
-					"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
-							+ "<query>subject:(" + subject + ")</query>"
-							+ "</SearchRequest>");
+			app.zGetActiveAccount().soapSend("<SearchRequest types='message' xmlns='urn:zimbraMail'>"
+					+ "<query>subject:(" + subject + ")</query>" + "</SearchRequest>");
 			String id = app.zGetActiveAccount().soapSelectValue("//mail:m", "id");
 
 			app.zGetActiveAccount().soapSend(
-					"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + id
-					+ "' html='1'/>" + "</GetMsgRequest>");
+					"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + id + "' html='1'/>" + "</GetMsgRequest>");
 
 			String html = app.zGetActiveAccount().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null);
 			ZAssert.assertStringContains(html, mail.dBodyHtml, "Verify the html content");

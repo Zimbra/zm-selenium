@@ -48,7 +48,7 @@ public class CancelCompose extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
@@ -59,8 +59,6 @@ public class CancelCompose extends PrefGroupMailByMessageTest {
 			// for now just hardcoding window title name
 			boolean status = window.zIsClosed(windowTitle);
 			ZAssert.assertTrue(status, "Verify the window is closed");
-			
-			window = null;
 
 		} finally {
 			
@@ -69,6 +67,7 @@ public class CancelCompose extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 			
 		}
 		

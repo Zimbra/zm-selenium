@@ -31,7 +31,7 @@ public class DeleteQuickCommand extends AjaxQuickCommandTest {
 	public DeleteQuickCommand() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 

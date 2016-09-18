@@ -33,7 +33,7 @@ public class Reply extends CalendarWorkWeekTest {
 	public Reply() {
 		logger.info("New "+ Reply.class.getCanonicalName());
 	    super.startingPage =  app.zPageCalendar;
-	    super.startingAccountPreferences = null;	
+	    	
 	}
 	
 	@Bugs(ids = "102475")

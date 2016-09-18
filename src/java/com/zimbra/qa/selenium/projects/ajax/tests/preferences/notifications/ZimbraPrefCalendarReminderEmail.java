@@ -32,7 +32,7 @@ public class ZimbraPrefCalendarReminderEmail extends AjaxCommonTest {
 	public ZimbraPrefCalendarReminderEmail() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 
 

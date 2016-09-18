@@ -58,7 +58,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 
 			/* TODO: ... debugging to be removed */
 			window.waitForComposeWindow();
@@ -74,7 +74,6 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			
 			// Close the window
 			window.zToolbarPressButton(Button.B_CANCEL);
-			window = null;
 
 		} finally {
 
@@ -83,6 +82,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 
 		}
 
@@ -126,7 +126,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 
 			
 			//SleepUtil.sleepVeryLong();
@@ -142,9 +142,6 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			warning.zWaitForActive();
 			warning.zClickButton(Button.B_YES);
 
-			// Window closes automatically
-			window = null;
-
 		} finally {
 
 			// Make sure to close the window
@@ -152,6 +149,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 
 		}
 
@@ -203,7 +201,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 			window.zToolbarPressButton(Button.B_REPLY);
@@ -219,12 +217,11 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 			window.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_FORMAT_AS_HTML);
 
-		// Save the message
+			// Save the message
 			window.zToolbarPressButton(Button.B_SAVE_DRAFT);
-		SleepUtil.sleepSmall();
-		ZAssert.assertEquals(window.sGetCssCountNewWindow("css=div[id='zv__COMPOSE-1_attachments_div'] table tbody tr td div[class='attBubbleContainer'] div span[id^='zv__COMPOSE-1_']"), 1, "Attachemnt not duplicated");
-		SleepUtil.sleepSmall();
-		window = null;
+			SleepUtil.sleepSmall();
+			ZAssert.assertEquals(window.sGetCssCountNewWindow("css=div[id='zv__COMPOSE-1_attachments_div'] table tbody tr td div[class='attBubbleContainer'] div span[id^='zv__COMPOSE-1_']"), 1, "Attachemnt not duplicated");
+			SleepUtil.sleepLong();
 		
 		} finally {
 
@@ -233,10 +230,9 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 
 		}
-
-		SleepUtil.sleepLong();
 				
 		// Get the message from the server
 		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(),
@@ -281,7 +277,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 			window.zToolbarPressButton(Button.B_REPLY);
@@ -299,13 +295,11 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			window.zFillField(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Body, body);
 			window.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_FORMAT_AS_PLAIN_TEXT);
 			SleepUtil.sleepSmall();
-		// Save the message
+
 			window.zToolbarPressButton(Button.B_SAVE_DRAFT);
-		SleepUtil.sleepSmall();
-		ZAssert.assertEquals(window.sGetCssCountNewWindow("css=div[id='zv__COMPOSE-1_attachments_div'] table tbody tr td div[class='attBubbleContainer'] div span[id^='zv__COMPOSE-1_']"), 1, "Attachemnt not duplicated");
-		// Window closes automatically
-		window = null;
-		
+			SleepUtil.sleepSmall();
+			ZAssert.assertEquals(window.sGetCssCountNewWindow("css=div[id='zv__COMPOSE-1_attachments_div'] table tbody tr td div[class='attBubbleContainer'] div span[id^='zv__COMPOSE-1_']"), 1, "Attachemnt not duplicated");
+	
 		} finally {
 
 			// Make sure to close the window

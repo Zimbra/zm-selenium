@@ -17,16 +17,13 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.toaster;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.TaskItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -40,8 +37,6 @@ public class EditTask extends AjaxCommonTest{
 	@SuppressWarnings("serial")
 	public EditTask() {
 		logger.info("Edit " + EditTask.class.getCanonicalName());
-
-		// All tests start at the login page
 		super.startingPage = app.zPageTasks;
 
 		super.startingAccountPreferences = new HashMap<String , String>() {{
@@ -50,7 +45,9 @@ public class EditTask extends AjaxCommonTest{
 		}};
 	}
 
-	@Test( description = "Unchecked Attachment from edit window and - verify Toast message", groups = { "smoke" })
+	@Test( description = "Unchecked Attachment from edit window and - verify Toast message", 
+			groups = { "smoke" })
+	
 	public void EditTaskToastMsg() throws HarnessException {
 
 		String subject = "task" + ConfigProperties.getUniqueString();
@@ -62,7 +59,6 @@ public class EditTask extends AjaxCommonTest{
 		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/Files/Basic01/BasicExcel2007.xlsx";
 		// Upload file to server through RestUtil
 		String attachmentId = account.uploadFile(filePath);		
-
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -93,9 +89,8 @@ public class EditTask extends AjaxCommonTest{
 		
 		//Press Edit tool bar button
 		FormTaskNew taskedit = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_EDIT);
-		SleepUtil.sleepMedium();
 
-		//Uncheck Attachment		
+		// Uncheck Attachment		
 		app.zPageTasks.sUncheck(Locators.zEditAttachmentCheckbox);
 		
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {

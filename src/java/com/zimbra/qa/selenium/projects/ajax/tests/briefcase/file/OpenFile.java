@@ -40,7 +40,7 @@ public class OpenFile extends FeatureBriefcaseTest {
 
 		super.startingPage = app.zPageBriefcase;
 
-		//if(ConfigProperties.zimbraGetVersionString().contains("FOSS")){
+		//if (ConfigProperties.zimbraGetVersionString().contains("FOSS")) {
 		    super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 		//}
 		
@@ -80,11 +80,11 @@ public class OpenFile extends FeatureBriefcaseTest {
 		// Click on created file
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ConfigProperties.zimbraGetVersionString().contains(
-    			"FOSS")){
+		if (ConfigProperties.zimbraGetVersionString().contains(
+    			"FOSS")) {
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
-		}else{
+		} else {
 		    app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, fileItem);
 		}
 		*/

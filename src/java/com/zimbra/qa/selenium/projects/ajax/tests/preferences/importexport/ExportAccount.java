@@ -30,7 +30,7 @@ public class ExportAccount extends AjaxCommonTest {
 	public ExportAccount() {
 
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 
 

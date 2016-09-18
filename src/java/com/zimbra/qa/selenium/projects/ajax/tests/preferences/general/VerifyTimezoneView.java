@@ -31,7 +31,7 @@ public class VerifyTimezoneView extends AjaxCommonTest {
 	public VerifyTimezoneView() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;	
+			
 	}
 
 	@Test (description = "Check timezone options in preferences", groups = { "smoke" } )

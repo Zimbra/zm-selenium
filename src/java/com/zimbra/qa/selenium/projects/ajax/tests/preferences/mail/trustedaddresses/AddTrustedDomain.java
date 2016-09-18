@@ -31,7 +31,7 @@ public class AddTrustedDomain extends AjaxCommonTest {
 	public AddTrustedDomain() throws HarnessException {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 		
 	}
 

@@ -108,12 +108,12 @@ public class HoverOver extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		// VERIFICATION
-		for (int i=1; i<=values.length; i++) {
+		for (int i=0; i<=values.length-1; i++) {
 			
 			System.out.println("Verify " + values[i] + " hover tooltip shows");
 
 			// Hover over the email address
-			String locator = "body div span:nth-of-type(" + i + ")";
+			String locator = "body div span:nth-of-type(" + (i+1) + ")";
 			app.zPageMail.zDisplayMailHoverOver(locator);
 			
 			// Verify the contact tool tip opens

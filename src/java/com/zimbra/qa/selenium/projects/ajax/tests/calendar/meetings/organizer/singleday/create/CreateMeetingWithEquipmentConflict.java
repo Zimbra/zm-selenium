@@ -108,7 +108,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		String equipmentStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquipment +"']", "ptst");
 		ZAssert.assertEquals(equipmentStatus, "DE", "Verify that the Equipment status shows as 'DECLINED'");
 		
-		if(!apptForm.zVerifyNewApptTabClosed()){
+		if (!apptForm.zVerifyNewApptTabClosed()) {
 			// Close window so that next test doesn't fail
 	        apptForm.zCloseModifiedApptTab();
 		}

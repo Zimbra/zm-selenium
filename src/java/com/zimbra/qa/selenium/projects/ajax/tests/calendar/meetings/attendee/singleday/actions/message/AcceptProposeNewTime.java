@@ -33,7 +33,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 	public AcceptProposeNewTime() {
 		logger.info("New "+ AcceptProposeNewTime.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "Rt-click to appointment -> Propose New Time and accept the new time using message view", 

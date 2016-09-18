@@ -100,7 +100,6 @@ public class PageManageCertificates extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if ( zIsActive() ) {
-			// This page is already active.
 			return;
 		}
 
@@ -139,7 +138,7 @@ public class PageManageCertificates extends AbsTab {
 			throw new HarnessException("Button cannot be null!");
 
 
-		// Default behavior variables
+		
 		//
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
@@ -153,7 +152,7 @@ public class PageManageCertificates extends AbsTab {
 			locator = PageMain.Locators.HomeInstallCertificate;
 			// Create the page
 			page = new WizardInstallCertificate(this);
-			// FALL THROUGH
+			
 
 		} else if (button == Button.B_UPLOAD_CERTIFICATE) {
 			
@@ -197,10 +196,10 @@ public class PageManageCertificates extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		if (pulldown == Button.B_GEAR_BOX) {
 			pulldownLocator = Locators.GEAR_ICON;
@@ -209,8 +208,8 @@ public class PageManageCertificates extends AbsTab {
 
 				optionLocator = Locators.VIEW_CERTIFICATE;
 
-				// FALL THROUGH
-			}else if (option == Button.B_INSTALL_CERTIFICATE) {
+				
+			} else if (option == Button.B_INSTALL_CERTIFICATE) {
 
 				optionLocator = Locators.INSTALL_CERTIFICATE;
 
@@ -261,7 +260,7 @@ public class PageManageCertificates extends AbsTab {
 	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
-		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
+		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}

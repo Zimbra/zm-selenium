@@ -110,7 +110,7 @@ public class PageEditCOS extends AbsTab {
 
 			locator = Locators.zTwoFactorAuthNumScratchCodes;
 
-		}else {
+		} else {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 
@@ -155,7 +155,7 @@ public class PageEditCOS extends AbsTab {
 
 			locator = Locators.zEnableApplicationPasscodes;
 
-		}else {
+		} else {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 

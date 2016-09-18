@@ -34,7 +34,7 @@ public class create extends CalendarWorkWeekTest {
 
 	public create() {		
 		super.startingPage = app.zPageCalendar;
-		super.startingAccountPreferences = null;		
+				
 	}
 
 	@Bugs(ids = "75771")
@@ -113,7 +113,7 @@ public class create extends CalendarWorkWeekTest {
         int count = apptForm.sGetXpathCount(locator);           
         for  (int  i = 1; i <= count; i++) {
         	String calPullDown = locator + "[position()=" + i + "]//tr//*[contains(text(),'" + mountPointName + "')]";
-        	if(apptForm.zIsVisiblePerPosition(calPullDown, 0, 0)){
+        	if (apptForm.zIsVisiblePerPosition(calPullDown, 0, 0)) {
         	    apptForm.sClickAt(calPullDown, "");
         	    break;
         	}        	

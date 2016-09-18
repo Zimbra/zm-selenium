@@ -46,7 +46,7 @@ public class AddContactToEmailedContactNewWindow extends PrefGroupMailByMessageT
 		SeparateWindowFormMailNew window = null;
 		window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 		window.zSetWindowTitle("Compose");
-		window.zWaitForActive();		// Make sure the window is there
+		window.zWaitForActive();
 		window.waitForComposeWindow();
 		ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 

@@ -105,7 +105,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 			SleepUtil.sleepVeryLong();
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
@@ -115,10 +115,12 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 
 		} finally {
 
+			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
+				window.zCloseWindow();
 				window = null;
-			}
+   		 	}
+			app.zPageMail.zSelectWindow(null);
 		}
 		
 		FormApptNew apptForm = new FormApptNew(app);

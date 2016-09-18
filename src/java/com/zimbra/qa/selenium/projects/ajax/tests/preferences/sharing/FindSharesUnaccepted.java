@@ -35,7 +35,7 @@ public class FindSharesUnaccepted extends AjaxCommonTest {
 	public FindSharesUnaccepted() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 		
 	}
 

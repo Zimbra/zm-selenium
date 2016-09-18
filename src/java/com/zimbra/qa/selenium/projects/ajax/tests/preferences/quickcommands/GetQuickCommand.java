@@ -32,7 +32,7 @@ public class GetQuickCommand extends AjaxQuickCommandTest {
 	public GetQuickCommand() {
 
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 
 
 	}

@@ -41,7 +41,7 @@ public class DeleteHtmlSignature extends AjaxCommonTest {
 
 	public DeleteHtmlSignature() throws HarnessException {
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 	/**
 	 * Added @beforeClass because after logged in ,when we try to create

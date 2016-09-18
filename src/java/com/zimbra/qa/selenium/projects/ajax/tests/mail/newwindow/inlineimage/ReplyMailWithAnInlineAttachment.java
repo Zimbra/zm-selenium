@@ -93,7 +93,7 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 				window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 				window.zSetWindowTitle(windowTitle);
-				window.zWaitForActive();		// Make sure the window is there
+				window.zWaitForActive();
 
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
@@ -115,15 +115,7 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 
 				//click Send
 				window.zToolbarPressButton(Button.B_SEND);
-				window.zSetWindowTitle(windowTitle);
-				window.zWaitForActive();
-				//close New window
-				window.zToolbarPressButton(Button.B_CLOSE);
-				SleepUtil.sleepMedium();
-
-				// Window is closed automatically by the client
-				window = null;
-
+				
 			} finally {
 
 				// Make sure to close the window
@@ -131,6 +123,7 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 					window.zCloseWindow(windowTitle);
 					window = null;
 				}
+				app.zPageMail.zSelectWindow(null);
 
 			}
 			// Verify UI for attachment

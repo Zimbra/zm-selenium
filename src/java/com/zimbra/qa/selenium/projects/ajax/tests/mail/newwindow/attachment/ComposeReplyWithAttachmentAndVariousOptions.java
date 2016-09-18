@@ -42,10 +42,9 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 
 	public ComposeReplyWithAttachmentAndVariousOptions() {
 		logger.info("New "+ ComposeReplyWithAttachmentAndVariousOptions.class.getCanonicalName());
-		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
-	@Bugs(ids = "103903")
+	@Bugs(ids = "103903, 106583")
 	@Test( description = "Verify the presence of attachment while replying to a mail and changing option from  'Include Original as an attachment' to 'Include Original message' in new window", 
 			groups = { "functional" })
 
@@ -58,15 +57,15 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 			try {
 				// Send a message to the account
 				ZimbraAccount.AccountA().soapSend(
-						"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-								"<m>" +
-								"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-								"<su>"+ subject +"</su>" +
-								"<mp ct='text/html'>" +
-								"<content> Body content"+ ConfigProperties.getUniqueString() +"</content>" +
-								"</mp>" +
-								"</m>" +
-						"</SendMsgRequest>");
+					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+							"<m>" +
+							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+							"<su>"+ subject +"</su>" +
+							"<mp ct='text/html'>" +
+							"<content> Body content"+ ConfigProperties.getUniqueString() +"</content>" +
+							"</mp>" +
+							"</m>" +
+					"</SendMsgRequest>");
 
 				// Get the mail item for the new message
 				MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
@@ -79,29 +78,25 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 
 				// Select the item
 				app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-				SleepUtil.sleepSmall();
 
 				// Reply to the item
 				FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
 				SleepUtil.sleepLong();
 
-				//Include original message as attachment
+				// Include original message as attachment
 				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT);
+				zCloseRandomDialogs(mailform);
 
-				//Check if a warning dialog is present. If Yes, Press Yes to continue
-				if(mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
-
-					mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
-				}
-				SleepUtil.sleepSmall();
-
-				//Verify that the message is included as attachment
+				// Verify that the message is included as attachment
 				ZAssert.assertTrue(mailform.zHasAttachment(subject),"Original message is not present as attachment");
 
+				// Open it in new window
 				SeparateWindowFormMailNew window = null;
 				String windowTitle = "Zimbra: Reply";
 				
-				// Open it in new window
+				final String fileName = "inlineImage.jpg";
+				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+				
 				try {
 
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
@@ -113,36 +108,29 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 					// Select the window
 					window.sSelectWindow(windowTitle);
 
-					//Verify that the message is included as attachment in new window
+					// Verify that the message is included as attachment in new window
 					ZAssert.assertTrue(mailform.zHasAttachment(subject),"Original message is not present as attachment");
 
-					//Attach a new file
-					final String fileName = "inlineImage.jpg";
-					final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+					app.zPageMail.zKeyboard.zTypeCharacters("<CTRL><O>");
+					zUploadFile(filePath);
 
-					app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
-					app.zPageMail.zPressButton(Button.B_MY_COMPUTER);
-					zUpload(filePath);
-
-					//Include the original message in the body and not as attachment
+					// Include the original message in the body and not as attachment
 					mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_MESSAGE);
 					SleepUtil.sleepSmall();
 
-					//verify that the new attachment is present and message as attachment is not
+					// Verify that the new attachment is present and message as attachment is not
 					ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present");
 					ZAssert.assertFalse(mailform.zHasAttachment(subject),"Included original message attachment is still present");
-
-					//Close the new window
-					window.zCloseWindow(windowTitle);
-					window = null;
 
 				} finally {
 
 					// Make sure to close the window
 					if (window != null) {
 						window.zCloseWindow(windowTitle);
+						window.zCloseWindow(fileName);
 						window = null;
 					}
+					app.zPageMail.zSelectWindow(null);
 				}
 
 			} finally {
@@ -207,7 +195,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 				FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
 				SleepUtil.sleepLong();
 
-				//Attach a new file
+				// Attach a new file
 				final String fileName = "inlineImage.jpg";
 				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
@@ -215,22 +203,17 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 				app.zPageMail.zPressButton(Button.B_MY_COMPUTER);
 				zUpload(filePath);
 
-				//Select use prefix option from Options drop down
+				// Select use prefix option from Options drop down
 				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_USE_PRIFIX);
+				zCloseRandomDialogs(mailform);
 
-				//Check if a warning dialog is present. If Yes, Press Yes to continue
-				if(mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
-
-					mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
-				}
-
-				//verify that the attachment is still present
+				// Verify that the attachment is still present
 				ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present after selecting Use Prefix from Options!");
 
+				// Open it in new window
 				SeparateWindowFormMailNew window = null;
 				String windowTitle = "Zimbra: Reply";
 				
-				//Open it in new window
 				try {
 
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
@@ -242,12 +225,8 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 					// Select the window
 					window.sSelectWindow(windowTitle);
 
-					//Verify that the attachment is present in new window as well.
+					// Verify that the attachment is present in new window as well.
 					ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present in new window!");
-
-					//Close the new window
-					window.zCloseWindow(windowTitle);
-					window = null;
 
 				} finally {
 
@@ -256,6 +235,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 						window.zCloseWindow(windowTitle);
 						window = null;
 					}
+					app.zPageMail.zSelectWindow(null);
 				}
 
 			} finally {
@@ -282,7 +262,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 
 	@Bugs(ids = "103903")
 	@Test( description = "Verify the presence of attachment in new window while replying to a mail and selecting 'Include Headers' option from Options'", 
-		groups = { "functional" })
+			groups = { "functional" })
 
 	public void ComposeReplyWithAttachmentAndVariousOptions_03() throws HarnessException {
 
@@ -319,7 +299,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 				FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
 				SleepUtil.sleepLong();
 
-				//Attach a new file
+				// Attach a new file
 				final String fileName = "inlineImage.jpg";
 				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
@@ -327,27 +307,25 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 				app.zPageMail.zPressButton(Button.B_MY_COMPUTER);
 				zUpload(filePath);
 
-				//Select Include Headers from Options drop down
+				// Select Include Headers from Options drop down
 				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_HEADERS);
+				zCloseRandomDialogs(mailform);
 
-				//Check if a warning dialog is present. If Yes, Press Yes to continue
-				if(mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
-					mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
-				}
-
-				//verify that the attachment is present after selecting Include Headers option
+				// Verify that the attachment is present after selecting Include Headers option
 				ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present after selecting Include Headers from Options!");
 
-				//Select Include Headers from Options drop down  again as it was set by default
+				// Select Include Headers from Options drop down again as it was set by default
 				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_HEADERS);
-
-				//verify that the attachment is present after selecting Include Headers option
+				SleepUtil.sleepMedium();
+				zCloseRandomDialogs(mailform);
+				
+				// Verify that the attachment is present after selecting Include Headers option
 				ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present after selecting Include Headers from Options!");
 
+				// Open message in a separate window
 				SeparateWindowFormMailNew window = null;
 				String windowTitle = "Zimbra: Reply";
 				
-				// Open it in new window
 				try {
 
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
@@ -359,12 +337,8 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 					// Select the window
 					window.sSelectWindow(windowTitle);
 
-					//Verify that the attachment is present in new window as well.
+					// Verify that the attachment is present in new window as well.
 					ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present in new window!");
-
-					//Close the new window
-					window.zCloseWindow(windowTitle);
-					window = null;
 
 				} finally {
 
@@ -373,6 +347,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 						window.zCloseWindow(windowTitle);
 						window = null;
 					}
+					app.zPageMail.zSelectWindow(null);
 				}
 
 			} finally {
@@ -394,6 +369,22 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 			
 		} else {
 			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+		}
+	}
+	
+	
+	public void zCloseRandomDialogs(FormMailNew mailform) throws HarnessException {
+		
+		// Check if a warning dialog is present. If Yes, Press Yes to continue
+		if (mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
+			mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
+			SleepUtil.sleepMedium();
+		}
+		
+		// Check if a warning dialog is present. If Yes, Press Yes to continue
+		if (mailform.sIsVisible("css=div#OkCancel.DwtDialog") && mailform.sIsElementPresent("css=div#OkCancel.DwtDialog")) {
+			mailform.sClickAt("css=div#OkCancel.DwtDialog td[id^='OK']  td[id$='_title']","0,0");
+			SleepUtil.sleepMedium();
 		}
 	}
 }

@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.mountpoints;
 
-
 import java.util.HashMap;
 
 import org.testng.annotations.Test;
@@ -34,11 +33,8 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder.FolderColor;
 
-
 public class ChangeColorMountpoint extends PrefGroupMailByMessageTest {
 
-	
-	
 	@SuppressWarnings("serial")
 	public ChangeColorMountpoint() {
 		logger.info("New " + ChangeColorMountpoint.class.getCanonicalName());
@@ -51,18 +47,18 @@ public class ChangeColorMountpoint extends PrefGroupMailByMessageTest {
 				
 			}
 		};
-
 	}
+	
 	
 	@Test( description = "Edit a tasklist, change the color (Context menu -> Edit)",
 			groups = { "functional" })
+	
 	public void ChangeColorMountpoint_01() throws HarnessException {
 		
 		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();
 
 		// Owner creates a folder, shares it with current user
 		String ownerFoldername = "ownerfolder"+ ConfigProperties.getUniqueString();
-
 		
 		FolderItem ownerTask = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		ZAssert.assertNotNull(ownerTask, "Verify the new owner folder exists");
@@ -89,16 +85,14 @@ public class ChangeColorMountpoint extends PrefGroupMailByMessageTest {
 						+ "' zid='" + Owner.ZimbraId + "'/>"
 						+ "</CreateMountpointRequest>");
 
-		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(
-				app.zGetActiveAccount(), mountpointFoldername);
+		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointFoldername);
 		ZAssert.assertNotNull(mountpoint, "Verify the subfolder is available");
 
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Rename the folder using context menu
-		DialogEditFolder dialog = 
-			(DialogEditFolder) app.zTreeTasks.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_EDIT, mountpoint);
+		DialogEditFolder dialog = (DialogEditFolder) app.zTreeTasks.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_EDIT, mountpoint);
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 
 		// Change the color, click OK
@@ -110,7 +104,5 @@ public class ChangeColorMountpoint extends PrefGroupMailByMessageTest {
 
 		String color = app.zGetActiveAccount().soapSelectValue("//mail:link[@name='" + mountpoint.getName() + "']", "color");
 		ZAssert.assertEquals(color, "8", "Verify the color of the folder is set to gray (8)");
-		
-	}	
-
+	}
 }

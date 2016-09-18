@@ -40,17 +40,19 @@ public class DisableZimlet extends AjaxCommonTest {
 
       // Make sure we are using an account with message view
       super.startingAccountPreferences = new HashMap<String, String>() {{
-                put("zimbraPrefGroupMailBy", "message");
-                put("zimbraPrefMessageViewHtmlPreferred", "TRUE");
-            }};
+    	  put("zimbraPrefGroupMailBy", "message");
+    	  put("zimbraPrefMessageViewHtmlPreferred", "TRUE");
+      }};
 
       super.startingUserZimletPreferences = new HashMap<String, String>() {{
-            put("com_zimbra_phone", "disabled");
-            }};
+    	  put("com_zimbra_phone", "disabled");
+      }};
    }
 
-   @Test(   description = "Receive a text mail - verify numeric mail contents is not converted into phone number hyperlink",
+
+   @Test( description = "Receive a text mail - verify numeric mail contents is not converted into phone number hyperlink",
          groups = { "functional" })
+
    public void DisableZimlet_01() throws HarnessException {
 
       // Create the message data to be sent
@@ -87,20 +89,21 @@ public class DisableZimlet extends AjaxCommonTest {
 
       // The body could contain HTML, even though it is only displaying text (e.g. <br> may be present)
       // do a contains, rather than equals.
-      ZAssert.assertStringContains( actual.zGetMailProperty(Field.Body), mail.dBodyText, "Verify the body matches");
-      ZAssert.assertStringDoesNotContain( actual.zGetMailProperty(Field.Body), "<span", "Ensure that the body doesn't contain <span from phone zimlet");
+      ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), mail.dBodyText, "Verify the body matches");
+      ZAssert.assertStringDoesNotContain(actual.zGetMailProperty(Field.Body), "<span", "Ensure that the body doesn't contain <span from phone zimlet");
 
    }
 
+
    @Test(   description = "Receive an html mail - verify numeric mail contents is not converted into phone number hyperlink",
          groups = { "functional" })
+
    public void DisableZimlet_02() throws HarnessException {
 
       // Create the message data to be sent
       String subject = "subject" + ConfigProperties.getUniqueString();
       String bodyText = "text" + ConfigProperties.getUniqueString();
-    //  String bodyHTML = "text <strong>"+ ConfigProperties.getUniqueString() +"</strong> text";
-      String bodyHTML = "text <strong style=\"\">bold"+ ConfigProperties.getUniqueString() +"</strong> text";
+      String bodyHTML = "text <strong>bold"+ ConfigProperties.getUniqueString() +"</strong> text";
       String contentHTML = XmlStringUtil.escapeXml(
          "<html>" +
             "<head></head>" +

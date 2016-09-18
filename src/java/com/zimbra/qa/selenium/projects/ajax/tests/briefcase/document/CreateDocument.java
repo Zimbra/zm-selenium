@@ -24,7 +24,6 @@ import java.util.regex.Pattern;
 import java.text.SimpleDateFormat;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.util.HtmlElement;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.DocumentItem;
@@ -37,13 +36,10 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DocumentBriefcaseNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DocumentBriefcaseOpen;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.PageBriefcase;
-import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.TreeBriefcase;
 
 public class CreateDocument extends FeatureBriefcaseTest {
 
@@ -187,7 +183,9 @@ public class CreateDocument extends FeatureBriefcaseTest {
 	}
 
 	
-	@Test( description = "Create document using keyboard shortcut - verify through SOAP & RestUtil", groups = { "functional" })
+	@Test( description = "Create document using keyboard shortcut - verify through SOAP & RestUtil", 
+			groups = { "functional" })
+	
 	public void CreateDocument_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -253,119 +251,11 @@ public class CreateDocument extends FeatureBriefcaseTest {
 	}
 
 	
-	@Test( description = "Create document through GUI - verify through GUI", groups = { "functional" })
-	public void CreateDocument_04() throws HarnessException {
-		ZimbraAccount account = app.zGetActiveAccount();
-
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
-
-		// Create document item
-		DocumentItem docItem = new DocumentItem();
-
-		String docName = docItem.getName();
-		String docText = docItem.getDocText();
-
-		app.zPageBriefcase.zWaitForElementPresent(TreeBriefcase.Locators.briefcaseListView);
-
-		app.zPageBriefcase.zIsVisiblePerPosition(TreeBriefcase.Locators.briefcaseTreeView+"16]",0,0);
-		app.zPageBriefcase.sMouseOver(TreeBriefcase.Locators.briefcaseTreeView+"16]");
-		app.zPageBriefcase.sFocus(TreeBriefcase.Locators.briefcaseTreeView+"16]");
-		app.zPageBriefcase.zClickAt(TreeBriefcase.Locators.briefcaseTreeView+"16]","");
-		app.zPageBriefcase.zRightClickAt(TreeBriefcase.Locators.briefcaseTreeView+"16]","");
-		app.zPageBriefcase.zClick(TreeBriefcase.Locators.briefcaseTreeView+"16]");
-		app.zPageBriefcase.zGetHtml(TreeBriefcase.Locators.briefcaseListView);
-		app.zPageBriefcase.sGetHtmlSource();
-		app.zPageBriefcase.sGetBodyText();
-
-		String tagName = "tag" + ConfigProperties.getUniqueString();
-		Shortcut shortcut = Shortcut.S_NEWTAG;
-
-		DialogTag dialog = (DialogTag) app.zPageBriefcase.zKeyboardShortcut(shortcut);
-
-		// Fill out the tag dialog input field
-		dialog.zSetTagName(tagName);
-
-		SleepUtil.sleepVerySmall();
-
-		dialog.zClickButton(Button.B_OK);
-
-		// Open new document page
-		DocumentBriefcaseNew documentBriefcaseNew = (DocumentBriefcaseNew) app.zPageBriefcase.zToolbarPressButton(Button.B_NEW, docItem);
-
-		SleepUtil.sleepMedium();
-
-		try {
-			app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
-			app.zPageBriefcase.sWindowFocus();
-
-			// Fill out the document with the data
-			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name, docName);
-			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Body, docText);
-
-			// Save and close
-			app.zPageBriefcase.sWindowFocus();
-			documentBriefcaseNew.zSubmit();
-
-		} finally {
-			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
-			app.zPageBriefcase.sWindowFocus();
-		}
-
-		SleepUtil.sleepSmall();
-
-		app.zPageBriefcase.zWaitForWindowClosed(DocumentBriefcaseNew.pageTitle);
-
-		// Refresh briefcase page
-		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-
-		// Click on created document
-		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, docItem);
-		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, docItem);
-
-		// Click on open in a separate window icon in toolbar
-		DocumentBriefcaseOpen documentBriefcaseOpen;
-
-		//work around because of existing bug
-		docText = "";
-		docItem.setDocText(docText);
-		documentBriefcaseOpen = (DocumentBriefcaseOpen) app.zPageBriefcase.zToolbarPressButton(Button.B_OPEN_IN_SEPARATE_WINDOW, docItem);
-
-		//app.zPageBriefcase.isOpenDocLoaded(docItem);
-		app.zPageBriefcase.zWaitForWindow(docItem.getName());
-
-		String name = "";
-		String text = "";
-
-		// Select document opened in a separate window
-		try {
-			app.zPageBriefcase.zSelectWindow(docName);
-			app.zPageBriefcase.sWindowFocus();
-
-			name = documentBriefcaseOpen.retriveDocumentName();
-			text = documentBriefcaseOpen.retriveDocumentText();
-
-			SleepUtil.sleepSmall();
-
-			// close
-			app.zPageBriefcase.zSelectWindow(docName);
-			app.zPageBriefcase.sWindowFocus();
-			app.zPageBriefcase.closeWindow();
-
-		} finally {
-			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
-			app.zPageBriefcase.sWindowFocus();
-		}
-
-		ZAssert.assertStringContains(name, docName, "Verify document name through GUI");
-
-		ZAssert.assertStringContains(text, docText, "Verify document text through GUI");
-	}
-
-	
 	@Bugs(ids="81299")
-	@Test( description = "Create document using New menu pulldown menu - verify through SOAP & RestUtil", groups = { "functional" })
-	public void CreateDocument_05() throws HarnessException {
+	@Test( description = "Create document using New menu pulldown menu - verify through SOAP & RestUtil", 
+			groups = { "functional" })
+	
+	public void CreateDocument_04() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,

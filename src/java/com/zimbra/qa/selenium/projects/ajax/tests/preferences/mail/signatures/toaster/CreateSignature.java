@@ -34,7 +34,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatu
 public class CreateSignature extends AjaxCommonTest {
 	public CreateSignature() {
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 
 	@Test( description = "Create Simple text signature and verify Toast Msg through GUI", groups = { "smoke" })

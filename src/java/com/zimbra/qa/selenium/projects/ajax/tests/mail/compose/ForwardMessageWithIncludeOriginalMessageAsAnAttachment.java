@@ -16,7 +16,7 @@ public class ForwardMessageWithIncludeOriginalMessageAsAnAttachment extends Pref
 		logger.info("New "+ ForwardMessageWithIncludeOriginalMessageAsAnAttachment.class.getCanonicalName());
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "Bug 102745 - 'Forward email with 'Include original message as attachment' option enabled ",

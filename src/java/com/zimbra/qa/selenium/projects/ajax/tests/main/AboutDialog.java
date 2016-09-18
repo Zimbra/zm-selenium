@@ -23,26 +23,19 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
-
 public class AboutDialog extends AjaxCommonTest {
 
 	public AboutDialog() {
 		logger.info("New "+ AboutDialog.class.getCanonicalName());
-		
-		
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = null;
-
-		
 	}
+	
 	
 	@Test( description = "Open the 'About' dialog",
 			groups = { "functional" })
+	
 	public void AboutDialog_01() throws HarnessException {
 		
-		//-- DATA
-
-
 		//-- GUI
 		
 		// Click the Account -> About menu

@@ -16,8 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.mountpoints.manager;
 
-
-
 import java.util.HashMap;
 import java.util.List;
 import org.testng.annotations.Test;
@@ -34,8 +32,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
-
 public class DragAndDropSharedTask extends AjaxCommonTest {
 
 	@SuppressWarnings("serial")
@@ -49,12 +45,13 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 				put("zimbraPrefShowSelectionCheckbox", "TRUE");
 			}
 		};			
-
 	}
+	
 
 	@Test( description = "Drag task  from shared folder and drop into local task folder (manager rights)",
 			groups = { "functional" })
-			public void DragAndDropSharedTaskToLocalFolder() throws HarnessException {
+	
+	public void DragAndDropSharedTaskToLocalFolder() throws HarnessException {
 
 		String foldername = "tasklist" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -131,8 +128,7 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
 		TaskItem found = null;
 		for (TaskItem t : tasks) {
-			logger.info("Task: looking for " + subject + " found: "
-					+ t.gSubject);
+			logger.info("Task: looking for " + subject + " found: " + t.gSubject);
 			if (subject.equals(t.gSubject)) {
 				// Found it!
 				found = t;
@@ -162,7 +158,8 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 
 	@Test( description = "Drag task from local task folder to shared folder(manager rights)",
 			groups = { "functional" })
-			public void DragAndDropTaskToSharedFolder() throws HarnessException {
+	
+	public void DragAndDropTaskToSharedFolder() throws HarnessException {
 
 		String foldername = "tasklist" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -186,7 +183,6 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -236,8 +232,7 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
 		TaskItem found = null;
 		for (TaskItem t : tasks) {
-			logger.info("Task: looking for " + subject + " found: "
-					+ t.gSubject);
+			logger.info("Task: looking for " + subject + " found: " + t.gSubject);
 			if (subject.equals(t.gSubject)) {
 				// Found it!
 				found = t;
@@ -253,8 +248,7 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 
 		TaskItem movetask = null;
 		for (TaskItem t : tasks1) {
-			logger.info("Task: looking for " + subject + " found: "
-					+ t.gSubject);
+			logger.info("Task: looking for " + subject + " found: " + t.gSubject);
 			if (subject.equals(t.gSubject)) {
 				// Found it!
 				movetask = t;
@@ -263,8 +257,4 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 		}
 		ZAssert.assertNotNull(movetask,	"Verify the task is Drag and drop to the mounted/shared folder");
 	}
-
-
-
 }
-

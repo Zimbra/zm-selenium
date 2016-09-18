@@ -30,7 +30,7 @@ public class ExportCalendar extends AjaxCommonTest {
 	public ExportCalendar() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 
 

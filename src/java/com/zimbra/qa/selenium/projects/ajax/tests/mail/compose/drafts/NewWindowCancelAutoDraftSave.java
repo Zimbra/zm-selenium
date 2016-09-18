@@ -15,7 +15,7 @@ public class NewWindowCancelAutoDraftSave extends PrefGroupMailByMessageTest {
 		logger.info("New "+ NewWindowCancelAutoDraftSave.class.getCanonicalName());
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "Bug 99875 - 'Message gets auto saved while clicking cancel and 'Auto draft save'= No, from New window ", groups = { "functional" })
@@ -74,12 +74,11 @@ public class NewWindowCancelAutoDraftSave extends PrefGroupMailByMessageTest {
 
 		} finally {
 
-			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
+				window.zCloseWindow();
 				window = null;
-			}
-
+   		 	}
+			app.zPageMail.zSelectWindow(null);
 		}
 	
 	}

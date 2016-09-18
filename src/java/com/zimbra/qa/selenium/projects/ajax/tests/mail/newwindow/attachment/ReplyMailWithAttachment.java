@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachment;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -16,6 +14,8 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachment;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
+
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachment;
 
 import org.testng.SkipException;
 import org.testng.annotations.Test;
@@ -60,49 +60,39 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 			// Select the item
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-			FolderItem sent = FolderItem.importFromSOAP(
-					app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
+			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 
 			// Create file item
 			final String fileName = "testtextfile.txt";
 			final String filePath = ConfigProperties.getBaseDirectory()	+ "\\data\\public\\other\\" + fileName;
 
 			SeparateWindowDisplayMail window = null;
-			String windowTitle = "Zimbra: Reply";
+			String windowTitle = "Zimbra: " + subject;
 
 			try {
 
 				// Choose Actions -> Launch in Window
-				//	window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 				window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 				window.zSetWindowTitle(windowTitle);
-				window.zWaitForActive();		// Make sure the window is there
+				window.zWaitForActive();
 
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 				window.zToolbarPressButton(Button.B_REPLY);
 				SleepUtil.sleepMedium();
+
 				window.zSetWindowTitle(windowTitle);
 				SleepUtil.sleepMedium();
-				//window.zWaitForActive();
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 				//Add an attachment
 				window.zPressButton(Button.B_ATTACH);
-				zUpload(filePath);
+				zUpload(filePath, window);
 
 				//click Send
 				window.zToolbarPressButton(Button.B_SEND);
-				window.zSetWindowTitle(windowTitle);
-				window.zWaitForActive();
-				//close New window
-				window.zToolbarPressButton(Button.B_CLOSE);
-				SleepUtil.sleepMedium();
-
-				// Window is closed automatically by the client
-				window = null;
-
+				
 			} finally {
 
 				// Make sure to close the window
@@ -110,7 +100,7 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 					window.zCloseWindow(windowTitle);
 					window = null;
 				}
-
+				app.zPageMail.zSelectWindow(null);
 			}
 
 			// Verify UI for attachment
@@ -118,14 +108,9 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 			ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName),"Verify attachment exists in the email");
 
-			// From the receiving end, verify the message details
-			// Need 'in:inbox' to seprate the message from the sent message
 			MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "in:inbox subject:("+subject +")");
-
 			ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 			ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
-			/*ZAssert.assertStringContains(received.dSubject, subject, "Verify the subject field is correct");
-			ZAssert.assertStringContains(received.dSubject, "Re", "Verify the subject field contains the 'Re' prefix");*/
 			ZAssert.assertStringContains(received.dSubject, "Re: " + subject, "Verify Reply subject field is correct");
 
 		} else {

@@ -38,7 +38,7 @@ public class ZmTasksApp_InList_Task1 extends AjaxCommonTest {
       super.startingPage = app.zPageMail;
 
       // Make sure we are using an account with message view
-      super.startingAccountPreferences = null;
+      
    }
 
    @DataProvider(name = "DataProvider_LoadingApp_1Task")

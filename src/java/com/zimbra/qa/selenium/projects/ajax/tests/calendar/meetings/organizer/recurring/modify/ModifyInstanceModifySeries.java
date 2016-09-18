@@ -38,7 +38,7 @@ public class ModifyInstanceModifySeries extends CalendarWorkWeekTest {
 	public ModifyInstanceModifySeries() {
 		logger.info("New "+ ModifyInstanceModifySeries.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Bugs(ids = "66800")	

@@ -32,13 +32,14 @@ public class RenameTag extends AjaxCommonTest {
 	public RenameTag() {
 		logger.info("Tasks " + RenameTag.class.getCanonicalName());
 
-		// All tests start at the login page
 		super.startingPage = app.zPageTasks;
-		super.startingAccountPreferences = null;
-
+		
 	}
 
-	@Test( description = "Rename a tag - Right click, Rename", groups = { "smoke" })
+	
+	@Test( description = "Rename a tag - Right click, Rename", 
+			groups = { "smoke" })
+	
 	public void RenameTag_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app
@@ -54,15 +55,14 @@ public class RenameTag extends AjaxCommonTest {
 		TagItem tag = TagItem.importFromSOAP(app.zGetActiveAccount(), name1);
 		ZAssert.assertNotNull(tag, "Verify the tag was created");
 
-		// Click on Get Mail to refresh the folder list
+		// Click to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Click on Task explicitly to refresh the tag list
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		// Rename the tag using the context menu
-		DialogRenameTag dialog = (DialogRenameTag) app.zTreeTasks.zTreeItem(
-				Action.A_RIGHTCLICK, Button.B_RENAME, tag);
+		DialogRenameTag dialog = (DialogRenameTag) app.zTreeTasks.zTreeItem(Action.A_RIGHTCLICK, Button.B_RENAME, tag);
 		ZAssert.assertNotNull(dialog, "Verify the warning dialog opened");
 
 		// Set the new name, click OK

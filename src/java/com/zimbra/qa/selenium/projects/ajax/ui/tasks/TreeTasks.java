@@ -31,8 +31,6 @@ public class TreeTasks extends AbsTree {
 		public static final String ztih__main_Mail__ZIMLET_nodeCell_ID = "ztih__main_Mail__ZIMLET_nodeCell";
 		public static final String zNewTagIcon = "//td[contains(@class,'overviewHeader-Text FakeAnchor')]/div[contains(@class,'ImgNewTag')]";
 		public static final String zTagsHeader = "//td[contains(@id,'ztih__main_Tasks__TAG_textCell')]";
-	//	public static final String zDeleteTreeMenuItem = "//div[contains(@class,'ZMenuItem')]//tbody//td[contains(@id,'_left_icon')]/div[contains(@class,'ImgDelete')]";
-	//	public static final String zRenameTreeMenuItem = "//div[contains(@class,'ZMenuItem')]//tbody//td[contains(@id,'_left_icon')]/div[contains(@class,'ImgRename')]";
 		public static final String zDeleteTreeMenuItem = "css=div[id^='DELETE_WITHOUT_SHORTCUT'] tr[id='POPUP_DELETE_WITHOUT_SHORTCUT']";
 		public static final String zRenameTreeMenuItem ="css=tr#POPUP_RENAME_FOLDER";
 		public static final String zEditTreeMenuItem ="css=tr#POPUP_EDIT_PROPS";
@@ -41,18 +39,11 @@ public class TreeTasks extends AbsTree {
 		public static final String zShareTreeMenuItem ="css=div[id='SHARE_TASKFOLDER'] tr[id='POPUP_SHARE_TASKFOLDER']";
 	}
 	
-		
-	
 	public TreeTasks(AbsApplication application) {
 		super(application);
 		logger.info("new " + TreeTasks.class.getCanonicalName());
 	}
 	
-
-
-	/* (non-Javadoc)
-	 * @see com.zimbra.qa.selenium.framework.ui.AbsTree#zPressButton(com.zimbra.qa.selenium.framework.ui.Button)
-	 */
 	@Override
 	public AbsPage zPressButton(Button button) throws HarnessException {
 		tracer.trace("Press the " + button + " button");
@@ -65,25 +56,22 @@ public class TreeTasks extends AbsTree {
 		if (button == Button.B_TREE_NEWTAG) {
 
 			locator = Locators.zNewTagIcon;
-
 			if (!this.sIsElementPresent(locator)) {
-				throw new HarnessException("Unable to locator folder in tree "
-						+ locator);
+				throw new HarnessException("Unable to locator folder in tree " + locator);
 			}
 			page = new DialogTag(MyApplication,((AppAjaxClient) MyApplication).zPageTasks);
-		}else if (button == Button.B_TREE_NEWTASKLIST) {
+			
+		} else if (button == Button.B_TREE_NEWTASKLIST) {
 
 			locator = "css=div[id=ztih__main_Tasks__TASK] div[class^=ImgNewTaskList ZWidget]";
 			page = new DialogCreateTaskFolder(MyApplication,((AppAjaxClient) MyApplication).zPageTasks);
 
 			if (!this.sIsElementPresent(locator)) {
-				throw new HarnessException(
-						"Unable to locate folder in the tree " + locator);
+				throw new HarnessException("Unable to locate folder in the tree " + locator);
 			}
-
 			this.zClickAt(locator, "0,0");
-
 			zWaitForBusyOverlay();
+			SleepUtil.sleepSmall();
 
 			return page;
 
@@ -95,28 +83,20 @@ public class TreeTasks extends AbsTree {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Click it
 		this.zClickAt(locator,"");
-
-		// If the app is busy, wait for that to finish
 		this.zWaitForBusyOverlay();
+		SleepUtil.sleepSmall();
 
-		// If page was specified, make sure it is active
 		if (page != null) {
-
-			// This function (default) throws an exception if never active
 			page.zWaitForActive();
 
 		}
-
 		return (page);
-
 	}
 	
-	public AbsPage zPressPulldown(Button pulldown, Button option)
-	throws HarnessException {
-		logger.info(myPageName() + " zPressPulldown(" + pulldown + ", "
-				+ option + ")");
+	public AbsPage zPressPulldown(Button pulldown, Button option) throws HarnessException {
+		
+		logger.info(myPageName() + " zPressPulldown(" + pulldown + ", " + option + ")");
 
 		tracer.trace("Click " + pulldown + " then " + option);
 
@@ -140,84 +120,56 @@ public class TreeTasks extends AbsTree {
 				page = new DialogCreateTaskFolder(MyApplication,((AppAjaxClient) MyApplication).zPageTasks);
 
 			} else {
-				throw new HarnessException("Pulldown/Option " + pulldown + "/"
-						+ option + " not implemented");
+				throw new HarnessException("Pulldown/Option " + pulldown + "/" + option + " not implemented");
 			}
-
-			// FALL THROUGH
 
 		} else if (pulldown == Button.B_TREE_TAGS_OPTIONS) {
 
 			pulldownLocator = "css=div[id='zov__main_Tasks'] td[id='ztih__main_Tasks__TAG_optCell'] div[class*=ImgContextMenu]";
 
 			if (option == Button.B_TREE_NEWTAG) {
-
 				optionLocator = "css=div[id='ZmActionMenu_tasks_TAG'] div[id='NEW_TAG'] td[id$='_title']";
 				page = new DialogTag(MyApplication,((AppAjaxClient) MyApplication).zPageTasks);
 
 			} else {
-				throw new HarnessException("Pulldown/Option " + pulldown + "/"
-						+ option + " not implemented");
+				throw new HarnessException("Pulldown/Option " + pulldown + "/" + option + " not implemented");
 			}
-
-			// FALL THROUGH
 
 		} else {
 			throw new HarnessException("Pulldown/Option " + pulldown + "/"
 					+ option + " not implemented");
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
-				throw new HarnessException("Button " + pulldown + " option "
-						+ option + " pulldownLocator " + pulldownLocator
-						+ " not present!");
+				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
+						+ pulldownLocator + " not present!");
 			}
 
-			// 8.0 change ... need zClickAt()
-			// this.zClick(pulldownLocator);
 			this.zClickAt(pulldownLocator, "0,0");
-
-			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
 
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
-					throw new HarnessException("Button " + pulldown
-							+ " option " + option + " optionLocator "
+					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
 				}
 
-				// 8.0 change ... need zClickAt()
-				// this.zClick(optionLocator);
 				this.zClickAt(optionLocator, "0,0");
-
-				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
 			}
 
-			// If we click on pulldown/option and the page is specified, then
-			// wait for the page to go active
 			if (page != null) {
 				page.zWaitForActive();
 			}
 		}
 		
 		SleepUtil.sleepMedium();
-
-		// Return the specified page, or null if not set
 		return (page);
-
 	}
 
-	/* (non-Javadoc)
-	 * @see framework.ui.AbsTree#zTreeItem(framework.ui.Action, framework.items.FolderItem)
-	 */
 	public AbsPage zTreeItem(Action action, IItem tasklist) throws HarnessException {
 		
 		tracer.trace(action +" on folder = "+ tasklist.getName());
@@ -228,55 +180,42 @@ public class TreeTasks extends AbsTree {
 		if ( !(tasklist instanceof FolderItem) )
 			throw new HarnessException("folder must be of type FolderItem");
 		
-		// TODO: should be TaskListItem?
 		FolderItem f = (FolderItem) tasklist;
 		
 		if ( action == Action.A_LEFTCLICK ) {
 			if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-			   locator = "css=[id^='zti__" + MyApplication.zGetActiveAccount().EmailAddress +
-			         ":main_Tasks__'][id$=':" + f.getId() + "_textCell']";
+				locator = "css=[id^='zti__" + MyApplication.zGetActiveAccount().EmailAddress + ":main_Tasks__'][id$=':" + f.getId() + "_textCell']";
 			} else {
 			   locator = "zti__main_Tasks__" + f.getId() + "_textCell";
 			}
 			
-			// FALL THROUGH
-
 		} else if ( action == Action.A_RIGHTCLICK ) {
 			
-		   if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-            locator = "css=[id^='zti__" + MyApplication.zGetActiveAccount().EmailAddress +
-                  ":main_Tasks__'][id$=':" + f.getId() + "_textCell']";
-         } else {
-            locator = "zti__main_Tasks__" + f.getId() + "_textCell";
-         }
+			if (ConfigProperties.getAppType() == AppType.DESKTOP) {
+				locator = "css=[id^='zti__" + MyApplication.zGetActiveAccount().EmailAddress + ":main_Tasks__'][id$=':" + f.getId() + "_textCell']";
+		   	} else {
+		   		locator = "zti__main_Tasks__" + f.getId() + "_textCell";
+		   	}
 
-			// Select the folder
 			this.zRightClick(locator);
-			
-			// return a context menu
 			return (new ContextMenu(MyApplication));
 
 		} else {
 			throw new HarnessException("Action "+ action +" not yet implemented");
 		}
 		
-		// Default behavior.  Click the locator
 		zClick(locator);
-
-		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
-
-		((AppAjaxClient)MyApplication).zPageTasks.zWaitForDesktopLoadingSpinner(5000);
+		SleepUtil.sleepSmall();
 
 		return (page);
 
 	}
 		
 	@Override
-	public AbsPage zTreeItem(Action action, Button option, IItem tasklist)
-			throws HarnessException {
-		logger.info(myPageName() + " zListItem(" + action + ", " + option
-				+ ", " + tasklist + ")");
+	public AbsPage zTreeItem(Action action, Button option, IItem tasklist) throws HarnessException {
+		
+		logger.info(myPageName() + " zListItem(" + action + ", " + option + ", " + tasklist + ")");
 
 		if (action == null)
 			throw new HarnessException("action cannot be null");
@@ -285,15 +224,12 @@ public class TreeTasks extends AbsTree {
 		if (tasklist == null)
 			throw new HarnessException("folder cannot be null");
 
-		tracer.trace(action + " then " + option + " on task = "
-				+ tasklist.getName());
+		tracer.trace(action + " then " + option + " on task = " + tasklist.getName());
 
 		AbsPage page = null;
 		String actionLocator = null;
 		String optionLocator = null;
-		// String itemLocator = null;
 
-		// TODO: should be TaskList item?
 		if (!(tasklist instanceof TagItem))
 			throw new HarnessException("folder must be of type FolderItem");
 
@@ -302,24 +238,18 @@ public class TreeTasks extends AbsTree {
 		tracer.trace("processing " + t.getName());
 
 		if (action == Action.A_LEFTCLICK) {
-
 			actionLocator = "implement me";
 
 		} else if (action == Action.A_RIGHTCLICK) {
 
-			// actionLocator= Locators.zTagsHeader;
-			// 8.0 D4 (4/19/2012)
-			// actionLocator = "zti__main_Mail__" + t.getId() + "_textCell";
-
-			actionLocator = "css=td[id^='zti__main_Mail__']:contains('"+ t.getName() +"')";
-
+			actionLocator = "css=td[id^='zti__main_Tasks__']:contains('"+ t.getName() +"')";
 			this.zRightClickAt(actionLocator,"");
-
 			page = new DialogTag(MyApplication,((AppAjaxClient) MyApplication).zPageTasks);
 
 		} else {
 			throw new HarnessException("Action " + action+ " not yet implemented");
 		}
+		
 		if (option == Button.B_TREE_NEWTAG) {
 			
 			optionLocator=Locators.zNewTagTreeMenuItem;
@@ -327,11 +257,8 @@ public class TreeTasks extends AbsTree {
 		} else if (option == Button.B_DELETE) {
 
 			optionLocator = Locators.zDeleteTreeMenuItem;
-			//optionLocator = "css=tr#POPUP_DELETE";
 
-			page = new DialogWarning(
-					DialogWarning.DialogWarningID.DeleteTagWarningMessage,
-					MyApplication, ((AppAjaxClient) MyApplication).zPageTasks);
+			page = new DialogWarning(DialogWarning.DialogWarningID.DeleteTagWarningMessage, MyApplication, ((AppAjaxClient) MyApplication).zPageTasks);
 
 		} else if (option == Button.B_RENAME) {
 
@@ -339,31 +266,25 @@ public class TreeTasks extends AbsTree {
 
 			page = new DialogRenameTag(MyApplication,((AppAjaxClient) MyApplication).zPageTasks);
 
-		}else {
-			throw new HarnessException("button " + option
-					+ " not yet implemented");
+		} else {
+			throw new HarnessException("button " + option + " not yet implemented");
 		}
 
 		if (optionLocator == null)
 			throw new HarnessException("locator is null for option " + option);
 
-		// Default behavior. Click the locator
 		zClickAt(optionLocator,"");
-
-		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
+		SleepUtil.sleepSmall();
 
 		if (page != null) {
-
-			// Wait for the page to become active, if it was specified
 			page.zWaitForActive();
 		}
 
 		return (page);
 	}
 
-	public AbsPage zTreeItem(Action action, Button option, FolderItem folderItem)
-			throws HarnessException {
+	public AbsPage zTreeItem(Action action, Button option, FolderItem folderItem) throws HarnessException {
 
 		if (action == null)
 			throw new HarnessException("action cannot be null");
@@ -381,20 +302,16 @@ public class TreeTasks extends AbsTree {
 
 		if (action == Action.A_LEFTCLICK) {
 			if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-				actionLocator = "css=[id^='zti__"
-						+ MyApplication.zGetActiveAccount().EmailAddress
+				actionLocator = "css=[id^='zti__" + MyApplication.zGetActiveAccount().EmailAddress
 						+ ":main_Tasks__'][id$=':" + folderItem.getId() + "_textCell']";
 			} else {
 				actionLocator = "zti__main_Tasks__" + folderItem.getId() + "_textCell";
 			}
 
-			// FALL THROUGH
-
 		} else if (action == Action.A_RIGHTCLICK) {
 
 			if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-				actionLocator = "css=[id^='zti__"
-						+ MyApplication.zGetActiveAccount().EmailAddress
+				actionLocator = "css=[id^='zti__" + MyApplication.zGetActiveAccount().EmailAddress
 						+ ":main_Tasks__'][id$=':" + folderItem.getId() + "_textCell']";
 			} else {
 				actionLocator = "zti__main_Tasks__" + folderItem.getId() + "_textCell";
@@ -402,67 +319,52 @@ public class TreeTasks extends AbsTree {
 
 			// Select the folder
 			this.zRightClickAt(actionLocator,"0,0");
+			this.zWaitForBusyOverlay();
+			SleepUtil.sleepSmall();
 
 		} else {
-			throw new HarnessException("Action " + action
-					+ " not yet implemented");
+			throw new HarnessException("Action " + action + " not yet implemented");
 		}
 
 		if (option == Button.B_DELETE) {
 
-			 optionLocator = Locators.zDeleteTreeMenuItem;
-			//optionLocator = "css=tr#POPUP_DELETE";
-			//page = new DialogConfirm(DialogConfirm.Confirmation.DELETE,
-					//MyApplication, ((AppAjaxClient) MyApplication).zPageTasks);
-
-			 page=null;
+			optionLocator = Locators.zDeleteTreeMenuItem;			
+			page=null;
+			
 		} else if (option == Button.B_RENAME) {
 
 			optionLocator = Locators.zRenameTreeMenuItem;
 
-			page = new DialogRenameFolder(MyApplication,
-					((AppAjaxClient) MyApplication).zPageTasks);
+			page = new DialogRenameFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageTasks);
 
-		}else if (option == Button.B_TREE_EDIT) {
+		} else if (option == Button.B_TREE_EDIT) {
 
 			optionLocator = Locators.zEditTreeMenuItem;
 			page = new DialogEditFolder(MyApplication,((AppAjaxClient) MyApplication).zPageMail);
 
-		}else if (option == Button.B_SHARE) {
+		} else if (option == Button.B_SHARE) {
 			
 			optionLocator =Locators.zShareTreeMenuItem;
 			page = new DialogShare(MyApplication,((AppAjaxClient) MyApplication).zPageTasks);
 
-			// FALL THROUGH
-
 		}  else {
-			throw new HarnessException("button " + option
-					+ " not yet implemented");
+			throw new HarnessException("button " + option + " not yet implemented");
 		}
 
 		if (optionLocator == null)
 			throw new HarnessException("locator is null for option " + option);
 
-		// Default behavior. Click the locator
 		zClickAt(optionLocator, "");
-
-		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
+		SleepUtil.sleepSmall();
 
 		if (page != null) {
-
-			// Wait for the page to become active, if it was specified
 			page.zWaitForActive();
 		}
-
 		return (page);
-
 	}
 
 
-	/* (non-Javadoc)
-	 * @see framework.ui.AbsTree#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
@@ -476,8 +378,6 @@ public class TreeTasks extends AbsTree {
 			((AppAjaxClient)MyApplication).zPageTasks.zNavigateTo();
 		}
 		
-		// Zimlets seem to be loaded last
-		// So, wait for the zimlet div to load
 		String locator = Locators.ztih__main_Tasks__ZIMLET_ID;
 		
 		boolean loaded = this.sIsElementPresent(locator);
@@ -485,8 +385,5 @@ public class TreeTasks extends AbsTree {
 			return (false);
 		
 		return (loaded);
-
 	}
-
-
 }

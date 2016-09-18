@@ -46,7 +46,7 @@ public class DeleteInstance extends AjaxCommonTest {
 	
 	
 	@Bugs(ids = "69132")
-	@Test(	
+	@Test(
 			description = "Delete instance of recurring appointment (every month) using toolbar button in day view", 
 			groups = { "functional" } )
 	public void DeleteInstance_04() throws HarnessException {
@@ -126,7 +126,7 @@ public class DeleteInstance extends AjaxCommonTest {
 	}
 	
 	@Bugs(ids = "69132")
-	@Test(	
+	@Test(
 			description = "Delete instance of recurring appointment (every year) using context menu in day view", 
 			groups = { "functional" } )
 	public void DeleteInstance_05() throws HarnessException {

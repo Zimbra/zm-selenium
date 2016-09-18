@@ -30,7 +30,7 @@ public class Delete extends CalendarWorkWeekTest {
 	public Delete() {
 		logger.info("New "+ Decline.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "View meeting invite by opening it and Delete the invitation by selecting 'Don't notify organizer'", 

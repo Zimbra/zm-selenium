@@ -39,7 +39,7 @@ public class SearchContactGroup extends AjaxCommonTest {
 		super.startingPage = app.zPageContacts;
 
 		// Make sure we are using an account with message view
-		super.startingAccountPreferences = null;
+		
 
 	}
 	

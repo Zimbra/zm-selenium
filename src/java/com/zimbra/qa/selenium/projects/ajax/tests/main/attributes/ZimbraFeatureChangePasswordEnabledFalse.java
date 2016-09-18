@@ -27,35 +27,28 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 public class ZimbraFeatureChangePasswordEnabledFalse extends AjaxCommonTest {
 
 	public ZimbraFeatureChangePasswordEnabledFalse() {
-		logger.info("New "+ ZimbraFeatureChangePasswordEnabledFalse.class.getCanonicalName());
+		logger.info("New " + ZimbraFeatureChangePasswordEnabledFalse.class.getCanonicalName());
 
 		super.startingPage = app.zPageMail;
-
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			private static final long serialVersionUID = -6950184638729472879L;
 			{
-
-				// Options/Preferences is disabled
 				put("zimbraFeatureChangePasswordEnabled", "FALSE");
-
+	
 			}
 		};
 
 	}
+
+	@Bugs(ids = "81522")
+	@Test(description = "Verify the 'Change Password' option is not present in main->account->Change Password", groups = {
+			"functional" })
 	
-	/**
-	 * @throws HarnessException
-	 */
-	@Bugs(ids="81522")	
-	@Test(
-			description = "Verify the 'Change Password' option is not present in main->account->Change Password", 
-			groups = { "functional" }
-			)
 	public void ZimbraFeatureChangePasswordEnabledFalse_01() throws HarnessException {
 
 		// Click the account pulldown to see the menu
 		String locator = "css=td[id='skin_dropMenu'] td[id$='_dropdown']";
-		
+
 		app.zPageMain.zClickAt(locator, "");
 
 		// Look for the menu

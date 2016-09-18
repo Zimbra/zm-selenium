@@ -97,7 +97,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
@@ -106,15 +106,6 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			dialog.zEnterFolderName(foldername);
 			dialog.zClickButton(Button.B_OK);
 
-			// Get the new subfolder
-			// i.e. Inbox/subfolder
-			//
-
-
-
-			window.zCloseWindow(windowTitle);
-			window = null;
-
 		} finally {
 
 			// Make sure to close the window
@@ -122,9 +113,9 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 
 		}
-
 
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 		ZAssert.assertNotNull(subfolder, "Verify the subfolder was created");
@@ -190,15 +181,12 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 			// Click move -> subfolder
 			app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, subfolder);
-
-			window.zCloseWindow(windowTitle);
-			window = null;
 
 		} finally {
 
@@ -207,11 +195,9 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 
 		}
-
-
-
 
 		// Get the message, make sure it is in the correct folder
 		app.zGetActiveAccount().soapSend(
@@ -262,15 +248,12 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 			// Click move -> subfolder
 			app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, trash);
-
-			window.zCloseWindow(windowTitle);
-			window = null;
 
 		} finally {
 
@@ -279,6 +262,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 
 		}
 		// Get the message, make sure it is in the correct folder

@@ -12,7 +12,7 @@ public class EditFolderSharedByMeFromPreferences extends AjaxCommonTest {
 
 	public EditFolderSharedByMeFromPreferences() {
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;	
+			
 	}
 
 	@Test( description = "Modify share folder rights from preferences", groups = { "functional" })

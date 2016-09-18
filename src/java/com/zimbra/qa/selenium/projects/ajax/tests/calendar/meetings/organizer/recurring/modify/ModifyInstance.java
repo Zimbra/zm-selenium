@@ -33,7 +33,7 @@ public class ModifyInstance extends CalendarWorkWeekTest {
 	public ModifyInstance() {
 		logger.info("New "+ ModifyInstance.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "Modify series instance by adding one more attendee & modified subject/body", 

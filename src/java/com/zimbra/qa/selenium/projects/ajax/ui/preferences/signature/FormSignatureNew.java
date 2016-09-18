@@ -87,7 +87,7 @@ public class FormSignatureNew extends AbsForm {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		// Default behavior variables
+		
 		//
 		String locator = null; // If set, this will be clicked
 		AbsPage page = null; // If set, this page will be returned

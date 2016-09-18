@@ -34,7 +34,7 @@ public class LoadSocialTab extends AjaxCommonTest {
 		super.startingPage = app.zPageSocial;
 
 		// Make sure we are using an account with message view
-		super.startingAccountPreferences = null;
+		
 
 
 	}

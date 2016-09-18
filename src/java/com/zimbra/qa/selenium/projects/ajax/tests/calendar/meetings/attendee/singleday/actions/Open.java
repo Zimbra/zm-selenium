@@ -27,7 +27,7 @@ public class Open extends CalendarWorkWeekTest {
 	public Open() {
 		logger.info("New "+ Open.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "Rt-click to invite and open it",

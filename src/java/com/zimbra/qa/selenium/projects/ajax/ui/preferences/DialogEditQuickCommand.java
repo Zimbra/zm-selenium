@@ -329,19 +329,19 @@ public class DialogEditQuickCommand extends AbsDialog {
 			
 			optionLocator = "See http://bugzilla.zimbra.com/show_bug.cgi?id=65658";
 
-			// FALL THROUGH
+			
 			
 		} else if ( operation.equals(QuickCommandOperation.MoveToFolder) ) {
 			
 			optionLocator = "See http://bugzilla.zimbra.com/show_bug.cgi?id=65658";
 
-			// FALL THROUGH
+			
 			
 		} else if ( operation.equals(QuickCommandOperation.TagWith) ) {
 			
 			optionLocator = "See http://bugzilla.zimbra.com/show_bug.cgi?id=65658";
 
-			// FALL THROUGH
+			
 			
 		} else {
 			throw new HarnessException("Operation "+ operation +" not yet implemented");

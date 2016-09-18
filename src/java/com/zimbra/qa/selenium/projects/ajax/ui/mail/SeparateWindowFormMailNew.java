@@ -292,20 +292,15 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			throw new HarnessException("Button cannot be null!");
 
 		String container = "css=div[id^='ztb__COMPOSE']";
-		String locator = null;			// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String locator = null;
+		AbsPage page = null;
 
 		if ( button == Button.B_SEND ) {
 
 			locator = container + " div[id$='__SEND'] td[id$='_title']";
 			page = null;
 			
-			if(zIsBrowserMatch(BrowserMasks.BrowserMaskIE)){
-			    this.sDoubleClick(locator);	 
-			}else{
-			    this.zClickAt(locator,"0,0");
-			}
-			
+			this.sClickAt(locator, "0,0");			
 			Stafpostqueue postqueue = new Stafpostqueue();
 			postqueue.waitForPostqueue();
 			
@@ -339,14 +334,14 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			locator = container + " div[id$='__ATTACHMENT'] td[id$='_title']";
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_SPELL_CHECK ) {
 
 			locator = container + " div[id$='__SPELL_CHECK'] td[id$='_title']";
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else {
 			
@@ -428,11 +423,11 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 		if ( option == null )
 			throw new HarnessException("Option cannot be null!");
 
-		// Default behavior variables
+		
 		//
-		String pulldownLocator = null;	// If set, this will be expanded
-		String optionLocator = null;	// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 		
 		// Based on the button specified, take the appropriate action(s)
 		//

@@ -30,7 +30,7 @@ public class ShareFolderFromPreferences extends AjaxCommonTest {
 	public ShareFolderFromPreferences() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;	
+			
 	}
 
 	@Test (description = "Share folder from preferences/sharing", groups = { "functional" } )

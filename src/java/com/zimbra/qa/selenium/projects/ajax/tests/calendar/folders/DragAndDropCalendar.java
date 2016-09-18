@@ -28,12 +28,12 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 public class DragAndDropCalendar extends AjaxCommonTest{
 
-	public DragAndDropCalendar(){
+	public DragAndDropCalendar() {
 		logger.info("New "+ DragAndDropCalendar.class.getCanonicalName());
 
 		// All tests start at the login page
 		super.startingPage = app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 
 	}
 

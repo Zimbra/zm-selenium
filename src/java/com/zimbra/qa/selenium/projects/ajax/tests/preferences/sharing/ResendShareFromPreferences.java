@@ -11,7 +11,7 @@ public class ResendShareFromPreferences extends AjaxCommonTest {
 
 	public ResendShareFromPreferences() {
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 
 	@Test( description = "Resend share folder request from preferences", groups = { "functional" })

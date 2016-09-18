@@ -121,7 +121,7 @@ public class PageManageDomains extends AbsTab {
 
 
 		if ( zIsActive() ) {
-			// This page is already active.
+			
 			return;
 		}
 
@@ -151,10 +151,10 @@ public class PageManageDomains extends AbsTab {
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
 		int m= 50;
-		if(count >= 50){
+		if (count >= 50) {
 			for (int a1 = 1; a1 <= 8; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
-				if(this.sIsElementPresent(p0)){
+				if (this.sIsElementPresent(p0)) {
 				zClick(p0);
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 				m=m+20;
@@ -176,15 +176,15 @@ public class PageManageDomains extends AbsTab {
 			locator = accountLocator +  " table tr td:nth-child(2)" ;
 
 
-			if(this.sIsElementPresent(locator))
+			if (this.sIsElementPresent(locator))
 			{
-				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
+				if (this.sGetText(locator).trim().equalsIgnoreCase(item))
 				{
-					if(action == Action.A_LEFTCLICK) {
+					if (action == Action.A_LEFTCLICK) {
 						SleepUtil.sleepMedium();
 						zClickAt(locator,"");
 						break;
-					} else if(action == Action.A_RIGHTCLICK) {
+					} else if (action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);
 						break;
 					}
@@ -218,7 +218,7 @@ public class PageManageDomains extends AbsTab {
 			throw new HarnessException("Button cannot be null!");
 
 
-		// Default behavior variables
+		
 		//
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
@@ -234,14 +234,14 @@ public class PageManageDomains extends AbsTab {
 			// Create the page
 			page = new WizardCreateDomain(this);
 
-			// FALL THROUGH
+			
 
-		} else if(button == Button.B_TREE_DELETE) {
+		} else if (button == Button.B_TREE_DELETE) {
 			locator = Locators.RIGHT_CLICK_MENU_DELETE_BUTTON;
 
 			page = new DialogForDeleteOperationDomain(this.MyApplication,null);
 
-		} else if(button == Button.B_TREE_EDIT) {
+		} else if (button == Button.B_TREE_EDIT) {
 			locator = Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
 
 			if (typeOfObject.equals(TypeOfObject.DOMAIN))
@@ -249,7 +249,7 @@ public class PageManageDomains extends AbsTab {
 			else if (typeOfObject.equals(TypeOfObject.DOMAIN_ALIAS))
 				page=new WizardCreateDomainAlias(this);
 
-		}else if ( button == Button.B_HOME_DOMAIN ) {
+		} else if ( button == Button.B_HOME_DOMAIN ) {
 
 			// New button
 			locator = PageMain.Locators.HomeCreateDomain;
@@ -257,7 +257,7 @@ public class PageManageDomains extends AbsTab {
 			page = new WizardCreateDomain(this);
 			this.sClickAt(locator,"");
 			return page;
-			// FALL THROUGH
+			
 
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
@@ -298,10 +298,10 @@ public class PageManageDomains extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		if (pulldown == Button.B_GEAR_BOX) {
 			pulldownLocator = Locators.GEAR_ICON;
@@ -312,19 +312,19 @@ public class PageManageDomains extends AbsTab {
 
 				page = new WizardCreateDomain(this);
 
-				// FALL THROUGH
+				
 
-			} else if(option == Button.O_ADD_DOMAIN_ALIAS) {
+			} else if (option == Button.O_ADD_DOMAIN_ALIAS) {
 				optionLocator = Locators.ADD_DOMAIN_ALIAS;
 
 				page = new WizardCreateDomainAlias(this);
 
-			} else if(option == Button.O_DELETE) {
+			} else if (option == Button.O_DELETE) {
 				optionLocator = Locators.DELETE_BUTTON;
 
 				page = new DialogForDeleteOperationDomain(this.MyApplication,null);
 
-			} else if(option == Button.O_EDIT) {
+			} else if (option == Button.O_EDIT) {
 				optionLocator = Locators.EDIT_BUTTON;
 
 				if (typeOfObject.equals(TypeOfObject.DOMAIN))
@@ -376,7 +376,7 @@ public class PageManageDomains extends AbsTab {
 	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
-		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
+		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}
@@ -436,8 +436,8 @@ public class PageManageDomains extends AbsTab {
 		tracer.trace("Enter cos name and limit "+ cos_name +" then "+ limit);
 
 
-		// Default behavior variables
-		AbsPage page = null; // If set, this page will be returned
+		
+		AbsPage page = null;
 
 		//Click on accounts limit tab
 		this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS,"");
@@ -474,8 +474,8 @@ public class PageManageDomains extends AbsTab {
 		tracer.trace("Enter cos name and limit "+ limit);
 
 
-		// Default behavior variables
-		AbsPage page = null; // If set, this page will be returned
+		
+		AbsPage page = null;
 		
 
 		//Click on accounts limit tab
@@ -501,8 +501,8 @@ public class PageManageDomains extends AbsTab {
 		tracer.trace("Enter cos name and limit "+ limit);
 
 
-		// Default behavior variables
-		AbsPage page = null; // If set, this page will be returned
+		
+		AbsPage page = null;
 
 		//Click on accounts limit tab
 		this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS,"");

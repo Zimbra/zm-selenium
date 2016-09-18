@@ -31,7 +31,7 @@ public class Decline extends CalendarWorkWeekTest {
 	public Decline() {
 		logger.info("New "+ Decline.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "View meeting invite by opening it and Decline the invitation by selecting 'Don't notify organizer'", 

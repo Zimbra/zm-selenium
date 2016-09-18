@@ -35,7 +35,7 @@ public class DeleteInstance extends CalendarWorkWeekTest {
 	
 	
 	@Bugs(ids = "69132")
-	@Test(	
+	@Test(
 			description = "Delete instance of recurring appointment (every month) using toolbar button", 
 			groups = { "functional" } )
 	public void DeleteInstance_04() throws HarnessException {
@@ -114,7 +114,7 @@ public class DeleteInstance extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "69132")
-	@Test(	
+	@Test(
 			description = "Delete instance of recurring appointment (every year) using context menu", 
 			groups = { "functional" } )
 	public void DeleteInstance_05() throws HarnessException {

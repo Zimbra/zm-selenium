@@ -75,7 +75,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
@@ -102,9 +102,6 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 
 			SleepUtil.sleepMedium();
 
-			// Window is closed automatically by the client
-			window = null;
-
 		} finally {
 
 			// Make sure to close the window
@@ -112,6 +109,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 
 		}
 
@@ -163,7 +161,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive(); // Make sure the window is there
+			window.zWaitForActive();
 
 			ZAssert.assertTrue(window.zIsActive(),
 					"Verify the window is active");
@@ -191,9 +189,6 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 
 			SleepUtil.sleepMedium();
 
-			// Window is closed automatically by the client
-			window = null;
-
 		} finally {
 
 			// Make sure to close the window
@@ -201,6 +196,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 
 		}
 

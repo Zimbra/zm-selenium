@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 
 public class DragAndDropFolder extends PrefGroupMailByMessageTest{
 
-	public DragAndDropFolder(){
+	public DragAndDropFolder() {
 		logger.info("New "+ DragAndDropFolder.class.getCanonicalName());
 	}
 

@@ -58,7 +58,7 @@ public class DialogForDeleteOperation extends AbsDialog {
 			locator = Locators.NO_BUTTON;
 		} else if (button == Button.B_OK) {
 			for(int i=0;i<=15;i++) {
-				if(sIsElementPresent(Locators.OK_BUTTON+i+"_button2_title")) {
+				if (sIsElementPresent(Locators.OK_BUTTON+i+"_button2_title")) {
 					locator=Locators.OK_BUTTON+i+"_button2_title";
 					break;
 				}
@@ -78,7 +78,7 @@ public class DialogForDeleteOperation extends AbsDialog {
 					+ locator + " not present!");
 		}
 
-		// if(zIsActive())
+		// if (zIsActive())
 		// zGetDisplayedText("css=div[class=" + Locators.zDialogContentClassId +
 		// "]");
 

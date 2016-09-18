@@ -123,8 +123,8 @@ public class DocumentBriefcaseNew extends AbsForm {
 							+ iframeLocator
 							+ "\";"
 							+ "var iframe_body=arguments[0].contentWindow.document.body;"
-							+ "if (navigator.userAgent.indexOf('Firefox')!=-1 || navigator.userAgent.indexOf('Chrome')!=-1){iframe_body.innerHTML=bodytext;}"
-							+ "else if(navigator.userAgent.indexOf('MSIE')!=-1){iframe_body.innerHTML=bodytext;}"
+							+ "if (navigator.userAgent.indexOf('Firefox')!=-1 || navigator.userAgent.indexOf('Chrome')!=-1) {iframe_body.innerHTML=bodytext;}"
+							+ "else if (navigator.userAgent.indexOf('MSIE')!=-1) {iframe_body.innerHTML=bodytext;}"
 							+ "else {iframe_body.innerHTML=bodytext;}", we);
 		} else {
 			throw new HarnessException("Not implemented field: " + field);

@@ -13,7 +13,7 @@ public class RevokeShareFromPreferences extends AjaxCommonTest {
 
 	public RevokeShareFromPreferences() {
 		//super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;	
+			
 	}
 
 	@Test( description = "Revoke share folder from preferences", groups = { "functional" })

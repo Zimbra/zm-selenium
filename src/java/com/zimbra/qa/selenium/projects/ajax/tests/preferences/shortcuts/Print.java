@@ -29,7 +29,7 @@ public class Print extends AjaxCommonTest {
 	public Print() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 
 
@@ -59,8 +59,6 @@ public class Print extends AjaxCommonTest {
 			app.zTreePreferences.zClickAt(locator, "");
 			app.zTreePreferences.zWaitForBusyOverlay();
 
-			
-			// Make sure the window is there			
 			window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the print window is active");
 
@@ -72,6 +70,7 @@ public class Print extends AjaxCommonTest {
 				window.zCloseWindow();
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 		}
 
 

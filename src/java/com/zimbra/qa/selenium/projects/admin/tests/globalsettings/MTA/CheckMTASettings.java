@@ -90,7 +90,7 @@ public class CheckMTASettings extends AdminCommonTest {
 			//Verify that MTA configuration has changed
 			boolean present = false;
 			for(Element e : restrictionValues ) {
-				if(e.getText().contains(MTARestriction1)) {
+				if (e.getText().contains(MTARestriction1)) {
 					present = true;
 					break;
 				}
@@ -127,13 +127,13 @@ public class CheckMTASettings extends AdminCommonTest {
 			boolean value1 = false;
 			boolean value2 = false;
 			for(Element e : restrictionValues ) {
-				if(e.getText().contains(MTARestriction1)) {
+				if (e.getText().contains(MTARestriction1)) {
 					value1 = true;
 					break;
 				}		
 			}
 			for(Element e : restrictionValues ) {
-				if(e.getText().contains(MTARestriction2)) {
+				if (e.getText().contains(MTARestriction2)) {
 					value2 = true;
 					break;
 				}
@@ -159,13 +159,13 @@ public class CheckMTASettings extends AdminCommonTest {
 			value1 = false;
 			value2 = false;
 			for(Element e : restrictionValues ) {
-				if(e.getText().contains(MTARestriction1)) {
+				if (e.getText().contains(MTARestriction1)) {
 					value1 = true;
 					break;
 				}		
 			}
 			for(Element e : restrictionValues ) {
-				if(e.getText().contains(MTARestriction2)) {
+				if (e.getText().contains(MTARestriction2)) {
 					value2 = true;
 					break;
 				}

@@ -40,7 +40,7 @@ public class CreateAppointment extends AjaxCommonTest {
 		super.startingPage = app.zPageCalendar;
 
 		// Make sure we are using an account with message view
-		super.startingAccountPreferences = null;
+		
 
 
 	}

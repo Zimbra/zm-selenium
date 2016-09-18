@@ -143,7 +143,7 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 						
 		// Select the item
 		
-		if(!app.zPageTasks.sIsElementPresent(PageTasks.Locators.zCheckboxenable)){
+		if (!app.zPageTasks.sIsElementPresent(PageTasks.Locators.zCheckboxenable)) {
 			app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
 		}
 		
@@ -213,7 +213,7 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 						
-		if(!app.zPageTasks.sIsElementPresent(PageTasks.Locators.zCheckboxenable)){
+		if (!app.zPageTasks.sIsElementPresent(PageTasks.Locators.zCheckboxenable)) {
 			// Select the item
 			app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
 		}
@@ -277,7 +277,7 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 						
-		if(!app.zPageTasks.sIsElementPresent(PageTasks.Locators.zCheckboxenable)){
+		if (!app.zPageTasks.sIsElementPresent(PageTasks.Locators.zCheckboxenable)) {
 			// Select the item
 			app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
 		}

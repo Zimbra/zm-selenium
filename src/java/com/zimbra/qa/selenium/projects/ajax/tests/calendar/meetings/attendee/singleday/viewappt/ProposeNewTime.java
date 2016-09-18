@@ -30,7 +30,7 @@ public class ProposeNewTime extends CalendarWorkWeekTest {
 	public ProposeNewTime() {
 		logger.info("New "+ ProposeNewTime.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "View meeting invite by opening it and propose new time to organizer", 

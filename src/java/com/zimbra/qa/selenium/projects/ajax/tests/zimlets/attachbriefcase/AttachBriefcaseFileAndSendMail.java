@@ -52,8 +52,7 @@ public class AttachBriefcaseFileAndSendMail extends PrefGroupMailByMessageTest {
 		String docText = docItem.getDocText();
 
 		// Create document using SOAP
-		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<body>"
-				+ docText + "</body>" + "</html>");
+		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<body>" + docText + "</body>" + "</html>");
 
 		account
 				.soapSend("<SaveDocumentRequest requestId='0' xmlns='urn:zimbraMail'>"
@@ -67,7 +66,6 @@ public class AttachBriefcaseFileAndSendMail extends PrefGroupMailByMessageTest {
 						+ "</content>"
 						+ "</doc>"
 						+ "</SaveDocumentRequest>");
-
 		
 
 		// Create the message data to be sent

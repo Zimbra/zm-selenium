@@ -35,7 +35,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.PageSignatu
 public class Bug_78058 extends AjaxCommonTest {
 	public Bug_78058() {
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 
 	@Test( description = "Verify Toast Msg for Empty Signature Name", groups = { "smoke" })

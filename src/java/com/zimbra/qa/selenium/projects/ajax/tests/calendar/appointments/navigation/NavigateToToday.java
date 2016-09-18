@@ -80,9 +80,9 @@ public class NavigateToToday extends CalendarWorkWeekTest {
         Date d = new Date();
         String mydate = d.toString().substring(0,10);
 	      
-        if(d.toString().charAt(8) == '0'){
+        if (d.toString().charAt(8) == '0') {
 	    	   String ad = d.toString().substring(8, 9);
-	    	   if(ad.charAt(0)== '0'){
+	    	   if (ad.charAt(0)== '0') {
 	    		   mydate = d.toString().substring(0,7) + " " + d.toString().charAt(9);
 	    	   }   
 	       }
@@ -133,10 +133,10 @@ public class NavigateToToday extends CalendarWorkWeekTest {
         Date d = new Date();
         String mydate = d.toString().substring(0,10);
         
-       if(d.toString().charAt(8) == '0')
+       if (d.toString().charAt(8) == '0')
        {
     	   String ad = d.toString().substring(8, 9);
-    	   if(ad.charAt(0)== '0'){
+    	   if (ad.charAt(0)== '0') {
     		   mydate = d.toString().substring(0,7) + " " + d.toString().charAt(9);
     	   }   
        }

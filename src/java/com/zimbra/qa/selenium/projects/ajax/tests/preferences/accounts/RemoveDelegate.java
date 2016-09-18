@@ -33,7 +33,7 @@ public class RemoveDelegate extends AjaxCommonTest {
 	public RemoveDelegate() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 		
 	}
 

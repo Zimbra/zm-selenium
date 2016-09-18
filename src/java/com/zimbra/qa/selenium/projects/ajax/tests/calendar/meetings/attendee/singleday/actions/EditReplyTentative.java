@@ -31,7 +31,7 @@ public class EditReplyTentative extends CalendarWorkWeekTest {
 	public EditReplyTentative() {
 		logger.info("New "+ EditReplyTentative.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "Rt-click to appointment and Edit Reply -> Tentative the meeting invite", 

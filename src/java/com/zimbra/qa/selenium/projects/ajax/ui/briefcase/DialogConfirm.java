@@ -73,7 +73,7 @@ public class DialogConfirm extends AbsDialog {
 			*/
 			locator = "//div[@class='DwtDialogButtonBar']" 
 					+ "//*[contains(@class,'ZWidgetTitle') and contains(text(),'Yes')]";
-			if(confirmation == DialogConfirm.Confirmation.SENDLINK)
+			if (confirmation == DialogConfirm.Confirmation.SENDLINK)
 			page = 	new FormMailNew(this.MyApplication);
 		} else if (button == Button.B_NO) {
 			/*
@@ -96,7 +96,7 @@ public class DialogConfirm extends AbsDialog {
 					+ locator + " not present!");
 		}
 
-		// if(zIsActive())
+		// if (zIsActive())
 		// zGetDisplayedText("css=div[class=" + Locators.zDialogContentClassId +
 		// "]");
 

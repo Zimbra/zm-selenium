@@ -34,7 +34,7 @@ public class OwnerAccountDeleted extends AjaxCommonTest {
 		
 		// Test starts in the mail app
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = null;
+		
 		
 	}
 	
