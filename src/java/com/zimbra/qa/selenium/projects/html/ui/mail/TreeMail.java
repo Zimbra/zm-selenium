@@ -99,7 +99,7 @@ public class TreeMail extends AbsTree {
 
 		if ( action == Action.A_LEFTCLICK ) {
 
-			// FALL THROUGH
+			
 		} else if ( action == Action.A_RIGHTCLICK ) {
 
 

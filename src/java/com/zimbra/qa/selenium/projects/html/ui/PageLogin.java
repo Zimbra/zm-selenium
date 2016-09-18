@@ -77,7 +77,7 @@ public class PageLogin extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if ( zIsActive() ) {
-			// This page is already active.
+			
 			return;
 		}
 
