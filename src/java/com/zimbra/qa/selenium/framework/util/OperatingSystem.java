@@ -89,9 +89,9 @@ public class OperatingSystem {
     }
  
     private static OperatingSystem getSingleton() {
-        if(singleton==null) {
-            synchronized(OperatingSystem.class){
-                if(singleton == null) {
+        if (singleton==null) {
+            synchronized(OperatingSystem.class) {
+                if (singleton == null) {
                     singleton = new OperatingSystem();
                 }
             }

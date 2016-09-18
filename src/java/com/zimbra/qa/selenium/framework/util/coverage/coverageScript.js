@@ -22,7 +22,7 @@
  */
 if (! window.jscoverage_report) {
   window.jscoverage_report = function jscoverage_report(dir) {
-    if(window._$jscoverage == undefined) return "";
+    if (window._$jscoverage == undefined) return "";
     var pad = function (s) {   
           return '0000'.substr(s.length) + s; 
    };
@@ -58,7 +58,7 @@ if (! window.jscoverage_report) {
         var value = coverage[line];       
     if (value === undefined || value === null) {
           value = 'null';    
-    }else{
+    } else {
           coverage[line] = 0; //stops double counting
         }
         array.push(value);}

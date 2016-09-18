@@ -92,7 +92,7 @@ public class MoveContactView extends AbsTree {
 			return (zTreeItem(action, option, (SavedSearchFolderItem)folder));
 		//} else if ( folder instanceof ZimletItem ) {
 		//	return (zTreeItem(action, option, (ZimletItem)folder));
-		}else if ( folder instanceof TagItem ) {
+		} else if ( folder instanceof TagItem ) {
 			return (zTreeItem(action, option, (TagItem)folder));
 		} else if ( folder instanceof FolderItem ) { // FolderItem needs to go last
 			return (zTreeItem(action, option, (FolderItem)folder));

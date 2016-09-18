@@ -54,7 +54,7 @@ public class TagContactView extends AbsTree {
 		if ( !(addressbook instanceof FolderItem) ) {
 			tag = (TagItem) addressbook;
 			//throw new HarnessException("Must use FolderItem as argument, but was "+ addressbook.getClass());
-		}else{
+		} else {
 
 			folder = (FolderItem)addressbook;
 		}
@@ -110,7 +110,7 @@ public class TagContactView extends AbsTree {
 			return (zTreeItem(action, option, folder));
 		//} else if ( folder instanceof ZimletItem ) {
 		//	return (zTreeItem(action, option, (ZimletItem)folder));
-		}else if ( folder instanceof TagItem ) {
+		} else if ( folder instanceof TagItem ) {
 			return (zTreeItem(action, option, (TagItem)folder));
 		} else if ( folder instanceof FolderItem ) { // FolderItem needs to go last
 			return (zTreeItem(action, option, (FolderItem)folder));
@@ -381,7 +381,7 @@ public class TagContactView extends AbsTree {
 
 		if ( action == Action.A_LEFTCLICK ) {
 
-			// FALL THROUGH
+			
 		} else if ( action == Action.A_RIGHTCLICK ) {
 
 			// Select the folder

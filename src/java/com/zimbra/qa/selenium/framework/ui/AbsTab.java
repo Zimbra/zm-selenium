@@ -60,18 +60,10 @@ public abstract class AbsTab extends AbsPage {
 	 * Refresh the browser and navigate to this page
 	 */
 	public void zRefresh() throws HarnessException {
-		
-		// Refresh the page
 		sRefresh();
-		
-		// Wait for the page to load
 		sWaitForPageToLoad();
-		
 		SleepUtil.sleep(5000);
-		
-		// Navigate to the page
 		zNavigateTo();
-		
 	}
 	
 	/**
@@ -260,25 +252,18 @@ public abstract class AbsTab extends AbsPage {
 			for (String t : titles) {
 				logger.info("Found " + t + " looking for " + title);
 				if (title.equals(t)) {
-
-					this.zSelectWindow(t); // Select the window
-					this.sClose(); // Close the window
+					this.zSelectWindow(t);
+					this.sClose();
 					this.zSelectWindow("null");
-
 					return;
-
 				}
-
 			}
 
 			logger.warn("Tried closing " + title + " but it was not found");
 
 		} finally {
-
 			this.zSelectWindow("null");
-
 		}
-
 	}
 	
 	public void zSeparateWindowClose() throws HarnessException {
@@ -288,7 +273,7 @@ public abstract class AbsTab extends AbsPage {
 			List<String> titles = this.sGetAllWindowIds();
 			logger.debug("Found " + titles.size() + " open windows");
 			String winId="";
-			if(titles.size()>1){
+			if (titles.size()>1) {
 			for (int a=1;a<=titles.size();a++) {
 				logger.info("Found " + a );
 				

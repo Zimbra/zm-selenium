@@ -135,7 +135,7 @@ public class FormContactGroupNew extends AbsForm {
 			locator = "css=div#" + getToolbarID() + " div[id$='__SAVE'] td[id$='_title']";
 			page = null;
 
-			// FALL THROUGH
+			
 		
 		} else if ( button == Button.B_CLOSE ) {
 
@@ -155,7 +155,7 @@ public class FormContactGroupNew extends AbsForm {
 			locator = "css=div#" + getToolbarID() + " div[id$='__DELETE'] td[id$='_title']";
 			page = null;
 		
-			// FALL THROUGH
+			
 		
 		} else if ( button == Button.B_CHOOSE_ADDRESSBOOK ) {
 
@@ -164,7 +164,7 @@ public class FormContactGroupNew extends AbsForm {
 			page = null;
 			
 
-			// FALL THROUGH
+			
 			
 		} else if ( button == Button.B_CONTACTGROUP_ADD_ADDRESS ) {
 
@@ -173,7 +173,7 @@ public class FormContactGroupNew extends AbsForm {
 			locator = "css=div#"+ MyDivID +" td[id$='_addNewButton'] td[id$='_title']";
 			page = null;
 			
-			// FALL THROUGH
+			
 			
 		} else if ( button == Button.B_CONTACTGROUP_ADD_SEARCH_RESULT ) {
 
@@ -181,7 +181,7 @@ public class FormContactGroupNew extends AbsForm {
 			locator = "css=div#"+ MyDivID +" td[id$='_addButton'] td[id$='_title']";
 			page = null;
 			
-			// FALL THROUGH
+			
 			
 		} else if ( button == Button.B_CONTACTGROUP_ADD_ALL_SEARCH_RESULT ) {
 
@@ -189,14 +189,14 @@ public class FormContactGroupNew extends AbsForm {
 			locator = "css=div#"+ MyDivID +" td[id$='_addAllButton'] td[id$='_title']";
 			page = null;
 			
-			// FALL THROUGH
+			
 			
 		} else if ( button == Button.B_SEARCH ) {
 
 			locator = "css=div#"+ MyDivID +" td[id$='_searchButton'] td[id$='_title']";
 			page = null;
 		
-			// FALL THROUGH
+			
 		
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
@@ -234,11 +234,11 @@ public class FormContactGroupNew extends AbsForm {
 		if ( option == null )
 			throw new HarnessException("Option cannot be null!");
 
-		// Default behavior variables
+		
 		//
-		String pulldownLocator = null;	// If set, this will be expanded
-		String optionLocator = null;	// If set, this will be clicked
-		//AbsPage page = null;	// If set, this page will be returned
+		String pulldownLocator = null;
+		String optionLocator = null;
+		//AbsPage page = null;
 		
 		// Based on the button specified, take the appropriate action(s)
 		//
@@ -264,19 +264,19 @@ public class FormContactGroupNew extends AbsForm {
 				
 	            optionLocator = optionLocator + " td[id$='_title']:contains('Global Address List')"; // TODO: INTL
 	            
-	            // FALL THROUGH
+	            
 	            
 			} else if (option == Button.O_CONTACTGROUP_SEARCH_CONTACTS) {
 				
 	            optionLocator = optionLocator + " td[id$='_title']:contains('Contacts')"; // TODO: INTL
 	            
-	            // FALL THROUGH
+	            
 	            
 			} else if (option == Button.O_CONTACTGROUP_SEARCH_PERSONAL_AND_SHARED) {
 				
 	            optionLocator = optionLocator + " td[id$='_title']:contains('Personal and Shared Contacts')"; // TODO: INTL
 	            
-	            // FALL THROUGH
+	            
 	            
 			} else {
 				throw new HarnessException("implement "+ pulldown +" and "+ option);
@@ -324,7 +324,7 @@ public class FormContactGroupNew extends AbsForm {
 			
 			locator += "  table.ZPropertySheet input[id$='_searchField']";
 			
-			// FALL THROUGH
+			
 
 		} else if ( field == Field.FreeFormAddress ) {
 			

@@ -85,7 +85,6 @@ public class PageMail extends AbsTab {
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
-		// Check if this page is already active.
 		if ( zIsActive() ) {
 			return;
 		}
@@ -115,10 +114,10 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("Button cannot be null!");
 
 
-		// Default behavior variables
+		
 		//
-		String locator = null;			// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String locator = null;		
+		AbsPage page = null;
 
 		// Based on the button specified, take the appropriate action(s)
 		//
@@ -128,7 +127,7 @@ public class PageMail extends AbsTab {
 			locator = "implement me";
 			page = null; // new FormMailNew(this.MyApplication);
 
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_REFRESH ) {
 
@@ -140,7 +139,7 @@ public class PageMail extends AbsTab {
 			locator = "implement me";
 			page = null; // new FormMailNew(this.MyApplication);
 
-			// FALL THROUGH
+			
 
 
 		} else if ( button == Button.B_MOVE ) {
@@ -148,63 +147,63 @@ public class PageMail extends AbsTab {
 			locator = "implement me";
 			page = null; // new FormMailNew(this.MyApplication);
 
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_PRINT ) {
 
 			locator = "implement me";
 			page = null; // new FormMailNew(this.MyApplication);
 
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_REPLY ) {
 
 			locator = "implement me";
 			page = null; // new FormMailNew(this.MyApplication);
 
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_REPLYALL ) {
 
 			locator = "implement me";
 			page = null; // new FormMailNew(this.MyApplication);
 
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_FORWARD ) {
 
 			locator = "implement me";
 			page = null; // new FormMailNew(this.MyApplication);
 
-			// FALL THROUGH
+			
 
 		} else if ( (button == Button.B_RESPORTSPAM) || (button == Button.B_RESPORTNOTSPAM) ) {
 
 			locator = "implement me";
 			page = null; // new FormMailNew(this.MyApplication);
 
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_TAG ) {
 
 			locator = "implement me";
 			page = null; // new FormMailNew(this.MyApplication);
 
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_NEWWINDOW ) {
 
 			locator = "implement me";
 			page = null; // new FormMailNew(this.MyApplication);
 
-			// FALL THROUGH			
+						
 
 		} else if ( button == Button.B_LISTVIEW ) {
 
 			locator = "implement me";
 			page = null; // new FormMailNew(this.MyApplication);
 
-			// FALL THROUGH
+			
 
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
@@ -236,11 +235,11 @@ public class PageMail extends AbsTab {
 		if ( option == null )
 			throw new HarnessException("Option cannot be null!");
 
-		// Default behavior variables
+		
 		//
-		String pulldownLocator = null;	// If set, this will be expanded
-		String optionLocator = null;	// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		// Based on the button specified, take the appropriate action(s)
 		//
@@ -271,7 +270,7 @@ public class PageMail extends AbsTab {
 				optionLocator = null;
 				page = zToolbarPressButton(pulldown);
 
-				// FALL THROUGH
+				
 
 			} else if ( option == Button.O_NEW_TAG ) {
 				throw new HarnessException("implement me!");
@@ -307,7 +306,7 @@ public class PageMail extends AbsTab {
 				optionLocator = "implement me";
 				page = null; // new DialogTag(this.MyApplication, this);
 
-				// FALL THROUGH
+				
 
 			} else if ( option == Button.O_TAG_REMOVETAG ) {
 
@@ -315,7 +314,7 @@ public class PageMail extends AbsTab {
 				optionLocator = "implement me";
 				page = null; 
 
-				// FALL THROUGH
+				
 
 			} else {
 				throw new HarnessException("no logic defined for pulldown/option "+ pulldown +"/"+ option);

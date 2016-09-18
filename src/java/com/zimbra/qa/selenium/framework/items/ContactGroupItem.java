@@ -470,7 +470,7 @@ public class ContactGroupItem extends ContactItem implements IItem {
 				return (true);
 			}
 			
-			if( !(o instanceof MemberItem) ) {
+			if ( !(o instanceof MemberItem) ) {
 				return (false);
 			}
 			

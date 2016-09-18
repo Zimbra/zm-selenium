@@ -277,7 +277,6 @@ public class PageMail extends AbsTab {
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
-		// Check if this page is already active.
 		if ( zIsActive() ) {
 			return;
 		}
@@ -307,7 +306,7 @@ public class PageMail extends AbsTab {
 		if ( button == null )
 			throw new HarnessException("Button cannot be null!");
 
-		// Default behavior variables
+		
 		String locator = null;
 		AbsPage page = null;
 
@@ -426,10 +425,10 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		// CLV vs. MLV
 		boolean isCLV = this.zIsVisiblePerPosition("css=div#ztb__CLV-main", 0, 0);
@@ -443,7 +442,7 @@ public class PageMail extends AbsTab {
 
 				//page = new DialogTag(this.MyApplication, this);
 
-				// FALL THROUGH
+				
 			} else if (option == Button.O_TAG_REMOVETAG) {
 
 				pulldownLocator = "css=td[id$='__TAG_MENU_dropdown']>div[class='ImgSelectPullDownArrow']";
@@ -452,7 +451,7 @@ public class PageMail extends AbsTab {
 
 				page = null;
 
-				// FALL THROUGH
+				
 			} else {
 				throw new HarnessException(
 						"no logic defined for pulldown/option " + pulldown
@@ -505,7 +504,7 @@ public class PageMail extends AbsTab {
 				optionLocator += " div[id^='PRINT'] td[id$='_title']";
 				//page = new DialogRedirect(this.MyApplication, this);
 
-				// FALL THROUGH
+				
 
 
 			} else if ((option == Button.B_RESPORTSPAM) || (option == Button.B_RESPORTNOTSPAM)) {
@@ -513,7 +512,7 @@ public class PageMail extends AbsTab {
 				optionLocator += " div[id^='SPAM'] td[id$='_title']";
 				page = null;
 
-				// FALL THROUGH
+				
 
 			} else if ( option == Button.B_LAUNCH_IN_SEPARATE_WINDOW ) {
 
@@ -542,70 +541,70 @@ public class PageMail extends AbsTab {
 				optionLocator += " div[id^='MARK_READ'] td[id$='_title']";
 				page = null;
 
-				// FALL THROUGH
+				
 
 			} else if ( option == Button.O_MARK_AS_UNREAD ) {
 
 				optionLocator += " div[id^='MARK_UNREAD'] td[id$='_title']";
 				page = null;
 
-				// FALL THROUGH
+				
 
 			} else if ( option == Button.O_SHOW_ORIGINAL ) {
 
 				optionLocator += " div[id^='SHOW_ORIG'] td[id$='_title']";
 				page = null;
 
-				// FALL THROUGH
+				
 
 			} else if ( option == Button.B_REDIRECT ) {
 
 				optionLocator += " div[id^='REDIRECT'] td[id$='_title']";
 				//page = new DialogRedirect(this.MyApplication, this);
 
-				// FALL THROUGH
+				
 
 			} else if ( option == Button.B_MUTE ) {
 
 				optionLocator += " div[id^='MUTE_CONV'] td[id$='_title']";
 				page = null;
 
-				// FALL THROUGH
+				
 
 			} else if ( option == Button.O_EDIT_AS_NEW ) {
 
 				optionLocator += " div[id^='EDIT_AS_NEW'] td[id$='_title']";
 				page = new FormMailNew(this.MyApplication);
 
-				// FALL THROUGH
+				
 
 			} else if ( option == Button.O_NEW_FILTER ) {
 
 				optionLocator += " div[id^='ADD_FILTER_RULE'] td[id$='_title']";
 				page = null;
 
-				// FALL THROUGH
+				
 
 			} else if ( option == Button.O_NEW_APPOINTMENT ) {
 
 				optionLocator += " div[id^='CREATE_APPT'] td[id$='_title']";
 				page = null;
 
-				// FALL THROUGH
+				
 
 			} else if ( option == Button.O_NEW_TASK ) {
 
 				optionLocator += " div[id^='CREATE_TASK'] td[id$='_title']";
 				page = null;
 
-				// FALL THROUGH
+				
 
 			} else if ( option == Button.O_QUICK_COMMANDS_MENU ) {
 
 				optionLocator += " div[id^='QUICK_COMMANDS'] td[id$='_title']";
 				page = null;
 
-				// FALL THROUGH
+				
 
 			} else {
 
@@ -1054,7 +1053,7 @@ public class PageMail extends AbsTab {
 
 			this.zWaitForBusyOverlay();
 
-			// FALL THROUGH
+			
 
 		} else {
 			throw new HarnessException("implement me!  action = "+ action);
@@ -1102,19 +1101,19 @@ public class PageMail extends AbsTab {
 			zKeyboard.zTypeCharacters(shortcut.getKeys());
 			return (page);
 
-		}else if ( (shortcut == Shortcut.S_NEWTAG) ){
+		} else if ( (shortcut == Shortcut.S_NEWTAG) ) {
 
 			// "New Message" shortcuts result in a compose form opening
 			//page = new FormMailNew(this.MyApplication);
 			//page = new DialogTag(MyApplication,((AppTouchClient) MyApplication).zPageMail);
 
-		}else if ( (shortcut == Shortcut.S_MAIL_TAG) ){
+		} else if ( (shortcut == Shortcut.S_MAIL_TAG) ) {
 
 			// "New Message" shortcuts result in a compose form opening
 			//page = new FormMailNew(this.MyApplication);
 			//page = new DialogTagPicker(MyApplication,((AppTouchClient) MyApplication).zPageMail);
 
-		}else if ( (shortcut == Shortcut.S_NEWFOLDER) ){
+		} else if ( (shortcut == Shortcut.S_NEWFOLDER) ) {
 
 			// "New Message" shortcuts result in a compose form opening
 			//page = new FormMailNew(this.MyApplication);
@@ -1130,7 +1129,7 @@ public class PageMail extends AbsTab {
 
 			//page = new DialogAssistant(MyApplication, ((AppTouchClient) MyApplication).zPageMail);
 
-		} else if(shortcut== Shortcut.S_ESCAPE) {
+		} else if (shortcut== Shortcut.S_ESCAPE) {
 
 			WebElement we = getElement("css=div#z_banner");
 			we.sendKeys(Keys.ESCAPE);
@@ -1165,11 +1164,11 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("dynamic object cannot be null!");
 
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		String dynamicLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		
+		String pulldownLocator = null;
+		String optionLocator = null;
+		String dynamicLocator = null;
+		AbsPage page = null;
 
 		if ((pulldown == Button.B_OPTIONS)&& (option == Button.O_ADD_SIGNATURE)) {
 
@@ -1185,7 +1184,7 @@ public class PageMail extends AbsTab {
 			dynamicLocator ="css=td[id$='_title']:contains('"+ name + "')";
 			page = null;
 
-		}else if ((pulldown == Button.B_OPTIONS)&& (option == Button.O_ADD_FWD_SIGNATURE)) {
+		} else if ((pulldown == Button.B_OPTIONS)&& (option == Button.O_ADD_FWD_SIGNATURE)) {
 
 			if ( !(dynamic instanceof String) ) 
 				throw new HarnessException("dynamic must be a string!  "+ dynamic.getClass().getCanonicalName());
@@ -1199,7 +1198,7 @@ public class PageMail extends AbsTab {
 			dynamicLocator ="css=td[id$='_title']:contains('"+ name + "')";
 			page = null;
 
-		}else if ((pulldown == Button.B_OPTIONS)&& (option == Button.O_ADD_Reply_SIGNATURE)||(option==Button.O_ADD_ReplyAll_SIGNATURE)) {
+		} else if ((pulldown == Button.B_OPTIONS)&& (option == Button.O_ADD_Reply_SIGNATURE)||(option==Button.O_ADD_ReplyAll_SIGNATURE)) {
 
 			if ( !(dynamic instanceof String) ) 
 				throw new HarnessException("dynamic must be a string!  "+ dynamic.getClass().getCanonicalName());
@@ -1337,10 +1336,10 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 
 		if ( pulldown == Button.B_MOVE ) {
@@ -1434,11 +1433,11 @@ public class PageMail extends AbsTab {
 
 		tracer.trace(action+" then "+ option +" on subject"+ subject);
 
-		// Default behavior variables
-		String pulldownLocatorActionItem = null; // If set, this will be expanded
+		
+		String pulldownLocatorActionItem = null;
 		String pulldownLocatorReply = null; 
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		String optionLocator = null;
+		AbsPage page = null;
 
 		pulldownLocatorActionItem = Locators.ActionsDropdown;
 		pulldownLocatorReply = Locators.ReplyForwardDropdown;
@@ -1462,7 +1461,7 @@ public class PageMail extends AbsTab {
 
 				// FALLTHROUGH
 
-			}else if ( option == Button.B_MARK_CONVERSATION_READ) {
+			} else if ( option == Button.B_MARK_CONVERSATION_READ) {
 
 				this.zClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Mark_Conversation_Read ;
@@ -1517,7 +1516,7 @@ public class PageMail extends AbsTab {
 				page = null;
 				
 				// FALLTHROUGH
-			}else if (option == Button.B_TAG_CONVERSATION) {
+			} else if (option == Button.B_TAG_CONVERSATION) {
 
 				this.zClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Tag_Conversation;
@@ -1594,7 +1593,7 @@ public class PageMail extends AbsTab {
 
 			this.zWaitForBusyOverlay();
 
-			// FALL THROUGH
+			
 
 		} else {
 			throw new HarnessException("implement me!  action = "+ action);
@@ -1625,9 +1624,9 @@ public class PageMail extends AbsTab {
 
 		tracer.trace(option);
 
-		// Default behavior variables
+		
 
-		AbsPage page = null; // If set, this page will be returned
+		AbsPage page = null;
 		String optionLocator = null;
 		String tagName =null;
 		// Now the ContextMenu is opened
@@ -1638,21 +1637,21 @@ public class PageMail extends AbsTab {
 			page = null;
 
 			// FALLTHROUGH
-		} else if(option == Button.B_CANCEL_TAG_MAIL) {
+		} else if (option == Button.B_CANCEL_TAG_MAIL) {
 			optionLocator = Locators.Cancel_Tag_Mail;
 			page = null; 
 
 			// FALLTHROUGH
-		}else if(option == Button.B_CANCEL_MOVE_MAIL) {
+		} else if (option == Button.B_CANCEL_MOVE_MAIL) {
 			optionLocator = Locators.Cancel_Move_Mail;
 			page = null;	
 
 
-		}else if(option == Button.B_REMOVE_TAG_MAIL) {
+		} else if (option == Button.B_REMOVE_TAG_MAIL) {
 			optionLocator = Locators.Remove_Tag_Mail;
 			page = null;	
 			
-		}else if(option == Button.B_SELECT_TAG) {
+		} else if (option == Button.B_SELECT_TAG) {
 			optionLocator = "css=span[class='zcs-area-bubble zcs-tag-bubble']:contains('" + tagName + "')";
 			page = null;
 			
@@ -1662,7 +1661,7 @@ public class PageMail extends AbsTab {
 
 
 		this.zWaitForBusyOverlay();
-		// FALL THROUGH
+		
 		
 		return (page);	
 	}
@@ -1712,11 +1711,11 @@ public class PageMail extends AbsTab {
 
 		tracer.trace(option);
 
-		// Default behavior variables
-		String pulldownLocatorActionItem = null; // If set, this will be expanded
+		
+		String pulldownLocatorActionItem = null;
 		String pulldownLocatorReply = null; 
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		String optionLocator = null;
+		AbsPage page = null;
 
 		pulldownLocatorActionItem = "css=div[class='x-container x-toolbar-dark x-toolbar x-stretched zcs-msg-actions-toolbar'] span[class$='x-button-icon x-shown arrow_down']";
 		pulldownLocatorReply = "css=div[class='x-container x-toolbar-dark x-toolbar x-stretched zcs-msg-actions-toolbar'] span[class='x-button-icon x-shown reply']";
@@ -1736,7 +1735,7 @@ public class PageMail extends AbsTab {
 			optionLocator = Locators.Mark_Conversation_Read ;
 			page = null;
 
-		}else if ( option == Button.B_REPLY_MAIL ) {
+		} else if ( option == Button.B_REPLY_MAIL ) {
 
 			this.zClickAt(pulldownLocatorReply, "");
 			optionLocator = Locators.ReplyMenu;
@@ -1923,9 +1922,9 @@ public class PageMail extends AbsTab {
 
 		tracer.trace(option);
 
-		// Default behavior variables
+		
 
-		AbsPage page = null; // If set, this page will be returned
+		AbsPage page = null;
 		String optionLocator = null;
 		
 		// Now the ContextMenu is opened
@@ -1936,12 +1935,12 @@ public class PageMail extends AbsTab {
 			page = null;
 
 			// FALLTHROUGH
-		} else if(option == Button.B_NEW_MAIL) {
+		} else if (option == Button.B_NEW_MAIL) {
 			optionLocator = Locators.zNewMessageMsgHdrContextMenu;
 			page = null; 
 
 			// FALLTHROUGH
-		}else if(option == Button.B_SEARCH) {
+		} else if (option == Button.B_SEARCH) {
 			optionLocator = Locators.zSeachMsgHdrContextMenu;
 			page = null;	
 		}

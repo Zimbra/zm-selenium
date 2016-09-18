@@ -84,8 +84,8 @@ public class TestStatusReporter extends TestListenerAdapter {
 		private static RandomAccessFile   raf= null;
 		private static long furthestReadLong=0;
 
-		public static void setFileName (String fileName){
-			if (!fileName.equals(currentFileName)){
+		public static void setFileName (String fileName) {
+			if (!fileName.equals(currentFileName)) {
 				currentFileName=fileName;
 				try {
 					if (raf != null)  raf.close();
@@ -98,13 +98,13 @@ public class TestStatusReporter extends TestListenerAdapter {
 				}
 			}
 		}
-		private static String getDoubleLineAt(int lineNumber){
+		private static String getDoubleLineAt(int lineNumber) {
 			String result="";
 			if (lineNumber > longArray.size()) {
 				try {
 					//go to the furthest read point of file
 					raf.seek(furthestReadLong);
-					for (int i=longArray.size(); i<lineNumber; i++){
+					for (int i=longArray.size(); i<lineNumber; i++) {
 						longArray.add(i,raf.getFilePointer());
 						result = (i +1)  + " : " + raf.readLine();	                 
 
@@ -125,7 +125,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 
 
 				try {
-					if (lineNumber >1){
+					if (lineNumber >1) {
 						raf.seek(longArray.get(lineNumber -2));
 						result = (lineNumber -1) + " : " + raf.readLine() + "<br>\n\t" + lineNumber + " : " +raf.readLine();
 					}
@@ -143,13 +143,13 @@ public class TestStatusReporter extends TestListenerAdapter {
 			return result;
 		}
 
-		private static String getLineAt(int lineNumber){
+		private static String getLineAt(int lineNumber) {
 			String result="";
 			if (lineNumber > longArray.size()) {
 				try {
 					//go to the furthest read point of file
 					raf.seek(furthestReadLong);
-					for (int i=longArray.size(); i<lineNumber; i++){
+					for (int i=longArray.size(); i<lineNumber; i++) {
 						longArray.add(i,raf.getFilePointer());
 						result =raf.readLine();	                 
 
@@ -180,7 +180,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 
 
 
-		public static String getDoubleLineAt(String fileName, int lineNumber){	    	
+		public static String getDoubleLineAt(String fileName, int lineNumber) {	    	
 			setFileName(fileName);
 			return getDoubleLineAt(lineNumber);	    	
 		}
@@ -233,7 +233,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 
 
 				//TODO read until see the first {
-					while (line.indexOf("{") == -1){	    		   
+					while (line.indexOf("{") == -1) {	    		   
 						line = getLineAt(lineNumber++);
 						result.append(line);
 					}
@@ -381,11 +381,11 @@ public class TestStatusReporter extends TestListenerAdapter {
 		file.mkdirs();	    	     
 	}
 
-	private String getClass(String fullName){
+	private String getClass(String fullName) {
 		return fullName.substring(0,fullName.lastIndexOf("."));
 	}
 
-	private String getTest(String fullName){
+	private String getTest(String fullName) {
 		return fullName.substring(fullName.lastIndexOf(".")+1);
 	}
 
@@ -582,7 +582,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 			body.append(getTestList(confFailArray));
 		}
 
-		if (confSkipped >0){
+		if (confSkipped >0) {
 			body.append("\n\n" + lines + "Configuration skip: "  + uri + "/" + confSkipDir + "/"+ lines);
 			body.append(getTestList(confSkipArray));
 		}
@@ -596,7 +596,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 		}
 
 		body.append("\n\n" + lines + "SKIP: "  + (skipped>0?uri+"/skip/":"")+ lines);
-		if (skipped >0){
+		if (skipped >0) {
 			body.append(getTestList(skipArray));
 		}
 
@@ -638,7 +638,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 	private String getTestList(ArrayList<String> array) {
 		StringBuffer result= new StringBuffer();
 
-		for (int i=0; i <array.size(); i++){
+		for (int i=0; i <array.size(); i++) {
 			String methodName=array.get(i).replaceAll("\\.", "/");
 			methodName = methodName.substring(methodName.indexOf("/tests/")+7);
 
@@ -652,7 +652,7 @@ public class TestStatusReporter extends TestListenerAdapter {
 	private String getTestList(ArrayList<String> array, HashMap<String,String> reasonMap) {
 		StringBuffer result= new StringBuffer();
 
-		for (int i=0; i <array.size(); i++){
+		for (int i=0; i <array.size(); i++) {
 			String methodName=array.get(i).replaceAll("\\.", "/");
 			methodName = methodName.substring(methodName.indexOf("/tests/")+7);
 

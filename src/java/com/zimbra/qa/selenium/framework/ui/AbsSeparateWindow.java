@@ -22,11 +22,12 @@ import org.apache.log4j.*;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.*;
 import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import com.zimbra.qa.selenium.framework.util.*;
 
 /**
- * The <code>AbsSeparateWindow</code> class is a base class that all 
+ * The <code>AbsSeparateWindow</code> class is a base class that all
  * "separate window" objects can derive from.  The main additional
  * functionality is the ability to switch focus between different windows
  * (i.e. the 'main' window and the 'separate' window) when
@@ -35,9 +36,9 @@ import com.zimbra.qa.selenium.framework.util.*;
  * All selenium methods (e.g. sClick(), sType()) must be redefined
  * in this class, with a wrapper to switch windows.
  * <p>
- * 
+ *
  * @author Matt Rhoades
- * 
+ *
  */
 public abstract class AbsSeparateWindow extends AbsPage {
 	protected static Logger logger = LogManager.getLogger(AbsSeparateWindow.class);
@@ -58,19 +59,19 @@ public abstract class AbsSeparateWindow extends AbsPage {
 	 * The title bar text
 	 */
 	protected String DialogWindowTitle = null;
-	
+
 	/**
 	 * Whether or not to switch focus when working in the separate window
 	 */
 	protected boolean DoChangeWindowFocus = false;
-	
+
 	public AbsSeparateWindow(AbsApplication application) {
 		super(application);
 
 		logger.info("new " + AbsSeparateWindow.class.getCanonicalName());
 
 		DoChangeWindowFocus = false;
-		
+
 	}
 
 	public void sClick(String locator) throws HarnessException {
@@ -97,7 +98,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			super.sWindowFocus();
 		}
 	}
-	
+
 	public void sType(String locator, String value) throws HarnessException {
 		logger.info(myPageName() + " sType("+ locator +", " + value +")");
 
@@ -105,7 +106,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
-			
+
 			super.sType(locator, value);
 
 		} finally {
@@ -114,29 +115,29 @@ public abstract class AbsSeparateWindow extends AbsPage {
 		}
 
 	}
-	
+
 	public void sTypeNewWindow(String locator, String value) throws HarnessException {
 		logger.info(myPageName() + " sType("+ locator +", " + value +")");
 
 		try {
-			super.sSelectWindow(this.DialogWindowID);			
+			super.sSelectWindow(this.DialogWindowID);
 			super.sType(locator, value);
 
 		} finally {
-			
+
 		}
 
 	}
-	
+
 	public String sGetText(String locator) throws HarnessException {
 		logger.info(myPageName() + " sGetText("+ locator +")");
 
 		String text = "";
-		
+
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
-			
+
 			text = super.sGetText(locator);
 
 		} finally {
@@ -150,13 +151,32 @@ public abstract class AbsSeparateWindow extends AbsPage {
 	public String sGetBodyText() throws HarnessException {
 		logger.info(myPageName() + " sGetBodyText()");
 
-		String text = "";
-		
+		String text;
+
 		try {
 			super.sSelectWindow(this.DialogWindowID);
-			changeFocus();
-			
 			text = super.sGetBodyText();
+
+		} finally {
+			super.sSelectWindow(MainWindowID);
+			super.sWindowFocus();
+		}
+
+		return (text);
+	}
+
+	public String sGetBodyContent(String windowTitle, String locator) throws HarnessException {
+		logger.info(myPageName() + " sGetBodyContent()");
+
+		String text;
+
+		try {
+			webDriver().switchTo().defaultContent();
+			super.sSelectWindow(windowTitle);
+
+			WebElement we = null;
+			we = webDriver().findElement(By.cssSelector(locator.replace("css=", "")));
+			text = we.getText();
 
 		} finally {
 			super.sSelectWindow(MainWindowID);
@@ -168,28 +188,28 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 	public void sSelectFrame(String locator) throws HarnessException {
 		logger.info(myPageName() + " sSelectFrame("+ locator +")");
-	
+
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
 
 			super.sSelectFrame(locator);
-		
+
 		} finally {
 			super.sSelectWindow(MainWindowID);
 			super.sWindowFocus();
 		}
-		
+
 	}
 	public int sGetCssCount(String css) throws HarnessException {
 		logger.info(myPageName() + " sGetCssCount("+ css +")");
-		
+
 		Integer count = null;
-		
+
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
-			
+
 			count = super.sGetCssCount(css);
 
 		} finally {
@@ -200,19 +220,19 @@ public abstract class AbsSeparateWindow extends AbsPage {
 		logger.info("getCssCount(" + css + ") = " + count);
 		return (count);
 	}
-	
+
 	public int sGetCssCountNewWindow(String css) throws HarnessException {
 		logger.info(myPageName() + " sGetCssCount("+ css +")");
-		
+
 		Integer count = null;
-		
+
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
 			count = super.sGetCssCount(css);
 
 		} finally {
-			
+
 		}
 
 		logger.info("getCssCount(" + css + ") = " + count);
@@ -221,12 +241,12 @@ public abstract class AbsSeparateWindow extends AbsPage {
 	}
 
 	public void sType(String iframelocator, String locator, String value) throws HarnessException {
-		
+
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
 			try {
-				
+
 				super.sSelectFrame(iframelocator);
 				super.sType(locator, value);
 
@@ -238,21 +258,21 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			super.sSelectWindow(MainWindowID);
 			super.sWindowFocus();
 		}
-		
+
 	}
 
 	public String sGetText(String iframelocator, String locator) throws HarnessException {
-		
+
 		String text = "";
-		
+
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
 			try {
-				
+
 				super.sSelectFrame(iframelocator);
 				text = super.zGetHtml(locator);
-				
+
 				logger.info("DisplayMail.zGetBody(" + iframelocator + ", "+ locator +") = " + text);
 
 			} finally {
@@ -265,14 +285,14 @@ public abstract class AbsSeparateWindow extends AbsPage {
 		}
 
 		return (text);
-		
+
 	}
 
 	public boolean sIsElementPresent(String locator) throws HarnessException {
 		logger.info(myPageName() + " sIsElementPresent("+ locator +")");
-		
+
 		boolean present = false;
-		
+
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
@@ -288,11 +308,11 @@ public abstract class AbsSeparateWindow extends AbsPage {
 	}
 
 	public boolean zIsVisiblePerPosition(String locator, int leftLimit, int topLimit) throws HarnessException {
-		
+
 		logger.info(myPageName() + " zIsVisiblePerPosition("+ locator +", "+ leftLimit +", "+ topLimit +")");
-		
+
 		boolean present = false;
-		
+
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
@@ -309,13 +329,13 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 	public int sGetElementPositionLeft(String locator) throws HarnessException {
 		logger.info(myPageName() + " sGetElementPositionLeft("+ locator +")");
-				
+
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
 
 			int n = super.sGetElementPositionLeft(locator);
-			
+
 			return (n);
 
 		} finally {
@@ -327,13 +347,13 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 	public int sGetElementPositionTop(String locator) throws HarnessException {
 		logger.info(myPageName() + " sGetElementPositionTop("+ locator +")");
-				
+
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
 
 			int n = super.sGetElementPositionTop(locator);
-			
+
 			return (n);
 
 		} finally {
@@ -345,14 +365,14 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 	public void sFocus(String locator) throws HarnessException {
 		logger.info(myPageName() + " sFocus("+ locator +")");
-		
+
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			DoChangeWindowFocus= true;
 			changeFocus();
 
 			super.sFocus(locator);
-			
+
 		} finally {
 			super.sSelectWindow(MainWindowID);
 			super.sWindowFocus();
@@ -362,13 +382,13 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 	public void sMouseDown(String locator) throws HarnessException {
 		logger.info(myPageName() + " sMouseDown("+ locator +")");
-		
+
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
 
 			super.sMouseDown(locator);
-			
+
 		} finally {
 			super.sSelectWindow(MainWindowID);
 			super.sWindowFocus();
@@ -378,13 +398,13 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 	public void sMouseUp(String locator) throws HarnessException {
 		logger.info(myPageName() + " sMouseUp("+ locator +")");
-		
+
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
 
 			super.sMouseUp(locator);
-			
+
 		} finally {
 			super.sSelectWindow(MainWindowID);
 			super.sWindowFocus();
@@ -394,13 +414,13 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 	public void sMouseDownAt(String locator, String coord) throws HarnessException {
 		logger.info(myPageName() + " sMouseDownAt("+ locator +", "+ coord +")");
-		
+
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
 
 			super.sMouseDownAt(locator, coord);
-			
+
 		} finally {
 			super.sSelectWindow(MainWindowID);
 			super.sWindowFocus();
@@ -410,13 +430,13 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 	public void sMouseUpAt(String locator, String coord) throws HarnessException {
 		logger.info(myPageName() + " sMouseUpAt("+ locator +", "+ coord +")");
-		
+
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
 
 			super.sMouseUpAt(locator, coord);
-			
+
 		} finally {
 			super.sSelectWindow(MainWindowID);
 			super.sWindowFocus();
@@ -432,7 +452,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			changeFocus();
 
 			for (String locator: locators) {
-				
+
 				super.sClick(locator);
 				SleepUtil.sleepMedium();
 
@@ -455,7 +475,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 			if ( !super.sIsElementPresent(locator) )
 				throw new HarnessException("locator not present: "+ locator);
-			
+
 			try {
 				logger.info("...WebDriver...moveToElement:click()");
 				final WebElement we = getElement(locator);
@@ -472,7 +492,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 		}
 	}
 
-	
+
 	public void zTypeCharacters(String characters) throws HarnessException {
 		logger.info(myPageName() + " zTypeCharacters()");
 
@@ -486,9 +506,9 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			super.zSelectWindow(MainWindowID);
 			super.sWindowFocus();
 		}
-		
+
 	}
-	
+
 	public void zKeyDown(String keyCode) throws HarnessException {
 		logger.info(myPageName() + " zKeyDown()");
 
@@ -503,9 +523,9 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			super.zSelectWindow(MainWindowID);
 			super.sWindowFocus();
 		}
-		
+
 	}
-	
+
 	public void zCloseWindow() throws HarnessException {
 		logger.info(myPageName() + " zCloseWindow()");
 
@@ -517,22 +537,32 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 			try {
 				super.sSelectWindow(this.DialogWindowID);
-				
+
 			} catch (WebDriverException e) {
 				logger.warn("In zCloseWindow(), unable to locate DialogWindowID. Assume already closed.", e);
 				return;
 			}
-			
-			super.sClose();
+
+			for (String winHandle : webDriver().getWindowHandles()) {
+			    webDriver().switchTo().window(winHandle);
+			    if (!webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Inbox")
+			    		&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Contacts")
+			    		&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Calendar")
+			    		&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Tasks")
+			    		&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Briefcase")
+			    		&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Preferences")) {
+			    	webDriver().close();
+			    }
+			}
 
 		} finally {
 			super.zSelectWindow(MainWindowID);
 		}
 	}
-	
+
 	public void zCloseWindow(String title) throws HarnessException {
 		logger.info(myPageName() + " zCloseWindow(" + title +")");
-		
+
 		try {
 
 			if ( this.DialogWindowID == null || this.DialogWindowID.equals("null") ) {
@@ -545,14 +575,20 @@ public abstract class AbsSeparateWindow extends AbsPage {
 				logger.warn("In zCloseWindow(), unable to locate DialogWindowID. Assume already closed.", e);
 				return;
 			}
-			
+
 			for (String winHandle : webDriver().getWindowHandles()) {
 			    webDriver().switchTo().window(winHandle);
-			    if (webDriver().switchTo().window(winHandle).getTitle().equals(title)) {
+			    if (webDriver().switchTo().window(winHandle).getTitle().contains(title)
+			    		&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Inbox")
+			    		&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Contacts")
+			    		&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Calendar")
+			    		&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Tasks")
+			    		&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Briefcase")
+			    		&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Preferences")) {
 			    	webDriver().close();
 			    }
 			}
-			
+
 		} finally {
 			super.zSelectWindow(MainWindowID);
 		}
@@ -562,7 +598,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 		logger.info(myPageName() + " zWaitForBusyOverlay()");
 
 		try {
-			
+
 			super.sSelectWindow(this.DialogWindowID);
 			super.sWaitForCondition("selenium.browserbot.getUserWindow().top.appCtxt.getShell().getBusy()==false");
 
@@ -575,11 +611,11 @@ public abstract class AbsSeparateWindow extends AbsPage {
 	public void zSetWindowTitle(String title) throws HarnessException {
 		DialogWindowTitle = title;
 	}
-	
+
 	public void zSetWindowID(String id) throws HarnessException {
 		this.DialogWindowID = id;
 	}
-	
+
 	protected boolean zSetWindowIdByTitle(String title) throws HarnessException {
 
 		if ( IsDebugging ) {
@@ -611,7 +647,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 		return (false);
 
 	}
-	
+
 	public boolean zIsClosed(String windowName) throws HarnessException {
 		logger.info(myPageName() + " zIsClosed()");
 		return zWaitForWindowClosed(windowName);
@@ -622,7 +658,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 		if ( this.DialogWindowTitle == null )
 			throw new HarnessException("Window Title is null.  Use zSetWindowTitle() first.");
-		
+
 		for (String title : super.sGetAllWindowTitles()) {
 			logger.info("Window title: "+ title);
 			if ( title.toLowerCase().contains(DialogWindowTitle.toLowerCase()) ) {
@@ -631,10 +667,10 @@ public abstract class AbsSeparateWindow extends AbsPage {
 				return (true);
 			}
 		}
-		
+
 		logger.info("zIsActive() = false");
 		return (false);
-		
+
 	}
 
 

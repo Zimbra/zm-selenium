@@ -103,7 +103,7 @@ public class PageLogin extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if ( zIsActive() ) {
-			// This page is already active.
+			
 			return;
 
 		} else if ( !zIsVisiblePerPosition(Locators.zBtnLogin, 10, 10) ) {
@@ -135,7 +135,7 @@ public class PageLogin extends AbsTab {
 				webDriver = ClientSessionFactory.session().webDriver();
 
 				Capabilities cp =  ((RemoteWebDriver)webDriver).getCapabilities();
-				if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())){
+				if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())) {
 					webDriver.manage().window().setPosition(new Point(0, 0));
 					webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
 					webDriver.navigate().to(ConfigProperties.getBaseURL());

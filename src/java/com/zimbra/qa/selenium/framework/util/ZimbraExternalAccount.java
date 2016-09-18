@@ -147,7 +147,7 @@ public class ZimbraExternalAccount extends ZimbraAccount {
 
 			
 			Matcher  matcherLink = patternLink.matcher(href);
-			while(matcherLink.find()){
+			while(matcherLink.find()) {
 
 				registrationURL = matcherLink.group(1); //link
 				if ( registrationURL.startsWith("\"") ) {

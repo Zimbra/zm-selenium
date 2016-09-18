@@ -162,7 +162,6 @@ public class PageAddressbook extends AbsTab {
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
-		// Check if this page is already active.
 		if (zIsActive()) {
 			return;
 		}
@@ -237,13 +236,13 @@ public class PageAddressbook extends AbsTab {
         String setLocator = "css=div[class='zcs-contactview-fieldSet']";
         List<WebElement> wes = we.findElements(By.cssSelector(setLocator));
         Iterator<WebElement> itr = wes.iterator();
-        while(itr.hasNext()){
+        while(itr.hasNext()) {
         	String labelLocator = "css=div[class='zcs-contactview-label']";
         	String valueLocator = "css=div[class='zcs-contactview-field']";
         	WebElement ww1 = ((WebElement)itr.next()).findElement(By.cssSelector(labelLocator));
         	WebElement ww2 = ((WebElement)itr.next()).findElement(By.cssSelector(valueLocator));
         	String value = contactItem.getAttribute(ww1.getText());
-        	if(ww2.getText() != value){
+        	if (ww2.getText() != value) {
         		return false;
         	}
         }
@@ -431,10 +430,10 @@ public class PageAddressbook extends AbsTab {
 			throw new HarnessException("Button cannot be null!");
 
 
-		// Default behavior variables
+		
 		//
-		String locator = null;			// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String locator = null;		
+		AbsPage page = null;
 
 		if ( button == Button.B_REFRESH ) {
 
@@ -470,7 +469,7 @@ public class PageAddressbook extends AbsTab {
 
 		    page = null;
 	    //click close without changing contact contents
-	    } else if ( button == Button.B_CLOSE){
+	    } else if ( button == Button.B_CLOSE) {
  	    	locator = "css=div[id^=zb__CN][id$=__CANCEL]" ;
 		    if (zIsElementDisabled(locator)) {
 				throw new HarnessException("Tried clicking on "+ locator +" but it was disabled ");
@@ -515,9 +514,9 @@ public class PageAddressbook extends AbsTab {
 
 		//SleepUtil.sleepSmall();
 
-		String pulldownLocator = null;	// If set, this will be expanded
-		String optionLocator = null;	// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		if ( pulldown == Button.B_TAG ) {
 
@@ -581,10 +580,10 @@ public class PageAddressbook extends AbsTab {
 		   if ( option == Button.B_DELETE) {
 			    optionLocator="css=div[id^='ext-listitem'] div[id^='ext-element']:contains('Delete')";
 			    page = this;
-		   } else if (option == Button.B_MOVE){
+		   } else if (option == Button.B_MOVE) {
 			    optionLocator="css=div[id^='ext-listitem'] div[id^='ext-element']:contains('Move')";
 		        page = new MoveContactView(this.MyApplication);
-		   } else if (option == Button.B_TAG){
+		   } else if (option == Button.B_TAG) {
 			    optionLocator="css=div[id^='ext-listitem'] div[id^='ext-element']:contains('Tag')";
 		        page = new TagContactView(this.MyApplication);
 		   }
@@ -600,7 +599,7 @@ public class PageAddressbook extends AbsTab {
 
 			//central coordinate "x,y"
 			//String center= sGetElementWidth(pulldownLocator)/2 + "," + sGetElementHeight(pulldownLocator)/2;
-			if ( this.zIsBrowserMatch(BrowserMasks.BrowserMaskIE)){
+			if ( this.zIsBrowserMatch(BrowserMasks.BrowserMaskIE)) {
 
 				// TODO check if the following code make the test case CreateContactGroup.GroupOfNewEmail() pass in wdc
 			    	/*
@@ -650,9 +649,9 @@ public class PageAddressbook extends AbsTab {
 
 		SleepUtil.sleepSmall();
 
-		String pulldownLocator = null;	// If set, this will be expanded
-		String optionLocator = null;	// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		if ( pulldown == Button.B_TAG ) {
 
@@ -672,10 +671,10 @@ public class PageAddressbook extends AbsTab {
 		   if ( option == Button.B_DELETE) {
 			    optionLocator="css=div[id^='ext-listitem'] div[id^='ext-element']:contains('Delete')";
 			    page = this;
-		   } else if (option == Button.B_MOVE){
+		   } else if (option == Button.B_MOVE) {
 			    optionLocator="css=div[id^='ext-listitem'] div[id^='ext-element']:contains('Move')";
 		        page = new MoveContactView(this.MyApplication);
-		   } else if (option == Button.B_TAG){
+		   } else if (option == Button.B_TAG) {
 			    optionLocator="css=div[id^='ext-listitem'] div[id^='ext-element']:contains('Tag')";
 		        page = new TagContactView(this.MyApplication);
 		   }
@@ -691,7 +690,7 @@ public class PageAddressbook extends AbsTab {
 
 			//central coordinate "x,y"
 			//String center= sGetElementWidth(pulldownLocator)/2 + "," + sGetElementHeight(pulldownLocator)/2;
-			if ( this.zIsBrowserMatch(BrowserMasks.BrowserMaskIE)){
+			if ( this.zIsBrowserMatch(BrowserMasks.BrowserMaskIE)) {
 
 				// TODO check if the following code make the test case CreateContactGroup.GroupOfNewEmail() pass in wdc
 			    	/*
@@ -770,9 +769,9 @@ public class PageAddressbook extends AbsTab {
 		if ( pulldown == null )
 			throw new HarnessException("Button cannot be null!");
 
-		String pulldownLocator = null;	// If set, this will be expanded
-		String optionLocator = null;	// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 	   if ( pulldown == Button.B_MOVE ) {
 
 	      if ( item instanceof FolderItem) {
@@ -855,11 +854,11 @@ public class PageAddressbook extends AbsTab {
 		if ( pulldown == null )
 			throw new HarnessException("Button cannot be null!");
 
-		String pulldownLocator  = null;	// If set, this will be expanded
-		String optionLocator    = null;	// If set, this will be clicked
-		String subOptionLocator = null;	// If set, this will be clicked
+		String pulldownLocator  = null;
+		String optionLocator    = null;
+		String subOptionLocator = null;
 
-		AbsPage page = null;	// If set, this page will be returned
+		AbsPage page = null;
 
 		if ( pulldown == Button.B_TAG ) {
 			 pulldownLocator = "css=td#zb__CNS-main__TAG_MENU_dropdown div.ImgSelectPullDownArrow";
@@ -916,7 +915,7 @@ public class PageAddressbook extends AbsTab {
 						   parentMenuid= sGetEval("window.document.getElementById('z_shell').children[" + i + "].id");
 
 						   if (sGetEval("window.document.getElementById('" + parentMenuid + "').getAttribute('class')").contains("ActionMenu ZHasIcon")
-								 && sIsVisible(parentMenuid)){
+								 && sIsVisible(parentMenuid)) {
 								 subOptionLocator = "css=div#" + parentMenuid + " td[id$=title]:contains(" + tagName + ")";
 								 break;
 						   }
@@ -1067,8 +1066,8 @@ public class PageAddressbook extends AbsTab {
 
 
 	public AbsPage zListItem(Action action, Button option ,Button subOption, String contact) throws HarnessException {
-		String locator = null;			// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String locator = null;		
+		AbsPage page = null;
 		String parentLocator = null;
 		String extraLocator="";
 
@@ -1274,7 +1273,7 @@ public class PageAddressbook extends AbsTab {
 	 */
 	public AbsPage zListItem(Action action, Button option, Button subOption, Object choice, String contact) throws HarnessException {
 
-		AbsPage page = null;	// If set, this page will be returned
+		AbsPage page = null;
 		String contactLocator = getContactLocator(contact);
 		String locator = null;
 
@@ -1422,8 +1421,8 @@ public class PageAddressbook extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, String contact) throws HarnessException {
-		String locator = null;			// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String locator = null;		
+		AbsPage page = null;
 
         String contactLocator = getContactLocator(contact);
 
@@ -1433,7 +1432,7 @@ public class PageAddressbook extends AbsTab {
 			ContextMenuItem cmi=null;
 
 
-			if (option == Button.B_DELETE){
+			if (option == Button.B_DELETE) {
                 cmi=CONTEXT_MENU.CONTACT_DELETE;
 			}
 			else if (option == Button.B_MOVE) {

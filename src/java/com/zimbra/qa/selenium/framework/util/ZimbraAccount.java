@@ -355,19 +355,16 @@ public class ZimbraAccount {
 		put("zimbraPrefLocale", ConfigProperties.getStringProperty("locale"));
 		put("zimbraPrefTimeZoneId", ConfigProperties.getStringProperty("zimbraPrefTimeZoneId", "America/Los_Angeles"));
 
-		// The following settings are specific to the test harness
-		// and deviate from the default settings to work around
-		// test harness issues/limitations
-		//
-		// zimbraPrefCalendarApptReminderWarningTime=0 ... A random reminder will throw off the tests
-		// zimbraPrefAutoAddAddressEnabled=FALSE ... Adding addresses to the addressbook might break a test
-		// zimbraPrefWarnOnExit=FALSE ... A system popup will occur if this is TRUE, which will freeze the tests
-
+		// The following settings are specific to the test harness and deviate from the default settings to work around
+		// Test harness issues/limitations
+		
+		put("zimbraPrefClientType","advanced");
+		put("zimbraFeatureTouchClientEnabled","TRUE");
 		put("zimbraPrefAutoAddAddressEnabled", "FALSE");
 		put("zimbraPrefCalendarApptReminderWarningTime", "0");
 		put("zimbraPrefCalendarShowPastDueReminders", "FALSE");
 		put("zimbraPrefWarnOnExit","FALSE");
-		put("zimbraFeatureTouchClientEnabled","TRUE");
+		
 	}};
 
 	/**
@@ -981,7 +978,7 @@ public class ZimbraAccount {
 		 */
 		 public SoapClient() {
 
-			 if ( mSoapProto == null ){
+			 if ( mSoapProto == null ) {
 				 mSoapProto = SoapProtocol.Soap12;
 			 }
 

@@ -153,10 +153,10 @@ public class PageSearch extends AbsTab {
 			throw new HarnessException("Button cannot be null!");
 		
 				
-		// Default behavior variables
+		
 		//
-		String locator = null;	// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String locator = null;
+		AbsPage page = null;
 		
 		// Based on the button specified, take the appropriate action(s)
 		//
@@ -212,14 +212,9 @@ public class PageSearch extends AbsTab {
 		if ( option == null )
 			throw new HarnessException("Option cannot be null!");
 
-		// Default behavior variables
-		//
-		String pulldownLocator = null;	// If set, this will be expanded
-		String optionLocator = null;	// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
-		
-		// Based on the button specified, take the appropriate action(s)
-		//
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 		
 		if ( pulldown == Button.B_SEARCHTYPE ) {
 			pulldownLocator = "css=td#ztb_search_searchMenuButton";
@@ -311,10 +306,10 @@ public class PageSearch extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 
 		if ( pulldown == Button.B_MOVE ) {
@@ -462,7 +457,7 @@ public class PageSearch extends AbsTab {
 				page = new DisplayConversation(MyApplication);
 			}
 			
-			// FALL THROUGH
+			
 
 		} else if ( action == Action.A_DOUBLECLICK ) {
 
@@ -474,7 +469,7 @@ public class PageSearch extends AbsTab {
 //			page = new DisplayMail(MyApplication);
 			page = null;
 
-			// FALL THROUGH
+			
 		} else if ( action == Action.A_CTRLSELECT ) {
 
 			throw new HarnessException("implement me!  action = "+ action);
@@ -491,7 +486,7 @@ public class PageSearch extends AbsTab {
 			// Return the displayed mail page object
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else if ( action == Action.A_MAIL_CHECKBOX ) {
 
@@ -511,7 +506,7 @@ public class PageSearch extends AbsTab {
 			// No page to return
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else if ( action == Action.A_MAIL_UNCHECKBOX ) {
 
@@ -531,7 +526,7 @@ public class PageSearch extends AbsTab {
 			// No page to return
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else if ( action == Action.A_MAIL_EXPANDCONVERSATION ) {
 
@@ -582,7 +577,7 @@ public class PageSearch extends AbsTab {
 			// No page to return
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else {
 			throw new HarnessException("implement me!  action = "+ action);

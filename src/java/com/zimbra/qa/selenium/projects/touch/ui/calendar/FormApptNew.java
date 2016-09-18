@@ -431,7 +431,7 @@ public class FormApptNew extends AbsForm {
 			locator = Locators.CancelButton;
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else if (button == Button.B_SUGGESTATIME) {
 
@@ -439,7 +439,7 @@ public class FormApptNew extends AbsForm {
 			SleepUtil.sleepMedium();
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else if (button == Button.B_10AM) {
 
@@ -451,7 +451,7 @@ public class FormApptNew extends AbsForm {
 				return null;
 			}
 
-			// FALL THROUGH
+			
 
 		} else if (button == Button.B_SUGGESTALOCATION) {
 
@@ -459,7 +459,7 @@ public class FormApptNew extends AbsForm {
 			SleepUtil.sleepMedium();
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else if (button == Button.B_FIRST_TIME_SUGGESTION) {
 			
@@ -495,7 +495,7 @@ public class FormApptNew extends AbsForm {
 				return null;
 			}
 
-			// FALL THROUGH
+			
 
 		} else if (button == Button.B_LOCATION) {
 
@@ -506,7 +506,7 @@ public class FormApptNew extends AbsForm {
 			page = null;
 			return (page);
 
-			// FALL THROUGH
+			
 
 		} else if (button == Button.B_EQUIPMENT) {
 
@@ -517,7 +517,7 @@ public class FormApptNew extends AbsForm {
 			page = null;
 			return (page);
 
-			// FALL THROUGH
+			
 
 		} 
 		else if (button == Button.B_TO) {
@@ -529,9 +529,9 @@ public class FormApptNew extends AbsForm {
 			page = null;
 			return (page);
 
-			// FALL THROUGH
+			
 
-		}else if (button == Button.B_OPTIONAL) {
+		} else if (button == Button.B_OPTIONAL) {
 
 			locator = Locators.AddOptiponalAttendees;
 			this.sClickAt(locator, "");
@@ -540,7 +540,7 @@ public class FormApptNew extends AbsForm {
 			page = null;
 			return (page);
 
-			// FALL THROUGH
+			
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
@@ -589,7 +589,7 @@ public class FormApptNew extends AbsForm {
 			locator = zGetLocationVaueFromPopUp(value);
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
@@ -683,10 +683,10 @@ public class FormApptNew extends AbsForm {
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		if (pulldown == Button.B_OPTIONS) {
 			pulldownLocator = Locators.OptionsDropdown;

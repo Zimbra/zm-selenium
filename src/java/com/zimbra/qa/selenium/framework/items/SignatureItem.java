@@ -119,7 +119,7 @@ public class SignatureItem implements IItem {
 			Element contentBodyText = ZimbraAccount.SoapClient.selectNode(sig, "//acct:content[@type='text/plain']");
 			if ( contentBodyHtml != null ) {
 				item.dBodyHtmlText = contentBodyHtml.getText().trim();
-			}else if ( contentBodyText != null ) {
+			} else if ( contentBodyText != null ) {
 				item.dBodyText = contentBodyText.getText().trim();
 			}
 
