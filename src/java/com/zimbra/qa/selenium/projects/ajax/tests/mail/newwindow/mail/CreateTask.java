@@ -74,13 +74,13 @@ public class CreateTask extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_CREATE_TASK);
-			//window.zToolbarPressButton(Button.B_SAVE);
 			app.zPageMail.zClickAt("css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')", "");
+			SleepUtil.sleepMedium();
 
 		} finally {
 			
@@ -89,6 +89,7 @@ public class CreateTask extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 			
 		}
 

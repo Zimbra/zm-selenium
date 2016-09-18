@@ -55,7 +55,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatu
 public class SignatureVcard extends AjaxCommonTest {
 	public SignatureVcard() {
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 
 	@Test( description = "Verify Signature Vcard thoough GUI", groups = { "functional" })

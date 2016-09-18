@@ -89,7 +89,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT);
 
 				//Check if a warning dialog is present. If Yes, Press Yes to continue
-				if(mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
+				if (mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
 
 					mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
 				}
@@ -284,7 +284,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_HEADERS);
 
 				//Check if a warning dialog is present. If Yes, Press Yes to continue
-				if(mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
+				if (mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
 					mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
 				}
 

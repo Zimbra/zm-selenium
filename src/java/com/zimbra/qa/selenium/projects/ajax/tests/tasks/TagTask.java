@@ -37,7 +37,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
 public class TagTask extends AjaxCommonTest{
 
 	@SuppressWarnings("serial")
-	public TagTask(){
+	public TagTask() {
 		logger.info("Tag " + TagTask.class.getCanonicalName());
 
 		// All tests start at the login page

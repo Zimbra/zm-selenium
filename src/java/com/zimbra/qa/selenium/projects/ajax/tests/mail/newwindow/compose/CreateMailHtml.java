@@ -55,7 +55,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 
 			window.waitForComposeWindow();
 			
@@ -74,10 +74,6 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 			// Send the message
 			window.zToolbarPressButton(Button.B_SEND);
 			
-			if(window.zWaitForWindowClosed(windowTitle)){
-			    // Window closes automatically
-			    window = null;
-			}
 		} finally {
 
 			// Make sure to close the window
@@ -85,6 +81,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 
 		}
 		

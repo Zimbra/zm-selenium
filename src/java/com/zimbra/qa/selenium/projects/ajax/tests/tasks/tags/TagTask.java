@@ -33,13 +33,13 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
 
 public class TagTask extends AjaxCommonTest{
 
-	public TagTask(){
+	public TagTask() {
 		logger.info("Tag " + TagTask.class.getCanonicalName());
 
 		// All tests start at the login page
 		super.startingPage = app.zPageTasks;
 
-		super.startingAccountPreferences = null;
+		
 	}
 
 	@Test( description = "Tag a Task using Toolbar -> Tag -> New Tag", groups = { "smoke" })

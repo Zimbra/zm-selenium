@@ -18,19 +18,14 @@ package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.url;
 
 import java.io.*;
 import java.util.*;
-
-import org.openqa.selenium.*;
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
-
 public class HoverOverURL extends AjaxCommonTest {
-
 	
 	public HoverOverURL() {
 		logger.info("New "+ HoverOverURL.class.getCanonicalName());
@@ -41,14 +36,17 @@ public class HoverOverURL extends AjaxCommonTest {
 		// Basic settings
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			private static final long serialVersionUID = -3888082425397157889L;
-		{
-		    put("zimbraPrefGroupMailBy", "message");
-		}};
+			{
+				put("zimbraPrefGroupMailBy", "message");
+			}
+		};
 
 	}
 	
+	
 	@Test( description = "Hover over a URL",
 			groups = { "functional" })
+	
 	public void HoverOverURL_01() throws HarnessException {
 
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -77,8 +75,8 @@ public class HoverOverURL extends AjaxCommonTest {
 		SleepUtil.sleep(5000);
 		
 		// Hover over the URL
-		String locator = "css=span[id$='_com_zimbra_url']:contains("+ server +")";
-		app.zPageMail.sMouseOver(locator, (WebElement[]) null);
+		String locator = "css=span[id$='_com_zimbra_url']:contains(" + server + ")";
+		app.zPageMail.zDisplayMailHoverOver(locator);
 
 		//-- VERIFICATION
 		
@@ -92,6 +90,7 @@ public class HoverOverURL extends AjaxCommonTest {
 	
 	@Test( description = "Hover over a URL - verify tooltip content",
 			groups = { "functional" })
+	
 	public void HoverOverURL_02() throws HarnessException {
 
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -120,8 +119,8 @@ public class HoverOverURL extends AjaxCommonTest {
 		SleepUtil.sleep(5000);
 		
 		// Hover over the URL
-		String locator = "css=span[id$='_com_zimbra_url']:contains("+ server +")";
-		app.zPageMail.sMouseOver(locator, (WebElement[]) null);
+		String locator = "css=span[id$='_com_zimbra_url']:contains(" + server + ")";
+		app.zPageMail.zDisplayMailHoverOver(locator);
 
 		//-- VERIFICATION
 		
@@ -140,6 +139,7 @@ public class HoverOverURL extends AjaxCommonTest {
 	@Bugs(ids = "82303")
 	@Test( description = "Hover over a URL with 'javascript' in the path.  Verify no change to JAVASCRIPT-BLOCKED",
 			groups = { "functional" })
+	
 	public void HoverOverURL_03() throws HarnessException {
 
 		// Create the message data to be sent
@@ -169,7 +169,7 @@ public class HoverOverURL extends AjaxCommonTest {
 			
 			// Hover over the URL
 			String locator = "css=span[id$='_com_zimbra_url']:contains("+ link +")";
-			app.zPageMail.sMouseOver(locator, (WebElement[]) null);
+			app.zPageMail.zDisplayMailHoverOver(locator);
 	
 			//-- VERIFICATION
 			

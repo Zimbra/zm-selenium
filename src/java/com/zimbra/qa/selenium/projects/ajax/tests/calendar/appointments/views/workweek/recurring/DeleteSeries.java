@@ -34,7 +34,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "69132")
-	@Test(	
+	@Test(
 			description = "Delete entire series of recurring appointment (every day) using toolbar button", 
 			groups = { "smoke" } )
 	public void DeleteSeries_01() throws HarnessException {
@@ -121,7 +121,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "69132")
-	@Test(	
+	@Test(
 			description = "Delete entire series of recurring appointment (every week) using context menu", 
 			groups = { "smoke" } )
 	public void DeleteSeries_02() throws HarnessException {

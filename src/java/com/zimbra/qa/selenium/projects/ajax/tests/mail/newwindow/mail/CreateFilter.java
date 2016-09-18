@@ -78,7 +78,6 @@ public class CreateFilter extends PrefGroupMailByMessageTest {
 
 			DialogEditFilter dialog = new DialogEditFilter(app,((AppAjaxClient) app).zPageMail);
 			ZAssert.assertTrue(dialog.zIsActive(), "Add filter dialog should active");
-			
 
 		} finally {
 
@@ -87,6 +86,7 @@ public class CreateFilter extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 
 		}
 

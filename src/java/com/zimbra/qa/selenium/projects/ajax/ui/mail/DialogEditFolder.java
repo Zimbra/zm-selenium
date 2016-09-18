@@ -40,7 +40,7 @@ public class DialogEditFolder extends AbsDialog {
 	public static class Locators {
 
 		public static final String zEditPropertiesDialogId = "ZmFolderPropsDialog";
-		public static final String zEditPropertiesDialogDropDown = "css=div.DwtDialogBody div.ImgSelectPullDownArrow";
+		public static final String zEditPropertiesDialogDropDown = "css=td[id$='_title']:contains('None')";
 		public static final String zGrayColorId = "//td[contains(@id,'_title') and contains(text(),'Gray')]";
 		public static final String zBlueColorId = "//td[contains(@id,'_title') and contains(text(),'Blue')]";
 		public static final String zCyanColorId = "//td[contains(@id,'_title') and contains(text(),'Cyan')]";
@@ -63,14 +63,8 @@ public class DialogEditFolder extends AbsDialog {
 	public DialogEditFolder(AbsApplication application, AbsTab tab) {
 		super(application, tab);
 		logger.info("new " + DialogEditFolder.class.getCanonicalName());
-
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see framework.ui.AbsDialog#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
@@ -92,7 +86,6 @@ public class DialogEditFolder extends AbsDialog {
 			return (false); // Not visible per position
 		}
 
-		// Yes, visible
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 	}
@@ -114,7 +107,7 @@ public class DialogEditFolder extends AbsDialog {
 
 			locator = "//div[@class='" + Locators.zEditPropertiesDialogId+ "']//div[contains(@id,'_buttons')]//td[text()='Cancel']";
 
-		}else if (button == Button.B_SHARE) {
+		} else if (button == Button.B_SHARE) {
 
 			locator = "//div[@class='" + Locators.zEditPropertiesDialogId+ "']//div[contains(@id,'_buttons')]//td[text()=''Add Share...']";
 
@@ -159,9 +152,9 @@ public class DialogEditFolder extends AbsDialog {
 		}
 
 		this.zClick(locator);
-
 		this.zWaitForBusyOverlay();
-
+		SleepUtil.sleepSmall();
+		
 		return (page);
 	}
 
@@ -175,11 +168,6 @@ public class DialogEditFolder extends AbsDialog {
 		return (this.sGetText(locator));
 	}
 
-	/**
-	 * Set the new folder name
-	 * 
-	 * @param folder
-	 */
 	public void zSetNewName(String folder) throws HarnessException {
 		logger.info(myPageName() + " zEnterFolderName(" + folder + ")");
 
@@ -191,31 +179,22 @@ public class DialogEditFolder extends AbsDialog {
 		String locator = "css=div.DwtDialogBody div input";
 
 		if (!this.sIsElementPresent(locator))
-			throw new HarnessException("unable to find folder name field "
-					+ locator);
+			throw new HarnessException("unable to find folder name field " + locator);
 
-		// For some reason, the text doesn't get entered on the first try
+		SleepUtil.sleepSmall();
+		this.clearField(locator);
 		this.sFocus(locator);
-		this.zClick(locator);
-		zKeyboard.zTypeCharacters(folder);
-		if (!(sGetValue(locator).equalsIgnoreCase(folder))) {
-			sType(locator, folder);
-		}
-
+		sType(locator, folder);
+		SleepUtil.sleepSmall();
 		this.zWaitForBusyOverlay();
-
 	}
 
 	public enum FolderColor {
 		None, Blue, Cyan, Green, Purple, Red, Yellow, Pink, Gray, Orange, MoreColors
 	}
 
-	/**
-	 * Set the color pulldown
-	 * 
-	 * @param folder
-	 */
 	public void zSetNewColor(FolderColor color) throws HarnessException {
+		
 		logger.info(myPageName() + " zEnterFolderColor(" + color + ")");
 		String actionLocator = null;
 		String optionLocator = null;
@@ -224,23 +203,25 @@ public class DialogEditFolder extends AbsDialog {
 		if (color == null)
 			throw new HarnessException("folder must not be null");
 
-		if (color == FolderColor.MoreColors){
+		if (color == FolderColor.MoreColors) {
 			actionLocator = Locators.zEditColor;
 			optionLocator = Locators.zMoreColors;
 			
 			zClickAt(actionLocator,"");
+			this.zWaitForBusyOverlay();
 			zClick(optionLocator);
+			this.zWaitForBusyOverlay();
 			
 			optionLocator = Locators.zCustomColors;
 			zClick(optionLocator);
 			
-
-		}else if (color == FolderColor.Gray) {
+		} else if (color == FolderColor.Gray) {
 
 			actionLocator = Locators.zEditPropertiesDialogDropDown;
 			optionLocator = Locators.zGrayColorId;
 
 			zClick(actionLocator);
+			this.zWaitForBusyOverlay();
 			zClick(optionLocator);
 
 		} else if (color == FolderColor.Blue) {
@@ -248,7 +229,8 @@ public class DialogEditFolder extends AbsDialog {
 			actionLocator = Locators.zEditPropertiesDialogDropDown;
 			optionLocator = Locators.zBlueColorId;
 
-			zClick(actionLocator);
+			sClickAt(actionLocator, "");
+			this.zWaitForBusyOverlay();
 			zClick(optionLocator);
 
 		} else if (color == FolderColor.Cyan) {
@@ -257,6 +239,7 @@ public class DialogEditFolder extends AbsDialog {
 			optionLocator = Locators.zCyanColorId;
 
 			zClick(actionLocator);
+			this.zWaitForBusyOverlay();
 			zClick(optionLocator);
 
 		} else if (color == FolderColor.Green) {
@@ -265,6 +248,7 @@ public class DialogEditFolder extends AbsDialog {
 			optionLocator = Locators.zGreenColorId;
 
 			zClick(actionLocator);
+			this.zWaitForBusyOverlay();
 			zClick(optionLocator);
 
 		} else if (color == FolderColor.Purple) {
@@ -273,13 +257,14 @@ public class DialogEditFolder extends AbsDialog {
 			optionLocator = Locators.zPurpleColorId;
 
 			zClick(actionLocator);
+			this.zWaitForBusyOverlay();
 			zClick(optionLocator);
 
 		} else {
-			throw new HarnessException("color " + color
-					+ " not yet implemented");
+			throw new HarnessException("color " + color	+ " not yet implemented");
 		}
-
+		
+		this.zWaitForBusyOverlay();
 	}
 
 	public enum DialogTab {
@@ -294,21 +279,15 @@ public class DialogEditFolder extends AbsDialog {
 		String locator = null;
 		
 		if ( tab == DialogTab.Properties ) {
-			
-			// See: https://bugzilla.zimbra.com/show_bug.cgi?id=78459
-			locator = "css=div[id='FolderProperties'] td[id$='_title']:contains('Properties')"; // TODO: I18N
+			locator = "css=div[id='FolderProperties'] td[id$='_title']:contains('Properties')";
 			
 		} else if ( tab == DialogTab.Retention || tab == DialogTab.Disposal ) {
-			
-			// See: https://bugzilla.zimbra.com/show_bug.cgi?id=78459
-			locator = "css=div[id='FolderProperties'] td[id$='_title']:contains('Retention')"; // TODO: I18N
+			locator = "css=div[id='FolderProperties'] td[id$='_title']:contains('Retention')";
 
 		} else {
 			
 			throw new HarnessException("No logic defined for tab = "+ tab);
-			
 		}
-
 
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("Locator not found: "+ locator);
@@ -317,9 +296,6 @@ public class DialogEditFolder extends AbsDialog {
 		// Click on the tab
 		this.zClickAt(locator, "");
 		this.zWaitForBusyOverlay();
-		
-		// Done!
-
 	}
 	
 	public enum RetentionRangeUnits {
@@ -351,7 +327,6 @@ public class DialogEditFolder extends AbsDialog {
 
 		tracer.trace("Set retention range type " + type);
 
-		// 11/7/2012: only "Custom" is supported/allowed
 		if ( type != RetentionRangeType.Custom ) {
 			throw new HarnessException("implement me: retention range type: "+ type);
 		}
@@ -449,7 +424,6 @@ public class DialogEditFolder extends AbsDialog {
 		logger.info(myPageName() + " zDisposalSetRange(" + type + ", "+ units + ", "+ value +")");
 
 		tracer.trace("Set disposal range " + type +" "+ value + " " + units);
-
 		
 		// Make sure we are on the retention tab
 		zNavigateToTab(DialogTab.Disposal);
@@ -458,7 +432,6 @@ public class DialogEditFolder extends AbsDialog {
 		zDisposalSetRangeType(type);
 		zDisposalSetRangeUnits(units);
 		zDisposalSetRangeValue(value);
-		
 	}
 	
 	public void zDisposalSetRangeType(RetentionRangeType type) throws HarnessException {
@@ -466,7 +439,6 @@ public class DialogEditFolder extends AbsDialog {
 
 		tracer.trace("Set disposal range type " + type);
 
-		// 11/7/2012: only "Custom" is supported/allowed
 		if ( type != RetentionRangeType.Custom ) {
 			throw new HarnessException("implement me: retention range type: "+ type);
 		}
@@ -512,7 +484,6 @@ public class DialogEditFolder extends AbsDialog {
 		// Pulldown
 		this.sSelectDropDown(locator, option);
 		this.zWaitForBusyOverlay();
-		
 	}
 		
 	public void zDisposalEnable() throws HarnessException {
@@ -520,10 +491,8 @@ public class DialogEditFolder extends AbsDialog {
 
 		tracer.trace("Enable disposal");
 		
-		
 		// Make sure we are on the retention tab
 		zNavigateToTab(DialogTab.Disposal);
-
 
 		// Check the checkbox
 		String locator = "css=div[id='FolderProperties'] input[id$='_purgeCheckbox']";
@@ -534,7 +503,6 @@ public class DialogEditFolder extends AbsDialog {
 			this.sCheck(locator);
 			this.zWaitForBusyOverlay();
 		}
-
 	}
 	
 	public void zDisposalDisable() throws HarnessException {
@@ -542,10 +510,8 @@ public class DialogEditFolder extends AbsDialog {
 
 		tracer.trace("Disable disposal");
 		
-		
 		// Make sure we are on the retention tab
 		zNavigateToTab(DialogTab.Disposal);
-
 
 		// Uncheck the checkbox
 		String locator = "css=div[id='FolderProperties'] input[id$='_purgeCheckbox']";
@@ -558,6 +524,7 @@ public class DialogEditFolder extends AbsDialog {
 		}
 
 	}
+	
 	public void zExcludeFBEnable() throws HarnessException {
 		logger.info(myPageName() + " zDisposalEnable()");
 		tracer.trace("Enable Exclude this calendar when reporting free/busy times");
@@ -585,6 +552,4 @@ public class DialogEditFolder extends AbsDialog {
 		}
 
 	}
-
-
 }

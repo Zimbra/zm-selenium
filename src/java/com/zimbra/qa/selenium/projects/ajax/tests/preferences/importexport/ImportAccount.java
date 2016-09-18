@@ -41,7 +41,7 @@ public class ImportAccount extends AjaxCommonTest {
 	public ImportAccount() {
 
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 
 	@Test( description = "Verify the presence of mail, contacts, calendar appointments, tasks and Briefcase documents after importing an exported compressed file",

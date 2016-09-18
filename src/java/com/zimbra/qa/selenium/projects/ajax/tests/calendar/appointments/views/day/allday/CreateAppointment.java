@@ -73,7 +73,7 @@ public class CreateAppointment extends AjaxCommonTest{
 		ZAssert.assertEquals(app.zGetActiveAccount().soapMatch("//mail:GetAppointmentResponse//mail:comp", "allDay", "1"), true, "");
 		
 		// Verify appointment exists in current view
-		if(!app.zPageCalendar.zVerifyAppointmentExists(apptSubject))
+		if (!app.zPageCalendar.zVerifyAppointmentExists(apptSubject))
 			
 			app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 		

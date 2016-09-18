@@ -30,7 +30,7 @@ public class EnableActivityStream extends AjaxCommonTest {
 	public EnableActivityStream() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 		
 	}
 

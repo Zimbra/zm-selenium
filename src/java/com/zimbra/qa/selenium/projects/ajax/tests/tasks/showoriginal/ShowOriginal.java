@@ -79,7 +79,7 @@ public class ShowOriginal extends AjaxCommonTest {
 
 			// Right click the item, select Show Original
 			window = (SeparateWindow) app.zPageTasks.zListItem(Action.A_RIGHTCLICK, Button.O_SHOW_ORIGINAL, subject);
-			window.zWaitForActive(); // Make sure the window is there
+			window.zWaitForActive();
 			SleepUtil.sleepMedium(); 
 			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 
@@ -94,6 +94,7 @@ public class ShowOriginal extends AjaxCommonTest {
 				window.zCloseWindow();
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 
 		}
 

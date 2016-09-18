@@ -28,7 +28,7 @@ public class ShortcutDialog extends AjaxCommonTest {
 	public ShortcutDialog() {
 		logger.info("New " + ShortcutDialog.class.getCanonicalName());
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = null;
+		
 	}
 
 

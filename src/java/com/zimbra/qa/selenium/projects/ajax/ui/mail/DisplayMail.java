@@ -19,7 +19,11 @@ package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.items.AttachmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -43,10 +47,10 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
  * @see http://wiki.zimbra.com/wiki/Testing:_Selenium:_ZimbraSelenium_Overview#Mail_Page
  */
 public class DisplayMail extends AbsDisplay {
+	
+	WebDriver webDriver = ClientSessionFactory.session().webDriver();
+	WebElement we = null;
 
-	/**
-	 * Defines Selenium locators for various objects in {@link DisplayMail}
-	 */
 	public static class Locators {
 				
 		
@@ -288,17 +292,17 @@ public class DisplayMail extends AbsDisplay {
 			page = new DialogShareDecline(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
 			doPostfixCheck = true;
 
-		}else if ( button == Button.B_FORWARD) {
+		} else if ( button == Button.B_FORWARD) {
 
 			locator = Locators.zForwardButton;
 			page = null;
 			doPostfixCheck = true;
-		}else if ( button == Button.B_REPLY) {
+		} else if ( button == Button.B_REPLY) {
 
 			locator = Locators.zReplyButton;
 			page = null;
 			doPostfixCheck = true;
-		}else if ( button == Button.B_REPLYALL) {
+		} else if ( button == Button.B_REPLYALL) {
 
 			locator = Locators.zReplyAllButton;
 			page = null;
@@ -873,10 +877,6 @@ public class DisplayMail extends AbsDisplay {
 	 */
 	public boolean zHasADTButtons() throws HarnessException {
 	
-		// Haven't fully baked this method.  
-		// Maybe it works.  
-		// Maybe it needs to check "visible" and/or x/y/z coordinates
-
 		List<String> locators = Arrays.asList(
 				this.ContainerLocator + " td[id$='__Inv__REPLY_ACCEPT_title']",
 				this.ContainerLocator + " td[id$='__Inv__REPLY_TENTATIVE_title']",
@@ -898,17 +898,18 @@ public class DisplayMail extends AbsDisplay {
 		if ( field == Field.Body) {
 
 			try {
-
-				this.sSelectFrame("css=iframe[id='zv__TV-main__MSG__body__iframe']");
-
+				String bodyLocator = "body";				
+				webDriver.switchTo().defaultContent();
+				webDriver.switchTo().frame(0);
+				we = webDriver.findElement(By.cssSelector(bodyLocator));
+				
 				source = this.sGetHtmlSource();
-
-				// For some reason, we don't get the <html/> tag.  Add it
+				logger.info("DisplayMail.zGetBody(" + bodyLocator + ") = " + source);
 				source = "<html>" + source + "</html>";
 
 			} finally {
-				// Make sure to go back to the original iframe
 				this.sSelectFrame("relative=top");
+				webDriver.switchTo().defaultContent();
 			}
 
 		} else {
@@ -916,24 +917,28 @@ public class DisplayMail extends AbsDisplay {
 		}
 
 		logger.info("DisplayMail.zGetMailPropertyAsHtml() = "+ HtmlElement.clean(source).prettyPrint());
-
-		// Clean up the HTML code to be valid
 		return (HtmlElement.clean(source));
-
-
 	}
 	
 	public String zGetHtmlMailBodyText(Field field ) throws HarnessException {
+		
 		if ( field == Field.Body) {
+			
+			try {				
+				String bodyLocator = "body";				
+				webDriver.switchTo().defaultContent();
+				webDriver.switchTo().frame(0);
+				we = webDriver.findElement(By.cssSelector(bodyLocator));
+				
+				String html = this.sGetHtmlSource();
+				logger.info("DisplayMail.zGetBody(" + bodyLocator + ") = " + html);
+				return(html);
 
-			try {
-				this.sSelectFrame("css=iframe[id$='_body_ifr']");
-				String bodyhtml = this.sGetHtmlSource();
-				return bodyhtml;				
 			} finally {
-				// Make sure to go back to the original iframe
 				this.sSelectFrame("relative=top");
+				webDriver.switchTo().defaultContent();
 			}
+			
 		} else {
 			throw new HarnessException("not implemented for field "+ field);
 		}
@@ -941,8 +946,6 @@ public class DisplayMail extends AbsDisplay {
 	}
 
 	public String zGetMailPropertyAsText(Field field) throws HarnessException {
-
-		//String source = null;
 
 		if ( field == Field.Body) {
 
@@ -953,8 +956,6 @@ public class DisplayMail extends AbsDisplay {
 				logger.info(this.sGetValue(bodyLocator));
 				String BodyText=this.sGetValue(bodyLocator);
 				return (BodyText);
-				
-			
 				
 			} finally {
 				// Make sure to go back to the original iframe
@@ -970,15 +971,12 @@ public class DisplayMail extends AbsDisplay {
 			String Subject=this.sGetValue(locator);
 			return (Subject);
 			
-			// FALL THROUGH
-			
 		} else {
 			throw new HarnessException("not implemented for field "+ field);
 		}
 	}
 	
-	public void zVerifySignaturePlaceInText(String placeOfSignature,
-			String signatureBody, String mode) throws HarnessException {
+	public void zVerifySignaturePlaceInText(String placeOfSignature, String signatureBody, String mode) throws HarnessException {
 		int indexOfSignature;
 		int indexOfOrignalMsg;
 		mode = mode.toLowerCase();
@@ -992,18 +990,16 @@ public class DisplayMail extends AbsDisplay {
 
 		if (placeOfSignature.equals("AboveIncludedMsg")) {
 			Assert.assertTrue(indexOfSignature <= indexOfOrignalMsg,
-					"The signature body " + signatureBody
-					+ " is  displayed above the Mail body");
+					"The signature body " + signatureBody + " is  displayed above the Mail body");
 
 		} else if (placeOfSignature.equals("BelowIncludedMsg")) {
 			Assert.assertTrue(indexOfSignature > indexOfOrignalMsg,
-					"The signature body " + signatureBody
-					+ " is  displayed below the Mail body");
+					"The signature body " + signatureBody + " is  displayed below the Mail body");
 		}
 	}
 
-	public void zVerifySignaturePlaceInHTML(String placeOfSignature,
-			String signatureBody, String mode) throws HarnessException {
+	public void zVerifySignaturePlaceInHTML(String placeOfSignature, String signatureBody, String mode) throws HarnessException {
+		
 		int indexOfSignature;
 		int indexOfOrignalMsg;
 		mode = mode.toLowerCase();
@@ -1046,21 +1042,18 @@ public class DisplayMail extends AbsDisplay {
 
 			try {
 				
-				this.sSelectFrame("//iframe[contains(@id, '_body__iframe')]");
-				String bodyLocator = "css=body";
+				String bodyLocator = "body";				
+				webDriver.switchTo().defaultContent();
+				webDriver.switchTo().frame(0);
+				we = webDriver.findElement(By.cssSelector(bodyLocator));
 				
-				// Make sure the body is present
-				if ( !this.sIsElementPresent(bodyLocator) )
-					throw new HarnessException("Unable to find the message body!");
-				
-				String html = this.zGetHtml(bodyLocator);
-				
+				String html = this.sGetHtmlSource();
 				logger.info("DisplayMail.zGetBody(" + bodyLocator + ") = " + html);
 				return(html);
 
 			} finally {
-				// Make sure to go back to the original iframe
 				this.sSelectFrame("relative=top");
+				webDriver.switchTo().defaultContent();
 			}
 
 		} else if ( field == Field.Cc ) {
@@ -1105,7 +1098,6 @@ public class DisplayMail extends AbsDisplay {
 			
 			locator = this.ContainerLocator + " tr[id$='_reply to'] td.LabelColValue span[id$='_com_zimbra_email'] span span";
 			if ( !sIsElementPresent(locator) ) {
-				// no email zimlet case
 				locator = this.ContainerLocator + " tr[id$='_reply to'] td.LabelColValue";
 			}
 
@@ -1228,7 +1220,7 @@ public class DisplayMail extends AbsDisplay {
 		} else if ( this.zIsVisiblePerPosition(PageMail.Locators.IsConViewActiveCSS, 0, 0) ) {
 			if ( this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtBottomCSS, 0, 0) ) {
 				ContainerLocator = Locators.ConversationViewPreviewAtBottomCSS;
-			} else if ( this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtRightCSS, 0, 0) ){
+			} else if ( this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtRightCSS, 0, 0) ) {
 				ContainerLocator = Locators.ConversationViewPreviewAtRightCSS;
 			} else {
 				throw new HarnessException("Unable to determine the current open view");

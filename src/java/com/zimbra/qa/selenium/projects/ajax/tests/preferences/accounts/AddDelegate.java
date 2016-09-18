@@ -30,7 +30,7 @@ public class AddDelegate extends AjaxCommonTest {
 	public AddDelegate() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 		
 	}
 

@@ -39,7 +39,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 		logger.info("New "+ ShowOriginal.class.getCanonicalName());
 
 	    super.startingPage =  app.zPageCalendar;
-	    super.startingAccountPreferences = null;
+	    
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			private static final long serialVersionUID = -2913827779459595178L;
 			{
@@ -101,10 +101,12 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 			ZAssert.assertStringContains(body, attendeeHeader,"Verify Attendee is present in Show original view");
 			
         } finally {
-   		 	if ( window != null ) {
+
+			if ( window != null ) {
 				window.zCloseWindow();
 				window = null;
    		 	}
+			app.zPageMail.zSelectWindow(null);
 		}
 	}
 }

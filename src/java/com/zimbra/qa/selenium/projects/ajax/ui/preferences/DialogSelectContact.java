@@ -100,7 +100,7 @@ public class DialogSelectContact extends AbsDialog {
 					+ locator + " not present!");
 		}
 
-		// if(zIsActive())
+		// if (zIsActive())
 		// zGetDisplayedText("css=div[class=" + Locators.zDialogContentClassId +
 		// "]");
 

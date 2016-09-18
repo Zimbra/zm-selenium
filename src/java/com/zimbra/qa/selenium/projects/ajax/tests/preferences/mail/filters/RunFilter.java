@@ -32,7 +32,7 @@ public class RunFilter extends AjaxCommonTest {
 
 	public RunFilter() {
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = null;
+		
 	}
 
    	@Test( description = "Create an incoming filter, run it and check the results", groups = { "smoke" } )

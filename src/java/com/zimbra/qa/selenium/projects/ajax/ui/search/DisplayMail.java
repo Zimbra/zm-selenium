@@ -69,7 +69,7 @@ public class DisplayMail extends com.zimbra.qa.selenium.projects.ajax.ui.mail.Di
 			
 			if ( this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtBottomCSS, 0, 0) ) {
 				ContainerLocator = Locators.ConversationViewPreviewAtBottomCSS;
-			} else if ( this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtRightCSS, 0, 0) ){
+			} else if ( this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtRightCSS, 0, 0) ) {
 				ContainerLocator = Locators.ConversationViewPreviewAtRightCSS;
 			} else {
 				throw new HarnessException("Unable to determine the current open view");

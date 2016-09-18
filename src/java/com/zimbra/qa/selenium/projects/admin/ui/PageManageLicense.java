@@ -98,7 +98,7 @@ public class PageManageLicense extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if ( zIsActive() ) {
-			// This page is already active.
+			
 			return;
 		}
 
@@ -146,10 +146,10 @@ public class PageManageLicense extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		if (pulldown == Button.B_GEAR_BOX) {
 			pulldownLocator = Locators.GEAR_ICON;
@@ -159,7 +159,7 @@ public class PageManageLicense extends AbsTab {
 				optionLocator = Locators.UPDATE_LICENSE;
 				page = new WizardUpdateLicense(this);
 
-				// FALL THROUGH
+				
 			}
 			
 			else {
@@ -214,7 +214,7 @@ public class PageManageLicense extends AbsTab {
 			throw new HarnessException("Button cannot be null!");
 
 
-		// Default behavior variables
+		
 		//
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
@@ -252,7 +252,7 @@ public class PageManageLicense extends AbsTab {
 	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
-		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
+		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}

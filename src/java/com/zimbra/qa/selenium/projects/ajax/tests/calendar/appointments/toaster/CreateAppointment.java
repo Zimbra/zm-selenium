@@ -29,7 +29,7 @@ public class CreateAppointment extends AjaxCommonTest {
 	public CreateAppointment() {
 		logger.info("New "+ CreateAppointment.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "Verify Toaster message on Create Appointment",

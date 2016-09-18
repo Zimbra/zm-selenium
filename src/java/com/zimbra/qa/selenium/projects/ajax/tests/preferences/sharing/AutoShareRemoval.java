@@ -29,7 +29,7 @@ public class AutoShareRemoval extends AjaxCommonTest {
 	public AutoShareRemoval() {
 
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;				
+						
 	}
 
 	@Test( description = "check for autoshare removal prompt message and press 'ok' to revoke", groups = { "functional" })

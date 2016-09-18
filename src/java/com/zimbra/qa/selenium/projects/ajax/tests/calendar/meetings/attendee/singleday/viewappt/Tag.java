@@ -30,7 +30,7 @@ public class Tag extends CalendarWorkWeekTest {
 	public Tag() {
 		logger.info("New "+ Tag.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Bugs(ids = "63455,79016")

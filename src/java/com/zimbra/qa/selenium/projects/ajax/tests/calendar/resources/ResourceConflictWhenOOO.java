@@ -84,7 +84,7 @@ public class ResourceConflictWhenOOO extends CalendarWorkWeekTest {
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject1), "Appointment not displayed in current view");
 
-		app.zGetActiveAccount().soapSend(	
+		app.zGetActiveAccount().soapSend(
 
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 				+		"<query>subject:("+ apptSubject1 +")" + " " + "content:" + apptSubject1 + "</query>"

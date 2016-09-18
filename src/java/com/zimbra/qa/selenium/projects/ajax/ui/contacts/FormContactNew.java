@@ -507,10 +507,10 @@ public class FormContactNew extends AbsForm {
 			throw new HarnessException("Option cannot be null!");
 
 		
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 		
 
 		if (pulldown == Button.B_EXPAND) {
@@ -526,35 +526,35 @@ public class FormContactNew extends AbsForm {
 				optionLocator = "css=div#"+ getExpandHiddenID() + " td.ZWidgetTitle:contains('Prefix')";
 				page = null;
 
-				// FALL THROUGH
+				
 				
 			} else if (option == Button.O_FIRST) {
 
 				optionLocator = "css=div#"+ getExpandHiddenID() + " td.ZWidgetTitle:contains('First')";
 				page = null;
 
-				// FALL THROUGH
+				
 				
 			} else if (option == Button.O_MIDDLE) {
 
 				optionLocator = "css=div#"+ getExpandHiddenID() + " td.ZWidgetTitle:contains('Middle')";
 				page = null;
 
-				// FALL THROUGH
+				
 				
 			} else if (option == Button.O_MAIDEN) {
 
 				optionLocator = "css=div#"+ getExpandHiddenID() + " td.ZWidgetTitle:contains('Maiden')";
 				page = null;
 
-				// FALL THROUGH
+				
 				
 			} else if (option == Button.O_LAST) {
 
 				optionLocator = "css=div#"+ getExpandHiddenID() + " td.ZWidgetTitle:contains('Last')";
 				page = null;
 
-				// FALL THROUGH
+				
 				
 
 			} else if (option == Button.O_SUFFIX) {
@@ -562,35 +562,35 @@ public class FormContactNew extends AbsForm {
 				optionLocator = "css=div#"+ getExpandHiddenID() + " td.ZWidgetTitle:contains('Suffix')";
 				page = null;
 
-				// FALL THROUGH
+				
 				
 			} else if (option == Button.O_NICKNAME) {
 
 				optionLocator = "css=div#"+ getExpandHiddenID() + " td.ZWidgetTitle:contains('Nickname')";
 				page = null;
 
-				// FALL THROUGH
+				
 				
 			} else if (option == Button.O_JOB_TITLE) {
 
 				optionLocator = "css=div#"+ getExpandHiddenID() + " td.ZWidgetTitle:contains('Job Title')";
 				page = null;
 
-				// FALL THROUGH
+				
 				
 			} else if (option == Button.O_DEPARTMENT) {
 
 				optionLocator = "css=div#"+ getExpandHiddenID() + " td.ZWidgetTitle:contains('Department')";
 				page = null;
 
-				// FALL THROUGH
+				
 				
 			} else if (option == Button.O_COMPANY) {
 
 				optionLocator = "css=div#"+ getExpandHiddenID() + " td.ZWidgetTitle:contains('Company')";
 				page = null;
 
-				// FALL THROUGH
+				
 				
 			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
@@ -613,7 +613,7 @@ public class FormContactNew extends AbsForm {
 				optionLocator="css=div[id^='editcontactform'][class='DwtMenu'][style*='display: block;'] div[id^='FA_COMPANY']";
 				page = null;
 
-				// FALL THROUGH
+				
 				
 			} else if (option == Button.O_FILEAS_FIRSTLAST) {
 
@@ -621,7 +621,7 @@ public class FormContactNew extends AbsForm {
 				optionLocator="css=div[id^='editcontactform'][class='DwtMenu'][style*='display: block;'] div[id^='FA_FIRST_LAST']";
 				page = null;
 
-				// FALL THROUGH
+				
 				
 			} else if (option == Button.O_FILEAS_LASTFIRST) {
 
@@ -629,7 +629,7 @@ public class FormContactNew extends AbsForm {
 				optionLocator="css=div[id^='editcontactform'][class='DwtMenu'][style*='display: block;'] div[id^='FA_LAST_C_FIRST']";
 				page = null;
 
-				// FALL THROUGH
+				
 				
 			} else if (option == Button.O_FILEAS_FIRSTLASTCOMPANY) {
 
@@ -637,7 +637,7 @@ public class FormContactNew extends AbsForm {
 				optionLocator="css=div[id^='editcontactform'][class='DwtMenu'][style*='display: block;'] div[id^='FA_FIRST_LAST_COMPANY']";
 				page = null;
 
-				// FALL THROUGH
+				
 				
 			} else if (option == Button.O_FILEAS_LASTFIRSTCOMPANY) {
 
@@ -645,7 +645,7 @@ public class FormContactNew extends AbsForm {
 				optionLocator="css=div[id^='editcontactform'][class='DwtMenu'][style*='display: block;'] div[id^='FA_LAST_C_FIRST_COMPANY']";
 				page = null;
 
-				// FALL THROUGH
+				
 				
 			} else if (option == Button.O_FILEAS_COMPANYFIRSTLAST) {
 
@@ -653,7 +653,7 @@ public class FormContactNew extends AbsForm {
 				optionLocator="css=div[id^='editcontactform'][class='DwtMenu'][style*='display: block;'] div[id^='FA_COMPANY_FIRST_LAST']";
 				page = null;
 
-				// FALL THROUGH
+				
 				
 			} else if (option == Button.O_FILEAS_COMPANYLASTFIRST) {
 
@@ -661,7 +661,7 @@ public class FormContactNew extends AbsForm {
 				optionLocator="css=div[id^='editcontactform'][class='DwtMenu'][style*='display: block;'] div[id^='FA_COMPANY_LAST_C_FIRST']";
 				page = null;
 
-				// FALL THROUGH
+				
 				
 			} else {
 				

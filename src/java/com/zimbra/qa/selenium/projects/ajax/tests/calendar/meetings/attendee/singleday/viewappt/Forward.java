@@ -30,7 +30,7 @@ public class Forward extends CalendarWorkWeekTest {
 	public Forward() {
 		logger.info("New "+ Forward.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "View meeting invite by opening it and Forward the invitation to any other user",

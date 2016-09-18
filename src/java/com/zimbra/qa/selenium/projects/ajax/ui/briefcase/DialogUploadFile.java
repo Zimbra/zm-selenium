@@ -72,7 +72,7 @@ public class DialogUploadFile extends AbsDialog {
 		} else if (button == Button.B_OK) {
 		    locator = "//div[@class='ZmUploadDialog']"
 			    + "//*[contains(@class,'ZWidgetTitle') and contains(text(),'OK')]";
-		}else if (button == Button.B_BROWSE) {
+		} else if (button == Button.B_BROWSE) {
 		    locator = "css=td>input[id*=_input][type=file][name=uploadFile]";
 			WebElement el = this.getElement(locator);
 	    	if (webDriver() instanceof InternetExplorerDriver) {

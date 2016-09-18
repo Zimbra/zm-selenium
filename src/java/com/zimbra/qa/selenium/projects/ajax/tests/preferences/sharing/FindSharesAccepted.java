@@ -32,7 +32,7 @@ public class FindSharesAccepted extends AjaxCommonTest {
 	public FindSharesAccepted() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 		
 	}
 	@Test( description = "View the sharing preference page - show accepted shares", groups = { "functional" }		)

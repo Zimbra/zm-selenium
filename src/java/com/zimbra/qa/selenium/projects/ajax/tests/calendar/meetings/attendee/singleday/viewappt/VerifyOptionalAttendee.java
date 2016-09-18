@@ -31,7 +31,7 @@ public class VerifyOptionalAttendee extends CalendarWorkWeekTest {
 	public VerifyOptionalAttendee() {
 		logger.info("New "+ Edit.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "View meeting invite by opening it, Edit the invitation and locally save it", 

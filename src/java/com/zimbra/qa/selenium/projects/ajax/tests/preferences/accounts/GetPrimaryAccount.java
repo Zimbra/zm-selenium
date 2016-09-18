@@ -30,7 +30,7 @@ public class GetPrimaryAccount extends AjaxCommonTest {
 	public GetPrimaryAccount() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 		
 	}
 

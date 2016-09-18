@@ -33,7 +33,7 @@ public class ZmTasksAppFolders extends AjaxCommonTest {
 
 
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = null;
+		
 
 	}
 

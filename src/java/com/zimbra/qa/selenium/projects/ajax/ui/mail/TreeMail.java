@@ -602,7 +602,7 @@ public class TreeMail extends AbsTree {
 				throw new HarnessException("Pulldown/Option "+ pulldown +"/"+ option +" not implemented");
 			}
 
-			// FALL THROUGH
+			
 			
 		} else if ( pulldown == Button.B_TREE_TAGS_OPTIONS ) {
 			
@@ -617,7 +617,7 @@ public class TreeMail extends AbsTree {
 				throw new HarnessException("Pulldown/Option "+ pulldown +"/"+ option +" not implemented");
 			}
 
-			// FALL THROUGH
+			
 			
 		} else {
 			throw new HarnessException("Pulldown/Option "+ pulldown +"/"+ option +" not implemented");
@@ -705,7 +705,7 @@ public class TreeMail extends AbsTree {
 
 			return (page);
 
-		}else if (button == Button.B_TREE_SHOW_REMAINING_FOLDERS ) {
+		} else if (button == Button.B_TREE_SHOW_REMAINING_FOLDERS ) {
 
 			locator = Locators.zShowRemainingFolders;
 			page = null;
@@ -714,7 +714,7 @@ public class TreeMail extends AbsTree {
 				throw new HarnessException("Unable to find 'show remaining folders' in tree " + locator);
 			}
 
-			// FALL THROUGH
+			
 
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
@@ -744,7 +744,7 @@ public class TreeMail extends AbsTree {
 
 		if ( action == Action.A_LEFTCLICK ) {
 
-			// FALL THROUGH
+			
 		} else if ( action == Action.A_RIGHTCLICK ) {
 
 			// Select the folder
@@ -875,7 +875,7 @@ public class TreeMail extends AbsTree {
 			String identifier = sGetAttribute(itemLocator +"@id");
 			logger.debug(myPageName() + " identifier: "+ identifier);
 
-			if( identifier == null || identifier.trim().length() == 0 || !(identifier.startsWith("zti__main_Mail__")) ) {
+			if ( identifier == null || identifier.trim().length() == 0 || !(identifier.startsWith("zti__main_Mail__")) ) {
 				// Not a folder
 				// Maybe "Find Shares ..."
 				count++; // Add one more to the total 'count' for this 'unknown' item
@@ -1112,7 +1112,7 @@ public class TreeMail extends AbsTree {
 
 			}
 
-			// Fall through
+			
 
 		}
 

@@ -104,7 +104,7 @@ public class ChangeSignatureWhenzimbraFeatureHtmlComposeEnabledIsFalse extends A
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_ADD_SIGNATURE,this.sigName);
 		
 		DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning,app,((AppAjaxClient) app).zPageMail);
-		if(dialog.zIsActive()){
+		if (dialog.zIsActive()) {
 		//ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
 		dialog.zClickButton(Button.B_OK);
 		}

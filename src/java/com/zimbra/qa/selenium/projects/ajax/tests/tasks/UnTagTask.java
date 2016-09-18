@@ -39,7 +39,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.tasks.PageTasks.Locators;
 public class UnTagTask extends AjaxCommonTest{
 
 	@SuppressWarnings("serial")
-	public UnTagTask(){
+	public UnTagTask() {
 		logger.info("Tag " + UnTagTask.class.getCanonicalName());
 
 		// All tests start at the login page

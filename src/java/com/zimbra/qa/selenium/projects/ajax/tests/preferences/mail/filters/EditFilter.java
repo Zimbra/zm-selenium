@@ -37,7 +37,7 @@ public class EditFilter extends AjaxCommonTest {
 	public EditFilter() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 		
 	}
 

@@ -14,13 +14,10 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
+
 package com.zimbra.qa.selenium.projects.ajax.ui.tasks;
 
 import java.util.*;
-
 import org.openqa.selenium.WebDriverException;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -200,7 +197,7 @@ public class PageTasks extends AbsTab{
 				logger.debug("found empty task subject");
 				continue;
 			}
-			if(!itemSubject.equals(subject)){
+			if (!itemSubject.equals(subject)) {
 				continue;
 			}
 			if (itemSubject.equals(subject)) {
@@ -226,7 +223,7 @@ public class PageTasks extends AbsTab{
 			// Return the displayed mail page object
 			page = new DisplayTask(MyApplication);
 
-			// FALL THROUGH
+			
 
 		} else if (action == Action.A_CTRLSELECT) {
 
@@ -244,7 +241,7 @@ public class PageTasks extends AbsTab{
 			// Return the displayed mail page object
 			page = new ContextMenu(MyApplication);
 
-			// FALL THROUGH
+			
 
 		} else if (action == Action.A_MAIL_CHECKBOX) {
 
@@ -264,7 +261,7 @@ public class PageTasks extends AbsTab{
 			// No page to return
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else if (action == Action.A_DOUBLECLICK) {
 
@@ -272,7 +269,7 @@ public class PageTasks extends AbsTab{
 			this.sDoubleClick(itemLocator);
 			page = null;
 
-		}else if (action == Action.A_MAIL_UNCHECKBOX) {
+		} else if (action == Action.A_MAIL_UNCHECKBOX) {
 
 			String selectlocator = itemLocator + " div[id$='__se']";
 			if (!this.sIsElementPresent(selectlocator))
@@ -290,7 +287,7 @@ public class PageTasks extends AbsTab{
 			// No page to return
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else {
 			throw new HarnessException("implement me!  action = " + action);
@@ -371,7 +368,6 @@ public class PageTasks extends AbsTab{
 			}
 
 			if (itemSubject.equals(subject)) {
-				// Found it
 				break;
 			}
 
@@ -382,56 +378,49 @@ public class PageTasks extends AbsTab{
 			throw new HarnessException("Unable to locate item with subject(" + subject + ")");
 		}
 
-
 		if (action == Action.A_RIGHTCLICK) {
 
 			// Right-Click on the item
 			this.zRightClickAt(itemLocator,"");
 			SleepUtil.sleepMedium();
 
-			// Now the ContextMenu is opened
-			// Click on the specified option
-
 			String optionLocator = null;
 
 			if (option == Button.B_DELETE) {
-
-				// <div id="zmi__Tasks__DELETE" ...
-				//optionLocator = "zmi__Tasks__DELETE";
 				optionLocator= Locators.zDeleteTaskMenuItem;
 				page = null;
 
-			}else if(option == Button.O_MOVE_MENU){
+			} else if (option == Button.O_MOVE_MENU) {
 				optionLocator= Locators.zMoveTaskMenuItem;
 				page = new DialogMove(MyApplication, this);
 
-			}else if(option == Button.O_EDIT){
+			} else if (option == Button.O_EDIT) {
 				optionLocator= Locators.zEditTaskMenuItem;
 				page = new FormTaskNew(this.MyApplication);
 
-			}else if(option == Button.O_SHOW_ORIGINAL){
+			} else if (option == Button.O_SHOW_ORIGINAL) {
 				optionLocator= Locators.zShowOrigTaskMenuItem;
 
 				page = new SeparateWindow(this.MyApplication);
-				((SeparateWindow)page).zInitializeWindowNames();
 				this.sClickAt(optionLocator,"");
+				this.zWaitForBusyOverlay();
+				SleepUtil.sleepLong();
 				this.zWaitForBusyOverlay();
 
 				return (page);
 
-			}else if(option == Button.O_PRINT_MENU){
+			} else if (option == Button.O_PRINT_MENU) {
 				optionLocator= Locators.zPrintTaskMenuItem;
 
 				page = new SeparateWindowPrintPreview(this.MyApplication);
-				((SeparateWindowPrintPreview)page).zInitializeWindowNames();
 				this.sClickAt(optionLocator,"");
 				this.zWaitForBusyOverlay();
+				SleepUtil.sleepLong();
 
 				return (page);
 
-			}else {
-				throw new HarnessException("implement action:" + action
-						+ " option:" + option);
+			} else {
+				throw new HarnessException("implement action:" + action + " option:" + option);
 			}
 
 			// click on the option
@@ -440,7 +429,7 @@ public class PageTasks extends AbsTab{
 
 			this.zWaitForBusyOverlay();
 
-			// FALL THROUGH
+			
 
 		} else {
 			throw new HarnessException("implement me!  action = " + action);
@@ -464,26 +453,20 @@ public class PageTasks extends AbsTab{
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		String locator = null;
+		AbsPage page = null;
 
-		// Based on the button specified, take the appropriate action(s)
-		//
 		if (button == Button.B_REFRESH) {
 
 			return (((AppAjaxClient)this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
 
 		} else if (button == Button.B_NEW) {
 
-			// New button
 			locator = Locators.zNewTask;
-
 			page = new FormTaskNew(this.MyApplication);
-
 
 		} else if (button == Button.B_EDIT) {
 
-			//locator = Locators.zEditButton;
 			String id = ZimbraDOM.getID(
 					ZimbraDOM.APP.APP_TASKS,
 					ZimbraDOM.COMPONENT_TYPE.WIDGET_BUTTON,
@@ -502,11 +485,7 @@ public class PageTasks extends AbsTab{
 			locator = "css=div#"+ id + " td[id$='_title']";
 			page = null;
 
-			// FALL THROUGH
-
-		} 
-
-		else if (button == Button.B_Attachment) {
+		} else if (button == Button.B_Attachment) {
 
 			String id = ZimbraDOM.getID(
 					ZimbraDOM.APP.APP_TASKS,
@@ -516,40 +495,30 @@ public class PageTasks extends AbsTab{
 			locator = "css=div#"+ id + " td[id$='_left_icon']>div";
 			page = null;
 			
-		}
-		
-		else if (button == Button.B_ATTACH) {
+		} else if (button == Button.B_ATTACH) {
 
 			locator = "css=tr[id$='_attachment_container'] input[name='__calAttUpload__']";
 			page = null;
 
-		}else if (button == Button.B_MOVE) {
+		} else if (button == Button.B_MOVE) {
 			locator = "zb__TKL-main__MOVE_left_icon";
 			page = new DialogMove(this.MyApplication,this);
 
 		} else if (button == Button.B_PRINT) {
 
 			locator = "zb__TKL-main__PRINT_left_icon";
-			page = null; // TODO
-			throw new HarnessException("implement Print dialog");
+			page = null;
 
 		} else if (button == Button.B_SAVE) {
 			locator="css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')";
 			page = null;
 			
-
-		}else if (button == Button.B_CLOSE) {
+		} else if (button == Button.B_CLOSE) {
 			locator = Locators.zCloseButton;
 			page = null;
-			
 
-		}else if (button == Button.B_TAG) {
+		} else if (button == Button.B_TAG) {
 
-			// For "TAG" without a specified pulldown option, just click on the
-			// pulldown
-			// To use "TAG" with a pulldown option, see
-			// zToolbarPressPulldown(Button, Button)
-			//
 			String id = ZimbraDOM.getID(
 					ZimbraDOM.APP.APP_TASKS,
 					ZimbraDOM.COMPONENT_TYPE.WIDGET_BUTTON,
@@ -559,14 +528,11 @@ public class PageTasks extends AbsTab{
 
 			locator = "css=div#" + id + " td[id$='_dropdown']";
 
-			//locator = "zb__TKL-main__TAG_MENU_dropdown";
-
-
-
 		} else if (button == Button.B_TASK_FILTERBY) {
 			throw new HarnessException("implement me");
+			
 		} else if (button == Button.B_TASK_MARKCOMPLETED) {
-			if(Locators.zMarkAsCompletedId == null){
+			if (Locators.zMarkAsCompletedId == null) {
 				String MarkAsCompletedId = ZimbraDOM.getID(
 						ZimbraDOM.APP.APP_TASKS, 
 						ZimbraDOM.COMPONENT_NAME.OP_MARK_AS_COMPLETED,
@@ -575,9 +541,8 @@ public class PageTasks extends AbsTab{
 						ZimbraDOM.SKIN_COMPONENT.SKIN_APP_TOP_TOOLBAR);
 				locator = "css=div#"+ MarkAsCompletedId + " td[id$='_title']";
 			}
-			//locator = Locators.zMarkAsCompleted;
-
-			page = null;			
+			page = null;
+			
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
 		}
@@ -591,16 +556,11 @@ public class PageTasks extends AbsTab{
 		} else {
 			this.zClickAt(locator,"");
 		}
-
-		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
 
-		// If page was specified, make sure it is active
 		if (page != null) {
-
-			// This function (default) throws an exception if never active
 			page.zWaitForActive();
-
 		}
 
 		return (page);
@@ -616,11 +576,11 @@ public class PageTasks extends AbsTab{
 
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
-		// Default behavior variables
+		
 
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		if (pulldown == Button.B_TAG) {
 			if (option == Button.O_TAG_NEWTAG) {
@@ -642,7 +602,7 @@ public class PageTasks extends AbsTab{
 
 				page = new DialogTag(this.MyApplication, this);
 
-				// FALL THROUGH
+				
 			} else if (option == Button.O_TAG_REMOVETAG) {
 
 				String id = ZimbraDOM.getID(
@@ -661,26 +621,26 @@ public class PageTasks extends AbsTab{
 
 				page = null;
 
-				// FALL THROUGH
+				
 			} else {
 				throw new HarnessException(	"no logic defined for pulldown/option " + pulldown+ "/" + option);
 			}
 		} else if (pulldown== Button.B_NEW) {
 
-			if(option == Button.O_NEW_TAG){
+			if (option == Button.O_NEW_TAG) {
 
 				pulldownLocator = Locators.zNewTaskDropDown;
 				optionLocator= Locators.zNewTagMenuItem;
 
 				page = new DialogTag(this.MyApplication, this);
-			}else if(option==Button.O_NEW_TASK){
+			} else if (option==Button.O_NEW_TASK) {
 
 				pulldownLocator = Locators.zNewTaskDropDown;
 				optionLocator= Locators.zNewTaskMenuItem;
 
 				page = new FormTaskNew(this.MyApplication);
 
-			}else if(option==Button.O_NEW_TASK_FOLDER){
+			} else if (option==Button.O_NEW_TASK_FOLDER) {
 
 				pulldownLocator = Locators.zNewTaskDropDown;
 				optionLocator= Locators.zNewTaskFolderMenuItem;
@@ -688,11 +648,11 @@ public class PageTasks extends AbsTab{
 				page = new DialogCreateTaskFolder(this.MyApplication, this);
 
 			}
-			else{
+			else {
 				throw new HarnessException(	"no logic defined for pulldown/option " + pulldown+ "/" + option);
 			}
 
-		}else if (pulldown == Button.B_MOVE) {
+		} else if (pulldown == Button.B_MOVE) {
 
 			//pulldownLocator = Locators.zMoveTaskDropDown;
 
@@ -713,14 +673,14 @@ public class PageTasks extends AbsTab{
 
 			page = new DialogCreateTaskFolder(this.MyApplication, this);
 
-		}else if (pulldown == Button.B_PRINT) {
+		} else if (pulldown == Button.B_PRINT) {
 
 			page = new SeparateWindowPrintPreview(this.MyApplication);
 			((SeparateWindowPrintPreview)page).zInitializeWindowNames();
 
 
 			// Click the pulldown			
-			if(Locators.zPrintTaskDropDownId == null){
+			if (Locators.zPrintTaskDropDownId == null) {
 				String PrintTaskDropDown = ZimbraDOM.getID(
 						ZimbraDOM.APP.APP_TASKS, 
 						ZimbraDOM.COMPONENT_NAME.OP_PRINT,
@@ -733,7 +693,7 @@ public class PageTasks extends AbsTab{
 			this.zClickAt(pulldownLocator,"");
 			zWaitForBusyOverlay();
 
-			if(option== Button.O_PRINT_TASKFOLDER){
+			if (option== Button.O_PRINT_TASKFOLDER) {
 				// Click the pulldown option, if specified
 				optionLocator = Locators.zPrintTaskFolder;
 				this.zClickAt(optionLocator,"");
@@ -742,10 +702,10 @@ public class PageTasks extends AbsTab{
 
 			return (page);
 
-		}else if (pulldown == Button.B_TASK_FILTERBY) {
+		} else if (pulldown == Button.B_TASK_FILTERBY) {
 
-			if(option==Button.O_TASK_TODOLIST){
-				if(Locators.zFilterByTaskDropDownId == null){
+			if (option==Button.O_TASK_TODOLIST) {
+				if (Locators.zFilterByTaskDropDownId == null) {
 					String FilterByTaskDropDownId = ZimbraDOM.getID(
 							ZimbraDOM.APP.APP_TASKS, 
 							ZimbraDOM.COMPONENT_NAME.OP_VIEW_MENU,
@@ -824,10 +784,10 @@ public class PageTasks extends AbsTab{
 		if (dynamic == null)
 			throw new HarnessException("Option cannot be null!");
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		if (pulldown == Button.B_MOVE) {
 
@@ -1022,15 +982,17 @@ public class PageTasks extends AbsTab{
 		tracer.trace("Using the keyboard, press the "+ shortcut.getKeys() +" keyboard shortcut");
 
 		AbsPage page = null;
+		
+		SleepUtil.sleepMedium();
 
-		if ( (shortcut == Shortcut.S_NEWTAG) ){
+		if ( (shortcut == Shortcut.S_NEWTAG) ) {
 
 			// "New Message" shortcuts result in a compose form opening
 			//page = new FormMailNew(this.MyApplication);
 			page = new DialogTag(MyApplication,((AppAjaxClient) MyApplication).zPageTasks);
 			keyCode = "78,84";
 
-		}else if(shortcut== Shortcut.S_ESCAPE){
+		} else if (shortcut== Shortcut.S_ESCAPE) {
 			page = new DialogWarning(
 					DialogWarning.DialogWarningID.SaveTaskChangeMessage,
 					this.MyApplication,
@@ -1038,16 +1000,16 @@ public class PageTasks extends AbsTab{
 
 			keyCode = "27";
 
-		}else if ( shortcut == Shortcut.S_ASSISTANT ) {			
+		} else if ( shortcut == Shortcut.S_ASSISTANT ) {			
 			page = new DialogAssistant(MyApplication, ((AppAjaxClient) MyApplication).zPageTasks);
 			keyCode= "192";
 
-		}else if ( shortcut == Shortcut.S_NEWTASK ) {			
+		} else if ( shortcut == Shortcut.S_NEWTASK ) {			
 			//page = new DialogAssistant(MyApplication, ((AppAjaxClient) MyApplication).zPageTasks);
 			page= new FormTaskNew(this.MyApplication);
 			keyCode= "78,75";
 
-		}else if ( shortcut == Shortcut.S_TASK_HARDELETE ) {			
+		} else if ( shortcut == Shortcut.S_TASK_HARDELETE ) {			
 			// Hard Delete shows the Warning Dialog : Are you sure you want to
 			// permanently delete it?
 			page = new DialogWarning(
@@ -1057,22 +1019,22 @@ public class PageTasks extends AbsTab{
 			zKeyboard.zTypeCharacters(shortcut.getKeys());
 			return (page);
 
-		}else if (shortcut == Shortcut.S_MOVE) {
+		} else if (shortcut == Shortcut.S_MOVE) {
 
 			// "Move" shortcut opens "Choose Folder" dialog
 			page = new DialogMove(MyApplication, this);
 
 			keyCode = "77";
-		}else if ( shortcut == Shortcut.S_BACKSPACE ) {			
+		} else if ( shortcut == Shortcut.S_BACKSPACE ) {			
 			page= null;
 			keyCode= "8";
 
-		}else if (shortcut== Shortcut.S_MAIL_MOVETOTRASH){
+		} else if (shortcut== Shortcut.S_MAIL_MOVETOTRASH) {
 
 			zKeyboard.zTypeCharacters(shortcut.getKeys());
 			page= null;
 			return page;
-		}else if (shortcut== Shortcut.S_PRINTTASK){
+		} else if (shortcut== Shortcut.S_PRINTTASK) {
 
 			page = new SeparateWindowPrintPreview(this.MyApplication);
 			((SeparateWindowPrintPreview)page).zInitializeWindowNames();
@@ -1085,7 +1047,7 @@ public class PageTasks extends AbsTab{
 
 		}
 
-		else{
+		else {
 
 			throw new HarnessException("implement shortcut: " + shortcut);
 		}
@@ -1126,54 +1088,24 @@ public class PageTasks extends AbsTab{
 		return found;
 	}
 
-	//	/**
-	//	 * Dynamically wait (for 30 secs) until the task with the specified subject is found
-	//	 * @param subject Subject of the task to be searched for
-	//	 * @return TaskItem with the specified subject
-	//	 * @throws HarnessException
-	//	 */
-	//	public TaskItem findTask(String subject) throws HarnessException {
-	//		Object[] params = {subject};
-	//		return (TaskItem)GeneralUtility.waitFor(null, this, false, "browseTask", params,
-	//				WAIT_FOR_OPERAND.NEQ, null, 30000, 1000);
-	//	}
-
-	/*public String  GetShowOrigBodyText(String EmailAddress, String calItemId) throws HarnessException{
-
-		try {
-			sOpenWindow(ConfigProperties.getBaseURL() + "/home/" + EmailAddress + "/Tasks/?id=" + calItemId + "&mime=text/plain&noAttach=1","ShowOrignal");
-			sWaitForPopUp("ShowOrignal", "3000");
-			sSelectWindow("ShowOrignal");
-			String showOrigBody=sGetBodyText().replaceAll("\\n", "").trim().replaceAll(" ", "");
-			sClose();
-			return showOrigBody;
-
-		} finally {
-			ClientSessionFactory.session().selenium().selectWindow("null");	
-		}
-	}*/
-
 	public String zGetHtmlBodyText() throws HarnessException {
 		try {
-			//sSelectFrame("css=iframe[id='zv__TKL_body__iframe']");
 			sSelectFrame("css=div[id='zv__TKL-main'] iframe[id$='__body__iframe']");
 			String bodyhtml = this.sGetHtmlSource();
 			return bodyhtml;
 		} finally {
 			this.sSelectFrame("relative=top");
 		}
-
 	}
 	
-	
 	public boolean zVerifyDisabled(String  buttonID)throws HarnessException{
-		if(buttonID=="DeleteButton"){
+		if (buttonID=="DeleteButton") {
 			return this.sIsElementPresent("css=div[id='"+ZimbraDOM.getID(ZimbraDOM.APP.APP_TASKS, ZimbraDOM.COMPONENT_TYPE.WIDGET_BUTTON, ZimbraDOM.COMPONENT_NAME.OP_DELETE)+"'].ZDisabled");
-		}else if(buttonID=="EditButton"){
+		} else if (buttonID=="EditButton") {
 			return this.sIsElementPresent("css=div[id='"+ZimbraDOM.getID(ZimbraDOM.APP.APP_TASKS, ZimbraDOM.COMPONENT_TYPE.WIDGET_BUTTON, ZimbraDOM.COMPONENT_NAME.OP_EDIT)+"'].ZDisabled");
-		}else if(buttonID=="MoveButton"){
+		} else if (buttonID=="MoveButton") {
 			return this.sIsElementPresent("css=div[id='"+ZimbraDOM.getID(ZimbraDOM.APP.APP_TASKS, ZimbraDOM.COMPONENT_TYPE.WIDGET_BUTTON, ZimbraDOM.COMPONENT_NAME.OP_MOVE_MENU)+"'].ZDisabled");
-		}else{
+		} else {
 			return false;
 		}
 

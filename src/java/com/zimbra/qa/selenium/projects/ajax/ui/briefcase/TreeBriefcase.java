@@ -189,7 +189,7 @@ public class TreeBriefcase extends AbsTree {
 
 			zWaitForBusyOverlay();
 
-			// FALL THROUGH
+			
 		} else if (action == Action.A_RIGHTCLICK) {
 
 			if (!this.sIsElementPresent(locator))
@@ -320,7 +320,7 @@ public class TreeBriefcase extends AbsTree {
 						+ option + " not implemented");
 			}
 
-			// FALL THROUGH
+			
 
 		} else if (pulldown == Button.B_TREE_TAGS_OPTIONS) {
 
@@ -339,7 +339,7 @@ public class TreeBriefcase extends AbsTree {
 						+ option + " not implemented");
 			}
 
-			// FALL THROUGH
+			
 
 		} else {
 			throw new HarnessException("Pulldown/Option " + pulldown + "/"

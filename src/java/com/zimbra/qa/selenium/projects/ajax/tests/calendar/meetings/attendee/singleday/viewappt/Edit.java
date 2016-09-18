@@ -30,7 +30,7 @@ public class Edit extends CalendarWorkWeekTest {
 	public Edit() {
 		logger.info("New "+ Edit.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "View meeting invite by opening it, Edit the invitation and locally save it", 

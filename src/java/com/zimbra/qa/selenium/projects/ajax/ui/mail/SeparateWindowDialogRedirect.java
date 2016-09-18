@@ -71,7 +71,7 @@ public class SeparateWindowDialogRedirect extends AbsDialogSeparateWindow {
 			
 			locator = Locators.FieldEmailLocator;
 			
-			// FALL THROUGH
+			
 			
 		} else {
 			throw new HarnessException("Unsupported field: "+ field);

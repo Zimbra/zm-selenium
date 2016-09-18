@@ -34,7 +34,7 @@ public class Open extends CalendarWorkWeekTest {
 	public Open() {
 		logger.info("New "+ Open.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Bugs(ids = "103056")

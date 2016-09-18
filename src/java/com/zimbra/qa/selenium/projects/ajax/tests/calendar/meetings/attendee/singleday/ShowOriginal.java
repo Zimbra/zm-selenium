@@ -31,7 +31,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 		logger.info("New "+ ShowOriginal.class.getCanonicalName());
 
 	    super.startingPage =  app.zPageCalendar;
-	    super.startingAccountPreferences = null;
+	    
 
 		// Make sure we are using an account with work week view
 		super.startingAccountPreferences = new HashMap<String, String>() {
@@ -81,7 +81,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
         // Open appointment & click context menu 'Show Original' Option
         SeparateWindow window = (SeparateWindow)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK,Button.O_SHOW_ORIGINAL_MENU, apptSubject);
 		try {
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			SleepUtil.sleepMedium();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			//Verify content in Print view.
@@ -97,6 +97,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 				window.zCloseWindow();
 				window = null;
    		 	}
+			app.zPageMail.zSelectWindow(null);
 		}
         
 	}

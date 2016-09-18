@@ -46,7 +46,7 @@ public class DeleteSeries extends AjaxCommonTest {
 	}
 	
 	@Bugs(ids = "69132")
-	@Test(	
+	@Test(
 			description = "Delete entire series of recurring appointment (every day) using toolbar button in day view", 
 			groups = { "smoke" } )
 	public void DeleteSeries_01() throws HarnessException {
@@ -133,7 +133,7 @@ public class DeleteSeries extends AjaxCommonTest {
 	}
 	
 	@Bugs(ids = "69132")
-	@Test(	
+	@Test(
 			description = "Delete entire series of recurring appointment (every week) using context menu in day view", 
 			groups = { "smoke" } )
 	public void DeleteSeries_02() throws HarnessException {

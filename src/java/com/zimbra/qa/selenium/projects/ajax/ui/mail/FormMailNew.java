@@ -70,11 +70,11 @@ public class FormMailNew extends AbsForm {
 		public static final String zIncludeOriginalMessageForward = "css=div[id$='_FORWARD__INC_BODY'] td[id$='_FORWARD__INC_BODY_title']";
 		public static final String zIncludeLastMessageOnlyReply = "css=div[id$='_REPLY__INC_SMART'] td[id$='_REPLY__INC_SMART_title']";
 		public static final String zIncludeLastMessageOnlyForward = "css=div[id$='_FORWARD__INC_SMART'] td[id$='_FORWARD__INC_SMART_title']";
-		public static final String zIncludeOriginalAsAttachmentReply	= "css=div[id$='_REPLY_ATT__INC_ATTACHMENT'] td[id$='_REPLY_ATT__INC_ATTACHMENT_title']";
+		public static final String zIncludeOriginalAsAttachmentReply	= "css=div[id$='_REPLY__INC_ATTACHMENT'] td[id$='_REPLY__INC_ATTACHMENT_title']";
 		public static final String zIncludeOriginalAsAttachmentForward	= "css=div[id$='_FORWARD_ATT__INC_ATTACHMENT'] td[id$='_FORWARD_ATT__INC_ATTACHMENT_title']";
-		public static final String zUsePrefixReply = "css=div[id$='_REPLY_ATT__USE_PREFIX'] td[id$='_REPLY_ATT__USE_PREFIX_title']";
+		public static final String zUsePrefixReply = "css=div[id$='_REPLY__USE_PREFIX'] td[id$='_REPLY__USE_PREFIX_title']";
 		public static final String zUsePrefixForward = "css=div[id$='_FORWARD_ATT__USE_PREFIX'] td[id$='_FORWARD_ATT__USE_PREFIX_title']";
-		public static final String zIncludeHeadersReply = "css=div[id$='_REPLY_ATT__INCLUDE_HEADERS'] td[id$='_REPLY_ATT__INCLUDE_HEADERS_title']";
+		public static final String zIncludeHeadersReply = "css=div[id$='_REPLY__INCLUDE_HEADERS'] td[id$='_REPLY__INCLUDE_HEADERS_title']";
 		public static final String zIncludeHeadersForward = "css=div[id$='_FORWARD_ATT__INCLUDE_HEADERS'] td[id$='_FORWARD_ATT__INCLUDE_HEADERS_title']";
 		
 		public static final String zToField				= "css=div>input[id^='zv__COMPOSE'][id$='_to_control']";
@@ -246,20 +246,20 @@ public class FormMailNew extends AbsForm {
 			locator = Locators.zSaveDraftIconBtn;
 			page = this;
 
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_ADD_ATTACHMENT ) {
 
 			throw new HarnessException("implement me (?)");
 
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_SPELL_CHECK ) {
 
 			locator = Locators.zSpellCheckIconBtn;
 			page = this;
 
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_SIGNATURE ) {
 
@@ -366,7 +366,7 @@ public class FormMailNew extends AbsForm {
 
 				page = null;
 				
-			} else if(option == Button.O_FORMAT_AS_PLAIN_TEXT) {
+			} else if (option == Button.O_FORMAT_AS_PLAIN_TEXT) {
 
 				pulldownLocator = Locators.zOptionsdropdown;
 				optionLocator = Locators.FormatAsPlainTextMenu;
@@ -548,8 +548,8 @@ public class FormMailNew extends AbsForm {
 				}
 				
 				this.sClickAt(optionLocator, "");
-				SleepUtil.sleepSmall();
 				this.zWaitForBusyOverlay();
+				SleepUtil.sleepMedium();
 			}
 
 			if ( page != null ) {
@@ -680,7 +680,7 @@ public class FormMailNew extends AbsForm {
 
 			locator = Locators.zSubjectField;
 
-			// FALL THROUGH
+			
 
 		} else if (field == Field.Body) {
 
@@ -1068,13 +1068,13 @@ public class FormMailNew extends AbsForm {
 
 			locator = Locators.zToField;
 
-			// FALL THROUGH
+			
 
 		} else if ( field == Field.Cc ) {
 
 			locator = Locators.zCcField;
 
-			// FALL THROUGH
+			
 
 		} else if ( field == Field.Bcc ) {
 
@@ -1085,7 +1085,7 @@ public class FormMailNew extends AbsForm {
 				this.zToolbarPressButton(Button.B_SHOWBCC);
 			}
 
-			// FALL THROUGH
+			
 
 		} else {
 			throw new HarnessException("Unsupported field: "+ field);
@@ -1239,7 +1239,7 @@ public class FormMailNew extends AbsForm {
 		fieldValue = this.sGetText(locator);
 		logger.info("DisplayMail.ZGetFieldValue(" + field + ") = " + fieldValue);
 
-		if(field.equals(Field.Body)) {		
+		if (field.equals(Field.Body)) {		
 			// Make sure to go back to the original iframe when Field is Body
 			this.sSelectFrame("relative=top");
 

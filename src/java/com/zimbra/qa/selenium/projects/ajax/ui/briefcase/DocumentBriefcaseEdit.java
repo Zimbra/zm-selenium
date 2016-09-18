@@ -55,7 +55,7 @@ public class DocumentBriefcaseEdit extends AbsForm {
 	}
 
 	public void typeDocumentText(String text) throws HarnessException {
-		// ClientSessionFactory.session().selenium().getEval("var x = selenium.browserbot.findElementOrNull(\""+Locators.zFrame+"\");if(x!=null)x=x.contentWindow.document.body;if(browserVersion.isChrome){x.textContent='"+text+"';}else if(browserVersion.isIE){x.innerText='"+text+"';}");
+		// ClientSessionFactory.session().selenium().getEval("var x = selenium.browserbot.findElementOrNull(\""+Locators.zFrame+"\");if (x!=null)x=x.contentWindow.document.body;if (browserVersion.isChrome) {x.textContent='"+text+"';} else if (browserVersion.isIE) {x.innerText='"+text+"';}");
 		sSelectFrame(Locators.zFrame);
 		logger.info("typing Document Text" + text);
 		// SleepUtil.sleepSmall();
@@ -63,7 +63,7 @@ public class DocumentBriefcaseEdit extends AbsForm {
 	}
 
 	public String retriveDocumentText() throws HarnessException {
-		// ClientSessionFactory.session().selenium().getEval("var x = selenium.browserbot.findElementOrNull(\""+Locators.zFrame+"\");if(x!=null)x=x.contentWindow.document.body;if(browserVersion.isChrome){x.textContent;}else if(browserVersion.isIE){x.innerText;}");
+		// ClientSessionFactory.session().selenium().getEval("var x = selenium.browserbot.findElementOrNull(\""+Locators.zFrame+"\");if (x!=null)x=x.contentWindow.document.body;if (browserVersion.isChrome) {x.textContent;} else if (browserVersion.isIE) {x.innerText;}");
 		sSelectFrame(Locators.zFrame);
 		String text = "";
 		if (sIsElementPresent(Locators.zBodyField)) {
@@ -118,8 +118,8 @@ public class DocumentBriefcaseEdit extends AbsForm {
 								+ value
 								+ "\";"								
 								+ "var iframe_body=arguments[0].contentWindow.document.body;"
-								+ "if (navigator.userAgent.indexOf('Firefox')!=-1 || navigator.userAgent.indexOf('Chrome')!=-1){iframe_body.innerHTML=bodytext;}"
-								+ "else if(navigator.userAgent.indexOf('MSIE')!=-1){iframe_body.innerHTML=bodytext;}"
+								+ "if (navigator.userAgent.indexOf('Firefox')!=-1 || navigator.userAgent.indexOf('Chrome')!=-1) {iframe_body.innerHTML=bodytext;}"
+								+ "else if (navigator.userAgent.indexOf('MSIE')!=-1) {iframe_body.innerHTML=bodytext;}"
 								+ "else {iframe_body.innerHTML=bodytext;}", we);
 			
 		} else {

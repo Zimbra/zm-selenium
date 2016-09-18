@@ -34,7 +34,7 @@ public class CreateQuickCommand extends AjaxCommonTest {
 	public CreateQuickCommand() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 

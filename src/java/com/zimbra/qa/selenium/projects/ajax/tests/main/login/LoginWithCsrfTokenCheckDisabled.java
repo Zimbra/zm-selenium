@@ -22,7 +22,6 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
@@ -30,14 +29,12 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCommonTest {
 
 	public LoginWithCsrfTokenCheckDisabled() {
 		logger.info("New "+ LoginWithCsrfTokenCheckDisabled.class.getCanonicalName());
-
-		// All tests start at the login page
 		super.startingPage = app.zPageLogin;
-		super.startingAccountPreferences = null;
-
 	}
 
-	@Test( description = "Login to the webclient after disabling csrf check", priority=5, groups = { "smoke" })
+	
+	@Test( description = "Login to the webclient after disabling csrf check", priority=5, 
+			groups = { "smoke" })
 
 	public void LoginWithCsrfTokenCheckDisabled_01() throws HarnessException {
 		try {
@@ -80,8 +77,9 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCommonTest {
 			SleepUtil.sleepVeryLong();
 
 			for (int i=0; i<=10; i++) {
-				app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
-				if (app.zPageLogin.sIsElementPresent("css=input[class='zLoginField']") == true || app.zPageLogin.sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']") == true) {
+				app.zPageLogin.sRefresh();
+				if (app.zPageLogin.sIsElementPresent("css=input[class^='ZLoginButton']") == true || 
+						app.zPageLogin.sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']") == true) {
 					break;
 				} else {
 					SleepUtil.sleepLong();

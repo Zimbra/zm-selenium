@@ -78,8 +78,7 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 			// Select the item
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-			FolderItem sent = FolderItem.importFromSOAP(
-					app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
+			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 
 			// Create file item
 			final String fileName = "samplejpg.jpg";
@@ -91,11 +90,10 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 			try {
 
 				// Choose Actions -> Launch in Window
-				//	window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 				window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 				window.zSetWindowTitle(windowTitle);
-				window.zWaitForActive();		// Make sure the window is there
+				window.zWaitForActive();
 
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
@@ -103,7 +101,6 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 				SleepUtil.sleepMedium();
 				window.zSetWindowTitle(windowTitle);
 				SleepUtil.sleepMedium();
-				//window.zWaitForActive();
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 
@@ -128,15 +125,7 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 
 				//click Send
 				window.zToolbarPressButton(Button.B_SEND);
-				window.zSetWindowTitle(windowTitle);
-				window.zWaitForActive();
-				//close New window
-				window.zToolbarPressButton(Button.B_CLOSE);
-				SleepUtil.sleepMedium();
-
-				// Window is closed automatically by the client
-				window = null;
-
+				
 			} finally {
 
 				// Make sure to close the window
@@ -144,6 +133,7 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 					window.zCloseWindow(windowTitle);
 					window = null;
 				}
+				app.zPageMail.zSelectWindow(null);
 
 			}
 			// Verify UI for attachment

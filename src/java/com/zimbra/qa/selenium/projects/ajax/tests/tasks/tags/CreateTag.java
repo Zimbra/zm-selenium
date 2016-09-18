@@ -31,8 +31,7 @@ public class CreateTag extends AjaxCommonTest {
 
 		// All tests start at the login page
 		super.startingPage = app.zPageTasks;
-		super.startingAccountPreferences = null;
-
+		
 	}
 
 	@Test( description = "Create a new tag by clicking 'new tag' on Task page", 
@@ -97,8 +96,6 @@ public class CreateTag extends AjaxCommonTest {
 	
 	public void CreateTag_03() throws HarnessException {
 
-		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-
 		// Set the new tag name
 		String name1 = "tag" + ConfigProperties.getUniqueString();
 		String name2 = "tag" + ConfigProperties.getUniqueString();
@@ -109,13 +106,11 @@ public class CreateTag extends AjaxCommonTest {
 				"<tag name='"+name2+"' color='1' />" +
 		"</CreateTagRequest>");
 
-		
-
 		// Get the tag
 		TagItem tag2 = TagItem.importFromSOAP(app.zGetActiveAccount(), name2);
 
 		//Need to click on Task folder explicitly so that created tag does show in tag list.
-		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
+		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 
 		// Create a new tag using the context menu + New Tag
 		DialogTag dialog = (DialogTag)app.zTreeTasks.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_NEWTAG, tag2);
@@ -124,14 +119,11 @@ public class CreateTag extends AjaxCommonTest {
 		// Fill out the form with the basic details
 		dialog.zSubmit(name1);
 
-		
-
 		// Make sure the tag was created on the server
 		TagItem tag1 = app.zPageTasks.zGetTagItem(app.zGetActiveAccount(), name1);
 		ZAssert.assertNotNull(tag1, "Verify the new tag was created");
 
 		ZAssert.assertEquals(tag1.getName(), name1, "Verify the server and client tag names match");
-
 	}
 
 	
@@ -149,8 +141,6 @@ public class CreateTag extends AjaxCommonTest {
 
 		// Fill out the form with the basic details
 		dialog.zSubmit(name);
-
-		
 
 		// Make sure the task was created on the server
 		TagItem tag = app.zPageTasks.zGetTagItem(app.zGetActiveAccount(), name);

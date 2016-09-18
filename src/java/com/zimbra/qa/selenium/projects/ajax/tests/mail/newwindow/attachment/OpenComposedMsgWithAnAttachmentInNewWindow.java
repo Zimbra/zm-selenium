@@ -72,7 +72,6 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 				// Verify Attachment should not disappeared  New compose window
 				Assert.assertTrue(app.zPageMail.sIsElementPresent("css=a[class='AttLink']"),"vcf attachment link present");
 
-
 			} finally {
 
 				// Make sure to close the window
@@ -80,6 +79,7 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 					window.zCloseWindow(windowTitle);
 					window = null;
 				}
+				app.zPageMail.zSelectWindow(null);
 			}
 
 		} else {

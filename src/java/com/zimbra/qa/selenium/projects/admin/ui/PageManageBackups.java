@@ -97,14 +97,14 @@ public class PageManageBackups extends AbsTab {
 
 
 		if ( zIsActive() ) {
-			// This page is already active.
+			
 
 			return;
 		}
 
 		// Click on Tools and Migration -> Downloads
 		zClick(Locators.TOOLS_AND_MIGRATION_ICON);
-		if(sIsElementPresent(Locators.BACKUP));
+		if (sIsElementPresent(Locators.BACKUP));
 		sClickAt(Locators.BACKUP, "");
 
 		zWaitForActive();
@@ -139,13 +139,13 @@ public class PageManageBackups extends AbsTab {
 	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
-		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
+		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}
 
 	public boolean zVerifyToolsAndMigrationHeader (String header) throws HarnessException {
-		if(this.sIsElementPresent("css=div[id='zti__AppAdmin__Home__magHV_textCell']:contains('" + header + "')"))
+		if (this.sIsElementPresent("css=div[id='zti__AppAdmin__Home__magHV_textCell']:contains('" + header + "')"))
 			return true;
 		return false;
 	}

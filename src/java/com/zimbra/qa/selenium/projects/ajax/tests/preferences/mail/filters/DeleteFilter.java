@@ -36,7 +36,7 @@ public class DeleteFilter extends AjaxCommonTest {
 	public DeleteFilter() {
 
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 
 	}
 

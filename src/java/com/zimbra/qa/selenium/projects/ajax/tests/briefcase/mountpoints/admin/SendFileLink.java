@@ -41,7 +41,7 @@ public class SendFileLink extends FeatureBriefcaseTest {
 
 		super.startingPage = app.zPageBriefcase;
 
-		//if(ConfigProperties.zimbraGetVersionString().contains("FOSS")){
+		//if (ConfigProperties.zimbraGetVersionString().contains("FOSS")) {
 		    super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 		//}
 		   

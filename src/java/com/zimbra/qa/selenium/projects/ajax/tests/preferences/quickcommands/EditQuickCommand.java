@@ -33,7 +33,7 @@ public class EditQuickCommand extends AjaxQuickCommandTest {
 	public EditQuickCommand() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 

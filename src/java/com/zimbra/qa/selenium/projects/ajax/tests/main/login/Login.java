@@ -28,7 +28,7 @@ public class Login extends AjaxCommonTest {
 	public Login() {
 		logger.info("New "+ Login.class.getCanonicalName());
 		super.startingPage = app.zPageLogin;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "Login to the Ajax Client", 
@@ -214,7 +214,7 @@ public class Login extends AjaxCommonTest {
 		}
 
 	@Bugs( ids = "66788")
-	@Test( description = "Change the zimbraMailURL and login",
+	@Test( description = "Change the zimbraMailURL and login", priority=5, 
 			groups = { "inprogress" },
 			dataProvider = "DataProvider_zimbraMailURL")
 	
@@ -272,15 +272,21 @@ public class Login extends AjaxCommonTest {
 				StafServicePROCESS staf = new StafServicePROCESS();
 				staf.execute("zmmailboxdctl restart");
 
-				// Wait for the service to come up
-				SleepUtil.sleep(60000);
-				
-				staf.execute("zmcontrol status");
-
-				
-				// Open the base URL
-				app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
-
+				SleepUtil.sleepVeryLong();
+				for (int i = 0; i <= 10; i++) {
+					app.zPageLogin.sRefresh();
+					if (app.zPageLogin.sIsElementPresent("css=input[class^='ZLoginButton']") == true || 
+							app.zPageLogin.sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']") == true) {
+						break;
+					} else {
+						SleepUtil.sleepLong();
+						if (i == 5) {
+							staf.execute("zmmailboxdctl restart");
+							SleepUtil.sleepVeryLong();
+						}
+						continue;
+					}
+				}
 			}
 
 		}

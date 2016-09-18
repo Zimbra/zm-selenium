@@ -37,7 +37,7 @@ public class DeleteTextSignature extends AjaxCommonTest {
 
 	public DeleteTextSignature() throws HarnessException{
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 
 	/**

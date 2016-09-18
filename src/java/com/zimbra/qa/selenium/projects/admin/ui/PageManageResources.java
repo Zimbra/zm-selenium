@@ -101,7 +101,7 @@ public class PageManageResources extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if ( zIsActive() ) {
-			// This page is already active.
+			
 			return;
 		}
 
@@ -129,10 +129,10 @@ public class PageManageResources extends AbsTab {
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
 		int m= 50;
-		if(count >= 50){
+		if (count >= 50) {
 			for (int a1 = 1; a1 <= 10; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
-				if(this.sIsElementPresent(p0)){
+				if (this.sIsElementPresent(p0)) {
 				zClick(p0);
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 				m=m+20;
@@ -155,26 +155,26 @@ public class PageManageResources extends AbsTab {
 			locator = accountLocator + " td[id^='calresource_data_emailaddress']";
 
 
-			if(this.sIsElementPresent(locator))
+			if (this.sIsElementPresent(locator))
 			{    String listItem = this.sGetText(locator).trim();
-				if(listItem.equalsIgnoreCase(item))
+				if (listItem.equalsIgnoreCase(item))
 				{
-					if(action == Action.A_LEFTCLICK) {
+					if (action == Action.A_LEFTCLICK) {
 						zClick(locator);
 					
 						
-					} else if(action == Action.A_RIGHTCLICK) {
+					} else if (action == Action.A_RIGHTCLICK) {
 						
 						zRightClick(locator);
 						
-					}else if(action == Action.A_DOUBLECLICK) {
+					} else if (action == Action.A_DOUBLECLICK) {
 						page = new FormEditResource(this.MyApplication);
 						sDoubleClick(locator);
 						return page;
 					}
 
 				}
-			}else{
+			} else {
 				throw new HarnessException("Action is not implemented!");
 			}
 		}
@@ -204,7 +204,7 @@ public class PageManageResources extends AbsTab {
 			throw new HarnessException("Button cannot be null!");
 
 
-		// Default behavior variables
+		
 		//
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
@@ -221,19 +221,19 @@ public class PageManageResources extends AbsTab {
 			// Create the page
 			page = new WizardCreateResource(this);
 
-			// FALL THROUGH
+			
 
-		} else if(button == Button.B_TREE_DELETE) {
+		} else if (button == Button.B_TREE_DELETE) {
 
 			locator=Locators.RIGHT_CLICK_MENU_DELETE_BUTTON;
 
 			page = new DialogForDeleteOperation(this.MyApplication, null);
-		} else if(button == Button.B_EDIT) {
+		} else if (button == Button.B_EDIT) {
 
 			locator=Locators.EDIT_BUTTON;
 
 			page = new FormEditResource(this.MyApplication);
-		} else if(button == Button.B_TREE_EDIT) {
+		} else if (button == Button.B_TREE_EDIT) {
 
 			locator=Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
 
@@ -274,10 +274,10 @@ public class PageManageResources extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		if (pulldown == Button.B_GEAR_BOX) {
 			pulldownLocator = Locators.GEAR_ICON;
@@ -288,14 +288,14 @@ public class PageManageResources extends AbsTab {
 
 				page = new WizardCreateResource(this);
 
-				// FALL THROUGH
+				
 
-			} else if(option == Button.O_EDIT) {
+			} else if (option == Button.O_EDIT) {
 				optionLocator = Locators.EDIT_BUTTON;
 
 				page = new FormEditResource(this.MyApplication);
 
-			} else if(option == Button.O_DELETE) {
+			} else if (option == Button.O_DELETE) {
 				optionLocator = Locators.DELETE_BUTTON;
 
 				page = new DialogForDeleteOperation(this.MyApplication,null);
@@ -371,10 +371,10 @@ public class PageManageResources extends AbsTab {
 		
 
 		int m= 50;
-		if(count >= 50){
+		if (count >= 50) {
 			for (int a1 = 1; a1 <= 5; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
-				if(this.sIsElementPresent(p0)){
+				if (this.sIsElementPresent(p0)) {
 				zClick(p0);
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 				m=m+20;
@@ -426,7 +426,7 @@ public class PageManageResources extends AbsTab {
 
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
-		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
+		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}

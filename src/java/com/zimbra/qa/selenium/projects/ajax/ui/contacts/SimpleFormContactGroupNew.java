@@ -87,7 +87,7 @@ public class SimpleFormContactGroupNew extends AbsForm {
 		ContactGroupItem group = (ContactGroupItem) item;
 		
 		// Fill out the form		
-		if (( group.groupName != null )  && (group.groupName.trim().length() >0)){
+		if (( group.groupName != null )  && (group.groupName.trim().length() >0)) {
 			sType(INPUT_GROUPNAME,group.groupName);
 			
 		}

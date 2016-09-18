@@ -106,7 +106,7 @@ public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
 
 		// Warning dialog will appear
 		DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning,app,((AppAjaxClient) app).zPageMail);
-		if(dialog.zIsActive()){
+		if (dialog.zIsActive()) {
 		//ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
 		dialog.zClickButton(Button.B_OK);
 		}

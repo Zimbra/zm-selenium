@@ -35,7 +35,7 @@ public class FolderTree extends AjaxCommonTest {
 		
 		// All tests start at the login page
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = null;
+		
 		
 	}
 	

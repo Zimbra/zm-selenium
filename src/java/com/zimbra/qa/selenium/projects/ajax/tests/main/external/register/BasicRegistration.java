@@ -27,77 +27,83 @@ public class BasicRegistration extends AjaxCommonTest {
 	
 	public BasicRegistration() {
 		logger.info("New "+ BasicRegistration.class.getCanonicalName());
-		
-		// All tests start at the login page
 		super.startingPage = app.zPageLogin;
-		super.startingAccountPreferences = null;
 	}
 	
+	
 	@Bugs(ids = "103011")
-	@Test( description = "Register as and external user", priority=3, groups = { "smoke" })
+	@Test( description = "Register as and external user", priority=3, 
+		groups = { "smoke" })
 	
 	public void BasicRegistration_01() throws HarnessException {
 		
-		ZimbraExternalAccount external = new ZimbraExternalAccount();
-		external.setEmailAddress("external" + ConfigProperties.getUniqueString() + "@example.com");
+		try {
 		
-		FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountZWC(), FolderItem.SystemFolder.Inbox);
-		String foldername = "folder" + ConfigProperties.getUniqueString();
-
-		// Create a subfolder in Inbox
-		ZimbraAccount.AccountZWC().soapSend(
-					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
-				+		"<folder name='" + foldername +"' l='" + inbox.getId() +"' view='message'/>"
-				+	"</CreateFolderRequest>");
-		String folderid = ZimbraAccount.AccountZWC().soapSelectValue("//mail:folder", "id");
-
-		// Share the subfolder
-		ZimbraAccount.AccountZWC().soapSend(
-					"<FolderActionRequest xmlns='urn:zimbraMail'>"
-				+		"<action id='"+ folderid +"' op='grant'>"
-				+			"<grant d='"+ external.EmailAddress +"' inh='1' gt='guest' pw='' perm='r'/>"
-				+		"</action>"
-				+	"</FolderActionRequest>");
-
-		// Send the notification
-		ZimbraAccount.AccountZWC().soapSend(
-					"<SendShareNotificationRequest xmlns='urn:zimbraMail'>"
-				+		"<item id='"+ folderid +"'/>"
-				+		"<e a='"+ external.EmailAddress +"'/>"
-				+		"<notes/>"
-				+	"</SendShareNotificationRequest>");
-
-
-		// Parse the URL From the sent message
-		ZimbraAccount.AccountZWC().soapSend(
-					"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
-				+		"<query>in:sent "+ external.EmailAddress +"</query>"
-				+	"</SearchRequest>");
-		String messageid = ZimbraAccount.AccountZWC().soapSelectValue("//mail:m", "id");
-		
-		ZimbraAccount.AccountZWC().soapSend(
-					"<GetMsgRequest xmlns='urn:zimbraMail'>"
-				+		"<m id='"+ messageid +"' html='1'/>"
-				+	"</GetMsgRequest>");
-		
-		// Based on the content of the sent message, the URL's can be determined
-		Element response = ZimbraAccount.AccountZWC().soapSelectNode("//mail:GetMsgResponse", 1);
-		external.setURL(response);
-		
-		
-		//-- GUI Actions
-		
-		// Navigate to the registration page
-		app.zPageExternalRegistration.zSetURL(external.getRegistrationURL());
-		app.zPageExternalRegistration.zNavigateTo();
-		app.zPageExternalRegistration.zLogin(external);
-
-		
-		//-- Verification
-		
-		// After logging in, make sure the page appears correctly
-		app.zPageExternalMain.zWaitForActive();
-		boolean loaded = app.zPageExternalMain.zIsActive();
-		ZAssert.assertTrue(loaded, "Verify that the main page became active");
+			ZimbraExternalAccount external = new ZimbraExternalAccount();
+			external.setEmailAddress("external" + ConfigProperties.getUniqueString() + "@example.com");
+			
+			FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountZWC(), FolderItem.SystemFolder.Inbox);
+			String foldername = "folder" + ConfigProperties.getUniqueString();
+	
+			// Create a subfolder in Inbox
+			ZimbraAccount.AccountZWC().soapSend(
+						"<CreateFolderRequest xmlns='urn:zimbraMail'>"
+					+		"<folder name='" + foldername +"' l='" + inbox.getId() +"' view='message'/>"
+					+	"</CreateFolderRequest>");
+			String folderid = ZimbraAccount.AccountZWC().soapSelectValue("//mail:folder", "id");
+	
+			// Share the subfolder
+			ZimbraAccount.AccountZWC().soapSend(
+						"<FolderActionRequest xmlns='urn:zimbraMail'>"
+					+		"<action id='"+ folderid +"' op='grant'>"
+					+			"<grant d='"+ external.EmailAddress +"' inh='1' gt='guest' pw='' perm='r'/>"
+					+		"</action>"
+					+	"</FolderActionRequest>");
+	
+			// Send the notification
+			ZimbraAccount.AccountZWC().soapSend(
+						"<SendShareNotificationRequest xmlns='urn:zimbraMail'>"
+					+		"<item id='"+ folderid +"'/>"
+					+		"<e a='"+ external.EmailAddress +"'/>"
+					+		"<notes/>"
+					+	"</SendShareNotificationRequest>");
+	
+	
+			// Parse the URL From the sent message
+			ZimbraAccount.AccountZWC().soapSend(
+						"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
+					+		"<query>in:sent "+ external.EmailAddress +"</query>"
+					+	"</SearchRequest>");
+			String messageid = ZimbraAccount.AccountZWC().soapSelectValue("//mail:m", "id");
+			
+			ZimbraAccount.AccountZWC().soapSend(
+						"<GetMsgRequest xmlns='urn:zimbraMail'>"
+					+		"<m id='"+ messageid +"' html='1'/>"
+					+	"</GetMsgRequest>");
+			
+			// Based on the content of the sent message, the URL's can be determined
+			Element response = ZimbraAccount.AccountZWC().soapSelectNode("//mail:GetMsgResponse", 1);
+			external.setURL(response);
+			
+			
+			//-- GUI Actions
+			
+			// Navigate to the registration page
+			app.zPageExternalRegistration.zSetURL(external.getRegistrationURL());
+			app.zPageExternalRegistration.zNavigateTo();
+			app.zPageExternalRegistration.zLogin(external);
+	
+			
+			//-- Verification
+			
+			// After logging in, make sure the page appears correctly
+			app.zPageExternalMain.zWaitForActive();
+			boolean loaded = app.zPageExternalMain.zIsActive();
+			ZAssert.assertTrue(loaded, "Verify that the main page became active");
+			
+		} finally {
+			zFreshLogin();
+			logger.info(app.zGetActiveAccount().EmailAddress);
+		}
 	}
 }

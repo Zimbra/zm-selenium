@@ -34,7 +34,7 @@ public class CreateMeetingWithDL extends CalendarWorkWeekTest {
 	public CreateMeetingWithDL() {
 		logger.info("New "+ CreateMeetingWithDL.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-	    super.startingAccountPreferences = null;
+	    
 	}
 	
 

@@ -132,10 +132,10 @@ public class PageManageDistributionLists extends AbsTab {
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
 
 		int m= 50;
-		if(count >= 50){
+		if (count >= 50) {
 			for (int a1 = 1; a1 <= 5; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
-				if(this.sIsElementPresent(p0)){
+				if (this.sIsElementPresent(p0)) {
 				zClick(p0);
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 				m=m+20;
@@ -157,14 +157,14 @@ public class PageManageDistributionLists extends AbsTab {
 			locator = accountLocator + " td[id^='dl_data_emailaddress']";
 
 
-			if(this.sIsElementPresent(locator))
+			if (this.sIsElementPresent(locator))
 			{
-				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
+				if (this.sGetText(locator).trim().equalsIgnoreCase(item))
 				{
-					if(action == Action.A_LEFTCLICK) {
+					if (action == Action.A_LEFTCLICK) {
 						zClick(locator);
 						break;
-					} else if(action == Action.A_RIGHTCLICK) {
+					} else if (action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);
 						break;
 					}
@@ -198,7 +198,7 @@ public class PageManageDistributionLists extends AbsTab {
 			throw new HarnessException("Button cannot be null!");
 
 
-		// Default behavior variables
+		
 		//
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
@@ -215,14 +215,14 @@ public class PageManageDistributionLists extends AbsTab {
 			// Create the page
 			page = new WizardCreateDL(this);
 
-			// FALL THROUGH
+			
 
-		} else if(button == Button.B_TREE_DELETE) {
+		} else if (button == Button.B_TREE_DELETE) {
 			locator=Locators.RIGHT_CLICK_MENU_DELETE_BUTTON;
 
 			page = new DialogForDeleteOperation(this.MyApplication, null);
 
-		} else if(button == Button.B_TREE_EDIT) {
+		} else if (button == Button.B_TREE_EDIT) {
 			locator=Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
 
 			page = new FormEditDistributionList(this.MyApplication);
@@ -262,10 +262,10 @@ public class PageManageDistributionLists extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		if (pulldown == Button.B_GEAR_BOX) {
 			pulldownLocator = Locators.GEAR_ICON;
@@ -274,15 +274,15 @@ public class PageManageDistributionLists extends AbsTab {
 				optionLocator = Locators.NEW_MENU;
 				page = new WizardCreateDL(this);
 
-				// FALL THROUGH
-			} else if(option == Button.O_EDIT) {
+				
+			} else if (option == Button.O_EDIT) {
 				optionLocator = Locators.EDIT_BUTTON;
 				page = new FormEditDistributionList(this.MyApplication);
-				// FALL THROUGH
-			} else if(option == Button.O_DELETE) {
+				
+			} else if (option == Button.O_DELETE) {
 				optionLocator = Locators.DELETE_BUTTON;
 				page = new DialogForDeleteOperation(this.MyApplication,null);
-				// FALL THROUGH
+				
 			}
 			else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
@@ -348,10 +348,10 @@ public class PageManageDistributionLists extends AbsTab {
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
 
 		int m= 50;
-		if(count >= 50){
+		if (count >= 50) {
 			for (int a1 = 1; a1 <= 5; a1++) { 
 				String p0  = rowsLocator + "["+ m +"]";
-				if(this.sIsElementPresent(p0)){
+				if (this.sIsElementPresent(p0)) {
 				zClick(p0);
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 				m=m+20;
@@ -402,7 +402,7 @@ public class PageManageDistributionLists extends AbsTab {
 
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
-		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
+		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}

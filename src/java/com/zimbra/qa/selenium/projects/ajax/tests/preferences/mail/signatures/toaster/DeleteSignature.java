@@ -40,7 +40,7 @@ public class DeleteSignature extends AjaxCommonTest {
 
 	public DeleteSignature() throws HarnessException{
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 
 	/**

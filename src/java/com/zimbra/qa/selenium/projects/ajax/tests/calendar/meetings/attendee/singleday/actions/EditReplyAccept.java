@@ -31,7 +31,7 @@ public class EditReplyAccept extends CalendarWorkWeekTest {
 	public EditReplyAccept() {
 		logger.info("New "+ EditReplyAccept.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "Rt-click to appointment and Edit Reply -> Accept the meeting invite", 

@@ -16,6 +16,11 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.tasks;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
@@ -26,55 +31,45 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
  * <p>
  * This class can be used to extract data from the message, such as To,
  * From, Subject, Received Date, message body.  Additionally, it can
- * be used to click on certain links in the message body, such as 
+ * be used to click on certain links in the message body, such as
  * "view entire message" and "highlight objects".
  * <p>
  * Hover over objects, such as email or URL hover over, are encapsulated.
  * <p>
- * 
+ *
  * @author zimbra
  * @see http://wiki.zimbra.com/wiki/Testing:_Selenium:_ZimbraSelenium_Overview#Mail_Page
  */
 public class DisplayTask extends AbsDisplay {
 
-	/**
-	 * Defines Selenium locators for various objects in {@link DisplayTask}
-	 */
-	public static class Locators {
-		
-		public static final String IsActive 			= "css=[parentid='zv__TKL-main']";
+	WebDriver webDriver = ClientSessionFactory.session().webDriver();
+	WebElement we = null;
 
+	public static class Locators {
+		public static final String IsActive 			= "css=[parentid='zv__TKL-main']";
 	}
 
 	/**
 	 * The various displayed fields in a message
 	 */
 	public static enum Field {
-		Subject,
-		Location,
-		StartDate,
-		DueDate,
-		Priority,
-		Status,
-		Percentage, // "Completed"
-		Reminder,
-		Body
+		Subject, Location, StartDate, DueDate, Priority, Status, Percentage, Reminder, Body
 	}
-	
+
 
 	/**
 	 * Protected constuctor for this object.  Only classes within
 	 * this package should create DisplayMail objects.
-	 * 
+	 *
 	 * @param application
 	 */
 	protected DisplayTask(AbsApplication application) {
 		super(application);
-		
+
 		logger.info("new " + DisplayTask.class.getCanonicalName());
 
 	}
-	
+
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
@@ -83,13 +78,13 @@ public class DisplayTask extends AbsDisplay {
 	@Override
 	public AbsPage zPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zDisplayPressButton("+ button +")");
-		
+
 		tracer.trace("Click "+ button);
 
 		throw new HarnessException("no logic defined for button: "+ button);
-		
+
 	}
-	
+
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
@@ -100,17 +95,13 @@ public class DisplayTask extends AbsDisplay {
 	public String zGetTaskProperty(Field field) throws HarnessException {
 		logger.info(myPageName() + ".zGetTaskProperty(" + field + ")");
 
-		//**
-		// See https://bugzilla.zimbra.com/show_bug.cgi?id=56657 - "Need unique id for "view task" pane"
-		//**
-		
 		String locator = "css=div[id='zv__TKL-main'] div[class='ZmMailMsgView']";
-		
+
 		if ( field == Field.Subject ) {
-			
+
 			//locator = "css=[parentid='zv__TKL'][class^='SubjectCol']";
 			locator += " div[id$='__su']";
-			
+
 		} else if ( field == Field.Location ) {
 
 			locator += " tr[id$='__lo'] td[class='LabelColValue']";
@@ -141,53 +132,40 @@ public class DisplayTask extends AbsDisplay {
 
 		} else if ( field == Field.Body ) {
 
-			/*
-			 * To get the body contents, need to switch iframes
-			 */
 			try {
-				
-				//this.sSelectFrame("css=iframe[id='zv__MSG_body__iframe']");
-				//this.sSelectFrame("css=iframe[id='zv__TKL_body__iframe']");
-				this.sSelectFrame("css=div[id='zv__TKL-main'] iframe[id$='__body__iframe']");
-				
-				String bodyLocator = "css=body";
-				
-				// Make sure the body is present
-				if ( !this.sIsElementPresent(bodyLocator) )
-					throw new HarnessException("Unable to find the message body!");
-				
-				// Get the body value
-				// String body = this.sGetText(bodyLocator).trim();
-				String html = this.zGetHtml(bodyLocator);
-				
-				logger.info("DisplayMail.zGetBody(" + bodyLocator + ") = " + html);
+
+				String bodyLocator = "body";
+				webDriver.switchTo().defaultContent();
+				webDriver.switchTo().frame(0);
+				we = webDriver.findElement(By.cssSelector(bodyLocator));
+
+				String html = this.sGetHtmlSource();
+				logger.info("zGetTaskProperty.zGetBody(" + bodyLocator + ") = " + html);
 				return(html);
 
 			} finally {
-				// Make sure to go back to the original iframe
 				this.sSelectFrame("relative=top");
+				webDriver.switchTo().defaultContent();
 			}
 
-		}else {
-			
+		} else {
 			throw new HarnessException("no logic defined for field "+ field);
-			
 		}
-		
+
 		// Get the subject value
 		String value = this.sGetText(locator).trim();
-		
+
 		logger.info(myPageName() + ".zGetTaskProperty(" + field + ") = " + value);
 		return(value);
 
-		
+
 	}
 
 	public String zGetTaskListViewProperty(Field field) throws HarnessException {
 		String locator = "css=div[id='zl__TKL-main__rows'] div[id^='zli__TKL'] tr[id^='zlif__TKL']";
 
 		if (field == Field.Subject) {
-		
+
 			locator += " div[id$='__su']";
 
 		} else if (field == Field.Status) {

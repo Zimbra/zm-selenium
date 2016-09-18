@@ -16,11 +16,9 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.main.attributes;
 
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -32,12 +30,14 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 
 	public ZimbraHelpAdvancedURL() {
-		logger.info("New "+ ZimbraHelpAdvancedURL.class.getCanonicalName());
+		logger.info("New " + ZimbraHelpAdvancedURL.class.getCanonicalName());
 		super.startingPage = app.zPageMail;
 	}
 
-	@Bugs(ids="101023")
-	@Test( description = "Verify the product help URL", groups = { "functional" } )
+	
+	@Bugs(ids = "101023")
+	@Test(description = "Verify the product help URL", priority=5, 
+		groups = { "functional" })
 
 	public void ZimbraHelpAdvancedURL_01() throws HarnessException {
 
@@ -51,83 +51,41 @@ public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 
 			// To get domain id
 			String targetDomain = ConfigProperties.getStringProperty("testdomain");
-			ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-					"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
-							+	"<domain by='name'>" + targetDomain + "</domain>"
-							+	"</GetDomainRequest>");
+			ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<GetDomainRequest xmlns='urn:zimbraAdmin'>"
+					+ "<domain by='name'>" + targetDomain + "</domain>" + "</GetDomainRequest>");
 
-			domainID = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetDomainResponse/admin:domain", "id").toString();
+			domainID = ZimbraAdminAccount.AdminConsoleAdmin()
+					.soapSelectValue("//admin:GetDomainResponse/admin:domain", "id").toString();
 
 			// Modify the domain and change the help URL
-			ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-					"<ModifyDomainRequest xmlns='urn:zimbraAdmin'>"
-							+ "<id>" + domainID +"</id>"
-							+  "<a n='zimbraHelpAdvancedURL'>/helpUrl/help/adv/help.html</a>"
-							+  "<a n='zimbraVirtualHostname'>" + ConfigProperties.getStringProperty("server.host") +"</a>"
-							+	"</ModifyDomainRequest>");
+			ZimbraAdminAccount.AdminConsoleAdmin()
+					.soapSend("<ModifyDomainRequest xmlns='urn:zimbraAdmin'>" + "<id>" + domainID + "</id>"
+							+ "<a n='zimbraHelpAdvancedURL'>/helpUrl/help/adv/help.html</a>"
+							+ "<a n='zimbraVirtualHostname'>" + ConfigProperties.getStringProperty("server.host")
+							+ "</a>" + "</ModifyDomainRequest>");
 
-
-			String tempUrl = null;
-			boolean found = false;
-
-			// Click the account pull down to see the menu
-			String locator = "css=td[id='skin_dropMenu'] td[id$='_dropdown']";
-			app.zPageMain.zClickAt(locator, "");
-
-			// Product help page opens in separate window
-
-
-			// Click on Product Help option
-			locator = "css=div[id^='POPUP'] div#documentation td[id$='_title']";
-			app.zPageMain.sClickAt(locator, "0,0");
-			SleepUtil.sleepMedium();
-
-			// Product help page opens in separate window
-			List<String> windowIds=app.zPageMain.sGetAllWindowIds();
-
-			if(windowIds.size() > 1) {
-
-				for(String id: windowIds) {
-
-					app.zPageMain.sSelectWindow(id);
-					if (app.zPageMain.sGetTitle().contains("Not Found") || app.zPageMain.sGetTitle().contains("Help")) {
-
-						//Get the opened URL
-						tempUrl=app.zPageMain.sGetLocation();
-						found = true;
-						app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
-						break;
-					}
-				}
-				if (!found) {
-
-					tempUrl=app.zPageMain.sGetLocation();
-				}
-
-			} else {
-				tempUrl=app.zPageMain.sGetLocation();
-			}
+			app.zPageMain.zToolbarPressPulldown(Button.B_ACCOUNT, Button.O_PRODUCT_HELP);
+			SleepUtil.sleepVeryLong();
 
 			// Check the URL
-			ZAssert.assertTrue(tempUrl.contains("/helpUrl/help/adv/help.html"),"Product Help URL is not as set in zimbraHelpAdvancedURL");
+			ZAssert.assertTrue(app.zPageMain.sGetWindowURL("ZWC Help").contains("/helpUrl/help/adv/help.html"),	"Product Help URL is not as set in zimbraHelpAdvancedURL");
 
 		} finally {
 
 			// Revert the changes done in attribute 'zimbraHelpAdminURL'
-			ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-					"<ModifyDomainRequest xmlns='urn:zimbraAdmin'>"
-							+ "<id>" + domainID +"</id>"
-							+  "<a n='zimbraHelpAdminURL'>" + url + "</a>"
-							+  "<a n='zimbraVirtualHostname'>"+""+"</a>"
-							+	"</ModifyDomainRequest>");
+			ZimbraAdminAccount.AdminConsoleAdmin()
+					.soapSend("<ModifyDomainRequest xmlns='urn:zimbraAdmin'>" + "<id>" + domainID + "</id>"
+							+ "<a n='zimbraHelpAdminURL'>" + url + "</a>" + "<a n='zimbraVirtualHostname'>" + ""
+							+ "</a>" + "</ModifyDomainRequest>");
 
 			// Restart zimbra services
 			staf.execute("zmmailboxdctl restart");
 
 			SleepUtil.sleepVeryLong();
-			for (int i=0; i<=10; i++) {
-				app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
-				if (app.zPageLogin.sIsElementPresent("css=input[class='zLoginField']") == true || app.zPageLogin.sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']") == true) {
+			for (int i = 0; i <= 10; i++) {
+				app.zPageLogin.sRefresh();
+				if (app.zPageLogin.sIsElementPresent("css=input[class^='ZLoginButton']") == true || 
+						app.zPageLogin.sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']") == true) {
 					break;
 				} else {
 					SleepUtil.sleepLong();
@@ -140,7 +98,6 @@ public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 			}
 
 		}
-
 
 	}
 }

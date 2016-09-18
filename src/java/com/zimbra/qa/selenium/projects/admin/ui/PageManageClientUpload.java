@@ -86,14 +86,14 @@ public class PageManageClientUpload extends AbsTab {
 
 
 		if ( zIsActive() ) {
-			// This page is already active.
+			
 
 			return;
 		}
 
 		// Click on Tools and Migration -> Downloads
 		zClickAt(Locators.TOOLS_AND_MIGRATION_ICON,"");
-		if(sIsElementPresent(Locators.CLIENTUPLOAD));
+		if (sIsElementPresent(Locators.CLIENTUPLOAD));
 		sClickAt(Locators.CLIENTUPLOAD, "");
 
 		zWaitForActive();
@@ -128,7 +128,7 @@ public class PageManageClientUpload extends AbsTab {
 	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
-		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
+		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}

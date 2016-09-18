@@ -30,7 +30,7 @@ public class AcceptShareFromPreferences extends AjaxCommonTest {
 	public AcceptShareFromPreferences() {
 
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;	
+			
 	}
 
 	@Test( description = "Accept shared folder from preferences/sharing", groups = { "functional" })

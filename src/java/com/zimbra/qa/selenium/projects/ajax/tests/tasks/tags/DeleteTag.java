@@ -34,16 +34,13 @@ public class DeleteTag extends AjaxCommonTest {
 	public DeleteTag() {
 		logger.info("New " + DeleteTag.class.getCanonicalName());
 
-		// All tests start at the login page
 		super.startingPage = app.zPageTasks;
-	//	super.startingAccountPreferences = null;
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			{
 				put("zimbraPrefTasksReadingPaneLocation", "bottom");
 				put("zimbraPrefShowSelectionCheckbox", "TRUE");
 			}
 		};
-
 	}
 
 	@Test( description = "Delete a tag - Right click, Delete", groups = { "smoke" })
@@ -54,11 +51,8 @@ public class DeleteTag extends AjaxCommonTest {
 		// Create the tag to delete
 		String name = "tag" + ConfigProperties.getUniqueString();
 
-		app.zGetActiveAccount().soapSend(
-				"<CreateTagRequest xmlns='urn:zimbraMail'>" + "<tag name='"
-				+ name + "' color='1' />" + "</CreateTagRequest>");
-
-		
+		app.zGetActiveAccount().soapSend("<CreateTagRequest xmlns='urn:zimbraMail'>" + "<tag name='" + name
+				+ "' color='1' />" + "</CreateTagRequest>");
 
 		TagItem tag = TagItem.importFromSOAP(app.zGetActiveAccount(), name);
 		ZAssert.assertNotNull(tag, "Verify the tag was created");
@@ -74,14 +68,10 @@ public class DeleteTag extends AjaxCommonTest {
 		// Click "Yes" to confirm
 		dialog.zClickButton(Button.B_YES);
 
-		
-
 		// To check whether deleted tag is exist
 		app.zGetActiveAccount().soapSend("<GetTagRequest xmlns='urn:zimbraMail'/>");
 
 		String tagname = app.zGetActiveAccount().soapSelectValue("//mail:GetTagResponse//mail:tag[@name='" + name + "']","name");
 		ZAssert.assertNull(tagname, "Verify the tag is deleted");
-
 	}
-
 }

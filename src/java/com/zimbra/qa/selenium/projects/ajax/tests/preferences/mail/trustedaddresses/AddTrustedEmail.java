@@ -31,7 +31,7 @@ public class AddTrustedEmail extends AjaxCommonTest {
 	public AddTrustedEmail() throws HarnessException {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 		
 	}
 	

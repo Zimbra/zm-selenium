@@ -177,7 +177,7 @@ public class DialogFindAttendees extends DialogWarning {
 
 			locator = "css=input[id$='_searchDepartmentField']";
 
-			// FALL THROUGH
+			
 
 		}  
 		  

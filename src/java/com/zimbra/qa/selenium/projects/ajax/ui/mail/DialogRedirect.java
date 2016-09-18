@@ -187,7 +187,7 @@ public class DialogRedirect extends AbsDialog {
 			
 			locator = Locators.FieldEmailLocator;
 			
-			// FALL THROUGH
+			
 			
 		} else {
 			throw new HarnessException("Unsupported field: "+ field);

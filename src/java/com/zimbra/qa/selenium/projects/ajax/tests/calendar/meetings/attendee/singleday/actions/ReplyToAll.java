@@ -31,7 +31,7 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 	public ReplyToAll() {
 		logger.info("New "+ ReplyToAll.class.getCanonicalName());
 	    super.startingPage =  app.zPageCalendar;
-	    super.startingAccountPreferences = null;
+	    
 	}
 
 	@Bugs(ids = "102475")

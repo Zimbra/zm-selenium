@@ -37,7 +37,7 @@ public class ZmTasksItem_Task1 extends AjaxCommonTest{
       super.startingPage = app.zPageTasks;
 
       // Make sure we are using an account with message view
-      super.startingAccountPreferences = null;
+      
    }
 
    @Test( description="Measure the time to view a task",

@@ -136,7 +136,7 @@ public class DialogCreateBriefcaseFolder extends AbsDialog {
 	 * @throws HarnessException
 	 */
 	public void zClickTreeFolder(FolderItem folder) throws HarnessException {
-		if (folder == null){
+		if (folder == null) {
 			throw new HarnessException("zClickTreeFolder(FolderItem): folder must not be null");
 		}
 		

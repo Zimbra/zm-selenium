@@ -40,17 +40,14 @@ public class EditFile extends FeatureBriefcaseTest {
 
 	public EditFile() throws HarnessException {
 		logger.info("New " + EditFile.class.getCanonicalName());
-
 		super.startingPage = app.zPageBriefcase;
-
-		//if(ConfigProperties.zimbraGetVersionString().contains("FOSS")){
-		    super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
-		//}
-	
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");				
 	}
 
-	@Test( description = "Upload file through RestUtil - Rename File using Right Click Context Menu & verify through GUI", groups = { "smoke" })
+	
+	@Test( description = "Upload file through RestUtil - Rename File using Right Click Context Menu & verify through GUI", 
+			groups = { "smoke" })
+	
 	public void EditFile_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -88,11 +85,11 @@ public class EditFile extends FeatureBriefcaseTest {
 		
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ConfigProperties.zimbraGetVersionString().contains(
-    			"FOSS")){
+		if (ConfigProperties.zimbraGetVersionString().contains(
+    			"FOSS")) {
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
-		}else{
+		} else {
 		    app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, fileItem);
 		}
 		*/
@@ -111,7 +108,10 @@ public class EditFile extends FeatureBriefcaseTest {
 				"Verify new file name through GUI");
 	}
 
-	@Test( description = "Upload file, edit name - verify the content remains the same", groups = { "functional" })
+	
+	@Test( description = "Upload file, edit name - verify the content remains the same", 
+			groups = { "functional" })
+	
 	public void EditFile_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -170,7 +170,10 @@ public class EditFile extends FeatureBriefcaseTest {
 				"Verify document content through GUI");
 	}
 
-	@Test( description = "Upload file through RestUtil - Verify 'Edit' toolbar button is disabled", groups = { "functional" })
+	
+	@Test( description = "Upload file through RestUtil - Verify 'Edit' toolbar button is disabled",
+			groups = { "functional" })
+	
 	public void EditFile_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -208,11 +211,11 @@ public class EditFile extends FeatureBriefcaseTest {
 		
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ConfigProperties.zimbraGetVersionString().contains(
-    			"FOSS")){
+		if (ConfigProperties.zimbraGetVersionString().contains(
+    			"FOSS")) {
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
-		}else{
+		} else {
 		    app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, fileItem);
 		}
 		*/
@@ -225,7 +228,10 @@ public class EditFile extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(fileItem.getName());
 	}
 
-	@Test( description = "Upload file through RestUtil - Verify 'Edit' context menu is disabled", groups = { "functional" })
+	
+	@Test( description = "Upload file through RestUtil - Verify 'Edit' context menu is disabled", 
+			groups = { "functional" })
+	
 	public void EditFile_04() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -273,8 +279,11 @@ public class EditFile extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(fileItem.getName());
 	}
 
+	
 	@Bugs(ids = "54706")
-	@Test( description = "'Restore As Current Version' does not restore notes", groups = { "functional" })
+	@Test( description = "'Restore As Current Version' does not restore notes", 
+		groups = { "functional" })
+	
 	public void EditFile_05() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -327,8 +336,11 @@ public class EditFile extends FeatureBriefcaseTest {
 
 	}
 
+	
 	@Bugs(ids = "74644")
-	@Test( description = "Cannot rename the file's latest version", groups = { "functional" })
+	@Test( description = "Cannot rename the file's latest version", 
+		groups = { "functional" })
+	
 	public void EditFile_06() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 

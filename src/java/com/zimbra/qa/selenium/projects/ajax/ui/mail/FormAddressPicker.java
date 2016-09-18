@@ -116,49 +116,49 @@ public class FormAddressPicker extends AbsForm {
 			locator = "css=div[id='ZmContactPicker_buttons'] td[id^='OK_'] td[id$='_title']";
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_CANCEL ) {
 
 			locator = "css=div[id='ZmContactPicker_buttons'] td[id^='Cancel_'] td[id$='_title']";
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_TO ) {
 
 			locator = "css=div[id='ZmContactPicker'] div[id='DwtChooserButtonDiv_1'] td[id$='_title']";
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_CC ) {
 
 			locator = "css=div[id='ZmContactPicker'] div[id='DwtChooserButtonDiv_2'] td[id$='_title']";
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_BCC ) {
 
 			locator = "css=div[id='ZmContactPicker'] div[id='DwtChooserButtonDiv_3'] td[id$='_title']";
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_REMOVE ) {
 
 			locator = "css=div[id='DwtChooserRemoveButton_1'] td[id$='_title']";
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else if ( button == Button.B_SEARCH ) {
 
 			locator = "css=td[id='ZmContactPicker_searchButton'] td[id$='_title']";
 			page = null;
 
-			// FALL THROUGH
+			
 
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
@@ -198,11 +198,11 @@ public class FormAddressPicker extends AbsForm {
 		if ( option == null )
 			throw new HarnessException("Option cannot be null!");
 
-		// Default behavior variables
+		
 		//
-		String pulldownLocator = null;	// If set, this will be expanded
-		String optionLocator = null;	// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		// Based on the button specified, take the appropriate action(s)
 		//
@@ -216,21 +216,21 @@ public class FormAddressPicker extends AbsForm {
 				optionLocator = "css=TODO#TODO";
 				page = null;
 
-				// FALL THROUGH
+				
 
 			} else if ( option == Button.O_PERSONAL_AND_SHARED_CONTACTS ) {
 
 				optionLocator = "css=TODO#TODO";
 				page = null;
 
-				// FALL THROUGH
+				
 
 			} else if ( option == Button.O_GLOBAL_ADDRESS_LIST ) {
 
 				optionLocator = "css=TODO#TODO";
 				page = null;
 
-				// FALL THROUGH
+				
 
 			} else {
 				throw new HarnessException("unsupported priority option "+ option);
@@ -287,19 +287,19 @@ public class FormAddressPicker extends AbsForm {
 
 			locator = "css=td>input[id*=ZmContactPicker_searchField]";
 
-			// FALL THROUGH
+			
 
 		} else if ( field == Field.Department ) {
 
 			locator = "css=input[id$='_searchDepartmentField']";
 
-			// FALL THROUGH
+			
 
 		} else if ( field == Field.EmailAddress ) {
 
 			locator = "css=input[id$='_searchEmailField']";
 
-			// FALL THROUGH
+			
 
 		} else {
 			throw new HarnessException("not implemented for field " + field);

@@ -250,7 +250,7 @@ import com.zimbra.qa.selenium.framework.core.SeleniumService;
 		}
 
 		public void zAddRequiredAttendeeFromScheduler(String attendee, int keyEvent) throws HarnessException {
-			if(sIsElementPresent(Locators.ShowSchedulerLink)){
+			if (sIsElementPresent(Locators.ShowSchedulerLink)) {
 				zToolbarPressButton(Button.B_SHOW);
 				SleepUtil.sleepSmall();
 				this.zType("css=td[id$='_scheduler'] td[id$='_NAME_'] input", attendee);
@@ -258,7 +258,7 @@ import com.zimbra.qa.selenium.framework.core.SeleniumService;
 				SleepUtil.sleepSmall();
 				pageCal.zKeyboard.zTypeKeyEvent(keyEvent);
 				
-			} else{
+			} else {
 				this.zType("css=td[id$='_scheduler'] td[id$='_NAME_'] input", attendee);
 				this.sClickAt("css=td[id$='_scheduler'] td[id$='_NAME_'] input", "");
 				SleepUtil.sleepSmall();
@@ -431,13 +431,13 @@ import com.zimbra.qa.selenium.framework.core.SeleniumService;
 				locator = Locators.Button_Save;
 				page = null;
 
-				// FALL THROUGH
+				
 			} else if (button == Button.B_SAVEANDCLOSE) {
 
 				locator = Locators.Button_SaveAndClose;
 				page = null;
 
-				// FALL THROUGH
+				
 
 			} else if (button == Button.B_ATTACH) {
 
@@ -459,7 +459,7 @@ import com.zimbra.qa.selenium.framework.core.SeleniumService;
 				locator = Locators.Button_Close;
 				page = null;
 
-				// FALL THROUGH
+				
 
 			} else if (button == Button.B_SUGGESTATIME) {
 
@@ -467,7 +467,7 @@ import com.zimbra.qa.selenium.framework.core.SeleniumService;
 				SleepUtil.sleepMedium();
 				page = null;
 
-				// FALL THROUGH
+				
 
 			} else if (button == Button.B_FIRST_TIME_SUGGESTION) {
 
@@ -483,7 +483,7 @@ import com.zimbra.qa.selenium.framework.core.SeleniumService;
 
 				return null;
 
-				// FALL THROUGH
+				
 
 			} else if (button == Button.B_SUGGESTALOCATION) {
 
@@ -491,7 +491,7 @@ import com.zimbra.qa.selenium.framework.core.SeleniumService;
 				SleepUtil.sleepMedium();
 				page = null;
 
-				// FALL THROUGH
+				
 
 			} else if (button == Button.B_10AM) {
 
@@ -520,7 +520,7 @@ import com.zimbra.qa.selenium.framework.core.SeleniumService;
 					return null;
 				}
 
-				// FALL THROUGH
+				
 
 			} else if (button == Button.B_LOCATION) {
 
@@ -531,7 +531,7 @@ import com.zimbra.qa.selenium.framework.core.SeleniumService;
 				page = new DialogFindLocation(this.MyApplication, pageCal);
 				return (page);
 
-				// FALL THROUGH
+				
 
 			} else if (button == Button.B_EQUIPMENT) {
 
@@ -542,7 +542,7 @@ import com.zimbra.qa.selenium.framework.core.SeleniumService;
 				page = new DialogFindLocation(this.MyApplication, pageCal);
 				return (page);
 
-				// FALL THROUGH
+				
 
 			}
 			else if (button == Button.B_TO) {
@@ -554,9 +554,9 @@ import com.zimbra.qa.selenium.framework.core.SeleniumService;
 				page = new DialogFindLocation(this.MyApplication, pageCal);
 				return (page);
 
-				// FALL THROUGH
+				
 
-			}else if (button == Button.B_OPTIONAL) {
+			} else if (button == Button.B_OPTIONAL) {
 
 				locator = Locators.AddOptiponalAttendees;
 				this.sClickAt(locator, "");
@@ -565,7 +565,7 @@ import com.zimbra.qa.selenium.framework.core.SeleniumService;
 				page = new DialogFindLocation(this.MyApplication, pageCal);
 				return (page);
 
-				// FALL THROUGH
+				
 
 			} else {
 				throw new HarnessException("no logic defined for button " + button);
@@ -706,10 +706,10 @@ import com.zimbra.qa.selenium.framework.core.SeleniumService;
 			if (option == null)
 				throw new HarnessException("Option cannot be null!");
 
-			// Default behavior variables
-			String pulldownLocator = null; // If set, this will be expanded
-			String optionLocator = null; // If set, this will be clicked
-			AbsPage page = null; // If set, this page will be returned
+			
+			String pulldownLocator = null;
+			String optionLocator = null;
+			AbsPage page = null;
 
 			if (pulldown == Button.B_OPTIONS) {
 				pulldownLocator = Locators.OptionsDropdown;
@@ -722,11 +722,11 @@ import com.zimbra.qa.selenium.framework.core.SeleniumService;
 				optionLocator = Locators.SuggestionPreferencesMenu;
 			}
 
-			else if(option == Button.O_FORMAT_AS_HTML){
+			else if (option == Button.O_FORMAT_AS_HTML) {
 				optionLocator = Locators.FormatAsHTMLMenu;
 			}
 
-			else if(option == Button.O_FORMAT_AS_PLAIN_TEXT){
+			else if (option == Button.O_FORMAT_AS_PLAIN_TEXT) {
 				optionLocator = Locators.FormatAsPlainTextMenu;
 			}
 
@@ -755,11 +755,11 @@ import com.zimbra.qa.selenium.framework.core.SeleniumService;
 						optionLocator = Locators.SuggestionPreferencesMenu;
 					}
 
-					else if(option == Button.O_FORMAT_AS_HTML){
+					else if (option == Button.O_FORMAT_AS_HTML) {
 						optionLocator = Locators.FormatAsHTMLMenu;
 					}
 
-					else if(option == Button.O_FORMAT_AS_PLAIN_TEXT){
+					else if (option == Button.O_FORMAT_AS_PLAIN_TEXT) {
 						optionLocator = Locators.FormatAsPlainTextMenu;
 					}
 
@@ -1392,9 +1392,9 @@ import com.zimbra.qa.selenium.framework.core.SeleniumService;
 			String disappeared = sGetEval("this.browserbot.getUserWindow().document.getElementById('ztb__APPT-1').style.left");
 
 			// if locator is not visible the style.left returns 10000px else returns 0 , so checked the same
-			if (disappeared.equalsIgnoreCase("-10000px")){
+			if (disappeared.equalsIgnoreCase("-10000px")) {
 				return true;
-			}else{
+			} else {
 			   return false;
 
 			}
@@ -1429,9 +1429,9 @@ import com.zimbra.qa.selenium.framework.core.SeleniumService;
 			String disappeared = sGetEval("window.document.getElementsByClassName('ZmHtmlEditorTextArea')[0].style.display");
 
 			// if display proerty returns 'none' it is HTML compose format else it is Plain text format
-			if (disappeared.equalsIgnoreCase("none")){
+			if (disappeared.equalsIgnoreCase("none")) {
 				return true;
-			}else{
+			} else {
 			   return false;
 
 			}

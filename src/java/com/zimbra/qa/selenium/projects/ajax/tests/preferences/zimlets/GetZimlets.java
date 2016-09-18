@@ -32,7 +32,7 @@ public class GetZimlets extends AjaxCommonTest {
 	public GetZimlets() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 
 
@@ -90,9 +90,9 @@ public class GetZimlets extends AjaxCommonTest {
 		//	WebEx
 		//	Yahoo! Emoticons
 		//
-		if(ConfigProperties.zimbraGetVersionString().contains("FOSS")){
+		if (ConfigProperties.zimbraGetVersionString().contains("FOSS")) {
 		    ZAssert.assertEquals(count, 6, "Verify 6 zimlets are shown in the preferences page");
-		}else{
+		} else {
 		    ZAssert.assertEquals(count, 10, "Verify 10 zimlets are shown in the preferences page");
 		}
 	}

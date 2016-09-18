@@ -121,15 +121,15 @@ public class PageSignature extends AbsTab{
 			page = new FormSignatureNew(this.MyApplication);
 
 
-		}else if(button== Button.B_DELETE){
+		} else if (button== Button.B_DELETE) {
 			locator = Locators.zDeleteSignature;
 			page = null;
 
-		}else if(button== Button.B_BROWSE){
+		} else if (button== Button.B_BROWSE) {
 			locator = "css=div[id='Prefs_Pages_SIGNATURES'] div[class='DwtComposite'] div[class^='ZButton'] td[id$='_title']:contains('Browse...')";
 			 page = new DialogSelectContact(MyApplication, ((AppAjaxClient)MyApplication).zPageSignature);
 
-		}else {
+		} else {
 
 			throw new HarnessException("no logic defined for button " + button);
 		}

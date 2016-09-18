@@ -218,7 +218,7 @@ public class DialogSendLater extends AbsDialog {
 			throw new HarnessException("Unsupported field: "+ field);
 		}
 		
-		if ( value == null || value.trim().length() == 0 ){
+		if ( value == null || value.trim().length() == 0 ) {
 			throw new HarnessException("value cannot be null or empty");
 		}
 	
@@ -234,13 +234,13 @@ public class DialogSendLater extends AbsDialog {
 			
 			locator = Locators.FieldDateLocator;
 			
-			// FALL THROUGH
+			
 			
 		} else if ( field == Field.Time ) {
 			
 			locator = Locators.FieldTimeLocator;
 			
-			// FALL THROUGH
+			
 			
 		} else if ( field == Field.Timezone ) {
 					

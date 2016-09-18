@@ -94,7 +94,7 @@ public class PageManageCofigureAuthentication extends AbsTab {
 			throw new HarnessException("Button cannot be null!");
 
 
-		// Default behavior variables
+		
 		//
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
@@ -108,7 +108,7 @@ public class PageManageCofigureAuthentication extends AbsTab {
 			locator = PageMain.Locators.HomeConfigureAuthentication;
 			// Create the page
 			page = new WizardConfigureAuthentication(this);
-			// FALL THROUGH
+			
 
 		} 
 		else {
@@ -141,7 +141,7 @@ public class PageManageCofigureAuthentication extends AbsTab {
 	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
-		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
+		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}

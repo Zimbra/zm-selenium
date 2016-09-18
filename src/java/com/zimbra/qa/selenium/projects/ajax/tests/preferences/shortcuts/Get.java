@@ -30,7 +30,7 @@ public class Get extends AjaxCommonTest {
 	public Get() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 
 

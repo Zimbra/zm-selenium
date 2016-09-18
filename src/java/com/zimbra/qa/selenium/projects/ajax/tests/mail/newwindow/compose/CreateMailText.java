@@ -67,9 +67,6 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			// Send the message
 			window.zToolbarPressButton(Button.B_SEND);
 
-			// Window closes automatically
-			window = null;
-
 		} finally {
 			
 			// Make sure to close the window
@@ -77,6 +74,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 			
 		}
 		
@@ -140,7 +138,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowFormMailNew) app.zPageMail.zKeyboardShortcut(shortcut);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			/* TODO: ... debugging to be removed */
 			window.waitForComposeWindow();
 			
@@ -152,9 +150,6 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			// Send the message
 			window.zToolbarPressButton(Button.B_SEND);
 
-			// Window closes automatically
-			window = null;
-
 		} finally {
 			
 			// Make sure to close the window
@@ -162,6 +157,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 			
 		}
 		
@@ -195,7 +191,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			/* TODO: ... debugging to be removed */
 			window.waitForComposeWindow();
 			
@@ -207,9 +203,6 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			// Send the message
 			window.zToolbarPressButton(Button.B_SEND);
 
-			// Window closes automatically
-			window = null;
-
 		} finally {
 			
 			// Make sure to close the window
@@ -217,6 +210,8 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
+
 			
 		}
 		
@@ -267,7 +262,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
@@ -277,9 +272,6 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			// Send the message
 			window.zToolbarPressButton(Button.B_SEND);
 
-			// Window closes automatically
-			window = null;
-
 		} finally {
 			
 			// Make sure to close the window
@@ -287,6 +279,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 			
 		}
 		
@@ -342,7 +335,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			/* TODO: ... debugging to be removed */
 			window.waitForComposeWindow();
 			
@@ -360,9 +353,6 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			// Send the message
 			window.zToolbarPressButton(Button.B_SEND);
 
-			// Window closes automatically
-			window = null;
-
 		} finally {
 			
 			// Make sure to close the window
@@ -370,6 +360,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 			
 		}
 		

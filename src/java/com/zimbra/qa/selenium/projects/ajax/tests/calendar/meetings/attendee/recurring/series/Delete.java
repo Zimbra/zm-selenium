@@ -31,7 +31,7 @@ public class Delete extends CalendarWorkWeekTest {
 	public Delete() {
 		logger.info("New "+ Delete.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Bugs(ids = "95961")

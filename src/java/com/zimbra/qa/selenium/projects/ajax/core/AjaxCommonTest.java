@@ -39,6 +39,8 @@ import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.DialogErrorID;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowFormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactDistributionListNew;
@@ -362,14 +364,59 @@ public class AjaxCommonTest {
 			we = webDriver.findElement(By.name("file"));
 		}
 
-		int i;
 		Boolean isFileSelected = false;
-		for (i=1; i<=3; i++) {
+		for (int i=1; i<=3; i++) {
 			if (isMailApp == true) {
 				isFileSelected = app.zPageMail.zIsVisiblePerPosition(fileLocator, 0, 0);
 			} else {
 				isFileSelected = we.getAttribute("value").contains(fileName);
 			}
+			if (isFileSelected == true) {
+				break;
+			} else {
+				SleepUtil.sleepMedium();
+				zUploadFile (filePath);
+				SleepUtil.sleepLongMedium();
+			}
+		}
+	}
+	
+	public void zUpload (String filePath, SeparateWindowFormMailNew window) throws HarnessException {
+
+		// File name
+		String fileName = filePath.substring(filePath.lastIndexOf('\\') + 1);
+
+		// Upload file
+		SleepUtil.sleepLong();
+		zUploadFile (filePath);
+		SleepUtil.sleepLongMedium();
+
+		Boolean isFileSelected = false;
+		for (int i=1; i<=3; i++) {
+			isFileSelected = window.zIsVisiblePerPosition("css=a[id^='COMPOSE']:contains(" + fileName + ")", 0, 0);
+			if (isFileSelected == true) {
+				break;
+			} else {
+				SleepUtil.sleepMedium();
+				zUploadFile (filePath);
+				SleepUtil.sleepLongMedium();
+			}
+		}
+	}
+	
+	public void zUpload (String filePath, SeparateWindowDisplayMail window) throws HarnessException {
+
+		// File name
+		String fileName = filePath.substring(filePath.lastIndexOf('\\') + 1);
+
+		// Upload file
+		SleepUtil.sleepLong();
+		zUploadFile (filePath);
+		SleepUtil.sleepLongMedium();
+
+		Boolean isFileSelected = false;
+		for (int i=1; i<=3; i++) {
+			isFileSelected = window.zIsVisiblePerPosition("css=a[id^='COMPOSE']:contains(" + fileName + ")", 0, 0);
 			if (isFileSelected == true) {
 				break;
 			} else {

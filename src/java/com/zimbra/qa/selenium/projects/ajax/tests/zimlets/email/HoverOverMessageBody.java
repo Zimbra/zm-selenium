@@ -16,9 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.email;
 
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -27,17 +25,16 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.TooltipContact;
 
-
 public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 
-	
 	public HoverOverMessageBody() throws HarnessException {
 		logger.info("New "+ HoverOverMessageBody.class.getCanonicalName());
-		
 	}
+	
 	
 	@Test( description = "Hover over a contact in a message body",
 			groups = { "functional" })
+	
 	public void HoverOverMessageBody_01() throws HarnessException {
 
 		final String email = "email" + ConfigProperties.getUniqueString() + "@foo.com";
@@ -77,7 +74,7 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 
 		// Hover over the email address
 		String locator = "css=span[id$='_ZmEmailObjectHandler']:contains("+ email +")";
-		app.zPageMail.sMouseOver(locator, (WebElement[]) null);
+		app.zPageMail.zDisplayMailHoverOver(locator);
 		
 		// Verify the contact tool tip opens
 		TooltipContact tooltip = new TooltipContact(app);
@@ -87,8 +84,10 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 		
 	}
 	
+	
 	@Test( description = "Hover over a GAL contact in a message body",
 			groups = { "functional" })
+	
 	public void HoverOverMessageBody_02() throws HarnessException {
 		
 		// Create a contact in the GAL
@@ -121,7 +120,7 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 
 		// Hover over the email address
 		String locator = "css=span[id$='_ZmEmailObjectHandler']:contains("+ contactGAL.EmailAddress +")";
-		app.zPageMail.sMouseOver(locator, (WebElement[]) null);
+		app.zPageMail.zDisplayMailHoverOver(locator);
 		
 		// Verify the contact tool tip opens
 		TooltipContact tooltip = new TooltipContact(app);
@@ -132,8 +131,10 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 		
 	}
 
+	
 	@Test( description = "Hover over a contact group in a message body",
 			groups = { "functional" })
+	
 	public void HoverOverMessageBody_03() throws HarnessException {
 
 		String groupName = "group" + ConfigProperties.getUniqueString();
@@ -183,8 +184,10 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 		
 	}
 	
+	
 	@Test( description = "Hover over an unknown email address",
 			groups = { "functional" })
+	
 	public void HoverOverMessageBody_04() throws HarnessException {
 
 		final String email = "email" + ConfigProperties.getUniqueString() + "@foo.com";
@@ -215,7 +218,7 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 
 		// Hover over the email address
 		String locator = "css=span[id$='_ZmEmailObjectHandler']:contains("+ email +")";
-		app.zPageMail.sMouseOver(locator, (WebElement[]) null);
+		app.zPageMail.zDisplayMailHoverOver(locator);
 		
 		// Verify the contact tool tip opens
 		TooltipContact tooltip = new TooltipContact(app);
@@ -225,8 +228,10 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 		
 	}
 	
+	
 	@Test( description = "Hover over a contact in a message body (zimbraFeatureGalEnabled=FALSE)",
 			groups = { "functional" })
+	
 	public void HoverOverMessageBody_05() throws HarnessException {
 
 		final String email = "email" + ConfigProperties.getUniqueString() + "@foo.com";
@@ -266,7 +271,7 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 
 		// Hover over the email address
 		String locator = "css=span[id$='_ZmEmailObjectHandler']:contains("+ email +")";
-		app.zPageMail.sMouseOver(locator, (WebElement[]) null);
+		app.zPageMail.zDisplayMailHoverOver(locator);
 		
 		// Verify the contact tool tip opens
 		TooltipContact tooltip = new TooltipContact(app);
@@ -277,9 +282,11 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 		
 	}
 	
+	
 	@Bugs( ids = "80286" )
 	@Test( description = "Hover over a GAL contact in a message body (zimbraFeatureGalEnabled=FALSE)",
 			groups = { "functional" })
+	
 	public void HoverOverMessageBody_06() throws HarnessException {
 
 		// Create a contact in the GAL
@@ -312,7 +319,7 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 
 		// Hover over the email address
 		String locator = "css=span[id$='_ZmEmailObjectHandler']:contains("+ contactGAL.EmailAddress +")";
-		app.zPageMail.sMouseOver(locator, (WebElement[]) null);
+		app.zPageMail.zDisplayMailHoverOver(locator);
 		
 		// Verify the contact tool tip opens
 		TooltipContact tooltip = new TooltipContact(app);
@@ -323,8 +330,10 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 		
 	}
 
+	
 	@Test( description = "Hover over a contact group in a message body (zimbraFeatureGalEnabled=FALSE)",
 			groups = { "functional" })
+	
 	public void HoverOverMessageBody_07() throws HarnessException {
 
 		String groupName = "group" + ConfigProperties.getUniqueString();
@@ -374,9 +383,11 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 		
 	}
 	
+	
 	@Bugs( ids = "80286" )
 	@Test( description = "Hover over an unknown email address (zimbraFeatureGalEnabled=FALSE)",
 			groups = { "functional" })
+	
 	public void HoverOverMessageBody_08() throws HarnessException {
 
 		final String email = "email" + ConfigProperties.getUniqueString() + "@foo.com";
@@ -407,7 +418,7 @@ public class HoverOverMessageBody extends PrefGroupMailByMessageTest {
 
 		// Hover over the email address
 		String locator = "css=span[id$='_ZmEmailObjectHandler']:contains("+ email +")";
-		app.zPageMail.sMouseOver(locator, (WebElement[]) null);
+		app.zPageMail.zDisplayMailHoverOver(locator);
 		
 		// Verify the contact tool tip opens
 		TooltipContact tooltip = new TooltipContact(app);

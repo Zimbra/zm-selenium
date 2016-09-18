@@ -33,7 +33,7 @@ public class CreateACopy extends CalendarWorkWeekTest {
 	public CreateACopy() {
 		logger.info("New "+ CreateACopy.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	
 	}
 	

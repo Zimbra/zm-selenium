@@ -32,7 +32,7 @@ public class Decline extends CalendarWorkWeekTest {
 	public Decline() {
 		logger.info("New "+ Decline.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Bugs(ids = "95961")

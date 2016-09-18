@@ -179,7 +179,7 @@ public class DialogEditFilter extends AbsDialog {
 		
 		//When condition type is not All, no need to do any thing
 		
-		if(type.equals(Condition.All)) {
+		if (type.equals(Condition.All)) {
 			
 		// Click the pulldown to activate the menu
 		String locator = "css=div[id='ZmFilterRuleDialog_condition'] td[id$='_select_container'] td[id$='_dropdown'] div[class='ImgSelectPullDownArrow']";
@@ -189,7 +189,7 @@ public class DialogEditFilter extends AbsDialog {
 		locator="css=div#FilterRuleGroupCondition_0_Menu_1_option_2";
 		this.zClick(locator);
 		
-		} else if(!(type.equals(Condition.All)) && !(type.equals(Condition.Any))) {
+		} else if (!(type.equals(Condition.All)) && !(type.equals(Condition.Any))) {
 			
 			throw new HarnessException("Condition type is not valid! Please enter a valid Condition type");
 		}
@@ -276,7 +276,7 @@ public class DialogEditFilter extends AbsDialog {
 		this.sClickAt(Locators.dropdownOptionCss+":contains(" + option +") td td[id$='_title']","0,0");
 		
 		//Select the condition constraint option
-		if(constraint.equals(ConditionConstraint.Contains)) {
+		if (constraint.equals(ConditionConstraint.Contains)) {
 			
 			option="contains";
 			this.sClick(Locators.ConstraintDropDownLocator);
@@ -284,7 +284,7 @@ public class DialogEditFilter extends AbsDialog {
 			this.sMouseMoveAt(Locators.dropdownOptionCss+":contains(" + option +") td td[id$='_title']","0,0");
 			this.sClickAt(Locators.dropdownOptionCss+":contains(" + option +") td td[id$='_title']","0,0");
 			
-		} else if(constraint.equals(ConditionConstraint.MatchesWildcard)) {
+		} else if (constraint.equals(ConditionConstraint.MatchesWildcard)) {
 			
 			option="matches wildcard";
 			this.sClick(Locators.ConstraintDropDownLocator);
@@ -326,7 +326,7 @@ public class DialogEditFilter extends AbsDialog {
 			this.sClickAt(Locators.dropdownOptionCss+":contains(" + option +") td td[id$='_title']","0,0");										
 			break;
 
-		case MoveIntoFolder: if(!name[0].equals(null)) {
+		case MoveIntoFolder: if (!name[0].equals(null)) {
 
 			option="Move into folder";
 			
@@ -365,7 +365,7 @@ public class DialogEditFilter extends AbsDialog {
 
 			throw new HarnessException("Folder name cannot be null! Enter a folder name. ");
 		}
-		case TagWith: if(!name.equals(null)) {
+		case TagWith: if (!name.equals(null)) {
 
 			option="Tag with";
 			
@@ -403,7 +403,7 @@ public class DialogEditFilter extends AbsDialog {
 			throw new HarnessException("Tag name can not null! Enter a tag name.");	
 		}
 
-		case MarkAs: if(name[0].equalsIgnoreCase("Read") || name[0].equalsIgnoreCase("Flagged")) {
+		case MarkAs: if (name[0].equalsIgnoreCase("Read") || name[0].equalsIgnoreCase("Flagged")) {
 
 			option="Mark";			
 			this.sClick(Locators.ActionDropDownLocator);
@@ -412,7 +412,7 @@ public class DialogEditFilter extends AbsDialog {
 			this.sClickAt(Locators.dropdownOptionCss+":contains(" + option +") td td[id$='_title']","0,0");			
 			SleepUtil.sleepMedium();
 
-			if(name[0].equalsIgnoreCase("Flagged")) {
+			if (name[0].equalsIgnoreCase("Flagged")) {
 
 				this.sClick("css=table[id='ZmFilterRuleDialog_actions'] div[id*='SELECT']:contains("+ name[0] +")");
 				SleepUtil.sleepMedium();			
@@ -426,7 +426,7 @@ public class DialogEditFilter extends AbsDialog {
 
 			throw new HarnessException("MarkAs option is not valid! Please enter a valid MarkAs option.");	
 		}
-		case RedirectToAddress:if(!name[0].equals(null)) {
+		case RedirectToAddress:if (!name[0].equals(null)) {
 
 			option="Redirect";
 			this.sClick(Locators.ActionDropDownLocator);

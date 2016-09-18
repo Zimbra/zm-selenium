@@ -340,7 +340,7 @@ public class TreeContacts extends AbsTree {
 			sClickAt(locator, "0,0");
 			SleepUtil.sleepLong (); // DL UI rendering takes some time
 			
-			// FALL THROUGH
+			
 		} else if ( action == Action.A_RIGHTCLICK ) {
 
 			// Select the folder

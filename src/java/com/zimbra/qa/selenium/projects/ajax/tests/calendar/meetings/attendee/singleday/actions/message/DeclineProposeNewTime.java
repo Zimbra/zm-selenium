@@ -34,7 +34,7 @@ public class DeclineProposeNewTime extends CalendarWorkWeekTest {
 	public DeclineProposeNewTime() {
 		logger.info("New "+ DeclineProposeNewTime.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "Rt-click to appointment -> Propose New Time and decline the new time using message view", 

@@ -202,11 +202,11 @@ public class FormTaskNew extends AbsForm {
 		if ( option == null )
 			throw new HarnessException("Option cannot be null!");
 
-		// Default behavior variables
+		
 		//
-		String pulldownLocator = null;	// If set, this will be expanded
-		String optionLocator = null;	// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		// Based on the button specified, take the appropriate action(s)
 		//
@@ -245,8 +245,8 @@ public class FormTaskNew extends AbsForm {
 				throw new HarnessException("unsupported priority option "+ option);
 			}
 
-		}else if(pulldown==Button.B_OPTIONS){
-			if(option==Button.O_OPTION_FORMAT_AS_HTML){
+		} else if (pulldown==Button.B_OPTIONS) {
+			if (option==Button.O_OPTION_FORMAT_AS_HTML) {
 
 				String zTaskOptionDropDown = ZimbraDOM.getID(
 						ZimbraDOM.APP.APP_TASKS,
@@ -259,7 +259,7 @@ public class FormTaskNew extends AbsForm {
 				optionLocator=Locators.zTaskFormatAsHtml;
 				page=this;
 
-			}else if(option==Button.O_OPTION_FORMAT_AS_TEXT){
+			} else if (option==Button.O_OPTION_FORMAT_AS_TEXT) {
 				//pulldownLocator=Locators.zTaskOptionDropDown;
 
 				String zTaskOptionDropDown = ZimbraDOM.getID(
@@ -286,7 +286,7 @@ public class FormTaskNew extends AbsForm {
 			}
 
 
-		}else {
+		} else {
 
 			throw new HarnessException("no logic defined for pulldown "+ pulldown);
 		}

@@ -39,7 +39,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 
 		super.startingPage = app.zPageBriefcase;
 
-		//if(ConfigProperties.zimbraGetVersionString().contains("FOSS")){
+		//if (ConfigProperties.zimbraGetVersionString().contains("FOSS")) {
 		    super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 		//}
 	
@@ -104,16 +104,16 @@ public class MoveFile extends FeatureBriefcaseTest {
 		
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ConfigProperties.zimbraGetVersionString().contains(
-    			"FOSS")){
+		if (ConfigProperties.zimbraGetVersionString().contains(
+    			"FOSS")) {
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
-		}else{
+		} else {
 		    app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, fileItem);
 		}
 		*/
 		// Click on 'Move selected item' icon in toolbar
-		if (ConfigProperties.zimbraGetVersionString().contains("7.2.")){
+		if (ConfigProperties.zimbraGetVersionString().contains("7.2.")) {
 		    DialogMove chooseFolder = (DialogMove) app.zPageBriefcase
 			    .zToolbarPressButton(Button.B_MOVE, fileItem);
 
@@ -122,7 +122,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 		    
 		    // Click OK on Confirmation dialog
 		    chooseFolder.zClickButton(Button.B_OK);
-		}else{
+		} else {
 		    // Click move -> subfolder
 		    app.zPageBriefcase.zToolbarPressPulldown(Button.B_MOVE, subFolderItem);
 
@@ -216,11 +216,11 @@ public class MoveFile extends FeatureBriefcaseTest {
 
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ConfigProperties.zimbraGetVersionString().contains(
-    			"FOSS")){
+		if (ConfigProperties.zimbraGetVersionString().contains(
+    			"FOSS")) {
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
-		}else{
+		} else {
 		    app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, fileItem);
 		}
 		*/
@@ -307,11 +307,11 @@ public class MoveFile extends FeatureBriefcaseTest {
 		
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ConfigProperties.zimbraGetVersionString().contains(
-    			"FOSS")){
+		if (ConfigProperties.zimbraGetVersionString().contains(
+    			"FOSS")) {
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
-		}else{
+		} else {
 		    app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, fileItem);
 		}
 		*/

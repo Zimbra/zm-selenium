@@ -37,7 +37,7 @@ public class CreateFilter extends AjaxCommonTest {
 
 	public CreateFilter() {
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 	}
 
 	@Bugs(ids="97040")

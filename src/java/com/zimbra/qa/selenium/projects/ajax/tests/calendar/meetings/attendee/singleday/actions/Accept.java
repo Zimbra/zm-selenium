@@ -29,7 +29,7 @@ public class Accept extends CalendarWorkWeekTest {
 	public Accept() {
 		logger.info("New "+ Accept.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "Rt-click to appointment from the calendar app and Accept the meeting invite", 

@@ -36,7 +36,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeI
 		public ShowSharedFolderThroughDLAndAccept() {
 
 			super.startingPage = app.zPagePreferences;
-			super.startingAccountPreferences = null;	
+				
 		}
 
 		@Test( description = "Accept share folder with user through a distribution list", groups = { "functional" })

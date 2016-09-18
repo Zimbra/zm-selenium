@@ -27,7 +27,7 @@ public class Close extends CalendarWorkWeekTest {
 	public Close() {
 		logger.info("New "+ Close.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		super.startingAccountPreferences = null;
+		
 	}
 	
 	@Test( description = "View meeting invite by opening it and close it", 

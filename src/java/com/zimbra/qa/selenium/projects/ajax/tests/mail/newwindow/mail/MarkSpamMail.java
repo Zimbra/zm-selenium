@@ -74,15 +74,12 @@ public class MarkSpamMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 		
 			window.zToolbarPressButton(Button.B_RESPORTSPAM);
 			
-			// Window is closed automatically by the client
-			window = null;
-
 		} finally {
 			
 			// Make sure to close the window
@@ -90,6 +87,7 @@ public class MarkSpamMail extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 			
 		}
 
@@ -142,14 +140,11 @@ public class MarkSpamMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 		
 			window.zKeyboardShortcut(Shortcut.S_MAIL_MARKSPAM);
-
-			// Window is closed automatically by the client
-			window = null;
 
 		} finally {
 			
@@ -158,6 +153,7 @@ public class MarkSpamMail extends PrefGroupMailByMessageTest {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
+			app.zPageMail.zSelectWindow(null);
 			
 		}
 

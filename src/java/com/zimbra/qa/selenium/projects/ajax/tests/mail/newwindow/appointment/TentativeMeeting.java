@@ -124,7 +124,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
@@ -135,10 +135,10 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
+				window.zCloseWindow();
 				window = null;
-			}
-
+   		 	}
+			app.zPageMail.zSelectWindow(null);
 		}
 
 
@@ -232,7 +232,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
@@ -243,10 +243,10 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
+				window.zCloseWindow();
 				window = null;
-			}
-
+   		 	}
+			app.zPageMail.zSelectWindow(null);
 		}
 
 
@@ -326,7 +326,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
@@ -337,10 +337,10 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
+				window.zCloseWindow();
 				window = null;
-			}
-
+   		 	}
+			app.zPageMail.zSelectWindow(null);
 		}
 
 
@@ -458,7 +458,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();		// Make sure the window is there
+			window.zWaitForActive();
 
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
@@ -469,10 +469,10 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
+				window.zCloseWindow();
 				window = null;
-			}
-
+   		 	}
+			app.zPageMail.zSelectWindow(null);
 		}
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       

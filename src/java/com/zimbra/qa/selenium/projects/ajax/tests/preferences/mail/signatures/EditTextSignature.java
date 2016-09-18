@@ -43,7 +43,7 @@ public class EditTextSignature extends AjaxCommonTest {
 	public EditTextSignature() throws HarnessException {
 
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 
 	}
 	/**

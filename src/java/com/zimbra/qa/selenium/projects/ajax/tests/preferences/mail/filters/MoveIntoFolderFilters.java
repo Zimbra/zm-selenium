@@ -41,7 +41,7 @@ public class MoveIntoFolderFilters extends AjaxCommonTest {
 	public MoveIntoFolderFilters() {
 		
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = null;
+		
 		
 	}
 

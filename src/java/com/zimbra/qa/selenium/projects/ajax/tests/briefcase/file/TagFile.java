@@ -35,7 +35,7 @@ public class TagFile extends FeatureBriefcaseTest {
 		// All tests start at the Briefcase page
 		super.startingPage = app.zPageBriefcase;
 
-		//if(ConfigProperties.zimbraGetVersionString().contains("FOSS")){
+		//if (ConfigProperties.zimbraGetVersionString().contains("FOSS")) {
 		    super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 		//}
 			    
@@ -73,11 +73,11 @@ public class TagFile extends FeatureBriefcaseTest {
 		// Click on created File
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ConfigProperties.zimbraGetVersionString().contains(
-    			"FOSS")){
+		if (ConfigProperties.zimbraGetVersionString().contains(
+    			"FOSS")) {
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
-		}else{
+		} else {
 		    app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, fileItem);
 		}
 		*/
@@ -190,11 +190,11 @@ public class TagFile extends FeatureBriefcaseTest {
 		// Click on uploaded file
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ConfigProperties.zimbraGetVersionString().contains(
-    			"FOSS")){
+		if (ConfigProperties.zimbraGetVersionString().contains(
+    			"FOSS")) {
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
-		}else{
+		} else {
 		    app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, fileItem);
 		}
 		*/
@@ -269,11 +269,11 @@ public class TagFile extends FeatureBriefcaseTest {
 		// Click on uploaded file
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 		/*
-		if(ConfigProperties.zimbraGetVersionString().contains(
-    			"FOSS")){
+		if (ConfigProperties.zimbraGetVersionString().contains(
+    			"FOSS")) {
 		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
-		}else{
+		} else {
 		    app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, fileItem);
 		}
 		*/
