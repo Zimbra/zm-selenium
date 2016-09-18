@@ -540,7 +540,7 @@ public class CodeCoverage {
 					writer = new OutputStreamWriter(new FileOutputStream(destination, false));
 					writer.write(CodeCoverageWebSourceFiles.getInstance().getContents(filename));
 				} finally {
-					if ( writer != null ){
+					if ( writer != null ) {
 						writer.close();
 						writer = null;
 					}
@@ -869,9 +869,9 @@ public class CodeCoverage {
 	 * @return
 	 */
 	public static CodeCoverage getInstance() {
-		if(instance==null) {
-			synchronized(CodeCoverage.class){
-				if(instance == null) {
+		if (instance==null) {
+			synchronized(CodeCoverage.class) {
+				if (instance == null) {
 					instance = new CodeCoverage();
 				}
 			}
@@ -953,9 +953,9 @@ public class CodeCoverage {
 		}
 
 		public static CodeCoverageWebSourceFiles getInstance() {
-			if(instance==null) {
-				synchronized(CodeCoverageWebSourceFiles.class){
-					if(instance == null) {
+			if (instance==null) {
+				synchronized(CodeCoverageWebSourceFiles.class) {
+					if (instance == null) {
 						instance = new CodeCoverageWebSourceFiles();
 					}
 				}

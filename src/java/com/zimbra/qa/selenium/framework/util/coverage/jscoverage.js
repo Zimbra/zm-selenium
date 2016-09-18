@@ -570,7 +570,7 @@ function jscoverage_recalculateSummaryTab(cc) {
         covered = document.createElement("div"),
         pct = document.createElement("span");
     pctGraph.className = "pctGraph";
-    if( num_statements === 0 ) {
+    if ( num_statements === 0 ) {
         covered.className = "skipped";
         pct.appendChild(document.createTextNode("N/A"));
     } else {
@@ -636,7 +636,7 @@ function jscoverage_recalculateSummaryTab(cc) {
         tds[2].firstChild.nodeValue = totals['executed'];
 
         var coverage = parseInt(100 * totals['executed'] / totals['statements']);
-        if( isNaN( coverage ) ) {
+        if ( isNaN( coverage ) ) {
             coverage = 0;
         }
         tds[3].getElementsByTagName("span")[0].firstChild.nodeValue = coverage + '%';

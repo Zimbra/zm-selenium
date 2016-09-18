@@ -47,9 +47,9 @@ public class ClientSessionFactory {
 	private volatile static ClientSessionFactory singleton;
 
 	private static ClientSessionFactory getSingleton() {
-		if(singleton==null) {
-			synchronized(ClientSessionFactory.class){
-				if(singleton==null)
+		if (singleton==null) {
+			synchronized(ClientSessionFactory.class) {
+				if (singleton==null)
 					singleton= new ClientSessionFactory();
 			}
 		}

@@ -291,7 +291,7 @@ public class ZimbraURI {
 	 * @return String
 	 *  
 	 */
-	private static String buildQueryFromMap(Map<String, String> queryMap){
+	private static String buildQueryFromMap(Map<String, String> queryMap) {
 		// Build the query from the map
 		StringBuilder sb = null;
 		for (Entry<String, String> set : queryMap.entrySet()) {

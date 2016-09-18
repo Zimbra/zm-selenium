@@ -43,11 +43,11 @@ public class FileItem implements IItem, IOctListViewItem {
 	 */
 	public FileItem(String path) {
 		filePath = path;
-		if(filePath.contains("/")){
+		if (filePath.contains("/")) {
 		    fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
-		}else if(filePath.contains("\\")){
+		} else if (filePath.contains("\\")) {
 		    fileName = filePath.substring(filePath.lastIndexOf("\\") + 1);
-		}else{
+		} else {
 		    fileName = filePath;
 		}
 	}

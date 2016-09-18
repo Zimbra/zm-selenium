@@ -74,7 +74,7 @@ public class FolderItem extends AFolderItem implements IItem, IOctListViewItem {
 			this.id=id;
 		}
 
-		public String getId(){
+		public String getId() {
 			return id;
 		}
 		

@@ -256,7 +256,7 @@ public class CommandLine {
 	            session.disconnect();
 	            System.out.println(totp);
 	            
-	        } catch(Exception e){
+	        } catch(Exception e) {
 	            e.printStackTrace();
 	        }
 	    	

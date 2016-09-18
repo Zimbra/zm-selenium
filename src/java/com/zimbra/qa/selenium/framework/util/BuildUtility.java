@@ -101,7 +101,7 @@ public class BuildUtility {
                logger.error("Error retrieving web page: ");
                logger.error(url);
                logger.error(e);
-               if( i < NUM_RETRY ) {
+               if ( i < NUM_RETRY ) {
                   logger.debug("Sleeping for 1 seconds");
                   Thread.sleep(1000);
                }
@@ -118,7 +118,7 @@ public class BuildUtility {
          StringBuilder sb = new StringBuilder();
          String line = null;
          while ((line = reader.readLine()) != null) {
-            if( printStream ) {
+            if ( printStream ) {
                logger.info(line);
             }
             sb.append(line + "\n");
@@ -332,7 +332,7 @@ public class BuildUtility {
 			   bout.write(data, 0, byteRead);
 		   }
 
-	   } catch (IOException ioe){
+	   } catch (IOException ioe) {
 		   throw new HarnessException("Getting IO Exception: ", ioe);
 	   } finally {
 		   close(bout);
@@ -374,7 +374,7 @@ public class BuildUtility {
                currentReadPos = outputLines[i].indexOf(">", currentReadPos);
                int tempReadPos = outputLines[i].indexOf("</TD", currentReadPos);
                String currentElement = outputLines[i].substring(currentReadPos + 1, tempReadPos);
-               switch (j){
+               switch (j) {
                //First element contains Build Name and link
                case 0:
                   temp.buildUrl = new StringBuilder(_buildBaseUrl).append(currentElement.substring(

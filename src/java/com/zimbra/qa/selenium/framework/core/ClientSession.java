@@ -62,7 +62,7 @@ public class ClientSession {
 				System.setProperty("webdriver.ie.driver", ConfigProperties.getStringProperty("iedriver.path"));
 				webDriver = new InternetExplorerDriver(desiredCapabilities);
 
-			} else if(ConfigProperties.getCalculatedBrowser().contains("googlechrome")) {
+			} else if (ConfigProperties.getCalculatedBrowser().contains("googlechrome")) {
 
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("chrome.switches","--disable-extensions");

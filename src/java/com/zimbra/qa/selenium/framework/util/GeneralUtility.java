@@ -199,7 +199,7 @@ public class GeneralUtility {
       logger.debug("waitForOperand is: " + operand.toString());
       logger.debug("mainObject is: " + mainObject);
       logger.debug("compObject is: " + compObject);
-      switch (operand){
+      switch (operand) {
       case EQ:
          if (mainObject == null) {
             return compObject == null;
@@ -401,12 +401,12 @@ public class GeneralUtility {
     * @return
     */
    public static boolean deleteDirectory(File path) {
-      if( path.exists() ) {
+      if ( path.exists() ) {
          File[] files = path.listFiles();
          logger.debug("Number of files to be deleted: " + files.length);
          try {
             for(int i = 0; i < files.length; i++) {
-               if(files[i].isDirectory()) {
+               if (files[i].isDirectory()) {
                   deleteDirectory(files[i]);
                }
                else {

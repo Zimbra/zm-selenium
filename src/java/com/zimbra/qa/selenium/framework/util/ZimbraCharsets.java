@@ -84,7 +84,7 @@ public class ZimbraCharsets {
 	public Object[][] getSampleTable() throws HarnessException {
 		Object[][] table = new Object[samples.size()][1];
 		int i = 0;
-		for(Map.Entry<ZCharset,String> entry : samples.entrySet()){
+		for(Map.Entry<ZCharset,String> entry : samples.entrySet()) {
 			table[i] = new Object[] { entry.getKey(), entry.getValue() };
 			i++;
 		}

@@ -77,7 +77,7 @@ public abstract class AbsPage extends AbsSeleniumObject {
 			throw new HarnessException("locator (destination) cannot be found: "+ locatorDestination);
 		}
 
-		SleepUtil.sleep(2000);
+		SleepUtil.sleepMedium();
 
 		/*
 
@@ -118,21 +118,19 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		*/
 
 		this.sMouseDownAt(locatorSource,"");
-		SleepUtil.sleep(1000);
+		SleepUtil.sleepMedium();
 
 		// Drag the mouse to the destination, plus the offset
 		this.sMouseMoveAt(locatorDestination,"");
-
-		// Wait a bit for things to happen
-		SleepUtil.sleep(1000 * 3);
+		SleepUtil.sleepMedium();
 
 		this.sMouseMoveAt(locatorDestination,"");
 		this.sMouseOver(locatorDestination);
-
-		SleepUtil.sleep(1000);
+		SleepUtil.sleepMedium();
 
 		// Release the mouse
 		this.sMouseUpAt(locatorDestination,"");
+		SleepUtil.sleepMedium();
 
 		// Wait for the client to come back
 		this.zWaitForBusyOverlay();
