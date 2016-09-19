@@ -46,10 +46,8 @@ public class WizardChangePassword extends AbsWizard {
 			throw new HarnessException("item must be an AccountItem, was "+ item.getClass().getCanonicalName());
 
 		sType(Locators.zNewPassword, "test1234");
-		SleepUtil.sleepSmall();
-		this.clearField(Locators.zConfirmPassword);
-		sType(Locators.zConfirmPassword,"");
 		sType(Locators.zConfirmPassword,"test1234");
+		SleepUtil.sleepSmall();
 
 		zClickAt(Locators.zdlg_OK,"");
 		return item;

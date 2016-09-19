@@ -181,14 +181,12 @@ public class PageSearchResults extends AbsTab {
 		if ( button == null )
 			throw new HarnessException("Button cannot be null!");
 
-		
-		//
-		String locator = null;	// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String locator = null;	
+		AbsPage page = null;	
 
 		// Based on the button specified, take the appropriate action(s)
 		//
-
+		SleepUtil.sleepSmall();
 		if ( button == Button.B_SEARCH ) {
 
 			locator = Locators.SEARCH_BUTTON;
@@ -245,7 +243,7 @@ public class PageSearchResults extends AbsTab {
 			}
 
 			
-		} else {
+		} else{
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
@@ -290,9 +288,9 @@ public class PageSearchResults extends AbsTab {
 
 
 		
-		String pulldownLocator = null;
-		String optionLocator = null;
-		AbsPage page = null;
+		String pulldownLocator = null; // If set, this will be expanded
+		String optionLocator = null; // If set, this will be clicked
+		AbsPage page = null; // If set, this page will be returned
 
 		if (pulldown == Button.B_GEAR_BOX) {
 
@@ -353,7 +351,7 @@ public class PageSearchResults extends AbsTab {
 					+ pulldown + "/" + option);
 		}
 
-		// Default behavior
+		
 		if (pulldownLocator != null) {
 
 			// Make sure the locator exists
@@ -405,10 +403,10 @@ public class PageSearchResults extends AbsTab {
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
 
 		int m= 50;
-		if (count >= 50) {
+		if (count >= 50){
 			for (int a1 = 1; a1 <= 5; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
-				if (this.sIsElementPresent(p0)) {
+				if (this.sIsElementPresent(p0)){
 				zClick(p0);
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 				m=m+20;
@@ -460,12 +458,12 @@ public class PageSearchResults extends AbsTab {
 	}
 
 	public boolean zVerifyDisabled(String  buttonID)throws HarnessException{
-		if (buttonID=="DeleteContext") {
+		if (buttonID=="DeleteContext"){
 			boolean test= this.sIsElementPresent(Locators.DELETE_BUTTON_DISABLED);
 			return test;
-		} else if (buttonID=="DeleteTreeMenu") {
+		}else if (buttonID=="DeleteTreeMenu"){
 			return this.sIsElementPresent(Locators.RIGHT_CLICK_MENU_DELETE_BUTTON_DISABLED);
-		} else {
+		}else{
 			return false;
 		}
 
@@ -473,40 +471,40 @@ public class PageSearchResults extends AbsTab {
 	
 public void zSelectSearchObject(String object)throws HarnessException{
 	
-		if (object==S_COS) {
+		if (object==S_COS){
 			
 			this.sClickAt(Locators.zArrowSelectSearchObject, "");
 			this.sClickAt(Locators.zCosSearchObject, "");
 		
 		
-		} else if (object==S_DOMAIN) {
+		}else if (object==S_DOMAIN){
 
 			this.sClickAt(Locators.zDomainSearchObject, "");
 		
 		
-		} else if (object==S_ACCOUNT) {
+		}else if (object==S_ACCOUNT){
 			
 			this.sClickAt(Locators.zArrowSelectSearchObject, "");
 			this.sClickAt(Locators.zAccountsSearchObject, "");
 		
 		
-		} else if (object==S_RESOURCE) {
+		}else if (object==S_RESOURCE){
 
 			this.sClickAt(Locators.zResourcesSearchObject, "");
 		
 		
-		} else if (object==S_DISTRIBUTION_LIST) {
+		}else if (object==S_DISTRIBUTION_LIST){
 			
 			SleepUtil.sleepMedium();
 			this.sClickAt(Locators.zDLSearchObject, "");
 		
 		
-		} else if (object==S_ALIAS) {
+		}else if (object==S_ALIAS){
 			
 			this.sClickAt(Locators.zAliasesSearchObject, "");
 		
 		
-		} else {
+		}else{
 			throw new HarnessException("Not imeplemented for "+object+"Object");
 		}
 	}

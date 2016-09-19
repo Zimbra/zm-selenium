@@ -38,7 +38,7 @@ public class PageManageACL extends AbsTab {
 		// ** OverviewTreePanel -> Manage -> Aliases
 
 		public static final String GEAR_ICON="css=div[class=ImgConfigure]";
-		public static final String ACL_ADD ="css=div[id=^'ztabv__ACCT_EDIT_dwt_button'] td[class='ZWidgetTitle']:contains('Add')";
+		public static final String ACL_ADD ="css=td[id^='ztabv__ACCT_EDIT_dwt_button_'] td[id$='title']:contains('Add')";
 		public static final String GRANTED_ACL = "css=div[id='zl'] table tr:nth-child(2) td div div table";
 		public static final String YES_BUTTON="css=td[id='zdlg__MSG__GLOBAL__confirm2btn_button5_title']";
 		public static final String NO_BUTTON="zdlg__MSG__GLOBAL__confirm2btn_button4_title";
@@ -107,9 +107,6 @@ public class PageManageACL extends AbsTab {
 		if ( button == null )
 			throw new HarnessException("Button cannot be null!");
 
-
-		
-		//
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
 
@@ -123,8 +120,8 @@ public class PageManageACL extends AbsTab {
 
 			// Create the page
 			page = new WizardAddACL(this);
-						
-		} else {
+				
+		}else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
@@ -193,7 +190,7 @@ public class PageManageACL extends AbsTab {
 
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
-		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
+		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}
