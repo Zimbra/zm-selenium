@@ -17,6 +17,8 @@
 package com.zimbra.qa.selenium.framework.core;
 
 import java.io.File;
+import java.util.Set;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -29,6 +31,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.OperatingSystem;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 /**
  * A <code>ClientSession</code> object contains all session information for the
@@ -100,6 +103,19 @@ public class ClientSession {
 				capabilities.setCapability(FirefoxDriver.PROFILE, profile);
 				capabilities.setCapability("marionette", true);
 				webDriver = new FirefoxDriver(capabilities);
+				
+				// Close the firebug window
+				SleepUtil.sleepLong(); // Firebug window takes time to open it
+				Set <String> windows = webDriver.getWindowHandles();
+			    String mainwindow = webDriver.getWindowHandle();
+
+			    for (String handle: windows) {
+			    	webDriver.switchTo().window(handle);
+			        if (!handle.equals(mainwindow)) {
+			        	webDriver.close();
+			        }
+			    }
+			    webDriver.switchTo().window(mainwindow);
 
 			} else {
 
