@@ -24,8 +24,6 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogCustomRepeat;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogOpenRecurringItem;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
@@ -35,11 +33,12 @@ public class ModifySeries extends CalendarWorkWeekTest {
 	public ModifySeries() {
 		logger.info("New "+ ModifySeries.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		
 	}
+	
 	
 	@Test( description = "Modify series from every day to every week", 
 			groups = { "functional" })
+	
 	public void ModifySeries_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -87,9 +86,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		
 		FormApptNew apptForm = new FormApptNew(app);		
 		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, Button.B_NO_END_DATE_RADIO_BUTTON);
-
         apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepMedium();
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 
@@ -137,11 +134,12 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		
 		String messageId = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(messageId, "Verify attendee1 gets new email notification");
-		
 	}
 	
-	@Test( description = "Modify summary of a daily recurring series", 
+	
+	@Test( description = "Modify summary of a weekly recurring series", 
 			groups = { "functional" })
+	
 	public void ModifySeries_02() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -193,7 +191,6 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.Subject, modifiedSubject);
 		apptForm.zFill(appt);
         apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepMedium();
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 
@@ -211,7 +208,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		String ruleFrequency = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:rule", "freq");
 		String interval = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:interval", "ival");
 		
-		ZAssert.assertEquals(ruleFrequency, "DAI", "Repeat frequency: Verify the appointment data");
+		ZAssert.assertEquals(ruleFrequency, "WEE", "Repeat frequency: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
 			
 		
@@ -230,7 +227,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		interval = ZimbraAccount.AccountA().soapSelectValue("//mail:appt//mail:interval", "ival");
 		
 		ZAssert.assertEquals(myStatus, "NE", "Verify that the attendee status shows as 'NEEDS ACTION'");
-		ZAssert.assertEquals(ruleFrequency, "DAI", "Repeat frequency: Verify the appointment data");
+		ZAssert.assertEquals(ruleFrequency, "WEE", "Repeat frequency: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
 		
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox).getId();
@@ -241,11 +238,12 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		
 		String messageId = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(messageId, "Verify attendee1 gets new email notification");
-		
 	}
 
+	
 	@Test( description = "Modify summary of a daily recurring series", 
 			groups = { "functional" })
+	
 	public void ModifySeries_03() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -300,7 +298,6 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.Subject, modifiedSubject);
 		apptForm.zFill(appt);
         apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepMedium();
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 
@@ -352,12 +349,13 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		
 		String messageId = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(messageId, "Verify attendee1 gets new email notification");
-		
 	}
+	
 
 	@Bugs(ids = "100575")
 	@Test( description = "Modify series by setting end date", 
 			groups = { "functional" })
+	
 	public void ModifySeries_04() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -405,11 +403,8 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		
 		FormApptNew apptForm = new FormApptNew(app);		
 		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, "Tuesday", Button.B_END_BY_DATE_RADIO_BUTTON, "01/02/2020");
-		DialogCustomRepeat dlgCustomRepeat = (DialogCustomRepeat) new DialogCustomRepeat(DialogCustomRepeat.DialogWarningID.DialogCustomRepeat, app, ((AppAjaxClient) app).zPageCalendar);
-		dlgCustomRepeat.zClick("css=div[class='DwtDialog'][style*='display: block;'] div[id$='_buttons'] td[id^='OK'] td[id$='title']");
 		ZAssert.assertStringContains(app.zPageCalendar.zGetRecurringLink(), "Every Tuesday. End by Jan 2, 2020. Effective ", "Recurring link: Verify the appointment data");
-        apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepMedium();
+		apptForm.zSubmit();
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 
@@ -461,12 +456,13 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		
 		String messageId = ZimbraAccount.Account1().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(messageId, "Verify attendee1 gets new email notification");
-		
 	}
+	
 	
 	@Bugs(ids = "101610")	
 	@Test( description = "Modifying daily custom series doesn't update new selection in custom repeat dialog ", 
 			groups = { "functional" })
+	
 	public void ModifySeries_05() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -511,20 +507,15 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		DialogOpenRecurringItem openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
 		openRecurring.zClickButton(Button.B_OPEN_THE_SERIES);
 		openRecurring.zClickButton(Button.B_OK);
+		
 		FormApptNew apptForm = new FormApptNew(app);		
 		apptForm.zRepeat(Button.O_EVERY_DAY_MENU, Button.B_EVERY_X_DAYS_RADIO_BUTTON, "2", Button.B_END_AFTER_X_OCCURRENCES_RADIO_BUTTON, "10");
-		DialogCustomRepeat dlgCustomRepeat = (DialogCustomRepeat) new DialogCustomRepeat(DialogCustomRepeat.DialogWarningID.DialogCustomRepeat, app, ((AppAjaxClient) app).zPageCalendar);
-		dlgCustomRepeat.zClick("css=div[class='DwtDialog'][style*='display: block;'] div[id$='_buttons'] td[id^='OK'] td[id$='title']");
 		ZAssert.assertStringContains(app.zPageCalendar.zGetRecurringLink(), "Every 2 days. End after 10 occurrence(s)", "Recurring link: Verify the appointment data");
         apptForm.zSubmit();
-        SleepUtil.sleepMedium();
         
-	    this.app.zPageLogin.zNavigateTo();
-	    this.startingPage.zNavigateTo();
 		openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
 		openRecurring.zClickButton(Button.B_OPEN_THE_SERIES);
 		openRecurring.zClickButton(Button.B_OK);
-		apptForm = new FormApptNew(app);		
 		ZAssert.assertStringContains(app.zPageCalendar.zGetRecurringLink(), "Every 2 days. End after 10 occurrence(s)", "Recurring link: Verify the appointment data");
 
         

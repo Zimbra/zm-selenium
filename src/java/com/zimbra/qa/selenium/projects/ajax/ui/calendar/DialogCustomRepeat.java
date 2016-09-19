@@ -22,6 +22,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 
 public class DialogCustomRepeat extends AbsDialog {
@@ -70,23 +71,23 @@ public class DialogCustomRepeat extends AbsDialog {
 
 		String locator = null;
 		AbsPage page = null; 
-
-		String buttonsTableLocator = "css=div[class='"+ MyDivId +"'] div[id$='_buttons']";
+		
+		String buttonsTableLocator = "css=div[class='"+ MyDivId +"']";
 		
 		if (button == Button.B_OK) {
 			
-			locator = buttonsTableLocator + " td[id^='OK_'] td[id$='_title']";
+			locator = buttonsTableLocator + " td[id$='_button2_title']:contains('OK')";
 			
 		} else if (button == Button.B_CANCEL) {
 
-			locator = buttonsTableLocator + " td[id^='CANCEL_'] td[id$='_title']";
+			locator = buttonsTableLocator + " td[id$='_button1_title']:contains('Cancel')";
 
 		} else {
-			throw new HarnessException("no logic defined for button "+ button);
+			throw new HarnessException("no logic defined for button " + button);
 		}
 
 		// Click it
-		sClickAt(locator,"0,0");
+		sClickAt(locator, "");
 
 		// If the app is busy, wait for it to become active
 		zWaitForBusyOverlay();
@@ -94,6 +95,8 @@ public class DialogCustomRepeat extends AbsDialog {
 		// This dialog might send message(s), so wait for the queue
 		Stafpostqueue sp = new Stafpostqueue();
 		sp.waitForPostqueue();
+		
+		SleepUtil.sleepMedium();
 
 		return (page);
 	}
