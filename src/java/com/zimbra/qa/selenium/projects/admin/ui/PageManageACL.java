@@ -107,9 +107,6 @@ public class PageManageACL extends AbsTab {
 		if ( button == null )
 			throw new HarnessException("Button cannot be null!");
 
-
-		// Default behavior variables
-		//
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
 
@@ -123,7 +120,7 @@ public class PageManageACL extends AbsTab {
 
 			// Create the page
 			page = new WizardAddACL(this);
-			// FALL THROUGH			
+				
 		}else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
@@ -161,7 +158,7 @@ public class PageManageACL extends AbsTab {
 			locator = Locators.NO_BUTTON;
 		} else if (button == Button.B_OK) {
 			for(int i=0;i<=15;i++) {
-				if(sIsElementPresent(Locators.OK_BUTTON+i+"_button2_title")) {
+				if (sIsElementPresent(Locators.OK_BUTTON+i+"_button2_title")) {
 					locator=Locators.OK_BUTTON+i+"_button2_title";
 					break;
 				}
@@ -181,7 +178,7 @@ public class PageManageACL extends AbsTab {
 					+ locator + " not present!");
 		}
 
-		// if(zIsActive())
+		// if (zIsActive())
 		// zGetDisplayedText("css=div[class=" + Locators.zDialogContentClassId +
 		// "]");
 

@@ -149,10 +149,10 @@ public class PageManageAccounts extends AbsTab {
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
 		
 		int m= 50;
-		if(count >= 50){
+		if (count >= 50) {
 			for (int a1 = 1; a1 <= 10; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
-				if(this.sIsElementPresent(p0)){
+				if (this.sIsElementPresent(p0)) {
 				zClick(p0);
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 				m=m+20;
@@ -175,11 +175,11 @@ public class PageManageAccounts extends AbsTab {
 			locator = accountLocator + " td[id^='account_data_emailaddress']";
 			
 		
-			if(this.sIsElementPresent(locator))
+			if (this.sIsElementPresent(locator))
 			{
-				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
+				if (this.sGetText(locator).trim().equalsIgnoreCase(item))
 				{
-					if(action == Action.A_LEFTCLICK) {
+					if (action == Action.A_LEFTCLICK) {
 						zClick(locator);
 						break;
 					} else if(action == Action.A_RIGHTCLICK) {
@@ -215,7 +215,6 @@ public class PageManageAccounts extends AbsTab {
 			throw new HarnessException("Button cannot be null!");
 
 
-		// Default behavior variables
 		//
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
@@ -230,33 +229,32 @@ public class PageManageAccounts extends AbsTab {
 			locator ="";
 			// Create the page
 			page = new WizardCreateAccount(this);
-			// FALL THROUGH
-
-		} else if(button == Button.B_TREE_DELETE) {
+			
+		} else if (button == Button.B_TREE_DELETE) {
 
 			locator=Locators.RIGHT_CLICK_MENU_DELETE_BUTTON;
 
 			page = new DialogForDeleteOperation(this.MyApplication, null);
-		} else if(button == Button.B_EDIT) {
+		} else if (button == Button.B_EDIT) {
 
 			locator=Locators.EDIT_BUTTON;
 
 			page = new FormEditAccount(this.MyApplication);
-		} else if(button == Button.B_TREE_EDIT) {
+		} else if (button == Button.B_TREE_EDIT) {
 
 			locator=Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
 
 			page = new FormEditAccount(this.MyApplication);
-		}else if(button == Button.B_CHANGE_PASSWORD) {
+		}else if (button == Button.B_CHANGE_PASSWORD) {
 
 			locator=Locators.RIGHT_CLICK_MENU_CHANGE_PASSWORD_BUTTON;
 			page = new WizardChangePassword(this);
 			
-		}else if(button == Button.B_VIEW_MAIL) {
+		}else if (button == Button.B_VIEW_MAIL) {
 
 			locator=Locators.RIGHT_CLICK_MENU_VIEW_MAIL_BUTTON;
 			
-		}else if(button == Button.B_INVALIDATE_SESSIONS) {
+		}else if (button == Button.B_INVALIDATE_SESSIONS) {
 
 			locator=Locators.RIGHT_CLICK_INVALIDATE_SESSIONS;
 			
@@ -269,10 +267,8 @@ public class PageManageAccounts extends AbsTab {
 			page = new WizardCreateAccount(this);
 			this.sClickAt(locator,"");
 			return page;
-
-			// FALL THROUGH
-
-		} 
+			
+			} 
 		else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
@@ -311,11 +307,9 @@ public class PageManageAccounts extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
-
+		String pulldownLocator = null; 
+		String optionLocator = null; 
+		AbsPage page = null; 
 		if (pulldown == Button.B_GEAR_BOX) {
 			pulldownLocator = Locators.GEAR_ICON;
 
@@ -325,32 +319,31 @@ public class PageManageAccounts extends AbsTab {
 
 				page = new WizardCreateAccount(this);
 
-				// FALL THROUGH
-
-			}else if(option == Button.O_NEW_ADMIN) {
+				
+			}else if (option == Button.O_NEW_ADMIN) {
 				optionLocator = Locators.NEW_ADMIN_USER;
 
 				page = new WizardCreateAdminAccount(this);
 
-			} else if(option == Button.O_EDIT) {
+			} else if (option == Button.O_EDIT) {
 				optionLocator = Locators.EDIT_BUTTON;
 
 				page = new FormEditAccount(this.MyApplication);
 
-			} else if(option == Button.O_DELETE) {
+			} else if (option == Button.O_DELETE) {
 				optionLocator = Locators.DELETE_BUTTON;
 
 				page = new DialogForDeleteOperation(this.MyApplication,null);
 
-			} else if(option == Button.O_CHANGE_PASSWORD) {
+			} else if (option == Button.O_CHANGE_PASSWORD) {
 				optionLocator = Locators.CHANGE_PASSWORD_BUTTON;
 
 				page = new FormEditAccount(this.MyApplication);
 
-			}  else if(option == Button.B_VIEW_MAIL) {
+			}  else if (option == Button.B_VIEW_MAIL) {
 				optionLocator = Locators.VIEW_MAIL;
 				
-			} else if(option == Button.B_INVALIDATE_SESSIONS) {
+			} else if (option == Button.B_INVALIDATE_SESSIONS) {
 				optionLocator = Locators.INVALIDATE_SESSIONS;
 				
 			}
@@ -421,10 +414,10 @@ public class PageManageAccounts extends AbsTab {
 		
 
 		int m= 50;
-		if(count >= 50){
+		if (count >= 50){
 			for (int a1 = 1; a1 <= 5; a1++) { 
 				String p0  = rowsLocator + "["+ m +"]";
-				if(this.sIsElementPresent(p0)){
+				if (this.sIsElementPresent(p0)){
 				zClick(p0);
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 				m=m+20;
@@ -476,7 +469,7 @@ public class PageManageAccounts extends AbsTab {
 	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
-		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
+		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}

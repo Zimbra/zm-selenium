@@ -140,14 +140,14 @@ public class PageSearchResults extends AbsTab {
 			locator = accountLocator + " td[id^='SEARCH_MANAGE_data_emailaddress']";
 
 
-			if(this.sIsElementPresent(locator))
+			if (this.sIsElementPresent(locator))
 			{
-				if(this.sGetText(locator).trim().equalsIgnoreCase(entity))
+				if (this.sGetText(locator).trim().equalsIgnoreCase(entity))
 				{
-					if(action == Action.A_LEFTCLICK) {
+					if (action == Action.A_LEFTCLICK) {
 						zClick(locator);
 						break;
-					} else if(action == Action.A_RIGHTCLICK) {
+					} else if (action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);
 						break;
 					}
@@ -181,10 +181,8 @@ public class PageSearchResults extends AbsTab {
 		if ( button == null )
 			throw new HarnessException("Button cannot be null!");
 
-		// Default behavior variables
-		//
-		String locator = null;	// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String locator = null;	
+		AbsPage page = null;	
 
 		// Based on the button specified, take the appropriate action(s)
 		//
@@ -198,9 +196,9 @@ public class PageSearchResults extends AbsTab {
 			if ( !this.sIsElementPresent(locator) )
 				throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
 
-			// FALL THROUGH
+			
 
-		} else if(button == Button.B_TREE_DELETE) {
+		} else if (button == Button.B_TREE_DELETE) {
 			locator = Locators.RIGHT_CLICK_MENU_DELETE_BUTTON;
 			page = new DialogForDeleteOperation(this.MyApplication, null);
 
@@ -208,21 +206,21 @@ public class PageSearchResults extends AbsTab {
 			if ( !this.sIsElementPresent(locator) )
 				throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
 
-			// FALL THROUGH
-		} else if(button == Button.B_TREE_EDIT) {
+			
+		} else if (button == Button.B_TREE_EDIT) {
 			locator = Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
 
-			if(typeOfObject.equals(TypeOfObject.DISTRIBUTION_LIST))
+			if (typeOfObject.equals(TypeOfObject.DISTRIBUTION_LIST))
 				page=new FormEditDistributionList(this.MyApplication);
-			else if(typeOfObject.equals(TypeOfObject.ACCOUNT))
+			else if (typeOfObject.equals(TypeOfObject.ACCOUNT))
 				page=new FormEditAccount(this.MyApplication);
-			else if(typeOfObject.equals(TypeOfObject.RESOURCE))
+			else if (typeOfObject.equals(TypeOfObject.RESOURCE))
 				page=new FormEditResource(this.MyApplication);
-			else if(typeOfObject.equals(TypeOfObject.ALIAS))
+			else if (typeOfObject.equals(TypeOfObject.ALIAS))
 				page=new FormEditAccount(this.MyApplication);
-			else if(typeOfObject.equals(TypeOfObject.COS))
+			else if (typeOfObject.equals(TypeOfObject.COS))
 				page=new FormEditCos(this.MyApplication);
-			else if(typeOfObject.equals(TypeOfObject.DOMAIN))
+			else if (typeOfObject.equals(TypeOfObject.DOMAIN))
 				page=new FormEditDomain(this.MyApplication);
 			else if (typeOfObject.equals(TypeOfObject.DOMAIN_ALIAS))
 				page=new WizardCreateDomainAlias(this);
@@ -231,12 +229,12 @@ public class PageSearchResults extends AbsTab {
 			if ( !this.sIsElementPresent(locator) )
 				throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
 
-			// FALL THROUGH
-		} else if(button == Button.B_DELETE) {
+			
+		} else if (button == Button.B_DELETE) {
 				locator = Locators.DELETE_BUTTON;
 				page = new DialogForDeleteOperation(this.MyApplication,null);
 				
-		} else if(button == Button.B_ADVANCED) {
+		} else if (button == Button.B_ADVANCED) {
 			locator = "css=div[id^='zti__AppAdmin__Home__actLstHV__2__8_textCell']";
 			if (zIsVisiblePerPosition(locator, 10, 10)) {
 				locator = "css=div[id^='zti__AppAdmin__Home__actLstHV__2__8_textCell']";
@@ -244,7 +242,7 @@ public class PageSearchResults extends AbsTab {
 				locator = "css=div[id^='zti__AppAdmin__Home__actLstHV__1__8_textCell']";
 			}
 
-			// FALL THROUGH
+			
 		} else{
 			throw new HarnessException("no logic defined for button "+ button);
 		}
@@ -289,7 +287,7 @@ public class PageSearchResults extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 
 
-		// Default behavior variables
+		
 		String pulldownLocator = null; // If set, this will be expanded
 		String optionLocator = null; // If set, this will be clicked
 		AbsPage page = null; // If set, this page will be returned
@@ -303,24 +301,24 @@ public class PageSearchResults extends AbsTab {
 
 				page = new DialogForDeleteOperation(this.MyApplication,null);
 
-				// FALL THROUGH
+				
 
 			} else if (option == Button.O_EDIT) {
 
 				pulldownLocator = Locators.GEAR_ICON;
 				optionLocator = Locators.EDIT_BUTTON;
 
-				if(typeOfObject.equals(TypeOfObject.DISTRIBUTION_LIST))
+				if (typeOfObject.equals(TypeOfObject.DISTRIBUTION_LIST))
 					page=new FormEditDistributionList(this.MyApplication);
-				else if(typeOfObject.equals(TypeOfObject.ACCOUNT))
+				else if (typeOfObject.equals(TypeOfObject.ACCOUNT))
 					page=new FormEditAccount(this.MyApplication);
-				else if(typeOfObject.equals(TypeOfObject.RESOURCE))
+				else if (typeOfObject.equals(TypeOfObject.RESOURCE))
 					page=new FormEditResource(this.MyApplication);
-				else if(typeOfObject.equals(TypeOfObject.ALIAS))
+				else if (typeOfObject.equals(TypeOfObject.ALIAS))
 					page=new FormEditAccount(this.MyApplication);
-				else if(typeOfObject.equals(TypeOfObject.COS))
+				else if (typeOfObject.equals(TypeOfObject.COS))
 					page=new FormEditCos(this.MyApplication);
-				else if(typeOfObject.equals(TypeOfObject.DOMAIN))
+				else if (typeOfObject.equals(TypeOfObject.DOMAIN))
 					page=new FormEditDomain(this.MyApplication);
 				else if (typeOfObject.equals(TypeOfObject.DOMAIN_ALIAS))
 					page=new WizardCreateDomainAlias(this);
@@ -353,7 +351,7 @@ public class PageSearchResults extends AbsTab {
 					+ pulldown + "/" + option);
 		}
 
-		// Default behavior
+		
 		if (pulldownLocator != null) {
 
 			// Make sure the locator exists
@@ -405,10 +403,10 @@ public class PageSearchResults extends AbsTab {
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
 
 		int m= 50;
-		if(count >= 50){
+		if (count >= 50){
 			for (int a1 = 1; a1 <= 5; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
-				if(this.sIsElementPresent(p0)){
+				if (this.sIsElementPresent(p0)){
 				zClick(p0);
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 				m=m+20;
@@ -460,10 +458,10 @@ public class PageSearchResults extends AbsTab {
 	}
 
 	public boolean zVerifyDisabled(String  buttonID)throws HarnessException{
-		if(buttonID=="DeleteContext"){
+		if (buttonID=="DeleteContext"){
 			boolean test= this.sIsElementPresent(Locators.DELETE_BUTTON_DISABLED);
 			return test;
-		}else if(buttonID=="DeleteTreeMenu"){
+		}else if (buttonID=="DeleteTreeMenu"){
 			return this.sIsElementPresent(Locators.RIGHT_CLICK_MENU_DELETE_BUTTON_DISABLED);
 		}else{
 			return false;
@@ -473,35 +471,35 @@ public class PageSearchResults extends AbsTab {
 	
 public void zSelectSearchObject(String object)throws HarnessException{
 	
-		if(object==S_COS){
+		if (object==S_COS){
 			
 			this.sClickAt(Locators.zArrowSelectSearchObject, "");
 			this.sClickAt(Locators.zCosSearchObject, "");
 		
 		
-		}else if(object==S_DOMAIN){
+		}else if (object==S_DOMAIN){
 
 			this.sClickAt(Locators.zDomainSearchObject, "");
 		
 		
-		}else if(object==S_ACCOUNT){
+		}else if (object==S_ACCOUNT){
 			
 			this.sClickAt(Locators.zArrowSelectSearchObject, "");
 			this.sClickAt(Locators.zAccountsSearchObject, "");
 		
 		
-		}else if(object==S_RESOURCE){
+		}else if (object==S_RESOURCE){
 
 			this.sClickAt(Locators.zResourcesSearchObject, "");
 		
 		
-		}else if(object==S_DISTRIBUTION_LIST){
+		}else if (object==S_DISTRIBUTION_LIST){
 			
 			SleepUtil.sleepMedium();
 			this.sClickAt(Locators.zDLSearchObject, "");
 		
 		
-		}else if(object==S_ALIAS){
+		}else if (object==S_ALIAS){
 			
 			this.sClickAt(Locators.zAliasesSearchObject, "");
 		
