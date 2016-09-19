@@ -151,8 +151,7 @@ public abstract class AbsSeleniumObject {
 
 	public void sClick(String locator, WebElement... elements) throws HarnessException {
 	    logger.info("click(" + locator + ")");
-	    zIsBusyOverlay();
-	    SleepUtil.sleepSmall();
+	    SleepUtil.sleepVerySmall();
 
 	    try {
 		    logger.info("click()");
@@ -174,8 +173,7 @@ public abstract class AbsSeleniumObject {
 	
 	public void sClickAt(String locator, String coord, WebElement... elements) throws HarnessException {
 	    logger.info("sClickAt(" + locator + "," + coord + ")");
-	    zIsBusyOverlay();
-	    SleepUtil.sleepSmall();
+	    SleepUtil.sleepVerySmall();
 
 	    try {
 		    WebElement we = null;

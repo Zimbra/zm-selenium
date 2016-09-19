@@ -531,29 +531,17 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 		try {
 
-			if ( this.DialogWindowID == null || this.DialogWindowID.equals("null") ) {
-				return;
-			}
+			Set <String> windows = webDriver().getWindowHandles();
+		    String mainwindow = webDriver().getWindowHandle();
 
-			try {
-				super.sSelectWindow(this.DialogWindowID);
-
-			} catch (WebDriverException e) {
-				logger.warn("In zCloseWindow(), unable to locate DialogWindowID. Assume already closed.", e);
-				return;
-			}
-
-			for (String winHandle : webDriver().getWindowHandles()) {
-			    webDriver().switchTo().window(winHandle);
-			    if (!webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Inbox")
-			    		&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Contacts")
-			    		&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Calendar")
-			    		&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Tasks")
-			    		&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Briefcase")
-			    		&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Preferences")) {
-			    	webDriver().close();
-			    }
-			}
+		    for (String handle: windows) {
+		    	
+		    	webDriver().switchTo().window(handle);
+		        if (!handle.equals(mainwindow)) {
+		        	webDriver().close();
+		        }
+		    }
+		    webDriver().switchTo().window(mainwindow);
 
 		} finally {
 			super.zSelectWindow(MainWindowID);
@@ -571,6 +559,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 			try {
 				super.sSelectWindow(title);
+				
 			} catch (WebDriverException e) {
 				logger.warn("In zCloseWindow(), unable to locate DialogWindowID. Assume already closed.", e);
 				return;

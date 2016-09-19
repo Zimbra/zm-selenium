@@ -1297,8 +1297,6 @@ import com.zimbra.qa.selenium.framework.core.SeleniumService;
 
 			DialogCustomRepeat dlgCustomRepeat = (DialogCustomRepeat) new DialogCustomRepeat(DialogCustomRepeat.DialogWarningID.DialogCustomRepeat, MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 			dlgCustomRepeat.zClickButton(Button.B_OK);
-
-			SleepUtil.sleepSmall();
 		}
 
 		public void zRepeat(Button recurringType, Button repeat, Button end) throws HarnessException {

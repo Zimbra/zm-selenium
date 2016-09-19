@@ -209,9 +209,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		String containerToolbar = "css=div[id^='ztb__MSG']";
 		AbsPage page = null; // If set, this page will be returned
 
-		// Based on the button specified, take the appropriate action(s)
-		//
-
 		if (button == Button.B_CLOSE) {
 
 			locator = container + " div[id$='__CLOSE'] td[id$='_title']";
@@ -230,7 +227,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		} else if (button == Button.B_REPLY) {
 
 			locator = container + " div[id$='__REPLY'] td[id$='_title']";
-
 			page = null;
 
 		} else if (button == Button.B_CANCEL) {
@@ -238,11 +234,9 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			locator = Locators.zCancelIconBtn;
 			page = new DialogWarning(DialogWarning.DialogWarningID.SaveCurrentMessageAsDraft, this.MyApplication,
 					((AppAjaxClient) this.MyApplication).zPageMail);
-			this.sClickAt(locator, "0,0");
-
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
-			// Return the page, if specified
 			return (page);
 
 		} else if (button == Button.B_REPLYALL) {
@@ -280,13 +274,11 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			if (sIsElementPresent("css=div[id^='ztb__COMPOSE-2'] div[id*='SEND'] td[id$='_title']")) {
 				locator = "css=div[id^='ztb__COMPOSE-2'] div[id*='SEND'] td[id$='_title']";
 			} else {
-
 				locator = "css=div[id^='ztb__COMPOSE'] div[id*='SEND'] td[id$='_title']";
-
 			}
 
 			// Click on send
-			this.sClickAt(locator, "");
+			this.sClick(locator);
 
 			// Wait for the message to be delivered
 			Stafpostqueue sp = new Stafpostqueue();
@@ -298,11 +290,10 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			return (page);
 
 		} else {
-
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		this.sClickAt(locator, "0,0");
+		this.sClick(locator);
 		SleepUtil.sleepMedium();
 
 		return (page);

@@ -24,132 +24,111 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
 
-
 public class CloseMail extends PrefGroupMailByMessageTest {
 	protected static Logger logger = LogManager.getLogger(CloseMail.class);
 
 	public CloseMail() throws HarnessException {
-		logger.info("New "+ CloseMail.class.getCanonicalName());
-		
-
+		logger.info("New " + CloseMail.class.getCanonicalName());
 
 	}
-	
-	
-	@Test( description = "Close a separate window",
-			groups = { "functional" })
+
+	@Test(description = "Close a separate window", groups = { "functional" })
 	public void CloseMail_01() throws HarnessException {
-		
+
 		final String subject = "subject13150210210153";
 
-		ZimbraAccount.AccountA().soapSend(
-				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-					"<m>" +
-						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-						"<su>"+ subject +"</su>" +
-						"<mp ct='text/plain'>" +
-							"<content>body" + ConfigProperties.getUniqueString() +"</content>" +
-						"</mp>" +
-					"</m>" +
-				"</SendMsgRequest>");
-		
-		
+		ZimbraAccount.AccountA()
+				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
+						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
+						+ "<mp ct='text/plain'>" + "<content>body" + ConfigProperties.getUniqueString() + "</content>"
+						+ "</mp>" + "</m>" + "</SendMsgRequest>");
+
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + subject;
-		
+
 		try {
-			
+
 			// Choose Actions -> Launch in Window
-			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-			
+			window = (SeparateWindowDisplayMail) app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS,
+					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
+
 			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
-			
+
 			SleepUtil.sleepVeryLong();
-			
+
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			
+
 			window.zToolbarPressButton(Button.B_CLOSE);
-			
+
 			ZAssert.assertFalse(window.zIsActive(), "Verify the window is closed");
-			
+
 		} finally {
-			
+
 			// Make sure to close the window
-			if ( window != null ) {
+			if (window != null) {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 			app.zPageMail.zSelectWindow(null);
-			
+
 		}
-		
-		
+
 	}
 
-
-	@Test( description = "Close a separate window - press Esc",
-			groups = { "functional" })
+	@Test(description = "Close a separate window - press Esc", groups = { "functional" })
 	public void CloseMail_02() throws HarnessException {
-		
+
 		final String subject = "subject13150210210153";
 
-		ZimbraAccount.AccountA().soapSend(
-				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-					"<m>" +
-						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-						"<su>"+ subject +"</su>" +
-						"<mp ct='text/plain'>" +
-							"<content>body" + ConfigProperties.getUniqueString() +"</content>" +
-						"</mp>" +
-					"</m>" +
-				"</SendMsgRequest>");
-		
-		
+		ZimbraAccount.AccountA()
+				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
+						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
+						+ "<mp ct='text/plain'>" + "<content>body" + ConfigProperties.getUniqueString() + "</content>"
+						+ "</mp>" + "</m>" + "</SendMsgRequest>");
+
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + subject;
-		
+
 		try {
-			
+
 			// Choose Actions -> Launch in Window
-			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-			
+			window = (SeparateWindowDisplayMail) app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS,
+					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
+
 			window.zSetWindowTitle(windowTitle);
-			
+
 			SleepUtil.sleepVeryLong();
-			
+
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			
+
 			window.zKeyboardShortcut(Shortcut.S_ESCAPE);
-			
+
 			ZAssert.assertFalse(window.zIsActive(), "Verify the window is closed");
 
 		} finally {
-			
+
 			// Make sure to close the window
-			if ( window != null ) {
+			if (window != null) {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 			app.zPageMail.zSelectWindow(null);
-			
+
 		}
-		
-		
+
 	}
-
-
 
 }
