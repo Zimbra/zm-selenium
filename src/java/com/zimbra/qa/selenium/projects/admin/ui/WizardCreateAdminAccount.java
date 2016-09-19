@@ -40,6 +40,8 @@ public class WizardCreateAdminAccount extends AbsWizard {
 		public static final String ADMIN_USER="css=div[id$='new_admin_type_choice_1']";
 		public static final String ADMIN_GROUP="css=div[id$='new_admin_type_choice_0']";
 		public static final String GLOBAL_ADMIN_CHECK_BOX="zdlgv__NEW_ADMIN_";
+		public static final String zdlg_PASSWORD = "css=input[id='zdlgv__NEW_ADMIN_password']";
+		public static final String zdlg_CONFIRM_PASSWORD = "css=input[id='zdlgv__NEW_ADMIN_confirmPassword']";
 	}
 
 	public WizardCreateAdminAccount(AbsTab page) {
@@ -56,9 +58,9 @@ public class WizardCreateAdminAccount extends AbsWizard {
 
 	public void setGlobalAdmin(boolean isGlobalAdmin) throws HarnessException {
 		IsGlobalAdmin = isGlobalAdmin;
-		if (IsGlobalAdmin) {
+		if(IsGlobalAdmin) {
 			for(int i=10;i>=1;i--) {
-				if (sIsElementPresent(Locators.GLOBAL_ADMIN_CHECK_BOX+i+"_zimbraIsAdminAccount")) {
+				if(sIsElementPresent(Locators.GLOBAL_ADMIN_CHECK_BOX+i+"_zimbraIsAdminAccount")) {
 					sCheck(Locators.GLOBAL_ADMIN_CHECK_BOX+i+"_zimbraIsAdminAccount");
 					return;
 				}
@@ -72,11 +74,11 @@ public class WizardCreateAdminAccount extends AbsWizard {
 	}
 
 	public void setAdminType(String adminType) throws HarnessException {
-		if (adminType!="") {
+		if(adminType!="") {
 			sClick(Locators.ADMIN_TYPE);
-			if (adminType.equals(Locators.ADMIN_USER)) {
+			if(adminType.equals(Locators.ADMIN_USER)) {
 				adminType=Locators.ADMIN_USER;
-			} else if (adminType.equals(Locators.ADMIN_GROUP)) {
+			} else if(adminType.equals(Locators.ADMIN_GROUP)) {
 				adminType=Locators.ADMIN_GROUP;
 			}
 			sClick(adminType);
@@ -99,17 +101,20 @@ public class WizardCreateAdminAccount extends AbsWizard {
 		String CN = account.getLocalName();
 		String domain = account.getDomainName();
 
-		if (adminType.equals(Locators.ADMIN_USER)) {
+		if(adminType.equals(Locators.ADMIN_USER)) {
+			
 			zType(Locators.zdlg_ACCT_NAME, CN);
-			SleepUtil.sleepSmall();
 			this.clearField(Locators.zdlg_DOMAIN_NAME);
 			zType(Locators.zdlg_DOMAIN_NAME,"");
 			zType(Locators.zdlg_DOMAIN_NAME,domain);
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
-			zType(Locators.zdlg_ACCT_NAME, CN);
+			zType(Locators.zdlg_PASSWORD, "test123");
+			zType(Locators.zdlg_CONFIRM_PASSWORD, "test123");
+			SleepUtil.sleepSmall();
 			clickNext(AbsWizard.Locators.ADMIN_DIALOG);
 			clickFinish(AbsWizard.Locators.ADMIN_DIALOG);
-		} else {
+			SleepUtil.sleepSmall();
+		}else {
 			zType(Locators.zdlg_DL_NAME, CN);
 			SleepUtil.sleepSmall();
 			this.clearField(Locators.zdlg_DL_DOMAIN_NAME);

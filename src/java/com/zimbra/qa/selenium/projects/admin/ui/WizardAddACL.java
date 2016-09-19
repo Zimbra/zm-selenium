@@ -37,7 +37,7 @@ public class WizardAddACL extends AbsWizard {
 		public static final String ACL_GRANTEE_NAME = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input";
 		public static final String ACL_RIGHT_TYPE_SYSTEM_DEFINED="css=div[id$='right_type_choice_0']";
 		public static final String ACL_RIGHT_TYPE_CUSTOM="css=div[id$='right_type_choice_1']";
-		public static final String Pull_DOWN="css=div[class='ImgSelectPullDownArrow']";
+		public static final String Pull_DOWN="css=div[id^='zdlgv__EDIT_ACL'][id*='_right_type'] div[class='ImgSelectPullDownArrow']";
 		public static final String ADD_AND_FINISH_BUTTON="css=td[class='ZWidgetTitle']:contains('Add and Finish')";	
 	}
 	
@@ -54,7 +54,7 @@ public class WizardAddACL extends AbsWizard {
 		AclItem acl = (AclItem)item;
 		String granteeAccount = acl.getGranteeAccountEmail();
 		String rightName= acl.getRightName();
-		
+		sClick(Locators.ACL_GRANTEE_NAME);
 		sType(Locators.ACL_GRANTEE_NAME, granteeAccount);
 		SleepUtil.sleepMedium();
 		

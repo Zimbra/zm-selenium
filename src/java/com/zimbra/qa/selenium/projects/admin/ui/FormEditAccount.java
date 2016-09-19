@@ -20,6 +20,7 @@ import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsForm;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 
 public class FormEditAccount extends AbsForm {
@@ -33,7 +34,7 @@ public class FormEditAccount extends AbsForm {
 		public static final String DA_NAME_TEXT_BOX="css=input[id='ztabv__ACCT_EDIT_name_2']";
 		public static final String SAVE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__SAVE']";
 		public static final String CLOSE_BUTTON="css=td[id$='zb__ZaCurrentAppBar__CLOSE']";
-		public static final String Pull_DOWN="css=div[class='ImgSelectPullDownArrow']";
+		public static final String Pull_DOWN="css=div[aria-controls='zm__zb_currentApp__MENU_POP'] div[class='ImgSelectPullDownArrow']";
 		public static final String PULL_DOWN_CLOSE="css=td[id='zmi__zb_currentApp__CLOSE_title']";
 		public static final String PASSWORD = "css=input[id$='ztabv__ACCT_EDIT_password']";
 		public static final String CONFIRM_PASSWORD= "css=input[id$='ztabv__ACCT_EDIT_confirmPassword']";
@@ -81,9 +82,11 @@ public class FormEditAccount extends AbsForm {
 	@Override
 	public void zSubmit() throws HarnessException {
 		sClickAt(Locators.SAVE_BUTTON,"");
+		SleepUtil.sleepSmall();
 		sClick(Locators.Pull_DOWN);
+		SleepUtil.sleepSmall();
 		sClick(Locators.PULL_DOWN_CLOSE);
-		
+		SleepUtil.sleepSmall();
 	}
 
 	public void zClickTreeItem(String treeItem) throws HarnessException {
@@ -92,12 +95,14 @@ public class FormEditAccount extends AbsForm {
 
 	public void setName(String name) throws HarnessException {
 		for(int i=12;i>=0;i--) {
-			if (sIsElementPresent(Locators.NAME_TEXT_BOX+i+"_name_3")) {
+			if(sIsElementPresent(Locators.NAME_TEXT_BOX+i+"_name_3")) {
 				sType(Locators.NAME_TEXT_BOX+i+"_name_3", name);
+				SleepUtil.sleepSmall();
 				return;
 			}
 		}
 		sType(Locators.NAME_TEXT_BOX+"name_3", name);
+		SleepUtil.sleepSmall();
 		}
 	
 	public void setNameAsDA(String name) throws HarnessException {
@@ -107,7 +112,7 @@ public class FormEditAccount extends AbsForm {
 	public void setPassword(String password) throws HarnessException {
 		sType(Locators.PASSWORD, password);
 		zType(Locators.CONFIRM_PASSWORD, password);
-
+		SleepUtil.sleepSmall();
 		}
 	
 	public void zSubmitChangePassword() throws HarnessException {
