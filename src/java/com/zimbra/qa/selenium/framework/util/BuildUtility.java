@@ -168,7 +168,7 @@ public class BuildUtility {
       String fileExtension = null;
 
       switch (os) {
-      case WINDOWS: case WINDOWS_XP:
+      case WINDOWS:
          fileExtension = ".msi";
          break;
       case LINUX:
@@ -177,6 +177,9 @@ public class BuildUtility {
       case MAC:
          fileExtension = ".dmg";
          break;
+      default:
+		fileExtension = ".msi";
+		break;
       }
 
       for (int i = 0; i < lines.length; i++) {
@@ -245,15 +248,18 @@ public class BuildUtility {
             }
 
             switch (OperatingSystem.getOSType()) {
-            case WINDOWS: case WINDOWS_XP:
-               fileExtension = ".msi";
-               break;
+            case WINDOWS:
+            	fileExtension = ".msi";
+               	break;
             case LINUX:
-               fileExtension = ".tgz";
-               break;
+            	fileExtension = ".tgz";
+               	break;
             case MAC:
-               fileExtension = ".dmg";
-               break;
+            	fileExtension = ".dmg";
+               	break;
+			default:
+				fileExtension = ".msi";
+				break;
             }
 
             return name.toLowerCase().contains(productName) &&

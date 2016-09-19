@@ -236,7 +236,7 @@ public class SeleniumService {
 			SeleniumPort = ConfigProperties.getIntProperty("sauce.serverMachinePort", 80);
 			SeleniumBrowser = "{\"username\": \"" + ConfigProperties.getStringProperty("sauceUsername") + "\"," +
 	          "\"access-key\": \"" + ConfigProperties.getStringProperty("sauceAccessKey") + "\"," +
-	          "\"os\": \"" + ConfigProperties.getStringProperty("OS", "Windows 2003") + "\"," +
+	          "\"os\": \"" + ConfigProperties.getStringProperty("os", "Windows 2003") + "\"," +
 	          "\"browser\": \"" + ConfigProperties.getStringProperty("browser") + "\"," +
 	          "\"browser-version\": \"" + ConfigProperties.getStringProperty("browserVersion") + "\"," +
 	          "\"user-extensions-url\": \"http://" + ConfigProperties.getStringProperty("server.host") + ":8080/user-extensions.js\"}";
