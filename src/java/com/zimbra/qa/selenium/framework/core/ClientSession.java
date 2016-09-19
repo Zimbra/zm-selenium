@@ -16,6 +16,7 @@
  */
 package com.zimbra.qa.selenium.framework.core;
 
+import java.io.File;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -25,28 +26,31 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.OperatingSystem;
 
 /**
- * A <code>ClientSession</code> object contains all session information for the test methods.
+ * A <code>ClientSession</code> object contains all session information for the
+ * test methods.
  * <p>
- * The Zimbra Selenium harness is designed to
- * execute test cases concurrently at the class level.
+ * The Zimbra Selenium harness is designed to execute test cases concurrently at
+ * the class level.
  *
- * The {@link ClientSession} objects maintain all session information on
- * a per thread basis, such as the current DefaultSelenium object.  Each
- * TestNG thread uses a single {@link ClientSession} Object.
+ * The {@link ClientSession} objects maintain all session information on a per
+ * thread basis, such as the current DefaultSelenium object. Each TestNG thread
+ * uses a single {@link ClientSession} Object.
  * <p>
- * Use the {@link ClientSessionFactory} to retrieve the current {@link ClientSession}.
+ * Use the {@link ClientSessionFactory} to retrieve the current
+ * {@link ClientSession}.
  * <p>
  *
  * @author Matt Rhoades
  *
  */
+
 public class ClientSession {
-	
+
 	private static Logger logger = LogManager.getLogger(ClientSession.class);
 	private String sessionName;
 	private WebDriver webDriver = null;
@@ -56,28 +60,65 @@ public class ClientSession {
 
 		if (webDriver == null) {
 
-			if (ConfigProperties.getCalculatedBrowser().contains("iexplore")) {
+			String driverPath = null;
+
+			if (ConfigProperties.getCalculatedBrowser().contains("iexplore") ||	ConfigProperties.getCalculatedBrowser().contains("ie")) {
+
+				switch (OperatingSystem.getOSType()) {
+				
+					case WINDOWS: default:
+						driverPath = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/IEDriverServer.exe";
+						break;
+
+					case WINDOWS10:
+						driverPath = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/MicrosoftWebDriver.exe";
+						break;
+				}
 
 				DesiredCapabilities desiredCapabilities = DesiredCapabilities.internetExplorer();
-				System.setProperty("webdriver.ie.driver", ConfigProperties.getStringProperty("iedriver.path"));
+				System.setProperty("webdriver.ie.driver", driverPath);
 				webDriver = new InternetExplorerDriver(desiredCapabilities);
 
-			} else if (ConfigProperties.getCalculatedBrowser().contains("googlechrome")) {
+			} else if (ConfigProperties.getCalculatedBrowser().contains("firefox")) {
 
-				ChromeOptions options = new ChromeOptions();
-				options.addArguments("chrome.switches","--disable-extensions");
-				options.addArguments("--start-maximized");
-				System.setProperty("webdriver.chrome.driver", ConfigProperties.getStringProperty("chromedriver.path"));
-				webDriver = new ChromeDriver(options);
+				switch (OperatingSystem.getOSType()) {
+				
+					case WINDOWS: default:
+						driverPath = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/geckodriver.exe";
+						break;
+
+					case LINUX: case MAC:
+						driverPath = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/geckodriver";
+						break;
+				}
+
+				File file = new File(ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/firebug-2.0.17-fx.xpi");
+				System.setProperty("webdriver.gecko.driver", driverPath);
+				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+				FirefoxProfile profile = new FirefoxProfile();
+				profile.addExtension(file);
+				capabilities.setCapability(FirefoxDriver.PROFILE, profile);
+				capabilities.setCapability("marionette", true);
+				webDriver = new FirefoxDriver(capabilities);
 
 			} else {
 
-				System.setProperty("webdriver.gecko.driver", ConfigProperties.getStringProperty("geckodriver.path"));
-				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-				FirefoxProfile profile = new FirefoxProfile();
-				capabilities.setCapability(FirefoxDriver.PROFILE, profile);
-				capabilities.setCapability("marionette", true);
-				webDriver =  new FirefoxDriver(capabilities);
+				switch (OperatingSystem.getOSType()) {
+				
+					case WINDOWS: default:
+						driverPath = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/chromedriver.exe";
+						break;
+
+					case LINUX: case MAC:
+						driverPath = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/chromedriver";
+						break;
+				}
+
+				ChromeOptions options = new ChromeOptions();
+				options.addArguments("chrome.switches", "--disable-extensions");
+				options.addArguments("--start-maximized");
+				System.setProperty("webdriver.chrome.driver", driverPath);
+				webDriver = new ChromeDriver(options);
 			}
 		}
 
@@ -85,7 +126,7 @@ public class ClientSession {
 	}
 
 	public String currentUserName() {
-		if ( currentAccount == null ) {
+		if (currentAccount == null) {
 			return ("");
 		}
 		return (currentAccount.EmailAddress);
@@ -96,11 +137,8 @@ public class ClientSession {
 		return (currentUserName());
 	}
 
-	/**
-	 * A unique string ID for this ClientSession object
-	 */
 	public String toString() {
-		logger.debug("ClientSession.toString()="+ sessionName);
+		logger.debug("ClientSession.toString()=" + sessionName);
 		return (sessionName);
 	}
 }
