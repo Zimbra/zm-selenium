@@ -18,11 +18,8 @@ package com.zimbra.qa.selenium.projects.ajax.ui.preferences;
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
-/**
- * Represents an "Out Of Office Alert" dialog box
- * <p>
- */
 public class DialogOOOAlert extends AbsDialog {
 	public static class Locators {
 		public static final String zDialogClass = "DwtDialog";
@@ -32,7 +29,6 @@ public class DialogOOOAlert extends AbsDialog {
 
 	public DialogOOOAlert(AbsApplication application, AbsTab tab) {
 		super(application, tab);
-
 		logger.info("new " + DialogOOOAlert.class.getCanonicalName());
 	}
 
@@ -70,14 +66,9 @@ public class DialogOOOAlert extends AbsDialog {
 					+ locator + " not present!");
 		}
 
-		// if (zIsActive())
-		// zGetDisplayedText("css=div." + Locators.zDialogClass +
-		// ":contains(Out Of Office)");
-
 		this.zClickAt(locator, "0,0");
-
-		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
+		SleepUtil.sleepSmall();
 
 		return (page);
 	}

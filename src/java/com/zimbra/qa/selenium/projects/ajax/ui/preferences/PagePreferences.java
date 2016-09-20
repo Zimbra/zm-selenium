@@ -22,7 +22,6 @@ package com.zimbra.qa.selenium.projects.ajax.ui.preferences;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.commons.lang.StringUtils;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
@@ -33,8 +32,6 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZDate;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogInformational;
@@ -316,11 +313,7 @@ public class PagePreferences extends AbsTab {
 
 		// If the "folders" tree is visible, then mail is active
 		String locator = null;
-		if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-			locator = "css=div[id='zov__local@host.local:main_Options']";
-		} else {
-			locator = "css=div#"+ Locators.zPreferencesMainID;
-		}
+		locator = "css=div#"+ Locators.zPreferencesMainID;
 
 		boolean loaded = this.sIsElementPresent(locator);
 		if ( !loaded )
@@ -328,7 +321,6 @@ public class PagePreferences extends AbsTab {
 
 		boolean active = this.zIsVisiblePerPosition(locator, -1, 74);
 		return (active);
-
 	}
 
 	@Override
