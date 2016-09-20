@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.framework.core;
 
 import java.io.File;
 import java.util.Set;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
