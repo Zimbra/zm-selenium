@@ -93,7 +93,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		DialogWarningConflictingResources  dialog = (DialogWarningConflictingResources) app.zPageCalendar.zToolbarPressButton(Button.B_SEND_WITH_CONFLICT);
 		String dialogContent = dialog.zGetResourceConflictWarningDialogText();
 		ZAssert.assertTrue(dialogContent.contains("The selected resources/location cannot be scheduled for the following instances"), "Verify that the dialog shows expected text");
-		ZAssert.assertTrue(dialogContent.contains(apptEquipment+"(Busy)"), "Verify that the dialog shows Equipment name on conflict warning");
+		ZAssert.assertTrue(dialogContent.contains(apptEquipment + " (Busy)"), "Verify that the dialog shows Equipment name on conflict warning");
 
         // Save appt with Equipment conflict 
 		dialog.zClickButton(Button.B_SAVE_WITH_CONFLICT);
@@ -107,17 +107,11 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		// Verify Equipment free/busy status shows as ptst=DE
 		String equipmentStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquipment +"']", "ptst");
 		ZAssert.assertEquals(equipmentStatus, "DE", "Verify that the Equipment status shows as 'DECLINED'");
-		
-		if (!apptForm.zVerifyNewApptTabClosed()) {
-			// Close window so that next test doesn't fail
-	        apptForm.zCloseModifiedApptTab();
-		}
-			
     }
 	
 	@Test( description = "Verify Saving meeting invite when Equipment resource has conflicts shows conflict dialog",  
 			groups = { "functional" })
-	public void CreateMeetingWithequipmentConflict_02() throws HarnessException {
+	public void CreateMeetingWithEquipmentConflict_02() throws HarnessException {
 		
 		// Creating object for meeting data
 		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
@@ -173,7 +167,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		DialogWarningConflictingResources  dialog = (DialogWarningConflictingResources) app.zPageCalendar.zToolbarPressButton(Button.B_SAVE_WITH_CONFLICT);
 		String dialogContent = dialog.zGetResourceConflictWarningDialogText();
 		ZAssert.assertTrue(dialogContent.contains("The selected resources/location cannot be scheduled for the following instances"), "Verify that the dialog shows expected text");
-		ZAssert.assertTrue(dialogContent.contains(apptEquipment+"(Busy)"), "Verify that the dialog shows equipment name on conflict warning");
+		ZAssert.assertTrue(dialogContent.contains(apptEquipment + " (Busy)"), "Verify that the dialog shows equipment name on conflict warning");
 		
 		// Save appointment with Equipment conflict
         ZAssert.assertTrue(dialog.zIsActive(), "Verify 'Conflicting Resource' dialog is Open");
@@ -188,15 +182,12 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		// Verify Equipment free/busy status shows as ptst=NE	
 		String equipmentStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquipment +"']", "ptst");
 		ZAssert.assertEquals(equipmentStatus, "NE", "Verify that the Equipment status shows as 'NEEDS ACTION'");
-		
-		// Close window so that next test doesn't fail
-		apptForm.zToolbarPressButton(Button.B_CLOSE);
 	}
 	
 	
 	@Test( description = "Verify Cancelling create appt when Equipment resource has conflicts shows conflict dialog", 
 			groups = { "functional" })
-	public void CreateMeetingWithequipmentConflict_03() throws HarnessException {
+	public void CreateMeetingWithEquipmentConflict_03() throws HarnessException {
 
 		// Creating object for meeting data
 		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
@@ -253,26 +244,23 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		DialogWarningConflictingResources  dialog = (DialogWarningConflictingResources) app.zPageCalendar.zToolbarPressButton(Button.B_SEND_WITH_CONFLICT);
 		String dialogContent = dialog.zGetResourceConflictWarningDialogText();
 		ZAssert.assertTrue(dialogContent.contains("The selected resources/location cannot be scheduled for the following instances"), "Verify that the dialog shows expected text");
-		ZAssert.assertTrue(dialogContent.contains(apptEquipment+"(Busy)"), "Verify that the dialog shows Equipment name on conflict warning");
+		ZAssert.assertTrue(dialogContent.contains(apptEquipment + " (Busy)"), "Verify that the dialog shows Equipment name on conflict warning");
 
         // Verify Canceling the 'Conflicting Resource' closes the dialog
 		dialog.zClickButton(Button.B_CANCEL_CONFLICT);
         ZAssert.assertFalse(dialog.zIsActive(), "Verify 'Conflicting Resource' dialog is closed");
         
         // Verify new appt page is still open
-        ZAssert.assertFalse(apptForm.zVerifyNewApptTabClosed(), "Verify new appt page is still open");
+        ZAssert.assertTrue(apptForm.zVerifyNewApptTabRemainsOpened(), "Verify new appt page is still open");
         
         // Verify that appointment subject is not modified
         AppointmentItem modifyAppt = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");
         ZAssert.assertNull(modifyAppt, "Verify new appointment with conflicting Resource has not been created");
-        
-        // Close window so that next test doesn't fail
-        apptForm.zCloseModifiedApptTab();
 	}
 	
 	@Test( description = "Verify organizer can close modified appointment with Equipment Conflict",  
 			groups = { "functional" })
-	public void CreateMeetingWithequipmentConflict_04() throws HarnessException {
+	public void CreateMeetingWithEquipmentConflict_04() throws HarnessException {
 		
 		// Creating object for meeting data
 		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
@@ -324,7 +312,6 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		apptForm.zFill(appt);
 		apptForm.zAddEquipmentFromScheduler(apptEquipment, KeyEvent.VK_ENTER);  
 		SleepUtil.sleepSmall();
-		apptForm.zCloseModifiedApptTab();
 		 
         // Verify that appointment subject is not modified
         AppointmentItem modifyAppt = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");

@@ -95,7 +95,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		DialogWarningConflictingResources  dialog = (DialogWarningConflictingResources) app.zPageCalendar.zToolbarPressButton(Button.B_SEND_WITH_CONFLICT);
 		String dialogContent = dialog.zGetResourceConflictWarningDialogText();
 		ZAssert.assertTrue(dialogContent.contains("The selected resources/location cannot be scheduled for the following instances"), "Verify that the dialog shows expected text");
-		ZAssert.assertTrue(dialogContent.contains(apptLocation+"(Busy)"), "Verify that the dialog shows location name on conflict warning");
+		ZAssert.assertTrue(dialogContent.contains(apptLocation + " (Busy)"), "Verify that the dialog shows location name on conflict warning");
 
         // Save appt with location conflict 
 		dialog.zClickButton(Button.B_SAVE_WITH_CONFLICT);
@@ -108,8 +108,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		
 		// Verify location free/busy status shows as ptst=DE
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
-		ZAssert.assertEquals(locationStatus, "DE", "Verify that the location status shows as 'Declined'"); //COVERAGE ALTHOUGH BUG 102271
-			
+		ZAssert.assertEquals(locationStatus, "DE", "Verify that the location status shows as 'Declined'"); //COVERAGE ALTHOUGH BUG 102271	
 	}
 	
 	@Test( description = "Verify Cancelling create appt when Location resource has conflicts shows conflict dialog", 
@@ -172,21 +171,18 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		DialogWarningConflictingResources  dialog = (DialogWarningConflictingResources) app.zPageCalendar.zToolbarPressButton(Button.B_SEND_WITH_CONFLICT);
 		String dialogContent = dialog.zGetResourceConflictWarningDialogText();
 		ZAssert.assertTrue(dialogContent.contains("The selected resources/location cannot be scheduled for the following instances"), "Verify that the dialog shows expected text");
-		ZAssert.assertTrue(dialogContent.contains(apptLocation+"(Busy)"), "Verify that the dialog shows location name on conflict warning");
+		ZAssert.assertTrue(dialogContent.contains(apptLocation + " (Busy)"), "Verify that the dialog shows location name on conflict warning");
 
         // Verify Canceling the 'Conflicting Resource' closes the dialog
 		dialog.zClickButton(Button.B_CANCEL_CONFLICT);
         ZAssert.assertFalse(dialog.zIsActive(), "Verify 'Conflicting Resource' dialog is closed");
         
         // Verify new appt page is still open
-        ZAssert.assertFalse(apptForm.zVerifyNewApptTabClosed(), "Verify new appt page is still open");
+        ZAssert.assertTrue(apptForm.zVerifyNewApptTabRemainsOpened(), "Verify new appt page is still open");
         
         // Verify that appointment subject is not modified
         AppointmentItem modifyAppt = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");
         ZAssert.assertNull(modifyAppt, "Verify new appointment with conflicting Resource has not been created");
-        
-        // Close window so that next test doesn't fail
-        apptForm.zCloseModifiedApptTab();
 	}
 	
 	@Test( description = "Verify Saving meeting invite when Location resource has conflicts shows conflict dialog",  
@@ -252,7 +248,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		DialogWarningConflictingResources  dialog = (DialogWarningConflictingResources) app.zPageCalendar.zToolbarPressButton(Button.B_SAVE_WITH_CONFLICT);
 		String dialogContent = dialog.zGetResourceConflictWarningDialogText();
 		ZAssert.assertTrue(dialogContent.contains("The selected resources/location cannot be scheduled for the following instances"), "Verify that the dialog shows expected text");
-		ZAssert.assertTrue(dialogContent.contains(apptLocation+"(Busy)"), "Verify that the dialog shows location name on conflict warning");
+		ZAssert.assertTrue(dialogContent.contains(apptLocation + " (Busy)"), "Verify that the dialog shows location name on conflict warning");
 		
 		// Save appointment with Location conflict
         ZAssert.assertTrue(dialog.zIsActive(), "Verify 'Conflicting Resource' dialog is Open");
@@ -267,9 +263,6 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		// Verify location free/busy status shows as ptst=NE	
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "NE", "Verify that the location status shows as 'DECLINCED'");
-		
-		// Close window so that next test doesn't fail
-		apptForm.zToolbarPressButton(Button.B_CLOSE);
 	}
 	
 	@Test( description = "Verify organizer can close modified appointment with location Conflict",  
@@ -328,8 +321,6 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		apptForm.zFill(appt);
 		SleepUtil.sleepVeryLong();
 		
-		apptForm.zCloseModifiedApptTab();
-      
         // Verify that appointment subject is not modified
         AppointmentItem modifyAppt = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");
         ZAssert.assertNull(modifyAppt, "Verify new appointment with conflicting Resource has not been created");

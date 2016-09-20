@@ -50,7 +50,7 @@ public class AjaxCommonTest {
 
 	protected static Logger logger = LogManager.getLogger(AjaxCommonTest.class);
 	protected AppAjaxClient app = null;
-	
+
 	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	WebElement we = null;
 
@@ -77,12 +77,12 @@ public class AjaxCommonTest {
 		ZimbraAccount.ResetAccountZWC();
 
 		try {
-			
+
 			ConfigProperties.setAppType(ConfigProperties.AppType.AJAX);
 
 			webDriver = ClientSessionFactory.session().webDriver();
 			webDriver.manage().window().maximize();
-			
+
 			// Dynamic wait for App to be ready
 			int maxRetry = 10;
 			int retry = 0;
@@ -93,7 +93,7 @@ public class AjaxCommonTest {
 					retry ++;
 					webDriver.navigate().to(ConfigProperties.getBaseURL());
 					appIsReady = true;
-					
+
 				} catch (WebDriverException e) {
 					if (retry == maxRetry) {
 						logger.error("Unable to open ajax app." + "  Is a valid certificate installed?", e);
@@ -106,7 +106,7 @@ public class AjaxCommonTest {
 				}
 			}
 			logger.info("App is ready!");
-			
+
 			if (ConfigProperties.getStringProperty("staf").equals("true")) {
 				// Grant createDistList right to domain
 				StafServicePROCESS staf = new StafServicePROCESS();
@@ -115,7 +115,7 @@ public class AjaxCommonTest {
 
 		} catch (WebDriverException e) {
 			throw new HarnessException("Unable to open app", e);
-			
+
 		} catch (Exception e) {
 			logger.warn(e);
 		}
@@ -245,6 +245,7 @@ public class AjaxCommonTest {
 			}
 		}
 
+		app.zPageMain.zCloseOpenDialogs();
 		app.zPageMain.zCloseComposeTabs();
 		logger.info("commonTestBeforeMethod: finish");
 	}
@@ -284,7 +285,7 @@ public class AjaxCommonTest {
             app.zPageLogin.sOpen(ConfigProperties.getLogoutURL());
             app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
         }
-		
+
 		// Check for error dialogs
 		boolean check = "true".equals( ConfigProperties.getStringProperty("dialog.error.beforetest.check", "true") );
 		boolean dismiss = "true".equals( ConfigProperties.getStringProperty("dialog.error.beforetest.dismiss", "false") );
@@ -308,6 +309,8 @@ public class AjaxCommonTest {
 			}
 		}
 
+		app.zPageMain.zCloseOpenDialogs();
+		app.zPageMain.zCloseComposeTabs();
 		logger.info("commonTestAfterMethod: finish");
 	}
 
@@ -380,7 +383,7 @@ public class AjaxCommonTest {
 			}
 		}
 	}
-	
+
 	public void zUpload (String filePath, SeparateWindowFormMailNew window) throws HarnessException {
 
 		// File name
@@ -403,7 +406,7 @@ public class AjaxCommonTest {
 			}
 		}
 	}
-	
+
 	public void zUpload (String filePath, SeparateWindowDisplayMail window) throws HarnessException {
 
 		// File name
