@@ -38,9 +38,10 @@ public class FormSignatureNew extends AbsForm {
 		public static final String signatureBody = "css=textarea[id*='TEXTAREA_SIGNATURE']";
 		public static final String zToolbarSaveID = "zb__PREF__SAVE_title";
 		public static final String zToolbarCancelID = "zb__PREF__CANCEL_title";
-		// TODO: Need to I18N these locators
-		public static final String formatAsText = "//td[contains(@id,'_title') and contains (text(),'"+I18N.FORMAT_AS_PLAIN_TEXT+"')]";
-		public static final String formatAsHtml = "//td[contains(@id,'_title') and contains (text(),'"+I18N.FORMAT_AS_HTML_TEXT+"')]";
+		public static final String formatAsText = "//td[contains(@id,'_title') and contains (text(),'"
+				+ I18N.FORMAT_AS_PLAIN_TEXT + "')]";
+		public static final String formatAsHtml = "//td[contains(@id,'_title') and contains (text(),'"
+				+ I18N.FORMAT_AS_HTML_TEXT + "')]";
 		public static final String zFrame = "css=iframe[id='TEXTAREA_SIGNATURE_ifr']";
 		public static final String zHtmlBodyField = "css=body";
 	}
@@ -87,13 +88,8 @@ public class FormSignatureNew extends AbsForm {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		
-		//
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
-
-		// Based on the button specified, take the appropriate action(s)
-		//
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == Button.B_SAVE) {
 
@@ -103,8 +99,8 @@ public class FormSignatureNew extends AbsForm {
 		} else if (button == Button.B_CANCEL) {
 
 			locator = "id=" + Locators.zToolbarCancelID;
-			page = new DialogWarning(DialogWarning.DialogWarningID.SaveSignatureChangeMessage, this.MyApplication, ((AppAjaxClient)this.MyApplication).zPageSignature);
-
+			page = new DialogWarning(DialogWarning.DialogWarningID.SaveSignatureChangeMessage, this.MyApplication,
+					((AppAjaxClient) this.MyApplication).zPageSignature);
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
@@ -112,11 +108,10 @@ public class FormSignatureNew extends AbsForm {
 
 		// Make sure the button exists
 		if (!this.sIsElementPresent(locator))
-			throw new HarnessException("Button is not present locator="
-					+ locator + " button=" + button);
+			throw new HarnessException("Button is not present locator=" + locator + " button=" + button);
 
 		// Click it
-		this.zClickAt(locator,"");
+		this.zClickAt(locator, "");
 
 		return (page);
 	}
@@ -139,25 +134,20 @@ public class FormSignatureNew extends AbsForm {
 		String locator = null;
 
 		if (field == Field.SignatureName) {
-		   locator = Locators.zsignatureNameLabel;
+			locator = Locators.zsignatureNameLabel;
 
 		} else if (field == Field.SignatureBody) {
 			locator = Locators.signatureBody;
 			this.sFocus(locator);
-			this.zClickAt(locator,"");
+			this.zClickAt(locator, "");
+			clearField(locator);
 			sType(locator, value);
-
-			if (!(sGetValue(locator).equalsIgnoreCase(value))) {
-				this.sFocus(locator);
-				this.zClickAt(locator,"");
-				sType(locator, value);
-			}
 			return;
 
 		} else if (field == Field.SignatureHtmlBody) {
-			sClickAt("//div[contains(@class,'ZmHtmlEditor')]","");
+			sClickAt("//div[contains(@class,'ZmHtmlEditor')]", "");
 			zTypeFormattedText("css=iframe[id*=ifr]", value);
-		    return;
+			return;
 
 		} else {
 
@@ -168,9 +158,8 @@ public class FormSignatureNew extends AbsForm {
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
-	    this.zClickAt(locator,"");
-	    clearField(locator);
-	    sType(locator, value);
+		this.zClickAt(locator, "");
+		sType(locator, value);
 		this.zWaitForBusyOverlay();
 
 	}

@@ -289,8 +289,8 @@ public class PageSearchResults extends AbsTab {
 
 		
 		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		String optionLocator = null;
+		AbsPage page = null;
 
 		if (pulldown == Button.B_GEAR_BOX) {
 

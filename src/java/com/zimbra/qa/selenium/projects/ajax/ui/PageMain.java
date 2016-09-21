@@ -320,7 +320,7 @@ public class PageMain extends AbsTab {
 	 */
 	public void zCloseOpenDialogs() throws HarnessException {
 
-		String okButtonLocator = "css=div[class='DwtDialog'] td[id$='_title']:contains('Ok')";
+		String okButtonLocator = "css=div[class='DwtDialog'] td[id$='_title']:contains('OK')";
 		String noButtonLocator = "css=div[class='DwtDialog'] td[id$='_title']:contains('No')";
 		String cancelButtonLocator = "css=div[class='DwtDialog'] td[id$='_title']:contains('Cancel')";
 		String closeButtonLocator = "css=div[class='DwtDialog'] td[id$='_title']:contains('Close')";
@@ -336,6 +336,7 @@ public class PageMain extends AbsTab {
 						this.sClick("css=td[id^='YesNoCancel'][id$='_title']:contains('No')");
 						SleepUtil.sleepSmall();
 					}
+
 				} else if (sIsVisible(okButtonLocator)) {
 					this.sClick(okButtonLocator);
 					SleepUtil.sleepSmall();

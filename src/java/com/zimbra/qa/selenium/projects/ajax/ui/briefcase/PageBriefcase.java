@@ -210,7 +210,7 @@ public class PageBriefcase extends AbsTab {
 			throw new HarnessException("Button cannot be null!");
 
 		String locator = null;
-		AbsPage page = null; // If set, this page will be returned
+		AbsPage page = null;
 
 		if (button == Button.B_NEW) {
 			// Check if the button is disabled
@@ -319,7 +319,7 @@ public class PageBriefcase extends AbsTab {
 		
 		String pulldownLocator = null;
 		String optionLocator = null;
-		AbsPage page = null; // If set, this page will be returned
+		AbsPage page = null;
 
 		// Based on the button specified, take the appropriate action(s)
 		if (pulldown == Button.B_NEW) {
@@ -560,7 +560,7 @@ public class PageBriefcase extends AbsTab {
 		//
 		String pulldownLocator = null;
 		String optionLocator = null;
-		AbsPage page = null; // If set, this page will be returned
+		AbsPage page = null;
 
 		// Based on the button specified, take the appropriate action(s)
 		if (pulldown == Button.B_TAG) {
@@ -639,7 +639,7 @@ public class PageBriefcase extends AbsTab {
 		
 		String pulldownLocator = null;
 		String optionLocator = null;
-		AbsPage page = null; // If set, this page will be returned
+		AbsPage page = null;
 
 		if (pulldown == Button.B_MOVE) {
 

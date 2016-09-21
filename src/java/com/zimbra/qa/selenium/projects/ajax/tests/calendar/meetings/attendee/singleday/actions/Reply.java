@@ -70,7 +70,7 @@ public class Reply extends CalendarWorkWeekTest {
         // When the form opens, add some text and then Submit
         String replyText= "ReplyByAttendee";
         FormMailNew mailComposeForm = (FormMailNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK,Button.O_REPLY_MENU, apptSubject);
-        mailComposeForm.zFillField(Field.Body, replyText);		
+        mailComposeForm.zFillField(Field.Body, " " + replyText);		
 		mailComposeForm.zSubmit();
 		
 		// Verify the reply from attendee appears in the inbox at organizer
