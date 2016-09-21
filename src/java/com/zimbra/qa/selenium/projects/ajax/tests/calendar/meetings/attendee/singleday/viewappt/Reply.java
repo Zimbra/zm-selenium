@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.viewappt;
 
 import java.util.Calendar;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -32,7 +30,6 @@ public class Reply extends CalendarWorkWeekTest {
 	public Reply() {
 		logger.info("New "+ Reply.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		
 	}
 	
 	@Bugs(ids = "102475")
@@ -73,7 +70,7 @@ public class Reply extends CalendarWorkWeekTest {
 
 		// --------------- Login to attendee & reply to meeting invite ----------------------------------------------------
         FormMailNew mailComposeForm = (FormMailNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_REPLY_MENU, apptSubject);;
-        mailComposeForm.zFillField(Field.Body, modifiedBody);		
+        mailComposeForm.zFillField(Field.Body, " " + modifiedBody);		
 		mailComposeForm.zSubmit();
 		app.zPageCalendar.zToolbarPressButton(Button.B_CLOSE);
 		

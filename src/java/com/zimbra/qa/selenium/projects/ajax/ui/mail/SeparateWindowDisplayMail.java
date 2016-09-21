@@ -205,9 +205,9 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 		//
 		String container = "css=div[id^='ztb__MSG']";
-		String locator = null; // If set, this will be clicked
+		String locator = null;
 		String containerToolbar = "css=div[id^='ztb__MSG']";
-		AbsPage page = null; // If set, this page will be returned
+		AbsPage page = null;
 
 		if (button == Button.B_CLOSE) {
 

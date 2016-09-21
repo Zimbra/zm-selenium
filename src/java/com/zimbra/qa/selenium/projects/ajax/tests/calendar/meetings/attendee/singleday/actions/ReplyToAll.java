@@ -71,7 +71,7 @@ public class ReplyToAll extends CalendarWorkWeekTest {
         // When the form opens, add some text and then Submit
         String replyText= "ReplyAllByAttendee";
         FormMailNew mailComposeForm = (FormMailNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK,Button.O_REPLY_TO_ALL_MENU, apptSubject);
-        mailComposeForm.zFillField(Field.Body, replyText);		
+        mailComposeForm.zFillField(Field.Body, " " + replyText);		
 		mailComposeForm.zSubmit();
 		
 		// Verify the reply appears in the inbox at organizer

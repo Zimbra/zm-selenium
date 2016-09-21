@@ -62,8 +62,8 @@ public class DialogConfirmDeleteSeries extends DialogWarning {
 		tracer.trace("Check the radio " + button + " button");
 
 		
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		String locator = null;
+		AbsPage page = null;
 
 		// Based on the button specified, take the appropriate action(s)
 
