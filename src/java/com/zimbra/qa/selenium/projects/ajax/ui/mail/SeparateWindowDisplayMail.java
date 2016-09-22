@@ -14,9 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
+
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
 import java.util.*;
@@ -30,7 +28,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.*;
 /**
  * Represents a "Launch in New Window" display of a message
  * <p>
- * 
+ *
  * @author Matt Rhoades
  *
  */
@@ -90,21 +88,15 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 		} else if (field == Field.OnBehalfOf) {
 			locator = container + " span[id$='_obo_span'] span[class='addrBubble']>span";
-			// locator = container + "
-			// td[id$='_from']>span:nth-child(3)>span[class='addrBubble']";
 
 			if (!sIsElementPresent(locator)) {
-				// no email zimlet case
 				locator = container + " span[id$='_obo_span']";
 			}
 
 		} else if (field == Field.ResentFrom) {
 
-			// locator = container + " td[id$='_from'] span[class='addrBubble']
-			// span:contains(resentfrom)";
 			locator = container + " span[id$='_bwo_span'] span[class='addrBubble']>span";
 			if (!sIsElementPresent(locator)) {
-				// no email zimlet case
 				locator = container + " span[id$='_bwo_span']";
 			}
 
@@ -133,25 +125,17 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 			String timeAndDateLocator = container + " tr[id$='_hdrTableTopRow'] td[class~='DateCol'] ";
 
-			// Make sure the subject is present
 			if (!sIsElementPresent(timeAndDateLocator))
 				throw new HarnessException("Unable to find the time and date field!");
 
 			// Get the subject value
 			String time = this.sGetText(timeAndDateLocator).trim();
-			// String date = this.zGetMailProperty(Field.ReceivedDate);
-
-			// Strip the date so that only the time remains
-			// String time = timeAndDate.replace(date, "").trim();
 
 			logger.info("zGetDisplayedValue(" + field + ") = " + time);
 			return (time);
 
 		} else if (field == Field.Body) {
 
-			/*
-			 * To get the body contents, need to switch iframes
-			 */
 			String text = sGetText("css=iframe[id$='_body__iframe']", "css=body");
 			logger.info("zGetDisplayedValue(" + field + ") = " + text);
 			return (text);
@@ -162,8 +146,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 		}
 
-		// Default behavior
-		//
 		String value = sGetText(locator);
 
 		logger.info("zGetDisplayedValue(" + field + ") = " + value);
@@ -179,8 +161,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 	public void zWaitForActive() throws HarnessException {
 		super.zWaitForActive(PageLoadDelay);
 
-		// Sometimes it takes a while for the separate window to load
-		// Look for the subject before returning
 		String locator = "css=div[id='zv__MSG-1__MSG'] tr[id='zv__MSG__MSG-1_hdrTableTopRow'] td[class*='SubjectCol']";
 		for (int i = 0; i < 30; i++) {
 
@@ -203,7 +183,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		//
 		String container = "css=div[id^='ztb__MSG']";
 		String locator = null;
 		String containerToolbar = "css=div[id^='ztb__MSG']";
@@ -542,11 +521,13 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		}
 
 		if (pulldownLocator != null) {
-			this.zClickAt(pulldownLocator, "");
+			this.sClick(pulldownLocator);
+			SleepUtil.sleepVerySmall();
 			if (optionLocator != null) {
-				this.zClickAt(optionLocator, "");
+				this.sClick(optionLocator);
 			}
 		}
+		this.zWaitForBusyOverlay();
 
 		return (page);
 
@@ -563,13 +544,11 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		AbsPage page = null;
 
 		if (shortcut == Shortcut.S_ESCAPE) {
-			// Close the window
 			zKeyDown("27");
 			return page;
 		}
 
 		zTypeCharacters(shortcut.getKeys());
-
 		return (page);
 
 	}
@@ -724,7 +703,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			}
 			page = null;
 
-			this.zClickAt(locator, "0,0");
+			this.sClick(locator);
 			return (page);
 
 		} else if (button == Button.B_ATTACH) {
@@ -753,15 +732,13 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		} else if (button == Button.B_ATTACH_INLINE) {
 			locator = "css=td[id$='_title']:contains('Attach Inline')";
 			page = null;
-			// Explicitly use sclick >> sclickat not working
-			this.zClickAt(locator, "0,0");
+
+			this.sClick(locator);
 
 			return (page);
 
 		} else {
-
 			throw new HarnessException("no implementation for button: " + button);
-
 		}
 
 		if (locator == null)
@@ -770,9 +747,8 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("locator is not present for button " + button + " : " + locator);
 
-		this.zClickAt(locator, "");
-
-		// this.zWaitForBusyOverlay();
+		this.sClick(locator);
+		this.zWaitForBusyOverlay();
 
 		if (page != null) {
 			page.zWaitForActive();
@@ -890,18 +866,13 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		} else {
 
 			throw new HarnessException("No logic defined for pulldown " + pulldown + " and option " + option);
-
 		}
 
-		// Click to dropdown and corresponding option
-
-		// window.zSetWindowTitle("Reply");
-		zClickAt(pulldownLocator, "");
-
+		sClick(pulldownLocator);
 		zWaitForBusyOverlay();
-		this.zClickAt(optionLocator, "");
 
-		// zWaitForBusyOverlay();
+		this.sClick(optionLocator);
+		zWaitForBusyOverlay();
 
 		if (page != null) {
 			page.zWaitForActive();

@@ -17,31 +17,26 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
  * ***** END LICENSE BLOCK *****
  */
 
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
 
-
 public class ReplyMail extends PrefGroupMailByMessageTest {
-
 
 	public ReplyMail() {
 		logger.info("New "+ ReplyMail.class.getCanonicalName());
-
-
 	}
 
+	
 	@Test( description = "Reply to a mail by pressing Reply button - in separate window",
 			groups = { "smoke" })
+	
 	public void ReplyMailFromNewWindow_01() throws HarnessException {
 
 		String subject = "subject"+ ConfigProperties.getUniqueString();		
-
 
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
@@ -54,7 +49,6 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 						"</mp>" +
 						"</m>" +
 				"</SendMsgRequest>");
-
 
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(subject);
@@ -97,7 +91,6 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 				window = null;
 			}
 			app.zPageMail.zSelectWindow(null);
-
 		}
 
 		// From the receiving end, verify the message details
@@ -108,7 +101,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
 		ZAssert.assertStringContains(received.dSubject, subject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(received.dSubject, "Re", "Verify the subject field contains the 'Re' prefix");
-
+		
 		//window.zKeyboardShortcut(Shortcut.S_MAIL_MARKSPAM);
 
 	}
@@ -132,7 +125,6 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 						"</mp>" +
 						"</m>" +
 				"</SendMsgRequest>");
-
 
 		// Refresh current view
 		app.zPageMail.zVerifyMailExists(subject);
@@ -190,11 +182,12 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
 		ZAssert.assertStringContains(received.dSubject, subject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(received.dSubject, "Re", "Verify the subject field contains the 'Re' prefix");
-
 	}
+	
 	
 	@Test( description = "Reply All a  message , using keyboard shortcut (keyboard='a') - in a separate window",
 			groups = { "smoke" })
+	
 	public void ReplyAllMailFromNewWindow_03() throws HarnessException {
 
 		String subject = "subject"+ ConfigProperties.getUniqueString();		

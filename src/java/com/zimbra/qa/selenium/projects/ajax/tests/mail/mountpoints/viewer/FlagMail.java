@@ -287,7 +287,7 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 			// Wait for the toaster
 			Toaster toaster = app.zPageMain.zGetToaster();	
 			toaster.zWaitForActive();
-			ZAssert.assertEquals(toaster.zGetToastMessage(), "Permission denied.", "Verify the toaster shows");	// TODO: I18N
+			ZAssert.assertEquals(toaster.zGetToastMessage(), "Permission denied.", "Verify the toaster shows");
 
 			// https://bugzilla.zimbra.com/show_bug.cgi?id=73696#c9
 			// A "Permission Denied" error popup *might* occur

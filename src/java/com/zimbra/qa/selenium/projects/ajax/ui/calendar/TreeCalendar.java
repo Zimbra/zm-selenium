@@ -74,7 +74,7 @@ public class TreeCalendar extends AbsTree {
 			
 			if ( (action == Action.A_RIGHTCLICK) && (option == Button.O_NEW_CALENDAR || option == Button.O_NEW_FOLDER) ) {
 				
-				// TODO: I18N
+			
 
 				actionLocator = "css=td[id='ztih__main_Calendar__CALENDAR_textCell']"; // override the default
 				optionLocator = "css=table[class$='MenuTable'] td[id$='_title']:contains(New Calendar)";

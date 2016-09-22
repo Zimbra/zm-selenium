@@ -410,11 +410,11 @@ public class DialogEditQuickCommand extends AbsDialog {
 			
 			String operation = this.sGetText(locator);
 			
-			if ( operation.equals("Move into folder") ) { // TODO: I18N
+			if ( operation.equals("Move into folder") ) {
 				
 				page = new DialogMove(MyApplication, ((AppAjaxClient) MyApplication).zPagePreferences);
 				
-			} else if ( operation.equals("Tag with") ) {// TODO: I18N
+			} else if ( operation.equals("Tag with") ) {
 				
 				page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPagePreferences);
 				

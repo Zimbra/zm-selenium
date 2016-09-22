@@ -76,9 +76,9 @@ public class ReceiveReadReceipt extends PrefGroupMailByMessageTest {
 
 		ZAssert.assertEquals(actual.zGetMailProperty(Field.To), app.zGetActiveAccount().EmailAddress, "Verify the message is to the test account");
 		ZAssert.assertEquals(actual.zGetMailProperty(Field.From),	ZimbraAccount.AccountA().EmailAddress, "Verify the message is from the destination");
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Subject), "Read-Receipt", "Verify the message subject contains the correct value");	// TODO: I18N
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), "The message sent on", "Verify the message subject contains the correct value");	// TODO: I18N
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), subject, "Verify the message subject contains the correct value");	// TODO: I18N
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Subject), "Read-Receipt", "Verify the message subject contains the correct value");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), "The message sent on", "Verify the message subject contains the correct value");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), subject, "Verify the message subject contains the correct value");
 		
 		
 	}

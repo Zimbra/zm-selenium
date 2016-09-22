@@ -96,8 +96,8 @@ public class FindSharesAccepted extends AjaxCommonTest {
 		
 		ZAssert.assertNotNull(found, "verify the shared item appears in the list");
 		ZAssert.assertStringContains(found.item, ownerFoldername, "Verify the owner foldername");
-		ZAssert.assertEquals(found.type, "Folder", "Verify the owner item type"); // TODO: I18N
-		ZAssert.assertEquals(found.folder, mountpointFoldername, "Verify the mountpoint name"); // TODO: I18N
+		ZAssert.assertEquals(found.type, "Folder", "Verify the owner item type");
+		ZAssert.assertEquals(found.folder, mountpointFoldername, "Verify the mountpoint name");
 		ZAssert.assertEquals(found.email, ZimbraAccount.AccountC().EmailAddress, "Verify the share email destination");
 
 		

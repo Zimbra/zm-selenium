@@ -408,11 +408,12 @@ public class FormApptNew extends AbsForm {
 
 		if (button == Button.B_SEND) {
 
-			locator = Locators.Button_Send;
-
-			// Click on send
-			this.zClick(locator);
-
+			if (sIsElementPresent("css=div[id^='ztb__APPT-2'] td[id$='_SEND_INVITE_title']")) {
+				locator = "css=div[id^='ztb__APPT-2'] td[id$='_SEND_INVITE_title']";
+			} else {
+				locator = Locators.Button_Send;
+			}
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
 			// Wait for the message to be delivered
