@@ -83,7 +83,7 @@ public class RemoveDelegate extends AjaxCommonTest {
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		// TODO: Maybe this button should be abstracted?
-		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Remove')"; // TODO: I18N
+		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Remove')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator), "Verify the add delegate button is present");
 		app.zPagePreferences.zClickAt(buttonLocator, "");
 		

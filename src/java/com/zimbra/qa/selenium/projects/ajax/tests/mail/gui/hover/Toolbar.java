@@ -17,44 +17,31 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.gui.hover;
 
 import org.testng.annotations.Test;
-
-import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 
-
 public class Toolbar extends PrefGroupMailByMessageTest {
 
-	
 	public Toolbar() {
-		logger.info("New "+ Toolbar.class.getCanonicalName());
-		
+		logger.info("New " + Toolbar.class.getCanonicalName());
 	}
+
 	
-	@Test( description = "Hover over Delete button",
-			groups = { "deprecated" })		// Toolbar tooltips are now handled in the browser, not the DOM
+	@Test(description = "Hover over Delete button", groups = { "functional" })
 	public void Toolbar_01() throws HarnessException {
-		
-		AbsTooltip tooltip = app.zPageMail.zHoverOver(Button.B_DELETE);
-		
-		String contents = tooltip.zGetContents();
-		
-		ZAssert.assertStringContains(contents, "Trash", "Verify the tool tip text"); // TODO: I18N
-		
+
+		// No DOM or java script support to verify tooltip so checking through attributes
+		String tooltip = app.zPageMail.sGetAttribute("css=div[id='zb__TV-main__DELETE']@title");
+		ZAssert.assertStringContains(tooltip, "Move selected item(s) to Trash [Del]", "Verify tooltip exists as a title");
 	}
 
-	@Test( description = "Hover over Reply button",
-			groups = { "deprecated" })		// Toolbar tooltips are now handled in the browser, not the DOM
+	
+	@Test(description = "Hover over Reply button", groups = { "functional" })
 	public void Toolbar_02() throws HarnessException {
-		
-		AbsTooltip tooltip = app.zPageMail.zHoverOver(Button.B_REPLY);
-		
-		String contents = tooltip.zGetContents();
-		
-		ZAssert.assertStringContains(contents, "Reply", "Verify the tool tip text"); // TODO: I18N
 
-		
+		// No DOM or java script support to verify tooltip so checking through attributes
+		String tooltip = app.zPageMail.sGetAttribute("css=div[id='zb__TV-main__REPLY']@title");
+		ZAssert.assertStringContains(tooltip, "Reply to the sender of the selected message [r]", "Verify tooltip exists as a title");
 	}
-
 
 }

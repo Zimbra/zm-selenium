@@ -217,7 +217,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertNull(ownerAppt, "Verify meeting invite is deleted from the owner's calendar");
 		
 		// Verify meeting cancellation message with exact from, sender and body content
-		MailItem canceledApptMail = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:inbox subject:(Cancelled) subject:("+ apptSubject +")"); // TODO: I18N
+		MailItem canceledApptMail = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:inbox subject:(Cancelled) subject:("+ apptSubject +")");
 		ZAssert.assertNotNull(canceledApptMail, "Verify meeting cancellation message received to attendee");
 		ZAssert.assertStringContains(canceledApptMail.dBodyText, modifyApptBody, "Verify the body field value is correct");
 		

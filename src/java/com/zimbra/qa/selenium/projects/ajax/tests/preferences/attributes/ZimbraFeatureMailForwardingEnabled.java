@@ -72,7 +72,7 @@ public class ZimbraFeatureMailForwardingEnabled extends AjaxCommonTest {
 		boolean exists = app.zPagePreferences.sIsElementPresent(locator);
 		ZAssert.assertFalse(exists, "Verify the forwarding address field is not present");
 
-		locator = "css=td.ZOptionsField:contains('Forward a copy to:')";	// TODO: I18N
+		locator = "css=td.ZOptionsField:contains('Forward a copy to:')";
 		exists = app.zPagePreferences.sIsElementPresent(locator);
 		ZAssert.assertFalse(exists, "Verify the 'Forward a copy to:' label is not present");
 
@@ -105,7 +105,7 @@ public class ZimbraFeatureMailForwardingEnabled extends AjaxCommonTest {
 		
 
 		// Verify the field is not present
-		String locator = "css=td.ZOptionsLabel:contains('Message Arrival')";	// TODO: I18N
+		String locator = "css=td.ZOptionsLabel:contains('Message Arrival')";
 		
 		boolean exists = app.zPagePreferences.sIsElementPresent(locator);
 		ZAssert.assertTrue(exists, "Verify the 'Message Arrival' label exists");

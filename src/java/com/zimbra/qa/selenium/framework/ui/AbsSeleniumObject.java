@@ -908,9 +908,7 @@ public abstract class AbsSeleniumObject {
 	public String sGetAttribute(String locator) throws WebDriverException {
 
 		try {
-		    logger.info("getAttribute(" + locator + ")");
-
-		    String attrs = "";
+		    String attrs = null;
 
 			if (locator!=null && locator.lastIndexOf('@') + 1 < locator.length()) {
 			    String elementLocator = locator.substring(0, locator.lastIndexOf('@'));

@@ -359,12 +359,12 @@ public class PageMain extends AbsTab {
 
 		String locator = "css=div[id^='zb__App__tab']";
 		if ( sIsElementPresent(locator) ) {
-			logger.debug("Found compose tabs");
 			int count = this.sGetCssCount(locator);
+			logger.info("Found " + count + " opened compose tabs");
 			for (int i = 1; i <= count; i++) {
-				final String composeLocator = locator + ":nth-child("+i+") td[id$='_right_icon']";
+				final String composeLocator = locator + ":nth-of-type(1) td[id$='_right_icon']";
 				if ( !sIsElementPresent(composeLocator) )
-					throw new HarnessException("Unable to find compose tab close icon "+ composeLocator);
+					throw new HarnessException("Unable to find compose tab close icon " + composeLocator);
 				this.sClick(composeLocator);
 				if (sIsElementPresent("css=td[id^='YesNoCancel'][id$='_title']:contains('No')")) {
 					SleepUtil.sleepSmall();

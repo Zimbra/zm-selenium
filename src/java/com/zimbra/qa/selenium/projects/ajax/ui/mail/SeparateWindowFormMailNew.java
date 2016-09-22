@@ -14,9 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
+
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
 import java.awt.event.KeyEvent;
@@ -42,14 +40,12 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 	public static class Locators {
 
 	}
-	
+
 	public SeparateWindowFormMailNew(AbsApplication application) {
 		super(application);
-		
-		this.DialogWindowTitle = "Compose";
-		
+		this.DialogWindowTitle = "Zimbra: Compose";
 	}
-	
+
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
@@ -58,59 +54,59 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 	public void zFill(MailItem mail) throws HarnessException {
 		logger.info(myPageName() + ".zFill(MailItem)");
 		logger.info(mail.prettyPrint());
-	
-		if ( mail.dSubject != null ) {
+
+		if (mail.dSubject != null) {
 			zFillField(Field.Subject, mail.dSubject);
 
 		}
-		
-		if ( mail.dBodyText != null ) {
+
+		if (mail.dBodyText != null) {
 			zFillField(Field.Body, mail.dBodyText);
 		}
-		
-		if ( mail.dBodyHtml != null ) {
+
+		if (mail.dBodyHtml != null) {
 			sSelectWindow(this.DialogWindowID);
 			String locator = "css=iframe[id*=ifr]";
-			sClickAt(locator,"");
+			sClick(locator);
 			zTypeFormattedText(locator, mail.dBodyHtml);
 		}
-				
+
 		StringBuilder to = null;
 		StringBuilder cc = null;
 		StringBuilder bcc = null;
 		StringBuilder from = null;
-		
+
 		List<RecipientItem> recipients = mail.dAllRecipients();
-		if ( recipients != null ) {
-			if ( !recipients.isEmpty() ) {
-				
+		if (recipients != null) {
+			if (!recipients.isEmpty()) {
+
 				for (RecipientItem r : recipients) {
-					if ( r.dType == RecipientType.To ) {
-						if ( to == null ) {
+					if (r.dType == RecipientType.To) {
+						if (to == null) {
 							to = new StringBuilder();
 							to.append(r.dEmailAddress);
 						} else {
 							to.append(";").append(r.dEmailAddress);
 						}
 					}
-					if ( r.dType == RecipientType.Cc ) {
-						if ( cc == null ) {
+					if (r.dType == RecipientType.Cc) {
+						if (cc == null) {
 							cc = new StringBuilder();
 							cc.append(r.dEmailAddress);
 						} else {
 							cc.append(";").append(r.dEmailAddress);
 						}
 					}
-					if ( r.dType == RecipientType.Bcc ) {
-						if ( bcc == null ) {
+					if (r.dType == RecipientType.Bcc) {
+						if (bcc == null) {
 							bcc = new StringBuilder();
 							bcc.append(r.dEmailAddress);
 						} else {
 							bcc.append(";").append(r.dEmailAddress);
 						}
 					}
-					if ( r.dType == RecipientType.From ) {
-						if ( from == null ) {
+					if (r.dType == RecipientType.From) {
+						if (from == null) {
 							from = new StringBuilder();
 							from.append(r.dEmailAddress);
 						} else {
@@ -118,58 +114,58 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 						}
 					}
 				}
-				
+
 			}
 		}
-		
-		if ( to != null ) {
+
+		if (to != null) {
 			this.zFillField(Field.To, to.toString());
 		}
-		
-		if ( cc != null ) {
+
+		if (cc != null) {
 			this.zFillField(Field.Cc, cc.toString());
 		}
-		
-		if ( bcc != null ) {
+
+		if (bcc != null) {
 			this.zFillField(Field.Bcc, bcc.toString());
 		}
 
 	}
 
 	public void zFillField(Field field, String value) throws HarnessException {
-		logger.info(myPageName() + "zFillField("+ field +", "+ value +")");
+		logger.info(myPageName() + "zFillField(" + field + ", " + value + ")");
 
-		tracer.trace("Set "+ field +" to "+ value);
+		tracer.trace("Set " + field + " to " + value);
 
 		String container = "css=div[id^='zv__COMPOSE']";
 		String locator = null;
-		
-		if ( field == Field.To ) {
-			
+
+		if (field == Field.To) {
+
 			locator = container + " tr[id$='_to_row'] input[id$='_to_control']";
-						
-		} else if ( field == Field.Cc ) {
-			
+
+		} else if (field == Field.Cc) {
+
 			locator = container + " tr[id$='_cc_row'] input[id$='_cc_control']";
-						
-		} else if ( field == Field.Bcc ) {
-			
+
+		} else if (field == Field.Bcc) {
+
 			locator = container + " tr[id$='_bcc_row'] input[id$='_bcc_control']";
-			
-			if ( !zBccIsActive() ) {
+
+			if (!zBccIsActive()) {
 				this.zToolbarPressButton(Button.B_SHOWBCC);
 			}
-						
-		} else if ( field == Field.Subject ) {
-			
+
+		} else if (field == Field.Subject) {
+
 			locator = container + " tr[id$='_subject_row'] input[id$='_subject_control']";
-			
+
 		} else if (field == Field.Body) {
 
 			SleepUtil.sleepLong();
 
 			int frames = sGetCssCountNewWindow("css=iframe");
-			
+
 			logger.debug("Body: # of frames: " + frames);
 			String browser = SeleniumService.getInstance().getSeleniumBrowser();
 
@@ -182,8 +178,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 					locator = "css=textarea[id*='textarea_']";
 
 					if (!this.sIsElementPresent(locator))
-						throw new HarnessException(
-								"Unable to locate compose body");
+						throw new HarnessException("Unable to locate compose body");
 
 					this.sFocus(locator);
 					this.zClick(locator);
@@ -193,11 +188,9 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 				} else if (frames == 2) {
 
-					//locator = "css=iframe[id^='iframe_DWT']";
-					locator ="css=iframe[id$='_content_ifr']";
+					locator = "css=iframe[id$='_content_ifr']";
 					if (!this.sIsElementPresent(locator))
-						throw new HarnessException(
-								"Unable to locate compose body");
+						throw new HarnessException("Unable to locate compose body");
 
 					zTypeFormattedText(locator, value);
 
@@ -207,7 +200,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 			} else {
 				if (frames == 0) {
-					
+
 					// //
 					// Text compose
 					// //
@@ -217,7 +210,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 					return;
 
 				} else if (frames == 1) {
-					
+
 					// //
 					// HTML compose
 					// //
@@ -234,7 +227,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 						zClick(locator);
 						// this.sType(locator, value);
 						zTypeCharacters(value);
-						
+
 					} finally {
 						this.sSelectFrame("relative=top");
 					}
@@ -249,15 +242,15 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 		} else {
 			throw new HarnessException("not implemented for field " + field);
 		}
-		
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for field "+ field);
+
+		if (locator == null) {
+			throw new HarnessException("locator was null for field " + field);
 		}
-		
+
 		this.sFocus(locator);
-		this.zClickAt(locator, "10,10");
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
-		
+
 		sTypeNewWindow(locator, value);
 		SleepUtil.sleepSmall();
 		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
@@ -265,97 +258,86 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 		SleepUtil.sleepSmall();
 		this.zWaitForBusyOverlay();
-		
+
 	}
-	
 
 	private boolean zBccIsActive() throws HarnessException {
 		logger.info(myPageName() + ".zBccIsActive()");
 
 		String locator;
-		
+
 		locator = "css=div[id^='zv__COMPOSE'] tr[id$='_bcc_row']";
-		if ( !sIsElementPresent(locator) )
-			throw new HarnessException("Unable to locate the BCC field "+ locator);
-		
+		if (!sIsElementPresent(locator))
+			throw new HarnessException("Unable to locate the BCC field " + locator);
+
 		locator = locator + "[style*=none]";
 		return (!sIsElementPresent(locator));
 	}
 
-
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
-		tracer.trace("Press the "+ button +" button");
+		tracer.trace("Press the " + button + " button");
 
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
 		String container = "css=div[id^='ztb__COMPOSE']";
 		String locator = null;
 		AbsPage page = null;
 
-		if ( button == Button.B_SEND ) {
+		if (button == Button.B_SEND) {
 
 			locator = container + " div[id$='__SEND'] td[id$='_title']";
 			page = null;
-			
-			this.sClickAt(locator, "0,0");			
+
+			this.sClick(locator);
 			Stafpostqueue postqueue = new Stafpostqueue();
 			postqueue.waitForPostqueue();
-			
+
 			return (page);
 
-		} else if ( button == Button.B_CANCEL ) {
+		} else if (button == Button.B_CANCEL) {
 
 			locator = container + " div[id$='__CANCEL'] td[id$='_title']";
 			page = null;
 
-			this.zClickAt(locator,"0,0");
-
-			// Wait for a while for the window to close
+			this.sClick(locator);
 			SleepUtil.sleepMedium();
 
 			return (page);
 
-		} else if ( button == Button.B_SAVE_DRAFT ) {
+		} else if (button == Button.B_SAVE_DRAFT) {
 
 			locator = container + " div[id$='__SAVE_DRAFT'] td[id$='_title']";
 			page = null;
 
-			this.zClickAt(locator,"0,0");
-
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
 			return (page);
 
-		} else if ( button == Button.B_ADD_ATTACHMENT ) {
+		} else if (button == Button.B_ADD_ATTACHMENT) {
 
 			locator = container + " div[id$='__ATTACHMENT'] td[id$='_title']";
 			page = null;
 
-			
-
-		} else if ( button == Button.B_SPELL_CHECK ) {
+		} else if (button == Button.B_SPELL_CHECK) {
 
 			locator = container + " div[id$='__SPELL_CHECK'] td[id$='_title']";
 			page = null;
 
-			
-
 		} else {
-			
-			throw new HarnessException("no logic defined for button "+ button);
-			
+			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		this.zClickAt(locator,"0,0");
+		this.sClick(locator);
+		this.zWaitForBusyOverlay();
 
 		return (page);
-		
+
 	}
 
-	
 	public AbsPage zPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zPressButton(" + button + ")");
 
@@ -366,7 +348,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 		String locator = null;
 		AbsPage page = null;
-		
+
 		SleepUtil.sleepSmall();
 
 		if (button == Button.O_ATTACH_DROPDOWN) {
@@ -375,138 +357,122 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			} else {
 				locator = "css=td[id='zb__COMPOSE-1___attachments_btn_dropdown']";
 			}
-			
+
 			logger.info(sIsElementPresent("css=td[id='zb__COMPOSE-1___attachments_btn_dropdown'])"));
-			this.zClickAt(locator, "0,0");
-			return(page);
-			
+			this.sClick(locator);
+			return (page);
+
 		} else if (button == Button.B_ATTACH) {
 			if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_title']")) {
 				locator = "css=td[id='zb__COMPOSE-2___attachments_btn_title']";
 			} else {
-				
+
 				logger.info(sIsElementPresent("css=td[id='zb__COMPOSE-1___attachments_btn_title']"));
 				locator = "css=td[id='zb__COMPOSE-1___attachments_btn_title']";
 			}
-			
+
 		} else if (button == Button.B_MY_COMPUTER) {
 			locator = "css=td[id$='_title']:contains('My Computer')";
-			
+
 		} else if (button == Button.B_ATTACH_INLINE) {
 			locator = "css=td[id$='_title']:contains('Attach Inline')";
 			logger.info(sIsElementPresent("css=td[id$='_title']:contains('Attach Inline')"));
-			this.zClickAt(locator, "0,0");
-			return(page);
+			this.sClick(locator);
+			return (page);
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		//Explicitly use sclick >> sclickat not working
 		this.sClick(locator);
-		
 		SleepUtil.sleepMedium();
 
 		return (page);
 	}
-	
-	
-	
-	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
-		logger.info(myPageName() + " zToolbarPressPulldown("+ pulldown +", "+ option +")");
-		
-		tracer.trace("Click pulldown "+ pulldown +" then "+ option);
 
-		if ( pulldown == null )
+	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
+		logger.info(myPageName() + " zToolbarPressPulldown(" + pulldown + ", " + option + ")");
+
+		tracer.trace("Click pulldown " + pulldown + " then " + option);
+
+		if (pulldown == null)
 			throw new HarnessException("Pulldown cannot be null!");
-		
-		if ( option == null )
+
+		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-		
-		//
 		String pulldownLocator = null;
 		String optionLocator = null;
 		AbsPage page = null;
-		
-		// Based on the button specified, take the appropriate action(s)
-		//
 
-		if ( pulldown == Button.B_PRIORITY ) {
-			
-			
+		if (pulldown == Button.B_PRIORITY) {
+
 			pulldownLocator = "css=[id$=__COMPOSE_OPTIONS_title]";
-			
-			if ( option == Button.O_PRIORITY_HIGH ) {
-				
+
+			if (option == Button.O_PRIORITY_HIGH) {
+
 				optionLocator = "css=div[id$=PRIORITY_HIGH]";
-				
+
 				page = null;
 
-			} else if ( option == Button.O_PRIORITY_NORMAL ) {
-				
+			} else if (option == Button.O_PRIORITY_NORMAL) {
+
 				optionLocator = "css=div[id$=PRIORITY_NORMAL]";
 				page = null;
 
-			} else if ( option == Button.O_PRIORITY_LOW ) {
-				
+			} else if (option == Button.O_PRIORITY_LOW) {
+
 				optionLocator = "css=div[id$=PRIORITY_LOW]";
 				page = null;
 
 			} else {
-				throw new HarnessException("unsupported priority option "+ option);
+				throw new HarnessException("unsupported priority option " + option);
 			}
-		
+
 		} else {
-			throw new HarnessException("no logic defined for pulldown "+ pulldown);
+			throw new HarnessException("no logic defined for pulldown " + pulldown);
 		}
 
 		List<String> locators = new ArrayList<String>();
 		locators.add(pulldownLocator);
 		locators.add(optionLocator);
 		this.sClick(locators);
-		
+
 		return (page);
 	}
 
 	public AbsPage zKeyboardShortcut(Shortcut shortcut) throws HarnessException {
-		logger.info(myPageName() + " zKeyboardShortcut("+ shortcut +")");
-		
+		logger.info(myPageName() + " zKeyboardShortcut(" + shortcut + ")");
+
 		if (shortcut == null)
 			throw new HarnessException("Shortcut cannot be null");
 
-		tracer.trace("Using the keyboard, press the "+ shortcut.getKeys() +" keyboard shortcut");
+		tracer.trace("Using the keyboard, press the " + shortcut.getKeys() + " keyboard shortcut");
 
 		AbsPage page = null;
 
-		if (shortcut== Shortcut.S_ESCAPE) {
+		if (shortcut == Shortcut.S_ESCAPE) {
 
-			// This dialog may or may not appear, depending on the message content
-			page = new SeparateWindowDialog(
-					DialogWarning.DialogWarningID.SaveCurrentMessageAsDraft,
-					this.MyApplication,
+			page = new SeparateWindowDialog(DialogWarning.DialogWarningID.SaveCurrentMessageAsDraft, this.MyApplication,
 					this);
-			((AbsSeparateWindow)page).zSetWindowTitle(DialogWindowTitle);
-			((AbsSeparateWindow)page).zSetWindowID(DialogWindowTitle);
+			((AbsSeparateWindow) page).zSetWindowTitle(DialogWindowTitle);
+			((AbsSeparateWindow) page).zSetWindowID(DialogWindowTitle);
 
 			zKeyDown("27");
 			return page;
 
 		}
 
-
 		zTypeCharacters(shortcut.getKeys());
 
-		return (page);	
-		
-	}
-	
-	public boolean waitForComposeWindow() throws HarnessException {
-		String pageTitle = "Zimbra: Compose";
-		sWaitForPopUp(pageTitle,"30000");	
-		sSelectWindow(pageTitle);
-		zWaitForElementPresent("css=textarea[id*='DWT'][class='DwtHtmlEditorTextArea']","10000");
-		return true;
+		return (page);
 	}
 
+	public boolean waitForComposeWindow() throws HarnessException {
+		String pageTitle = "Zimbra: Compose";
+		sWaitForPopUp(pageTitle, "30000");
+		sSelectWindow(pageTitle);
+		zWaitForElementPresent("css=textarea[id*='DWT'][class='DwtHtmlEditorTextArea']", "10000");
+		return true;
+	}
 }

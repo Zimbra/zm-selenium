@@ -1220,8 +1220,6 @@ public class PageMail extends AbsTab {
 				page = new DisplayConversation(MyApplication);
 			}
 
-			
-
 		} else if (action == Action.A_DOUBLECLICK) {
 
 			// Double-Click on the item
@@ -1231,7 +1229,6 @@ public class PageMail extends AbsTab {
 
 			page = new DisplayMail(MyApplication);
 
-			
 		} else if (action == Action.A_CTRLSELECT) {
 
 			throw new HarnessException("implement me!  action = " + action);
@@ -1247,8 +1244,6 @@ public class PageMail extends AbsTab {
 
 			// Return the displayed mail page object
 			page = new ContextMenu(MyApplication);
-
-			
 
 		} else if (action == Action.A_MAIL_CHECKBOX) {
 
@@ -1268,8 +1263,6 @@ public class PageMail extends AbsTab {
 			// No page to return
 			page = null;
 
-			
-
 		} else if (action == Action.A_MAIL_UNCHECKBOX) {
 
 			String selectlocator = itemlocator + " div[id$='__se']>div.ImgCheckboxChecked";
@@ -1287,8 +1280,6 @@ public class PageMail extends AbsTab {
 
 			// No page to return
 			page = null;
-
-			
 
 		} else if (action == Action.A_MAIL_EXPANDCONVERSATION) {
 
@@ -1339,8 +1330,6 @@ public class PageMail extends AbsTab {
 			// No page to return
 			page = null;
 
-			
-
 		} else {
 			throw new HarnessException("implement me!  action = " + action);
 		}
@@ -1349,7 +1338,6 @@ public class PageMail extends AbsTab {
 			page.zWaitForActive();
 		}
 
-		// default return command
 		return (page);
 
 	}
@@ -1378,9 +1366,6 @@ public class PageMail extends AbsTab {
 		String listLocator;
 		String rowLocator;
 		String itemlocator = null;
-
-		// Find the item locator
-		//
 
 		if (zGetPropMailView() == PageMailView.BY_MESSAGE) {
 			listLocator = "css=ul[id='zl__TV-main__rows']";
@@ -1417,11 +1402,7 @@ public class PageMail extends AbsTab {
 
 		if (action == Action.A_RIGHTCLICK) {
 
-			// Right-Click on the item
 			this.zRightClickAt(itemlocator, "");
-
-			// Now the ContextMenu is opened
-			// Click on the specified option
 
 			String optionLocator = "css=div[id^='zm__CLV-main__']";
 			if (zGetPropMailView() == PageMailView.BY_MESSAGE) {
@@ -1437,64 +1418,46 @@ public class PageMail extends AbsTab {
 				optionLocator += " div[id*S='MARK_READ'] td[id$='_title']";
 				page = null;
 
-				// FALLTHROUGH
-
 			} else if (option == Button.O_MARK_AS_UNREAD) {
 
 				optionLocator += " div[id*='MARK_UNREAD'] td[id$='_title']";
 				page = null;
-
-				// FALLTHROUGH
 
 			} else if (option == Button.B_DELETE) {
 
 				optionLocator += " div[id*='DELETE'] td[id$='_title']";
 				page = null;
 
-				// FALLTHROUGH
-
 			} else if (option == Button.B_REPLY) {
 
 				optionLocator += " div[id^='REPLY'] td[id$='_title']";
 				page = null;
-
-				// FALLTHROUGH
 
 			} else if (option == Button.B_REPLYALL) {
 
 				optionLocator += " div[id^='REPLY'] td[id$='_title']";
 				page = null;
 
-				// FALLTHROUGH
-
 			} else if (option == Button.B_FORWARD) {
 
 				optionLocator += " div[id^='REPLY'] td[id$='_title']";
 				page = null;
 
-				// FALLTHROUGH
-
 			} else if (option == Button.B_REDIRECT) {
 
 				optionLocator += " div[id*='REDIRECT'] td[id$='_title']";
-
 				page = new DialogRedirect(this.MyApplication, this);
-
-				// FALLTHROUGH
 
 			} else if (option == Button.B_MUTE) {
 
 				optionLocator += " div[id^='MUTE_CONV'] td[id$='_title']";
 				page = null;
 
-				// FALLTHROUGH
-
 			} else if (option == Button.O_EDIT_AS_NEW) {
 
 				optionLocator += " div[id*='EDIT_AS_NEW'] td[id$='_title']";
 				page = new FormMailNew(this.MyApplication);
 
-				// FALLTHROUGH
 
 			} else if (option == Button.O_CREATE_APPOINTMENT) {
 				optionLocator += " div[id^='zmi__CLV-main__CREATE_APPT'] td[id^='zmi__CLV-main__CREATE_APPT']['_title']";
@@ -1505,18 +1468,12 @@ public class PageMail extends AbsTab {
 				optionLocator += " div[id^='zmi__TV-main__CREATE_TASK'] td[id$='_title']";
 				page = null;
 
-				// FALLTHROUGH
-
 			} else {
 				throw new HarnessException("implement action:" + action + " option:" + option);
 			}
 
-			// click on the option
 			this.zClickAt(optionLocator, "");
-
 			this.zWaitForBusyOverlay();
-
-			
 
 		} else {
 			throw new HarnessException("implement me!  action = " + action);
@@ -1647,7 +1604,6 @@ public class PageMail extends AbsTab {
 		if (dynamic == null)
 			throw new HarnessException("dynamic object cannot be null!");
 
-		
 		String pulldownLocator = null;
 		String optionLocator = null;
 		String dynamicLocator = null;
@@ -1808,7 +1764,6 @@ public class PageMail extends AbsTab {
 		if (dynamic == null)
 			throw new HarnessException("Option cannot be null!");
 
-		
 		String pulldownLocator = null;
 		String optionLocator = null;
 		AbsPage page = null;

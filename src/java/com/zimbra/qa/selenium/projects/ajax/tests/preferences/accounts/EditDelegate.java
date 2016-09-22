@@ -75,7 +75,7 @@ public class EditDelegate extends AjaxCommonTest {
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		// TODO: Maybe this button should be abstracted?
-		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')"; // TODO: I18N
+		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator), "Verify the add delegate button is present");
 		app.zPagePreferences.zClickAt(buttonLocator, "");
 		
@@ -161,7 +161,7 @@ public class EditDelegate extends AjaxCommonTest {
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		// TODO: Maybe this button should be abstracted?
-		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')"; // TODO: I18N
+		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator), "Verify the add delegate button is present");
 		app.zPagePreferences.zClickAt(buttonLocator, "");
 		
@@ -245,7 +245,7 @@ public class EditDelegate extends AjaxCommonTest {
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		// TODO: Maybe this button should be abstracted?
-		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')"; // TODO: I18N
+		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator), "Verify the add delegate button is present");
 		app.zPagePreferences.zClickAt(buttonLocator, "");
 		
@@ -321,7 +321,7 @@ public class EditDelegate extends AjaxCommonTest {
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		// TODO: Maybe this button should be abstracted?
-		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')"; // TODO: I18N
+		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator), "Verify the add delegate button is present");
 		app.zPagePreferences.zClickAt(buttonLocator, "");
 		
@@ -404,7 +404,7 @@ public class EditDelegate extends AjaxCommonTest {
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		// TODO: Maybe this button should be abstracted?
-		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')"; // TODO: I18N
+		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator), "Verify the add delegate button is present");
 		app.zPagePreferences.zClickAt(buttonLocator, "");
 		
@@ -484,7 +484,7 @@ public class EditDelegate extends AjaxCommonTest {
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		// TODO: Maybe this button should be abstracted?
-		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')"; // TODO: I18N
+		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator), "Verify the add delegate button is present");
 		app.zPagePreferences.zClickAt(buttonLocator, "");
 		

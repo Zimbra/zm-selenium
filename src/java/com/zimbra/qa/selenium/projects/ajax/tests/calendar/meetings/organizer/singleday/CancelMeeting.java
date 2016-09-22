@@ -399,7 +399,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		
 
 		// Verify the meeting no longer appears in the attendee's calendar
-		MailItem canceledApptMail = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "in:inbox subject:(Cancelled) subject:("+ apptSubject +")"); // TODO: I18N
+		MailItem canceledApptMail = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "in:inbox subject:(Cancelled) subject:("+ apptSubject +")");
 		
 		// Verify meeting cancellation message with exact body content
 		ZAssert.assertNotNull(canceledApptMail, "Verify meeting cancellation message received to attendee");
