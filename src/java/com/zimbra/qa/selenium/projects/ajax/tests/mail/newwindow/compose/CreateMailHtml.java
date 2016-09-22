@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.compose;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -28,24 +27,22 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowFormMailNew;
 public class CreateMailHtml extends PrefGroupMailByMessageTest {
 
 	public CreateMailHtml() {
-		logger.info("New "+ CreateMailHtml.class.getCanonicalName());
-
+		logger.info("New " + CreateMailHtml.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 		super.startingAccountPreferences.put("zimbraPrefComposeInNewWindow", "TRUE");
-
 	}
 
-	@Bugs( ids = "101612")
-	@Test( description = "Send a mail using HTML editor - in a separate window", 
-		groups = { "sanity" })
-	
+	@Bugs(ids = "101612")
+	@Test(description = "Send a mail using HTML editor - in a separate window", groups = { "sanity1" })
+
 	public void CreateMailHtml_01() throws HarnessException {
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
-		
+		mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
+
 		// Open the new mail form
 		SeparateWindowFormMailNew window = null;
 		String windowTitle = "Zimbra: Compose";
@@ -56,72 +53,51 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 
 			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
-
-			window.waitForComposeWindow();
-			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 			// Fill out the form with the data
 			window.zFill(mail);
-			
-			mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
-			window.sSelectWindow(windowTitle);
-			String locator = "css=iframe[id*=ifr]";
-			window.zWaitForElementPresent(locator, "5000");
-			window.sClickAt(locator,"");
-			window.zTypeFormattedText(locator, mail.dBodyHtml);
-			
+
 			// Send the message
 			window.zToolbarPressButton(Button.B_SEND);
-			
+
 		} finally {
 
 			// Make sure to close the window
-			if ( window != null ) {
+			if (window != null) {
 				window.zCloseWindow(windowTitle);
 				window = null;
 			}
 			app.zPageMail.zSelectWindow(null);
-
 		}
-		
+
 		for (int i = 0; i < 30; i++) {
 
-			ZimbraAccount.AccountA().soapSend(
-					"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
-			+			"<query>subject:("+ mail.dSubject +")</query>"
-			+		"</SearchRequest>");
+			ZimbraAccount.AccountA().soapSend("<SearchRequest types='message' xmlns='urn:zimbraMail'>"
+					+ "<query>subject:(" + mail.dSubject + ")</query>" + "</SearchRequest>");
 			com.zimbra.common.soap.Element node = ZimbraAccount.AccountA().soapSelectNode("//mail:m", 1);
-			if ( node != null ) {
-				// found the message
+			if (node != null) {
 				break;
 			}
-			
 			SleepUtil.sleep(1000);
-
 		}
-		
-		ZimbraAccount.AccountA().soapSend(
-						"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
-				+			"<query>subject:("+ mail.dSubject +")</query>"
-				+		"</SearchRequest>");
+
+		ZimbraAccount.AccountA().soapSend("<SearchRequest types='message' xmlns='urn:zimbraMail'>" + "<query>subject:("
+				+ mail.dSubject + ")</query>" + "</SearchRequest>");
 		String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
-		
+
 		ZimbraAccount.AccountA().soapSend(
-						"<GetMsgRequest xmlns='urn:zimbraMail'>"
-				+			"<m id='"+ id +"' html='1'/>"
-				+		"</GetMsgRequest>");
+				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + id + "' html='1'/>" + "</GetMsgRequest>");
 
 		String from = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a");
 		String to = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='t']", "a");
 		String subject = ZimbraAccount.AccountA().soapSelectValue("//mail:su", null);
 		String html = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null);
-		
+
 		ZAssert.assertEquals(from, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(to, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
 		ZAssert.assertEquals(subject, mail.dSubject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(html, mail.dBodyHtml, "Verify the html content");
-
 	}
 
 }

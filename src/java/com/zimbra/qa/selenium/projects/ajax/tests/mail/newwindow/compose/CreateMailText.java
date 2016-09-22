@@ -35,7 +35,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Send a mail using Text editor - in a separate window", groups = { "smoke" })
+	@Test(description = "Send a mail using Text editor - in a separate window", groups = { "sanity" })
 	public void CreateMailText_01() throws HarnessException {
 
 		// Create the message data to be sent
