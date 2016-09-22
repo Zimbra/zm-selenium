@@ -80,26 +80,24 @@ public class SeparateWindow extends AbsSeparateWindow {
 	 * Determine if a new window opened
 	 * Set DialogWindowName if found.
 	 */
-	public void zSetWindowName() throws HarnessException {
-		logger.info(myPageName() + " zSetWindowName()");
+	public void zSetWindowName() throws HarnessException {		
+		Set <String> windows = webDriver().getWindowHandles();
+		String mainwindow = webDriver().getWindowHandle();
 
-		for (String name : super.sGetAllWindowNames()) {
-			
-			if ( name.contains("selenium_main_app_window") ) {
-				
-				// Main window
-				logger.info("Already existing Name: "+ name);
-				
-			} else {
-				
-				logger.info("Found my Name: "+ name);
-				this.DialogWindowName = name;
-				this.DialogWindowID = name;
+		for (String handle: windows) {
+			webDriver().switchTo().window(handle);
+		    if (!handle.equals(mainwindow)) {
+		    	if (webDriver().switchTo().window(handle).getTitle().equals("")) {
+			    	this.DialogWindowName = webDriver().switchTo().window(handle).getTitle();
+					this.DialogWindowID = this.DialogWindowName;
+		    	} else {
+		    		this.DialogWindowName = "selenium_blank";
+		    		this.DialogWindowID = this.DialogWindowName;
+		    	}
+				logger.info("Found window: " + this.DialogWindowName);
 				return;
-			}
-			
+		    }
 		}
-
 	}
 	
 
@@ -116,7 +114,7 @@ public class SeparateWindow extends AbsSeparateWindow {
 
 		if ( DialogWindowName == null ) {
 
-			for (int i = 0; i < 15; i++) {
+			for (int i = 0; i < 5; i++) {
 
 				zSetWindowName();
 				SleepUtil.sleep(5000);
@@ -161,7 +159,6 @@ public class SeparateWindow extends AbsSeparateWindow {
 		return (false);
 		
 	}
-
 
 	@Override
 	public String myPageName() {
