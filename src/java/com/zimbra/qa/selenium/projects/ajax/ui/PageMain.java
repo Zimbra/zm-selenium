@@ -19,6 +19,8 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.ui;
 
+import java.awt.event.KeyEvent;
+
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.*;
@@ -328,6 +330,10 @@ public class PageMain extends AbsTab {
 		for (int i=0; i<=1; i++) {
 			if ( this.sIsVisible(okButtonLocator) || this.sIsVisible(noButtonLocator) || this.sIsVisible(cancelButtonLocator) || this.sIsVisible(closeButtonLocator) ) {
 				logger.debug("Found open dialogs");
+				
+				// Need to handle multiple dialogs if opened (safer side)
+				this.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
+				SleepUtil.sleepSmall();
 
 				if (sIsVisible(cancelButtonLocator)) {
 					this.sClick(cancelButtonLocator);

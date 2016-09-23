@@ -270,8 +270,7 @@ public class AjaxCommonTest {
 	}
 
 	@AfterMethod( groups = { "always" } )
-	public void commonTestAfterMethod(Method method, ITestResult testResult)
-	throws HarnessException {
+	public void commonTestAfterMethod(Method method, ITestResult testResult) throws HarnessException {
 		logger.info("commonTestAfterMethod: start");
 
 		if ( ZimbraURI.needsReload() ) {

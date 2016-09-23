@@ -213,6 +213,7 @@ public class QuickAddAppointment extends AbsTab {
 		this.zRightClickAt("css=div[class='calendar_hour_scroll'] td[class='calendar_grid_body_time_td'] div[id$='_10']", "");
 		SleepUtil.sleepSmall();
 		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_APPT_title']", "");
+		SleepUtil.sleepMedium();
 	}
 
 	public void zNewAppointmentMonthView(Action action) throws HarnessException {
@@ -234,6 +235,7 @@ public class QuickAddAppointment extends AbsTab {
 			this.zRightClickAt("css=td[class='DwtCalendarDay DwtCalendarDay-selected']:contains('25')", "");
 		SleepUtil.sleepMedium();
 		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_APPT_title']", "");
+		SleepUtil.sleepMedium();
 	}
 
 	public void zNewAllDayAppointment() throws HarnessException {
@@ -251,6 +253,7 @@ public class QuickAddAppointment extends AbsTab {
 			this.zRightClickAt("css=td[class='DwtCalendarDay DwtCalendarDay-selected']:contains('25')", "");
 		SleepUtil.sleepMedium();
 		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_ALLDAY_APPT_title']", "");
+		SleepUtil.sleepMedium();
 	}
 
 	public void zVerifyQuickAddDialog(Boolean status) throws HarnessException {
