@@ -133,13 +133,11 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 		} finally {
 
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
    		 	}
 			app.zPageMail.zSelectWindow(null);
 		}
-
-
 
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
@@ -230,7 +228,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 		} finally {
 
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
    		 	}
 			app.zPageMail.zSelectWindow(null);
@@ -322,12 +320,11 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
    		 	}
 			app.zPageMail.zSelectWindow(null);
 		}
-
 
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       

@@ -52,6 +52,7 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 				MailItem mail = new MailItem();
 				mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
 				mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+				mail.dBodyHtml = "body"	+ ConfigProperties.getUniqueString();
 				FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 
 				// Create file item
@@ -75,15 +76,9 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 					// Fill out the form with the data
 					window.zFill(mail);
 					
-					//Click Attach
+					// Click Attach
 					window.zPressButton(Button.B_ATTACH);
 					zUpload(filePath, window);
-
-					mail.dBodyHtml = "body"	+ ConfigProperties.getUniqueString();
-					window.sSelectWindow(windowTitle);
-					String locator = "css=iframe[id*=ifr]";
-					window.sClickAt(locator, "");
-					window.zTypeFormattedText(locator, mail.dBodyHtml);
 
 					// Send the message
 					window.zToolbarPressButton(Button.B_SEND);

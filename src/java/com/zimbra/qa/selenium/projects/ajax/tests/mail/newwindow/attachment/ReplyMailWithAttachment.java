@@ -19,7 +19,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachment;
 
 import org.testng.SkipException;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -81,16 +80,17 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 
 				window.zToolbarPressButton(Button.B_REPLY);
 				SleepUtil.sleepMedium();
+				windowTitle = "Zimbra: Reply";
 
 				window.zSetWindowTitle(windowTitle);
 				SleepUtil.sleepMedium();
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
-				//Add an attachment
+				// Add an attachment
 				window.zPressButton(Button.B_ATTACH);
 				zUpload(filePath, window);
 
-				//click Send
+				// Click Send
 				window.zToolbarPressButton(Button.B_SEND);
 				
 			} finally {

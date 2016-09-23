@@ -135,7 +135,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
    		 	}
 			app.zPageMail.zSelectWindow(null);
@@ -243,12 +243,11 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
    		 	}
 			app.zPageMail.zSelectWindow(null);
 		}
-
 
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
@@ -337,12 +336,11 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
    		 	}
 			app.zPageMail.zSelectWindow(null);
 		}
-
 
 		
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
@@ -469,11 +467,12 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
    		 	}
 			app.zPageMail.zSelectWindow(null);
 		}
+
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 

@@ -136,14 +136,15 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
    		 	}
 			app.zPageMail.zSelectWindow(null);
 		}
 
-		// ---------------- Verification at organizer & invitee side both
-		// -------------------------------------
+
+		// ---------------- Verification at organizer & invitee side both -------------------------------------
+
 
 		// --- Check that the organizer shows the attendee as "DECLINE" ---
 
@@ -244,12 +245,11 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
    		 	}
 			app.zPageMail.zSelectWindow(null);
 		}
-
 
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
@@ -338,14 +338,11 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
    		 	}
 			app.zPageMail.zSelectWindow(null);
 		}
-
-
-		///////
 
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
@@ -471,7 +468,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 			// Make sure to close the window
 			if ( window != null ) {
-				window.zCloseWindow();
+				window.zCloseWindow(windowTitle);
 				window = null;
    		 	}
 			app.zPageMail.zSelectWindow(null);
