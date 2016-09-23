@@ -32,7 +32,7 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 		logger.info("New "+ EditAsNewWithAttachment.class.getCanonicalName());
 	}
 
-	@Test( description = "Edit as New message >> add attchment from new window",
+	@Test( description = "Edit as New message >> add attachment from new window",
 			groups = { "functional" })
 	
 	public void EditAsNewWithAttachment_01() throws HarnessException {
