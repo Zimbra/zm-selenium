@@ -16,13 +16,9 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.file;
 
-import java.awt.AWTException;
-import java.awt.Robot;
 import java.awt.event.KeyEvent;
-
 import org.testng.SkipException;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FileItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -120,19 +116,7 @@ public class UploadFile extends FeatureBriefcaseTest {
 
 			} finally {
 
-				Robot robot;
-
-				try {
-					robot = new Robot();
-					robot.delay(250);
-					robot.keyPress(KeyEvent.VK_ESCAPE);
-					robot.keyRelease(KeyEvent.VK_ESCAPE);
-					robot.delay(50);
-
-				} catch (AWTException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
 
 			}
 

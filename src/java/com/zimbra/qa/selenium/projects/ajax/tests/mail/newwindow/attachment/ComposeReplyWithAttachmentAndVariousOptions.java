@@ -16,13 +16,9 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachment;
 
-import java.awt.AWTException;
-import java.awt.Robot;
 import java.awt.event.KeyEvent;
-
 import org.testng.SkipException;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -135,18 +131,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 
 			} finally {
 
-				Robot robot;
-
-				try {
-					robot = new Robot();
-					robot.delay(250);
-					robot.keyPress(KeyEvent.VK_ESCAPE);
-					robot.keyRelease(KeyEvent.VK_ESCAPE);
-					robot.delay(50);
-
-				} catch (AWTException e) {
-					e.printStackTrace();
-				}
+				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
 
 			}
 
@@ -240,18 +225,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 
 			} finally {
 
-				Robot robot;
-
-				try {
-					robot = new Robot();
-					robot.delay(250);
-					robot.keyPress(KeyEvent.VK_ESCAPE);
-					robot.keyRelease(KeyEvent.VK_ESCAPE);
-					robot.delay(50);
-
-				} catch (AWTException e) {
-					e.printStackTrace();
-				}
+				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
 
 			}
 
@@ -352,18 +326,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 
 			} finally {
 
-				Robot robot;
-
-				try {
-					robot = new Robot();
-					robot.delay(250);
-					robot.keyPress(KeyEvent.VK_ESCAPE);
-					robot.keyRelease(KeyEvent.VK_ESCAPE);
-					robot.delay(50);
-
-				} catch (AWTException e) {
-					e.printStackTrace();
-				}
+				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
 
 			}
 			

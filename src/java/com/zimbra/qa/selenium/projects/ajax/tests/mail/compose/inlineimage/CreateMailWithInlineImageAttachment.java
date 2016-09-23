@@ -16,8 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.inlineimage;
 
-import java.awt.AWTException;
-import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import org.testng.SkipException;
 import org.testng.annotations.Test;
@@ -112,18 +110,7 @@ public class CreateMailWithInlineImageAttachment extends PrefGroupMailByMessageT
 
 			} finally {
 
-				Robot robot;
-
-				try {
-					robot = new Robot();
-					robot.delay(250);
-					robot.keyPress(KeyEvent.VK_ESCAPE);
-					robot.keyRelease(KeyEvent.VK_ESCAPE);
-					robot.delay(50);
-
-				} catch (AWTException e) {
-					e.printStackTrace();
-				}
+				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
 
 			}
 
