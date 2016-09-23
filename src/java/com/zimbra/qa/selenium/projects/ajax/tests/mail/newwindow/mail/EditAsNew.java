@@ -107,14 +107,7 @@ public class EditAsNew extends PrefGroupMailByMessageTest {
 			SleepUtil.sleepMedium();
 
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 		for (int i = 0; i < 30; i++) {

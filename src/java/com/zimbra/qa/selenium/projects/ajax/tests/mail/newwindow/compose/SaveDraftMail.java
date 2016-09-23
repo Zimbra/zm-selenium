@@ -76,14 +76,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			window.zToolbarPressButton(Button.B_CANCEL);
 
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 		FolderItem draftsFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Drafts);
@@ -143,14 +136,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			warning.zClickButton(Button.B_YES);
 
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 		FolderItem draftsFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Drafts);
@@ -224,14 +210,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			SleepUtil.sleepLong();
 		
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 				
 		// Get the message from the server
@@ -301,13 +280,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertEquals(window.sGetCssCountNewWindow("css=div[id='zv__COMPOSE-1_attachments_div'] table tbody tr td div[class='attBubbleContainer'] div span[id^='zv__COMPOSE-1_']"), 1, "Attachemnt not duplicated");
 	
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 		// Get the message from the server

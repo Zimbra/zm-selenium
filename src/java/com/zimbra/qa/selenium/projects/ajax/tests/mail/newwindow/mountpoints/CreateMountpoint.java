@@ -132,13 +132,7 @@ public class CreateMountpoint extends PrefGroupMailByMessageTest {
 			sp.waitForPostqueue();
 
 		} finally {
-			
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 		
 		FolderItem found = null;

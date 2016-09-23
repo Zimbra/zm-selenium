@@ -133,13 +133,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 			window.zPressButton(Button.B_DECLINE);
 
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-   		 	}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 
@@ -242,13 +236,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 			window.zPressButton(Button.B_DECLINE);
 
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-   		 	}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 
@@ -335,13 +323,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 			window.zPressButtonPulldown(Button.B_DECLINE, Button.O_DECLINE_NOTIFY_ORGANIZER);
 
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-   		 	}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 
@@ -465,13 +447,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 			window.zPressButtonPulldown(Button.B_DECLINE, Button.O_DECLINE_DONT_NOTIFY_ORGANIZER);
 
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-   		 	}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 

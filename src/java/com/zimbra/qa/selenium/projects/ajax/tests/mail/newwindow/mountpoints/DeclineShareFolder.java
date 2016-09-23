@@ -134,13 +134,7 @@ public class DeclineShareFolder extends PrefGroupMailByMessageTest {
 			sp.waitForPostqueue();
 
 		} finally {
-
-			// Make sure to close the window
-			if (window != null) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(),FolderItem.SystemFolder.Sent);

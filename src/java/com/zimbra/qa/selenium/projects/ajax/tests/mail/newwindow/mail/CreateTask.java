@@ -83,22 +83,12 @@ public class CreateTask extends PrefGroupMailByMessageTest {
 			SleepUtil.sleepMedium();
 
 		} finally {
-			
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-			
+			app.zPageMain.closeWindow(window, windowTitle, app);			
 		}
-
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(),subject);
 		ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
 
 	}
 		
-
-
 }

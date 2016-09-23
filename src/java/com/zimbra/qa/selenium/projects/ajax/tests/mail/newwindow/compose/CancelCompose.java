@@ -61,17 +61,9 @@ public class CancelCompose extends PrefGroupMailByMessageTest {
 			ZAssert.assertTrue(status, "Verify the window is closed");
 
 		} finally {
-			
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-			
+			app.zPageMain.closeWindow(window, windowTitle, app);			
 		}
 		
 	}
-
 
 }

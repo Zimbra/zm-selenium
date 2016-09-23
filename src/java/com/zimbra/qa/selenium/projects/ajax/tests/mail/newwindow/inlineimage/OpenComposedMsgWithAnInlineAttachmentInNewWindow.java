@@ -78,13 +78,7 @@ PrefGroupMailByMessageTest {
 				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(),"Verify inline image is present in New compose window");
 
 			} finally {
-
-				// Make sure to close the window
-				if (window != null) {
-					window.zCloseWindow(windowTitle);
-					window = null;
-				}
-				app.zPageMail.zSelectWindow(null);
+				app.zPageMain.closeWindow(window, windowTitle, app);
 			}
 
 		} else {

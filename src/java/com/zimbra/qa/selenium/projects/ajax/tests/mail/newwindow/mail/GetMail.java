@@ -85,14 +85,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
 		} finally {
-			
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-			
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 	}
 
@@ -145,14 +138,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertStringContains(window.zGetMailProperty(Field.Body), content, "Verify the body matches");
 
 		} finally {
-			
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-			
+			app.zPageMain.closeWindow(window, windowTitle, app);			
 		}
 	}
 
@@ -219,14 +205,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertStringContains(window.zGetMailProperty(Field.Body), bodyHTML, "Verify the body matches");
 			
 		} finally {
-			
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-			
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 	}
 
@@ -274,13 +253,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertEquals(actualSender, sender, "Verify the From matches the 'Sender:' header");
 
 		} finally {
-			
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-			
+			app.zPageMain.closeWindow(window, windowTitle, app);			
 		}
 	}
 
@@ -329,14 +302,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertEquals(actualFrom, from, "Verify the From matches the 'From:' header");
 
 		} finally {
-			
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 	}
 
@@ -384,14 +350,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertEquals(actualFrom, from, "Verify the From matches the 'From:' header");
 
 		} finally {
-			
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-			
+			app.zPageMain.closeWindow(window, windowTitle, app);			
 		}
 
 	}

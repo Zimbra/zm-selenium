@@ -70,14 +70,7 @@ public class CloseMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertFalse(window.zIsActive(), "Verify the window is closed");
 
 		} finally {
-
-			// Make sure to close the window
-			if (window != null) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 	}
@@ -119,14 +112,7 @@ public class CloseMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertFalse(window.zIsActive(), "Verify the window is closed");
 
 		} finally {
-
-			// Make sure to close the window
-			if (window != null) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 	}

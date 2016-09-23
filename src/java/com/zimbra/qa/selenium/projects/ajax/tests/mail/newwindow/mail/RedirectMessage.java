@@ -80,16 +80,8 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 			dialog.zClickButton(Button.B_OK);
 
 		} finally {
-			
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-			
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
-
 		
 		// Verify the redirected message is received
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ subject +")");

@@ -131,12 +131,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 			window.zPressButton(Button.B_ACCEPT);
 
 		} finally {
-
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-   		 	}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 
@@ -226,12 +221,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 			window.zPressButton(Button.B_ACCEPT);
 
 		} finally {
-
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-   		 	}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 
@@ -317,13 +307,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 			window.zPressButtonPulldown(Button.B_ACCEPT, Button.O_ACCEPT_NOTIFY_ORGANIZER);
 
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-   		 	}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 
@@ -449,15 +433,8 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 			window.zPressButtonPulldown(Button.B_ACCEPT, Button.O_ACCEPT_DONT_NOTIFY_ORGANIZER);
 
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
-
 
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       

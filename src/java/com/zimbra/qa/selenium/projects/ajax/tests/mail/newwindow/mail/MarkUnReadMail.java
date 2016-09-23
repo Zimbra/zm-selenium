@@ -86,14 +86,7 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 			window.zKeyboardShortcut(Shortcut.S_MAIL_MARKUNREAD);
 
 		} finally {
-			
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-			
+			app.zPageMain.closeWindow(window, windowTitle, app);			
 		}
 
 
@@ -152,14 +145,7 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_MARK_AS_UNREAD);
 
 		} finally {
-			
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-			
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 
@@ -221,19 +207,9 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertTrue(window.sIsElementPresent("css=tr[id$='__MARK_UNREAD'] td[id$='__MARK_UNREAD_title']"), "Verify that the icon is not disabled");
 
 		} finally {
-			
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-			
+			app.zPageMain.closeWindow(window, windowTitle, app);			
 		}
 
-
 	}
-		
-
 
 }

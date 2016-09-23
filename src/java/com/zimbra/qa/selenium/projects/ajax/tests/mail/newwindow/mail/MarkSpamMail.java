@@ -81,14 +81,7 @@ public class MarkSpamMail extends PrefGroupMailByMessageTest {
 			window.zToolbarPressButton(Button.B_RESPORTSPAM);
 			
 		} finally {
-			
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-			
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 		
@@ -147,14 +140,7 @@ public class MarkSpamMail extends PrefGroupMailByMessageTest {
 			window.zKeyboardShortcut(Shortcut.S_MAIL_MARKSPAM);
 
 		} finally {
-			
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-			
+			app.zPageMain.closeWindow(window, windowTitle, app);			
 		}
 
 		
