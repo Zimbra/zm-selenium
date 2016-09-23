@@ -19,7 +19,6 @@ package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
-import com.zimbra.qa.selenium.framework.core.SeleniumService;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.RecipientItem;
 import com.zimbra.qa.selenium.framework.items.RecipientItem.RecipientType;
@@ -57,7 +56,6 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 		if (mail.dSubject != null) {
 			zFillField(Field.Subject, mail.dSubject);
-
 		}
 
 		if (mail.dBodyText != null) {
@@ -65,10 +63,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 		}
 
 		if (mail.dBodyHtml != null) {
-			sSelectWindow(this.DialogWindowID);
-			String locator = "css=iframe[id*=ifr]";
-			sClick(locator);
-			zTypeFormattedText(locator, mail.dBodyHtml);
+			zFillField(Field.Body, mail.dBodyHtml);
 		}
 
 		StringBuilder to = null;
@@ -162,89 +157,40 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 		} else if (field == Field.Body) {
 
-			SleepUtil.sleepLong();
-
 			int frames = sGetCssCountNewWindow("css=iframe");
 
-			logger.debug("Body: # of frames: " + frames);
-			String browser = SeleniumService.getInstance().getSeleniumBrowser();
+			logger.info("Body: # of frames: " + frames);
 
-			if (browser.equalsIgnoreCase("iexplore")) {
-				if (frames == 1) {
-					// //
-					// Text compose
-					// //
+			if (frames == 0) {
 
-					locator = "css=textarea[id*='textarea_']";
+				// Text compose
+				sTypeNewWindow("css=textarea[class='ZmHtmlEditorTextArea']", value);
+				return;
 
-					if (!this.sIsElementPresent(locator))
+			} else if (frames >= 1) {
+
+				// HTML compose
+				try {
+
+					locator = "css=iframe[id*=ifr]";
+					if (!sIsElementPresent(locator))
 						throw new HarnessException("Unable to locate compose body");
 
-					this.sFocus(locator);
-					this.zClick(locator);
-					this.sTypeNewWindow(locator, value);
+					sClick(locator);
+					zTypeCharacters(value);
 
-					return;
-
-				} else if (frames == 2) {
-
-					locator = "css=iframe[id$='_content_ifr']";
-					if (!this.sIsElementPresent(locator))
-						throw new HarnessException("Unable to locate compose body");
-
-					zTypeFormattedText(locator, value);
-
-					return;
-
+				} finally {
+					this.sSelectFrame("relative=top");
 				}
+
+				return;
 
 			} else {
-				if (frames == 0) {
-
-					// //
-					// Text compose
-					// //
-
-					sTypeNewWindow("css=textarea[class='ZmHtmlEditorTextArea']", value);
-
-					return;
-
-				} else if (frames == 1) {
-
-					// //
-					// HTML compose
-					// //
-					try {
-
-						sSelectFrame("index=0"); // iframe index is 0 based
-
-						locator = "css=body[id='tinymce']";
-
-						if (!sIsElementPresent(locator))
-							throw new HarnessException("Unable to locate compose body");
-
-						sFocus(locator);
-						zClick(locator);
-						// this.sType(locator, value);
-						zTypeCharacters(value);
-
-					} finally {
-						this.sSelectFrame("relative=top");
-					}
-
-					return;
-
-				} else {
-					throw new HarnessException("Compose //iframe count was " + frames);
-				}
+				throw new HarnessException("Compose //iframe count was " + frames);
 			}
 
 		} else {
 			throw new HarnessException("not implemented for field " + field);
-		}
-
-		if (locator == null) {
-			throw new HarnessException("locator was null for field " + field);
 		}
 
 		this.sFocus(locator);
@@ -252,13 +198,15 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 		this.zWaitForBusyOverlay();
 
 		sTypeNewWindow(locator, value);
-		SleepUtil.sleepSmall();
-		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-		SleepUtil.sleepSmall();
-		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
+		
+		if (field == Field.To || field == Field.Cc || field == Field.Bcc) {
+			SleepUtil.sleepSmall();
+			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+			SleepUtil.sleepSmall();
+		}
+		
 		SleepUtil.sleepSmall();
 		this.zWaitForBusyOverlay();
-
 	}
 
 	private boolean zBccIsActive() throws HarnessException {

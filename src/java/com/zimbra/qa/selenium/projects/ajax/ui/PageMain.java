@@ -168,8 +168,8 @@ public class PageMain extends AbsTab {
 
 		SleepUtil.sleepMedium();
 		getElement("css=td[class='DwtLinkButtonDropDownArrowTd']").click();
-
 		this.zWaitForBusyOverlay();
+		
 		getElement("css=tr[id=POPUP_logOff]>td[id=logOff_title]").click();
 		this.zWaitForBusyOverlay();
 
