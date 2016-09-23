@@ -232,7 +232,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 
 					// Make sure to close the window
 					if ( window != null ) {
-						window.zCloseWindow();
+						window.zCloseWindow(windowTitle);
 						window = null;
 					}
 					app.zPageMail.zSelectWindow(null);
@@ -344,7 +344,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 
 					// Make sure to close the window
 					if ( window != null ) {
-						window.zCloseWindow();
+						window.zCloseWindow(windowTitle);
 						window = null;
 					}
 					app.zPageMail.zSelectWindow(null);

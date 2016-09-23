@@ -32,7 +32,7 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 		logger.info("New "+ EditAsNewWithAttachment.class.getCanonicalName());
 	}
 
-	@Test( description = "Edit as New message >> add Attchment from new window ",
+	@Test( description = "Edit as New message >> add attchment from new window",
 			groups = { "functional" })
 	
 	public void EditAsNewWithAttachment_01() throws HarnessException {
@@ -63,7 +63,7 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 			String windowTitle = "Zimbra: Compose";
 			
 			MailItem mail = new MailItem();
-			mail.dBodyHtml = "body"+ ConfigProperties.getUniqueString();
+			mail.dBodyHtml = " body"+ ConfigProperties.getUniqueString();
 
 			try {
 
@@ -77,25 +77,19 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 				window.zSetWindowTitle(windowTitle);
 				window.zWaitForActive();
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-				window.sSelectWindow(windowTitle);
+				
+				// Type in body
+				String locator = "css=div[id^='zv__COMPOSE'] iframe[id$='_body_ifr']";
 
-				window.zPressButton(Button.B_ATTACH);
-
-				//Add an attachment
-				zUpload(filePath, window);
-
-				//Type in body
-				String	locator = "css=div[id^='zv__COMPOSE'] iframe[id$='_body_ifr']";
-
-				window.zWaitForElementPresent(locator, "5000");
 				window.sSelectFrame(locator);
 				window.sClick(locator);
-
-				//Note: Explicitly we have used both command to type in body area.
-				window.sTypeNewWindow(locator, mail.dBodyHtml);
-				window.zTypeFormattedText(locator, mail.dBodyHtml);
-
-				SleepUtil.sleepSmall();
+				window.zTypeCharacters(mail.dBodyHtml);
+				
+				// Click Attach
+				window.zPressButton(Button.B_ATTACH);
+				zUpload(filePath, window);
+				
+				// Send the message
 				window.zToolbarPressButton(Button.B_SEND);
 				
 			} finally {

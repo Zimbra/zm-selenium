@@ -51,10 +51,7 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 			// Upload the file
 			app.zPageMail.zPressButton(Button.B_ATTACH);
 			zUpload(filePath);
-
-			// Verify Attachment present in Normal compose window
-			Assert.assertTrue(app.zPageMail.sIsElementPresent("css=a[class='AttLink']"),"vcf attachment link present");
-
+			
 			SeparateWindowFormMailNew window = null;
 			String windowTitle = "Zimbra: Compose";
 			
@@ -68,9 +65,9 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 
 				// Select the window
 				window.sSelectWindow(windowTitle);
-
+				
 				// Verify Attachment should not disappeared  New compose window
-				Assert.assertTrue(app.zPageMail.sIsElementPresent("css=a[class='AttLink']"),"vcf attachment link present");
+				Assert.assertTrue(window.zIsVisiblePerPosition("css=a[id^='COMPOSE']:contains(" + fileName + ")", 0, 0),"vcf attachment link present");
 
 			} finally {
 

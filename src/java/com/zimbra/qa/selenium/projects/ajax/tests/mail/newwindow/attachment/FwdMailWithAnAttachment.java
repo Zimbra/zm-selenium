@@ -82,6 +82,7 @@ public class FwdMailWithAnAttachment extends PrefGroupMailByMessageTest {
 
 				window.zToolbarPressButton(Button.B_FORWARD);
 				SleepUtil.sleepMedium();
+				windowTitle = "Zimbra: Forward";
 				
 				window.zSetWindowTitle(windowTitle);
 				SleepUtil.sleepMedium();
@@ -98,11 +99,11 @@ public class FwdMailWithAnAttachment extends PrefGroupMailByMessageTest {
 
 				window.sSelectWindow(windowTitle);
 				
-				//Add an attachment
+				// Add an attachment
 				window.zPressButton(Button.B_ATTACH);
 				zUpload(filePath, window);
 
-				//click Send
+				// Click Send
 				window.zToolbarPressButton(Button.B_SEND);
 
 			} finally {
