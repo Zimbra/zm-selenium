@@ -440,9 +440,17 @@ public abstract class AbsSeleniumObject {
 
 	public String sGetHtmlSource() throws HarnessException {
 		logger.info("sGetHtmlSource()");
-		String htmlString = null;
-		htmlString = webDriver().getPageSource();
-		return (htmlString);
+		String htmlSource = null;
+		htmlSource = webDriver().getPageSource();
+		return (htmlSource);
+	}
+	
+	public String sGetHtmlBody() throws HarnessException {
+		logger.info("sGetHtmlBody()");
+		String htmlBody = null;
+		htmlBody = webDriver().getPageSource();
+		htmlBody = htmlBody.substring(htmlBody.indexOf("<body"));
+		return (htmlBody);
 	}
 
 
