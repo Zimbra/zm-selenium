@@ -185,11 +185,11 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		}
 
 		public void zTypeKeyEvent(int keyEvent) throws HarnessException {
+			SleepUtil.sleepSmall();
 			logger.info("zTypeKeyEvent("+ keyEvent +")");
-
 			RobotKeyboard keyboard = new RobotKeyboard();
 			keyboard.doType(keyEvent);
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepSmall();
 
 		}
 
@@ -204,17 +204,18 @@ public abstract class AbsPage extends AbsSeleniumObject {
 
 		public void zTypeCharacters(String chars) throws HarnessException {
 			logger.info("zTypeCharacters("+ chars +")");
-
+			SleepUtil.sleepSmall();
 			RobotKeyboard keyboard = new RobotKeyboard();
 			keyboard.type(chars);
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepSmall();
 		}
 
 		public void zTypeCharactersUpload(String chars, String upload) throws HarnessException, InterruptedException {
+			SleepUtil.sleepSmall();
 			logger.info("zTypeCharacters("+ chars +")");
 			RobotKeyboard keyboard = new RobotKeyboard();
 			keyboard.typeUpload(chars, upload);
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepSmall();
 		}
 
 		private static class RobotKeyboard {

@@ -81,7 +81,7 @@ public class TagMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = "Zimbra: Compose";
+		String windowTitle = "Zimbra: " + subject;
 		
 		try {
 			

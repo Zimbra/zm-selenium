@@ -133,8 +133,8 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertEquals(window.zGetMailProperty(Field.Subject), subject, "Verify the subject matches");
 			ZAssert.assertNotNull(window.zGetMailProperty(Field.ReceivedTime), "Verify the time is displayed");
 			ZAssert.assertEquals(window.zGetMailProperty(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
-			ZAssert.assertEquals(window.zGetMailProperty(Field.Cc),"Cc:"+ ZimbraAccount.AccountB().EmailAddress, "Verify the Cc matches");
-			ZAssert.assertEquals(window.zGetMailProperty(Field.To), "To:"+app.zGetActiveAccount().EmailAddress, "Verify the To matches");
+			ZAssert.assertEquals(window.zGetMailProperty(Field.Cc),"Cc: " + ZimbraAccount.AccountB().EmailAddress, "Verify the Cc matches");
+			ZAssert.assertEquals(window.zGetMailProperty(Field.To), "To: " + app.zGetActiveAccount().EmailAddress, "Verify the To matches");
 			ZAssert.assertStringContains(window.zGetMailProperty(Field.Body), content, "Verify the body matches");
 
 		} finally {
@@ -200,8 +200,8 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertEquals(window.zGetMailProperty(Field.Subject), mail.dSubject, "Verify the subject matches");
 			ZAssert.assertNotNull(window.zGetMailProperty(Field.ReceivedTime), "Verify the time is displayed");
 			ZAssert.assertEquals(window.zGetMailProperty(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
-			ZAssert.assertEquals(window.zGetMailProperty(Field.Cc), "Cc:"+ZimbraAccount.AccountB().EmailAddress, "Verify the Cc matches");
-			ZAssert.assertEquals(window.zGetMailProperty(Field.To), "To:"+app.zGetActiveAccount().EmailAddress, "Verify the To matches");
+			ZAssert.assertEquals(window.zGetMailProperty(Field.Cc), "Cc: " + ZimbraAccount.AccountB().EmailAddress, "Verify the Cc matches");
+			ZAssert.assertEquals(window.zGetMailProperty(Field.To), "To: " + app.zGetActiveAccount().EmailAddress, "Verify the To matches");
 			ZAssert.assertStringContains(window.zGetMailProperty(Field.Body), bodyHTML, "Verify the body matches");
 			
 		} finally {

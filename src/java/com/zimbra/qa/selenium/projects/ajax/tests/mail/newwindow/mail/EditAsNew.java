@@ -68,8 +68,7 @@ public class EditAsNew extends PrefGroupMailByMessageTest {
 
 		SeparateWindowDisplayMail window = null;
 		MailItem mail = new MailItem();
-		mail.dBodyHtml = "body"+ ConfigProperties.getUniqueString();
-		//SeparateWindowFormMailNew window = null;
+		mail.dBodyHtml = " body"+ ConfigProperties.getUniqueString();
 		
 		String windowTitle = "Zimbra: " + subject;
 
@@ -81,30 +80,26 @@ public class EditAsNew extends PrefGroupMailByMessageTest {
 			window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");			
 
+			windowTitle = "Zimbra: Compose";
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_EDIT_AS_NEW);
 			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			window.sSelectWindow("Zimbra: Compose");
-
-			//Type in body
-			String	locator = "css=div[id^='zv__COMPOSE'] iframe[id$='_body_ifr']";
-
-			window.zWaitForElementPresent(locator, "5000");
-			window.sSelectFrame(locator);		
-			window.sClick(locator);	
 			
-			//Note: Explicitly we have used both command to type in body area.
-			window.sTypeNewWindow(locator, mail.dBodyHtml);
-			window.zTypeFormattedText(locator, mail.dBodyHtml);
-			
+			// Type in body
+			String locator = "css=div[id^='zv__COMPOSE'] iframe[id$='_body_ifr']";
+
+			window.sSelectFrame(locator);
+			window.sClick(locator);
+			window.zTypeCharacters(mail.dBodyHtml);
+
 			SleepUtil.sleepSmall();			
-			window.zToolbarPressButton(Button.B_SEND);			
+			window.zToolbarPressButton(Button.B_SEND);
+			
+			windowTitle = "Zimbra: " + subject;
 			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			window.zToolbarPressButton(Button.B_CLOSE);
-
-			SleepUtil.sleepMedium();
 
 		} finally {
 			app.zPageMain.closeWindow(window, windowTitle, app);

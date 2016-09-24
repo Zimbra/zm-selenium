@@ -450,7 +450,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 			for (String locator : locators) {
 
-				super.sClick(locator);
+				sClick(locator);
 				SleepUtil.sleepMedium();
 
 			}
@@ -531,7 +531,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 				webDriver().switchTo().window(handle);
 				if (!handle.equals(mainwindow)) {
-					webDriver().close();
+					webDriver().switchTo().window(handle).close();
 				}
 			}
 			webDriver().switchTo().window(mainwindow);
