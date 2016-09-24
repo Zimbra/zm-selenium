@@ -18,6 +18,7 @@
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
 import java.util.*;
+import org.openqa.selenium.By;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
@@ -135,10 +136,21 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			return (time);
 
 		} else if (field == Field.Body) {
+			
+			try {
+				String bodyLocator = "body";				
+				webDriver().switchTo().defaultContent();
+				webDriver().switchTo().frame(0);
+				webDriver().findElement(By.cssSelector(bodyLocator));
+				
+				String htmlBody = this.sGetHtmlBody();
+				logger.info("DisplayMail.zGetDisplayedValue(" + bodyLocator + ") = " + htmlBody);
+				return (htmlBody);
 
-			String text = sGetText("css=iframe[id$='_body__iframe']", "css=body");
-			logger.info("zGetDisplayedValue(" + field + ") = " + text);
-			return (text);
+			} finally {
+				this.sSelectFrame("relative=top");
+				webDriver().switchTo().defaultContent();
+			}
 
 		} else {
 
@@ -303,8 +315,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 				optionLocator = containerActionMenu + " div[id='PRINT'] td[id$='_title']";
 				page = null;
-				throw new HarnessException("implement me"); // Need to implement
-															// the print dialog
 
 			} else if (option == Button.B_RESPORTSPAM) {
 
@@ -379,10 +389,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 				optionLocator = "css=td[id$='__TAG_MENU|MENU|NEWTAG_title']";
 				page = null;
 
-				throw new HarnessException("implement me"); // Need to implement
-															// the 'new tag'
-															// dialog
-
 			} else if (option == Button.O_TAG_REMOVETAG) {
 
 				optionLocator = "css=div[id$='__TAG_MENU|MENU'] div[id='message_removetag'] td[id$='_title']";
@@ -449,22 +455,16 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 			if (frames == 0) {
 
-				// //
 				// Text compose
-				// //
-
 				sTypeNewWindow("css=textarea[class='ZmHtmlEditorTextArea']", value);
 
 				return;
 
 			} else if (frames == 1) {
 
-				// //
 				// HTML compose
-				// //
-				try {
 
-					sSelectFrame("index=0"); // iframe index is 0 based
+				try {
 
 					locator = "css=body[id='tinymce']";
 
@@ -500,7 +500,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		if (dynamic == null)
 			throw new HarnessException("Dynamic cannot be null!");
 
-		//
 		String container = "css=div[id^='ztb__MSG']";
 		String pulldownLocator = null;
 		String optionLocator = null;
