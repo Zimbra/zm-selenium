@@ -63,14 +63,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			window.zToolbarPressButton(Button.B_SEND);
 
 		} finally {
-
-			// Make sure to close the window
-			if (window != null) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 		for (int i = 0; i < 30; i++) {
@@ -140,14 +133,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			window.zToolbarPressButton(Button.B_SEND);
 
 		} finally {
-
-			// Make sure to close the window
-			if (window != null) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
@@ -190,14 +176,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			window.zToolbarPressButton(Button.B_SEND);
 
 		} finally {
-
-			// Make sure to close the window
-			if (window != null) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:(" + mail.dSubject + ")");
@@ -255,14 +234,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			window.zToolbarPressButton(Button.B_SEND);
 
 		} finally {
-
-			// Make sure to close the window
-			if (window != null) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:(" + mail.dSubject + ")");
@@ -323,13 +295,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			window.zToolbarPressButton(Button.B_SEND);
 
 		} finally {
-
-			// Make sure to close the window
-			if (window != null) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.closeWindow(window, windowTitle, app);
 
 		}
 

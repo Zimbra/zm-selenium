@@ -159,11 +159,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 			SleepUtil.sleepLong(); //sometime client takes longer time to add the appointment
 			
         } finally {
-        	if ( window != null ) {
-        		window.zCloseWindow(windowTitle);
-        		window = null;
-    		}
-        	app.zPageMail.zSelectWindow(null);
+        	app.zPageMain.closeWindow(window, windowTitle, app);
        	}
 		
 		//-- Verification
@@ -249,11 +245,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 			SleepUtil.sleepLong(); //sometime client takes longer time to add the appointment
 			
         } finally {
-        	if ( window != null ) {
-        		window.zCloseWindow(windowTitle);
-        		window = null;
-    		}
-        	app.zPageMail.zSelectWindow(null);
+        	app.zPageMain.closeWindow(window, windowTitle, app);
        	}
 		
 		//-- Verification
@@ -308,11 +300,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 			SleepUtil.sleepLong(); //sometime client takes longer time to add the appointment
 			
         } finally {
-        	if ( window != null ) {
-        		window.zCloseWindow(windowTitle);
-        		window = null;
-    		}
-        	app.zPageMail.zSelectWindow(null);
+        	app.zPageMain.closeWindow(window, windowTitle, app);
        	}
 		
 		//-- Verification

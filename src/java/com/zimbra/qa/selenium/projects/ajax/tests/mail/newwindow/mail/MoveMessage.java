@@ -107,14 +107,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			dialog.zClickButton(Button.B_OK);
 
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
@@ -189,14 +182,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, subfolder);
 
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 		// Get the message, make sure it is in the correct folder
@@ -256,15 +242,9 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, trash);
 
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
+
 		// Get the message, make sure it is in the correct folder
 		app.zGetActiveAccount().soapSend(
 				"<GetMsgRequest xmlns='urn:zimbraMail'>" +

@@ -93,14 +93,7 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 			window.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_REMOVETAG);
 
 		} finally {
-
-			// Make sure to close the window
-			if (window != null) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 		// Make sure the tag was applied to the message
@@ -174,14 +167,7 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 			SleepUtil.sleepMedium();
 
 		} finally {
-
-			// Make sure to close the window
-			if (window != null) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 		// Untag it
@@ -255,14 +241,7 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 			SleepUtil.sleepMedium();
 
 		} finally {
-
-			// Make sure to close the window
-			if (window != null) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 		// Untag it pressing 'x' from tag bubble

@@ -62,7 +62,6 @@ public class OpenAttachment extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(item, "Verify one attachment is in the message");
 			
 		SeparateWindowOpenAttachment window = null;
-		String windowTitle = "Zimbra: " + subject;
 		
 		try {
 			
@@ -77,14 +76,7 @@ public class OpenAttachment extends PrefGroupMailByMessageTest {
 			ZAssert.assertStringContains(content, attachmentcontent, "Verify the content in the attachment");
 			
 		} finally {
-			
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-			
+			app.zPageMain.closeWindow(window, app);
 		}
 
 	}

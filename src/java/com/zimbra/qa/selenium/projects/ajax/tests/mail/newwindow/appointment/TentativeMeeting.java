@@ -132,13 +132,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 			window.zPressButton(Button.B_TENTATIVE);
 
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-   		 	}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 
@@ -240,13 +234,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 			window.zPressButton(Button.B_TENTATIVE);
 
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-   		 	}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 
@@ -333,13 +321,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 			window.zPressButtonPulldown(Button.B_TENTATIVE, Button.O_TENTATIVE_NOTIFY_ORGANIZER);
 
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-   		 	}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 		
@@ -464,13 +446,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 			window.zPressButtonPulldown(Button.B_TENTATIVE, Button.O_TENTATIVE_DONT_NOTIFY_ORGANIZER);
 
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-   		 	}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 

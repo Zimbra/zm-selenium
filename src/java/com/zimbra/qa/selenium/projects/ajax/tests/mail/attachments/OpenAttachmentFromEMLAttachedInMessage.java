@@ -63,13 +63,7 @@ public class OpenAttachmentFromEMLAttachedInMessage extends PrefGroupMailByMessa
 			ZAssert.assertTrue(window.sIsElementPresent("css=td a[id='zv__MSG__MSG-1_attLinks_2.1_html']:contains('Preview')"), "Verify preview button exist");
 
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 
 	}

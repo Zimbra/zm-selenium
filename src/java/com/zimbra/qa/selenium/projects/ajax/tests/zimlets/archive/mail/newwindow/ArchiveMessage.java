@@ -77,14 +77,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 			window.zToolbarPressButton(Button.B_ARCHIVE);
 			
 		} finally {
-			
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-			
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
@@ -142,14 +135,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 			ZAssert.assertFalse(present, "Verify the 'archive' button is not present");
 
 		} finally {
-			
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-			
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 		
 	}

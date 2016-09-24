@@ -96,17 +96,8 @@ public class TagMail extends PrefGroupMailByMessageTest {
 			window.zToolbarPressPulldown(Button.B_TAG, tagname);
 			
 		} finally {
-			
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
-			
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
-		
-
 
 		// Make sure the tag was applied to the message
 		app.zGetActiveAccount().soapSend(

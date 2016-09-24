@@ -101,13 +101,7 @@ public class OpenComposedMessageInNewWindow extends PrefGroupMailByMessageTest {
 			ZAssert.assertStringContains(html, "New Text "+body, "Verify the html content");
 
 		} finally {
-
-			// Make sure to close the window
-			if ( window != null ) {
-				window.zCloseWindow(windowTitle);
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.closeWindow(window, windowTitle, app);
 		}
 	}
 }

@@ -119,10 +119,9 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 					ZAssert.assertFalse(mailform.zHasAttachment(subject),"Included original message attachment is still present");
 
 				} finally {
-
-					// Make sure to close the window
+					app.zPageMain.closeWindow(window, windowTitle, app);
+					
 					if (window != null) {
-						window.zCloseWindow(windowTitle);
 						window.zCloseWindow(fileName);
 						window = null;
 					}
@@ -214,13 +213,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 					ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present in new window!");
 
 				} finally {
-
-					// Make sure to close the window
-					if (window != null) {
-						window.zCloseWindow(windowTitle);
-						window = null;
-					}
-					app.zPageMail.zSelectWindow(null);
+					app.zPageMain.closeWindow(window, windowTitle, app);
 				}
 
 			} finally {
@@ -315,13 +308,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 					ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present in new window!");
 
 				} finally {
-
-					// Make sure to close the window
-					if (window != null) {
-						window.zCloseWindow(windowTitle);
-						window = null;
-					}
-					app.zPageMail.zSelectWindow(null);
+					app.zPageMain.closeWindow(window, windowTitle, app);
 				}
 
 			} finally {
