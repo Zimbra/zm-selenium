@@ -80,7 +80,6 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 			window.zToolbarPressButton(Button.B_FORWARD);
-			SleepUtil.sleepMedium();
 			
 			windowTitle = "Zimbra: Forward";
 			window.zSetWindowTitle(windowTitle);
@@ -95,12 +94,12 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 			SleepUtil.sleepSmall();
 			window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 			SleepUtil.sleepSmall();			
-			window.zToolbarPressButton(Button.B_SEND);			
+			window.zToolbarPressButton(Button.B_SEND);
+			
+			windowTitle = "Zimbra: " + subject;
 			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			window.zToolbarPressButton(Button.B_CLOSE);
-
-			SleepUtil.sleepMedium();
 
 		} finally {
 			app.zPageMain.closeWindow(window, windowTitle, app);
@@ -160,7 +159,6 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 					"Verify the window is active");
 
 			window.zKeyboardShortcut(Shortcut.S_MAIL_FOWARD);
-			SleepUtil.sleepMedium();
 			
 			windowTitle = "Zimbra: Forward";
 			window.zSetWindowTitle(windowTitle);
@@ -175,12 +173,12 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 			SleepUtil.sleepSmall();
 			window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 			SleepUtil.sleepSmall();			
-			window.zToolbarPressButton(Button.B_SEND);			
+			window.zToolbarPressButton(Button.B_SEND);		
+			
+			windowTitle = "Zimbra: " + subject;
 			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			window.zToolbarPressButton(Button.B_CLOSE);
-
-			SleepUtil.sleepMedium();
 
 		} finally {
 			app.zPageMain.closeWindow(window, windowTitle, app);

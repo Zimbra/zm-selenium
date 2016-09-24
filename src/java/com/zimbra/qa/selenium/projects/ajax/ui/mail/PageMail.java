@@ -948,7 +948,6 @@ public class PageMail extends AbsTab {
 				}
 
 				this.sClickAt(pulldownLocator, "0,0");
-				SleepUtil.sleepMedium();
 				zWaitForBusyOverlay();
 
 				if (!this.sIsElementPresent(optionLocator)) {
@@ -979,7 +978,6 @@ public class PageMail extends AbsTab {
 
 			this.sClickAt(pulldownLocator, "0,0");
 			zWaitForBusyOverlay();
-			SleepUtil.sleepMedium();
 
 			if (optionLocator != null) {
 				if (!this.sIsElementPresent(optionLocator)) {
@@ -989,7 +987,7 @@ public class PageMail extends AbsTab {
 
 				this.sClickAt(optionLocator, "0,0");
 				zWaitForBusyOverlay();
-				SleepUtil.sleepMedium();
+				SleepUtil.sleepSmall();
 			}
 
 			if (page != null) {

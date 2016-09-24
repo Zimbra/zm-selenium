@@ -70,18 +70,17 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 			window.zToolbarPressButton(Button.B_REPLY);
-			SleepUtil.sleepMedium();
 			
 			windowTitle = "Zimbra: Reply";
 			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			window.zToolbarPressButton(Button.B_SEND);			
+			window.zToolbarPressButton(Button.B_SEND);		
+			
+			windowTitle = "Zimbra: " + subject;
 			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			window.zToolbarPressButton(Button.B_CLOSE);
-
-			SleepUtil.sleepMedium();
 
 		} finally {
 			app.zPageMain.closeWindow(window, windowTitle, app);
@@ -95,9 +94,6 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
 		ZAssert.assertStringContains(received.dSubject, subject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(received.dSubject, "Re", "Verify the subject field contains the 'Re' prefix");
-		
-		//window.zKeyboardShortcut(Shortcut.S_MAIL_MARKSPAM);
-
 	}
 
 
@@ -141,21 +137,18 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertTrue(window.zIsActive(),
 					"Verify the window is active");
 
-			// window.zToolbarPressButton(Button.B_REPLY);
-
 			window.zKeyboardShortcut(Shortcut.S_MAIL_REPLY);
-			SleepUtil.sleepMedium();
 			
 			windowTitle = "Zimbra: Reply";
 			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the Reply window is active");
 			window.zToolbarPressButton(Button.B_SEND);
+			
+			windowTitle = "Zimbra: " + subject;
 			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			window.zToolbarPressButton(Button.B_CLOSE);
-
-			SleepUtil.sleepMedium();
 
 		} finally {
 			app.zPageMain.closeWindow(window, windowTitle, app);
@@ -217,18 +210,17 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 			// window.zToolbarPressButton(Button.B_REPLY);
 
 			window.zKeyboardShortcut(Shortcut.S_MAIL_REPLYAll);
-			SleepUtil.sleepMedium();
 			
 			windowTitle = "Zimbra: Reply";
 			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the Reply window is active");
 			window.zToolbarPressButton(Button.B_SEND);
+			
+			windowTitle = "Zimbra: " + subject;
 			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 			window.zToolbarPressButton(Button.B_CLOSE);
-
-			SleepUtil.sleepMedium();
 
 		} finally {
 			app.zPageMain.closeWindow(window, windowTitle, app);
