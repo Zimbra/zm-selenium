@@ -40,7 +40,7 @@ public class CreateMountpoint extends PrefGroupMailByMessageTest {
 		logger.info("New "+ CreateMountpoint.class.getCanonicalName());
 	}
 	
-	@Bugs( ids = "101616")
+	@Bugs( ids = "101616,106661")
 	@Test( description = "Receive an invitation to a shared folder, accept it - in a separate window",
 			groups = { "smoke" })
 	
