@@ -117,7 +117,7 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 				window.zSetWindowTitle(windowTitle);
 				
 			} finally {
-				app.zPageMain.closeWindow(window, windowTitle, app);
+				app.zPageMain.zCloseWindow(window, windowTitle, app);
 			}
 
 			// Verify UI for attachment

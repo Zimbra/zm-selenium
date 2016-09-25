@@ -102,7 +102,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 			window.zToolbarPressButton(Button.B_CLOSE);
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 		// From the receiving end, verify the message details
@@ -181,7 +181,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 			window.zToolbarPressButton(Button.B_CLOSE);
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 		// From the receiving end, verify the message details

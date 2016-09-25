@@ -428,23 +428,23 @@ public class PageMain extends AbsTab {
 	
 	// Various kind of close window (with title) methods 
 	
-	public void closeWindow (SeparateWindow window, String windowTitle, AppAjaxClient app) throws HarnessException {
-	    coreCloseWindow(window, windowTitle, app);
+	public void zCloseWindow (SeparateWindow window, String windowTitle, AppAjaxClient app) throws HarnessException {
+		zCoreCloseWindow(window, windowTitle, app);
 	}	
 	
-	public void closeWindow (SeparateWindowFormMailNew window, String windowTitle, AppAjaxClient app) throws HarnessException {
-		coreCloseWindow(window, windowTitle, app);
+	public void zCloseWindow (SeparateWindowFormMailNew window, String windowTitle, AppAjaxClient app) throws HarnessException {
+		zCoreCloseWindow(window, windowTitle, app);
 	}
 	
-	public void closeWindow (SeparateWindowDisplayMail window, String windowTitle, AppAjaxClient app) throws HarnessException {
-		coreCloseWindow(window, windowTitle, app);
+	public void zCloseWindow (SeparateWindowDisplayMail window, String windowTitle, AppAjaxClient app) throws HarnessException {
+		zCoreCloseWindow(window, windowTitle, app);
 	}
 	
-	public void closeWindow (SeparateWindowOpenAttachment window, String windowTitle, AppAjaxClient app) throws HarnessException {
-		coreCloseWindow(window, windowTitle, app);
+	public void zCloseWindow (SeparateWindowOpenAttachment window, String windowTitle, AppAjaxClient app) throws HarnessException {
+		zCoreCloseWindow(window, windowTitle, app);
 	}
 	
-	private void coreCloseWindow (AbsSeparateWindow window, String windowTitle, AppAjaxClient app) throws HarnessException {
+	private void zCoreCloseWindow (AbsSeparateWindow window, String windowTitle, AppAjaxClient app) throws HarnessException {
 		if (window != null) {
 			window.zCloseWindow(windowTitle);
 			window = null;
@@ -459,11 +459,15 @@ public class PageMain extends AbsTab {
 	
 	// Various kind of close window (without title) methods
 	
-	public void closeWindow (SeparateWindowOpenAttachment window, AppAjaxClient app) throws HarnessException {
-		coreCloseWindow(window, app);
+	public void zCloseWindow (SeparateWindow window, AppAjaxClient app) throws HarnessException {
+		zCoreCloseWindow(window, app);
 	}
 	
-	private void coreCloseWindow (AbsSeparateWindow window, AppAjaxClient app) throws HarnessException {
+	public void zCloseWindow (SeparateWindowOpenAttachment window, AppAjaxClient app) throws HarnessException {
+		zCoreCloseWindow(window, app);
+	}
+		
+	private void zCoreCloseWindow (AbsSeparateWindow window, AppAjaxClient app) throws HarnessException {
 		if (window != null) {
 			window.zCloseWindow();
 			window = null;

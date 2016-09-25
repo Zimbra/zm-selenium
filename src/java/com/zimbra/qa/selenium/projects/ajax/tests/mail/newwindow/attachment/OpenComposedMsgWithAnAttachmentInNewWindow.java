@@ -70,7 +70,7 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 				Assert.assertTrue(window.zIsVisiblePerPosition("css=a[id^='COMPOSE']:contains(" + fileName + ")", 0, 0),"vcf attachment link present");
 
 			} finally {
-				app.zPageMain.closeWindow(window, windowTitle, app);
+				app.zPageMain.zCloseWindow(window, windowTitle, app);
 			}
 
 		} else {

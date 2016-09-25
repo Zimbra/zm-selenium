@@ -110,7 +110,7 @@ public class EditAsNewWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 				window.zSetWindowTitle(windowTitle);
 
 			} finally {
-				app.zPageMain.closeWindow(window, windowTitle, app);
+				app.zPageMain.zCloseWindow(window, windowTitle, app);
 			}
 
 			for (int i = 0; i < 30; i++) {

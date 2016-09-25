@@ -80,7 +80,7 @@ public class CreateFilter extends PrefGroupMailByMessageTest {
 			ZAssert.assertTrue(dialog.zIsActive(), "Add filter dialog should active");
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 	}

@@ -114,7 +114,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 			SleepUtil.sleepLong();
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 		
 		FormApptNew apptForm = new FormApptNew(app);

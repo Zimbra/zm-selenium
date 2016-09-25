@@ -76,7 +76,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			window.zToolbarPressButton(Button.B_CANCEL);
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 		FolderItem draftsFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Drafts);
@@ -136,7 +136,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			warning.zClickButton(Button.B_YES);
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 		FolderItem draftsFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Drafts);
@@ -210,7 +210,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			SleepUtil.sleepLong();
 		
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 				
 		// Get the message from the server
@@ -280,7 +280,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertEquals(window.sGetCssCountNewWindow("css=div[id='zv__COMPOSE-1_attachments_div'] table tbody tr td div[class='attBubbleContainer'] div span[id^='zv__COMPOSE-1_']"), 1, "Attachemnt not duplicated");
 	
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 		// Get the message from the server

@@ -63,14 +63,7 @@ public class Print extends AjaxCommonTest {
 			ZAssert.assertTrue(window.zIsActive(), "Verify the print window is active");
 
 		} finally {
-			
-			// Close the print window, if applicable
-			
-			if ( window != null ) {
-				window.zCloseWindow();
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.zCloseWindow(window, app);
 		}
 
 

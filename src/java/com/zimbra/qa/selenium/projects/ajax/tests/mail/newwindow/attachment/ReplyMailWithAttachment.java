@@ -94,7 +94,7 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 				window.zToolbarPressButton(Button.B_SEND);
 				
 			} finally {
-				app.zPageMain.closeWindow(window, windowTitle, app);
+				app.zPageMain.zCloseWindow(window, windowTitle, app);
 			}
 
 			// Verify UI for attachment

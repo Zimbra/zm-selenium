@@ -76,7 +76,7 @@ public class OpenAttachment extends PrefGroupMailByMessageTest {
 			ZAssert.assertStringContains(content, attachmentcontent, "Verify the content in the attachment");
 			
 		} finally {
-			app.zPageMain.closeWindow(window, app);
+			app.zPageMain.zCloseWindow(window, app);
 		}
 
 	}

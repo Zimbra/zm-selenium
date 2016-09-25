@@ -61,10 +61,12 @@ public class NewWindowCancelAutoDraftSave extends PrefGroupMailByMessageTest {
 		try {
 
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
+			window.zWaitForActive();
 			SleepUtil.sleepLong();
 
 			//Select the window
-			window.sSelectWindow(windowTitle);				
+			window.sSelectWindow(windowTitle);
+			window.zSetWindowTitle(windowTitle);
 
 			//Go to draft and check for draft message
 			mailform.zToolbarPressButton(Button.B_CANCEL);	
@@ -73,12 +75,7 @@ public class NewWindowCancelAutoDraftSave extends PrefGroupMailByMessageTest {
 			ZAssert.assertNotNull(draft, "Verify the message is not present in drafts folder");
 
 		} finally {
-
-			if ( window != null ) {
-				window.zCloseWindow();
-				window = null;
-   		 	}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 	
 	}

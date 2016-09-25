@@ -79,7 +79,7 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 			SleepUtil.sleep(1000L * (delaySeconds + 5));
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);			
+			app.zPageMain.zCloseWindow(window, windowTitle, app);			
 		}
 
 		
@@ -134,7 +134,7 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 			window.zKeyboardShortcut(Shortcut.S_MAIL_MARKREAD);
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 
@@ -186,7 +186,7 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_MARK_AS_READ);
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);			
+			app.zPageMain.zCloseWindow(window, windowTitle, app);			
 		}
 
 

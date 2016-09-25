@@ -101,12 +101,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 			ZAssert.assertStringContains(body, attendeeHeader,"Verify Attendee is present in Show original view");
 			
         } finally {
-
-			if ( window != null ) {
-				window.zCloseWindow();
-				window = null;
-   		 	}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.zCloseWindow(window, app);
 		}
 	}
 }

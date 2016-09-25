@@ -93,11 +93,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 			ZAssert.assertStringContains(body, "ORGANIZER:mailto:"+ZimbraAccount.AccountA().EmailAddress,"Verify organizer is present in Show original view");
 	    
 		} finally {
-   		 	if ( window != null ) {
-				window.zCloseWindow();
-				window = null;
-   		 	}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.zCloseWindow(window, app);
 		}
         
 	}
