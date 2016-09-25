@@ -17,7 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.outofoffice;
 
 import java.util.Calendar;
-
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
@@ -74,6 +74,12 @@ public class OutOfOfficeCalendarAppointment extends AjaxCommonTest {
 		// Verify appointment exists in current view
 		app.zPageCalendar.zNavigateTo();
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+	}
+	
+	@AfterMethod(groups={"always"})
+	public void afterMethod() throws HarnessException {
+		zFreshLogin();
+		logger.info(app.zGetActiveAccount().EmailAddress);
 	}
 	
 }

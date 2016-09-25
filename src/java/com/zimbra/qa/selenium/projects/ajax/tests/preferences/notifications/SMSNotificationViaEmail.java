@@ -157,12 +157,8 @@ public class SMSNotificationViaEmail extends CalendarWorkWeekTest {
 
 		} finally {
 
-			// Modify the active account to restore the default setting i.e. disable the display of appointment reminders
-			app.zGetActiveAccount().soapSend(
-					"<ModifyAccountRequest xmlns='urn:zimbraAccount'>"
-							+		"<id>"+ app.zGetActiveAccount().ZimbraId +"</id>"
-							+		"<a n='zimbraPrefCalendarApptReminderWarningTime'>0</a>"
-							+		"</ModifyAccountRequest>");
+			zFreshLogin();
+			logger.info(app.zGetActiveAccount().EmailAddress);
 		}
 
 	}
