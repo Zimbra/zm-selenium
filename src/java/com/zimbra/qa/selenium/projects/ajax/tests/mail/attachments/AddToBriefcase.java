@@ -169,7 +169,7 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 			SleepUtil.sleepLong(); //sometime client takes longer time to add the file
 			
         } finally {
-        	app.zPageMain.closeWindow(window, windowTitle, app);
+        	app.zPageMain.zCloseWindow(window, windowTitle, app);
        	}
 		
 		//-- Verification

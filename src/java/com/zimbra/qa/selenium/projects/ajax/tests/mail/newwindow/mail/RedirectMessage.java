@@ -80,7 +80,7 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 			dialog.zClickButton(Button.B_OK);
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 		
 		// Verify the redirected message is received

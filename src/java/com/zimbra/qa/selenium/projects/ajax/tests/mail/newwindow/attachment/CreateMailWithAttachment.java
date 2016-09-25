@@ -80,7 +80,7 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 					window.zToolbarPressButton(Button.B_SEND);
 
 				} finally {
-					app.zPageMain.closeWindow(window, windowTitle, app);
+					app.zPageMain.zCloseWindow(window, windowTitle, app);
 				}
 
 				for (int i = 0; i < 30; i++) {

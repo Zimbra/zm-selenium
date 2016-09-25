@@ -83,7 +83,7 @@ public class CreateTask extends PrefGroupMailByMessageTest {
 			SleepUtil.sleepMedium();
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);			
+			app.zPageMain.zCloseWindow(window, windowTitle, app);			
 		}
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(),subject);

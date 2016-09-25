@@ -86,12 +86,7 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 			ZAssert.assertStringContains(body, ownerFoldername, "Verify owners calender name is displayed in new window");
 
 		} finally {
-
-			if ( window != null ) {
-				window.zCloseWindow();
-				window = null;
-   		 	}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.zCloseWindow(window, app);
 		}
 	}
 
@@ -186,12 +181,7 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 			ZAssert.assertStringContains(bodyOfAppt , apptContent , "Verify appt shows correct appt content");
 
 		} finally {
-
-			if ( window != null ) {
-				window.zCloseWindow();
-				window = null;
-   		 	}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.zCloseWindow(window, app);
 		}
 	}
 

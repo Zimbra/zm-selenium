@@ -92,7 +92,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertEquals(mail.dFolderId, trash.getId(), "Verify the message is not in the trash folder");
 			
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);			
+			app.zPageMain.zCloseWindow(window, windowTitle, app);			
 		}
 		
 	}

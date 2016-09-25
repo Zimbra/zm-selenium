@@ -476,7 +476,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertStringContains(body, htmlcontent, "Verify the html content");
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 	}

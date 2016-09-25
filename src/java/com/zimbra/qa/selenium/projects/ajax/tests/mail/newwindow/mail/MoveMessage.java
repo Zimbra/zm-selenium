@@ -107,7 +107,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			dialog.zClickButton(Button.B_OK);
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
@@ -182,7 +182,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, subfolder);
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 		// Get the message, make sure it is in the correct folder
@@ -242,7 +242,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, trash);
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 		// Get the message, make sure it is in the correct folder

@@ -131,7 +131,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 			window.zPressButton(Button.B_ACCEPT);
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 
@@ -221,7 +221,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 			window.zPressButton(Button.B_ACCEPT);
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 
@@ -307,7 +307,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 			window.zPressButtonPulldown(Button.B_ACCEPT, Button.O_ACCEPT_NOTIFY_ORGANIZER);
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 
@@ -433,7 +433,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 			window.zPressButtonPulldown(Button.B_ACCEPT, Button.O_ACCEPT_DONT_NOTIFY_ORGANIZER);
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 

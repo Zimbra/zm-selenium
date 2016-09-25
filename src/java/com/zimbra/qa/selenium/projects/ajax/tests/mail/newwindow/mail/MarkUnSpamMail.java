@@ -86,7 +86,7 @@ public class MarkUnSpamMail extends PrefGroupMailByMessageTest {
 			SleepUtil.sleepLong();
 			
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);			
+			app.zPageMain.zCloseWindow(window, windowTitle, app);			
 		}
 		
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:("+ subject +")");

@@ -93,7 +93,7 @@ public class PrintTask extends AjaxCommonTest {
 			ZAssert.assertStringContains(printContent, bodyText, "Verify content in Print view");
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 	}
 
@@ -154,7 +154,7 @@ public class PrintTask extends AjaxCommonTest {
 			ZAssert.assertStringContains(printContent, bodyText, "Verify content in Print view");
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 	}
 
@@ -248,7 +248,7 @@ public class PrintTask extends AjaxCommonTest {
 			ZAssert.assertStringContains(printContent, subject3, "Verify subject2 in Print view");
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 	}

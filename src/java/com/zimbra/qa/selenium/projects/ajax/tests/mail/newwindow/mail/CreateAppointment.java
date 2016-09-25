@@ -86,7 +86,7 @@ public class CreateAppointment extends PrefGroupMailByMessageTest {
 			SleepUtil.sleepMedium();
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 		
 		// Verify appointment exists on the server

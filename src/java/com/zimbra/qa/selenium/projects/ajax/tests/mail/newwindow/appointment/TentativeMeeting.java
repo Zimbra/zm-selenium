@@ -132,7 +132,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 			window.zPressButton(Button.B_TENTATIVE);
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 
@@ -234,7 +234,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 			window.zPressButton(Button.B_TENTATIVE);
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 
@@ -321,7 +321,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 			window.zPressButtonPulldown(Button.B_TENTATIVE, Button.O_TENTATIVE_NOTIFY_ORGANIZER);
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 		
@@ -446,7 +446,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 			window.zPressButtonPulldown(Button.B_TENTATIVE, Button.O_TENTATIVE_DONT_NOTIFY_ORGANIZER);
 
 		} finally {
-			app.zPageMain.closeWindow(window, windowTitle, app);
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 

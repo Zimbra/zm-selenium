@@ -88,13 +88,7 @@ public class ShowOriginal extends AjaxCommonTest {
 			ZAssert.assertStringContains(ShowOrigBody, subject,"Verify subject in show original window");
 
 		} finally {
-
-			// Make sure to close the window
-			if (window != null) {
-				window.zCloseWindow();
-				window = null;
-			}
-			app.zPageMail.zSelectWindow(null);
+			app.zPageMain.zCloseWindow(window, app);
 
 		}
 
