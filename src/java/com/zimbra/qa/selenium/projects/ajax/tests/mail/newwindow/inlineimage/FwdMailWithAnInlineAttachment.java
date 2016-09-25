@@ -85,7 +85,7 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 			final String filePath = ConfigProperties.getBaseDirectory()+ "\\data\\public\\other\\" + fileName;
 
 			SeparateWindowDisplayMail window = null;
-			String windowTitle = "Zimbra: Forward";
+			String windowTitle = "Zimbra: " + subject;
 
 			try {
 
@@ -98,9 +98,9 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 				window.zToolbarPressButton(Button.B_FORWARD);
-				SleepUtil.sleepMedium();
+
+				windowTitle = "Zimbra: Forward";
 				window.zSetWindowTitle(windowTitle);
-				SleepUtil.sleepMedium();
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 
@@ -121,10 +121,13 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 				window.zPressButton(Button.B_ATTACH_INLINE);
 				zUploadInlineImageAttachment(filePath);
 
-				ZAssert.assertTrue(window.zVerifyInlineImageAttachmentExistsInComposeWindow(),"Verify inline image is present in Fwd compose window");
+				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(windowTitle, 1),"Verify inline image is present in Fwd compose window");
 
 				//click Send
 				window.zToolbarPressButton(Button.B_SEND);
+				
+				windowTitle = "Zimbra: " + subject;
+				window.zSetWindowTitle(windowTitle);
 				
 			} finally {
 				app.zPageMain.closeWindow(window, windowTitle, app);
@@ -141,8 +144,6 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 
 			ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 			ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountB().EmailAddress, "Verify the to field is correct");
-			//ZAssert.assertStringContains(received.dSubject, subject, "Verify the subject field is correct");
-			//ZAssert.assertStringContains(received.dSubject, "Fwd", "Verify the subject field contains the 'fwd' prefix");
 			ZAssert.assertStringContains(received.dSubject, "Fwd: " + subject, "Verify forward subject field is correct");
 
 		} else {

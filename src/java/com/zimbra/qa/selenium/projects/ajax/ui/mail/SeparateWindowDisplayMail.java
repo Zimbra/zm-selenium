@@ -37,7 +37,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 	public static class Locators {
 
-		public static final String zInlineImageAttachment = "css=img[data-mce-src^='cid']&&[data-mce-src$='@zimbra']";
 		public static final String zIncludeOriginalAsAttachmentMenuMail = "css=td[id='zmi__COMPOSE-1_REPLY__INC_ATTACHMENT_title']:contains('Include Original As Attachment')";
 		public static final String zOptionsdropdown = "css=[id^=zb__COMPOSE][id$=__COMPOSE_OPTIONS_dropdown]";
 		public static final String FormatAsHTMLMenu = "css=div[id^='zm__COMPOSE'] div[id$='NEW_MESSAGE__FORMAT_HTML'] tr[id^='POPUP_zmi__COMPOSE']";
@@ -887,7 +886,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 	}
 
-	/* TODO: ... debugging to be removed */
 	public boolean waitForWindowDisplay(String pageTitle) throws HarnessException {
 
 		sWaitForCondition("var x; for(var windowName in selenium.browserbot.openedWindows)"
@@ -902,13 +900,4 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 		return true;
 	}
-
-	public boolean zVerifyInlineImageAttachmentExistsInComposeWindow() throws HarnessException {
-		String locator = Locators.zInlineImageAttachment;
-		boolean inlineimgloaded = this.sIsElementPresent(locator);
-		if (!inlineimgloaded)
-			return (false);
-		return (inlineimgloaded);
-	}
-
 }
