@@ -306,34 +306,25 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 				locator = "css=td[id='zb__COMPOSE-1___attachments_btn_dropdown']";
 			}
 
-			logger.info(sIsElementPresent("css=td[id='zb__COMPOSE-1___attachments_btn_dropdown'])"));
-			this.sClick(locator);
-			return (page);
-
 		} else if (button == Button.B_ATTACH) {
 			if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_title']")) {
 				locator = "css=td[id='zb__COMPOSE-2___attachments_btn_title']";
 			} else {
-
-				logger.info(sIsElementPresent("css=td[id='zb__COMPOSE-1___attachments_btn_title']"));
 				locator = "css=td[id='zb__COMPOSE-1___attachments_btn_title']";
 			}
 
 		} else if (button == Button.B_MY_COMPUTER) {
-			locator = "css=td[id$='_title']:contains('My Computer')";
+			locator = "css=div[class='DwtMenu']  td[id$='_title']:contains('My Computer')";
 
 		} else if (button == Button.B_ATTACH_INLINE) {
-			locator = "css=td[id$='_title']:contains('Attach Inline')";
-			logger.info(sIsElementPresent("css=td[id$='_title']:contains('Attach Inline')"));
-			this.sClick(locator);
-			return (page);
+			locator = "css=div[class='DwtMenu']  td[id$='_title']:contains('Attach Inline')";
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
 		this.sClick(locator);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 
 		return (page);
 	}

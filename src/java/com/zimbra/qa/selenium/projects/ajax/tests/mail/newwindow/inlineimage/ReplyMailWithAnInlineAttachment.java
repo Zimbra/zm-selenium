@@ -84,12 +84,11 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 			final String filePath = ConfigProperties.getBaseDirectory()+ "\\data\\public\\other\\" + fileName;
 
 			SeparateWindowDisplayMail window = null;
-			String windowTitle = "Zimbra: Reply";
+			String windowTitle = "Zimbra: " + subject;
 
 			try {
 
 				// Choose Actions -> Launch in Window
-				//	window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 				window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 				window.zSetWindowTitle(windowTitle);
@@ -98,12 +97,10 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 				window.zToolbarPressButton(Button.B_REPLY);
-				SleepUtil.sleepMedium();
+				
+				windowTitle = "Zimbra: Reply";
 				window.zSetWindowTitle(windowTitle);
-				SleepUtil.sleepMedium();
-				//window.zWaitForActive();
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-
 
 				//Add an attachment
 				// Click Attach>>inline image
@@ -111,10 +108,13 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 				window.zPressButton(Button.B_ATTACH_INLINE);
 				zUploadInlineImageAttachment(filePath);
 
-				ZAssert.assertTrue(window.zVerifyInlineImageAttachmentExistsInComposeWindow(),"Verify inline image is present in Reply compose window");
+				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(windowTitle, 1),"Verify inline image is present in Reply compose window");
 
 				//click Send
 				window.zToolbarPressButton(Button.B_SEND);
+				
+				windowTitle = "Zimbra: " + subject;
+				window.zSetWindowTitle(windowTitle);
 				
 			} finally {
 				app.zPageMain.closeWindow(window, windowTitle, app);
@@ -131,9 +131,7 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 
 			ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 			ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
-			//ZAssert.assertStringContains(received.dSubject, subject, "Verify the subject field is correct");
-			//ZAssert.assertStringContains(received.dSubject, "Re", "Verify the subject field contains the 'Re' prefix");
-			ZAssert.assertStringContains(received.dSubject, "Re: " + subject, "Verify forward subject field is correct");
+			ZAssert.assertStringContains(received.dSubject, "Re: " + subject, "Verify reply subject field is correct");
 
 		} else {
 			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");

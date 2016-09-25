@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.inlineimage;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -16,6 +14,8 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.inlineimage;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
+
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.inlineimage;
 
 import org.testng.SkipException;
 import org.testng.annotations.Test;
@@ -49,16 +49,10 @@ PrefGroupMailByMessageTest {
 			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 			ZAssert.assertNotNull(mailform, "Verify the new form opened");
 
-			// Fill out the form with the data
-			//mailform.zFill(mail);
-
 			// Upload the file
 			app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
 			app.zPageMail.zPressButton(Button.B_ATTACH_INLINE);
 			zUploadInlineImageAttachment(filePath);
-
-			//Verify inline image in compose window
-			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(), "Verify inline image is present in compose window");
 
 			SeparateWindowFormMailNew window = null;
 			String windowTitle = "Zimbra: Compose";
@@ -68,14 +62,11 @@ PrefGroupMailByMessageTest {
 				window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
 				window.zSetWindowTitle(windowTitle);
-				window.waitForComposeWindow();
+				window.zWaitForActive();
 				ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 
-				// Select the window
-				window.sSelectWindow(windowTitle);
-
 				// Verify Inline Attachment should not disappeared  New compose window
-				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(),"Verify inline image is present in New compose window");
+				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(windowTitle, 0),"Verify inline image is present in New compose window");
 
 			} finally {
 				app.zPageMain.closeWindow(window, windowTitle, app);

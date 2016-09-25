@@ -72,7 +72,7 @@ public class EditAsNewWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 			MailItem mail = new MailItem();
 			mail.dBodyHtml = "body"+ ConfigProperties.getUniqueString();
 			
-			String windowTitle = "Zimbra: Compose";
+			String windowTitle = "Zimbra: " + subject;
 
 			try {
 
@@ -82,38 +82,32 @@ public class EditAsNewWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 				window.zWaitForActive();
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
+				windowTitle = "Zimbra: Compose";
 				window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_EDIT_AS_NEW);
 				window.zSetWindowTitle(windowTitle);
 				window.zWaitForActive();
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 				window.sSelectWindow(windowTitle);
 
+				// Type in body
+				String locator = "css=div[id^='zv__COMPOSE'] iframe[id$='_body_ifr']";
 
-				//Type in body
-				String	locator = "css=div[id^='zv__COMPOSE'] iframe[id$='_body_ifr']";
-
-				window.zWaitForElementPresent(locator, "5000");
 				window.sSelectFrame(locator);
 				window.sClick(locator);
-
-				//Note: Explicitly we have used both command to type in body area.
-				window.sTypeNewWindow(locator, mail.dBodyHtml);
-				window.zTypeFormattedText(locator, mail.dBodyHtml);
-
-				SleepUtil.sleepSmall();
+				window.zTypeCharacters(mail.dBodyHtml);
+				SleepUtil.sleepSmall();			
 
 				// Click Attach>>inline image
 				window.zPressButton(Button.O_ATTACH_DROPDOWN);
 				window.zPressButton(Button.B_ATTACH_INLINE);
 				zUploadInlineImageAttachment(filePath);
 
-				ZAssert.assertTrue(window.zVerifyInlineImageAttachmentExistsInComposeWindow(),"Verify inline image is present in  compose window");
+				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(windowTitle, 1),"Verify inline image is present in  compose window");
 
 				window.zToolbarPressButton(Button.B_SEND);
+				
+				windowTitle = "Zimbra: " + subject;
 				window.zSetWindowTitle(windowTitle);
-				window.zWaitForActive();
-				window.zToolbarPressButton(Button.B_CLOSE);
-				SleepUtil.sleepSmall();
 
 			} finally {
 				app.zPageMain.closeWindow(window, windowTitle, app);

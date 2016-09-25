@@ -48,6 +48,7 @@ public class CreateMailWithAnInlineImg extends PrefGroupMailByMessageTest {
 				MailItem mail = new MailItem();
 				mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
 				mail.dSubject = "subject"+ ConfigProperties.getUniqueString();
+				mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
 
 				FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 
@@ -65,30 +66,25 @@ public class CreateMailWithAnInlineImg extends PrefGroupMailByMessageTest {
 
 					window.zSetWindowTitle(windowTitle);
 					window.zWaitForActive();
-
-					window.waitForComposeWindow();
-
 					ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 
 					// Fill out the form with the data
 					window.zFill(mail);
 
-					// TODO: ... debugging to be removed
-					mail.dBodyHtml = "body"+ ConfigProperties.getUniqueString();
-					window.sSelectWindow(windowTitle);
-					String locator = "css=iframe[id*=ifr]";
-					window.zWaitForElementPresent(locator, "5000");
-					window.sClickAt(locator, "");
-					window.zTypeFormattedText(locator, mail.dBodyHtml);
-
 					// Click Attach>>inline image
 					window.zPressButton(Button.O_ATTACH_DROPDOWN);
 					window.zPressButton(Button.B_ATTACH_INLINE);
 					zUploadInlineImageAttachment(filePath);
+					
+					//Verify inline image in compose window
+					ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(windowTitle, 0), "Verify inline image is present in compose window");
 
 					// Send the message
 					window.zToolbarPressButton(Button.B_SEND);
-
+					
+					windowTitle = "Zimbra: " + mail.dSubject;
+					window.zSetWindowTitle(windowTitle);
+					
 				} finally {
 					app.zPageMain.closeWindow(window, windowTitle, app);
 				}

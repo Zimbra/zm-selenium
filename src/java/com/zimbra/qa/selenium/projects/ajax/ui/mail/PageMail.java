@@ -325,6 +325,28 @@ public class PageMail extends AbsTab {
 			webDriver.switchTo().defaultContent();
 		}
 	}
+	
+	public boolean zVerifyInlineImageAttachmentExistsInComposeWindow(String windowTitle, int iFrame) throws HarnessException {
+
+		try {
+			webDriver().switchTo().defaultContent();
+			sSelectWindow(windowTitle);
+			webDriver().switchTo().frame(iFrame);
+			WebElement we = webDriver().findElement(By.cssSelector("html div img"));
+			
+			if (we.getAttribute("src").contains("/service/home/~/?auth=co")
+					&& we.getAttribute("data-mce-src").startsWith("cid:")
+					&& we.getAttribute("data-mce-src").endsWith("@zimbra")
+					&& we.getAttribute("dfsrc").startsWith("cid:") && we.getAttribute("dfsrc").endsWith("@zimbra")) {
+				return true;
+			} else {
+				return false;
+			}
+
+		} finally {
+			webDriver().switchTo().defaultContent();
+		}
+	}
 
 	public boolean zVerifyInlineImageAttachmentExistsInMail() throws HarnessException {
 
@@ -2042,18 +2064,18 @@ public class PageMail extends AbsTab {
 			}
 
 		} else if (button == Button.B_MY_COMPUTER) {
-			locator = "css=td[id$='_title']:contains('My Computer')";
+			locator = "css=div[class='DwtMenu'] td[id$='_title']:contains('My Computer')";
 
 		} else if (button == Button.B_ATTACH_INLINE) {
-			locator = "css=td[id$='_title']:contains('Attach Inline')";
+			locator = "css=div[class='DwtMenu'] td[id$='_title']:contains('Attach Inline')";
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
 		}
-
-		this.sClickAt(locator, "0,0");
-		SleepUtil.sleepSmall();
-
+		
+		zWaitTillElementPresent(locator);
+		this.sClick(locator);
+		
 		return (page);
 	}
 
