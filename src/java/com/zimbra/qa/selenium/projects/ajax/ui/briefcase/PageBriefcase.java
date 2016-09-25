@@ -1129,11 +1129,13 @@ public class PageBriefcase extends AbsTab {
 
 		logger.info("renaming to: " + text);
 
-		zSelectWindow("Zimbra: Briefcase");
-		WebElement we = getElement(Locators.zRenameInput.locator);
-		we.clear();
+		String locator = Locators.zRenameInput.locator;
+		WebElement we = getElement(locator);
+		clearField(locator);
+		SleepUtil.sleepVerySmall();
 		we.sendKeys(text);
 		we.sendKeys(Keys.RETURN);
+		SleepUtil.sleepMedium();
 	}
 
 	public void typeKey(String locator, String keycode, String event) throws HarnessException {
@@ -1493,6 +1495,8 @@ public class PageBriefcase extends AbsTab {
 
 		// If the app is busy, wait for it to become active
 		zWaitForBusyOverlay();
+		SleepUtil.sleepSmall();
+		
 		return (page);
 
 	}
