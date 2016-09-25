@@ -41,7 +41,8 @@ public class EditFile extends FeatureBriefcaseTest {
 	public EditFile() throws HarnessException {
 		logger.info("New " + EditFile.class.getCanonicalName());
 		super.startingPage = app.zPageBriefcase;
-		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");				
+		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
+		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 	}
 
 	
@@ -293,6 +294,7 @@ public class EditFile extends FeatureBriefcaseTest {
 		// Create file item
 		String file1Path = ConfigProperties.getBaseDirectory()
 				+ "/data/public/other/restoreversion.txt";
+		IItem fileItem = new FileItem(file1Path);
 
 		String notesV1 = "notesVersion1" + ConfigProperties.getUniqueString();
 		String notesV2 = "notesVersion2" + ConfigProperties.getUniqueString();
@@ -333,6 +335,9 @@ public class EditFile extends FeatureBriefcaseTest {
 		}
 
         ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent("css=tr[id^='zlif__BDLV-main__'] div[id^='zlif__BDLV-main__']:contains('#3: " + notesV1 + "')"), "'Notes' is restored");
+        
+        // delete file upon test completion
+        app.zPageBriefcase.deleteFileByName(fileItem.getName());
 
 	}
 
@@ -349,7 +354,7 @@ public class EditFile extends FeatureBriefcaseTest {
 
 		// Create file item
 		String file1Path = ConfigProperties.getBaseDirectory()
-				+ "/data/public/other/restoreversion.txt";
+				+ "/data/public/other/filerename.txt";
 
 		String notesV1 = "notesVersion1" + ConfigProperties.getUniqueString();
 		String notesV2 = "notesVersion2" + ConfigProperties.getUniqueString();
@@ -389,7 +394,7 @@ public class EditFile extends FeatureBriefcaseTest {
 				+ ConfigProperties.getUniqueString();
 
 		app.zPageBriefcase.rename(fileName2);
-		app.zPageBriefcase.zClick("css=div[id='zl__BDLV-main__rows']");	
+		app.zPageBriefcase.sClick("css=div[id='zl__BDLV-main__rows']");	
 
 		// Verify document name through GUI
 		ZAssert.assertTrue(app.zPageBriefcase.waitForPresentInListView(fileName2),

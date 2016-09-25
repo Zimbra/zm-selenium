@@ -1,0 +1,10 @@
+Fails due to bug 99622
+* NEW ...ajax.tests.calendar.appointments.views.day.singleday.CreateAppointment.CreateAppointment_02 -- http://bugzilla.zimbra.com/enter_bug.cgi
+* NEW ...ajax.tests.calendar.appointments.views.week.singleday.CreateAppointment.CreateAppointment_02 -- http://bugzilla.zimbra.com/enter_bug.cgi
+* NEW ...ajax.tests.calendar.appointments.views.workweek.singleday.CreateAppointment.CreateAppointment_02 -- http://bugzilla.zimbra.com/enter_bug.cgi
+* NEW ...ajax.tests.calendar.meetings.organizer.singleday.resetmeetingstatus.ResetStatusAfterAddingEquipment.ResetStatusAfterAddingEquipment_01 -- http://bugzilla.zimbra.com/enter_bug.cgi
+* NEW ...ajax.tests.calendar.meetings.organizer.singleday.resetmeetingstatus.ResetStatusAfterRemovingEquipment.ResetStatusAfterRemovingEquipment_01 -- http://bugzilla.zimbra.com/enter_bug.cgi
+* NEW ...ajax.tests.calendar.meetings.organizer.singleday.resetmeetingstatus.ResetStatusAfterUpdatingEquipment.ResetStatusAfterUpdatingEquipment_01 -- http://bugzilla.zimbra.com/enter_bug.cgi
+* NEW ...ajax.tests.calendar.resources.AddEquipment.AddEquipment_01 -- http://bugzilla.zimbra.com/enter_bug.cgi
+* NEW ...ajax.tests.calendar.resources.AddEquipment.AddEquipment_02 -- http://bugzilla.zimbra.com/enter_bug.cgi
+* NEW ...ajax.tests.calendar.resources.CreateMeetingWithEquipment.CreateMeetingWithEquipment_01 -- http://bugzilla.zimbra.com/enter_bug.cgi
