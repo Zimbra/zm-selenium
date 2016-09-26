@@ -54,6 +54,7 @@ import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import org.openqa.selenium.interactions.Mouse;
 import org.openqa.selenium.interactions.HasInputDevices;
@@ -444,7 +445,7 @@ public abstract class AbsSeleniumObject {
 		htmlSource = webDriver().getPageSource();
 		return (htmlSource);
 	}
-	
+
 	public String sGetHtmlBody() throws HarnessException {
 		logger.info("sGetHtmlBody()");
 		String htmlBody = null;
@@ -869,7 +870,11 @@ public abstract class AbsSeleniumObject {
 	public void sRefresh() throws HarnessException {
 	    logger.info("refresh()");
 		webDriver().navigate().refresh();
-		SleepUtil.sleepLongMedium();
+		if (ConfigProperties.getStringProperty("server.host").contains("local") == true) {
+			zWaitTillElementPresent(PageMail.Locators.zMailTagsPane);
+		} else {
+			zWaitTillElementPresent(PageMail.Locators.zMailZimletsPane);
+		}
 	}
 
 
@@ -1036,14 +1041,14 @@ public abstract class AbsSeleniumObject {
 		this.zWaitForBusyOverlay();
 
 		boolean present = false;
-        for (int i=0; i<=30; i++) {
+        for (int i=0; i<=10; i++) {
         	present = zIsVisiblePerPosition(locator, 10, 10);
             if (present == true) {
                 SleepUtil.sleepSmall();
                 return true;
             } else {
                 SleepUtil.sleepMedium();
-                if (i == 30) {
+                if (i == 10) {
                     return false;
                 }
             }

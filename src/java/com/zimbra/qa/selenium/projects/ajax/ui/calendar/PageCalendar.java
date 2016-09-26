@@ -2299,30 +2299,7 @@ public class PageCalendar extends AbsTab {
 			return;
 		}
 
-		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
-			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
-		}
-
-		logger.info("Navigate to " + this.myPageName());
-		
-		for (int i=0; i<=3; i++) {
-			if (zIsActive()) {
-				break;
-			} else {
-				this.sClickAt(PageMain.Locators.zCalendarApp, "");
-				this.zWaitForBusyOverlay();
-				SleepUtil.sleepLong();
-			}
-		}
-
-		if (ConfigProperties.getStringProperty("server.host").contains("local") == true) {
-			zWaitTillElementPresent(Locators.zCalendarTagsPane);
-		} else {
-			zWaitTillElementPresent(Locators.zCalendarZimletsPane);
-		}
-
-		logger.info("Navigated to "+ this.myPageName() + " page");
-
+		((AppAjaxClient) MyApplication).zPageMain.zCheckAppLoaded(Locators.zCalendarZimletsPane);
 	}
 
 	@Override

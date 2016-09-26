@@ -22,8 +22,6 @@ package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 import java.util.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-
-import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -34,7 +32,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
 public class PageMail extends AbsTab {
 
-	WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	WebElement we = null;
 
 	public static class Locators {
@@ -192,30 +189,7 @@ public class PageMail extends AbsTab {
 			return;
 		}
 
-		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
-			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
-		}
-
-		logger.info("Navigate to " + this.myPageName());
-
-		for (int i = 0; i <= 3; i++) {
-			if (zIsActive()) {
-				break;
-			} else {
-				this.sClickAt(PageMain.Locators.zMailApp, "");
-				this.zWaitForBusyOverlay();
-				SleepUtil.sleepLong();
-			}
-		}
-
-		if (ConfigProperties.getStringProperty("server.host").contains("local") == true) {
-			zWaitTillElementPresent(Locators.zMailZimletsPane);
-		} else {
-			zWaitTillElementPresent(Locators.zMailTagsPane);
-		}
-
-		logger.info("Navigated to " + this.myPageName() + " page");
-
+		((AppAjaxClient) MyApplication).zPageMain.zCheckAppLoaded(Locators.zMailZimletsPane);
 	}
 
 	public boolean zVerifyMailExists(String subject) throws HarnessException {
@@ -260,34 +234,34 @@ public class PageMail extends AbsTab {
 	@SuppressWarnings("static-access")
 	public void zDisplayMailRightClick(String locator, Button button) throws HarnessException {
 		try {
-			webDriver.switchTo().defaultContent();
-			webDriver.switchTo().frame(0);
-			we = webDriver.findElement(By.cssSelector(locator));
+			webDriver().switchTo().defaultContent();
+			webDriver().switchTo().frame(0);
+			we = webDriver().findElement(By.cssSelector(locator));
 			final Actions builder = new Actions(webDriver());
 			builder.contextClick(we).build().perform();
-			webDriver.switchTo().defaultContent();
+			webDriver().switchTo().defaultContent();
 
 			String btnLocator = null;
 			if (button.equals(button.B_CREATE_NEW_CALENDAR)) {
 				btnLocator = Locators.CreateNewCalendar;
 			}
-			we = webDriver.findElement(By.cssSelector(btnLocator.replace("css=", "")));
+			we = webDriver().findElement(By.cssSelector(btnLocator.replace("css=", "")));
 			we.click();
 			SleepUtil.sleepSmall();
 
 		} finally {
-			webDriver.switchTo().defaultContent();
+			webDriver().switchTo().defaultContent();
 		}
 	}
 
 	public void zDisplayMailHoverOver(String locator) throws HarnessException {
 		try {
 
-			webDriver.switchTo().defaultContent();
-			webDriver.switchTo().frame(0);
+			webDriver().switchTo().defaultContent();
+			webDriver().switchTo().frame(0);
 
 			if (locator.contains("nth-of-type")) {
-				we = webDriver.findElement(By.cssSelector(locator));
+				we = webDriver().findElement(By.cssSelector(locator));
 				final Actions builder = new Actions(webDriver());
 				builder.moveToElement(we).build().perform();
 			} else if (locator.contains("url")) {
@@ -301,16 +275,16 @@ public class PageMail extends AbsTab {
 			SleepUtil.sleepSmall();
 
 		} finally {
-			webDriver.switchTo().defaultContent();
+			webDriver().switchTo().defaultContent();
 		}
 	}
 
 	public boolean zVerifyInlineImageAttachmentExistsInComposeWindow() throws HarnessException {
 
 		try {
-			webDriver.switchTo().defaultContent();
-			webDriver.switchTo().frame("ZmHtmlEditor1_body_ifr");
-			we = webDriver.findElement(By.cssSelector("body#tinymce img"));
+			webDriver().switchTo().defaultContent();
+			webDriver().switchTo().frame("ZmHtmlEditor1_body_ifr");
+			we = webDriver().findElement(By.cssSelector("body#tinymce img"));
 
 			if (we.getAttribute("src").contains("/service/home/~/?auth=co")
 					&& we.getAttribute("data-mce-src").startsWith("cid:")
@@ -322,7 +296,7 @@ public class PageMail extends AbsTab {
 			}
 
 		} finally {
-			webDriver.switchTo().defaultContent();
+			webDriver().switchTo().defaultContent();
 		}
 	}
 	
@@ -351,9 +325,9 @@ public class PageMail extends AbsTab {
 	public boolean zVerifyInlineImageAttachmentExistsInMail() throws HarnessException {
 
 		try {
-			webDriver.switchTo().defaultContent();
-			webDriver.switchTo().frame(0);
-			we = webDriver.findElement(By.cssSelector("html div img"));
+			webDriver().switchTo().defaultContent();
+			webDriver().switchTo().frame(0);
+			we = webDriver().findElement(By.cssSelector("html div img"));
 			if (we.getAttribute("pnsrc").startsWith("cid")
 					&& we.getAttribute("src").contains("/service/home/~/?auth=co")) {
 				return true;
@@ -362,15 +336,15 @@ public class PageMail extends AbsTab {
 			}
 
 		} finally {
-			webDriver.switchTo().defaultContent();
+			webDriver().switchTo().defaultContent();
 		}
 	}
 
 	public boolean zVerifyDisplayMailElement(String locator) throws HarnessException {
 		try {
-			webDriver.switchTo().defaultContent();
-			webDriver.switchTo().frame(0);
-			we = webDriver.findElement(By.cssSelector(locator));
+			webDriver().switchTo().defaultContent();
+			webDriver().switchTo().frame(0);
+			we = webDriver().findElement(By.cssSelector(locator));
 			if (we.isDisplayed()) {
 				return true;
 			} else {
@@ -378,7 +352,7 @@ public class PageMail extends AbsTab {
 			}
 
 		} finally {
-			webDriver.switchTo().defaultContent();
+			webDriver().switchTo().defaultContent();
 		}
 	}
 
