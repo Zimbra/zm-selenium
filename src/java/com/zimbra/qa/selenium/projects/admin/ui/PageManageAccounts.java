@@ -152,10 +152,11 @@ public class PageManageAccounts extends AbsTab {
 		if (count >= 50) {
 			for (int a1 = 1; a1 <= 10; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
-				if (this.sIsElementPresent(p0)) {
-				zClick(p0);
-				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
-				m=m+20;
+				SleepUtil.sleepSmall();
+				if (this.sIsElementPresent(p0)) {					
+					sClickAt(p0,"");
+					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+					m=m+20;
 				}
 				else
 					break;
@@ -180,7 +181,7 @@ public class PageManageAccounts extends AbsTab {
 				if (this.sGetText(locator).trim().equalsIgnoreCase(item))
 				{
 					if (action == Action.A_LEFTCLICK) {
-						zClick(locator);
+						sClick(locator);
 						break;
 					} else if(action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);

@@ -30,10 +30,10 @@ import com.zimbra.qa.selenium.projects.admin.items.AliasItem;
 public class WizardCreateAlias extends AbsWizard {
 	public static class Locators {
 		public static final String zdlg_NEW_ALIAS = "zdlg__NEW_ALIAS";
-		public static final String zdlg_ALIAS_NAME = "zdlgv__NEW_ALIAS_name_2";
-		public static final String zdlg_ALIAS_DOMAIN_NAME="zdlgv__NEW_ALIAS_name_3_display";
-		public static final String zdlg_TARGET_ACCOUNT_NAME="zdlgv__NEW_ALIAS_targetName_display";
-		public static final String zdlg_OK="zdlg__NEW_ALIAS_button2_title";
+		public static final String zdlg_ALIAS_NAME = "css=input[id='zdlgv__NEW_ALIAS_name_2']";
+		public static final String zdlg_ALIAS_DOMAIN_NAME = "css=input[id='zdlgv__NEW_ALIAS_name_3_display']";
+		public static final String zdlg_TARGET_ACCOUNT_NAME = "css=input[id='zdlgv__NEW_ALIAS_targetName_display']";
+		public static final String zdlg_OK = "css=td[id^='zdlg__NEW_ALIAS_button']:contains('OK')";
 	}
 
 	public WizardCreateAlias(AbsTab page) {
@@ -51,7 +51,7 @@ public class WizardCreateAlias extends AbsWizard {
 		String CN = alias.getLocalName();
 		String domain = alias.getDomainName();
 		String targetAccount = alias.getTargetAccountEmail();
-
+		
 		sType(Locators.zdlg_ALIAS_NAME, CN);
 		SleepUtil.sleepSmall();
 		this.clearField(Locators.zdlg_ALIAS_DOMAIN_NAME);
