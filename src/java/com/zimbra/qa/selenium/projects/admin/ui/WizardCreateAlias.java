@@ -51,8 +51,7 @@ public class WizardCreateAlias extends AbsWizard {
 		String CN = alias.getLocalName();
 		String domain = alias.getDomainName();
 		String targetAccount = alias.getTargetAccountEmail();
-
-
+		
 		sType(Locators.zdlg_ALIAS_NAME, CN);
 		SleepUtil.sleepSmall();
 		this.clearField(Locators.zdlg_ALIAS_DOMAIN_NAME);
