@@ -42,6 +42,8 @@ public class WizardCreateAdminAccount extends AbsWizard {
 		public static final String GLOBAL_ADMIN_CHECK_BOX="zdlgv__NEW_ADMIN_";
 		public static final String zdlg_PASSWORD = "css=input[id='zdlgv__NEW_ADMIN_password']";
 		public static final String zdlg_CONFIRM_PASSWORD = "css=input[id='zdlgv__NEW_ADMIN_confirmPassword']";
+		public static final String InformationDialog = "css=tr[id^='zdlg__MSG__'] td[id$='_title']:contains('Informational')";
+		public static final String InformationDialogOkBtn = "css=div[id^='zdlg__MSG__'][id$='_buttons'] td[id^='OK'] td[id$='_title']";
 	}
 
 	public WizardCreateAdminAccount(AbsTab page) {
@@ -105,15 +107,18 @@ public class WizardCreateAdminAccount extends AbsWizard {
 			
 			zType(Locators.zdlg_ACCT_NAME, CN);
 			this.clearField(Locators.zdlg_DOMAIN_NAME);
-			zType(Locators.zdlg_DOMAIN_NAME,"");
 			zType(Locators.zdlg_DOMAIN_NAME,domain);
-			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 			zType(Locators.zdlg_PASSWORD, "test123");
 			zType(Locators.zdlg_CONFIRM_PASSWORD, "test123");
 			SleepUtil.sleepSmall();
 			clickNext(AbsWizard.Locators.ADMIN_DIALOG);
 			clickFinish(AbsWizard.Locators.ADMIN_DIALOG);
 			SleepUtil.sleepSmall();
+			
+			//Check if infomation dialog is present. If yes, Click Ok.
+			if(sIsVisible(Locators.InformationDialog)) {
+				sClick(Locators.InformationDialogOkBtn);
+			}
 		} else {
 			zType(Locators.zdlg_DL_NAME, CN);
 			SleepUtil.sleepSmall();
