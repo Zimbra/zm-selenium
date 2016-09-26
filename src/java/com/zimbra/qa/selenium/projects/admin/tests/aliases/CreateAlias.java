@@ -50,13 +50,14 @@ public class CreateAlias extends AdminCommonTest {
 		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 		
-		AliasItem alias = new AliasItem();		// Create a new account in the Admin Console using SOAP
+		// Create a new account in the Admin Console using SOAP
+		AliasItem alias = new AliasItem();		
 		alias.setTargetAccountEmail(target.getEmailAddress());
 
 
 		// Click "New"
 		WizardCreateAlias wizard = 
-			(WizardCreateAlias)app.zPageManageAliases.zToolbarPressButton(Button.B_NEW);
+				(WizardCreateAlias)app.zPageManageAliases.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_NEW);
 		
 		// Fill out the wizard	
 		wizard.zCompleteWizard(alias);
@@ -68,45 +69,6 @@ public class CreateAlias extends AdminCommonTest {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<account by='name'>"+ alias.getEmailAddress() +"</account>"
-				+		"</GetAccountRequest>");
-		String email = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:account", "name");
-		ZAssert.assertEquals(email, target.getEmailAddress(), "Verify the alias is associated with the correct account");
-	}
-	
-	/**
-	 * Testcase : Create a basic alias
-	 * Steps :
-	 * 1. Create an alias from GUI i.e. New -> Alias.
-	 * 2. Verify account is created using SOAP.
-	 * @throws HarnessException
-	 */
-	@Test( description = "Create a basic account using New->Account",
-			groups = { "sanity" })
-			public void CreateAlias_02() throws HarnessException {
-
-		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
-		AccountItem.createUsingSOAP(target);
-		
-
-		// Create a new account in the Admin Console
-		AliasItem alias = new AliasItem();		// Create a new account in the Admin Console using SOAP
-		alias.setTargetAccountEmail(target.getEmailAddress());
-
-		// Click "New"
-		WizardCreateAlias wizard = 
-			(WizardCreateAlias)app.zPageManageAliases.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_NEW);
-		
-		// Fill out the wizard	
-		
-		wizard.zCompleteWizard(alias);
-		
-		// Wait for alias creation
-		SleepUtil.sleepMedium();
-
-		// Verify the alias exists in the ZCS
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-						"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<account by='name'>"+ alias.getTargetAccountEmail() +"</account>"
 				+		"</GetAccountRequest>");
 		String email = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:account", "name");
 		ZAssert.assertEquals(email, target.getEmailAddress(), "Verify the alias is associated with the correct account");
