@@ -107,31 +107,9 @@ public class PageTasks extends AbsTab{
 			return;
 		}
 
-		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
-			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
-		}
-
-		logger.info("Navigate to "+ this.myPageName());
-
-		for (int i=0; i<=3; i++) {
-			if (zIsActive()) {
-				break;
-			} else {
-				this.sClickAt(PageMain.Locators.zTasksApp, "");
-				this.zWaitForBusyOverlay();
-				SleepUtil.sleepLong();
-			}
-		}
-		
-		if (ConfigProperties.getStringProperty("server.host").contains("local") == true) {
-			zWaitTillElementPresent(Locators.zTasksTagsPane);
-		} else {
-			zWaitTillElementPresent(Locators.zTasksZimletsPane);
-		}
-
-		logger.info("Navigated to "+ this.myPageName() + " page");
-
+		((AppAjaxClient) MyApplication).zPageMain.zCheckAppLoaded(Locators.zTasksZimletsPane);
 	}
+
 	public boolean isPresent(String itemName) throws HarnessException {
 		String itemLocator = Locators.taskListView
 		+ " td[width*='auto']:contains(" + itemName + ")";

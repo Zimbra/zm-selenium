@@ -17,10 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.ui.tasks;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
@@ -42,7 +39,6 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
  */
 public class DisplayTask extends AbsDisplay {
 
-	WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	WebElement we = null;
 
 	public static class Locators {
@@ -135,9 +131,9 @@ public class DisplayTask extends AbsDisplay {
 			try {
 
 				String bodyLocator = "body";
-				webDriver.switchTo().defaultContent();
-				webDriver.switchTo().frame(0);
-				we = webDriver.findElement(By.cssSelector(bodyLocator));
+				webDriver().switchTo().defaultContent();
+				webDriver().switchTo().frame(0);
+				we = webDriver().findElement(By.cssSelector(bodyLocator));
 
 				String html = this.sGetHtmlSource();
 				logger.info("zGetTaskProperty.zGetBody(" + bodyLocator + ") = " + html);
@@ -145,7 +141,7 @@ public class DisplayTask extends AbsDisplay {
 
 			} finally {
 				this.sSelectFrame("relative=top");
-				webDriver.switchTo().defaultContent();
+				webDriver().switchTo().defaultContent();
 			}
 
 		} else {

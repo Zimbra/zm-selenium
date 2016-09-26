@@ -72,6 +72,8 @@ public abstract class AbsTab extends AbsPage {
 	 * @throws HarnessException
 	 */
 	public abstract void zNavigateTo() throws HarnessException;
+	
+	public abstract boolean zIsActive() throws HarnessException;
 
 	/**
 	 * Take action on list items

@@ -20,10 +20,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.items.AttachmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -48,7 +46,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
  */
 public class DisplayMail extends AbsDisplay {
 	
-	WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	WebElement we = null;
 
 	public static class Locators {
@@ -899,9 +896,9 @@ public class DisplayMail extends AbsDisplay {
 
 			try {
 				String bodyLocator = "body";				
-				webDriver.switchTo().defaultContent();
-				webDriver.switchTo().frame(0);
-				we = webDriver.findElement(By.cssSelector(bodyLocator));
+				webDriver().switchTo().defaultContent();
+				webDriver().switchTo().frame(0);
+				we = webDriver().findElement(By.cssSelector(bodyLocator));
 				
 				source = this.sGetHtmlSource();
 				logger.info("DisplayMail.zGetBody(" + bodyLocator + ") = " + source);
@@ -909,7 +906,7 @@ public class DisplayMail extends AbsDisplay {
 
 			} finally {
 				this.sSelectFrame("relative=top");
-				webDriver.switchTo().defaultContent();
+				webDriver().switchTo().defaultContent();
 			}
 
 		} else {
@@ -926,9 +923,9 @@ public class DisplayMail extends AbsDisplay {
 			
 			try {				
 				String bodyLocator = "body";				
-				webDriver.switchTo().defaultContent();
-				webDriver.switchTo().frame(0);
-				we = webDriver.findElement(By.cssSelector(bodyLocator));
+				webDriver().switchTo().defaultContent();
+				webDriver().switchTo().frame(0);
+				we = webDriver().findElement(By.cssSelector(bodyLocator));
 				
 				String html = this.sGetHtmlSource();
 				logger.info("DisplayMail.zGetBody(" + bodyLocator + ") = " + html);
@@ -936,7 +933,7 @@ public class DisplayMail extends AbsDisplay {
 
 			} finally {
 				this.sSelectFrame("relative=top");
-				webDriver.switchTo().defaultContent();
+				webDriver().switchTo().defaultContent();
 			}
 			
 		} else {
@@ -1043,9 +1040,9 @@ public class DisplayMail extends AbsDisplay {
 			try {
 				
 				String bodyLocator = "body";				
-				webDriver.switchTo().defaultContent();
-				webDriver.switchTo().frame(0);
-				we = webDriver.findElement(By.cssSelector(bodyLocator));
+				webDriver().switchTo().defaultContent();
+				webDriver().switchTo().frame(0);
+				we = webDriver().findElement(By.cssSelector(bodyLocator));
 				
 				String html = this.sGetHtmlSource();
 				logger.info("DisplayMail.zGetBody(" + bodyLocator + ") = " + html);
@@ -1053,7 +1050,7 @@ public class DisplayMail extends AbsDisplay {
 
 			} finally {
 				this.sSelectFrame("relative=top");
-				webDriver.switchTo().defaultContent();
+				webDriver().switchTo().defaultContent();
 			}
 
 		} else if ( field == Field.Cc ) {

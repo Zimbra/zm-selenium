@@ -19,8 +19,9 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.ui;
 
-import java.awt.event.KeyEvent;
-
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.*;
@@ -318,43 +319,35 @@ public class PageMain extends AbsTab {
 	}
 
 	/**
-	 * Close any extra dialogs
+	 * Refresh page if any kind of open dialogs
 	 */
-	public void zCloseOpenDialogs() throws HarnessException {
+	public void zCloseDialogsByRefreshingPage() throws HarnessException {
 
-		String okButtonLocator = "css=div[class='DwtDialog'] td[id$='_title']:contains('OK')";
-		String noButtonLocator = "css=div[class='DwtDialog'] td[id$='_title']:contains('No')";
-		String cancelButtonLocator = "css=div[class='DwtDialog'] td[id$='_title']:contains('Cancel')";
-		String closeButtonLocator = "css=div[class='DwtDialog'] td[id$='_title']:contains('Close')";
-
-		for (int i=0; i<=1; i++) {
-			if ( this.sIsVisible(okButtonLocator) || this.sIsVisible(noButtonLocator) || this.sIsVisible(cancelButtonLocator) || this.sIsVisible(closeButtonLocator) ) {
-				logger.debug("Found open dialogs");
-				
-				// Need to handle multiple dialogs if opened (safer side)
-				this.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-				SleepUtil.sleepSmall();
-
-				if (sIsVisible(cancelButtonLocator)) {
-					this.sClick(cancelButtonLocator);
-					SleepUtil.sleepSmall();
-					if (sIsElementPresent("css=td[id^='YesNoCancel'][id$='_title']:contains('No')")) {
-						this.sClick("css=td[id^='YesNoCancel'][id$='_title']:contains('No')");
-						SleepUtil.sleepSmall();
-					}
-
-				} else if (sIsVisible(okButtonLocator)) {
-					this.sClick(okButtonLocator);
-					SleepUtil.sleepSmall();
-					if (sIsElementPresent("css=td[id^='YesNoCancel'][id$='_title']:contains('No')")) {
-						this.sClick("css=td[id^='YesNoCancel'][id$='_title']:contains('No')");
-						SleepUtil.sleepSmall();
-					}
-				}
-
-			} else {
-				break;
-			}
+		String buttonLocator;
+		buttonLocator = "//div[contains(@class, 'DwtDialog')]//td[contains(@id, '_title') and ";
+		
+		String okButtonLocator = buttonLocator + "contains(text(), 'OK')]";
+		String cancelButtonLocator = buttonLocator + "contains(text(), 'Cancel')]";
+		String yesButtonLocator = buttonLocator + "contains(text(), 'Yes')]";
+		String noButtonLocator = buttonLocator + "contains(text(), 'No')]";
+		
+		List<WebElement> okButtonElements = webDriver().findElements(By.xpath(okButtonLocator));
+		logger.info("No. of OK buttons " + okButtonElements.size());
+		
+		List<WebElement> cancelButtonElements = webDriver().findElements(By.xpath(cancelButtonLocator));
+		logger.info("No. of Cancel buttons " + cancelButtonElements.size());
+		
+		List<WebElement> yesButtonElements = webDriver().findElements(By.xpath(yesButtonLocator));
+		logger.info("No. of Yes buttons " + yesButtonElements.size());
+		
+		List<WebElement> noButtonElements = webDriver().findElements(By.xpath(noButtonLocator));
+		logger.info("No. of No buttons " + noButtonElements.size());
+		
+		if (okButtonElements.size() >= 1 || cancelButtonElements.size() >= 1 || yesButtonElements.size() >= 1 || noButtonElements.size() >= 1 ) {
+			
+			logger.debug("Found open dialogs");
+			sRefresh();
+			zNavigateTo();
 		}
 	}
 
@@ -371,7 +364,7 @@ public class PageMain extends AbsTab {
 				final String composeLocator = locator + ":nth-of-type(1) td[id$='_right_icon']";
 				if ( !sIsElementPresent(composeLocator) )
 					throw new HarnessException("Unable to find compose tab close icon " + composeLocator);
-				this.sClick(composeLocator);
+					this.sClick(composeLocator);
 				if (sIsElementPresent("css=td[id^='YesNoCancel'][id$='_title']:contains('No')")) {
 					SleepUtil.sleepSmall();
 					this.sClick("css=td[id^='YesNoCancel'][id$='_title']:contains('No')");
@@ -478,6 +471,76 @@ public class PageMain extends AbsTab {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public void zCheckAppLoaded(String appIdentifier) throws HarnessException {
+		
+		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
+			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
+		}
+		
+		logger.info("Navigate to " + this.myPageName());
+		
+		AbsTab appTab;
+		String appLocator = null;
+		
+		if (appIdentifier.contains("Mail")) {
+			appTab = ((AppAjaxClient) MyApplication).zPageMail;
+			appLocator = PageMain.Locators.zMailApp;
+			
+		} else if (appIdentifier.contains("Contacts")) {
+			appTab = ((AppAjaxClient) MyApplication).zPageContacts;
+			appLocator = PageMain.Locators.zContactsApp;
+			
+		} else if (appIdentifier.contains("Calendar")) {
+			appTab = ((AppAjaxClient) MyApplication).zPageCalendar;
+			appLocator = PageMain.Locators.zCalendarApp;
+			
+		} else if (appIdentifier.contains("Tasks")) {
+			appTab = ((AppAjaxClient) MyApplication).zPageTasks;
+			appLocator = PageMain.Locators.zTasksApp;
+			
+		} else if (appIdentifier.contains("Briefcase")) {
+			appTab = ((AppAjaxClient) MyApplication).zPageBriefcase;
+			appLocator = PageMain.Locators.zBriefcaseApp;
+			
+		} else if (appIdentifier.contains("Options")) {
+			appTab = ((AppAjaxClient) MyApplication).zPagePreferences;
+			appLocator = PageMain.Locators.zPreferencesTab;
+			
+		} else {
+			throw new HarnessException("Unable to find application tab identifier " + appIdentifier);
+		}
+		
+		// Navigate to app
+		for (int i=0; i<=3; i++) {
+			if (appTab.zIsActive()) {
+				break;
+			} else {
+				this.sClick(appLocator);
+				this.zWaitForBusyOverlay();
+				SleepUtil.sleepLong();
+			}
+		}
+		
+		// Check UI loading
+		if (ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("usLabDomain"))
+				|| ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("indiaLabDomain"))) {
+			if (!sIsVisible(appIdentifier)) {
+				sRefresh();
+				appTab.zNavigateTo();
+				zWaitTillElementPresent(appIdentifier);
+			}
+			
+		} else {
+			if (!sIsVisible(appIdentifier.replace("ZIMLET", "TAG"))) {
+				sRefresh();
+				appTab.zNavigateTo();
+				zWaitTillElementPresent(appIdentifier.replace("ZIMLET", "TAG"));
+				SleepUtil.sleepMedium();
+			}
+		}
+		
+		logger.info("Navigated to " + this.myPageName() + " page");
+	}
 	
 }

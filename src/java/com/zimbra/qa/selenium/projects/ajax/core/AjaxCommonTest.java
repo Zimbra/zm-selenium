@@ -245,7 +245,7 @@ public class AjaxCommonTest {
 			}
 		}
 
-		app.zPageMain.zCloseOpenDialogs();
+		app.zPageMain.zCloseDialogsByRefreshingPage();
 		app.zPageMain.zCloseComposeTabs();
 		logger.info("commonTestBeforeMethod: finish");
 	}
@@ -308,8 +308,6 @@ public class AjaxCommonTest {
 			}
 		}
 
-		app.zPageMain.zCloseOpenDialogs();
-		app.zPageMain.zCloseComposeTabs();
 		logger.info("commonTestAfterMethod: finish");
 	}
 

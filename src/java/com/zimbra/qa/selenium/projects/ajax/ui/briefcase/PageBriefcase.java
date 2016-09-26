@@ -24,9 +24,7 @@ import java.util.Map;
 import org.apache.commons.httpclient.HttpStatus;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.items.DocumentItem;
 import com.zimbra.qa.selenium.framework.items.FileItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
@@ -45,13 +43,11 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogMove;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
-import com.zimbra.qa.selenium.projects.ajax.ui.PageMain;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
 public class PageBriefcase extends AbsTab {
 
-	WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	WebElement we = null;
 
 	public static final String pageTitle = "Zimbra: Briefcase";
@@ -175,29 +171,7 @@ public class PageBriefcase extends AbsTab {
 			return;
 		}
 
-		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive())
-			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
-
-		logger.info("Navigate to " + this.myPageName());
-
-		for (int i = 0; i <= 3; i++) {
-			if (zIsActive()) {
-				break;
-			} else {
-				this.sClickAt(PageMain.Locators.zBriefcaseApp, "");
-				this.zWaitForBusyOverlay();
-				SleepUtil.sleepLong();
-			}
-		}
-
-		if (ConfigProperties.getStringProperty("server.host").contains("local") == true) {
-			zWaitTillElementPresent(Locators.zBriefcaseTagsPane);
-		} else {
-			zWaitTillElementPresent(Locators.zBriefcaseZimletsPane);
-		}
-
-		logger.info("Navigated to " + this.myPageName() + " page");
-
+		((AppAjaxClient) MyApplication).zPageMain.zCheckAppLoaded(Locators.zBriefcaseZimletsPane);
 	}
 
 	public AbsPage zToolbarPressButton(Button button, IItem item) throws HarnessException {
@@ -1514,8 +1488,8 @@ public class PageBriefcase extends AbsTab {
 	public Boolean zVerifyImageFilePreviewContents(String locator) throws HarnessException {
 
 		try {
-			webDriver.switchTo().frame(0);
-			we = webDriver.findElement(By.cssSelector(locator.replace("css=", "")));
+			webDriver().switchTo().frame(0);
+			we = webDriver().findElement(By.cssSelector(locator.replace("css=", "")));
 			if (we.isDisplayed()) {
 				return true;
 			} else {
@@ -1523,7 +1497,7 @@ public class PageBriefcase extends AbsTab {
 			}
 
 		} finally {
-			webDriver.switchTo().defaultContent();
+			webDriver().switchTo().defaultContent();
 		}
 
 	}
@@ -1531,15 +1505,15 @@ public class PageBriefcase extends AbsTab {
 	public Boolean zVerifyTextFilePreviewContents(String fileContent) throws HarnessException {
 
 		try {
-			webDriver.switchTo().frame(0);
-			if (fileContent.equals(webDriver.findElement(By.tagName("body")).getText())) {
+			webDriver().switchTo().frame(0);
+			if (fileContent.equals(webDriver().findElement(By.tagName("body")).getText())) {
 				return true;
 			} else {
 				return false;
 			}
 
 		} finally {
-			webDriver.switchTo().defaultContent();
+			webDriver().switchTo().defaultContent();
 		}
 	}
 
@@ -1553,18 +1527,18 @@ public class PageBriefcase extends AbsTab {
 					"//div[@id='toolbarViewerRight']//button[@id='print']" };
 
 			try {
-				webDriver.switchTo().frame(0);
+				webDriver().switchTo().frame(0);
 
 				for (int i = 0; i <= pdfElements.length - 1; i++) {
 					System.out.println("Verify " + pdfElements[i] + " element present in file preview");
-					we = webDriver.findElement(By.xpath(pdfElements[i]));
+					we = webDriver().findElement(By.xpath(pdfElements[i]));
 					if (!we.isDisplayed()) {
 						throw new HarnessException("Could't find " + pdfElements[i] + " element in file preview");
 					}
 				}
 
 			} finally {
-				webDriver.switchTo().defaultContent();
+				webDriver().switchTo().defaultContent();
 			}
 
 		}

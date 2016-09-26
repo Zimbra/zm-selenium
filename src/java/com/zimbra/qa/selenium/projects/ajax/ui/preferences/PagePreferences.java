@@ -48,8 +48,6 @@ public class PagePreferences extends AbsTab {
 
 	public static class Locators {
 
-		public static final String zPreferencesMainID = "zov__main_Options";
-
 		// Preferences Toolbar: Save, Cancel
 		public static final String zToolbarSaveID = "zb__PREF__SAVE_title";
 		public static final String zToolbarCancelID = "zb__PREF__CANCEL_title";
@@ -311,7 +309,7 @@ public class PagePreferences extends AbsTab {
 
 		// If the "folders" tree is visible, then mail is active
 		String locator = null;
-		locator = "css=div#" + Locators.zPreferencesMainID;
+		locator = PageMain.Locators.zPreferencesTab;
 
 		boolean loaded = this.sIsElementPresent(locator);
 		if (!loaded)
@@ -333,25 +331,7 @@ public class PagePreferences extends AbsTab {
 			return;
 		}
 
-		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
-			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
-		}
-
-		logger.info("Navigate to " + this.myPageName());
-
-		for (int i = 0; i <= 3; i++) {
-			if (zIsActive()) {
-				break;
-			} else {
-				this.sClickAt(PageMain.Locators.zPreferencesTab, "");
-				this.zWaitForBusyOverlay();
-				SleepUtil.sleepLong();
-			}
-		}
-
-		zWaitForElementPresent(Locators.zToolbarSaveID);
-		logger.info("Navigated to " + this.myPageName() + " page");
-
+		((AppAjaxClient) MyApplication).zPageMain.zCheckAppLoaded(PageMain.Locators.zPreferencesTab);
 	}
 
 	/**

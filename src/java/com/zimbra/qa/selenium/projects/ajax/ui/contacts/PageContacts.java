@@ -140,30 +140,7 @@ public class PageContacts extends AbsTab {
 			return;
 		}
 
-		if ( !((AppAjaxClient)MyApplication).zPageMain.zIsActive() ) {
-			((AppAjaxClient)MyApplication).zPageMain.zNavigateTo();
-		}
-
-		logger.info("Navigate to " + this.myPageName());
-		
-		for (int i=0; i<=3; i++) {
-			if (zIsActive()) {
-				break;
-			} else {
-				this.sClickAt(PageMain.Locators.zContactsApp, "");
-				this.zWaitForBusyOverlay();
-				SleepUtil.sleepLong();
-			}
-		}
-
-		if (ConfigProperties.getStringProperty("server.host").contains("local") == true) {
-			zWaitTillElementPresent(Locators.zContactsTagsPane);
-		} else {
-			zWaitTillElementPresent(Locators.zContactsZimletsPane);
-		}
-
-		logger.info("Navigated to " + this.myPageName() + " page");
-
+		((AppAjaxClient) MyApplication).zPageMain.zCheckAppLoaded(Locators.zContactsZimletsPane);
 	}
 
 	/* (non-Javadoc)
