@@ -51,6 +51,7 @@ public class PagePreferences extends AbsTab {
 		// Preferences Toolbar: Save, Cancel
 		public static final String zToolbarSaveID = "zb__PREF__SAVE_title";
 		public static final String zToolbarCancelID = "zb__PREF__CANCEL_title";
+		public static final String zGeneralPreferencesOverviewPane = "zti__main_Options__PREF_PAGE_GENERAL_div";
 
 		public static final String zSaveChangesYes = "id=DWT241_title";
 		public static final String zSaveChangesNo = "id=DWT242_title";

@@ -38,6 +38,7 @@ public class PageMail extends AbsTab {
 
 		public static final String zMailZimletsPane = "ztih__main_Mail__ZIMLET_textCell";
 		public static final String zMailTagsPane = "ztih__main_Mail__TAG_textCell";
+		public static final String zInboxFolder = "zti__main_Mail__2_textCell";
 
 		public static final String IsConViewActiveCSS = "css=div[id='zv__CLV-main']";
 		public static final String IsMsgViewActiveCSS = "css=div[id='zv__TV-main']";
