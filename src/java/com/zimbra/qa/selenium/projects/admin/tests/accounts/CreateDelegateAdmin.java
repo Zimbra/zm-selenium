@@ -47,7 +47,7 @@ public class CreateDelegateAdmin extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Create a Admin account",
-			groups = { "sanity" , "network1" })
+			groups = { "sanity" , "network" })
 			public void CreateDelegateAdmin_01() throws HarnessException {
 
 		// Create a new account in the Admin Console
