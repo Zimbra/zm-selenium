@@ -26,7 +26,12 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.PageBriefcase;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar;
+import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageContacts;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences;
+import com.zimbra.qa.selenium.projects.ajax.ui.tasks.PageTasks;
 
 /**
  * @author Matt Rhoades
@@ -172,7 +177,7 @@ public class PageMain extends AbsTab {
 		SleepUtil.sleepMedium();
 		getElement("css=td[class='DwtLinkButtonDropDownArrowTd']").click();
 		this.zWaitForBusyOverlay();
-		
+
 		getElement("css=tr[id=POPUP_logOff]>td[id=logOff_title]").click();
 		this.zWaitForBusyOverlay();
 
@@ -321,33 +326,37 @@ public class PageMain extends AbsTab {
 	/**
 	 * Refresh page if any kind of open dialogs
 	 */
-	public void zCloseDialogsByRefreshingPage() throws HarnessException {
+	public void zRefreshPageIfOpenDialogs(AbsTab appTab) throws HarnessException {
 
 		String buttonLocator;
+		Boolean okButtonDisplayed = false, cancelButtonDisplayed = false, yesButtonDisplayed = false, noButtonDisplayed = false;
 		buttonLocator = "//div[contains(@class, 'DwtDialog')]//td[contains(@id, '_title') and ";
-		
+
 		String okButtonLocator = buttonLocator + "contains(text(), 'OK')]";
 		String cancelButtonLocator = buttonLocator + "contains(text(), 'Cancel')]";
 		String yesButtonLocator = buttonLocator + "contains(text(), 'Yes')]";
 		String noButtonLocator = buttonLocator + "contains(text(), 'No')]";
-		
+
 		List<WebElement> okButtonElements = webDriver().findElements(By.xpath(okButtonLocator));
-		logger.info("No. of OK buttons " + okButtonElements.size());
-		
 		List<WebElement> cancelButtonElements = webDriver().findElements(By.xpath(cancelButtonLocator));
-		logger.info("No. of Cancel buttons " + cancelButtonElements.size());
-		
 		List<WebElement> yesButtonElements = webDriver().findElements(By.xpath(yesButtonLocator));
-		logger.info("No. of Yes buttons " + yesButtonElements.size());
-		
 		List<WebElement> noButtonElements = webDriver().findElements(By.xpath(noButtonLocator));
-		logger.info("No. of No buttons " + noButtonElements.size());
-		
-		if (okButtonElements.size() >= 1 || cancelButtonElements.size() >= 1 || yesButtonElements.size() >= 1 || noButtonElements.size() >= 1 ) {
-			
-			logger.debug("Found open dialogs");
+		logger.info("\nOK buttons - " + okButtonElements.size() + "\n" + "Cancel buttons - " + cancelButtonElements.size() + "\n"
+				+ "Yes buttons - " + yesButtonElements.size() + "\n" + "No buttons - " + noButtonElements.size() + "\n");
+
+		if (okButtonElements.size() >= 1 && okButtonElements.get(okButtonElements.size()-1).isDisplayed() ) { okButtonDisplayed = true; }
+		if (cancelButtonElements.size() >= 1 && cancelButtonElements.get(cancelButtonElements.size()-1).isDisplayed() ) { cancelButtonDisplayed = true; }
+		if (yesButtonElements.size() >= 1 && yesButtonElements.get(yesButtonElements.size()-1).isDisplayed() ) { yesButtonDisplayed = true; }
+		if (noButtonElements.size() >= 1 && noButtonElements.get(noButtonElements.size()-1).isDisplayed() ) { noButtonDisplayed = true; }
+
+		logger.info("\nOK button displayed - " + okButtonDisplayed + "\n" + "Cancel button displayed - " + cancelButtonDisplayed + "\n"
+				+ "Yes button displayed - " + yesButtonDisplayed + "\n" + "No button displayed - " + noButtonDisplayed + "\n");
+
+		if (okButtonDisplayed == true || cancelButtonDisplayed == true || yesButtonDisplayed == true || noButtonDisplayed == true ) {
+
+			logger.info("Found open dialogs");
 			sRefresh();
-			zNavigateTo();
+			appTab.zNavigateTo();
 		}
 	}
 
@@ -370,6 +379,34 @@ public class PageMain extends AbsTab {
 					this.sClick("css=td[id^='YesNoCancel'][id$='_title']:contains('No')");
 				}
 			}
+		}
+	}
+
+	public AbsTab zGetCurrentApp() throws HarnessException {
+
+		String mailFolder = null, contactsFolder = null, calendarFolder = null, tasksFolder = null, briefcaseFolder = null, generalPreferencesOverviewPane = null;
+
+		mailFolder = PageMail.Locators.zInboxFolder;
+		contactsFolder = PageContacts.Locators.zContactsFolder;
+		calendarFolder = PageCalendar.Locators.zCalendarFolder;
+		tasksFolder = PageTasks.Locators.zTasksFolder;
+		briefcaseFolder = PageBriefcase.Locators.zBriefcaseFolder;
+		generalPreferencesOverviewPane = PagePreferences.Locators.zGeneralPreferencesOverviewPane;
+
+		if (sIsVisible(mailFolder)) {
+			return ((AppAjaxClient) MyApplication).zPageMail;
+		} else if (sIsVisible(contactsFolder)) {
+			return ((AppAjaxClient) MyApplication).zPageContacts;
+		} else if (sIsVisible(calendarFolder)) {
+			return ((AppAjaxClient) MyApplication).zPageCalendar;
+		} else if (sIsVisible(tasksFolder)) {
+			return ((AppAjaxClient) MyApplication).zPageTasks;
+		} else if (sIsVisible(briefcaseFolder)) {
+			return ((AppAjaxClient) MyApplication).zPageBriefcase;
+		} else if (sIsVisible(generalPreferencesOverviewPane)) {
+			return ((AppAjaxClient) MyApplication).zPagePreferences;
+		} else {
+			throw new HarnessException("Unable to find current app");
 		}
 	}
 
@@ -417,26 +454,26 @@ public class PageMain extends AbsTab {
 
 		return (page);
 	}
-	
-	
-	// Various kind of close window (with title) methods 
-	
+
+
+	// Various kind of close window (with title) methods
+
 	public void zCloseWindow (SeparateWindow window, String windowTitle, AppAjaxClient app) throws HarnessException {
 		zCoreCloseWindow(window, windowTitle, app);
-	}	
-	
+	}
+
 	public void zCloseWindow (SeparateWindowFormMailNew window, String windowTitle, AppAjaxClient app) throws HarnessException {
 		zCoreCloseWindow(window, windowTitle, app);
 	}
-	
+
 	public void zCloseWindow (SeparateWindowDisplayMail window, String windowTitle, AppAjaxClient app) throws HarnessException {
 		zCoreCloseWindow(window, windowTitle, app);
 	}
-	
+
 	public void zCloseWindow (SeparateWindowOpenAttachment window, String windowTitle, AppAjaxClient app) throws HarnessException {
 		zCoreCloseWindow(window, windowTitle, app);
 	}
-	
+
 	private void zCoreCloseWindow (AbsSeparateWindow window, String windowTitle, AppAjaxClient app) throws HarnessException {
 		if (window != null) {
 			window.zCloseWindow(windowTitle);
@@ -448,18 +485,18 @@ public class PageMain extends AbsTab {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	// Various kind of close window (without title) methods
-	
+
 	public void zCloseWindow (SeparateWindow window, AppAjaxClient app) throws HarnessException {
 		zCoreCloseWindow(window, app);
 	}
-	
+
 	public void zCloseWindow (SeparateWindowOpenAttachment window, AppAjaxClient app) throws HarnessException {
 		zCoreCloseWindow(window, app);
 	}
-		
+
 	private void zCoreCloseWindow (AbsSeparateWindow window, AppAjaxClient app) throws HarnessException {
 		if (window != null) {
 			window.zCloseWindow();
@@ -473,44 +510,44 @@ public class PageMain extends AbsTab {
 	}
 
 	public void zCheckAppLoaded(String appIdentifier) throws HarnessException {
-		
+
 		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
 			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
 		}
-		
+
 		logger.info("Navigate to " + this.myPageName());
-		
+
 		AbsTab appTab;
 		String appLocator = null;
-		
+
 		if (appIdentifier.contains("Mail")) {
 			appTab = ((AppAjaxClient) MyApplication).zPageMail;
 			appLocator = PageMain.Locators.zMailApp;
-			
+
 		} else if (appIdentifier.contains("Contacts")) {
 			appTab = ((AppAjaxClient) MyApplication).zPageContacts;
 			appLocator = PageMain.Locators.zContactsApp;
-			
+
 		} else if (appIdentifier.contains("Calendar")) {
 			appTab = ((AppAjaxClient) MyApplication).zPageCalendar;
 			appLocator = PageMain.Locators.zCalendarApp;
-			
+
 		} else if (appIdentifier.contains("Tasks")) {
 			appTab = ((AppAjaxClient) MyApplication).zPageTasks;
 			appLocator = PageMain.Locators.zTasksApp;
-			
+
 		} else if (appIdentifier.contains("Briefcase")) {
 			appTab = ((AppAjaxClient) MyApplication).zPageBriefcase;
 			appLocator = PageMain.Locators.zBriefcaseApp;
-			
+
 		} else if (appIdentifier.contains("Options")) {
 			appTab = ((AppAjaxClient) MyApplication).zPagePreferences;
 			appLocator = PageMain.Locators.zPreferencesTab;
-			
+
 		} else {
 			throw new HarnessException("Unable to find application tab identifier " + appIdentifier);
 		}
-		
+
 		// Navigate to app
 		for (int i=0; i<=3; i++) {
 			if (appTab.zIsActive()) {
@@ -521,7 +558,7 @@ public class PageMain extends AbsTab {
 				SleepUtil.sleepLong();
 			}
 		}
-		
+
 		// Check UI loading
 		if (ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("usLabDomain"))
 				|| ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("indiaLabDomain"))) {
@@ -530,7 +567,7 @@ public class PageMain extends AbsTab {
 				appTab.zNavigateTo();
 				zWaitTillElementPresent(appIdentifier);
 			}
-			
+
 		} else {
 			if (!sIsVisible(appIdentifier.replace("ZIMLET", "TAG"))) {
 				sRefresh();
@@ -539,8 +576,8 @@ public class PageMain extends AbsTab {
 				SleepUtil.sleepMedium();
 			}
 		}
-		
+
 		logger.info("Navigated to " + this.myPageName() + " page");
 	}
-	
+
 }

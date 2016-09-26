@@ -245,7 +245,7 @@ public class AjaxCommonTest {
 			}
 		}
 
-		app.zPageMain.zCloseDialogsByRefreshingPage();
+		app.zPageMain.zRefreshPageIfOpenDialogs(app.zPageMain.zGetCurrentApp());
 		app.zPageMain.zCloseComposeTabs();
 		logger.info("commonTestBeforeMethod: finish");
 	}

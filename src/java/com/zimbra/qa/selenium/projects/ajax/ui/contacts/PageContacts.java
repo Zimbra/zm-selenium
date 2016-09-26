@@ -29,6 +29,7 @@ public class PageContacts extends AbsTab {
 	public static class Locators {
 		public static final String zContactsZimletsPane = "ztih__main_Contacts__ZIMLET_textCell";
 		public static final String zContactsTagsPane = "ztih__main_Contacts__TAG_textCell";
+		public static final String zContactsFolder = "zti__main_Contacts__7_textCell";
 	}
 
 	public static class CONTEXT_MENU {
@@ -46,7 +47,8 @@ public class PageContacts extends AbsTab {
 		//TODO: contact group: "Tag Group" instead of "Tag Contact"
 		public static final ContextMenuItem CONTACT_TAG = new ContextMenuItem("POPUP_zmi__Contacts__TAG_MENU", "Tag Contact", "div[class*='ImgTag']", " div[class='ImgCascade']");
 		public static final ContextMenuItem CONTACT_DELETE = new ContextMenuItem("POPUP_zmi__Contacts__DELETE", "Delete", "div[class*='ImgDelete']", ":contains('Del')");
-		public static final ContextMenuItem CONTACT_MOVE = new ContextMenuItem("POPUP_zmi__Contacts__MOVE", "Move", "div[class*='ImgMoveToFolder']", "");
+		public static final ContextMenuItem CONTACT_MOVE = new ContextMenuItem("POPUP_z"
+				+ "mi__Contacts__MOVE", "Move", "div[class*='ImgMoveToFolder']", "");
 		public static final ContextMenuItem CONTACT_PRINT = new ContextMenuItem("POPUP_zmi__Contacts__PRINT_CONTACT", "Print", "div[class*='ImgPrint']", ":contains('p')");
 
 		public static final ContextMenuItem CONTACT_GROUP = new ContextMenuItem("POPUP_zmi__Contacts__CONTACTGROUP_MENU", "Contact Group", "div[class*='ImgGroup']", "");

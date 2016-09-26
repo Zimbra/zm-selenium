@@ -34,6 +34,7 @@ public class PageCalendar extends AbsTab {
 
 		public static final String zCalendarZimletsPane = "ztih__main_Calendar__ZIMLET_textCell";
 		public static final String zCalendarTagsPane = "ztih__main_Calendar__TAG_textCell";
+		public static final String zCalendarFolder = "zti__main_Calendar__10_textCell";
 
 		// Buttons
 		public static final String NewButton = "css=td#zb__CLWW__NEW_MENU_title";

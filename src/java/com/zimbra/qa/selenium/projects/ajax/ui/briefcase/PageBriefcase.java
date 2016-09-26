@@ -56,10 +56,10 @@ public class PageBriefcase extends AbsTab {
 
 		public static final String zBriefcaseZimletsPane = "ztih__main_Briefcase__ZIMLET_textCell";
 		public static final String zBriefcaseTagsPane = "ztih__main_Briefcase__TAG_textCell";
+		public static final String zBriefcaseFolder = "zti__main_Briefcase__16_textCell";
 
 		public static final Locators zNewBriefcaseOverviewPaneIcon = new Locators(
 				"id=ztih__main_Briefcase__BRIEFCASE_textCell");
-		public static final Locators zBriefcaseFolder = new Locators("id=zti__main_Briefcase__16_textCell");
 		public static final Locators briefcaseListView = new Locators(
 				"css=div[id^='zl__BDLV'][class^='DwtListView-Rows']");
 		public static final Locators zBriefcaseFolderIcon = new Locators("css=div[id='zti__main_Briefcase__16']");
