@@ -406,7 +406,8 @@ public class PageMain extends AbsTab {
 		} else if (sIsVisible(generalPreferencesOverviewPane)) {
 			return ((AppAjaxClient) MyApplication).zPagePreferences;
 		} else {
-			throw new HarnessException("Unable to find current app");
+			logger.info("Unable to find current app");
+			return ((AppAjaxClient) MyApplication).zPageMail;
 		}
 	}
 
@@ -545,7 +546,9 @@ public class PageMain extends AbsTab {
 			appLocator = PageMain.Locators.zPreferencesTab;
 
 		} else {
-			throw new HarnessException("Unable to find application tab identifier " + appIdentifier);
+			appTab = ((AppAjaxClient) MyApplication).zPageMail;
+			appLocator = PageMain.Locators.zMailApp;
+			logger.info("Unable to find application tab identifier " + appIdentifier);
 		}
 
 		// Navigate to app

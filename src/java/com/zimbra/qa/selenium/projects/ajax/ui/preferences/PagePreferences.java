@@ -309,15 +309,16 @@ public class PagePreferences extends AbsTab {
 		}
 
 		// If the "folders" tree is visible, then mail is active
-		String locator = null;
-		locator = PageMain.Locators.zPreferencesTab;
-
-		boolean loaded = this.sIsElementPresent(locator);
-		if (!loaded)
-			return (loaded);
-
-		boolean active = this.zIsVisiblePerPosition(locator, -1, 74);
-		return (active);
+		String locator;
+		boolean loaded, visible;
+		
+		locator = PagePreferences.Locators.zGeneralPreferencesOverviewPane;
+		loaded = this.sIsElementPresent(locator);
+		visible = this.zIsVisiblePerPosition(locator, -1, 74);
+			if (loaded && visible)
+			return (true);
+		
+		return false;
 	}
 
 	@Override
