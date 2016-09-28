@@ -324,40 +324,27 @@ public class PageMain extends AbsTab {
 	}
 
 	/**
-	 * Refresh page if any kind of open dialogs
+	 * Refresh page if active dialogs found
 	 */
 	public void zRefreshPageIfOpenDialogs(AbsTab appTab) throws HarnessException {
 
-		String buttonLocator;
-		Boolean okButtonDisplayed = false, cancelButtonDisplayed = false, yesButtonDisplayed = false, noButtonDisplayed = false;
-		buttonLocator = "//div[contains(@class, 'DwtDialog')]//td[contains(@id, '_title') and ";
-
-		String okButtonLocator = buttonLocator + "contains(text(), 'OK')]";
-		String cancelButtonLocator = buttonLocator + "contains(text(), 'Cancel')]";
-		String yesButtonLocator = buttonLocator + "contains(text(), 'Yes')]";
-		String noButtonLocator = buttonLocator + "contains(text(), 'No')]";
-
-		List<WebElement> okButtonElements = webDriver().findElements(By.xpath(okButtonLocator));
-		List<WebElement> cancelButtonElements = webDriver().findElements(By.xpath(cancelButtonLocator));
-		List<WebElement> yesButtonElements = webDriver().findElements(By.xpath(yesButtonLocator));
-		List<WebElement> noButtonElements = webDriver().findElements(By.xpath(noButtonLocator));
-		logger.info("\nOK buttons - " + okButtonElements.size() + "\n" + "Cancel buttons - " + cancelButtonElements.size() + "\n"
-				+ "Yes buttons - " + yesButtonElements.size() + "\n" + "No buttons - " + noButtonElements.size() + "\n");
-
-		if (okButtonElements.size() >= 1 && okButtonElements.get(okButtonElements.size()-1).isDisplayed() ) { okButtonDisplayed = true; }
-		if (cancelButtonElements.size() >= 1 && cancelButtonElements.get(cancelButtonElements.size()-1).isDisplayed() ) { cancelButtonDisplayed = true; }
-		if (yesButtonElements.size() >= 1 && yesButtonElements.get(yesButtonElements.size()-1).isDisplayed() ) { yesButtonDisplayed = true; }
-		if (noButtonElements.size() >= 1 && noButtonElements.get(noButtonElements.size()-1).isDisplayed() ) { noButtonDisplayed = true; }
-
-		logger.info("\nOK button displayed - " + okButtonDisplayed + "\n" + "Cancel button displayed - " + cancelButtonDisplayed + "\n"
-				+ "Yes button displayed - " + yesButtonDisplayed + "\n" + "No button displayed - " + noButtonDisplayed + "\n");
-
-		if (okButtonDisplayed == true || cancelButtonDisplayed == true || yesButtonDisplayed == true || noButtonDisplayed == true ) {
-
-			logger.info("Found open dialogs");
-			sRefresh();
-			appTab.zNavigateTo();
+		String zIndex;		
+		List<WebElement> dialogLocators = webDriver().findElements(By.className("DwtDialog"));
+		
+		int totalDialogs = dialogLocators.size();
+		logger.info("Total dialogs found " + totalDialogs);
+		
+		for (int i=totalDialogs-1; i>=0; i--) {
+			zIndex = dialogLocators.get(i).getCssValue("z-index");
+			if (!zIndex.equals("auto") && !zIndex.equals("") && !zIndex.equals(null) && Integer.parseInt(zIndex)>=700) {
+				logger.info("Found active dialog");
+				sRefresh();
+				appTab.zNavigateTo();
+				return;
+			}
 		}
+		
+		logger.info("No active dialogs found");
 	}
 
 	/**
