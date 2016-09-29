@@ -39,7 +39,7 @@ public class SearchAppointment extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Search for an appointment by subject",
-			groups = { "functional1" })
+			groups = { "functional" })
 	
 	public void SearchAppointment_01() throws HarnessException {
 		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
