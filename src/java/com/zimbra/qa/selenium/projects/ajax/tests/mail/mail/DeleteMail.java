@@ -16,11 +16,10 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
+import java.awt.AWTException;
 import java.awt.event.KeyEvent;
 import java.util.List;
-
 import org.testng.annotations.*;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
@@ -83,7 +82,6 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertNull(found, "Verify the message is no longer in the inbox");
 	
 	}
-
 	
 	@Test( description = "Delete a mail using checkbox and toolbar delete button",
 			groups = { "functional" })
@@ -313,7 +311,6 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		
 	}
 
-
 	@Test( description = "Delete a mail using context menu delete button",
 			groups = { "functional" })
 	public void DeleteMail_06() throws HarnessException {
@@ -356,6 +353,70 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	
 	}
 
+	@Test( description = "Verify that a mail which was present towards bottom of the list does not appear after deleting it.",
+			groups = { "functional" })
+	
+	public void DeleteMail_07() throws HarnessException, AWTException {
+
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
+			+		"<id>"+ app.zGetActiveAccount().ZimbraId +"</id>"
+			+		"<a n='zimbraPrefGroupMailBy'>message</a>"
+			+	"</ModifyAccountRequest>");
+		
+		String[] subject = new String[60];
+		
+		// Creating test data by sending 60 mails to test account
+		
+		for (int i=0; i<60; i++)
+			{
+				subject[i] = "subject" + i;
+				ZimbraAccount.AccountA().soapSend(
+						"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+								"<m>" +
+								"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+								"<e t='c' a='"+ ZimbraAccount.AccountB().EmailAddress +"'/>" +
+								"<su>"+ subject[i] +"</su>" +
+								"<mp ct='text/plain'>" +
+								"<content>"+ "body" + ConfigProperties.getUniqueString() +"</content>" +
+								"</mp>" +
+								"</m>" +
+						"</SendMsgRequest>");
+			}
+		
+		// Refresh current view
+		app.zPageMail.sRefresh();
+		
+		//Refreshing it twice as single refresh does not work sometimes
+		app.zPageMail.zVerifyMailExists(subject[52]);
+		
+		//scroll down to 51st mail
+		app.zPageMail.scroll();
+
+		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject[9] +")");
+						
+		// Select the item
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject[9]);
+		
+		// Click delete
+		app.zPageMail.zToolbarPressButton(Button.B_DELETE);
+		
+		//Verify that deleted mail does not appear in the list
+		List<MailItem> messages = app.zPageMail.zListGetMessages();
+		ZAssert.assertNotNull(messages, "Verify the message list exists");
+
+		MailItem found = null;
+		for (MailItem m : messages) {
+			logger.info("Subject: looking for "+ mail.dSubject +" found: "+ m.gSubject);
+			if ( mail.dSubject.equals(m.gSubject) ) {
+				found = m;
+				break;
+			}
+		}
+		
+		ZAssert.assertNull(found, "Verify the message is no longer in the inbox");
+
+  }
 
 	@Bugs( ids = "53564")
 	@Test( description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut",
@@ -404,7 +465,6 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		
 	}
 
-	
 	@Bugs( ids = "53564")
 	@Test( description = "Hard-delete multiple messages (3) by selecting and typing 'shift-del' shortcut",
 			groups = { "functional" })
@@ -696,7 +756,6 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		
 	}
 
-	
 	@Bugs(ids = "79188")
 	@Test( description = "Delete a message from drafts",
 			groups = { "functional" })
@@ -763,4 +822,5 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		
 	}
 
+	
 }
