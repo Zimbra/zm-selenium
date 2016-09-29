@@ -127,9 +127,6 @@
 		public static final Button B_EDITMESSAGE = new Button("B_EDITMESSAGE");
 		public static final Button B_CANCEL_CONFIRMDELETE = new Button("B_CANCEL_CONFIRMDELETE");
 
-		// Zimbra Desktop's Accounts page
-		public static final Button B_VALIDATE_AND_SAVE = new Button("B_VALIDATE_AND_SAVE");
-
 		// Main Page buttons and pulldown options
 		public static final Button B_ACCOUNT = new Button("B_ACCOUNT");
 

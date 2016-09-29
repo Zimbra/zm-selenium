@@ -20,11 +20,9 @@
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
 import java.net.URL;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 
 /**
  * Represents a "Create New Folder" dialog box
@@ -99,16 +97,7 @@ public class DialogCreateFolder extends AbsDialog {
 			locator = Locators.zOkButton;
 
 			this.zClick(locator);
-
 			this.zWaitForBusyOverlay();
-
-			// Wait for the spinner image ONLY for desktop
-			((AppAjaxClient)MyApplication).zPageMail.zWaitForDesktopLoadingSpinner(5000);
-
-			// This dialog doesn't send a message, so we don't need 
-			// to check the message queue
-			// Stafpostqueue sp = new Stafpostqueue();
-			// sp.waitForPostqueue();
 
 			return (page);
 

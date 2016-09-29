@@ -21,11 +21,9 @@ package com.zimbra.qa.selenium.projects.ajax.ui;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
 
 public class ContextMenu extends AbsDisplay {
 
@@ -38,26 +36,6 @@ public class ContextMenu extends AbsDisplay {
 		this.sClick(cmi.locator);
         zWaitForBusyOverlay();
 	}
-
-	@SuppressWarnings("incomplete-switch")
-	public AbsPage zSelect(ContextMenuItem.CONTEXT_MENU_ITEM_NAME cmiName) throws HarnessException {
-      ContextMenuItem cmi = ContextMenuItem.getDesktopContextMenuItem(cmiName);
-      logger.info(myPageName() + " zSelect("+ cmi.text +")");
-      this.zClick(cmi.locator);
-      AbsPage page = null;
-      switch (cmiName) {
-      case NEW_FOLDER:
-         page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageMail);
-      }
-
-      // If page was specified, make sure it is active
-      if ( page != null ) {
-         // This function (default) throws an exception if never active
-         page.zWaitForActive();
-         
-      }
-      return page;
-    }
 
 	@SuppressWarnings("rawtypes")
 	public ContextMenuItem getContextMenuItem  (String parentLocator, Class contextMenuItemObject)throws HarnessException {

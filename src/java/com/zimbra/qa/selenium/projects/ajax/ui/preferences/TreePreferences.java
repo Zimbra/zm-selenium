@@ -31,11 +31,8 @@ public class TreePreferences extends AbsTree {
 
 	public static class Locators {
 		public final static String zGeneralTextID = "zti__main_Options__PREF_PAGE_GENERAL_textCell";
-		public final static String zGeneralTextID_Desktop = "zti__local@host.local:main_Options__PREF_PAGE_GENERAL_textCell";
 		public final static String zGeneralImageID = "zti__main_Options__PREF_PAGE_GENERAL_imageCell";
-		public final static String zGeneralImageID_Desktop = "zti__local@host.local:main_Options__PREF_PAGE_GENERAL_imageCell";
 		public final static String zsignatureTextID = "zti__main_Options__PREF_PAGE_SIGNATURES_textCell";
-		public final static String zSignatureTextID_Desktop = "zti__<EMAIL_ADDRESS>:main_Options__PREF_PAGE_SIGNATURES_textCell";
 		public final static String zAddressBookTextID = "zti__main_Options__PREF_PAGE_CONTACTS_textCell";
 	}
 

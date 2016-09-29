@@ -19,8 +19,6 @@ package com.zimbra.qa.selenium.projects.ajax.ui;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageContacts;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.PageBriefcase;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar;
@@ -143,31 +141,10 @@ public class DialogMove extends AbsDialog {
 		String locator = null;
 
 		if (MyTab instanceof PageMail) {
-
-		   if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-		      locator = "css=div[id='" + Locators.zDialogId+ "'] td[id^='zti__" +
-		            MyApplication.zGetActiveAccount().EmailAddress +
-		            ":ZmChooseFolderDialog_Mail___'][id$=':" +
-		            folder.getId() +
-		            "_textCell']";
-		   } else {
-		      locator = "css=div[id='" + Locators.zDialogId+ "'] div[id^='zti__ZmChooseFolderDialog_Mail'] td[id$='"+ folder.getId() + "_textCell']";
-		   }
+			locator = "css=div[id='" + Locators.zDialogId+ "'] div[id^='zti__ZmChooseFolderDialog_Mail'] td[id$='"+ folder.getId() + "_textCell']";
 
 		} else if (MyTab instanceof PageContacts) {
-			
-			   if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-			      locator = "css=div[id='" + Locators.zDialogId
-	            + "'] td[id^='zti__" + MyApplication.zGetActiveAccount().EmailAddress +
-	            ":ZmChooseFolderDialog_Contacts__'][id$=':"
-	            + folder.getId() + "_textCell']";
-			   } else {
-	   			/*locator = "css=div[id='" + Locators.zDialogId
-	   			+ "'] td[id='zti__ZmChooseFolderDialog_Contacts___"
-	   			+ folder.getId() + "_textCell']";*/
-				   
-				   locator="css=div[id='" + Locators.zDialogId+ "'] div[id^='zti__ZmChooseFolderDialog_Contacts'] td[id$='"+ folder.getId() + "_textCell']";
-			   }
+			locator="css=div[id='" + Locators.zDialogId+ "'] div[id^='zti__ZmChooseFolderDialog_Contacts'] td[id$='"+ folder.getId() + "_textCell']";
 
 		} else if (MyTab instanceof PageCalendar) {
 
@@ -185,26 +162,10 @@ public class DialogMove extends AbsDialog {
 			}
 
 		} else if (MyTab instanceof PageTasks) {
-			if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-			   locator = "css=div[id='" + Locators.zDialogId + "'] td[id^='zti__" +
-			         MyApplication.zGetActiveAccount().EmailAddress +
-			         ":ZmChooseFolderDialog_Tasks___'][id$='" +
-			         folder.getId() +
-			         "_textCell']";
-			} else {
-			   locator = "css=div[id='" + Locators.zDialogId + "'] div[class='DwtTreeItemLevel1ChildDiv'] td[id='zti__ZmChooseFolderDialog_Tasks__"+ folder.getId() + "_textCell']";
-			}
+			locator = "css=div[id='" + Locators.zDialogId + "'] div[class='DwtTreeItemLevel1ChildDiv'] td[id='zti__ZmChooseFolderDialog_Tasks__"+ folder.getId() + "_textCell']";
 
 		} else if (MyTab instanceof PageBriefcase ) {
-			if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-			   locator = "css=div[id='" + Locators.zDialogId + "'] td[id='zti__"+
-			         MyApplication.zGetActiveAccount().EmailAddress +
-			         ":ZmChooseFolderDialog_Briefcase___'][id$='" +
-			         folder.getId() +
-			         "_textCell']";
-			} else {
-			   locator = "css=div[id='" + Locators.zDialogId + "'] td[id='zti__ZmChooseFolderDialog_Briefcase__"+ folder.getId() + "_textCell']";
-			}
+			locator = "css=div[id='" + Locators.zDialogId + "'] td[id='zti__ZmChooseFolderDialog_Briefcase__"+ folder.getId() + "_textCell']";
 
 		} else {
 			throw new HarnessException("Unknown app type!");

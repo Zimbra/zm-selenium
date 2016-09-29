@@ -129,15 +129,6 @@ public class PageMail extends AbsTab {
 			// TODO: Until https://bugzilla.zimbra.com/show_bug.cgi?id=56273 is
 			// fixed, ContextMenuItem will be defined using the text content
 			public static String stringToReplace = "<ITEM_NAME>";
-			public static final String zDesktopContextMenuItems = new StringBuffer(
-					"css=table[class$='MenuTable'] td[id$='_title']:contains(").append(stringToReplace).append(")")
-							.toString();
-
-			// Folder's context menu
-			public static final ContextMenuItem NEW_FOLDER = new ContextMenuItem(
-					zDesktopContextMenuItems.replace(stringToReplace, I18N.CONTEXT_MENU_ITEM_NEW_FOLDER),
-					I18N.CONTEXT_MENU_ITEM_NEW_FOLDER, "div[class='ImgNewFolder']", ":contains('nf')");
-
 		}
 	}
 
