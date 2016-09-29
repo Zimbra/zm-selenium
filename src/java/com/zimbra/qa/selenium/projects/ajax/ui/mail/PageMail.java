@@ -1333,6 +1333,8 @@ public class PageMail extends AbsTab {
 			page.zWaitForActive();
 		}
 
+		SleepUtil.sleepMedium();
+		
 		return (page);
 
 	}
@@ -1681,10 +1683,7 @@ public class PageMail extends AbsTab {
 
 				this.sMouseOver(optionLocator);
 				zWaitForBusyOverlay();
-
-				// Make sure the locator exists
-				// Sometimes the menu isn't drawn right away. Wait for it.
-				GeneralUtility.waitForElementPresent(this, dynamicLocator);
+				SleepUtil.sleepSmall();
 
 				this.zClickAt(dynamicLocator, "");
 				zWaitForBusyOverlay();

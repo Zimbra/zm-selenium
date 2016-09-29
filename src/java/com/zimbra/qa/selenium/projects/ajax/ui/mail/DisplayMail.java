@@ -316,9 +316,9 @@ public class DisplayMail extends AbsDisplay {
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("locator is not present for button "+ button +" : "+ locator);
 		
-		this.zClickAt(locator , "");
-		
+		this.zClickAt(locator , "");		
 		this.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
 
 		if ( page != null ) {
 			page.zWaitForActive();
