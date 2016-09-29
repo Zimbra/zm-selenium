@@ -870,11 +870,13 @@ public abstract class AbsSeleniumObject {
 	public void sRefresh() throws HarnessException {
 	    logger.info("refresh()");
 		webDriver().navigate().refresh();
-		if (ConfigProperties.getStringProperty("server.host").contains("local") == true) {
+		if (ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("usLabDomain"))
+				|| ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("indiaLabDomain"))) {
 			zWaitTillElementPresent(PageMail.Locators.zMailTagsPane);
 		} else {
 			zWaitTillElementPresent(PageMail.Locators.zMailZimletsPane);
 		}
+		SleepUtil.sleepSmall();
 	}
 
 

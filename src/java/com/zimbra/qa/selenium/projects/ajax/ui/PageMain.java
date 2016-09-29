@@ -162,7 +162,7 @@ public class PageMain extends AbsTab {
 		zWaitForActive(100000);
 
 	}
-
+	
 	/**
 	 * Click the logout button
 	 * @throws HarnessException
@@ -369,35 +369,6 @@ public class PageMain extends AbsTab {
 		}
 	}
 
-	public AbsTab zGetCurrentApp() throws HarnessException {
-
-		String mailFolder = null, contactsFolder = null, calendarFolder = null, tasksFolder = null, briefcaseFolder = null, generalPreferencesOverviewPane = null;
-
-		mailFolder = PageMail.Locators.zInboxFolder;
-		contactsFolder = PageContacts.Locators.zContactsFolder;
-		calendarFolder = PageCalendar.Locators.zCalendarFolder;
-		tasksFolder = PageTasks.Locators.zTasksFolder;
-		briefcaseFolder = PageBriefcase.Locators.zBriefcaseFolder;
-		generalPreferencesOverviewPane = PagePreferences.Locators.zGeneralPreferencesOverviewPane;
-
-		if (sIsVisible(mailFolder)) {
-			return ((AppAjaxClient) MyApplication).zPageMail;
-		} else if (sIsVisible(contactsFolder)) {
-			return ((AppAjaxClient) MyApplication).zPageContacts;
-		} else if (sIsVisible(calendarFolder)) {
-			return ((AppAjaxClient) MyApplication).zPageCalendar;
-		} else if (sIsVisible(tasksFolder)) {
-			return ((AppAjaxClient) MyApplication).zPageTasks;
-		} else if (sIsVisible(briefcaseFolder)) {
-			return ((AppAjaxClient) MyApplication).zPageBriefcase;
-		} else if (sIsVisible(generalPreferencesOverviewPane)) {
-			return ((AppAjaxClient) MyApplication).zPagePreferences;
-		} else {
-			logger.info("Unable to find current app");
-			return ((AppAjaxClient) MyApplication).zPageMail;
-		}
-	}
-
 	/**
 	 * Change the URL (and reload) to access deep-link pages
 	 * @param uri The URL to access (e.g. ?to=foo@foo.com&body=MsgContent&subject=MsgSubject&view=compose)
@@ -496,18 +467,43 @@ public class PageMain extends AbsTab {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public AbsTab zGetCurrentApp() throws HarnessException {
+
+		String mailZimletsPane = null, contactsZimletsPane = null, calendarZimletsPane = null;
+		String tasksZimletsPane = null, briefcaseZimletsPane = null, generalPreferencesOverviewPane = null;
+
+		mailZimletsPane = PageMail.Locators.zMailZimletsPane;
+		contactsZimletsPane = PageContacts.Locators.zContactsZimletsPane;
+		calendarZimletsPane = PageCalendar.Locators.zCalendarZimletsPane;
+		tasksZimletsPane = PageTasks.Locators.zTasksZimletsPane;
+		briefcaseZimletsPane = PageBriefcase.Locators.zBriefcaseZimletsPane;
+		generalPreferencesOverviewPane = PagePreferences.Locators.zGeneralPreferencesOverviewPane;
+
+		if (sIsVisible(mailZimletsPane)) {
+			return ((AppAjaxClient) MyApplication).zPageMail;
+		} else if (sIsVisible(contactsZimletsPane)) {
+			return ((AppAjaxClient) MyApplication).zPageContacts;
+		} else if (sIsVisible(calendarZimletsPane)) {
+			return ((AppAjaxClient) MyApplication).zPageCalendar;
+		} else if (sIsVisible(tasksZimletsPane)) {
+			return ((AppAjaxClient) MyApplication).zPageTasks;
+		} else if (sIsVisible(briefcaseZimletsPane)) {
+			return ((AppAjaxClient) MyApplication).zPageBriefcase;
+		} else if (sIsVisible(generalPreferencesOverviewPane)) {
+			return ((AppAjaxClient) MyApplication).zPagePreferences;
+		} else {
+			logger.info("Unable to find current app");
+			return ((AppAjaxClient) MyApplication).zPageMail;
+		}
+	}
 
 	public void zCheckAppLoaded(String appIdentifier) throws HarnessException {
 
-		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
-			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
-		}
-
-		logger.info("Navigate to " + this.myPageName());
-
 		AbsTab appTab;
 		String appLocator = null;
-
+		
 		if (appIdentifier.contains("Mail")) {
 			appTab = ((AppAjaxClient) MyApplication).zPageMail;
 			appLocator = PageMain.Locators.zMailApp;
@@ -537,35 +533,46 @@ public class PageMain extends AbsTab {
 			appLocator = PageMain.Locators.zMailApp;
 			logger.info("Unable to find application tab identifier " + appIdentifier);
 		}
+		
+		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
+			zRefreshPageIfOpenDialogs(appTab);
+			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
+		}
+		
+		logger.info("Navigate to " + this.myPageName());
+		
+		// Navigate to app
+		if (!appTab.zIsActive()) {
+			zRefreshPageIfOpenDialogs(appTab);
+			
+			for (int i=0; i<=3; i++) {
+				this.zWaitForBusyOverlay();
+				sClick(appLocator);
+				this.zWaitForBusyOverlay();
+				SleepUtil.sleepMedium();
+				if (zGetCurrentApp().equals(appTab)) {
+					break;
+				}
+			}
+		}
 
 		// Navigate to app
-		for (int i=0; i<=3; i++) {
-			if (appTab.zIsActive()) {
-				break;
-			} else {
-				this.sClick(appLocator);
-				this.zWaitForBusyOverlay();
-				SleepUtil.sleepLong();
-			}
-		}
-
-		// Check UI loading
-		if (ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("usLabDomain"))
-				|| ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("indiaLabDomain"))) {
-			if (!sIsVisible(appIdentifier)) {
-				sRefresh();
-				appTab.zNavigateTo();
+		if (!appTab.zIsActive()) {
+			
+			sRefresh();
+			appTab.zNavigateTo();
+			
+			// Check UI loading
+			if (ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("usLabDomain"))
+					|| ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("indiaLabDomain"))) {
 				zWaitTillElementPresent(appIdentifier);
-			}
 
-		} else {
-			if (!sIsVisible(appIdentifier.replace("ZIMLET", "TAG"))) {
-				sRefresh();
-				appTab.zNavigateTo();
+			} else {
 				zWaitTillElementPresent(appIdentifier.replace("ZIMLET", "TAG"));
-				SleepUtil.sleepMedium();
 			}
-		}
+			this.zWaitForBusyOverlay();
+			SleepUtil.sleepSmall();
+		}		
 
 		logger.info("Navigated to " + this.myPageName() + " page");
 	}

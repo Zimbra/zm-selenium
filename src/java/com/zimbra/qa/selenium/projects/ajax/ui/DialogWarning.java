@@ -169,7 +169,7 @@ public class DialogWarning extends AbsDialog {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
-		sClickAt(locator,"0,0");
+		sClick(locator);
 
 		zWaitForBusyOverlay();
 
