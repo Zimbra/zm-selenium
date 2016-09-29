@@ -533,7 +533,7 @@ public class PageTasks extends AbsTab{
 		if (button == Button.B_ATTACH) {
 			this.sClickAt(locator,"");
 		} else {
-			this.zClickAt(locator,"");
+			this.sClickAt(locator,"");
 		}
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();

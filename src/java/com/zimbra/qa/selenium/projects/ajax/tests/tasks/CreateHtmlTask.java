@@ -66,7 +66,6 @@ public class CreateHtmlTask extends AjaxCommonTest {
 
 		// Click NEW button
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
-		SleepUtil.sleepVeryLong();
 
 		// Fill out the resulting form
 		taskNew.zFillField(Field.Subject, subject);
@@ -93,7 +92,6 @@ public class CreateHtmlTask extends AjaxCommonTest {
 
 		//Click NEW button
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
-		SleepUtil.sleepVeryLong();
 
 		//Fill out resulting form		
 		taskNew.zFillField(Field.Subject, subject);
@@ -125,7 +123,6 @@ public class CreateHtmlTask extends AjaxCommonTest {
 
 		// Click NEW drop down and click Task
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_TASK);
-		SleepUtil.sleepVeryLong();
 
 		// Fill out the resulting form
 		taskNew.zFillField(Field.Subject, subject);
@@ -157,7 +154,6 @@ public class CreateHtmlTask extends AjaxCommonTest {
 
 		//Click NEW Task shortcut "NK"
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zKeyboardShortcut(shortcut);
-		SleepUtil.sleepVeryLong();
 
 		// Fill out the resulting form
 		taskNew.zFillField(Field.Subject, subject);
