@@ -80,9 +80,6 @@ public class SearchAppointment extends CalendarWorkWeekTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the appt list exists");
-	    this.app.zPageLogin.zNavigateTo();
-	    this.startingPage.zNavigateTo();
-
 	}
 	
 

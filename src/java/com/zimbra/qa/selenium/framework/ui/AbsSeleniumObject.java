@@ -870,11 +870,13 @@ public abstract class AbsSeleniumObject {
 	public void sRefresh() throws HarnessException {
 	    logger.info("refresh()");
 		webDriver().navigate().refresh();
-		if (ConfigProperties.getStringProperty("server.host").contains("local") == true) {
+		if (ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("usLabDomain"))
+				|| ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("indiaLabDomain"))) {
 			zWaitTillElementPresent(PageMail.Locators.zMailTagsPane);
 		} else {
 			zWaitTillElementPresent(PageMail.Locators.zMailZimletsPane);
 		}
+		SleepUtil.sleepSmall();
 	}
 
 
@@ -942,6 +944,39 @@ public abstract class AbsSeleniumObject {
 			}
 
 		    logger.info("getAttribute(" + locator + ") = " + attrs);
+		    return (attrs);
+
+		} catch (WebDriverException e) {
+			logger.error(e.getMessage(), e);
+			throw e;
+		}
+	}
+	
+	
+	public String sGetCssValue(String locator) throws WebDriverException {
+
+		try {
+		    String attrs = null;
+
+			if (locator!=null && locator.lastIndexOf('@') + 1 < locator.length()) {
+			    String elementLocator = locator.substring(0, locator.lastIndexOf('@'));
+			    if (elementLocator.length() > 1) {
+					try {
+						if (elementLocator.endsWith(")")) {
+							elementLocator = elementLocator.substring(0, elementLocator.length()-1);
+						}
+						if (elementLocator.startsWith("xpath=(")) {
+							elementLocator = elementLocator.substring(7,elementLocator.length());
+						}
+					    WebElement we = getElement(elementLocator);
+					    attrs = we.getCssValue(locator.substring(locator.lastIndexOf('@')+1));
+					} catch (Exception ex) {
+					    logger.error(ex);
+					}
+			    }
+			}
+
+		    logger.info("getCssValue(" + locator + ") = " + attrs);
 		    return (attrs);
 
 		} catch (WebDriverException e) {
