@@ -539,15 +539,20 @@ public class PageMain extends AbsTab {
 			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
 		}
 		
-		logger.info("Navigate to " + this.myPageName());
+		logger.info("Navigate to " + appTab.myPageName());
 		
 		// Navigate to app
 		if (!appTab.zIsActive()) {
 			zRefreshPageIfOpenDialogs(appTab);
 			
 			for (int i=0; i<=3; i++) {
-				this.zWaitForBusyOverlay();
-				sClick(appLocator);
+				zWaitForElementPresent(appLocator);
+				if (appLocator.contains("Calendar")) {
+					SleepUtil.sleepMedium();
+				} else {
+					SleepUtil.sleepSmall();
+				}
+				sClickAt(appLocator, "");
 				this.zWaitForBusyOverlay();
 				SleepUtil.sleepMedium();
 				if (zGetCurrentApp().equals(appTab)) {

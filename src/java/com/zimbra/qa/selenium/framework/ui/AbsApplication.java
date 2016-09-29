@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 
 /**
  * A <code>AbsApplication</code> object defines a Zimbra "mail client", such as
- * the Ajax client, HTML client, Mobile client, Desktop client, and Admin console.
+ * the Ajax client, HTML client, Mobile client client, and Admin console.
  * <p>
  * The <code>Application</code> object is the main access point
  * for the test methods to access the GUI.  The application 

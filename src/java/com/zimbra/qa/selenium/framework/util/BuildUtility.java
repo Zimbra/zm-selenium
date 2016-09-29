@@ -39,7 +39,6 @@ import org.xml.sax.SAXException;
 
 import com.zimbra.qa.selenium.framework.util.OperatingSystem;
 import com.zimbra.qa.selenium.framework.util.OperatingSystem.OsType;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 
 public class BuildUtility {
 	private static final StringBuilder _buildBaseUrl = new StringBuilder(ConfigProperties.getStringProperty("buildServer"));
@@ -237,15 +236,7 @@ public class BuildUtility {
             String fileExtension = null;
             String productName = null;
 
-            AppType appType = ConfigProperties.getAppType();
-
-            switch (appType) {
-            case DESKTOP:
-               productName = "zdesktop";
-               break;
-            default:
-               logger.warn("Not supported!");
-            }
+            productName = "zdesktop";
 
             switch (OperatingSystem.getOSType()) {
             case WINDOWS:

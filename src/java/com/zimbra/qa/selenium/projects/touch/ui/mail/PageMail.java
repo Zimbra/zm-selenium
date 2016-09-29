@@ -142,16 +142,6 @@ public class PageMail extends AbsTab {
 	
 		public static class CONTEXT_MENU {
 			public static String stringToReplace = "<ITEM_NAME>";
-			public static final String zDesktopContextMenuItems = new StringBuffer("css=table[class$='MenuTable'] td[id$='_title']:contains(")
-			.append(stringToReplace).append(")").toString();
-
-			// Folder's context menu
-			public static final ContextMenuItem NEW_FOLDER = new ContextMenuItem(
-					zDesktopContextMenuItems.replace(stringToReplace, I18N.CONTEXT_MENU_ITEM_NEW_FOLDER),
-					I18N.CONTEXT_MENU_ITEM_NEW_FOLDER,
-					"div[class='ImgNewFolder']",
-					":contains('nf')");
-
 		}
 	}
 

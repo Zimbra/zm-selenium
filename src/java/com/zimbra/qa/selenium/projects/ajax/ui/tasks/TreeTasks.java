@@ -20,7 +20,6 @@ package com.zimbra.qa.selenium.projects.ajax.ui.tasks;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder;
 
@@ -183,19 +182,10 @@ public class TreeTasks extends AbsTree {
 		FolderItem f = (FolderItem) tasklist;
 		
 		if ( action == Action.A_LEFTCLICK ) {
-			if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-				locator = "css=[id^='zti__" + MyApplication.zGetActiveAccount().EmailAddress + ":main_Tasks__'][id$=':" + f.getId() + "_textCell']";
-			} else {
-			   locator = "zti__main_Tasks__" + f.getId() + "_textCell";
-			}
+			locator = "zti__main_Tasks__" + f.getId() + "_textCell";
 			
 		} else if ( action == Action.A_RIGHTCLICK ) {
-			
-			if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-				locator = "css=[id^='zti__" + MyApplication.zGetActiveAccount().EmailAddress + ":main_Tasks__'][id$=':" + f.getId() + "_textCell']";
-		   	} else {
-		   		locator = "zti__main_Tasks__" + f.getId() + "_textCell";
-		   	}
+		   	locator = "zti__main_Tasks__" + f.getId() + "_textCell";
 
 			this.zRightClick(locator);
 			return (new ContextMenu(MyApplication));
@@ -301,21 +291,10 @@ public class TreeTasks extends AbsTree {
 		// String locator = null;
 
 		if (action == Action.A_LEFTCLICK) {
-			if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-				actionLocator = "css=[id^='zti__" + MyApplication.zGetActiveAccount().EmailAddress
-						+ ":main_Tasks__'][id$=':" + folderItem.getId() + "_textCell']";
-			} else {
-				actionLocator = "zti__main_Tasks__" + folderItem.getId() + "_textCell";
-			}
+			actionLocator = "zti__main_Tasks__" + folderItem.getId() + "_textCell";
 
 		} else if (action == Action.A_RIGHTCLICK) {
-
-			if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-				actionLocator = "css=[id^='zti__" + MyApplication.zGetActiveAccount().EmailAddress
-						+ ":main_Tasks__'][id$=':" + folderItem.getId() + "_textCell']";
-			} else {
-				actionLocator = "zti__main_Tasks__" + folderItem.getId() + "_textCell";
-			}
+			actionLocator = "zti__main_Tasks__" + folderItem.getId() + "_textCell";
 
 			// Select the folder
 			this.zRightClickAt(actionLocator,"0,0");

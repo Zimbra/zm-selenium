@@ -22,7 +22,6 @@ import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
 
 public class DialogCreateTaskFolder  extends AbsDialog{
@@ -89,11 +88,7 @@ public class DialogCreateTaskFolder  extends AbsDialog{
 			locator = Locators.zOkButton;
 
 			this.zClickAt(locator,"0,0");
-
 			this.zWaitForBusyOverlay();
-
-			// Wait for the spinner image ONLY for desktop
-			((AppAjaxClient)MyApplication).zPageMail.zWaitForDesktopLoadingSpinner(5000);
 
 			return (page);
 

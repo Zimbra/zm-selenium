@@ -236,7 +236,7 @@ public class TouchCommonTest {
 		logger.info("commonTestAfterClass: start");
 
 		// For Touch, if account is considered dirty (modified),
-		// then recreate a new account, but for desktop, the zimlet
+		// then recreate a new account, but for the zimlet
 		// preferences has to be reset to default, all core zimlets are enabled
 		ZimbraAccount currentAccount = app.zGetActiveAccount();
 		if (currentAccount != null && currentAccount.accountIsDirty &&

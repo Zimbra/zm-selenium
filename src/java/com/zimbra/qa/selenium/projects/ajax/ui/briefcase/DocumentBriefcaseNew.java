@@ -157,10 +157,6 @@ public class DocumentBriefcaseNew extends AbsForm {
 			// this.sMouseUp(Locators.zSaveAndCloseIconBtn);
 			zClickAt(Locators.zSaveAndCloseIconBtn,"0,0");
 
-			// TODO: Add Version Notes dialog hasn't existed in ZD 7.0.1, thus
-			// ignoring below the Add Version Notes dialog for Desktop.
-			// Please remove this if condition block once it is available in ZD.
-
 				// add version notes
 				DialogAddVersionNotes dlgAddNotes = new DialogAddVersionNotes(
 						MyApplication,

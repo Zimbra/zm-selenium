@@ -19,9 +19,6 @@ package com.zimbra.qa.selenium.framework.items;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import com.zimbra.qa.selenium.framework.ui.I18N;
-import com.zimbra.qa.selenium.framework.util.HarnessException;
-
 public class ContextMenuItem {
 	protected static Logger logger = LogManager.getLogger(IItem.class);
 
@@ -68,57 +65,4 @@ public class ContextMenuItem {
 	   SEND_RECEIVE
 	}
 
-	public static ContextMenuItem getDesktopContextMenuItem(CONTEXT_MENU_ITEM_NAME cmiName)
-	throws HarnessException {
-	   String locator = null;
-	   String text = null;
-	   String image = null;
-	   String shortcut = null;
-	   switch (cmiName) {
-	   case NEW_FOLDER:
-	      locator = Locators.zNewFolderItem;
-	      text = I18N.CONTEXT_MENU_ITEM_NEW_FOLDER;
-	      break;
-	   case MARK_ALL_AS_READ:
-	      locator = Locators.zMarkAllReadItem;
-	      text = I18N.CONTEXT_MENU_ITEM_MARK_ALL_AS_READ;
-	      break;
-	   case DELETE:
-	      locator = Locators.zDeleteItem;
-         text = I18N.CONTEXT_MENU_ITEM_DELETE;
-         break;
-	   case RENAME_FOLDER:
-	      locator = Locators.zRenameFolderItem;
-	      text = I18N.CONTEXT_MENU_ITEM_RENAME_FOLDER;
-	      break;
-	   case MOVE:
-	      locator = Locators.zMoveItem;
-	      text = I18N.CONTEXT_MENU_ITEM_MOVE;
-	      break;
-	   case SHARE_FOLDER:
-	      locator = Locators.zShareFolderItem;
-	      text = I18N.CONTEXT_MENU_ITEM_SHARE_FOLDER;
-	      break;
-	   case EDIT_PROPERTIES:
-	      locator = Locators.zEditPropertiesItem;
-	      text = I18N.CONTEXT_MENU_ITEM_EDIT_PROPERTIES;
-	      break;
-	   case EXPAND_ALL:
-	      locator = Locators.zExpandAllItem;
-	      text = I18N.CONTEXT_MENU_ITEM_EXPAND_ALL;
-	      break;
-	   case EMPTY_FOLDER:
-	      locator = Locators.zEmptyFolderItem;
-	      text = I18N.CONTEXT_MENU_ITEM_EMPTY_FOLDER;
-	      break;
-	   case TURN_SYNC_OFF:
-	      throw new HarnessException("Implement me!");
-	   case SEND_RECEIVE:
-	      locator = Locators.zSendReceiveItem;
-	      text = I18N.CONTEXT_MENU_ITEM_SEND_RECEIVE;
-	      break;
-	   }
-
-	   return new ContextMenuItem(locator, text, image, shortcut);
-	}
 }

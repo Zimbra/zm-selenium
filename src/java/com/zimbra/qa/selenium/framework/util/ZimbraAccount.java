@@ -56,7 +56,6 @@ import com.zimbra.common.soap.XmlParseException;
 import com.zimbra.common.util.ByteUtil;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.I18N;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 
 @SuppressWarnings("deprecation")
@@ -1407,10 +1406,6 @@ public class ZimbraAccount {
 			} else if (namespace.equals("urn:zimbra")) {
 
 				// http://server.com:80/service/soap/
-				path = "/service/soap/";
-
-			} else if (namespace.equals("urn:zimbraOffline") && ConfigProperties.getAppType() == AppType.DESKTOP) {
-				// This is only for desktop
 				path = "/service/soap/";
 
 			} else {

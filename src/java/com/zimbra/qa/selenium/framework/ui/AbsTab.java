@@ -17,13 +17,9 @@
 package com.zimbra.qa.selenium.framework.ui;
 
 import java.util.List;
-
 import org.apache.log4j.*;
-
 import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.framework.util.GeneralUtility.WAIT_FOR_OPERAND;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 
 /**
  * A <code>AbsTab</code> object represents a major Zimbra application "tab",
@@ -181,24 +177,6 @@ public abstract class AbsTab extends AbsPage {
 		return (page);
 	}
 
-	/**
-	 * Waiting for the desktop loading spinner
-	 * 
-	 * @throws HarnessException
-	 * 
-	 */
-	public void zWaitForDesktopLoadingSpinner(long timeout)
-			throws HarnessException {
-		if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-			String spinnerLocator = "css=img[src='/img/animated/ImgSpinner.gif']";
-			if (GeneralUtility.waitForElementPresent(this, spinnerLocator,
-					timeout)) {
-				Object[] params = { spinnerLocator };
-				GeneralUtility.waitFor(null, this, false, "sIsElementPresent",
-						params, WAIT_FOR_OPERAND.EQ, false, 30000, 1000);
-			}
-		}
-	}
 
 	/**
 	 * Getting tagItem
@@ -218,7 +196,6 @@ public abstract class AbsTab extends AbsPage {
 			throw new HarnessException("tagName cannot be null");
 		}
 
-		zWaitForDesktopLoadingSpinner(5000);
 		return TagItem.importFromSOAP(account, tagName);
 
 	}
