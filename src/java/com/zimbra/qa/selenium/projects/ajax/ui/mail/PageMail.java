@@ -2132,12 +2132,5 @@ public class PageMail extends AbsTab {
 		return (page);
 
 	}
-	
-	public void scroll() throws HarnessException {
-		
-		JavascriptExecutor jse = (JavascriptExecutor)webDriver();
-		jse.executeScript("window.scrollBy(0,550)", "");
-		
-	}
 
 }

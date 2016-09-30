@@ -391,7 +391,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zVerifyMailExists(subject[52]);
 		
 		//scroll down to 51st mail
-		app.zPageMail.scroll();
+		app.zPageMail.scroll(550);
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject[9] +")");
 						
@@ -415,6 +415,9 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		}
 		
 		ZAssert.assertNull(found, "Verify the message is no longer in the inbox");
+		
+		//UI verification
+	    ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject[9]), "Verify that Mail does not exist");
 
   }
 
