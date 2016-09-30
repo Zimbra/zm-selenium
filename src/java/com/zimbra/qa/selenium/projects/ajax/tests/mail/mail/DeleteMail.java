@@ -391,7 +391,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zVerifyMailExists(subject[52]);
 		
 		//scroll down to 51st mail
-		app.zPageMail.scroll(550);
+		app.zPageMail.zScrollTo(550);
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject[9] +")");
 						
