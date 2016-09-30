@@ -41,21 +41,21 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 02, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 03, 0, 0);
 		
-		FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Calendar);
+		FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.Account1(), FolderItem.SystemFolder.Calendar);
 		
 		// Create a folder to share
-		ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.Account1().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + calendarFolder.getId() + "' view='appointment'/>"
 				+	"</CreateFolderRequest>");
 		
-		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), foldername);
+		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account1(), foldername);
 		
 		// Share it
-		ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.Account1().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
 				+		"<action id='"+ folder.getId() +"' op='grant'>"
 				+			"<grant inh='1' gt='pub' perm='r' view='appointment'/>"
@@ -63,13 +63,13 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 				+	"</FolderActionRequest>");
 				
 		// Create appointment
-		ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.Account1().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
 				+		"<m l='"+ folder.getId() +"' >"
 				+			"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"
 				+				"<s d='"+ startUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
 				+				"<e d='"+ endUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
-				+				"<or a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>"
+				+				"<or a='"+ ZimbraAccount.Account1().EmailAddress +"'/>"
 				+				"<at role='REQ' ptst='NE' rsvp='1' a='" + app.zGetActiveAccount().EmailAddress + "'/>"
 				+			"</inv>"
 				+			"<e a='"+ app.zGetActiveAccount().EmailAddress +"' t='t'/>"
@@ -84,9 +84,9 @@ public class ViewAppointment extends CalendarWorkWeekTest {
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
 
         if ( ConfigProperties.getStringProperty("server.host") != ConfigProperties.getStringProperty("store.host") ) {
-        	app.zPageCalendar.sOpen("https://" + ConfigProperties.getStringProperty("store.host") + "/home/" + ZimbraAccount.AccountA().EmailAddress + "/Calendar/" + foldername + ".html");
+        	app.zPageCalendar.sOpen("https://" + ConfigProperties.getStringProperty("store.host") + "/home/" + ZimbraAccount.Account1().EmailAddress + "/Calendar/" + foldername + ".html");
 		} else {
-			app.zPageCalendar.sOpen("https://" + ConfigProperties.getStringProperty("server.host") + ":8443/home/" + ZimbraAccount.AccountA().EmailAddress + "/Calendar/" + foldername + ".html");
+			app.zPageCalendar.sOpen("https://" + ConfigProperties.getStringProperty("server.host") + ":8443/home/" + ZimbraAccount.Account1().EmailAddress + "/Calendar/" + foldername + ".html");
 		}
         
         ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent("css=div[class^='ZhCalMonthAppt']:contains('" + apptSubject + "')"), "Appointment is visible");

@@ -58,13 +58,13 @@ public class CreateShare extends CalendarWorkWeekTest  {
 		ZAssert.assertNotNull(dialog, "Verify the sharing dialog pops up");
 
 		// Use defaults for all options
-		dialog.zSetEmailAddress(ZimbraAccount.AccountA().EmailAddress);
+		dialog.zSetEmailAddress(ZimbraAccount.Account1().EmailAddress);
 		
 		// Send it
 		dialog.zClickButton(Button.B_OK);
 		
 		// Make sure that AccountA now has the share
-		ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.Account1().soapSend(
 					"<GetShareInfoRequest xmlns='urn:zimbraAccount'>"
 				+		"<grantee type='usr'/>"
 				+		"<owner by='name'>"+ app.zGetActiveAccount().EmailAddress +"</owner>"
@@ -75,13 +75,13 @@ public class CreateShare extends CalendarWorkWeekTest  {
 		//		<share granteeId="e3c083c5-102a-416e-bcf4-6d4c59197e20" ownerName="enus13191472607033" granteeDisplayName="enus13191472702505" ownerId="8d5589ff-0548-4562-8d1d-1a4f70e3ca7e" rights="r" folderPath="/folder13191472674374" view="contact" granteeType="usr" ownerEmail="enus13191472607033@testdomain.com" granteeName="enus13191472702505@testdomain.com" folderId="257"/>
 	    //	  </GetShareInfoResponse>
 
-		String ownerEmail = ZimbraAccount.AccountA().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/"+ calendarname +"']", "ownerEmail");
+		String ownerEmail = ZimbraAccount.Account1().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/"+ calendarname +"']", "ownerEmail");
 		ZAssert.assertEquals(ownerEmail, app.zGetActiveAccount().EmailAddress, "Verify the owner of the shared folder");
 		
-		String rights = ZimbraAccount.AccountA().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/"+ calendarname +"']", "rights");
+		String rights = ZimbraAccount.Account1().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/"+ calendarname +"']", "rights");
 		ZAssert.assertEquals(rights, "r", "Verify the rights are 'read only'");
 
-		String granteeType = ZimbraAccount.AccountA().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/"+ calendarname +"']", "granteeType");
+		String granteeType = ZimbraAccount.Account1().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/"+ calendarname +"']", "granteeType");
 		ZAssert.assertEquals(granteeType, "usr", "Verify the grantee type is 'user'");
 
 	}
