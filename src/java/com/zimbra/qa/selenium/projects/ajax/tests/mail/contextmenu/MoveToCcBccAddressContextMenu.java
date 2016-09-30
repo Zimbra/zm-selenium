@@ -57,7 +57,7 @@ public class MoveToCcBccAddressContextMenu extends PrefGroupMailByMessageTest {
 		SleepUtil.sleepMedium();
 		String ToEmailAddr = app.zPageMail.sGetText(Locators.zToAddressBubble);
 		app.zPageMail.zRightClickAddressBubble(Field.To);
-		app.zPageMail.MoveToCcAddressContextMenu();
+		app.zPageMail.zMoveToCcAddressContextMenu();
 		SleepUtil.sleepMedium();
 		String CcEmailAddr = app.zPageMail.sGetText(Locators.zCcAddressBubble);
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=td[id='zv__COMPOSE-1_to_cell'] div div[class='addrBubbleHolder-empty']"), "To field should be empty");
@@ -87,7 +87,7 @@ public class MoveToCcBccAddressContextMenu extends PrefGroupMailByMessageTest {
 		SleepUtil.sleepMedium();
 		String ToEmailAddr = app.zPageMail.sGetText(Locators.zToAddressBubble);
 		app.zPageMail.zRightClickAddressBubble(Field.To);
-		app.zPageMail.MoveToBCcAddressContextMenu();
+		app.zPageMail.zMoveToBCcAddressContextMenu();
 		SleepUtil.sleepMedium();
 		String BccEmailAddr = app.zPageMail.sGetText(Locators.zBccAddressBubble);
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=td[id='zv__COMPOSE-1_to_cell'] div div[class='addrBubbleHolder-empty']"), "To field should be empty");

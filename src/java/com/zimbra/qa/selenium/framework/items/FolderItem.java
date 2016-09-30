@@ -192,8 +192,6 @@ public class FolderItem extends AFolderItem implements IItem, IOctListViewItem {
 	 * <br>
 	 * The GetFolderResponse should only contain a single <folder/> element
 	 * @param response
-	 * @param isDesktopFolder Is this imported from desktop client through SOAP?
-	 * @param isDesktopLocalFolder Is this desktop client's local folder?
 	 * @return
 	 * @throws HarnessException
 	 */

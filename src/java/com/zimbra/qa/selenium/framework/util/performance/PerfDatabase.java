@@ -46,8 +46,6 @@ mysql> insert into apps (name) VALUES ('AJAX');
 mysql> insert into apps (name) VALUES ('HTML');
 mysql> insert into apps (name) VALUES ('MOBILE');
 mysql> insert into apps (name) VALUES ('ADMIN');
-mysql> insert into apps (name) VALUES ('DESKTOP');
-mysql> insert into apps (name) VALUES ('OCTOPUS');
 
 mysql> create table actions ( 
  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 

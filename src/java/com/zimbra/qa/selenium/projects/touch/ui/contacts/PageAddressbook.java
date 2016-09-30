@@ -24,7 +24,6 @@ import org.openqa.selenium.WebElement;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 import com.zimbra.qa.selenium.projects.touch.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.touch.ui.AppTouchClient;
 import com.zimbra.qa.selenium.projects.touch.ui.PageMain;
@@ -540,23 +539,11 @@ public class PageAddressbook extends AbsTab {
 
 		   pulldownLocator = "css=div#zb__NEW_MENU td#zb__NEW_MENU_dropdown";
 		   if ( option == Button.O_NEW_CONTACT ) {
-
-			    // TODO: Bug 58365 for Desktop
-			    if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-                   optionLocator="css=div[class='ActionMenu ZHasIcon'] div[class*='ZMenuItem ZWidget ZHasLeftIcon ZHasText'] table[class*='ZWidgetTable ZMenuItemTable']:contains('Contact')";
-			    } else {
-                  optionLocator="css=div#zb__NEW_MENU_NEW_CONTACT";
-                }
+                optionLocator="css=div#zb__NEW_MENU_NEW_CONTACT";
 			    page = new FormContactNew(this.MyApplication);
 		   }
 		   else if ( option == Button.O_NEW_CONTACTGROUP) {
-
-			    // TODO: Bug 58365 for Desktop
-			    if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-			       optionLocator="css=div[class='ActionMenu ZHasIcon'] div[class*='ZMenuItem ZWidget ZHasLeftIcon ZHasText'] table[class*='ZWidgetTable ZMenuItemTable']:contains('Contact Group')";
-			    } else {
-			       optionLocator="css=div#zb__NEW_MENU_NEW_GROUP";
-			    }
+				optionLocator="css=div#zb__NEW_MENU_NEW_GROUP";
 				page = new FormContactGroupNew(this.MyApplication);
 		   }
 		   else if ( option == Button.O_NEW_TAG ) {

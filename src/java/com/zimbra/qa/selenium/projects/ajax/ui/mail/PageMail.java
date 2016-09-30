@@ -129,15 +129,6 @@ public class PageMail extends AbsTab {
 			// TODO: Until https://bugzilla.zimbra.com/show_bug.cgi?id=56273 is
 			// fixed, ContextMenuItem will be defined using the text content
 			public static String stringToReplace = "<ITEM_NAME>";
-			public static final String zDesktopContextMenuItems = new StringBuffer(
-					"css=table[class$='MenuTable'] td[id$='_title']:contains(").append(stringToReplace).append(")")
-							.toString();
-
-			// Folder's context menu
-			public static final ContextMenuItem NEW_FOLDER = new ContextMenuItem(
-					zDesktopContextMenuItems.replace(stringToReplace, I18N.CONTEXT_MENU_ITEM_NEW_FOLDER),
-					I18N.CONTEXT_MENU_ITEM_NEW_FOLDER, "div[class='ImgNewFolder']", ":contains('nf')");
-
 		}
 	}
 
@@ -1964,33 +1955,33 @@ public class PageMail extends AbsTab {
 		SleepUtil.sleepSmall();
 	}
 
-	public void DeleteAddressContextMenu() throws HarnessException {
+	public void zDeleteAddressContextMenu() throws HarnessException {
 		this.sFocus(Locators.zDeleteAddressContextMenu);
 		this.sClickAt(Locators.zDeleteAddressContextMenu, "");
 	}
 
-	public void CopyAddressContextMenu() throws HarnessException {
+	public void zCopyAddressContextMenu() throws HarnessException {
 		this.sFocus(Locators.zCopyAddressContextMenu);
 		this.sClickAt(Locators.zCopyAddressContextMenu, "");
 	}
 
-	public void EditAddressContextMenu() throws HarnessException {
+	public void zEditAddressContextMenu() throws HarnessException {
 		this.sFocus(Locators.zEditAddressContextMenu);
 		this.sClickAt(Locators.zEditAddressContextMenu, "");
 	}
 
-	public void AddToContactAddressContextMenu() throws HarnessException {
+	public void zAddToContactAddressContextMenu() throws HarnessException {
 		this.sFocus(Locators.zContactAddressContextMenu);
 		this.sClickAt(Locators.zContactAddressContextMenu, "");
 
 	}
 
-	public void MoveToCcAddressContextMenu() throws HarnessException {
+	public void zMoveToCcAddressContextMenu() throws HarnessException {
 		this.sFocus(Locators.zMoveToCcAddressContextMenu);
 		this.sClickAt(Locators.zMoveToCcAddressContextMenu, "");
 	}
 
-	public void MoveToBCcAddressContextMenu() throws HarnessException {
+	public void zMoveToBCcAddressContextMenu() throws HarnessException {
 		this.sFocus(Locators.zMoveToBccAddressContextMenu);
 		this.sClickAt(Locators.zMoveToBccAddressContextMenu, "");
 	}
@@ -2001,12 +1992,12 @@ public class PageMail extends AbsTab {
 
 	}
 
-	public void AddToContactMsgHdrContextMenu() throws HarnessException {
+	public void zAddToContactMsgHdrContextMenu() throws HarnessException {
 		this.sFocus(Locators.zAddToContactMsgHdrContextMenu);
 		this.sClickAt(Locators.zAddToContactMsgHdrContextMenu, "");
 	}
 
-	public void CreateFilterMsgHdrContextMenu() throws HarnessException {
+	public void zCreateFilterMsgHdrContextMenu() throws HarnessException {
 		this.sFocus(Locators.zCreateFilterMsgHdrContextMenu);
 		this.sClickAt(Locators.zCreateFilterMsgHdrContextMenu, "");
 		this.sClickAt(Locators.zAddFilterMsgHdrContextMenu, "");

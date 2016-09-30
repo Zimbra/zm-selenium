@@ -50,18 +50,18 @@ public class ModifyByChangingOrganiser extends CalendarWorkWeekTest {
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String mountPointName = "mountpoint" + ConfigProperties.getUniqueString();
 		String subject = "Meeting scheduled: The Performance Hour";
-		FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Calendar);
+		FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.Account1(), FolderItem.SystemFolder.Calendar);
 		
 		// Create a folder to share
-		ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.Account1().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + calendarFolder.getId() + "' view='appointment'/>"
 				+	"</CreateFolderRequest>");
 		
-		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), foldername);
+		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account1(), foldername);
 		
 		// Share it
-		ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.Account1().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
 				+		"<action id='"+ folder.getId() +"' op='grant'>"
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx' view='appointment'/>"
@@ -71,7 +71,7 @@ public class ModifyByChangingOrganiser extends CalendarWorkWeekTest {
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
-				+		"<link l='1' name='"+ mountPointName +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"' view='appointment' color='3'/>"
+				+		"<link l='1' name='"+ mountPointName +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account1().ZimbraId +"' view='appointment' color='3'/>"
 				+	"</CreateMountpointRequest>");
 
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);

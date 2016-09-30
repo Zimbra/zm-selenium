@@ -68,7 +68,6 @@ public class FormTaskNew extends AbsForm {
 		//public static final String zTasksubjField = "//td[contains(@id,'zv__TKE1_subject')]/div/input";
 		public static final String zTasksubjField = "css=td[id$='_subject'] div input";
 		public static final String zTaskBodyField = "css=div[class='ZmTaskEditView'] div[id$='_notes'] textarea[id$='_body']";
-		public static final String zTasksubjFieldDesktop = "//td[contains(@id,'_subject')]/div/input";
 		//public static final String zCancelTask = "zb__TKE-1__CANCEL_left_icon";
 		public static final String zCancelTask = "css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Cancel')";
 	//	public static final String zTaskOptionDropDown = "css=div[id^='ztb__TKE'] div[id$='__COMPOSE_OPTIONS'] td[id$='__COMPOSE_OPTIONS_dropdown']>div";
@@ -350,7 +349,7 @@ public class FormTaskNew extends AbsForm {
 			locator = "css=div[class='ZmTaskEditView'] div[id$='_notes'] textarea[id$='_body']";
 			this.sFocus(locator);
 			this.sClickAt(locator, "");
-			this.zKeyboard.zTypeCharacters(value);
+			this.sType(locator, value);
 			return;
 
 		} else if (field == Field.HtmlBody) {
@@ -361,6 +360,7 @@ public class FormTaskNew extends AbsForm {
 			if (this.zIsVisiblePerPosition("css=textarea[class='ZmHtmlEditorTextArea']", 10, 10)) {
 
 				locator = "css=textarea[class='ZmHtmlEditorTextArea']";
+				zWaitForElementPresent(locator);
 				this.sFocus(locator);
 				this.sClickAt(locator, "");
 				this.zWaitForBusyOverlay();
@@ -370,14 +370,18 @@ public class FormTaskNew extends AbsForm {
 			}
 
 			if (frames >= 1) {
+				
+				SleepUtil.sleepMedium();
 
 				try {
 
 					if (this.sIsElementPresent("css=iframe[id$='ZmHtmlEditor1_body_ifr']")) {
 						
-						sSelectFrame("css=div[class='ZmTaskEditView'] div[id$='_notes'] iframe[id$='_body_ifr']");
+						sSelectFrame("css=iframe[id$='_body_ifr']");
 
 						locator = "css=body[id='tinymce']";
+						zWaitForElementPresent(locator);
+						
 						this.sClickAt(locator, "");
 						this.sFocus(locator);
 						this.sType(locator, value);

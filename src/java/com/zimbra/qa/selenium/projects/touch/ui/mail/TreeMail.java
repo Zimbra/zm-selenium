@@ -21,7 +21,6 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.items.SavedSearchFolderItem;
@@ -33,7 +32,6 @@ import com.zimbra.qa.selenium.framework.ui.AbsTree;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 import com.zimbra.qa.selenium.projects.touch.ui.*;
 
 public class TreeMail extends AbsTree {
@@ -50,7 +48,6 @@ public class TreeMail extends AbsTree {
 		
 		public static final String createNewFolderButton = "css=div[id='zov__main_Mail'] td[id='ztih__main_Mail__FOLDER_optCell'] td[id$='_title']";
 		public static final String ztih__main_Mail__ZIMLET_ID = "ztih__main_Mail__ZIMLET";
-		public static final String ztih__main_Mail__ZIMLET_ID_Desktop = "zt__main_Mail_zimlets__ZIMLET";
 		public static final String ztih__main_Mail__ZIMLET_nodeCell_ID = "ztih__main_Mail__ZIMLET_nodeCell";
 	
 		public static final String zNewTagIcon = "//td[contains(@class,'overviewHeader-Text FakeAnchor')]/div[contains(@class,'ImgNewTag')]";
@@ -963,9 +960,7 @@ public class TreeMail extends AbsTree {
 		// Create a list of items to return
 		List<ZimletItem> items = new ArrayList<ZimletItem>();
 
-		String treeLocator = ConfigProperties.getAppType() == AppType.DESKTOP ?
-				Locators.ztih__main_Mail__ZIMLET_ID_Desktop :
-					Locators.ztih__main_Mail__ZIMLET_ID;
+		String treeLocator = Locators.ztih__main_Mail__ZIMLET_ID;
 
 		// Make sure the button exists
 		if ( !this.sIsElementPresent(treeLocator) )
@@ -977,15 +972,10 @@ public class TreeMail extends AbsTree {
 			String zimletLocator = null;
 			String imageLocator = null;
 			String nameLocator = null;
-			if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-				zimletLocator = "zti__main_Mail_zimlets__" + zimletNum +"_z_div";
-				imageLocator = "xpath=(//*[@id='zti__main_Mail_zimlets__"+ zimletNum +"_z_imageCell']/div)@class";
-				nameLocator = "zti__main_Mail_zimlets__"+ zimletNum +"_z_textCell";
-			} else {
-				zimletLocator = "zti__main_Mail__"+ zimletNum +"_z_div";
-				imageLocator = "xpath=(//*[@id='zti__main_Mail__"+ zimletNum +"_z_imageCell']/div)@class";
-				nameLocator = "zti__main_Mail__"+ zimletNum +"_z_textCell";
-			}
+			
+			zimletLocator = "zti__main_Mail__"+ zimletNum +"_z_div";
+			imageLocator = "xpath=(//*[@id='zti__main_Mail__"+ zimletNum +"_z_imageCell']/div)@class";
+			nameLocator = "zti__main_Mail__"+ zimletNum +"_z_textCell";
 
 			if ( !this.sIsElementPresent(zimletLocator) ) {
 				// No more items to parse
@@ -1041,12 +1031,7 @@ public class TreeMail extends AbsTree {
 
 		if ( section == FolderSection.Zimlets ) {
 
-			// What is the current state of the section?
-			if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-				locator = "css=div[class*='ZmOverviewZimletHeader'] div[class^='ImgNode']@class";
-			} else {
-				locator = "xpath=(//td[@id='"+ Locators.ztih__main_Mail__ZIMLET_nodeCell_ID +"']/div)@class"; 
-			}
+			locator = "xpath=(//td[@id='"+ Locators.ztih__main_Mail__ZIMLET_nodeCell_ID +"']/div)@class"; 
 
 			// Image is either ImgNodeExpanded or ImgNodeCollapsed
 			expanded = sGetAttribute(locator).equals("ImgNodeExpanded");
@@ -1059,11 +1044,7 @@ public class TreeMail extends AbsTree {
 					return (page);
 				}
 
-				if (ConfigProperties.getAppType() == AppType.DESKTOP) {
-					locator = "css=div[class*='ZmOverviewZimletHeader'] div[class^='ImgNode']";
-				} else {
-					locator = "css=td[id="+ Locators.ztih__main_Mail__ZIMLET_nodeCell_ID +"] div";
-				}
+				locator = "css=td[id="+ Locators.ztih__main_Mail__ZIMLET_nodeCell_ID +"] div";
 
 			}
 
@@ -1098,9 +1079,7 @@ public class TreeMail extends AbsTree {
 
 		// Zimlets seem to be loaded last
 		// So, wait for the zimlet div to load
-		String locator = ConfigProperties.getAppType() == AppType.DESKTOP ?
-				Locators.ztih__main_Mail__ZIMLET_ID_Desktop :
-					Locators.ztih__main_Mail__ZIMLET_ID;
+		String locator = Locators.ztih__main_Mail__ZIMLET_ID;
 
 		boolean loaded = this.sIsElementPresent(locator);
 		if ( !loaded )
