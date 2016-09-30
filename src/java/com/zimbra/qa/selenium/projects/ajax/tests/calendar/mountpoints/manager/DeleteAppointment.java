@@ -53,18 +53,18 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		
-		FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Calendar);
+		FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.Account1(), FolderItem.SystemFolder.Calendar);
 		
 		// Create a folder to share
-		ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.Account1().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + calendarFolder.getId() + "' view='appointment'/>"
 				+	"</CreateFolderRequest>");
 		
-		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), foldername);
+		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account1(), foldername);
 		
 		// Share it
-		ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.Account1().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
 				+		"<action id='"+ folder.getId() +"' op='grant'>"
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx' view='appointment'/>"
@@ -74,17 +74,17 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
-				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"' view='appointment' color='3'/>"
+				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account1().ZimbraId +"' view='appointment' color='3'/>"
 				+	"</CreateMountpointRequest>");
 		
 		// Create appointment
-		ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.Account1().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
 				+		"<m l='"+ folder.getId() +"' >"
 				+			"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"
 				+				"<s d='"+ startUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
 				+				"<e d='"+ endUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
-				+				"<or a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>"
+				+				"<or a='"+ ZimbraAccount.Account1().EmailAddress +"'/>"
 				+				"<at role='REQ' ptst='NE' rsvp='1' a='" + app.zGetActiveAccount().EmailAddress + "'/>"
 				+			"</inv>"
 				+			"<e a='"+ app.zGetActiveAccount().EmailAddress +"' t='t'/>"
@@ -113,7 +113,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify meeting invite is deleted from the shared calendar");
 		
 		// Verify meeting invite is deleted from the owner's calendar
-		AppointmentItem ownerAppt = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ apptSubject +")");
+		AppointmentItem ownerAppt = AppointmentItem.importFromSOAP(ZimbraAccount.Account1(), "subject:("+ apptSubject +")");
 		ZAssert.assertNull(ownerAppt, "Verify meeting invite is deleted from the owner's calendar");
 		
 		// Mark ON/OFF to calendar folders
@@ -146,21 +146,21 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		String modifyApptBody = "Modified" + ConfigProperties.getUniqueString();
 		
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 04, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 05, 0, 0);
 		
-		FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Calendar);
+		FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.Account1(), FolderItem.SystemFolder.Calendar);
 		
 		// Create a folder to share
-		ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.Account1().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + calendarFolder.getId() + "' view='appointment'/>"
 				+	"</CreateFolderRequest>");
 		
-		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), foldername);
+		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account1(), foldername);
 		
 		// Share it
-		ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.Account1().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
 				+		"<action id='"+ folder.getId() +"' op='grant'>"
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx' view='appointment'/>"
@@ -170,17 +170,17 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
-				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"' view='appointment' color='4'/>"
+				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account1().ZimbraId +"' view='appointment' color='4'/>"
 				+	"</CreateMountpointRequest>");
 		
 		// Create appointment
-		ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.Account1().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
 				+		"<m l='"+ folder.getId() +"' >"
 				+			"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"
 				+				"<s d='"+ startUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
 				+				"<e d='"+ endUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
-				+				"<or a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>"
+				+				"<or a='"+ ZimbraAccount.Account1().EmailAddress +"'/>"
 				+				"<at role='REQ' ptst='NE' rsvp='1' a='" + app.zGetActiveAccount().EmailAddress + "'/>"
 				+			"</inv>"
 				+			"<e a='"+ app.zGetActiveAccount().EmailAddress +"' t='t'/>"
@@ -213,7 +213,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify meeting invite is deleted from the shared calendar");
 		
 		// Verify meeting invite is deleted from the owner's calendar
-		AppointmentItem ownerAppt = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ apptSubject +")");
+		AppointmentItem ownerAppt = AppointmentItem.importFromSOAP(ZimbraAccount.Account1(), "subject:("+ apptSubject +")");
 		ZAssert.assertNull(ownerAppt, "Verify meeting invite is deleted from the owner's calendar");
 		
 		// Verify meeting cancellation message with exact from, sender and body content
@@ -223,7 +223,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		
 		// Verify from and sender address in canceled invitation message
 		ZAssert.assertEquals(app.zGetActiveAccount().EmailAddress, app.zGetActiveAccount().soapSelectValue("//mail:e[@t='s']", "a"), "Verify From address in canceled invitation message");
-		ZAssert.assertEquals(ZimbraAccount.AccountA().EmailAddress, app.zGetActiveAccount().soapSelectValue("//mail:e[@t='f']", "a"), "Verify Sender address in canceled invitation message");
+		ZAssert.assertEquals(ZimbraAccount.Account1().EmailAddress, app.zGetActiveAccount().soapSelectValue("//mail:e[@t='f']", "a"), "Verify Sender address in canceled invitation message");
 		
 	}
 

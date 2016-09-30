@@ -22,6 +22,7 @@ import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
+import com.zimbra.qa.selenium.framework.items.FolderMountpointItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
@@ -47,7 +48,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		String apptSubject, apptLocation, apptAttendee1, apptContent, mountPointName;
 		apptSubject = ConfigProperties.getUniqueString();
 		apptLocation = location.EmailAddress;
-		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
+		apptAttendee1 = ZimbraAccount.Account1().EmailAddress;
 		apptContent = ConfigProperties.getUniqueString();
 		mountPointName = ConfigProperties.getUniqueString();
 		
@@ -64,16 +65,19 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		appt.setContent(apptContent);
 		
 		// Use system calendar folder
-		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountB(),	FolderItem.SystemFolder.Calendar);
+		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account2(),	FolderItem.SystemFolder.Calendar);
 
 		// Share it
-		ZimbraAccount.AccountB().soapSend("<FolderActionRequest xmlns='urn:zimbraMail'>" + "<action id='"	+ folder.getId() + "' op='grant'>" + "<grant d='"
+		ZimbraAccount.Account2().soapSend("<FolderActionRequest xmlns='urn:zimbraMail'>" + "<action id='"	+ folder.getId() + "' op='grant'>" + "<grant d='"
 						+ app.zGetActiveAccount().EmailAddress	+ "' gt='usr' perm='rwidx' view='appointment'/>"
 						+ "</action>" + "</FolderActionRequest>");
 
 		// Mount it
 		app.zGetActiveAccount().soapSend("<CreateMountpointRequest xmlns='urn:zimbraMail'>" + "<link l='1' name='" + mountPointName + "'  rid='"
-						+ folder.getId() + "' zid='" + ZimbraAccount.AccountB().ZimbraId + "' view='appointment' color='4'/>" + "</CreateMountpointRequest>");
+						+ folder.getId() + "' zid='" + ZimbraAccount.Account2().ZimbraId + "' view='appointment' color='4'/>" + "</CreateMountpointRequest>");
+		
+		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountPointName);
+		ZAssert.assertNotNull(mountpoint, "Verify mount point is created");
 		
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
@@ -84,7 +88,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		apptForm.zSubmit();
 
 		// Verify appointment is created on shared mailbox
-		AppointmentItem actual = AppointmentItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:(" + apptSubject + ")");
+		AppointmentItem actual = AppointmentItem.importFromSOAP(ZimbraAccount.Account2(), "subject:(" + apptSubject + ")");
 		ZAssert.assertEquals(actual.getFolder(), folder.getId(), "Verify appointment is created on shared mailbox");
 
 		// Verify sent invite not present in current account
@@ -92,21 +96,21 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		String messageId = app.zGetActiveAccount().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNull(messageId, "Verify sent invite not present in current account");
 
-		ZimbraAccount.AccountA().soapSend("<SearchRequest xmlns='urn:zimbraMail' types='message'>" + "<query>" + "in:inbox " + "subject:(" + apptSubject + ")</query>" + "</SearchRequest>");
-		messageId = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
+		ZimbraAccount.Account1().soapSend("<SearchRequest xmlns='urn:zimbraMail' types='message'>" + "<query>" + "in:inbox " + "subject:(" + apptSubject + ")</query>" + "</SearchRequest>");
+		messageId = ZimbraAccount.Account1().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(messageId, "Verify attendee gets email notification");
 
 		// Verify from and sender address in received invite
-		ZimbraAccount.AccountA().soapSend("<GetMsgRequest  xmlns='urn:zimbraMail'>" + "<m id='"	+ messageId + "'/>" + "</GetMsgRequest>");
-		ZAssert.assertEquals(ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a"), ZimbraAccount.AccountB().EmailAddress,	"Verify From address in received invite");
-		ZAssert.assertEquals(ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='s']","a"), app.zGetActiveAccount().EmailAddress, "Verify Sender address in received invite");
+		ZimbraAccount.Account1().soapSend("<GetMsgRequest  xmlns='urn:zimbraMail'>" + "<m id='"	+ messageId + "'/>" + "</GetMsgRequest>");
+		ZAssert.assertEquals(ZimbraAccount.Account1().soapSelectValue("//mail:e[@t='f']", "a"), ZimbraAccount.Account2().EmailAddress,	"Verify From address in received invite");
+		ZAssert.assertEquals(ZimbraAccount.Account1().soapSelectValue("//mail:e[@t='s']","a"), app.zGetActiveAccount().EmailAddress, "Verify Sender address in received invite");
 
 		// Verify appointment exists on the server
-		actual = AppointmentItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:(" + appt.getSubject() + ")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
+		actual = AppointmentItem.importFromSOAP(ZimbraAccount.Account2(), "subject:(" + appt.getSubject() + ")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(),"Subject: Verify the appointment data");
-		ZAssert.assertEquals(actual.getLocation(), appt.getLocation(),"Location: Verify the appointment data");
-		ZAssert.assertEquals(actual.getAttendees(), apptAttendee1,"Attendees: Verify the appointment data");
+		ZAssert.assertStringContains(actual.getLocation(), appt.getLocation(),"Location: Verify the appointment data");
+		ZAssert.assertStringContains(actual.getAttendees(), apptAttendee1,"Attendees: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(),"Content: Verify the appointment data");
 		
 		actual = AppointmentItem.importFromSOAP(location, "subject:(" + appt.getSubject() + ")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
