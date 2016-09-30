@@ -55,7 +55,7 @@ public class CopyAddressContextMenu extends PrefGroupMailByMessageTest {
 		mailform.zFill(mail);
 		app.zPageMail.zRightClickAddressBubble(Field.To);
 
-		app.zPageMail.CopyAddressContextMenu();
+		app.zPageMail.zCopyAddressContextMenu();
 		app.zPageMail.sFocus(FormMailNew.Locators.zCcField);
 		app.zPageMail.zClick(FormMailNew.Locators.zCcField);	
 

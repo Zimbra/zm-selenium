@@ -64,7 +64,7 @@ public class AddToContactsAddressContextMenu extends PrefGroupMailByMessageTest 
 		String OriginalEmailAddr = app.zPageMail
 				.sGetText(Locators.zToAddressBubble);
 		app.zPageMail.zRightClickAddressBubble(Field.To);
-		app.zPageMail.AddToContactAddressContextMenu();
+		app.zPageMail.zAddToContactAddressContextMenu();
 		SleepUtil.sleepMedium();
 
 		app.zPageMail.sFocus("css=input[id$='_FIRST_input']");

@@ -19,15 +19,11 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.addresscontextmenu;
 
 import java.awt.event.KeyEvent;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning.DialogWarningID;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
 
@@ -40,66 +36,49 @@ public class DeleteAddressContextMenu extends PrefGroupMailByMessageTest {
 	
 
 	@Test( description = "Right click To bubble address >> Delete", groups = { "smoke" })
-	public void DeleteAttendeeContextMenu() throws HarnessException {
+	public void DeleteAttendeeContextMenu_01() throws HarnessException {
 
-		String apptAttendee1,apptContent;
+		String apptAttendee1;
 		AppointmentItem appt = new AppointmentItem();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
-		apptContent = ConfigProperties.getUniqueString();
 		appt.setAttendees(apptAttendee1);
-		appt.setContent(apptContent);
 
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 
 		app.zPageCalendar.zRightClickAddressBubble();
-		app.zPageMail.DeleteAddressContextMenu();
+		app.zPageMail.zDeleteAddressContextMenu();
 
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=td[id='zcs1_person'] div div[class='addrBubbleHolder-empty']"),"Attendee should be empty");
-		app.zPageCalendar.zClickAt(Locators.CloseAptTab,"");
-
-		DialogWarning warning = (DialogWarning) app.zPageMain.zGetWarningDialog(DialogWarningID.SaveChanges);
-		if ( warning.zIsActive() ) {
-			warning.zClickButton(Button.B_NO);
-		}
 	}
 
 	
 	@Test( description = "Right click To bubble address >> Delete (Keyboard shortcut)", groups = { "smoke" })
-	public void DeleteAttendeeContextMenu_DeleteShortcut() throws HarnessException {
+	public void DeleteAttendeeContextMenu_DeleteShortcut_02() throws HarnessException {
 
-		String apptAttendee1,apptContent;
+		String apptAttendee1;
 		AppointmentItem appt = new AppointmentItem();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
-		apptContent = ConfigProperties.getUniqueString();
 		appt.setAttendees(apptAttendee1);
-		appt.setContent(apptContent);
 
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 
 		app.zPageCalendar.sMouseOut(Locators.AttendeeBubbleAddr);
 		app.zPageCalendar.sClickAt(Locators.AttendeeBubbleAddr,"");
-		app.zPageCalendar.zKeyboard.zTypeKeyEvent(KeyEvent.VK_BACK_SPACE);
+		
+		app.zPageCalendar.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DELETE);
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=td[id='zcs1_person'] div div[class='addrBubbleHolder-empty']"),"Attendee should be empty");
-		app.zPageCalendar.zClickAt(Locators.CloseAptTab,"");
-
-		DialogWarning warning = (DialogWarning) app.zPageMain.zGetWarningDialog(DialogWarningID.SaveChanges);
-		if ( warning.zIsActive() ) {
-			warning.zClickButton(Button.B_NO);
-		}
 	}
 
 	
 	@Test( description = "Right click To bubble address >> Delete (BackSpace shortcut)", groups = { "smoke" })
-	public void DeleteAttendeeContextMenu_Backspace() throws HarnessException {
+	public void DeleteAttendeeContextMenu_Backspace_03() throws HarnessException {
 
-		String apptAttendee1,apptContent;
+		String apptAttendee1;
 		AppointmentItem appt = new AppointmentItem();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
-		apptContent = ConfigProperties.getUniqueString();
 		appt.setAttendees(apptAttendee1);
-		appt.setContent(apptContent);
 
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
@@ -107,14 +86,8 @@ public class DeleteAddressContextMenu extends PrefGroupMailByMessageTest {
 		app.zPageCalendar.sMouseOut(Locators.AttendeeBubbleAddr);
 		app.zPageCalendar.sClickAt(Locators.AttendeeBubbleAddr,"");
 
-		app.zPageCalendar.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
+		app.zPageCalendar.zKeyboard.zTypeKeyEvent(KeyEvent.VK_BACK_SPACE);
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=td[id='zcs1_person'] div div[class='addrBubbleHolder-empty']"), "Attendee should be empty");
-		app.zPageCalendar.zClickAt(Locators.CloseAptTab,"");
-
-		DialogWarning warning = (DialogWarning) app.zPageMain.zGetWarningDialog(DialogWarningID.SaveChanges);
-		if ( warning.zIsActive() ) {
-			warning.zClickButton(Button.B_NO);
-		}
 	}
 
 }

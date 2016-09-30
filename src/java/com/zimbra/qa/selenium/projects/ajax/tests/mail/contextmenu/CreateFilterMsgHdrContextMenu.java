@@ -68,7 +68,7 @@ public class CreateFilterMsgHdrContextMenu extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
 
 		app.zPageMail.zRightClickAddressBubble(Field.From);
-		app.zPageMail.CreateFilterMsgHdrContextMenu();
+		app.zPageMail.zCreateFilterMsgHdrContextMenu();
 		SleepUtil.sleepMedium();
 		DialogEditFilter dialog = new DialogEditFilter(app,((AppAjaxClient) app).zPagePreferences);		
 		ZAssert.assertTrue(dialog.zIsActive(),"Add filter dialog should active");

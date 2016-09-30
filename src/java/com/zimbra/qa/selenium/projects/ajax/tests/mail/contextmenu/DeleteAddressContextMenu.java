@@ -51,7 +51,7 @@ public class DeleteAddressContextMenu extends PrefGroupMailByMessageTest {
 		// Fill out the form with the data
 		mailform.zFill(mail);
 		app.zPageMail.zRightClickAddressBubble(Field.To);
-		app.zPageMail.DeleteAddressContextMenu();
+		app.zPageMail.zDeleteAddressContextMenu();
 		ZAssert.assertTrue(app.zPageMail.zHasTOCcBccEmpty(), "To/Cc/Bcc should be empty");
 
 	}
@@ -73,7 +73,7 @@ public class DeleteAddressContextMenu extends PrefGroupMailByMessageTest {
 		// Fill out the form with the data
 		mailform.zFill(mail);
 		app.zPageMail.zRightClickAddressBubble(Field.Cc);
-		app.zPageMail.DeleteAddressContextMenu();
+		app.zPageMail.zDeleteAddressContextMenu();
 		ZAssert.assertTrue(app.zPageMail.zHasTOCcBccEmpty(), "To/Cc/Bcc should be empty");
 	}
 
@@ -94,7 +94,7 @@ public class DeleteAddressContextMenu extends PrefGroupMailByMessageTest {
 		// Fill out the form with the data
 		mailform.zFill(mail);
 		app.zPageMail.zRightClickAddressBubble(Field.Bcc);
-		app.zPageMail.DeleteAddressContextMenu();
+		app.zPageMail.zDeleteAddressContextMenu();
 		ZAssert.assertTrue(app.zPageMail.zHasTOCcBccEmpty(), "To/Cc/Bcc should be empty");
 	}
 	
