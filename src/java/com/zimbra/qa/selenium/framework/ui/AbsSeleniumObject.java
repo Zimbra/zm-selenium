@@ -2135,4 +2135,12 @@ public abstract class AbsSeleniumObject {
 		}
 		return status;
 	}
+
+	public void zScrollTo(int scrollTo) throws HarnessException {
+		
+		JavascriptExecutor jse = (JavascriptExecutor)webDriver();
+		jse.executeScript("window.scrollBy(0," + scrollTo + ")", "");
+		
+	}
+
 }
