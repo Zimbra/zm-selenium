@@ -53,7 +53,7 @@ public class EditAddressContextMenu extends PrefGroupMailByMessageTest {
 		mailform.zFill(mail);
 
 		app.zPageMail.zRightClickAddressBubble(Field.To);		
-		app.zPageMail.EditAddressContextMenu();
+		app.zPageMail.zEditAddressContextMenu();
 		app.zPageMail.sFocus(FormMailNew.Locators.zToField);
 		app.zPageMail.zClick(FormMailNew.Locators.zToField);	
 		app.zPageMail.zType(FormMailNew.Locators.zToField, "test@test.com");

@@ -38,20 +38,18 @@ public class EditAttendeeContextMenu extends PrefGroupMailByMessageTest {
 
 	@Test( description = "Right click To attendee bubble address>>Verify Edit menus", groups = { "smoke" })
 	
-	public void EditAttendeesContextMenu() throws HarnessException {
+	public void EditAttendeesContextMenu_01() throws HarnessException {
 
-		String apptAttendee1,apptContent;
+		String apptAttendee1;
 		AppointmentItem appt = new AppointmentItem();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
-		apptContent = ConfigProperties.getUniqueString();
 		appt.setAttendees(apptAttendee1);
-		appt.setContent(apptContent);
 
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 
 		app.zPageCalendar.zRightClickAddressBubble();
-		app.zPageMail.EditAddressContextMenu();
+		app.zPageMail.zEditAddressContextMenu();
 
 		app.zPageCalendar.sFocus(FormApptNew.Locators.AttendeeField);
 		app.zPageCalendar.zClick(FormApptNew.Locators.AttendeeField);

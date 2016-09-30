@@ -38,16 +38,14 @@ public class AddToContactsAttendeeContextMenu extends PrefGroupMailByMessageTest
 	
 	@Bugs(ids = "102204")
 	@Test( description = "Right click To attendee bubble address>>Verify AddToContact", groups = { "smoke" })
-	public void AddToContactAttendeeContextMenu() throws HarnessException {
+	public void AddToContactAttendeeContextMenu_01() throws HarnessException {
 
-		String apptAttendee1,apptContent;
+		String apptAttendee1;
 		String contactFirst = "First"+ ConfigProperties.getUniqueString();
 
 		AppointmentItem appt = new AppointmentItem();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
-		apptContent = ConfigProperties.getUniqueString();
 		appt.setAttendees(apptAttendee1);
-		appt.setContent(apptContent);
 
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
@@ -55,7 +53,7 @@ public class AddToContactsAttendeeContextMenu extends PrefGroupMailByMessageTest
 		String OriginalEmailAddr = app.zPageCalendar.sGetText(Locators.AttendeeBubbleAddr);
 
 		app.zPageCalendar.zRightClickAddressBubble();
-		app.zPageMail.AddToContactAddressContextMenu();
+		app.zPageMail.zAddToContactAddressContextMenu();
 
 		SleepUtil.sleepMedium();
 
