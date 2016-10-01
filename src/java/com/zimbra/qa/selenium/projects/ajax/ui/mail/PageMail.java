@@ -206,7 +206,6 @@ public class PageMail extends AbsTab {
 			}
 
 			if (found == true) {
-				SleepUtil.sleepSmall();
 				logger.info("Mail displayed in current view");
 				ZAssert.assertTrue(found, "Mail displayed in current view");
 				break;

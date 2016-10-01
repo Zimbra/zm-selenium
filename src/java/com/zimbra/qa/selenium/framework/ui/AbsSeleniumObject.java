@@ -951,8 +951,8 @@ public abstract class AbsSeleniumObject {
 			throw e;
 		}
 	}
-	
-	
+
+
 	public String sGetCssValue(String locator) throws WebDriverException {
 
 		try {
@@ -1831,7 +1831,7 @@ public abstract class AbsSeleniumObject {
 						WebElement el = it.next();
 						String returnedText = el.getText();
 						if (returnedText!=null && returnedText.contains(txt)) {
-							logger.info("found element containing: "	+ txt);
+							logger.info("found element containing: " + txt);
 							if (postText !=null && !postText.isEmpty()) {
 								logger.info("applying filter: findElement(By.cssSelector(" + postText + "))");
 								el = el.findElement(By.cssSelector(postText));
@@ -2136,11 +2136,11 @@ public abstract class AbsSeleniumObject {
 		return status;
 	}
 
+
 	public void zScrollTo(int scrollTo) throws HarnessException {
-		
+		logger.info("scrollTo(" + scrollTo + ") ");
 		JavascriptExecutor jse = (JavascriptExecutor)webDriver();
 		jse.executeScript("window.scrollBy(0," + scrollTo + ")", "");
-		
 	}
 
 }

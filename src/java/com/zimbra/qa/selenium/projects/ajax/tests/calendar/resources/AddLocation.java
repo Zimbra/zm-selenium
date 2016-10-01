@@ -35,11 +35,10 @@ public class AddLocation extends CalendarWorkWeekTest {
 	public AddLocation() {
 		logger.info("New "+ AddLocation.class.getCanonicalName());
 	    super.startingPage =  app.zPageCalendar;
-	    
 	}
 	
 	
-	@Test( description = "Search Location and add into existing meeting invite",	groups = { "smoke" })
+	@Test( description = "Search Location and add into existing meeting invite", groups = { "smoke" })
 	
 	public void AddLocation_01() throws HarnessException {
 		
@@ -142,9 +141,7 @@ public class AddLocation extends CalendarWorkWeekTest {
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zFillField(Field.Location, apptLocation);
         apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepVeryLong(); // test fails while checking free/busy status, waitForPostqueue is not sufficient here
-        // Tried sleepLong() as well but although fails so using sleepVeryLong()
-
+        
         // Verify location in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
@@ -215,7 +212,6 @@ public class AddLocation extends CalendarWorkWeekTest {
 		apptForm.zAutocompleteSelectItem(found);
         ZAssert.assertTrue(apptForm.zVerifyLocation(locationName), "Verify appointment location");
 		apptForm.zSubmit();
-		SleepUtil.sleepLong();
 		
 		// Organizer: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(

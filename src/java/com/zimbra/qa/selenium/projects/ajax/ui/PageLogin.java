@@ -93,7 +93,8 @@ public class PageLogin extends AbsTab {
 
 		// Logout
 		if ( ((AppAjaxClient)MyApplication).zPageMain.zIsActive() ) {
-			((AppAjaxClient)MyApplication).zPageMain.zLogout();
+			sOpen(ConfigProperties.getLogoutURL());
+			sOpen(ConfigProperties.getBaseURL());
 		}
 
 		zWaitForActive();

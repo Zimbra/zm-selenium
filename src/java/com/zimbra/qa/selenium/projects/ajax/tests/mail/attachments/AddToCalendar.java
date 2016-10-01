@@ -75,7 +75,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		Element[] nodes = account.soapSelectNodes("//mail:mp[@cd='attachment']");
 		ZAssert.assertGreaterThan(nodes.length, 0, "Verify the message has the attachment");
 
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -129,7 +129,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		
 		// Inject the message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		app.zPageMail.zVerifyMailExists(subject);
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -200,7 +200,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		
 		// Inject the message
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(mimeFile));
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		app.zPageMail.zVerifyMailExists(subject);
 		SleepUtil.sleepMedium();
 
 		// Select the message so that it shows in the reading pane
@@ -281,7 +281,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		
 		// Inject the message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		app.zPageMail.zVerifyMailExists(subject);
 		SleepUtil.sleepMedium();
 
 		// Select the message so that it shows in the reading pane
@@ -383,7 +383,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		ZAssert.assertGreaterThan(nodes.length, 0, "Verify the message has the attachment");
 
 		// Select the message so that it shows in the reading pane
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		app.zPageMail.zVerifyMailExists(subject);
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		AttachmentItem item = null;
@@ -425,7 +425,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	public void AddToCalendar_icsLink_06() throws HarnessException {
 
 		// -- Data Setup
-		String subject = "AddToCalendar_icsLink_01";
+		String subject = "add to calendar using ics link";
 		String newCalFolder = "Calendar" + ConfigProperties.getUniqueString();
 		ZDate startUTC = new ZDate(2014, 3, 12, 12, 0, 0);
 		ZDate endUTC   = new ZDate(2014, 3, 12, 12, 0, 0);
