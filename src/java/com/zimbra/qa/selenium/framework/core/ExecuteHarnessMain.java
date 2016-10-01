@@ -51,7 +51,7 @@ import com.zimbra.qa.selenium.projects.mobile.ui.AppMobileClient;
 import com.zimbra.qa.selenium.projects.touch.ui.AppTouchClient;
 
 public class ExecuteHarnessMain {
-	
+
 	private static Logger logger = LogManager.getLogger(ExecuteHarnessMain.class);
 	public static final String TraceLoggerName = "testcase.trace";
 	public static Logger tracer = LogManager.getLogger(TraceLoggerName);
@@ -78,7 +78,10 @@ public class ExecuteHarnessMain {
 	public String excludefilter = null;
 	public static ArrayList<String> groups = new ArrayList<String>(Arrays.asList("always", "sanity"));
 	public ArrayList<String> excludeGroups = new ArrayList<String>(Arrays.asList("skip", "performance"));
-	protected static String testoutputfoldername = null;
+
+	private static final String OpenQABasePackage = "org.openqa";
+	public static final String SeleniumBasePackage = "com.zimbra.qa.selenium";
+	public static String testoutputfoldername = null;
 	public static ResultListener currentResultListener = null;
 
 	public void setTestOutputFolderName(String path) {
@@ -120,7 +123,7 @@ public class ExecuteHarnessMain {
 
 	public String workingfoldername = ".";
 	protected List<String> classes = null;
-	
+
 	private static List<String> getClassesFromJar(File jarfile, Pattern pattern, String excludeStr) throws FileNotFoundException, IOException, HarnessException {
 
 		logger.debug("getClassesFromJar " + jarfile.getAbsolutePath());
@@ -288,7 +291,7 @@ public class ExecuteHarnessMain {
 		StringBuilder result = new StringBuilder();
 
 		try {
-			
+
 			String response = executeCodeCoverage();
 			result.append(response).append('\n');
 
@@ -314,7 +317,7 @@ public class ExecuteHarnessMain {
 				CodeCoverage.getInstance().writeXml();
 				CodeCoverage.getInstance().instrumentServerUndo();
 			}
-			
+
 		} finally {
 			CodeCoverage.getInstance().writeCoverage();
 		}
@@ -503,15 +506,10 @@ public class ExecuteHarnessMain {
 
 		@Override
 		public void afterInvocation(IInvokedMethod method, ITestResult result) {
+
 			if (method.isTestMethod()) {
 
 				logger.info("ErrorDialogListener:afterInvocation ...");
-
-				boolean check = "true".equals(ConfigProperties.getStringProperty("dialog.error.aftertest.check", "true"));
-				boolean dismiss = "true".equals(ConfigProperties.getStringProperty("dialog.error.aftertest.dismiss", "true"));
-				if (!check) {
-					return;
-				}
 
 				String locator = "css=div#ErrorDialog";
 
@@ -520,8 +518,7 @@ public class ExecuteHarnessMain {
 					boolean present = sIsElementPresent(locator);
 					if (present) {
 
-						logger.info("ErrorDialogListener:afterInvocation ... present="
-								+ present);
+						logger.info("ErrorDialogListener:afterInvocation ... present=" + present);
 
 						Number left = sGetElementPositionLeft(locator);
 						if (left.intValue() > 0) {
@@ -534,54 +531,71 @@ public class ExecuteHarnessMain {
 
 								logger.info("ErrorDialogListener:afterInvocation ... top=" + top);
 
-								if (dismiss) {
+								// Log the error
+								logger.error(new HarnessException("ExecuteHarnessMain: Error dialog is visible"));
 
-									String bLocator = locator + " td[id^='OK_'] td[id$='_title']";
-									sMouseDownAt(bLocator, "");
-									sMouseUpAt(bLocator, "");
+								// Take screenshot
+								getScreenCapture(result);
 
-								} else {
-
-									// Log the error
-									// Take a snapshot
-									logger.error(new HarnessException("Error Dialog is visible"));
-
-									// Set the test as failed
-									result.setStatus(ITestResult.FAILURE);
-
-								}
+								// Set the test as failed
+								result.setStatus(ITestResult.FAILURE);
 							}
 						}
 					}
+
 				} catch (Exception ex) {
 					logger.error(new HarnessException("ErrorDialogListener:afterInvocation ", ex), ex);
 				}
 
 				logger.info("ErrorDialogListener:afterInvocation ... done");
+			}
 
+		}
+
+
+		public static void getScreenCapture(ITestResult result) {
+
+			String coreFolderPath, fileName, currentMethod;
+			currentMethod = result.getName().toString();
+
+			coreFolderPath = testoutputfoldername + "/debug/projects/" + ConfigProperties.getAppType().toString().toLowerCase() + "/core/";
+			fileName = coreFolderPath + currentMethod + ".png";
+
+			// Make sure required folders exist
+			File coreFolder = new File(testoutputfoldername + "/debug/projects/" + ConfigProperties.getAppType().toString().toLowerCase() + "/core/");
+			if (!coreFolder.exists())
+				coreFolder.mkdirs();
+
+			logger.info("Creating screenshot: " + fileName);
+			try {
+				File scrFile = ((TakesScreenshot)ClientSessionFactory.session().webDriver()).getScreenshotAs(OutputType.FILE);
+				FileUtils.copyFile(scrFile, new File(fileName));
+
+			} catch (HeadlessException e) {
+				logger.error("Unable to create screenshot",	e);
+			} catch (IOException e) {
+				logger.error("IE exception when creating image file at " + fileName, e);
+			} catch (WebDriverException e) {
+				logger.error("Webdriver exception when creating image file at " + fileName, e);
 			}
 
 		}
 
 		@Override
-		public void beforeInvocation(IInvokedMethod arg0, ITestResult arg1) {
-		}
+		public void beforeInvocation(IInvokedMethod arg0, ITestResult arg1) { }
 
 	}
 
 	protected static class MethodListener implements IInvokedMethodListener {
 
 		private static Logger logger = LogManager.getLogger(MethodListener.class);
-
-		private static final String OpenQABasePackage = "org.openqa";
 		private static final Logger OpenQALogger = LogManager.getLogger(OpenQABasePackage);
-		private static final String ZimbraSeleniumBasePackage = "com.zimbra.qa.selenium";
-		private static final Logger ZimbraSeleniumLogger = LogManager.getLogger(ZimbraSeleniumBasePackage);
+		private static final Logger Logger = LogManager.getLogger(SeleniumBasePackage);
 
 		private final Map<String, Appender> appenders = new HashMap<String, Appender>();
 		private static final Layout layout = new PatternLayout("%-4r [%t] %-5p %c %x - %m%n");
 
-		private String outputFolder = null;
+		public String outputFolder = null;
 
 		protected MethodListener(String folder) {
 			outputFolder = (folder == null ? "logs" : folder);
@@ -592,18 +606,12 @@ public class ExecuteHarnessMain {
 		}
 
 		protected String getFilename(Method method) {
-			// Change the class name in two ways to build the file path:
-			// 1. Remove com.zimbra.qa.selenium (for brevity)
-			// 2. Change package names to directory names, by changing "." to
-			// "/"
-			//
-			String c = method.getDeclaringClass().getCanonicalName().replace(ZimbraSeleniumBasePackage, "").replace('.', '/');
+			String c = method.getDeclaringClass().getCanonicalName().replace(SeleniumBasePackage, "").replace('.', '/');
 			String m = method.getName();
 			return (String.format("%s/debug/%s/%s.txt", outputFolder, c, m));
 		}
 
 		protected String getTestCaseID(Method method) {
-			// The TestCaseId is the fully qualified name of the method
 			String c = method.getDeclaringClass().getCanonicalName();
 			String m = method.getName();
 			return (c + "." + m);
@@ -624,7 +632,7 @@ public class ExecuteHarnessMain {
 						Appender a = new FileAppender(layout, filename, false);
 						appenders.put(key, a);
 						OpenQALogger.addAppender(a);
-						ZimbraSeleniumLogger.addAppender(a);
+						Logger.addAppender(a);
 					}
 					logger.info("MethodListener: START: "+ getTestCaseID(method.getTestMethod().getMethod()));
 
@@ -679,7 +687,7 @@ public class ExecuteHarnessMain {
 				}
 				if (a != null) {
 					OpenQALogger.removeAppender(a);
-					ZimbraSeleniumLogger.removeAppender(a);
+					Logger.removeAppender(a);
 					a.close();
 					a = null;
 				}
@@ -695,8 +703,6 @@ public class ExecuteHarnessMain {
 	 * @author Matt Rhoades
 	 */
 	public static class ResultListener extends TestListenerAdapter {
-
-		private static final String ZimbraSeleniumBasePackage = "com.zimbra.qa.selenium";
 
 		private static List<String> failedTests = new ArrayList<String>();
 		private static List<String> skippedTests = new ArrayList<String>();
@@ -842,8 +848,8 @@ public class ExecuteHarnessMain {
 			staf = new StafExecute("SERVICE", "REMOVE SERVICE BUGZILLA");
 			staf.execute();
 
-			return (emailBody.toString() + formatter.append('\n') 
-					+ formatter.append("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n\n") 
+			return (emailBody.toString() + formatter.append('\n')
+					+ formatter.append("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n\n")
 					+ bugzillaBody.toString());
 		}
 
@@ -862,16 +868,16 @@ public class ExecuteHarnessMain {
 		private static int screenshotcount = 0;
 
 		public static String getScreenCaptureFilename(Method method) {
-			String c = method.getDeclaringClass().getCanonicalName().replace(ZimbraSeleniumBasePackage, "").replace('.', '/');
+			String c = method.getDeclaringClass().getCanonicalName().replace(SeleniumBasePackage, "").replace('.', '/');
 			String m = method.getName();
 			return (String.format("%s/debug/%s/%sss%d.png", outputFolder, c, m, ++screenshotcount));
 		}
 
 		public static void getScreenCapture(ITestResult result) {
 
-			String filename = getScreenCaptureFilename(result.getMethod() .getMethod());
-			
-			logger.warn("Creating screenshot: " + filename);
+			String filename = getScreenCaptureFilename(result.getMethod().getMethod());
+
+			logger.info("Creating screenshot: " + filename);
 			try {
 				File scrFile = ((TakesScreenshot)ClientSessionFactory.session().webDriver()).getScreenshotAs(OutputType.FILE);
 				FileUtils.copyFile(scrFile, new File(filename));
@@ -883,13 +889,13 @@ public class ExecuteHarnessMain {
 			} catch (WebDriverException e) {
 				logger.error("Webdriver exception when creating image file at " + filename, e);
 			}
-			
+
 		}
 
 		private static int mailboxlogcount = 0;
 
 		public static String getMailboxLogFilename(Method method) {
-			String c = method.getDeclaringClass().getCanonicalName().replace(ZimbraSeleniumBasePackage, "").replace('.', '/');
+			String c = method.getDeclaringClass().getCanonicalName().replace(SeleniumBasePackage, "").replace('.', '/');
 			String m = method.getName();
 			return (String.format("%s/debug/%s/%smailbox%d.txt", outputFolder, c, m, ++mailboxlogcount));
 		}

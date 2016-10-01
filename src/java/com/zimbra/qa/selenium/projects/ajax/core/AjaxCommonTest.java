@@ -72,7 +72,7 @@ public class AjaxCommonTest {
 	@BeforeSuite( groups = { "always" } )
 	public void commonTestBeforeSuite()
 	throws HarnessException, IOException, InterruptedException, SAXException {
-		logger.info("commonTestBeforeSuite: start");
+		logger.info("BeforeSuite: start");
 
 		ZimbraAccount.ResetAccountZWC();
 
@@ -80,7 +80,6 @@ public class AjaxCommonTest {
 
 			ConfigProperties.setAppType(ConfigProperties.AppType.AJAX);
 
-			webDriver = ClientSessionFactory.session().webDriver();
 			webDriver.manage().window().maximize();
 
 			// Dynamic wait for App to be ready
@@ -120,18 +119,18 @@ public class AjaxCommonTest {
 			logger.warn(e);
 		}
 
-		logger.info("commonTestBeforeSuite: finish");
+		logger.info("BeforeSuite: finish");
 	}
 
 	@BeforeClass( groups = { "always" } )
 	public void commonTestBeforeClass() throws HarnessException {
-		logger.info("commonTestBeforeClass: start");
-		logger.info("commonTestBeforeClass: finish");
+		logger.info("BeforeClass: start");
+		logger.info("BeforeClass: finish");
 	}
 
 	@BeforeMethod( groups = { "always" } )
 	public void commonTestBeforeMethod(Method method, ITestContext testContext) throws HarnessException {
-		logger.info("commonTestBeforeMethod: start");
+		logger.info("BeforeMethod: start");
 
 		// Get the test description
 		for (ITestNGMethod ngMethod : testContext.getAllTestMethods()) {
@@ -150,12 +149,12 @@ public class AjaxCommonTest {
 
 		// If test account preferences are defined, then make sure the test account uses those preferences
 		if ( (startingAccountPreferences != null) && (!startingAccountPreferences.isEmpty()) ) {
-			logger.info("commonTestBeforeMethod: startingAccountPreferences are defined");
+			logger.info("BeforeMethod: startingAccountPreferences are defined");
 
 			// If the current test accounts preferences match, then the account can be used
 			if ( !ZimbraAccount.AccountZWC().compareAccountPreferences(startingAccountPreferences) ) {
 
-				logger.info("commonTestBeforeMethod: startingAccountPreferences do not match active account");
+				logger.info("BeforeMethod: startingAccountPreferences do not match active account");
 
 				// Reset the account
 				ZimbraAccount.ResetAccountZWC();
@@ -170,12 +169,12 @@ public class AjaxCommonTest {
 
 		// If test account zimlet preferences are defined, then make sure the test account uses those zimlet preferences
 		if ( (startingUserZimletPreferences != null) && (!startingUserZimletPreferences.isEmpty()) ) {
-			logger.info("commonTestBeforeMethod: startingAccountZimletPreferences are defined");
+			logger.info("BeforeMethod: startingAccountZimletPreferences are defined");
 
 			// If the current test accounts preferences match, then the account can be used
 			if ( !ZimbraAccount.AccountZWC().compareUserZimletPreferences(startingUserZimletPreferences) ) {
 
-				logger.info("commonTestBeforeMethod: startingAccountZimletPreferences do not match active account");
+				logger.info("BeforeMethod: startingAccountZimletPreferences do not match active account");
 				ZimbraAccount.ResetAccountZWC();
 				ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
 				ZimbraAccount.AccountZWC().modifyUserZimletPreferences(startingUserZimletPreferences);
@@ -186,11 +185,12 @@ public class AjaxCommonTest {
 
 		// If AccountZWC is not currently logged in, then login now
 		if ( !ZimbraAccount.AccountZWC().equals(app.zGetActiveAccount()) ) {
-			logger.info("commonTestBeforeMethod: AccountZWC is not currently logged in");
+			logger.info("BeforeMethod: AccountZWC is not currently logged in");
 
 			if ( app.zPageMain.zIsActive() )
 				try {
-					app.zPageMain.zLogout();
+					app.zPageLogin.sOpen(ConfigProperties.getLogoutURL());
+					app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
 
 				} catch(Exception ex) {
 					if ( !app.zPageLogin.zIsActive()) {
@@ -204,13 +204,11 @@ public class AjaxCommonTest {
 
 		// If a startingPage is defined, then make sure we are on that page
 		if ( startingPage != null ) {
-			logger.info("commonTestBeforeMethod: startingPage is defined");
+			logger.info("BeforeMethod: startingPage is defined");
 
 			// If the starting page is not active, navigate to it
 			if ( !startingPage.zIsActive() ) {
-				SleepUtil.sleepSmall();
 				startingPage.zNavigateTo();
-				SleepUtil.sleepSmall();
 			}
 
 			// Confirm that the page is active
@@ -218,60 +216,37 @@ public class AjaxCommonTest {
 				throw new HarnessException("Unable to navigate to "+ startingPage.myPageName());
 			}
 
-			logger.info("commonTestBeforeMethod: startingPage navigation done");
-
+			logger.info("BeforeMethod: startingPage navigation done");
 		}
 
-		// Check for error dialogs
-		boolean check = "true".equals( ConfigProperties.getStringProperty("dialog.error.beforetest.check", "true") );
-		boolean dismiss = "true".equals( ConfigProperties.getStringProperty("dialog.error.beforetest.dismiss", "false") );
-		if ( check ) {
-
-			AbsDialog dialog = app.zPageMain.zGetErrorDialog(DialogErrorID.Zimbra);
-			if ( (dialog != null) && (dialog.zIsActive()) ) {
-
-				// Error dialog is visible.
-				if ( dismiss ) {
-
-					// Dismiss the dialog and carry on
-					dialog.zClickButton(Button.B_OK);
-
-				} else {
-
-					// Throw an exception (all future tests will likely be skipped)
-					throw new HarnessException("Error Dialog is visible");
-
-				}
-			}
-		}
-
-		app.zPageMain.zRefreshPageIfOpenDialogs(app.zPageMain.zGetCurrentApp());
-		app.zPageMain.zCloseComposeTabs();
-		logger.info("commonTestBeforeMethod: finish");
+		app.zPageMain.zHandleDialogs(app.zPageMain.zGetCurrentApp());
+		app.zPageMain.zHandleComposeTabs();
+		logger.info("BeforeMethod: finish");
 	}
 
 	@AfterSuite( groups = { "always" } )
 	public void commonTestAfterSuite() throws HarnessException, IOException, InterruptedException {
-		logger.info("commonTestAfterSuite: start");
+		logger.info("AfterSuite: start");
+		webDriver.close();
 		webDriver.quit();
-		logger.info("commonTestAfterSuite: finish");
+		logger.info("AfterSuite: finished by closing selenium session");
 	}
 
 	@AfterClass( groups = { "always" } )
 	public void commonTestAfterClass() throws HarnessException {
-		logger.info("commonTestAfterClass: start");
+		logger.info("AfterClass: start");
 
 		ZimbraAccount currentAccount = app.zGetActiveAccount();
 		if (currentAccount != null && currentAccount.accountIsDirty && currentAccount == ZimbraAccount.AccountZWC()) {
 			ZimbraAccount.ResetAccountZWC();
 		}
 
-		logger.info("commonTestAfterClass: finish");
+		logger.info("AfterClass: finish");
 	}
 
 	@AfterMethod( groups = { "always" } )
 	public void commonTestAfterMethod(Method method, ITestResult testResult) throws HarnessException {
-		logger.info("commonTestAfterMethod: start");
+		logger.info("AfterMethod: start");
 
 		if ( ZimbraURI.needsReload() ) {
             logger.error("The URL does not match the base URL.  Reload app.");
@@ -284,31 +259,15 @@ public class AjaxCommonTest {
             app.zPageLogin.sOpen(ConfigProperties.getLogoutURL());
             app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
         }
-
-		// Check for error dialogs
-		boolean check = "true".equals( ConfigProperties.getStringProperty("dialog.error.beforetest.check", "true") );
-		boolean dismiss = "true".equals( ConfigProperties.getStringProperty("dialog.error.beforetest.dismiss", "false") );
-		if ( check ) {
-
-			AbsDialog dialog = app.zPageMain.zGetErrorDialog(DialogErrorID.Zimbra);
-			if ( (dialog != null) && (dialog.zIsActive()) ) {
-
-				// Error dialog is visible.
-				if ( dismiss ) {
-
-					// Dismiss the dialog and carry on
-					dialog.zClickButton(Button.B_OK);
-
-				} else {
-
-					// Throw an exception (all future tests will likely be skipped)
-					throw new HarnessException("Error Dialog is visible");
-
-				}
-			}
+		
+		// Error dialog
+		AbsDialog dialog = app.zPageMain.zGetErrorDialog(DialogErrorID.Zimbra);
+		if ( (dialog != null) && (dialog.zIsActive()) ) {
+			// Throw an exception (all future tests will likely be skipped)
+			//throw new HarnessException("Error dialog is visible");
+			logger.error("Error dialog is visible");
 		}
-
-		logger.info("commonTestAfterMethod: finish");
+		logger.info("AfterMethod: finish");
 	}
 
 
@@ -333,6 +292,18 @@ public class AjaxCommonTest {
 				+		"<id>"+ string +"</id>"
 				+		settings.toString()
 				+	"</ModifyAccountRequest>");
+	}
+	
+	public String zWaitTillSoapResponse(String soapRequest, String expected) throws HarnessException {
+		String responseValue = soapRequest;
+		for (int i=0; i<=5; i++) {
+			if (responseValue.equals(soapRequest)) {
+				break;
+			} else {
+				SleepUtil.sleepMedium();
+			}
+		}
+		return responseValue;
 	}
 
 	public void zUpload (String filePath) throws HarnessException {
@@ -536,7 +507,7 @@ public class AjaxCommonTest {
 		SleepUtil.sleepMedium();
 		app.zPageMail.sClickAt("css=td[id='zb__NEW_MENU_dropdown'] div[class='ImgSelectPullDownArrow']", "");
 		SleepUtil.sleepSmall();
-		app.zPageMain.zCloseComposeTabs();
+		app.zPageMain.zHandleComposeTabs();
 		SleepUtil.sleepSmall();
 
 		// Select option

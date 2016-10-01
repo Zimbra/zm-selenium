@@ -226,13 +226,13 @@ public class FormApptNew extends AbsForm {
 		} else {
 			zToolbarPressButton(Button.B_SAVE);
 		}
-
 		this.zWaitForBusyOverlay();
-		SleepUtil.sleepLong();
 
 		// Wait for the message to be delivered
 		Stafpostqueue sp = new Stafpostqueue();
 		sp.waitForPostqueue();
+		
+		SleepUtil.sleepMedium();
 	}
 
 	public String zGetSuggestedLocation(String apptLocation) throws HarnessException {
@@ -384,14 +384,6 @@ public class FormApptNew extends AbsForm {
 		ZAssert.assertTrue(this.sIsElementPresent(Locators.RepeatDescriptionDisabled), "Verify repeat description remains disabled");
 	}
 
-	/**
-	 * Press the toolbar button
-	 *
-	 * @param button
-	 * @return
-	 * @throws HarnessException
-	 */
-
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		SleepUtil.sleepSmall();
 
@@ -420,7 +412,6 @@ public class FormApptNew extends AbsForm {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 
-			SleepUtil.sleepMedium();
 			page = new DialogConfirmRemoveAllExceptions(this.MyApplication, pageCal);
 
 			return (page);
@@ -430,13 +421,10 @@ public class FormApptNew extends AbsForm {
 			locator = Locators.Button_Save;
 			page = null;
 
-
 		} else if (button == Button.B_SAVEANDCLOSE) {
 
 			locator = Locators.Button_SaveAndClose;
 			page = null;
-
-
 
 		} else if (button == Button.B_ATTACH) {
 
@@ -458,15 +446,11 @@ public class FormApptNew extends AbsForm {
 			locator = Locators.Button_Close;
 			page = null;
 
-
-
 		} else if (button == Button.B_SUGGESTATIME) {
 
 			locator = Locators.SuggestAtimeLink;
 			SleepUtil.sleepMedium();
 			page = null;
-
-
 
 		} else if (button == Button.B_FIRST_TIME_SUGGESTION) {
 
@@ -482,15 +466,11 @@ public class FormApptNew extends AbsForm {
 
 			return null;
 
-
-
 		} else if (button == Button.B_SUGGESTALOCATION) {
 
 			locator = Locators.SuggestALocationLink;
 			SleepUtil.sleepMedium();
 			page = null;
-
-
 
 		} else if (button == Button.B_10AM) {
 
@@ -519,8 +499,6 @@ public class FormApptNew extends AbsForm {
 				return null;
 			}
 
-
-
 		} else if (button == Button.B_LOCATION) {
 
 			locator = Locators.AddLocation;
@@ -529,8 +507,6 @@ public class FormApptNew extends AbsForm {
 			this.zWaitForBusyOverlay();
 			page = new DialogFindLocation(this.MyApplication, pageCal);
 			return (page);
-
-
 
 		} else if (button == Button.B_EQUIPMENT) {
 
@@ -541,10 +517,7 @@ public class FormApptNew extends AbsForm {
 			page = new DialogFindLocation(this.MyApplication, pageCal);
 			return (page);
 
-
-
-		}
-		else if (button == Button.B_TO) {
+		} else if (button == Button.B_TO) {
 
 			locator = Locators.AddAttendees;
 			this.sClickAt(locator, "");
@@ -552,8 +525,6 @@ public class FormApptNew extends AbsForm {
 			this.zWaitForBusyOverlay();
 			page = new DialogFindLocation(this.MyApplication, pageCal);
 			return (page);
-
-
 
 		} else if (button == Button.B_OPTIONAL) {
 
@@ -563,8 +534,12 @@ public class FormApptNew extends AbsForm {
 			this.zWaitForBusyOverlay();
 			page = new DialogFindLocation(this.MyApplication, pageCal);
 			return (page);
+			
+		} else if (button == Button.B_SHOW_EQUIPMENT) {
 
-
+			locator = Locators.ShowEquipmentLink;
+			this.sClick(locator);
+			return null;
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
@@ -573,9 +548,6 @@ public class FormApptNew extends AbsForm {
 		// Make sure a locator was set
 		if (locator == null)
 			throw new HarnessException("locator was null for button " + button);
-
-		// Default behavior, process the locator by clicking on it
-		//
 
 		// Click it
 		this.sClickAt(locator, "");
@@ -589,8 +561,7 @@ public class FormApptNew extends AbsForm {
 
 	}
 
-	public AbsPage zPressButton(Button button, String value)
-			throws HarnessException {
+	public AbsPage zPressButton(Button button, String value) throws HarnessException {
 
 		logger.info(myPageName() + " zPressButton(" + button + ")");
 		SleepUtil.sleepMedium();

@@ -576,6 +576,8 @@ public class PageCalendar extends AbsTab {
 	}
 
 	private AbsPage zListItemGeneral(String itemsLocator, Action action, String subject) throws HarnessException {
+		
+		SleepUtil.sleepSmall();
 
 		if ( itemsLocator == null )
 			throw new HarnessException("itemsLocator cannot be null");
@@ -586,17 +588,12 @@ public class PageCalendar extends AbsTab {
 		if ( subject == null )
 			throw new HarnessException("subject cannot be null");
 
-
 		logger.info(myPageName() + " zListItemGeneral("+ itemsLocator + ", "+ action + ", "+ subject + ")");
 		tracer.trace(action + " on subject = "+ subject);
 
-
-
-		
 		String locator = null;
 		AbsPage page = null;
-
-		SleepUtil.sleepMedium(); //test fails because selenium method runs fast so it doesn't find element
+		
 		if ( this.sIsElementPresent(itemsLocator + " td.appt_name:contains('"+ subject + "')")) {
 
 			// Single occurrence locator
@@ -629,16 +626,12 @@ public class PageCalendar extends AbsTab {
 			throw new HarnessException("Unable to determine locator for appointment: "+ subject);
 		}
 
-
-
 		if ( action == Action.A_LEFTCLICK ) {
 
 			this.zClickAt(locator, "");
 			this.zWaitForBusyOverlay();
 
 			page = null;
-
-			
 
 		} else if ( action == Action.A_RIGHTCLICK) {
 
@@ -647,13 +640,11 @@ public class PageCalendar extends AbsTab {
 
 			page = null;
 
-			
-
 		} else if ( action == Action.A_DOUBLECLICK) {
 
 			this.sDoubleClick(locator);
 			this.zWaitForBusyOverlay();
-			SleepUtil.sleepLong();
+			SleepUtil.sleepMedium();
 
 			page = new DialogOpenRecurringItem(Confirmation.OPENRECURRINGITEM, MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
@@ -665,12 +656,9 @@ public class PageCalendar extends AbsTab {
 				return (page);
 			}
 
-			
-
 		} else {
 			throw new HarnessException("implement me!  action = "+ action);
 		}
-
 
 		if ( page != null ) {
 			page.zWaitForActive();
@@ -694,16 +682,10 @@ public class PageCalendar extends AbsTab {
 		String locator = null;
 		AbsPage page = null;
 
-		// TODO: need some way to get a locator to all-day and non-all-day appts
-		// For now, give pref to non-all-day.  If not present, try all-day
-
-		// 		locator = "css=td.appt_name:contains('" + subject + "')"; // non-all-day
 		locator = "css=table.calendar_month_day_table td.calendar_month_day_item span[id$='_subject']:contains('"+ subject + "')"; // non-all-day
 
 		if ( !this.sIsElementPresent(locator) ) {
-			// locator = "css=td.appt_allday_name:contains('" + subject + "')"; // all-day
 			locator = "css=td.appt_allday_name:contains('" + subject + "')"; // all-day
-
 		}
 
 		if ( action == Action.A_LEFTCLICK ) {
@@ -738,6 +720,7 @@ public class PageCalendar extends AbsTab {
 			if ( page.zIsActive() ) {
 				return (page);
 			}
+			
 		} else {
 			throw new HarnessException("implement me!  action = "+ action);
 		}
@@ -758,9 +741,6 @@ public class PageCalendar extends AbsTab {
 
 			// Right-Click on the item
 			this.zRightClickAt(itemlocator,"");
-
-			// Now the ContextMenu is opened
-			// Click on the specified option
 
 			if (option == Button.O_OPEN_MENU) {
 
@@ -919,9 +899,8 @@ public class PageCalendar extends AbsTab {
 
 				optionLocator = Locators.GoToTodayMenu;
 				throw new HarnessException("implement action:"+ action + " option:"+ option);
-
-			}
-			else {
+			
+			} else {
 				throw new HarnessException("implement action:"+ action + " option:"+ option);
 			}
 
@@ -982,7 +961,6 @@ public class PageCalendar extends AbsTab {
 
 		logger.info(myPageName() + " zListItemGeneral("+ itemsLocator + ", "+ action + ", "+ option + ", "+ subject + ")");
 		tracer.trace(action + " then "+ option + " on subject = "+ subject);
-
 		
 		String locator = null;
 		AbsPage page = null;
@@ -1297,8 +1275,6 @@ public class PageCalendar extends AbsTab {
 				this.zWaitForBusyOverlay();
 
 				return (page);
-
-				//throw new HarnessException("implement action:"+ action + " option:"+ option);
 
 			} else if ( option == Button.O_CREATE_A_COPY_MENU) {
 
@@ -1996,7 +1972,6 @@ public class PageCalendar extends AbsTab {
 				return null;
 			}
 
-
 		} else if (button == Button.B_SAVE_WITH_CONFLICT) {
 			locator = Locators.OrganizerSaveButton;
 			this.zClickAt(locator, "");
@@ -2175,7 +2150,6 @@ public class PageCalendar extends AbsTab {
 
 			return (page);
 
-
 		}
 
 		this.zKeyboard.zTypeKeyEvent(keyEvent);
@@ -2256,9 +2230,7 @@ public class PageCalendar extends AbsTab {
 			return (this.zToolbarPressButton(option));
 
 		} else {
-
 			throw new HarnessException("No logic defined for pulldown " + pulldown + " and option " + option);
-
 		}
 
 		if (pulldownLocator != null) {
@@ -2367,9 +2339,7 @@ public class PageCalendar extends AbsTab {
 			// Only the subject is present
 			locator = rowLocator + " td[id$='__su']";
 			item.setGSubject(this.sGetText(locator).trim());
-
 		}
-
 
 		// What is the location
 		locator = rowLocator + " td[id$='__lo']";
@@ -2377,7 +2347,6 @@ public class PageCalendar extends AbsTab {
 			String location = this.sGetText(locator).trim();
 			item.setGLocation(location);
 		}
-
 
 		// What is the status
 		locator = rowLocator + " span[id$='__st']";
@@ -2393,7 +2362,6 @@ public class PageCalendar extends AbsTab {
 		// What is the start date
 		locator = rowLocator + " td[id$='__dt']";
 		item.setGStartDate(this.sGetText(locator));
-
 
 		return (item);
 	}
@@ -2484,7 +2452,6 @@ public class PageCalendar extends AbsTab {
 			item.setLocation(this.sGetText(locator).trim());
 		}
 
-
 		// Get the name of the appointment (organizer view)
 		locator = rowLocator + " td.appt_name";
 		if ( this.sIsElementPresent(locator) ) {
@@ -2549,8 +2516,6 @@ public class PageCalendar extends AbsTab {
 
 		}
 
-		// TODO: parse other elements
-
 		return (item);
 	}
 
@@ -2609,9 +2574,6 @@ public class PageCalendar extends AbsTab {
 		locator = cssLocator + " table tr td + td";
 		appt.setSubject(this.sGetText(locator)); // Subject contains start time + subject
 
-		// TODO: get the tags
-
-
 		return (appt);
 	}
 
@@ -2629,8 +2591,6 @@ public class PageCalendar extends AbsTab {
 		// Get the subject
 		locator = cssLocator + " span[id$='_subject']";
 		appt.setSubject(this.sGetText(locator));
-
-		// TODO: get the tags
 
 		return (appt);
 	}
@@ -2656,17 +2616,10 @@ public class PageCalendar extends AbsTab {
 			int count = this.sGetCssCount(itemsLocator);
 			logger.info(itemsLocator + " count: "+ count);
 
-			//for (int i = 1; i <= count; i++) {
-
-			//AppointmentItem item = parseMonthViewNonAllDay(itemsLocator + ":nth-of-type("+ i + ")");
 			AppointmentItem item = parseMonthViewNonAllDay(itemsLocator);
 			items.add(item);
 			logger.info(item.prettyPrint());
-
-			//}
-
 		}
-
 
 		// Process the all-day items next
 
