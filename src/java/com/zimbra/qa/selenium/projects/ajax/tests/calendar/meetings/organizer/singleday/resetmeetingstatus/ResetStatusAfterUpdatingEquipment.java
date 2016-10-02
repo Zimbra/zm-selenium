@@ -17,16 +17,13 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.resetmeetingstatus;
 
 import java.util.Calendar;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators;
 
 public class ResetStatusAfterUpdatingEquipment extends CalendarWorkWeekTest {	
 	
@@ -91,7 +88,7 @@ public class ResetStatusAfterUpdatingEquipment extends CalendarWorkWeekTest {
 		app.zPageCalendar.zNavigateTo();
 		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-        apptForm.zClickAt(Locators.ShowEquipmentLink,"");
+        apptForm.zToolbarPressButton(Button.B_SHOW_EQUIPMENT);
         SleepUtil.sleepMedium();
         apptForm.zRemoveEquipment(apptEquipment1);
         apptForm.zFillField(Field.Equipment, apptEquipment2);

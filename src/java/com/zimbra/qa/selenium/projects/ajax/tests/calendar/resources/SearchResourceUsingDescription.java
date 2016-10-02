@@ -84,7 +84,7 @@ public class SearchResourceUsingDescription extends CalendarWorkWeekTest {
 	    
 	    // Add equipment from 'Search Equipment' dialog and send the meeting
 	    FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-	    apptForm.sClick(Locators.ShowEquipmentLink);
+	    apptForm.zToolbarPressButton(Button.B_SHOW_EQUIPMENT);
 	    SleepUtil.sleepSmall();
 	    apptForm.zToolbarPressButton(Button.B_EQUIPMENT);
 	    SleepUtil.sleepMedium();

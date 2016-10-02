@@ -37,7 +37,7 @@
 		<dependency org="xml-apis" name="xml-apis" rev="2.0.2"/>
 		<dependency org="zm-native" name="zm-native" rev="8.8.0"/>
 		<dependency org="zm-common" name="zm-common" rev="8.8.0"/>
-		<dependency org="selenium-server-standalone" name="selenium-server-standalone" rev="3.0.0-beta3"/>
-		<dependency org="client-combined" name="client-combined" rev="3.0.0-beta3-nodeps"/>
+		<dependency org="selenium-server-standalone" name="selenium-server-standalone" rev="3.0.0-beta4"/>
+		<dependency org="client-combined" name="client-combined" rev="3.0.0-beta4-nodeps"/>
 	</dependencies>
 </ivy-module>

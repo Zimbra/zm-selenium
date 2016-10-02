@@ -21,8 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import com.zimbra.qa.selenium.framework.core.SeleniumService;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -64,6 +62,7 @@ public class FormApptNew extends AbsForm {
 		public static final String RepeatOptionsDisabled = "css=td[id$='_repeat_options'] div[id^='DWT'][class$='ZHasDropDown ZDisabled']";
 		public static final String RepeatDescriptionDisabled = "css=div[id$='_repeatDesc'][class='DisabledText']";
 
+		public static final String CustomizeLink = "//div[text() = 'Customize']";
 		public static final String ShowOptionalLink = "css=div[id$='_show_optional']";
 		public static final String ShowEquipmentLink = "css=div[id$='_show_resources']";
 		public static final String ConfigureLink = "css=div[class='FakeAnchor']:contains('Configure')";
@@ -535,11 +534,17 @@ public class FormApptNew extends AbsForm {
 			page = new DialogFindLocation(this.MyApplication, pageCal);
 			return (page);
 			
+		} else if (button == Button.B_SHOW_OPTIONAL) {
+			
+			locator = Locators.ShowOptionalLink;
+			this.sClickJavaScript(locator);
+			return (page);
+			
 		} else if (button == Button.B_SHOW_EQUIPMENT) {
-
+			
 			locator = Locators.ShowEquipmentLink;
-			this.sClick(locator);
-			return null;
+			this.sClickJavaScript(locator);
+			return (page);
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
@@ -1086,8 +1091,6 @@ public class FormApptNew extends AbsForm {
 
 		// Optional
 		if (appt.getOptional() != null) {
-			SleepUtil.sleepMedium();
-			this.sClickAt(Locators.ShowOptionalLink, "");
 			zFillField(Field.Optional, appt.getOptional());
 		}
 
@@ -1098,8 +1101,7 @@ public class FormApptNew extends AbsForm {
 
 		// Equipment
 		if (appt.getEquipment() != null) {
-			SleepUtil.sleepMedium();
-			this.sClickAt(Locators.ShowEquipmentLink, "");
+			sClickJavaScript(Locators.ShowEquipmentLink);
 			zFillField(Field.Equipment, appt.getEquipment());
 		}
 
@@ -1155,16 +1157,13 @@ public class FormApptNew extends AbsForm {
 			throw new HarnessException("Repeat options can't be null!");
 		}
 
-		SleepUtil.sleepSmall();
 		this.zClickAt(Locators.NoneButton, "");
 
 		if (!recurringType.equals(Button.O_CUSTOM_MENU)) {
 
 			if (recurringType.equals(Button.O_EVERY_DAY_MENU)) {
 				this.sClickAt(Locators.EveryDayMenuItem, "");
-				SleepUtil.sleepSmall();
-				((JavascriptExecutor)webDriver()).executeScript("arguments[0].click()", webDriver().findElement(By.xpath(".//div[text() = 'Customize']")));
-				SleepUtil.sleepSmall();
+				this.sClickJavaScript(Locators.CustomizeLink);
 
 				if (repeat.equals(Button.B_EVERY_DAY_RADIO_BUTTON)) {
 					this.sClickAt(Locators.EveryDayRadioButton, "");
@@ -1179,9 +1178,7 @@ public class FormApptNew extends AbsForm {
 
 			} else if (recurringType.equals(Button.O_EVERY_WEEK_MENU)) {
 				this.sClickAt(Locators.EveryWeekMenuItem, "");
-				SleepUtil.sleepSmall();
-				((JavascriptExecutor)webDriver()).executeScript("arguments[0].click()", webDriver().findElement(By.xpath(".//div[text() = 'Customize']")));
-				SleepUtil.sleepSmall();
+				this.sClickJavaScript(Locators.CustomizeLink);
 
 				if (repeat.equals(Button.B_EVERY_X_RADIO_BUTTON)) {
 					this.sClickAt(Locators.EveryXRadioButton, "");
@@ -1221,9 +1218,7 @@ public class FormApptNew extends AbsForm {
 
 			} else if (recurringType.equals(Button.O_EVERY_MONTH_MENU)) {
 				this.sClickAt(Locators.EveryMonthMenuItem, "");
-				SleepUtil.sleepSmall();
-				((JavascriptExecutor)webDriver()).executeScript("arguments[0].click()", webDriver().findElement(By.xpath(".//div[text() = 'Customize']")));
-				SleepUtil.sleepSmall();
+				this.sClickJavaScript(Locators.CustomizeLink);
 
 				if (repeat.equals(Button.B_DAY_X_OF_EVERY_Y_MONTHS_RADIO_BUTTON)) {
 					this.sClickAt(Locators.DayXofEveryYmonthsRadioButton, "");
@@ -1236,9 +1231,7 @@ public class FormApptNew extends AbsForm {
 
 			} else if (recurringType.equals(Button.O_EVERY_YEAR_MENU)) {
 				this.sClickAt(Locators.EveryYearMenuItem, "");
-				SleepUtil.sleepSmall();
-				((JavascriptExecutor)webDriver()).executeScript("arguments[0].click()", webDriver().findElement(By.xpath(".//div[text() = 'Customize']")));
-				SleepUtil.sleepSmall();
+				this.sClickJavaScript(Locators.CustomizeLink);
 
 				if (repeat.equals(Button.B_EVERY_YEAR_ON_X_Y_RADIO_BUTTON)) {
 					this.sClickAt(Locators.EveryYearOnXYRadioButton, "");
@@ -1297,37 +1290,30 @@ public class FormApptNew extends AbsForm {
 	}
 
 	public String zGetApptSubject(String subject) throws HarnessException {
-		return this.sGetText("css=td[id*='_subject']:contains('" + subject
-				+ "')");
+		return this.sGetText("css=td[id*='_subject']:contains('" + subject + "')");
 	}
 
 	public String zGetApptAttendees(String attendee) throws HarnessException {
-		return this.sGetText("css=td[id*='_person']:contains('" + attendee
-				+ "')");
+		return this.sGetText("css=td[id*='_person']:contains('" + attendee + "')");
 	}
 
 	public String zGetApptOptional(String optional) throws HarnessException {
-		return this.sGetText("css=td[id*='_optional']:contains('" + optional
-				+ "')");
+		return this.sGetText("css=td[id*='_optional']:contains('" + optional + "')");
 	}
 
 	public String zGetApptLocation(String location) throws HarnessException {
-		return this.sGetText("css=td[id*='_location']:contains('" + location
-				+ "')");
+		return this.sGetText("css=td[id*='_location']:contains('" + location + "')");
 	}
 
-	public String zGetApptLocationFloating(String location)
-			throws HarnessException {
+	public String zGetApptLocationFloating(String location)	throws HarnessException {
 		return this.sGetValue("css=input[id$='_location_input']");
 	}
 
 	public String zGetApptEquipment(String equipment) throws HarnessException {
-		return this.sGetText("css=td[id*='_resourcesData']:contains('"
-				+ equipment + "')");
+		return this.sGetText("css=td[id*='_resourcesData']:contains('" + equipment + "')");
 	}
 
-	public void zRecurringOptions(String locator, String recurringType,
-			String endBy) throws HarnessException {
+	public void zRecurringOptions(String locator, String recurringType,	String endBy) throws HarnessException {
 
 		if (recurringType.split(",")[0].toUpperCase().equals("NONE")) {
 			this.sClickAt(Locators.NoneMenuItem, "");
@@ -1335,16 +1321,13 @@ public class FormApptNew extends AbsForm {
 		} else if (recurringType.split(",")[0].toUpperCase().equals("EVERYDAY")) {
 			this.sClickAt(Locators.EveryDayMenuItem, "");
 
-		} else if (recurringType.split(",")[0].toUpperCase()
-				.equals("EVERYWEEK")) {
+		} else if (recurringType.split(",")[0].toUpperCase().equals("EVERYWEEK")) {
 			this.sClickAt(Locators.EveryWeekMenuItem, "");
 
-		} else if (recurringType.split(",")[0].toUpperCase().equals(
-				"EVERYMONTH")) {
+		} else if (recurringType.split(",")[0].toUpperCase().equals("EVERYMONTH")) {
 			this.sClickAt(Locators.EveryMonthMenuItem, "");
 
-		} else if (recurringType.split(",")[0].toUpperCase()
-				.equals("EVERYYEAR")) {
+		} else if (recurringType.split(",")[0].toUpperCase().equals("EVERYYEAR")) {
 			this.sClickAt(Locators.EveryYearMenuItem, "");
 
 		} else if (recurringType.split(",")[0].toUpperCase().equals("CUSTOM")) {

@@ -1,11 +1,11 @@
 1. Create .zcs-deps directory at your %UserProfile%
 
-2. Copy following jars at %UserProfile%/.zcs-deps OR /opt/zimbra/lib/jars
+2. Copy following jars at %UserProfile%/.zcs-deps
 
 ant-contrib-1.0b1.jar
 ant-tar-patched.jar
 apache-log4j-extras-1.0.jar
-client-combined-3.0.0-beta3-nodeps.jar
+client-combined-3.0.0-beta4-nodeps.jar
 commons-beanutils-1.7.jar
 commons-cli-1.2.jar
 commons-codec-1.7.jar
@@ -30,7 +30,7 @@ libidn-1.24.jar
 log4j-1.2.16.jar
 mariadb-java-client-1.1.8.jar
 ocutil-2.4.2.jar
-selenium-server-standalone-3.0.0-beta3.jar
+selenium-server-standalone-3.0.0-beta4.jar
 testng-5.12.1.jar
 ws-commons-util-1.0.2.jar
 xalan.jar

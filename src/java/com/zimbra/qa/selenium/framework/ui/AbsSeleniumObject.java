@@ -164,7 +164,6 @@ public abstract class AbsSeleniumObject {
 		    }
 		    we.click();
 		    zWaitForBusyOverlay();
-		    SleepUtil.sleepVerySmall();
 
 	    } catch (Exception ex) {
 	    	throw new HarnessException("Unable to click on locator " + locator, ex);
@@ -188,7 +187,6 @@ public abstract class AbsSeleniumObject {
 		    Action action = builder.moveToElement(we).click(we).build();
 		    action.perform();
 		    zWaitForBusyOverlay();
-		    SleepUtil.sleepVerySmall();
 
 	    } catch (Exception ex) {
 	    	throw new HarnessException("Unable to clickAt on locator " + locator, ex);
@@ -196,6 +194,27 @@ public abstract class AbsSeleniumObject {
 	}
 
 
+	public void sClickJavaScript(String locator, WebElement... elements) throws HarnessException {
+	    logger.info("sClickJavaScript(" + locator + ")");
+	    SleepUtil.sleepVerySmall();
+
+	    try {
+		    WebElement we = null;
+		    if (elements != null && elements.length > 0) {
+		    	we = elements[0];
+		    } else {
+		    	we = getElement(locator);
+		    }
+
+		    ((JavascriptExecutor)webDriver()).executeScript("arguments[0].click()", we);
+		    zWaitForBusyOverlay();
+
+	    } catch (Exception ex) {
+	    	throw new HarnessException("Unable to clickAt on locator " + locator, ex);
+	    }
+	}
+	
+	
 	public void zClick(String locator, WebElement... elements) throws HarnessException {
 		sClick(locator, elements);
 	}
@@ -221,7 +240,6 @@ public abstract class AbsSeleniumObject {
 		    final Actions builder = new Actions(webDriver());
 		    final Action rClick = builder.contextClick(we).build();
 		    rClick.perform();
-		    SleepUtil.sleepVerySmall();
 
 	    } catch(Exception ex) {
 	    	throw new HarnessException("Unable to rightClick on locator " + locator, ex);
@@ -244,7 +262,6 @@ public abstract class AbsSeleniumObject {
     	    final Actions builder = new Actions(webDriver());
     	    final Action rClick = builder.moveToElement(we).contextClick(we).build();
     	    rClick.perform();
-    	    SleepUtil.sleepVerySmall();
 
 	    } catch(Exception ex) {
 	    	throw new HarnessException("Unable to rightClickAt on locator " + locator, ex);
