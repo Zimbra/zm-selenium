@@ -17,14 +17,11 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
@@ -41,6 +38,7 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 		logger.info("New "+ AddOptionalAttendee.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
+	
 	
 	@Test( description = "Add optional attendee by typing in the field and resend the appointment",
 			groups = { "functional" })
@@ -82,22 +80,18 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
         
         // Add optional attendee by typing in the field and resend the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-        apptForm.zClickAt(com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators.ShowOptionalLink,"");
+        apptForm.zToolbarPressButton(Button.B_SHOW_OPTIONAL);
         apptForm.zFill(appt);
-        SleepUtil.sleepMedium();
+        apptForm.zToolbarPressButton(Button.B_SHOW_OPTIONAL); // Hiding for next test otherwise as per application behaviour optional UI remains enabled.
 		apptForm.zSubmit();
-        apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepVeryLong(); // test fails while checking free/busy status, waitForPostqueue is not sufficient here
-        // Tried sleepLong() as well but although fails so using sleepVeryLong()
    
-  	  // Verify that optional attendee present in the appointment
+  	  	// Verify that optional attendee present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
 		ZAssert.assertEquals(actual.getOptional(),apptOptionalAttendee , "optional attendee: Verify the appointment data");
 	
-     	
 		// Verify optional attendee free/busy status
-		String attendeeStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptOptionalAttendee +"']", "ptst");
+		String attendeeStatus = zWaitTillSoapResponse (app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptOptionalAttendee +"']", "ptst"), "NE");
 		ZAssert.assertEquals(attendeeStatus, "NE", "Verify optional attendee free/busy status");
 		
 		// Verify optional attendee receives meeting invitation message
@@ -107,10 +101,12 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 			+	"</SearchRequest>");
 		String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify optional attendee receives meeting invitation message");
-		
 	}
-	@Test( description = "Create appt and Add optional attendee to existing appointment from contact picker",
+	
+	
+	@Test( description = "Create appt and add optional attendee to existing appointment from contact picker",
 			groups = { "functional" })
+	
 	public void CreateMeetingBySelectAttendees_01() throws HarnessException {
 		
 		// Create a meeting
@@ -131,11 +127,10 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 		// Compose appointment and send it to invitee
 		
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
-		apptForm.zClickAt(com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators.ShowOptionalLink,"");
+		apptForm.zToolbarPressButton(Button.B_SHOW_OPTIONAL);
 		apptForm.zFill(appt);
         
         apptForm.zToolbarPressButton(Button.B_OPTIONAL);
-      
         DialogFindAttendees dialogFindAttendees = (DialogFindAttendees) new DialogFindAttendees(app, app.zPageCalendar);
 
         // Type optional attendee name in search box & perform search
@@ -148,10 +143,7 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
         dialogFindAttendees.zClickButton(Button.B_CHOOSE_CONTACT_FROM_PICKER);
         dialogFindAttendees.zWaitForBusyOverlay();
         dialogFindAttendees.zClickButton(Button.B_OK);
-;
-        // send the modified appt
-        apptForm.zToolbarPressButton(Button.B_SEND);
-		SleepUtil.sleepVeryLong();
+        apptForm.zSubmit();
       
         // Verify optional attendee receives meeting invitation message
 		ZimbraAccount.AccountA().soapSend(
@@ -172,7 +164,7 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(addedOptionalAttendee, "Verify meeting invite is present in optional attendee's calendar");
 		
 		// Verify optional attendee free/busy status
-		String optionalAttendeeStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptOptionalAttendee +"']", "ptst");
+		String optionalAttendeeStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptOptionalAttendee +"']", "ptst"), "NE");
 		ZAssert.assertEquals(optionalAttendeeStatus, "NE", "Verify optional attendee free/busy status");
 		
 	}

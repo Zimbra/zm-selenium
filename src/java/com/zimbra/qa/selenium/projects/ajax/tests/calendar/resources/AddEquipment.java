@@ -18,9 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 
 import java.util.Calendar;
 import java.util.List;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -92,6 +90,7 @@ public class AddEquipment extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		apptForm.zAutocompleteSelectItem(found);
         ZAssert.assertTrue(apptForm.zVerifyEquipment(apptEquipment), "Verify appointment equipment");
+        apptForm.zToolbarPressButton(Button.B_SHOW_EQUIPMENT); // Hiding for next test otherwise as per application behaviour equipment UI remains enabled.
 		apptForm.zSubmit();
 
         // Verify equipment in the appointment	
