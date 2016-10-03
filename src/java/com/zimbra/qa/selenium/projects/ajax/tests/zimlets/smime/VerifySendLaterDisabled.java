@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.smime;
+package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.smime;
 
 
 import org.testng.annotations.Test;
@@ -34,55 +34,36 @@ public class VerifySendLaterDisabled extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test( description = "Verify Send later is disabled when smime security preference is set to 'sign only'",
-			groups = { "functional" })
-	public void VerifySendLaterDisabledWhenSignOnly_01() throws HarnessException {
-		
-		//Set Smime pref to Sign only
-		app.zGetActiveAccount().soapSend(
-				"<ModifyPropertiesRequest xmlns='urn:zimbraAccount'>" +
-				"<prop xmlns='' zimlet='com_zimbra_securemail' name='MAIL_SECURITY_PREF'>sign</prop>" +
-                "</ModifyPropertiesRequest>");
+    @Test( description = "Verify Send later is disabled when smime security preference is set to 'Sign Only' and 'Sign & Encrypt'",
+            groups = { "functional" })
 
-		//Relogin for changes
-	    this.app.zPageLogin.zNavigateTo();
-	    this.startingPage.zNavigateTo();
+       public void VerifySendLaterDisabledForSigningOptions_01() throws HarnessException {
 		
-		// Open the new mail form
-		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
-		//Verify that send later is disabled
-		ZAssert.assertTrue(mailform.zVerifyDisabledSendLater(), "Verify that send later is disabled");
-		
-	}
+	        String[] signingOptions = { "sign", "both" };
 
-	@Test( description = "Verify Send later is disabled when smime security preference is set to 'sign and encrypt'",
-			groups = { "functional" })
-	public void VerifySendLaterDisabledWhenSignAndEncrypt_02() throws HarnessException {
-		
-		//Set Smime pref to Sign and encrypt
-		app.zGetActiveAccount().soapSend(
-				"<ModifyPropertiesRequest xmlns='urn:zimbraAccount'>" +
-				"<prop xmlns='' zimlet='com_zimbra_securemail' name='MAIL_SECURITY_PREF'>both</prop>" +
-                "</ModifyPropertiesRequest>");
+	        for (int i=0; i<=1; i++) {
 
-		//Relogin for changes
-	    this.app.zPageLogin.zNavigateTo();
-	    this.startingPage.zNavigateTo();
-		
-		// Open the new mail form
-		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
-		//Verify that send later is disabled
-		ZAssert.assertTrue(mailform.zVerifyDisabledSendLater(), "Verify that send later is disabled");
-		
+	          logger.info("Modify S/MIME security preference to ("+ signingOptions[i] +")");
+	          app.zGetActiveAccount().soapSend(
+	               "<ModifyPropertiesRequest xmlns='urn:zimbraAccount'>" +
+	               "<prop xmlns='' zimlet='com_zimbra_securemail' name='MAIL_SECURITY_PREF'>" + signingOptions[i] + "</prop>" +
+	          "</ModifyPropertiesRequest>");  
+	          
+	  		  //Refresh for changes
+	          app.zPageMain.sRefresh();
+
+	          // Open the new mail form
+	          FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+	          ZAssert.assertNotNull(mailform, "Verify the new form opened");
+
+	          //Verify that send later is disabled
+	          ZAssert.assertTrue(mailform.zVerifyDisabledSendLater(), "Verify send later option is disabled for " + signingOptions[i] + " security option");
+	        }		
 	}
 
 	@Test( description = "Verify Send later is enabled when smime security preference is set to 'Do not sign or encrypt'",
 			groups = { "functional" })
-	public void VerifySendLaterEnabledWhenDontSign_03() throws HarnessException {
+	public void VerifySendLaterEnabledWhenDontSign_02() throws HarnessException {
 		
 		//Set Smime pref to do not sign or encrypt only
 		app.zGetActiveAccount().soapSend(
@@ -90,9 +71,8 @@ public class VerifySendLaterDisabled extends PrefGroupMailByMessageTest {
 				"<prop xmlns='' zimlet='com_zimbra_securemail' name='MAIL_SECURITY_PREF'>none</prop>" +
                 "</ModifyPropertiesRequest>");
 
-		//Relogin for changes
-	    this.app.zPageLogin.zNavigateTo();
-	    this.startingPage.zNavigateTo();
+		//Refresh for changes
+		app.zPageMain.sRefresh();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -105,7 +85,7 @@ public class VerifySendLaterDisabled extends PrefGroupMailByMessageTest {
 
 	@Test( description = "Verify Send later is disabled when smime security preference is set to 'sign only'",
 			groups = { "functional" })
-	public void VerifySendLaterEnabledWithSecureEmailOptions_04() throws HarnessException {
+	public void VerifySendLaterEnabledWithSecureEmailOptions_03() throws HarnessException {
 				
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -126,7 +106,7 @@ public class VerifySendLaterDisabled extends PrefGroupMailByMessageTest {
 		//Choose don't sign from the secure email dropd-own
 		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_DONT_SIGN);
 		
-		//Verify that send later is disabled
+		//Verify that send later is enabled
 		ZAssert.assertFalse(mailform.zVerifyDisabledSendLater(), "Verify that send later is enabled");
 		
 	}
