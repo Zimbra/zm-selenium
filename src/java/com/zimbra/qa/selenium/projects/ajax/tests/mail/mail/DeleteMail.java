@@ -60,7 +60,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 				
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -105,7 +105,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_MAIL_CHECKBOX, mail.dSubject);
@@ -158,7 +158,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -204,7 +204,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -332,7 +332,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 				
 		// Right click the item, select delete
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, mail.dSubject);
@@ -446,7 +446,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -594,7 +594,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 			
 		
 			// Refresh current view
-			app.zPageMail.zVerifyMailExists(subject);
+			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 					
 			// Select the trash
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, trash);
@@ -792,7 +792,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		try {
 			
 			// Refresh current view
-			app.zPageMail.zVerifyMailExists(subject);
+			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 					
 			// Click in Drafts
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, drafts);

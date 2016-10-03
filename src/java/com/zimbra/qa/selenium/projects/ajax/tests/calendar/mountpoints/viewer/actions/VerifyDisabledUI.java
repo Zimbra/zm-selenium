@@ -92,7 +92,7 @@ public class VerifyDisabledUI extends CalendarWorkWeekTest {
 		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountpointname);
 		
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		
 		// Verify Forward, Delete, Move & Tag Appointment menus are disabled
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, apptSubject);

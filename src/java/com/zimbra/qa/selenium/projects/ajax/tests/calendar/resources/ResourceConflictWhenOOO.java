@@ -82,7 +82,7 @@ public class ResourceConflictWhenOOO extends CalendarWorkWeekTest {
 		"</CreateAppointmentRequest>");
 
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject1), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject1), "Verify appointment displayed in current view");
 
 		app.zGetActiveAccount().soapSend(
 

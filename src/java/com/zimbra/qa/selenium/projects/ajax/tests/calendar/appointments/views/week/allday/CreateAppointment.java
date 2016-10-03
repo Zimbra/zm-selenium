@@ -44,8 +44,8 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 
 	@Bugs(ids = "69132")
 	@Test( description = "Create simple all day appointment in week view",
-			groups = { "smoke" }
-	)
+			groups = { "smoke" } )
+	
 	public void CreateAllDayAppointment_01() throws HarnessException {
 		
 		// Create appointment
@@ -70,7 +70,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(app.zGetActiveAccount().soapMatch("//mail:GetAppointmentResponse//mail:comp", "allDay", "1"), true, "");
 		
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
 	}
 	

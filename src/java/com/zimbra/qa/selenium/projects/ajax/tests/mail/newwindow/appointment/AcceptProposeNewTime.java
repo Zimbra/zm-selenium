@@ -89,7 +89,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 		
 		// --------------- Login to attendee & propose new time ----------------------------------------------------
 		

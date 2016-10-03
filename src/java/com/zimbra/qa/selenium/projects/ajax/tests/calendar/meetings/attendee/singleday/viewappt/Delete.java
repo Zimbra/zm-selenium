@@ -67,7 +67,7 @@ public class Delete extends CalendarWorkWeekTest {
 				+	"</CreateAppointmentRequest>");
 
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		
 		// --------------- Login to attendee & delete the invitation ----------------------------------------------------
 		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_DELETE_MENU, apptSubject);
@@ -160,7 +160,7 @@ public class Delete extends CalendarWorkWeekTest {
 				+	"</CreateAppointmentRequest>");        
 		
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		
 		// --------------- Login to attendee & delete the invitation ----------------------------------------------------
 		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_DELETE_MENU, apptSubject);

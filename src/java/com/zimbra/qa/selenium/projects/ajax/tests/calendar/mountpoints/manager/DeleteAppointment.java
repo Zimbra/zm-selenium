@@ -100,7 +100,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountpointname);
 		
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
 		
 		// Cancel the appointment
@@ -196,7 +196,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountpointname);
 		
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
 		
 		// Delete shared calendar appointment using shortcut key

@@ -81,7 +81,7 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 				+	"</CreateAppointmentRequest>");
 		
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
         if ( ConfigProperties.getStringProperty("server.host") != ConfigProperties.getStringProperty("store.host") ) {
         	app.zPageCalendar.sOpen("https://" + ConfigProperties.getStringProperty("store.host") + "/home/" + ZimbraAccount.Account1().EmailAddress + "/Calendar/" + foldername + ".html");

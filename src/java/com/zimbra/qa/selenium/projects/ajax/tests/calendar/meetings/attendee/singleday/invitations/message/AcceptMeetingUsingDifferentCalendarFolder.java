@@ -123,7 +123,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -211,7 +211,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -296,7 +296,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -418,7 +418,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 		
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -537,7 +537,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);

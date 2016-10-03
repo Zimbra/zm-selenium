@@ -136,7 +136,7 @@ public class SaveDraftMailWithInlineImagettachment extends PrefGroupMailByMessag
 				LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
 				// Refresh current view
-				app.zPageMail.zVerifyMailExists(mimeSubject);
+				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(mimeSubject), "Verify message displayed in current view");
 
 				// Select the item
 				app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);

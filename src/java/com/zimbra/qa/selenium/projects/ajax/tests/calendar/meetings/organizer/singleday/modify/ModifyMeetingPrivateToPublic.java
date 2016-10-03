@@ -75,7 +75,7 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
                "</CreateAppointmentRequest>");
         
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         
         // Verify the Original Meeting is a Private Meeting and has Private icon
         ZimbraAccount.AccountA().soapSend(
@@ -134,7 +134,7 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
                "</CreateAppointmentRequest>");
         
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         
         // Verify the Original Meeting is a public Meeting and does not have Private icon on appt
         ZimbraAccount.AccountA().soapSend(

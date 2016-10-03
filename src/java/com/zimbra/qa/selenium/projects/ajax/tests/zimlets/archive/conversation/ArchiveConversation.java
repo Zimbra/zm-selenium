@@ -38,7 +38,7 @@ public class ArchiveConversation extends ArchiveZimletByConversationTest {
 		ConversationItem conversation = ConversationItem.createConversationItem(app.zGetActiveAccount());
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(conversation.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(conversation.getSubject()), "Verify message displayed in current view");
 
 		// Select the message
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, conversation.getSubject());
@@ -72,7 +72,7 @@ public class ArchiveConversation extends ArchiveZimletByConversationTest {
 				"</ItemActionRequest>");
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(conversation.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(conversation.getSubject()), "Verify message displayed in current view");
 		
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, conversation.getSubject());

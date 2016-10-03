@@ -77,7 +77,7 @@ public class SendMailWithSpecialCharacter extends PrefGroupMailByMessageTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
 		//-- GUI
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 	}
 }

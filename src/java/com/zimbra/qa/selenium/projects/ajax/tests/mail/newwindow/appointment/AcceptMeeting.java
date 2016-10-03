@@ -109,7 +109,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		// Refresh the view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 		// Select the invitation
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -199,7 +199,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 		// Select the invitation
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -287,7 +287,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		// Refresh the view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		SeparateWindowDisplayMail window = null;
@@ -411,7 +411,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		// Refresh the view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 		// Select the invitation
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);

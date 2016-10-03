@@ -66,7 +66,7 @@ public class HoverOverURL extends AjaxCommonTest {
 					"</SendMsgRequest>");
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Get all the messages in the inbox
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -110,7 +110,7 @@ public class HoverOverURL extends AjaxCommonTest {
 					"</SendMsgRequest>");
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Get all the messages in the inbox
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -148,7 +148,7 @@ public class HoverOverURL extends AjaxCommonTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Get all the messages in the inbox
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

@@ -65,7 +65,7 @@ public class QuickReply extends PrefGroupMailByConversationTest {
 					"</SendMsgRequest>");
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -121,7 +121,7 @@ public class QuickReply extends PrefGroupMailByConversationTest {
 					"</SendMsgRequest>");
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -194,7 +194,7 @@ public class QuickReply extends PrefGroupMailByConversationTest {
 					"</SendMsgRequest>");
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -289,7 +289,7 @@ public class QuickReply extends PrefGroupMailByConversationTest {
 				"</SendMsgRequest>");
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -376,7 +376,7 @@ public class QuickReply extends PrefGroupMailByConversationTest {
 				"</SendMsgRequest>");
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -463,7 +463,7 @@ public class QuickReply extends PrefGroupMailByConversationTest {
 				"</SendMsgRequest>");
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

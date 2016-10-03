@@ -80,7 +80,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Click the inbox
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
@@ -161,7 +161,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -220,7 +220,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);

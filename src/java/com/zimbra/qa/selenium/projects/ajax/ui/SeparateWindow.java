@@ -149,7 +149,7 @@ public class SeparateWindow extends AbsSeparateWindow {
 		
 		for (String name : super.sGetAllWindowNames()) {
 			logger.info("Window name: "+ name);
-			if ( name.toLowerCase().contains(DialogWindowName.toLowerCase()) ) {
+			if ( name.equals(DialogWindowTitle) ) {
 				logger.info("zIsActive() = true ... title = "+ DialogWindowName);
 				return (true);
 			}

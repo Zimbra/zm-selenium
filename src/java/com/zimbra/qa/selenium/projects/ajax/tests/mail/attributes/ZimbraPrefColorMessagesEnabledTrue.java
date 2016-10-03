@@ -72,7 +72,7 @@ public class ZimbraPrefColorMessagesEnabledTrue extends PrefGroupMailByMessageTe
 		//-- GUI
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		
 		
@@ -154,7 +154,7 @@ public class ZimbraPrefColorMessagesEnabledTrue extends PrefGroupMailByMessageTe
 		//-- GUI
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		
 		

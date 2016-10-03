@@ -156,7 +156,7 @@ public class DeleteMeeting extends CalendarWorkWeekTest {
 				+	"</CreateAppointmentRequest>");
 		
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		
 		// Click to appointment and delete it
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);

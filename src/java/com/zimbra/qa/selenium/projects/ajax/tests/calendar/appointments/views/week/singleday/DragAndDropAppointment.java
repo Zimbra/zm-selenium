@@ -86,7 +86,7 @@ public class DragAndDropAppointment extends CalendarWorkWeekTest {
         String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
         
         // Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         
 		// Select the item
 		app.zPageCalendar.zDragAndDrop(
@@ -142,7 +142,7 @@ public class DragAndDropAppointment extends CalendarWorkWeekTest {
         String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
         
         // Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         
         app.zGetActiveAccount().soapSend(
         		"<GetAppointmentRequest id='"+ apptId + "' xmlns='urn:zimbraMail'/>");
@@ -169,7 +169,7 @@ public class DragAndDropAppointment extends CalendarWorkWeekTest {
         String otherApptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
 
         // Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		
 		SleepUtil.sleepMedium();
 

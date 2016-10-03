@@ -67,7 +67,7 @@ public class AttachAndSendMail extends PrefGroupMailByMessageTest {
 		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);

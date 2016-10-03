@@ -104,7 +104,7 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 		//
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 				
 		try {
 
@@ -216,7 +216,7 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 		//
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 				
 		try {
 

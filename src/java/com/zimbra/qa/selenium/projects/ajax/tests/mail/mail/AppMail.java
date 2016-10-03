@@ -74,14 +74,14 @@ public class AppMail extends PrefGroupMailByMessageTest {
 
 
 		// Refresh current view
-			app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
-			// Select the message so that it shows in the reading pane
-			DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
+		// Select the message so that it shows in the reading pane
+		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
-			// The body could contain HTML, even though it is only displaying text (e.g. <br> may be present)
-			// do a contains, rather than equals.
-			ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), mail.dBodyText, "Verify the body matches");
+		// The body could contain HTML, even though it is only displaying text (e.g. <br> may be present)
+		// do a contains, rather than equals.
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), mail.dBodyText, "Verify the body matches");
 
 
 	}

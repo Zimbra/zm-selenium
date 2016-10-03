@@ -85,7 +85,7 @@ public class DeleteSeries extends AjaxCommonTest {
 				"</CreateAppointmentRequest>");
 
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         
@@ -172,7 +172,7 @@ public class DeleteSeries extends AjaxCommonTest {
 				"</CreateAppointmentRequest>");
 
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         
@@ -263,7 +263,7 @@ public class DeleteSeries extends AjaxCommonTest {
 				"</CreateAppointmentRequest>");
 
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         

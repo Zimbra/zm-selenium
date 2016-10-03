@@ -226,7 +226,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
                "</CreateAppointmentRequest>");
         
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject1), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject1), "Verify appointment displayed in current view");
         
         // Create meeting which has Equipment conflict for above created appointment
 		appt.setSubject(apptSubject2);
@@ -299,7 +299,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
                "</CreateAppointmentRequest>");
         
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject1), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject1), "Verify appointment displayed in current view");
         
 		// Create appointment data
 		appt.setSubject(apptSubject2);
