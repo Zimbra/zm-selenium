@@ -23,6 +23,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.I18N;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
@@ -77,7 +78,6 @@ public class FormSignatureNew extends AbsForm {
 	@Override
 	public void zSubmit() throws HarnessException {
 		zToolbarPressButton(Button.B_SAVE);
-		this.zWaitForBusyOverlay();
 	}
 
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
@@ -112,6 +112,8 @@ public class FormSignatureNew extends AbsForm {
 
 		// Click it
 		this.zClickAt(locator, "");
+		this.zWaitForBusyOverlay();
+		SleepUtil.sleepSmall();
 
 		return (page);
 	}

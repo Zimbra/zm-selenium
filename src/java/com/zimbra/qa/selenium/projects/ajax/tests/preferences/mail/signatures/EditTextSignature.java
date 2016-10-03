@@ -40,8 +40,8 @@ public class EditTextSignature extends AjaxCommonTest {
 
 	/**
 	 * Added @BeforeMethod because after logged in, when we try to create
-	 * signature through soap, it doesn't shows in (GUI) 'Pref/signatures' unless
-	 * and until we refresh browser.
+	 * signature through soap, it doesn't shows in (GUI) 'Pref/signatures'
+	 * unless and until we refresh browser.
 	 * 
 	 * @throws HarnessException
 	 */

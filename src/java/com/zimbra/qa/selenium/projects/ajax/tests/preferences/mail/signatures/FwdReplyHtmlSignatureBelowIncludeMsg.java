@@ -17,10 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
 
 import java.util.HashMap;
-
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.SignatureItem;
@@ -36,12 +34,11 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
-
 public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 	String sigName = "signame" + ConfigProperties.getUniqueString();
-	String sigBody = "signature<b>bold"+ ConfigProperties.getUniqueString() + "</b>signature";
-	String contentHTMLSig = XmlStringUtil.escapeXml("<html>" + "<head></head>"
-			+ "<body>" + sigBody + "</body>" + "</html>");
+	String sigBody = "signature<b>bold" + ConfigProperties.getUniqueString() + "</b>signature";
+	String contentHTMLSig = XmlStringUtil
+			.escapeXml("<html>" + "<head></head>" + "<body>" + sigBody + "</body>" + "</html>");
 
 	@SuppressWarnings("serial")
 	public FwdReplyHtmlSignatureBelowIncludeMsg() {
@@ -50,20 +47,18 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 			{
 				put("zimbraPrefComposeFormat", "html");
 				put("zimbraPrefGroupMailBy", "message");
-				put("zimbraPrefMailSignatureStyle","internet");
+				put("zimbraPrefMailSignatureStyle", "internet");
 			}
 		};
 	}
 
 	@BeforeMethod(groups = { "always" })
 	public void CreateSignature() throws HarnessException {
-		ZimbraAccount.AccountZWC().soapSend(
-				"<CreateSignatureRequest xmlns='urn:zimbraAccount'>"
-				+ "<signature name='" + this.sigName + "' >"
-				+ "<content type='text/html'>'" + this.contentHTMLSig
-				+ "'</content>" + "</signature>"
-				+ "</CreateSignatureRequest>");
-		
+		ZimbraAccount.AccountZWC()
+				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + this.sigName
+						+ "' >" + "<content type='text/html'>'" + this.contentHTMLSig + "'</content>" + "</signature>"
+						+ "</CreateSignatureRequest>");
+
 		this.app.zPageLogin.zNavigateTo();
 		this.app.zPageMail.zNavigateTo();
 
@@ -72,45 +67,36 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 	}
 
 	/**
-	 * Test case : Verify Html Signature BelowIncludedMsg While Fwd'ing
-	 * Create HTML signature through soap 
-	 * Send message through soap
-	 * Select Same Msg and click Fwd
-	 * Click Options dropdown and select Signature
-	 * Verify signature should place Below included message while fwd'ing msg
+	 * Test case : Verify Html Signature BelowIncludedMsg While Fwd'ing Create
+	 * HTML signature through soap Send message through soap Select Same Msg and
+	 * click Fwd Click Options dropdown and select Signature Verify signature
+	 * should place Below included message while fwd'ing msg
+	 * 
 	 * @throws HarnessException
 	 */
-	
-	@Bugs(ids="102479")
-	@Test( description = "Verify Html Signature place BelowIncludedMsg While Fwd'ing- Verify through GUI ", groups = { "functional" })
+
+	@Bugs(ids = "102479")
+	@Test(description = "Verify Html Signature place BelowIncludedMsg While Fwd'ing- Verify through GUI ", groups = {
+			"functional" })
 	public void FwdMsgWithTextSignatureBelowIncludeMsg_01() throws HarnessException {
 
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
-		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);
-		ZAssert.assertEquals(signature.getName(), this.sigName,"verified Text Signature is created");
+		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+		ZAssert.assertEquals(signature.getName(), this.sigName, "verified Text Signature is created");
 
-		String subject = "subject"+ ConfigProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		String bodyText = "text" + ConfigProperties.getUniqueString();
-		String bodyHTML = "text <b>bold"+ ConfigProperties.getUniqueString() +"</b> text";
-		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<head></head>"
-				+ "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
+		String bodyHTML = "text <b>bold" + ConfigProperties.getUniqueString() + "</b> text";
+		String contentHTML = XmlStringUtil
+				.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
 
 		// Send a message to the account
-		ZimbraAccount.AccountZWC().soapSend(
-				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-				"<m>" +
-				"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-				"<su>"+ subject +"</su>" +
-				"<mp ct='multipart/alternative'>" +
-				"<mp ct='text/plain'>" +
-				"<content>"+ bodyText+"</content>" +
-				"</mp>" +
-				"<mp ct='text/html'>" +
-				"<content>"+contentHTML+"\n</content>" +
-				"</mp>" +
-				"</mp>" +
-				"</m>" +
-		"</SendMsgRequest>");
+		ZimbraAccount.AccountZWC()
+				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
+						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
+						+ "<mp ct='multipart/alternative'>" + "<mp ct='text/plain'>" + "<content>" + bodyText
+						+ "</content>" + "</mp>" + "<mp ct='text/html'>" + "<content>" + contentHTML + "\n</content>"
+						+ "</mp>" + "</mp>" + "</m>" + "</SendMsgRequest>");
 
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -121,56 +107,49 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 
 		// Forward the item
 		actual.zPressButton(Button.B_FORWARD);
-		ZAssert.assertTrue(actual.zGetMailPropertyAsText(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Subject).contains("Fwd"),"Verify Fwd Window");
+		ZAssert.assertTrue(
+				actual.zGetMailPropertyAsText(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Subject)
+						.contains("Fwd"),
+				"Verify Fwd Window");
 
-		//Click Options Drop Down and select Signature
-		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_ADD_FWD_SIGNATURE,this.sigName);		
+		// Click Options Drop Down and select Signature
+		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_FWD_SIGNATURE, this.sigName);
 
-		//Verify Signature is place Below included message.
+		// Verify Signature is place Below included message.
 		actual.zVerifySignaturePlaceInHTML("BelowIncludedMsg", this.sigBody, "Forward");
-		//Closing Fwd compose tab
+		// Closing Fwd compose tab
 		app.zPageMail.zClickAt(FormMailNew.Locators.zCancelIconBtn, "0,0");
 	}
 
 	/**
-	 * Test case : Verify Html Signature BelowIncludedMsg While Reply'ing
-	 * Create Html signature through soap 
-	 * Send message through soap
-	 * Select Same Msg and click Reply from toolbar
-	 * Click Options dropdown and select Signature
+	 * Test case : Verify Html Signature BelowIncludedMsg While Reply'ing Create
+	 * Html signature through soap Send message through soap Select Same Msg and
+	 * click Reply from toolbar Click Options dropdown and select Signature
 	 * Verify signature should place Below included message while Replying msg
+	 * 
 	 * @throws HarnessException
 	 */
-	@Bugs(ids="102479")
-	@Test( description = "Verify Html Signature placed BelowIncludedMsg While Replying Msg", groups = { "functional" })
+	@Bugs(ids = "102479")
+	@Test(description = "Verify Html Signature placed BelowIncludedMsg While Replying Msg", groups = { "functional" })
 	public void ReplyMsgWithTextSignatureBelowIncludeMsg_02() throws HarnessException {
 
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
-		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);
-		ZAssert.assertEquals(signature.getName(), this.sigName,"verified Text Signature is created");
+		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+		ZAssert.assertEquals(signature.getName(), this.sigName, "verified Text Signature is created");
 
-		String subject = "subject"+ ConfigProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		String bodyText = "text" + ConfigProperties.getUniqueString();
-		String bodyHTML = "text <b>bold"+ ConfigProperties.getUniqueString() +"</b> text";
-		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<head></head>"
-				+ "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
+		String bodyHTML = "text <b>bold" + ConfigProperties.getUniqueString() + "</b> text";
+		String contentHTML = XmlStringUtil
+				.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
 
 		// Send a message to the account
-		ZimbraAccount.AccountZWC().soapSend(
-				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-				"<m>" +
-				"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-				"<su>"+ subject +"</su>" +
-				"<mp ct='multipart/alternative'>" +
-				"<mp ct='text/plain'>" +
-				"<content>"+ bodyText+"</content>" +
-				"</mp>" +
-				"<mp ct='text/html'>" +
-				"<content>"+contentHTML+"\n</content>" +
-				"</mp>" +
-				"</mp>" +
-				"</m>" +
-		"</SendMsgRequest>");
+		ZimbraAccount.AccountZWC()
+				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
+						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
+						+ "<mp ct='multipart/alternative'>" + "<mp ct='text/plain'>" + "<content>" + bodyText
+						+ "</content>" + "</mp>" + "<mp ct='text/html'>" + "<content>" + contentHTML + "\n</content>"
+						+ "</mp>" + "</mp>" + "</m>" + "</SendMsgRequest>");
 
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -181,58 +160,52 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 
 		// Forward the item
 		actual.zPressButton(Button.B_REPLY);
-		ZAssert.assertTrue(actual.zGetMailPropertyAsText(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Subject).contains("Re"),"Verify Reply Window");
+		ZAssert.assertTrue(
+				actual.zGetMailPropertyAsText(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Subject)
+						.contains("Re"),
+				"Verify Reply Window");
 
-		//Click Options Drop Down and select Signature
-		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_ADD_Reply_SIGNATURE,this.sigName);		
+		// Click Options Drop Down and select Signature
+		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_Reply_SIGNATURE, this.sigName);
 
-		//Verify Signature is place Below included message.
+		// Verify Signature is place Below included message.
 		actual.zVerifySignaturePlaceInHTML("BelowIncludedMsg", this.sigBody, "Reply");
-		//Closing Fwd compose tab
+		// Closing Fwd compose tab
 		app.zPageMail.zClickAt(FormMailNew.Locators.zCancelIconBtn, "0,0");
 
 	}
 
 	/**
-	 * Test case : Verify Html Signature placed BelowIncludedMsg While ReplyingAll
-	 * Create Html signature through soap 
-	 * Send message through soap
-	 * Select Same Msg and click ReplyAll from toolbar
-	 * Click Options dropdown and select Signature
-	 * Verify signature should place Below included message while Replying msg
+	 * Test case : Verify Html Signature placed BelowIncludedMsg While
+	 * ReplyingAll Create Html signature through soap Send message through soap
+	 * Select Same Msg and click ReplyAll from toolbar Click Options dropdown
+	 * and select Signature Verify signature should place Below included message
+	 * while Replying msg
+	 * 
 	 * @throws HarnessException
 	 */
-	
-	@Bugs(ids="102479")
-	@Test( description = "Verify Html Signature placed BelowIncludedMsg While ReplyingAll", groups = { "functional" })
+
+	@Bugs(ids = "102479")
+	@Test(description = "Verify Html Signature placed BelowIncludedMsg While ReplyingAll", groups = { "functional" })
 	public void ReplyAllMsgWithTextSignatureBelowIncludeMsg_03() throws HarnessException {
 
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
-		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);
-		ZAssert.assertEquals(signature.getName(), this.sigName,"verified Text Signature is created");
+		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+		ZAssert.assertEquals(signature.getName(), this.sigName, "verified Text Signature is created");
 
-		String subject = "subject"+ ConfigProperties.getUniqueString();
+		String subject = "subject" + ConfigProperties.getUniqueString();
 		String bodyText = "text" + ConfigProperties.getUniqueString();
-		String bodyHTML = "text <b>bold"+ ConfigProperties.getUniqueString() +"</b> text";
-		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<head></head>"
-				+ "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
+		String bodyHTML = "text <b>bold" + ConfigProperties.getUniqueString() + "</b> text";
+		String contentHTML = XmlStringUtil
+				.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
 
 		// Send a message to the account
-		ZimbraAccount.AccountZWC().soapSend(
-				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-				"<m>" +
-				"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-				"<su>"+ subject +"</su>" +
-				"<mp ct='multipart/alternative'>" +
-				"<mp ct='text/plain'>" +
-				"<content>"+ bodyText+"</content>" +
-				"</mp>" +
-				"<mp ct='text/html'>" +
-				"<content>"+contentHTML+"\n</content>" +
-				"</mp>" +
-				"</mp>" +
-				"</m>" +
-		"</SendMsgRequest>");
+		ZimbraAccount.AccountZWC()
+				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
+						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
+						+ "<mp ct='multipart/alternative'>" + "<mp ct='text/plain'>" + "<content>" + bodyText
+						+ "</content>" + "</mp>" + "<mp ct='text/html'>" + "<content>" + contentHTML + "\n</content>"
+						+ "</mp>" + "</mp>" + "</m>" + "</SendMsgRequest>");
 
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -243,16 +216,17 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 
 		// Forward the item
 		actual.zPressButton(Button.B_REPLYALL);
-		ZAssert.assertTrue(actual.zGetMailPropertyAsText(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Subject).contains("Re"),"Verify Reply All Window");
+		ZAssert.assertTrue(
+				actual.zGetMailPropertyAsText(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Subject)
+						.contains("Re"),
+				"Verify Reply All Window");
 
-		//Click Options Drop Down and select Signature
-		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_ADD_ReplyAll_SIGNATURE,this.sigName);		
+		// Click Options Drop Down and select Signature
+		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_ReplyAll_SIGNATURE, this.sigName);
 
-		//Verify Signature is place Below included message.
+		// Verify Signature is place Below included message.
 		actual.zVerifySignaturePlaceInHTML("BelowIncludedMsg", this.sigBody, "ReplyAll");
-		//Closing Fwd compose tab
+		// Closing Fwd compose tab
 		app.zPageMail.zClickAt(FormMailNew.Locators.zCancelIconBtn, "0,0");
 	}
 }
-
-

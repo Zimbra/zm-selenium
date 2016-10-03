@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures.toaster;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -31,15 +30,14 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatu
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatureNew.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.PageSignature.Locators;
 
-
-public class Bug_78058 extends AjaxCommonTest {
-	public Bug_78058() {
+public class EmptySignature extends AjaxCommonTest {
+	public EmptySignature() {
 		super.startingPage = app.zPagePreferences;
 		
 	}
 
 	@Test( description = "Verify Toast Msg for Empty Signature Name", groups = { "smoke" })
-	public void VerifyToastMsgForEmptySigName() throws HarnessException {
+	public void EmptySignature_01() throws HarnessException {
 
 		String sigName = "";		
 		String sigBody = "sigbody" + ConfigProperties.getUniqueString();
@@ -63,7 +61,7 @@ public class Bug_78058 extends AjaxCommonTest {
 	}
 
 	@Test( description = "Verify Toast Msg for Empty Signature body (asp per bug comment#10)", groups = { "deprecated" })
-	public void VerifyToastMsgForEmptySigBody_Bug78058() throws HarnessException {
+	public void EmptySignature_02() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();
 		String sigBody = "";
