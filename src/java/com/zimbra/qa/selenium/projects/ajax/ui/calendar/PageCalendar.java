@@ -105,12 +105,14 @@ public class PageCalendar extends AbsTab {
 		public static final String OpenInstanceMenu = "id=OPEN_APPT_INSTANCE_title";
 		public static final String OpenSeriesMenu = "id=OPEN_APPT_SERIES_title";
 		public static final String AcceptSeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__REPLY_ACCEPT_title']";
+		public static final String TentativeSeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__REPLY_TENTATIVE_title']";
 		public static final String DeclineSeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__REPLY_DECLINE_title']";
 		public static final String CreateACopySeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__DUPLICATE_APPT_title']";
 		public static final String ForwardSeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__FORWARD_APPT_SERIES_title']";
 		public static final String DeleteSeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__DELETE_SERIES_title']";
 		public static final String MoveSeriesMenu = "css=div[id='zm__Calendar_VIEW_APPT_SERIES'] td[id='zmi__Calendar_VIEW_APPT_SERIES__MOVE_title']";
 		public static final String AcceptInstanceMenu = "css=div[id='zm__Calendar_VIEW_APPT_INSTANCE'] td[id='zmi__Calendar_VIEW_APPT_INSTANCE__REPLY_ACCEPT_title']";
+		public static final String TentativeInstanceMenu = "css=div[id='zm__Calendar_VIEW_APPT_INSTANCE'] td[id='zmi__Calendar_VIEW_APPT_INSTANCE__REPLY_TENTATIVE_title']";
 		public static final String DeclineInstanceMenu = "css=div[id='zm__Calendar_VIEW_APPT_INSTANCE'] td[id='zmi__Calendar_VIEW_APPT_INSTANCE__REPLY_DECLINE_title']";
 		public static final String CreateACopyInstanceMenu = "css=div[id='zm__Calendar_VIEW_APPT_INSTANCE'] td[id='zmi__Calendar_VIEW_APPT_INSTANCE__DUPLICATE_APPT_title']";
 		public static final String ForwardInstanceMenu = "css=div[id='zm__Calendar_VIEW_APPT_INSTANCE'] td[id='zmi__Calendar_VIEW_APPT_INSTANCE__FORWARD_APPT_INSTANCE_title']";
@@ -1567,6 +1569,9 @@ public class PageCalendar extends AbsTab {
 
 				if ( subOption == Button.O_ACCEPT_MENU ) {
 					subOptionLocator = Locators.AcceptSeriesMenu;
+					
+				} else if ( subOption == Button.O_TENTATIVE_MENU ) {
+					subOptionLocator = Locators.TentativeSeriesMenu;
 
 				} else if ( subOption == Button.O_DECLINE_MENU ) {
 					subOptionLocator = Locators.DeclineSeriesMenu;
@@ -1590,6 +1595,9 @@ public class PageCalendar extends AbsTab {
 
 				if ( subOption == Button.O_ACCEPT_MENU ) {
 					subOptionLocator = Locators.AcceptInstanceMenu;
+					
+				} else if ( subOption == Button.O_TENTATIVE_MENU ) {
+					subOptionLocator = Locators.TentativeInstanceMenu;
 
 				} else if ( subOption == Button.O_DECLINE_MENU ) {
 					subOptionLocator = Locators.DeclineInstanceMenu;
@@ -1899,7 +1907,6 @@ public class PageCalendar extends AbsTab {
 			return (((AppAjaxClient)this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
 
 		} else if (button == Button.B_NEW) {
-			SleepUtil.sleepSmall();
 			locator = "css=td#zb__NEW_MENU_title";
 			page = new FormApptNew(this.MyApplication);
 
@@ -2093,7 +2100,7 @@ public class PageCalendar extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		this.zClickAt(locator, "10,10");
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 		
 		if (button == Button.B_SAVE || button == Button.B_SEND) {
@@ -2102,7 +2109,6 @@ public class PageCalendar extends AbsTab {
 		}
 
 		SleepUtil.sleepMedium();
-
 		if (page != null) {
 			page.zWaitForActive();
 		}

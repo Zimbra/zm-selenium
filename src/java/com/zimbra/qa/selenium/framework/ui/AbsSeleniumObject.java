@@ -1538,13 +1538,11 @@ public abstract class AbsSeleniumObject {
 		if ( !this.sIsElementPresent(locatorSource) ) {
 			throw new HarnessException("locator (source) cannot be found: "+ locatorSource);
 		}
-
 		if ( !this.sIsElementPresent(locatorDestination) ) {
 			throw new HarnessException("locator (destination) cannot be found: "+ locatorDestination);
 		}
 
-		SleepUtil.sleepLong();
-
+		SleepUtil.sleepMedium();
 		Coordinate source = new Coordinate(this.sGetElementPositionLeft(locatorSource), this.sGetElementPositionTop(locatorSource));
 		Coordinate destination = new Coordinate(this.sGetElementPositionLeft(locatorDestination), this.sGetElementPositionTop(locatorDestination));
 		Coordinate relative = new Coordinate((destination.X - source.X) + xOffset, (destination.Y - source.Y) + yOffset);
@@ -1555,15 +1553,10 @@ public abstract class AbsSeleniumObject {
 		logger.info("x,y coordinate of the objectToBeDroppedInto relative to objectToBeDragged + offset = " + relative);
 
 	    WebElement sourceElement = getElement(locatorSource);
-	    WebElement destinationElement = getElement(locatorDestination);
-
-	    //(new Actions(webDriver())).dragAndDropBy(sourceElement,relative.X,relative.Y).build().perform();
-	    (new Actions(webDriver())).clickAndHold(sourceElement).moveToElement(destinationElement,xOffset,yOffset).build().perform();
+	    (new Actions(webDriver())).dragAndDropBy(sourceElement,relative.X,relative.Y).build().perform();
 	    (new Actions(webDriver())).release(sourceElement).build().perform();
-
-		SleepUtil.sleepLong();
-
-		this.zWaitForBusyOverlay();
+	    this.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();		
 	}
 
 
