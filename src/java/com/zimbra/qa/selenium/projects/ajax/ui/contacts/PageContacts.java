@@ -364,7 +364,8 @@ public class PageContacts extends AbsTab {
 			return (((AppAjaxClient)this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
 
 		} else if ( button == Button.B_NEW ) {
-
+			
+			SleepUtil.sleepSmall();
 			locator = "css=div#zb__NEW_MENU td[id$='_title']";
 			page = new FormContactNew(this.MyApplication);
 

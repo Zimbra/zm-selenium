@@ -27,9 +27,8 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
  * Represents a "Add external calendar" dialog box
  *
  * It would probably be best to fix up DialogCreateNewFolder and
- * DialogCreateBriefcaseFolder classes to be generic.  It seems
- * this class only changes the locator for finding the folder
- * name input field.
+ * DialogCreateBriefcaseFolder classes to be generic. It seems this class only
+ * changes the locator for finding the folder name input field.
  *
  */
 public class DialogCreateCalendarFolder extends AbsDialog {
@@ -37,12 +36,13 @@ public class DialogCreateCalendarFolder extends AbsDialog {
 	public static class Locators {
 
 		public static final String zDialogId = "CreateNewFolderDialog";
-		public static final String zDialogCSS = "css=div[id^='"+ zDialogId +"']";
+		public static final String zDialogCSS = "css=div[id^='" + zDialogId + "']";
 
 		public static final String zNameField = zDialogCSS + " div[id$='_content'] input[id$='_name']";
 
 		public static final String zOkButton = zDialogCSS + " div[id$='_buttons'] td[id^='OK_'] td[id$='_title']";
-		public static final String zCancelButton = zDialogCSS + " div[id$='_buttons'] td[id^='Cancel_'] td[id$='_title']";
+		public static final String zCancelButton = zDialogCSS
+				+ " div[id$='_buttons'] td[id^='Cancel_'] td[id$='_title']";
 		public static final String zBackButton = zDialogCSS + " div[id$='_buttons'] td[id^='Back_'] td[id$='_title']";
 
 	}
@@ -84,23 +84,13 @@ public class DialogCreateCalendarFolder extends AbsDialog {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Default behavior, click the locator
-		//
-
 		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
 		this.zClickAt(locator, "0,0");
-
 		this.zWaitForBusyOverlay();
-
-		//Check the message queue
-		//Stafpostqueue sp = new Stafpostqueue();
-		//sp.waitForPostqueue();
-
 		SleepUtil.sleepSmall();
 
 		return (page);
@@ -117,7 +107,7 @@ public class DialogCreateCalendarFolder extends AbsDialog {
 
 		String locator = Locators.zDialogCSS;
 
-		if ( !this.sIsElementPresent(locator) ) {
+		if (!this.sIsElementPresent(locator)) {
 			return (false);
 		}
 
@@ -130,8 +120,8 @@ public class DialogCreateCalendarFolder extends AbsDialog {
 		return (true);
 	}
 
-	public void zEnterFolderName(String calendarname)  throws HarnessException {
-		logger.info(myPageName() + " zEnterFolderName("+ calendarname +")");
+	public void zEnterFolderName(String calendarname) throws HarnessException {
+		logger.info(myPageName() + " zEnterFolderName(" + calendarname + ")");
 
 		String locator = Locators.zNameField;
 
@@ -139,6 +129,5 @@ public class DialogCreateCalendarFolder extends AbsDialog {
 		this.zWaitForBusyOverlay();
 
 	}
-
 
 }

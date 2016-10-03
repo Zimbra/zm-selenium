@@ -25,11 +25,12 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
 public class TreeContacts extends AbsTree {
-    public static final String NEW_FOLDER="css=#ztih__main_Contacts__ADDRBOOK_table tbody tr td:nth-child(4)";
-    public static final String COLLAPSE_TREE="css#ztih__main_Contacts__ADDRBOOK_nodeCell";
+	public static final String NEW_FOLDER = "css=#ztih__main_Contacts__ADDRBOOK_table tbody tr td:nth-child(4)";
+	public static final String COLLAPSE_TREE = "css#ztih__main_Contacts__ADDRBOOK_nodeCell";
+
 	public static class Locators {
-		public static final String EXPAND_NODE  = "ImgNodeExpanded";
-		public static final String COLLAPSE_NODE= "ImgNodeCollapsed";
+		public static final String EXPAND_NODE = "ImgNodeExpanded";
+		public static final String COLLAPSE_NODE = "ImgNodeCollapsed";
 	}
 
 	public TreeContacts(AbsApplication application) {
@@ -38,32 +39,31 @@ public class TreeContacts extends AbsTree {
 	}
 
 	public AbsPage zTreeItem(Action action, IItem addressbook) throws HarnessException {
-		tracer.trace("Click "+ action +" on addressbook "+ addressbook);
+		tracer.trace("Click " + action + " on addressbook " + addressbook);
 
 		// Validate the arguments
-		if ( (action == null) || (addressbook == null) ) {
+		if ((action == null) || (addressbook == null)) {
 			throw new HarnessException("Must define an action and addressbook");
 		}
 
-		if ( !(addressbook instanceof FolderItem) ) {
-			throw new HarnessException("Must use FolderItem as argument, but was "+ addressbook.getClass());
+		if (!(addressbook instanceof FolderItem)) {
+			throw new HarnessException("Must use FolderItem as argument, but was " + addressbook.getClass());
 		}
 
-		FolderItem folder = (FolderItem)addressbook;
+		FolderItem folder = (FolderItem) addressbook;
 
 		AbsPage page = null;
 		String locator = null;
 
-		if ( action == Action.A_LEFTCLICK ) {
+		if (action == Action.A_LEFTCLICK) {
 
-			locator = "id=zti__main_Contacts__"+ folder.getId() +"_textCell";
+			locator = "id=zti__main_Contacts__" + folder.getId() + "_textCell";
 			page = null;
-		}
-		else if ( action == Action.A_RIGHTCLICK ) {
+		} else if (action == Action.A_RIGHTCLICK) {
 
-			locator = "id=zti__main_Contacts__"+ folder.getId() +"_textCell";
-			if (!this.sIsElementPresent(locator) ) {
-					throw new HarnessException("Unable to locator folder in tree "+ locator);
+			locator = "id=zti__main_Contacts__" + folder.getId() + "_textCell";
+			if (!this.sIsElementPresent(locator)) {
+				throw new HarnessException("Unable to locator folder in tree " + locator);
 			}
 
 			this.zRightClickAt(locator, "");
@@ -72,12 +72,12 @@ public class TreeContacts extends AbsTree {
 			return (null);
 
 		} else {
-			throw new HarnessException("Action "+ action +" not yet implemented");
+			throw new HarnessException("Action " + action + " not yet implemented");
 		}
 
-		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("Unable to locator folder in tree "+ locator);
-	    }
+		if (!this.sIsElementPresent(locator)) {
+			throw new HarnessException("Unable to locator folder in tree " + locator);
+		}
 
 		sClickAt(locator, "");
 		zWaitForBusyOverlay();
@@ -89,30 +89,33 @@ public class TreeContacts extends AbsTree {
 	@Override
 	public AbsPage zTreeItem(Action action, Button option, IItem folder) throws HarnessException {
 
-		tracer.trace("Click "+ action +" then "+ option +" on folder "+ folder.getName());
+		tracer.trace("Click " + action + " then " + option + " on folder " + folder.getName());
 
 		// Validate the arguments
-		if ( (action == null) || (option == null) || (folder == null) ) {
+		if ((action == null) || (option == null) || (folder == null)) {
 			throw new HarnessException("Must define an action, option, and addressbook");
 		}
 
-		if ( folder instanceof FolderMountpointItem ) {
-			return (zTreeItem(action, option, (FolderMountpointItem)folder));
-		} else if ( folder instanceof SavedSearchFolderItem ) {
+		if (folder instanceof FolderMountpointItem) {
+			return (zTreeItem(action, option, (FolderMountpointItem) folder));
+		} else if (folder instanceof SavedSearchFolderItem) {
 			return (zTreeItem(action, option, folder));
-		} else if ( folder instanceof TagItem ) {
-			return (zTreeItem(action, option, (TagItem)folder));
-		} else if ( folder instanceof FolderItem ) { // FolderItem needs to go last
-			return (zTreeItem(action, option, (FolderItem)folder));
+		} else if (folder instanceof TagItem) {
+			return (zTreeItem(action, option, (TagItem) folder));
+		} else if (folder instanceof FolderItem) { // FolderItem needs to go
+													// last
+			return (zTreeItem(action, option, (FolderItem) folder));
 		}
 
-		throw new HarnessException("Must use TagItem FolderItem or SavedSearchFolderItem or ZimletItem as argument, but was "+ folder.getClass());
+		throw new HarnessException(
+				"Must use TagItem FolderItem or SavedSearchFolderItem or ZimletItem as argument, but was "
+						+ folder.getClass());
 	}
 
 	protected AbsPage zTreeItem(Action action, Button option, FolderMountpointItem folderItem) throws HarnessException {
-		
-		logger.info(myPageName() + " zTreeItem("+ action +", "+ option + "," + folderItem.getName() +")");
-		tracer.trace(action +" then "+ option +" on Folder Item = "+ folderItem.getName());
+
+		logger.info(myPageName() + " zTreeItem(" + action + ", " + option + "," + folderItem.getName() + ")");
+		tracer.trace(action + " then " + option + " on Folder Item = " + folderItem.getName());
 
 		AbsPage page = null;
 		String actionLocator = null;
@@ -125,38 +128,39 @@ public class TreeContacts extends AbsTree {
 		if (folderItem.getName().equals("USER_ROOT")) {
 			actionLocator = "css=div#ztih__main_Contacts__ADDRBOOK_div";
 		} else {
-			actionLocator = "css=div#zti__main_Contacts__" + folderItem.getId() +"_div";
+			actionLocator = "css=div#zti__main_Contacts__" + folderItem.getId() + "_div";
 		}
 
-		if ( action == Action.A_RIGHTCLICK ) {
+		if (action == Action.A_RIGHTCLICK) {
 			optionLocator = "css=div[id='ZmActionMenu_contacts_ADDRBOOK']";
 
 			if (option == Button.B_TREE_NEWFOLDER) {
-				optionLocator ="css=div[id^='NEW_ADDRBOOK']";
-				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageContacts);
+				optionLocator = "css=div[id^='NEW_ADDRBOOK']";
+				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
 
 			} else if (option == Button.B_DELETE) {
 				optionLocator += " div[id='DELETE_WITHOUT_SHORTCUT'] td[id$='_title']";
 				page = null;
 
-		    } else if (option == Button.B_RENAME) {
+			} else if (option == Button.B_RENAME) {
 				optionLocator += " div[id='RENAME_FOLDER'] td[id$='_title']";
-			    page = new DialogRenameFolder(MyApplication,((AppAjaxClient) MyApplication).zPageContacts);
+				page = new DialogRenameFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
 
 			} else if (option == Button.B_TREE_EDIT) {
 				optionLocator += " div[id='EDIT_PROPS'] td[id$='_title']";
-			    page = new DialogEditFolder(MyApplication,((AppAjaxClient) MyApplication).zPageContacts);
+				page = new DialogEditFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
 
 			} else if (option == Button.B_TREE_FOLDER_EMPTY) {
 				optionLocator += " div[id='EMPTY_FOLDER'] td[id$='_title']";
-				page = new DialogWarning(DialogWarning.DialogWarningID.EmptyFolderWarningMessage, MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+				page = new DialogWarning(DialogWarning.DialogWarningID.EmptyFolderWarningMessage, MyApplication,
+						((AppAjaxClient) MyApplication).zPageContacts);
 
 			} else {
-				throw new HarnessException("implement action:"+ action +" option:"+ option);
+				throw new HarnessException("implement action:" + action + " option:" + option);
 			}
 
 			// Default right-click behavior
-			zRightClickAt(actionLocator,"0,0");
+			zRightClickAt(actionLocator, "0,0");
 			zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
 
@@ -164,13 +168,13 @@ public class TreeContacts extends AbsTree {
 			zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
 
-			if ( page != null ) {
+			if (page != null) {
 				page.zWaitForActive();
 			}
 			return (page);
 
 		} else {
-			throw new HarnessException("implement action:"+ action +" option:"+ option);
+			throw new HarnessException("implement action:" + action + " option:" + option);
 		}
 	}
 
@@ -184,61 +188,61 @@ public class TreeContacts extends AbsTree {
 			throw new HarnessException("Must define an action, option, and addressbook");
 		}
 
+		SleepUtil.sleepSmall();
 
-		logger.info(myPageName() + " zTreeItem("+ action +", "+ option + "," + folderItem.getName() +")");
-		tracer.trace(action +" then "+ option +" on Folder Item = "+ folderItem.getName());
-
+		logger.info(myPageName() + " zTreeItem(" + action + ", " + option + "," + folderItem.getName() + ")");
+		tracer.trace(action + " then " + option + " on Folder Item = " + folderItem.getName());
 
 		if (folderItem.getName().equals("USER_ROOT")) {
 			actionLocator = "css=div#ztih__main_Contacts__ADDRBOOK_div";
 		} else {
-			actionLocator = "css=div#zti__main_Contacts__" + folderItem.getId() +"_div";
+			actionLocator = "css=div#zti__main_Contacts__" + folderItem.getId() + "_div";
 		}
 
-
-		if ( action == Action.A_RIGHTCLICK ) {
+		if (action == Action.A_RIGHTCLICK) {
 
 			if (option == Button.B_TREE_NEWFOLDER) {
-				optionLocator ="css=div[id^='NEW_ADDRBOOK']";
-				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageContacts);
+				optionLocator = "css=div[id^='NEW_ADDRBOOK']";
+				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
 
 			} else if (option == Button.B_DELETE) {
 				optionLocator = "css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='DELETE_WITHOUT_SHORTCUT'] td[id$='_title']";
 				page = null;
 
-		    } else if (option == Button.B_RENAME) {
-				optionLocator="css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='RENAME_FOLDER'] td[id$='_title']";
-			    page = new DialogRenameFolder(MyApplication,((AppAjaxClient) MyApplication).zPageContacts);
+			} else if (option == Button.B_RENAME) {
+				optionLocator = "css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='RENAME_FOLDER'] td[id$='_title']";
+				page = new DialogRenameFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
 
 			} else if (option == Button.B_TREE_EDIT) {
-				optionLocator="css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='EDIT_PROPS'] td[id$='_title']";
-			    page = new DialogEditFolder(MyApplication,((AppAjaxClient) MyApplication).zPageContacts);
-			    
+				optionLocator = "css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='EDIT_PROPS'] td[id$='_title']";
+				page = new DialogEditFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+
 			} else if (option == Button.B_TREE_FOLDER_EMPTY) {
 				optionLocator = "css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='EMPTY_FOLDER'] td[id$='_title']";
-				page = new DialogWarning(DialogWarning.DialogWarningID.EmptyFolderWarningMessage, MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+				page = new DialogWarning(DialogWarning.DialogWarningID.EmptyFolderWarningMessage, MyApplication,
+						((AppAjaxClient) MyApplication).zPageContacts);
 
 			} else if (option == Button.B_SHARE) {
 				optionLocator = "css=div[id='ZmActionMenu_contacts_ADDRBOOK'] div[id='SHARE_ADDRBOOK'] td[id$='_title']";
-				page = new DialogShare(MyApplication,((AppAjaxClient) MyApplication).zPageContacts);
+				page = new DialogShare(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
 
 			} else {
-				throw new HarnessException("implement action:"+ action +" option:"+ option);
+				throw new HarnessException("implement action:" + action + " option:" + option);
 			}
 
-			if ( actionLocator != null ) {
-				zRightClickAt(actionLocator,"0,0");
+			if (actionLocator != null) {
+				zRightClickAt(actionLocator, "0,0");
 				zWaitForBusyOverlay();
 				SleepUtil.sleepSmall();
 			}
 
-			if ( optionLocator != null ) {
-				sClickAt(optionLocator,"0,0");
+			if (optionLocator != null) {
+				sClickAt(optionLocator, "0,0");
 				zWaitForBusyOverlay();
 				SleepUtil.sleepSmall();
 			}
 
-			if ( page != null ) {
+			if (page != null) {
 				page.zWaitForActive();
 			}
 
@@ -248,27 +252,26 @@ public class TreeContacts extends AbsTree {
 
 			if (option == Button.B_TREE_NEWFOLDER) {
 
-				sClickAt("css=div[class^=ImgNewContactsFolder][class*=ZWidget]","0,0");
+				sClickAt("css=div[class^=ImgNewContactsFolder][class*=ZWidget]", "0,0");
 				SleepUtil.sleepSmall();
-				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageContacts);
+				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
 
 			} else {
-				throw new HarnessException("implement action:"+ action +" option:"+ option);
+				throw new HarnessException("implement action:" + action + " option:" + option);
 			}
 
 		} else {
-			throw new HarnessException("implement action:"+ action +" option:"+ option);
+			throw new HarnessException("implement action:" + action + " option:" + option);
 		}
 
-		if ( page != null ) {
+		if (page != null) {
 			page.zWaitForActive();
 		}
-		
+
 		SleepUtil.sleepMedium();
 
 		return page;
 	}
-
 
 	protected AbsPage zTreeItem(Action action, Button option, TagItem t) throws HarnessException {
 
@@ -286,8 +289,8 @@ public class TreeContacts extends AbsTree {
 
 		} else if (action == Action.A_RIGHTCLICK) {
 
-			actionLocator = "css=td[id^='zti__main_Contacts__']:contains('"+ t.getName() +"')";
-			this.zRightClickAt(actionLocator,"");
+			actionLocator = "css=td[id^='zti__main_Contacts__']:contains('" + t.getName() + "')";
+			this.zRightClickAt(actionLocator, "");
 			SleepUtil.sleepSmall();
 			this.zWaitForBusyOverlay();
 
@@ -297,11 +300,12 @@ public class TreeContacts extends AbsTree {
 
 		if (option == Button.B_TREE_NEWTAG) {
 			optionLocator += " div[id^='NEW_TAG'] td[id$='_title']";
-			page = new DialogTag(MyApplication,	((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
 
 		} else if (option == Button.B_DELETE) {
 			optionLocator += " div[id^='DELETE_WITHOUT_SHORTCUT'] td[id$='_title']";
-			page = new DialogWarning(DialogWarning.DialogWarningID.DeleteTagWarningMessage,	MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+			page = new DialogWarning(DialogWarning.DialogWarningID.DeleteTagWarningMessage, MyApplication,
+					((AppAjaxClient) MyApplication).zPageContacts);
 
 		} else if (option == Button.B_RENAME) {
 			optionLocator += " div[id^='RENAME_TAG'] td[id$='_title']";
@@ -311,7 +315,7 @@ public class TreeContacts extends AbsTree {
 			throw new HarnessException("button " + option + " not yet implemented");
 		}
 
-		sClickAt(optionLocator,"");
+		sClickAt(optionLocator, "");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();
 
@@ -323,106 +327,104 @@ public class TreeContacts extends AbsTree {
 
 	public AbsPage zTreeItem(Action action, String locator) throws HarnessException {
 		AbsPage page = null;
-		
-		SleepUtil.sleepMedium ();
+
+		SleepUtil.sleepMedium();
 
 		if (locator == "Distribution Lists") {
 			locator = "css=td[id='zti__main_Contacts__-18_textCell']";
 		}
 
-		if ( locator == null )
-			throw new HarnessException("locator is null for action "+ action);
+		if (locator == null)
+			throw new HarnessException("locator is null for action " + action);
 
-		if ( !this.sIsElementPresent(locator) )
-			throw new HarnessException("Unable to locator folder in tree "+ locator);
+		if (!this.sIsElementPresent(locator))
+			throw new HarnessException("Unable to locator folder in tree " + locator);
 
-		if ( action == Action.A_LEFTCLICK ) {
+		if (action == Action.A_LEFTCLICK) {
 			sClickAt(locator, "0,0");
-			SleepUtil.sleepLong (); // DL UI rendering takes some time
-			
-			
-		} else if ( action == Action.A_RIGHTCLICK ) {
+			SleepUtil.sleepLong(); // DL UI rendering takes some time
+
+		} else if (action == Action.A_RIGHTCLICK) {
 
 			// Select the folder
-			zRightClickAt(locator,"0,0");
-            zWaitForBusyOverlay();
-            SleepUtil.sleepSmall();
+			zRightClickAt(locator, "0,0");
+			zWaitForBusyOverlay();
+			SleepUtil.sleepSmall();
 			// return a context menu
 			return (new ContextMenu(MyApplication));
 
 		} else {
-			throw new HarnessException("Action "+ action +" not yet implemented");
+			throw new HarnessException("Action " + action + " not yet implemented");
 		}
 
-		sClickAt(locator,"0,0");
+		sClickAt(locator, "0,0");
 		SleepUtil.sleepMedium();
 
 		return (page);
 	}
 
-
 	@Override
 	public AbsPage zPressButton(Button button) throws HarnessException {
-		tracer.trace("Click button "+ button);
+		tracer.trace("Click button " + button);
 
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("Button cannot be null");
 
 		AbsPage page = null;
 		String locator = null;
 		String subLocator = null;
-		if ( button == Button.B_TREE_NEWADDRESSBOOK ) {
+		if (button == Button.B_TREE_NEWADDRESSBOOK) {
 
 			locator = "css=div[id=main_Contacts-parent-ADDRBOOK] div[class*=ImgContextMenu]";
-		    subLocator ="css=div[id^='NEW_ADDRBOOK']";
-			page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageContacts);
+			subLocator = "css=div[id^='NEW_ADDRBOOK']";
+			page = new DialogCreateFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
 
-		} else if ( button == Button.B_TREE_NEWTAG ) {
-			locator = "css=div[id=main_Contacts-parent-TAG] div[class*=ImgContextMenu]"; //td#ztih__main_Contacts__TAG_optCell";
-            subLocator ="css=div[id='NEW_TAG']";
-			page = new DialogTag(MyApplication,((AppAjaxClient) MyApplication).zPageContacts);
+		} else if (button == Button.B_TREE_NEWTAG) {
+			locator = "css=div[id=main_Contacts-parent-TAG] div[class*=ImgContextMenu]"; // td#ztih__main_Contacts__TAG_optCell";
+			subLocator = "css=div[id='NEW_TAG']";
+			page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
 
 		} else {
-			throw new HarnessException("no logic defined for button "+ button);
+			throw new HarnessException("no logic defined for button " + button);
 		}
 
 		// Make sure the button exists
-		if ( !this.sIsElementPresent(locator) )
-			throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
+		if (!this.sIsElementPresent(locator))
+			throw new HarnessException("Button is not present locator=" + locator + " button=" + button);
 
-		this.sClickAt(locator,"");
+		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
 
 		// Make sure the subLocator exists
-		if ( !this.sIsElementPresent(subLocator) )
-			throw new HarnessException("Button is not present locator="+ subLocator );
+		if (!this.sIsElementPresent(subLocator))
+			throw new HarnessException("Button is not present locator=" + subLocator);
 
 		this.sClickAt(subLocator, "");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
 
-		if ( page != null ) {
+		if (page != null) {
 			page.zWaitForActive();
 		}
-		
+
 		return (page);
 	}
 
-	//expand the folder to show folder's children
-	public void zExpand(FolderItem folderItem) throws HarnessException{
+	// expand the folder to show folder's children
+	public void zExpand(FolderItem folderItem) throws HarnessException {
 
-	    String locator="css=td#zti__main_Contacts__" + folderItem.getId() +"_nodeCell" + ">div." ;
-		//already expanded or not have sub folders
-	    if (!sIsElementPresent(locator+ Locators.COLLAPSE_NODE)) {
-		  return;
-	    }
-	    SleepUtil.sleepMedium();
-	    if (this.sIsElementPresent(locator+ Locators.COLLAPSE_NODE)) {
-		   sMouseDown(locator+ Locators.COLLAPSE_NODE);
-		   SleepUtil.sleepSmall();
+		String locator = "css=td#zti__main_Contacts__" + folderItem.getId() + "_nodeCell" + ">div.";
+		// already expanded or not have sub folders
+		if (!sIsElementPresent(locator + Locators.COLLAPSE_NODE)) {
+			return;
 		}
-	    zWaitForElementPresent(locator+ Locators.EXPAND_NODE);
+		SleepUtil.sleepMedium();
+		if (this.sIsElementPresent(locator + Locators.COLLAPSE_NODE)) {
+			sMouseDown(locator + Locators.COLLAPSE_NODE);
+			SleepUtil.sleepSmall();
+		}
+		zWaitForElementPresent(locator + Locators.EXPAND_NODE);
 	}
 
 	@Override

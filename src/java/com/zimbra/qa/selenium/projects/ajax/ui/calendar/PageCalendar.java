@@ -1855,7 +1855,6 @@ public class PageCalendar extends AbsTab {
 			optionLocator = Locators.ShowOriginalMenu_ViewAppt;
 
 			page = new SeparateWindow(this.MyApplication);
-			((SeparateWindow)page).zInitializeWindowNames();
 			this.zClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
@@ -1900,6 +1899,7 @@ public class PageCalendar extends AbsTab {
 			return (((AppAjaxClient)this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
 
 		} else if (button == Button.B_NEW) {
+			SleepUtil.sleepSmall();
 			locator = "css=td#zb__NEW_MENU_title";
 			page = new FormApptNew(this.MyApplication);
 
@@ -1922,8 +1922,6 @@ public class PageCalendar extends AbsTab {
 			locator = Locators.DeleteButton;
 			this.zClickAt(locator, "");
 			this.zWaitForBusyOverlay();
-
-			SleepUtil.sleepMedium();
 
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
@@ -2096,14 +2094,14 @@ public class PageCalendar extends AbsTab {
 		}
 
 		this.zClickAt(locator, "10,10");
-		SleepUtil.sleepMedium();
+		this.zWaitForBusyOverlay();
 		
 		if (button == Button.B_SAVE || button == Button.B_SEND) {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 		}
 
-		this.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
 
 		if (page != null) {
 			page.zWaitForActive();
