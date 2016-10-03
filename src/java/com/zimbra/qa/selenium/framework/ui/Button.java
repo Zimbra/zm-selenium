@@ -252,6 +252,10 @@
 		public static final Button O_ADD_FWD_SIGNATURE = new Button("O_ADD_FWD_SIGNATURE");
 		public static final Button O_ADD_Reply_SIGNATURE = new Button("O_ADD_Reply_SIGNATURE");
 		public static final Button O_ADD_ReplyAll_SIGNATURE = new Button("O_ADD_ReplyAll_SIGNATURE");
+		public static final Button B_SECURE_EMAIL = new Button("B_SECURE_EMAIL");
+		public static final Button O_DONT_SIGN = new Button("O_DONT_SIGN");
+		public static final Button O_SIGN = new Button("O_SIGN");
+		public static final Button O_SIGN_AND_ENCRYPT = new Button("O_SIGN_AND_ENCRYPT");
 
 		//Show Conversation page buttons and pulldown options
 		public static final Button B_CLOSE_CONVERSATION = new Button("B_CLOSE_CONVERSATION");

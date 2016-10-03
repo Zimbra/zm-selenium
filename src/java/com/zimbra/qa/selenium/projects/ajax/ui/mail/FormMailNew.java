@@ -19,10 +19,8 @@ package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
 import com.zimbra.qa.selenium.framework.core.SeleniumService;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -126,7 +124,8 @@ public class FormMailNew extends AbsForm {
 		public static final String zOkCancelContinueComposeWarningDialog = "css=div#OkCancel.DwtDialog";
 		public static final String zOkBtnOnContinueComposeWarningDialog = "css=div#OkCancel.DwtDialog td[id^='OK'] td[id$='_title']";
 		public static final String zCancelBtnOnContinueComposeWarningDialog = "css=div#OkCancel.DwtDialog td[id^='Cancel'] td[id$='_title']";
-
+		public static final String zSendLaterDisabled = "css=div[id='SEND_LATER'][class*='ZDisabled']";
+		
 	}
 
 	public static class Field {
@@ -463,6 +462,26 @@ public class FormMailNew extends AbsForm {
 
 			} else if ( option == Button.O_PRIORITY_LOW ) {
 				optionLocator = "css=div[id$=PRIORITY_LOW]";
+				page = this;
+
+			} else {
+				throw new HarnessException("unsupported priority option "+ option);
+			}
+
+		} else if ( pulldown == Button.B_SECURE_EMAIL ) {
+			
+			pulldownLocator = "css=td[id$='_com_zimbra_securemail_checkbox_title']";
+
+			if ( option == Button.O_DONT_SIGN ) {
+				optionLocator = "css=div[id$='_com_zimbra_securemail_menu'] table tbody tr:nth-child(1)";
+				page = this;
+
+			} else if ( option == Button.O_SIGN ) {
+				optionLocator = "css=div[id$='_com_zimbra_securemail_menu'] table tbody tr:nth-child(2)";
+				page = this;
+
+			} else if ( option == Button.O_SIGN_AND_ENCRYPT ) {
+				optionLocator = "css=div[id$='_com_zimbra_securemail_menu'] table tbody tr:nth-child(3)";
 				page = this;
 
 			} else {
@@ -1270,5 +1289,17 @@ public class FormMailNew extends AbsForm {
 
 	}
 
+	public boolean zVerifyDisabledSendLater() throws HarnessException {
 
+		String pulldownLocator = "css=div[id$='__SEND_MENU'] td[id$='__SEND_MENU_dropdown']>div";
+		this.zRightClick(pulldownLocator);
+		this.zWaitForBusyOverlay();
+
+		if (this.sIsElementPresent(Locators.zSendLaterDisabled))
+			return true;
+		
+		return false;
+	}
+
+	
 }
