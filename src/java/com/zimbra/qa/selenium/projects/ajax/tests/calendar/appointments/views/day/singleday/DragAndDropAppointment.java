@@ -18,9 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.d
 
 import java.util.Calendar;
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -28,7 +26,6 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
 public class DragAndDropAppointment extends AjaxCommonTest {
-
 	
 	public DragAndDropAppointment() {
 		logger.info("New "+ DragAndDropAppointment.class.getCanonicalName());
@@ -44,8 +41,10 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 		}};
 	}
 	
+	
 	@Test( description = "Drag and Drop a appointment from calendar to different calendar in day view",
 			groups = { "smoke" })
+	
 	public void DragAndDropAppointment_01() throws HarnessException {
 
 		String foldername = "folder"+ ConfigProperties.getUniqueString();
@@ -91,26 +90,22 @@ public class DragAndDropAppointment extends AjaxCommonTest {
         
         // Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-		
-        SleepUtil.sleepMedium();
-        
+		        
         // Select the item
 		app.zPageCalendar.zDragAndDrop(
 					"css=div[id^='zli__CLD__"+ apptId +"'] td.appt_name", // <div id="zli__CLWW__263_DWT114" .../>
 					"css=td[id='zti__main_Calendar__"+ subcalendarFolder.getId() + "_textCell']"); // <div id="zti__main_Calendar__273_textCell" .../>
 		
-		
-		
-		
 		//-- Server verification
 		AppointmentItem newAppointment = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 
 		ZAssert.assertEquals(newAppointment.getFolder(), subcalendarFolder.getId(), "Verify the appointment moved folders");
-		
 	}
 
+	
 	@Test( description = "Drag and Drop a appointment from one time to a different time in day view",
 			groups = { "smoke" })
+	
 	public void DragAndDropAppointment_02() throws HarnessException {
 
 
@@ -176,14 +171,12 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 
         // Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-
-        SleepUtil.sleepMedium();
         
         // drag and drop the item
-        	String sourceLocator = "css=div[id^='zli__CLD__"+ apptId +"']";
-        	String destinationLocator = "css=div[id^='zli__CLD__"+ otherApptId +"']";
+    	String sourceLocator = "css=div[id^='zli__CLD__"+ apptId +"']";
+    	String destinationLocator = "css=div[id^='zli__CLD__"+ otherApptId +"']";
 
-        	app.zPageCalendar.zDragAndDropBy(sourceLocator,destinationLocator,0,5);
+    	app.zPageCalendar.zDragAndDropBy(sourceLocator,destinationLocator,0,5);
         		
 		//-- Server verification
 		
@@ -197,7 +190,5 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 
 		ZAssert.assertStringDoesNotContain(s1, s, "Verify the start time changed");
 		ZAssert.assertStringDoesNotContain(e2, e, "Verify the end time changed");
-		
 	}
-
 }

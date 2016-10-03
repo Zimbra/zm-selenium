@@ -76,7 +76,6 @@ public class EditReplyAccept extends CalendarWorkWeekTest {
 		FormMailNew mailComposeForm = (FormMailNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT_REPLY_ACCEPT_SUB_MENU, apptSubject);
         mailComposeForm.zFillField(Field.Body, " " + modifiedBody);
 		mailComposeForm.zSubmit();
-		SleepUtil.sleepVeryLong(); // attendee status changes from NE to AC
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 
@@ -95,7 +94,7 @@ public class EditReplyAccept extends CalendarWorkWeekTest {
 		ZimbraAccount.AccountA().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
 		
-		String attendeeStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
+		String attendeeStatus = zWaitTillSoapResponse(ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst"), "AC");
 
 		// Verify attendee status shows as ptst=AC
 		ZAssert.assertEquals(attendeeStatus, "AC", "Verify that the attendee shows as 'ACCEPTED'");
