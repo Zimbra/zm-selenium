@@ -19,7 +19,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
 import java.util.HashMap;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.SignatureItem;
@@ -52,13 +51,11 @@ public class ForwardMsgWithTextSignature extends AjaxCommonTest {
 	@BeforeMethod(groups = { "always" })
 	public void CreateSignature() throws HarnessException {
 		ZimbraAccount.AccountZWC().authenticate();
-		ZimbraAccount.AccountZWC().soapSend(
-				"<CreateSignatureRequest xmlns='urn:zimbraAccount'>"
-				+ "<signature name='" + this.sigName + "' >"
-				+ "<content type='text/plain'>" + this.sigBody
-				+ "</content>" + "</signature>"
-				+ "</CreateSignatureRequest>");
-		
+		ZimbraAccount.AccountZWC()
+				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + this.sigName
+						+ "' >" + "<content type='text/plain'>" + this.sigBody + "</content>" + "</signature>"
+						+ "</CreateSignatureRequest>");
+
 		this.app.zPageLogin.zNavigateTo();
 		this.app.zPageMail.zNavigateTo();
 
@@ -67,40 +64,32 @@ public class ForwardMsgWithTextSignature extends AjaxCommonTest {
 	}
 
 	/**
-	 * Test case : Forward Msg with text signature and Verify signature through soap
-	 * Create signature through soap 
-	 * Send message with text signature through soap
-	 * Fwd same message to another account say (accountB())
-	 * Verify signature in forwarded msg through soap
+	 * Test case : Forward Msg with text signature and Verify signature through
+	 * soap Create signature through soap Send message with text signature
+	 * through soap Fwd same message to another account say (accountB()) Verify
+	 * signature in forwarded msg through soap
+	 * 
 	 * @throws HarnessException
 	 */
-	@Test( description = " Forward Msg with text signature and Verify signature through soap", groups = { "functional" })
+	@Test(description = " Forward Msg with text signature and Verify signature through soap", groups = { "functional" })
 	public void ForwardMsgWithTextSignature_01() throws HarnessException {
 
 		// Signature is created
-		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);
+		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
-		ZAssert.assertEquals(signature.getName(), this.sigName,"verified Text Signature is created");
+		ZAssert.assertEquals(signature.getName(), this.sigName, "verified Text Signature is created");
 
-		String subject = "subject"+ ConfigProperties.getUniqueString();
-
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Send a message to the account(self)
-		ZimbraAccount.AccountZWC().soapSend(
-				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-				"<m>" +
-				"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-				"<su>"+ subject +"</su>" +
-				"<mp ct='text/plain'>" +
-				"<content>content"+ ConfigProperties.getUniqueString() + "\n\n"+signature.dBodyText+"\n</content>" +
-				"</mp>" +
-				"</m>" +
-		"</SendMsgRequest>");
-
-
+		ZimbraAccount.AccountZWC()
+				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
+						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
+						+ "<mp ct='text/plain'>" + "<content>content" + ConfigProperties.getUniqueString() + "\n\n"
+						+ signature.dBodyText + "\n</content>" + "</mp>" + "</m>" + "</SendMsgRequest>");
 
 		// Get the mail item for the new message
-		MailItem mail = MailItem.importFromSOAP(ZimbraAccount.AccountZWC(),"in:inbox subject:(" + subject + ")");
+		MailItem mail = MailItem.importFromSOAP(ZimbraAccount.AccountZWC(), "in:inbox subject:(" + subject + ")");
 
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -119,16 +108,18 @@ public class ForwardMsgWithTextSignature extends AjaxCommonTest {
 		// Send the message
 		mailform.zSubmit();
 
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ mail.dSubject +")");
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:(" + mail.dSubject + ")");
 		logger.debug("===========received is: " + received);
 		logger.debug("===========app is: " + app);
 
-		//Verify TO, Subject, Body,Signature
+		// Verify TO, Subject, Body,Signature
 		ZAssert.assertStringContains(received.dSubject, "Fwd", "Verify the subject field contains the 'Fwd' prefix");
-		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress,"Verify the from field is correct");
-		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress,ZimbraAccount.AccountB().EmailAddress,"Verify the to field is correct");
-		ZAssert.assertStringContains(received.dBodyText, mail.dBodyText,"Verify the body content is correct");
-		ZAssert.assertStringContains(received.dBodyText, this.sigBody,"Verify the signature is correct");
+		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress,
+				"Verify the from field is correct");
+		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountB().EmailAddress,
+				"Verify the to field is correct");
+		ZAssert.assertStringContains(received.dBodyText, mail.dBodyText, "Verify the body content is correct");
+		ZAssert.assertStringContains(received.dBodyText, this.sigBody, "Verify the signature is correct");
 
 	}
 }

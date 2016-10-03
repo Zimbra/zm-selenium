@@ -17,8 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
 
 import org.testng.annotations.Test;
-
-
 import com.zimbra.qa.selenium.framework.items.SignatureItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -31,26 +29,23 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeI
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatureNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatureNew.Field;
 
-
 public class CreateSignature extends AjaxCommonTest {
 	public CreateSignature() {
 		super.startingPage = app.zPagePreferences;
-		
 	}
 
-	@Test( description = "Create Simple text signature through GUI", 
-			groups = { "sanity" })
-	
-	public void CreateBasicTextSignature() throws HarnessException {
+	@Test(description = "Create Simple text signature through GUI", groups = { "sanity" })
+
+	public void CreateBasicTextSignature_01() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();
 		String sigBody = "sigbody" + ConfigProperties.getUniqueString();
 
 		// click on signature from left pane
-		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK,TreeItem.MailSignatures);
+		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailSignatures);
 
-		//Click on New signature button
-		FormSignatureNew signew =(FormSignatureNew) app.zPageSignature.zToolbarPressButton(Button.B_NEW);
+		// Click on New signature button
+		FormSignatureNew signew = (FormSignatureNew) app.zPageSignature.zToolbarPressButton(Button.B_NEW);
 
 		// Fill Signature Name and body
 		signew.zFillField(Field.SignatureName, sigName);
@@ -58,27 +53,25 @@ public class CreateSignature extends AjaxCommonTest {
 		signew.zSubmit();
 
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), sigName);
-		
-		//Verify signature name and body content	
-		ZAssert.assertEquals(signature.getName(),sigName,"Verify signature Name");
-		ZAssert.assertEquals(signature.dBodyText,sigBody,"Verify Text signature body");
+
+		// Verify signature name and body content
+		ZAssert.assertEquals(signature.getName(), sigName, "Verify signature Name");
+		ZAssert.assertEquals(signature.dBodyText, sigBody, "Verify Text signature body");
 	}
 
+	@Test(description = "Create Simple Html signature through GUI", groups = { "sanity" })
 
-	@Test( description = "Create Simple Html signature through GUI", 
-			groups = { "sanity" })
-
-	public void CreateBasicHtmlSignature() throws HarnessException {
+	public void CreateBasicHtmlSignature_02() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();
 		String sigBody = "sigbody" + ConfigProperties.getUniqueString();
 
 		// click on signature from left pane
-		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK,TreeItem.MailSignatures);
+		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailSignatures);
 
-		//Click on New signature button
-		FormSignatureNew signew =(FormSignatureNew)app.zPageSignature.zToolbarPressButton(Button.B_NEW);
-		
+		// Click on New signature button
+		FormSignatureNew signew = (FormSignatureNew) app.zPageSignature.zToolbarPressButton(Button.B_NEW);
+
 		signew.zSelectFormat("html");
 		SleepUtil.sleepVeryLong();
 
@@ -88,12 +81,12 @@ public class CreateSignature extends AjaxCommonTest {
 		signew.zSubmit();
 
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), sigName);
-		
-		//Verify signature name and body contents
-		ZAssert.assertEquals(signature.getName(),sigName,"Verify signature Name");
-		ZAssert.assertStringContains(signature.dBodyHtmlText, sigBody, "Verify Html signature body");
-		//ZAssert.assertEquals(signature.dBodyHtmlText,sigBody,"Verify Html signature body");
 
+		// Verify signature name and body contents
+		ZAssert.assertEquals(signature.getName(), sigName, "Verify signature Name");
+		ZAssert.assertStringContains(signature.dBodyHtmlText, sigBody, "Verify Html signature body");
+		// ZAssert.assertEquals(signature.dBodyHtmlText,sigBody,"Verify Html
+		// signature body");
 
 	}
 }
