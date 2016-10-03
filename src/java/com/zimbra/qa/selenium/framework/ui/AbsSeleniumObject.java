@@ -1326,7 +1326,7 @@ public abstract class AbsSeleniumObject {
 
 	public void sType(String locator, String text, WebElement... elements) throws HarnessException {
 		try {
-			logger.info("sType(" + locator + ")");
+			logger.info("type(" + locator + ", " + text + ")");
 
 		    WebElement we = null;
 		    if (elements != null && elements.length > 0) {
@@ -1337,7 +1337,6 @@ public abstract class AbsSeleniumObject {
 		    we.clear();
 		    we.sendKeys(text);
 		    SleepUtil.sleepVerySmall();
-			logger.info("type(" + locator + ", " + text + ")");
 
 		} catch (WebDriverException e) {
 			throw new HarnessException(e);
@@ -1347,7 +1346,7 @@ public abstract class AbsSeleniumObject {
 
 	public void sTypeDateTime(String locator, String text, WebElement... elements) throws HarnessException {
 		try {
-		    logger.info("sTypeDateTime(" + locator + ")");
+			logger.info("type(" + locator + ", " + text + ")");
 
 		    WebElement we = null;
 		    if (elements != null && elements.length > 0) {
@@ -1357,8 +1356,7 @@ public abstract class AbsSeleniumObject {
 		    }
 		    we.sendKeys(text);
 		    SleepUtil.sleepVerySmall();
-			logger.info("type(" + locator + ", " + text + ")");
-
+			
 		} catch (WebDriverException e) {
 			throw new HarnessException(e);
 		}
@@ -1366,20 +1364,24 @@ public abstract class AbsSeleniumObject {
 
 
 	public void sTypeKeys(String locator, String text, WebElement... elements) throws HarnessException {
-		logger.info("action.sendKeys()");
-
-		WebElement we = null;
-		if (elements != null && elements.length > 0) {
-		    we = elements[0];
-		} else {
-		    we = getElement(locator);
+		try {
+			logger.info("typeKeys(" + locator + ", " + text + ")");
+	
+			WebElement we = null;
+			if (elements != null && elements.length > 0) {
+			    we = elements[0];
+			} else {
+			    we = getElement(locator);
+			}
+	
+			final Actions builder = new Actions(webDriver());
+			final Action action = builder.sendKeys(we,text).build();
+			action.perform();
+			SleepUtil.sleepVerySmall();
+			
+		} catch (WebDriverException e) {
+			throw new HarnessException(e);
 		}
-
-		final Actions builder = new Actions(webDriver());
-		final Action action = builder.sendKeys(we,text).build();
-		action.perform();
-		SleepUtil.sleepVerySmall();
-		logger.info("typeKeys(" + locator + ", " + text + ")");
 	}
 
 
