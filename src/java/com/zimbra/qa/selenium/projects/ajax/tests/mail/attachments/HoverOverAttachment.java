@@ -68,7 +68,7 @@ public class HoverOverAttachment extends PrefGroupMailByMessageTest {
 		//-- GUI
 
 		// Click on Get Mail to refresh the folder list
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the message
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

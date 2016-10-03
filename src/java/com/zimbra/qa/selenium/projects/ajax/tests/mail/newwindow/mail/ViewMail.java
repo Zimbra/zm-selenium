@@ -72,7 +72,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		ZAssert.assertEquals(sender, mail.dSenderRecipient.dEmailAddress, "Verify the sender matches");
 //		
 //		// Refresh current view
-//		app.zPageMail.zVerifyMailExists(subject);
+//		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -106,7 +106,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		ZAssert.assertEquals(replyto, mail.dReplyToRecipient.dEmailAddress, "Verify the Reply-To matches");
 //		
 //		// Refresh current view
-//		app.zPageMail.zVerifyMailExists(subject);
+//		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -140,7 +140,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		ZAssert.assertEquals(resentfrom, mail.dRedirectedFromRecipient.dEmailAddress, "Verify the Resent-From matches");
 //		
 //		// Refresh current view
-//		app.zPageMail.zVerifyMailExists(subject);
+//		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -171,7 +171,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		ZAssert.assertNotNull(mail, "Verify message is received");
 //		
 //		// Refresh current view
-//		app.zPageMail.zVerifyMailExists(subject);
+//		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -201,7 +201,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		ZAssert.assertNotNull(mail, "Verify message is received");
 //		
 //		// Refresh current view
-//		app.zPageMail.zVerifyMailExists(subject);
+//		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -248,7 +248,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //
 //		
 //		// Refresh the inbox
-//		app.zPageMail.zVerifyMailExists(subject);
+//		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -271,7 +271,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //
 //		
 //		// Refresh the inbox
-//		app.zPageMail.zVerifyMailExists(subject);
+//		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -294,7 +294,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //
 //		
 //		// Refresh the inbox
-//		app.zPageMail.zVerifyMailExists(subject);
+//		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -318,7 +318,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		
 //		
 //		// Refresh current view
-//		app.zPageMail.zVerifyMailExists(subject);
+//		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -342,7 +342,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		
 //		
 //		// Refresh current view
-//		app.zPageMail.zVerifyMailExists(subject);
+//		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -367,7 +367,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		
 //		
 //		// Refresh current view
-//		app.zPageMail.zVerifyMailExists(subject);
+//		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -394,7 +394,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		
 //		
 //		// Refresh current view
-//		app.zPageMail.zVerifyMailExists(subject);
+//		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -425,7 +425,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 //		
 //		
 //		// Refresh current view
-//		app.zPageMail.zVerifyMailExists(subject);
+//		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 //
 //		// Select the message so that it shows in the reading pane
 //		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -451,7 +451,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the message 
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

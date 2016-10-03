@@ -43,7 +43,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(c.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
 		
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
@@ -75,7 +75,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(c.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_MAIL_CHECKBOX, c.getSubject());
@@ -111,7 +111,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(c.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
@@ -138,7 +138,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(c.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
@@ -204,7 +204,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(c.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
 				
 		// Right click the item, select delete
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, c.getSubject());
@@ -228,7 +228,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(c.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
@@ -345,7 +345,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		String idSent = app.zGetActiveAccount().soapSelectValue("//mail:m", "id");
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(c.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
 				
 		// Right click the item, select delete
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, c.getSubject());
@@ -406,7 +406,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		
 		try {
 				
@@ -468,7 +468,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		MailItem message = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "in:sent subject:("+ subject +")");
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 				
 		// Select the item (this should refresh)
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

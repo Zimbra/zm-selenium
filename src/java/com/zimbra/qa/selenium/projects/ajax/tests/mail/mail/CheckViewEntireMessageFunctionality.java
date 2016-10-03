@@ -45,7 +45,7 @@ public class CheckViewEntireMessageFunctionality extends PrefGroupMailByMessageT
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
 
 		// Get Mail
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		
 		// Select the message
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

@@ -100,7 +100,7 @@ public class CreateMountpoint extends PrefGroupMailByMessageTest {
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(shareMessageSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(shareMessageSubject), "Verify message displayed in current view");
 		
 		// Click the inbox
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);

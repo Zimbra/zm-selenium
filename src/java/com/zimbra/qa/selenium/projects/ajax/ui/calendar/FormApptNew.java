@@ -1283,7 +1283,7 @@ public class FormApptNew extends AbsForm {
 		if (!this.zIsVisiblePerPosition(locator, 150, 75)) {
 			return (false);
 		}
-		SleepUtil.sleep(5000);
+		SleepUtil.sleepMedium();
 
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);

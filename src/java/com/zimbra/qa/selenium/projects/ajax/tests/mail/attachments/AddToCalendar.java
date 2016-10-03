@@ -75,7 +75,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		Element[] nodes = account.soapSelectNodes("//mail:mp[@cd='attachment']");
 		ZAssert.assertGreaterThan(nodes.length, 0, "Verify the message has the attachment");
 
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -129,7 +129,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		
 		// Inject the message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -200,7 +200,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		
 		// Inject the message
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(mimeFile));
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		SleepUtil.sleepMedium();
 
 		// Select the message so that it shows in the reading pane
@@ -281,7 +281,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		
 		// Inject the message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		SleepUtil.sleepMedium();
 
 		// Select the message so that it shows in the reading pane
@@ -383,7 +383,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		ZAssert.assertGreaterThan(nodes.length, 0, "Verify the message has the attachment");
 
 		// Select the message so that it shows in the reading pane
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		AttachmentItem item = null;
@@ -433,7 +433,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		
 		// Inject the message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Adding additional code to go to Cal tab and click explicitly on Calendar header, so that new folder will create in upper level.
 		app.zPageCalendar.zNavigateTo();				
@@ -441,7 +441,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		
 		// Navigate to Mail Tab again		
 		app.zPageMail.zNavigateTo();
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

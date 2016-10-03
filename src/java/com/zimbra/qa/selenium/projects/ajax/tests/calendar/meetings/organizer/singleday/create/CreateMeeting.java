@@ -65,7 +65,7 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		apptForm.zSubmit();
 		
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         app.zPageMail.zNavigateTo();
         
 		// Go to drafts	

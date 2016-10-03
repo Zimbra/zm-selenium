@@ -68,7 +68,7 @@ public class Tentative extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invite as tentative ----------------------------------------------------
 
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_TENTATIVE_MENU, apptSubject);
 

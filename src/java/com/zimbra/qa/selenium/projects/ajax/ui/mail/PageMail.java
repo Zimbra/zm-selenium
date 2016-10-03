@@ -200,14 +200,15 @@ public class PageMail extends AbsTab {
 					break;
 				} else {
 					logger.info("Mail not displayed in current view");
-					Stafpostqueue sp = new Stafpostqueue();
-					sp.waitForPostqueue();
+					if (i == 2) {
+						Stafpostqueue sp = new Stafpostqueue();
+						sp.waitForPostqueue();
+					}
 				}
 			}
 
 			if (found == true) {
 				logger.info("Mail displayed in current view");
-				ZAssert.assertTrue(found, "Mail displayed in current view");
 				break;
 			}
 		}

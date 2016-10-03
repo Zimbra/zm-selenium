@@ -70,7 +70,7 @@ public class Reply extends CalendarWorkWeekTest {
 		
 		
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
     
        // check on the context menu 'Reply' option is disabled for organizer
         app.zPageCalendar.zRightClickAt(app.zPageCalendar.zGetApptLocator(apptSubject),"");

@@ -72,7 +72,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 		//-- GUI
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(c.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
 		
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
@@ -133,7 +133,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 		//-- GUI
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(c.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
 		
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
@@ -194,7 +194,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 		//-- GUI
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(c.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
 		
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
@@ -260,7 +260,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 		//-- GUI
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(c.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
 		
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());

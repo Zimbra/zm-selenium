@@ -61,7 +61,7 @@ public class EditAsNewMessage extends PrefGroupMailByMessageTest {
 		
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 				
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -109,7 +109,7 @@ public class EditAsNewMessage extends PrefGroupMailByMessageTest {
 		
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		
 		// Click redirect
 		FormMailNew form = (FormMailNew)app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT_AS_NEW, mail.dSubject);

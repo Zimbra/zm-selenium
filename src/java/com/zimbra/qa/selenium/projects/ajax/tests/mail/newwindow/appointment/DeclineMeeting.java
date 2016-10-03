@@ -109,7 +109,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
 		// Refresh the view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 
 		// Select the invitation
@@ -215,7 +215,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
 		// Refresh the view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
@@ -302,7 +302,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
 		// Refresh the view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
@@ -426,7 +426,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
 		// Refresh the view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 

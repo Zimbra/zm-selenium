@@ -64,7 +64,7 @@ public class NavigateToToday extends CalendarWorkWeekTest {
                "</CreateAppointmentRequest>");
 
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         
         // navigate to next week and make sure Today is not present 
         app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_WEEK);
@@ -121,7 +121,7 @@ public class NavigateToToday extends CalendarWorkWeekTest {
                "</CreateAppointmentRequest>");
 
         // Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         
         // click on Today Button and make sure Today is present 
         app.zPageCalendar.zToolbarPressButton(Button.O_GO_TO_TODAY_MENU);

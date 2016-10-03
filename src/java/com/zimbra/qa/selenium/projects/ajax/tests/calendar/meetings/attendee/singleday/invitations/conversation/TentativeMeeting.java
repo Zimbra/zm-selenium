@@ -106,7 +106,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invitation as Tentative ------------------------------------
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -186,7 +186,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invitation as tentative -----------------------------------
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -258,7 +258,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invitation as tentative -----------------------------------
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -366,7 +366,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invitation as tentative ----------------------------------
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 		
 		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -471,7 +471,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invitation as tentative -----------------------------------
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);

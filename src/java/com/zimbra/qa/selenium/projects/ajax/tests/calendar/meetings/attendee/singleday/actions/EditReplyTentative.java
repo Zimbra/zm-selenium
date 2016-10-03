@@ -71,7 +71,7 @@ public class EditReplyTentative extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invitation as tentative ----------------------------------------------------
 
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
 		FormMailNew mailComposeForm = (FormMailNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT_REPLY_TENTATIVE_SUB_MENU, apptSubject);
 		mailComposeForm.zFillField(Field.Body, " " + modifiedBody);

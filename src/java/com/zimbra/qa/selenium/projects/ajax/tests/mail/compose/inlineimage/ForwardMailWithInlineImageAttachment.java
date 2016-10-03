@@ -59,7 +59,7 @@ public class ForwardMailWithInlineImageAttachment extends PrefGroupMailByMessage
 				//-- GUI
 
 				// Refresh current view
-				app.zPageMail.zVerifyMailExists(mimeSubject);
+				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(mimeSubject), "Verify message displayed in current view");
 
 				// Select the item
 				app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);

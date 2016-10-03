@@ -52,7 +52,7 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 					"</SendMsgRequest>");
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 				
 		// Get the list of messages
 		List<MailItem> conversations = app.zPageMail.zListGetMessages();
