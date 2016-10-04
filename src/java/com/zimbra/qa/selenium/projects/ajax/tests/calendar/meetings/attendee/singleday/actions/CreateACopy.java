@@ -76,7 +76,7 @@ public class CreateACopy extends CalendarWorkWeekTest {
 		this.startingPage.zNavigateTo();
         
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         
         // Copy appointment
         DialogInformational dialog = (DialogInformational)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_A_COPY_MENU, apptSubject);
@@ -86,8 +86,7 @@ public class CreateACopy extends CalendarWorkWeekTest {
         form.zFillField(Field.Subject, newSubject);
         form.zFillField(Field.Body, newContent);
         form.zFillField(Field.Attendees, attendee2);
-        app.zPageCalendar.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepLong();
+        form.zSubmit();
 		
 		// Verify the new invitation appears in the attendee1's inbox
 		ZimbraAccount.AccountA().soapSend(

@@ -91,7 +91,7 @@ public class DiscardMessageAutomatically extends PrefGroupMailByMessageTest {
 			// UI verification
 			//check message is in Send folder
 			app.zTreeMail.sClickAt(("css=td[id='zti__main_Mail__5_textCell']:contains('Sent')"), ""); // Go to sent folder
-			app.zPageMail.zVerifyMailExists(subject);
+			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 	}
 

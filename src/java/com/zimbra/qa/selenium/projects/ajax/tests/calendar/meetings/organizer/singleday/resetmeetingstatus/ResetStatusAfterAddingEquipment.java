@@ -17,16 +17,13 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.resetmeetingstatus;
 
 import java.util.Calendar;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators;
 
 public class ResetStatusAfterAddingEquipment extends CalendarWorkWeekTest {	
 	
@@ -71,7 +68,7 @@ public class ResetStatusAfterAddingEquipment extends CalendarWorkWeekTest {
                "</CreateAppointmentRequest>");
         
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         
         //Login as attendee and accept the invite
         app.zPageMain.zLogout();
@@ -90,7 +87,7 @@ public class ResetStatusAfterAddingEquipment extends CalendarWorkWeekTest {
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
 		AppointmentItem appt = new AppointmentItem();
         appt.setEquipment(apptEquipment);
-        apptForm.zClickAt(Locators.ShowEquipmentLink,"");
+        apptForm.zToolbarPressButton(Button.B_SHOW_EQUIPMENT);
         apptForm.zFill(appt);
         SleepUtil.sleepMedium();
 		apptForm.zSubmit();

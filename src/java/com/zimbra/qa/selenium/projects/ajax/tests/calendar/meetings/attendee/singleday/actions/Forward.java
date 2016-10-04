@@ -75,7 +75,7 @@ public class Forward extends CalendarWorkWeekTest {
 				+	"</CreateAppointmentRequest>");
 		
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         
         // Forward appointment to different attendee
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_FORWARD_MENU, apptSubject);    
@@ -161,7 +161,7 @@ public class Forward extends CalendarWorkWeekTest {
 				+	"</CreateAppointmentRequest>");
         
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
@@ -222,7 +222,7 @@ public class Forward extends CalendarWorkWeekTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 		
 		// Verify mail exists
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 		
 		// Forward invite
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
@@ -243,7 +243,7 @@ public class Forward extends CalendarWorkWeekTest {
 		app.zPageLogin.zLogin(ZimbraAccount.Account2());
 		
 		// Verify mail exists
-		app.zPageMail.zVerifyMailExists("Fwd: " + apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists("Fwd: " + apptSubject), "Verify message displayed in current view");
 	}
 	
 }

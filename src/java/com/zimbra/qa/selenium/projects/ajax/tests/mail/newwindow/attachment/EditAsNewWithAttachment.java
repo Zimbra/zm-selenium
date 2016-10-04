@@ -50,7 +50,7 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 							+ "</content>" + "</mp>" + "</m>" + "</SendMsgRequest>");
 
 			// Refresh current view
-			app.zPageMail.zVerifyMailExists(subject);
+			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 			// Select the item
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

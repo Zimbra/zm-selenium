@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.AbsDialog;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;

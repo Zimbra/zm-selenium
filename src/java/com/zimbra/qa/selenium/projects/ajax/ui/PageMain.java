@@ -285,14 +285,11 @@ public class PageMain extends AbsTab {
 			SleepUtil.sleepSmall();
 
 			if (optionLocator != null) {
-
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
-
 				this.sClickAt(optionLocator, "0,0");
 				zWaitForBusyOverlay();
-
 			}
 
 		}
@@ -318,17 +315,17 @@ public class PageMain extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, Button subOption ,String item) throws HarnessException {
 		throw new HarnessException("Main page does not have lists");
 	}
 
 	/**
-	 * Refresh page if active dialogs found
+	 * Throw an exception on error dialog found and refresh page on any un-closed dialogs found
 	 */
-	public void zRefreshPageIfOpenDialogs(AbsTab appTab) throws HarnessException {
-
-		String zIndex;		
+	public void zHandleDialogs(AbsTab appTab) throws HarnessException {
+		
+		// Opened dialogs
+		String zIndex;
 		List<WebElement> dialogLocators = webDriver().findElements(By.className("DwtDialog"));
 		
 		int totalDialogs = dialogLocators.size();
@@ -350,7 +347,7 @@ public class PageMain extends AbsTab {
 	/**
 	 * Close any extra compose tabs
 	 */
-	public void zCloseComposeTabs() throws HarnessException {
+	public void zHandleComposeTabs() throws HarnessException {
 
 		String locator = "css=div[id^='zb__App__tab']";
 		if ( sIsElementPresent(locator) ) {
@@ -535,7 +532,7 @@ public class PageMain extends AbsTab {
 		}
 		
 		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
-			zRefreshPageIfOpenDialogs(appTab);
+			zHandleDialogs(appTab);
 			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
 		}
 		
@@ -543,7 +540,7 @@ public class PageMain extends AbsTab {
 		
 		// Navigate to app
 		if (!appTab.zIsActive()) {
-			zRefreshPageIfOpenDialogs(appTab);
+			zHandleDialogs(appTab);
 			
 			for (int i=0; i<=3; i++) {
 				zWaitForElementPresent(appLocator);

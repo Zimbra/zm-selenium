@@ -64,7 +64,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
 		// Verify mail exists
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
@@ -130,7 +130,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
 		// Verify mail exists
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
@@ -191,7 +191,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
 		// Verify mail exists
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
@@ -252,7 +252,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
 		// Verify mail exists
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
@@ -312,7 +312,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
 		// Verify mail exists
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
@@ -372,7 +372,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
 		// Verify mail exists
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
@@ -433,7 +433,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
 		// Verify mail exists
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
@@ -494,7 +494,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
 		// Verify mail exists
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
@@ -555,7 +555,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
 		// Verify mail exists
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);

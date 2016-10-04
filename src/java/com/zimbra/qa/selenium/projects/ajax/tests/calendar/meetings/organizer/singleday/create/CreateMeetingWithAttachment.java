@@ -75,7 +75,7 @@ public class CreateMeetingWithAttachment extends CalendarWorkWeekTest {
 				apptForm.zSubmit();
 				
 				// Verify appointment exists in current view
-				ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+				ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 				
 				// Verify appointment exists on the server
 				AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
@@ -109,7 +109,7 @@ public class CreateMeetingWithAttachment extends CalendarWorkWeekTest {
 				app.zPageCalendar.zNavigateTo();
 				
 				// Verify appointment exists in current view
-				ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+				ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 					
 				// open the appt
 				app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN, apptSubject);

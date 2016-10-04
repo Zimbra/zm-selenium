@@ -73,7 +73,7 @@ public class OutOfOfficeCalendarAppointment extends AjaxCommonTest {
 		
 		// Verify appointment exists in current view
 		app.zPageCalendar.zNavigateTo();
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 	}
 	
 	@AfterMethod(groups={"always"})

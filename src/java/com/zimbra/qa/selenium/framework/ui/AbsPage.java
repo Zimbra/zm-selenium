@@ -72,67 +72,25 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		if ( !this.sIsElementPresent(locatorSource) ) {
 			throw new HarnessException("locator (source) cannot be found: "+ locatorSource);
 		}
-
 		if ( !this.sIsElementPresent(locatorDestination) ) {
 			throw new HarnessException("locator (destination) cannot be found: "+ locatorDestination);
 		}
 
 		SleepUtil.sleepMedium();
-
-		/*
-
-		// Get the coordinates for the locators
-		Coordinate destination = new Coordinate(
-				this.sGetElementPositionLeft(locatorDestination),
-				this.sGetElementPositionTop(locatorDestination));
-
-		Coordinate source = new Coordinate(
-				this.sGetElementPositionLeft(locatorSource),
-				this.sGetElementPositionTop(locatorSource));
-
-		Coordinate relative = new Coordinate(
-				destination.X - source.X,
-				destination.Y - source.Y);
-
-		logger.info("x,y coordinate of the objectToBeDroppedInto=" + destination);
-		logger.info("x,y coordinate of the objectToBeDragged=" + source);
-		logger.info("x,y coordinate of the objectToBeDroppedInto relative to objectToBeDragged = " + relative);
-
-		// Hold the mouse down on the source
-		this.sMouseDownAt(locatorSource, relative.toString());
-
-		SleepUtil.sleep(1000);
-		// Drag the mouse to the destination, plus the offset
-		this.sMouseMoveAt(locatorDestination, relative.toString());
-
-		// Wait a bit for things to happen
-		SleepUtil.sleep(1000 * 3);
-
-		this.sMouseMove(locatorDestination);
-		this.sMouseOver(locatorDestination);
-
-		SleepUtil.sleep(1000);
-		// Release the mouse
-		this.sMouseUpAt(locatorDestination, relative.toString());
-
-		*/
-
 		this.sMouseDownAt(locatorSource,"");
 		SleepUtil.sleepMedium();
 
 		// Drag the mouse to the destination, plus the offset
 		this.sMouseMoveAt(locatorDestination,"");
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 
 		this.sMouseMoveAt(locatorDestination,"");
 		this.sMouseOver(locatorDestination);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 
 		// Release the mouse
 		this.sMouseUpAt(locatorDestination,"");
-		SleepUtil.sleepMedium();
-
-		// Wait for the client to come back
+		SleepUtil.sleepSmall();
 		this.zWaitForBusyOverlay();
 
 	}

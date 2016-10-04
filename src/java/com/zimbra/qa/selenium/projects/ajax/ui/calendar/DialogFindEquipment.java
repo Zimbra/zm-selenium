@@ -15,10 +15,10 @@
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
+
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
 public class DialogFindEquipment extends DialogWarning {
@@ -47,7 +47,6 @@ public class DialogFindEquipment extends DialogWarning {
 	
 		String locator = null;
 		AbsPage page = null;
-		boolean waitForPostfix = false;
 
 		if (button == Button.B_SEARCH_EQUIPMENT) {
 
@@ -72,10 +71,7 @@ public class DialogFindEquipment extends DialogWarning {
 		} else {
 			
 			return ( super.zClickButton(button) );
-
 		}
-		
-		SleepUtil.sleepMedium();
 		
 		// Make sure the locator was set
 		if (locator == null) {
@@ -84,23 +80,13 @@ public class DialogFindEquipment extends DialogWarning {
 
 		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator "	+ locator + " not present!");
 		}
 		this.sFocus(locator);
-		this.sGetCssCount(locator);
 		this.sClickAt(locator, "10,10");
 		this.zWaitForBusyOverlay();
-		this.zWaitForBusyOverlay();
-
-		// This dialog could send messages, so wait for the queue
-		if ( waitForPostfix ) {
-			Stafpostqueue sp = new Stafpostqueue();
-			sp.waitForPostqueue();
-		}
+		SleepUtil.sleepMedium();
 
 		return (page);
 	}
-
 }
-

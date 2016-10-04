@@ -35,11 +35,10 @@ public class AddLocation extends CalendarWorkWeekTest {
 	public AddLocation() {
 		logger.info("New "+ AddLocation.class.getCanonicalName());
 	    super.startingPage =  app.zPageCalendar;
-	    
 	}
 	
 	
-	@Test( description = "Search Location and add into existing meeting invite",	groups = { "smoke" })
+	@Test( description = "Search Location and add into existing meeting invite", groups = { "smoke" })
 	
 	public void AddLocation_01() throws HarnessException {
 		
@@ -52,8 +51,8 @@ public class AddLocation extends CalendarWorkWeekTest {
     	
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -86,9 +85,7 @@ public class AddLocation extends CalendarWorkWeekTest {
         dialogFindLocation.zClickButton(Button.B_SELECT_LOCATION);
         SleepUtil.sleepMedium();
         dialogFindLocation.zClickButton(Button.B_OK);
-        apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepVeryLong(); // test fails while checking free/busy status, waitForPostqueue is not sufficient here
-        // Tried sleepLong() as well but although fails so using sleepVeryLong()
+        apptForm.zSubmit();
         
         // Verify location in the appointment is not null
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
@@ -96,7 +93,7 @@ public class AddLocation extends CalendarWorkWeekTest {
 		ZAssert.assertStringContains(actual.getLocation(), apptLocation1, "verify if the Location has been added to the meeting");
 		
 		// Verify location free/busy status
-		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation1 +"']", "ptst");
+		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation1 +"']", "ptst"), "AC");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify location status shows accepted");
 	}
 	
@@ -115,7 +112,7 @@ public class AddLocation extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
@@ -136,15 +133,13 @@ public class AddLocation extends CalendarWorkWeekTest {
                "</CreateAppointmentRequest>");
         
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         
         // Add location and resend the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zFillField(Field.Location, apptLocation);
-        apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepVeryLong(); // test fails while checking free/busy status, waitForPostqueue is not sufficient here
-        // Tried sleepLong() as well but although fails so using sleepVeryLong()
-
+        apptForm.zSubmit();
+        
         // Verify location in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
@@ -152,7 +147,7 @@ public class AddLocation extends CalendarWorkWeekTest {
 		ZAssert.assertStringContains(actual.getLocation(), apptLocation, "Location: Verify the appointment data");
 		
 		// Verify location free/busy status
-		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
+		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst"), "AC");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify location status shows accepted");
 	}
 
@@ -179,8 +174,8 @@ public class AddLocation extends CalendarWorkWeekTest {
 		// Absolute dates in UTC zone
 		String tz = ZTimeZone.TimeZoneEST.getID();
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
 	            "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -199,7 +194,7 @@ public class AddLocation extends CalendarWorkWeekTest {
 	           "</CreateAppointmentRequest>");
 	    
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 	    
 	    // Add equipment from 'Search Equipment' dialog and send the meeting
 	    FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
@@ -215,7 +210,6 @@ public class AddLocation extends CalendarWorkWeekTest {
 		apptForm.zAutocompleteSelectItem(found);
         ZAssert.assertTrue(apptForm.zVerifyLocation(locationName), "Verify appointment location");
 		apptForm.zSubmit();
-		SleepUtil.sleepLong();
 		
 		// Organizer: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(
@@ -230,7 +224,7 @@ public class AddLocation extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
 		
 		// Verify location free/busy status
-		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
+		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst"), "AC");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify Location free/busy status");
 	}
 }

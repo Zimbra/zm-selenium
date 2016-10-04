@@ -52,7 +52,7 @@ public class CreateMeetingBySelectOptionalAddresses extends CalendarWorkWeekTest
 	
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
-		apptForm.zClickAt(com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators.ShowOptionalLink,"");
+		apptForm.zToolbarPressButton(Button.B_SHOW_OPTIONAL);
 		apptForm.zFill(appt);
         apptForm.zToolbarPressButton(Button.B_OPTIONAL);
         DialogFindAttendees dialogFindAttendees = (DialogFindAttendees) new DialogFindAttendees(app, app.zPageCalendar);

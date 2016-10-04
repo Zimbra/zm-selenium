@@ -51,7 +51,7 @@ public class Forward extends PrefGroupMailByMessageTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 						
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

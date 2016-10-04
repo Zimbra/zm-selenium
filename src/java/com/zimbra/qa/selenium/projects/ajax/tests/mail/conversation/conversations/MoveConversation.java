@@ -72,7 +72,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		//-- GUI
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(c.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox));
 
 		// Select the item
@@ -121,7 +121,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		//-- GUI
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(c.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox));
 
 		// Select the item
@@ -167,7 +167,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		//-- GUI
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(c.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox));
 
 		// Select the item
@@ -224,7 +224,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		//-- GUI
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(c.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox));
 
 		// Click the subfolder in the tree
@@ -272,7 +272,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		//-- GUI
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(c.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox));
 
 		// Select the item
@@ -367,7 +367,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		//-- GUI
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(c.getSubject());
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox));
 
 		// Select the item

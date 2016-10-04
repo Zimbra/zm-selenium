@@ -63,7 +63,7 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringDoesNotContain(mail.getFlags(), "u", "Verify message is initially unread");
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 				
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -104,7 +104,7 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringDoesNotContain(mail.getFlags(), "u", "Verify message is initially unread");
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 				
 		// Select the item
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_MARK_AS_UNREAD, mail.dSubject);

@@ -25,6 +25,7 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.LmtpInject;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.performance.PerfKey;
 import com.zimbra.qa.selenium.framework.util.performance.PerfMetrics;
@@ -126,7 +127,7 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailAppCompose, "Load Reply-Compose window for invite conversation with 7mb attachment");
 

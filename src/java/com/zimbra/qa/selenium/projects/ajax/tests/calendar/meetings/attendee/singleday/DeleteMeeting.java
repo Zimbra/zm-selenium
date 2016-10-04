@@ -131,8 +131,8 @@ public class DeleteMeeting extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
 		
 		// EST timezone string
 		String tz = ZTimeZone.TimeZoneEST.getID();
@@ -156,7 +156,7 @@ public class DeleteMeeting extends CalendarWorkWeekTest {
 				+	"</CreateAppointmentRequest>");
 		
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		
 		// Click to appointment and delete it
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);

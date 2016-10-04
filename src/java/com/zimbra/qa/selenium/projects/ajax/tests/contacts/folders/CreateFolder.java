@@ -89,6 +89,10 @@ public class CreateFolder extends AjaxCommonTest {
 
 		// Folder name 
 		String folderName = "folder" + ConfigProperties.getUniqueString();
+		
+		// Work around
+		app.zPageContacts.sRefresh();
+		app.zPageContacts.zNavigateTo();
 
 		// Right click on Contacts -> New Addressbook
 		DialogCreateFolder createFolderDialog = (DialogCreateFolder) app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_NEWFOLDER,folderItem);

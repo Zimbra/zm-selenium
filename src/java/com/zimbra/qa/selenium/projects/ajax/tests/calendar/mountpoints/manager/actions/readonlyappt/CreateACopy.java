@@ -94,7 +94,7 @@ public class CreateACopy extends CalendarWorkWeekTest {
 		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountPointName);
 				
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		
 		// Copy appointment
         DialogInformational dialog = (DialogInformational)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_A_COPY_MENU, apptSubject);

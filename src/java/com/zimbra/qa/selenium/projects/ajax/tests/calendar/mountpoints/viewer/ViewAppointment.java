@@ -88,7 +88,7 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 				+	"</CreateAppointmentRequest>");
 		
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		
 		// Mark ON to mounted calendar folder and select the appointment
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");

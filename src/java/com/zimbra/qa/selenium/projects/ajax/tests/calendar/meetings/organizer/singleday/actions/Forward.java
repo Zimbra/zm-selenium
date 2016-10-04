@@ -70,7 +70,7 @@ public class Forward extends CalendarWorkWeekTest {
                "</CreateAppointmentRequest>");
 
         // Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         
         // Forward appointment to different attendee
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_FORWARD_MENU, apptSubject);
@@ -113,8 +113,8 @@ public class Forward extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -134,7 +134,7 @@ public class Forward extends CalendarWorkWeekTest {
                "</CreateAppointmentRequest>");
         
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         
         // Forward appointment to different attendee
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_FORWARD_MENU, apptSubject);
@@ -220,7 +220,7 @@ public class Forward extends CalendarWorkWeekTest {
                "</CreateAppointmentRequest>");
         
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		
         // Forward appointment to different attendee
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_FORWARD_MENU, apptSubject);
@@ -275,8 +275,8 @@ public class Forward extends CalendarWorkWeekTest {
 		
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee1);
-		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
-		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 5, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 7, 0, 0));
 		appt.setContent(apptContent);
 	
 		// Compose appointment and send it to invitee
@@ -284,7 +284,7 @@ public class Forward extends CalendarWorkWeekTest {
 		apptForm.zFill(appt);
 		apptForm.zSubmit();
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         app.zPageMail.zNavigateTo();
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

@@ -77,7 +77,7 @@ public class CheckToFieldInConversationViewInSentFolder extends AjaxCommonTest {
 		app.zPageLogin.zLogin(ZimbraAccount.AccountA());
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		
 		// Click in sent
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Sent));

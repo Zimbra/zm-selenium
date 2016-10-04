@@ -17,10 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
 
 import java.util.HashMap;
-
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.RecipientItem;
@@ -53,19 +51,16 @@ public class ChangeSignatureWhenzimbraFeatureHtmlComposeEnabledIsFalse extends A
 	@BeforeMethod(groups = { "always" })
 	public void CreateSignature() throws HarnessException {
 		ZimbraAccount.AccountZWC().authenticate();
-		ZimbraAccount.AccountZWC().soapSend(
-				"<CreateSignatureRequest xmlns='urn:zimbraAccount'>"
-				+ "<signature name='" + this.sigName + "' >"
-				+ "<content type='text/plain'>" + this.sigBody
-				+ "</content>" + "</signature>"
-				+ "</CreateSignatureRequest>");
-		
-		// Modify the test account and change zimbraFeatureHtmlComposeEnabled to FALSE
-		ZimbraAdminAccount.GlobalAdmin().soapSend(
-				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
-			+		"<id>"+ app.zGetActiveAccount().ZimbraId +"</id>"
-			+		"<a n='zimbraFeatureHtmlComposeEnabled'>FALSE</a>"
-			+	"</ModifyAccountRequest>");
+		ZimbraAccount.AccountZWC()
+				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + this.sigName
+						+ "' >" + "<content type='text/plain'>" + this.sigBody + "</content>" + "</signature>"
+						+ "</CreateSignatureRequest>");
+
+		// Modify the test account and change zimbraFeatureHtmlComposeEnabled to
+		// FALSE
+		ZimbraAdminAccount.GlobalAdmin()
+				.soapSend("<ModifyAccountRequest xmlns='urn:zimbraAdmin'>" + "<id>" + app.zGetActiveAccount().ZimbraId
+						+ "</id>" + "<a n='zimbraFeatureHtmlComposeEnabled'>FALSE</a>" + "</ModifyAccountRequest>");
 
 		// Logout and login
 		this.app.zPageLogin.zNavigateTo();
@@ -76,18 +71,21 @@ public class ChangeSignatureWhenzimbraFeatureHtmlComposeEnabledIsFalse extends A
 	}
 
 	/**
-	 * Test case : User should be able to change/select signature when zimbraFeatureHtmlComposeEnabled = FALSE
+	 * Test case : User should be able to change/select signature when
+	 * zimbraFeatureHtmlComposeEnabled = FALSE
+	 * 
 	 * @throws HarnessException
 	 */
-	@Bugs(ids="83194")
-	@Test( description = " User should be able to change/select signature when zimbraFeatureHtmlComposeEnabled = FALSE", groups = { "functional" })
-	
+	@Bugs(ids = "83194")
+	@Test(description = " User should be able to change/select signature when zimbraFeatureHtmlComposeEnabled = FALSE", groups = {
+			"functional" })
+
 	public void ChangeSignatureWhenzimbraFeatureHtmlComposeEnabledIsFalse_01() throws HarnessException {
-		
+
 		// Signature is created
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
-		ZAssert.assertEquals(signature.getName(), this.sigName,"verified Text Signature is created");
-		
+		ZAssert.assertEquals(signature.getName(), this.sigName, "verified Text Signature is created");
+
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountZWC()));
@@ -100,30 +98,35 @@ public class ChangeSignatureWhenzimbraFeatureHtmlComposeEnabledIsFalse extends A
 
 		// Fill out the form with the data
 		mailform.zFill(mail);
-		 //click Signature drop down and add signature
-		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_ADD_SIGNATURE,this.sigName);
-		
-		DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning,app,((AppAjaxClient) app).zPageMail);
+		// click Signature drop down and add signature
+		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_SIGNATURE, this.sigName);
+
+		DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning, app,
+				((AppAjaxClient) app).zPageMail);
 		if (dialog.zIsActive()) {
-		//ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
-		dialog.zClickButton(Button.B_OK);
+			// ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog
+			// opens");
+			dialog.zClickButton(Button.B_OK);
 		}
-	
+
 		// Send the message
 		mailform.zSubmit();
 
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountZWC(),"in:inbox subject:(" + mail.dSubject + ")");
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountZWC(),
+				"in:inbox subject:(" + mail.dSubject + ")");
 
 		logger.debug("===========received is: " + received);
 		logger.debug("===========app is: " + app);
-		
-		//Verify TO, Subject, Body,Signature
 
-		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress,"Verify the from field is correct");
-		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress,ZimbraAccount.AccountZWC().EmailAddress,"Verify the to field is correct");
-		ZAssert.assertEquals(received.dSubject, mail.dSubject,"Verify the subject field is correct");
-		ZAssert.assertStringContains(received.dBodyText, mail.dBodyText,"Verify the body content is correct");
-		ZAssert.assertStringContains(received.dBodyText, this.sigBody,"Verify the signature is correct");
+		// Verify TO, Subject, Body,Signature
+
+		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress,
+				"Verify the from field is correct");
+		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountZWC().EmailAddress,
+				"Verify the to field is correct");
+		ZAssert.assertEquals(received.dSubject, mail.dSubject, "Verify the subject field is correct");
+		ZAssert.assertStringContains(received.dBodyText, mail.dBodyText, "Verify the body content is correct");
+		ZAssert.assertStringContains(received.dBodyText, this.sigBody, "Verify the signature is correct");
 
 	}
 }

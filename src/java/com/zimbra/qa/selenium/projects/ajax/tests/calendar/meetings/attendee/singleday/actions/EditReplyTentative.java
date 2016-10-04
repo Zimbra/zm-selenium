@@ -71,12 +71,11 @@ public class EditReplyTentative extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invitation as tentative ----------------------------------------------------
 
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
 		FormMailNew mailComposeForm = (FormMailNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT_REPLY_TENTATIVE_SUB_MENU, apptSubject);
 		mailComposeForm.zFillField(Field.Body, " " + modifiedBody);
 		mailComposeForm.zSubmit();
-		SleepUtil.sleepVeryLong(); // attendee status changes from NE to TE
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 
@@ -95,7 +94,7 @@ public class EditReplyTentative extends CalendarWorkWeekTest {
 		ZimbraAccount.AccountA().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
 		
-		String attendeeStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
+		String attendeeStatus = zWaitTillSoapResponse(ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst"), "TE");
 
 		// Verify attendee status shows as ptst=TE
 		ZAssert.assertEquals(attendeeStatus, "TE", "Verify that the attendee shows as 'TENTATIVE'");

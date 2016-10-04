@@ -68,7 +68,7 @@ public class Tentative extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invite as tentative ----------------------------------------------------
 
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_TENTATIVE_MENU, apptSubject);
 
@@ -110,7 +110,7 @@ public class Tentative extends CalendarWorkWeekTest {
 		app.zGetActiveAccount().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
 		
-		String myStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
+		String myStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst"), "TE");
 
 		// Verify attendee status shows as ptst=TE
 		ZAssert.assertEquals(myStatus, "TE", "Verify that the attendee shows as 'TENTATIVE'");

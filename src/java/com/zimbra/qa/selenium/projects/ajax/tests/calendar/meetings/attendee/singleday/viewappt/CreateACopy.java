@@ -75,7 +75,7 @@ public class CreateACopy extends CalendarWorkWeekTest {
 		this.startingPage.zNavigateTo();
         
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         
         // --------------- Login to attendee & open the invitation ----------------------------------------------------
         DialogInformational dialog = (DialogInformational)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_CREATE_A_COPY_MENU, apptSubject);;

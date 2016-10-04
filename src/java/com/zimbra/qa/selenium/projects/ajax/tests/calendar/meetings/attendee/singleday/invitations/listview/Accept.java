@@ -80,7 +80,7 @@ public class Accept extends CalendarWorkWeekTest {
 				"</CreateAppointmentRequest>");
 
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 

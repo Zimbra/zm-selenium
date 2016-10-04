@@ -91,7 +91,7 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Click on the mountpoint
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, mountpoint);
@@ -187,7 +187,7 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Click on the mountpoint
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, mountpoint);

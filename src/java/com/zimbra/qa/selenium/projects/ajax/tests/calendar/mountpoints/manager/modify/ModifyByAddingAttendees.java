@@ -99,7 +99,7 @@ public class ModifyByAddingAttendees extends CalendarWorkWeekTest {
 		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountPointName);
 		
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         
         // Add attendee2 and re-send the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);

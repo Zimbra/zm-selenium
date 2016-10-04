@@ -286,7 +286,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 				"</CreateAppointmentRequest>");
 		
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		
 		// --------------- Login to attendee & modify series ----------------------------------------------------
 
@@ -503,7 +503,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 				"</CreateAppointmentRequest>");
 		
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Appointment not displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		DialogOpenRecurringItem openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
 		openRecurring.zClickButton(Button.B_OPEN_THE_SERIES);
 		openRecurring.zClickButton(Button.B_OK);

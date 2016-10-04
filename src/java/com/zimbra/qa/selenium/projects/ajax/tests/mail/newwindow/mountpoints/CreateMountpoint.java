@@ -99,7 +99,7 @@ public class CreateMountpoint extends PrefGroupMailByMessageTest {
 				+	"</SendMsgRequest>");
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(shareMessageSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(shareMessageSubject), "Verify message displayed in current view");
 
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, shareMessageSubject);

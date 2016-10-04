@@ -65,7 +65,7 @@ public class ViewMessage extends AjaxCommonTest {
 					"</SendMsgRequest>");
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Remember to close the search view
 		try {

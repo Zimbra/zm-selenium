@@ -106,7 +106,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -173,7 +173,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		String apptSubject = ConfigProperties.getUniqueString();
 
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 
 
 
@@ -186,7 +186,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -230,8 +230,8 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		String apptSubject = ConfigProperties.getUniqueString();
 
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 
 
 		// --------------- Creating invitation (organizer) ----------------------------
@@ -258,7 +258,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -338,8 +338,8 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		String modifiedBody = "modified" + ConfigProperties.getUniqueString();
 
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 
 
 		// --------------- Creating invitation (organizer) ----------------------------
@@ -366,7 +366,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 		
 		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -443,8 +443,8 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		String apptSubject = ConfigProperties.getUniqueString();
 
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 7, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
 
 
 		// --------------- Creating invitation (organizer) ----------------------------
@@ -471,7 +471,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(apptSubject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
 		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);

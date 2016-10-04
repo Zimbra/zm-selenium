@@ -70,7 +70,7 @@ public class CheckFromHeaderInConversationView extends AjaxCommonTest {
 		SleepUtil.sleepSmall();
 		
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		List<MailItem> items = app.zPageMail.zListGetMessages();
 		MailItem found = null;

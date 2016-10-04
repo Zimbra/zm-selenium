@@ -18,19 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
  */
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-
-
-
-
-
-
-
-
-
-
-
-
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -51,14 +38,13 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeI
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatureNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatureNew.Field;
 
-
 public class SignatureVcard extends AjaxCommonTest {
 	public SignatureVcard() {
 		super.startingPage = app.zPagePreferences;
-		
+
 	}
 
-	@Test( description = "Verify Signature Vcard thoough GUI", groups = { "functional" })
+	@Test(description = "Verify Signature Vcard thoough GUI", groups = { "functional" })
 	public void SignatureVcard_01() throws HarnessException {
 
 		// Create a contact
@@ -67,47 +53,48 @@ public class SignatureVcard extends AjaxCommonTest {
 		String sigBody = "sigbody" + ConfigProperties.getUniqueString();
 
 		// click on signature from left pane
-		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK,TreeItem.MailSignatures);
+		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailSignatures);
 
-		//Click on New signature button
-		FormSignatureNew signew =(FormSignatureNew) app.zPageSignature.zToolbarPressButton(Button.B_NEW);
+		// Click on New signature button
+		FormSignatureNew signew = (FormSignatureNew) app.zPageSignature.zToolbarPressButton(Button.B_NEW);
 
 		// Fill Signature Name and body
 		signew.zFillField(Field.SignatureName, sigName);
 		signew.zFillField(Field.SignatureBody, sigBody);
 
-		//click Browse button to select contact from Select Contact Dialog
+		// click Browse button to select contact from Select Contact Dialog
 
-		DialogSelectContact selectContactDialog =(DialogSelectContact) app.zPageSignature.zToolbarPressButton(Button.B_BROWSE);
+		DialogSelectContact selectContactDialog = (DialogSelectContact) app.zPageSignature
+				.zToolbarPressButton(Button.B_BROWSE);
 
-		//Verify Select Contact is active
+		// Verify Select Contact is active
 		selectContactDialog.zIsActive();
 
-		//Enter contact name 
+		// Enter contact name
 		selectContactDialog.zEnterContacts(contact.getAttribute("email"));
-		SleepUtil.sleepMedium();	
+		SleepUtil.sleepMedium();
 
-		//Click Search button		
+		// Click Search button
 		selectContactDialog.zClickButton(Button.B_SEARCH);
 		SleepUtil.sleepMedium();
 
-		//Verify contact shows in search list
-		selectContactDialog.sIsElementPresent(Locators.zListIcon);	
+		// Verify contact shows in search list
+		selectContactDialog.sIsElementPresent(Locators.zListIcon);
 		SleepUtil.sleepMedium();
 
-		//Click OK
+		// Click OK
 		selectContactDialog.zClickButton(Button.B_OK);
 
-		//Click Save
+		// Click Save
 		signew.zSubmit();
 
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), sigName);
-		//Verify signature name and body content	
-		ZAssert.assertEquals(signature.getName(),sigName,"Verify signature Name");
-		ZAssert.assertEquals(signature.dBodyText,sigBody,"Verify Text signature body");
+		// Verify signature name and body content
+		ZAssert.assertEquals(signature.getName(), sigName, "Verify signature Name");
+		ZAssert.assertEquals(signature.dBodyText, sigBody, "Verify Text signature body");
 
-		//Go to Mail Tab(Explicitly)
-		app.zPageMail.zNavigateTo();				
+		// Go to Mail Tab(Explicitly)
+		app.zPageMail.zNavigateTo();
 		SleepUtil.sleepMedium();
 
 		MailItem mail = new MailItem();
@@ -124,35 +111,30 @@ public class SignatureVcard extends AjaxCommonTest {
 		// Fill out the form with the data
 		mailform.zFill(mail);
 
-		//click Signature drop down and add signature
-		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_ADD_SIGNATURE,sigName);
+		// click Signature drop down and add signature
+		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_SIGNATURE, sigName);
 
-		//Vrify Attachment present in compose window
-		Assert.assertTrue(app.zPageMail.sIsElementPresent("css=a[class='AttLink']"),"vcf attachment link present");
+		// Vrify Attachment present in compose window
+		Assert.assertTrue(app.zPageMail.sIsElementPresent("css=a[class='AttLink']"), "vcf attachment link present");
 
-		//Verify Signature present in body
-		Assert.assertEquals(app.zPageMail.sGetText("css=body[id='tinymce'] div[data-marker='__SIG_PRE__']"),sigBody);
+		// Verify Signature present in body
+		Assert.assertEquals(app.zPageMail.sGetText("css=body[id='tinymce'] div[data-marker='__SIG_PRE__']"), sigBody);
 
 		// Send the message
 		mailform.zSubmit();
 
-		//Verify signature body and attachment through UI
+		// Verify signature body and attachment through UI
 
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
-		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject.toString());	
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject.toString());
 		SleepUtil.sleepSmall();
-		
-		
-		//Verify Attachment present in Reading pane
-		Assert.assertTrue(app.zPageMail.sIsElementPresent("css=a[class='AttLink']"),"vcf attachment link present");
 
-		//Verify Signature present in body
-		Assert.assertEquals(app.zPageMail.sGetText("css=body[id='tinymce'] div[data-marker='__SIG_PRE__']"),sigBody);
+		// Verify Attachment present in Reading pane
+		Assert.assertTrue(app.zPageMail.sIsElementPresent("css=a[class='AttLink']"), "vcf attachment link present");
 
-
+		// Verify Signature present in body
+		Assert.assertEquals(app.zPageMail.sGetText("css=body[id='tinymce'] div[data-marker='__SIG_PRE__']"), sigBody);
 
 	}
 
-
 }
-

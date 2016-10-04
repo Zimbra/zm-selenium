@@ -63,7 +63,7 @@ public class SetArchiveFolder extends PrefGroupMailByMessageTest {
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 
 		// Refresh current view
-		app.zPageMail.zVerifyMailExists(subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the message
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
