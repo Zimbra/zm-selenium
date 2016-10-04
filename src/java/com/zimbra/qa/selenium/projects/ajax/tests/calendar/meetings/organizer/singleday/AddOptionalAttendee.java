@@ -80,7 +80,6 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
         
         // Add optional attendee by typing in the field and resend the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-        apptForm.zToolbarPressButton(Button.B_SHOW_OPTIONAL);
         apptForm.zFill(appt);
         apptForm.zToolbarPressButton(Button.B_SHOW_OPTIONAL); // Hiding for next test otherwise as per application behaviour optional UI remains enabled.
 		apptForm.zSubmit();
@@ -120,6 +119,7 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 		
 		apptContent = ConfigProperties.getUniqueString();
 		appt.setSubject(apptSubject);
+		appt.setOptional(apptOptionalAttendee);
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
 		appt.setContent(apptContent);
@@ -127,7 +127,6 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 		// Compose appointment and send it to invitee
 		
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
-		apptForm.zToolbarPressButton(Button.B_SHOW_OPTIONAL);
 		apptForm.zFill(appt);
         
         apptForm.zToolbarPressButton(Button.B_OPTIONAL);

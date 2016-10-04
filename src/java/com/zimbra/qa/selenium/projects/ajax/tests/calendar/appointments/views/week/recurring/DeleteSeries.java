@@ -62,8 +62,8 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
+		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -153,8 +153,8 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -248,8 +248,8 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +

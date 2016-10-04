@@ -48,8 +48,8 @@ public class CreateAppointment extends AjaxCommonTest {
 
 	
 	@Test( description = "Create a basic appointment without an attendee in day view",
-			groups = { "smoke" }
-	)
+			groups = { "smoke" } )
+	
 	public void CreateAppointment_01() throws HarnessException {
 		
 		// Create appointment
@@ -57,8 +57,8 @@ public class CreateAppointment extends AjaxCommonTest {
 		Calendar now = Calendar.getInstance();
 		appt.setSubject(ConfigProperties.getUniqueString());
 		appt.setContent("content" + ConfigProperties.getUniqueString());
-		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
-		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0));
 	
 		// Open the new mail form
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
@@ -76,9 +76,10 @@ public class CreateAppointment extends AjaxCommonTest {
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 	}
 	
+	
 	@Test( description = "Create appointment with all the fields and verify it in day view",
-			groups = { "functional" }
-	)
+			groups = { "functional" } )
+	
 	public void CreateAppointment_02() throws HarnessException {
 		
 		// Create appointment data
@@ -101,8 +102,8 @@ public class CreateAppointment extends AjaxCommonTest {
 		appt.setOptional(apptOptional1);
 		appt.setLocation(apptLocation1);
 		appt.setEquipment(apptEquipment1);
-		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
-		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
 		appt.setContent(apptContent);
 	
 		// Compose appointment and send it to invitee
@@ -128,14 +129,15 @@ public class CreateAppointment extends AjaxCommonTest {
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 		ZAssert.assertEquals(actual.getAttendees(), appt.getAttendees(), "Attendees: Verify the appointment data");
 		ZAssert.assertEquals(actual.getOptional(), appt.getOptional(), "Optional: Verify the appointment data");
-		ZAssert.assertEquals(actual.getLocation(), appt.getLocation(), "Location: Verify the appointment data");
-		ZAssert.assertEquals(actual.getEquipment(), appt.getEquipment(), "Equipment: Verify the appointment data");
+		ZAssert.assertStringContains(actual.getLocation(), appt.getLocation(), "Location: Verify the appointment data");
+		ZAssert.assertStringContains(actual.getEquipment(), appt.getEquipment(), "Equipment: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
 	}
 	
+	
 	@Test( description = "Create private appointment in day view",
-			groups = { "functional" }
-	)
+			groups = { "functional" } )
+	
 	public void CreatePrivateAppointment_03() throws HarnessException {
 		
 		// Create appointment

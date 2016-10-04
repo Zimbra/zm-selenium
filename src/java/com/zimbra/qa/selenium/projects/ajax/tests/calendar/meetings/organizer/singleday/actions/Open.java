@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.actions;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
 import java.util.Date;
 import java.text.DateFormat;
@@ -34,12 +33,13 @@ public class Open extends CalendarWorkWeekTest {
 	public Open() {
 		logger.info("New "+ Open.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		
 	}
+	
 	
 	@Bugs(ids = "103056")
 	@Test( description = "Rt-click to invite and open it",
 			groups = { "smoke" })
+	
 	public void OpenMeeting_01() throws HarnessException, ParseException {
 		
 		organizerTest = false;
@@ -103,7 +103,5 @@ public class Open extends CalendarWorkWeekTest {
         ZAssert.assertTrue(apptForm.zVerifyLocation(apptLocation), "Verify appointment location");
         ZAssert.assertTrue(apptForm.zVerifyEquipment(apptEquipment), "Verify appointment equipment");
         ZAssert.assertEquals(apptForm.zGetApptBodyValue(), apptBody, "Verify appointment body");
-        
 	}
-	
 }

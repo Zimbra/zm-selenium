@@ -76,8 +76,8 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 3, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 4, 0, 0);
 
 		// EST timezone string
 		String tz = ZTimeZone.TimeZoneEST.getID();
@@ -168,8 +168,8 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 4, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 5, 0, 0);
 
 		// EST timezone string
 		String tz = ZTimeZone.TimeZoneEST.getID();
@@ -261,8 +261,8 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 5, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 6, 0, 0);
 
 		// EST timezone string
 		String tz = ZTimeZone.TimeZoneEST.getID();
@@ -344,8 +344,8 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 6, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 7, 0, 0);
 
 		// EST timezone string
 		String tz = ZTimeZone.TimeZoneEST.getID();
@@ -423,8 +423,8 @@ public class DeleteAppointment extends AjaxCommonTest {
 		// Create three appointments on the server
 		String subject1 = ConfigProperties.getUniqueString();
 		Calendar now = Calendar.getInstance();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 7, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
 		String tz = ZTimeZone.TimeZoneEST.getID();
 
 		// Create an appointment
@@ -446,8 +446,8 @@ public class DeleteAppointment extends AjaxCommonTest {
 				+	"</CreateAppointmentRequest>");
 
 		String subject2 = ConfigProperties.getUniqueString();
-		startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
+		startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
+		endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 
 		// Create an appointment
 		app.zGetActiveAccount().soapSend(
@@ -468,8 +468,8 @@ public class DeleteAppointment extends AjaxCommonTest {
 				+	"</CreateAppointmentRequest>");
 
 		String subject3 = ConfigProperties.getUniqueString();
-		startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
-		endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);
+		startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+		endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 
 		// Create an appointment
 		app.zGetActiveAccount().soapSend(
@@ -590,8 +590,8 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 
 		// EST timezone string
 		String tz = ZTimeZone.TimeZoneEST.getID();
@@ -617,6 +617,10 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 		// Refresh the calendar
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		
+		// Work around
+		app.zPageCalendar.sRefresh();
+		app.zPageCalendar.zNavigateTo();
 
 		// Right click the item, select delete
 		DialogConfirmDeleteAppointment dialog = (DialogConfirmDeleteAppointment)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DELETE, subject);
@@ -667,8 +671,8 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 
 		// EST timezone string
 		String tz = ZTimeZone.TimeZoneEST.getID();
@@ -762,8 +766,8 @@ public class DeleteAppointment extends AjaxCommonTest {
 				+	"</CreateAppointmentRequest>");
 
 		String subject2 = ConfigProperties.getUniqueString();
-		startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
+		startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
+		endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 
 		// Create an appointment
 		app.zGetActiveAccount().soapSend(
@@ -784,8 +788,8 @@ public class DeleteAppointment extends AjaxCommonTest {
 				+	"</CreateAppointmentRequest>");
 
 		String subject3 = ConfigProperties.getUniqueString();
-		startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
-		endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);
+		startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
 
 		// Create an appointment
 		app.zGetActiveAccount().soapSend(
