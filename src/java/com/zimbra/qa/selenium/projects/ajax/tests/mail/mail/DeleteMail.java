@@ -354,7 +354,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Verify that a mail which was present towards bottom of the list does not appear after deleting it.",
-			groups = { "functional" })
+			groups = { "functional1" })
 	
 	public void DeleteMail_07() throws HarnessException, AWTException {
 
@@ -417,7 +417,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertNull(found, "Verify the message is no longer in the inbox");
 		
 		//UI verification
-	    ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject[9]), "Verify that Mail does not exist");
+	    ZAssert.assertFalse(app.zPageMail.zVerifyMailExists(subject[9]), "Verify that Mail does not exist");
 
   }
 
