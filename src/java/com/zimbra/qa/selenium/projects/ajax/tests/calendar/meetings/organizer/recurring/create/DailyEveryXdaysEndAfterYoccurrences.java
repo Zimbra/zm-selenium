@@ -67,9 +67,7 @@ public class DailyEveryXdaysEndAfterYoccurrences extends CalendarWorkWeekTest {
 		apptForm.zFill(appt);
 		apptForm.zRepeat(Button.O_EVERY_DAY_MENU, Button.B_EVERY_DAY_RADIO_BUTTON, "", Button.B_END_AFTER_X_OCCURRENCES_RADIO_BUTTON, "10");
 		ZAssert.assertEquals(app.zPageCalendar.zGetRecurringLink(), "Every day. End after 10 occurrence(s). Effective " + startUTC.toTimeZone(tz).toMMM_dC_yyyy(), "Recurring link: Verify the appointment data");
-				
 		apptForm.zSubmit();
-		SleepUtil.sleepLong(); //SOAP gives wrong response
 		
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
@@ -95,7 +93,7 @@ public class DailyEveryXdaysEndAfterYoccurrences extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
 		
 		// Verify location free/busy status shows as ptst=AC
-		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
+		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst"), "AC");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify that the location status shows as 'ACCEPTED'");
 		
 		ZimbraAccount.AccountA().soapSend(

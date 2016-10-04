@@ -49,7 +49,7 @@ public class DeleteInstance extends AjaxCommonTest {
 	@Test(
 			description = "Delete instance of recurring appointment (every month) using toolbar button in day view", 
 			groups = { "functional" } )
-	public void DeleteInstance_04() throws HarnessException {
+	public void DeleteInstance_01() throws HarnessException {
 		
 		// Appointment data
 		String tz, apptSubject, apptBody;
@@ -59,8 +59,8 @@ public class DeleteInstance extends AjaxCommonTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
-		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -90,7 +90,6 @@ public class DeleteInstance extends AjaxCommonTest {
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         
         DialogWarning dialogSeriesOrInstance = (DialogWarning)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
-        dialogSeriesOrInstance.zClickButton(Button.B_DELETE_THIS_INSTANCE);
         DialogWarning confirmDelete = (DialogWarning)dialogSeriesOrInstance.zClickButton(Button.B_OK);
         confirmDelete.zClickButton(Button.B_YES);
         
@@ -129,7 +128,7 @@ public class DeleteInstance extends AjaxCommonTest {
 	@Test(
 			description = "Delete instance of recurring appointment (every year) using context menu in day view", 
 			groups = { "functional" } )
-	public void DeleteInstance_05() throws HarnessException {
+	public void DeleteInstance_02() throws HarnessException {
 		
 		// Appointment data
 		String tz, apptSubject, apptBody;
@@ -139,8 +138,8 @@ public class DeleteInstance extends AjaxCommonTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
-		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
+		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -169,10 +168,8 @@ public class DeleteInstance extends AjaxCommonTest {
 		
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         
-        DialogWarning dialogSeriesOrInstance = (DialogWarning)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DELETE, apptSubject);
-        dialogSeriesOrInstance.zClickButton(Button.B_DELETE_THIS_INSTANCE);
-        DialogWarning confirmDelete = (DialogWarning)dialogSeriesOrInstance.zClickButton(Button.B_OK);
-        confirmDelete.zClickButton(Button.B_YES);
+        DialogWarning dialogSeriesOrInstance = (DialogWarning)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_INSTANCE_MENU, Button.O_DELETE_MENU, apptSubject);;
+        dialogSeriesOrInstance.zClickButton(Button.B_YES);
         
         
         
@@ -218,7 +215,7 @@ public class DeleteInstance extends AjaxCommonTest {
 			description = "Delete instance of series appointment (every week) using keyboard shortcuts Del & Backspace in day view",
 			groups = { "functional" },
 			dataProvider = "DataProviderShortcutKeys" )
-	public void DeleteInstance_06(String name, int keyEvent) throws HarnessException {
+	public void DeleteInstance_03(String name, int keyEvent) throws HarnessException {
 		
 		// Appointment data
 		String tz, apptSubject, apptBody;
@@ -229,7 +226,7 @@ public class DeleteInstance extends AjaxCommonTest {
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
 		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -259,7 +256,6 @@ public class DeleteInstance extends AjaxCommonTest {
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         
         DialogWarning dialogSeriesOrInstance = (DialogWarning)app.zPageCalendar.zKeyboardKeyEvent(keyEvent);
-        dialogSeriesOrInstance.zClickButton(Button.B_DELETE_THIS_INSTANCE);
         DialogWarning confirmDelete = (DialogWarning)dialogSeriesOrInstance.zClickButton(Button.B_OK);
         confirmDelete.zClickButton(Button.B_YES);
         
