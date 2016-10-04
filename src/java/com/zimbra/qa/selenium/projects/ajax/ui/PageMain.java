@@ -151,6 +151,7 @@ public class PageMain extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if ( zIsActive() ) {
+			logger.info(myPageName() + " is already loaded");
 			return;
 		}
 
@@ -326,7 +327,7 @@ public class PageMain extends AbsTab {
 		
 		// Opened dialogs
 		String zIndex;
-		List<WebElement> dialogLocators = webDriver().findElements(By.className("DwtDialog"));
+		List<WebElement> dialogLocators = webDriver().findElements(By.cssSelector("div[class^='Dwt'][class$='Dialog']"));
 		
 		int totalDialogs = dialogLocators.size();
 		logger.info("Total dialogs found " + totalDialogs);
@@ -544,7 +545,7 @@ public class PageMain extends AbsTab {
 			
 			for (int i=0; i<=3; i++) {
 				zWaitForElementPresent(appLocator);
-				if (appLocator.contains("Calendar")) {
+				if (appTab.equals(((AppAjaxClient) MyApplication).zPageCalendar)) {
 					SleepUtil.sleepMedium();
 				} else {
 					SleepUtil.sleepSmall();

@@ -1922,7 +1922,6 @@ public class PageCalendar extends AbsTab {
 		} else if (button == Button.B_SEND) {
 			locator = Locators.SendButton;
 			page = null;
-			SleepUtil.sleepMedium();
 
 		} else if (button == Button.B_DELETE) {
 
@@ -2121,7 +2120,6 @@ public class PageCalendar extends AbsTab {
 
 		if ( keyEvent == KeyEvent.VK_DELETE || keyEvent == KeyEvent.VK_BACK_SPACE ) {
 
-
 			this.zKeyboard.zTypeKeyEvent(keyEvent);
 			this.zWaitForBusyOverlay();
 
@@ -2271,6 +2269,7 @@ public class PageCalendar extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
+			logger.info(myPageName() + " is already loaded");
 			return;
 		}
 

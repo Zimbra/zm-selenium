@@ -146,12 +146,10 @@ public class PageSearch extends AbsTab {
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
-
 		if ( zIsActive() ) {
-			// This page is already active
+			logger.info(myPageName() + " is already loaded");
 			return;
 		}
-
 
 		// If search is not active, then we must not be logged in
 		if ( !((AppAjaxClient)MyApplication).zPageMain.zIsActive() ) {
