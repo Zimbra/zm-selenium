@@ -48,7 +48,7 @@ public class DeleteInstance extends CalendarWorkWeekTest {
 	@Test(
 			description = "Delete instance of recurring appointment (every month) using toolbar button in week view", 
 			groups = { "functional" } )
-	public void DeleteInstance_04() throws HarnessException {
+	public void DeleteInstance_01() throws HarnessException {
 		
 		//-- Data Setup
 		
@@ -62,8 +62,8 @@ public class DeleteInstance extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
+		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -132,7 +132,7 @@ public class DeleteInstance extends CalendarWorkWeekTest {
 	@Test(
 			description = "Delete instance of recurring appointment (every year) using context menu in week view", 
 			groups = { "functional" } )
-	public void DeleteInstance_05() throws HarnessException {
+	public void DeleteInstance_02() throws HarnessException {
 		
 		//-- Data Setup
 		
@@ -146,8 +146,8 @@ public class DeleteInstance extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -176,10 +176,8 @@ public class DeleteInstance extends CalendarWorkWeekTest {
 		
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         
-        DialogWarning dialogSeriesOrInstance = (DialogWarning)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DELETE, apptSubject);
-        dialogSeriesOrInstance.zClickButton(Button.B_DELETE_THIS_INSTANCE);
-        DialogWarning confirmDelete = (DialogWarning)dialogSeriesOrInstance.zClickButton(Button.B_OK);
-        confirmDelete.zClickButton(Button.B_YES);
+        DialogWarning dialogSeriesOrInstance = (DialogWarning)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_INSTANCE_MENU, Button.O_DELETE_MENU, apptSubject);;
+        dialogSeriesOrInstance.zClickButton(Button.B_YES);
         
         
         
@@ -225,7 +223,7 @@ public class DeleteInstance extends CalendarWorkWeekTest {
 			description = "Delete instance of series appointment (every week) using keyboard shortcuts Del & Backspace in week view",
 			groups = { "functional" },
 			dataProvider = "DataProviderShortcutKeys" )
-	public void DeleteInstance_06(String name, int keyEvent) throws HarnessException {
+	public void DeleteInstance_03(String name, int keyEvent) throws HarnessException {
 		
 		//-- Data Setup
 		
@@ -239,8 +237,8 @@ public class DeleteInstance extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +

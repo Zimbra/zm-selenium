@@ -968,7 +968,7 @@ public class FormApptNew extends AbsForm {
 					locator = "css=textarea[class='ZmHtmlEditorTextArea']";
 
 					this.sFocus(locator);
-					this.zClickAt(locator, "10,10");
+					this.sClick(locator);
 					this.zWaitForBusyOverlay();
 					this.sType(locator, value);
 
@@ -983,7 +983,7 @@ public class FormApptNew extends AbsForm {
 						if (this.sIsElementPresent("css=textarea[class='ZmHtmlEditorTextArea'][style*='display: block;']")) {
 							locator = "css=textarea[class='ZmHtmlEditorTextArea']";
 							this.sFocus(locator);
-							this.zClick(locator);
+							this.sClick(locator);
 							this.sType(locator, value);
 
 						} else if (this.sIsElementPresent("css=iframe[id$='ZmHtmlEditor1_body_ifr']")) {
@@ -1091,6 +1091,7 @@ public class FormApptNew extends AbsForm {
 
 		// Optional
 		if (appt.getOptional() != null) {
+			sClickJavaScript(Locators.ShowOptionalLink);
 			zFillField(Field.Optional, appt.getOptional());
 		}
 

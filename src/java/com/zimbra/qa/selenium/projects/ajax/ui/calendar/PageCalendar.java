@@ -324,6 +324,7 @@ public class PageCalendar extends AbsTab {
 	}
 
 	public boolean zIsAppointmentExists(String apptSubject) throws HarnessException {
+		SleepUtil.sleepSmall();
 		if (sIsElementPresent("css=td.appt_name:contains('" + apptSubject + "')") == true ||
 				sIsElementPresent("css=td.appt_new_name:contains('" + apptSubject + "')") == true ||
 				sIsElementPresent("css=td.appt_allday_name:contains('" + apptSubject + "')") == true ||
@@ -337,6 +338,7 @@ public class PageCalendar extends AbsTab {
 	}
 	
 	public boolean zIsAppointmentVisible(String apptSubject) throws HarnessException {
+		SleepUtil.sleepSmall();
 		if (sIsVisible("css=td.appt_name:contains('" + apptSubject + "')") == true ||
 				sIsVisible("css=td.appt_new_name:contains('" + apptSubject + "')") == true ||
 				sIsVisible("css=td.appt_allday_name:contains('" + apptSubject + "')") == true ||
@@ -2117,6 +2119,8 @@ public class PageCalendar extends AbsTab {
 
 	public AbsPage zKeyboardKeyEvent(int keyEvent) throws HarnessException {
 		AbsPage page = null;
+		
+		SleepUtil.sleepMedium();
 
 		if ( keyEvent == KeyEvent.VK_DELETE || keyEvent == KeyEvent.VK_BACK_SPACE ) {
 

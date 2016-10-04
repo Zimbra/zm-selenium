@@ -46,13 +46,13 @@ public class CreateMeetingBySelectOptionalAddresses extends CalendarWorkWeekTest
 		
 		apptContent = ConfigProperties.getUniqueString();
 		appt.setSubject(apptSubject);
+		appt.setOptional(apptOptionalAttendee);
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0));
 		appt.setContent(apptContent);
 	
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
-		apptForm.zToolbarPressButton(Button.B_SHOW_OPTIONAL);
 		apptForm.zFill(appt);
         apptForm.zToolbarPressButton(Button.B_OPTIONAL);
         DialogFindAttendees dialogFindAttendees = (DialogFindAttendees) new DialogFindAttendees(app, app.zPageCalendar);
