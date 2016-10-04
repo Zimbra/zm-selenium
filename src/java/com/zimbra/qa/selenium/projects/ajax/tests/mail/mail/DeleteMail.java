@@ -354,7 +354,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Verify that a mail which was present towards bottom of the list does not appear after deleting it.",
-			groups = { "functional1" })
+			groups = { "functional" })
 	
 	public void DeleteMail_07() throws HarnessException, AWTException {
 
