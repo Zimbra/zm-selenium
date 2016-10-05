@@ -1911,6 +1911,18 @@ public class PageCalendar extends AbsTab {
 		} else if (button == Button.B_NEW) {
 			locator = "css=td#zb__NEW_MENU_title";
 			page = new FormApptNew(this.MyApplication);
+			
+			for (int i=0; i<=2; i++) {
+				this.sClick(locator);
+				zWaitForBusyOverlay();
+				SleepUtil.sleepMedium();
+				
+				if (!page.zIsActive()) {
+					continue;
+				} else {
+					return page;
+				}
+			}
 
 		} else if (button == Button.B_CLOSE) {
 			locator = Locators.CloseButton;
@@ -2108,11 +2120,10 @@ public class PageCalendar extends AbsTab {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 		}
-
-		SleepUtil.sleepMedium();
 		if (page != null) {
 			page.zWaitForActive();
 		}
+		SleepUtil.sleepMedium();
 
 		return (page);
 	}

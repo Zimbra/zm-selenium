@@ -214,9 +214,6 @@ public class ReplyFromSentFolderWithReplyToHeader extends PrefGroupMailByMessage
 		app.zPageLogin.zNavigateTo();
 		this.startingPage.zNavigateTo();
 
-		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-
 		// Click in sent
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Sent));
 		

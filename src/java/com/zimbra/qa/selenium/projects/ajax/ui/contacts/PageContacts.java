@@ -853,9 +853,10 @@ public class PageContacts extends AbsTab {
 			ContextMenuItem cmi = null;
 		    ContextMenuItem sub_cmi = null;
 
-		    zRightClickAt(getContactLocator(contact), "0,0");
 		    SleepUtil.sleepSmall();
-
+		    
+		    zRightClickAt(getContactLocator(contact), "0,0");
+		    
 			if (option == Button.B_TAG) {
 
 				cmi=CONTEXT_MENU.CONTACT_TAG;

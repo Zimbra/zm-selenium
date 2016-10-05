@@ -56,8 +56,8 @@ public class Stafpostqueue extends StafServicePROCESS {
 			emailaddress = "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com");
 		}
 
-		int max = Integer.parseInt(ConfigProperties.getStringProperty("postqueue.sleep.max.msec", "30000"));
-		int interval = Integer.parseInt(ConfigProperties.getStringProperty("postqueue.sleep.interval.msec", "1000"));
+		int max = Integer.parseInt(ConfigProperties.getStringProperty("postqueue.sleep.max.msec"));
+		int interval = Integer.parseInt(ConfigProperties.getStringProperty("postqueue.sleep.interval.msec"));
 		for (int i = 0; i < max; i += interval) {
 			
 			// Check the server queue if it is empty

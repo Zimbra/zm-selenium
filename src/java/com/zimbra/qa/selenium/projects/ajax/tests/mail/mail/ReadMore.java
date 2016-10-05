@@ -17,28 +17,22 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
 import java.io.*;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-
 public class ReadMore extends PrefGroupMailByMessageTest {
 
-	
 	public ReadMore() throws HarnessException {
 		logger.info("New "+ ReadMore.class.getCanonicalName());
-		
-
 	}
 	
 	
 	@Test( description = "Use the 'Read More' button to scroll through the message content",
 			groups = { "functional" })
+	
 	public void ViewMail_01() throws HarnessException {
-		
 		
 		//-- DATA
 		
@@ -47,13 +41,10 @@ public class ReadMore extends PrefGroupMailByMessageTest {
 		final String mimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email11";
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFolder));
 
-
-		
 		//-- GUI
 		
-		
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -65,8 +56,5 @@ public class ReadMore extends PrefGroupMailByMessageTest {
 		
 		// TODO: not sure how to verify that the scrollbar has moved?
 		
-
 	}
-
-
 }

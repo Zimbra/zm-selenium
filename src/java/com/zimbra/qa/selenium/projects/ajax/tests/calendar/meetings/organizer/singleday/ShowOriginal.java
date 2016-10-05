@@ -87,7 +87,8 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 
         // Open appointment & click context menu 'Show Original' Option
         SeparateWindow window = (SeparateWindow)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK,Button.O_SHOW_ORIGINAL_MENU, apptSubject);
-        try { 
+        try {
+        	window.zSetWindowName();
 			window.zWaitForActive();
 			SleepUtil.sleepMedium();
 			String attendeeHeader = "ATTENDEE;CN=2;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:mailto:";

@@ -17,15 +17,14 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attributes.zimbraPrefShowSelectionCheckboxTrue;
 
 import org.testng.annotations.*;
-
 import com.zimbra.common.soap.*;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
-
 
 public class MoveMessage extends PrefGroupMailByMessageTest {
 
@@ -39,27 +38,20 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			logger.warn(dialog.myPageName() +" was still active.  Cancelling ...");
 			dialog.zClickButton(Button.B_CANCEL);
 		}
-		
 	}
 	
 	public MoveMessage() {
-		logger.info("New "+ MoveMessage.class.getCanonicalName());
-		
-		
+		logger.info("New "+ MoveMessage.class.getCanonicalName());		
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
 		super.startingAccountPreferences.put("zimbraPrefItemsPerVirtualPage", "10");
-
-		
 	}
-	
-	
 	
 
 	@Test( description = "Move all mails by selecting 'select all', then clicking toolbar 'Move' button",
 			groups = { "functional" })
-	public void MoveMessage_02() throws HarnessException {
+	
+	public void MoveMessage_01() throws HarnessException {
 
-		
 		//-- DATA
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		String subject = "subject"+ ConfigProperties.getUniqueString();
@@ -82,12 +74,11 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 	            	+			"</content>"
 	            	+		"</m>"
 					+	"</AddMsgRequest>");
-			
 		}
 		
 		// Create a subfolder to move the message into
 		// i.e. Inbox/subfolder
-		//
+
 		String foldername = "folder"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -95,11 +86,9 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 					"</CreateFolderRequest>");
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 
-
-		
+		SleepUtil.sleepMedium(); // Wait for sometime to deliver 5 mails
 
 		//-- GUI
-
 		
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -111,7 +100,6 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		// Click move -> subfolder
 		app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, subfolder);
 
-		
 		//-- VERIFICATION
 		
 		// Verify no messages remain in the inbox
@@ -121,15 +109,14 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
                 "</SearchRequest>");
 		Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:m");
 		ZAssert.assertEquals(nodes.length, 0, "Verify 0 messages remain in the inbox");
-
-		
 	}
 
-
+	
+	@Bugs(ids = "106905")
 	@Test( description = "Move all mails by selecting 'shift-select all', then clicking toolbar 'Move' button",
 			groups = { "functional" })
-	public void MoveMessage_01() throws HarnessException {
-
+	
+	public void MoveMessage_02() throws HarnessException {
 		
 		//-- DATA
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
@@ -158,7 +145,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		
 		// Create a subfolder to move the message into
 		// i.e. Inbox/subfolder
-		//
+
 		String foldername = "folder"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -166,14 +153,12 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 					"</CreateFolderRequest>");
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 
-
-		
+		SleepUtil.sleepLong(); // Wait for sometime to deliver 25 mails
 
 		//-- GUI
 
-		
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK,inbox);
 		
@@ -182,7 +167,6 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 				
 		// Click move -> subfolder
 		app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, subfolder);
-
 		
 		//-- VERIFICATION
 		
@@ -193,10 +177,5 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
                 "</SearchRequest>");
 		Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:m");
 		ZAssert.assertEquals(nodes.length, 0, "Verify 0 messages remain in the inbox");
-
-		
 	}
-
-
-
 }

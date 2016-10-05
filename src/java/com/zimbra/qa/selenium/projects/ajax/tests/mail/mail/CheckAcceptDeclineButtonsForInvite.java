@@ -22,6 +22,7 @@ import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
+import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -37,7 +38,7 @@ public class CheckAcceptDeclineButtonsForInvite extends PrefGroupMailByMessageTe
 	}
 	
 	@Bugs( ids = "21013")
-	@Test( description = "Verify bug 21013", groups = { "functional" })
+	@Test( description = "Mail with ics attachment doesn't open appt (view-appt window breaks)", groups = { "functional" })
 	
 	public void CheckAcceptDeclineButtonsForInvite_01 () throws HarnessException {
 
@@ -47,12 +48,10 @@ public class CheckAcceptDeclineButtonsForInvite extends PrefGroupMailByMessageTe
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
 		ZAssert.assertTrue(display.zHasADTButtons(), "Verify A/D/T buttons");
-
 	}
 }
