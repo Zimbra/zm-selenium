@@ -365,6 +365,18 @@ public class PageMail extends AbsTab {
 
 			locator = "css=div[id$='__NEW_MENU'] td[id$='__NEW_MENU_title']";
 			page = new FormMailNew(this.MyApplication);
+			
+			for (int i=0; i<=2; i++) {
+				this.sClick(locator);
+				zWaitForBusyOverlay();
+				SleepUtil.sleepMedium();
+				
+				if (!page.zIsActive()) {
+					continue;
+				} else {
+					return page;
+				}
+			}
 
 		} else if (button == Button.B_NEW_IN_NEW_WINDOW) {
 
@@ -607,10 +619,8 @@ public class PageMail extends AbsTab {
 			}
 			page = null;
 
-			final org.openqa.selenium.interactions.Actions builder = new org.openqa.selenium.interactions.Actions(
-					webDriver());
-			org.openqa.selenium.interactions.Action action = builder.keyDown(Keys.SHIFT).click(getElement(locator))
-					.keyUp(Keys.SHIFT).build();
+			final org.openqa.selenium.interactions.Actions builder = new org.openqa.selenium.interactions.Actions(webDriver());
+			org.openqa.selenium.interactions.Action action = builder.keyDown(Keys.SHIFT).click(getElement(locator)).keyUp(Keys.SHIFT).build();
 			action.perform();
 
 			this.zWaitForBusyOverlay();
@@ -734,7 +744,7 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		this.sClickAt(locator, "");
+		this.sClick(locator);
 		zWaitForBusyOverlay();
 
 		if (button == Button.B_EML_ATTACHEMENT) {
@@ -1769,7 +1779,6 @@ public class PageMail extends AbsTab {
 				pulldownLocator = "css=td#zb__TV-main__MOVE_MENU_dropdown>div";
 				optionLocator = "css=td#zti__ZmFolderChooser_MailTV-main__" + folder.getId() + "_textCell";
 			}
-
 			page = null;
 
 		} else if (pulldown == Button.B_TAG) {
@@ -1798,25 +1807,21 @@ public class PageMail extends AbsTab {
 						"Button " + pulldown + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator, "");
-
-			// If the app is busy, wait for it to become active
+			this.sClickAt(pulldownLocator, "");
 			zWaitForBusyOverlay();
-
-			SleepUtil.sleepSmall();
+			SleepUtil.sleepMedium();
 
 			if (optionLocator != null) {
 
 				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
-					throw new HarnessException(
-							" dynamic " + dynamic + " optionLocator " + optionLocator + " not present!");
+					throw new HarnessException(" dynamic " + dynamic + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator, "");
-
-				// If the app is busy, wait for it to become active
+				logger.info(this.sIsElementPresent(optionLocator));
+				this.sClickAt(optionLocator, "");
 				zWaitForBusyOverlay();
+				SleepUtil.sleepMedium();
 			}
 
 		}

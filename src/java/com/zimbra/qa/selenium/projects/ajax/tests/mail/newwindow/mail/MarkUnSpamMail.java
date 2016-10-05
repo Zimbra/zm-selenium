@@ -60,7 +60,7 @@ public class MarkUnSpamMail extends PrefGroupMailByMessageTest {
             	"</AddMsgRequest>");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 				
 		// Go to the Junk folder
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, junk);

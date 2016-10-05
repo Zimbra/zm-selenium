@@ -50,7 +50,7 @@ public class ReplyingMessageDoesntCreateDraft extends PrefGroupMailByMessageTest
 		//-- GUI
 		
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

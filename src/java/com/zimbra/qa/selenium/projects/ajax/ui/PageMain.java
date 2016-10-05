@@ -210,7 +210,7 @@ public class PageMain extends AbsTab {
 
 		this.sClickAt(locator, "0,0");
 		this.zWaitForBusyOverlay();
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 
 		return (page);
 

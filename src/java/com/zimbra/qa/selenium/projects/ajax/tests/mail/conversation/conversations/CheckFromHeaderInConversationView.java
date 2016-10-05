@@ -19,9 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversatio
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -29,7 +27,6 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.LmtpInject;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -39,22 +36,24 @@ public class CheckFromHeaderInConversationView extends AjaxCommonTest {
 
 	@SuppressWarnings("serial")
 	public CheckFromHeaderInConversationView() {
-		logger.info("New "+ CheckFromHeaderInConversationView.class.getCanonicalName());
+		logger.info("New " + CheckFromHeaderInConversationView.class.getCanonicalName());
 
 		// All tests start at the login page
 		super.startingPage = app.zPageMail;
 
 		// Make sure we are using an account with message view
-		super.startingAccountPreferences = new HashMap<String, String>() {{
-			put("zimbraPrefGroupMailBy", "conversation");
-			put("zimbraPrefMessageViewHtmlPreferred", "TRUE");
-		}};
+		super.startingAccountPreferences = new HashMap<String, String>() {
+			{
+				put("zimbraPrefGroupMailBy", "conversation");
+				put("zimbraPrefMessageViewHtmlPreferred", "TRUE");
+			}
+		};
 
 	}
 
 	@Bugs(ids = "67986,64067,47288,16213")
-	@Test( description = "Conversation list should show From=<blank>", groups = { "functional" })
-	
+	@Test(description = "Conversation list should show From=<blank>", groups = { "functional" })
+
 	public void CheckFromHeaderInConversationView_01() throws HarnessException {
 
 		String subject = "Encoding test";
@@ -63,28 +62,20 @@ public class CheckFromHeaderInConversationView extends AjaxCommonTest {
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug16213";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 
-		// Click on  folder in the tree
+		// Click on folder in the tree
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
 
-		SleepUtil.sleepSmall();
-		
-		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-
 		List<MailItem> items = app.zPageMail.zListGetMessages();
 		MailItem found = null;
-		for ( MailItem item : items ) {
-			if ( item.gSubject.contains(subject) ) {
+		for (MailItem item : items) {
+			if (item.gSubject.contains(subject)) {
 				found = item;
 				break;
 			}
 		}
-		
+
 		ZAssert.assertNotNull(found, "Verify the message exists in the list");
 		ZAssert.assertStringDoesNotContain(found.gFrom, to, "Verify the To is not contained in the From");
-
-
 	}
-
 }

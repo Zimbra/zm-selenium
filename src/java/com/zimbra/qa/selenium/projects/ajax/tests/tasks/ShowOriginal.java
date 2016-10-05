@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.tasks.showoriginal;
+package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
 
 import java.util.*;
 import org.testng.annotations.*;
@@ -73,15 +73,13 @@ public class ShowOriginal extends AjaxCommonTest {
 		// Select the item
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
 
-		SeparateWindow window = null;
+		// Right click the item, select Show Original
+		SeparateWindow window = (SeparateWindow) app.zPageTasks.zListItem(Action.A_RIGHTCLICK, Button.O_SHOW_ORIGINAL, subject);
 
 		try {
-
-			// Right click the item, select Show Original
-			window = (SeparateWindow) app.zPageTasks.zListItem(Action.A_RIGHTCLICK, Button.O_SHOW_ORIGINAL, subject);
+			window.zSetWindowName();
 			window.zWaitForActive();
 			SleepUtil.sleepMedium(); 
-			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 
 			// Verify show original window with proper content.
 			String ShowOrigBody = window.sGetBodyText();

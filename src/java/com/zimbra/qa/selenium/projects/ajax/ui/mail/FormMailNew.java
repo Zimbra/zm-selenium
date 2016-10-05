@@ -292,14 +292,14 @@ public class FormMailNew extends AbsForm {
 
 			//Show Bcc is under option drop-down menu
 			String optionLocator = "css=[id$=__COMPOSE_OPTIONS_title]";
-			this.sClickAt(optionLocator, "0,0");
-			locator =  "css=div[id$=SHOW_BCC]";;
+			this.sClick(optionLocator);
+			locator = "css=div[id$=SHOW_BCC]";;
 
 			if ( zBccIsActive() )
 				return (this);
 
 			// Click it
-			this.sClickAt(locator, "0,0");
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
 			return (page);
