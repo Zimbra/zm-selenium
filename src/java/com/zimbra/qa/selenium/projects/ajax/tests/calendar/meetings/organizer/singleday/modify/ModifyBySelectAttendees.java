@@ -106,7 +106,7 @@ public class ModifyBySelectAttendees extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(addeddAttendee, "Verify meeting invite is present in attendee2's calendar");
 		
 		// Verify attendee2 free/busy status
-		String attendee2Status = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptAttendee2 +"']", "ptst"), "NE");
+		String attendee2Status = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptAttendee2 +"']", "ptst");
 		ZAssert.assertEquals(attendee2Status, "NE", "Verify attendee2 free/busy status");
 		
 	}

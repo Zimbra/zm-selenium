@@ -86,7 +86,7 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
 		
 		// Verify location free/busy status shows as psts=AC	
-		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation1 +"']", "ptst"), "AC");
+		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation1 +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify that the location status shows as 'ACCEPTED'");
 	}
 	
@@ -149,8 +149,8 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 		ZAssert.assertStringContains(actual.getLocation().replace(";", ""), appt.getLocation(), "Location: Verify the appointment data");
 		
 		// Verify both location free/busy status
-		String locationStatus1 = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ location1.EmailAddress +"']", "ptst"), "AC");
-		String locationStatus2 = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ location2.EmailAddress +"']", "ptst"), "AC");
+		String locationStatus1 = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ location1.EmailAddress +"']", "ptst");
+		String locationStatus2 = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ location2.EmailAddress +"']", "ptst");
 		ZAssert.assertEquals(locationStatus1, "AC", "Verify that the location1 status shows as 'ACCEPTED'");
 		ZAssert.assertEquals(locationStatus2, "AC", "Verify that the location2 status shows as 'ACCEPTED'");
 	}

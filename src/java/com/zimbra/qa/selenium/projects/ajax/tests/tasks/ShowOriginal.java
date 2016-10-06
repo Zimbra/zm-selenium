@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
 
 import java.util.*;
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.*;
@@ -81,7 +80,7 @@ public class ShowOriginal extends AjaxCommonTest {
 			window.zWaitForActive();
 			SleepUtil.sleepMedium(); 
 
-			// Verify show original window with proper content.
+			// Verify show original window content
 			String ShowOrigBody = window.sGetBodyText();
 			ZAssert.assertStringContains(ShowOrigBody, subject,"Verify subject in show original window");
 

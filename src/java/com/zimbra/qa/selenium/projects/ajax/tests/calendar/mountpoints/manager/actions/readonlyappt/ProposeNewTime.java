@@ -176,7 +176,7 @@ public class ProposeNewTime extends CalendarWorkWeekTest {
 		String organizerInvId = ZimbraAccount.Account2().soapSelectValue("//mail:appt", "invId");
 		ZimbraAccount.Account2().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
 
-		String attendeeStatus = zWaitTillSoapResponse(ZimbraAccount.Account2().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst"), "AC");
+		String attendeeStatus = ZimbraAccount.Account2().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
 		ZAssert.assertEquals(ZimbraAccount.Account2().soapSelectValue("//mail:s", "d"), modifiedStartUTC.toyyyyMMddTHHmmss(), "Verify modified start time of the appointment");
 		ZAssert.assertEquals(ZimbraAccount.Account2().soapSelectValue("//mail:e", "d"), modifiedEndUTC.toyyyyMMddTHHmmss(), "Verify modified end time of the appointment");
 		ZAssert.assertEquals(attendeeStatus, "AC", "Verify that the attendee shows as 'ACCEPTED' for organizer");
@@ -192,7 +192,7 @@ public class ProposeNewTime extends CalendarWorkWeekTest {
 		String attendeeInvId = ZimbraAccount.Account1().soapSelectValue("//mail:appt", "invId");
 		ZimbraAccount.Account1().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
 
-		String myStatus = zWaitTillSoapResponse(ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst"), "AC");
+		String myStatus = ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
 		ZAssert.assertEquals(ZimbraAccount.Account1().soapSelectValue("//mail:s", "d"), modifiedStartUTC.toyyyyMMddTHHmmss(), "Verify modified start time of the appointment");
 		ZAssert.assertEquals(ZimbraAccount.Account1().soapSelectValue("//mail:e", "d"), modifiedEndUTC.toyyyyMMddTHHmmss(), "Verify modified end time of the appointment");
 		ZAssert.assertEquals(myStatus, "AC", "Verify that the attendee1 status showing as 'ACCEPTED'");

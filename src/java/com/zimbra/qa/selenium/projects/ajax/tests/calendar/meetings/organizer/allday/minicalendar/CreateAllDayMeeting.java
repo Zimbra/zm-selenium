@@ -77,6 +77,7 @@ public class CreateAllDayMeeting extends CalendarWorkWeekTest {
         apptForm.zFillField(Field.Attendees, apptAttendee);
         apptForm.zFillField(Field.Body, apptContent);
 		apptForm.zSubmit();
+		SleepUtil.sleepMedium();
 		
 		// Verify appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
@@ -99,7 +100,7 @@ public class CreateAllDayMeeting extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(invite.dSubject, apptSubject, "Subject: Verify the appointment data");
 		
 		// Verify location free/busy status shows as ptst=AC	
-		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst"), "AC");
+		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify that the location status shows as 'ACCEPTED'");
 		
 		//ExecuteHarnessMain.ResultListener.captureMailboxLog();

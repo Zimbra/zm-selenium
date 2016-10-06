@@ -78,6 +78,7 @@ public class RemoveLocation extends CalendarWorkWeekTest {
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zRemoveLocation(apptLocation);
         apptForm.zSubmit();
+		SleepUtil.sleepMedium();
  
         // Verify that location doesn't present in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

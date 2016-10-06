@@ -89,7 +89,7 @@ public class CreateMeetingWithRSVPOnOff extends CalendarWorkWeekTest {
 		// Get the attendee appointment details
 		
 		app.zGetActiveAccount().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
-		String attendeeStatus = zWaitTillSoapResponse(apptAttendee1.soapSelectValue("//mail:at[@a='"+ apptAttendee1EmailAddress +"']", "ptst"), "AC");
+		String attendeeStatus = apptAttendee1.soapSelectValue("//mail:at[@a='"+ apptAttendee1EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ACCEPTED
 		ZAssert.assertEquals(attendeeStatus, "AC", "Verify that the attendee shows as 'ACCEPTED'");
@@ -162,7 +162,7 @@ public class CreateMeetingWithRSVPOnOff extends CalendarWorkWeekTest {
 		// Get the attendee appointment details
 		app.zGetActiveAccount().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ invId +"'/>");
-		String attendeeStatus = zWaitTillSoapResponse(apptAttendee1.soapSelectValue("//mail:at[@a='"+ apptAttendee1EmailAddress +"']", "ptst"), "AC");
+		String attendeeStatus = apptAttendee1.soapSelectValue("//mail:at[@a='"+ apptAttendee1EmailAddress +"']", "ptst");
 
 		// Verify attendee status is shows as ACCEPTED
 		ZAssert.assertEquals(attendeeStatus, "AC", "Verify that the attendee shows as 'ACCEPTED'");

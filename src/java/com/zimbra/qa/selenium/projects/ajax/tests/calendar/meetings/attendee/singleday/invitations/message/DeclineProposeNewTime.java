@@ -152,7 +152,7 @@ public class DeclineProposeNewTime extends CalendarWorkWeekTest {
 		String attendeeInvId = apptAttendee1.soapSelectValue("//mail:appt", "invId");
 		apptAttendee1.soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		String myStatus = zWaitTillSoapResponse(apptAttendee1.soapSelectValue("//mail:at[@a='"+ apptAttendee1EmailAddress +"']", "ptst"), "NE");
+		String myStatus = apptAttendee1.soapSelectValue("//mail:at[@a='"+ apptAttendee1EmailAddress +"']", "ptst");
 		ZAssert.assertEquals(myStatus, "NE", "Verify that the attendee shows as 'NEEDS ACTION' for organizer");
 
 	}

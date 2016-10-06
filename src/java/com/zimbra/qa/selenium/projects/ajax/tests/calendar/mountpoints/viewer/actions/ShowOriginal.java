@@ -97,10 +97,11 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 		// Appointment show original
 		SeparateWindow window = (SeparateWindow)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK,Button.O_SHOW_ORIGINAL_MENU, apptSubject);
 		try	{	
+			window.zSetWindowName();
 			window.zWaitForActive();
 			SleepUtil.sleepMedium();
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
+			// Verify show original window content
 			String body = window.sGetBodyText();
 			ZAssert.assertStringContains(body, apptSubject, "Verify subject in show original");
 			ZAssert.assertStringContains(body, apptContent, "Verify content in show original");

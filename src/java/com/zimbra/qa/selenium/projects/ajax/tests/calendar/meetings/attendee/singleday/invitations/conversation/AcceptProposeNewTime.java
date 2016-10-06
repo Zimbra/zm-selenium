@@ -170,7 +170,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 				+	"</SearchRequest>");
 		String organizerInvId = organizer.soapSelectValue("//mail:appt", "invId");
 		organizer.soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
-		String attendeeStatus = zWaitTillSoapResponse(organizer.soapSelectValue("//mail:at[@a='"+ apptAttendee1EmailAddress +"']", "ptst"), "AC");
+		String attendeeStatus = organizer.soapSelectValue("//mail:at[@a='"+ apptAttendee1EmailAddress +"']", "ptst");
 		ZAssert.assertEquals(organizer.soapSelectValue("//mail:s", "d"), modifiedStartUTC.toyyyyMMddTHHmmss(), "Verify modified start time of the appointment");
 		ZAssert.assertEquals(organizer.soapSelectValue("//mail:e", "d"), modifiedEndUTC.toyyyyMMddTHHmmss(), "Verify modified end time of the appointment");
 		ZAssert.assertEquals(attendeeStatus, "AC", "Verify that the attendee shows as 'ACCEPTED' for organizer");
@@ -197,7 +197,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		String attendeeInvId = apptAttendee1.soapSelectValue("//mail:appt", "invId");
 		apptAttendee1.soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		String myStatus = zWaitTillSoapResponse(apptAttendee1.soapSelectValue("//mail:at[@a='"+ apptAttendee1EmailAddress +"']", "ptst"), "AC");
+		String myStatus = apptAttendee1.soapSelectValue("//mail:at[@a='"+ apptAttendee1EmailAddress +"']", "ptst");
 		ZAssert.assertEquals(apptAttendee1.soapSelectValue("//mail:s", "d"), modifiedStartUTC.toyyyyMMddTHHmmss(), "Verify modified start time of the appointment");
 		ZAssert.assertEquals(apptAttendee1.soapSelectValue("//mail:e", "d"), modifiedEndUTC.toyyyyMMddTHHmmss(), "Verify modified end time of the appointment");
 		ZAssert.assertEquals(myStatus, "AC", "Verify that the attendee1 status showing as 'ACCEPTED' for attendee");
@@ -225,7 +225,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		attendeeInvId = apptAttendee2.soapSelectValue("//mail:appt", "invId");
 		apptAttendee2.soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		myStatus = zWaitTillSoapResponse(apptAttendee2.soapSelectValue("//mail:at[@a='"+ apptAttendee2EmailAddress +"']", "ptst"), "NE");
+		myStatus = apptAttendee2.soapSelectValue("//mail:at[@a='"+ apptAttendee2EmailAddress +"']", "ptst");
 		ZAssert.assertEquals(apptAttendee2.soapSelectValue("//mail:s", "d"), modifiedStartUTC.toyyyyMMddTHHmmss(), "Verify modified start time of the appointment");
 		ZAssert.assertEquals(apptAttendee2.soapSelectValue("//mail:e", "d"), modifiedEndUTC.toyyyyMMddTHHmmss(), "Verify modified end time of the appointment");
 		ZAssert.assertEquals(myStatus, "NE", "Verify that the attendee2 status still showing as 'NEEDS ACTION'");

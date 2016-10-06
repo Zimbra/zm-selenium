@@ -82,6 +82,7 @@ public class AddLocation extends CalendarWorkWeekTest {
         apptForm.zAddLocationFromScheduler(apptLocation, keyEvent);
         ZAssert.assertTrue(apptForm.zVerifyLocation(apptLocation), "Verify location bubble after adding location from scheduler");
         apptForm.zSubmit();
+		SleepUtil.sleepMedium();
  
         // Verify that location present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
@@ -89,7 +90,7 @@ public class AddLocation extends CalendarWorkWeekTest {
 		ZAssert.assertStringContains(actual.getLocation(), apptLocation, "Location: Verify the appointment data");
 		
 		// Verify location free/busy status
-		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst"), "AC");
+		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify location free/busy status");
 		
 	}

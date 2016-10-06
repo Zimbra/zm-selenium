@@ -100,7 +100,7 @@ public class ResetStatusAfterRemovingLocation extends CalendarWorkWeekTest {
 			app.zGetActiveAccount().soapSend(
 				"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
 	
-		String attendeeStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst"), "NE");
+		String attendeeStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=NE
 		ZAssert.assertEquals(attendeeStatus, "NE", "Verify that the attendee shows as 'Needs Action'");
@@ -116,7 +116,7 @@ public class ResetStatusAfterRemovingLocation extends CalendarWorkWeekTest {
 		ZimbraAccount.Account1().soapSend(
 				"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
 	
-		String myStatus = zWaitTillSoapResponse(ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst"), "NE");
+		String myStatus = ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=NE
 		ZAssert.assertEquals(myStatus, "NE", "Verify that the attendee shows as 'Needs Action'");
