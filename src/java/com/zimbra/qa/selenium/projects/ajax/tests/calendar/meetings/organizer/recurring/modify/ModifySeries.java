@@ -86,7 +86,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		
 		FormApptNew apptForm = new FormApptNew(app);		
 		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, Button.B_NO_END_DATE_RADIO_BUTTON);
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 
@@ -118,7 +118,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		ZimbraAccount.AccountA().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
 		
-		String myStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.AccountA().EmailAddress +"']", "ptst");
+		String myStatus = zWaitTillSoapResponse(ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.AccountA().EmailAddress +"']", "ptst"), "NE");
 		ruleFrequency = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:rule", "freq");
 		interval = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:interval", "ival");
 		
@@ -190,7 +190,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.Subject, modifiedSubject);
 		apptForm.zFill(appt);
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 
@@ -222,7 +222,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		ZimbraAccount.AccountA().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
 		
-		String myStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.AccountA().EmailAddress +"']", "ptst");
+		String myStatus = zWaitTillSoapResponse(ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.AccountA().EmailAddress +"']", "ptst"), "NE");
 		ruleFrequency = ZimbraAccount.AccountA().soapSelectValue("//mail:appt//mail:rule", "freq");
 		interval = ZimbraAccount.AccountA().soapSelectValue("//mail:appt//mail:interval", "ival");
 		
@@ -297,7 +297,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.Subject, modifiedSubject);
 		apptForm.zFill(appt);
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 
@@ -331,7 +331,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		ZimbraAccount.AccountA().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
 		
-		String myStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.AccountA().EmailAddress +"']", "ptst");
+		String myStatus = zWaitTillSoapResponse(ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.AccountA().EmailAddress +"']", "ptst"), "NE");
 		ruleFrequency = ZimbraAccount.AccountA().soapSelectValue("//mail:appt//mail:rule", "freq");
 		interval = ZimbraAccount.AccountA().soapSelectValue("//mail:appt//mail:interval", "ival");
 		countNumber = ZimbraAccount.AccountA().soapSelectValue("//mail:appt//mail:count", "num");
@@ -438,7 +438,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		ZimbraAccount.Account1().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
 		
-		String myStatus = ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
+		String myStatus = zWaitTillSoapResponse(ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst"), "NE");
 		ruleFrequency = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:rule", "freq");
 		interval = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:interval", "ival");
 		untilDate = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:until", "d");
@@ -551,7 +551,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		ZimbraAccount.Account3().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
 		
-		String myStatus = ZimbraAccount.Account3().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account3().EmailAddress +"']", "ptst");
+		String myStatus = zWaitTillSoapResponse(ZimbraAccount.Account3().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account3().EmailAddress +"']", "ptst"), "NE");
 		ruleFrequency = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:rule", "freq");
 		interval = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:interval", "ival");
 		countNumber = ZimbraAccount.Account3().soapSelectValue("//mail:appt//mail:count", "num");

@@ -75,7 +75,8 @@ public class SuggestATime extends CalendarWorkWeekTest {
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zToolbarPressButton(Button.B_SUGGESTATIME);
         apptForm.zToolbarPressButton(Button.B_FIRST_TIME_SUGGESTION);
-        apptForm.zSubmit();SleepUtil.sleepLong(); // test fails while checking location free/busy status, waitForPostqueue is not sufficient here
+        apptForm.zSubmit();
+		SleepUtil.sleepLong(); // test fails while checking location free/busy status, waitForPostqueue is not sufficient here
         // Tried sleepMedium() as well but although fails so using sleepLong()
 
         // Verify appointment start time and end time

@@ -94,7 +94,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
         dialog.zClickButton(Button.B_YES);
         DialogConfirmDeleteOrganizer dialog2 = (DialogConfirmDeleteOrganizer) new DialogConfirmDeleteOrganizer(app, app.zPageCalendar);
 		dialog2.zClickButton(Button.B_SEND_CANCELLATION);
-		SleepUtil.sleepVeryLong();
+
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>"+ apptSubject +"</query>"

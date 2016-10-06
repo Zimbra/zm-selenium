@@ -631,12 +631,12 @@ public class PageMail extends AbsTab {
 				|| (button == Button.B_MAIL_VIEW_READING_PANE_OFF)) {
 
 			locator = "css=td[id$=VIEW_MENU_dropdown]>div[class='ImgSelectPullDownArrow']";
-			this.zClick(locator, (WebElement[]) null);
+			this.zClick(locator);
 			this.zWaitForBusyOverlay();
 
 			// Click on Reading pane
 			locator = "css=td[id$=READING_PANE_1_dropdown]>div[class='ImgCascade']";
-			this.zClick(locator, (WebElement[]) null);
+			this.zClick(locator);
 			this.zWaitForBusyOverlay();
 
 			// Select Reading Pane At the Bottom/On the Right/Off
@@ -647,7 +647,7 @@ public class PageMail extends AbsTab {
 			} else if (button == Button.B_MAIL_VIEW_READING_PANE_OFF) {
 				locator = "css=div#off td[id$='_title']";
 			}
-			this.zClick(locator, (WebElement[]) null);
+			this.zClick(locator);
 			this.zWaitForBusyOverlay();
 
 			return (null);
@@ -655,7 +655,7 @@ public class PageMail extends AbsTab {
 		} else if ((button == Button.B_MAIL_VIEW_BY_CONVERSATION) || (button == Button.B_MAIL_VIEW_BY_MESSAGE)) {
 
 			locator = "css=td[id$=VIEW_MENU_dropdown]>div[class='ImgSelectPullDownArrow']";
-			this.zClick(locator, (WebElement[]) null);
+			this.zClick(locator);
 			this.zWaitForBusyOverlay();
 
 			// Select view (message/conversation)
@@ -664,7 +664,7 @@ public class PageMail extends AbsTab {
 			} else if (button == Button.B_MAIL_VIEW_BY_MESSAGE) {
 				locator = "css=div#TV td[id$='_title']";
 			}
-			this.zClick(locator, (WebElement[]) null);
+			this.zClick(locator);
 			this.zWaitForBusyOverlay();
 
 			return (null);
@@ -673,12 +673,12 @@ public class PageMail extends AbsTab {
 				|| (button == Button.B_MAIL_LIST_GROUPBY_SIZE)) {
 
 			locator = "css=td#zlha__TV-main__su";
-			this.zRightClickAt(locator, "", (WebElement[]) null);
+			this.zRightClickAt(locator, "");
 			this.zWaitForBusyOverlay();
 
 			// Hover over Group By
 			locator = "css=td[id$='_title']:contains('Group By')";
-			this.sMouseOver(locator, (WebElement[]) null);
+			this.sMouseOver(locator);
 			this.zWaitForBusyOverlay();
 
 			// Select From/Date/Size
@@ -689,7 +689,7 @@ public class PageMail extends AbsTab {
 			} else if (button == Button.B_MAIL_LIST_GROUPBY_SIZE) {
 				locator = "css=div#GROUPBY_SIZE td[id$='_title']";
 			}
-			this.zClick(locator, (WebElement[]) null);
+			this.sClickAt(locator, "");
 			this.zWaitForBusyOverlay();
 
 			return (null);

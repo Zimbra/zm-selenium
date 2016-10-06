@@ -63,6 +63,10 @@ public class TagContactGroup extends AjaxCommonTest  {
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
+		// Work around
+		app.zPageContacts.sRefresh();
+		app.zPageContacts.zNavigateTo();
+		
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 		

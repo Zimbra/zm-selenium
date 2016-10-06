@@ -81,8 +81,7 @@ public class ModifyBySubjectBodyAndAttendees extends CalendarWorkWeekTest {
         apptForm.zFillField(Field.Subject, modifiedApptSubject);
         apptForm.zFillField(Field.Attendees, apptAttendee2);
         apptForm.zFillField(Field.Body, modifiedApptBody);
-        apptForm.zToolbarPressButton(Button.B_SEND);
-		SleepUtil.sleepVeryLong(); //importFromSOAP fails due to fast execution
+        apptForm.zSubmit();
         
         // Use GetAppointmentRequest to verify the changes are saved
         AppointmentItem modifyAppt = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ modifiedApptSubject +")");
@@ -110,7 +109,7 @@ public class ModifyBySubjectBodyAndAttendees extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(id, "Verify attendee2 receives meeting invitation message");
 		
 		// Verify attendee2 free/busy status
-		String attendee2Status = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptAttendee2 +"']", "ptst");
+		String attendee2Status = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptAttendee2 +"']", "ptst"), "NE");
 		ZAssert.assertEquals(attendee2Status, "NE", "Verify attendee2 free/busy status");
 		
 	}

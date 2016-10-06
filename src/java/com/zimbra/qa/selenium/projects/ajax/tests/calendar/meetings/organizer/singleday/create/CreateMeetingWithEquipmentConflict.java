@@ -97,7 +97,6 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 
         // Save appt with Equipment conflict 
 		dialog.zClickButton(Button.B_SAVE_WITH_CONFLICT);
-		SleepUtil.sleepVeryLong();
 
         // Verify that equipment with conflict and subject are present in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");
@@ -105,7 +104,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getEquipment().trim(), apptEquipment, "equipment: Verify the Equipment is present in the appointment");
 		
 		// Verify Equipment free/busy status shows as ptst=DE
-		String equipmentStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquipment +"']", "ptst");
+		String equipmentStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquipment +"']", "ptst"), "DE");
 		ZAssert.assertEquals(equipmentStatus, "DE", "Verify that the Equipment status shows as 'DECLINED'");
     }
 	
@@ -161,7 +160,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		SleepUtil.sleepSmall();
 		apptForm.zFill(appt);
 		apptForm.zAddEquipmentFromScheduler(apptEquipment, KeyEvent.VK_ENTER);
-		SleepUtil.sleepLong();
+		SleepUtil.sleepMedium();
 		
 		// Verify the conflicting resource dialog appears
 		DialogWarningConflictingResources  dialog = (DialogWarningConflictingResources) app.zPageCalendar.zToolbarPressButton(Button.B_SAVE_WITH_CONFLICT);
@@ -177,10 +176,9 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject2, "Subject: Verify the appointment data");
 		ZAssert.assertEquals(actual.getEquipment().trim(), apptEquipment, "equipment: Verify the equipment is present in the appointment");
-		SleepUtil.sleepVeryLong();
 		
 		// Verify Equipment free/busy status shows as ptst=NE	
-		String equipmentStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquipment +"']", "ptst");
+		String equipmentStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquipment +"']", "ptst"), "NE");
 		ZAssert.assertEquals(equipmentStatus, "NE", "Verify that the Equipment status shows as 'NEEDS ACTION'");
 	}
 	
@@ -238,7 +236,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		SleepUtil.sleepSmall();
 		apptForm.zFill(appt);
 		apptForm.zAddEquipmentFromScheduler(apptEquipment, KeyEvent.VK_ENTER);
-		SleepUtil.sleepLong();
+		SleepUtil.sleepMedium();
 		
 		// Verify the compose page shows note below resource about conflicting resources and conflicting resource dialog appears
 		DialogWarningConflictingResources  dialog = (DialogWarningConflictingResources) app.zPageCalendar.zToolbarPressButton(Button.B_SEND_WITH_CONFLICT);

@@ -841,9 +841,9 @@ public class PageContacts extends AbsTab {
 
 
 
-	public AbsPage zListItem(Action action, Button option ,Button subOption, String contact) throws HarnessException {
-		String locator = null;			// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+	public AbsPage zListItem(Action action, Button option, Button subOption, String contact) throws HarnessException {
+		String locator = null;
+		AbsPage page = null;
 		String parentLocator = null;
 		String extraLocator="";
 
@@ -852,8 +852,6 @@ public class PageContacts extends AbsTab {
         if ( action == Action.A_RIGHTCLICK ) {
 			ContextMenuItem cmi = null;
 		    ContextMenuItem sub_cmi = null;
-
-		    SleepUtil.sleepSmall();
 		    
 		    zRightClickAt(getContactLocator(contact), "0,0");
 		    
@@ -909,10 +907,8 @@ public class PageContacts extends AbsTab {
 				locator = locator + " tr#" + cmi.locator;
 			}
 
-			zWaitForElementPresent(locator) ;
 			sFocus(locator);
 			sMouseOver(locator);
-			SleepUtil.sleepSmall();
 		    zWaitForBusyOverlay();
 
 			if (option == Button.B_SEARCH) {
@@ -956,14 +952,8 @@ public class PageContacts extends AbsTab {
 
 		sFocus(locator);
         sMouseOver(locator);
-        SleepUtil.sleepSmall();
         sClickAt(locator, "");
-        SleepUtil.sleepSmall();
         zWaitForBusyOverlay();
-
-		if ( page != null ) {
-			page.zWaitForActive();
-		}
 		SleepUtil.sleepMedium();
 
 		return (page);

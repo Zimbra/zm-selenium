@@ -78,8 +78,6 @@ public class BookLocationBySuggestingTime extends CalendarWorkWeekTest {
         apptForm.zToolbarPressButton(Button.B_FIRST_TIME_SUGGESTION);
         apptForm.zPressButton(Button.B_LOCATIONMENU, apptLocation);
         apptForm.zSubmit();
-        SleepUtil.sleepLong(); // test fails while checking location free/busy status, waitForPostqueue is not sufficient here
-        // Tried sleepMedium() as well but although fails so using sleepLong()
 
         // Verify that location present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
@@ -87,7 +85,7 @@ public class BookLocationBySuggestingTime extends CalendarWorkWeekTest {
 		ZAssert.assertStringContains(actual.getLocation(), apptLocation, "Location: Verify the appointment data");
 		
 		// Verify location free/busy status
-		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
+		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst"), "AC");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify location free/busy status");
 		
 	}

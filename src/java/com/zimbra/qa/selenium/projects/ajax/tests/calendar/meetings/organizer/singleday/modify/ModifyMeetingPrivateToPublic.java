@@ -89,7 +89,7 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN, apptSubject);
         appt.setIsPrivate(false);
         apptForm.zFill(appt);
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
         SleepUtil.sleepMedium();
         
         // Verify the Meeting is now a Public Meeting and does not have Private icon
@@ -149,7 +149,7 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN, apptSubject);
         appt.setIsPrivate(true);
         apptForm.zFill(appt);
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
         SleepUtil.sleepMedium();
            
         // Verify the Meeting is now a private Meeting and has Private icon

@@ -135,7 +135,7 @@ public class CreateMeetingWithDL extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(addeddAttendeeB, "Verify meeting invite is present in attendee2's calendar");
 		
 		// Verify DL's free/busy status
-		String attendee1Status3 = account1.soapSelectValue("//mail:at[@a='"+ distribution.EmailAddress +"']", "ptst");
+		String attendee1Status3 = zWaitTillSoapResponse(account1.soapSelectValue("//mail:at[@a='"+ distribution.EmailAddress +"']", "ptst"), "NE");
 		ZAssert.assertEquals(attendee1Status3, "NE", "Verify DL's free/busy status");
 		
 	

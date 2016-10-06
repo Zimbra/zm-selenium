@@ -86,12 +86,7 @@ public class ModifyBySelectAttendees extends CalendarWorkWeekTest {
         dialogFindAttendees.zClickButton(Button.B_CHOOSE_CONTACT_FROM_PICKER);
         dialogFindAttendees.zWaitForBusyOverlay();
         dialogFindAttendees.zClickButton(Button.B_OK);
-        
-        // Send the modified appt
-        apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepVeryLong();// test fails while checking free/busy status, waitForPostqueue is not sufficient here
-        // Tried sleepLong() as well but it still fails so using sleepVeryLong()
-
+        apptForm.zSubmit();
         
         // Verify attendee1 receives meeting invitation message
 		ZimbraAccount.AccountA().soapSend(
@@ -101,7 +96,6 @@ public class ModifyBySelectAttendees extends CalendarWorkWeekTest {
 		id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify new invitation appears in the attendee1's inbox");
  
-		
 		// Verify that attendee2 present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
@@ -112,7 +106,7 @@ public class ModifyBySelectAttendees extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(addeddAttendee, "Verify meeting invite is present in attendee2's calendar");
 		
 		// Verify attendee2 free/busy status
-		String attendee2Status = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptAttendee2 +"']", "ptst");
+		String attendee2Status = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptAttendee2 +"']", "ptst"), "NE");
 		ZAssert.assertEquals(attendee2Status, "NE", "Verify attendee2 free/busy status");
 		
 	}

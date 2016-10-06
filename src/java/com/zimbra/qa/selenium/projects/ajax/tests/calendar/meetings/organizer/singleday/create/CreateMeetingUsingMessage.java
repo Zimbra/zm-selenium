@@ -69,7 +69,6 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
 		dlgAddAttendees.zClickButton(Button.B_YES);
-		SleepUtil.sleepVeryLong();
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -80,7 +79,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		ZAssert.assertTrue(apptForm.zVerifyRequiredAttendee(apptAttendee1), "Verify populated email address bubble 1 from message");
 		ZAssert.assertTrue(apptForm.zVerifyRequiredAttendee(apptAttendee2), "Verify populated email address bubble 2 from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), "Bold and Italics", "Verify populated appointment body from message");
-		apptForm.zToolbarPressButton(Button.B_SEND);
+		apptForm.zSubmit();
 
 		// Verify appointment exists on the server
 		app.zGetActiveAccount().soapSend(
@@ -135,7 +134,6 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
 		dlgAddAttendees.zClickButton(Button.B_YES);
-		SleepUtil.sleepVeryLong();
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -144,7 +142,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), "Bold and Italics", "Verify populated appointment body from message");
-		apptForm.zToolbarPressButton(Button.B_SEND);
+		apptForm.zSubmit();
 
 		// Verify appointment exists on the server
 		app.zGetActiveAccount().soapSend(
@@ -205,7 +203,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Verify populated appointment body from message");
-		apptForm.zToolbarPressButton(Button.B_SEND);
+		apptForm.zSubmit();
 
 		// Verify appointment exists on the server
 		app.zGetActiveAccount().soapSend(
@@ -266,7 +264,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Verify populated appointment body from message");
-		apptForm.zToolbarPressButton(Button.B_SEND);
+		apptForm.zSubmit();
 
 		// Verify appointment exists on the server
 		app.zGetActiveAccount().soapSend(
@@ -317,7 +315,6 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
 		dlgAddAttendees.zClickButton(Button.B_YES);
-		SleepUtil.sleepVeryLong();
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -326,7 +323,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), "Bold and Italics", "Verify populated appointment body from message");
-		apptForm.zToolbarPressButton(Button.B_SEND);
+		apptForm.zSubmit();
 
 		// Verify appointment exists on the server
 		app.zGetActiveAccount().soapSend(
@@ -377,7 +374,6 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
 		dlgAddAttendees.zClickButton(Button.B_YES);
-		SleepUtil.sleepVeryLong();
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -386,7 +382,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), "Bold and Italics", "Verify populated appointment body from message");
-		apptForm.zToolbarPressButton(Button.B_SEND);
+		apptForm.zSubmit();
 
 		// Verify appointment exists on the server
 		app.zGetActiveAccount().soapSend(
@@ -438,7 +434,6 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
 		dlgAddAttendees.zClickButton(Button.B_YES);
-		SleepUtil.sleepVeryLong();
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -446,7 +441,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.StartTime, startUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
-		apptForm.zToolbarPressButton(Button.B_SEND);
+		apptForm.zSubmit();
 
 		// Verify appointment exists on the server
 		app.zGetActiveAccount().soapSend(
@@ -509,7 +504,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), "Bold and Italics", "Verify populated appointment body from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Verify populated appointment body from message");
-		apptForm.zToolbarPressButton(Button.B_SEND);
+		apptForm.zSubmit();
 
 		// Verify appointment exists on the server
 		app.zGetActiveAccount().soapSend(
@@ -560,7 +555,6 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
 		dlgAddAttendees.zClickButton(Button.B_YES);
-		SleepUtil.sleepVeryLong();
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -568,8 +562,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.StartTime, startUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
-		apptForm.zToolbarPressButton(Button.B_SEND);
-		SleepUtil.sleepVeryLong();
+		apptForm.zSubmit();
 
 		// Verify appointment exists on the server
 		app.zGetActiveAccount().soapSend(

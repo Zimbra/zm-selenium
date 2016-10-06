@@ -96,9 +96,8 @@ public class ModifyInstance extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.Attendees, apptAttendee2);
 		apptForm.zFillField(Field.Body, modifiedApptBody);
 		apptForm.zFill(appt);
-        apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepMedium();
-
+        apptForm.zSubmit();
+        
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 
 		// Organizer: Search for the appointment (InvId)
@@ -131,7 +130,7 @@ public class ModifyInstance extends CalendarWorkWeekTest {
 
 		ZimbraAccount.AccountA().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		String myStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.AccountA().EmailAddress +"']", "ptst");
+		String myStatus = zWaitTillSoapResponse(ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.AccountA().EmailAddress +"']", "ptst"), "NE");
 		exceptId = ZimbraAccount.AccountA().soapSelectValue("//mail:appt//mail:exceptId", "d");
 
 		// Verify attendee status shows as ptst=NE
@@ -157,7 +156,7 @@ public class ModifyInstance extends CalendarWorkWeekTest {
 
 		ZimbraAccount.AccountB().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		myStatus = ZimbraAccount.AccountB().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.AccountB().EmailAddress +"']", "ptst");
+		myStatus = zWaitTillSoapResponse(ZimbraAccount.AccountB().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.AccountB().EmailAddress +"']", "ptst"), "NE");
 		exceptId = ZimbraAccount.AccountB().soapSelectValue("//mail:appt//mail:exceptId", "d");
 
 		// Verify attendee status shows as ptst=NE

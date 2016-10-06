@@ -91,10 +91,8 @@ public class ResourceConflictWhenOOO extends CalendarWorkWeekTest {
 				+	"</SearchRequest>");
 		ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:comp", "fba"), "T", "");
 
-		SleepUtil.sleepVeryLong();
-
 		// Verify location free/busy status shows as psts=AC
-		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
+		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst"), "AC");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify that the location status shows as 'ACCEPTED'");
 
 		// Logout from organizer and Login as attendee
@@ -113,7 +111,7 @@ public class ResourceConflictWhenOOO extends CalendarWorkWeekTest {
 		// Create meeting which has location conflict with above created appointment
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-		SleepUtil.sleepVeryLong();
+		SleepUtil.sleepLong();
 
 		// Verify the compose page shows note below resource about conflicting resources
 		ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.ConflictResourceNote),  "Verify that the conflicting resource note appears on appt compose page");
@@ -124,7 +122,6 @@ public class ResourceConflictWhenOOO extends CalendarWorkWeekTest {
 
 		// Save appt with location conflict 
 		dialog.zClickButton(Button.B_SAVE_WITH_CONFLICT);
-		SleepUtil.sleepMedium();
 
 		// Verify that location with conflict and subject are present in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");
@@ -132,7 +129,7 @@ public class ResourceConflictWhenOOO extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(appt.getLocation(), apptLocation, "Location: Verify the location is present in the appointment");
 
 		// Verify location free/busy status shows as psts=DE
-		String locationStatus2 = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
+		String locationStatus2 = zWaitTillSoapResponse(ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst"), "DE");
 		ZAssert.assertEquals(locationStatus2, "DE", "Verify that the location status shows as 'DECLINED'");
 
 	}

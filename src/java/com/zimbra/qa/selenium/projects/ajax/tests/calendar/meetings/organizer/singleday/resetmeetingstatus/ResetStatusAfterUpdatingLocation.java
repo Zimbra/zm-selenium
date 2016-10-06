@@ -80,21 +80,18 @@ public class ResetStatusAfterUpdatingLocation extends CalendarWorkWeekTest {
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.Account1());
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		SleepUtil.sleepSmall();
+
 		app.zPageCalendar.zNavigateTo();
-		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);		
 		app.zPageMain.zLogout();			
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 		
         // Remove location1, add location2 and re-send the appointment
 		app.zPageCalendar.zNavigateTo();
-		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zRemoveLocation(apptLocation1);
         apptForm.zFillField(Field.Location, apptLocation2);
-        apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepVeryLong(); 
+        apptForm.zSubmit();
         
 		// --- Check that the organizer shows the attendee as "Needs Action" ---
 		app.zGetActiveAccount().soapSend(
@@ -107,7 +104,7 @@ public class ResetStatusAfterUpdatingLocation extends CalendarWorkWeekTest {
 			app.zGetActiveAccount().soapSend(
 				"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
 	
-		String attendeeStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
+		String attendeeStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst"), "NE");
 
 		// Verify attendee status shows as ptst=NE
 		ZAssert.assertEquals(attendeeStatus, "NE", "Verify that the attendee shows as 'Needs Action'");
@@ -123,7 +120,7 @@ public class ResetStatusAfterUpdatingLocation extends CalendarWorkWeekTest {
 		ZimbraAccount.Account1().soapSend(
 				"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
 	
-		String myStatus = ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
+		String myStatus = zWaitTillSoapResponse(ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst"), "NE");
 
 		// Verify attendee status shows as ptst=NE
 		ZAssert.assertEquals(myStatus, "NE", "Verify that the attendee shows as 'Needs Action'");

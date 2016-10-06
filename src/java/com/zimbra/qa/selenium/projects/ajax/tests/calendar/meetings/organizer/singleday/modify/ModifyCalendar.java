@@ -98,7 +98,7 @@ public class ModifyCalendar extends CalendarWorkWeekTest {
 	    	    break;
 	    	}
         }
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
 
         // Verify calendar value
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

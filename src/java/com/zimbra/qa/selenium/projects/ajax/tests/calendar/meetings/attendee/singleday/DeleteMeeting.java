@@ -80,7 +80,6 @@ public class DeleteMeeting extends CalendarWorkWeekTest {
  		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
  		declineAppt.zClickButton(Button.B_DONT_NOTIFY_ORGANIZER);
  		declineAppt.zClickButton(Button.B_YES);
- 		SleepUtil.sleepVeryLong();
 
  		
  		// ---------------- Verification at organizer & invitee side both -------------------------------------       
@@ -99,7 +98,7 @@ public class DeleteMeeting extends CalendarWorkWeekTest {
  		ZimbraAccount.AccountA().soapSend(
  					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
  		
- 		String attendeeStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
+ 		String attendeeStatus = zWaitTillSoapResponse(ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst"), "NE");
 
  		// Verify attendee status shows as ptst=NE (because "Don't notify organizer)
  		ZAssert.assertEquals(attendeeStatus, "NE", "Verify that the attendee status shows as 'NEEDS ACTION' instead of 'DECLINED'");
@@ -166,7 +165,6 @@ public class DeleteMeeting extends CalendarWorkWeekTest {
  		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
  		declineAppt.zClickButton(Button.B_NOTIFY_ORGANIZER);
  		declineAppt.zClickButton(Button.B_YES);
- 		SleepUtil.sleepVeryLong();
  		
  		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 
@@ -184,7 +182,7 @@ public class DeleteMeeting extends CalendarWorkWeekTest {
  		ZimbraAccount.AccountA().soapSend(
  					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
  		
- 		String attendeeStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
+ 		String attendeeStatus = zWaitTillSoapResponse(ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst"), "DE");
 
  		// Verify attendee status shows as ptst=DE
  		ZAssert.assertEquals(attendeeStatus, "DE", "Verify that the attendee status shows as 'DECLINED' instead of 'NEEDS ACTION'");

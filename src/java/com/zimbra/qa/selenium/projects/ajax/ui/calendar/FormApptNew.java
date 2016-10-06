@@ -225,13 +225,6 @@ public class FormApptNew extends AbsForm {
 		} else {
 			zToolbarPressButton(Button.B_SAVE);
 		}
-		this.zWaitForBusyOverlay();
-
-		// Wait for the message to be delivered
-		Stafpostqueue sp = new Stafpostqueue();
-		sp.waitForPostqueue();
-		
-		SleepUtil.sleepMedium();
 	}
 
 	public String zGetSuggestedLocation(String apptLocation) throws HarnessException {
@@ -384,8 +377,7 @@ public class FormApptNew extends AbsForm {
 	}
 
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		SleepUtil.sleepSmall();
-
+		
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
 		tracer.trace("Click button " + button);
@@ -393,9 +385,10 @@ public class FormApptNew extends AbsForm {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		// Fallthrough objects
 		AbsPage page = null;
 		String locator = null;
+		
+		SleepUtil.sleepSmall();
 
 		if (button == Button.B_SEND) {
 
@@ -404,16 +397,7 @@ public class FormApptNew extends AbsForm {
 			} else {
 				locator = Locators.Button_Send;
 			}
-			this.sClick(locator);
-			this.zWaitForBusyOverlay();
-
-			// Wait for the message to be delivered
-			Stafpostqueue sp = new Stafpostqueue();
-			sp.waitForPostqueue();
-
 			page = new DialogConfirmRemoveAllExceptions(this.MyApplication, pageCal);
-
-			return (page);
 
 		} else if (button == Button.B_SAVE) {
 
@@ -429,7 +413,6 @@ public class FormApptNew extends AbsForm {
 
 			locator = Locators.Button_Attach;
 			page = null;
-
 
 		} else if (button == Button.B_BROWSE) {
 
@@ -448,12 +431,9 @@ public class FormApptNew extends AbsForm {
 		} else if (button == Button.B_SUGGESTATIME) {
 
 			locator = Locators.SuggestAtimeLink;
-			SleepUtil.sleepMedium();
 			page = null;
 
 		} else if (button == Button.B_FIRST_TIME_SUGGESTION) {
-
-			SleepUtil.sleepMedium();
 
 			if (this.sIsElementPresent(Locators.SelectFirstFreeTimeFromSuggestTimePane) == true) {
 				this.sClickAt(Locators.SelectFirstFreeTimeFromSuggestTimePane, "");
@@ -468,12 +448,10 @@ public class FormApptNew extends AbsForm {
 		} else if (button == Button.B_SUGGESTALOCATION) {
 
 			locator = Locators.SuggestALocationLink;
-			SleepUtil.sleepMedium();
 			page = null;
 
 		} else if (button == Button.B_10AM) {
 
-			SleepUtil.sleepMedium();
 			locator = Locators.SuggestATime10AM;
 			page = null;
 
@@ -482,12 +460,6 @@ public class FormApptNew extends AbsForm {
 			locator = Locators.ShowSchedulerLink;
 			page = null;
 
-			this.sClick(locator);
-
-			this.zWaitForBusyOverlay();
-
-			return (page);
-
 		} else if (button == Button.B_SHOW_TIMES_ANYWAY) {
 
 			locator = Locators.ShowTimesAnywayLink;
@@ -495,73 +467,64 @@ public class FormApptNew extends AbsForm {
 
 			if (this.sIsElementPresent(locator) == true) {
 				this.sClickAt(Locators.ShowTimesAnywayLink, "");
+				SleepUtil.sleepMedium();
 				return null;
 			}
 
 		} else if (button == Button.B_LOCATION) {
 
 			locator = Locators.AddLocation;
-			this.sClickAt(locator, "");
-
-			this.zWaitForBusyOverlay();
 			page = new DialogFindLocation(this.MyApplication, pageCal);
-			return (page);
 
 		} else if (button == Button.B_EQUIPMENT) {
 
 			locator = Locators.addEquipment;
-			this.sClickAt(locator, "");
-
-			this.zWaitForBusyOverlay();
 			page = new DialogFindLocation(this.MyApplication, pageCal);
-			return (page);
 
 		} else if (button == Button.B_TO) {
 
 			locator = Locators.AddAttendees;
-			this.sClickAt(locator, "");
-
-			this.zWaitForBusyOverlay();
 			page = new DialogFindLocation(this.MyApplication, pageCal);
-			return (page);
 
 		} else if (button == Button.B_OPTIONAL) {
 
 			locator = Locators.AddOptiponalAttendees;
-			this.sClickAt(locator, "");
-
-			this.zWaitForBusyOverlay();
 			page = new DialogFindLocation(this.MyApplication, pageCal);
-			return (page);
 			
 		} else if (button == Button.B_SHOW_OPTIONAL) {
 			
 			locator = Locators.ShowOptionalLink;
 			this.sClickJavaScript(locator);
+			SleepUtil.sleepMedium();
 			return (page);
 			
 		} else if (button == Button.B_SHOW_EQUIPMENT) {
 			
 			locator = Locators.ShowEquipmentLink;
 			this.sClickJavaScript(locator);
+			SleepUtil.sleepMedium();
 			return (page);
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		// Make sure a locator was set
 		if (locator == null)
 			throw new HarnessException("locator was null for button " + button);
 
 		// Click it
-		this.sClickAt(locator, "");
-
-		// if the app is busy, wait for it to become active again
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
-
-		// Return the page, if specified
-		SleepUtil.sleepSmall();
+				
+		if (button == Button.B_SEND || button == Button.B_SAVE || button == Button.B_SAVEANDCLOSE) {
+			Stafpostqueue sp = new Stafpostqueue();
+			sp.waitForPostqueue();
+			SleepUtil.sleepMedium();
+			
+		} else {
+			SleepUtil.sleepSmall();
+		}
+		
 		return (page);
 
 	}

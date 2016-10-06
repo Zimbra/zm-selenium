@@ -89,8 +89,13 @@ public abstract class AbsSeleniumObject {
 	protected static final int LoadDelay = 30000;
 	protected static Logger logger = LogManager.getLogger(AbsSeleniumObject.class);
 	protected static final Logger tracer = LogManager.getLogger(ExecuteHarnessMain.TraceLoggerName);
+	
 	public AbsSeleniumObject() {
 		logger.info("new " + AbsSeleniumObject.class.getCanonicalName());
+	}
+	
+	protected WebDriver webDriver() {
+		return ClientSessionFactory.session().webDriver();
 	}
 
 	protected static class Coordinate {
@@ -139,13 +144,7 @@ public abstract class AbsSeleniumObject {
 	}
 
 
-	protected WebDriver webDriver() {
-		return ClientSessionFactory.session().webDriver();
-	}
-
-
 	public boolean zIsVisiblePerPosition(String locator, int leftLimit, int topLimit) throws HarnessException {
-		logger.info("zIsVisiblePerPosition(" + locator + ")");
 		return elementVisiblePerPosition(locator);
 	}
 
@@ -227,7 +226,7 @@ public abstract class AbsSeleniumObject {
 
 	public void zRightClick(String locator, WebElement... elements) throws HarnessException {
 	    logger.info("zRightClick(" + locator + ")");
-	    SleepUtil.sleepSmall();
+	    SleepUtil.sleepVerySmall();
 
 	    WebElement we = null;
 		if (elements != null && elements.length > 0) {
@@ -249,7 +248,7 @@ public abstract class AbsSeleniumObject {
 
 	public void zRightClickAt(String locator, String coord, WebElement... elements) throws HarnessException {
 		logger.info("zRightClickAt(" + locator + "," + coord + ")");
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepVerySmall();
 
 	    WebElement we = null;
 		if (elements != null && elements.length > 0) {
@@ -271,7 +270,6 @@ public abstract class AbsSeleniumObject {
 
 	public void zCheckboxSet(String locator, boolean status) throws HarnessException {
 		logger.info("zCheckboxSet(" + locator + ")");
-		SleepUtil.sleepSmall();
 
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException(locator + " not present!");
@@ -324,7 +322,7 @@ public abstract class AbsSeleniumObject {
 
 	public void zType(String locator, String value, WebElement... elements) throws HarnessException {
 	    logger.info("zType(" + locator + "," + value + ")");
-	    SleepUtil.sleepSmall();
+	    SleepUtil.sleepVerySmall();
 
 	    WebElement we = null;
 		logger.info("getElement");
@@ -438,11 +436,10 @@ public abstract class AbsSeleniumObject {
 
 
 	public String sGetEval(String script) throws HarnessException {
-		logger.info("sGetEval(" + script + ")");
-
 		String value = null;
 		try {
 			value = executeScript(script);
+			logger.info("sGetEval(" + script + ") = " + value);
 			return (value);
 		} catch (Exception e) {
 			logger.info(e + " executing " + script);
@@ -1007,7 +1004,6 @@ public abstract class AbsSeleniumObject {
 
 
 	public void zWaitForBusyOverlay() throws HarnessException {
-		logger.info("zWaitForBusyOverlay()");
 		try {
 			sWaitForCondition("return top.appCtxt.getShell().getBusy()==false");
 		} catch (Exception ex) {
@@ -1017,7 +1013,6 @@ public abstract class AbsSeleniumObject {
 
 
 	public void zWaitForBusyOverlayHTML() throws HarnessException {
-		logger.info("zWaitForBusyOverlayHTML()");
 		sWaitForCondition("return top.appCtxt.getShell().getBusy()==false");
 	}
 
@@ -1738,7 +1733,6 @@ public abstract class AbsSeleniumObject {
 
 
 	protected WebElement getElement(String locator) throws HarnessException{
-		logger.info("getElement(" + locator + ")");
 		WebElement we = getElementOrNull(locator);
 
 		if (we==null) {
@@ -1814,13 +1808,11 @@ public abstract class AbsSeleniumObject {
 				String txt = cssl.getText();
 
 				if (txt == null || txt.isEmpty()) {
-				    logger.info("findElement(By.cssSelector(" + modLocator + "))");
 				    we = driver.findElement(By.cssSelector(modLocator));
 
 				} else {
 					String preText = cssl.getPreText();
 					String postText = cssl.getPostText();
-					logger.info("findElements(By.cssSelector("	+ preText + "))");
 
 					List<WebElement> elements = driver.findElements(By.cssSelector(preText));
 					Iterator<WebElement> it = elements.iterator();
@@ -1828,9 +1820,7 @@ public abstract class AbsSeleniumObject {
 						WebElement el = it.next();
 						String returnedText = el.getText();
 						if (returnedText!=null && returnedText.contains(txt)) {
-							logger.info("found element containing: " + txt);
 							if (postText !=null && !postText.isEmpty()) {
-								logger.info("applying filter: findElement(By.cssSelector(" + postText + "))");
 								el = el.findElement(By.cssSelector(postText));
 							}
 							we = el;
@@ -1839,10 +1829,10 @@ public abstract class AbsSeleniumObject {
 					}
 				}
 			} catch (Exception ex) {
-				logger.info("getElementByCss()" + ex);
+				logger.info("getElementByCss(" + locator + ") = " + ex);
 			}
 		}
-		logger.info("getElementByCss(" + we + ")");
+		logger.info("getElementByCss(" + locator + ") = " + we);
 		return we;
 	}
 
@@ -1899,7 +1889,6 @@ public abstract class AbsSeleniumObject {
 
 
 	private boolean elementVisiblePerPosition(String locator) {
-		logger.info("elementVisiblePerPosition(" + locator + ")");
 		Boolean visible = false;
 		WebElement we = getElementOrNull(locator);
 
