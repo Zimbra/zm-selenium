@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.si
 
 import java.util.Calendar;
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -81,10 +80,11 @@ public class ShowOriginal extends CalendarWorkWeekTest {
         // Open appointment & click context menu 'Show Original' Option
         SeparateWindow window = (SeparateWindow)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK,Button.O_SHOW_ORIGINAL_MENU, apptSubject);
 		try {
+			window.zSetWindowName();
 			window.zWaitForActive();
 			SleepUtil.sleepMedium();
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			//Verify content in Print view.
+
+			// Verify show original window content
 			String body = window.sGetBodyText();
 			ZAssert.assertStringContains(body, apptSubject, "Verify subject in Show original view");
 			ZAssert.assertStringContains(body, apptBody, "Verify content in Show original view");

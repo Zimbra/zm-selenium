@@ -89,6 +89,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		// Create meeting which has location conflict with above created appointment
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
+		SleepUtil.sleepLong();
 		
 		// Verify the compose page shows note below resource about conflicting resources
 		ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.ConflictResourceNote),  "Verify that the conflicting resource note appears on appt compose page");
@@ -106,7 +107,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(appt.getLocation(), apptLocation, "Location: Verify the location is present in the appointment");
 		
 		// Verify location free/busy status shows as ptst=DE
-		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst"), "DE");
+		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "DE", "Verify that the location status shows as 'Declined'"); //COVERAGE ALTHOUGH BUG 102271	
 	}
 	
@@ -160,7 +161,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		appt.setLocation(apptLocation);
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 		
 		// Verify the compose page shows note below resource about conflicting resources
 		ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.ConflictResourceNote),  "Verify that the conflicting resource note appears on appt compose page");
@@ -251,6 +252,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		// Save appointment with Location conflict
         ZAssert.assertTrue(dialog.zIsActive(), "Verify 'Conflicting Resource' dialog is Open");
         dialog.zClickButton(Button.B_SAVE_WITH_CONFLICT);
+		SleepUtil.sleepMedium();
         
         // Verify that modified location and subject are present in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");
@@ -258,8 +260,8 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(appt.getLocation(), apptLocation, "Location: Verify the location is present in the appointment");
 		
 		// Verify location free/busy status shows as ptst=NE	
-		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst"), "NE");
-		ZAssert.assertEquals(locationStatus, "NE", "Verify that the location status shows as 'DECLINCED'");
+		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
+		ZAssert.assertEquals(locationStatus, "NE", "Verify that the location status shows as 'NEEDS ACTION'");
 	}
 	
 	@Test( description = "Verify organizer can close modified appointment with location Conflict",  

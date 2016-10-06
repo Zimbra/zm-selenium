@@ -130,7 +130,7 @@ public class ModifyInstance extends CalendarWorkWeekTest {
 
 		ZimbraAccount.AccountA().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		String myStatus = zWaitTillSoapResponse(ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.AccountA().EmailAddress +"']", "ptst"), "NE");
+		String myStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.AccountA().EmailAddress +"']", "ptst");
 		exceptId = ZimbraAccount.AccountA().soapSelectValue("//mail:appt//mail:exceptId", "d");
 
 		// Verify attendee status shows as ptst=NE
@@ -156,7 +156,7 @@ public class ModifyInstance extends CalendarWorkWeekTest {
 
 		ZimbraAccount.AccountB().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		myStatus = zWaitTillSoapResponse(ZimbraAccount.AccountB().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.AccountB().EmailAddress +"']", "ptst"), "NE");
+		myStatus = ZimbraAccount.AccountB().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.AccountB().EmailAddress +"']", "ptst");
 		exceptId = ZimbraAccount.AccountB().soapSelectValue("//mail:appt//mail:exceptId", "d");
 
 		// Verify attendee status shows as ptst=NE

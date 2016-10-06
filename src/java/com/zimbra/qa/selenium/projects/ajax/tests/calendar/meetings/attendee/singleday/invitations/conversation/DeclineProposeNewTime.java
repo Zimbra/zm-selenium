@@ -159,7 +159,7 @@ public class DeclineProposeNewTime extends CalendarWorkWeekTest {
 		String attendeeInvId = apptAttendee1.soapSelectValue("//mail:appt", "invId");
 		apptAttendee1.soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		String myStatus = zWaitTillSoapResponse(apptAttendee1.soapSelectValue("//mail:at[@a='"+ apptAttendee1EmailAddress +"']", "ptst"), "NE");
+		String myStatus = apptAttendee1.soapSelectValue("//mail:at[@a='"+ apptAttendee1EmailAddress +"']", "ptst");
 		ZAssert.assertEquals(myStatus, "NE", "Verify that the attendee shows as 'NEEDS ACTION' for organizer");
 		
 		apptAttendee1.soapSend(
@@ -185,7 +185,7 @@ public class DeclineProposeNewTime extends CalendarWorkWeekTest {
 		attendeeInvId = apptAttendee2.soapSelectValue("//mail:appt", "invId");
 		apptAttendee2.soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		myStatus = zWaitTillSoapResponse(apptAttendee2.soapSelectValue("//mail:at[@a='"+ apptAttendee2EmailAddress +"']", "ptst"), "NE");
+		myStatus = apptAttendee2.soapSelectValue("//mail:at[@a='"+ apptAttendee2EmailAddress +"']", "ptst");
 		ZAssert.assertEquals(myStatus, "NE", "Verify that the attendee2 status still showing as 'NEEDS ACTION'");
 		
 		apptAttendee2.soapSend(

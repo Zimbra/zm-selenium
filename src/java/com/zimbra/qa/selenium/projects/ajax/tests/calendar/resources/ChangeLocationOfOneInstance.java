@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -90,6 +88,7 @@ public class ChangeLocationOfOneInstance extends CalendarWorkWeekTest {
 		apptForm.zVerifyDisabledControlInOpenInstance();
 	    apptForm.zFillField(Field.Location, apptLocation);
 	    apptForm.zSubmit();
+		SleepUtil.sleepMedium();
 	
 	    // Verify location in the appointment
 	    
@@ -104,7 +103,7 @@ public class ChangeLocationOfOneInstance extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(exceptionLocation, apptLocation, "Location: Verify the appointment data");
 		
 		// Verify location free/busy status is "Accepted"
-		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:inst[@ex='1']", "ptst"), "AC");
+		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:inst[@ex='1']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify location status shows accepted");
 
 	}

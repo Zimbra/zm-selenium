@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 
 import java.util.Calendar;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -92,7 +90,7 @@ public class ResourceConflictWhenOOO extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:comp", "fba"), "T", "");
 
 		// Verify location free/busy status shows as psts=AC
-		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst"), "AC");
+		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify that the location status shows as 'ACCEPTED'");
 
 		// Logout from organizer and Login as attendee
@@ -122,6 +120,7 @@ public class ResourceConflictWhenOOO extends CalendarWorkWeekTest {
 
 		// Save appt with location conflict 
 		dialog.zClickButton(Button.B_SAVE_WITH_CONFLICT);
+		SleepUtil.sleepMedium();
 
 		// Verify that location with conflict and subject are present in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");
@@ -129,7 +128,7 @@ public class ResourceConflictWhenOOO extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(appt.getLocation(), apptLocation, "Location: Verify the location is present in the appointment");
 
 		// Verify location free/busy status shows as psts=DE
-		String locationStatus2 = zWaitTillSoapResponse(ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst"), "DE");
+		String locationStatus2 = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertEquals(locationStatus2, "DE", "Verify that the location status shows as 'DECLINED'");
 
 	}

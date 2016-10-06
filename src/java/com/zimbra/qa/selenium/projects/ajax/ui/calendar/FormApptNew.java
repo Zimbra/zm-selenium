@@ -217,8 +217,6 @@ public class FormApptNew extends AbsForm {
 
 	@Override
 	public void zSubmit() throws HarnessException {
-		logger.info("FormMailNew.submit()");
-
 		String locator = "css=div[id$=_SEND_INVITE]";
 		if (this.sIsElementPresent(locator) && this.sIsVisible(locator)) {
 			zToolbarPressButton(Button.B_SEND);
@@ -519,7 +517,7 @@ public class FormApptNew extends AbsForm {
 		if (button == Button.B_SEND || button == Button.B_SAVE || button == Button.B_SAVEANDCLOSE) {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepLong();
 			
 		} else {
 			SleepUtil.sleepSmall();

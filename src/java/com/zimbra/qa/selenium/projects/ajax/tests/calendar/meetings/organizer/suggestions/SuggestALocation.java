@@ -81,6 +81,7 @@ public class SuggestALocation extends CalendarWorkWeekTest {
         // Verify 'free' location appears in suggested locations pane
         ZAssert.assertEquals(apptForm.zVerifyLocation(apptLocation), true, "Verify 'free' location appear in suggested locations pane");
         apptForm.zSubmit();
+		SleepUtil.sleepMedium();
         
         // Verify location in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
@@ -88,7 +89,7 @@ public class SuggestALocation extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getLocation(), apptLocation, "Location: Verify the appointment data");
 		
 		// Verify location status shows as ACCEPTED
-		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst"), "AC");
+		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify location status shows accepted");
 		
 		// Verify 'busy' location doesn't appear in suggested locations pane

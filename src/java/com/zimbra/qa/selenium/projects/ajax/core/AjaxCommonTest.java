@@ -294,18 +294,6 @@ public class AjaxCommonTest {
 				+	"</ModifyAccountRequest>");
 	}
 	
-	public String zWaitTillSoapResponse(String soapRequest, String expected) throws HarnessException {
-		String responseValue = soapRequest;
-		for (int i=0; i<=5; i++) {
-			if (responseValue.equals(soapRequest)) {
-				break;
-			} else {
-				SleepUtil.sleepMedium();
-			}
-		}
-		return responseValue;
-	}
-
 	public void zUpload (String filePath) throws HarnessException {
 
 		// File name

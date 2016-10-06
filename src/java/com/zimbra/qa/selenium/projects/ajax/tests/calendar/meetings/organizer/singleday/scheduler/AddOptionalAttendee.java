@@ -87,7 +87,7 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 		ZAssert.assertStringContains(actual.getAttendees(), apptAttendee, "Attendees: Verify the appointment data");
 		
 		// Verify attendee free/busy status
-		String attendeeStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptAttendee +"']", "ptst"), "NE");
+		String attendeeStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptAttendee +"']", "ptst");
 		ZAssert.assertEquals(attendeeStatus, "NE", "Verify attendee free/busy status");
 		
 		// Verify attendee receives meeting invitation message

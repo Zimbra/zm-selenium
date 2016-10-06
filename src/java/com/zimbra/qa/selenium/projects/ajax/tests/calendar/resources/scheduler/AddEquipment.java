@@ -89,7 +89,7 @@ public class AddEquipment extends CalendarWorkWeekTest {
 		ZAssert.assertStringContains(actual.getEquipment(), apptEquipment, "Equipment: Verify the appointment data");
 		
 		// Verify equipment free/busy status
-		String equipmentStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquipment +"']", "ptst"), "AC");
+		String equipmentStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquipment +"']", "ptst");
 		ZAssert.assertEquals(equipmentStatus, "AC", "Verify equipment free/busy status");
 		
 	}

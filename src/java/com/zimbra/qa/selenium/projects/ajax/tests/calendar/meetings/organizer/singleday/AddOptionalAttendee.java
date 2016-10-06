@@ -54,8 +54,8 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -90,7 +90,7 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getOptional(),apptOptionalAttendee , "optional attendee: Verify the appointment data");
 	
 		// Verify optional attendee free/busy status
-		String attendeeStatus = zWaitTillSoapResponse (app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptOptionalAttendee +"']", "ptst"), "NE");
+		String attendeeStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptOptionalAttendee +"']", "ptst");
 		ZAssert.assertEquals(attendeeStatus, "NE", "Verify optional attendee free/busy status");
 		
 		// Verify optional attendee receives meeting invitation message
@@ -151,7 +151,6 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 			+	"</SearchRequest>");
 		String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify new invitation appears in the optional attendee's inbox");
- 
 	
 		// Verify that optional attendee present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
@@ -163,7 +162,7 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(addedOptionalAttendee, "Verify meeting invite is present in optional attendee's calendar");
 		
 		// Verify optional attendee free/busy status
-		String optionalAttendeeStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptOptionalAttendee +"']", "ptst"), "NE");
+		String optionalAttendeeStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptOptionalAttendee +"']", "ptst");
 		ZAssert.assertEquals(optionalAttendeeStatus, "NE", "Verify optional attendee free/busy status");
 		
 	}
