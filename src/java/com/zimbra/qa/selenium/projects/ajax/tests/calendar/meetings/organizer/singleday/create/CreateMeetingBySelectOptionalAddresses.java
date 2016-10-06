@@ -68,9 +68,7 @@ public class CreateMeetingBySelectOptionalAddresses extends CalendarWorkWeekTest
         dialogFindAttendees.zClickButton(Button.B_SELECT_FIRST_CONTACT);
         dialogFindAttendees.zClickButton(Button.B_CHOOSE_CONTACT_FROM_PICKER);
         dialogFindAttendees.zClickButton(Button.B_OK);
-        apptForm.zToolbarPressButton(Button.B_SEND);
-        
-        SleepUtil.sleepVeryLong(); // Without this the test fails
+        apptForm.zSubmit();
         
         // Verify new invitation appears in the optional attendee's inbox
 		ZimbraAccount.AccountA().soapSend(

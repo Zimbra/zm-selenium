@@ -111,7 +111,7 @@ public class ModifyByChangingOrganiser extends CalendarWorkWeekTest {
         	    break;
         	}        	
         }
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
         
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate start = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, 24, 8, 0, 0);

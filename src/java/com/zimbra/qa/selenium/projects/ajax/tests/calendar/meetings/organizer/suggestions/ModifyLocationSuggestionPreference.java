@@ -69,7 +69,6 @@ public class ModifyLocationSuggestionPreference extends CalendarWorkWeekTest {
 		
 		apptForm.zPressButton(Button.B_SUGGESTEDLOCATION, apptLocation1);
 		apptForm.zSubmit();
-		SleepUtil.sleepLong(); //location shows NE instead of AC without sleep
 		
 		// Verify appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")");
@@ -80,7 +79,7 @@ public class ModifyLocationSuggestionPreference extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
 		
 		// Verify location status shows as ACCEPTED
-		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation1 +"']", "ptst");
+		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation1 +"']", "ptst"), "AC");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify location status shows accepted");
 
 		// Verify the attendee receives the meeting

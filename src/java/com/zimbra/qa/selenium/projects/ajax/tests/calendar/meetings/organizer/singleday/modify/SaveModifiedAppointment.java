@@ -87,7 +87,6 @@ public class SaveModifiedAppointment extends CalendarWorkWeekTest {
         confirmClose.zClickButton(Button.B_SAVE_MODIFICATION);
         DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
         sendUpdateDialog.zClickButton(Button.B_OK);
-        SleepUtil.sleepLong();
         
         // Verify if an attendee is removed from appt and attendee gets update
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

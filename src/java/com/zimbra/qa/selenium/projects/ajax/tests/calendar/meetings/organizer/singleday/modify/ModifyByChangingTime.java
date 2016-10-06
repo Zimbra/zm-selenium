@@ -76,8 +76,7 @@ public class ModifyByChangingTime extends CalendarWorkWeekTest {
 		appt1.setEndTime(changedEndUTC);
         FormApptNew apptForm1 = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm1.zFill(appt1);
-        apptForm1.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepVeryLong(); 
+        apptForm1.zSubmit();
         
         //Login as attendee and verify that correct time is mentioned in summary
         app.zPageMain.zLogout();

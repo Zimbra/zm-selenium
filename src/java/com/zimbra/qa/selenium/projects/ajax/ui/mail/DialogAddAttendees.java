@@ -95,12 +95,13 @@ public class DialogAddAttendees extends AbsDialog {
 		}
 
 		this.zClick(locator);
-		
 		this.zWaitForBusyOverlay();
-		
 		SleepUtil.sleepMedium();
-		Stafpostqueue sp = new Stafpostqueue();
-		sp.waitForPostqueue();
+		
+		if ( button == Button.B_YES ) {
+			Stafpostqueue sp = new Stafpostqueue();
+			sp.waitForPostqueue();
+		}
 
 		return (page);
 	}

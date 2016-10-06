@@ -75,8 +75,6 @@ public class SuggestALocation extends CalendarWorkWeekTest {
         apptForm.zFillField(Field.Attendees, apptAttendee);
         apptForm.zFillField(Field.Body, apptContent);
 		apptForm.zSubmit();
-		SleepUtil.sleepVeryLong(); // test fails while checking free/busy status, waitForPostqueue is not sufficient here
-        // Tried sleepLong() as well but although fails so using sleepVeryLong()
 		
 		// Verify appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
@@ -99,7 +97,7 @@ public class SuggestALocation extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(invite.dSubject, apptSubject, "Subject: Verify the appointment data");
 		
 		// Verify location free/busy status shows as ptst=AC	
-		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
+		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst"), "AC");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify that the location status shows as 'ACCEPTED'");
 		
 		ExecuteHarnessMain.ResultListener.captureMailboxLog();

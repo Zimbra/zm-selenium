@@ -75,8 +75,6 @@ public class CreateMeetingWithEquipment extends CalendarWorkWeekTest {
 		apptForm.zAutocompleteSelectItem(found);
         ZAssert.assertTrue(apptForm.zVerifyEquipment(apptEquipment1), "Verify appointment equipment");
 		apptForm.zSubmit();
-		SleepUtil.sleepVeryLong(); // test fails while checking free/busy status, waitForPostqueue is not sufficient here
-        // Tried sleepLong() as well but although fails so using sleepVeryLong()
 		
 		// Because the response from the resource may take some time, make sure the response is received in the inbox before proceeding
 		for (int i = 0; i < 10; i++) {
@@ -92,7 +90,6 @@ public class CreateMeetingWithEquipment extends CalendarWorkWeekTest {
 		}
 		
 		// Verify appointment exists on the server
-		SleepUtil.sleepSmall(); //test fails without sleep
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
@@ -101,7 +98,7 @@ public class CreateMeetingWithEquipment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
 		
 		// Verify equipment free/busy status shows as psts=AC	
-		String equipmentStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquipment1 +"']", "ptst");
+		String equipmentStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquipment1 +"']", "ptst"), "AC");
 		ZAssert.assertEquals(equipmentStatus, "AC", "Verify that the equipment status shows as 'ACCEPTED'");
 		
 	}

@@ -312,7 +312,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
         // Sometimes the SEND button is not activated.
         SleepUtil.sleepMedium();
         
-		mailComposeForm.zToolbarPressButton(Button.B_SEND);
+		mailComposeForm.zSubmit();
 		
 		
 		//-- Verification
@@ -389,7 +389,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
         SleepUtil.sleepMedium();
         
 		mailComposeForm.zFillField(Field.Body, modifyApptBody);		
-		mailComposeForm.zToolbarPressButton(Button.B_SEND);
+		mailComposeForm.zSubmit();
 		
 		
 		//-- Verification

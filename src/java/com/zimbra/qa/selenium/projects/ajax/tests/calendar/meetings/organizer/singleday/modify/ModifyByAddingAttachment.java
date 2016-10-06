@@ -81,7 +81,7 @@ public class ModifyByAddingAttachment extends CalendarWorkWeekTest {
 				apptForm.zToolbarPressButton(Button.B_BROWSE);
 				zUpload(filePath);
 	
-				apptForm.zToolbarPressButton(Button.B_SEND);
+				apptForm.zSubmit();
 	
 				// Verify that attendee1 present in the appointment
 				AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

@@ -205,7 +205,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		
 		FormMailNew mailComposeForm = new FormMailNew(app);
 		mailComposeForm.zFillField(Field.Body, modifyApptBody);		
-		mailComposeForm.zToolbarPressButton(Button.B_SEND);
+		mailComposeForm.zSubmit();
 		
 		// Verify meeting invite is deleted from the shared calendar
 		AppointmentItem sharedAppt = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

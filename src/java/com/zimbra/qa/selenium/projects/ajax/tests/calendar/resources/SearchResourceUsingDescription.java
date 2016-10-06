@@ -100,7 +100,6 @@ public class SearchResourceUsingDescription extends CalendarWorkWeekTest {
 	    dialogFindEquipment.zClickButton(Button.B_OK);
 	    SleepUtil.sleepMedium();
 	    apptForm.zSubmit();
-	    SleepUtil.sleepVeryLong();
 	
 	    // Verify equipment present in the appointment
 	    AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
@@ -108,7 +107,7 @@ public class SearchResourceUsingDescription extends CalendarWorkWeekTest {
 		ZAssert.assertStringContains(actual.getEquipment(), apptEquipment, "Equipment: Verify the appointment data");
 		
 		// Verify equipment free/busy status
-		String equipmentStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquipment +"']", "ptst");
+		String equipmentStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquipment +"']", "ptst"), "AC");
 		ZAssert.assertEquals(equipmentStatus, "AC", "Verify equipment free/busy status");
 	
 	}

@@ -79,7 +79,7 @@ public class AddRequiredAttendee extends CalendarWorkWeekTest {
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zAddRequiredAttendeeFromScheduler(apptAttendee, keyEvent);
         ZAssert.assertTrue(apptForm.zVerifyRequiredAttendee(apptAttendee), "Verify email address bubble after adding attendee from scheduler");
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
  
         // Verify that attendee present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
@@ -87,7 +87,7 @@ public class AddRequiredAttendee extends CalendarWorkWeekTest {
 		ZAssert.assertStringContains(actual.getAttendees(), apptAttendee, "Attendees: Verify the appointment data");
 		
 		// Verify attendee free/busy status
-		String attendeeStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptAttendee +"']", "ptst");
+		String attendeeStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptAttendee +"']", "ptst"), "NE");
 		ZAssert.assertEquals(attendeeStatus, "NE", "Verify attendee free/busy status");
 		
 		// Verify attendee receives meeting invitation message

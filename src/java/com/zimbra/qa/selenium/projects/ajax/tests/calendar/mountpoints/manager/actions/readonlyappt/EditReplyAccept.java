@@ -94,7 +94,6 @@ public class EditReplyAccept extends CalendarWorkWeekTest {
 		FormMailNew mailComposeForm = (FormMailNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT_REPLY_ACCEPT_SUB_MENU, apptSubject);
         mailComposeForm.zFillField(Field.Body, modifiedBody + " ");		
 		mailComposeForm.zSubmit();
-		SleepUtil.sleepVeryLong(); // attendee status changes from NE to AC
 		
 		// -------------- Verification at organizer side --------------
 		
@@ -107,7 +106,7 @@ public class EditReplyAccept extends CalendarWorkWeekTest {
 		String messageId = ZimbraAccount.Account2().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(messageId, "Verify organizer gets email notification");
 		
-		String attendeeStatus = ZimbraAccount.Account2().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
+		String attendeeStatus = zWaitTillSoapResponse(ZimbraAccount.Account2().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst"), "AC");
 
 		// Verify attendee status shows as ptst=AC
 		ZAssert.assertEquals(attendeeStatus, "AC", "Verify that the attendee shows as 'ACCEPTED'");
@@ -132,7 +131,7 @@ public class EditReplyAccept extends CalendarWorkWeekTest {
 		ZimbraAccount.Account2().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
 		
-		attendeeStatus = ZimbraAccount.Account2().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
+		attendeeStatus = zWaitTillSoapResponse(ZimbraAccount.Account2().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst"), "AC");
 	
 		// Verify attendee status shows as ptst=AC
 		ZAssert.assertEquals(attendeeStatus, "AC", "Verify that the attendee shows as 'ACCEPTED'");
@@ -150,7 +149,7 @@ public class EditReplyAccept extends CalendarWorkWeekTest {
 		ZimbraAccount.Account1().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
 		
-		String myStatus = ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
+		String myStatus = zWaitTillSoapResponse(ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst"), "AC");
 
 		// Verify attendee status shows as ptst=AC
 		ZAssert.assertEquals(myStatus, "AC", "Verify that the attendee shows as 'ACCEPTED'");
@@ -163,7 +162,7 @@ public class EditReplyAccept extends CalendarWorkWeekTest {
 		messageId = ZimbraAccount.Account1().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(messageId, "Verify sent mail for accepted appointment notification (action performed by assistant)");
 		
-		attendeeStatus = ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
+		attendeeStatus = zWaitTillSoapResponse(ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst"), "AC");
 
 		// Verify attendee status shows as ptst=AC
 		ZAssert.assertEquals(attendeeStatus, "AC", "Verify that the attendee shows as 'ACCEPTED'");

@@ -89,8 +89,7 @@ public class ChangeLocationOfOneInstance extends CalendarWorkWeekTest {
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zVerifyDisabledControlInOpenInstance();
 	    apptForm.zFillField(Field.Location, apptLocation);
-	    apptForm.zToolbarPressButton(Button.B_SEND);
-	    SleepUtil.sleepMedium();; 
+	    apptForm.zSubmit();
 	
 	    // Verify location in the appointment
 	    
@@ -105,7 +104,7 @@ public class ChangeLocationOfOneInstance extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(exceptionLocation, apptLocation, "Location: Verify the appointment data");
 		
 		// Verify location free/busy status is "Accepted"
-		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:inst[@ex='1']", "ptst");
+		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:inst[@ex='1']", "ptst"), "AC");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify location status shows accepted");
 
 	}

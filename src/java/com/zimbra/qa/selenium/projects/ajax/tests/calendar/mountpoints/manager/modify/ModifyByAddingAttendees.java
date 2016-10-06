@@ -104,7 +104,7 @@ public class ModifyByAddingAttendees extends CalendarWorkWeekTest {
         // Add attendee2 and re-send the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zFillField(Field.Attendees, apptAttendee2);
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
         DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
         sendUpdateDialog.zClickButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
         sendUpdateDialog.zClickButton(Button.B_OK);

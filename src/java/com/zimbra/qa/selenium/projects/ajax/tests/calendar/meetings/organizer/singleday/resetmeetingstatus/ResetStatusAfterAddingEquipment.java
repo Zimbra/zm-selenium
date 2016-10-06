@@ -91,8 +91,6 @@ public class ResetStatusAfterAddingEquipment extends CalendarWorkWeekTest {
         apptForm.zFill(appt);
         SleepUtil.sleepMedium();
 		apptForm.zSubmit();
-        apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepVeryLong(); 
         
 		// --- Check that the organizer shows the attendee as "Accepted" ---
 		app.zGetActiveAccount().soapSend(
@@ -105,7 +103,7 @@ public class ResetStatusAfterAddingEquipment extends CalendarWorkWeekTest {
 			app.zGetActiveAccount().soapSend(
 				"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
 	
-		String attendeeStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
+		String attendeeStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst"), "AC");
 
 		// Verify attendee status shows as ptst=AC
 		ZAssert.assertEquals(attendeeStatus, "AC", "Verify that the attendee shows as 'Accepted'");
@@ -121,7 +119,7 @@ public class ResetStatusAfterAddingEquipment extends CalendarWorkWeekTest {
 		ZimbraAccount.Account1().soapSend(
 				"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
 	
-		String myStatus = ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
+		String myStatus = zWaitTillSoapResponse(ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst"), "NE");
 
 		// Verify attendee status shows as ptst=NE
 		ZAssert.assertEquals(myStatus, "NE", "Verify that the attendee shows as 'Needs Action'");

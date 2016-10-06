@@ -27,33 +27,33 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
 
-public class CheckForwardingMeetingDoesntSendInvite extends CalendarWorkWeekTest {	
-	
+public class CheckForwardingMeetingDoesntSendInvite extends CalendarWorkWeekTest {
+
 	public CheckForwardingMeetingDoesntSendInvite() {
 		logger.info("New "+ CheckForwardingMeetingDoesntSendInvite.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
+
 	@Bugs(ids = "56465")
 	@Test( description = "Bug 56465 - Forwarding of Calendar events sending invites to all attendees",
 			groups = { "functional" })
-			
+
 	public void CheckForwardingMeetingDoesntSendInvite_01() throws HarnessException {
-				
+
 		// Creating a meeting
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
-		
+
 		String tz = ZTimeZone.TimeZoneEST.getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String attendee1 = ZimbraAccount.AccountA().EmailAddress;
 		String attendee2 = ZimbraAccount.AccountB().EmailAddress;
 		String apptLocation = location.EmailAddress;
-		
+
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
                      "<m>"+
@@ -71,27 +71,27 @@ public class CheckForwardingMeetingDoesntSendInvite extends CalendarWorkWeekTest
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-        
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-        
+
         // Delete the invite message from the attendee's mailbox
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 			+		"<query>subject:("+ apptSubject +")</query>"
 			+	"</SearchRequest>");
 		String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
-		
+
 		ZimbraAccount.AccountA().soapSend(
 				"<ItemActionRequest  xmlns='urn:zimbraMail'>"
 			+		"<action id='"+ id +"' op='delete'/>"
 			+	"</ItemActionRequest>");
-        
+
         // Forward appointment to different attendee
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_FORWARD_MENU, apptSubject);
         app.zPageCalendar.zType(Locators.ForwardToTextArea, attendee2);
-        app.zPageCalendar.zToolbarPressButton(Button.B_SEND);		
-        
+        app.zPageCalendar.zToolbarPressButton(Button.B_SEND);
+
 		// Verify meeting invite appears to attendee (appt forwarding)
 		ZimbraAccount.AccountB().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -99,7 +99,7 @@ public class CheckForwardingMeetingDoesntSendInvite extends CalendarWorkWeekTest
 			+	"</SearchRequest>");
 		id = ZimbraAccount.AccountB().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify new invitation appears in the attendee's inbox");
-		
+
 		ZimbraAccount.AccountB().soapSend(
 				"<GetMsgRequest  xmlns='urn:zimbraMail'>"
 			+		"<m id='"+ id +"'/>"
@@ -110,7 +110,7 @@ public class CheckForwardingMeetingDoesntSendInvite extends CalendarWorkWeekTest
 		// Verify meeting invite appears for new attendee
 		AppointmentItem a = AppointmentItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ apptSubject + ")");
 		ZAssert.assertNotNull(a, "Verify that appointment matches in the calendar");
-		
+
 		// Verify meeting invite is not present for first attendee
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -120,5 +120,5 @@ public class CheckForwardingMeetingDoesntSendInvite extends CalendarWorkWeekTest
 		ZAssert.assertNull(id, "Verify meeting invite is not present to first attendee");
 
 	}
-	
+
 }

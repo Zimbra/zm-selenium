@@ -77,7 +77,7 @@ public class ModifyMeetingByModifyingAttendees extends CalendarWorkWeekTest {
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
         //ZAssert.assertEquals(apptForm.zGetAttendeeFromScheduler(), apptAttendee3, "Verify that row is not blank");
 
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
 		
 	}	
 }

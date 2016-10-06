@@ -89,8 +89,7 @@ public class ResetStatusAfterRemovingLocation extends CalendarWorkWeekTest {
 		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zRemoveLocation(apptLocation);
-        apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepVeryLong(); 
+        apptForm.zSubmit();
         
 		// --- Check that the organizer shows the attendee as "Needs Action" ---
 		app.zGetActiveAccount().soapSend(
@@ -103,7 +102,7 @@ public class ResetStatusAfterRemovingLocation extends CalendarWorkWeekTest {
 			app.zGetActiveAccount().soapSend(
 				"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
 	
-		String attendeeStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
+		String attendeeStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst"), "NE");
 
 		// Verify attendee status shows as ptst=NE
 		ZAssert.assertEquals(attendeeStatus, "NE", "Verify that the attendee shows as 'Needs Action'");
@@ -119,7 +118,7 @@ public class ResetStatusAfterRemovingLocation extends CalendarWorkWeekTest {
 		ZimbraAccount.Account1().soapSend(
 				"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
 	
-		String myStatus = ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
+		String myStatus = zWaitTillSoapResponse(ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst"), "NE");
 
 		// Verify attendee status shows as ptst=NE
 		ZAssert.assertEquals(myStatus, "NE", "Verify that the attendee shows as 'Needs Action'");

@@ -99,7 +99,6 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 
         // Save appt with location conflict 
 		dialog.zClickButton(Button.B_SAVE_WITH_CONFLICT);
-		SleepUtil.sleepVeryLong();
 		
         // Verify that location with conflict and subject are present in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");
@@ -107,7 +106,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(appt.getLocation(), apptLocation, "Location: Verify the location is present in the appointment");
 		
 		// Verify location free/busy status shows as ptst=DE
-		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
+		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst"), "DE");
 		ZAssert.assertEquals(locationStatus, "DE", "Verify that the location status shows as 'Declined'"); //COVERAGE ALTHOUGH BUG 102271	
 	}
 	
@@ -152,7 +151,6 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
                      "</m>" +
                "</CreateAppointmentRequest>");
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-        SleepUtil.sleepSmall();
         
         // Create meeting which has location conflict for above created appointment
 		appt.setSubject(apptSubject2);
@@ -162,7 +160,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		appt.setLocation(apptLocation);
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-		SleepUtil.sleepVeryLong();
+		SleepUtil.sleepMedium();
 		
 		// Verify the compose page shows note below resource about conflicting resources
 		ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.ConflictResourceNote),  "Verify that the conflicting resource note appears on appt compose page");
@@ -239,7 +237,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		// Create meeting which has location conflict for above created appointment
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-		SleepUtil.sleepVeryLong();
+		SleepUtil.sleepMedium();
 		
 		// Verify the compose page shows note below resource about conflicting resources
 		ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.ConflictResourceNote),  "Verify that the conflicting resource note appears on appt compose page");	
@@ -258,10 +256,9 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject2, "Subject: Verify the appointment data");
 		ZAssert.assertEquals(appt.getLocation(), apptLocation, "Location: Verify the location is present in the appointment");
-		SleepUtil.sleepVeryLong();
 		
 		// Verify location free/busy status shows as ptst=NE	
-		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
+		String locationStatus = zWaitTillSoapResponse(app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst"), "NE");
 		ZAssert.assertEquals(locationStatus, "NE", "Verify that the location status shows as 'DECLINCED'");
 	}
 	
@@ -319,7 +316,6 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		// Create meeting which has location conflict for above created appointment and then close it w/o saving
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-		SleepUtil.sleepVeryLong();
 		
         // Verify that appointment subject is not modified
         AppointmentItem modifyAppt = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");

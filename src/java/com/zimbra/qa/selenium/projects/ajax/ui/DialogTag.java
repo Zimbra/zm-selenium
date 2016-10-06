@@ -105,9 +105,9 @@ public class DialogTag extends AbsDialog {
 			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
 		}
 		
-		zClickAt(locator,"0,0");
-		
+		sClick(locator);
 		zWaitForBusyOverlay();
+		SleepUtil.sleepSmall();
 		return (null);
 	}
 
