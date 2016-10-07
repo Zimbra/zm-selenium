@@ -31,6 +31,7 @@ import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
@@ -40,18 +41,17 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-import org.openqa.selenium.WebDriverException;
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.admin.ui.AppAdminConsole;
 
 public class AdminCommonTest {
-	
+
 	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	protected static Logger logger = LogManager.getLogger(AdminCommonTest.class);
 	protected final ZimbraAdminAccount gAdmin = ZimbraAdminAccount.AdminConsoleAdmin();
@@ -103,7 +103,7 @@ public class AdminCommonTest {
 				webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
 				webDriver.navigate().to(ConfigProperties.getBaseURL());
 			}
-			
+
 		} catch (WebDriverException e) {
 			logger.error("Unable to open admin app.  Is a valid cert installed?", e);
 			throw e;
@@ -119,16 +119,19 @@ public class AdminCommonTest {
 	 */
 	@BeforeClass( groups = { "always" } )
 	public void commonTestBeforeClass() throws HarnessException {
-		logger.info("commonTestBeforeClass");
-
+		logger.info("commonTestBeforeClass: start");		
+		logger.info("commonTestBeforeClass: finish");
 	}
 
 	@BeforeMethod( groups = { "always" } )
 	public void commonTestBeforeMethod() throws HarnessException {
 		logger.info("commonTestBeforeMethod: start");
 
+		//Close all the dialogs left opened by the previous test 
+		app.zPageMain.zHandleDialogs();
+
 		// If a startinAccount is defined, then make sure we are authenticated as that user
-		if ( startingAccount != null ) {
+		if ( startingAccount != null ) {	
 			logger.debug("commonTestBeforeMethod: startingAccount is defined");
 
 			if ( !startingAccount.equals(app.zGetActiveAccount())) {
@@ -174,7 +177,6 @@ public class AdminCommonTest {
 			}
 
 		}
-
 
 		logger.info("commonTestBeforeMethod: finish");
 

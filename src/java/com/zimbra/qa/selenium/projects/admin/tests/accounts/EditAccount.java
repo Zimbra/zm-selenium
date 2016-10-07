@@ -378,6 +378,7 @@ public class EditAccount extends AdminCommonTest {
 
 		// Refresh the account list
 		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		SleepUtil.sleepMedium();
 
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(account.getEmailAddress());
@@ -394,7 +395,7 @@ public class EditAccount extends AdminCommonTest {
 		SleepUtil.sleepMedium();
 
 		// Click on Advanced section
-		form.zClickAt(PageManageAccounts.Locators.ADVANCED,"");
+		form.sClick(PageManageAccounts.Locators.ADVANCED);
 		SleepUtil.sleepMedium();
 
 		// Check "Enable two-factor authentication"
