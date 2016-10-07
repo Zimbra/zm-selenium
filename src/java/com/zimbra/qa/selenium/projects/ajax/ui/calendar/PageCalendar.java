@@ -18,8 +18,8 @@ package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
-
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
+import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
@@ -989,9 +989,7 @@ public class PageCalendar extends AbsTab {
 			// Read-only appointment locator
 			locator = itemsLocator + " td[id$='_responseActionSelectCell'] td[id$='_select_container']";
 
-		}
-
-		else if (this.sIsElementPresent(itemsLocator + " td[class='appt_name']")) {
+		} else if (this.sIsElementPresent(itemsLocator + " td[class='appt_name']")) {
 			locator = itemsLocator + " td[class='appt_name']";
 		}
 
@@ -2126,6 +2124,71 @@ public class PageCalendar extends AbsTab {
 		SleepUtil.sleepMedium();
 
 		return (page);
+	}
+	
+	public AbsPage zToolbarPressPulldown(Button pulldown, Object dynamic) throws HarnessException {
+		logger.info(myPageName() + " zToolbarPressPulldown(" + pulldown + ", " + dynamic + ")");
+
+		tracer.trace("Click pulldown " + pulldown + " then " + dynamic);
+
+		if (pulldown == null)
+			throw new HarnessException("Pulldown cannot be null!");
+
+		if (dynamic == null)
+			throw new HarnessException("Option cannot be null!");
+
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
+
+		if (pulldown == Button.B_MOVE) {
+
+			if (!(dynamic instanceof FolderItem))
+				throw new HarnessException("if pulldown = " + Button.B_MOVE + ", then dynamic must be FolderItem");
+
+			FolderItem folder = (FolderItem) dynamic;
+			
+			pulldownLocator = "css=td#zb__CLD__MOVE_MENU_dropdown>div";
+			optionLocator = "css=td#zti__ZmFolderChooser_CalendarCLWW__" + folder.getId() + "_textCell";
+			
+			page = null;
+
+		} else {
+
+			throw new HarnessException("no logic defined for pulldown/dynamic " + pulldown + "/" + dynamic);
+
+		}
+
+		// Default behavior
+		if (pulldownLocator != null) {
+
+			// Make sure the locator exists
+			if (!this.sIsElementPresent(pulldownLocator)) {
+				throw new HarnessException("Button " + pulldown + " pulldownLocator " + pulldownLocator + " not present!");
+			}
+
+			this.sClickAt(pulldownLocator, "");
+			zWaitForBusyOverlay();
+			SleepUtil.sleepSmall();
+
+			if (optionLocator != null) {
+
+				// Make sure the locator exists
+				if (!this.sIsElementPresent(optionLocator)) {
+					throw new HarnessException(" dynamic " + dynamic + " optionLocator " + optionLocator + " not present!");
+				}
+
+				logger.info(this.sIsElementPresent(optionLocator));
+				this.sClickAt(optionLocator, "");
+				zWaitForBusyOverlay();
+				SleepUtil.sleepSmall();
+			}
+
+		}
+
+		// Return the specified page, or null if not set
+		return (page);
+
 	}
 
 	public AbsPage zKeyboardKeyEvent(int keyEvent) throws HarnessException {

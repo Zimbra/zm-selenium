@@ -18,6 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.url;
 
 import java.io.*;
 import java.util.*;
+import org.openqa.selenium.Dimension;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -40,7 +41,6 @@ public class HoverOverURL extends AjaxCommonTest {
 				put("zimbraPrefGroupMailBy", "message");
 			}
 		};
-
 	}
 	
 	
@@ -72,7 +72,7 @@ public class HoverOverURL extends AjaxCommonTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		// Wait for a bit so the zimlet can take affect
-		SleepUtil.sleep(5000);
+		SleepUtil.sleep(3000);
 		
 		// Hover over the URL
 		String locator = "css=span[id$='_com_zimbra_url']:contains(" + server + ")";
@@ -83,7 +83,6 @@ public class HoverOverURL extends AjaxCommonTest {
 		// Verify the contact tool tip opens
 		TooltipContact tooltip = new TooltipContact(app);
 		tooltip.zWaitForActive();
-		
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
 	}
 	
@@ -116,12 +115,12 @@ public class HoverOverURL extends AjaxCommonTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		// Wait for a bit so the zimlet can take affect
-		SleepUtil.sleep(5000);
+		SleepUtil.sleep(3000);
 		
 		// Hover over the URL
 		String locator = "css=span[id$='_com_zimbra_url']:contains(" + server + ")";
 		app.zPageMail.zDisplayMailHoverOver(locator);
-
+		
 		//-- VERIFICATION
 		
 		// Verify the contact tool tip opens
@@ -130,9 +129,7 @@ public class HoverOverURL extends AjaxCommonTest {
 
 		// Get the tooltip contents
 		String content = tooltip.zGetContents();
-		
 		ZAssert.assertStringContains(content, server, "Verify basic tooltip content");
-
 	}
 
 	
@@ -154,8 +151,7 @@ public class HoverOverURL extends AjaxCommonTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		// Wait for a bit so the zimlet can take affect
-		SleepUtil.sleep(5000);
-		
+		SleepUtil.sleep(3000);		
 		
 		//-- VERIFICATION
 		
@@ -166,7 +162,6 @@ public class HoverOverURL extends AjaxCommonTest {
 			// Link2: http://www.zimbra.com/foo/Javascript/foo
 			// Link3: http://www.zimbra.com/foo/JAVASCRIPT/foo
 
-			
 			// Hover over the URL
 			String locator = "css=span[id$='_com_zimbra_url']:contains("+ link +")";
 			app.zPageMail.zDisplayMailHoverOver(locator);
@@ -179,11 +174,19 @@ public class HoverOverURL extends AjaxCommonTest {
 	
 			// Get the tooltip contents
 			String content = tooltip.zGetContents();
-			
 			ZAssert.assertStringDoesNotContain(content.toLowerCase(), "blocked", "Verify 'javascript' not changed to 'javascript-BLOCKED'");
-
 		}
-
+	}
+	
+	@BeforeClass(groups={"always"})
+	public void beforeClass() throws HarnessException {
+		Dimension n = new Dimension(1024,768);  
+		ClientSessionFactory.session().webDriver().manage().window().setSize(n);
 	}
 
+	@AfterClass(groups={"always"})
+	public void afterClass() throws HarnessException {
+		ClientSessionFactory.session().webDriver().manage().window().maximize();
+	}
+	
 }

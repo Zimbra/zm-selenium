@@ -611,6 +611,12 @@ public class FormApptNew extends AbsForm {
 	public void zSetTomorrowDate() throws HarnessException{
 		Calendar c = Calendar.getInstance();
 		c.add(Calendar.DATE, 2);
+		this.sFocus("css=input[id$='_startDateField']");
+		this.sClickAt("css=input[id$='_startDateField']", "");
+		this.zKeyboard.zSelectAll();
+		SleepUtil.sleepVerySmall();
+		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DELETE);
+		SleepUtil.sleepVerySmall();
 		this.zTypeKeys("css=input[id$='_startDateField']", new SimpleDateFormat("MM/dd/yyyy").format(c.getTime()));
 	}
 
@@ -628,11 +634,9 @@ public class FormApptNew extends AbsForm {
 	 * @return
 	 * @throws HarnessException
 	 */
-	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
-			throws HarnessException {
+	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 
-		logger.info(myPageName() + " zToolbarPressPulldown(" + pulldown + ", "
-				+ option + ")");
+		logger.info(myPageName() + " zToolbarPressPulldown(" + pulldown + ", " + option + ")");
 
 		tracer.trace("Click pulldown " + pulldown + " then " + option);
 
@@ -641,7 +645,6 @@ public class FormApptNew extends AbsForm {
 
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
-
 
 		String pulldownLocator = null;
 		String optionLocator = null;

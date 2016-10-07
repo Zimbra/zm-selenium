@@ -378,7 +378,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 		// ------------------------ Test data ------------------------------------
 
 		String apptSubject = ConfigProperties.getUniqueString();
-		String modifiedBody = "modified" + ConfigProperties.getUniqueString();
+		String modifiedBody = " modified" + ConfigProperties.getUniqueString();
 
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
@@ -480,7 +480,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 				+	"</SearchRequest>");
 		
 		// Verify message body content
-		String body = ZimbraAccount.AccountA().soapSelectValue("//mail:m/mail:fr", null);
+		String body = ZimbraAccount.AccountA().soapSelectValue("//mail:m//mail:desc", null);
 		ZAssert.assertStringContains(body, modifiedBody, "Verify modified body value");
 		
 		// Verify accepted appointment present in new calendar folder

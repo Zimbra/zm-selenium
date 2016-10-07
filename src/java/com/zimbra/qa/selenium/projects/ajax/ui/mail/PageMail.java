@@ -257,13 +257,8 @@ public class PageMail extends AbsTab {
 				we = webDriver().findElement(By.cssSelector(locator));
 				final Actions builder = new Actions(webDriver());
 				builder.moveToElement(we).build().perform();
-			} else if (locator.contains("url")) {
-				this.sWindowMaximize();
-				this.sMouseOver(locator);
-				this.sWindowMaximize();
-				SleepUtil.sleepSmall();
 			} else {
-				this.sMouseOver(locator);
+				this.sMouseOut(locator);
 			}
 			SleepUtil.sleepSmall();
 
@@ -590,8 +585,7 @@ public class PageMail extends AbsTab {
 			}
 			locator = "id='" + Locators.zViewMenuDropdownBtnID + "'";
 
-		} else if (button == Button.B_CLOSE_CONVERSATION) { // Close the
-															// conversation tab
+		} else if (button == Button.B_CLOSE_CONVERSATION) {
 
 			locator = "css=div[id$='__CLOSE'] td[id$='_title']";
 			page = null;
@@ -1750,7 +1744,7 @@ public class PageMail extends AbsTab {
 	}
 
 	public AbsPage zToolbarPressPulldown(Button pulldown, Object dynamic) throws HarnessException {
-		logger.info(myPageName() + " zToolbarPressButtonWithPulldown(" + pulldown + ", " + dynamic + ")");
+		logger.info(myPageName() + " zToolbarPressPulldown(" + pulldown + ", " + dynamic + ")");
 
 		tracer.trace("Click pulldown " + pulldown + " then " + dynamic);
 
@@ -1770,7 +1764,7 @@ public class PageMail extends AbsTab {
 				throw new HarnessException("if pulldown = " + Button.B_MOVE + ", then dynamic must be FolderItem");
 
 			FolderItem folder = (FolderItem) dynamic;
-
+			
 			// Check if we are CLV or MV
 			if (this.zIsVisiblePerPosition("css=div#ztb__CLV-main", 0, 0)) {
 				pulldownLocator = "css=td#zb__CLV-main__MOVE_MENU_dropdown>div";
@@ -1803,13 +1797,12 @@ public class PageMail extends AbsTab {
 
 			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
-				throw new HarnessException(
-						"Button " + pulldown + " pulldownLocator " + pulldownLocator + " not present!");
+				throw new HarnessException("Button " + pulldown + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
 			this.sClickAt(pulldownLocator, "");
 			zWaitForBusyOverlay();
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepSmall();
 
 			if (optionLocator != null) {
 
@@ -1821,7 +1814,7 @@ public class PageMail extends AbsTab {
 				logger.info(this.sIsElementPresent(optionLocator));
 				this.sClickAt(optionLocator, "");
 				zWaitForBusyOverlay();
-				SleepUtil.sleepMedium();
+				SleepUtil.sleepSmall();
 			}
 
 		}

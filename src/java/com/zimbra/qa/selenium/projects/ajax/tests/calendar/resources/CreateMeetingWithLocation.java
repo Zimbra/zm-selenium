@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -35,7 +33,7 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "69132")
-	@Test( description = "Create simple meeting with location resource",	groups = { "smoke" })
+	@Test( description = "Create simple meeting with location resource", groups = { "smoke" })
 	
 	public void CreateMeetingWithSingleLocation_01() throws HarnessException {
 		
@@ -77,7 +75,6 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 		}
 		
 		// Verify appointment exists on the server
-		SleepUtil.sleepSmall(); //test fails without sleep
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
@@ -92,7 +89,7 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 	
 	
 	@Bugs(ids = "69132")
-	@Test( description = "Create simple meeting with two location resource",	groups = { "functional" })
+	@Test( description = "Create simple meeting with two location resource", groups = { "functional" })
 	
 	public void CreateMeetingWithMultiLocation_02() throws HarnessException {
 		
@@ -143,10 +140,9 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 		}
 
 		// Verify appointment exists on the server
-		SleepUtil.sleepSmall(); //test fails without sleep
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
-		ZAssert.assertStringContains(actual.getLocation().replace(";", ""), appt.getLocation(), "Location: Verify the appointment data");
+		ZAssert.assertStringContains(appt.getLocation(), actual.getLocation().split(";")[0], "Location: Verify the appointment data");
 		
 		// Verify both location free/busy status
 		String locationStatus1 = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ location1.EmailAddress +"']", "ptst");

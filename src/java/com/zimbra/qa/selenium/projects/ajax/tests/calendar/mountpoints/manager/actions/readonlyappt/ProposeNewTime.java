@@ -155,7 +155,7 @@ public class ProposeNewTime extends CalendarWorkWeekTest {
 		SleepUtil.sleepMedium();
 		
 		appt.setSubject(modifiedSubject);
-		appt.setContent(modifiedBody);
+		appt.setContent(" " + modifiedBody);
 		apptForm.zFill(appt);
 		apptForm.zSubmit();
 		

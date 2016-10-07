@@ -18,6 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators;
@@ -86,9 +87,8 @@ public class DialogSendUpdatetoAttendees extends DialogWarning {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 		}
-
+		SleepUtil.sleepMedium();
+		
 		return (page);
 	}
-
 }
-

@@ -594,6 +594,8 @@ public class PageContacts extends AbsTab {
 		String optionLocator = null;
 		AbsPage page = null;
 		
+		SleepUtil.sleepSmall();
+		
 		if ( pulldown == Button.B_MOVE ) {
 	      if ( item instanceof FolderItem) {
              FolderItem folder = (FolderItem) item;

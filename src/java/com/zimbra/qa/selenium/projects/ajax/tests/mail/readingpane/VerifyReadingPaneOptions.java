@@ -1,7 +1,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.readingpane;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -17,7 +16,6 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByConversationTest
 import com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.drafts.OpenDraftMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
 
-
 public class VerifyReadingPaneOptions extends PrefGroupMailByConversationTest {
 
 	public VerifyReadingPaneOptions() {
@@ -26,11 +24,11 @@ public class VerifyReadingPaneOptions extends PrefGroupMailByConversationTest {
 
 	@Bugs(ids = "91533")
 	@Test( description = "Verify reading pane options in message view (bottom, right, off)", groups = { "functional" })
-	public void VerifyReadingPaneOptionsInMessageView_02() throws HarnessException {
+	public void VerifyReadingPaneOptionsInMessageView_01() throws HarnessException {
 					
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_BY_MESSAGE);
 		SleepUtil.sleepVerySmall();
-		app.zPageMail.zRefresh();
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_READING_PANE_RIGHT);
 		ZAssert.assertTrue(app.zPageMail.sIsVisible(Locators.zRightReadingPaneSeparatorBar), "Verify horizontal seperator is visible");
@@ -51,7 +49,7 @@ public class VerifyReadingPaneOptions extends PrefGroupMailByConversationTest {
 	
 	@Bugs(ids = "91533")
 	@Test( description = "Verify reading pane options in conversation view (bottom, right, off)", groups = { "functional" })
-	public void VerifyReadingPaneOptionsInConversationView_01() throws HarnessException {
+	public void VerifyReadingPaneOptionsInConversationView_02() throws HarnessException {
 		
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);
 		String subject = "subject"+ ConfigProperties.getUniqueString();
@@ -74,7 +72,6 @@ public class VerifyReadingPaneOptions extends PrefGroupMailByConversationTest {
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inboxFolder);
-
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);

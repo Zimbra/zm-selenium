@@ -172,9 +172,7 @@ public class FormMailNew extends AbsForm {
 
 	@Override
 	public void zSubmit() throws HarnessException {
-		logger.info("FormMailNew.submit()");
 		zToolbarPressButton(Button.B_SEND);
-		this.zWaitForBusyOverlay();
 	}
 
 	/**
@@ -623,13 +621,9 @@ public class FormMailNew extends AbsForm {
 
 		String locator = null;
 
-		SleepUtil.sleepSmall();
-
 		if ( field == Field.From ) {
 
-			SleepUtil.sleepSmall();
 			zSetFromIdentity(value);
-			SleepUtil.sleepSmall();
 
 			return;
 
@@ -699,8 +693,6 @@ public class FormMailNew extends AbsForm {
 
 			locator = Locators.zSubjectField;
 
-			
-
 		} else if (field == Field.Body) {
 
 			SleepUtil.sleepLong();
@@ -721,14 +713,13 @@ public class FormMailNew extends AbsForm {
 
 					this.sFocus(locator);
 					this.zClick(locator);
-					// this.sType(locator, value);
-					this.zKeyboard.zTypeCharacters(value);
+					this.sType(locator, value);
+					//this.zKeyboard.zTypeCharacters(value);
 
 				} finally {
 					this.sSelectFrame("relative=top");
 				}
 
-				SleepUtil.sleepSmall();
 				this.zWaitForBusyOverlay();
 
 				return;
@@ -763,8 +754,7 @@ public class FormMailNew extends AbsForm {
 					locator = "css=textarea[id*='textarea_']";
 
 					if (!this.sIsElementPresent(locator))
-						throw new HarnessException(
-								"Unable to locate compose body");
+						throw new HarnessException("Unable to locate compose body");
 
 					this.sFocus(locator);
 					this.zClick(locator);
@@ -778,8 +768,7 @@ public class FormMailNew extends AbsForm {
 					//locator = "css=iframe[id^='iframe_DWT']";
 					locator ="css=iframe[id$='_content_ifr']";
 					if (!this.sIsElementPresent(locator))
-						throw new HarnessException(
-								"Unable to locate compose body");
+						throw new HarnessException("Unable to locate compose body");
 
 					zTypeFormattedText(locator, value);
 
@@ -849,8 +838,7 @@ public class FormMailNew extends AbsForm {
 						locator = "css=html body";
 
 						if (!this.sIsElementPresent(locator))
-							throw new HarnessException(
-									"Unable to locate compose body");
+							throw new HarnessException("Unable to locate compose body");
 
 						this.sFocus(locator);
 						this.zClick(locator);

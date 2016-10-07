@@ -108,7 +108,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		
 		// Verify location free/busy status shows as ptst=DE
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
-		ZAssert.assertEquals(locationStatus, "DE", "Verify that the location status shows as 'Declined'"); //COVERAGE ALTHOUGH BUG 102271	
+		ZAssert.assertEquals(locationStatus, "DE", "Verify that the location status shows as 'Declined'");
 	}
 	
 	@Test( description = "Verify Cancelling create appt when Location resource has conflicts shows conflict dialog", 
