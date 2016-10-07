@@ -118,7 +118,7 @@ public class CreateShare extends CalendarWorkWeekTest  {
 		ZAssert.assertNull(received, "Verify no mail is received");
 	}
 
-	@Test( description = "Share folder with viewer rights and add a multiline note to it.", 
+	@Test( description = "Share folder with viewer rights and add a multiline note to it", 
 			groups = { "functional" })
 	public void CreateShare_03() throws HarnessException {
 	

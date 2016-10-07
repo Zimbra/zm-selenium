@@ -329,7 +329,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 		// ------------------------ Test data ------------------------------------
 
 		String apptSubject = ConfigProperties.getUniqueString();
-		String modifiedBody = "modified" + ConfigProperties.getUniqueString();
+		String modifiedBody = " modified" + ConfigProperties.getUniqueString();
 
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
@@ -421,10 +421,11 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 				+	"</SearchRequest>");
 		
 		// Verify message body content
-		String body = ZimbraAccount.AccountA().soapSelectValue("//mail:m/mail:fr", null);
+		String body = ZimbraAccount.AccountA().soapSelectValue("//mail:m//mail:desc", null);
 		ZAssert.assertStringContains(body, modifiedBody, "Verify modified body value");
 		
 	}
+	
 	
 	@Bugs(ids = "69132,65356")
 	@Test(

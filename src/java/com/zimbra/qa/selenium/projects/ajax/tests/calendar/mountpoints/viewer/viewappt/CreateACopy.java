@@ -23,7 +23,6 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogInformational;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
 public class CreateACopy extends CalendarWorkWeekTest {
 
@@ -99,11 +98,7 @@ public class CreateACopy extends CalendarWorkWeekTest {
 		DialogInformational dlgInfo = (DialogInformational)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_CREATE_A_COPY_MENU, apptSubject);
 		dlgInfo.zClickButton(Button.B_OK);
 		
-		app.zPageCalendar.zToolbarPressButton(Button.B_CLOSE);
-		DialogWarning dlgWarning = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.SaveChanges, app, this.startingPage);
-		dlgWarning.zClickButton(Button.B_NO);
-		
-		// Yes button functionality already convered in viewer -> actions -> CreateACopy.java
+		// Create a copy functionality already convered in viewer -> actions -> CreateACopy.java
 		
 	}
 

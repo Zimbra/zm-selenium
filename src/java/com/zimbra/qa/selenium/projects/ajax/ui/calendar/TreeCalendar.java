@@ -486,8 +486,7 @@ public class TreeCalendar extends AbsTree {
 			return (zTreeItem(action, (ZimletItem) folder));
 		}
 
-		throw new HarnessException(
-				"Must use FolderItem or SavedSearchFolderItem or ZimletItem as argument, but was " + folder.getClass());
+		throw new HarnessException("Must use FolderItem or SavedSearchFolderItem or ZimletItem as argument, but was " + folder.getClass());
 	}
 
 	public void zMarkOnOffCalendarFolder(String folderName) throws HarnessException {
@@ -497,7 +496,7 @@ public class TreeCalendar extends AbsTree {
 		FolderItem folderID = FolderItem.importFromSOAP(MyApplication.zGetActiveAccount(), folderName);
 		this.sClickAt("css=div[id='zti__main_Calendar__" + folderID.getId() + "_checkbox']", "");
 		this.zWaitForBusyOverlay();
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 	}
 
 	public void zVerifyCalendarChecked(Boolean status, String folderId) throws HarnessException {

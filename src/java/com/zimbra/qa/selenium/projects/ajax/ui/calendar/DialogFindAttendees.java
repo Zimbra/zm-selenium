@@ -26,23 +26,20 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
 public class DialogFindAttendees extends DialogWarning {
 
-	// The ID for the main Dialog DIV
 	public static final String LocatorDivID = "SEND_UPDATES_DIALOG";
-	
-	
+
 	public DialogFindAttendees(AbsApplication application, AbsTab page) {
 		super(new DialogWarningID(LocatorDivID), application, page);
-				
 		logger.info("new " + DialogFindAttendees.class.getCanonicalName());
 	}
+
 	public static class Locators {
 
-		public static final String LocationPickerSerach="css=div[class='DwtDialog'] td[id$='_title']:contains('Search')";
-		public static final String SelectLocationFromPicker="css=div[class='DwtDialog'] td[id$='_title']:contains('Select')";
-		public static final String AddLocationFromPicker="css=div[class='DwtDialog']  td[id^='OK'] td[id$='_button2_title']";
+		public static final String LocationPickerSerach = "css=div[class='DwtDialog'] td[id$='_title']:contains('Search')";
+		public static final String SelectLocationFromPicker = "css=div[class='DwtDialog'] td[id$='_title']:contains('Select')";
+		public static final String AddLocationFromPicker = "css=div[class='DwtDialog']  td[id^='OK'] td[id$='_button2_title']";
 		public static final String SearchResultArea = "css=div[id$='ContactPicker_chooser'] div[class$='ListView']";
 
-		
 		public static final String ShowOptionalLink = "css=div[id$='_show_optional']";
 		public static final String ContactPickerSerachField = "id=ZmContactPicker_searchField";
 		public static final String ContactPickerSerachButton = "css=td[id='ZmContactPicker_searchButton'] div table tbody tr td[id$='title']:contains('Search')";
@@ -50,14 +47,13 @@ public class DialogFindAttendees extends DialogWarning {
 		public static final String SelectContactFromPicker = "css=td[id^='DwtChooserButton']:contains('To:')";
 		public static final String AddContactFromPicker = "css=td[id^='ZmContactPicker_button']:contains('OK')";
 		public static final String MessageHeader = "css= div[class='MsgHeader']:contains('";
-		
 	}
-	
+
 	public static class Field {
 
 		public static final Field ContactPickerSerachField = new Field("ContactPickerSerachField");
 		public static final Field Department = new Field("Search = department");
-		
+
 		private String field;
 
 		private Field(String name) {
@@ -70,14 +66,15 @@ public class DialogFindAttendees extends DialogWarning {
 		}
 
 	}
+
 	@Override
 	public AbsPage zClickButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zClickButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("button cannot be null");
-	
+
 		String locator = null;
 		AbsPage page = null;
 		boolean waitForPostfix = false;
@@ -91,33 +88,33 @@ public class DialogFindAttendees extends DialogWarning {
 
 			locator = Locators.SelectLocationFromPicker;
 			page = null;
-		
+
 		} else if (button == Button.B_OK) {
 
 			locator = Locators.AddContactFromPicker;
 			page = null;
-	
+
 		} else if (button == Button.B_CANCEL) {
 
 			locator = "css=div[class='DwtDialog'] td[id$='_button1_title']";
 			page = null;
-			                              
+
 		} else if (button == Button.B_CHOOSE_CONTACT_FROM_PICKER) {
-			
+
 			this.zClick(Locators.ContactPickerFirstContact);
 			locator = Locators.SelectContactFromPicker;
 			page = null;
-			                              
+
 		} else if (button == Button.B_SELECT_FIRST_CONTACT) {
 
 			locator = Locators.ContactPickerFirstContact;
 			page = null;
-			                              
-		} else {
-			
-			return ( super.zClickButton(button) );
 
+		} else {
+
+			return (super.zClickButton(button));
 		}
+		
 		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
@@ -125,8 +122,7 @@ public class DialogFindAttendees extends DialogWarning {
 
 		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 		this.sFocus(locator);
 		this.sClickAt(locator, "");
@@ -134,71 +130,61 @@ public class DialogFindAttendees extends DialogWarning {
 		this.zWaitForBusyOverlay();
 
 		// This dialog could send messages, so wait for the queue
-		if ( waitForPostfix ) {
+		if (waitForPostfix) {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 		}
 
 		return (page);
 	}
+
 	public void zFill(IItem item) throws HarnessException {
 		logger.info(myPageName() + ".zFill(ZimbraItem)");
 		logger.info(item.prettyPrint());
 
 		// Make sure the item is a MailItem
 		if (!(item instanceof AppointmentItem)) {
-			throw new HarnessException(
-					"Invalid item type - must be AppointmentItem");
+			throw new HarnessException("Invalid item type - must be AppointmentItem");
 		}
 
 		AppointmentItem appt = (AppointmentItem) item;
 
-		// Subject
+		// Attendees
 		if (appt.getAttendeeName() != null) {
 			zFillField(Field.ContactPickerSerachField, appt.getAttendeeName());
 		}
 
-
-
 	}
-	
+
 	public void zFillField(Field field, String value) throws HarnessException {
 
 		tracer.trace("Set " + field + " to " + value);
 
 		String locator = null;
-		// subject
-		  if (field == Field.ContactPickerSerachField) {
 
+		if (field == Field.ContactPickerSerachField) {
 			locator = Locators.ContactPickerSerachField;
-
-			// calendar folder
-		}  else if ( field == Field.Department ) {
-
-			locator = "css=input[id$='_searchDepartmentField']";
-
 			
-
-		}  
-		  
-		  else {
+		} else if (field == Field.Department) {
+			locator = "css=input[id$='_searchDepartmentField']";
+			
+		} else {
 			throw new HarnessException("not implemented for field " + field);
 		}
-	
+
 		if (locator == null) {
 			throw new HarnessException("locator was null for field " + field);
 		}
-	
+
 		// Make sure the button exists
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
-	
-			this.sClickAt(locator, "");
-			this.clearField(locator);
-			SleepUtil.sleepSmall();
+
+		this.sClickAt(locator, "");
+		this.clearField(locator);
+		this.sType(locator, value);
+		SleepUtil.sleepSmall();
 
 		this.zWaitForBusyOverlay();
 	}
 }
-
-

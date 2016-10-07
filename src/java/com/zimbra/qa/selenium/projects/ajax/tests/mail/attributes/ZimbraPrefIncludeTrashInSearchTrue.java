@@ -40,7 +40,7 @@ public class ZimbraPrefIncludeTrashInSearchTrue extends PrefGroupMailByMessageTe
 	@Test(
 			description = "Verify when zimbraPrefIncludeTrashInSearch=TRUE, that trash is included in search",
 			groups = { "functional" })
-	public void ZimbraPrefIncludeTrashInSearchTrue_02() throws HarnessException {
+	public void ZimbraPrefIncludeTrashInSearchTrue_01() throws HarnessException {
 		
 		//-- DATA setup
 		

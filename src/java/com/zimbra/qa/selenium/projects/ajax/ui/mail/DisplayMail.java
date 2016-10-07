@@ -294,20 +294,21 @@ public class DisplayMail extends AbsDisplay {
 			locator = Locators.zForwardButton;
 			page = null;
 			doPostfixCheck = true;
+			
 		} else if ( button == Button.B_REPLY) {
 
 			locator = Locators.zReplyButton;
 			page = null;
 			doPostfixCheck = true;
+			
 		} else if ( button == Button.B_REPLYALL) {
 
 			locator = Locators.zReplyAllButton;
 			page = null;
 			doPostfixCheck = true;
-		} else  {
 			
+		} else  {
 			throw new HarnessException("no implementation for button: "+ button);
-
 		}
 		
 		if ( locator == null )
@@ -323,9 +324,8 @@ public class DisplayMail extends AbsDisplay {
 		if ( page != null ) {
 			page.zWaitForActive();
 		}
-		logger.info("postfix"+ doPostfixCheck);
+		
 		if ( doPostfixCheck ) {
-			// Make sure the response is delivered before proceeding
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 		}
@@ -439,27 +439,21 @@ public class DisplayMail extends AbsDisplay {
 		}
 
 		// Click to dropdown and corresponding option
-		
 		zClickAt(pulldownLocator, "");
-		
 		zWaitForBusyOverlay();
-		
 		zClick(optionLocator);
-		
 		zWaitForBusyOverlay();
-
 		if (page != null) {
 			page.zWaitForActive();
 		}
 
 		if ( doPostfixCheck ) {
-			// Make sure the response is delivered before proceeding
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 		}
+		SleepUtil.sleepMedium();
 
 		return (page);
-		
 	}
 	
 	public AbsPage zPressButtonPulldown(Button pulldown, String option) throws HarnessException {
@@ -491,13 +485,9 @@ public class DisplayMail extends AbsDisplay {
 		}
 
 		// Click to dropdown and corresponding option
-		
-		zClickAt(pulldownLocator, "");
-		
-		zWaitForBusyOverlay();
-		
-		zClick(optionLocator);
-		
+		zClickAt(pulldownLocator, "");		
+		zWaitForBusyOverlay();		
+		zClick(optionLocator);		
 		zWaitForBusyOverlay();
 
 		if (page != null) {
@@ -505,13 +495,11 @@ public class DisplayMail extends AbsDisplay {
 		}
 
 		if ( doPostfixCheck ) {
-			// Make sure the response is delivered before proceeding
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 		}
 
 		return (page);
-		
 	}
 	
 	/**

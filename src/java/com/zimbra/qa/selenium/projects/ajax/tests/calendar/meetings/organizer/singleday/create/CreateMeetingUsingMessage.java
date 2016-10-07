@@ -59,7 +59,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 8, 30, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -124,7 +124,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 9, 30, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -184,7 +184,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 10, 30, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -194,7 +194,6 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
 		dlgAddAttendees.zClickButton(Button.B_NO);
-		SleepUtil.sleepMedium();
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -245,7 +244,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 11, 30, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -255,7 +254,6 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
 		dlgAddAttendees.zClickButton(Button.B_NO);
-		SleepUtil.sleepMedium();
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -305,7 +303,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 12, 30, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -364,7 +362,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 13, 30, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -424,7 +422,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 14, 30, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -484,7 +482,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 15, 30, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -494,7 +492,6 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
 		dlgAddAttendees.zClickButton(Button.B_NO);
-		SleepUtil.sleepMedium();
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -544,8 +541,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		final String content = "Dev is aggressively";
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 14, 30, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
@@ -563,6 +560,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		apptForm.zSubmit();
+		SleepUtil.sleepVeryLong(); // This is really needed because MIME is huge, without this test fails.
 
 		// Verify appointment exists on the server
 		app.zGetActiveAccount().soapSend(

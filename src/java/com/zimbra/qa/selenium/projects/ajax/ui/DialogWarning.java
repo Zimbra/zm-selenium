@@ -22,6 +22,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
@@ -140,7 +141,6 @@ public class DialogWarning extends AbsDialog {
 				page = 	new FormMailNew(this.MyApplication);
 			}
 
-
 		} else if ( button == Button.B_NO ) {
 
 			locator = buttonsTableLocator + " td[id$='_button4_title']";
@@ -170,16 +170,21 @@ public class DialogWarning extends AbsDialog {
 		}
 
 		sClick(locator);
-
 		zWaitForBusyOverlay();
 
 		if ( page != null ) {
 			page.zWaitForActive();
-
 		}
 
-		Stafpostqueue sp = new Stafpostqueue();
-		sp.waitForPostqueue();
+		if (button == Button.B_YES || button == Button.B_OK || button == Button.B_SAVE_WITH_CONFLICT
+				|| button == Button.B_REVOKE) {
+			Stafpostqueue sp = new Stafpostqueue();
+			sp.waitForPostqueue();
+			SleepUtil.sleepLong();
+			
+		} else {
+			SleepUtil.sleepMedium();
+		}
 
 		return (page);
 	}
@@ -198,16 +203,12 @@ public class DialogWarning extends AbsDialog {
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
+		
 		String dialogPresent = "css=div[id='" + MyDivId + "'][style*='display: block;']";
+		
 		if ( !this.sIsElementPresent(dialogPresent) )
 			return (false);
-
-		// mountpionts.viewer.FlagMail seems to keep failing on this dialog, even
-		// though the PERM_DENIED dialog is showing correctly
-		//
-		// 7.X: 		if ( !this.zIsVisiblePerPosition(MyDivId, 225, 300) )
-		// 8.X: dev says any dialogs with non-negative positions should be visible, so using (0,0)
-		//
+		
 		if ( !this.zIsVisiblePerPosition(dialogPresent, 0, 0) )
 			return (false);
 

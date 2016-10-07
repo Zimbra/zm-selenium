@@ -93,7 +93,7 @@ public class EditReplyDecline extends CalendarWorkWeekTest {
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		
 		FormMailNew mailComposeForm = (FormMailNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT_REPLY_DECLINE_SUB_MENU, apptSubject);
-        mailComposeForm.zFillField(Field.Body, modifiedBody + " ");		
+        mailComposeForm.zFillField(Field.Body, " " + modifiedBody);		
 		mailComposeForm.zSubmit();
 		
 		

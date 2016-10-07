@@ -35,7 +35,7 @@ public class OpenComposedMessageInNewWindow extends PrefGroupMailByMessageTest {
 
 	@Bugs( ids = "89778")
 	@Test( description = "Send a mail using HTML editor - from a separate window using DETACH COMPOSE button",
-	groups = { "functional" })
+			groups = { "functional" })
 
 	public void OpenComposedMessageInNewWindow_01() throws HarnessException {
 
@@ -64,21 +64,23 @@ public class OpenComposedMessageInNewWindow extends PrefGroupMailByMessageTest {
 			window.waitForComposeWindow();			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
-			//Select the window
+			// Select the window
 			window.sSelectWindow(windowTitle);					
 
 			// Verify the data appearing in fields in New window
-			ZAssert.assertEquals(mailform.sGetText(Locators.zBubbleToField),ZimbraAccount.AccountA().EmailAddress, "To field doesn't match");
-			ZAssert.assertEquals(mailform.sGetValue(Locators.zSubjectField),subject, "Subject field doesn't match");
-			ZAssert.assertStringContains(mailform.zGetHtmltBodyText(),body, "Body of mail doesn't match");
+			ZAssert.assertStringContains(
+					mailform.sGetText(Locators.zBubbleToField) + "@" + ConfigProperties.getStringProperty("testdomain"),
+					ZimbraAccount.AccountA().EmailAddress, "Verify To field value");
+			ZAssert.assertEquals(mailform.sGetValue(Locators.zSubjectField),subject, "Verify Subject field value");
+			ZAssert.assertStringContains(mailform.zGetHtmltBodyText(),body, "Verify Body field value");
 
-			//Enter some additional text in body of the newly opened compose window.
-			mailform.zFillField(Field.Body, "New Text ");
+			// Enter some additional text in body of the newly opened compose window.
+			mailform.zFillField(Field.Body, " appended text");
 
 			// Send the message
-			mailform.zToolbarPressButton(Button.B_SEND);
+			mailform.zSubmit();
 
-			//Verification through SOAP
+			// Verification through SOAP
 			ZimbraAccount.AccountA().soapSend(
 					"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
 							+			"<query>subject:("+ subject +")</query>"
@@ -95,10 +97,10 @@ public class OpenComposedMessageInNewWindow extends PrefGroupMailByMessageTest {
 			String subjectSoap = ZimbraAccount.AccountA().soapSelectValue("//mail:su", null);
 			String html = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null);
 
-			ZAssert.assertEquals(from, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
-			ZAssert.assertEquals(to, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
+			ZAssert.assertStringContains(from, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
+			ZAssert.assertStringContains(to, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
 			ZAssert.assertEquals(subjectSoap, subject, "Verify the subject field is correct");
-			ZAssert.assertStringContains(html, "New Text "+body, "Verify the html content");
+			ZAssert.assertStringContains(html, body + " appended text", "Verify the html content");
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
