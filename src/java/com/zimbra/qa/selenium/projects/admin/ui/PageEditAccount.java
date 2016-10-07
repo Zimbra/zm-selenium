@@ -30,7 +30,7 @@ public class PageEditAccount extends AbsTab {
 	public static final String ztab__DOAMIN_EDIT__DWT192_classAttr = "xpath=(//*[@id='ztab__DOAMIN_EDIT__DWT192'])@class";
 	public static final String ztab_ACCOUNT_EDIT_ACL = "css=div[id='zti__AppAdmin__Home__actLstHV__1__14_textCell']";
 	public static final String ztab_ACCOUNT_EDIT_GENERAL_INFORMATION = "css=div[id='zti__AppAdmin__Home__actLstHV__1__1_textCell']:contains('General Information')";
-	public static final String ACCOUNT_EDIT_ACL_ADD = "css=div[id=^'ztabv__ACCT_EDIT_dwt_button'] td[class='ZWidgetTitle']:contains('Add')";
+	public static final String ACCOUNT_EDIT_ACL_ADD = "css=td[id^='ztabv__ACCT_EDIT_dwt_button_'] td[id$='title']:contains('Add')";
 	public static final String ACCOUNT_EDIT_ACL_GRANTEE_NAME = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input";
 
 	public PageEditAccount(AbsApplication application) {

@@ -104,7 +104,7 @@ public class WizardCreateAdminAccount extends AbsWizard {
 		String domain = account.getDomainName();
 
 		if (adminType.equals(Locators.ADMIN_USER)) {
-			
+
 			zType(Locators.zdlg_ACCT_NAME, CN);
 			this.clearField(Locators.zdlg_DOMAIN_NAME);
 			zType(Locators.zdlg_DOMAIN_NAME,domain);
@@ -114,19 +114,13 @@ public class WizardCreateAdminAccount extends AbsWizard {
 			clickNext(AbsWizard.Locators.ADMIN_DIALOG);
 			clickFinish(AbsWizard.Locators.ADMIN_DIALOG);
 			SleepUtil.sleepSmall();
-			
-			//Check if infomation dialog is present. If yes, Click Ok.
-			if(sIsVisible(Locators.InformationDialog)) {
-				sClick(Locators.InformationDialogOkBtn);
-			}
+
 		} else {
 			zType(Locators.zdlg_DL_NAME, CN);
 			SleepUtil.sleepSmall();
-			this.clearField(Locators.zdlg_DL_DOMAIN_NAME);
-			zType(Locators.zdlg_DL_DOMAIN_NAME,"");
-			zType(Locators.zdlg_DL_DOMAIN_NAME,domain);
-			zType(Locators.zdlg_DL_NAME, CN);
-			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+			this.clearField(Locators.zdlg_DL_DOMAIN_NAME);			
+			zType(Locators.zdlg_DL_DOMAIN_NAME,domain);		
+			clickNext(AbsWizard.Locators.ADMIN_DIALOG);
 			clickFinish(AbsWizard.Locators.ADMIN_DIALOG);
 		}
 		return (account);
