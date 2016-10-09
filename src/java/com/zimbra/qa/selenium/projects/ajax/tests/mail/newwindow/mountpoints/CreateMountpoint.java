@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mountpoints;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -29,7 +27,6 @@ import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.SeparateWindowDialog;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
@@ -124,12 +121,8 @@ public class CreateMountpoint extends PrefGroupMailByMessageTest {
 			SeparateWindowDialog dialog = (SeparateWindowDialog)window.zPressButton(Button.B_ACCEPT_SHARE);
 			ZAssert.assertNotNull(dialog, "Verify that the accept share dialog opens");
 			
-			// Click OK on the dialog
+			// Click Yes on the dialog
 			dialog.zClickButton(Button.B_YES);
-
-			// The dialog will send a message, so wait for delivery
-			Stafpostqueue sp = new Stafpostqueue();
-			sp.waitForPostqueue();
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);

@@ -23,7 +23,6 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 
-
 /**
  * Represents a "Rename Folder" dialog box
  * <p>
@@ -154,38 +153,31 @@ public class DialogShareDecline extends AbsDialog {
 		String locator = null;
 		
 		if ( button == Button.B_OK ) {
-			
 			locator =  "//div[@id='"+ Locators.zDialogShareId +"']//div[@id='"+ Locators.zButtonsId +"']//td[text()='OK']";
 			
-		} else if ( button == Button.B_CANCEL ) {
-			
-			locator =  "implement me";
+		} else if ( button == Button.B_CANCEL ) {			
+			locator =  "//div[@id='"+ Locators.zDialogShareId +"']//div[@id='"+ Locators.zButtonsId +"']//td[text()='Cancel']";
 
 		} else {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 		
-		this.zClick(locator);
+		this.sClick(locator);
 		zWaitForBusyOverlay();
 		
-		// This dialog sends a message, so we need to check the queue
-		Stafpostqueue sp = new Stafpostqueue();
-		sp.waitForPostqueue();
+		if ( button == Button.B_OK ) {
+			Stafpostqueue sp = new Stafpostqueue();
+			sp.waitForPostqueue();
+		}
 
 		return (null);
 	}
 
 	@Override
 	public String zGetDisplayedText(String locator) throws HarnessException {
-		
-		throw new HarnessException("implement me");
-		
+		throw new HarnessException("implement me");		
 	}
 
-
-	/* (non-Javadoc)
-	 * @see framework.ui.AbsDialog#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
@@ -210,7 +202,4 @@ public class DialogShareDecline extends AbsDialog {
 		logger.info(myPageName() + " zIsVisible() = true");
 		return (true);
 	}
-
-
-
 }

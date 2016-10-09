@@ -691,6 +691,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 			locator = this.ContainerLocator + " td[id$='__Shr__SHARE_DECLINE_title']";
 			page = new SeparateWindowDialog(DialogWarningID.ZmDeclineShare, MyApplication, this);
+			((SeparateWindowDialog) page).zSetWindowTitle(this.DialogWindowTitle);
 			doPostfixCheck = true;
 
 		} else if (button == Button.O_ATTACH_DROPDOWN) {
@@ -753,7 +754,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		}
 
 		if (doPostfixCheck) {
-			// Make sure the response is delivered before proceeding
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 		}
