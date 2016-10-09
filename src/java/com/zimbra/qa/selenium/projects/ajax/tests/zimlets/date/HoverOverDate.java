@@ -24,16 +24,16 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
-public class HoverOver extends PrefGroupMailByMessageTest {
+public class HoverOverDate extends PrefGroupMailByMessageTest {
 	
-	public HoverOver() throws HarnessException {
-		logger.info("New "+ HoverOver.class.getCanonicalName());
+	public HoverOverDate() throws HarnessException {
+		logger.info("New "+ HoverOverDate.class.getCanonicalName());
 	}
 	
 	@Test( description = "Hover over a date in a message body",
 			groups = { "functional" })
 	
-	public void HoverOver_01() throws HarnessException {
+	public void HoverOverDate_01() throws HarnessException {
 
 		//-- DATA Setup
 		final String date = "12/25/2016";
@@ -77,7 +77,7 @@ public class HoverOver extends PrefGroupMailByMessageTest {
 	@Test( description = "Hovor over a date string in the body, such as today, tomorrow, last night, etc.",
 			groups = { "functional" })
 	
-	public void HoverOver_02() throws HarnessException {
+	public void HoverOverDate_02() throws HarnessException {
 		
 		String newline = String.format("%n");
 

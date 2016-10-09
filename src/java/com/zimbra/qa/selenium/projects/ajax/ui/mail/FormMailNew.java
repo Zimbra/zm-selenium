@@ -202,7 +202,7 @@ public class FormMailNew extends AbsForm {
 			}
 			
 			// Click on send
-			this.sClickAt(locator, "0,0");
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
 			// Wait for the message to be delivered
@@ -594,7 +594,6 @@ public class FormMailNew extends AbsForm {
 			}
 			
 			this.sClickAt(pulldownLocator, "");
-			SleepUtil.sleepSmall();
 			this.zWaitForBusyOverlay();
 
 			if ( optionLocator != null ) {

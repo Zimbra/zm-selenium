@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.url;
 
 import java.io.*;
 import java.util.*;
-import org.openqa.selenium.Dimension;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -50,8 +49,8 @@ public class HoverOverURL extends AjaxCommonTest {
 	public void HoverOverURL_01() throws HarnessException {
 
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		String server = "server" + ConfigProperties.getUniqueString();
-		String body = "http://www."+ server +".com";
+		String server = "synacor";
+		String body = "http://www." + server + ".com";
 		
 		// Send the message from AccountA to the ZWC user
 		ZimbraAccount.AccountA().soapSend(
@@ -70,9 +69,6 @@ public class HoverOverURL extends AjaxCommonTest {
 
 		// Get all the messages in the inbox
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
-		// Wait for a bit so the zimlet can take affect
-		SleepUtil.sleep(3000);
 		
 		// Hover over the URL
 		String locator = "css=span[id$='_com_zimbra_url']:contains(" + server + ")";
@@ -93,8 +89,8 @@ public class HoverOverURL extends AjaxCommonTest {
 	public void HoverOverURL_02() throws HarnessException {
 
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		String server = "server" + ConfigProperties.getUniqueString();
-		String body = "http://www."+ server +".com";
+		String server = "synacor";
+		String body = "http://www." + server + ".com";
 		
 		// Send the message from AccountA to the ZWC user
 		ZimbraAccount.AccountA().soapSend(
@@ -113,9 +109,6 @@ public class HoverOverURL extends AjaxCommonTest {
 
 		// Get all the messages in the inbox
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
-		// Wait for a bit so the zimlet can take affect
-		SleepUtil.sleep(3000);
 		
 		// Hover over the URL
 		String locator = "css=span[id$='_com_zimbra_url']:contains(" + server + ")";
@@ -150,9 +143,6 @@ public class HoverOverURL extends AjaxCommonTest {
 		// Get all the messages in the inbox
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
-		// Wait for a bit so the zimlet can take affect
-		SleepUtil.sleep(3000);		
-		
 		//-- VERIFICATION
 		
 		// Hover over each URL, verify no 'blocked'
@@ -177,16 +167,4 @@ public class HoverOverURL extends AjaxCommonTest {
 			ZAssert.assertStringDoesNotContain(content.toLowerCase(), "blocked", "Verify 'javascript' not changed to 'javascript-BLOCKED'");
 		}
 	}
-	
-	@BeforeClass(groups={"always"})
-	public void beforeClass() throws HarnessException {
-		Dimension n = new Dimension(1024,768);  
-		ClientSessionFactory.session().webDriver().manage().window().setSize(n);
-	}
-
-	@AfterClass(groups={"always"})
-	public void afterClass() throws HarnessException {
-		ClientSessionFactory.session().webDriver().manage().window().maximize();
-	}
-	
 }

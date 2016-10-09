@@ -19,7 +19,6 @@
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
-import java.awt.event.KeyEvent;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.AbsWizard;

@@ -257,10 +257,31 @@ public class PageMail extends AbsTab {
 				we = webDriver().findElement(By.cssSelector(locator));
 				final Actions builder = new Actions(webDriver());
 				builder.moveToElement(we).build().perform();
+				
+			} else if (locator.contains("url")) {
+				
+				this.sClickAt(locator, "");
+				SleepUtil.sleepSmall();
+				this.sMouseOver(locator);
+				
+				String mainwindow = webDriver().getWindowHandle();
+				try {					
+					Set <String> windows = webDriver().getWindowHandles();
+				    
+					// Close opened URL window
+				    for (String handle: windows) {
+				    	webDriver().switchTo().window(handle);
+				        if (!handle.equals(mainwindow)) {
+				        	webDriver().close();
+				        }
+				    }
+				} finally {
+					webDriver().switchTo().window(mainwindow);
+				}
+			    
 			} else {
-				this.sMouseOut(locator);
+				this.sMouseOver(locator);
 			}
-			SleepUtil.sleepSmall();
 
 		} finally {
 			webDriver().switchTo().defaultContent();
