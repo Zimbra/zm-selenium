@@ -218,7 +218,7 @@ public class FormApptNew extends AbsForm {
 	@Override
 	public void zSubmit() throws HarnessException {
 		String locator = "css=div[id$=_SEND_INVITE]";
-		if (this.sIsElementPresent(locator) && this.sIsVisible(locator)) {
+		if (this.sIsElementPresent(locator)) {
 			zToolbarPressButton(Button.B_SEND);
 		} else {
 			zToolbarPressButton(Button.B_SAVE);

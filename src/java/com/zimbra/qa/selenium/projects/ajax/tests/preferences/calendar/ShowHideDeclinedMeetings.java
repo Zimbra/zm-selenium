@@ -60,8 +60,9 @@ public class ShowHideDeclinedMeetings extends CalendarWorkWeekTest {
 	  "<a n='zimbraPrefCalendarShowDeclinedMeetings'>FALSE</a>" + 
 	  "</ModifyAccountRequest>");
 
-    this.app.zPageLogin.zNavigateTo();
-    this.startingPage.zNavigateTo();
+	// Refresh UI
+	app.zPageMain.sRefresh();
+	app.zPageCalendar.zNavigateTo();
 
 	ZimbraAccount.AccountA().soapSend(
 			"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"

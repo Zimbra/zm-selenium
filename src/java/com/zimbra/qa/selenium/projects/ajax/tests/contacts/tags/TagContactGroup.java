@@ -64,7 +64,7 @@ public class TagContactGroup extends AjaxCommonTest  {
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Work around
-		app.zPageContacts.sRefresh();
+		app.zPageMain.sRefresh();
 		app.zPageContacts.zNavigateTo();
 		
 		// Select the contact

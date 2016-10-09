@@ -101,9 +101,8 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 
 		//-- GUI
 		
-		// Login to load the rights
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 
 		try {
 			
@@ -196,9 +195,8 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 
 		//-- GUI
 		
-		// Login to load the rights
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 
 		try {
 			

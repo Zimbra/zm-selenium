@@ -162,7 +162,6 @@ public abstract class AbsSeleniumObject {
 		    	we = getElement(locator);
 		    }
 		    we.click();
-		    zWaitForBusyOverlay();
 
 	    } catch (Exception ex) {
 	    	throw new HarnessException("Unable to click on locator " + locator, ex);
@@ -185,7 +184,6 @@ public abstract class AbsSeleniumObject {
 		    Actions builder = new Actions(webDriver());
 		    Action action = builder.moveToElement(we).click(we).build();
 		    action.perform();
-		    zWaitForBusyOverlay();
 
 	    } catch (Exception ex) {
 	    	throw new HarnessException("Unable to clickAt on locator " + locator, ex);
@@ -206,7 +204,6 @@ public abstract class AbsSeleniumObject {
 		    }
 
 		    ((JavascriptExecutor)webDriver()).executeScript("arguments[0].click()", we);
-		    zWaitForBusyOverlay();
 
 	    } catch (Exception ex) {
 	    	throw new HarnessException("Unable to clickAt on locator " + locator, ex);
@@ -284,8 +281,6 @@ public abstract class AbsSeleniumObject {
 		} else {
 			this.sUncheck(locator);
 		}
-
-		this.zWaitForBusyOverlay();
 	}
 
 
@@ -877,7 +872,7 @@ public abstract class AbsSeleniumObject {
 		} else {
 			zWaitTillElementPresent(PageMail.Locators.zMailZimletsPane);
 		}
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 	}
 
 
@@ -1072,7 +1067,6 @@ public abstract class AbsSeleniumObject {
 
 	public boolean zWaitTillElementPresent(String locator) throws HarnessException {
 		logger.info("zWaitTillElementPresent(" + locator + ")");
-		this.zWaitForBusyOverlay();
 
 		boolean present = false;
         for (int i=0; i<=10; i++) {

@@ -97,9 +97,8 @@ public class ReplyMsgWithTwoThreeLineTextSignature extends AjaxCommonTest {
 						+ "<a name='zimbraPrefForwardReplySignatureId'>" + SignatureId1 + "</a>" + "</identity>"
 						+ "</ModifyIdentityRequest>");
 
-		// Refresh
-		app.zPageLogin.zNavigateTo();
-		app.zPageMail.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		// Signature is created

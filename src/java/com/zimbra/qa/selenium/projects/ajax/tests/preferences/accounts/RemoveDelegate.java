@@ -62,8 +62,8 @@ public class RemoveDelegate extends AjaxCommonTest {
 		
 		//-- GUI Steps
 
-		// Login to pick up the new delegate
-		app.zPageLogin.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		this.startingPage.zNavigateTo();
 
 		AbsDialog errorDialog = app.zPageMain.zGetErrorDialog(DialogErrorID.Zimbra);

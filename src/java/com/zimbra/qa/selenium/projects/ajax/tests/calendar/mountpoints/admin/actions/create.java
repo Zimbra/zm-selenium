@@ -91,9 +91,8 @@ public class create extends CalendarWorkWeekTest {
 			+		"</identity>"
 			+	"</CreateIdentityRequest>");
 
-		// Logout and login to pick up the changes
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();		
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		app.zPageCalendar.zNavigateTo();
 		
 		appt.setSubject(apptSubject);

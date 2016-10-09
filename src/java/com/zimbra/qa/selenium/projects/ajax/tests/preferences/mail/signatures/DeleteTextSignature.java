@@ -53,8 +53,9 @@ public class DeleteTextSignature extends AjaxCommonTest {
 				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + this.sigName
 						+ "' >" + "<content type='text/plain'>" + this.sigBody + "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
-		// Logout and login
-		this.app.zPageLogin.zNavigateTo();
+		
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		this.app.zPagePreferences.zNavigateTo();
 
 		logger.info("CreateSignature: finish");

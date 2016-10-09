@@ -62,9 +62,8 @@ public class ChangeSignatureWhenzimbraFeatureHtmlComposeEnabledIsFalse extends A
 				.soapSend("<ModifyAccountRequest xmlns='urn:zimbraAdmin'>" + "<id>" + app.zGetActiveAccount().ZimbraId
 						+ "</id>" + "<a n='zimbraFeatureHtmlComposeEnabled'>FALSE</a>" + "</ModifyAccountRequest>");
 
-		// Logout and login
-		this.app.zPageLogin.zNavigateTo();
-		this.app.zPageMail.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 
 		logger.info("CreateSignature: finish");
 
