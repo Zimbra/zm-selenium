@@ -55,9 +55,8 @@ public class SendAs extends PrefGroupMailByMessageTest {
 			+		"<ace gt='usr' d='"+ app.zGetActiveAccount().EmailAddress +"' right='sendAs'/>"
 			+	"</GrantRightsRequest>");
 
-		// Login to load the rights
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -98,7 +97,7 @@ public class SendAs extends PrefGroupMailByMessageTest {
 		}
 	}
 	
-	@Bugs(ids="102475")
+	@Bugs(ids="106931,102475")
 	@Test( description = "Forward a mail with attachment as a delegate - Verify attachment sent",
 			groups = { "functional" })
 	public void SendAs_02() throws HarnessException {
@@ -113,9 +112,8 @@ public class SendAs extends PrefGroupMailByMessageTest {
 			+		"<ace gt='usr' d='"+ app.zGetActiveAccount().EmailAddress +"' right='sendAs'/>"
 			+	"</GrantRightsRequest>");
 
-		// Login to load the rights
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		
 		//-- DATA
 		final String subject = "subject13977785775182543";

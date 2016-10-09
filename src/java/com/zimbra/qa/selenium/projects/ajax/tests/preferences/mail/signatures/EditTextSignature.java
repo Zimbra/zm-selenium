@@ -53,7 +53,8 @@ public class EditTextSignature extends AjaxCommonTest {
 						+ "'>" + "<content type='text/plain'>" + this.sigBody + "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
 
-		this.app.zPageLogin.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		this.app.zPagePreferences.zNavigateTo();
 
 		logger.info("CreateSignature: finish");

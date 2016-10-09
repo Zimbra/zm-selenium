@@ -47,9 +47,9 @@ public class CreateMeetingWithGALFeatureDisabled extends CalendarWorkWeekTest {
 			+		"<a n='zimbraFeatureGalEnabled'>FALSE</a>"
 			+	"</ModifyAccountRequest>");
 
-		// Logout and login to pick up the changes
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
+		app.zPageCalendar.zNavigateTo();
 
 		// Create appointment
 		AppointmentItem appt = new AppointmentItem();
@@ -90,9 +90,9 @@ public class CreateMeetingWithGALFeatureDisabled extends CalendarWorkWeekTest {
 			+		"<a n='zimbraFeatureGalSyncEnabled'>FALSE</a>"
 			+	"</ModifyAccountRequest>");
 
-		// Logout and login to pick up the changes
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
+		app.zPageCalendar.zNavigateTo();
 
 		// Create appointment
 		AppointmentItem appt = new AppointmentItem();

@@ -261,9 +261,9 @@ public class CreateContactGroup extends AjaxCommonTest  {
 		
 		String email=ZimbraAccount.AccountA().EmailAddress.substring(0,ZimbraAccount.AccountA().EmailAddress.indexOf('@'));
 		
-		// Re-navigation required because selenium mouse hover doesn't show context menu at right location for 2nd test within the class (work around) 
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Work around
+		app.zPageMain.sRefresh();
+		app.zPageContacts.zNavigateTo();
 
 		// search for a GAL
 		app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_GAL); 		

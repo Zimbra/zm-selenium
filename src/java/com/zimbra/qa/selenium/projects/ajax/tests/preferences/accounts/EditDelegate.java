@@ -61,9 +61,8 @@ public class EditDelegate extends AjaxCommonTest {
 		
 		//-- GUI Steps
 
-		// Login to pick up the new delegate
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 
 		// Navigate to preferences -> notifications
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
@@ -140,8 +139,8 @@ public class EditDelegate extends AjaxCommonTest {
 		
 		//-- GUI Steps
 
-		// Login to pick up the new delegate
-		app.zPageLogin.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		this.startingPage.zNavigateTo();
 
 		AbsDialog errorDialog = app.zPageMain.zGetErrorDialog(DialogErrorID.Zimbra);
@@ -231,8 +230,8 @@ public class EditDelegate extends AjaxCommonTest {
 		
 		//-- GUI Steps
 
-		// Login to pick up the new delegate
-		app.zPageLogin.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		this.startingPage.zNavigateTo();
 
 		// Navigate to preferences -> notifications
@@ -307,8 +306,8 @@ public class EditDelegate extends AjaxCommonTest {
 		
 		//-- GUI Steps
 
-		// Login to pick up the new delegate
-		app.zPageLogin.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		this.startingPage.zNavigateTo();
 
 		// Navigate to preferences -> notifications
@@ -383,8 +382,8 @@ public class EditDelegate extends AjaxCommonTest {
 		
 		//-- GUI Steps
 
-		// Login to pick up the new delegate
-		app.zPageLogin.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		this.startingPage.zNavigateTo();
 
 		AbsDialog errorDialog = app.zPageMain.zGetErrorDialog(DialogErrorID.Zimbra);
@@ -470,8 +469,8 @@ public class EditDelegate extends AjaxCommonTest {
 		
 		//-- GUI Steps
 
-		// Login to pick up the new delegate
-		app.zPageLogin.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		this.startingPage.zNavigateTo();
 
 		// Navigate to preferences -> notifications

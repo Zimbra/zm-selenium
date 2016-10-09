@@ -59,10 +59,8 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 			+		"<pref name='zimbraPrefDelegatedSendSaveTarget'>owner</pref>"
 			+	"</ModifyPrefsRequest>");
 		
-		// Login to load the rights
-		SleepUtil.sleepSmall();		
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		
 		//-- GUI Steps
 
@@ -114,10 +112,8 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 			+	"</ModifyPrefsRequest>");
 
 		
-		// Login to load the rights
-		SleepUtil.sleepSmall();
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		
 		//-- GUI Steps
 
@@ -171,10 +167,8 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 			+	"</ModifyPrefsRequest>");
 
 		
-		// Login to load the rights
-		SleepUtil.sleepSmall();
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		
 		//-- GUI Steps
 
@@ -226,10 +220,8 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 			+	"</ModifyPrefsRequest>");
 
 		
-		// Login to load the rights
-		SleepUtil.sleepSmall();
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		
 		//-- GUI Steps
 

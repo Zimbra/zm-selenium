@@ -168,7 +168,7 @@ public class TagAppointment extends AjaxCommonTest {
         String apptId = appt.dApptID;
         
         // Work around
-        app.zPageCalendar.sRefresh();
+        app.zPageMain.sRefresh();
         app.zPageCalendar.zNavigateTo();
         
         // Create new tag using context menu and apply it to appointment

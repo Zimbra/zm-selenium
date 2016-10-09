@@ -35,8 +35,6 @@ public class CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask extends Calen
 	public CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask() {
 		logger.info("New " + CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask.class.getCanonicalName());
 		
-		//this.startingAccountPreferences.put("zimbraPrefWarnOnExit", "TRUE");
-
 		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
 		
@@ -51,17 +49,6 @@ public class CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask extends Calen
 	@Test( description = "Bug 50432 - Unwanted navigate away dialog after opening appointment/task", groups = { "functional" })
 	
 	public void CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask_01() throws HarnessException {
-/*		
-		// Modify the test account
-		ZimbraAdminAccount.GlobalAdmin().soapSend(
-				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
-			+		"<id>"+ app.zGetActiveAccount().ZimbraId +"</id>"
-			+		"<a n='zimbraPrefWarnOnExit'>TRUE</a>"
-			+	"</ModifyAccountRequest>");
-*/
-		// Logout and login to pick up the changes
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
 
 		// Creating object for appointment data
 		String tz, apptSubject, apptBody;

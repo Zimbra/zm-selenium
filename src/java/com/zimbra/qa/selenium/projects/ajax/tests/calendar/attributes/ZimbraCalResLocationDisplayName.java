@@ -69,9 +69,9 @@ public class ZimbraCalResLocationDisplayName extends CalendarWorkWeekTest {
 			SleepUtil.sleepMedium();
 		}
 		
-		// Logout and login to pick up the changes
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
+		app.zPageCalendar.zNavigateTo();
 		
 		String tz = ZTimeZone.TimeZoneEST.getID();
 		String apptSubject = ConfigProperties.getUniqueString();

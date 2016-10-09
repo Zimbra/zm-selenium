@@ -619,7 +619,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Work around
-		app.zPageCalendar.sRefresh();
+		app.zPageMain.sRefresh();
 		app.zPageCalendar.zNavigateTo();
 
 		// Right click the item, select delete

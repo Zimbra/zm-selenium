@@ -30,8 +30,6 @@ public class CreateACopy extends CalendarWorkWeekTest {
 	public CreateACopy() {
 		logger.info("New "+ CreateACopy.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-			
-		
 	}
 	
 	@Test( description = "Copy meeting invite and verify content",
@@ -72,9 +70,6 @@ public class CreateACopy extends CalendarWorkWeekTest {
                      "<su>"+ apptContent +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-		
-		this.app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
         
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");

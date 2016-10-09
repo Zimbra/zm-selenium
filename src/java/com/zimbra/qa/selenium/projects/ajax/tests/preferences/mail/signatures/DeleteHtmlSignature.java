@@ -60,8 +60,8 @@ public class DeleteHtmlSignature extends AjaxCommonTest {
 						+ "' >" + "<content type='text/html'>'" + this.contentHTML + "'</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
 
-		// Logout and login
-		this.app.zPageLogin.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		this.app.zPagePreferences.zNavigateTo();
 
 		logger.info("CreateSignature: finish");

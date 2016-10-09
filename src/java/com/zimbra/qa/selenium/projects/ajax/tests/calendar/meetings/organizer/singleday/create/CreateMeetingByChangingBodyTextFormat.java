@@ -45,9 +45,9 @@ public class CreateMeetingByChangingBodyTextFormat extends CalendarWorkWeekTest 
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 		ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
 		
-		// Logout and login to pick up the preference changes
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
+		app.zPageCalendar.zNavigateTo();
 		
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();
@@ -90,9 +90,9 @@ public class CreateMeetingByChangingBodyTextFormat extends CalendarWorkWeekTest 
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 		ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
 		
-		// Logout and login to pick up the preference changes
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
+		app.zPageCalendar.zNavigateTo();
 		
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();
@@ -136,9 +136,9 @@ public class CreateMeetingByChangingBodyTextFormat extends CalendarWorkWeekTest 
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 		ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
 		
-		// Logout and login to pick up the preference changes
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
+		app.zPageCalendar.zNavigateTo();
 		
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();

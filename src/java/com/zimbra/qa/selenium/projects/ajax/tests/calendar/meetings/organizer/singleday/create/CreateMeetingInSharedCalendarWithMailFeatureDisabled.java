@@ -90,8 +90,9 @@ public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends Calend
 	    	      "<a n='zimbraFeatureMailEnabled'>FALSE</a>" + 
 	    	      "</ModifyAccountRequest>");
 	    
-	    this.app.zPageLogin.zNavigateTo();
-	    this.startingPage.zNavigateTo();
+	    // Refresh UI
+		app.zPageMain.sRefresh();
+		app.zPageCalendar.zNavigateTo();
 	    
 		// Compose appointment on shared mailbox
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);

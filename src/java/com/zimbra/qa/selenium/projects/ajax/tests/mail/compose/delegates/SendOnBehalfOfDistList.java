@@ -23,7 +23,6 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-
 public class SendOnBehalfOfDistList extends PrefGroupMailByMessageTest {
 
 	public SendOnBehalfOfDistList() {
@@ -31,8 +30,10 @@ public class SendOnBehalfOfDistList extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 	
+	
 	@Test( description = "Send On Behalf Of Distribution List",
 			groups = { "smoke" })
+	
 	public void SendOnBehalfOfDistList_01() throws HarnessException {
 		
 		// Mail data
@@ -48,9 +49,8 @@ public class SendOnBehalfOfDistList extends PrefGroupMailByMessageTest {
 		// Grant send rights
 		list.grantRight(app.zGetActiveAccount(), "sendOnBehalfOfDistList");
 
-		// Login to load the rights
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		
 		//-- GUI Steps
 		
@@ -83,8 +83,5 @@ public class SendOnBehalfOfDistList extends PrefGroupMailByMessageTest {
 		// Verify Sender: active account
 		String sender = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='s']", "a");
 		ZAssert.assertEquals(sender, app.zGetActiveAccount().EmailAddress, "Verify Sender: active account");
-		
 	}
-
-	
 }

@@ -75,7 +75,7 @@ public class ChangeSignatureAndVerifyBody extends AjaxCommonTest {
 						+ "</CreateSignatureRequest>");
 		
 		// Refresh UI
-		app.zPageMail.sRefresh();
+		app.zPageMain.sRefresh();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -151,7 +151,7 @@ public class ChangeSignatureAndVerifyBody extends AjaxCommonTest {
 		
 		
 		// Refresh UI
-		app.zPageMail.sRefresh();
+		app.zPageMain.sRefresh();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);

@@ -82,8 +82,10 @@ public class VerifyNestedState extends CalendarWorkWeekTest {
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         
-	    this.app.zPageLogin.zNavigateTo();
-	    this.startingPage.zNavigateTo();
+	    // Refresh UI
+		app.zPageMain.sRefresh();
+		app.zPageCalendar.zNavigateTo();
+
 	    SleepUtil.sleepLong();
 	    app.zTreeCalendar.zVerifyCalendarChecked(true, folder1.getId());
 	    SleepUtil.sleepLong();

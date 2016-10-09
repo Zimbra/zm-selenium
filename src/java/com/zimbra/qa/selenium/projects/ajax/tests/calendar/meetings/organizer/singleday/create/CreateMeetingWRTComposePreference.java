@@ -47,9 +47,9 @@ public class CreateMeetingWRTComposePreference extends CalendarWorkWeekTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 		ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
 		
-		// Logout and login to pick up the preference changes
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
+		app.zPageCalendar.zNavigateTo();
 		
 		AppointmentItem appt = new AppointmentItem();
 		String apptSubject, apptAttendee1, apptContent;
@@ -86,9 +86,9 @@ public class CreateMeetingWRTComposePreference extends CalendarWorkWeekTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 		ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
 		
-		// Logout and login to pick up the preference changes
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
+		app.zPageCalendar.zNavigateTo();
 		
 		AppointmentItem appt = new AppointmentItem();
 		String apptSubject, apptAttendee1, apptContent;

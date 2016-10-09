@@ -37,7 +37,7 @@ public class Forward extends CalendarWorkWeekTest {
 			groups = { "smoke" })
 			
 	public void ForwardMeeting_01() throws HarnessException {
-				
+		
 		// Creating a meeting
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptContent = ConfigProperties.getUniqueString();
