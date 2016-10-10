@@ -82,6 +82,7 @@ public class LoginWithCsrfTokenCheckDisabled extends AdminCommonTest {
 						
 			// Open the base URL
 			app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
+			app.zPageMain.logout();
 		}
 
 	}
