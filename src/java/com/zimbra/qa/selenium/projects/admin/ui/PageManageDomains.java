@@ -369,7 +369,10 @@ public class PageManageDomains extends AbsTab {
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();
 			}
-
+			
+			if (option == Button.O_EDIT) {
+				SleepUtil.sleepMedium();	
+			}
 		}
 
 		// Return the specified page, or null if not set

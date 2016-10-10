@@ -24,10 +24,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.openqa.selenium.WebDriverException;
 import org.testng.annotations.Test;
 
-import org.openqa.selenium.WebDriverException;
-import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.ui.PageDownloads;
 
@@ -42,35 +45,35 @@ public class DownloadsIndex extends AdminCommonTest {
 	}
 
 	public static String[] NetworkOnlyLocators = {
-		
-		// These links only appear on NETWORK
 
-		// Zimbra Connector for Microsoft Outlook 32 bit
-		"//a[@id='zco_32bit']", 
-		
-		// Zimbra Connector for Microsoft Outlook 64 bit
-		"//a[@id='zco_64bit']", 
-		
-		// Microsoft Outlook PST Import Tools
-		"//a[@id='pst_import']",
-		
-		// Migration Wizard for Microsoft Exchange
-		"//a[@id='exchange_migration']",
-		
-		// General Migration Wizard 32 bit
-		"//a[@id='general_migration_32bit']",
-		
-		// General Migration Wizard 64 bit
-		"//a[@id='general_migration_64bit']",		
+			// These links only appear on NETWORK
+
+			// Zimbra Connector for Microsoft Outlook 32 bit
+			"//a[@id='zco_32bit']", 
+
+			// Zimbra Connector for Microsoft Outlook 64 bit
+			"//a[@id='zco_64bit']", 
+
+			// Microsoft Outlook PST Import Tools
+			"//a[@id='pst_import']",
+
+			// Migration Wizard for Microsoft Exchange
+			"//a[@id='exchange_migration']",
+
+			// General Migration Wizard 32 bit
+			"//a[@id='general_migration_32bit']",
+
+			// General Migration Wizard 64 bit
+			"//a[@id='general_migration_64bit']",		
 	};
-	
-	public static String[] FossOnlyLocators = {
-		
-		// These links only appear on FOSS
 
-		
-		// There are currently no FOSS specific downloads
-		
+	public static String[] FossOnlyLocators = {
+
+			// These links only appear on FOSS
+
+
+			// There are currently no FOSS specific downloads
+
 	};
 
 
@@ -78,133 +81,110 @@ public class DownloadsIndex extends AdminCommonTest {
 	@Test( description = "Verify the Downloads Index opens",
 			groups = { "functional" })
 	public void DownloadsIndex_01() throws HarnessException {
-		
+
 		boolean found = false;
-		
-		// Open the page at http://server.com/zimbra/downloads/index.html
-		app.zPageDownloads.zOpenIndexHTML();
-		SleepUtil.sleep(1000);
-		
-		//Check if the link is opened in new tab
-		List<String> windowIds=app.zPageDownloads.sGetAllWindowIds();
 
-		if (windowIds.size() > 1) {
+		// check that the page at http://server.com/zimbra/downloads/index.html i opened successfully
+		if(app.zPageDownloads.zOpenIndexHTML()) {
 
-			for(String id: windowIds) {
-
-				app.zPageDownloads.sSelectWindow(id);
-				if (!(app.zPageDownloads.sGetTitle().contains("Zimbra Administration"))) {
-
-					if(app.zPageDownloads.sIsElementPresent(PageDownloads.Locators.IndexHtmlTitleLocator)) {
-						found = true;
-					}
-					app.zPageMain.zSeparateWindowClose();
-				} 					
-			}
-
-
-
-		} else {
 			if(app.zPageDownloads.sIsElementPresent(PageDownloads.Locators.IndexHtmlTitleLocator)) {
 				found = true;
-				startingPage.zNavigateTo();					
-			} else {
-				found = false;
-				app.zPageDownloads.zGoBack();
 			}
-
 		}
 
 		ZAssert.assertTrue(found, "Download Page is not opened successfully");
-
 	}
 
 	@Test( description = "Verify the Downloads Tab contains the correct FOSS vs NETWORK links",
 			groups = { "functional"  })
 	public void DownloadsIndex_02() throws HarnessException {
-	
+
+		boolean found = false;
 		String windowTitle = "Zimbra Collaboration Suite :: Downloads";
 
 		try {
-		app.zPageDownloads.zOpenIndexHTML();
-		SleepUtil.sleep(10000);
-		
-		if(app.zPageDownloads.sGetTitle().contains("404 - Not Found")) {
-			app.zPageDownloads.zGoBack();
-			ZAssert.assertTrue(false, "Download Page is not opened successfully");
-			return;
-		}
-			
-			
-		// This method throws an exception if the page doesn't open
-		app.zPageDownloads.zSeparateWindowFocus(windowTitle);
-		SleepUtil.sleep(10000);
-		
-		// If NETWORK, make sure NETWORK-only links appear and FOSS-only links do not appear
-		// If FOSS, make sure FOSS-only links appear and NETWORK-only links do not appear
-		if ( ConfigProperties.zimbraGetVersionString().contains("NETWORK") ) {
-			
-			for ( String locator : NetworkOnlyLocators ) {
-				ZAssert.assertTrue(app.zPageDownloads.sIsElementPresent(locator), "Verify the network-only locator exists: "+ locator);
+			// check that the page at http://server.com/zimbra/downloads/index.html i opened successfully
+			if(app.zPageDownloads.zOpenIndexHTML()) {
+
+				if(app.zPageDownloads.sIsElementPresent(PageDownloads.Locators.IndexHtmlTitleLocator)) {
+					found = true;
+				}
 			}
 
-			for ( String locator : FossOnlyLocators ) {
-				ZAssert.assertFalse(app.zPageDownloads.sIsElementPresent(locator), "Verify the foss-only locator does not exists: "+ locator);
-			}
+			ZAssert.assertTrue(found, "Download Page is not opened successfully");
 
-		} else if ( ConfigProperties.zimbraGetVersionString().contains("FOSS") ) {
-			
-			for ( String locator : NetworkOnlyLocators ) {
-				ZAssert.assertFalse(app.zPageDownloads.sIsElementPresent(locator), "Verify the network-only locator does not exists: "+ locator);
-			}
 
-			for ( String locator : FossOnlyLocators ) {
-				ZAssert.assertTrue(app.zPageDownloads.sIsElementPresent(locator), "Verify the foss-only locator exists: "+ locator);
-			}
+			// This method throws an exception if the page doesn't open
+			app.zPageDownloads.zSeparateWindowFocus(windowTitle);
+			SleepUtil.sleep(10000);
 
-			app.zPageDownloads.sClose();
-			app.zPageDownloads.sSelectWindow(null);
-		} else {
-			throw new HarnessException("Unable to find NETWORK or FOSS in version string: "+ ConfigProperties.zimbraGetVersionString());
-		}
+			// If NETWORK, make sure NETWORK-only links appear and FOSS-only links do not appear
+			// If FOSS, make sure FOSS-only links appear and NETWORK-only links do not appear
+			if ( ConfigProperties.zimbraGetVersionString().contains("NETWORK") ) {
+
+				for ( String locator : NetworkOnlyLocators ) {
+					ZAssert.assertTrue(app.zPageDownloads.sIsElementPresent(locator), "Verify the network-only locator exists: "+ locator);
+				}
+
+				for ( String locator : FossOnlyLocators ) {
+					ZAssert.assertFalse(app.zPageDownloads.sIsElementPresent(locator), "Verify the foss-only locator does not exists: "+ locator);
+				}
+
+			} else if ( ConfigProperties.zimbraGetVersionString().contains("FOSS") ) {
+
+				for ( String locator : NetworkOnlyLocators ) {
+					ZAssert.assertFalse(app.zPageDownloads.sIsElementPresent(locator), "Verify the network-only locator does not exists: "+ locator);
+				}
+
+				for ( String locator : FossOnlyLocators ) {
+					ZAssert.assertTrue(app.zPageDownloads.sIsElementPresent(locator), "Verify the foss-only locator exists: "+ locator);
+				}
+
+				app.zPageDownloads.sClose();
+				app.zPageDownloads.sSelectWindow(null);
+			} else {
+				throw new HarnessException("Unable to find NETWORK or FOSS in version string: "+ ConfigProperties.zimbraGetVersionString());
+			}
 		} catch(Exception e) {
-			
+
 			throw new HarnessException(e);
 		} finally {
-		app.zPageDownloads.zSeparateWindowClose(windowTitle);
-		app.zPageDownloads.sSelectWindow(null);
+			app.zPageDownloads.zSeparateWindowClose(windowTitle);
+			app.zPageDownloads.sSelectWindow(null);
 		}
 	}
-	
+
 
 	@Test( description = "Verify the downloads links return 200 rather than 404",
 			groups = { "functional"  })
 	public void DownloadsIndex_03() throws HarnessException {
 
+		boolean found = false;
 		String windowTitle = "Zimbra Collaboration Suite :: Downloads";
-	
+
 		try {
-			app.zPageDownloads.zOpenIndexHTML();
-			SleepUtil.sleep(10000);			
-			
-			if(app.zPageDownloads.sGetTitle().contains("404 - Not Found")) {
-				app.zPageDownloads.zGoBack();
-				ZAssert.assertTrue(false, "Download Page is not opened successfully");
-				return;
+			// check that the page at http://server.com/zimbra/downloads/index.html i opened successfully
+			if(app.zPageDownloads.zOpenIndexHTML()) {
+
+				if(app.zPageDownloads.sIsElementPresent(PageDownloads.Locators.IndexHtmlTitleLocator)) {
+					found = true;
+				}
 			}
+
+			ZAssert.assertTrue(found, "Download Page is not opened successfully");
 			// This method throws an exception if the page doesn't open
 			app.zPageDownloads.zSeparateWindowFocus(windowTitle);
 			SleepUtil.sleep(10000);
-			
+
 			// Determine which links should be present
 			List<String> locators = new ArrayList<String>();
-			
+
 			if ( ConfigProperties.zimbraGetVersionString().contains("NETWORK") ) {
-				
+
 				locators.addAll(Arrays.asList(NetworkOnlyLocators));			
-				
+
 			} else if ( ConfigProperties.zimbraGetVersionString().contains("FOSS") ) {
-				
+
 				locators.addAll(Arrays.asList(FossOnlyLocators));			
 
 			} else {
@@ -214,16 +194,16 @@ public class DownloadsIndex extends AdminCommonTest {
 			for (String locator : locators ) {
 				String href = app.zPageDownloads.sGetAttribute(locator +"@href");
 				String page = ConfigProperties.getBaseURL() + href;
-				
+
 				HttpURLConnection  connection = null;
 				try {
-					
+
 					URL url = new URL(page);
 					int authResponse = app.zPageDownloads.getAuthResponse(url);
 
-			        // 200 and 400 are acceptable
-			        ZAssert.assertStringContains("200 400", ""+authResponse, "Verify the download URL is valid: "+ url.toString());
-			        
+					// 200 and 400 are acceptable
+					ZAssert.assertStringContains("200 400", ""+authResponse, "Verify the download URL is valid: "+ url.toString());
+
 				} catch (MalformedURLException e) {
 					throw new HarnessException(e);
 				} catch (IOException e) {
@@ -241,8 +221,8 @@ public class DownloadsIndex extends AdminCommonTest {
 		} catch (WebDriverException e) {
 			throw new HarnessException(e);
 		} finally {
-		app.zPageDownloads.zSeparateWindowClose(windowTitle);
-		app.zPageDownloads.sSelectWindow(null);
+			app.zPageDownloads.zSeparateWindowClose(windowTitle);
+			app.zPageDownloads.sSelectWindow(null);
 
 		}
 	}

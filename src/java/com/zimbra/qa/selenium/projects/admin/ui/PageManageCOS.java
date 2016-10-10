@@ -108,6 +108,7 @@ public class PageManageCOS extends AbsTab {
 		zClickAt(Locators.CONFIGURE_ICON,"");
 		SleepUtil.sleepMedium();
 		zClickAt(Locators.COS, "");
+		SleepUtil.sleepMedium();
 
 
 	}

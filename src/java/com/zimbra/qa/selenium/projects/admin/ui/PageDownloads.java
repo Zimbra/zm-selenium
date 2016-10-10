@@ -20,14 +20,15 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Base64;
+
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 
 /**
  * This class defines the Downloads page (click on "Downloads" in the header)
@@ -131,13 +132,20 @@ public class PageDownloads extends AbsTab {
 	 * Open http://server.com/zimbra/downloads/index.html
 	 * @throws HarnessException 
 	 */
-	public void zOpenIndexHTML() throws HarnessException {
-
+	public boolean zOpenIndexHTML() throws HarnessException {		
+		boolean opened = true;
 		String base = ConfigProperties.getBaseURL();
 		String path = "/downloads/index.html";
-		String id = ConfigProperties.getUniqueString();
+		String id = ConfigProperties.getUniqueString();		
+		this.sOpenWindow(base + path, id);
+		SleepUtil.sleepSmall();
 		
-		this.sOpenWindow(base + path, id);		
+		//Check for the presence of 404 - Not Found page
+		if(sGetTitle().contains("404 - Not Found")) {
+			opened = false;
+			zGoBack();		
+		}
+		return opened;
 	}
 	
 

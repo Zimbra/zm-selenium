@@ -77,16 +77,13 @@ public class Bug_102850 extends AdminCommonTest {
 
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
-		SleepUtil.sleepMedium();
-
 
 		// Click on account to be edited
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
 
 		// Click on Edit button
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.ACCOUNT);
-		app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
-		SleepUtil.sleepMedium();
+		app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);		
 
 		//Click on ACL tab
 		app.zPageEditAccount.sClick(PageEditAccount.ztab_ACCOUNT_EDIT_ACL);
@@ -123,8 +120,7 @@ public class Bug_102850 extends AdminCommonTest {
 		app.zPageManageCOS.zNavigateTo();
 		
 		// Search COS
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
-		SleepUtil.sleepMedium();
+		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);		
 		
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(cosName);
@@ -180,8 +176,7 @@ public class Bug_102850 extends AdminCommonTest {
 		app.zPageManageDistributionList.zListItem(Action.A_LEFTCLICK, dl.getEmailAddress());
 
 		// Click on Edit button
-		app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
-		SleepUtil.sleepMedium();
+		app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);		
 
 		app.zPageEditDistributionList.sClick(PageEditDistributionList.Locators.DL_EDIT_ACL);
 
@@ -225,8 +220,7 @@ public class Bug_102850 extends AdminCommonTest {
 		// Click on account to be deleted.
 		app.zPageManageDomains.zListItem(Action.A_LEFTCLICK, domain.getName());
 
-		app.zPageManageDomains.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
-		SleepUtil.sleepMedium();
+		app.zPageManageDomains.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);		
 
 		app.zPageManageDomains.sClick(PageManageDomains.Locators.DOMAIN_EDIT_ACL);
 
