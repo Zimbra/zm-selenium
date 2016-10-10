@@ -44,6 +44,7 @@ public class PageDownloads extends AbsTab {
 		public static final String TOOLS_AND_MIGRATION="Tools and Migration";
 		public static final String DOWNLOAD="Downloads";
 		public static final String IndexHtmlTitleLocator = "css=title:contains('Downloads')";
+		public static final String GoBackLink = "css=a:contains('Go back')";
 	}
 	
 	public PageDownloads(AbsApplication application) {
@@ -136,13 +137,7 @@ public class PageDownloads extends AbsTab {
 		String path = "/downloads/index.html";
 		String id = ConfigProperties.getUniqueString();
 		
-		this.sOpenWindow(base + path, id);
-		this.zSelectWindow(id);
-		SleepUtil.sleepLong();
-		
-		// Make sure the page is active
-		if ( !this.sIsElementPresent(Locators.IndexHtmlTitleLocator) )
-			throw new HarnessException("index.html never became active/focused");
+		this.sOpenWindow(base + path, id);		
 	}
 	
 
@@ -159,6 +154,12 @@ public class PageDownloads extends AbsTab {
         connection.setRequestProperty("Authorization", "Basic " + encodedAuthorization);
         int code = connection.getResponseCode();
 		return code;
+	}
+	
+	public void zGoBack() throws HarnessException {
+		logger.info("Download page is not opened. Navigating to previous page");
+		this.sClick(Locators.GoBackLink);
+		SleepUtil.sleepLong();
 	}
 
 

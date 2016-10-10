@@ -29,6 +29,7 @@ import org.testng.annotations.Test;
 import org.openqa.selenium.WebDriverException;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.ui.PageDownloads;
 
 
 public class DownloadsIndex extends AdminCommonTest {
@@ -75,35 +76,47 @@ public class DownloadsIndex extends AdminCommonTest {
 
 
 	@Test( description = "Verify the Downloads Index opens",
-			groups = { "functional"  })
+			groups = { "functional" })
 	public void DownloadsIndex_01() throws HarnessException {
+		
+		boolean found = false;
+		
+		// Open the page at http://server.com/zimbra/downloads/index.html
+		app.zPageDownloads.zOpenIndexHTML();
+		SleepUtil.sleep(1000);
+		
+		//Check if the link is opened in new tab
+		List<String> windowIds=app.zPageDownloads.sGetAllWindowIds();
+
+		if (windowIds.size() > 1) {
+
+			for(String id: windowIds) {
+
+				app.zPageDownloads.sSelectWindow(id);
+				if (!(app.zPageDownloads.sGetTitle().contains("Zimbra Administration"))) {
+
+					if(app.zPageDownloads.sIsElementPresent(PageDownloads.Locators.IndexHtmlTitleLocator)) {
+						found = true;
+					}
+					app.zPageMain.zSeparateWindowClose();
+				} 					
+			}
 
 
-		String windowTitle = "Zimbra Collaboration Suite :: Downloads";
 
-		try {
-			
-			// Open a new window pointing at http://server.com/zimbra/downloads/index.html
-			app.zPageDownloads.zOpenIndexHTML();
-			SleepUtil.sleep(1000);
-			// This method throws an exception if the page doesn't open
-			app.zPageDownloads.zSeparateWindowFocus(windowTitle);
-			SleepUtil.sleep(1000);
-			// If we get here (i.e. no exception thrown), then pass
-			ZAssert.assertTrue(true, "Verify that the page opened correctly");
-			app.zPageDownloads.sClose();
-			app.zPageDownloads.sSelectWindow(null);
-		} catch (Exception e) {
-			
-			throw new HarnessException(e);
-			
-		} finally {
-			
-			app.zPageDownloads.zSeparateWindowClose(windowTitle);
-			app.zPageDownloads.sSelectWindow(null);
+		} else {
+			if(app.zPageDownloads.sIsElementPresent(PageDownloads.Locators.IndexHtmlTitleLocator)) {
+				found = true;
+				startingPage.zNavigateTo();					
+			} else {
+				found = false;
+				app.zPageDownloads.zGoBack();
+			}
 
-			
 		}
+
+		ZAssert.assertTrue(found, "Download Page is not opened successfully");
+
 	}
 
 	@Test( description = "Verify the Downloads Tab contains the correct FOSS vs NETWORK links",
@@ -115,6 +128,14 @@ public class DownloadsIndex extends AdminCommonTest {
 		try {
 		app.zPageDownloads.zOpenIndexHTML();
 		SleepUtil.sleep(10000);
+		
+		if(app.zPageDownloads.sGetTitle().contains("404 - Not Found")) {
+			app.zPageDownloads.zGoBack();
+			ZAssert.assertTrue(false, "Download Page is not opened successfully");
+			return;
+		}
+			
+			
 		// This method throws an exception if the page doesn't open
 		app.zPageDownloads.zSeparateWindowFocus(windowTitle);
 		SleepUtil.sleep(10000);
@@ -164,7 +185,13 @@ public class DownloadsIndex extends AdminCommonTest {
 	
 		try {
 			app.zPageDownloads.zOpenIndexHTML();
-			SleepUtil.sleep(10000);
+			SleepUtil.sleep(10000);			
+			
+			if(app.zPageDownloads.sGetTitle().contains("404 - Not Found")) {
+				app.zPageDownloads.zGoBack();
+				ZAssert.assertTrue(false, "Download Page is not opened successfully");
+				return;
+			}
 			// This method throws an exception if the page doesn't open
 			app.zPageDownloads.zSeparateWindowFocus(windowTitle);
 			SleepUtil.sleep(10000);

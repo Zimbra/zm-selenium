@@ -16,6 +16,8 @@
  */
 package com.zimbra.qa.selenium.projects.admin.tests.accounts;
 
+import java.util.List;
+
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.core.Bugs;
@@ -74,7 +76,20 @@ public class ViewMail extends AdminCommonTest {
 		
 		// Verify account mailbox is opened up
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");
+		
+		//Mail opens in new window. Close all the windows except Zimbra administration page
+		List<String> windowIds=app.zPageMain.sGetAllWindowIds();
 
+		if (windowIds.size() > 1) {
+
+			for(String id: windowIds) {
+
+			app.zPageMain.sSelectWindow(id);
+				if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
+					app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());					
+				}
+			}
+		}
 	}
 	
 	/**
@@ -111,6 +126,20 @@ public class ViewMail extends AdminCommonTest {
 				
 		// Verify account mailbox is opened up
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");
+		
+		//Mail opens in new window. Close all the windows except Zimbra administration page
+				List<String> windowIds=app.zPageMain.sGetAllWindowIds();
+
+				if (windowIds.size() > 1) {
+
+					for(String id: windowIds) {
+
+					app.zPageMain.sSelectWindow(id);
+						if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
+							app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());					
+						}
+					}
+				}
 	}
 	
 	/**
@@ -154,6 +183,20 @@ public class ViewMail extends AdminCommonTest {
 						
 		// Verify account mailbox is opened up
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");
+		
+		//Mail opens in new window. Close all the windows except Zimbra administration page
+				List<String> windowIds=app.zPageMain.sGetAllWindowIds();
+
+				if (windowIds.size() > 1) {
+
+					for(String id: windowIds) {
+
+					app.zPageMain.sSelectWindow(id);
+						if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
+							app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());					
+						}
+					}
+				}
 	}	
 	
 	/**
@@ -200,6 +243,20 @@ public class ViewMail extends AdminCommonTest {
 						
 		// Verify account mailbox is opened up
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");
+		
+		//Mail opens in new window. Close all the windows except Zimbra administration page
+				List<String> windowIds=app.zPageMain.sGetAllWindowIds();
+
+				if (windowIds.size() > 1) {
+
+					for(String id: windowIds) {
+
+					app.zPageMain.sSelectWindow(id);
+						if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
+							app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());					
+						}
+					}
+				}
 
 	}
 	
