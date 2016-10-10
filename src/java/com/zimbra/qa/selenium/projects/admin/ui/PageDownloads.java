@@ -132,7 +132,7 @@ public class PageDownloads extends AbsTab {
 	 * Open http://server.com/zimbra/downloads/index.html
 	 * @throws HarnessException 
 	 */
-	public boolean zOpenIndexHTML() throws HarnessException {		
+	public boolean zOpenIndexHTML(String title) throws HarnessException {		
 		boolean opened = true;
 		String base = ConfigProperties.getBaseURL();
 		String path = "/downloads/index.html";
@@ -144,6 +144,8 @@ public class PageDownloads extends AbsTab {
 		if(sGetTitle().contains("404 - Not Found")) {
 			opened = false;
 			zGoBack();		
+		} else if(sGetTitle().contains(title)) {
+			opened = true;					
 		}
 		return opened;
 	}
