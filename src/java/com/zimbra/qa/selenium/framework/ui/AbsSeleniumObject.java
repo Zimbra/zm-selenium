@@ -154,7 +154,6 @@ public abstract class AbsSeleniumObject {
 	    SleepUtil.sleepVerySmall();
 
 	    try {
-		    logger.info("click()");
 		    WebElement we = null;
 		    if (elements != null && elements.length > 0) {
 		    	we = elements[0];

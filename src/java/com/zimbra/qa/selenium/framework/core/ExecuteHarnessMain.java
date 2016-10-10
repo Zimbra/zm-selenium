@@ -555,28 +555,28 @@ public class ExecuteHarnessMain {
 
 		public static void getScreenCapture(ITestResult result) {
 
-			String coreFolderPath, fileName, currentMethod;
-			currentMethod = result.getName().toString();
+			String coreFolderPath, screenShotFilePath, testcase;
+			testcase = result.getName().toString();
 
 			coreFolderPath = testoutputfoldername + "/debug/projects/" + ConfigProperties.getAppType().toString().toLowerCase() + "/core/";
-			fileName = coreFolderPath + currentMethod + ".png";
+			screenShotFilePath = coreFolderPath + testcase + ".png";
 
 			// Make sure required folders exist
 			File coreFolder = new File(testoutputfoldername + "/debug/projects/" + ConfigProperties.getAppType().toString().toLowerCase() + "/core/");
 			if (!coreFolder.exists())
 				coreFolder.mkdirs();
 
-			logger.info("Creating screenshot: " + fileName);
+			logger.info("Creating screenshot: " + screenShotFilePath);
 			try {
 				File scrFile = ((TakesScreenshot)ClientSessionFactory.session().webDriver()).getScreenshotAs(OutputType.FILE);
-				FileUtils.copyFile(scrFile, new File(fileName));
+				FileUtils.copyFile(scrFile, new File(screenShotFilePath));
 
 			} catch (HeadlessException e) {
 				logger.error("Unable to create screenshot",	e);
 			} catch (IOException e) {
-				logger.error("IE exception when creating image file at " + fileName, e);
+				logger.error("IE exception when creating image file at " + screenShotFilePath, e);
 			} catch (WebDriverException e) {
-				logger.error("Webdriver exception when creating image file at " + fileName, e);
+				logger.error("Webdriver exception when creating image file at " + screenShotFilePath, e);
 			}
 
 		}
@@ -731,6 +731,38 @@ public class ExecuteHarnessMain {
 				}
 			}
 			return (sb.toString());
+		}
+
+		public String getTestOutputFolderName() {
+
+			String path;
+
+			try {
+				path = ConfigProperties.getStringProperty("testOutputDirectory") + "/" + ConfigProperties.zimbraGetVersionString();
+
+				System.setProperty("zimbraSelenium.output", path);
+				// Append the app, browser, locale
+				path += "/" + ConfigProperties.getAppType() + "/" + ConfigProperties.getCalculatedBrowser() + "/" + ConfigProperties.getStringProperty("locale");
+
+				// Make sure the path exists
+				File output = new File(path);
+				if (!output.exists())
+					output.mkdirs();
+
+				// Set the property to the absolute path
+				try {
+					testoutputfoldername = output.getCanonicalPath();
+				} catch (IOException e) {
+					logger.warn("Unable to get canonical path of the test output folder (" + e.getMessage() + ").  Using absolute path.");
+					testoutputfoldername = output.getAbsolutePath();
+				}
+
+				} catch (HarnessException e1) {
+					e1.printStackTrace();
+				}
+
+			return testoutputfoldername;
+
 		}
 
 		public String getCustomResult() throws HarnessException, FileNotFoundException, IOException {
