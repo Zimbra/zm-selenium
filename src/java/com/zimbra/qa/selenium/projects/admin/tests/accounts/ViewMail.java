@@ -215,7 +215,7 @@ public class ViewMail extends AdminCommonTest {
 
 				app.zPageMain.sSelectWindow(id);
 				if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
-					logger.info("Closing windo" +app.zPageMain.sGetTitle());
+					logger.info("Closing window" +app.zPageMain.sGetTitle());
 					app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());					
 				}
 			}
