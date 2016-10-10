@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.trustedaddresses;
+package com.zimbra.qa.selenium.projects.ajax.tests.preferences.trustedaddresses;
 
 import java.util.HashMap;
 
@@ -30,33 +30,32 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeI
 
 
 
-public class RemoveTrustedEmail extends AjaxCommonTest {
+public class RemoveTrustedDomain extends AjaxCommonTest {
 
-	// For RemoveTrustedEmail_01
-	public String email1 = "email"+ ConfigProperties.getUniqueString() + "@zimbra.com";
+	// For RemoveTrustedDomain_01
+	public String domain1 = "@domain"+ ConfigProperties.getUniqueString() + ".com";
 	
 	
 	
-	public RemoveTrustedEmail() throws HarnessException {
+	public RemoveTrustedDomain() throws HarnessException {
 		
 		super.startingPage = app.zPagePreferences;
 		
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -1977182849340781539L;
+			private static final long serialVersionUID = -1475986145425100378L;
 			{
-				put("zimbraPrefMailTrustedSenderList", email1);
+				put("zimbraPrefMailTrustedSenderList", domain1);
 			}
 		};
 		
 	}
-	
+
 	@Bugs( ids = "101356")
-	
 	@Test(
-			description = "Remove a trusted email address",
+			description = "Remove a trusted domain",
 			groups = { "smoke" }
 			)
-	public void RemoveTrustedEmail_01() throws HarnessException {
+	public void RemoveTrustedDomain_01() throws HarnessException {
 
 		/* test properties */
 
@@ -67,7 +66,7 @@ public class RemoveTrustedEmail extends AjaxCommonTest {
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailTrustedAddresses);
 		
 		// Select the email address
-		String locator = "css=td[id$='_LISTVIEW'] td:contains("+ email1 +")";
+		String locator = "css=td[id$='_LISTVIEW'] td:contains("+ domain1 +")";
 		app.zPagePreferences.zClick(locator);
 		
 		// Click "Remove"
@@ -90,12 +89,12 @@ public class RemoveTrustedEmail extends AjaxCommonTest {
 		String found = null;
 		Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//acct:pref[@name='zimbraPrefMailTrustedSenderList']");
 		for (Element e : nodes) {
-			if ( e.getText().contains(email1) ) {
+			if ( e.getText().contains(domain1) ) {
 				found = e.getText();
 				break;
 			}
 		}
-		ZAssert.assertNull(found, "Verify that the address is no longer included in the server prefs");
+		ZAssert.assertNull(found, "Verify that the domain is no longer included in the server prefs");
 		
 	}
 

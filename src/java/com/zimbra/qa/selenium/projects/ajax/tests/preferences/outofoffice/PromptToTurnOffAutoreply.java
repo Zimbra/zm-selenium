@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.outofoffice;
+package com.zimbra.qa.selenium.projects.ajax.tests.preferences.outofoffice;
 
 import java.util.HashMap;
 import org.testng.annotations.Test;

@@ -14,9 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.trustedaddresses;
-
-import java.util.HashMap;
+package com.zimbra.qa.selenium.projects.ajax.tests.preferences.trustedaddresses;
 
 import org.testng.annotations.Test;
 
@@ -27,50 +25,38 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
+public class AddTrustedEmail extends AjaxCommonTest {
 
 
-
-public class RemoveTrustedDomain extends AjaxCommonTest {
-
-	// For RemoveTrustedDomain_01
-	public String domain1 = "@domain"+ ConfigProperties.getUniqueString() + ".com";
-	
-	
-	
-	public RemoveTrustedDomain() throws HarnessException {
+	public AddTrustedEmail() throws HarnessException {
 		
 		super.startingPage = app.zPagePreferences;
 		
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -1475986145425100378L;
-			{
-				put("zimbraPrefMailTrustedSenderList", domain1);
-			}
-		};
 		
 	}
-
+	
 	@Bugs( ids = "101356")
+
 	@Test(
-			description = "Remove a trusted domain",
+			description = "Add a trusted email address",
 			groups = { "smoke" }
 			)
-	public void RemoveTrustedDomain_01() throws HarnessException {
+	public void AddTrustedEmail_01() throws HarnessException {
 
 		/* test properties */
+		final String email = "email" + ConfigProperties.getUniqueString() + "@zimbra.com";
 
-		
+	
 		/* GUI steps */
 
 		// Navigate to preferences -> mail -> Trusted Addresses
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailTrustedAddresses);
 		
-		// Select the email address
-		String locator = "css=td[id$='_LISTVIEW'] td:contains("+ domain1 +")";
-		app.zPagePreferences.zClick(locator);
+		// Add the email address
+		app.zPagePreferences.sType("css=td[id$='_EMAIL_ADDRESS'] input", email);
 		
-		// Click "Remove"
-		app.zPagePreferences.zClick("css=td[id$='_REMOVE_BUTTON'] td[id$='_title']");
+		// Click "Add"
+		app.zPagePreferences.zClick("css=td[id$='_ADD_BUTTON'] td[id$='_title']");
 		
 		// Click "Save"
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
@@ -89,12 +75,12 @@ public class RemoveTrustedDomain extends AjaxCommonTest {
 		String found = null;
 		Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//acct:pref[@name='zimbraPrefMailTrustedSenderList']");
 		for (Element e : nodes) {
-			if ( e.getText().contains(domain1) ) {
+			if ( e.getText().contains(email) ) {
 				found = e.getText();
 				break;
 			}
 		}
-		ZAssert.assertNull(found, "Verify that the domain is no longer included in the server prefs");
+		ZAssert.assertNotNull(found, "Verify that the address is saved in the server prefs");
 		
 	}
 

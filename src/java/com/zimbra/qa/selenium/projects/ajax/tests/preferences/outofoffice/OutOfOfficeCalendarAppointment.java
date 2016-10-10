@@ -24,7 +24,6 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
@@ -38,6 +37,7 @@ public class OutOfOfficeCalendarAppointment extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
+	
 	@Bugs(ids = "78890")
 	@Test( description = "Set out of office along with calendar appointment and verify all-day appointment creation", 
 			groups = { "functional" })
@@ -52,7 +52,6 @@ public class OutOfOfficeCalendarAppointment extends AjaxCommonTest {
 		
 		// Navigate to preferences -> Out of office
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailOutOfOffice);
-		SleepUtil.sleepMedium();
 
 		// Select custom work hours for e.g. Tuesday to Friday
 		app.zPagePreferences.zSelectRadioButton(Button.R_SEND_AUTOREPLY_MESSAGE);
@@ -63,7 +62,6 @@ public class OutOfOfficeCalendarAppointment extends AjaxCommonTest {
 		
 		// Save preferences
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
-		SleepUtil.sleepMedium();
 		
 		// Verify the new appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
