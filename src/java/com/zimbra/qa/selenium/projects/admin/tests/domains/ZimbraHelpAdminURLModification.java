@@ -92,6 +92,8 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 					found = true;
 					app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
 					break;
+				} else if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
+							app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());					
 				}
 			}
 			if (!found) {

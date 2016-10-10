@@ -20,14 +20,15 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Base64;
+
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 
 /**
  * This class defines the Downloads page (click on "Downloads" in the header)
@@ -44,6 +45,7 @@ public class PageDownloads extends AbsTab {
 		public static final String TOOLS_AND_MIGRATION="Tools and Migration";
 		public static final String DOWNLOAD="Downloads";
 		public static final String IndexHtmlTitleLocator = "css=title:contains('Downloads')";
+		public static final String GoBackLink = "css=a:contains('Go back')";
 	}
 	
 	public PageDownloads(AbsApplication application) {
@@ -130,19 +132,20 @@ public class PageDownloads extends AbsTab {
 	 * Open http://server.com/zimbra/downloads/index.html
 	 * @throws HarnessException 
 	 */
-	public void zOpenIndexHTML() throws HarnessException {
-
+	public boolean zOpenIndexHTML() throws HarnessException {		
+		boolean opened = true;
 		String base = ConfigProperties.getBaseURL();
 		String path = "/downloads/index.html";
-		String id = ConfigProperties.getUniqueString();
-		
+		String id = ConfigProperties.getUniqueString();		
 		this.sOpenWindow(base + path, id);
-		this.zSelectWindow(id);
-		SleepUtil.sleepLong();
+		SleepUtil.sleepSmall();
 		
-		// Make sure the page is active
-		if ( !this.sIsElementPresent(Locators.IndexHtmlTitleLocator) )
-			throw new HarnessException("index.html never became active/focused");
+		//Check for the presence of 404 - Not Found page
+		if(sGetTitle().contains("404 - Not Found")) {
+			opened = false;
+			zGoBack();		
+		}
+		return opened;
 	}
 	
 
@@ -159,6 +162,12 @@ public class PageDownloads extends AbsTab {
         connection.setRequestProperty("Authorization", "Basic " + encodedAuthorization);
         int code = connection.getResponseCode();
 		return code;
+	}
+	
+	public void zGoBack() throws HarnessException {
+		logger.info("Download page is not opened. Navigating to previous page");
+		this.sClick(Locators.GoBackLink);
+		SleepUtil.sleepLong();
 	}
 
 

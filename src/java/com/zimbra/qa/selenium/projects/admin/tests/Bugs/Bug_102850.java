@@ -71,33 +71,28 @@ public class Bug_102850 extends AdminCommonTest {
 
 		// Refresh the account list
 		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-
+		SleepUtil.sleepMedium();
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(account.getEmailAddress());
 
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
-		SleepUtil.sleepMedium();
-
 
 		// Click on account to be edited
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
 
 		// Click on Edit button
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.ACCOUNT);
-		app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
-		SleepUtil.sleepMedium();
+		app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);		
 
 		//Click on ACL tab
-		app.zPageEditAccount.zClickAt(PageEditAccount.ztab_ACCOUNT_EDIT_ACL,"");
+		app.zPageEditAccount.sClick(PageEditAccount.ztab_ACCOUNT_EDIT_ACL);
 
 		//Click on Add button
-		app.zPageEditAccount.zClickAt(PageEditAccount.ACCOUNT_EDIT_ACL_ADD,"");
+		app.zPageEditAccount.sClick(PageEditAccount.ACCOUNT_EDIT_ACL_ADD);
 
 		//Verify Grantee name is enabled
-		ZAssert.assertEquals(app.zPageEditAccount.zIsElementDisabled(PageEditAccount.ACCOUNT_EDIT_ACL_GRANTEE_NAME), false, "Verify Grantee name is enabled");
-
-		app.zPageMain.logout();
+		ZAssert.assertEquals(app.zPageEditAccount.zIsElementDisabled(PageEditAccount.ACCOUNT_EDIT_ACL_GRANTEE_NAME), false, "Verify Grantee name is enabled");		
 	}
 
 	/**
@@ -125,7 +120,7 @@ public class Bug_102850 extends AdminCommonTest {
 		app.zPageManageCOS.zNavigateTo();
 		
 		// Search COS
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
+		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);		
 		
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(cosName);
@@ -135,23 +130,19 @@ public class Bug_102850 extends AdminCommonTest {
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
 		// Click on cos
-		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, cos.getName());
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
+		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, cos.getName());		
 
 		// Click on Edit -> Advanced button
-		app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
-		SleepUtil.sleepMedium();
+		app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);		
 
 		// Click on ACL
-		app.zPageEditCOS.zClickAt(PageEditCOS.Locators.COS_EDIT_ACL,"");
+		app.zPageEditCOS.sClick(PageEditCOS.Locators.COS_EDIT_ACL);
 
 		//Click on Add button
-		app.zPageEditAccount.zClickAt(PageEditAccount.ACCOUNT_EDIT_ACL_ADD,"");
+		app.zPageEditCOS.sClick(PageEditCOS.Locators.COS_EDIT_ACL_ADD);
 
 		//Verify Grantee name is enabled
-		ZAssert.assertEquals(app.zPageEditAccount.zIsElementDisabled(PageEditAccount.ACCOUNT_EDIT_ACL_GRANTEE_NAME), false, "Verify Grantee name is enabled");
-		app.zPageMain.logout();
-
+		ZAssert.assertEquals(app.zPageEditCOS.zIsElementDisabled(PageEditCOS.Locators.COS_EDIT_ACL_GRANTEE_NAME), false, "Verify Grantee name is enabled");		
 	}
 
 	/**
@@ -185,19 +176,15 @@ public class Bug_102850 extends AdminCommonTest {
 		app.zPageManageDistributionList.zListItem(Action.A_LEFTCLICK, dl.getEmailAddress());
 
 		// Click on Edit button
-		app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
-		SleepUtil.sleepMedium();
+		app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);		
 
-		app.zPageEditDistributionList.zClickAt(PageEditDistributionList.Locators.DL_EDIT_ACL,"");
+		app.zPageEditDistributionList.sClick(PageEditDistributionList.Locators.DL_EDIT_ACL);
 
 		//Click on Add button
-		app.zPageEditAccount.zClickAt(PageEditAccount.ACCOUNT_EDIT_ACL_ADD,"");
+		app.zPageEditDistributionList.sClick(PageEditDistributionList.Locators.DL_EDIT_ACL_ADD);
 
 		//Verify Grantee name is enabled
-		ZAssert.assertEquals(app.zPageEditAccount.zIsElementDisabled(PageEditAccount.ACCOUNT_EDIT_ACL_GRANTEE_NAME), false, "Verify Grantee name is enabled");
-
-		app.zPageMain.logout();
-
+		ZAssert.assertEquals(app.zPageEditDistributionList.zIsElementDisabled(PageEditDistributionList.Locators.DL_EDIT_ACL_GRANTEE_NAME), false, "Verify Grantee name is enabled");
 	}
 
 	/**
@@ -233,19 +220,15 @@ public class Bug_102850 extends AdminCommonTest {
 		// Click on account to be deleted.
 		app.zPageManageDomains.zListItem(Action.A_LEFTCLICK, domain.getName());
 
-		app.zPageManageDomains.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
-		SleepUtil.sleepMedium();
+		app.zPageManageDomains.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);		
 
-		app.zPageManageDomains.zClickAt(PageManageDomains.Locators.DOMAIN_EDIT_ACL,"");
+		app.zPageManageDomains.sClick(PageManageDomains.Locators.DOMAIN_EDIT_ACL);
 
 		//Click on Add button
-		app.zPageEditAccount.zClickAt(PageEditAccount.ACCOUNT_EDIT_ACL_ADD,"");
+		app.zPageEditDomain.sClick(PageManageDomains.Locators.DOMAIN_EDIT_ACL_ADD);
 
 		//Verify Grantee name is enabled
-		ZAssert.assertEquals(app.zPageEditAccount.zIsElementDisabled(PageEditAccount.ACCOUNT_EDIT_ACL_GRANTEE_NAME), false, "Verify Grantee name is enabled");
-
-		app.zPageMain.logout();
-
+		ZAssert.assertEquals(app.zPageEditAccount.zIsElementDisabled(PageManageDomains.Locators.DOMAIN_EDIT_ACL_GRANTEE_NAME), false, "Verify Grantee name is enabled");
 	}
 
 	/**
@@ -265,15 +248,12 @@ public class Bug_102850 extends AdminCommonTest {
 		app.zPageManageGlobalSettings.zNavigateTo();
 
 		//Click on ACL
-		app.zPageManageGlobalSettings.zClickAt(PageManageGlobalSettings.Locators.GLOBAL_SETTINGS_ACL,"");
+		app.zPageManageGlobalSettings.sClick(PageManageGlobalSettings.Locators.GLOBAL_SETTINGS_ACL);
 
 		//Click on Add button
-		app.zPageEditAccount.zClickAt(PageEditAccount.ACCOUNT_EDIT_ACL_ADD,"");
+		app.zPageManageGlobalSettings.sClick(PageManageGlobalSettings.Locators.GLOBALS_SETTINGS_ACL_ADD);
 
 		//Verify Grantee name is enabled
-		ZAssert.assertEquals(app.zPageEditAccount.zIsElementDisabled(PageEditAccount.ACCOUNT_EDIT_ACL_GRANTEE_NAME), false, "Verify Grantee name is enabled");
-
-		app.zPageMain.logout();
-
+		ZAssert.assertEquals(app.zPageEditAccount.zIsElementDisabled(PageManageGlobalSettings.Locators.GLOBALS_SETTINGS_ACL_GRANTEE_NAME), false, "Verify Grantee name is enabled");
 	}
 }

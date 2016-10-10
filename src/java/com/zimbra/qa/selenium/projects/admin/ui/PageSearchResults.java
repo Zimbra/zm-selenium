@@ -266,6 +266,10 @@ public class PageSearchResults extends AbsTab {
 			SleepUtil.sleepMedium();
 
 		}
+		
+		if ( button == Button.B_SEARCH ) {
+			SleepUtil.sleepMedium();
+		}
 
 		sMouseOut(locator);
 		return (page);
@@ -375,7 +379,11 @@ public class PageSearchResults extends AbsTab {
 
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();
-			}
+			} 
+			
+			if (option == Button.O_EDIT) {
+				SleepUtil.sleepMedium();	
+			}			
 
 		}
 
