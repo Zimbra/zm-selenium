@@ -21,22 +21,32 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
+import org.apache.commons.lang.WordUtils;
 import org.apache.log4j.*;
 import org.openqa.selenium.*;
 import org.testng.*;
 import org.testng.annotations.*;
 import org.xml.sax.SAXException;
 import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.Logs;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.DialogErrorID;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
@@ -69,9 +79,20 @@ public class AjaxCommonTest {
 		startingUserZimletPreferences = new HashMap<String, String>();
 	}
 
+	public void commonTestZimbraConfiguration() throws HarnessException {
+
+		logger.info("-------------- Pre-configuration and required setup --------------");
+
+		if (ConfigProperties.getStringProperty("staf").equals("true")) {
+			// Grant createDistList right to domain
+			logger.info("Grant createDistList right to domain");
+			StafServicePROCESS staf = new StafServicePROCESS();
+			staf.execute("zmprov grr domain " + ConfigProperties.getStringProperty("testdomain") + " dom " + ConfigProperties.getStringProperty("testdomain") + " createDistList");
+		}
+	}
+
 	@BeforeSuite( groups = { "always" } )
-	public void commonTestBeforeSuite()
-	throws HarnessException, IOException, InterruptedException, SAXException {
+	public void commonTestBeforeSuite() throws HarnessException, IOException, InterruptedException, SAXException {
 		logger.info("BeforeSuite: start");
 
 		ZimbraAccount.ResetAccountZWC();
@@ -79,8 +100,6 @@ public class AjaxCommonTest {
 		try {
 
 			ConfigProperties.setAppType(ConfigProperties.AppType.AJAX);
-
-			webDriver.manage().window().maximize();
 
 			// Dynamic wait for App to be ready
 			int maxRetry = 10;
@@ -104,13 +123,8 @@ public class AjaxCommonTest {
 					}
 				}
 			}
+			commonTestZimbraConfiguration();
 			logger.info("App is ready!");
-
-			if (ConfigProperties.getStringProperty("staf").equals("true")) {
-				// Grant createDistList right to domain
-				StafServicePROCESS staf = new StafServicePROCESS();
-				staf.execute("zmprov grr domain " + ConfigProperties.getStringProperty("testdomain") + " dom " + ConfigProperties.getStringProperty("testdomain") + " createDistList");
-			}
 
 		} catch (WebDriverException e) {
 			throw new HarnessException("Unable to open app", e);
@@ -130,22 +144,22 @@ public class AjaxCommonTest {
 
 	@BeforeMethod( groups = { "always" } )
 	public void commonTestBeforeMethod(Method method, ITestContext testContext) throws HarnessException {
+
 		logger.info("BeforeMethod: start");
 
-		// Get the test description
-		for (ITestNGMethod ngMethod : testContext.getAllTestMethods()) {
-			String methodClass = ngMethod.getRealClass().getSimpleName();
-			if (methodClass.equals(method.getDeclaringClass().getSimpleName()) && ngMethod.getMethodName().equals(method.getName())) {
+		// Get the test name & description
+		for (ITestNGMethod testngMethod : testContext.getAllTestMethods()) {
+			String methodClass = testngMethod.getRealClass().getSimpleName();
+			if (methodClass.equals(method.getDeclaringClass().getSimpleName()) && testngMethod.getMethodName().equals(method.getName())) {
 				synchronized (AjaxCommonTest.class) {
 					logger.info("---------BeforeMethod-----------------------");
-					logger.info("Test       : " + methodClass + "." + ngMethod.getMethodName());
-					logger.info("Description: " + ngMethod.getDescription());
+					logger.info("Test       : " + methodClass + "." + testngMethod.getMethodName());
+					logger.info("Description: " + testngMethod.getDescription());
 					logger.info("----------------------------------------");
 				}
 				break;
 			}
 		}
-
 
 		// If test account preferences are defined, then make sure the test account uses those preferences
 		if ( (startingAccountPreferences != null) && (!startingAccountPreferences.isEmpty()) ) {
@@ -219,17 +233,45 @@ public class AjaxCommonTest {
 			logger.info("BeforeMethod: startingPage navigation done");
 		}
 
+		// Handle open dialogs and tabs
+		logger.info("BeforeMethod: Handle open dialogs and tabs");
 		app.zPageMain.zHandleDialogs(app.zPageMain.zGetCurrentApp());
 		app.zPageMain.zHandleComposeTabs();
+
 		logger.info("BeforeMethod: finish");
+	}
+
+	public File getJavaScriptErrorsHtmlFile() throws HarnessException {
+		String testOutputFolderName = ExecuteHarnessMain.currentResultListener.getTestOutputFolderName();
+		String sJavaScriptErrorsFolderPath = testOutputFolderName  + "\\javascript-errors";
+		String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
+		String sJavaScriptErrorsHtmlFilePath = sJavaScriptErrorsFolderPath + "\\" + sJavaScriptErrorsHtmlFileName;
+		File fJavaScriptErrorsHtmlFile = new File(sJavaScriptErrorsHtmlFilePath);
+		return fJavaScriptErrorsHtmlFile;
+	}
+
+	public Path getJavaScriptErrorsHtmlFilePath() throws HarnessException {
+		String testOutputFolderName = ExecuteHarnessMain.currentResultListener.getTestOutputFolderName();
+		String sJavaScriptErrorsFolderPath = testOutputFolderName + "\\javascript-errors";
+		String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
+		Path pJavaScriptErrorsHtmlFile = Paths.get(sJavaScriptErrorsFolderPath, sJavaScriptErrorsHtmlFileName);
+		return pJavaScriptErrorsHtmlFile;
 	}
 
 	@AfterSuite( groups = { "always" } )
 	public void commonTestAfterSuite() throws HarnessException, IOException, InterruptedException {
 		logger.info("AfterSuite: start");
-		webDriver.close();
 		webDriver.quit();
 		logger.info("AfterSuite: finished by closing selenium session");
+
+		// Java script errors html file
+		if (getJavaScriptErrorsHtmlFile().exists()) {
+			List<String> lines;
+			lines = Arrays.asList("</table>", "</body>",
+					"<br/><h2 style='font-family:calibri; font-size:15px;'>** Selenium testcase error screenshot path may or may not be exists, it actually depends on the nature of the java script error.</h2>",
+					"</html>");
+			Files.write(getJavaScriptErrorsHtmlFilePath(), lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+		}
 	}
 
 	@AfterClass( groups = { "always" } )
@@ -245,7 +287,7 @@ public class AjaxCommonTest {
 	}
 
 	@AfterMethod( groups = { "always" } )
-	public void commonTestAfterMethod(Method method, ITestResult testResult) throws HarnessException {
+	public void commonTestAfterMethod(Method method, ITestResult testResult) throws HarnessException, IOException {
 		logger.info("AfterMethod: start");
 
 		if ( ZimbraURI.needsReload() ) {
@@ -259,17 +301,72 @@ public class AjaxCommonTest {
             app.zPageLogin.sOpen(ConfigProperties.getLogoutURL());
             app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
         }
-		
-		// Error dialog
-		AbsDialog dialog = app.zPageMain.zGetErrorDialog(DialogErrorID.Zimbra);
-		if ( (dialog != null) && (dialog.zIsActive()) ) {
-			// Throw an exception (all future tests will likely be skipped)
-			//throw new HarnessException("Error dialog is visible");
-			logger.error("Error dialog is visible");
+
+		// **************** Capture java script errors ****************
+		logger.info("AfterMethod: Capture java script errors");
+
+		// Configuration parameters
+		String application = WordUtils.capitalize(method.getDeclaringClass().toString().split("\\.")[7]);
+		String seleniumTestcase = method.getName().toString();
+		String testOutputFolderName = ExecuteHarnessMain.currentResultListener.getTestOutputFolderName();
+		String screenShotFilePath = "file:///" + testOutputFolderName  + "/debug"
+				+ method.getDeclaringClass().toString().replace("class com.zimbra.qa.selenium", "").replace(".", "/")
+				+ "/" + seleniumTestcase + "ss1.png";
+		screenShotFilePath = screenShotFilePath.replace("\\", "/");
+
+		// Logs, Javascript error folder
+		List<String> lines;
+		Logs webDriverLog = webDriver.manage().logs();
+		LogEntries[] logEntries = { webDriverLog.get(LogType.BROWSER) };
+
+		// Java script error html file configuration
+		String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
+		String sJavaScriptErrorsFolderPath = testOutputFolderName + "\\javascript-errors";
+		String sJavaScriptErrorsHtmlFilePath = sJavaScriptErrorsFolderPath + "\\" + sJavaScriptErrorsHtmlFileName;
+		Path pJavaScriptErrorsHtmlFilePath = Paths.get(sJavaScriptErrorsFolderPath, sJavaScriptErrorsHtmlFileName);
+		File fJavaScriptErrorsHtmlFilePath = new File(sJavaScriptErrorsHtmlFilePath);
+
+		for (int i=0; i<=logEntries.length-1; i++) {
+
+			// Make sure the javascript-errors folder exists
+			File fJavaScriptErrorsFolder = new File(sJavaScriptErrorsFolderPath);
+			if (!fJavaScriptErrorsFolder.exists())
+				fJavaScriptErrorsFolder.mkdirs();
+
+			if (fJavaScriptErrorsHtmlFilePath.createNewFile()) {
+				logger.info("Java script errors file is created");
+
+		    	// Java script errors html file
+		    	lines = Arrays.asList(
+						"<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>",
+						"<html>", "<head>", "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>",
+						"<link rel='icon' href='http://pnq-tms.lab.zimbra.com/portal/web/wp-content/themes/iconic-one/images/favicon.ico' type='image/x-icon'/>",
+						"<title>JavaScript Error Report</title>", "</head>", "<body>",
+						"<h2 style='font-family:calibri; font-size:26px;'>Ajax JavaScript Errors Report Generated by Selenium</h2>",
+						"<table style='font-family:calibri; font-size:15px;' border='1'>",
+						"<tr><th>Application</th><th>Selenium testcase</th><th>Java script error</th><th>**Screenshot path</th><th>Bug No</th><th>Bug Status</th></tr>");
+		    	Files.write(pJavaScriptErrorsHtmlFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			} else {
+				logger.info("Java script errors file already exists");
+			}
+
+			for (LogEntry entry : logEntries[i]) {
+
+				// Parse java script error
+	        	String javaScriptError = new Date(entry.getTimestamp()) + " " + entry.getLevel() + " " + entry.getMessage();
+	        	String seleniumTestcasePath = method.getDeclaringClass().toString().replaceFirst("class ", "") + "." + method.getName();
+	        	logger.info("JavaScript error: " + javaScriptError);
+
+	        	// Java script error
+				lines = Arrays.asList("<tr><td style='text-align:center'>" + application + "</td><td>"
+						+ seleniumTestcasePath + "</td><td style='color:brown;'>" + javaScriptError
+						+ "</td><td><a target='_blank' href='" + screenShotFilePath + "'>" + screenShotFilePath + "</a></td><td style='text-align:center'>-</td><td style='text-align:center'>-</td></tr>");
+	        	Files.write(pJavaScriptErrorsHtmlFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+	        }
 		}
+
 		logger.info("AfterMethod: finish");
 	}
-
 
     @AfterMethod(groups={"performance"})
     public void performanceTestAfterMethod() {
@@ -293,7 +390,7 @@ public class AjaxCommonTest {
 				+		settings.toString()
 				+	"</ModifyAccountRequest>");
 	}
-	
+
 	public void zUpload (String filePath) throws HarnessException {
 
 		// File name
@@ -419,7 +516,7 @@ public class AjaxCommonTest {
 	public void zUploadInlineImageAttachment (String filePath) throws HarnessException {
 		SleepUtil.sleepLong();
 		zUploadFile (filePath);
-		SleepUtil.sleepVeryLong();
+		SleepUtil.sleepLongMedium();
 	}
 
 	public AbsPage zToolbarPressPulldown (Button button, Button option) throws HarnessException {

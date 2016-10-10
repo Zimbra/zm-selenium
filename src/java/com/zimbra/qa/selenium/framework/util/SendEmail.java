@@ -19,22 +19,21 @@
 package com.zimbra.qa.selenium.framework.util;
 
 import java.util.*;
-
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
 
-public class SendEmail
-{
-   public static void main(String [] args)
-   {
+public class SendEmail {
+	
+   public static void main(String [] args) {
       
 	  // Sender's email ID needs to be mentioned
 	  // String from = ConfigProperties.getConfigProperties().getString("emailFrom");
-	  String from = "pnq-lab@zimbra.com";
+	  String from = "pnq-tms@zimbra.com";
 	      
 	  // Recipient's email ID needs to be mentioned.
-      String to = ConfigProperties.getConfigProperties().getString("emailTo");
+      // String to = ConfigProperties.getConfigProperties().getString("emailTo");
+	  String to = "jsojitra@zimbra.com";
 
       // Assuming you are sending email from localhost
       String host = "mail.zimbra.com";
@@ -43,9 +42,8 @@ public class SendEmail
       Properties properties = System.getProperties();
 
       // Setup mail server
-      properties.setProperty("mail.zimbra.com", host);
       properties.setProperty("mail.transport.protocol", "smtp");
-      properties.setProperty("mail.host", "mail.zimbra.com");
+      properties.setProperty("mail.host", host);
 
       // Get the default Session object.
       Session session = Session.getDefaultInstance(properties);
@@ -58,10 +56,7 @@ public class SendEmail
          message.setFrom(new InternetAddress(from));
 
          // Set To: header field of the header.
-         message.addRecipient(Message.RecipientType.TO,
-                                  new InternetAddress(to));
-         
-         //message.addRecipients(Message.RecipientType.TO, "test@zimbra.com");
+         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
          // Set Subject: header field
          message.setSubject(args[0]);
@@ -82,8 +77,7 @@ public class SendEmail
          messageBodyPart = new MimeBodyPart();
          messageBodyPart.setDisposition(Part.ATTACHMENT);
          messageBodyPart.setHeader("Content-Transfer-Encoding", "base64");
-         addAttachment(multipart, args[2]);
-         //addAttachment(multipart, args[3]);
+         // addAttachment(multipart, args[2]);
 
          // Send the complete message parts
          message.setContent(multipart);
@@ -95,8 +89,10 @@ public class SendEmail
       } catch (MessagingException mex) {
          mex.printStackTrace();
       }
+      
    }
    
+   @SuppressWarnings("unused")
    private static void addAttachment(Multipart multipart, String filename) throws MessagingException {
        DataSource source = new FileDataSource(filename);
        BodyPart messageBodyPart = new MimeBodyPart();        
