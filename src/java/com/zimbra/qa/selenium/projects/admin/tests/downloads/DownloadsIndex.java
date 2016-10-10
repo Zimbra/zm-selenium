@@ -24,15 +24,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.openqa.selenium.WebDriverException;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageDownloads;
 
 
 public class DownloadsIndex extends AdminCommonTest {
@@ -80,151 +78,104 @@ public class DownloadsIndex extends AdminCommonTest {
 
 	@Test( description = "Verify the Downloads Index opens",
 			groups = { "functional" })
-	public void DownloadsIndex_01() throws HarnessException {
+	public void DownloadsIndex_01() throws HarnessException {	
 
-		boolean found = false;
-
-		// check that the page at http://server.com/zimbra/downloads/index.html i opened successfully
-		if(app.zPageDownloads.zOpenIndexHTML()) {
-
-			if(app.zPageDownloads.sIsElementPresent(PageDownloads.Locators.IndexHtmlTitleLocator)) {
-				found = true;
-			}
-		}
-
-		ZAssert.assertTrue(found, "Download Page is not opened successfully");
+		String windowTitle = "Zimbra Collaboration Suite :: Downloads";	
+		ZAssert.assertTrue(app.zPageDownloads.zOpenIndexHTML(windowTitle), "Download Page is not opened successfully");		
 	}
 
 	@Test( description = "Verify the Downloads Tab contains the correct FOSS vs NETWORK links",
 			groups = { "functional"  })
-	public void DownloadsIndex_02() throws HarnessException {
+	public void DownloadsIndex_02() throws HarnessException {		
+		String windowTitle = "Zimbra Collaboration Suite :: Downloads";		
 
-		boolean found = false;
-		String windowTitle = "Zimbra Collaboration Suite :: Downloads";
+		ZAssert.assertTrue(app.zPageDownloads.zOpenIndexHTML(windowTitle), "Download Page is not opened successfully");	
+		
+		// If NETWORK, make sure NETWORK-only links appear and FOSS-only links do not appear
+		// If FOSS, make sure FOSS-only links appear and NETWORK-only links do not appear
+		if ( ConfigProperties.zimbraGetVersionString().contains("NETWORK") ) {
 
-		try {
-			// check that the page at http://server.com/zimbra/downloads/index.html i opened successfully
-			if(app.zPageDownloads.zOpenIndexHTML()) {
-
-				if(app.zPageDownloads.sIsElementPresent(PageDownloads.Locators.IndexHtmlTitleLocator)) {
-					found = true;
-				}
+			for ( String locator : NetworkOnlyLocators ) {
+				ZAssert.assertTrue(app.zPageDownloads.sIsElementPresent(locator), "Verify the network-only locator exists: "+ locator);
 			}
 
-			ZAssert.assertTrue(found, "Download Page is not opened successfully");
-
-
-			// This method throws an exception if the page doesn't open
-			app.zPageDownloads.zSeparateWindowFocus(windowTitle);
-			SleepUtil.sleep(10000);
-
-			// If NETWORK, make sure NETWORK-only links appear and FOSS-only links do not appear
-			// If FOSS, make sure FOSS-only links appear and NETWORK-only links do not appear
-			if ( ConfigProperties.zimbraGetVersionString().contains("NETWORK") ) {
-
-				for ( String locator : NetworkOnlyLocators ) {
-					ZAssert.assertTrue(app.zPageDownloads.sIsElementPresent(locator), "Verify the network-only locator exists: "+ locator);
-				}
-
-				for ( String locator : FossOnlyLocators ) {
-					ZAssert.assertFalse(app.zPageDownloads.sIsElementPresent(locator), "Verify the foss-only locator does not exists: "+ locator);
-				}
-
-			} else if ( ConfigProperties.zimbraGetVersionString().contains("FOSS") ) {
-
-				for ( String locator : NetworkOnlyLocators ) {
-					ZAssert.assertFalse(app.zPageDownloads.sIsElementPresent(locator), "Verify the network-only locator does not exists: "+ locator);
-				}
-
-				for ( String locator : FossOnlyLocators ) {
-					ZAssert.assertTrue(app.zPageDownloads.sIsElementPresent(locator), "Verify the foss-only locator exists: "+ locator);
-				}
-
-				app.zPageDownloads.sClose();
-				app.zPageDownloads.sSelectWindow(null);
-			} else {
-				throw new HarnessException("Unable to find NETWORK or FOSS in version string: "+ ConfigProperties.zimbraGetVersionString());
+			for ( String locator : FossOnlyLocators ) {
+				ZAssert.assertFalse(app.zPageDownloads.sIsElementPresent(locator), "Verify the foss-only locator does not exists: "+ locator);
 			}
-		} catch(Exception e) {
 
-			throw new HarnessException(e);
-		} finally {
-			app.zPageDownloads.zSeparateWindowClose(windowTitle);
-			app.zPageDownloads.sSelectWindow(null);
+		} else if ( ConfigProperties.zimbraGetVersionString().contains("FOSS") ) {
+
+			for ( String locator : NetworkOnlyLocators ) {
+				ZAssert.assertFalse(app.zPageDownloads.sIsElementPresent(locator), "Verify the network-only locator does not exists: "+ locator);
+			}
+
+			for ( String locator : FossOnlyLocators ) {
+				ZAssert.assertTrue(app.zPageDownloads.sIsElementPresent(locator), "Verify the foss-only locator exists: "+ locator);
+			}				
+
+		} else {
+			throw new HarnessException("Unable to find NETWORK or FOSS in version string: "+ ConfigProperties.zimbraGetVersionString());
 		}
-	}
 
+	}
 
 	@Test( description = "Verify the downloads links return 200 rather than 404",
 			groups = { "functional"  })
 	public void DownloadsIndex_03() throws HarnessException {
 
-		boolean found = false;
-		String windowTitle = "Zimbra Collaboration Suite :: Downloads";
+		String windowTitle = "Zimbra Collaboration Suite :: Downloads";		
 
-		try {
-			// check that the page at http://server.com/zimbra/downloads/index.html i opened successfully
-			if(app.zPageDownloads.zOpenIndexHTML()) {
+		ZAssert.assertTrue(app.zPageDownloads.zOpenIndexHTML(windowTitle), "Download Page is not opened successfully");		
 
-				if(app.zPageDownloads.sIsElementPresent(PageDownloads.Locators.IndexHtmlTitleLocator)) {
-					found = true;
-				}
-			}
 
-			ZAssert.assertTrue(found, "Download Page is not opened successfully");
-			// This method throws an exception if the page doesn't open
-			app.zPageDownloads.zSeparateWindowFocus(windowTitle);
-			SleepUtil.sleep(10000);
 
-			// Determine which links should be present
-			List<String> locators = new ArrayList<String>();
+		// Determine which links should be present
+		List<String> locators = new ArrayList<String>();
 
-			if ( ConfigProperties.zimbraGetVersionString().contains("NETWORK") ) {
+		if ( ConfigProperties.zimbraGetVersionString().contains("NETWORK") ) {
 
-				locators.addAll(Arrays.asList(NetworkOnlyLocators));			
+			locators.addAll(Arrays.asList(NetworkOnlyLocators));			
 
-			} else if ( ConfigProperties.zimbraGetVersionString().contains("FOSS") ) {
+		} else if ( ConfigProperties.zimbraGetVersionString().contains("FOSS") ) {
 
-				locators.addAll(Arrays.asList(FossOnlyLocators));			
+			locators.addAll(Arrays.asList(FossOnlyLocators));			
 
-			} else {
-				throw new HarnessException("Unable to find NETWORK or FOSS in version string: "+ ConfigProperties.zimbraGetVersionString());
-			}
-
-			for (String locator : locators ) {
-				String href = app.zPageDownloads.sGetAttribute(locator +"@href");
-				String page = ConfigProperties.getBaseURL() + href;
-
-				HttpURLConnection  connection = null;
-				try {
-
-					URL url = new URL(page);
-					int authResponse = app.zPageDownloads.getAuthResponse(url);
-
-					// 200 and 400 are acceptable
-					ZAssert.assertStringContains("200 400", ""+authResponse, "Verify the download URL is valid: "+ url.toString());
-
-				} catch (MalformedURLException e) {
-					throw new HarnessException(e);
-				} catch (IOException e) {
-					throw new HarnessException(e);
-				} finally {
-					if ( connection != null ) {
-						connection.disconnect();
-						connection = null;
-					}
-				}
-
-			}
-			app.zPageDownloads.sClose();
-			app.zPageDownloads.sSelectWindow(null);
-		} catch (WebDriverException e) {
-			throw new HarnessException(e);
-		} finally {
-			app.zPageDownloads.zSeparateWindowClose(windowTitle);
-			app.zPageDownloads.sSelectWindow(null);
-
+		} else {
+			throw new HarnessException("Unable to find NETWORK or FOSS in version string: "+ ConfigProperties.zimbraGetVersionString());
 		}
+
+		for (String locator : locators ) {
+			String href = app.zPageDownloads.sGetAttribute(locator +"@href");
+			String page = ConfigProperties.getBaseURL() + href;
+
+			HttpURLConnection  connection = null;
+			try {
+
+				URL url = new URL(page);
+				int authResponse = app.zPageDownloads.getAuthResponse(url);
+
+				// 200 and 400 are acceptable
+				ZAssert.assertStringContains("200 400", ""+authResponse, "Verify the download URL is valid: "+ url.toString());
+
+			} catch (MalformedURLException e) {
+				throw new HarnessException(e);
+			} catch (IOException e) {
+				throw new HarnessException(e);
+			} finally {
+				if ( connection != null ) {
+					connection.disconnect();
+					connection = null;
+				}
+			}
+
+		}				
+	} 
+
+	@AfterMethod(groups={"always"})
+	public void afterMethod() throws HarnessException {
+		logger.info("Opening the base URL and loggin out for the next test to execute");
+		app.zPageMain.sOpen(ConfigProperties.getBaseURL());
+		app.zPageMain.logout();
 	}
 
 }

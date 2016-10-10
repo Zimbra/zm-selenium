@@ -41,7 +41,7 @@ public class PageMain extends AbsTab {
 		public static final String zSkinContainerUsername	= "css=div[id='skin_container_username']";
 
 		public static final String zSkinContainerLogoff		= "css=table[class='skin_table'] span[onclick='ZaZimbraAdmin.logOff();']";
-		public static final String zLogoffDropDownArrow		="css=div.ImgNodeExpandedWhite";
+		public static final String zLogoffDropDownArrow		="css=div[id='skin_container_username'] div.ImgNodeExpandedWhite";
 		public static final String zLogOff = "zmi__ZA_LOGOFF__LOGOFF_title";
 
 		public static final String zSkinContainerDW			= "xpath=//*[@id='skin_container_dw']";
@@ -139,23 +139,18 @@ public class PageMain extends AbsTab {
 	 */
 	public void logout() throws HarnessException {
 		logger.debug("logout()");
-
+		
+		zWaitForElementPresent(Locators.zLogoffDropDownArrow);
 		zNavigateTo();
-
 		if ( !sIsElementPresent(Locators.zLogoffDropDownArrow) ) {
 			throw new HarnessException("The refresh button is not present " + Locators.zLogoffDropDownArrow);
 		}
-
-		if ( !zIsVisiblePerPosition(Locators.zLogoffDropDownArrow, 10, 10) ) {
-			throw new HarnessException("The refresh button is not visible " + Locators.zLogoffDropDownArrow);
-		}
-
+		
 		// Click on logout
 		sClickAt(Locators.zLogoffDropDownArrow,"");
 		sClickAt(Locators.zLogOff,"");
 		SleepUtil.sleepLong();
-
-
+		
 		/**
 		 * Following WaitForPageToLoad() is needed to ensure successful log off operation.
 		 */
