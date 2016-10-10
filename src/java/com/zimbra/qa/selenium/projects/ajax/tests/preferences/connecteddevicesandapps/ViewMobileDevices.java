@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mobile;
+package com.zimbra.qa.selenium.projects.ajax.tests.preferences.connecteddevicesandapps;
 
 import java.util.HashMap;
 
