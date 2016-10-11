@@ -634,7 +634,8 @@ public class AjaxCommonTest {
 		}
 
 		try {
-
+			
+			((AppAjaxClient)app).zPageLogin.sOpen(ConfigProperties.getLogoutURL());
 			if (ConfigProperties.getAppType() == AppType.AJAX) {
 				if (ZimbraAccount.AccountZWC() != null) {
 					((AppAjaxClient)app).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
