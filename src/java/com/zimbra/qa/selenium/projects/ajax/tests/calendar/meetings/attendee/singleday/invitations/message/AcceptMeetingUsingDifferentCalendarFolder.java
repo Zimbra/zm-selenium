@@ -378,7 +378,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 		// ------------------------ Test data ------------------------------------
 
 		String apptSubject = ConfigProperties.getUniqueString();
-		String modifiedBody = " modified" + ConfigProperties.getUniqueString();
+		String modifiedBody = "modified" + ConfigProperties.getUniqueString();
 
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
