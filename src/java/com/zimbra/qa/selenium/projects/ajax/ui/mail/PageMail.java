@@ -246,6 +246,19 @@ public class PageMail extends AbsTab {
 			webDriver().switchTo().defaultContent();
 		}
 	}
+	
+	public void zDisplayMailClick(String locator) throws HarnessException {
+		try {
+			webDriver().switchTo().defaultContent();
+			webDriver().switchTo().frame(0);
+			we = getElement(locator);
+			we.click();
+			SleepUtil.sleepSmall();
+
+		} finally {
+			webDriver().switchTo().defaultContent();
+		}
+	}
 
 	public void zDisplayMailHoverOver(String locator) throws HarnessException {
 		try {
