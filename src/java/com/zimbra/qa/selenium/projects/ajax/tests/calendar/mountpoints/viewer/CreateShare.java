@@ -109,7 +109,6 @@ public class CreateShare extends CalendarWorkWeekTest  {
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 
 		dialog.zSetEmailAddress(ZimbraAccount.Account10().EmailAddress);
-
 		dialog.zSetMessageType(ShareMessageType.DoNotSendMsg, null);
 		dialog.zClickButton(Button.B_OK);
 		

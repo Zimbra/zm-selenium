@@ -23,14 +23,13 @@ import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 
 public class DialogInformational extends AbsDialog {
 
 	public static class DialogWarningID {
 		
 		public static final DialogWarningID InformationalDialog = new DialogWarningID("ZmMsgDialog");
-		public static final DialogWarningID ShortcutDialog = new DialogWarningID("css=div[class='ZmShortcutsPanel'][style*='left: 460px']");
+		public static final DialogWarningID ShortcutDialog = new DialogWarningID("css=div[class='ZmShortcutsPanel']");
 		protected String Id;
 		public DialogWarningID(String id) {
 			Id = id;
@@ -100,9 +99,6 @@ public class DialogInformational extends AbsDialog {
 		sClickAt(locator,"0,0");
 		SleepUtil.sleepSmall();
 		zWaitForBusyOverlay();
-
-		Stafpostqueue sp = new Stafpostqueue();
-		sp.waitForPostqueue();
 
 		return (page);
 	}

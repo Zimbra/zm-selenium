@@ -428,7 +428,9 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		locators.add(pulldownLocator);
 		locators.add(optionLocator);
 		this.sClick(locators);
-
+		this.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
+		
 		if (page != null) {
 			page.zWaitForActive();
 		}

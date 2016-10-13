@@ -1311,41 +1311,31 @@ public class FormApptNew extends AbsForm {
 		}
 	}
 
-	public void zRequestResponseOFF()throws HarnessException {
-		// click at toolbar >> request response once to disable it
+	public void zRequestResponseOFF() throws HarnessException {
+		// Click at toolbar >> request response once to disable it
 		this.zClickAt(Locators.ToolbarOptions, "");
 		this.zClickAt(Locators.RequestResponse, ""); //Request Response Set to OFF
-
 	}
 
-	public void zRequestResponseON()throws HarnessException {
-		// click at toolbar >> click at request response twice to enable it
+	public void zRequestResponseON() throws HarnessException {
+		// Click at toolbar >> click at request response twice to enable it
 		this.zClickAt(Locators.ToolbarOptions, "");
 		this.zClickAt(Locators.RequestResponse, ""); //Request Response Set to OFF
 		SleepUtil.sleepSmall();
 		this.zClickAt(Locators.ToolbarOptions, "");
 		this.zClickAt(Locators.RequestResponse, ""); //Request Response Set to ON
-
 	}
 
-	public void zCloseModifiedApptTab()throws HarnessException {
+	public void zCloseModifiedApptTab() throws HarnessException {
 		// Close the modified appointment without saving changes
 		this.zToolbarPressButton(Button.B_CLOSE);
 		DialogConfirmModification confirmClose = (DialogConfirmModification) new DialogConfirmModification(this.MyApplication, pageCal);
 		confirmClose.zClickButton(Button.B_CANCEL);
 	}
 
-	public boolean zVerifyComposeFormatHTML()throws HarnessException {
-		String disappeared = sGetEval("window.document.getElementsByClassName('ZmHtmlEditorTextArea')[0].style.display");
-
-		// if display proerty returns 'none' it is HTML compose format else it is Plain text format
-		if (disappeared.equalsIgnoreCase("none")) {
-			return true;
-		} else {
-		   return false;
-
-		}
-
+	public String zVerifyComposeFormatHTML() throws HarnessException {
+		logger.info("return window.document.getElementsByClassName('ZmHtmlEditorTextArea')[0].style.display");
+		return sGetEval("return window.document.getElementsByClassName('ZmHtmlEditorTextArea')[0].style.display");
 	}
 
 	public List<AutocompleteEntry> zAutocompleteFillField(Field field, String value) throws HarnessException {

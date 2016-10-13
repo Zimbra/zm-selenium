@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.create;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
@@ -37,45 +35,46 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		logger.info("New "+ CreateMeeting.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
+
 	@Bugs(ids = "95899,95900,46442")
 	@Test( description = "Create basic meeting invite with one attendee",
 			groups = { "sanity" })
-			
+
 	public void CreateMeeting_01() throws HarnessException {
-		
+
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();
-		
+
 		String apptSubject, apptAttendee1, apptContent;
 		Calendar now = this.calendarWeekDayUTC;
 		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		apptContent = ConfigProperties.getUniqueString();
-		
+
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee1);
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 1, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 2, 0, 0));
 		appt.setContent(apptContent);
-	
+
 		// Send invite
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
+		ZAssert.assertEquals(apptForm.zVerifyComposeFormatHTML(), "none", "Verify that the HTML formatting toolbar is visible on compose appointment page");
 		apptForm.zFill(appt);
 		apptForm.zSubmit();
-		
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         app.zPageMail.zNavigateTo();
-        
-		// Go to drafts	
+
+		// Go to drafts
 		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
-		
+
 		// Select the invitation and verify Accept/decline/Tentative buttons are not present
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 		ZAssert.assertFalse(display.zHasADTButtons(), "Verify A/D/T buttons");
-		
+
 		// Verify appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
@@ -97,34 +96,73 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 
 	}
 
-	
+
+	@Test( description = "Verify new appointment creation is based on mail compose preference set to TEXT",
+			groups = { "smoke" })
+
+	public void CreateMeeting_02() throws HarnessException {
+
+		// Set mail Compose preference to Text format
+		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
+		ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
+
+		// Refresh UI
+		app.zPageMain.sRefresh();
+		app.zPageCalendar.zNavigateTo();
+
+		AppointmentItem appt = new AppointmentItem();
+		String apptSubject, apptAttendee1, apptContent;
+		Calendar now = this.calendarWeekDayUTC;
+		apptSubject = ConfigProperties.getUniqueString();
+		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
+		apptContent = ConfigProperties.getUniqueString();
+
+		appt.setSubject(apptSubject);
+		appt.setAttendees(apptAttendee1);
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
+		appt.setContent(apptContent);
+
+		// Verify Compose appointment format obeys the mail compose format and send it to invitee
+		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
+		ZAssert.assertEquals(apptForm.zVerifyComposeFormatHTML(), "block", "Verify that the HTML formatting toolbar is NOT visible on compose appointment page");
+		apptForm.zFill(appt);
+		apptForm.zSubmit();
+
+		// Verify the attendee receives the invitation
+		MailItem invite = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ appt.getSubject() +")");
+		ZAssert.assertNotNull(invite, "Verify the invite is received");
+		ZAssert.assertEquals(invite.dSubject, appt.getSubject(), "Subject: Verify the appointment data");
+	}
+
+
 	@Test( description = "Create basic meeting invite with required and optional attendee",
 			groups = { "functional" })
-	
-	public void CreateMeeting_02() throws HarnessException {
-		
+
+	public void CreateMeeting_03() throws HarnessException {
+
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();
-		
+
 		String apptSubject, apptAttendee1, apptOptional1, apptContent;
 		Calendar now = this.calendarWeekDayUTC;
 		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		apptOptional1 = ZimbraAccount.AccountB().EmailAddress;
 		apptContent = ConfigProperties.getUniqueString();
-		
+
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee1);
 		appt.setOptional(apptOptional1);
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 2, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 3, 0, 0));
 		appt.setContent(apptContent);
-	
+
 		// Send invite
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 		apptForm.zSubmit();
-		
+
 		// Verify appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
