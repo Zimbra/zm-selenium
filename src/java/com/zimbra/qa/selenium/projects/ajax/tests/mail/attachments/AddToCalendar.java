@@ -266,6 +266,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	}
 	
 	
+	@Bugs(ids = "49734")
 	@Test( description = "Bug 49734 - JS error (t is undefined) while click to 'Add to Calendar' when viewing in separate window",
 			groups = { "functional" })
 			
@@ -418,7 +419,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	}
 	
 	
-	@Bugs(ids = "102578,49715")
+	@Bugs(ids = "102578")
 	@Test( description = "Links in email messages to .ics files should provide method to add to calendar",
 			groups = { "functional" })
 			

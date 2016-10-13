@@ -77,7 +77,6 @@ public class ResetStatusAfterUpdatingAttendee extends CalendarWorkWeekTest {
         //Login as attendee and accept the invite
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.Account1());
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		app.zPageCalendar.zNavigateTo();
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);		
@@ -90,6 +89,7 @@ public class ResetStatusAfterUpdatingAttendee extends CalendarWorkWeekTest {
         apptForm.zRemoveAttendee(apptAttendee2);
         apptForm.zFillField(Field.Attendees, apptAttendee3);
         apptForm.zSubmit();
+        
         DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
         sendUpdateDialog.zClickButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
         sendUpdateDialog.zClickButton(Button.B_OK);

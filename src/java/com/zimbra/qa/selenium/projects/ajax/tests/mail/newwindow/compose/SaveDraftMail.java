@@ -16,8 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.compose;
 
-
-
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -29,7 +27,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowFormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-
 public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 	public SaveDraftMail() {
@@ -37,17 +34,16 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 		super.startingAccountPreferences.put("zimbraPrefComposeInNewWindow", "TRUE");
-
 	}
 
+	
 	@Test( description = "Save a basic draft (subject only) - in a separate window",
 			groups = { "smoke" })
+	
 	public void SaveDraftMail_01() throws HarnessException {
-
 
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-
 
 		// Open the new mail form
 		SeparateWindowFormMailNew window = null;
@@ -60,7 +56,6 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
 
-			/* TODO: ... debugging to be removed */
 			window.waitForComposeWindow();
 		
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
@@ -70,7 +65,6 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			
 			// Send the message
 			window.zToolbarPressButton(Button.B_SAVE_DRAFT);
-			SleepUtil.sleepMedium();
 			
 			// Close the window
 			window.zToolbarPressButton(Button.B_CANCEL);
@@ -87,9 +81,9 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		// Verify the draft data matches
 		ZAssert.assertEquals(draft.dSubject, subject, "Verify the subject field is correct");
 		ZAssert.assertEquals(draft.dFolderId, draftsFolder.getId(), "Verify the draft is saved in the drafts folder");
-
-
 	}
+	
+	
 	/**
 	 * Test Case: Save draft using keyboard shortcut 'Escape''
 	 * 1.Compose Text mail
@@ -110,7 +104,6 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form
-		// Open the new mail form
 		SeparateWindowFormMailNew window = null;
 		String windowTitle = "Zimbra: Compose";
 
@@ -120,9 +113,6 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
-
-			
-			//SleepUtil.sleepVeryLong();
 			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
@@ -141,8 +131,6 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 		FolderItem draftsFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Drafts);
 
-		SleepUtil.sleepMedium();
-		
 		// Get the message from the server
 		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(),"subject:(" + subject + ")");
 
@@ -152,9 +140,11 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 	}
 
+	
 	@Test( description = "Reply to a mail with include original as attachment, format as HTML and save draft",
 			groups = { "functional" })
-		public void SaveDraftMailWithIncludeOriginalAsAttachment_01() throws HarnessException {
+	
+	public void SaveDraftMailWithIncludeOriginalAsAttachment_01() throws HarnessException {
 
 
 		// Send a message to the account
@@ -180,7 +170,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 		// Reply the item
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = "Zimbra: Compose";
+		String windowTitle = "Zimbra: " + subject;
 
 		try {
 
@@ -191,12 +181,10 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 			window.zToolbarPressButton(Button.B_REPLY);
-			SleepUtil.sleepMedium();
 			
 			windowTitle = "Zimbra: Reply";
 			window.zSetWindowTitle(windowTitle);
-			SleepUtil.sleepMedium();
-			//window.zWaitForActive();
+
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			window.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT);
 			window.zFillField(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Body, body);
@@ -205,26 +193,24 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 			// Save the message
 			window.zToolbarPressButton(Button.B_SAVE_DRAFT);
-			SleepUtil.sleepSmall();
 			ZAssert.assertEquals(window.sGetCssCountNewWindow("css=div[id='zv__COMPOSE-1_attachments_div'] table tbody tr td div[class='attBubbleContainer'] div span[id^='zv__COMPOSE-1_']"), 1, "Attachemnt not duplicated");
-			SleepUtil.sleepLong();
 		
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 				
 		// Get the message from the server
-		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(),
-				"in:drafts subject:("+ subject +")");
+		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:drafts subject:(" + subject + ")");
 
 		// Verify the draft data matches
 		ZAssert.assertStringContains(draft.dSubject, subject, "Verify the subject field is correct");
-
 	}
 
+	
 	@Test( description = "Reply to a mail with include original as attachment, format as text and save draft",
 			groups = { "functional" })
-		public void SaveDraftMailWithIncludeOriginalAsAttachment_02() throws HarnessException {
+	
+	public void SaveDraftMailWithIncludeOriginalAsAttachment_02() throws HarnessException {
 
 
 		// Send a message to the account
@@ -249,7 +235,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = "Zimbra: Compose";
+		String windowTitle = "Zimbra: " + subject;
 
 		try {
 
@@ -260,23 +246,18 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
 			window.zToolbarPressButton(Button.B_REPLY);
-			SleepUtil.sleepMedium();
 			
 			windowTitle = "Zimbra: Reply";
 			window.zSetWindowTitle(windowTitle);
-			SleepUtil.sleepMedium();
-			//window.zWaitForActive();
+
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
 			window.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_FORMAT_AS_HTML);
 			window.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT);
-			SleepUtil.sleepSmall();
 			window.zFillField(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Body, body);
 			window.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_FORMAT_AS_PLAIN_TEXT);
-			SleepUtil.sleepSmall();
 
 			window.zToolbarPressButton(Button.B_SAVE_DRAFT);
-			SleepUtil.sleepSmall();
 			ZAssert.assertEquals(window.sGetCssCountNewWindow("css=div[id='zv__COMPOSE-1_attachments_div'] table tbody tr td div[class='attBubbleContainer'] div span[id^='zv__COMPOSE-1_']"), 1, "Attachemnt not duplicated");
 	
 		} finally {
@@ -284,13 +265,11 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		}
 
 		// Get the message from the server
-		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(),
-				"in:drafts subject:("+ subject +")");
+		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:drafts subject:("+ subject +")");
 		ZAssert.assertNotNull(draft, "not null present");
+		
 		// Verify the draft data matches
 		ZAssert.assertStringContains(draft.dSubject, subject, "Verify the subject field is correct");
-
-
 	}
-
+	
 }

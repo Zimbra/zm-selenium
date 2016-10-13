@@ -76,7 +76,6 @@ public class ResetStatusAfterModifyingTime extends CalendarWorkWeekTest {
         //Login as attendee and accept the invite
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.Account1());
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		app.zPageCalendar.zNavigateTo();
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);		

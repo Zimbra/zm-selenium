@@ -1,6 +1,6 @@
 Date: Tue, 15 Nov 2011 17:06:47 -0800 (PST)
-From: foo@testdomain.com
-To: bar@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: 3 plain mail
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit

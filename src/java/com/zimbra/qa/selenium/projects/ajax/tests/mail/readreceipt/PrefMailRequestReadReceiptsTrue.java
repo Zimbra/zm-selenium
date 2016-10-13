@@ -45,7 +45,7 @@ public class PrefMailRequestReadReceiptsTrue extends PrefGroupMailByMessageTest 
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
-		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
+		mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
 		
 		
 		//-- GUI Actions

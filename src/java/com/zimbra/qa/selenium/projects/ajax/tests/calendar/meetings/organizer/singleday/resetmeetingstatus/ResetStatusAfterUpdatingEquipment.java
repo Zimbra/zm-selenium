@@ -76,7 +76,6 @@ public class ResetStatusAfterUpdatingEquipment extends CalendarWorkWeekTest {
         //Login as attendee and accept the invite
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.Account1());
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		app.zPageCalendar.zNavigateTo();
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);		
@@ -86,8 +85,6 @@ public class ResetStatusAfterUpdatingEquipment extends CalendarWorkWeekTest {
         // Update Equipment and re-send the appointment
 		app.zPageCalendar.zNavigateTo();
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-        apptForm.zToolbarPressButton(Button.B_SHOW_EQUIPMENT);
-        SleepUtil.sleepMedium();
         apptForm.zRemoveEquipment(apptEquipment1);
         apptForm.zFillField(Field.Equipment, apptEquipment2);
 		apptForm.zSubmit();

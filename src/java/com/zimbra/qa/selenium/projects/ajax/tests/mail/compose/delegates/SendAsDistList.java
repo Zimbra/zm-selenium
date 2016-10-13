@@ -58,7 +58,6 @@ public class SendAsDistList extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 		
 		// Fill out the form with the data
-
 		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, "body" + ConfigProperties.getUniqueString());

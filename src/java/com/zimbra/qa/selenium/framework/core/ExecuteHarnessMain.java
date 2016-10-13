@@ -291,8 +291,12 @@ public class ExecuteHarnessMain {
 		StringBuilder result = new StringBuilder();
 
 		try {
-
-			String response = executeCodeCoverage();
+			String response;
+			if (ConfigProperties.getStringProperty("coverage.enabled").equals(true)) {
+				response = executeCodeCoverage();
+			} else {
+				response = executeSelenium();
+			}
 			result.append(response).append('\n');
 
 		} finally {
@@ -753,7 +757,7 @@ public class ExecuteHarnessMain {
 				try {
 					testoutputfoldername = output.getCanonicalPath();
 				} catch (IOException e) {
-					logger.warn("Unable to get canonical path of the test output folder (" + e.getMessage() + ").  Using absolute path.");
+					logger.warn("Unable to get canonical path of the test output folder (" + e.getMessage() + "). Using absolute path.");
 					testoutputfoldername = output.getAbsolutePath();
 				}
 
@@ -1188,6 +1192,7 @@ public class ExecuteHarnessMain {
 
 		logger.info(result);
 		System.out.println("*****\n" + result);
+		System.exit(0);
 
 	}
 
