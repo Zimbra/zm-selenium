@@ -86,13 +86,14 @@ public class ExecuteHarnessMain {
 
 	public void setTestOutputFolderName(String path) {
 
-		System.setProperty("zimbraSelenium.output", path);
+		System.setProperty("outputDirectory", path);
 
-		// The Code Coverage report should exist at the root
-		File coverage = new File(path + "/coverage");
-		if (!coverage.exists())
-			coverage.mkdirs();
-		CodeCoverage.getInstance().setOutputFolder(coverage.getAbsolutePath());
+		if (ConfigProperties.getStringProperty("coverage.enabled").equals(true)) {
+			File coverage = new File(path + "/coverage");
+			if (!coverage.exists())
+				coverage.mkdirs();
+			CodeCoverage.getInstance().setOutputFolder(coverage.getAbsolutePath());
+		}
 
 		// Append the app, browser, locale
 		path += "/" + ConfigProperties.getAppType() + "/" + ConfigProperties.getCalculatedBrowser() + "/" + ConfigProperties.getStringProperty("locale");
@@ -106,7 +107,7 @@ public class ExecuteHarnessMain {
 		try {
 			testoutputfoldername = output.getCanonicalPath();
 		} catch (IOException e) {
-			logger.warn("Unable to get canonical path of the test output folder (" + e.getMessage() + ").  Using absolute path.");
+			logger.warn("Unable to get canonical path of the test output folder (" + e.getMessage() + "). Using absolute path.");
 			testoutputfoldername = output.getAbsolutePath();
 		}
 
@@ -737,38 +738,6 @@ public class ExecuteHarnessMain {
 			return (sb.toString());
 		}
 
-		public String getTestOutputFolderName() {
-
-			String path;
-
-			try {
-				path = ConfigProperties.getStringProperty("testOutputDirectory") + "/" + ConfigProperties.zimbraGetVersionString();
-
-				System.setProperty("zimbraSelenium.output", path);
-				// Append the app, browser, locale
-				path += "/" + ConfigProperties.getAppType() + "/" + ConfigProperties.getCalculatedBrowser() + "/" + ConfigProperties.getStringProperty("locale");
-
-				// Make sure the path exists
-				File output = new File(path);
-				if (!output.exists())
-					output.mkdirs();
-
-				// Set the property to the absolute path
-				try {
-					testoutputfoldername = output.getCanonicalPath();
-				} catch (IOException e) {
-					logger.warn("Unable to get canonical path of the test output folder (" + e.getMessage() + "). Using absolute path.");
-					testoutputfoldername = output.getAbsolutePath();
-				}
-
-				} catch (HarnessException e1) {
-					e1.printStackTrace();
-				}
-
-			return testoutputfoldername;
-
-		}
-
 		public String getCustomResult() throws HarnessException, FileNotFoundException, IOException {
 
 			StringBuilder emailBody = new StringBuilder();
@@ -1040,8 +1009,8 @@ public class ExecuteHarnessMain {
 		options.addOption(new Option("h", "help", false, "print usage"));
 		options.addOption(new Option("l", "log4j", true, "log4j file containing log4j configuration"));
 		options.addOption(new Option("j", "jarfile", true, "jarfile containing test cases"));
-		options.addOption(new Option("p", "pattern", true, "class filter regex, i.e. projects.zcs.tests."));
-		options.addOption(new Option("g", "groups", true, "comma separated list of groups to execute (always, sanity, smoke, full)"));
+		options.addOption(new Option("p", "pattern", true, "class filter regex, i.e. projects.ajax.tests."));
+		options.addOption(new Option("g", "groups", true, "comma separated list of groups to execute (always, sanity, smoke, functional)"));
 		options.addOption(new Option("v", "verbose", true, "set suite verbosity (default: " + verbosity + ")"));
 		options.addOption(new Option("o", "output", true, "output foldername"));
 		options.addOption(new Option("w", "working", true, "current working foldername"));

@@ -24,6 +24,8 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -68,6 +70,8 @@ public class AjaxCommonTest {
 	protected Map<String, String> startingAccountPreferences = null;
 	protected Map<String, String> startingUserPreferences = null;
 	protected Map<String, String> startingUserZimletPreferences = null;
+
+	String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
 
 	protected AjaxCommonTest() {
 		logger.info("New "+ AjaxCommonTest.class.getCanonicalName());
@@ -242,18 +246,14 @@ public class AjaxCommonTest {
 	}
 
 	public File getJavaScriptErrorsHtmlFile() throws HarnessException {
-		String testOutputFolderName = ExecuteHarnessMain.currentResultListener.getTestOutputFolderName();
-		String sJavaScriptErrorsFolderPath = testOutputFolderName  + "\\javascript-errors";
-		String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
+		String sJavaScriptErrorsFolderPath = ExecuteHarnessMain.testoutputfoldername + "\\javascript-errors";
 		String sJavaScriptErrorsHtmlFilePath = sJavaScriptErrorsFolderPath + "\\" + sJavaScriptErrorsHtmlFileName;
 		File fJavaScriptErrorsHtmlFile = new File(sJavaScriptErrorsHtmlFilePath);
 		return fJavaScriptErrorsHtmlFile;
 	}
 
 	public Path getJavaScriptErrorsHtmlFilePath() throws HarnessException {
-		String testOutputFolderName = ExecuteHarnessMain.currentResultListener.getTestOutputFolderName();
-		String sJavaScriptErrorsFolderPath = testOutputFolderName + "\\javascript-errors";
-		String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
+		String sJavaScriptErrorsFolderPath = ExecuteHarnessMain.testoutputfoldername + "\\javascript-errors";
 		Path pJavaScriptErrorsHtmlFile = Paths.get(sJavaScriptErrorsFolderPath, sJavaScriptErrorsHtmlFileName);
 		return pJavaScriptErrorsHtmlFile;
 	}
@@ -270,7 +270,7 @@ public class AjaxCommonTest {
 					"</html>");
 			Files.write(getJavaScriptErrorsHtmlFilePath(), lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 		}
-		
+
 		webDriver.quit();
 		logger.info("AfterSuite: finished by closing selenium session");
 	}
@@ -306,28 +306,48 @@ public class AjaxCommonTest {
 		// **************** Capture java script errors ****************
 		logger.info("AfterMethod: Capture java script errors");
 
-		// Configuration parameters
-		String application = WordUtils.capitalize(method.getDeclaringClass().toString().split("\\.")[7]);
-		String seleniumTestcase = method.getName().toString();
-		String testOutputFolderName = ExecuteHarnessMain.currentResultListener.getTestOutputFolderName();
-		String screenShotFilePath = "file:///" + testOutputFolderName  + "/debug"
-				+ method.getDeclaringClass().toString().replace("class com.zimbra.qa.selenium", "").replace(".", "/")
-				+ "/" + seleniumTestcase + "ss1.png";
-		screenShotFilePath = screenShotFilePath.replace("\\", "/");
-
 		// Logs, Javascript error folder
 		List<String> lines;
 		Logs webDriverLog = webDriver.manage().logs();
 		LogEntries[] logEntries = { webDriverLog.get(LogType.BROWSER) };
 
-		// Java script error html file configuration
-		String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
-		String sJavaScriptErrorsFolderPath = testOutputFolderName + "\\javascript-errors";
-		String sJavaScriptErrorsHtmlFilePath = sJavaScriptErrorsFolderPath + "\\" + sJavaScriptErrorsHtmlFileName;
-		Path pJavaScriptErrorsHtmlFilePath = Paths.get(sJavaScriptErrorsFolderPath, sJavaScriptErrorsHtmlFileName);
-		File fJavaScriptErrorsHtmlFilePath = new File(sJavaScriptErrorsHtmlFilePath);
-
 		for (int i=0; i<=logEntries.length-1; i++) {
+
+			// Get hostname
+			String hostname = null;
+			try {
+				InetAddress addr;
+				addr = InetAddress.getLocalHost();
+				hostname = addr.getHostName();
+			} catch (UnknownHostException ex) {
+				logger.info("Hostname can not be resolved");
+			}
+
+			// Configuration parameters
+			String application = WordUtils.capitalize(method.getDeclaringClass().toString().split("\\.")[7]);
+			String seleniumTestcase = method.getName().toString();
+			String testOutputFolderName = ExecuteHarnessMain.testoutputfoldername;
+			String screenShotFilePath;
+
+			if (testOutputFolderName.contains(ConfigProperties.getStringProperty("testOutputDirectory"))) {
+				screenShotFilePath = "file:///" + testOutputFolderName  + "/debug"
+						+ method.getDeclaringClass().toString().replace("class com.zimbra.qa.selenium", "").replace(".", "/")
+						+ "/" + seleniumTestcase + "ss1.png";
+			} else {
+				int appPosition = testOutputFolderName.indexOf(ConfigProperties.getAppType().toString());
+				screenShotFilePath = "http://pnq-tms.lab.zimbra.com/portal/machines/" + hostname + "/selenium/"
+						+ ConfigProperties.getAppType().toString().toLowerCase() + "/results/"
+						+ testOutputFolderName.substring(appPosition) + "/debug" + method.getDeclaringClass().toString()
+								.replace("class com.zimbra.qa.selenium", "").replace(".", "/")
+						+ "/" + seleniumTestcase + "ss1.png";
+			}
+			screenShotFilePath = screenShotFilePath.replace("\\", "/");
+
+			// Java script error html file configuration
+			String sJavaScriptErrorsFolderPath = testOutputFolderName + "\\javascript-errors";
+			String sJavaScriptErrorsHtmlFilePath = sJavaScriptErrorsFolderPath + "\\" + sJavaScriptErrorsHtmlFileName;
+			Path pJavaScriptErrorsHtmlFilePath = Paths.get(sJavaScriptErrorsFolderPath, sJavaScriptErrorsHtmlFileName);
+			File fJavaScriptErrorsHtmlFilePath = new File(sJavaScriptErrorsHtmlFilePath);
 
 			// Make sure the javascript-errors folder exists
 			File fJavaScriptErrorsFolder = new File(sJavaScriptErrorsFolderPath);
@@ -361,7 +381,7 @@ public class AjaxCommonTest {
 	        	// Java script error
 				lines = Arrays.asList("<tr><td style='text-align:center'>" + application + "</td><td>"
 						+ seleniumTestcasePath + "</td><td style='color:brown;'>" + javaScriptError
-						+ "</td><td><a target='_blank' href='" + screenShotFilePath + "'>" + screenShotFilePath + "</a></td><td style='text-align:center'>-</td><td style='text-align:center'>-</td></tr>");
+						+ "</td><td><a target='_blank' href='" + screenShotFilePath + "'>" + "Navigate to " + method.getName() + " Screenshot" + "</a></td><td style='text-align:center'>-</td><td style='text-align:center'>-</td></tr>");
 	        	Files.write(pJavaScriptErrorsHtmlFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 	        }
 		}
@@ -371,7 +391,7 @@ public class AjaxCommonTest {
 
     @AfterMethod(groups={"performance"})
     public void performanceTestAfterMethod() {
-       ZimbraAccount.ResetAccountZWC();
+    	ZimbraAccount.ResetAccountZWC();
     }
 
 	@DataProvider(name = "DataProviderSupportedCharsets")
@@ -635,7 +655,7 @@ public class AjaxCommonTest {
 		}
 
 		try {
-			
+
 			((AppAjaxClient)app).zPageLogin.sOpen(ConfigProperties.getLogoutURL());
 			if (ConfigProperties.getAppType() == AppType.AJAX) {
 				if (ZimbraAccount.AccountZWC() != null) {
