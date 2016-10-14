@@ -38,7 +38,7 @@ public class SpellCheckAddIgnore extends PrefGroupMailByMessageTest {
 
 
 	@Bugs(ids = "47151")
-	@Test( description = "Spell Check a misspelled word and add it to spell-check dictionary",
+	@Test( description = "Spell check a misspelled word and add it to spell-check dictionary",
 			groups = { "functional" })
 
 	public void SpellCheckAddIgnore_01() throws HarnessException {
@@ -47,8 +47,7 @@ public class SpellCheckAddIgnore extends PrefGroupMailByMessageTest {
 		String misspelledWord = "addword";
 
 		// Open the new mail form
-		FormMailNew mailform = null;
-		mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 
 		// Fill out the form with the data
@@ -97,7 +96,7 @@ public class SpellCheckAddIgnore extends PrefGroupMailByMessageTest {
 
 
 	@Bugs(ids = "47151")
-	@Test( description = "Spell Check a misspelled word and ignore it",
+	@Test( description = "Spell check a misspelled word and ignore it",
 			groups = { "functional" })
 
 	public void SpellCheckAddIgnore_02() throws HarnessException {
@@ -106,8 +105,7 @@ public class SpellCheckAddIgnore extends PrefGroupMailByMessageTest {
 		String misspelledWord = "IgnoreWord";
 
 		// Open the new mail form
-		FormMailNew mailform = null;
-		mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 
 		// Fill out the form with the data

@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contacts;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -35,7 +34,7 @@ public class ViewContact extends AjaxCommonTest  {
 	@Test( description = "View a contact, file as First Last",
 			groups = { "functional" })
 	
-	public void EditContact_FileAsFirstLast_01() throws HarnessException {		         		
+	public void ViewContact_FileAsFirstLast_01() throws HarnessException {		         		
 
 		//-- Data
 		
@@ -94,7 +93,7 @@ public class ViewContact extends AjaxCommonTest  {
 	@Test( description = "View a contact, file as Last, First",
 			groups = { "functional" })
 	
-	public void EditContact_FileAsLastFirst_02() throws HarnessException {		         		
+	public void ViewContact_FileAsLastFirst_02() throws HarnessException {		         		
 
 		//-- Data
 		
@@ -153,7 +152,7 @@ public class ViewContact extends AjaxCommonTest  {
 	@Test( description = "View a contact, file as Company(Last, First)",
 			groups = { "functional" })
 	
-	public void EditContact_FileAsCompanyLastFirst_03() throws HarnessException {		         		
+	public void ViewContact_FileAsCompanyLastFirst_03() throws HarnessException {		         		
 
 		//-- Data
 		
@@ -212,7 +211,7 @@ public class ViewContact extends AjaxCommonTest  {
 	@Test( description = "View a contact, file as Company",
 			groups = { "functional" })
 	
-	public void EditContact_FileAsCompany_04() throws HarnessException {		         		
+	public void ViewContact_FileAsCompany_04() throws HarnessException {		         		
 
 		//-- Data
 		
@@ -271,7 +270,7 @@ public class ViewContact extends AjaxCommonTest  {
 	@Test( description = "View a contact, file as Last, First (Company)",
 			groups = { "functional" })
 	
-	public void EditContact_FileAsLastFirstCompany_05() throws HarnessException {		         		
+	public void ViewContact_FileAsLastFirstCompany_05() throws HarnessException {		         		
 
 		//-- Data
 		
@@ -330,7 +329,7 @@ public class ViewContact extends AjaxCommonTest  {
 	@Test( description = "View a contact, file as First Last (Company)",
 			groups = { "functional" })
 	
-	public void EditContact_FileAsFirstLastCompany_06() throws HarnessException {		         		
+	public void ViewContact_FileAsFirstLastCompany_06() throws HarnessException {		         		
 
 		//-- Data
 		
@@ -389,7 +388,7 @@ public class ViewContact extends AjaxCommonTest  {
 	@Test( description = "View a contact, file as Company (First Last)",
 			groups = { "functional" })
 	
-	public void EditContact_FileAsCompanyFirstLast_07() throws HarnessException {		         		
+	public void ViewContact_FileAsCompanyFirstLast_07() throws HarnessException {		         		
 
 		//-- Data
 		
