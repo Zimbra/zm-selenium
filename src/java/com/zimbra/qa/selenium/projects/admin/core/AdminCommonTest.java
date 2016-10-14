@@ -21,9 +21,20 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import org.apache.commons.lang.WordUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -32,16 +43,21 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.Logs;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -57,6 +73,7 @@ public class AdminCommonTest {
 	protected final ZimbraAdminAccount gAdmin = ZimbraAdminAccount.AdminConsoleAdmin();
 	protected AppAdminConsole app = null;
 
+	String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
 
 	/**
 	 * BeforeMethod variables
@@ -79,7 +96,7 @@ public class AdminCommonTest {
 	@BeforeSuite( groups = { "always" } )
 	public void commonTestBeforeSuite() throws HarnessException {
 
-		logger.info("commonTestBeforeSuite");
+		logger.info("BeforeSuite");
 
 		// For coverage ?mode=mjsf&gzip=false
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
@@ -119,19 +136,19 @@ public class AdminCommonTest {
 	 */
 	@BeforeClass( groups = { "always" } )
 	public void commonTestBeforeClass() throws HarnessException {
-		logger.info("commonTestBeforeClass: start");		
-		logger.info("commonTestBeforeClass: finish");
+		logger.info("BeforeClass: start");
+		logger.info("BeforeClass: finish");
 	}
 
 	@BeforeMethod( groups = { "always" } )
 	public void commonTestBeforeMethod() throws HarnessException {
-		logger.info("commonTestBeforeMethod: start");
+		logger.info("BeforeMethod: start");
 
-		//Close all the dialogs left opened by the previous test 
+		//Close all the dialogs left opened by the previous test
 		app.zPageMain.zHandleDialogs();
 
 		// If a startinAccount is defined, then make sure we are authenticated as that user
-		if ( startingAccount != null ) {	
+		if ( startingAccount != null ) {
 			logger.debug("commonTestBeforeMethod: startingAccount is defined");
 
 			if ( !startingAccount.equals(app.zGetActiveAccount())) {
@@ -178,25 +195,25 @@ public class AdminCommonTest {
 
 		}
 
-		logger.info("commonTestBeforeMethod: finish");
+		logger.info("BeforeMethod: finish");
 
 	}
 
 	@AfterSuite( groups = { "always" } )
 	public void commonTestAfterSuite() throws HarnessException {
-		logger.info("commonTestAfterSuite: start");
+		logger.info("AfterSuite: start");
 
 		webDriver.switchTo().defaultContent();
 		webDriver.quit();
-		logger.info("commonTestAfterSuite: finish");
+		logger.info("AfterSuite: finish");
 
 	}
 
 	@AfterClass( groups = { "always" } )
 	public void commonTestAfterClass() throws HarnessException {
-		logger.info("commonTestAfterClass: start");
+		logger.info("AfterClass: start");
 
-		logger.info("commonTestAfterClass: finish");
+		logger.info("AfterClass: finish");
 	}
 
 	/**
@@ -205,10 +222,93 @@ public class AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@AfterMethod( groups = { "always" } )
-	public void commonTestAfterMethod() throws HarnessException {
-		logger.info("commonTestAfterMethod: start");
+	public void commonTestAfterMethod(Method method, ITestResult testResult) throws HarnessException, IOException {
+		logger.info("AfterMethod: start");
 
-		logger.info("commonTestAfterMethod: finish");
+		// **************** Capture java script errors ****************
+		logger.info("AfterMethod: Capture java script errors");
+
+		// Logs, Javascript error folder
+		List<String> lines;
+		Logs webDriverLog = webDriver.manage().logs();
+		LogEntries[] logEntries = { webDriverLog.get(LogType.BROWSER) };
+
+		for (int i=0; i<=logEntries.length-1; i++) {
+
+			// Get hostname
+			String hostname = null;
+			try {
+				InetAddress addr;
+				addr = InetAddress.getLocalHost();
+				hostname = addr.getHostName();
+			} catch (UnknownHostException ex) {
+				logger.info("Hostname can not be resolved");
+			}
+
+			// Configuration parameters
+			String application = WordUtils.capitalize(method.getDeclaringClass().toString().split("\\.")[7]);
+			String seleniumTestcase = method.getName().toString();
+			String testOutputFolderName = ExecuteHarnessMain.testoutputfoldername;
+			String screenShotFilePath;
+
+			if (testOutputFolderName.contains(ConfigProperties.getStringProperty("testOutputDirectory"))) {
+				screenShotFilePath = "file:///" + testOutputFolderName  + "/debug"
+						+ method.getDeclaringClass().toString().replace("class com.zimbra.qa.selenium", "").replace(".", "/")
+						+ "/" + seleniumTestcase + "ss1.png";
+			} else {
+				int appPosition = testOutputFolderName.indexOf(ConfigProperties.getAppType().toString().toUpperCase());
+				screenShotFilePath = "http://pnq-tms.lab.zimbra.com/portal/machines/" + hostname + "/selenium/"
+						+ ConfigProperties.getAppType().toString().toLowerCase() + "/results/"
+						+ testOutputFolderName.substring(appPosition) + "/debug" + method.getDeclaringClass().toString()
+								.replace("class com.zimbra.qa.selenium", "").replace(".", "/")
+						+ "/" + seleniumTestcase + "ss1.png";
+			}
+			screenShotFilePath = screenShotFilePath.replace("\\", "/");
+
+			// Java script error html file configuration
+			String sJavaScriptErrorsFolderPath = testOutputFolderName + "\\javascript-errors";
+			String sJavaScriptErrorsHtmlFilePath = sJavaScriptErrorsFolderPath + "\\" + sJavaScriptErrorsHtmlFileName;
+			Path pJavaScriptErrorsHtmlFilePath = Paths.get(sJavaScriptErrorsFolderPath, sJavaScriptErrorsHtmlFileName);
+			File fJavaScriptErrorsHtmlFilePath = new File(sJavaScriptErrorsHtmlFilePath);
+
+			// Make sure the javascript-errors folder exists
+			File fJavaScriptErrorsFolder = new File(sJavaScriptErrorsFolderPath);
+			if (!fJavaScriptErrorsFolder.exists())
+				fJavaScriptErrorsFolder.mkdirs();
+
+			if (fJavaScriptErrorsHtmlFilePath.createNewFile()) {
+				logger.info("Java script errors file is created");
+
+		    	// Java script errors html file
+		    	lines = Arrays.asList(
+						"<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>",
+						"<html>", "<head>", "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>",
+						"<link rel='icon' href='http://pnq-tms.lab.zimbra.com/portal/web/wp-content/themes/iconic-one/images/favicon.ico' type='image/x-icon'/>",
+						"<title>JavaScript Error Report</title>", "</head>", "<body>",
+						"<h2 style='font-family:calibri; font-size:26px;'>Admin JavaScript Errors Report Generated by Selenium</h2>",
+						"<table style='font-family:calibri; font-size:15px;' border='1'>",
+						"<tr><th>Application</th><th>Selenium testcase</th><th>Java script error</th><th>**Screenshot path</th><th>Bug No</th><th>Bug Status</th></tr>");
+		    	Files.write(pJavaScriptErrorsHtmlFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			} else {
+				logger.info("Java script errors file already exists");
+			}
+
+			for (LogEntry entry : logEntries[i]) {
+
+				// Parse java script error
+	        	String javaScriptError = new Date(entry.getTimestamp()) + " " + entry.getLevel() + " " + entry.getMessage();
+	        	String seleniumTestcasePath = method.getDeclaringClass().toString().replaceFirst("class ", "") + "." + method.getName();
+	        	logger.info("JavaScript error: " + javaScriptError);
+
+	        	// Java script error
+				lines = Arrays.asList("<tr><td style='text-align:center'>" + application + "</td><td>"
+						+ seleniumTestcasePath + "</td><td style='color:brown;'>" + javaScriptError
+						+ "</td><td><a target='_blank' href='" + screenShotFilePath + "'>" + "Navigate to " + method.getName() + " Screenshot" + "</a></td><td style='text-align:center'>-</td><td style='text-align:center'>-</td></tr>");
+	        	Files.write(pJavaScriptErrorsHtmlFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+	        }
+		}
+
+		logger.info("AfterMethod: finish");
 	}
 
 	public void zUpload (String filePath) throws HarnessException {
