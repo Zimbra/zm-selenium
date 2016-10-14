@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.attachmail;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -75,24 +74,23 @@ public class AttachAndSendMail extends PrefGroupMailByMessageTest {
 		mailform.zFill(mail);
 		app.zPageMail.zToolbarPressPulldown(Button.B_ATTACH, Button.O_MAILATTACH);
 
-		DialogAttach dialog = new DialogAttach(app, ((AppAjaxClient)app).zPageMail);
-		ZAssert.assertTrue(dialog.zIsActive(),"Attach Mail dialog gets open and active");
-		
-		//Click on Inbox folder
-		dialog.zClickAt(Locators.zAttachInboxFolder,"");
+		DialogAttach dialog = new DialogAttach(app, ((AppAjaxClient) app).zPageMail);
+		ZAssert.assertTrue(dialog.zIsActive(), "Attach Mail dialog gets open and active");
+
+		// Click on Inbox folder
+		dialog.zClick(Locators.zAttachInboxFolder);
 		SleepUtil.sleepMedium();
-		dialog.sClickAt("css=div[id='zv__BCI'] tr[id^='zlif__BCI__'] div[class='AttachMailRowDiv'] span[class='AttachMailSubject']","");
+		dialog.sClick(
+				"css=div[id='zv__BCI'] tr[id^='zlif__BCI__'] div[class='AttachMailRowDiv'] span[class='AttachMailSubject']");
 		dialog.zClickButton(Button.B_ATTACH);
 		SleepUtil.sleepMedium();
 		mailform.zSubmit();
 
 		// From the receiving end, verify the message details
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mail.dSubject +")");
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + mail.dSubject + ")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
 		ZimbraAccount.AccountA().soapSend(
-				"<GetMsgRequest xmlns='urn:zimbraMail'>"
-						+		"<m id='"+ received.getId() +"'/>"
-						+	"</GetMsgRequest>");
+				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + received.getId() + "'/>" + "</GetMsgRequest>");
 
 		String filename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
 

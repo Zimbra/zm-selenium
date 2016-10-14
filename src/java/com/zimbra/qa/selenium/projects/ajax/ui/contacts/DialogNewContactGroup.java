@@ -18,15 +18,15 @@ package com.zimbra.qa.selenium.projects.ajax.ui.contacts;
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 public class DialogNewContactGroup extends AbsDialog {
 
 	public static class Locators {
 		public static final String WINDOW_DIALOGNAME = "css=div#CreateContactGroupDialog";
 		public static final String INPUT_GROUPNAME = "css=input#CreateContactGroupDialog_name";
-		public static final String BUTTON_SAVE     = "css=div#CreateContactGroupDialog_button2";
-		public static final String BUTTON_CANCEL   = "css=div#CreateContactGroupDialog_button1";
+		public static final String BUTTON_SAVE = "css=div#CreateContactGroupDialog_button2";
+		public static final String BUTTON_CANCEL = "css=div#CreateContactGroupDialog_button1";
 	}
 
 	public DialogNewContactGroup(AbsApplication application, AbsTab page) {
@@ -40,17 +40,16 @@ public class DialogNewContactGroup extends AbsDialog {
 		return (this.getClass().getName());
 	}
 
-
 	@Override
 	public boolean zIsActive() throws HarnessException {
 		logger.info(myPageName() + " zIsActive()");
 
-		if ( !this.sIsElementPresent(Locators.WINDOW_DIALOGNAME) ) {
+		if (!this.sIsElementPresent(Locators.WINDOW_DIALOGNAME)) {
 			return (false); // Not even present
 		}
 
-		if ( !this.zIsVisiblePerPosition(Locators.WINDOW_DIALOGNAME, 0, 0) ) {
-			return (false);	// Not visible per position
+		if (!this.zIsVisiblePerPosition(Locators.WINDOW_DIALOGNAME, 0, 0)) {
+			return (false); // Not visible per position
 		}
 
 		// Yes, visible
@@ -58,9 +57,8 @@ public class DialogNewContactGroup extends AbsDialog {
 		return (true);
 	}
 
-
 	public void zEnterGroupName(String name) throws HarnessException {
-		logger.info(myPageName() + " zSetGroupName("+ name +")");
+		logger.info(myPageName() + " zSetGroupName(" + name + ")");
 
 		String locator = Locators.INPUT_GROUPNAME;
 
@@ -69,7 +67,6 @@ public class DialogNewContactGroup extends AbsDialog {
 
 	}
 
-
 	@Override
 	public String zGetDisplayedText(String locator) throws HarnessException {
 		return null;
@@ -77,35 +74,33 @@ public class DialogNewContactGroup extends AbsDialog {
 
 	@Override
 	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton("+ button +")");
+		logger.info(myPageName() + " zClickButton(" + button + ")");
 
 		AbsPage page = null;
 		String locator = null;
 
-		if ( button == Button.B_OK ) {
+		if (button == Button.B_OK) {
 
 			locator = Locators.BUTTON_SAVE;
 			page = null;
 
-		} else if ( button == Button.B_CANCEL ) {
+		} else if (button == Button.B_CANCEL) {
 
 			locator = Locators.BUTTON_CANCEL;
 			page = null;
 
 		} else {
-			throw new HarnessException("Button "+ button +" not implemented");
+			throw new HarnessException("Button " + button + " not implemented");
 		}
-
-		// Default behavior, click the locator
-		//
 
 		// Make sure the locator was set
-		if ( locator == null ) {
-			throw new HarnessException("Button "+ button +" not implemented");
+		if (locator == null) {
+			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		this.zClick(locator);
+		this.sClick(locator);
 		zWaitForBusyOverlay();
+		SleepUtil.sleepSmall();
 
 		return (page);
 	}

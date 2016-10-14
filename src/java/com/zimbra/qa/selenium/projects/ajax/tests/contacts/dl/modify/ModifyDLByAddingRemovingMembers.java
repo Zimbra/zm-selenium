@@ -68,7 +68,7 @@ public class ModifyDLByAddingRemovingMembers extends AjaxCommonTest  {
 		app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, dlFolder);
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, fullDLName);
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, Button.B_EDIT, fullDLName);
-		app.zPageContacts.zClickAt("css=div[id='DelContact_2']", "0,0");
+		app.zPageContacts.sClick("css=div[id='DelContact_2']");
 		SleepUtil.sleepMedium();
 
 		// Add member 3

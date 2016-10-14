@@ -394,11 +394,11 @@ public class PageMail extends AbsTab {
 
 			locator = "css=div[id$='__NEW_MENU'] td[id$='__NEW_MENU_title']";
 			page = new FormMailNew(this.MyApplication);
+			zWaitForElementPresent(locator);
 			
 			for (int i=0; i<=2; i++) {
 				this.sClick(locator);
 				zWaitForBusyOverlay();
-				SleepUtil.sleepMedium();
 				
 				if (!page.zIsActive()) {
 					continue;

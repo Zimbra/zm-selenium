@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.search.savedsearch;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.SavedSearchFolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -25,22 +24,14 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
-
-//TODO: add more in ContactItem.java
-
 public class MoveSavedSearch extends AjaxCommonTest  {
 
 	public MoveSavedSearch() {
 		logger.info("New "+ MoveSavedSearch.class.getCanonicalName());
-
-		// All tests start at the Address page
-		super.startingPage = app.zPageMail;
-
-		// Make sure we are using an account with conversation view
-		
-
+		super.startingPage = app.zPageMail;		
 	}
 
+	
 	@Bugs( ids = "102547")
 	@Test( description = "Move a saved search",
 			groups = { "smoke" })
@@ -52,7 +43,6 @@ public class MoveSavedSearch extends AjaxCommonTest  {
 		String name2 = "search" + ConfigProperties.getUniqueString();
 		String query1 = "subject:(" + ConfigProperties.getUniqueString() + ")";
 		String query2 = "subject:(" + ConfigProperties.getUniqueString() + ")";
-
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateSearchFolderRequest xmlns='urn:zimbraMail'>" +
@@ -66,16 +56,12 @@ public class MoveSavedSearch extends AjaxCommonTest  {
 				"</CreateSearchFolderRequest>");
 		SavedSearchFolderItem item2 = SavedSearchFolderItem.importFromSOAP(app.zGetActiveAccount(), name2);
 
-		app.zPageLogin.sRefresh();
-		app.zPageMail.zNavigateTo(); //see bug 102547
-
 		// Right click on the search, select delete
 		DialogMove dialog = (DialogMove) app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_MOVE, item1);
 
-		// Rename the search
+		// Move saved search foldersearch14764622635854
 		dialog.zEnterFolderName(name2);
 		dialog.zClickButton(Button.B_OK);
-
 
 		// Verify the saved search exists under the other saved search
 		item1 = SavedSearchFolderItem.importFromSOAP(app.zGetActiveAccount(), name1);

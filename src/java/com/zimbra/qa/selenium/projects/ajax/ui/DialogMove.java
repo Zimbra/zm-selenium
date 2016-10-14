@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.ui;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageContacts;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.PageBriefcase;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar;
@@ -28,21 +29,20 @@ import com.zimbra.qa.selenium.projects.ajax.ui.tasks.PageTasks;
 public class DialogMove extends AbsDialog {
 	public static class Locators {
 
-		// TODO:  See https://bugzilla.zimbra.com/show_bug.cgi?id=54173
-		public static final String zDialogId			= "ChooseFolderDialog";
-		public static final String zTitleId	 			= "ChooseFolderDialog_title";
-		public static final String zDialogContentId		= "ChooseFolderDialog_content";
-		// TODO: Tree
-		public static final String zDialogInputId		= "ChooseFolderDialog_inputDivId";
-		public static final String zDialogInputLocator	= "css=div[id='"+ zDialogId +"'] div[id='"+ zDialogInputId +"'] > div > input";
-		public static final String zDialogButtonsId		= "ChooseFolderDialog_buttons";
+		public static final String zDialogId = "ChooseFolderDialog";
+		public static final String zTitleId = "ChooseFolderDialog_title";
+		public static final String zDialogContentId = "ChooseFolderDialog_content";
 
+		public static final String zDialogInputId = "ChooseFolderDialog_inputDivId";
+		public static final String zDialogInputLocator = "css=div[id='" + zDialogId + "'] div[id='" + zDialogInputId
+				+ "'] > div > input";
+		public static final String zDialogButtonsId = "ChooseFolderDialog_buttons";
 	}
 
-	public DialogMove(AbsApplication application,AbsTab page) {
-		super(application,page);
+	public DialogMove(AbsApplication application, AbsTab page) {
+		super(application, page);
 
-		logger.info("new "+ DialogMove.class.getCanonicalName());
+		logger.info("new " + DialogMove.class.getCanonicalName());
 	}
 
 	@Override
@@ -73,9 +73,9 @@ public class DialogMove extends AbsDialog {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		this.zClick(locator);
-
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
+		SleepUtil.sleepSmall();
 
 		return (page);
 	}
@@ -90,14 +90,14 @@ public class DialogMove extends AbsDialog {
 
 		logger.info(myPageName() + " zIsActive()");
 
-		String locator = "css=div[id='"+ Locators.zDialogId +"']";
+		String locator = "css=div[id='" + Locators.zDialogId + "']";
 
-		if ( !this.sIsElementPresent(locator) ) {
+		if (!this.sIsElementPresent(locator)) {
 			return (false); // Not even present
 		}
 
-		if ( !this.zIsVisiblePerPosition(locator, 0, 0) ) {
-			return (false);	// Not visible per position
+		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
+			return (false); // Not visible per position
 		}
 
 		// Yes, visible
@@ -108,25 +108,24 @@ public class DialogMove extends AbsDialog {
 
 	/**
 	 * Enter text into the move message dialog folder name field
+	 * 
 	 * @param folder
 	 */
 	public void zEnterFolderName(String folder) throws HarnessException {
 		String locator = "css=div[id='ChooseFolderDialog_inputDivId']>div>input";
 
-		if ( !this.sIsElementPresent(locator) )
-			throw new HarnessException("unable to find folder name field "+ locator);
+		if (!this.sIsElementPresent(locator))
+			throw new HarnessException("unable to find folder name field " + locator);
 
-		this.zClick(locator);
+		this.sClick(locator);
 		zKeyboard.zTypeCharacters(folder);
-
-		// SleepUtil.sleepSmall();
 		this.zWaitForBusyOverlay();
 
 	}
 
-
 	/**
 	 * Left-Click on a folder in the tree
+	 * 
 	 * @param folder
 	 * @throws HarnessException
 	 */
@@ -141,42 +140,41 @@ public class DialogMove extends AbsDialog {
 		String locator = null;
 
 		if (MyTab instanceof PageMail) {
-			locator = "css=div[id='" + Locators.zDialogId+ "'] div[id^='zti__ZmChooseFolderDialog_Mail'] td[id$='"+ folder.getId() + "_textCell']";
+			locator = "css=div[id='" + Locators.zDialogId + "'] div[id^='zti__ZmChooseFolderDialog_Mail'] td[id$='"
+					+ folder.getId() + "_textCell']";
 
 		} else if (MyTab instanceof PageContacts) {
-			locator="css=div[id='" + Locators.zDialogId+ "'] div[id^='zti__ZmChooseFolderDialog_Contacts'] td[id$='"+ folder.getId() + "_textCell']";
+			locator = "css=div[id='" + Locators.zDialogId + "'] div[id^='zti__ZmChooseFolderDialog_Contacts'] td[id$='"
+					+ folder.getId() + "_textCell']";
 
 		} else if (MyTab instanceof PageCalendar) {
 
-			locator = String.format(
-					"css=div[id='%s'] td[id='zti__ZmChooseFolderDialog_Calendar__%s_textCell']",
-					Locators.zDialogId,
-					folder.getId());
-			
+			locator = String.format("css=div[id='%s'] td[id='zti__ZmChooseFolderDialog_Calendar__%s_textCell']",
+					Locators.zDialogId, folder.getId());
+
 			if (!sIsElementPresent(locator)) {
 				locator = String.format(
 						"css=div[id='%s'] td[id='zti__ZmChooseFolderDialog_Calendar_CALENDAR__%s_textCell']",
-						Locators.zDialogId,
-						folder.getId());
-			
+						Locators.zDialogId, folder.getId());
+
 			}
 
 		} else if (MyTab instanceof PageTasks) {
-			locator = "css=div[id='" + Locators.zDialogId + "'] div[class='DwtTreeItemLevel1ChildDiv'] td[id='zti__ZmChooseFolderDialog_Tasks__"+ folder.getId() + "_textCell']";
+			locator = "css=div[id='" + Locators.zDialogId
+					+ "'] div[class='DwtTreeItemLevel1ChildDiv'] td[id='zti__ZmChooseFolderDialog_Tasks__"
+					+ folder.getId() + "_textCell']";
 
-		} else if (MyTab instanceof PageBriefcase ) {
-			locator = "css=div[id='" + Locators.zDialogId + "'] td[id='zti__ZmChooseFolderDialog_Briefcase__"+ folder.getId() + "_textCell']";
+		} else if (MyTab instanceof PageBriefcase) {
+			locator = "css=div[id='" + Locators.zDialogId + "'] td[id='zti__ZmChooseFolderDialog_Briefcase__"
+					+ folder.getId() + "_textCell']";
 
 		} else {
 			throw new HarnessException("Unknown app type!");
 		}
 
-		// For some reason, the text doesn't get entered on the first try
-
-		this.sClickAt(locator,"0,0");
-
-		this.zWaitForBusyOverlay(); // This method call seems to be missing from
-		// the briefcase function
+		this.sClick(locator);
+		this.zWaitForBusyOverlay();
+		SleepUtil.sleepSmall();
 
 	}
 }
