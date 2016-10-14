@@ -64,7 +64,7 @@ public class TreeCalendar extends AbsTree {
 			throw new HarnessException("Must define an action, option, and addressbook");
 		}
 		
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 
 		tracer.trace("processing " + folder.getName());
 

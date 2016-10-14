@@ -281,6 +281,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 		this.sClick(locator);
 		this.zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
 
 		return (page);
 

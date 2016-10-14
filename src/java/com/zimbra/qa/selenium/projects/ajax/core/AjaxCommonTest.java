@@ -261,8 +261,6 @@ public class AjaxCommonTest {
 	@AfterSuite( groups = { "always" } )
 	public void commonTestAfterSuite() throws HarnessException, IOException, InterruptedException {
 		logger.info("AfterSuite: start");
-		webDriver.quit();
-		logger.info("AfterSuite: finished by closing selenium session");
 
 		// Java script errors html file
 		if (getJavaScriptErrorsHtmlFile().exists()) {
@@ -272,6 +270,9 @@ public class AjaxCommonTest {
 					"</html>");
 			Files.write(getJavaScriptErrorsHtmlFilePath(), lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 		}
+		
+		webDriver.quit();
+		logger.info("AfterSuite: finished by closing selenium session");
 	}
 
 	@AfterClass( groups = { "always" } )
@@ -291,15 +292,15 @@ public class AjaxCommonTest {
 		logger.info("AfterMethod: start");
 
 		if ( ZimbraURI.needsReload() ) {
-            logger.error("The URL does not match the base URL.  Reload app.");
-            app.zPageLogin.sOpen(ConfigProperties.getLogoutURL());
-            app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
+			logger.error("The URL does not match the base URL. Reload app.");
+			app.zPageLogin.sOpen(ConfigProperties.getLogoutURL());
+			app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
 		}
 
 		if ( (!app.zPageMain.zIsActive()) && (!app.zPageLogin.zIsActive()) ) {
-            logger.error("Neither login page nor main page were active.  Reload app.", new Exception());
-            app.zPageLogin.sOpen(ConfigProperties.getLogoutURL());
-            app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
+			logger.error("Neither login page nor main page were active. Reload app.", new Exception());
+			app.zPageLogin.sOpen(ConfigProperties.getLogoutURL());
+			app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
         }
 
 		// **************** Capture java script errors ****************

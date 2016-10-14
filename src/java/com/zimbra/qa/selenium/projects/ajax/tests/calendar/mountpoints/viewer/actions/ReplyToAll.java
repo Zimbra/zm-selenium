@@ -51,18 +51,18 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		
-		FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.Account1(), FolderItem.SystemFolder.Calendar);
+		FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.Account3(), FolderItem.SystemFolder.Calendar);
 		
 		// Create a folder to share
-		ZimbraAccount.Account1().soapSend(
+		ZimbraAccount.Account3().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + calendarFolder.getId() + "' view='appointment'/>"
 				+	"</CreateFolderRequest>");
 		
-		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account1(), foldername);
+		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account3(), foldername);
 		
 		// Share it
-		ZimbraAccount.Account1().soapSend(
+		ZimbraAccount.Account3().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
 				+		"<action id='"+ folder.getId() +"' op='grant'>"
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='r' view='appointment'/>"
@@ -72,17 +72,17 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
-				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account1().ZimbraId +"' view='appointment' color='5'/>"
+				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account3().ZimbraId +"' view='appointment' color='5'/>"
 				+	"</CreateMountpointRequest>");
 		
 		// Create appointment
-		ZimbraAccount.Account1().soapSend(
+		ZimbraAccount.Account3().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
 				+		"<m l='"+ folder.getId() +"' >"
 				+			"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"
 				+				"<s d='"+ startUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
 				+				"<e d='"+ endUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
-				+				"<or a='"+ ZimbraAccount.Account1().EmailAddress +"'/>"
+				+				"<or a='"+ ZimbraAccount.Account3().EmailAddress +"'/>"
 				+				"<at role='REQ' ptst='NE' rsvp='1' a='" + app.zGetActiveAccount().EmailAddress + "'/>"
 				+				"<at role='REQ' ptst='NE' rsvp='1' a='" + ZimbraAccount.Account2().EmailAddress + "'/>"
 				+			"</inv>"
@@ -108,23 +108,23 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 		mailComposeForm.zSubmit();
 		
 		// Verify the reply text at organizer side
-        String id = ZimbraAccount.Account1().soapSelectValue("//mail:m", "id"); 
-		ZimbraAccount.Account1().soapSend(
+        String id = ZimbraAccount.Account3().soapSelectValue("//mail:m", "id"); 
+		ZimbraAccount.Account3().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 			+		"<query>subject:("+ apptSubject +") content:("+ replyContent +")</query>"			
 			+	"</SearchRequest>");
 		
-		id = ZimbraAccount.Account1().soapSelectValue("//mail:m", "id");
+		id = ZimbraAccount.Account3().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify the reply text in received message");
 		
 		// Verify the reply text at attende side
-        id = ZimbraAccount.Account1().soapSelectValue("//mail:m", "id"); 
-		ZimbraAccount.Account1().soapSend(
+        id = ZimbraAccount.Account3().soapSelectValue("//mail:m", "id"); 
+		ZimbraAccount.Account3().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 			+		"<query>subject:("+ apptSubject +") content:("+ replyContent +")</query>"			
 			+	"</SearchRequest>");
 		
-		id = ZimbraAccount.Account1().soapSelectValue("//mail:m", "id");
+		id = ZimbraAccount.Account3().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify the reply text in received message");
 		
 	}

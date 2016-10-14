@@ -18,9 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 
 import java.io.File;
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -53,8 +51,6 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email10/mimeHtmlOnly1.txt";
 		final String subject = "1 html mail";
 		final String content = "Bold and Italics";
-		String apptAttendee1 = "foo@testdomain.com";
-		String apptAttendee2 = "bar@testdomain.com";
 
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
@@ -76,8 +72,6 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.StartTime, startUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
-		ZAssert.assertTrue(apptForm.zVerifyRequiredAttendee(apptAttendee1), "Verify populated email address bubble 1 from message");
-		ZAssert.assertTrue(apptForm.zVerifyRequiredAttendee(apptAttendee2), "Verify populated email address bubble 2 from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), "Bold and Italics", "Verify populated appointment body from message");
 		apptForm.zSubmit();
 
@@ -92,12 +86,10 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists("1 html mail") == false) {
+		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists(subject) == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
-		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "1 html mail");
-		ZAssert.assertTrue(apptForm.zVerifyRequiredAttendee(apptAttendee1), "Open created appointment again and verify attendee1");
-		ZAssert.assertTrue(apptForm.zVerifyRequiredAttendee(apptAttendee2), "Open created appointment again and verify attendee2");
+		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 
@@ -141,7 +133,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.StartTime, startUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
-		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), "Bold and Italics", "Verify populated appointment body from message");
+		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Verify populated appointment body from message");
 		apptForm.zSubmit();
 
 		// Verify appointment exists on the server
@@ -154,11 +146,11 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists("2 html mail") == false) {
+		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists(subject) == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
-		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "2 html mail");
-		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), content, "Open created appointment again and verify body text");
+		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
+		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 
 	}
@@ -214,10 +206,10 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists("1 plain mail") == false) {
+		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists(subject) == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
-		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "1 plain mail");
+		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 
@@ -274,10 +266,10 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists("2 plain mail") == false) {
+		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists(subject) == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
-		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "2 plain mail");
+		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 
@@ -320,7 +312,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.StartTime, startUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
-		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), "Bold and Italics", "Verify populated appointment body from message");
+		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Verify populated appointment body from message");
 		apptForm.zSubmit();
 
 		// Verify appointment exists on the server
@@ -333,10 +325,10 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists("3 html mail") == false) {
+		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists(subject) == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
-		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "3 html mail");
+		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 
@@ -379,7 +371,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.StartTime, startUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
-		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), "Bold and Italics", "Verify populated appointment body from message");
+		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Verify populated appointment body from message");
 		apptForm.zSubmit();
 
 		// Verify appointment exists on the server
@@ -392,10 +384,10 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists("4 html mail") == false) {
+		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists(subject) == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
-		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "4 html mail");
+		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 
@@ -451,10 +443,10 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists("3 plain mail") == false) {
+		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists(subject) == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
-		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "3 plain mail");
+		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 
@@ -499,7 +491,6 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.StartTime, startUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
-		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), "Bold and Italics", "Verify populated appointment body from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Verify populated appointment body from message");
 		apptForm.zSubmit();
 
@@ -513,11 +504,11 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists("4 plain mail") == false) {
+		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists(subject) == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
-		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "4 plain mail");
-		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), fullContent, "Open created appointment again and verify body text");
+		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
+		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 
 	}
@@ -536,7 +527,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 			+	"</ModifyPrefsRequest>");
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 
-		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email16/mime.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/private/mime/email00/mime.txt";
 		final String subject = "ZCS 8 triage";
 		final String content = "Dev is aggressively";
 		// Absolute dates in UTC zone
@@ -572,10 +563,10 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists("ZCS 8 triage") == false) {
+		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists(subject) == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
-		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, "ZCS 8 triage");
+		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
 

@@ -147,7 +147,6 @@ public class SendAs extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
 		
 		// Verify the attachment exists in the forwarded mail
-		
 		ZimbraAccount.AccountB().soapSend(
 				"<GetMsgRequest xmlns='urn:zimbraMail'>"
 				+		"<m id='"+ received.getId() +"'/>"
