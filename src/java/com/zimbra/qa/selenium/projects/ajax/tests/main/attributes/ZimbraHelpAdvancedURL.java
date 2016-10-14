@@ -51,7 +51,7 @@ public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 
 		try {
 
-			staf.execute("mkdir -p /helpUrl/help/adv && echo '<html><body><h1>Temp Help</h1><p> This is the advanced help of zimbra </p></body></html>' >/helpUrl/help/adv/help.html");
+			staf.execute("mkdir -p /opt/zimbra/jetty/webapps/zimbra/helpUrl/help/adv && echo '<html><head><title>Zimbra Temp Help</title></head><body><h1>Temp Help</h1><p> This is the new advanced help of zimbra!</p></body></html>' > /opt/zimbra/jetty/webapps/zimbra/helpUrl/help/adv/advhelp.html");
 
 			// To get domain id
 			String targetDomain = ConfigProperties.getStringProperty("testdomain");
@@ -64,7 +64,7 @@ public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 			// Modify the domain and change the help URL
 			ZimbraAdminAccount.AdminConsoleAdmin()
 					.soapSend("<ModifyDomainRequest xmlns='urn:zimbraAdmin'>" + "<id>" + domainID + "</id>"
-							+ "<a n='zimbraHelpAdvancedURL'>/helpUrl/help/adv/help.html</a>"
+							+ "<a n='zimbraHelpAdvancedURL'>/helpUrl/help/adv/advhelp.html</a>"
 							+ "<a n='zimbraVirtualHostname'>" + ConfigProperties.getStringProperty("server.host")
 							+ "</a>" + "</ModifyDomainRequest>");
 			
@@ -86,7 +86,7 @@ public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 						found = true;
 						app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
 						break;
-					} else if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
+					} else if (!(app.zPageMain.sGetTitle().contains("Zimbra: Inbox"))) {
 								app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());					
 					}
 				}
@@ -100,7 +100,7 @@ public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 			}
 
 			// Check the URL
-			ZAssert.assertTrue(tempURL.contains("/helpUrl/help/adv/help.html"),	"Product Help URL is not as set in zimbraHelpAdvancedURL");
+			ZAssert.assertTrue(tempURL.contains("/helpUrl/help/adv/advhelp.html"),	"Product Help URL is not as set in zimbraHelpAdvancedURL");
 
 		} finally {
 

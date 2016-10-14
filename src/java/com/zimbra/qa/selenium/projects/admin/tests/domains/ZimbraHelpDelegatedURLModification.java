@@ -49,7 +49,7 @@ public class ZimbraHelpDelegatedURLModification extends AdminCommonTest {
 
 		try {
 
-			staf.execute("mkdir -p /helpUrl/help/dadmin && echo '<html><body><h1>Delegated Admin Help</h1><p> This is the delegated admin help of zimbra </p></body></html>' >/helpUrl/help/dadmin/help.html");
+			staf.execute("mkdir -p /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/DelegatedAdmin && echo '<html><head><title>Zimbra Temp Delegated Admin Help</title></head><body><h1>Temp Delegated Admin Help</h1><p> This is the new Delegated admin help of zimbra!</p></body></html>' > /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/DelegatedAdmin/dahelp.html");
 
 			// Login using a delegated admin account
 			app.provisionAuthenticateDA();
@@ -67,7 +67,7 @@ public class ZimbraHelpDelegatedURLModification extends AdminCommonTest {
 			ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 					"<ModifyDomainRequest xmlns='urn:zimbraAdmin'>"
 							+ "<id>" + domainID +"</id>"
-							+  "<a n='zimbraHelpDelegatedURL'>/helpUrl/help/dadmin/help.html</a>"
+							+  "<a n='zimbraHelpDelegatedURL'>zimbraAdmin/helpUrl/help/DelegatedAdmin/dahelp.html</a>"
 							+  "<a n='zimbraVirtualHostname'>" + ConfigProperties.getStringProperty("server.host") +"</a>"
 							+	"</ModifyDomainRequest>");
 
@@ -113,7 +113,7 @@ public class ZimbraHelpDelegatedURLModification extends AdminCommonTest {
 			}
 
 			// Check the URL
-			ZAssert.assertTrue(tempURL.contains("/helpUrl/help/dadmin/help.html"),"Delegated Admin Help URL is not as set in zimbraHelpDelegatedURL");
+			ZAssert.assertTrue(tempURL.contains("zimbraAdmin/helpUrl/help/DelegatedAdmin/dahelp.html"),"Delegated Admin Help URL is not as set in zimbraHelpDelegatedURL");
 
 		} finally {
 
