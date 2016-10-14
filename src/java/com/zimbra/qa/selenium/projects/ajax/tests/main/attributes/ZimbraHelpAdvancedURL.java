@@ -72,7 +72,7 @@ public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 			app.zPageMain.zToolbarPressPulldown(Button.B_ACCOUNT, Button.O_PRODUCT_HELP);
 			SleepUtil.sleepMedium();
 			
-			// Zimbra advanced help page opens in separate window
+			// Zimbra advanced help page can open in separate window
 			List<String> windowIds=app.zPageMain.sGetAllWindowIds();
 
 			if (windowIds.size() > 1) {
