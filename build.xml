@@ -136,8 +136,8 @@
 			</fileset>
 			
 			<fileset dir="${build.deps.dir}">
-				<include name="selenium-server-standalone-3.0.0-beta4.jar"/>
-				<include name="client-combined-3.0.0-beta4-nodeps.jar"/>
+				<include name="selenium-server-standalone-3.0.0.jar"/>
+				<include name="client-combined-3.0.0-nodeps.jar"/>
 			</fileset>
 			
 			<fileset dir="${build.deps.dir}">
@@ -189,7 +189,7 @@
 				<attribute name="Main-Class" value="staf.Driver"/>
 				<section name="staf/service/info">
 					<attribute name="Service-Class" value="com.zimbra.qa.selenium.staf.StafIntegration"/>
-					<attribute name="Packaged-Jars" value="ant-tar-patched  apache-log4j-extras-1.0 client-combined-3.0.0-beta4-nodeps commons-beanutils-1.7 commons-cli-1.2 commons-codec-1.7 commons-collections-3.2.2 commons-configuration-1.5 commons-httpclient-3.1 commons-io-2.5 commons-lang-2.6 commons-logging coverage dom4j-1.5.2 ezmorph-1.0.6 guava-13.0.1 htmlcleaner-2.2 javamail-1.4.5 jaxen-1.1-beta-6 jsch-0.1.53 json json-lib-2.3-jdk15 JSTAF ldtp-1.0 libidn-1.24 log4j-1.2.16 mariadb-java-client-1.1.8 ocutil-2.4.2 resources selenium-server-standalone-3.0.0-beta4 serializer-2.7.2 testng-5.12.1 ws-commons-util-1.0.2 xml-apis xmlrpc-client-3.1.3 xmlrpc-common-3.1.3 zm-native-8.8.0 zm-common-8.8.0"/>
+					<attribute name="Packaged-Jars" value="ant-tar-patched  apache-log4j-extras-1.0 client-combined-3.0.0-nodeps commons-beanutils-1.7 commons-cli-1.2 commons-codec-1.7 commons-collections-3.2.2 commons-configuration-1.5 commons-httpclient-3.1 commons-io-2.5 commons-lang-2.6 commons-logging coverage dom4j-1.5.2 ezmorph-1.0.6 guava-13.0.1 htmlcleaner-2.2 javamail-1.4.5 jaxen-1.1-beta-6 jsch-0.1.53 json json-lib-2.3-jdk15 JSTAF ldtp-1.0 libidn-1.24 log4j-1.2.16 mariadb-java-client-1.1.8 ocutil-2.4.2 resources selenium-server-standalone-3.0.0 serializer-2.7.2 testng-5.12.1 ws-commons-util-1.0.2 xml-apis xmlrpc-client-3.1.3 xmlrpc-common-3.1.3 zm-native-8.8.0 zm-common-8.8.0"/>
 				</section>
 			</manifest>
 		</jar>
