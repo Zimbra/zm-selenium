@@ -87,11 +87,8 @@ public class ChangeLocationOfOneInstance extends CalendarWorkWeekTest {
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zVerifyDisabledControlInOpenInstance();
 	    apptForm.zFillField(Field.Location, apptLocation);
-	    apptForm.zSubmit();
-		SleepUtil.sleepMedium();
+	    apptForm.zSubmitWithResources();
 	
-	    // Verify location in the appointment
-	    
 		// Organizer: Search for the appointment
 	    app.zGetActiveAccount().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
@@ -100,7 +97,7 @@ public class ChangeLocationOfOneInstance extends CalendarWorkWeekTest {
 	    
 		String exceptionLocation = app.zGetActiveAccount().soapSelectValue("//mail:inst[@ex='1']", "loc");
 	   
-		ZAssert.assertEquals(exceptionLocation, apptLocation, "Location: Verify the appointment data");
+		ZAssert.assertStringContains(exceptionLocation, apptLocation, "Location: Verify the appointment data");
 		
 		// Verify location free/busy status is "Accepted"
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:inst[@ex='1']", "ptst");

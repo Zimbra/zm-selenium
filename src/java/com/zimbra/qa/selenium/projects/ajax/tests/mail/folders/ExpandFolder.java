@@ -71,7 +71,7 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 			+	"</SetMailboxMetadataRequest>");
 
 		// Refresh UI
-		app.zPageLogin.sRefresh();
+		app.zPageMain.sRefresh();
 		
 		// Expand folder1
 		app.zTreeMail.zTreeItem(Action.A_TREE_EXPAND, folder1);
@@ -147,7 +147,7 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 			+	"</SetMailboxMetadataRequest>");
 
 		// Refresh UI
-		app.zPageLogin.sRefresh();
+		app.zPageMain.sRefresh();
 
 		//-- GUI
 		
@@ -235,7 +235,7 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 			+	"</SetMailboxMetadataRequest>");
 
 		// Refresh UI
-		app.zPageLogin.sRefresh();
+		app.zPageMain.sRefresh();
 
 		//-- GUI
 		

@@ -21,7 +21,6 @@ import com.zimbra.qa.selenium.framework.items.SignatureItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
@@ -56,7 +55,7 @@ public class CreateSignature extends AjaxCommonTest {
 
 		// Verify signature name and body content
 		ZAssert.assertEquals(signature.getName(), sigName, "Verify signature Name");
-		ZAssert.assertEquals(signature.dBodyText, sigBody, "Verify Text signature body");
+		ZAssert.assertEquals(signature.dBodyText, sigBody, "Verify text signature body");
 	}
 
 	@Test(description = "Create Simple Html signature through GUI", groups = { "sanity" })
@@ -73,7 +72,6 @@ public class CreateSignature extends AjaxCommonTest {
 		FormSignatureNew signew = (FormSignatureNew) app.zPageSignature.zToolbarPressButton(Button.B_NEW);
 
 		signew.zSelectFormat("html");
-		SleepUtil.sleepVeryLong();
 
 		// Fill Signature Name and body
 		signew.zFillField(Field.SignatureName, sigName);
@@ -84,9 +82,6 @@ public class CreateSignature extends AjaxCommonTest {
 
 		// Verify signature name and body contents
 		ZAssert.assertEquals(signature.getName(), sigName, "Verify signature Name");
-		ZAssert.assertStringContains(signature.dBodyHtmlText, sigBody, "Verify Html signature body");
-		// ZAssert.assertEquals(signature.dBodyHtmlText,sigBody,"Verify Html
-		// signature body");
-
+		ZAssert.assertStringContains(signature.dBodyHtmlText, sigBody, "Verify html signature body");
 	}
 }

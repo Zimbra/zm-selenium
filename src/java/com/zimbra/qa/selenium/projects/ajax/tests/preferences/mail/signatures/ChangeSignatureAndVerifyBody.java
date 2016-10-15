@@ -24,40 +24,36 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
 public class ChangeSignatureAndVerifyBody extends AjaxCommonTest {
-	
+
 	private String AllowEmailAddress = null;
 	private String AllowFromDisplay = null;
 	private String sigName1 = null;
 	private String sigBody1 = null;
 	private String sigName2 = null;
 	private String sigBody2 = null;
-	
+
 	public ChangeSignatureAndVerifyBody() {
 		logger.info("New "+ ChangeSignatureAndVerifyBody.class.getCanonicalName());
-		super.startingPage = app.zPageMail;
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
-	
+
 	@Bugs(ids="47375")
 	@Test(description = "Change signature by deleting the previous signature and verify the body of the mail",
 			groups = { "functional" })
-	
-	public void ChangeSignatureAndVerifyBody_01() throws HarnessException {		
-		
+
+	public void ChangeSignatureAndVerifyBody_01() throws HarnessException {
+
 		sigName1 = "signame1";
-		sigBody1 = "sigbody1 " + "signature1<b>bold"+ ConfigProperties.getUniqueString() + "</b>signature";
+		sigBody1 = "sigbody1 " + "signature1 <b>bold" + ConfigProperties.getUniqueString() + "</b> signature";
 		sigName2 = "signame2";
-		sigBody2 = "sigbody2 " +"signature2<b>bold"+ ConfigProperties.getUniqueString() + "</b>signature";
-		
+		sigBody2 = "sigbody2 " + "signature2 <b>bold" + ConfigProperties.getUniqueString() + "</b> signature";
+
 		// Create two signatures
 		app.zGetActiveAccount().soapSend(
 				"<CreateSignatureRequest xmlns='urn:zimbraAccount'>"
@@ -65,7 +61,7 @@ public class ChangeSignatureAndVerifyBody extends AjaxCommonTest {
 						+ "<content type='text/html'>" + sigBody1
 						+ "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
-		
+
 		// Create two signatures
 		app.zGetActiveAccount().soapSend(
 				"<CreateSignatureRequest xmlns='urn:zimbraAccount'>"
@@ -73,61 +69,52 @@ public class ChangeSignatureAndVerifyBody extends AjaxCommonTest {
 						+ "<content type='text/html'>" + sigBody2
 						+ "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
-		
+
 		// Refresh UI
 		app.zPageMain.sRefresh();
-		
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		String bodyText = "body " + ConfigProperties.getUniqueString();
-				
-		// Fill out the form with the data
-		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
-		mailform.zFillField(Field.Subject,"subject" + ConfigProperties.getUniqueString());
 		mailform.zFillField(Field.Body,bodyText);
-		
+
 		// Select the signature below the body text
-		mailform.zKeyboard.zTypeCharacters("<SHIFT><DOWN>");		
-		mailform.zKeyboard.zTypeCharacters("<SHIFT><DOWN>");		
 		mailform.zKeyboard.zTypeCharacters("<SHIFT><DOWN>");
-		
+		mailform.zKeyboard.zTypeCharacters("<SHIFT><DOWN>");
+		mailform.zKeyboard.zTypeCharacters("<SHIFT><DOWN>");
+
 		// Delete the signature
 		mailform.zKeyboard.zTypeCharacters("<Delete>");
-		
+
 		// Press Enter to go to next line before adding other signature
 		mailform.zKeyboard.zTypeCharacters("<ENTER>");
-		
+
 		// Select another signature from Options
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_ADD_SIGNATURE,sigName2);
-		
-		DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning,app,((AppAjaxClient) app).zPageMail);
-		if(dialog.zIsActive()){
-			//ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
-			dialog.zClickButton(Button.B_OK);		
-		}
-		
+
 		// Verify that entered body text is still present after changing the signature
-		ZAssert.assertTrue(mailform.ZGetFieldValue(Field.Body).contains(bodyText),"Entered body text is lost after changing the signature!");
-		
+		ZAssert.assertTrue(mailform.zGetFieldValue(Field.Body).contains(bodyText), "Entered body text is lost after changing the signature!");
+		ZAssert.assertTrue(mailform.zGetFieldValue(Field.Body).contains(sigBody2.replace("<b>", "").replace("</b>", "")), "Verify added signature");
+
 	}
 	
+
 	@Bugs(ids="47375")
 	@Test(description = "Verify the body of the mail after deleting the signature and changing the From Persona which has a different signature",
 			groups = { "functional" })
-	
-	public void ChangeSignatureAndVerifyBody_02() throws HarnessException {			
-		
+
+	public void ChangeSignatureAndVerifyBody_02() throws HarnessException {
+
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), sigName2);
-		
+
 		// Create a From persona with different signature
-		
 		AllowFromDisplay = "allowed" + ConfigProperties.getUniqueString();
-		AllowEmailAddress = AllowFromDisplay + "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com");
-		
+		AllowEmailAddress = AllowFromDisplay + "@" + ConfigProperties.getStringProperty("testdomain");
+
 		String identity = "identity" + ConfigProperties.getUniqueString();
-		
+
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 					"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
 				+		"<id>"+ app.zGetActiveAccount().ZimbraId +"</id>"
@@ -148,39 +135,36 @@ public class ChangeSignatureAndVerifyBody extends AjaxCommonTest {
 			+			"<a name='zimbraPrefWhenInFoldersEnabled'>FALSE</a>"
 			+		"</identity>"
 			+	"</CreateIdentityRequest>");
-		
-		
+
+
 		// Refresh UI
 		app.zPageMain.sRefresh();
-		
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		String bodyText = "body " + ConfigProperties.getUniqueString();
-				
-		// Fill out the form with the data
-		mailform.zFillField(Field.To, "");
-		mailform.zFillField(Field.Subject,"subject" + ConfigProperties.getUniqueString());
 		mailform.zFillField(Field.Body,"");
-		
+
 		// Select the signature below the body text
-		mailform.zKeyboard.zTypeCharacters("<SHIFT><DOWN>");		
-		mailform.zKeyboard.zTypeCharacters("<SHIFT><DOWN>");		
 		mailform.zKeyboard.zTypeCharacters("<SHIFT><DOWN>");
-		
+		mailform.zKeyboard.zTypeCharacters("<SHIFT><DOWN>");
+		mailform.zKeyboard.zTypeCharacters("<SHIFT><DOWN>");
+
 		// Delete the signature
 		mailform.zKeyboard.zTypeCharacters("<Delete>");
-		
+
 		// Enter the text in body
 		mailform.zFillField(Field.To, "");
 		mailform.zFillField(Field.Subject,"");
 		mailform.zFillField(Field.Body,bodyText);
-		
+
 		// Fill out the form with the data
-		mailform.zFillField(Field.From, AllowEmailAddress);		
-		
+		mailform.zFillField(Field.From, AllowEmailAddress);
+
 		// Verify that entered body text is still present after changing the signature
-		ZAssert.assertTrue(mailform.ZGetFieldValue(Field.Body).contains(bodyText),"Entered body text is lost after changing the signature!");
+		ZAssert.assertTrue(mailform.zGetFieldValue(Field.Body).contains(bodyText), "Entered body text is lost after changing the signature!");
+		ZAssert.assertTrue(mailform.zGetFieldValue(Field.Body).contains(sigBody2.replace("<b>", "").replace("</b>", "")), "Verify added signature");
 	}
 }

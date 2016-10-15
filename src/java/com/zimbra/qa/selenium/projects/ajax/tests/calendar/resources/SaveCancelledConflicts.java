@@ -35,6 +35,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators;
 import java.util.Calendar;
 import org.testng.annotations.Test;
+
 public class SaveCancelledConflicts extends CalendarWorkWeekTest {
 
   public SaveCancelledConflicts() {
@@ -52,6 +53,7 @@ public class SaveCancelledConflicts extends CalendarWorkWeekTest {
 		String apptAttendeeEmail1 = ZimbraAccount.AccountA().EmailAddress;
 		String apptAttendeeEmail2 = ZimbraAccount.AccountA().EmailAddress;
 		String apptContent = ConfigProperties.getUniqueString();
+		
 		AppointmentItem appt = new AppointmentItem();
 		String apptSubject1 = ConfigProperties.getUniqueString();
 		String apptSubject2 = ConfigProperties.getUniqueString();
@@ -92,21 +94,22 @@ public class SaveCancelledConflicts extends CalendarWorkWeekTest {
 		appt.setRecurring("EVERYDAY", "");
 		
 		// Create series appointment
-		FormApptNew newApptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
-		newApptForm.zFill(appt);
+		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
+		apptForm.zFill(appt);
 		SleepUtil.sleepMedium();
-
+		
 	    // Verify the compose page shows note below resource about conflicting resources
 		ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.ConflictResourceNote),  "Verify that the conflicting resource note appears on appt compose page");
+		
+		// Send invite
 		DialogWarningConflictingResources  dialog = (DialogWarningConflictingResources) app.zPageCalendar.zToolbarPressButton(Button.B_SEND_WITH_CONFLICT);
 		String dialogContent = dialog.zGetResourceConflictWarningDialogText();
 		ZAssert.assertTrue(dialogContent.contains("The selected resources/location cannot be scheduled for the following instances"), "Verify that the dialog shows expected text");
-		ZAssert.assertTrue(dialogContent.contains(apptLocation+"(Busy)"), "Verify that the dialog shows location name on conflict warning");
+		ZAssert.assertTrue(dialogContent.contains(apptLocation + " (Busy)"), "Verify that the dialog shows location name on conflict warning");
 		dialog.zPressButton(Button.B_CANCEL_INSTANCE_LINK);
-        newApptForm.zToolbarPressButton(Button.B_SAVE);
+		dialog.zClickButton(Button.B_SAVE_WITH_CONFLICT);
         
-        //Verify that the appointment is saved
-		SleepUtil.sleepMedium();
+        // Verify that the appointment is saved
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject2, "Subject: Verify the appointment data");
 		

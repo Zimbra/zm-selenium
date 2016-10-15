@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -16,6 +14,9 @@ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
+
+package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
@@ -41,7 +42,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatu
 public class SignatureVcard extends AjaxCommonTest {
 	public SignatureVcard() {
 		super.startingPage = app.zPagePreferences;
-
 	}
 
 	@Test(description = "Verify Signature Vcard thoough GUI", groups = { "functional" })
@@ -95,14 +95,13 @@ public class SignatureVcard extends AjaxCommonTest {
 
 		// Go to Mail Tab(Explicitly)
 		app.zPageMail.zNavigateTo();
-		SleepUtil.sleepMedium();
 
 		MailItem mail = new MailItem();
 
 		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountZWC()));
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
-		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
+		mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -118,7 +117,8 @@ public class SignatureVcard extends AjaxCommonTest {
 		Assert.assertTrue(app.zPageMail.sIsElementPresent("css=a[class='AttLink']"), "vcf attachment link present");
 
 		// Verify Signature present in body
-		Assert.assertEquals(app.zPageMail.sGetText("css=body[id='tinymce'] div[data-marker='__SIG_PRE__']"), sigBody);
+		Assert.assertTrue(app.zPageMail
+				.zVerifyContentPresentInComposedBody("css=body[id='tinymce'] div[data-marker='__SIG_PRE__']", sigBody));
 
 		// Send the message
 		mailform.zSubmit();
@@ -127,13 +127,13 @@ public class SignatureVcard extends AjaxCommonTest {
 
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject.toString());
-		SleepUtil.sleepSmall();
 
 		// Verify Attachment present in Reading pane
 		Assert.assertTrue(app.zPageMail.sIsElementPresent("css=a[class='AttLink']"), "vcf attachment link present");
 
 		// Verify Signature present in body
-		Assert.assertEquals(app.zPageMail.sGetText("css=body[id='tinymce'] div[data-marker='__SIG_PRE__']"), sigBody);
+		Assert.assertTrue(app.zPageMail
+				.zVerifyContentPresentInDisplayMail("css=body[id='tinymce'] div[data-marker='__SIG_PRE__']", sigBody));
 
 	}
 

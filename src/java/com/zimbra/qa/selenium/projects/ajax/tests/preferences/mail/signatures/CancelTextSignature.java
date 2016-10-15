@@ -33,17 +33,16 @@ public class CancelTextSignature extends AjaxCommonTest {
 
 	public CancelTextSignature() throws HarnessException {
 		super.startingPage = app.zPagePreferences;
-		
 	}
 
-	@Test( description = "Cancel text signature", groups = { "smoke" })
+	@Test(description = "Cancel text signature", groups = { "smoke" })
 	public void CancelTextSignature_01() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();
 		String sigBody = "sigbody" + ConfigProperties.getUniqueString();
 
 		// click on signature from left pane
-		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK,TreeItem.MailSignatures);
+		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailSignatures);
 
 		// Click on New signature button
 		FormSignatureNew signew = (FormSignatureNew) app.zPageSignature.zToolbarPressButton(Button.B_NEW);
@@ -51,25 +50,24 @@ public class CancelTextSignature extends AjaxCommonTest {
 		// Fill Signature Name and body
 		signew.zFillField(Field.SignatureName, sigName);
 		signew.zFillField(Field.SignatureBody, sigBody);
-		
-		//Verify Warning Dialog gets pop up after click on Cancel button
+
+		// Verify Warning Dialog gets pop up after click on Cancel button
 		AbsDialog warning = (AbsDialog) signew.zToolbarPressButton(Button.B_CANCEL);
 		ZAssert.assertNotNull(warning, "Verify the dialog is returned");
 
-		//click on No button
+		// click on No button
 		warning.zClickButton(Button.B_NO);
 
-		//Verify canceled signature name from SignatureListView
+		// Verify canceled signature name from SignatureListView
 		app.zPagePreferences.zNavigateTo();
-		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK,TreeItem.MailSignatures);
+		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailSignatures);
 
 		PageSignature pagesig = new PageSignature(app);
 		String SignatureListViewName = pagesig.zGetSignatureNameFromListView();
 
 		// Verify signature name doesn't exist in SignatureListView
-		ZAssert
-				.assertStringDoesNotContain(SignatureListViewName, sigName,
-						"Verify after  Cancelled, signature  does not present in SignatureList view");
+		ZAssert.assertStringDoesNotContain(SignatureListViewName, sigName,
+				"Verify signature does not present in signature list view");
 	}
 
 }

@@ -85,7 +85,7 @@ public class ResetStatusAfterAddingEquipment extends CalendarWorkWeekTest {
 		AppointmentItem appt = new AppointmentItem();
         appt.setEquipment(apptEquipment);
         apptForm.zFill(appt);
-		apptForm.zSubmit();
+		apptForm.zSubmitWithResources();
         
 		// --- Check that the organizer shows the attendee as "Accepted" ---
 		app.zGetActiveAccount().soapSend(

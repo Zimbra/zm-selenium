@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.filters;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -37,7 +36,6 @@ public class CreateFilter extends AjaxCommonTest {
 
 	public CreateFilter() {
 		super.startingPage = app.zPagePreferences;
-		
 	}
 
 	@Bugs(ids="97040")
@@ -50,7 +48,7 @@ public class CreateFilter extends AjaxCommonTest {
 		String conditionValue = "contains"+ ConfigProperties.getUniqueString();
 		
 		// Create a folder
-		String folderName = "JiraIn";  //		
+		String folderName = "JiraIn";
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailFilters);
 		
 		// Click "Add New"
@@ -71,11 +69,15 @@ public class CreateFilter extends AjaxCommonTest {
 		// Verify the filter is created through SOAP
 		app.zGetActiveAccount().soapSend("<GetFilterRulesRequest xmlns='urn:zimbraMail'/>");
 		
-		Element[] rules = app.zGetActiveAccount().soapSelectNodes("//mail:GetFilterRulesResponse//mail:filterRule[@name='" + filterName +"']");
+		Element[] rules = app.zGetActiveAccount()
+				.soapSelectNodes("//mail:GetFilterRulesResponse//mail:filterRule[@name='" + filterName + "']");
 		ZAssert.assertEquals(rules.length, 1, "Verify the Incoming filter rule exists in the server");
 		
 		// Verify that filter is created through UI
-		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(PagePreferences.Locators.zFilterRowCss +":contains("+ filterName +")"), "Incoming filter is not created successfully!");
+		ZAssert.assertTrue(
+				app.zPagePreferences
+						.sIsElementPresent(PagePreferences.Locators.zFilterRowCss + ":contains(" + filterName + ")"),
+				"Incoming filter is not created successfully!");
 		
 	}
     
@@ -83,6 +85,10 @@ public class CreateFilter extends AjaxCommonTest {
     @Test( description = "Create a basic Outgoing Message Filter",	groups = { "smoke" } )
     
 	public void CreateFilter_02() throws HarnessException {
+    	
+    	// Work around
+    	app.zPageMain.sRefresh();
+    	app.zPagePreferences.zNavigateTo();
 
 		String filterName = "Outfilter";
 		String conditionValue = "contains"+ ConfigProperties.getUniqueString();
@@ -112,10 +118,14 @@ public class CreateFilter extends AjaxCommonTest {
 		// Verify the filter is created through SOAP
 		app.zGetActiveAccount().soapSend("<GetOutgoingFilterRulesRequest xmlns='urn:zimbraMail'/>");
 		
-		Element[] rules = app.zGetActiveAccount().soapSelectNodes("//mail:GetOutgoingFilterRulesResponse//mail:filterRule[@name='" + filterName +"']");
+		Element[] rules = app.zGetActiveAccount()
+				.soapSelectNodes("//mail:GetOutgoingFilterRulesResponse//mail:filterRule[@name='" + filterName + "']");
 		ZAssert.assertEquals(rules.length, 1, "Verify the Outgoing filter rule exists in the server");
 		
-		//Verify that filter is created through UI		
-		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(PagePreferences.Locators.zFilterRowCss +":contains("+ filterName +")"), "Outgoing filter is not created successfully!");
+		// Verify that filter is created through UI		
+		ZAssert.assertTrue(
+				app.zPagePreferences
+						.sIsElementPresent(PagePreferences.Locators.zFilterRowCss + ":contains(" + filterName + ")"),
+				"Outgoing filter is not created successfully!");
 	}
 }

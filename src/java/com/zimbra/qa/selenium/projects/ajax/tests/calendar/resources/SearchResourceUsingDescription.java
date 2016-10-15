@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -99,7 +97,7 @@ public class SearchResourceUsingDescription extends CalendarWorkWeekTest {
 	    SleepUtil.sleepSmall();
 	    dialogFindEquipment.zClickButton(Button.B_OK);
 	    SleepUtil.sleepMedium();
-	    apptForm.zSubmit();
+	    apptForm.zSubmitWithResources();
 	
 	    // Verify equipment present in the appointment
 	    AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

@@ -85,7 +85,7 @@ public class ResetStatusAfterAddingLocation extends CalendarWorkWeekTest {
 		app.zPageCalendar.zNavigateTo();
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zFillField(Field.Location, apptLocation);
-        apptForm.zSubmit();
+        apptForm.zSubmitWithResources();
         
 		// --- Check that the organizer shows the attendee as "Needs Action" ---
 		app.zGetActiveAccount().soapSend(

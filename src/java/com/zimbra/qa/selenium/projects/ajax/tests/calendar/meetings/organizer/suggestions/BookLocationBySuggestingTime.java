@@ -77,8 +77,7 @@ public class BookLocationBySuggestingTime extends CalendarWorkWeekTest {
         apptForm.zToolbarPressButton(Button.B_SUGGESTATIME);
         apptForm.zToolbarPressButton(Button.B_FIRST_TIME_SUGGESTION);
         apptForm.zPressButton(Button.B_LOCATIONMENU, apptLocation);
-        apptForm.zSubmit();
-		SleepUtil.sleepMedium();
+        apptForm.zSubmitWithResources();
 
         // Verify that location present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

@@ -263,7 +263,7 @@ public class TreeTasks extends AbsTree {
 		if (optionLocator == null)
 			throw new HarnessException("locator is null for option " + option);
 
-		zClickAt(optionLocator,"");
+		sClickAt(optionLocator, "");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
 

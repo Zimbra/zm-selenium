@@ -224,6 +224,16 @@ public class FormApptNew extends AbsForm {
 			zToolbarPressButton(Button.B_SAVE);
 		}
 	}
+	
+	public void zSubmitWithResources() throws HarnessException {
+		String locator = "css=div[id$=_SEND_INVITE]";
+		if (this.sIsVisible(locator)) {
+			zToolbarPressButton(Button.B_SEND);
+		} else {
+			zToolbarPressButton(Button.B_SAVE);
+		}
+		SleepUtil.sleepVeryLong();
+	}
 
 	public String zGetSuggestedLocation(String apptLocation) throws HarnessException {
 		return "css=div[id='zv__CSLP'] div[id^='zli__CSLP__']:contains('" + apptLocation + "')";
@@ -517,11 +527,9 @@ public class FormApptNew extends AbsForm {
 		if (button == Button.B_SEND || button == Button.B_SAVE || button == Button.B_SAVEANDCLOSE) {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
-			SleepUtil.sleepLong();
-			
-		} else {
-			SleepUtil.sleepSmall();
 		}
+		
+		SleepUtil.sleepMedium();
 		
 		return (page);
 

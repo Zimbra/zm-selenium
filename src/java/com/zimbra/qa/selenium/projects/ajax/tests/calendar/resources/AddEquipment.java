@@ -91,7 +91,7 @@ public class AddEquipment extends CalendarWorkWeekTest {
 		apptForm.zAutocompleteSelectItem(found);
         ZAssert.assertTrue(apptForm.zVerifyEquipment(apptEquipment), "Verify appointment equipment");
         apptForm.zToolbarPressButton(Button.B_SHOW_EQUIPMENT); // Hiding for next test otherwise as per application behaviour equipment UI remains enabled.
-		apptForm.zSubmit();
+        apptForm.zSubmitWithResources();
 
         // Verify equipment in the appointment	
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
@@ -148,7 +148,7 @@ public class AddEquipment extends CalendarWorkWeekTest {
         dialogFindEquipment.zClickButton(Button.B_SEARCH_EQUIPMENT);
         dialogFindEquipment.zClickButton(Button.B_SELECT_EQUIPMENT);
         dialogFindEquipment.zClickButton(Button.B_OK);
-        apptForm.zSubmit();
+        apptForm.zSubmitWithResources();
  
         // Verify equipment present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
