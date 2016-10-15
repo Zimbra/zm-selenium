@@ -80,8 +80,7 @@ public class SuggestALocation extends CalendarWorkWeekTest {
         
         // Verify 'free' location appears in suggested locations pane
         ZAssert.assertEquals(apptForm.zVerifyLocation(apptLocation), true, "Verify 'free' location appear in suggested locations pane");
-        apptForm.zSubmit();
-		SleepUtil.sleepMedium();
+        apptForm.zSubmitWithResources();
         
         // Verify location in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

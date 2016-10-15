@@ -77,7 +77,7 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCommonTest {
 			SleepUtil.sleepVeryLong();
 
 			for (int i=0; i<=10; i++) {
-				app.zPageLogin.sRefresh();
+				app.zPageMain.sRefresh();
 				if (app.zPageLogin.sIsElementPresent("css=input[class^='ZLoginButton']") == true || 
 						app.zPageLogin.sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']") == true) {
 					break;

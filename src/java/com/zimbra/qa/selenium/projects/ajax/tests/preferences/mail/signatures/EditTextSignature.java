@@ -58,7 +58,6 @@ public class EditTextSignature extends AjaxCommonTest {
 		this.app.zPagePreferences.zNavigateTo();
 
 		logger.info("CreateSignature: finish");
-
 	}
 
 	/**

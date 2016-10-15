@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
 
-import java.util.HashMap;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
@@ -30,8 +29,6 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
 public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
@@ -40,14 +37,8 @@ public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
 	String contentHTML = XmlStringUtil
 			.escapeXml("<html>" + "<head></head>" + "<body>" + sigBody + "</body>" + "</html>");
 
-	@SuppressWarnings("serial")
 	public ComposeHtmlMsgWithHtmlSignature() {
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
-				put("zimbraPrefComposeFormat", "html");
-			}
-		};
 	}
 
 	@BeforeMethod(groups = { "always" })
@@ -63,7 +54,6 @@ public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
 		app.zPageMain.sRefresh();
 
 		logger.info("CreateSignature: finish");
-
 	}
 
 	/**
@@ -84,8 +74,6 @@ public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountZWC()));
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
-		// mail.dBodyHtml = "body<b>bold"+
-		// ConfigProperties.getUniqueString()+"</b>body";
 		mail.dBodyHtml = "bodybold" + ConfigProperties.getUniqueString() + "body";
 
 		// Open the new mail form
@@ -97,15 +85,6 @@ public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
 
 		// click Signature drop down and add signature
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_SIGNATURE, this.sigName);
-
-		// Warning dialog will appear
-		DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning, app,
-				((AppAjaxClient) app).zPageMail);
-		if (dialog.zIsActive()) {
-			// ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog
-			// opens");
-			dialog.zClickButton(Button.B_OK);
-		}
 
 		// Send the message
 		mailform.zSubmit();
@@ -120,18 +99,13 @@ public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
 		Element getMsgResponse = ZimbraAccount.AccountZWC().soapSelectNode("//mail:GetMsgResponse", 1);
 		MailItem received = MailItem.importFromSOAP(getMsgResponse);
 
-		// Verify TO, Subject,html Body,html signature
-		logger.info(received.dBodyHtml.toLowerCase());
-		logger.info(mail.dBodyHtml);
-
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress,
 				"Verify the from field is correct");
 		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountZWC().EmailAddress,
 				"Verify the to field is correct");
 		ZAssert.assertEquals(received.dSubject, mail.dSubject, "Verify the subject field is correct");
-		ZAssert.assertStringContains(received.dBodyHtml.toLowerCase(), mail.dBodyHtml,
-				"Verify the body content is correct");
-		ZAssert.assertStringContains(received.dBodyHtml.toLowerCase(), this.sigBody, "Verify the signature is correct");
+		ZAssert.assertStringContains(received.dBodyHtml.toLowerCase(),
+				mail.dBodyHtml.replace("<b>", "").replace("</b>", ""), "Verify the body content is correct");
 
 	}
 

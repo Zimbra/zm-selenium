@@ -89,7 +89,8 @@ public class EditHtmlSignature extends AjaxCommonTest {
 
 		// Verify Body contents
 		String signaturebodytext = pagesig.zGetHtmlSignatureBody();
-		ZAssert.assertStringContains(signaturebodytext, this.bodyHTML, "Verify the html signature body");
+		ZAssert.assertStringContains(signaturebodytext, this.bodyHTML.replace("<b>", "").replace("</b>", ""),
+				"Verify the html signature body");
 
 		FormSignatureNew signew = new FormSignatureNew(app);
 

@@ -246,7 +246,7 @@ public class PageMail extends AbsTab {
 			webDriver().switchTo().defaultContent();
 		}
 	}
-	
+
 	public void zDisplayMailClick(String locator) throws HarnessException {
 		try {
 			webDriver().switchTo().defaultContent();
@@ -270,28 +270,28 @@ public class PageMail extends AbsTab {
 				we = webDriver().findElement(By.cssSelector(locator));
 				final Actions builder = new Actions(webDriver());
 				builder.moveToElement(we).build().perform();
-				
+
 			} else if (locator.contains("url")) {
-				
+
 				this.sClickAt(locator, "");
 				SleepUtil.sleepSmall();
 				this.sMouseOver(locator);
-				
+
 				String mainwindow = webDriver().getWindowHandle();
-				try {					
-					Set <String> windows = webDriver().getWindowHandles();
-				    
+				try {
+					Set<String> windows = webDriver().getWindowHandles();
+
 					// Close opened URL window
-				    for (String handle: windows) {
-				    	webDriver().switchTo().window(handle);
-				        if (!handle.equals(mainwindow)) {
-				        	webDriver().close();
-				        }
-				    }
+					for (String handle : windows) {
+						webDriver().switchTo().window(handle);
+						if (!handle.equals(mainwindow)) {
+							webDriver().close();
+						}
+					}
 				} finally {
 					webDriver().switchTo().window(mainwindow);
 				}
-			    
+
 			} else {
 				this.sMouseOver(locator);
 			}
@@ -321,15 +321,16 @@ public class PageMail extends AbsTab {
 			webDriver().switchTo().defaultContent();
 		}
 	}
-	
-	public boolean zVerifyInlineImageAttachmentExistsInComposeWindow(String windowTitle, int iFrame) throws HarnessException {
+
+	public boolean zVerifyInlineImageAttachmentExistsInComposeWindow(String windowTitle, int iFrame)
+			throws HarnessException {
 
 		try {
 			webDriver().switchTo().defaultContent();
 			sSelectWindow(windowTitle);
 			webDriver().switchTo().frame(iFrame);
 			WebElement we = webDriver().findElement(By.cssSelector("html div img"));
-			
+
 			if (we.getAttribute("src").contains("/service/home/~/?auth=co")
 					&& we.getAttribute("data-mce-src").startsWith("cid:")
 					&& we.getAttribute("data-mce-src").endsWith("@zimbra")
@@ -377,6 +378,38 @@ public class PageMail extends AbsTab {
 			webDriver().switchTo().defaultContent();
 		}
 	}
+	
+	public boolean zVerifyContentPresentInDisplayMail(String locator, String content) throws HarnessException {
+		try {
+			webDriver().switchTo().defaultContent();
+			webDriver().switchTo().frame(0);
+			we = webDriver().findElement(By.cssSelector("html div"));
+			if (we.getText().contains(content)) {
+				return true;
+			} else {
+				return false;
+			}
+
+		} finally {
+			webDriver().switchTo().defaultContent();
+		}
+	}
+	
+	public boolean zVerifyContentPresentInComposedBody(String locator, String content) throws HarnessException {
+		try {
+			webDriver().switchTo().defaultContent();
+			webDriver().switchTo().frame("ZmHtmlEditor2_body_ifr");
+			we = webDriver().findElement(By.cssSelector("body#tinymce"));
+			if (we.getText().contains(content)) {
+				return true;
+			} else {
+				return false;
+			}
+
+		} finally {
+			webDriver().switchTo().defaultContent();
+		}
+	}
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
@@ -395,11 +428,11 @@ public class PageMail extends AbsTab {
 			locator = "css=div[id$='__NEW_MENU'] td[id$='__NEW_MENU_title']";
 			page = new FormMailNew(this.MyApplication);
 			zWaitForElementPresent(locator);
-			
-			for (int i=0; i<=2; i++) {
+
+			for (int i = 0; i <= 2; i++) {
 				this.sClick(locator);
 				zWaitForBusyOverlay();
-				
+
 				if (!page.zIsActive()) {
 					continue;
 				} else {
@@ -647,8 +680,10 @@ public class PageMail extends AbsTab {
 			}
 			page = null;
 
-			final org.openqa.selenium.interactions.Actions builder = new org.openqa.selenium.interactions.Actions(webDriver());
-			org.openqa.selenium.interactions.Action action = builder.keyDown(Keys.SHIFT).click(getElement(locator)).keyUp(Keys.SHIFT).build();
+			final org.openqa.selenium.interactions.Actions builder = new org.openqa.selenium.interactions.Actions(
+					webDriver());
+			org.openqa.selenium.interactions.Action action = builder.keyDown(Keys.SHIFT).click(getElement(locator))
+					.keyUp(Keys.SHIFT).build();
 			action.perform();
 
 			this.zWaitForBusyOverlay();
@@ -1364,7 +1399,7 @@ public class PageMail extends AbsTab {
 		}
 
 		SleepUtil.sleepMedium();
-		
+
 		return (page);
 
 	}
@@ -1484,7 +1519,6 @@ public class PageMail extends AbsTab {
 
 				optionLocator += " div[id*='EDIT_AS_NEW'] td[id$='_title']";
 				page = new FormMailNew(this.MyApplication);
-
 
 			} else if (option == Button.O_CREATE_APPOINTMENT) {
 				optionLocator += " div[id^='zmi__CLV-main__CREATE_APPT'] td[id^='zmi__CLV-main__CREATE_APPT']";
@@ -1750,9 +1784,6 @@ public class PageMail extends AbsTab {
 							" option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 				this.sMouseOver(optionLocator);
-				// this.zClickAt(optionLocator,"");
-
-				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
 
 			}
@@ -1764,12 +1795,16 @@ public class PageMail extends AbsTab {
 				}
 				// this.sMouseOver(dynamicLocator);
 				this.zClickAt(dynamicLocator, "");
-				SleepUtil.sleepMedium();
-
-				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
+				SleepUtil.sleepMedium();
 			}
 
+		}
+
+		DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning,
+				MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+		if (dialog.zIsActive()) {
+			dialog.zClickButton(Button.B_OK);
 		}
 
 		// Return the specified page, or null if not set
@@ -1798,7 +1833,7 @@ public class PageMail extends AbsTab {
 				throw new HarnessException("if pulldown = " + Button.B_MOVE + ", then dynamic must be FolderItem");
 
 			FolderItem folder = (FolderItem) dynamic;
-			
+
 			// Check if we are CLV or MV
 			if (this.zIsVisiblePerPosition("css=div#ztb__CLV-main", 0, 0)) {
 				pulldownLocator = "css=td#zb__CLV-main__MOVE_MENU_dropdown>div";
@@ -1831,7 +1866,8 @@ public class PageMail extends AbsTab {
 
 			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
-				throw new HarnessException("Button " + pulldown + " pulldownLocator " + pulldownLocator + " not present!");
+				throw new HarnessException(
+						"Button " + pulldown + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
 			this.sClickAt(pulldownLocator, "");
@@ -1842,7 +1878,8 @@ public class PageMail extends AbsTab {
 
 				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
-					throw new HarnessException(" dynamic " + dynamic + " optionLocator " + optionLocator + " not present!");
+					throw new HarnessException(
+							" dynamic " + dynamic + " optionLocator " + optionLocator + " not present!");
 				}
 
 				logger.info(this.sIsElementPresent(optionLocator));
@@ -2070,10 +2107,10 @@ public class PageMail extends AbsTab {
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
 		}
-		
+
 		zWaitTillElementPresent(locator);
 		this.sClick(locator);
-		
+
 		return (page);
 	}
 

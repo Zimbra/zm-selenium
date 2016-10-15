@@ -82,9 +82,10 @@ public class DeleteSignature extends AjaxCommonTest {
 		signew.zClick(Locators.zSignatureListView);
 		signew.zClick("//td[contains(text(),'" + signature.getName() + "')]");
 
-		// click Delete button
+		// Click Delete button
 		app.zPageSignature.zToolbarPressButton(Button.B_DELETE);
-		// click Save
+		
+		// Click Save
 		signew.zSubmit();
 
 		// Verifying the toaster message

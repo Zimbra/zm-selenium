@@ -1199,7 +1199,7 @@ public class FormMailNew extends AbsForm {
 
 	}
 
-	public String ZGetFieldValue(Field field) throws HarnessException {
+	public String zGetFieldValue(Field field) throws HarnessException {
 		String locator = null;
 		String fieldValue = null;
 
@@ -1208,17 +1208,14 @@ public class FormMailNew extends AbsForm {
 
 		} else if (field == Field.Body) {
 
-			SleepUtil.sleepLong();
+			SleepUtil.sleepMedium();
 
 			locator = "css=div[id^='zv__COMPOSE'] iframe[id$='_body_ifr']";
 			if (this.sIsElementPresent(locator) && this.zIsVisiblePerPosition(locator, 0, 0)) {
 
 				logger.info("FormMailNew.zFillField: Html Compose");
 
-				this.sSelectFrame("css=iframe[id$='_body_ifr']"); // iframe
-																	// index is
-																	// 0 based
-
+				this.sSelectFrame("css=iframe[id$='_body_ifr']");
 				locator = "css=html body";
 
 				if (!this.sIsElementPresent(locator))
@@ -1226,9 +1223,7 @@ public class FormMailNew extends AbsForm {
 			}
 
 		} else {
-
 			throw new HarnessException("no logic defined for field " + field);
-
 		}
 
 		// Make sure something was set
@@ -1244,10 +1239,9 @@ public class FormMailNew extends AbsForm {
 		logger.info("DisplayMail.ZGetFieldValue(" + field + ") = " + fieldValue);
 
 		if (field.equals(Field.Body)) {
-			// Make sure to go back to the original iframe when Field is Body
 			this.sSelectFrame("relative=top");
-
 		}
+		
 		return (fieldValue);
 	}
 

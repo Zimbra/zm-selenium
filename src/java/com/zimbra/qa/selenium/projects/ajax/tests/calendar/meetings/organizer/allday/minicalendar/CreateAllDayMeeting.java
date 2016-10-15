@@ -76,8 +76,7 @@ public class CreateAllDayMeeting extends CalendarWorkWeekTest {
 		FormApptNew apptForm = new FormApptNew(app);
         apptForm.zFillField(Field.Attendees, apptAttendee);
         apptForm.zFillField(Field.Body, apptContent);
-		apptForm.zSubmit();
-		SleepUtil.sleepMedium();
+		apptForm.zSubmitWithResources();
 		
 		// Verify appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));

@@ -64,8 +64,7 @@ public class WeeklyEveryXdayEndAfterYoccurrences extends CalendarWorkWeekTest {
 		apptForm.zFill(appt);
 		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, "Monday", Button.B_END_AFTER_X_OCCURRENCES_RADIO_BUTTON, "2");
 		ZAssert.assertStringContains(app.zPageCalendar.zGetRecurringLink(), "Every Monday. End after 2 occurrence(s). Effective ", "Recurring link: Verify the appointment data");
-		apptForm.zSubmit();
-		SleepUtil.sleepMedium();
+		apptForm.zSubmitWithResources();
 		
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"

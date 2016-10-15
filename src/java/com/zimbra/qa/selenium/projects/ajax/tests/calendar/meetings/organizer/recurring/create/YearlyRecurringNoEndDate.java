@@ -69,8 +69,7 @@ public class YearlyRecurringNoEndDate extends CalendarWorkWeekTest {
 		apptForm.zFill(appt);
 		apptForm.zRepeat(Button.O_EVERY_YEAR_MENU, Button.B_EVERY_YEAR_ON_X_Y_RADIO_BUTTON, Button.B_NO_END_DATE_RADIO_BUTTON);
 		ZAssert.assertEquals(app.zPageCalendar.zGetRecurringLink(), "Every year on " + getInviteMonthDate() + ". No end date. Effective " + getInviteMonthDateYear(), "Recurring link: Verify the appointment data");
-		apptForm.zSubmit();
-		SleepUtil.sleepMedium();
+		apptForm.zSubmitWithResources();
 		
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"

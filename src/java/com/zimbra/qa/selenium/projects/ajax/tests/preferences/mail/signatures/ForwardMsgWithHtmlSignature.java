@@ -46,7 +46,6 @@ public class ForwardMsgWithHtmlSignature extends AjaxCommonTest {
 		super.startingPage = app.zPageMail;
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			{
-				put("zimbraPrefComposeFormat", "html");
 				put("zimbraPrefGroupMailBy", "message");
 			}
 		};
@@ -64,7 +63,6 @@ public class ForwardMsgWithHtmlSignature extends AjaxCommonTest {
 		app.zPageMain.sRefresh();
 
 		logger.info("CreateSignature: finish");
-
 	}
 
 	/**
@@ -130,9 +128,6 @@ public class ForwardMsgWithHtmlSignature extends AjaxCommonTest {
 		Element getMsgResponse = ZimbraAccount.AccountB().soapSelectNode("//mail:GetMsgResponse", 1);
 
 		MailItem received = MailItem.importFromSOAP(getMsgResponse);
-
-		logger.debug("===========received is: " + received);
-		logger.debug("===========app is: " + app);
 
 		// Verify TO, Fwd'ed Subject, HtmlBody,HtmlSignature
 		ZAssert.assertStringContains(received.dSubject, "Fwd", "Verify the subject field contains the 'Fwd' prefix");

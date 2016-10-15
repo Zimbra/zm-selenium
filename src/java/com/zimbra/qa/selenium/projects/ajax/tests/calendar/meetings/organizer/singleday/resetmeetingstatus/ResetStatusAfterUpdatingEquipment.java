@@ -87,7 +87,7 @@ public class ResetStatusAfterUpdatingEquipment extends CalendarWorkWeekTest {
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zRemoveEquipment(apptEquipment1);
         apptForm.zFillField(Field.Equipment, apptEquipment2);
-		apptForm.zSubmit();
+		apptForm.zSubmitWithResources();
         
 		// --- Check that the organizer shows the attendee as "Accepted" ---
 		app.zGetActiveAccount().soapSend(

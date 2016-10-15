@@ -85,8 +85,7 @@ public class AddLocation extends CalendarWorkWeekTest {
         dialogFindLocation.zClickButton(Button.B_SELECT_LOCATION);
         SleepUtil.sleepMedium();
         dialogFindLocation.zClickButton(Button.B_OK);
-        apptForm.zSubmit();
-		SleepUtil.sleepMedium();
+        apptForm.zSubmitWithResources();
         
         // Verify location in the appointment is not null
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
@@ -139,8 +138,7 @@ public class AddLocation extends CalendarWorkWeekTest {
         // Add location and resend the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zFillField(Field.Location, apptLocation);
-        apptForm.zSubmit();
-		SleepUtil.sleepMedium();
+        apptForm.zSubmitWithResources();
         
         // Verify location in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
@@ -211,8 +209,7 @@ public class AddLocation extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		apptForm.zAutocompleteSelectItem(found);
         ZAssert.assertTrue(apptForm.zVerifyLocation(locationName), "Verify appointment location");
-		apptForm.zSubmit();
-		SleepUtil.sleepMedium();
+        apptForm.zSubmitWithResources();
 		
 		// Organizer: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(

@@ -83,7 +83,7 @@ public class ResetStatusAfterRemovingEquipment extends CalendarWorkWeekTest {
 		app.zPageCalendar.zNavigateTo();
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zRemoveEquipment(apptEquipment);
-		apptForm.zSubmit();
+		apptForm.zSubmitWithResources();
         
 		// --- Check that the organizer shows the attendee as "Accepted" ---
 		app.zGetActiveAccount().soapSend(

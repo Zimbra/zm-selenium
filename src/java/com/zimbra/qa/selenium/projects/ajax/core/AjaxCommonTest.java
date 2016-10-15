@@ -74,7 +74,7 @@ public class AjaxCommonTest {
 	String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
 
 	protected AjaxCommonTest() {
-		logger.info("New "+ AjaxCommonTest.class.getCanonicalName());
+		logger.info("New " + AjaxCommonTest.class.getCanonicalName());
 
 		app = new AppAjaxClient();
 
@@ -91,11 +91,12 @@ public class AjaxCommonTest {
 			// Grant createDistList right to domain
 			logger.info("Grant createDistList right to domain");
 			StafServicePROCESS staf = new StafServicePROCESS();
-			staf.execute("zmprov grr domain " + ConfigProperties.getStringProperty("testdomain") + " dom " + ConfigProperties.getStringProperty("testdomain") + " createDistList");
+			staf.execute("zmprov grr domain " + ConfigProperties.getStringProperty("testdomain") + " dom "
+					+ ConfigProperties.getStringProperty("testdomain") + " createDistList");
 		}
 	}
 
-	@BeforeSuite( groups = { "always" } )
+	@BeforeSuite(groups = { "always" })
 	public void commonTestBeforeSuite() throws HarnessException, IOException, InterruptedException, SAXException {
 		logger.info("BeforeSuite: start");
 
@@ -110,9 +111,9 @@ public class AjaxCommonTest {
 			int retry = 0;
 			boolean appIsReady = false;
 			while (retry < maxRetry && !appIsReady) {
-			try	{
+				try {
 					logger.info("Retry #" + retry);
-					retry ++;
+					retry++;
 					webDriver.navigate().to(ConfigProperties.getBaseURL());
 					appIsReady = true;
 
@@ -140,13 +141,13 @@ public class AjaxCommonTest {
 		logger.info("BeforeSuite: finish");
 	}
 
-	@BeforeClass( groups = { "always" } )
+	@BeforeClass(groups = { "always" })
 	public void commonTestBeforeClass() throws HarnessException {
 		logger.info("BeforeClass: start");
 		logger.info("BeforeClass: finish");
 	}
 
-	@BeforeMethod( groups = { "always" } )
+	@BeforeMethod(groups = { "always" })
 	public void commonTestBeforeMethod(Method method, ITestContext testContext) throws HarnessException {
 
 		logger.info("BeforeMethod: start");
@@ -154,7 +155,8 @@ public class AjaxCommonTest {
 		// Get the test name & description
 		for (ITestNGMethod testngMethod : testContext.getAllTestMethods()) {
 			String methodClass = testngMethod.getRealClass().getSimpleName();
-			if (methodClass.equals(method.getDeclaringClass().getSimpleName()) && testngMethod.getMethodName().equals(method.getName())) {
+			if (methodClass.equals(method.getDeclaringClass().getSimpleName())
+					&& testngMethod.getMethodName().equals(method.getName())) {
 				synchronized (AjaxCommonTest.class) {
 					logger.info("---------BeforeMethod-----------------------");
 					logger.info("Test       : " + methodClass + "." + testngMethod.getMethodName());
@@ -165,12 +167,14 @@ public class AjaxCommonTest {
 			}
 		}
 
-		// If test account preferences are defined, then make sure the test account uses those preferences
-		if ( (startingAccountPreferences != null) && (!startingAccountPreferences.isEmpty()) ) {
+		// If test account preferences are defined, then make sure the test
+		// account uses those preferences
+		if ((startingAccountPreferences != null) && (!startingAccountPreferences.isEmpty())) {
 			logger.info("BeforeMethod: startingAccountPreferences are defined");
 
-			// If the current test accounts preferences match, then the account can be used
-			if ( !ZimbraAccount.AccountZWC().compareAccountPreferences(startingAccountPreferences) ) {
+			// If the current test accounts preferences match, then the account
+			// can be used
+			if (!ZimbraAccount.AccountZWC().compareAccountPreferences(startingAccountPreferences)) {
 
 				logger.info("BeforeMethod: startingAccountPreferences do not match active account");
 
@@ -185,12 +189,14 @@ public class AjaxCommonTest {
 
 		}
 
-		// If test account zimlet preferences are defined, then make sure the test account uses those zimlet preferences
-		if ( (startingUserZimletPreferences != null) && (!startingUserZimletPreferences.isEmpty()) ) {
+		// If test account zimlet preferences are defined, then make sure the
+		// test account uses those zimlet preferences
+		if ((startingUserZimletPreferences != null) && (!startingUserZimletPreferences.isEmpty())) {
 			logger.info("BeforeMethod: startingAccountZimletPreferences are defined");
 
-			// If the current test accounts preferences match, then the account can be used
-			if ( !ZimbraAccount.AccountZWC().compareUserZimletPreferences(startingUserZimletPreferences) ) {
+			// If the current test accounts preferences match, then the account
+			// can be used
+			if (!ZimbraAccount.AccountZWC().compareUserZimletPreferences(startingUserZimletPreferences)) {
 
 				logger.info("BeforeMethod: startingAccountZimletPreferences do not match active account");
 				ZimbraAccount.ResetAccountZWC();
@@ -202,16 +208,16 @@ public class AjaxCommonTest {
 		}
 
 		// If AccountZWC is not currently logged in, then login now
-		if ( !ZimbraAccount.AccountZWC().equals(app.zGetActiveAccount()) ) {
+		if (!ZimbraAccount.AccountZWC().equals(app.zGetActiveAccount())) {
 			logger.info("BeforeMethod: AccountZWC is not currently logged in");
 
-			if ( app.zPageMain.zIsActive() )
+			if (app.zPageMain.zIsActive())
 				try {
 					app.zPageLogin.sOpen(ConfigProperties.getLogoutURL());
 					app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
 
-				} catch(Exception ex) {
-					if ( !app.zPageLogin.zIsActive()) {
+				} catch (Exception ex) {
+					if (!app.zPageLogin.zIsActive()) {
 						logger.error("Login page is not active ", ex);
 
 						app.zPageLogin.sOpen(ConfigProperties.getLogoutURL());
@@ -221,17 +227,17 @@ public class AjaxCommonTest {
 		}
 
 		// If a startingPage is defined, then make sure we are on that page
-		if ( startingPage != null ) {
+		if (startingPage != null) {
 			logger.info("BeforeMethod: startingPage is defined");
 
 			// If the starting page is not active, navigate to it
-			if ( !startingPage.zIsActive() ) {
+			if (!startingPage.zIsActive()) {
 				startingPage.zNavigateTo();
 			}
 
 			// Confirm that the page is active
-			if ( !startingPage.zIsActive() ) {
-				throw new HarnessException("Unable to navigate to "+ startingPage.myPageName());
+			if (!startingPage.zIsActive()) {
+				throw new HarnessException("Unable to navigate to " + startingPage.myPageName());
 			}
 
 			logger.info("BeforeMethod: startingPage navigation done");
@@ -258,7 +264,7 @@ public class AjaxCommonTest {
 		return pJavaScriptErrorsHtmlFile;
 	}
 
-	@AfterSuite( groups = { "always" } )
+	@AfterSuite(groups = { "always" })
 	public void commonTestAfterSuite() throws HarnessException, IOException, InterruptedException {
 		logger.info("AfterSuite: start");
 
@@ -275,7 +281,7 @@ public class AjaxCommonTest {
 		logger.info("AfterSuite: finished by closing selenium session");
 	}
 
-	@AfterClass( groups = { "always" } )
+	@AfterClass(groups = { "always" })
 	public void commonTestAfterClass() throws HarnessException {
 		logger.info("AfterClass: start");
 
@@ -287,21 +293,21 @@ public class AjaxCommonTest {
 		logger.info("AfterClass: finish");
 	}
 
-	@AfterMethod( groups = { "always" } )
+	@AfterMethod(groups = { "always" })
 	public void commonTestAfterMethod(Method method, ITestResult testResult) throws HarnessException, IOException {
 		logger.info("AfterMethod: start");
 
-		if ( ZimbraURI.needsReload() ) {
+		if (ZimbraURI.needsReload()) {
 			logger.error("The URL does not match the base URL. Reload app.");
 			app.zPageLogin.sOpen(ConfigProperties.getLogoutURL());
 			app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
 		}
 
-		if ( (!app.zPageMain.zIsActive()) && (!app.zPageLogin.zIsActive()) ) {
+		if ((!app.zPageMain.zIsActive()) && (!app.zPageLogin.zIsActive())) {
 			logger.error("Neither login page nor main page were active. Reload app.", new Exception());
 			app.zPageLogin.sOpen(ConfigProperties.getLogoutURL());
 			app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
-        }
+		}
 
 		// **************** Capture java script errors ****************
 		logger.info("AfterMethod: Capture java script errors");
@@ -311,7 +317,7 @@ public class AjaxCommonTest {
 		Logs webDriverLog = webDriver.manage().logs();
 		LogEntries[] logEntries = { webDriverLog.get(LogType.BROWSER) };
 
-		for (int i=0; i<=logEntries.length-1; i++) {
+		for (int i = 0; i <= logEntries.length - 1; i++) {
 
 			// Get hostname
 			String hostname = null;
@@ -330,8 +336,9 @@ public class AjaxCommonTest {
 			String screenShotFilePath;
 
 			if (testOutputFolderName.contains(ConfigProperties.getStringProperty("testOutputDirectory"))) {
-				screenShotFilePath = "file:///" + testOutputFolderName  + "/debug"
-						+ method.getDeclaringClass().toString().replace("class com.zimbra.qa.selenium", "").replace(".", "/")
+				screenShotFilePath = "file:///"
+						+ testOutputFolderName + "/debug" + method.getDeclaringClass().toString()
+								.replace("class com.zimbra.qa.selenium", "").replace(".", "/")
 						+ "/" + seleniumTestcase + "ss1.png";
 			} else {
 				int appPosition = testOutputFolderName.indexOf(ConfigProperties.getAppType().toString());
@@ -353,12 +360,15 @@ public class AjaxCommonTest {
 			File fJavaScriptErrorsFolder = new File(sJavaScriptErrorsFolderPath);
 			if (!fJavaScriptErrorsFolder.exists())
 				fJavaScriptErrorsFolder.mkdirs();
+			SendEmail.main(new String[] {
+					"Selenium Run (Java script error): " + "Testout folder name: " + testOutputFolderName,
+					"Selenium Run (Java script error): " + "Java script folder path: " + sJavaScriptErrorsFolderPath });
 
 			if (fJavaScriptErrorsHtmlFilePath.createNewFile()) {
 				logger.info("Java script errors file is created");
 
-		    	// Java script errors html file
-		    	lines = Arrays.asList(
+				// Java script errors html file
+				lines = Arrays.asList(
 						"<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>",
 						"<html>", "<head>", "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>",
 						"<link rel='icon' href='http://pnq-tms.lab.zimbra.com/portal/web/wp-content/themes/iconic-one/images/favicon.ico' type='image/x-icon'/>",
@@ -366,7 +376,7 @@ public class AjaxCommonTest {
 						"<h2 style='font-family:calibri; font-size:26px;'>Ajax JavaScript Errors Report Generated by Selenium</h2>",
 						"<table style='font-family:calibri; font-size:15px;' border='1'>",
 						"<tr><th>Application</th><th>Selenium testcase</th><th>Java script error</th><th>**Screenshot path</th><th>Bug No</th><th>Bug Status</th></tr>");
-		    	Files.write(pJavaScriptErrorsHtmlFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				Files.write(pJavaScriptErrorsHtmlFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 			} else {
 				logger.info("Java script errors file already exists");
 			}
@@ -374,53 +384,53 @@ public class AjaxCommonTest {
 			for (LogEntry entry : logEntries[i]) {
 
 				// Parse java script error
-	        	String javaScriptError = new Date(entry.getTimestamp()) + " " + entry.getLevel() + " " + entry.getMessage();
-	        	String seleniumTestcasePath = method.getDeclaringClass().toString().replaceFirst("class ", "") + "." + method.getName();
-	        	logger.info("JavaScript error: " + javaScriptError);
+				String javaScriptError = new Date(entry.getTimestamp()) + " " + entry.getLevel() + " "
+						+ entry.getMessage();
+				String seleniumTestcasePath = method.getDeclaringClass().toString().replaceFirst("class ", "") + "."
+						+ method.getName();
+				logger.info("JavaScript error: " + javaScriptError);
 
-	        	// Java script error
+				// Java script error
 				lines = Arrays.asList("<tr><td style='text-align:center'>" + application + "</td><td>"
 						+ seleniumTestcasePath + "</td><td style='color:brown;'>" + javaScriptError
-						+ "</td><td><a target='_blank' href='" + screenShotFilePath + "'>" + "Navigate to " + method.getName() + " Screenshot" + "</a></td><td style='text-align:center'>-</td><td style='text-align:center'>-</td></tr>");
-	        	Files.write(pJavaScriptErrorsHtmlFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-	        }
+						+ "</td><td><a target='_blank' href='" + screenShotFilePath + "'>" + "Navigate to "
+						+ method.getName() + " Screenshot"
+						+ "</a></td><td style='text-align:center'>-</td><td style='text-align:center'>-</td></tr>");
+				Files.write(pJavaScriptErrorsHtmlFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			}
 		}
 
 		logger.info("AfterMethod: finish");
 	}
 
-    @AfterMethod(groups={"performance"})
-    public void performanceTestAfterMethod() {
-    	ZimbraAccount.ResetAccountZWC();
-    }
+	@AfterMethod(groups = { "performance" })
+	public void performanceTestAfterMethod() {
+		ZimbraAccount.ResetAccountZWC();
+	}
 
 	@DataProvider(name = "DataProviderSupportedCharsets")
 	public Object[][] DataProviderSupportedCharsets() throws HarnessException {
 		return (ZimbraCharsets.getInstance().getSampleTable());
 	}
 
-
 	public void ModifyAccountPreferences(String string) throws HarnessException {
 		StringBuilder settings = new StringBuilder();
 		for (Map.Entry<String, String> entry : startingAccountPreferences.entrySet()) {
 			settings.append(String.format("<a n='%s'>%s</a>", entry.getKey(), entry.getValue()));
 		}
-		ZimbraAdminAccount.GlobalAdmin().soapSend(
-				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
-				+		"<id>"+ string +"</id>"
-				+		settings.toString()
-				+	"</ModifyAccountRequest>");
+		ZimbraAdminAccount.GlobalAdmin().soapSend("<ModifyAccountRequest xmlns='urn:zimbraAdmin'>" + "<id>" + string
+				+ "</id>" + settings.toString() + "</ModifyAccountRequest>");
 	}
 
-	public void zUpload (String filePath) throws HarnessException {
+	public void zUpload(String filePath) throws HarnessException {
 
 		// File name
 		String fileName = filePath.substring(filePath.lastIndexOf('\\') + 1);
 
 		// Upload file
 		SleepUtil.sleepLong();
-		zUploadFile (filePath);
-		//app.zPageMail.zKeyboardTypeStringUpload(filePath);
+		zUploadFile(filePath);
+		// app.zPageMail.zKeyboardTypeStringUpload(filePath);
 		SleepUtil.sleepLongMedium();
 
 		// File locator
@@ -442,7 +452,7 @@ public class AjaxCommonTest {
 		}
 
 		Boolean isFileSelected = false;
-		for (int i=1; i<=3; i++) {
+		for (int i = 1; i <= 3; i++) {
 			if (isMailApp == true) {
 				isFileSelected = app.zPageMail.zIsVisiblePerPosition(fileLocator, 0, 0);
 			} else {
@@ -452,59 +462,59 @@ public class AjaxCommonTest {
 				break;
 			} else {
 				SleepUtil.sleepMedium();
-				zUploadFile (filePath);
+				zUploadFile(filePath);
 				SleepUtil.sleepLongMedium();
 			}
 		}
 	}
 
-	public void zUpload (String filePath, SeparateWindowFormMailNew window) throws HarnessException {
+	public void zUpload(String filePath, SeparateWindowFormMailNew window) throws HarnessException {
 
 		// File name
 		String fileName = filePath.substring(filePath.lastIndexOf('\\') + 1);
 
 		// Upload file
 		SleepUtil.sleepLong();
-		zUploadFile (filePath);
+		zUploadFile(filePath);
 		SleepUtil.sleepLongMedium();
 
 		Boolean isFileSelected = false;
-		for (int i=1; i<=3; i++) {
+		for (int i = 1; i <= 3; i++) {
 			isFileSelected = window.zIsVisiblePerPosition("css=a[id^='COMPOSE']:contains(" + fileName + ")", 0, 0);
 			if (isFileSelected == true) {
 				break;
 			} else {
 				SleepUtil.sleepMedium();
-				zUploadFile (filePath);
+				zUploadFile(filePath);
 				SleepUtil.sleepLongMedium();
 			}
 		}
 	}
 
-	public void zUpload (String filePath, SeparateWindowDisplayMail window) throws HarnessException {
+	public void zUpload(String filePath, SeparateWindowDisplayMail window) throws HarnessException {
 
 		// File name
 		String fileName = filePath.substring(filePath.lastIndexOf('\\') + 1);
 
 		// Upload file
 		SleepUtil.sleepLong();
-		zUploadFile (filePath);
+		zUploadFile(filePath);
 		SleepUtil.sleepLongMedium();
 
 		Boolean isFileSelected = false;
-		for (int i=1; i<=3; i++) {
+		for (int i = 1; i <= 3; i++) {
 			isFileSelected = window.zIsVisiblePerPosition("css=a[id^='COMPOSE']:contains(" + fileName + ")", 0, 0);
 			if (isFileSelected == true) {
 				break;
 			} else {
 				SleepUtil.sleepMedium();
-				zUploadFile (filePath);
+				zUploadFile(filePath);
 				SleepUtil.sleepLongMedium();
 			}
 		}
 	}
 
-	public void zUploadFile (String filePath) throws HarnessException {
+	public void zUploadFile(String filePath) throws HarnessException {
 
 		// Put path to your image in a clipboard
 		StringSelection ss = new StringSelection(filePath);
@@ -534,80 +544,80 @@ public class AjaxCommonTest {
 		}
 	}
 
-	public void zUploadInlineImageAttachment (String filePath) throws HarnessException {
+	public void zUploadInlineImageAttachment(String filePath) throws HarnessException {
 		SleepUtil.sleepLong();
-		zUploadFile (filePath);
+		zUploadFile(filePath);
 		SleepUtil.sleepLongMedium();
 	}
 
-	public AbsPage zToolbarPressPulldown (Button button, Button option) throws HarnessException {
+	public AbsPage zToolbarPressPulldown(Button button, Button option) throws HarnessException {
 
-		logger.info("Click to zNewDropdownOptions("+ option +")");
+		logger.info("Click to zNewDropdownOptions(" + option + ")");
 
-		if ( option == null )
+		if (option == null)
 			throw new HarnessException("Button cannot be null!");
 
 		String locator = null;
 		AbsPage page = null;
 
-		if ( option == Button.O_NEW_MESSAGE) {
+		if (option == Button.O_NEW_MESSAGE) {
 			locator = "css=td[id='zb__NEW_MENU_NEW_MESSAGE_title']";
 			page = new FormMailNew(this.app);
 
-		} else if ( option == Button.O_NEW_CONTACT) {
+		} else if (option == Button.O_NEW_CONTACT) {
 			locator = "css=td[id='zb__NEW_MENU_NEW_CONTACT_title']";
 			page = new FormContactNew(this.app);
 
-		} else if ( option == Button.O_NEW_CONTACTGROUP) {
+		} else if (option == Button.O_NEW_CONTACTGROUP) {
 			locator = "css=td[id='zb__NEW_MENU_NEW_GROUP_title']";
 			page = new FormContactGroupNew(this.app);
 
-		} else if ( option == Button.O_NEW_DISTRIBUTION_LIST) {
+		} else if (option == Button.O_NEW_DISTRIBUTION_LIST) {
 			locator = "css=td[id='zb__NEW_MENU_NEW_DISTRIBUTION_LIST_title']";
 			page = new FormContactDistributionListNew(this.app);
 
-		} else if ( option == Button.O_NEW_APPOINTMENT) {
+		} else if (option == Button.O_NEW_APPOINTMENT) {
 			locator = "css=td[id='zb__NEW_MENU_NEW_APPT_title']";
 			page = new FormApptNew(this.app);
 
-		} else if ( option == Button.O_NEW_TASK) {
+		} else if (option == Button.O_NEW_TASK) {
 			locator = "css=td[id='zb__NEW_MENU_NEW_TASK_title']";
 			page = new FormTaskNew(this.app);
 
-		} else if ( option == Button.O_NEW_DOCUMENT) {
+		} else if (option == Button.O_NEW_DOCUMENT) {
 			locator = "css=td[id='zb__NEW_MENU_NEW_DOC_title']";
 			page = new FormContactNew(this.app);
 
-		} else if ( option == Button.O_NEW_FOLDER) {
+		} else if (option == Button.O_NEW_FOLDER) {
 			locator = "css=td[id='zb__NEW_MENU_NEW_FOLDER_title']";
 			page = new FormContactNew(this.app);
 
-		} else if ( option == Button.O_NEW_TAG) {
+		} else if (option == Button.O_NEW_TAG) {
 			locator = "css=td[id='zb__NEW_MENU_NEW_TAG_title']";
 			page = new FormContactNew(this.app);
 
-		} else if ( option == Button.O_NEW_CONTACTS_FOLDER) {
+		} else if (option == Button.O_NEW_CONTACTS_FOLDER) {
 			locator = "css=td[id='zb__NEW_MENU_NEW_ADDRBOOK_title']";
 			page = new FormContactNew(this.app);
 
-		} else if ( option == Button.O_NEW_CALENDAR) {
+		} else if (option == Button.O_NEW_CALENDAR) {
 			locator = "css=td[id='zb__NEW_MENU_NEW_CALENDAR_title']";
 			page = new FormContactNew(this.app);
 
-		} else if ( option == Button.O_NEW_TASK_FOLDER) {
+		} else if (option == Button.O_NEW_TASK_FOLDER) {
 			locator = "css=td[id='zb__NEW_MENU_NEW_TASK_FOLDER_title']";
 			page = new FormContactNew(this.app);
 
-		} else if ( option == Button.O_NEW_BRIEFCASE) {
+		} else if (option == Button.O_NEW_BRIEFCASE) {
 			locator = "css=td[id='zb__NEW_MENU_NEW_BRIEFCASE_title']";
 			page = new FormContactNew(this.app);
-	    }
+		}
 
-	    if ( locator == null )
-			throw new HarnessException("locator was null for option "+ option);
+		if (locator == null)
+			throw new HarnessException("locator was null for option " + option);
 
-		if ( !app.zPageMail.sIsElementPresent(locator) )
-			throw new HarnessException("Button is not present locator="+ locator +" button="+ option);
+		if (!app.zPageMail.sIsElementPresent(locator))
+			throw new HarnessException("Button is not present locator=" + locator + " button=" + option);
 
 		// Click to New dropdown
 		SleepUtil.sleepMedium();
@@ -617,24 +627,23 @@ public class AjaxCommonTest {
 		SleepUtil.sleepSmall();
 
 		// Select option
-		app.zPageMail.sClickAt(locator,"");
+		app.zPageMail.sClickAt(locator, "");
 		app.zPageMail.zWaitForBusyOverlay();
 
 		SleepUtil.sleepSmall();
 
-		if ( page != null ) {
+		if (page != null) {
 			page.zWaitForActive();
 		}
 
 		return (page);
 	}
 
-	public void zFreshLogin () {
+	public void zFreshLogin() {
 
 		ZimbraAccount.ResetAccountZWC();
 
-		try
-		{
+		try {
 			if (ConfigProperties.getAppType() == AppType.AJAX) {
 				ConfigProperties.setAppType(ConfigProperties.AppType.AJAX);
 			} else if (ConfigProperties.getAppType() == AppType.ADMIN) {
@@ -656,12 +665,12 @@ public class AjaxCommonTest {
 
 		try {
 
-			((AppAjaxClient)app).zPageLogin.sOpen(ConfigProperties.getLogoutURL());
+			((AppAjaxClient) app).zPageLogin.sOpen(ConfigProperties.getLogoutURL());
 			if (ConfigProperties.getAppType() == AppType.AJAX) {
 				if (ZimbraAccount.AccountZWC() != null) {
-					((AppAjaxClient)app).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+					((AppAjaxClient) app).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 				} else {
-					((AppAjaxClient)app).zPageLogin.zLogin(ZimbraAccount.Account10());
+					((AppAjaxClient) app).zPageLogin.zLogin(ZimbraAccount.Account10());
 				}
 			}
 

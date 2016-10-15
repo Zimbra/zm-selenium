@@ -74,11 +74,10 @@ public class EmptySignature extends AjaxCommonTest {
 		SleepUtil.sleepMedium();
 		
 		// Empty Signature body and some text in Name
-		signew.zFillField(Field.SignatureName, sigName);
-	
-		signew.zFillField(Field.SignatureBody, sigBody);
-		
+		signew.zFillField(Field.SignatureName, sigName);	
+		signew.zFillField(Field.SignatureBody, sigBody);	
 		signew.zSubmit();
+		
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();

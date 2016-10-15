@@ -32,7 +32,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
 public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 	String sigName = "signame" + ConfigProperties.getUniqueString();
@@ -45,7 +44,6 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 		super.startingPage = app.zPageMail;
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			{
-				put("zimbraPrefComposeFormat", "html");
 				put("zimbraPrefGroupMailBy", "message");
 				put("zimbraPrefMailSignatureStyle", "internet");
 			}
@@ -63,7 +61,6 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 		app.zPageMain.sRefresh();
 
 		logger.info("CreateSignature: finish");
-
 	}
 
 	/**
@@ -107,18 +104,14 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 
 		// Forward the item
 		actual.zPressButton(Button.B_FORWARD);
-		ZAssert.assertTrue(
-				actual.zGetMailPropertyAsText(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Subject)
-						.contains("Fwd"),
+		ZAssert.assertTrue(actual.zGetMailPropertyAsText(DisplayMail.Field.Subject).contains("Fwd"),
 				"Verify Fwd Window");
 
 		// Click Options Drop Down and select Signature
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_FWD_SIGNATURE, this.sigName);
-
+		
 		// Verify Signature is place Below included message.
 		actual.zVerifySignaturePlaceInHTML("BelowIncludedMsg", this.sigBody, "Forward");
-		// Closing Fwd compose tab
-		app.zPageMail.zClickAt(FormMailNew.Locators.zCancelIconBtn, "0,0");
 	}
 
 	/**
@@ -160,19 +153,14 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 
 		// Forward the item
 		actual.zPressButton(Button.B_REPLY);
-		ZAssert.assertTrue(
-				actual.zGetMailPropertyAsText(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Subject)
-						.contains("Re"),
+		ZAssert.assertTrue(actual.zGetMailPropertyAsText(DisplayMail.Field.Subject).contains("Re"),
 				"Verify Reply Window");
 
 		// Click Options Drop Down and select Signature
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_Reply_SIGNATURE, this.sigName);
-
+		
 		// Verify Signature is place Below included message.
 		actual.zVerifySignaturePlaceInHTML("BelowIncludedMsg", this.sigBody, "Reply");
-		// Closing Fwd compose tab
-		app.zPageMail.zClickAt(FormMailNew.Locators.zCancelIconBtn, "0,0");
-
 	}
 
 	/**
@@ -216,9 +204,7 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 
 		// Forward the item
 		actual.zPressButton(Button.B_REPLYALL);
-		ZAssert.assertTrue(
-				actual.zGetMailPropertyAsText(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Subject)
-						.contains("Re"),
+		ZAssert.assertTrue(actual.zGetMailPropertyAsText(DisplayMail.Field.Subject).contains("Re"),
 				"Verify Reply All Window");
 
 		// Click Options Drop Down and select Signature
@@ -226,7 +212,5 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 
 		// Verify Signature is place Below included message.
 		actual.zVerifySignaturePlaceInHTML("BelowIncludedMsg", this.sigBody, "ReplyAll");
-		// Closing Fwd compose tab
-		app.zPageMail.zClickAt(FormMailNew.Locators.zCancelIconBtn, "0,0");
 	}
 }

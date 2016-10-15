@@ -81,7 +81,7 @@ public class AddEquipment extends CalendarWorkWeekTest {
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zAddEquipmentFromScheduler(apptEquipment, keyEvent);
         ZAssert.assertTrue(apptForm.zVerifyEquipment(apptEquipment), "Verify equipment bubble after adding equipment from scheduler");
-        apptForm.zSubmit();
+        apptForm.zSubmitWithResources();
  
         // Verify that equipment present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

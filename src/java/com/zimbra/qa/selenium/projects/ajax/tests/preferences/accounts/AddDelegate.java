@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.accounts;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
@@ -30,6 +29,7 @@ public class AddDelegate extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
+	
 	@Test(description = "Add a 'Send As' delegate to the primary account", groups = { "functional" })
 
 	public void AddDelegate_01() throws HarnessException {
@@ -73,7 +73,9 @@ public class AddDelegate extends AjaxCommonTest {
 		ZAssert.assertEquals(right, "sendAs", "Verify the sendAs (sendAs) right was set correctly");
 	}
 
+	
 	@Test(description = "Add a 'Send On Behalf Of' delegate to the primary account", groups = { "functional" })
+	
 	public void AddDelegate_02() throws HarnessException {
 
 		// -- Data Setup
