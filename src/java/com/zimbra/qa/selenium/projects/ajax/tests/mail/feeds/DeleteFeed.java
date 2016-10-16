@@ -33,7 +33,7 @@ public class DeleteFeed extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Delete a feed folder - Right click, Delete", groups = { "smoke" })
-	
+
 	public void DeleteFeed_01() throws HarnessException, MalformedURLException {
 
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
@@ -41,7 +41,7 @@ public class DeleteFeed extends PrefGroupMailByMessageTest {
 
 		String feedname = "feed" + ConfigProperties.getUniqueString();
 		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
-		URL feedurl = new URL(ConfigProperties.getStringProperty("feed.rss"));
+		URL feedurl = new URL(ConfigProperties.getStringProperty("rss.sample"));
 
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"

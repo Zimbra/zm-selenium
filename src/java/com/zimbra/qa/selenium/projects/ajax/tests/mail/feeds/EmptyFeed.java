@@ -33,7 +33,7 @@ public class EmptyFeed extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Empty a feed folder (context menu)", groups = { "smoke" })
-	
+
 	public void EmptyFeed_01() throws HarnessException, MalformedURLException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(),
@@ -42,7 +42,7 @@ public class EmptyFeed extends PrefGroupMailByMessageTest {
 		// Create a subfolder in Inbox
 		String feedname = "feed" + ConfigProperties.getUniqueString();
 		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
-		URL feedurl = new URL(ConfigProperties.getStringProperty("feed.rss"));
+		URL feedurl = new URL(ConfigProperties.getStringProperty("rss.sample"));
 
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
@@ -52,11 +52,11 @@ public class EmptyFeed extends PrefGroupMailByMessageTest {
 		FolderItem feed = FolderItem.importFromSOAP(app.zGetActiveAccount(), feedname);
 		ZAssert.assertNotNull(feed, "Verify the subfolder is available");
 
-		
+
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
-		
+
+
 		// Right click on folder, select "Mark all as read"
 		DialogWarning dialog = (DialogWarning) app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_EMPTY, feed);
 		ZAssert.assertNotNull(dialog,"Verify the warning dialog pops up - Are you sure you want to delete all items?");

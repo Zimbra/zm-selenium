@@ -32,9 +32,9 @@ public class DragAndDropFeed extends PrefGroupMailByMessageTest{
 		logger.info("New "+ DragAndDropFeed.class.getCanonicalName());
 	}
 
-	
+
 	@Test( description = "Drag one folder and Drop into other", groups = { "smoke" })
-	
+
 	public void DragAndDropFeed_01() throws HarnessException, MalformedURLException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
@@ -43,7 +43,7 @@ public class DragAndDropFeed extends PrefGroupMailByMessageTest{
 		// Create a subfolder in Inbox
 		String feedname = "feed" + ConfigProperties.getUniqueString();
 		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
-		URL feedurl = new URL(ConfigProperties.getStringProperty("feed.rss"));
+		URL feedurl = new URL(ConfigProperties.getStringProperty("rss.sample"));
 
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
@@ -67,7 +67,7 @@ public class DragAndDropFeed extends PrefGroupMailByMessageTest{
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		SleepUtil.sleepSmall();
-		
+
 		app.zPageMail.zDragAndDrop(
 				"css=td[id='zti__main_Mail__" + feed.getId() + "_textCell']",
 				"css=td[id='zti__main_Mail__" + subfolder1.getId() + "_textCell']");
