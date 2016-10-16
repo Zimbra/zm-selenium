@@ -32,7 +32,7 @@ public class MarkAllAsReadFeed extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Mark all messages as read in folder (context menu)",	groups = { "smoke" })
-	
+
 	public void MarkAllAsReadFolder_01() throws HarnessException, MalformedURLException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
@@ -40,7 +40,7 @@ public class MarkAllAsReadFeed extends PrefGroupMailByMessageTest {
 		// Create a subfolder in Inbox
 		String feedname = "feed" + ConfigProperties.getUniqueString();
 		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
-		URL feedurl = new URL(ConfigProperties.getStringProperty("feed.rss"));
+		URL feedurl = new URL(ConfigProperties.getStringProperty("rss.sample"));
 
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
@@ -53,8 +53,8 @@ public class MarkAllAsReadFeed extends PrefGroupMailByMessageTest {
 
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
-		
+
+
 		// Right click on folder, select "Mark all as read"
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_MARKASREAD, feed);
 	}

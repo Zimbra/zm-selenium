@@ -34,7 +34,7 @@ public class GetFeed extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Verify a feed appears in the folder tree", groups = { "smoke" })
-	
+
 	public void GetFeed_01() throws HarnessException, MalformedURLException {
 
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(),
@@ -46,7 +46,7 @@ public class GetFeed extends PrefGroupMailByMessageTest {
 				+ ConfigProperties.getUniqueString();
 
 		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
-		String feed = ConfigProperties.getStringProperty("feed.rss");
+		String feed = ConfigProperties.getStringProperty("rss.sample");
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>"
@@ -56,7 +56,7 @@ public class GetFeed extends PrefGroupMailByMessageTest {
 
 		// Click on the "Inbox" to refresh
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
-		
+
 		List<FolderItem> folders = app.zTreeMail.zListGetFolders();
 		ZAssert.assertNotNull(folders, "Verify the folder list exists");
 
@@ -78,7 +78,7 @@ public class GetFeed extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Reload a feed", groups = { "functional" })
-	
+
 	public void GetFeed_02() throws HarnessException, MalformedURLException {
 
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(),
@@ -90,7 +90,7 @@ public class GetFeed extends PrefGroupMailByMessageTest {
 				+ ConfigProperties.getUniqueString();
 
 		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
-		String url = ConfigProperties.getStringProperty("feed.rss");
+		String url = ConfigProperties.getStringProperty("rss.sample");
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>"
