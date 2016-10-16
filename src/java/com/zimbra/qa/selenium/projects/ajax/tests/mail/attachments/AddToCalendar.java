@@ -322,7 +322,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	}
 	
 	
-	@Bugs(ids = "106600")
+	@Bugs(ids = "107000")
 	@Test( description = "Bug 77131 - Cannot 'add to calendar' an ics into a shared calendar",
 			groups = { "functional" })
 			

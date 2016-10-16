@@ -14,13 +14,11 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.create;
+package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -36,15 +34,17 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		super.startingPage =  app.zPageCalendar;
 	}
 	
+	
 	@Bugs(ids = "102271")
 	@Test( description = "Verify sending appt invite when Equipment resource has conflicts shows conflict dialog", 
 			groups = { "functional" })
+	
 	public void CreateMeetingWithEquipmentConflict_01() throws HarnessException {
 		
 		// Creating object for meeting data
 		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
 		
-		String tz, apptSubject1,apptSubject2 , apptAttendeeEmail;
+		String tz, apptSubject1,apptSubject2, apptAttendeeEmail;
 		tz = ZTimeZone.TimeZoneEST.getID();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
 		String apptEquipment = equipment.EmailAddress;
@@ -108,14 +108,16 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(equipmentStatus, "DE", "Verify that the Equipment status shows as 'DECLINED'");
     }
 	
+	
 	@Test( description = "Verify Saving meeting invite when Equipment resource has conflicts shows conflict dialog",  
 			groups = { "functional" })
+	
 	public void CreateMeetingWithEquipmentConflict_02() throws HarnessException {
 		
 		// Creating object for meeting data
 		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
 		
-		String tz, apptSubject1,apptSubject2 , apptAttendeeEmail;
+		String tz, apptSubject1,apptSubject2, apptAttendeeEmail;
 		tz = ZTimeZone.TimeZoneEST.getID();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
 		String apptEquipment = equipment.EmailAddress;
@@ -185,12 +187,13 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 	
 	@Test( description = "Verify Cancelling create appt when Equipment resource has conflicts shows conflict dialog", 
 			groups = { "functional" })
+	
 	public void CreateMeetingWithEquipmentConflict_03() throws HarnessException {
 
 		// Creating object for meeting data
 		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
 		
-		String tz, apptSubject1,apptSubject2 , apptAttendeeEmail;
+		String tz, apptSubject1,apptSubject2, apptAttendeeEmail;
 		tz = ZTimeZone.TimeZoneEST.getID();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
 		String apptEquipment = equipment.EmailAddress;
@@ -256,14 +259,16 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
         ZAssert.assertNull(modifyAppt, "Verify new appointment with conflicting Resource has not been created");
 	}
 	
+	
 	@Test( description = "Verify organizer can close modified appointment with Equipment Conflict",  
 			groups = { "functional" })
+	
 	public void CreateMeetingWithEquipmentConflict_04() throws HarnessException {
 		
 		// Creating object for meeting data
 		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
 		
-		String tz, apptSubject1,apptSubject2 , apptAttendeeEmail;
+		String tz, apptSubject1,apptSubject2, apptAttendeeEmail;
 		tz = ZTimeZone.TimeZoneEST.getID();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
 		String apptEquipment = equipment.EmailAddress;

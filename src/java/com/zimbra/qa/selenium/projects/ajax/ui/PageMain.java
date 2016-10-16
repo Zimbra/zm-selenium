@@ -14,9 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
+
 package com.zimbra.qa.selenium.projects.ajax.ui;
 
 import java.util.List;
@@ -44,14 +42,14 @@ public class PageMain extends AbsTab {
 		public static final String zLogoffPulldown = "css=td[id='skin_dropMenu'] div[class='DwtLinkButtonDropDownArrow']";
 		public static final String zLogoffOption = "css=tr[id='POPUP_logOff'] td[id$='_title']";
 
-		public static final String zMailApp	= "id=zb__App__Mail_title";
+		public static final String zMailApp = "id=zb__App__Mail_title";
 		public static final String zContactsApp = "id=zb__App__Contacts_title";
 		public static final String zCalendarApp = "id=zb__App__Calendar_title";
 		public static final String zTasksApp = "id=zb__App__Tasks_title";
 		public static final String zBriefcaseApp = "css=td[id=zb__App__Briefcase_title]";
-		public static final String zPreferencesTab	= "id=zb__App__Options_title";
+		public static final String zPreferencesTab = "id=zb__App__Options_title";
 
-		public static final String zSocialTab	= "css=div[id^='zb__App__com_zimbra_social_'] td[id$='_title']";
+		public static final String zSocialTab = "css=div[id^='zb__App__com_zimbra_social_'] td[id$='_title']";
 		public static final String zRefreshButton = "css=div[id='CHECK_MAIL'] td[id='CHECK_MAIL_left_icon']>div";
 	}
 
@@ -63,7 +61,7 @@ public class PageMain extends AbsTab {
 	public Toaster zGetToaster() throws HarnessException {
 		SleepUtil.sleepMedium();
 		Toaster toaster = new Toaster(this.MyApplication);
-		logger.info("toaster is active: "+ toaster.zIsActive());
+		logger.info("toaster is active: " + toaster.zIsActive());
 		return (toaster);
 	}
 
@@ -76,68 +74,63 @@ public class PageMain extends AbsTab {
 	}
 
 	public boolean zIsZimletsPanelLoaded() throws HarnessException {
-        for (int i=0; i<=60; i++) {
-            boolean present = sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']");
-            if (present == true) {
-                SleepUtil.sleepSmall();
-                return true;
-            } else {
-                SleepUtil.sleepMedium();
-                if (i == 60) {
-                    return false;
-                }
-            }
-        }
-        return false;
-    }
+		for (int i = 0; i <= 15; i++) {
+			boolean present = sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']");
+			if (present == true) {
+				SleepUtil.sleepSmall();
+				return true;
+			} else {
+				SleepUtil.sleepMedium();
+			}
+		}
+		return false;
+	}
 
 	public boolean zIsTagsPanelLoaded() throws HarnessException {
-        for (int i=0; i<=60; i++) {
-            boolean present = sIsElementPresent("css=div[id$='parent-TAG'] td[id$='TAG_textCell']");
-            if (present == true) {
-                SleepUtil.sleepSmall();
-                return true;
-            } else {
-                SleepUtil.sleepMedium();
-                if (i == 60) {
-                    return false;
-                }
-            }
-        }
-        return false;
-    }
+		for (int i = 0; i <= 15; i++) {
+			boolean present = sIsElementPresent("css=div[id$='parent-TAG'] td[id$='TAG_textCell']");
+			if (present == true) {
+				SleepUtil.sleepSmall();
+				return true;
+			} else {
+				SleepUtil.sleepMedium();
+			}
+		}
+		return false;
+	}
 
 	public boolean zIsMinicalLoaded() throws HarnessException {
-		return ("true".equals(sGetEval("this.browserbot.getUserWindow().top.appCtxt.getAppViewMgr().getCurrentViewComponent(this.browserbot.getUserWindow().top.ZmAppViewMgr.C_TREE_FOOTER) != null")));
+		return ("true".equals(sGetEval(
+				"this.browserbot.getUserWindow().top.appCtxt.getAppViewMgr().getCurrentViewComponent(this.browserbot.getUserWindow().top.ZmAppViewMgr.C_TREE_FOOTER) != null")));
 	}
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
 		boolean present = sIsElementPresent(Locators.zLogoffPulldown);
-		if ( !present ) {
-			logger.info("Logoff button present = "+ present);
+		if (!present) {
+			logger.info("Logoff button present = " + present);
 			return (false);
 		}
 
 		if (ConfigProperties.getStringProperty("server.host").contains("local") == true) {
 
 			boolean loaded = zIsTagsPanelLoaded();
-			if ( !loaded) {
-				logger.info("zIsTagsPanelLoaded() = "+ loaded);
+			if (!loaded) {
+				logger.info("zIsTagsPanelLoaded() = " + loaded);
 				return (false);
 			}
 
 		} else {
 
 			boolean loaded = zIsZimletsPanelLoaded();
-			if ( !loaded) {
-				logger.info("zIsZimletsPanelLoaded() = "+ loaded);
+			if (!loaded) {
+				logger.info("zIsZimletsPanelLoaded() = " + loaded);
 				return (false);
 			}
 		}
 
-		logger.info("isActive() = "+ true);
+		logger.info("isActive() = " + true);
 		return (true);
 
 	}
@@ -150,40 +143,36 @@ public class PageMain extends AbsTab {
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
-		if ( zIsActive() ) {
+		if (zIsActive()) {
 			logger.info(myPageName() + " is already loaded");
 			return;
 		}
 
-		if ( !((AppAjaxClient)MyApplication).zPageLogin.zIsActive() ) {
-			((AppAjaxClient)MyApplication).zPageLogin.zNavigateTo();
+		if (!((AppAjaxClient) MyApplication).zPageLogin.zIsActive()) {
+			((AppAjaxClient) MyApplication).zPageLogin.zNavigateTo();
 		}
-		((AppAjaxClient)MyApplication).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		((AppAjaxClient) MyApplication).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 
 		zWaitForActive(100000);
 
 	}
-	
-	/**
-	 * Click the logout button
-	 * @throws HarnessException
-	 */
+
 	public void zLogout() throws HarnessException {
 		logger.debug("logout()");
 
-		tracer.trace("Logout of the "+ MyApplication.myApplicationName());
+		tracer.trace("Logout of the " + MyApplication.myApplicationName());
 
 		zNavigateTo();
 
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 		getElement("css=td[class='DwtLinkButtonDropDownArrowTd']").click();
 		this.zWaitForBusyOverlay();
 
 		getElement("css=tr[id=POPUP_logOff]>td[id=logOff_title]").click();
 		this.zWaitForBusyOverlay();
 
-		((AppAjaxClient)MyApplication).zPageLogin.zWaitForActive();
-		((AppAjaxClient)MyApplication).zSetActiveAcount(null);
+		((AppAjaxClient) MyApplication).zPageLogin.zWaitForActive();
+		((AppAjaxClient) MyApplication).zSetActiveAcount(null);
 	}
 
 	@Override
@@ -218,9 +207,9 @@ public class PageMain extends AbsTab {
 
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
-		logger.info(myPageName() + " zToolbarPressButtonWithPulldown("+ pulldown +", "+ option +")");
+		logger.info(myPageName() + " zToolbarPressButtonWithPulldown(" + pulldown + ", " + option + ")");
 
-		tracer.trace("Click pulldown "+ pulldown +" then "+ option);
+		tracer.trace("Click pulldown " + pulldown + " then " + option);
 
 		if (pulldown == null)
 			throw new HarnessException("Pulldown cannot be null!");
@@ -228,12 +217,12 @@ public class PageMain extends AbsTab {
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-
 		String pulldownLocator = null;
 		String optionLocator = null;
 		AbsPage page = null;
 
-		SleepUtil.sleepLong(); // Intentional sleep due to failure and for reliability
+		SleepUtil.sleepLong(); // Intentional sleep due to failure and for
+								// reliability
 
 		if (pulldown == Button.B_ACCOUNT) {
 
@@ -258,15 +247,17 @@ public class PageMain extends AbsTab {
 
 				pulldownLocator = "css=div#skin_outer td#skin_dropMenu div.DwtLinkButtonDropDownArrow";
 				optionLocator = "css=div[id^='POPUP'] div[id='about'] td[id$='_title']";
-				page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, this.MyApplication, this);
+				page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog,
+						this.MyApplication, this);
 
 			} else if (option == Button.O_SHORTCUT) {
 
 				pulldownLocator = "css=div#skin_outer td#skin_dropMenu div.DwtLinkButtonDropDownArrow";
 				optionLocator = "css=div[id^='POPUP'] div[id='showCurrentShortcuts'] td[id$='_title']";
-				page = new DialogInformational(DialogInformational.DialogWarningID.ShortcutDialog, this.MyApplication, this);
+				page = new DialogInformational(DialogInformational.DialogWarningID.ShortcutDialog, this.MyApplication,
+						this);
 
-		} else {
+			} else {
 
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
@@ -278,7 +269,8 @@ public class PageMain extends AbsTab {
 		if (pulldownLocator != null) {
 
 			if (!this.sIsElementPresent(pulldownLocator)) {
-				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
+				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
+						+ pulldownLocator + " not present!");
 			}
 
 			this.sClickAt(pulldownLocator, "0,0");
@@ -287,12 +279,12 @@ public class PageMain extends AbsTab {
 
 			if (optionLocator != null) {
 				if (!this.sIsElementPresent(optionLocator)) {
-					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
+					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
+							+ optionLocator + " not present!");
 				}
 				this.sClickAt(optionLocator, "0,0");
 				zWaitForBusyOverlay();
 			}
-
 		}
 
 		if (page != null) {
@@ -316,32 +308,35 @@ public class PageMain extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, Button option, Button subOption ,String item) throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, Button subOption, String item) throws HarnessException {
 		throw new HarnessException("Main page does not have lists");
 	}
 
 	/**
-	 * Throw an exception on error dialog found and refresh page on any un-closed dialogs found
+	 * Throw an exception on error dialog found and refresh page on any
+	 * un-closed dialogs found
 	 */
 	public void zHandleDialogs(AbsTab appTab) throws HarnessException {
-		
+
 		// Opened dialogs
 		String zIndex;
-		List<WebElement> dialogLocators = webDriver().findElements(By.cssSelector("div[class^='Dwt'][class$='Dialog']"));
-		
+		List<WebElement> dialogLocators = webDriver()
+				.findElements(By.cssSelector("div[class^='Dwt'][class$='Dialog']"));
+
 		int totalDialogs = dialogLocators.size();
 		logger.info("Total dialogs found " + totalDialogs);
-		
-		for (int i=totalDialogs-1; i>=0; i--) {
+
+		for (int i = totalDialogs - 1; i >= 0; i--) {
 			zIndex = dialogLocators.get(i).getCssValue("z-index");
-			if (!zIndex.equals("auto") && !zIndex.equals("") && !zIndex.equals(null) && Integer.parseInt(zIndex)>=700) {
+			if (!zIndex.equals("auto") && !zIndex.equals("") && !zIndex.equals(null)
+					&& Integer.parseInt(zIndex) >= 700) {
 				logger.info("Found active dialog");
 				sRefresh();
 				appTab.zNavigateTo();
 				return;
 			}
 		}
-		
+
 		logger.info("No active dialogs found");
 	}
 
@@ -351,14 +346,14 @@ public class PageMain extends AbsTab {
 	public void zHandleComposeTabs() throws HarnessException {
 
 		String locator = "css=div[id^='zb__App__tab']";
-		if ( sIsElementPresent(locator) ) {
+		if (sIsElementPresent(locator)) {
 			int count = this.sGetCssCount(locator);
 			logger.info("Found " + count + " opened compose tabs");
 			for (int i = 1; i <= count; i++) {
 				final String composeLocator = locator + ":nth-of-type(1) td[id$='_right_icon']";
-				if ( !sIsElementPresent(composeLocator) )
+				if (!sIsElementPresent(composeLocator))
 					throw new HarnessException("Unable to find compose tab close icon " + composeLocator);
-					this.sClick(composeLocator);
+				this.sClick(composeLocator);
 				if (sIsElementPresent("css=td[id^='YesNoCancel'][id$='_title']:contains('No')")) {
 					SleepUtil.sleepSmall();
 					this.sClick("css=td[id^='YesNoCancel'][id$='_title']:contains('No')");
@@ -369,69 +364,65 @@ public class PageMain extends AbsTab {
 
 	/**
 	 * Change the URL (and reload) to access deep-link pages
-	 * @param uri The URL to access (e.g. ?to=foo@foo.com&body=MsgContent&subject=MsgSubject&view=compose)
+	 * 
+	 * @param uri
+	 *            The URL to access (e.g.
+	 *            ?to=foo@foo.com&body=MsgContent&subject=MsgSubject&view=compose)
 	 * @return the page that opens
 	 * @throws HarnessException
 	 */
 	public AbsPage zOpenDeeplink(ZimbraURI uri) throws HarnessException {
-		logger.info("PageMain.zOpenDeeplink("+ uri.toString() + ")");
+		logger.info("PageMain.zOpenDeeplink(" + uri.toString() + ")");
 
 		AbsPage page = null;
 
-
-		if ( !uri.getQuery().containsKey("view") ) {
+		if (!uri.getQuery().containsKey("view")) {
 			throw new HarnessException("query attribute 'view' must be specified");
 		}
 
-		if ( uri.getQuery().get("view").equals("compose") ) {
-
+		if (uri.getQuery().get("view").equals("compose")) {
 			page = new FormMailNew(this.MyApplication);
 
-
-
-		} else if ( uri.getQuery().get("view").equals("msg") ) {
-
-			// page = new DisplayMail(this.MyApplication);
+		} else if (uri.getQuery().get("view").equals("msg")) {
 			throw new HarnessException("implement me!");
 
-
-
 		} else {
-
 			throw new HarnessException("query attribute 'view' must be specified");
-
 		}
 
 		// Re-open the URL
 		this.sOpen(uri.getURL().toString());
 
-		if ( page != null ) {
+		if (page != null) {
 			page.zWaitForActive();
 		}
 
 		return (page);
 	}
 
-
 	// Various kind of close window (with title) methods
 
-	public void zCloseWindow (SeparateWindow window, String windowTitle, AppAjaxClient app) throws HarnessException {
+	public void zCloseWindow(SeparateWindow window, String windowTitle, AppAjaxClient app) throws HarnessException {
 		zCoreCloseWindow(window, windowTitle, app);
 	}
 
-	public void zCloseWindow (SeparateWindowFormMailNew window, String windowTitle, AppAjaxClient app) throws HarnessException {
+	public void zCloseWindow(SeparateWindowFormMailNew window, String windowTitle, AppAjaxClient app)
+			throws HarnessException {
 		zCoreCloseWindow(window, windowTitle, app);
 	}
 
-	public void zCloseWindow (SeparateWindowDisplayMail window, String windowTitle, AppAjaxClient app) throws HarnessException {
+	public void zCloseWindow(SeparateWindowDisplayMail window, String windowTitle, AppAjaxClient app)
+			throws HarnessException {
 		zCoreCloseWindow(window, windowTitle, app);
 	}
 
-	public void zCloseWindow (SeparateWindowOpenAttachment window, String windowTitle, AppAjaxClient app) throws HarnessException {
+	public void zCloseWindow(SeparateWindowOpenAttachment window, String windowTitle, AppAjaxClient app)
+			throws HarnessException {
 		zCoreCloseWindow(window, windowTitle, app);
 	}
 
-	private void zCoreCloseWindow (AbsSeparateWindow window, String windowTitle, AppAjaxClient app) throws HarnessException {
+	private void zCoreCloseWindow(AbsSeparateWindow window, String windowTitle, AppAjaxClient app)
+			throws HarnessException {
 		if (window != null) {
 			window.zCloseWindow(windowTitle);
 			window = null;
@@ -443,18 +434,17 @@ public class PageMain extends AbsTab {
 		}
 	}
 
-
 	// Various kind of close window (without title) methods
 
-	public void zCloseWindow (SeparateWindow window, AppAjaxClient app) throws HarnessException {
+	public void zCloseWindow(SeparateWindow window, AppAjaxClient app) throws HarnessException {
 		zCoreCloseWindow(window, app);
 	}
 
-	public void zCloseWindow (SeparateWindowOpenAttachment window, AppAjaxClient app) throws HarnessException {
+	public void zCloseWindow(SeparateWindowOpenAttachment window, AppAjaxClient app) throws HarnessException {
 		zCoreCloseWindow(window, app);
 	}
 
-	private void zCoreCloseWindow (AbsSeparateWindow window, AppAjaxClient app) throws HarnessException {
+	private void zCoreCloseWindow(AbsSeparateWindow window, AppAjaxClient app) throws HarnessException {
 		if (window != null) {
 			window.zCloseWindow();
 			window = null;
@@ -465,8 +455,7 @@ public class PageMain extends AbsTab {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	public AbsTab zGetCurrentApp() throws HarnessException {
 
 		String mailZimletsPane = null, contactsZimletsPane = null, calendarZimletsPane = null;
@@ -501,7 +490,7 @@ public class PageMain extends AbsTab {
 
 		AbsTab appTab;
 		String appLocator = null;
-		
+
 		if (appIdentifier.contains("Mail")) {
 			appTab = ((AppAjaxClient) MyApplication).zPageMail;
 			appLocator = PageMain.Locators.zMailApp;
@@ -531,19 +520,19 @@ public class PageMain extends AbsTab {
 			appLocator = PageMain.Locators.zMailApp;
 			logger.info("Unable to find application tab identifier " + appIdentifier);
 		}
-		
+
 		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
 			zHandleDialogs(appTab);
 			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
 		}
-		
+
 		logger.info("Navigate to " + appTab.myPageName());
-		
+
 		// Navigate to app
 		if (!appTab.zIsActive()) {
 			zHandleDialogs(appTab);
-			
-			for (int i=0; i<=3; i++) {
+
+			for (int i = 0; i <= 3; i++) {
 				zWaitForElementPresent(appLocator);
 				if (appTab.equals(((AppAjaxClient) MyApplication).zPageCalendar)) {
 					SleepUtil.sleepMedium();
@@ -561,13 +550,15 @@ public class PageMain extends AbsTab {
 
 		// Navigate to app
 		if (!appTab.zIsActive()) {
-			
+
 			sRefresh();
 			appTab.zNavigateTo();
-			
+
 			// Check UI loading
-			if (ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("usLabDomain"))
-					|| ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("indiaLabDomain"))) {
+			if (ConfigProperties.getStringProperty("server.host")
+					.contains(ConfigProperties.getStringProperty("usLabDomain"))
+					|| ConfigProperties.getStringProperty("server.host")
+							.contains(ConfigProperties.getStringProperty("indiaLabDomain"))) {
 				zWaitTillElementPresent(appIdentifier);
 
 			} else {
@@ -575,7 +566,7 @@ public class PageMain extends AbsTab {
 			}
 			this.zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
-		}		
+		}
 
 		logger.info("Navigated to " + this.myPageName() + " page");
 	}

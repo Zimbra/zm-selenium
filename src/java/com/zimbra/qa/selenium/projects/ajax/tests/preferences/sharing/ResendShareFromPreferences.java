@@ -11,7 +11,6 @@ public class ResendShareFromPreferences extends AjaxCommonTest {
 
 	public ResendShareFromPreferences() {
 		super.startingPage = app.zPagePreferences;
-		
 	}
 
 	@Test( description = "Resend share folder request from preferences", groups = { "functional" })
@@ -61,7 +60,7 @@ public class ResendShareFromPreferences extends AjaxCommonTest {
 
 		for (int i=0; i < rows+2; i++) {
 			
-			id = app.zPagePreferences.sGetEval("window.document.getElementById('zl__SVG__rows').children[" + i + "].children[0].children[0].children[0].children[0].id");
+			id = app.zPagePreferences.sGetEval("return window.document.getElementById('zl__SVG__rows').children[" + i + "].children[0].children[0].children[0].children[0].id");
 			if (app.zPagePreferences.sGetText("css=td[id='" + id + "']").equals(ZimbraAccount.Account9().EmailAddress)) {
 				optionLocator = "css=div[id ='zl__SVG__rows'] a[id='" + id.replace("wi", "resend") + "']";
 				app.zPagePreferences.sClickAt(optionLocator, "0,0");
@@ -74,10 +73,11 @@ public class ResendShareFromPreferences extends AjaxCommonTest {
 		app.zPageLogin.zLogin(ZimbraAccount.Account9());
 
 		// Select message
-		String subject = "Share Created: "+  foldername  ;
+		String subject = "Share Created: "+  foldername;
 		String body = activeAccount + " has shared " + "\"" + foldername + "\" (Mail Folder) with " + ZimbraAccount.Account9().EmailAddress;
 
 		// Select the message so that it shows in the reading pane
+		app.zPageMail.zIsActive();
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		app.zPageMail.sSelectFrame("css=iframe[id$='__body__iframe']");
 

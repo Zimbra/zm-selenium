@@ -456,9 +456,8 @@ public class AjaxCommonTest {
 				// Javascript error
 				lines = Arrays.asList("<tr><td style='text-align:center'>" + application + "</td><td>"
 						+ seleniumTestcasePath + "</td><td style='color:brown;'>" + javaScriptError
-						+ "</td><td><a target='_blank' href='" + screenShotFilePath + "'>" + "Navigate to "
-						+ method.getName() + " Screenshot" + "</a></td><td style='text-align:center'>"
-						+ commaSeparatedBugSummary + "</td></tr>");
+						+ "</td><td><a target='_blank' href='" + screenShotFilePath + "'>" + "Screenshot"
+						+ "</a></td><td style='text-align:center'>" + commaSeparatedBugSummary + "</td></tr>");
 				Files.write(pJavaScriptErrorsHtmlFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 			}
 		}
