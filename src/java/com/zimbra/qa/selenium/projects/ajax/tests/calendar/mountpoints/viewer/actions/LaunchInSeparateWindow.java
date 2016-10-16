@@ -18,6 +18,8 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.mountpoints.viewer.a
 
 import java.util.Calendar;
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -34,6 +36,7 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 	}
 	
 	
+	@Bugs(ids = "106999")
 	@Test( description = "Grantee with view rights launches grantor's calendar in the new window",
 			groups = { "functional" })
 			
@@ -90,6 +93,8 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 		}
 	}
 
+	
+	@Bugs(ids = "106999")
 	@Test( description = "Grantee with view rights launches grantor's calendar with appt in the new window and clicks on the appt",
 			groups = { "functional" })
 
@@ -152,7 +157,6 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 		
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-
 
 		// Launch shared folder in separate window through context menu
 		SeparateWindow window = (SeparateWindow)app.zTreeCalendar.zTreeItem(Action.A_RIGHTCLICK, Button.B_LAUNCH_IN_SEPARATE_WINDOW, mountpoint);

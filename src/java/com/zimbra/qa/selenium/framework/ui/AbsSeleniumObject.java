@@ -1075,9 +1075,6 @@ public abstract class AbsSeleniumObject {
                 return true;
             } else {
                 SleepUtil.sleepMedium();
-                if (i == 10) {
-                    return false;
-                }
             }
         }
         if (present == false) {

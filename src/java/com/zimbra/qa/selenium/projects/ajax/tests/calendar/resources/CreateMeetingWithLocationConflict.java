@@ -14,12 +14,10 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.create;
+package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 
 import java.util.*;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -36,15 +34,17 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		super.startingPage =  app.zPageCalendar;
 	}
 	
+	
 	@Bugs(ids = "102271")
 	@Test( description = "Verify sending appt invite when Location resource has conflicts shows conflict dialog", 
 			groups = { "functional"})
+	
 	public void CreateMeetingWithLocationConflict_01() throws HarnessException {
 		
 		// Creating object for meeting data
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		
-		String tz, apptSubject1,apptSubject2 , apptAttendeeEmail;
+		String tz, apptSubject1,apptSubject2, apptAttendeeEmail;
 		tz = ZTimeZone.TimeZoneEST.getID();
 		apptSubject1 = "app" + ConfigProperties.getUniqueString();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
@@ -111,14 +111,16 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(locationStatus, "DE", "Verify that the location status shows as 'Declined'");
 	}
 	
+	
 	@Test( description = "Verify Cancelling create appt when Location resource has conflicts shows conflict dialog", 
 			groups = { "functional" })
+	
 	public void CreateMeetingWithLocationConflict_02() throws HarnessException {
 
 		// Creating object for meeting data
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		
-		String tz, apptSubject1,apptSubject2 , apptAttendeeEmail;
+		String tz, apptSubject1,apptSubject2, apptAttendeeEmail;
 		tz = ZTimeZone.TimeZoneEST.getID();
 		apptSubject1 = "app" + ConfigProperties.getUniqueString();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
@@ -184,14 +186,16 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
         ZAssert.assertNull(modifyAppt, "Verify new appointment with conflicting Resource has not been created");
 	}
 	
+	
 	@Test( description = "Verify Saving meeting invite when Location resource has conflicts shows conflict dialog",  
 			groups = { "functional" })
+	
 	public void CreateMeetingWithLocationConflict_03() throws HarnessException {
 		
 		// Creating object for meeting data
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		
-		String tz, apptSubject1,apptSubject2 , apptAttendeeEmail;
+		String tz, apptSubject1,apptSubject2, apptAttendeeEmail;
 		tz = ZTimeZone.TimeZoneEST.getID();
 		apptSubject1 = "app" + ConfigProperties.getUniqueString();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
@@ -264,14 +268,16 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(locationStatus, "NE", "Verify that the location status shows as 'NEEDS ACTION'");
 	}
 	
+	
 	@Test( description = "Verify organizer can close modified appointment with location Conflict",  
 			groups = { "functional" })
+	
 	public void CreateMeetingWithLocationConflict_04() throws HarnessException {
 		
 		// Creating object for meeting data
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		
-		String tz, apptSubject1,apptSubject2 , apptAttendeeEmail;
+		String tz, apptSubject1,apptSubject2, apptAttendeeEmail;
 		tz = ZTimeZone.TimeZoneEST.getID();
 		apptSubject1 = "app" + ConfigProperties.getUniqueString();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
