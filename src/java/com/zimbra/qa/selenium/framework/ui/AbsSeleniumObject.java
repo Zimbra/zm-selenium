@@ -863,7 +863,6 @@ public abstract class AbsSeleniumObject {
 
 
 	public void sRefresh() throws HarnessException {
-	    logger.info("refresh()");
 		webDriver().navigate().refresh();
 		if (ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("usLabDomain"))
 				|| ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("indiaLabDomain"))) {
@@ -873,8 +872,12 @@ public abstract class AbsSeleniumObject {
 		}
 		SleepUtil.sleepMedium();
 	}
-
-
+	
+	public void sRefreshPage() throws HarnessException {
+		webDriver().navigate().refresh();
+		SleepUtil.sleepMedium();
+	}
+	
 	public int sGetXpathCount(String xpath) throws HarnessException {
 		int count = 0;
 		count = getElements(By.xpath(xpath)).size();

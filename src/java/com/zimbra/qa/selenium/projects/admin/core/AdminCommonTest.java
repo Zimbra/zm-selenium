@@ -80,6 +80,7 @@ public class AdminCommonTest {
 	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	WebElement we = null;
 
+	protected StafServicePROCESS staf = new StafServicePROCESS();
 	String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
 
 	protected AdminCommonTest() {
@@ -99,7 +100,6 @@ public class AdminCommonTest {
 		// For coverage ?mode=mjsf&gzip=false
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			StafServicePROCESS staf = new StafServicePROCESS();
 			try {
 				staf.execute("zmprov mcf +zimbraHttpThrottleSafeIPs " + InetAddress.getLocalHost().getHostAddress());
 				staf.execute("zmmailboxdctl restart");
