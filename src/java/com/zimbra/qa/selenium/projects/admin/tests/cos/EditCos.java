@@ -113,7 +113,7 @@ public class EditCos extends AdminCommonTest {
 		app.zPageManageCOS.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
 		// Click on account to be deleted.
-		app.zPageManageCOS.zListItem(Action.A_LEFTCLICK, cosName);
+		app.zPageManageCOS.zListItem(Action.A_RIGHTCLICK, cosName);
 
 		// Click on Edit button
 		FormEditCos form = (FormEditCos) app.zPageManageCOS.zToolbarPressButton(Button.B_TREE_EDIT);

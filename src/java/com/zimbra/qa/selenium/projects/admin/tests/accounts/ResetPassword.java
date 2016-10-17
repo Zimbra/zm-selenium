@@ -43,17 +43,14 @@ public class ResetPassword extends AdminCommonTest {
 	 *3. Log in to Admin Console with testadmin account, enter password.
 	 * @throws HarnessException
 	   @Bugs( ids = "72655")
-	 */	@Test( description = "Edit password  -- manage account > right click > change password",
+	 */	@Test( description = "Edit password  -- manage account > Select account > Options > Edit > change password",
 			groups = { "functional" })
 			public void ResetPassword_01() throws HarnessException {
 			
 			// Create admin account
 			String adminaccount = "admin"+ ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain");
 			ZimbraAdminAccount account = new ZimbraAdminAccount(adminaccount);
-			account.provision();
-			
-			// Login as a global admin account
-			app.zPageLogin.login();
+			account.provision();			
 
 			// Refresh the account list
 			app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
@@ -71,11 +68,8 @@ public class ResetPassword extends AdminCommonTest {
 			form.zSubmit();
 			
 			// Logout from global admin account
-			app.zPageMain.logout();
-			
-			// Navigate to login page
-			app.zPageLogin.zNavigateTo();   
-			
+			app.zPageMain.logout();			
+						
 			// Enter new username password for created admin account
 			app.zPageLogin.fillLoginFormFields(account);
 
