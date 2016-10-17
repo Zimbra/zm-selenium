@@ -22,7 +22,6 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 public class LoginWithCsrfTokenCheckDisabled extends AjaxCommonTest {
@@ -48,9 +47,23 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCommonTest {
 							+	"</ModifyConfigRequest>");
 
 			// Restart zimbra services
-			StafServicePROCESS staf = new StafServicePROCESS();
 			staf.execute("zmmailboxdctl restart");
 			SleepUtil.sleepVeryLong();
+			
+			for (int i=0; i<=5; i++) {
+				app.zPageMain.sRefreshPage();
+				if (app.zPageLogin.sIsElementPresent("css=input[class^='ZLoginButton']") == true || 
+						app.zPageLogin.sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']") == true) {
+					break;
+				} else {
+					SleepUtil.sleepLong();
+					if (i == 3) {
+						staf.execute("zmmailboxdctl restart");
+						SleepUtil.sleepLongMedium();
+					}
+					continue;
+				}
+			}
 
 			staf.execute("zmcontrol status");
 			SleepUtil.sleepMedium();
@@ -72,20 +85,19 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCommonTest {
 							+		"<a n='zimbraCsrfTokenCheckEnabled'>"+ zimbraCsrfTokenCheckEnabledValue + "</a>"
 							+	"</ModifyConfigRequest>");
 
-			StafServicePROCESS staf = new StafServicePROCESS();
 			staf.execute("zmmailboxdctl restart");
 			SleepUtil.sleepVeryLong();
 
-			for (int i=0; i<=10; i++) {
-				app.zPageMain.sRefresh();
+			for (int i=0; i<=5; i++) {
+				app.zPageMain.sRefreshPage();
 				if (app.zPageLogin.sIsElementPresent("css=input[class^='ZLoginButton']") == true || 
 						app.zPageLogin.sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']") == true) {
 					break;
 				} else {
 					SleepUtil.sleepLong();
-					if (i == 5) {
+					if (i == 3) {
 						staf.execute("zmmailboxdctl restart");
-						SleepUtil.sleepVeryLong();
+						SleepUtil.sleepLongMedium();
 					}
 					continue;
 				}

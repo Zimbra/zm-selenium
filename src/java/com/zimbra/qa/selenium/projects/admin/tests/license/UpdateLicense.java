@@ -38,11 +38,9 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.ui.WizardUpdateLicense;
-
 
 public class UpdateLicense extends AdminCommonTest {
 
@@ -57,9 +55,10 @@ public class UpdateLicense extends AdminCommonTest {
 	 * 2. Verify that new license is updated successfully 
 	 * @throws HarnessException
 	 */
-	@Bugs( ids = "106019")
-	@Test( description = "Upload new license in admin console",
-	groups = { "smoke" })
+	
+	@Bugs(ids = "106019")
+	@Test(description = "Upload new license in admin console", groups = { "smoke" })
+	
 	public void UpdateLicense_01() throws HarnessException {
 
 		// Create file item
@@ -108,7 +107,6 @@ public class UpdateLicense extends AdminCommonTest {
 		ZAssert.assertEquals(validUntil, "20161212090000Z", "Verify valid until");
 
 		// Activate license
-		StafServicePROCESS staf = new StafServicePROCESS();
 		staf.execute("zmlicense -a");
 
 		// Create a new account after activation of license
