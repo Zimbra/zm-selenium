@@ -110,7 +110,7 @@ public class AjaxCommonTest {
 			ConfigProperties.setAppType(ConfigProperties.AppType.AJAX);
 
 			// Dynamic wait for App to be ready
-			int maxRetry = 10;
+			int maxRetry = 5;
 			int retry = 0;
 			boolean appIsReady = false;
 			while (retry < maxRetry && !appIsReady) {
@@ -122,7 +122,7 @@ public class AjaxCommonTest {
 
 				} catch (WebDriverException e) {
 					if (retry == maxRetry) {
-						logger.error("Unable to open ajax app." + "  Is a valid certificate installed?", e);
+						logger.error("Unable to open ajax app. Is a valid certificate installed?", e);
 						throw e;
 					} else {
 						logger.info("App is still not ready...", e);
@@ -131,11 +131,11 @@ public class AjaxCommonTest {
 					}
 				}
 			}
-			commonTestZimbraConfiguration();
 			logger.info("App is ready!");
+			commonTestZimbraConfiguration();
 
 		} catch (WebDriverException e) {
-			throw new HarnessException("Unable to open app", e);
+			logger.error("Unable to open ajax app. Is a valid certificate installed?", e);
 
 		} catch (Exception e) {
 			logger.warn(e);
@@ -278,13 +278,15 @@ public class AjaxCommonTest {
 	public void commonTestAfterSuite() throws HarnessException, IOException {
 		logger.info("AfterSuite: start");
 
-		// Javascript errors html file
-		if (fGetJavaScriptErrorsHtmlFile().exists()) {
-			List<String> lines;
-			lines = Arrays.asList("</table>", "</body>",
-					"<br/><h2 style='font-family:calibri; font-size:15px;'>** Selenium testcase error screenshot path may or may not be exists, it actually depends on the nature of the javascript error.</h2>",
-					"</html>");
-			Files.write(pGetJavaScriptErrorsHtmlFilePath(), lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+		if (ConfigProperties.getStringProperty("javascript.errors.report").equals("true")) {
+			if (fGetJavaScriptErrorsHtmlFile().exists()) {
+				List<String> lines;
+				lines = Arrays.asList("</table>", "</body>",
+						"<br/><h2 style='font-family:calibri; font-size:15px;'>** Selenium testcase error screenshot path may or may not be exists, it actually depends on the nature of the javascript error.</h2>",
+						"</html>");
+				Files.write(pGetJavaScriptErrorsHtmlFilePath(), lines, Charset.forName("UTF-8"),
+						StandardOpenOption.APPEND);
+			}
 		}
 
 		webDriver.quit();
@@ -319,147 +321,160 @@ public class AjaxCommonTest {
 			app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
 		}
 
-		// **************** Capture JavaScript Errors ****************
-		logger.info("AfterMethod: Capture javascript errors");
+		if (ConfigProperties.getStringProperty("javascript.errors.report").equals("true")) {
 
-		// Logs, Javascript error folder
-		List<String> lines;
-		Logs webDriverLog = webDriver.manage().logs();
-		LogEntries[] logEntries = { webDriverLog.get(LogType.BROWSER) };
+			// **************** Capture JavaScript Errors ****************
+			logger.info("AfterMethod: Capture javascript errors");
 
-		for (int i = 0; i <= logEntries.length - 1; i++) {
+			// Logs, Javascript error folder
+			List<String> lines;
+			Logs webDriverLog = webDriver.manage().logs();
+			LogEntries[] logEntries = { webDriverLog.get(LogType.BROWSER) };
 
-			// Get hostname
-			String hostname = null;
-			try {
-				InetAddress addr;
-				addr = InetAddress.getLocalHost();
-				hostname = addr.getHostName();
-			} catch (UnknownHostException ex) {
-				logger.info("Hostname can not be resolved");
-			}
+			for (int i = 0; i <= logEntries.length - 1; i++) {
 
-			// Configuration parameters
-			String application = WordUtils.capitalize(method.getDeclaringClass().toString().split("\\.")[7]);
-			String seleniumTestcase = method.getName().toString();
-			String testOutputFolderName = ExecuteHarnessMain.testoutputfoldername;
-
-			// Javascript error html file configuration
-			String sJavaScriptErrorsFolderPath = testOutputFolderName + "\\debug\\projects\\javascript-errors";
-			String sJavaScriptErrorsHtmlFile = sJavaScriptErrorsFolderPath + "\\" + sJavaScriptErrorsHtmlFileName;
-			Path pJavaScriptErrorsHtmlFilePath = Paths.get(sJavaScriptErrorsFolderPath, sJavaScriptErrorsHtmlFileName);
-			File fJavaScriptErrorsHtmlFile = new File(sJavaScriptErrorsHtmlFile);
-
-			// Create javascript-errors folder
-			File fJavaScriptErrorsFolder = new File(sJavaScriptErrorsFolderPath);
-			if (!fJavaScriptErrorsFolder.exists())
-				fJavaScriptErrorsFolder.mkdirs();
-
-			// Screenshot
-			String screenShotFilePath;
-			if (testOutputFolderName.contains(ConfigProperties.getStringProperty("testOutputDirectory"))) {
-				screenShotFilePath = "file:///"
-						+ testOutputFolderName + "/debug" + method.getDeclaringClass().toString()
-								.replace("class com.zimbra.qa.selenium", "").replace(".", "/")
-						+ "/" + seleniumTestcase + "ss1.png";
-			} else {
-				int appPosition = testOutputFolderName.indexOf(ConfigProperties.getAppType().toString());
-				screenShotFilePath = ConfigProperties.getStringProperty("webPortal") + "/portal/machines/" + hostname
-						+ "/selenium/" + ConfigProperties.getAppType().toString().toLowerCase() + "/results/"
-						+ testOutputFolderName.substring(appPosition) + "/debug" + method.getDeclaringClass().toString()
-								.replace("class com.zimbra.qa.selenium", "").replace(".", "/")
-						+ "/" + seleniumTestcase + "ss1.png";
-			}
-			screenShotFilePath = screenShotFilePath.replace("\\", "/");
-
-			// Bug summary
-			logger.info("AfterMethod: Get bug summary from bug tracking tool");
-			String bugNos = null, commaSeparatedBugSummary = "", commaSeparatedBugStatus = "";
-			try {
-				bugNos = method.getAnnotation(Bugs.class).ids();
-			} catch (NullPointerException e) {
-				logger.info("Bugs are not associated for " + method.getName() + " test");
-			} finally {
-				if (bugNos != null) {
-					logger.info("Associated bugs for " + method.getName() + " test: " + bugNos);
+				// Get hostname
+				String hostname = null;
+				try {
+					InetAddress addr;
+					addr = InetAddress.getLocalHost();
+					hostname = addr.getHostName();
+				} catch (UnknownHostException ex) {
+					logger.info("Hostname can not be resolved");
 				}
-			}
-			if (bugNos != null && bugNos.contains(",")) {
-				bugNos = bugNos.replaceAll(" ", "");
-				String[] bugNumbers = bugNos.split(",");
-				for (String bugNo : bugNumbers) {
+
+				// Configuration parameters
+				String application = WordUtils.capitalize(method.getDeclaringClass().toString().split("\\.")[7]);
+				String seleniumTestcase = method.getName().toString();
+				String testOutputFolderName = ExecuteHarnessMain.testoutputfoldername;
+
+				// Javascript error html file configuration
+				String sJavaScriptErrorsFolderPath = testOutputFolderName + "\\debug\\projects\\javascript-errors";
+				String sJavaScriptErrorsHtmlFile = sJavaScriptErrorsFolderPath + "\\" + sJavaScriptErrorsHtmlFileName;
+				Path pJavaScriptErrorsHtmlFilePath = Paths.get(sJavaScriptErrorsFolderPath,
+						sJavaScriptErrorsHtmlFileName);
+				File fJavaScriptErrorsHtmlFile = new File(sJavaScriptErrorsHtmlFile);
+
+				// Create javascript-errors folder
+				File fJavaScriptErrorsFolder = new File(sJavaScriptErrorsFolderPath);
+				if (!fJavaScriptErrorsFolder.exists())
+					fJavaScriptErrorsFolder.mkdirs();
+
+				// Screenshot
+				String screenShotFilePath;
+				if (testOutputFolderName.contains(ConfigProperties.getStringProperty("testOutputDirectory"))) {
+					screenShotFilePath = "file:///" + testOutputFolderName
+							+ "/debug" + method.getDeclaringClass().toString()
+									.replace("class com.zimbra.qa.selenium", "").replace(".", "/")
+							+ "/" + seleniumTestcase + "ss1.png";
+				} else {
+					int appPosition = testOutputFolderName.indexOf(ConfigProperties.getAppType().toString());
+					screenShotFilePath = ConfigProperties.getStringProperty("webPortal") + "/portal/machines/"
+							+ hostname + "/selenium/" + ConfigProperties.getAppType().toString().toLowerCase()
+							+ "/results/" + testOutputFolderName.substring(appPosition)
+							+ "/debug" + method.getDeclaringClass().toString()
+									.replace("class com.zimbra.qa.selenium", "").replace(".", "/")
+							+ "/" + seleniumTestcase + "ss1.png";
+				}
+				screenShotFilePath = screenShotFilePath.replace("\\", "/");
+
+				// Bug summary
+				logger.info("AfterMethod: Get bug summary from bug tracking tool");
+				String bugNos = null, commaSeparatedBugSummary = "", commaSeparatedBugStatus = "";
+				try {
+					bugNos = method.getAnnotation(Bugs.class).ids();
+				} catch (NullPointerException e) {
+					logger.info("Bugs are not associated for " + method.getName() + " test");
+				} finally {
+					if (bugNos != null) {
+						logger.info("Associated bugs for " + method.getName() + " test: " + bugNos);
+					}
+				}
+				if (bugNos != null && bugNos.contains(",")) {
+					bugNos = bugNos.replaceAll(" ", "");
+					String[] bugNumbers = bugNos.split(",");
+					for (String bugNo : bugNumbers) {
+						URL url = new URL(
+								ConfigProperties.getStringProperty("bugTrackingTool") + "/show_bug.cgi?id=" + bugNo);
+						try (BufferedReader reader = new BufferedReader(
+								new InputStreamReader(url.openStream(), "UTF-8"))) {
+							for (String line; (line = reader.readLine()) != null;) {
+								if (line.contains("bz_status_")) {
+									commaSeparatedBugStatus = line.substring(line.indexOf("bz_bug bz_status_") + 17,
+											line.indexOf(" bz_product_"));
+									commaSeparatedBugSummary += "<a target='_blank' href='"
+											+ ConfigProperties.getStringProperty("bugTrackingTool")
+											+ "/show_bug.cgi?id=" + bugNo + "'>" + "Bug " + bugNo + "</a> ("
+											+ commaSeparatedBugStatus + "), ";
+									break;
+								}
+							}
+						}
+					}
+					commaSeparatedBugSummary = commaSeparatedBugSummary.substring(0,
+							commaSeparatedBugSummary.length() - 2);
+
+				} else if (bugNos != null && !bugNos.isEmpty()) {
 					URL url = new URL(
-							ConfigProperties.getStringProperty("bugTrackingTool") + "/show_bug.cgi?id=" + bugNo);
+							ConfigProperties.getStringProperty("bugTrackingTool") + "/show_bug.cgi?id=" + bugNos);
 					try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
 						for (String line; (line = reader.readLine()) != null;) {
 							if (line.contains("bz_status_")) {
 								commaSeparatedBugStatus = line.substring(line.indexOf("bz_bug bz_status_") + 17,
 										line.indexOf(" bz_product_"));
-								commaSeparatedBugSummary += "<a target='_blank' href='"
+								commaSeparatedBugSummary = "<a target='_blank' href='"
 										+ ConfigProperties.getStringProperty("bugTrackingTool") + "/show_bug.cgi?id="
-										+ bugNo + "'>" + "Bug " + bugNo + "</a> (" + commaSeparatedBugStatus + "), ";
+										+ bugNos + "'>" + "Bug " + bugNos + "</a> (" + commaSeparatedBugStatus + ")";
 								break;
 							}
 						}
 					}
-				}
-				commaSeparatedBugSummary = commaSeparatedBugSummary.substring(0, commaSeparatedBugSummary.length() - 2);
 
-			} else if (bugNos != null && !bugNos.isEmpty()) {
-				URL url = new URL(ConfigProperties.getStringProperty("bugTrackingTool") + "/show_bug.cgi?id=" + bugNos);
-				try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
-					for (String line; (line = reader.readLine()) != null;) {
-						if (line.contains("bz_status_")) {
-							commaSeparatedBugStatus = line.substring(line.indexOf("bz_bug bz_status_") + 17,
-									line.indexOf(" bz_product_"));
-							commaSeparatedBugSummary = "<a target='_blank' href='"
-									+ ConfigProperties.getStringProperty("bugTrackingTool") + "/show_bug.cgi?id="
-									+ bugNos + "'>" + "Bug " + bugNos + "</a> (" + commaSeparatedBugStatus + ")";
-							break;
-						}
-					}
+				} else {
+					commaSeparatedBugSummary = "<a target='_blank' style='color:brown;' href='"
+							+ ConfigProperties.getStringProperty("bugTrackingTool") + "/enter_bug.cgi?product=ZCS'>"
+							+ "File a bug</a>";
 				}
 
-			} else {
-				commaSeparatedBugSummary = "<a target='_blank' style='color:brown;' href='"
-						+ ConfigProperties.getStringProperty("bugTrackingTool") + "/enter_bug.cgi?product=ZCS'>"
-						+ "File a bug</a>";
+				if (fJavaScriptErrorsHtmlFile.createNewFile()) {
+					logger.info("Javascript errors file is created");
+
+					// Javascript errors html file
+					lines = Arrays.asList(
+							"<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>",
+							"<html>", "<head>", "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>",
+							"<link rel='icon' href='" + ConfigProperties.getStringProperty("webPortal")
+									+ "/portal/web/wp-content/themes/iconic-one/images/favicon.ico' type='image/x-icon'/>",
+							"<title>JavaScript Error Report</title>", "</head>", "<body>",
+							"<h2 style='font-family:calibri; font-size:26px;'>Ajax JavaScript Errors Report Generated by Selenium</h2>",
+							"<table style='font-family:calibri; font-size:15px;' border='1'>",
+							"<tr><th>Application</th><th>Selenium testcase</th><th>Javascript error</th><th>**Screenshot path</th><th>Bug Summary</th></tr>");
+					Files.write(pJavaScriptErrorsHtmlFilePath, lines, Charset.forName("UTF-8"),
+							StandardOpenOption.APPEND);
+				} else {
+					logger.info("Javascript errors file already exists");
+				}
+
+				for (LogEntry entry : logEntries[i]) {
+
+					// Parse javascript error
+					String javaScriptError = new Date(entry.getTimestamp()) + " " + entry.getLevel() + " "
+							+ entry.getMessage();
+					String seleniumTestcasePath = method.getDeclaringClass().toString().replaceFirst("class ", "") + "."
+							+ method.getName();
+					logger.info("JavaScript error: " + javaScriptError);
+
+					// Javascript error
+					lines = Arrays.asList("<tr><td style='text-align:center'>" + application + "</td><td>"
+							+ seleniumTestcasePath + "</td><td style='color:brown;'>" + javaScriptError
+							+ "</td><td style='text-align:center'><a target='_blank' href='" + screenShotFilePath + "'>"
+							+ "Screenshot" + "</a></td><td style='text-align:center'>" + commaSeparatedBugSummary
+							+ "</td></tr>");
+					Files.write(pJavaScriptErrorsHtmlFilePath, lines, Charset.forName("UTF-8"),
+							StandardOpenOption.APPEND);
+				}
 			}
 
-			if (fJavaScriptErrorsHtmlFile.createNewFile()) {
-				logger.info("Javascript errors file is created");
-
-				// Javascript errors html file
-				lines = Arrays.asList(
-						"<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>",
-						"<html>", "<head>", "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>",
-						"<link rel='icon' href='" + ConfigProperties.getStringProperty("webPortal")
-								+ "/portal/web/wp-content/themes/iconic-one/images/favicon.ico' type='image/x-icon'/>",
-						"<title>JavaScript Error Report</title>", "</head>", "<body>",
-						"<h2 style='font-family:calibri; font-size:26px;'>Ajax JavaScript Errors Report Generated by Selenium</h2>",
-						"<table style='font-family:calibri; font-size:15px;' border='1'>",
-						"<tr><th>Application</th><th>Selenium testcase</th><th>Javascript error</th><th>**Screenshot path</th><th>Bug Summary</th></tr>");
-				Files.write(pJavaScriptErrorsHtmlFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-			} else {
-				logger.info("Javascript errors file already exists");
-			}
-
-			for (LogEntry entry : logEntries[i]) {
-
-				// Parse javascript error
-				String javaScriptError = new Date(entry.getTimestamp()) + " " + entry.getLevel() + " "
-						+ entry.getMessage();
-				String seleniumTestcasePath = method.getDeclaringClass().toString().replaceFirst("class ", "") + "."
-						+ method.getName();
-				logger.info("JavaScript error: " + javaScriptError);
-
-				// Javascript error
-				lines = Arrays.asList("<tr><td style='text-align:center'>" + application + "</td><td>"
-						+ seleniumTestcasePath + "</td><td style='color:brown;'>" + javaScriptError
-						+ "</td><td><a target='_blank' href='" + screenShotFilePath + "'>" + "Screenshot"
-						+ "</a></td><td style='text-align:center'>" + commaSeparatedBugSummary + "</td></tr>");
-				Files.write(pJavaScriptErrorsHtmlFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-			}
 		}
 
 		logger.info("AfterMethod: finish");

@@ -236,6 +236,11 @@ public class PagePreferences extends AbsTab {
 		// Mail > composing
 		public static final String zMandatorySpellCheck = "css=input[id$='_MAIL_MANDATORY_SPELLCHECK']";
 
+		//Secure Email
+		public static final String zBrowseToCertificate = "css=div[id$='_UploadCertificateBtn'] td:contains('Browse to certificate...')";
+		public static final String zRemoveCertificateLink = "css=td[class='ZmSecureMailCertificateRow'] td:contains('Remove')";
+		public static final String zViewCertificateLink = "css=td[class='ZmSecureMailCertificateRow'] div:contains('View')";
+		
 		// Filters
 		public static final String zFilterRowCss = "css=div[class='DwtListView-Rows'] div[id^='zli_'] td";
 		public static final String zOutGoingFilterTab = "css=div[id$='_tabbar'] td[id$='_title']:contains(Outgoing)";
@@ -478,6 +483,10 @@ public class PagePreferences extends AbsTab {
 
 			locator = "id=" + Locators.zToolbarCancelID;
 			page = null;
+
+		} else if (button == Button.B_BROWSE_TO_CERTIFICATE) {
+
+			locator = Locators.zBrowseToCertificate;
 
 		} else if (button == Button.B_CHANGE_PASSWORD) {
 
