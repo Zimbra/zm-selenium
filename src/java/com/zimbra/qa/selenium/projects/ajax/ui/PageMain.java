@@ -107,12 +107,6 @@ public class PageMain extends AbsTab {
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
-		boolean present = sIsElementPresent(Locators.zLogoffPulldown);
-		if (!present) {
-			logger.info("Logoff button present = " + present);
-			return (false);
-		}
-
 		if (ConfigProperties.getStringProperty("server.host")
 				.contains(ConfigProperties.getStringProperty("usLabDomain"))
 				|| ConfigProperties.getStringProperty("server.host")
@@ -545,6 +539,13 @@ public class PageMain extends AbsTab {
 				}
 			}
 		}
+		
+		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
+			zHandleDialogs(appTab);
+			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
+		}
+
+		logger.info("Navigate to " + appTab.myPageName());
 
 		// Navigate to app
 		if (!appTab.zIsActive()) {
