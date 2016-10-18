@@ -88,7 +88,7 @@ public class TagContact extends TouchCommonTest  {
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 		ZAssert.assertNotNull(mountpoint, "Verify the subfolder is available");
 
-		app.zPageMain.zRefresh();
+		app.zPageMain.sRefresh();
 
 		// Create a tag
 		TagItem tagItem = TagItem.CreateUsingSoap(app.zGetActiveAccount());	

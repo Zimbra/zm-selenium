@@ -81,7 +81,7 @@ public class SpamMail extends PrefGroupMailByMessageTest{
 						+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"
 						+	"</CreateMountpointRequest>");
 
-		app.zPageMain.zRefresh();	
+		app.zPageMain.sRefresh();	
 
 		// Try to mark the email as spam in the mount folder
 		PageCreateFolder createFolderPage = new PageCreateFolder(app, startingPage);
