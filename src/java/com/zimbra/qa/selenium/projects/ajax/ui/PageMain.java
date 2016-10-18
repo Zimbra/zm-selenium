@@ -110,18 +110,15 @@ public class PageMain extends AbsTab {
 		}
 
 		if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
-
-			boolean loaded = zIsTagsPanelLoaded();
-			if (!loaded) {
-				logger.info("zIsTagsPanelLoaded() = " + loaded);
-				return (false);
-			}
-
-		} else {
-
 			boolean loaded = zIsZimletsPanelLoaded();
 			if (!loaded) {
 				logger.info("zIsZimletsPanelLoaded() = " + loaded);
+				return (false);
+			}
+		} else {
+			boolean loaded = zIsTagsPanelLoaded();
+			if (!loaded) {
+				logger.info("zIsTagsPanelLoaded() = " + loaded);
 				return (false);
 			}
 		}
