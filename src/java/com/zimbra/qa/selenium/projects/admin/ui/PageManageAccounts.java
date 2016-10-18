@@ -151,8 +151,7 @@ public class PageManageAccounts extends AbsTab {
 		int m= 50;
 		if (count >= 50) {
 			for (int a1 = 1; a1 <= 10; a1++) { 
-				String p0  = rowsLocator + ":nth-child("+m+")";
-				SleepUtil.sleepSmall();
+				String p0  = rowsLocator + ":nth-child("+m+")";				
 				if (this.sIsElementPresent(p0)) {					
 					sClickAt(p0,"");
 					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);

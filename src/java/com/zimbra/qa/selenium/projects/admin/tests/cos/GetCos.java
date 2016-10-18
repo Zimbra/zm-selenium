@@ -61,7 +61,7 @@ public class GetCos extends AdminCommonTest {
 		app.zPageManageCOS.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");		
 		
 		//Verify the presence of the created COS in UI 
-		ZAssert.assertNotNull(app.zPageManageCOS.zIsCOSPresent(cosName), "Verify the cos is returned correctly");
+		ZAssert.assertTrue(app.zPageManageCOS.zIsCOSPresent(cosName), "Verify the cos is returned correctly");
 
 	}
 
@@ -96,7 +96,7 @@ public class GetCos extends AdminCommonTest {
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 		
 		//Verify the presence of the created COS in UI 
-		ZAssert.assertNotNull(app.zPageManageCOS.zIsCOSPresent(cosName), "Verify the cos is returned correctly");
+		ZAssert.assertTrue(app.zPageManageCOS.zIsCOSPresent(cosName), "Verify the cos is returned correctly");
 
 	}
 }
