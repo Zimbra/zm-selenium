@@ -31,10 +31,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.PageTasks;
 
-/**
- * @author Matt Rhoades
- *
- */
 public class PageMain extends AbsTab {
 
 	public static class Locators {
@@ -107,22 +103,25 @@ public class PageMain extends AbsTab {
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
-		if (ConfigProperties.getStringProperty("server.host")
-				.contains(ConfigProperties.getStringProperty("usLabDomain"))
-				|| ConfigProperties.getStringProperty("server.host")
-						.contains(ConfigProperties.getStringProperty("indiaLabDomain"))) {
+		boolean present = sIsElementPresent(Locators.zLogoffPulldown);
+		if (!present) {
+			logger.info("Logoff button present = " + present);
+			return (false);
+		}
 
-			boolean loaded = zIsZimletsPanelLoaded();
+		if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
+
+			boolean loaded = zIsTagsPanelLoaded();
 			if (!loaded) {
-				logger.info("zIsZimletsPanelLoaded() = " + loaded);
+				logger.info("zIsTagsPanelLoaded() = " + loaded);
 				return (false);
 			}
 
 		} else {
 
-			boolean loaded = zIsTagsPanelLoaded();
+			boolean loaded = zIsZimletsPanelLoaded();
 			if (!loaded) {
-				logger.info("zIsTagsPanelLoaded() = " + loaded);
+				logger.info("zIsZimletsPanelLoaded() = " + loaded);
 				return (false);
 			}
 		}
@@ -329,7 +328,6 @@ public class PageMain extends AbsTab {
 					&& Integer.parseInt(zIndex) >= 700) {
 				logger.info("Found active dialog");
 				sRefresh();
-				logger.info("Navigate to " + appTab.myPageName());
 				appTab.zNavigateTo();
 				return;
 			}
@@ -362,7 +360,7 @@ public class PageMain extends AbsTab {
 
 	/**
 	 * Change the URL (and reload) to access deep-link pages
-	 * 
+	 *
 	 * @param uri
 	 *            The URL to access (e.g.
 	 *            ?to=foo@foo.com&body=MsgContent&subject=MsgSubject&view=compose)
@@ -519,27 +517,6 @@ public class PageMain extends AbsTab {
 			logger.info("Unable to find application tab identifier " + appIdentifier);
 		}
 
-		// Navigate to app
-		if (!appTab.zIsActive()) {
-			zHandleDialogs(appTab);
-
-			for (int i = 0; i <= 2; i++) {
-				zWaitForElementPresent(appLocator);
-				if (appTab.equals(((AppAjaxClient) MyApplication).zPageCalendar)) {
-					SleepUtil.sleepMedium();
-				} else {
-					SleepUtil.sleepSmall();
-				}
-				sClickAt(appLocator, "");
-				this.zWaitForBusyOverlay();
-				SleepUtil.sleepMedium();
-				if (zGetCurrentApp().equals(appTab)) {
-					logger.info(appTab + " is loaded fine");
-					break;
-				}
-			}
-		}
-		
 		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
 			zHandleDialogs(appTab);
 			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
@@ -549,17 +526,32 @@ public class PageMain extends AbsTab {
 
 		// Navigate to app
 		if (!appTab.zIsActive()) {
+			zHandleDialogs(appTab);
+
+			for (int i = 0; i <= 2; i++) {
+				if (appTab.equals(((AppAjaxClient) MyApplication).zPageCalendar)) {
+					SleepUtil.sleepMedium();
+				} else {
+					SleepUtil.sleepSmall();
+				}
+				sClickAt(appLocator, "");
+				this.zWaitForBusyOverlay();
+				SleepUtil.sleepMedium();
+				if (zGetCurrentApp().equals(appTab)) {
+					break;
+				}
+			}
+		}
+
+		// Navigate to app
+		if (!appTab.zIsActive()) {
 
 			sRefresh();
 			appTab.zNavigateTo();
 
 			// Check UI loading
-			if (ConfigProperties.getStringProperty("server.host")
-					.contains(ConfigProperties.getStringProperty("usLabDomain"))
-					|| ConfigProperties.getStringProperty("server.host")
-							.contains(ConfigProperties.getStringProperty("indiaLabDomain"))) {
+			if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
 				zWaitTillElementPresent(appIdentifier);
-
 			} else {
 				zWaitTillElementPresent(appIdentifier.replace("ZIMLET", "TAG"));
 			}
