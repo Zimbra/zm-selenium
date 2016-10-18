@@ -204,7 +204,7 @@ public class ViewMail extends AdminCommonTest {
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");		
 	}
 
-	@AfterMethod(groups={"always"})
+	@AfterMethod( groups = { "always" } )
 	public void afterMethod() throws HarnessException {
 		//Mail opens in new window. Close all the windows except Zimbra administration page
 		List<String> windowIds=app.zPageMain.sGetAllWindowIds();
