@@ -17,20 +17,16 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.outofoffice;
 
 import java.util.Calendar;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.DialogOOOAlert;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Field;
 
 public class OutOfOfficeCalendarAppointment extends AjaxCommonTest {
@@ -72,23 +68,8 @@ public class OutOfOfficeCalendarAppointment extends AjaxCommonTest {
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
 		ZAssert.assertEquals(app.zGetActiveAccount().soapMatch("//mail:GetAppointmentResponse//mail:comp", "allDay", "1"), true, "");
 		
-		// Client may display out of office dialog, wait for some time and take an action on it
-		SleepUtil.sleepLong();
-		DialogOOOAlert alert = new DialogOOOAlert(app, ((AppAjaxClient) app).zPageMail);
-		if (alert.zIsActive()) {
-			alert.zCheckboxSet(true);
-			alert.zClickButton(Button.B_YES);
-		}
-		
 		// Verify appointment exists in current view
 		app.zPageCalendar.zNavigateTo();
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 	}
-	
-	@AfterMethod(groups={"always"})
-	public void afterMethod() throws HarnessException {
-		zFreshLogin();
-		logger.info(app.zGetActiveAccount().EmailAddress);
-	}
-	
 }

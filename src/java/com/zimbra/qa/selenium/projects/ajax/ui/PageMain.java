@@ -113,19 +113,22 @@ public class PageMain extends AbsTab {
 			return (false);
 		}
 
-		if (ConfigProperties.getStringProperty("server.host").contains("local") == true) {
+		if (ConfigProperties.getStringProperty("server.host")
+				.contains(ConfigProperties.getStringProperty("usLabDomain"))
+				|| ConfigProperties.getStringProperty("server.host")
+						.contains(ConfigProperties.getStringProperty("indiaLabDomain"))) {
 
-			boolean loaded = zIsTagsPanelLoaded();
+			boolean loaded = zIsZimletsPanelLoaded();
 			if (!loaded) {
-				logger.info("zIsTagsPanelLoaded() = " + loaded);
+				logger.info("zIsZimletsPanelLoaded() = " + loaded);
 				return (false);
 			}
 
 		} else {
 
-			boolean loaded = zIsZimletsPanelLoaded();
+			boolean loaded = zIsTagsPanelLoaded();
 			if (!loaded) {
-				logger.info("zIsZimletsPanelLoaded() = " + loaded);
+				logger.info("zIsTagsPanelLoaded() = " + loaded);
 				return (false);
 			}
 		}
@@ -332,6 +335,7 @@ public class PageMain extends AbsTab {
 					&& Integer.parseInt(zIndex) >= 700) {
 				logger.info("Found active dialog");
 				sRefresh();
+				logger.info("Navigate to " + appTab.myPageName());
 				appTab.zNavigateTo();
 				return;
 			}
@@ -521,18 +525,11 @@ public class PageMain extends AbsTab {
 			logger.info("Unable to find application tab identifier " + appIdentifier);
 		}
 
-		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
-			zHandleDialogs(appTab);
-			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
-		}
-
-		logger.info("Navigate to " + appTab.myPageName());
-
 		// Navigate to app
 		if (!appTab.zIsActive()) {
 			zHandleDialogs(appTab);
 
-			for (int i = 0; i <= 3; i++) {
+			for (int i = 0; i <= 2; i++) {
 				zWaitForElementPresent(appLocator);
 				if (appTab.equals(((AppAjaxClient) MyApplication).zPageCalendar)) {
 					SleepUtil.sleepMedium();
@@ -543,6 +540,7 @@ public class PageMain extends AbsTab {
 				this.zWaitForBusyOverlay();
 				SleepUtil.sleepMedium();
 				if (zGetCurrentApp().equals(appTab)) {
+					logger.info(appTab + " is loaded fine");
 					break;
 				}
 			}
