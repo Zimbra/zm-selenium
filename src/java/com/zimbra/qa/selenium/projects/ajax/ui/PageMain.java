@@ -528,8 +528,7 @@ public class PageMain extends AbsTab {
 		if (!appTab.zIsActive()) {
 			zHandleDialogs(appTab);
 
-			for (int i = 0; i <= 3; i++) {
-				zWaitForElementPresent(appLocator);
+			for (int i = 0; i <= 2; i++) {
 				if (appTab.equals(((AppAjaxClient) MyApplication).zPageCalendar)) {
 					SleepUtil.sleepMedium();
 				} else {
@@ -553,7 +552,6 @@ public class PageMain extends AbsTab {
 			// Check UI loading
 			if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
 				zWaitTillElementPresent(appIdentifier);
-
 			} else {
 				zWaitTillElementPresent(appIdentifier.replace("ZIMLET", "TAG"));
 			}
