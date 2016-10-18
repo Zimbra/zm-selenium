@@ -261,7 +261,7 @@ public class EditCos extends AdminCommonTest {
 			groups = { "smoke" })
 	public void EditCos_05() throws HarnessException {
 
-		app.zPageMain.zRefresh(); // resetting locators 
+		app.zPageMain.sRefresh();
 
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();

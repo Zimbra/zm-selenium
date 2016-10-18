@@ -166,18 +166,6 @@ public class PageContacts extends AbsTab {
 		((AppAjaxClient) MyApplication).zPageMain.zCheckAppLoaded(Locators.zContactsZimletsPane);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.zimbra.qa.selenium.framework.ui.AbsTab#zRefresh()
-	 */
-	public void zRefresh() throws HarnessException {
-
-		// Click refresh on the main app
-		((AppAjaxClient) this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH);
-
-	}
-
 	// get subFolders
 	public List<FolderItem> zListGetFolders(ZimbraAccount account, FolderItem parentFolder) throws HarnessException {
 		List<FolderItem> list = new ArrayList<FolderItem>();

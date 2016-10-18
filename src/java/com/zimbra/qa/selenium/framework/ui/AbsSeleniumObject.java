@@ -54,6 +54,7 @@ import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import org.openqa.selenium.interactions.Mouse;
@@ -864,11 +865,19 @@ public abstract class AbsSeleniumObject {
 
 	public void sRefresh() throws HarnessException {
 		webDriver().navigate().refresh();
-		if (ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("usLabDomain"))
-				|| ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("indiaLabDomain"))) {
-			zWaitTillElementPresent(PageMail.Locators.zMailTagsPane);
-		} else {
-			zWaitTillElementPresent(PageMail.Locators.zMailZimletsPane);
+
+		if (ConfigProperties.getAppType().equals("AJAX")) {
+			if (ConfigProperties.getStringProperty("server.host")
+					.contains(ConfigProperties.getStringProperty("usLabDomain"))
+					|| ConfigProperties.getStringProperty("server.host")
+							.contains(ConfigProperties.getStringProperty("indiaLabDomain"))) {
+				zWaitTillElementPresent(PageMail.Locators.zMailZimletsPane);
+			} else {
+				zWaitTillElementPresent(PageMail.Locators.zMailTagsPane);
+			}
+
+		} else if (ConfigProperties.getAppType().equals("ADMIN")) {
+			zWaitTillElementPresent(PageMain.Locators.zHelpButton);
 		}
 		SleepUtil.sleepMedium();
 	}
@@ -1442,7 +1451,6 @@ public abstract class AbsSeleniumObject {
 
 
 	public void sSelectWindow(String windowID) throws HarnessException {
-		logger.info("sSelectWindow(" + windowID + ")");
 		switchTo(windowID);
 	}
 
@@ -1980,56 +1988,52 @@ public abstract class AbsSeleniumObject {
 
 	protected boolean switchTo(String name) throws HarnessException {
 		logger.info("switchTo(" + name + ")");
-		WebDriver driver = webDriver();
+
 		String defaultContent;
 		boolean found = false;
-		SleepUtil.sleepSmall();
-		Set<String> handles = driver.getWindowHandles();
+		Set<String> handles = webDriver().getWindowHandles();
 		if (handles == null) {
-		    throw new HarnessException(" handles are null");
+			throw new HarnessException("handles are null");
 		}
 
 		try {
-		    if (name == null || name.contentEquals("null")) {
+			if (name == null || name.contentEquals("null")) {
 				LinkedHashSet<String> windowHandles = new LinkedHashSet<String>(handles);
-				driver.switchTo().window(windowHandles.iterator().next());
-				driver.switchTo().defaultContent();
-				defaultContent = driver.switchTo().defaultContent().getTitle();
-				logger.info("selecting defaultContent()" + defaultContent);
+				webDriver().switchTo().window(windowHandles.iterator().next());
+				webDriver().switchTo().defaultContent();
+				defaultContent = webDriver().switchTo().defaultContent().getTitle();
 				sWindowFocus();
 				found = true;
-		    } else {
-				logger.info("handles size: " + handles.size());
+
+			} else {
 				String url = "";
 				String windowName = null;
 				for (String handle : handles) {
-				    try {
-						windowName = driver.switchTo().window(handle).getTitle();
+					try {
+						windowName = webDriver().switchTo().window(handle).getTitle();
+						url = webDriver().getCurrentUrl();
 
-						logger.info("Switched to window: " + windowName);
-						url = driver.getCurrentUrl();
-
-					    if (windowName != null && (windowName.contentEquals(name) || url.contains("/" + name + "?"))) {
+						if (windowName != null && (windowName.contentEquals(name) || url.contains("/" + name + "?"))) {
 							found = true;
 							logger.info("Found window: " + windowName);
 							break;
-					    }
+						}
 
-				    } catch(Exception ex) {
-				    	logger.error(ex);
-				    }
+					} catch (Exception ex) {
+						logger.error(ex);
+					}
 				}
-		    }
+			}
 
-		} catch(Exception ex) {
+		} catch (Exception ex) {
 			logger.error(ex);
 
 		} finally {
-		    if (!found) {
-				defaultContent = driver.switchTo().defaultContent().getTitle();
+			if (!found) {
+				defaultContent = webDriver().switchTo().defaultContent().getTitle();
 				logger.info("back to defaultContent()" + defaultContent);
 				sWindowFocus();
-		    }
+			}
 		}
 		return found;
 	}
@@ -2042,7 +2046,7 @@ public abstract class AbsSeleniumObject {
 		for (int i = 0; i < 5; i++) {
 			try {
 				found = switchTo(name);
-			} catch(Exception ex) {
+			} catch (Exception ex) {
 				logger.error(ex);
 			}
 			if (found) {
@@ -2053,7 +2057,7 @@ public abstract class AbsSeleniumObject {
 		return found;
 	}
 
-
+	
 	private boolean waitForWindowClosed(final String name, Long timeout, int... handlesSize) {
 		logger.info("waitForWindowClosed(" + name + ")");
 		return waitForWindow(name, false, timeout, handlesSize);

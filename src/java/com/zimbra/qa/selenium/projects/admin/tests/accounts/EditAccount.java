@@ -33,13 +33,13 @@ import com.zimbra.qa.selenium.projects.admin.ui.PageManageAccounts;
 import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults;
 
 public class EditAccount extends AdminCommonTest {
+	
 	public EditAccount() {
 		logger.info("New "+ EditAccount.class.getCanonicalName());
-
-		// All tests start at the "Accounts" page
 		super.startingPage = app.zPageManageAccounts;
 	}
 
+	
 	/**
 	 * Testcase : Edit account name  - Manage Account View
 	 * Steps :
@@ -52,6 +52,7 @@ public class EditAccount extends AdminCommonTest {
 	 */
 	@Test( description = "Edit Account name  - Manage Account View",
 			groups = { "smoke" })
+	
 	public void EditAccount_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -77,8 +78,7 @@ public class EditAccount extends AdminCommonTest {
 
 		//Submit the form.
 		form.zSubmit();
-
-		app.zPageMain.zRefresh();
+		
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
@@ -86,7 +86,6 @@ public class EditAccount extends AdminCommonTest {
 						+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "Verify the account is edited successfully");
-		app.zPageMain.logout();
 	}
 
 	/**
@@ -99,6 +98,7 @@ public class EditAccount extends AdminCommonTest {
 	 */
 	@Test( description = "Edit account name -- right click",
 			groups = { "functional" })
+	
 	public void EditAccount_02() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -124,7 +124,6 @@ public class EditAccount extends AdminCommonTest {
 
 		//Submit the form.
 		form.zSubmit();
-		app.zPageMain.zRefresh();
 
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -133,9 +132,9 @@ public class EditAccount extends AdminCommonTest {
 						+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=74487");
-		app.zPageMain.logout();
 	}
 
+	
 	/**
 	 * Testcase : Edit delegated admin account name  - Manage Account View
 	 * Steps :
@@ -148,6 +147,7 @@ public class EditAccount extends AdminCommonTest {
 	 */
 	@Test( description = "Edit delegated admin account name  - Manage Account View",
 			groups = { "functional" })
+	
 	public void EditAccount_03() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -174,7 +174,6 @@ public class EditAccount extends AdminCommonTest {
 
 		//Submit the form.
 		form.zSubmit();
-		app.zPageMain.zRefresh();
 
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -183,9 +182,9 @@ public class EditAccount extends AdminCommonTest {
 						+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "Verify the account is edited successfully");
-		app.zPageMain.logout();
 	}
 
+	
 	/**
 	 * Testcase : Edit global admin account name  - Manage Account View
 	 * Steps :
@@ -198,6 +197,7 @@ public class EditAccount extends AdminCommonTest {
 	 */
 	@Test( description = "Edit global admin Account name  - Manage Account View",
 			groups = { "smoke" })
+	
 	public void EditAccount_04() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -225,7 +225,6 @@ public class EditAccount extends AdminCommonTest {
 
 		//Submit the form.
 		form.zSubmit();
-		app.zPageMain.zRefresh();
 
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -234,7 +233,6 @@ public class EditAccount extends AdminCommonTest {
 						+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "Verify the account is edited successfully");
-		app.zPageMain.logout();
 	}
 
 
@@ -251,6 +249,7 @@ public class EditAccount extends AdminCommonTest {
 	 */
 	@Test( description = "Edit a basic account - Search List View",
 			groups = { "functional" })
+	
 	public void EditAccount_05() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -283,7 +282,6 @@ public class EditAccount extends AdminCommonTest {
 
 		//Submit the form.
 		form.zSubmit();
-		app.zPageMain.zRefresh();
 
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -292,10 +290,9 @@ public class EditAccount extends AdminCommonTest {
 						+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=74487");
-		app.zPageMain.logout();
-
 	}
 
+	
 	/**
 	 * Testcase : Edit a basic account -- Search List View
 	 * Steps :
@@ -309,6 +306,7 @@ public class EditAccount extends AdminCommonTest {
 	 */
 	@Test( description = "Edit a basic account - Search List View",
 			groups = { "functional" })
+	
 	public void EditAccount_06() throws HarnessException {
 
 
@@ -343,7 +341,6 @@ public class EditAccount extends AdminCommonTest {
 
 		//Submit the form.
 		form.zSubmit();
-		app.zPageMain.zRefresh();
 
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -352,10 +349,9 @@ public class EditAccount extends AdminCommonTest {
 						+		"</GetAccountRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1);
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=74487");
-		app.zPageMain.logout();
-
 	}
 
+	
 	/**
 	 * Testcase : Edit account - Two Factor Authentication
 	 * Steps :
@@ -366,6 +362,7 @@ public class EditAccount extends AdminCommonTest {
 	 */
 	@Test( description = "Edit account - Two Factor Authentication",
 			groups = { "sanity", "network" })
+	
 	public void EditAccount_07() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -413,9 +410,6 @@ public class EditAccount extends AdminCommonTest {
 		// Submit the form
 		form.zSubmit();
 
-		// Verify the enable two-factor authentication is set to true
-		app.zPageMain.zRefresh();
-
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<account by='name'>"+ account.getEmailAddress() +"</account>"
@@ -439,8 +433,6 @@ public class EditAccount extends AdminCommonTest {
 		Element response4 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureAppSpecificPasswordsEnabled']", 1);
 		ZAssert.assertNotNull(response4, "Verify the account is edited successfully");
 		ZAssert.assertStringContains(response4.toString(),"TRUE", "Verify the Enable application passcodes is set to true");
-
-		app.zPageMain.logout();
 	}
 
 }
