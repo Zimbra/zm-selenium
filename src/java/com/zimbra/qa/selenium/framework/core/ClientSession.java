@@ -78,11 +78,7 @@ public class ClientSession {
 
 				switch (OperatingSystem.getOSType()) {
 
-					case WINDOWS: default:
-						driverPath = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/IEDriverServer.exe";
-						break;
-
-					case WINDOWS10:
+					case WINDOWS: case WINDOWS10: default:
 						driverPath = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/MicrosoftWebDriver.exe";
 						break;
 				}
