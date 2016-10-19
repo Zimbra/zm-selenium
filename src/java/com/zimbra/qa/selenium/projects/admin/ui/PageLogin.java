@@ -158,7 +158,8 @@ public class PageLogin extends AbsTab {
 	 */
 	public void fillResetLoginPasswordFormFields(String NewPassword , String ConfirmPassword ) throws HarnessException {
 		logger.debug("fillFields(ZimbraAccount account)" + NewPassword);
-
+		
+		SleepUtil.sleepSmall();
 		if ( !zIsActive() )
 			throw new HarnessException("LoginPage is not active");
 		
