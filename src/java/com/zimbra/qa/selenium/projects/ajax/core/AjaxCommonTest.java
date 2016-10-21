@@ -253,7 +253,7 @@ public class AjaxCommonTest {
 
 		// Handle open dialogs and tabs
 		logger.info("BeforeMethod: Handle open dialogs and tabs");
-		app.zPageMain.zHandleDialogs(app.zPageMain.zGetCurrentApp());
+		app.zPageMain.zHandleDialogs(startingPage);
 		app.zPageMain.zHandleComposeTabs();
 
 		logger.info("BeforeMethod: finish");

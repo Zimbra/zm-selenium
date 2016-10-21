@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.outofoffice;
 
-import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
@@ -26,6 +25,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
+import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
@@ -36,17 +36,7 @@ public class ZimbraPrefOutOfOfficeReplyEnabledFalse extends AjaxCommonTest {
 
 	public static final String autoReplyMessage = "OOO" + ConfigProperties.getUniqueString();
 
-	public ZimbraPrefOutOfOfficeReplyEnabledFalse() throws HarnessException {
-
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -3101848474022410670L;
-			{
-				put("zimbraPrefOutOfOfficeReplyEnabled", "TRUE");
-				put("zimbraPrefOutOfOfficeReply", autoReplyMessage);
-				put("zimbraPrefOutOfOfficeStatusAlertOnLogin", "TRUE");
-			}
-		};
-	}
+	public ZimbraPrefOutOfOfficeReplyEnabledFalse() throws HarnessException { }
 
 	
 	@Bugs(ids = "101356")
@@ -56,6 +46,14 @@ public class ZimbraPrefOutOfOfficeReplyEnabledFalse extends AjaxCommonTest {
 		
 		ZimbraAccount account = app.zGetActiveAccount();
 		String subject = "subject" + ConfigProperties.getUniqueString();
+		
+		ZimbraAdminAccount.GlobalAdmin()
+				.soapSend("<ModifyAccountRequest xmlns='urn:zimbraAdmin'><id>" + this.app.zGetActiveAccount().ZimbraId
+						+ "</id>" + "<a n='zimbraPrefOutOfOfficeReplyEnabled'>TRUE</a>"
+						+ "<a n='zimbraPrefOutOfOfficeReply'>" + autoReplyMessage + "</a>"
+						+ "<a n='zimbraPrefOutOfOfficeStatusAlertOnLogin'>TRUE</a>" + "</ModifyAccountRequest>");
+		
+		app.zPageMain.sRefreshPage();
 
 		// Client must display out of office dialog, wait for some time and take an action on it
 		SleepUtil.sleepLong();

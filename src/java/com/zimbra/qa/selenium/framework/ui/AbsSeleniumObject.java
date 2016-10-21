@@ -883,7 +883,7 @@ public abstract class AbsSeleniumObject {
 	public void sRefreshPage() throws HarnessException {
 		logger.info("Refreshing page");
 		webDriver().navigate().refresh();
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLongMedium();
 	}
 
 	public int sGetXpathCount(String xpath) throws HarnessException {
