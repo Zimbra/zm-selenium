@@ -64,6 +64,7 @@ public class CreateAppointmentWithLocation extends CalendarWorkWeekTest {
 		quickAddAppt.zNewAppointment();
 		quickAddAppt.zFill(appt);
 		quickAddAppt.zMoreDetails();
+		
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zVerifyLocation(locationName);
 		apptForm.zSubmitWithResources();

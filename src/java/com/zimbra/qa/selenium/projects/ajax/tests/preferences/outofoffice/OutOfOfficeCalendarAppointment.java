@@ -38,8 +38,8 @@ public class OutOfOfficeCalendarAppointment extends AjaxCommonTest {
 
 	
 	@Bugs(ids = "78890")
-	@Test( description = "Set out of office along with calendar appointment and verify all-day appointment creation", 
-			groups = { "functional" })
+	@Test(description = "Set out of office along with calendar appointment and verify all-day appointment creation", priority = 4, groups = {
+			"functional" })
 	
 	public void OutOfOfficeCalendarAppointment_01() throws HarnessException {
 
@@ -67,9 +67,5 @@ public class OutOfOfficeCalendarAppointment extends AjaxCommonTest {
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
 		ZAssert.assertEquals(app.zGetActiveAccount().soapMatch("//mail:GetAppointmentResponse//mail:comp", "allDay", "1"), true, "");
-		
-		// Verify appointment exists in current view
-		app.zPageCalendar.zNavigateTo();
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 	}
 }

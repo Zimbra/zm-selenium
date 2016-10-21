@@ -145,18 +145,15 @@ public class PageMain extends AbsTab {
 			((AppAjaxClient) MyApplication).zPageLogin.zNavigateTo();
 		}
 		((AppAjaxClient) MyApplication).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
-
-		zWaitForActive(100000);
+		this.zWaitForBusyOverlay();
+		SleepUtil.sleepLongMedium();
 
 	}
 
 	public void zLogout() throws HarnessException {
-		logger.debug("logout()");
-
-		tracer.trace("Logout of the " + MyApplication.myApplicationName());
+		logger.info("Logout of the " + MyApplication.myApplicationName());
 
 		zNavigateTo();
-
 		SleepUtil.sleepSmall();
 		getElement("css=td[class='DwtLinkButtonDropDownArrowTd']").click();
 		this.zWaitForBusyOverlay();
@@ -323,8 +320,17 @@ public class PageMain extends AbsTab {
 			zIndex = dialogLocators.get(i).getCssValue("z-index");
 			if (!zIndex.equals("auto") && !zIndex.equals("") && !zIndex.equals(null)
 					&& Integer.parseInt(zIndex) >= 700) {
-				logger.info("Found active dialog");
+				logger.info("##### Found active dialog #####");
 				sRefresh();
+				dialogLocators = webDriver().findElements(By.cssSelector("div[class^='Dwt'][class$='Dialog']"));
+				for (int j = totalDialogs - 1; j >= 0; j--) {
+					zIndex = dialogLocators.get(i).getCssValue("z-index");
+					if (!zIndex.equals("auto") && !zIndex.equals("") && !zIndex.equals(null)
+							&& Integer.parseInt(zIndex) >= 700) {
+						throw new HarnessException("##### Active dialog found after reloading zimbra #####");
+					}
+				}
+				logger.info("Navigate to " + appTab.myPageName());
 				appTab.zNavigateTo();
 				return;
 			}
