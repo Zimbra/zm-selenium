@@ -327,7 +327,7 @@ public class PageMain extends AbsTab {
 					zIndex = dialogLocators.get(i).getCssValue("z-index");
 					if (!zIndex.equals("auto") && !zIndex.equals("") && !zIndex.equals(null)
 							&& Integer.parseInt(zIndex) >= 700) {
-						throw new HarnessException("##### Active dialog found after reloading zimbra #####");
+						throw new HarnessException("##### Active dialog found after reloading page #####");
 					}
 				}
 				logger.info("Navigate to " + appTab.myPageName());

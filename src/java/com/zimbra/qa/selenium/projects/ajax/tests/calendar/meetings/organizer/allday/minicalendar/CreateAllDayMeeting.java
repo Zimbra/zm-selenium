@@ -35,6 +35,7 @@ public class CreateAllDayMeeting extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
+	
 	@Bugs(ids = "81945")
 	@Test( description = "Create all day meeting invite from mini-calendar's date using quick add dialog",
 			groups = { "smoke" } )
@@ -42,13 +43,6 @@ public class CreateAllDayMeeting extends CalendarWorkWeekTest {
 	public void CreateAllDayMeeting_01() throws HarnessException {
 		
 		allDayTest = true;
-		
-		ZimbraAdminAccount.GlobalAdmin().soapSend(
-                "<AddAccountLoggerRequest xmlns='urn:zimbraAdmin'>"
-	          +           "<account by='name'>"+ app.zGetActiveAccount().EmailAddress + "</account>"
-	          +           "<logger category='zimbra.soap' level='trace'/>"
-	          +     "</AddAccountLoggerRequest>");
-		app.zGetActiveAccount().accountIsDirty = true;
 		
 		// Create appointment
 		AppointmentItem appt = new AppointmentItem();
@@ -101,8 +95,6 @@ public class CreateAllDayMeeting extends CalendarWorkWeekTest {
 		// Verify location free/busy status shows as ptst=AC	
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify that the location status shows as 'ACCEPTED'");
-		
-		//ExecuteHarnessMain.ResultListener.captureMailboxLog();
 	}
 
 }
