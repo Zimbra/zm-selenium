@@ -57,10 +57,7 @@ public class ChangePassword extends AdminCommonTest {
 		String account = ZimbraAccount.AccountZWC().EmailAddress;
 		
 		//Refresh the account list
-		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-		
-		//Navigate to manage accounts page
-		app.zPageManageAccounts.zNavigateTo();
+		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");		
 
 		//Click on account to be Edited.
 		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account);
@@ -113,9 +110,6 @@ public class ChangePassword extends AdminCommonTest {
 		
 		//Refresh the account list
 		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-		
-		//Navigate to manage accounts page
-		app.zPageManageAccounts.zNavigateTo();
 		
 		//Right Click on account to be Edited.
 		app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, new_account);

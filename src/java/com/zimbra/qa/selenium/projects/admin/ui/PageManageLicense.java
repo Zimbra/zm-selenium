@@ -19,7 +19,6 @@
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
-import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
@@ -49,7 +48,6 @@ public class PageManageLicense extends AbsTab {
 		public static final String UPLOAD_LICENSE ="css=input[name='licenseFile']";
 		public static final String NEXT_BUTTON="css=td[id$='_button12_title']";
 		public static final String INSTALL_COMMERCIAL_CERTIFICATE="css=input[id='zdlgv__UNDEFINE_comm']";
-
 	}
 
 
@@ -104,7 +102,7 @@ public class PageManageLicense extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.CONFIGURE_ICON,"");
-		sIsElementPresent(Locators.GLOBAL_SETTING);
+		SleepUtil.sleepMedium();		
 		zClickAt(Locators.GLOBAL_SETTING, "");
 		zClickAt(Locators.GLOBAL_SETTINGS_LICENSE, "");
 	
@@ -125,11 +123,6 @@ public class PageManageLicense extends AbsTab {
 	@Override
 	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
 			throws HarnessException {
-		return null;
-	}
-
-	@Override
-	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		return null;
 	}
 	
@@ -205,7 +198,8 @@ public class PageManageLicense extends AbsTab {
 
 	}
 	
-	public AbsPage zToolbarPressButton(Button button, IItem item) throws HarnessException {
+	@Override
+	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
 
 		tracer.trace("Press the "+ button +" button");
