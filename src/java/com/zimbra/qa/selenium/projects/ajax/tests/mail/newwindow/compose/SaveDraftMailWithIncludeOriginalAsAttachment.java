@@ -17,6 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.compose;
 
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -34,6 +36,7 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 	}
 
 	
+	@Bugs( ids = "104334")
 	@Test( description = "Reply to a mail with include original as attachment, format as HTML and save draft",
 			groups = { "functional" })
 	
@@ -99,6 +102,7 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 	}
 
 	
+	@Bugs( ids = "104334")
 	@Test( description = "Reply to a mail with include original as attachment, format as text and save draft",
 			groups = { "functional" })
 	

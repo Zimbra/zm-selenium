@@ -864,6 +864,7 @@ public abstract class AbsSeleniumObject {
 
 
 	public void sRefresh() throws HarnessException {
+		logger.info("Refreshing UI");
 		webDriver().navigate().refresh();
 
 		if (ConfigProperties.getAppType().equals("AJAX")) {
@@ -880,6 +881,7 @@ public abstract class AbsSeleniumObject {
 	}
 
 	public void sRefreshPage() throws HarnessException {
+		logger.info("Refreshing page");
 		webDriver().navigate().refresh();
 		SleepUtil.sleepMedium();
 	}
