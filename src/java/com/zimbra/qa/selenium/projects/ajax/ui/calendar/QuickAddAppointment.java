@@ -112,6 +112,8 @@ public class QuickAddAppointment extends AbsTab {
 	}
 
 	public void zFillField(Field field, String value) throws HarnessException {
+		
+		SleepUtil.sleepSmall();
 
 		tracer.trace("Set " + field + " to " + value);
 
@@ -185,8 +187,7 @@ public class QuickAddAppointment extends AbsTab {
 	public void zNewAppointment() throws HarnessException {
 		this.zRightClickAt(
 				"css=div[class='calendar_hour_scroll'] td[class='calendar_grid_body_time_td'] div[id$='_10']", "");
-		SleepUtil.sleepSmall();
-		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_APPT_title']", "");
+		this.sClickAt("css=div[id^='POPUP_'] td[id='NEW_APPT_title']", "");
 		SleepUtil.sleepMedium();
 	}
 
@@ -195,55 +196,57 @@ public class QuickAddAppointment extends AbsTab {
 			this.sDoubleClick("css=td[class='calendar_month_cells_td']");
 		} else if (action.equals(Action.A_RIGHTCLICK)) {
 			this.zRightClickAt("css=td[class='calendar_month_cells_td']", "");
-			SleepUtil.sleepSmall();
-			this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_APPT_title']", "");
+			this.sClick("css=div[id^='POPUP_'] td[id='NEW_APPT_title']");
 		}
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 	}
 
 	public void zNewAppointmentUsingMiniCal() throws HarnessException {
 		this.sClick("css=div[class='DwtCalendar'] td[class='DwtCalendarButton'] div[class='ImgFwdArrowSmall']");
-		if (this.sIsElementPresent("css=td[class='DwtCalendarDay']:contains('25')"))
+		if (this.sIsElementPresent("css=td[class='DwtCalendarDay']:contains('25')")) {
 			this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('25')", "");
-		else
+		} else {
 			this.zRightClickAt("css=td[class='DwtCalendarDay DwtCalendarDay-selected']:contains('25')", "");
-		SleepUtil.sleepMedium();
-		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_APPT_title']", "");
+		}
+		this.sClick("css=div[id^='POPUP_'] td[id='NEW_APPT_title']");
 		SleepUtil.sleepMedium();
 	}
 
 	public void zNewAllDayAppointment() throws HarnessException {
 		this.zRightClickAt(
 				"css=div[class='calendar_hour_scroll'] td[class='calendar_grid_body_time_td'] div[id$='_10']", "");
-		SleepUtil.sleepSmall();
-		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_ALLDAY_APPT_title']", "");
+		this.sClick("css=div[id^='POPUP_'] td[id='NEW_ALLDAY_APPT_title']");
 		SleepUtil.sleepMedium();
 	}
 
 	public void zNewAllDayAppointmentUsingMiniCal() throws HarnessException {
 		this.sClick("css=div[class='DwtCalendar'] td[class='DwtCalendarButton'] div[class='ImgFwdArrowSmall']");
-		if (this.sIsElementPresent("css=td[class='DwtCalendarDay']:contains('25')"))
+		if (this.sIsElementPresent("css=td[class='DwtCalendarDay']:contains('25')")) {
 			this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('25')", "");
-		else
+		} else {
 			this.zRightClickAt("css=td[class='DwtCalendarDay DwtCalendarDay-selected']:contains('25')", "");
-		SleepUtil.sleepMedium();
-		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_ALLDAY_APPT_title']", "");
+		}
+		this.sClick("css=div[id^='POPUP_'] td[id='NEW_ALLDAY_APPT_title']");
 		SleepUtil.sleepMedium();
 	}
 
 	public void zVerifyQuickAddDialog(Boolean status) throws HarnessException {
+		SleepUtil.sleepSmall();
 		ZAssert.assertEquals(this.sIsElementPresent(Locators.QuickAddDialog), status,
 				"Verify quick add appt dialog status");
+		this.sClick(Locators.CancelButtonQuickAdd);
+		SleepUtil.sleepSmall();
 	}
 
 	public void zVerifyConfigureReminderLink(Boolean status) throws HarnessException {
+		SleepUtil.sleepSmall();
 		ZAssert.assertEquals(this.sIsElementPresent(Locators.ConfigureReminder), status,
 				"Verify configure reminder link");
 	}
 
 	public void zMoreDetails() throws HarnessException {
-		SleepUtil.sleepMedium(); // see intermittent bug 81945
-		this.zClickAt(Locators.MoreDetailsButtonQuickAdd, "");
+		SleepUtil.sleepSmall();
+		this.sClick(Locators.MoreDetailsButtonQuickAdd);
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepLongMedium();
 	}

@@ -144,10 +144,8 @@ public class PageMain extends AbsTab {
 		if (!((AppAjaxClient) MyApplication).zPageLogin.zIsActive()) {
 			((AppAjaxClient) MyApplication).zPageLogin.zNavigateTo();
 		}
+		
 		((AppAjaxClient) MyApplication).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
-		this.zWaitForBusyOverlay();
-		SleepUtil.sleepLongMedium();
-
 	}
 
 	public void zLogout() throws HarnessException {
@@ -323,8 +321,9 @@ public class PageMain extends AbsTab {
 				logger.info("##### Found active dialog #####");
 				sRefresh();
 				dialogLocators = webDriver().findElements(By.cssSelector("div[class^='Dwt'][class$='Dialog']"));
+				totalDialogs = dialogLocators.size();
 				for (int j = totalDialogs - 1; j >= 0; j--) {
-					zIndex = dialogLocators.get(i).getCssValue("z-index");
+					zIndex = dialogLocators.get(j).getCssValue("z-index");
 					if (!zIndex.equals("auto") && !zIndex.equals("") && !zIndex.equals(null)
 							&& Integer.parseInt(zIndex) >= 700) {
 						throw new HarnessException("##### Active dialog found after reloading page #####");
