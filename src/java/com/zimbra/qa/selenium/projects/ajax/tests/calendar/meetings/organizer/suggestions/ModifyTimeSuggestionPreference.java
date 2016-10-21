@@ -41,8 +41,8 @@ public class ModifyTimeSuggestionPreference extends CalendarWorkWeekTest {
 		// Create appointment data
 		Calendar now = this.calendarWeekDayUTC;
 		AppointmentItem appt = new AppointmentItem();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 6, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		
 		String apptSubject, apptAttendee, apptContent;
 		apptSubject = ConfigProperties.getUniqueString();

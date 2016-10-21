@@ -1319,7 +1319,7 @@ public abstract class AbsSeleniumObject {
 		    }
 		    we.clear();
 		    we.sendKeys(text);
-		    SleepUtil.sleepVerySmall();
+
 
 		} catch (WebDriverException e) {
 			throw new HarnessException(e);
@@ -1338,7 +1338,6 @@ public abstract class AbsSeleniumObject {
 		    	we = getElement(locator);
 		    }
 		    we.sendKeys(text);
-		    SleepUtil.sleepVerySmall();
 
 		} catch (WebDriverException e) {
 			throw new HarnessException(e);

@@ -118,42 +118,27 @@ public class QuickAddAppointment extends AbsTab {
 		String locator = null;
 		String isRepeat = null;
 
-		// subject
 		if (field == Field.Subject) {
-
 			locator = Locators.SubjectFieldQuickAdd;
 
-			// location
 		} else if (field == Field.Location) {
-
 			locator = Locators.LocationFieldQuickAdd;
 
-			// start date
 		} else if (field == Field.StartDate) {
-
 			locator = Locators.StartDateFieldQuickAdd;
 
-			// start time
 		} else if (field == Field.StartTime) {
-
 			locator = Locators.StartTimeFieldQuickAdd;
 
-			// end date
 		} else if (field == Field.EndDate) {
-
 			locator = Locators.EndDateFieldQuickAdd;
 
-			// end time
 		} else if (field == Field.EndTime) {
-
 			locator = Locators.EndTimeFieldQuickAdd;
 
-			// display
 		} else if (field == Field.Display) {
-
 			locator = Locators.DisplayDropdpwnQuickAdd;
 
-			// calendar folder
 		} else if (field == Field.Calendar) {
 
 			locator = Locators.CalendarDropdownQuickAdd;
@@ -164,7 +149,6 @@ public class QuickAddAppointment extends AbsTab {
 
 			return;
 
-			// repeat
 		} else if (field == Field.Repeat) {
 
 			isRepeat = value;
@@ -178,7 +162,6 @@ public class QuickAddAppointment extends AbsTab {
 			throw new HarnessException("locator was null for field " + field);
 		}
 
-		// Make sure the button exists
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
@@ -192,12 +175,10 @@ public class QuickAddAppointment extends AbsTab {
 			this.sFocus(locator);
 			this.zClickAt(locator, "");
 			this.sTypeDateTime(locator, value);
-			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 		} else {
 			this.clearField(locator);
 			this.sType(locator, value);
 		}
-		SleepUtil.sleepSmall();
 		this.zWaitForBusyOverlay();
 	}
 
@@ -264,13 +245,12 @@ public class QuickAddAppointment extends AbsTab {
 		SleepUtil.sleepMedium(); // see intermittent bug 81945
 		this.zClickAt(Locators.MoreDetailsButtonQuickAdd, "");
 		this.zWaitForBusyOverlay();
-		SleepUtil.sleepLong();
+		SleepUtil.sleepLongMedium();
 	}
 
 	public void zFill(IItem item) throws HarnessException {
 
 		logger.info(myPageName() + ".zFill(ZimbraItem)");
-		logger.info(item.prettyPrint());
 
 		// Make sure the item is a MailItem
 		if (!(item instanceof AppointmentItem)) {
