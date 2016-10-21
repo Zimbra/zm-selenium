@@ -191,7 +191,7 @@ public class EditCos extends AdminCommonTest {
 						"<cos by='name'>"+editedName+"</cos>"+
 				"</GetCosRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
-		ZAssert.assertNotNull(response, "Verify the cos is edited successfully");	
+		ZAssert.assertNotNull(response, "Verify the cos is edited successfully");
 		app.zPageMain.logout();	
 	}
 
@@ -226,8 +226,7 @@ public class EditCos extends AdminCommonTest {
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
 		// Click on cos
-		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, cos.getName());
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
+		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, cos.getName());		
 
 		// Click on Edit button
 		FormEditCos form = (FormEditCos) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);

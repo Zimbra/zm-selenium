@@ -38,9 +38,9 @@ public class PageSearchResults extends AbsTab {
 		public static final String SEARCH_BUTTON="css=td.xform_container div.ImgSearch";
 		public static final String DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String DELETE_BUTTON_DISABLED="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete ZDisabledImage']";
-		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__SCHLV__MENU_POP'] td[id^='zmi__SCHLV__DELETE'][id$='title']";
+		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__SCHLV__MENU_POP'] td[id='zmi__SCHLV__DELETE_title']";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON_DISABLED="css=div[id='zm__SCHLV__MENU_POP'] div[class='ImgDelete ZDisabledImage']";
-		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id='zm__SCHLV__MENU_POP'] td[id^='zmi__SCHLV__EDIT'][id$='title']";
+		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id='zm__SCHLV__MENU_POP'] td[id='zmi__SCHLV__EDIT_title']";
 		public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP']  td[id$='__EDIT_title']";
 		public static final String GEAR_ICON="css=div.ImgConfigure";
 		public static final String zArrowSelectSearchObject		="css=td[id*='dropdown'] div[class='ImgSelectPullDownArrow']";

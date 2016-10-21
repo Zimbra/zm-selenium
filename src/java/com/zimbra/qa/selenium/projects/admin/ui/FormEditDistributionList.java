@@ -20,6 +20,7 @@ import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsForm;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 
 public class FormEditDistributionList extends AbsForm {
@@ -95,6 +96,7 @@ public class FormEditDistributionList extends AbsForm {
 			}
 		}
 		sType(Locators.NAME_TEXT_BOX+"name_2", name);
+		SleepUtil.sleepVerySmall();
 		}
 	}
 
