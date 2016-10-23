@@ -18,6 +18,8 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 
 import java.util.Calendar;
 import org.testng.annotations.*;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
@@ -33,6 +35,7 @@ public class SuggestALocation extends CalendarWorkWeekTest {
 	}
 	
 	
+	@Bugs(ids = "107050")
 	@Test( description = "Suggest a free location while creating appointment from quick add dialog",
 			groups = { "functional" })
 	

@@ -46,14 +46,12 @@ public class DialogRenameFolder extends AbsDialog {
 
 		String locator = "css=input[id='"+ Locators.zNewFolderNameFieldId +"']";
 		
-		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("Rename locator "+ locator +" is not present");
 		}
 		
-		this.zWaitForBusyOverlay();
-		SleepUtil.sleepSmall();
 		this.clearField(locator);
+		this.sFocus(locator);
 		this.sType(locator, name);
 		SleepUtil.sleepSmall();
 	}
@@ -77,12 +75,11 @@ public class DialogRenameFolder extends AbsDialog {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 		
-		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
 		}
 		
-		this.zClick(locator);
+		this.sClick(locator);
 		zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
 		
@@ -117,7 +114,4 @@ public class DialogRenameFolder extends AbsDialog {
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 	}
-
-
-
 }

@@ -36,7 +36,7 @@ public class CreateAllDayMeeting extends CalendarWorkWeekTest {
 	}
 	
 	
-	@Bugs(ids = "81945")
+	@Bugs(ids = "107050,81945")
 	@Test( description = "Create all day meeting invite from mini-calendar's date using quick add dialog",
 			groups = { "smoke" } )
 	

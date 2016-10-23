@@ -1320,7 +1320,6 @@ public abstract class AbsSeleniumObject {
 		    we.clear();
 		    we.sendKeys(text);
 
-
 		} catch (WebDriverException e) {
 			throw new HarnessException(e);
 		}
