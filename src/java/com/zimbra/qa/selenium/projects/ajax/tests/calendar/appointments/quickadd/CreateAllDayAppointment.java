@@ -29,10 +29,7 @@ public class CreateAllDayAppointment extends CalendarWorkWeekTest {
 	public CreateAllDayAppointment() {
 		logger.info("New "+ CreateAllDayAppointment.class.getCanonicalName());
 
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with work week view
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			private static final long serialVersionUID = -2913827779459595178L;
 		{
@@ -40,9 +37,10 @@ public class CreateAllDayAppointment extends CalendarWorkWeekTest {
 		}};
 	}
 	
+	
 	@Test( description = "Create all day appointment using quick add dialog",
-			groups = { "smoke" }
-	)
+			groups = { "smoke" } )
+	
 	public void CreateAllDayAppointment_01() throws HarnessException {
 		
 		allDayTest = true;
