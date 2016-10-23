@@ -19,6 +19,8 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.quickad
 import java.util.Calendar;
 import java.util.HashMap;
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
@@ -38,6 +40,7 @@ public class CreateAllDayAppointment extends CalendarWorkWeekTest {
 	}
 	
 	
+	@Bugs(ids = "107050")
 	@Test( description = "Create all day appointment using quick add dialog",
 			groups = { "smoke" } )
 	
