@@ -34,7 +34,7 @@ public class ViewInviteWithSchedulePolicyofLocation extends CalendarWorkWeekTest
 	}
 	
 	@Test(description = "Verify that invite appears correctly in resource's account when schedule policy is set to 'Manual accept, auto decline on conflict'",
-			groups = { "functional" })
+			groups = { "smoke" })
 	
 	public void ManualAcceptAutoDeclineOnConflict_01() throws HarnessException {
 		
@@ -59,10 +59,10 @@ public class ViewInviteWithSchedulePolicyofLocation extends CalendarWorkWeekTest
 		
 		String apptSubject, apptAttendee, apptLocation, apptContent;
 		Calendar now = this.calendarWeekDayUTC;
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee = ZimbraAccount.Account2().EmailAddress;
 		apptLocation = location.EmailAddress;
-		apptContent = "content" + ZimbraSeleniumProperties.getUniqueString();
+		apptContent = "content" + ConfigProperties.getUniqueString();
 		
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee);
@@ -74,8 +74,7 @@ public class ViewInviteWithSchedulePolicyofLocation extends CalendarWorkWeekTest
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-		apptForm.zSubmit();
-		SleepUtil.sleepVeryLong();
+		apptForm.zSubmitWithResources();
 		
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(location);
@@ -108,7 +107,7 @@ public class ViewInviteWithSchedulePolicyofLocation extends CalendarWorkWeekTest
 	}
 
 	@Test(description = "Verify that invite appears correctly in resource's account when schedule policy is set to 'Auto accept always'",
-			groups = { "functional" })
+			groups = { "smoke" })
 	public void AutoAcceptAlways_02() throws HarnessException {
 		
 		// Create appointment data
@@ -132,10 +131,10 @@ public class ViewInviteWithSchedulePolicyofLocation extends CalendarWorkWeekTest
 		
 		String apptSubject, apptAttendee, apptLocation, apptContent;
 		Calendar now = this.calendarWeekDayUTC;
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee = ZimbraAccount.Account2().EmailAddress;
 		apptLocation = location.EmailAddress;
-		apptContent = "content" + ZimbraSeleniumProperties.getUniqueString();
+		apptContent = "content" + ConfigProperties.getUniqueString();
 		
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee);
@@ -147,8 +146,7 @@ public class ViewInviteWithSchedulePolicyofLocation extends CalendarWorkWeekTest
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-		apptForm.zSubmit();
-		SleepUtil.sleepVeryLong();
+		apptForm.zSubmitWithResources();
 		
 	    // Verify Location present in the appointment
 	    AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
@@ -175,7 +173,7 @@ public class ViewInviteWithSchedulePolicyofLocation extends CalendarWorkWeekTest
 	}
 
 	@Test(description = "Verify that invite appears correctly in resource's account when schedule policy is set to 'No auto accept or decline'",
-			groups = { "functional" })
+			groups = { "smoke" })
 	public void NoAutoAcceptOrDecline_03() throws HarnessException {
 		
 		// Create appointment data
@@ -199,10 +197,10 @@ public class ViewInviteWithSchedulePolicyofLocation extends CalendarWorkWeekTest
 		
 		String apptSubject, apptAttendee, apptLocation, apptContent;
 		Calendar now = this.calendarWeekDayUTC;
-		apptSubject = ZimbraSeleniumProperties.getUniqueString();
+		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee = ZimbraAccount.Account2().EmailAddress;
 		apptLocation = location.EmailAddress;
-		apptContent = "content" + ZimbraSeleniumProperties.getUniqueString();
+		apptContent = "content" + ConfigProperties.getUniqueString();
 		
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee);
@@ -214,8 +212,7 @@ public class ViewInviteWithSchedulePolicyofLocation extends CalendarWorkWeekTest
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-		apptForm.zSubmit();
-		SleepUtil.sleepVeryLong();
+		apptForm.zSubmitWithResources();
 		
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(location);
