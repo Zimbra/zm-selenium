@@ -174,9 +174,9 @@ public class QuickAddAppointment extends AbsTab {
 		} else if (field == Field.StartDate || field == Field.EndDate || field == Field.StartTime
 				|| field == Field.EndTime) {
 			this.clearField(locator);
-			this.sFocus(locator);
-			this.zClickAt(locator, "");
+			this.sClickAt(locator, "");
 			this.sTypeDateTime(locator, value);
+			this.zKeyboardKeyEvent(KeyEvent.VK_TAB);
 		} else {
 			this.clearField(locator);
 			this.sType(locator, value);

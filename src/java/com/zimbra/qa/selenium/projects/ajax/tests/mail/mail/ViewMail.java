@@ -17,11 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
 import java.io.File;
-
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-
-import com.zimbra.common.zclient.ZClientException;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -29,8 +26,8 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
+
 @SuppressWarnings("unused")
 public class ViewMail extends PrefGroupMailByMessageTest {
 
@@ -45,6 +42,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	@Bugs( ids = "57047" )
 	@Test( description = "Receive a mail with Sender: specified",
 			groups = { "functional" })
+	
 	public void ViewMail_01() throws HarnessException {
 		
 		final String subject = "subject12996131112962";
@@ -56,8 +54,6 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 			injected = true;
 		}
 
-
-		
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
 		ZAssert.assertEquals(from, mail.dFromRecipient.dEmailAddress, "Verify the from matches");
@@ -71,19 +67,18 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 
 		// Verify the To, From, Subject, Body
 		//ZAssert.assertEquals(actual.zGetMailProperty(Field.OnBehalfOf), from, "Verify the On-Behalf-Of matches the 'From:' header");
-		/* TODO: ... debugging to be removed */
 		String fromLocator = "css=div[id='zv__TV-main__MSG'] td[id$='_from'] span:nth-child(3)>span[class='addrBubble']";
 		ZAssert.assertEquals(app.zPageMail.sGetText(fromLocator).trim(), from, "Verify the On-Behalf-Of matches the 'From:' header");
 		
 		//ZAssert.assertEquals(actual.zGetMailProperty(Field.From), sender, "Verify the From matches the 'Sender:' header");
-		/* TODO: ... debugging to be removed */
 		String senderLocator = "css=div[id='zv__TV-main__MSG'] td[id$='_from'] span[class='addrBubble']";
 		ZAssert.assertEquals(app.zPageMail.sGetText(senderLocator).trim(), sender, "Verify the From matches the 'Sender:' header");
-		
 	}
 
+	
 	@Test( description = "Receive a mail with Reply-To: specified",
 			groups = { "functional" })
+	
 	public void ViewMail_02() throws HarnessException {
 		
 		final String subject = "subject13016959916873";
@@ -94,8 +89,6 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 			LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFolder));
 			injected = true;
 		}
-
-
 		
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -110,20 +103,20 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 
 		// Verify the To, From, Subject, Body
 		//ZAssert.assertEquals(actual.zGetMailProperty(Field.ReplyTo), replyto, "Verify the Reply-To matches the 'Reply-To:' header");
-		/* TODO: ... debugging to be removed */
 		String replytoLocator = "css=div[id='zv__TV-main__MSG'] tr[id$='_reply to'] td.LabelColValue span[class='addrBubble'] ";
 		ZAssert.assertEquals(app.zPageMail.sGetText(replytoLocator).trim(), replyto, "Verify the Reply-To matches the 'Reply-To:' header");
 		
 		//ZAssert.assertEquals(actual.zGetMailProperty(Field.From), from, "Verify the From matches the 'From:' header");
-		/* TODO: ... debugging to be removed */
 		String fromLocator = "css=div[id='zv__TV-main__MSG'] td[id$='_from'] span[class='addrBubble']";
 		ZAssert.assertEquals(app.zPageMail.sGetText(fromLocator).trim(), from, "Verify the From matches the 'From:' header");
 	
 	}
 
+	
 	@Bugs( ids = "61575")
 	@Test( description = "Receive a mail with Resent-From: specified",
 			groups = { "functional" })
+	
 	public void ViewMail_03() throws HarnessException {
 		
 		final String subject = "subject13147509564213";
@@ -134,8 +127,6 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 			LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFolder));
 			injected = true;
 		}
-
-
 		
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -149,22 +140,19 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 
 		// Verify the To, From, Subject, Body
 		//ZAssert.assertEquals(actual.zGetMailProperty(Field.ResentFrom), resentfrom, "Verify the Resent-From matches the 'Resent-From:' header");
-		/* TODO: ... debugging to be removed */
 		String resentfromLocator = "css=div[id='zv__TV-main__MSG'] td[id$='_from'] span[class='addrBubble']span:contains(resentfrom)";
 		ZAssert.assertEquals(app.zPageMail.sGetText(resentfromLocator).trim(), resentfrom, "Verify the From matches the 'From:' header");
 
 		//ZAssert.assertEquals(actual.zGetMailProperty(Field.From), from, "Verify the From matches the 'From:' header");
-		/* TODO: ... debugging to be removed */
 		String fromLocator = "css=div[id='zv__TV-main__MSG'] td[id$='_from'] span[class='addrBubble']";
 		ZAssert.assertEquals(app.zPageMail.sGetText(fromLocator).trim(), from, "Verify the From matches the 'From:' header");
-
-
-		
 	}
 
+	
 	@Bugs( ids = "102049")
 	@Test( description = "Receive a mail with only audio/wav content",
 			groups = { "functional" })
+	
 	public void ViewMail_04() throws HarnessException {
 		
 		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug64444";
@@ -174,8 +162,6 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
 
-
-		
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject +")");
 		ZAssert.assertNotNull(mail, "Verify message is received");
 		
@@ -188,14 +174,13 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		// Verify the To, From, Subject, Body
 		ZAssert.assertEquals(actual.zGetMailProperty(Field.From), from, "Verify the From matches the 'From:' header");
 		ZAssert.assertEquals(actual.zGetMailProperty(Field.To), to, "Verify the From matches the 'From:' header");
-		
-
-		
 	}
 
+	
 	@Bugs( ids = "66565")
 	@Test( description = "Receive a mail formatting in the subject",
 			groups = { "functional" })
+	
 	public void ViewMail_05() throws HarnessException {
 		
 		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug66565";
@@ -203,8 +188,6 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String subjectText = "<u><i> subject13197565510464 </i></u>";
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
-
-
 		
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject +")");
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -221,15 +204,13 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		String locator = "css=div[id='zv__TV-main__MSG'] tr[id$='_hdrTableTopRow'] td[class~='SubjectCol']";
 		ZAssert.assertFalse( actual.sIsElementPresent(locator + " u"), "Verify the <u> element is not in the DOM");
 		ZAssert.assertFalse( actual.sIsElementPresent(locator + " i"), "Verify the <i> element is not in the DOM");
-
-
-
-		
 	}
 
+	
 	@Bugs( ids = "65933,65623")
 	@Test( description = "Verify message with only HTML part",
 			groups = { "functional" })
+	
 	public void ViewMail_06() throws HarnessException {
 
 		// Inject the sample mime
@@ -237,7 +218,6 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		String content = "Welcome to the NetWorker Listserv list";
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65933";
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
-
 		
 		// Refresh the inbox
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -247,12 +227,13 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 
 		// Verify the To, From, Subject, Body
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), content, "Verify the body displays correctly");
-		
 	}
 
+	
 	@Bugs( ids = "65933,65623")
 	@Test( description = "Verify message with only HTML part and charset",
 			groups = { "functional" })
+	
 	public void ViewMail_07() throws HarnessException {
 
 		// Inject the sample mime
@@ -261,7 +242,6 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65623";
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
 
-		
 		// Refresh the inbox
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -270,12 +250,13 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 
 		// Verify the To, From, Subject, Body
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), content, "Verify the body displays correctly");
-		
 	}
+	
 
 	@Bugs( ids = "65079")
 	@Test( description = "Verify message with only HTML part and charset",
 			groups = { "functional" })
+	
 	public void ViewMail_08() throws HarnessException {
 
 		// Inject the sample mime
@@ -284,7 +265,6 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug65079";
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
 
-		
 		// Refresh the inbox
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -293,11 +273,12 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 
 		// Verify the To, From, Subject, Body
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), content, "Verify the body displays correctly");
-		
 	}
 
+	
 	@Test( description = "zimbraPrefMessageViewHtmlPreferred=TRUE: Receive message with text only parts - should be rendered as text",
 			groups = { "functional" })
+	
 	public void ViewMail_09() throws HarnessException {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email04/mimeTextOnly.txt";
@@ -306,9 +287,6 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
-
-		
-		
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -317,11 +295,12 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 
 		// Verify the To, From, Subject, Body
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), content, "Verify the text content");
-		
 	}
+	
 
 	@Test( description = "zimbraPrefMessageViewHtmlPreferred=TRUE: Receive message with html only parts - should be rendered as html",
 			groups = { "functional" })
+	
 	public void ViewMail_10() throws HarnessException {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email04/mimeHtmlOnly.txt";
@@ -330,9 +309,6 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
-
-		
-		
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -341,12 +317,12 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 
 		// Verify the To, From, Subject, Body
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), content, "Verify the text content");
-		
-		
 	}
+	
 	
 	@Test( description = "zimbraPrefMessageViewHtmlPreferred=TRUE: Receive message with text and html  parts - should be rendered as html",
 			groups = { "functional" })
+	
 	public void ViewMail_11() throws HarnessException {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email04/mimeTextAndHtml.txt";
@@ -355,9 +331,6 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
-
-		
-		
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -366,14 +339,13 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 
 		// Verify the To, From, Subject, Body
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), content, "Verify the text content");
-		
-		
 	}
 
 
 	@Bugs(ids = "67854")
 	@Test( description = "Verify empty message shows 'no content'",
 			groups = { "functional" })
+	
 	public void ViewMail_12() throws HarnessException {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug67854";
@@ -382,9 +354,6 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
-
-		
-		
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -399,12 +368,13 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		
 		// Bug 67854: Verify the Content does not show HTML
 		ZAssert.assertStringDoesNotContain(body, "&lt;table", "Verify the content does not contain HTML");
-
 	}
+	
 
 	@Bugs(ids = "72248")
 	@Test( description = "Verify multipart/alternative with only 1 part",
 			groups = { "functional" })
+	
 	public void ViewMail_13() throws HarnessException {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug72248";
@@ -413,9 +383,6 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
-
-		
-		
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -427,12 +394,12 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		
 		// Verify the Content shows "no content"
 		ZAssert.assertStringContains(body, content, "Verify the text content");
-		
-
 	}
 
+	
 	@Test( description = "Verify multipart/alternative with text and html parts",
 			groups = { "functional" })
+	
 	public void ViewMail_14() throws HarnessException {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug72233";
@@ -453,44 +420,35 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		
 		// Verify the Content shows correctly
 		ZAssert.assertStringContains(body, htmlcontent, "Verify the html content");
-		
-
 	}
 
-	// See also 
-	// com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.trustedaddresses.TrustedEmailAddrMsgView.TrustedEmailAddrMsgView_01
-	// et. al.
 	
 	@Test( description = "View a message with external images",
 			groups = { "functional" })
-	public void ViewMail_20() throws HarnessException {
+	
+	public void ViewMail_15() throws HarnessException {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/externalImage01/externalimage01.txt";
 		final String subject = "externalimage01";		
 		
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 
-
-		
-		
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		
 		// Verify Warning info bar with other links
-
 		ZAssert.assertTrue(app.zPageMail.zHasWDDLinks(), "Verify display images link");
-		
-
 	}
+	
+	
 	@Bugs(ids = "96820")
 	@Test( description = "View very large message using 'View entire message' link",
-			groups = { "functional" }
-			)
-	public void ViewMail_21() throws HarnessException {
+			groups = { "functional" } )
+	
+	public void ViewMail_16() throws HarnessException {
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug96820/Bug96820_VeryLargeMessage.txt";
 		final String subject = "Very large message";
@@ -504,7 +462,6 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		// Select the message so that it shows in the reading pane
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
-		
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(Locators.zViewEntireMessageLink), "Verify Display entire message link is displayed");
 		app.zPageMail.sClick(Locators.zViewEntireMessageLink,(WebElement[]) null);
 		SleepUtil.sleepVeryLong();
@@ -515,7 +472,6 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		// Verify that Entire content is displayed		
 		SleepUtil.sleepVeryLong();
 		ZAssert.assertTrue(actual.zGetMailProperty(Field.Body).contains(testString), "Verify that entire message is displayed");
-		
 	}
 
 }
