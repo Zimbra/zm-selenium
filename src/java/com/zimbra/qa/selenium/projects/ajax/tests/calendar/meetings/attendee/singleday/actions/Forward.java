@@ -22,6 +22,7 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
+import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -82,9 +83,7 @@ public class Forward extends CalendarWorkWeekTest {
         FormApptNew form = new FormApptNew(app);
         form.zFillField(Field.To, attendee2);
         form.zFillField(Field.Body, ForwardContent);
-        app.zPageCalendar.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepLong();
-		
+        form.zSubmit();
 		// Verify the new invitation appears in the inbox
 		ZimbraAccount.AccountB().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -248,7 +247,7 @@ public class Forward extends CalendarWorkWeekTest {
 	
 	@Bugs(ids="100340")
 	@Test( description = "forwarding invite shows html source in meeting notes section",
-			groups = { "functional1" })
+			groups = { "functional" })
 			
 	public void ForwardMeeting_04() throws HarnessException {
 		
@@ -287,12 +286,10 @@ public class Forward extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.To, attendee2);
 		apptForm.zSubmit();
 		
-		// Logout and login as AccountB
-		app.zPageMain.zLogout();
-		app.zPageLogin.zLogin(ZimbraAccount.Account3());
-		
-		// Verify mail exists
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists("Fwd: " + apptSubject), "Verify message displayed in current view");
+		// Verify the attendee receives the invitation
+		MailItem invite = MailItem.importFromSOAP(ZimbraAccount.Account3(), "subject:("+ apptSubject +")");
+		ZAssert.assertNotNull(invite, "Verify the invite is received");
+		ZAssert.assertEquals(invite.dSubject, apptSubject, "Subject: Verify the appointment data");
 	}
 
 }
