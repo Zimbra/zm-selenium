@@ -82,7 +82,8 @@ public class Forward extends CalendarWorkWeekTest {
         FormApptNew form = new FormApptNew(app);
         form.zFillField(Field.To, attendee2);
         form.zFillField(Field.Body, ForwardContent);
-        form.zSubmit();
+        app.zPageCalendar.zToolbarPressButton(Button.B_SEND);
+        SleepUtil.sleepLong();
 		
 		// Verify the new invitation appears in the inbox
 		ZimbraAccount.AccountB().soapSend(
