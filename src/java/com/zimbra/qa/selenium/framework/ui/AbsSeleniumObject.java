@@ -54,6 +54,7 @@ import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import org.openqa.selenium.interactions.Mouse;
@@ -89,11 +90,11 @@ public abstract class AbsSeleniumObject {
 	protected static final int LoadDelay = 30000;
 	protected static Logger logger = LogManager.getLogger(AbsSeleniumObject.class);
 	protected static final Logger tracer = LogManager.getLogger(ExecuteHarnessMain.TraceLoggerName);
-	
+
 	public AbsSeleniumObject() {
 		logger.info("new " + AbsSeleniumObject.class.getCanonicalName());
 	}
-	
+
 	protected WebDriver webDriver() {
 		return ClientSessionFactory.session().webDriver();
 	}
@@ -208,8 +209,8 @@ public abstract class AbsSeleniumObject {
 	    	throw new HarnessException("Unable to clickAt on locator " + locator, ex);
 	    }
 	}
-	
-	
+
+
 	public void zClick(String locator, WebElement... elements) throws HarnessException {
 		sClick(locator, elements);
 	}
@@ -575,7 +576,7 @@ public abstract class AbsSeleniumObject {
 	public void sWaitForPageToLoad() throws HarnessException {
 		String timeout = ConfigProperties.getStringProperty("selenium.maxpageload.msec", "20000");
 		logger.info("waitForPageToLoad(" + timeout + ")");
-		
+
 		try {
 			Wait<WebDriver> wait = new FluentWait<WebDriver>(webDriver()).withTimeout(10, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
 
@@ -863,17 +864,27 @@ public abstract class AbsSeleniumObject {
 
 
 	public void sRefresh() throws HarnessException {
-	    logger.info("refresh()");
+		logger.info("Refreshing UI");
 		webDriver().navigate().refresh();
-		if (ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("usLabDomain"))
-				|| ConfigProperties.getStringProperty("server.host").contains(ConfigProperties.getStringProperty("indiaLabDomain"))) {
-			zWaitTillElementPresent(PageMail.Locators.zMailTagsPane);
-		} else {
-			zWaitTillElementPresent(PageMail.Locators.zMailZimletsPane);
+
+		if (ConfigProperties.getAppType().equals("AJAX")) {
+			if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
+				zWaitTillElementPresent(PageMail.Locators.zMailZimletsPane);
+			} else {
+				zWaitTillElementPresent(PageMail.Locators.zMailTagsPane);
+			}
+
+		} else if (ConfigProperties.getAppType().equals("ADMIN")) {
+			zWaitTillElementPresent(PageMain.Locators.zHelpButton);
 		}
 		SleepUtil.sleepMedium();
 	}
 
+	public void sRefreshPage() throws HarnessException {
+		logger.info("Refreshing page");
+		webDriver().navigate().refresh();
+		SleepUtil.sleepLongMedium();
+	}
 
 	public int sGetXpathCount(String xpath) throws HarnessException {
 		int count = 0;
@@ -1308,7 +1319,6 @@ public abstract class AbsSeleniumObject {
 		    }
 		    we.clear();
 		    we.sendKeys(text);
-		    SleepUtil.sleepVerySmall();
 
 		} catch (WebDriverException e) {
 			throw new HarnessException(e);
@@ -1327,8 +1337,7 @@ public abstract class AbsSeleniumObject {
 		    	we = getElement(locator);
 		    }
 		    we.sendKeys(text);
-		    SleepUtil.sleepVerySmall();
-			
+
 		} catch (WebDriverException e) {
 			throw new HarnessException(e);
 		}
@@ -1338,19 +1347,19 @@ public abstract class AbsSeleniumObject {
 	public void sTypeKeys(String locator, String text, WebElement... elements) throws HarnessException {
 		try {
 			logger.info("sTypeKeys(" + locator + ", " + text + ")");
-	
+
 			WebElement we = null;
 			if (elements != null && elements.length > 0) {
 			    we = elements[0];
 			} else {
 			    we = getElement(locator);
 			}
-	
+
 			final Actions builder = new Actions(webDriver());
 			final Action action = builder.sendKeys(we,text).build();
 			action.perform();
 			SleepUtil.sleepVerySmall();
-			
+
 		} catch (WebDriverException e) {
 			throw new HarnessException(e);
 		}
@@ -1439,7 +1448,6 @@ public abstract class AbsSeleniumObject {
 
 
 	public void sSelectWindow(String windowID) throws HarnessException {
-		logger.info("sSelectWindow(" + windowID + ")");
 		switchTo(windowID);
 	}
 
@@ -1541,7 +1549,7 @@ public abstract class AbsSeleniumObject {
 	    (new Actions(webDriver())).dragAndDropBy(sourceElement,relative.X,relative.Y).build().perform();
 	    (new Actions(webDriver())).release(sourceElement).build().perform();
 	    this.zWaitForBusyOverlay();
-		SleepUtil.sleepMedium();		
+		SleepUtil.sleepMedium();
 	}
 
 
@@ -1977,56 +1985,52 @@ public abstract class AbsSeleniumObject {
 
 	protected boolean switchTo(String name) throws HarnessException {
 		logger.info("switchTo(" + name + ")");
-		WebDriver driver = webDriver();
+
 		String defaultContent;
 		boolean found = false;
-		SleepUtil.sleepSmall();
-		Set<String> handles = driver.getWindowHandles();
+		Set<String> handles = webDriver().getWindowHandles();
 		if (handles == null) {
-		    throw new HarnessException(" handles are null");
+			throw new HarnessException("handles are null");
 		}
 
 		try {
-		    if (name == null || name.contentEquals("null")) {
+			if (name == null || name.contentEquals("null")) {
 				LinkedHashSet<String> windowHandles = new LinkedHashSet<String>(handles);
-				driver.switchTo().window(windowHandles.iterator().next());
-				driver.switchTo().defaultContent();
-				defaultContent = driver.switchTo().defaultContent().getTitle();
-				logger.info("selecting defaultContent()" + defaultContent);
+				webDriver().switchTo().window(windowHandles.iterator().next());
+				webDriver().switchTo().defaultContent();
+				defaultContent = webDriver().switchTo().defaultContent().getTitle();
 				sWindowFocus();
 				found = true;
-		    } else {
-				logger.info("handles size: " + handles.size());
+
+			} else {
 				String url = "";
 				String windowName = null;
 				for (String handle : handles) {
-				    try {
-						windowName = driver.switchTo().window(handle).getTitle();
+					try {
+						windowName = webDriver().switchTo().window(handle).getTitle();
+						url = webDriver().getCurrentUrl();
 
-						logger.info("Switched to window: " + windowName);
-						url = driver.getCurrentUrl();
-
-					    if (windowName != null && (windowName.contentEquals(name) || url.contains("/" + name + "?"))) {
+						if (windowName != null && (windowName.contentEquals(name) || url.contains("/" + name + "?"))) {
 							found = true;
 							logger.info("Found window: " + windowName);
 							break;
-					    }
+						}
 
-				    } catch(Exception ex) {
-				    	logger.error(ex);
-				    }
+					} catch (Exception ex) {
+						logger.error(ex);
+					}
 				}
-		    }
+			}
 
-		} catch(Exception ex) {
+		} catch (Exception ex) {
 			logger.error(ex);
 
 		} finally {
-		    if (!found) {
-				defaultContent = driver.switchTo().defaultContent().getTitle();
+			if (!found) {
+				defaultContent = webDriver().switchTo().defaultContent().getTitle();
 				logger.info("back to defaultContent()" + defaultContent);
 				sWindowFocus();
-		    }
+			}
 		}
 		return found;
 	}
@@ -2039,7 +2043,7 @@ public abstract class AbsSeleniumObject {
 		for (int i = 0; i < 5; i++) {
 			try {
 				found = switchTo(name);
-			} catch(Exception ex) {
+			} catch (Exception ex) {
 				logger.error(ex);
 			}
 			if (found) {

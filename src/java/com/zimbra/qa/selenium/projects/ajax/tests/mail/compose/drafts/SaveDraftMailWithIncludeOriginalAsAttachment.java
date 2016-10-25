@@ -16,14 +16,12 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.drafts;
 
-import org.testng.SkipException;
 import org.testng.annotations.Test;
-
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.OperatingSystem;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
@@ -39,114 +37,107 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 		logger.info("New "+ SaveDraftMailWithIncludeOriginalAsAttachment.class.getCanonicalName());
 	}
 
+	
+	@Bugs( ids = "104334")
 	@Test( description = "Reply to a mail with include original as attachment, format as HTML and save draft",
 			groups = { "functional" })
 
 	public void SaveDraftMailWithIncludeOriginalAsAttachment_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		// Send a message to the account
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
+		ZimbraAccount.Account1().soapSend(
+			"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+				"<m>" +
+					"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+					"<e t='c' a='"+ ZimbraAccount.Account2().EmailAddress +"'/>" +
+					"<su>"+ subject +"</su>" +
+					"<mp ct='text/plain'>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
+					"</mp>" +
+				"</m>" +
+			"</SendMsgRequest>");
 
-			// Send a message to the account
-			String subject = "subject"+ ConfigProperties.getUniqueString();
-			String body = "body" + ConfigProperties.getUniqueString();
-			ZimbraAccount.Account1().soapSend(
-				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-					"<m>" +
-						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-						"<e t='c' a='"+ ZimbraAccount.Account2().EmailAddress +"'/>" +
-						"<su>"+ subject +"</su>" +
-						"<mp ct='text/plain'>" +
-							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
-						"</mp>" +
-					"</m>" +
-				"</SendMsgRequest>");
+		// Refresh current view
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
-			// Refresh current view
-			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		// Select the item
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-			// Select the item
-			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+		// Reply the item
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
+		mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT);
+		mailform.zFillField(Field.Body, body);
+		mailform.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_FORMAT_AS_HTML);
 
-			// Reply the item
-			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
-			mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT);
-			mailform.zFillField(Field.Body, body);
-			mailform.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_FORMAT_AS_HTML);
+		// Save the message
+		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
+		SleepUtil.sleepSmall();
+		ZAssert.assertEquals(app.zPageMail.sGetXpathCount("//div[@id='zv__COMPOSE-1_attachments_div']/table/tbody/tr/td/div/div/span"), 1, "Attachemnt not duplicated");
+		mailform.zToolbarPressButton(Button.B_CLOSE);
 
-			// Save the message
-			mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
-			SleepUtil.sleepSmall();
-			ZAssert.assertEquals(app.zPageMail.sGetXpathCount("//div[@id='zv__COMPOSE-1_attachments_div']/table/tbody/tr/td/div/div/span"), 1, "Attachemnt not duplicated");
-			mailform.zToolbarPressButton(Button.B_CLOSE);
+		// Get the message from the server
+		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:drafts subject:("+ subject +")");
 
-			// Get the message from the server
-			MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:drafts subject:("+ subject +")");
-
-			// Verify the draft data matches
-			ZAssert.assertStringContains(draft.dSubject, subject, "Verify the subject field is correct");
-			ZAssert.assertStringContains(draft.dBodyText, body, "Verify the subject field is correct");
-
-		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
-		}
+		// Verify the draft data matches
+		ZAssert.assertStringContains(draft.dSubject, subject, "Verify the subject field is correct");
+		ZAssert.assertStringContains(draft.dBodyText, body, "Verify the subject field is correct");
 
 	}
 
+	
+	@Bugs( ids = "104334")
 	@Test( description = "Reply to a mail with include original as attachment, format as text and save draft",
 			groups = { "functional" })
 
 	public void SaveDraftMailWithIncludeOriginalAsAttachment_02() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		// Send a message to the account
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
+		ZimbraAccount.Account1().soapSend(
+			"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+				"<m>" +
+					"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+					"<e t='c' a='"+ ZimbraAccount.Account2().EmailAddress +"'/>" +
+					"<su>"+ subject +"</su>" +
+					"<mp ct='text/plain'>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
+					"</mp>" +
+				"</m>" +
+			"</SendMsgRequest>");
 
-			// Send a message to the account
-			String subject = "subject"+ ConfigProperties.getUniqueString();
-			String body = "body" + ConfigProperties.getUniqueString();
-			ZimbraAccount.Account1().soapSend(
-				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-					"<m>" +
-						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-						"<e t='c' a='"+ ZimbraAccount.Account2().EmailAddress +"'/>" +
-						"<su>"+ subject +"</su>" +
-						"<mp ct='text/plain'>" +
-							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
-						"</mp>" +
-					"</m>" +
-				"</SendMsgRequest>");
+		// Refresh current view
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
-			// Refresh current view
-			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		// Select the item
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-			// Select the item
-			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+		// Reply the item
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
+		mailform.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_FORMAT_AS_HTML);
+		mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT);
+		SleepUtil.sleepSmall();
+		mailform.zFillField(Field.Body, body);
+		DialogWarning dialog = (DialogWarning) mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_PLAIN_TEXT);
+		dialog.zClickButton(Button.B_OK);
+		SleepUtil.sleepSmall();
 
-			// Reply the item
-			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
-			mailform.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_FORMAT_AS_HTML);
-			mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT);
-			SleepUtil.sleepSmall();
-			mailform.zFillField(Field.Body, body);
-			DialogWarning dialog = (DialogWarning) mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_PLAIN_TEXT);
-			dialog.zClickButton(Button.B_OK);
-			SleepUtil.sleepSmall();
+		// Save the message
+		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
+		SleepUtil.sleepSmall();
+		ZAssert.assertEquals(app.zPageMail.sGetXpathCount("//div[@id='zv__COMPOSE-1_attachments_div']/table/tbody/tr/td/div/div/span"), 1, "Attachemnt not duplicated");
+		mailform.zToolbarPressButton(Button.B_CLOSE);
+		SleepUtil.sleepSmall();
 
-			// Save the message
-			mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
-			SleepUtil.sleepSmall();
-			ZAssert.assertEquals(app.zPageMail.sGetXpathCount("//div[@id='zv__COMPOSE-1_attachments_div']/table/tbody/tr/td/div/div/span"), 1, "Attachemnt not duplicated");
-			mailform.zToolbarPressButton(Button.B_CLOSE);
-			SleepUtil.sleepSmall();
+		// Get the message from the server
+		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:drafts subject:("+ subject +")");
 
-			// Get the message from the server
-			MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:drafts subject:("+ subject +")");
+		// Verify the draft data matches
+		ZAssert.assertStringContains(draft.dSubject, subject, "Verify the subject field is correct");
+		ZAssert.assertStringContains(draft.dBodyText, body, "Verify the subject field is correct");
 
-			// Verify the draft data matches
-			ZAssert.assertStringContains(draft.dSubject, subject, "Verify the subject field is correct");
-			ZAssert.assertStringContains(draft.dBodyText, body, "Verify the subject field is correct");
-
-		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
-		}
 	}
 
 }

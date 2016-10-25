@@ -31,10 +31,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.PageTasks;
 
-/**
- * @author Matt Rhoades
- *
- */
 public class PageMain extends AbsTab {
 
 	public static class Locators {
@@ -113,19 +109,16 @@ public class PageMain extends AbsTab {
 			return (false);
 		}
 
-		if (ConfigProperties.getStringProperty("server.host").contains("local") == true) {
-
-			boolean loaded = zIsTagsPanelLoaded();
-			if (!loaded) {
-				logger.info("zIsTagsPanelLoaded() = " + loaded);
-				return (false);
-			}
-
-		} else {
-
+		if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
 			boolean loaded = zIsZimletsPanelLoaded();
 			if (!loaded) {
 				logger.info("zIsZimletsPanelLoaded() = " + loaded);
+				return (false);
+			}
+		} else {
+			boolean loaded = zIsTagsPanelLoaded();
+			if (!loaded) {
+				logger.info("zIsTagsPanelLoaded() = " + loaded);
 				return (false);
 			}
 		}
@@ -151,19 +144,14 @@ public class PageMain extends AbsTab {
 		if (!((AppAjaxClient) MyApplication).zPageLogin.zIsActive()) {
 			((AppAjaxClient) MyApplication).zPageLogin.zNavigateTo();
 		}
+		
 		((AppAjaxClient) MyApplication).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
-
-		zWaitForActive(100000);
-
 	}
 
 	public void zLogout() throws HarnessException {
-		logger.debug("logout()");
-
-		tracer.trace("Logout of the " + MyApplication.myApplicationName());
+		logger.info("Logout of the " + MyApplication.myApplicationName());
 
 		zNavigateTo();
-
 		SleepUtil.sleepSmall();
 		getElement("css=td[class='DwtLinkButtonDropDownArrowTd']").click();
 		this.zWaitForBusyOverlay();
@@ -330,8 +318,18 @@ public class PageMain extends AbsTab {
 			zIndex = dialogLocators.get(i).getCssValue("z-index");
 			if (!zIndex.equals("auto") && !zIndex.equals("") && !zIndex.equals(null)
 					&& Integer.parseInt(zIndex) >= 700) {
-				logger.info("Found active dialog");
+				logger.info("##### Found active dialog #####");
 				sRefresh();
+				dialogLocators = webDriver().findElements(By.cssSelector("div[class^='Dwt'][class$='Dialog']"));
+				totalDialogs = dialogLocators.size();
+				for (int j = totalDialogs - 1; j >= 0; j--) {
+					zIndex = dialogLocators.get(j).getCssValue("z-index");
+					if (!zIndex.equals("auto") && !zIndex.equals("") && !zIndex.equals(null)
+							&& Integer.parseInt(zIndex) >= 700) {
+						throw new HarnessException("##### Active dialog found after reloading page #####");
+					}
+				}
+				logger.info("Navigate to " + appTab.myPageName());
 				appTab.zNavigateTo();
 				return;
 			}
@@ -364,7 +362,7 @@ public class PageMain extends AbsTab {
 
 	/**
 	 * Change the URL (and reload) to access deep-link pages
-	 * 
+	 *
 	 * @param uri
 	 *            The URL to access (e.g.
 	 *            ?to=foo@foo.com&body=MsgContent&subject=MsgSubject&view=compose)
@@ -532,8 +530,7 @@ public class PageMain extends AbsTab {
 		if (!appTab.zIsActive()) {
 			zHandleDialogs(appTab);
 
-			for (int i = 0; i <= 3; i++) {
-				zWaitForElementPresent(appLocator);
+			for (int i = 0; i <= 2; i++) {
 				if (appTab.equals(((AppAjaxClient) MyApplication).zPageCalendar)) {
 					SleepUtil.sleepMedium();
 				} else {
@@ -555,12 +552,8 @@ public class PageMain extends AbsTab {
 			appTab.zNavigateTo();
 
 			// Check UI loading
-			if (ConfigProperties.getStringProperty("server.host")
-					.contains(ConfigProperties.getStringProperty("usLabDomain"))
-					|| ConfigProperties.getStringProperty("server.host")
-							.contains(ConfigProperties.getStringProperty("indiaLabDomain"))) {
+			if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
 				zWaitTillElementPresent(appIdentifier);
-
 			} else {
 				zWaitTillElementPresent(appIdentifier.replace("ZIMLET", "TAG"));
 			}

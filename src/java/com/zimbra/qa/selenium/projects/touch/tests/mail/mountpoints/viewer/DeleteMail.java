@@ -82,7 +82,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest{
 						+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"
 						+	"</CreateMountpointRequest>");
 
-		app.zPageMain.zRefresh();	
+		app.zPageMain.sRefresh();	
 
 		// Try to delete the email in the mount folder
 		PageCreateFolder createFolderPage = new PageCreateFolder(app, startingPage);

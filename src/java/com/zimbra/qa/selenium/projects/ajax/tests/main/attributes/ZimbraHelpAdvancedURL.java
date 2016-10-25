@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.main.attributes;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -27,7 +25,6 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
@@ -43,7 +40,6 @@ public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 
 	public void ZimbraHelpAdvancedURL_01() throws HarnessException {
 
-		StafServicePROCESS staf = new StafServicePROCESS();
 		String url = "/zimbra/help/advanced/zimbra_user_help.htm";
 		String domainID = null;
 		String tempURL = null;

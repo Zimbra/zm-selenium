@@ -609,6 +609,12 @@ public class FormMailNew extends AbsForm {
 				this.zWaitForBusyOverlay();
 			}
 		}
+
+		DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning,
+				MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+		if (dialog.zIsActive()) {
+			dialog.zClickButton(Button.B_OK);
+		}
 	}
 
 	/**
@@ -1241,7 +1247,7 @@ public class FormMailNew extends AbsForm {
 		if (field.equals(Field.Body)) {
 			this.sSelectFrame("relative=top");
 		}
-		
+
 		return (fieldValue);
 	}
 

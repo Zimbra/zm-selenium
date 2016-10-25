@@ -417,7 +417,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertNull(found, "Verify the message is no longer in the inbox");
 		
 		//UI verification
-	    ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject[9]), "Verify that Mail does not exist");
+	    ZAssert.assertFalse(app.zPageMail.zVerifyMailExists(subject[9]), "Verify that Mail does not exist");
 
   }
 

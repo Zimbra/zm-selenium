@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.quickad
 import java.util.Calendar;
 import java.util.HashMap;
 import org.testng.annotations.Test;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
@@ -37,9 +38,10 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		};
 	}
 	
+	@Bugs(ids = "107050")
 	@Test( description = "Create basic appointment using quick add dialog",
-			groups = { "smoke" }
-	)
+			groups = { "smoke" } )
+	
 	public void CreateAppointment_01() throws HarnessException {
 		
 		// Create appointment

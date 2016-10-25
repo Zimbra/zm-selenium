@@ -66,7 +66,7 @@ public class AliasManage extends AdminCommonTest {
 
 		// Click "New"
 		WizardCreateAlias wizard = 
-				(WizardCreateAlias)app.zPageManageAliases.zToolbarPressButton(Button.B_NEW);
+				(WizardCreateAlias)app.zPageManageAliases.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_NEW);
 
 		// Fill out the wizard	
 		wizard.zCompleteWizard(alias);

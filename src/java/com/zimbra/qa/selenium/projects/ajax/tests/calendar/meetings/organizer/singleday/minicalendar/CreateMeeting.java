@@ -1,5 +1,5 @@
 /*
- * ***** BEGIN LICENSE BLOCK *****
+ 	* ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2012, 2013, 2014, 2016 Synacor, Inc.
  *
@@ -34,18 +34,12 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "81945")
+	
+	@Bugs(ids = "107050,81945")
 	@Test( description = "Create meeting invite from mini-calendar's date using quick add dialog",
 			groups = { "smoke" } )
 	
 	public void CreateMeeting_01() throws HarnessException {
-		
-		ZimbraAdminAccount.GlobalAdmin().soapSend(
-                "<AddAccountLoggerRequest xmlns='urn:zimbraAdmin'>"
-          +           "<account by='name'>"+ app.zGetActiveAccount().EmailAddress + "</account>"
-          +           "<logger category='zimbra.soap' level='trace'/>"
-          +     "</AddAccountLoggerRequest>");
-		app.zGetActiveAccount().accountIsDirty = true;
 		
 		// Create appointment
 		AppointmentItem appt = new AppointmentItem();
@@ -98,8 +92,6 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		// Verify location free/busy status shows as ptst=AC	
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify that the location status shows as 'ACCEPTED'");
-		
-		//ExecuteHarnessMain.ResultListener.captureMailboxLog();
 	}
 
 }

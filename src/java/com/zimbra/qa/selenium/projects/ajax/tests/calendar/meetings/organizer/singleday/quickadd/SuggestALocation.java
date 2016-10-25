@@ -20,15 +20,13 @@ import java.util.Calendar;
 import org.testng.annotations.*;
 
 import com.zimbra.qa.selenium.framework.core.Bugs;
-import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.*;
-import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.QuickAddAppointment;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
-
+	
 public class SuggestALocation extends CalendarWorkWeekTest {	
 	
 	public SuggestALocation() {
@@ -36,17 +34,12 @@ public class SuggestALocation extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "81945")
+	
+	@Bugs(ids = "107050")
 	@Test( description = "Suggest a free location while creating appointment from quick add dialog",
 			groups = { "functional" })
+	
 	public void SuggestALocation_01() throws HarnessException {
-		
-		ZimbraAdminAccount.GlobalAdmin().soapSend(
-                "<AddAccountLoggerRequest xmlns='urn:zimbraAdmin'>"
-          +           "<account by='name'>"+ app.zGetActiveAccount().EmailAddress + "</account>"
-          +           "<logger category='zimbra.soap' level='trace'/>"
-          +     "</AddAccountLoggerRequest>");
-		app.zGetActiveAccount().accountIsDirty = true;
 		
 		AppointmentItem appt = new AppointmentItem();
 		Calendar now = this.calendarWeekDayUTC;
@@ -61,13 +54,12 @@ public class SuggestALocation extends CalendarWorkWeekTest {
 		appt.setSubject(apptSubject);
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0));
+		appt.setLocation(apptLocation);
 	
 		// Quick add appointment dialog
 		QuickAddAppointment quickAddAppt = new QuickAddAppointment(app) ;
 		quickAddAppt.zNewAppointmentUsingMiniCal();
 		quickAddAppt.zFill(appt);
-		quickAddAppt.zClick(Button.B_SUGGESTALOCATION);
-		quickAddAppt.zClick(Button.B_SUGGESTEDLOCATION, apptLocation);
 		quickAddAppt.zMoreDetails();
 		
 		// Add attendees and body from main form
@@ -99,9 +91,6 @@ public class SuggestALocation extends CalendarWorkWeekTest {
 		// Verify location free/busy status shows as ptst=AC	
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify that the location status shows as 'ACCEPTED'");
-		
-		ExecuteHarnessMain.ResultListener.captureMailboxLog();
-		
 	}
 	
 }

@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.search.search;
 
-
 import java.util.*;
 
 import org.testng.annotations.Test;
@@ -28,52 +27,42 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 public class SearchGAL extends AjaxCommonTest {
 
-
 	public SearchGAL() {
-		logger.info("New "+ SearchGAL.class.getCanonicalName());
-
-		// All tests start at the login page
+		logger.info("New " + SearchGAL.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
-
-		// Make sure we are using an account with message view
-		
-
 	}
 
+	@Test(description = "Search for a GAL contact", groups = { "functional" })
+	public void SearchGAL_01() throws HarnessException {
 
-	@Test( description = "Search for a GAL contact",
-			groups = { "functional" })
-			public void SearchGAL_01() throws HarnessException {
-
-		//-- Data
+		// -- Data
 
 		// Create a GAL Account
-		final String first = "first"+ ConfigProperties.getUniqueString();
-		final String last = "last"+ ConfigProperties.getUniqueString();
+		final String first = "first" + ConfigProperties.getUniqueString();
+		final String last = "last" + ConfigProperties.getUniqueString();
 		ZimbraAccount accountGAL = new ZimbraAccount();
-		Map<String,String> attrs = new HashMap<String, String>() {
+		Map<String, String> attrs = new HashMap<String, String>() {
 			private static final long serialVersionUID = -939087302049217526L;
 			{
 				put("givenName", first);
 				put("sn", last);
 				put("displayName", first + " " + last);
-			}};
+			}
+		};
 		accountGAL.setAccountPreferences(attrs);
 		accountGAL.provision();
 		accountGAL.authenticate();
 
-
-		//-- GUI
+		// -- GUI
 
 		// Refresh
-		app.zPageContacts.zRefresh();
-
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Remember to close the search view
 		try {
 
 			// search for firstname
-			app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_GAL);	 		
+			app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_GAL);
 			app.zPageSearch.zAddSearchQuery(first);
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
 
@@ -81,7 +70,8 @@ public class SearchGAL extends AjaxCommonTest {
 			ZAssert.assertNotNull(contacts, "Verify the message list exists");
 
 			ZAssert.assertEquals(contacts.size(), 1, "Verify only the one message was returned");
-			ZAssert.assertStringContains(contacts.get(0).getAttribute("fileAs", ""), first, "Verify the contact is shown in the results");
+			ZAssert.assertStringContains(contacts.get(0).getAttribute("fileAs", ""), first,
+					"Verify the contact is shown in the results");
 
 		} finally {
 			// Remember to close the search view
@@ -90,25 +80,23 @@ public class SearchGAL extends AjaxCommonTest {
 
 	}
 
-	@Test( description = "Search for a non-existing GAL contact",
-			groups = { "functional" })
-			public void SearchGAL_02() throws HarnessException {
+	@Test(description = "Search for a non-existing GAL contact", groups = { "functional" })
+	public void SearchGAL_02() throws HarnessException {
 
-		//-- Data
+		// -- Data
 
 		String doesnotexist = "contact" + ConfigProperties.getUniqueString();
 
-		//-- GUI
+		// -- GUI
 
 		// Refresh
-		app.zPageContacts.zRefresh();
-
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Remember to close the search view
 		try {
 
 			// search for firstname
-			app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_GAL);	 		
+			app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_GAL);
 			app.zPageSearch.zAddSearchQuery(doesnotexist);
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
 
@@ -123,7 +111,5 @@ public class SearchGAL extends AjaxCommonTest {
 		}
 
 	}
-
-
 
 }

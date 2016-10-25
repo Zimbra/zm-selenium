@@ -72,7 +72,7 @@ public class PageMain extends AbsTab {
 
 		public static final String HomeMigrationCoexistance = "css=div[id^='ztabv__HOMEV_output'] div:contains('Migration and Co-existence')";
 
-		public static final String zHelpButton = "css=div[id^='zb__ZaCurrentAppBar__HELP_'] td[id$='_title']";
+		public static final String zHelpButton = "css=div[id='zb__ZaCurrentAppBar__HELP'] td[id$='_title']";
 	}
 
 	public PageMain(AbsApplication application) {

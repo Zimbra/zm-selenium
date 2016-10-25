@@ -1,7 +1,7 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
  * 
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
@@ -17,12 +17,13 @@
 package com.zimbra.qa.selenium.projects.admin.tests.certificates;
 
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.ui.PageManageCertificates;
+import com.zimbra.qa.selenium.projects.admin.ui.PageManageCertificates.Locators;
 
 
 public class ViewCertificate extends AdminCommonTest {
@@ -46,13 +47,15 @@ public class ViewCertificate extends AdminCommonTest {
 			public void ViewCertificate_01() throws HarnessException {
 		
 		// Go to "Home --> Configure --> Certificates"
-		SleepUtil.sleepLong();
-		app.zPageManageCertificates.zClickAt(PageManageCertificates.Locators.SERVER_HOST_NAME, "");
+		
+		app.zPageManageCertificates.sClick(PageManageCertificates.Locators.SERVER_HOST_NAME);
 		app.zPageManageCertificates.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.B_VIEW_CERTIFICATE);
-		SleepUtil.sleepLong();
+		
+		//Wait for certificate details to be displayed.
+		app.zPageManageCertificates.zWaitForElementPresent(Locators.LDAP_CERTIFICATE_LABEL);
 		
 		// Verify certificate details displayed correctly
-		ZAssert.assertTrue(app.zPageManageCertificates.sIsElementPresent(PageManageCertificates.Locators.LDAP_CERTIFICATE_LABEL), "Verify certificate is installed!");
+		ZAssert.assertTrue(app.zPageManageCertificates.sIsElementPresent(Locators.LDAP_CERTIFICATE_LABEL), "Verify certificate is installed!");
 		
 	}
 
