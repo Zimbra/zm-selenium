@@ -41,10 +41,13 @@ public class PageManageGlobalSettings extends AbsTab {
 		public static final String HOME="Home";
 		public static final String CONFIGURE="Configure";
 		public static final String GLOBAL_SETTINGS="Global Settings";
-		public static final String GLOBAL_SETTINGS_ACL="css=div[id^='zti__AppAdmin__CONFIGURATION__GSET'] div[class='ZTreeItemTextCell']:contains('ACL')";
+		public static final String GLOBAL_SETTINGS_ACL="css=div[id^='zti__AppAdmin__CONFIGURATION__GSET__'][class='ZTreeItemTextCell']:contains('ACL')";
+		public static final String GLOBALS_SETTINGS_ACL_ADD = "css=td[id^='ztabv__GSET_EDIT_dwt_button'] td[id$='title']:contains('Add')";
+		public static final String GLOBALS_SETTINGS_ACL_GRANTEE_NAME = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input[id^='zdlgv__EDIT_ACLundefined_'][id$='_grantee_email_display']";		
 		public static final String GENERAL_INFORMATION="css=div[id^='zti__AppAdmin__CONFIGURATION__GSET'] div[class='ZTreeItemTextCell']:contains('General Information')";
 		public static final String ZIMBRA_FILE_UPLOAD_MAX_SIZE="css=td[id='ztabv__GSET_EDIT_zimbraFileUploadMaxSize___label']";
 		public static final String ZIMBRA_FILE_UPLOAD_MAX_SIZE_TEXT_FIELD="css=input[id='ztabv__GSET_EDIT_zimbraFileUploadMaxSize']";
+		public static final String WORK_IN_PROGRESS_DIALOG = "css=div[id^='ztabv__TabContent_output_']:contains('Work')";
 	}
 
 
@@ -99,12 +102,12 @@ public class PageManageGlobalSettings extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		sClick(Locators.CONFIGURE_ICON);
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 		sIsElementPresent(Locators.GLOBAL_SETTING);
 		zClick(Locators.GLOBAL_SETTING);
 
 		zWaitForActive();
-
+		zWaitForElementInvisible(Locators.WORK_IN_PROGRESS_DIALOG);
 	}
 
 	@Override

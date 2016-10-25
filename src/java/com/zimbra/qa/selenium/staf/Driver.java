@@ -20,19 +20,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
-
 public class Driver {
 
-	/**
-	 * @param args
-	 * @throws IOException 
-	 * @throws FileNotFoundException 
-	 * @throws HarnessException 
-	 */
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) throws FileNotFoundException, IOException, HarnessException {
 
@@ -40,14 +32,11 @@ public class Driver {
         ExecuteHarnessMain harness = new ExecuteHarnessMain();
         
         harness.jarfilename = "jarfile.jar";
-        harness.classfilter = "projects.mobile.tests";
+        harness.classfilter = "projects.ajax.tests";
         harness.groups = new ArrayList<String>(Arrays.asList("always", "sanity"));
         
         // Execute!
-		String response = harness.execute();
-		
+		String response = harness.execute();		
 		System.out.println(response);
-		
 	}
-
 }

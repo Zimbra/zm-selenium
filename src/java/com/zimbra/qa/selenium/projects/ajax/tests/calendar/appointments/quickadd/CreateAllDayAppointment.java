@@ -19,6 +19,8 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.quickad
 import java.util.Calendar;
 import java.util.HashMap;
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
@@ -29,10 +31,7 @@ public class CreateAllDayAppointment extends CalendarWorkWeekTest {
 	public CreateAllDayAppointment() {
 		logger.info("New "+ CreateAllDayAppointment.class.getCanonicalName());
 
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with work week view
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			private static final long serialVersionUID = -2913827779459595178L;
 		{
@@ -40,9 +39,11 @@ public class CreateAllDayAppointment extends CalendarWorkWeekTest {
 		}};
 	}
 	
+	
+	@Bugs(ids = "107050")
 	@Test( description = "Create all day appointment using quick add dialog",
-			groups = { "smoke" }
-	)
+			groups = { "smoke" } )
+	
 	public void CreateAllDayAppointment_01() throws HarnessException {
 		
 		allDayTest = true;

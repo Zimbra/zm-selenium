@@ -96,19 +96,19 @@ public class OpenInTabSharedMailFolders extends PrefGroupMailByMessageTest {
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_OPENTAB, mountpoint);
 		
 		// Remember to close the search view
-				try {
+		try {
 
-					// Get all the messages in the inbox
-					List<MailItem> messages = app.zPageSearch.zListGetMessages();
-					ZAssert.assertNotNull(messages, "Verify the message list exists");
+			// Get all the messages in the inbox
+			List<MailItem> messages = app.zPageSearch.zListGetMessages();
+			ZAssert.assertNotNull(messages, "Verify the message list exists");
 
-					ZAssert.assertEquals(messages.size(), 1, "Verify only the one message was returned");
-					ZAssert.assertEquals(messages.get(0).gSubject, subject, "Verify the message's subject matches");
+			ZAssert.assertEquals(messages.size(), 1, "Verify only the one message was returned");
+			ZAssert.assertEquals(messages.get(0).gSubject, subject, "Verify the message's subject matches");
 
-				} finally {
-					// Remember to close the search view
-					app.zPageSearch.zClose();
-				}
+		} finally {
+			// Remember to close the search view
+			app.zPageSearch.zClose();
+		}
 	}
 	
 	@Test( description = "Verify Open in new tab option for shared folder - Inbox folder",
@@ -164,7 +164,7 @@ public class OpenInTabSharedMailFolders extends PrefGroupMailByMessageTest {
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 		
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Expand mountpoint folder
 		app.zTreeMail.zTreeItem(Action.A_TREE_EXPAND, mountpoint);
@@ -180,19 +180,19 @@ public class OpenInTabSharedMailFolders extends PrefGroupMailByMessageTest {
 		SleepUtil.sleep(5000);
 		
 		// Remember to close the search view
-				try {
+		try {
 
-					// Get all the messages in the inbox
-					List<MailItem> messages = app.zPageSearch.zListGetMessages();
-					ZAssert.assertNotNull(messages, "Verify the message list exists");
+			// Get all the messages in the inbox
+			List<MailItem> messages = app.zPageSearch.zListGetMessages();
+			ZAssert.assertNotNull(messages, "Verify the message list exists");
 
-					ZAssert.assertEquals(messages.size(), 1, "Verify only the one message was returned");
-					ZAssert.assertEquals(messages.get(0).gSubject, subject, "Verify the message's subject matches");
+			ZAssert.assertEquals(messages.size(), 1, "Verify only the one message was returned");
+			ZAssert.assertEquals(messages.get(0).gSubject, subject, "Verify the message's subject matches");
 
-				} finally {
-					// Remember to close the search view
-					app.zPageSearch.zClose();
-				}
+		} finally {
+			// Remember to close the search view
+			app.zPageSearch.zClose();
+		}
 	}
 
 }

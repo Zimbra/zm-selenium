@@ -22,20 +22,16 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 
 public class LoginWithCsrfTokenCheckDisabled extends AdminCommonTest {
 
 	public LoginWithCsrfTokenCheckDisabled() {
 		logger.info("New "+ LoginWithCsrfTokenCheckDisabled.class.getCanonicalName());
-
-		// All tests start at the login page
 		super.startingPage = app.zPageLogin;
-		super.startingAccount = null;
-
 	}
 
+	
 	@Test( description = "Login to the admin console after disabling csrf check", priority=5, groups = { "smoke" })
 	
 	public void LoginWithCsrfTokenCheckDisabled_01() throws HarnessException {
@@ -50,7 +46,6 @@ public class LoginWithCsrfTokenCheckDisabled extends AdminCommonTest {
 							+	"</ModifyConfigRequest>");
 
 			// Restart zimbra services
-			StafServicePROCESS staf = new StafServicePROCESS();
 			staf.execute("zmmailboxdctl restart");
 
 			// Wait for the service to come up
@@ -72,16 +67,16 @@ public class LoginWithCsrfTokenCheckDisabled extends AdminCommonTest {
 			String zimbraCsrfTokenCheckEnabledValue = "TRUE";
 			
 			// Change zimbraCsrfTokenCheckEnabled value to false
-						ZimbraAdminAccount.GlobalAdmin().soapSend(
-								"<ModifyConfigRequest xmlns='urn:zimbraAdmin'>"
-										+		"<a n='zimbraCsrfTokenCheckEnabled'>"+ zimbraCsrfTokenCheckEnabledValue + "</a>"
-										+	"</ModifyConfigRequest>");
+			ZimbraAdminAccount.GlobalAdmin().soapSend(
+					"<ModifyConfigRequest xmlns='urn:zimbraAdmin'>"
+							+		"<a n='zimbraCsrfTokenCheckEnabled'>"+ zimbraCsrfTokenCheckEnabledValue + "</a>"
+							+	"</ModifyConfigRequest>");
 
-						StafServicePROCESS staf = new StafServicePROCESS();
-						staf.execute("zmmailboxdctl restart");
+			staf.execute("zmmailboxdctl restart");
 						
 			// Open the base URL
 			app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
+			app.zPageMain.logout();
 		}
 
 	}

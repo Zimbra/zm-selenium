@@ -241,22 +241,18 @@ public class PageManageAliases extends AbsTab {
 		pulldownLocator = Locators.GEAR_ICON;
 
 			if (option == Button.O_NEW) {
-
-				pulldownLocator = Locators.GEAR_ICON;
-				optionLocator = Locators.NEW_MENU;
-
-				page = new WizardCreateAlias(this);
-
 				
+				optionLocator = Locators.NEW_MENU;
+				page = new WizardCreateAlias(this);				
 
 			}  else if (option == Button.O_DELETE) {
+				
 				optionLocator = Locators.DELETE_BUTTON;
-
 				page = new DialogForDeleteOperation(this.MyApplication,null);
 				
 			}  else if (option == Button.O_EDIT) {
+				
 				optionLocator = Locators.EDIT_BUTTON;
-
 				page = new DialogForDeleteOperation(this.MyApplication,null);
 
 			} else {

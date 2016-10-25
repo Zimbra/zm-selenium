@@ -17,10 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.archive.conversation;
 
 import java.lang.reflect.*;
-
 import org.testng.*;
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
@@ -65,9 +63,8 @@ public class ArchiveZimletByConversationTest extends PrefGroupMailByConversation
 			// Create and set the archive folder
 			initializeArchiveFolder();
 
-			// To refresh the zimlet settings: Logout/Login
-			app.zPageLogin.zNavigateTo();
-			app.zPageMail.zNavigateTo();
+			// Refresh UI
+			app.zPageMain.sRefresh();
 
 		}
 		

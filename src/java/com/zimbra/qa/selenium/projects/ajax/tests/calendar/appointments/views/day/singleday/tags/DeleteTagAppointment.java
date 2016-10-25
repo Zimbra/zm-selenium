@@ -60,7 +60,7 @@ public class DeleteTagAppointment extends AjaxCommonTest {
 		renameTag1 = ConfigProperties.getUniqueString();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
-		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		
 		// Create new appointment
 		AppointmentItem appt = AppointmentItem.createAppointmentSingleDay(app.zGetActiveAccount(), startDate, 120, null, apptSubject, apptBody, null, null);
@@ -139,7 +139,7 @@ public class DeleteTagAppointment extends AjaxCommonTest {
 		renameTag1 = ConfigProperties.getUniqueString();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
-		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		
 		// Create new appointment
 		AppointmentItem appt = AppointmentItem.createAppointmentSingleDay(app.zGetActiveAccount(), startDate, 120, null, apptSubject, apptBody, null, null);

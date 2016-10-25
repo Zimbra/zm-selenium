@@ -113,7 +113,7 @@ public class EditCos extends AdminCommonTest {
 		app.zPageManageCOS.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
 		// Click on account to be deleted.
-		app.zPageManageCOS.zListItem(Action.A_LEFTCLICK, cosName);
+		app.zPageManageCOS.zListItem(Action.A_RIGHTCLICK, cosName);
 
 		// Click on Edit button
 		FormEditCos form = (FormEditCos) app.zPageManageCOS.zToolbarPressButton(Button.B_TREE_EDIT);
@@ -191,7 +191,7 @@ public class EditCos extends AdminCommonTest {
 						"<cos by='name'>"+editedName+"</cos>"+
 				"</GetCosRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
-		ZAssert.assertNotNull(response, "Verify the cos is edited successfully");	
+		ZAssert.assertNotNull(response, "Verify the cos is edited successfully");
 		app.zPageMain.logout();	
 	}
 
@@ -226,8 +226,7 @@ public class EditCos extends AdminCommonTest {
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
 		// Click on cos
-		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, cos.getName());
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
+		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, cos.getName());		
 
 		// Click on Edit button
 		FormEditCos form = (FormEditCos) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
@@ -261,7 +260,7 @@ public class EditCos extends AdminCommonTest {
 			groups = { "smoke" })
 	public void EditCos_05() throws HarnessException {
 
-		app.zPageMain.zRefresh(); // resetting locators 
+		app.zPageMain.sRefresh();
 
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();

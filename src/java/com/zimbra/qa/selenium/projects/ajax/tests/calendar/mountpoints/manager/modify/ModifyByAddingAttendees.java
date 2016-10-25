@@ -49,21 +49,21 @@ public class ModifyByAddingAttendees extends CalendarWorkWeekTest {
 		String apptAttendee2 = ZimbraAccount.AccountC().EmailAddress;		
 		
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 01, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 02, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		
-		FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.Account1(), FolderItem.SystemFolder.Calendar);
+		FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.Account5(), FolderItem.SystemFolder.Calendar);
 		
 		// Create a folder to share
-		ZimbraAccount.Account1().soapSend(
+		ZimbraAccount.Account5().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + calendarFolder.getId() + "' view='appointment'/>"
 				+	"</CreateFolderRequest>");
 		
-		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account1(), foldername);
+		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account5(), foldername);
 		
 		// Share it
-		ZimbraAccount.Account1().soapSend(
+		ZimbraAccount.Account5().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
 				+		"<action id='"+ folder.getId() +"' op='grant'>"
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx' view='appointment'/>"
@@ -73,17 +73,17 @@ public class ModifyByAddingAttendees extends CalendarWorkWeekTest {
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
-				+		"<link l='1' name='"+ mountPointName +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account1().ZimbraId +"' view='appointment' color='3'/>"
+				+		"<link l='1' name='"+ mountPointName +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account5().ZimbraId +"' view='appointment' color='3'/>"
 				+	"</CreateMountpointRequest>");
 		
 		// Create appointment
-		ZimbraAccount.Account1().soapSend(
+		ZimbraAccount.Account5().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
 				+		"<m l='"+ folder.getId() +"' >"
 				+			"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"
 				+				"<s d='"+ startUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
 				+				"<e d='"+ endUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
-				+				"<or a='"+ ZimbraAccount.Account1().EmailAddress +"'/>"
+				+				"<or a='"+ ZimbraAccount.Account5().EmailAddress +"'/>"
 				+				"<at role='REQ' ptst='NE' rsvp='1' a='" + ZimbraAccount.Account2().EmailAddress + "'/>"
 				+			"</inv>"
 				+			"<e a='"+ ZimbraAccount.Account2().EmailAddress +"' t='t'/>"
@@ -104,11 +104,10 @@ public class ModifyByAddingAttendees extends CalendarWorkWeekTest {
         // Add attendee2 and re-send the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zFillField(Field.Attendees, apptAttendee2);
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
         DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
         sendUpdateDialog.zClickButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
         sendUpdateDialog.zClickButton(Button.B_OK);
-        SleepUtil.sleepMedium();
         
         //Verify that attendee is present in the attendee field
         apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
@@ -116,7 +115,7 @@ public class ModifyByAddingAttendees extends CalendarWorkWeekTest {
         apptForm.zToolbarPressButton(Button.B_CLOSE);
         
         // Verify that attendee2 present in the appointment
-        AppointmentItem actual = AppointmentItem.importFromSOAP(ZimbraAccount.Account1(), "subject:("+ apptSubject +")");
+        AppointmentItem actual = AppointmentItem.importFromSOAP(ZimbraAccount.Account5(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
 		ZAssert.assertStringContains(actual.getAttendees(), apptAttendee2, "Attendees: Verify the appointment data");
 		

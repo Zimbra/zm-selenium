@@ -49,8 +49,8 @@ public class SuggestALocation extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 6, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 7, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -80,8 +80,7 @@ public class SuggestALocation extends CalendarWorkWeekTest {
         
         // Verify 'free' location appears in suggested locations pane
         ZAssert.assertEquals(apptForm.zVerifyLocation(apptLocation), true, "Verify 'free' location appear in suggested locations pane");
-        apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepLong(); //location shows NE instead of AC without sleep
+        apptForm.zSubmitWithResources();
         
         // Verify location in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

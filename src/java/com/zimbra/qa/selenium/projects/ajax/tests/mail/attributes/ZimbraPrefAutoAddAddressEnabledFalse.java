@@ -50,7 +50,7 @@ public class ZimbraPrefAutoAddAddressEnabledFalse extends AjaxCommonTest {
 	 */
 	@Test( description = " send message to 1 receiver, the address should not be added into Emailed Contact", groups = { "smoke" })
 	
-	public void SendEmailTo1Receiver() throws HarnessException {
+	public void SendEmailTo1Receiver_01() throws HarnessException {
 
 		ZimbraAccount receiver = new ZimbraAccount();
 		receiver.provision();
@@ -90,7 +90,7 @@ public class ZimbraPrefAutoAddAddressEnabledFalse extends AjaxCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = " send message to 2 receivers, the address should not be added into Emailed Contact", groups = { "functional" })
-	public void SendEmailTo2Receivers() throws HarnessException {
+	public void SendEmailTo2Receivers_02() throws HarnessException {
 
 		ZimbraAccount receiver1 = new ZimbraAccount();
 		receiver1.provision();
@@ -105,7 +105,7 @@ public class ZimbraPrefAutoAddAddressEnabledFalse extends AjaxCommonTest {
 		mail.dToRecipients.add(new RecipientItem(receiver1));
 		mail.dToRecipients.add(new RecipientItem(receiver2));
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
-		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
+		mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
 		
 		
 		// Open the new mail form

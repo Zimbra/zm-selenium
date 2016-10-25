@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.toaster;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -29,8 +28,8 @@ public class CreateAppointment extends AjaxCommonTest {
 	public CreateAppointment() {
 		logger.info("New "+ CreateAppointment.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
-		
 	}
+	
 	
 	@Test( description = "Verify Toaster message on Create Appointment",
 			groups = { "functional" } )
@@ -48,19 +47,12 @@ public class CreateAppointment extends AjaxCommonTest {
 		// Fill out the form with the data
 		apptForm.zFill(appt);
 
-		// Send the message
+		// Save appointment (without any method which may wait)
+		app.zPageCalendar.sClick("css=div[id^='ztb__APPT-'] td[id$='_SAVE_title']");
 		
-		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
-			app.zPageCalendar.zClickAt("css=div[id^='ztb__APPT-'] td[id$='_SAVE_title']", "0,0");
-		} else {
-			apptForm.zToolbarPressButton(Button.B_SAVE);
-		}		
-		
-		//verify toasted message 'Appointment Created'  
+		// Verify toasted message 'Appointment Created'  
         String expectedMsg ="Appointment Created";
         ZAssert.assertStringContains(app.zPageMain.zGetToaster().zGetToastMessage(),expectedMsg, "Verify toast message '" + expectedMsg + "'");
     
 	}
-
 }

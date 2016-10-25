@@ -286,7 +286,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		String attendeeStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=TE
-		ZAssert.assertEquals(attendeeStatus, "TE", "Verify that the attendee shows as 'TENTATIVED'");
+		ZAssert.assertEquals(attendeeStatus, "TE", "Verify that the attendee shows as 'TENTATIVE'");
 
 
 		// --- Check that the attendee showing status as "TENTATIVE" ---
@@ -306,7 +306,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		String myStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=TE
-		ZAssert.assertEquals(myStatus, "TE", "Verify that the attendee shows as 'TENTATIVED'");
+		ZAssert.assertEquals(myStatus, "TE", "Verify that the attendee shows as 'TENTATIVE'");
 
 		// Organizer: Search for the appointment response
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox).getId();
@@ -396,7 +396,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		String attendeeStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=TE
-		ZAssert.assertEquals(attendeeStatus, "TE", "Verify that the attendee shows as 'TENTATIVED'");
+		ZAssert.assertEquals(attendeeStatus, "TE", "Verify that the attendee shows as 'TENTATIVE'");
 
 
 		// --- Check that the attendee showing status as "TENTATIVE" ---
@@ -416,7 +416,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		String myStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=TE
-		ZAssert.assertEquals(myStatus, "TE", "Verify that the attendee shows as 'TENTATIVED'");
+		ZAssert.assertEquals(myStatus, "TE", "Verify that the attendee shows as 'TENTATIVE'");
 
 		// Organizer: Search for the appointment response
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox).getId();
@@ -427,7 +427,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 				+	"</SearchRequest>");
 		
 		// Verify message body content
-		String body = ZimbraAccount.AccountA().soapSelectValue("//mail:m/mail:fr", null);
+		String body = ZimbraAccount.AccountA().soapSelectValue("//mail:m//mail:desc", null);
 		ZAssert.assertStringContains(body, modifiedBody, "Verify modified body value");
 		
 	}
@@ -499,7 +499,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		String attendeeStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=NE (bug 65356)
-		ZAssert.assertEquals(attendeeStatus, "NE", "Verify that the attendee shows as 'TENTATIVED'");
+		ZAssert.assertEquals(attendeeStatus, "NE", "Verify that the attendee shows as 'NEEDS ACTION'");
 
 
 		// --- Check that the attendee showing status as "TENTATIVE" ---
@@ -519,7 +519,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		String myStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=TE
-		ZAssert.assertEquals(myStatus, "TE", "Verify that the attendee shows as 'TENTATIVED'");
+		ZAssert.assertEquals(myStatus, "TE", "Verify that the attendee shows as 'TENTATIVE'");
 
 		// Organizer: Search for the appointment response
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox).getId();

@@ -82,7 +82,6 @@ public class Accept extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_INSTANCE_MENU, Button.O_ACCEPT_MENU, apptSubject);
-		SleepUtil.sleepVeryLong(); //Attendee status changes
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 

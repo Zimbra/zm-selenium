@@ -51,10 +51,9 @@ public class ZimbraFeatureHtmlComposeEnabledFalse extends CalendarWorkWeekTest {
 			+		"<a n='zimbraFeatureHtmlComposeEnabled'>FALSE</a>"
 			+	"</ModifyAccountRequest>");
 
-		// Logout and login to pick up the changes
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
-
+		// Refresh UI
+		app.zPageMain.sRefresh();
+		app.zPageCalendar.zNavigateTo();
 		
 		// Create appointment
 		AppointmentItem appt = new AppointmentItem();

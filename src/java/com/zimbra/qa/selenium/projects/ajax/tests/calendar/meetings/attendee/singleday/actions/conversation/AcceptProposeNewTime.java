@@ -169,7 +169,6 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		app.zPageLogin.zLogin(apptAttendee1);
 		display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, modifiedSubject);
 		display.zPressButton(Button.B_ACCEPT);
-		SleepUtil.sleepLong();
 		
 		// ------ Organizer ------
 		
@@ -180,6 +179,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 				+	"</SearchRequest>");
 		organizerInvId = organizer.soapSelectValue("//mail:appt", "invId");
 		organizer.soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
+
 		String attendeeStatus = organizer.soapSelectValue("//mail:at[@a='"+ apptAttendee1EmailAddress +"']", "ptst");
 		ZAssert.assertEquals(organizer.soapSelectValue("//mail:s", "d"), modifiedStartUTC.toyyyyMMddTHHmmss(), "Verify modified start time of the appointment");
 		ZAssert.assertEquals(organizer.soapSelectValue("//mail:e", "d"), modifiedEndUTC.toyyyyMMddTHHmmss(), "Verify modified end time of the appointment");
@@ -193,8 +193,8 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 				+		"<query>" + "subject:(" + modifiedSubject + ")" + " " + "content:(" + modifiedBody +")" + "</query>"
 				+	"</SearchRequest>");
 		String attendeeInvId = apptAttendee1.soapSelectValue("//mail:appt", "invId");
-		apptAttendee1.soapSend(
-					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
+		apptAttendee1.soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
+
 		String myStatus = apptAttendee1.soapSelectValue("//mail:at[@a='"+ apptAttendee1EmailAddress +"']", "ptst");
 		ZAssert.assertEquals(apptAttendee1.soapSelectValue("//mail:s", "d"), modifiedStartUTC.toyyyyMMddTHHmmss(), "Verify modified start time of the appointment");
 		ZAssert.assertEquals(apptAttendee1.soapSelectValue("//mail:e", "d"), modifiedEndUTC.toyyyyMMddTHHmmss(), "Verify modified end time of the appointment");
@@ -221,8 +221,8 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 				+		"<query>" + "subject:(" + modifiedSubject + ")" + " " + "content:(" + modifiedBody +")" + "</query>"
 				+	"</SearchRequest>");
 		attendeeInvId = apptAttendee2.soapSelectValue("//mail:appt", "invId");
-		apptAttendee2.soapSend(
-					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
+		apptAttendee2.soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
+
 		myStatus = apptAttendee2.soapSelectValue("//mail:at[@a='"+ apptAttendee2EmailAddress +"']", "ptst");
 		ZAssert.assertEquals(apptAttendee2.soapSelectValue("//mail:s", "d"), modifiedStartUTC.toyyyyMMddTHHmmss(), "Verify modified start time of the appointment");
 		ZAssert.assertEquals(apptAttendee2.soapSelectValue("//mail:e", "d"), modifiedEndUTC.toyyyyMMddTHHmmss(), "Verify modified end time of the appointment");

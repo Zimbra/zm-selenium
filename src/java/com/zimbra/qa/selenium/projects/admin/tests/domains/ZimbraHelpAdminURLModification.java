@@ -17,19 +17,15 @@
 package com.zimbra.qa.selenium.projects.admin.tests.domains;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
-
 
 public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 
@@ -43,8 +39,7 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 
 	public void ZimbraHelpAdminURLModification_01() throws HarnessException {
 
-		StafServicePROCESS staf = new StafServicePROCESS();
-		staf.execute("mkdir -p /helpUrl/help/admin && echo '<html><body><h1>Admin Help</h1><p> This is the admin help of zimbra </p></body></html>' >/helpUrl/help/admin/help.html");
+		staf.execute("mkdir -p /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/admin && echo '<html><head><title>Zimbra Temp Admin Help</title></head><body><h1>Temp Admin Help</h1><p> This is the new admin help of zimbra!</p></body></html>' > /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/admin/adminhelp.html");
 
 		// To get domain id
 		String targetDomain = ConfigProperties.getStringProperty("server.host");
@@ -61,9 +56,8 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<ModifyDomainRequest xmlns='urn:zimbraAdmin'>"
 						+ "<id>" + domainID +"</id>"
-						+  "<a n='zimbraHelpAdminURL'>/helpUrl/help/admin/help.html</a>"
+						+  "<a n='zimbraHelpAdminURL'>/zimbraAdmin/helpUrl/help/admin/adminhelp.html</a>"
 						+	"</ModifyDomainRequest>");
-
 
 		String tempURL = null;
 		boolean found = false;
@@ -92,6 +86,8 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 					found = true;
 					app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
 					break;
+				} else if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
+							app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());					
 				}
 			}
 			if (!found) {
@@ -110,9 +106,8 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 						+  "<a n='zimbraHelpAdminURL'>" + url + "</a>"
 						+	"</ModifyDomainRequest>");
 		// Check the URL
-		ZAssert.assertTrue(tempURL.contains("/helpUrl/help/admin/help.html"),"Admin Help URL is not as set in zimbraHelpAdminURL");
+		ZAssert.assertTrue(tempURL.contains("/zimbraAdmin/helpUrl/help/admin/adminhelp.html"),"Admin Help URL is not as set in zimbraHelpAdminURL");
 
 	}
-
 
 }

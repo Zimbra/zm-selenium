@@ -151,7 +151,6 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		app.zPageLogin.zLogin(apptAttendee1);
 		display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, modifiedSubject);
 		display.zPressButton(Button.B_ACCEPT);
-		SleepUtil.sleepLong();
 		
 		// ------ Attendee1 ------
 		
@@ -161,8 +160,8 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 				+		"<query>" + "subject:(" + modifiedSubject + ")" + " " + "content:(" + modifiedBody +")" + "</query>"
 				+	"</SearchRequest>");
 		String attendeeInvId = apptAttendee1.soapSelectValue("//mail:appt", "invId");
-		apptAttendee1.soapSend(
-					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
+		apptAttendee1.soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
+
 		String myStatus = apptAttendee1.soapSelectValue("//mail:at[@a='"+ apptAttendee1EmailAddress +"']", "ptst");
 		ZAssert.assertEquals(apptAttendee1.soapSelectValue("//mail:s", "d"), modifiedStartUTC.toyyyyMMddTHHmmss(), "Verify modified start time of the appointment");
 		ZAssert.assertEquals(apptAttendee1.soapSelectValue("//mail:e", "d"), modifiedEndUTC.toyyyyMMddTHHmmss(), "Verify modified end time of the appointment");

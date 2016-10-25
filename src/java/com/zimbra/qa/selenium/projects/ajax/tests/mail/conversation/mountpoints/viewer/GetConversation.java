@@ -17,33 +17,24 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.mountpoints.viewer;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByConversationTest;
 
-
 public class GetConversation extends PrefGroupMailByConversationTest {
-
 	
 	public GetConversation() {
 		logger.info("New "+ GetConversation.class.getCanonicalName());
-		
-		
-		
-
-		
-		
-
-
 	}
+	
 	
 	@Test( description = "View a conversation in a mountpoint",
 			groups = { "functional" })
-	public void GetMail_01() throws HarnessException {
+	
+	public void GetConversation_01() throws HarnessException {
+		
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
@@ -91,7 +82,7 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 		
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on the mountpoint
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, mountpoint);
@@ -110,14 +101,13 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the inbox");
-
-		
 	}
+	
 
 	@Test( description = "View the contents of a conversation in a mountpoint",
 			groups = { "functional" })
-	public void GetMail_02() throws HarnessException {
-		
+	
+	public void GetConversation_02() throws HarnessException {
 		
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -187,7 +177,7 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 		
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on the mountpoint
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, mountpoint);
@@ -240,9 +230,5 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 				
 		}
 		ZAssert.assertEquals(count, 2, "Verify two messages in the conversation");
-
-		
 	}
-
-
 }

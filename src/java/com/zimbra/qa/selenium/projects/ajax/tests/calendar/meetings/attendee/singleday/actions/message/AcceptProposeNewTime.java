@@ -140,7 +140,6 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		app.zPageLogin.zLogin(apptAttendee1);
 		display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, modifiedSubject);
 		display.zPressButton(Button.B_ACCEPT);
-		SleepUtil.sleepLong();
 		
 		// ------ Attendee1 ------
 		

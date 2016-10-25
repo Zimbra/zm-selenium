@@ -50,16 +50,14 @@ public class SendAsDistList extends PrefGroupMailByMessageTest {
 		// Grant send rights
 		list.grantRight(app.zGetActiveAccount(), "sendAsDistList");
 
-		// Login to load the rights
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 	
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 		
 		// Fill out the form with the data
-
 		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, "body" + ConfigProperties.getUniqueString());

@@ -18,9 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 
 import java.util.Calendar;
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -48,7 +46,8 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 		};
 	}
 	
-	@Test( description = "check context menu for Show Original option and check of the its displayed", groups = { "smoke" })
+	@Test( description = "check context menu for Show Original option and check of the its displayed", 
+			groups = { "smoke" })
 	
 	public void ShowOriginal_01() throws HarnessException {
 
@@ -87,13 +86,14 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 
         // Open appointment & click context menu 'Show Original' Option
         SeparateWindow window = (SeparateWindow)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK,Button.O_SHOW_ORIGINAL_MENU, apptSubject);
-        try { 
+        try {
+        	window.zSetWindowName();
 			window.zWaitForActive();
 			SleepUtil.sleepMedium();
-			String attendeeHeader = "ATTENDEE;CN=2;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:mailto:";
-			
-			// Verify content in show original  view
+						
+			// Verify show original window content
 			String body = window.sGetBodyText();
+			String attendeeHeader = "ATTENDEE;CN=2;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:mailto:";
 			ZAssert.assertStringContains(body, apptSubject, "Verify subject in Show original view");
 			ZAssert.assertStringContains(body, apptBody, "Verify content in Show original view");
 			ZAssert.assertStringContains(body, "BEGIN:VCALENDAR", "Verify Begin Header in Show original view");

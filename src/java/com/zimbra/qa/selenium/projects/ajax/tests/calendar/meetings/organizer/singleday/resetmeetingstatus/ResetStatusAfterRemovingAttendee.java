@@ -75,24 +75,20 @@ public class ResetStatusAfterRemovingAttendee extends CalendarWorkWeekTest {
         //Login as attendee and accept the invite
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.Account1());
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		SleepUtil.sleepSmall();
+
 		app.zPageCalendar.zNavigateTo();
-		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);		
 		app.zPageMain.zLogout();			
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
         
         // Remove attendee2 and re-send the appointment
 		app.zPageCalendar.zNavigateTo();
-		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zRemoveAttendee(apptAttendee2);
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
         DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
         sendUpdateDialog.zClickButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
         sendUpdateDialog.zClickButton(Button.B_OK);
-        SleepUtil.sleepVeryLong(); 
         
 		// --- Check that the organizer shows the attendee as "Accepted" ---
 		app.zGetActiveAccount().soapSend(

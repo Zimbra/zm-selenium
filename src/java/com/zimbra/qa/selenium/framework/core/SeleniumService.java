@@ -37,7 +37,7 @@ public class SeleniumService {
 	}
 
 	public void startSeleniumExecution() throws HarnessException {
-		
+
 		Date start = new Date();
 		try {
 			if ( mode == SeleniumMode.Local ) {
@@ -46,7 +46,7 @@ public class SeleniumService {
 
 		} catch (Exception e) {
 			throw new HarnessException("Unable to start selenium service", e);
-			
+
 		} finally {
 			SleepMetrics.RecordProcessing((new Throwable()).getStackTrace(), start, new Date());
 		}
@@ -56,7 +56,7 @@ public class SeleniumService {
 	public void stopSeleniumExecution() throws HarnessException {
 
 		try {
-			
+
 			if ( mode == SeleniumMode.Local ) {
 
 				BufferedReader in = null;
@@ -77,7 +77,7 @@ public class SeleniumService {
 					logger.warn("Selenium server is stopped");
 				}
 			}
-			
+
 		} catch (Exception e) {
 			throw new HarnessException("Unable to stop SeleniumService", e);
 		}
@@ -202,7 +202,7 @@ public class SeleniumService {
 		}
 		return (Instance);
 	}
-	
+
 	private volatile static SeleniumService Instance;
 
 	private SeleniumService() {

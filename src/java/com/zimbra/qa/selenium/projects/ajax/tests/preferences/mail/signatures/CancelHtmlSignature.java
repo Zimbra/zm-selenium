@@ -21,7 +21,6 @@ import com.zimbra.qa.selenium.framework.ui.AbsDialog;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
@@ -30,47 +29,46 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatu
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.PageSignature;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatureNew.Field;
 
-public class CancelHtmlSignature extends AjaxCommonTest{
+public class CancelHtmlSignature extends AjaxCommonTest {
 	public CancelHtmlSignature() throws HarnessException {
 		super.startingPage = app.zPagePreferences;
-		
 	}
 
-	@Test( description = "Cancel text signature through GUI", groups = { "smoke" })
+	@Test(description = "Cancel text signature through GUI", groups = { "smoke" })
 	public void CancelHtmlSignature_01() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();
 		String sigBody = "sigbody" + ConfigProperties.getUniqueString();
 
-		//Click on signature from left pane
-		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK,TreeItem.MailSignatures);
+		// Click on signature from left pane
+		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailSignatures);
 
-		//Click on New signature button
+		// Click on New signature button
 		FormSignatureNew signew = (FormSignatureNew) app.zPageSignature.zToolbarPressButton(Button.B_NEW);
 
-		//Select html format from drop down
+		// Select html format from drop down
 		signew.zSelectFormat("html");
-		SleepUtil.sleepVeryLong();
 
 		// Fill Signature Name and body
 		signew.zFillField(Field.SignatureName, sigName);
 		signew.zFillField(Field.SignatureHtmlBody, sigBody);
 
-		//Verify Warning Dialog gets pop up after click on Cancel button
+		// Verify Warning Dialog gets pop up after click on Cancel button
 		AbsDialog warning = (AbsDialog) signew.zToolbarPressButton(Button.B_CANCEL);
 		ZAssert.assertNotNull(warning, "Verify the dialog is returned");
 
-		//click on No button
+		// click on No button
 		warning.zClickButton(Button.B_NO);
 
 		// Verify canceled html signature name from SignatureListView
 		app.zPagePreferences.zNavigateTo();
-		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK,TreeItem.MailSignatures);
+		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailSignatures);
 
 		PageSignature pagesig = new PageSignature(app);
 		String SignatureListViewName = pagesig.zGetSignatureNameFromListView();
 
 		// Verify signature name doesn't exist in SignatureListView
-		ZAssert.assertStringDoesNotContain(SignatureListViewName, sigName,"Verify after  Cancelled, html signature  does not present in SignatureList view");
+		ZAssert.assertStringDoesNotContain(SignatureListViewName, sigName,
+				"Verify signature does not present in signature list view");
 	}
 }

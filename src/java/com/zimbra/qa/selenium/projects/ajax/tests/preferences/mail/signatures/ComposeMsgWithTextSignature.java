@@ -29,8 +29,6 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
 public class ComposeMsgWithTextSignature extends AjaxCommonTest {
@@ -55,12 +53,10 @@ public class ComposeMsgWithTextSignature extends AjaxCommonTest {
 						+ "' >" + "<content type='text/plain'>" + this.sigBody + "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
 
-		// Logout and login
-		this.app.zPageLogin.zNavigateTo();
-		this.app.zPageMail.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 
 		logger.info("CreateSignature: finish");
-
 	}
 
 	/**
@@ -90,16 +86,9 @@ public class ComposeMsgWithTextSignature extends AjaxCommonTest {
 
 		// Fill out the form with the data
 		mailform.zFill(mail);
-		// click Signature drop down and add signature
+		
+		// Click Signature drop down and add signature
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_SIGNATURE, this.sigName);
-
-		DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning, app,
-				((AppAjaxClient) app).zPageMail);
-		if (dialog.zIsActive()) {
-			// ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog
-			// opens");
-			dialog.zClickButton(Button.B_OK);
-		}
 
 		// Send the message
 		mailform.zSubmit();
@@ -107,11 +96,7 @@ public class ComposeMsgWithTextSignature extends AjaxCommonTest {
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountZWC(),
 				"in:inbox subject:(" + mail.dSubject + ")");
 
-		logger.debug("===========received is: " + received);
-		logger.debug("===========app is: " + app);
-
-		// Verify TO, Subject, Body,Signature
-
+		// Verify TO, Subject, Body, Signature
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress,
 				"Verify the from field is correct");
 		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountZWC().EmailAddress,

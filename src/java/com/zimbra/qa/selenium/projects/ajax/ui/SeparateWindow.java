@@ -87,7 +87,7 @@ public class SeparateWindow extends AbsSeparateWindow {
 		for (String handle: windows) {
 			webDriver().switchTo().window(handle);
 		    if (!handle.equals(mainwindow)) {
-		    	if (webDriver().switchTo().window(handle).getTitle().equals("")) {
+		    	if (!webDriver().switchTo().window(handle).getTitle().equals("")) {
 			    	this.DialogWindowName = webDriver().switchTo().window(handle).getTitle();
 					this.DialogWindowID = this.DialogWindowName;
 		    	} else {

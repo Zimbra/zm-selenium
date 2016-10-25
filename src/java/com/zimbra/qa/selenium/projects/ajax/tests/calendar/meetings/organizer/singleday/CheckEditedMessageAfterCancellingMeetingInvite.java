@@ -81,7 +81,7 @@ public class CheckEditedMessageAfterCancellingMeetingInvite extends CalendarWork
         DialogWarning dialog = (DialogWarning)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
         FormMailNew mailComposeForm = (FormMailNew)dialog.zClickButton(Button.B_EDIT_CANCELLATION);
         mailComposeForm.zFillField(Field.Body, editApptBody);
-		mailComposeForm.zToolbarPressButton(Button.B_SEND);
+		mailComposeForm.zSubmit();
 		
 		// Verify meeting is deleted from attendee's calendar
 		SleepUtil.sleepLong(); //importSOAP gives wrong response without sleep

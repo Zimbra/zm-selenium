@@ -15,6 +15,7 @@
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
+
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
@@ -75,21 +76,19 @@ public class DialogSendUpdatetoAttendees extends DialogWarning {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		SleepUtil.sleepMedium();
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator "	+ locator + " not present!");
 		}
 		
 		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 
-		// This dialog could send messages, so wait for the queue
-		Stafpostqueue sp = new Stafpostqueue();
-		sp.waitForPostqueue();
-
+		if (button == Button.B_OK) {
+			Stafpostqueue sp = new Stafpostqueue();
+			sp.waitForPostqueue();
+		}
+		SleepUtil.sleepMedium();
+		
 		return (page);
 	}
-
 }
-

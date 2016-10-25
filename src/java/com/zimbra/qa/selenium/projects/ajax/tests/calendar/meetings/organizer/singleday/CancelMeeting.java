@@ -36,15 +36,12 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
+	
 	@Bugs(ids = "69132")
 	@Test( description = "Cancel meeting using Delete toolbar button",
 			groups = { "smoke" })
 			
 	public void CancelMeeting_01() throws HarnessException {
-		
-
-		//-- Data setup
-
 		
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
@@ -55,8 +52,8 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -75,9 +72,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
                      "</m>" +
                "</CreateAppointmentRequest>");
 		
-		
 		//-- GUI actions
-		
 		
         // Refresh the view
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
@@ -92,10 +87,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
         // Click Send Cancellation
 		dialog.zClickButton(Button.B_SEND_CANCELLATION);
 		
-		
-		
 		//-- Verification
-		
 		
 		// Verify meeting disappears from the view
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify meeting is deleted from organizer's calendar");
@@ -116,15 +108,14 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 				new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE },
 		};
 	}
+	
 
 	@Bugs(ids = "69132")
 	@Test( description = "Cancel meeting using keyboard shortcuts Del & Backspace",
 			groups = { "functional" },
 			dataProvider = "DataProviderShortcutKeys")
+	
 	public void CancelMeeting_02(String name, int keyEvent) throws HarnessException {
-		
-		//-- Data Setup
-		
 		
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
@@ -135,8 +126,8 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -155,9 +146,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
                      "</m>" +
                "</CreateAppointmentRequest>");
 		
-		
 		//-- GUI actions
-		
 		
         // Refresh the view
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
@@ -171,7 +160,6 @@ public class CancelMeeting extends CalendarWorkWeekTest {
         // Wait for the "Send Cancellation" dialog
         // Click Send Cancellation
 		dialog.zClickButton(Button.B_SEND_CANCELLATION);
-
 		
 		//-- Verification
 		
@@ -186,15 +174,15 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		// Verify meeting is deleted from attendee's calendar
 		AppointmentItem canceledAppt = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ apptSubject +")");
 		ZAssert.assertNull(canceledAppt, "Verify meeting is deleted from attendee's calendar");
-		
 	}
+
 	
 	@Bugs(ids = "69132")
 	@Test( description = "Don't cancel the meeting (press Cancel button from cancellation dialog)",
 			groups = { "functional" })
+	
 	public void CancelMeeting_03() throws HarnessException {
 		
-		//-- Data Setup
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
 		tz = ZTimeZone.TimeZoneEST.getID();
@@ -205,7 +193,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -223,10 +211,8 @@ public class CancelMeeting extends CalendarWorkWeekTest {
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-     
         		
 		//-- GUI actions
-		
 		
         // Refresh the view
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
@@ -240,7 +226,6 @@ public class CancelMeeting extends CalendarWorkWeekTest {
         // Wait for the "Send Cancellation" dialog
         // Click Send Cancellation
 		dialog.zClickButton(Button.B_CANCEL);
-
 		
 		//-- Verification
 		ZAssert.assertTrue(app.zPageCalendar.zIsAppointmentExists(apptSubject), "Verify meeting is not deleted from organizer's calendar");
@@ -248,18 +233,14 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		// Verify meeting is not deleted from attendee's calendar
 		AppointmentItem canceledAppt = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ apptSubject +")");
 		ZAssert.assertNotNull(canceledAppt, "Verify meeting is NOT deleted from attendee's calendar");
-		
 	}
 	
 	
 	@Bugs(ids = "69132")
 	@Test( description = "Cancel appointment without modifying cancellation message content",
 			groups = { "functional" })
+	
 	public void CancelMeeting_04() throws HarnessException {
-		
-		
-		//-- Data Setup
-		
 		
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
@@ -270,7 +251,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
@@ -290,9 +271,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
                      "</m>" +
                "</CreateAppointmentRequest>");
 		
-		
 		//-- GUI actions
-		
 		
         // Refresh the view
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
@@ -307,38 +286,27 @@ public class CancelMeeting extends CalendarWorkWeekTest {
         // Click Edit Cancellation
         // When the form opens, simply click "SEND" (don't edit content)
         FormMailNew mailComposeForm = (FormMailNew)dialog.zClickButton(Button.B_EDIT_CANCELLATION);
-        
-        // For some reason, the form takes some time to render
-        // Sometimes the SEND button is not activated.
-        SleepUtil.sleepMedium();
-        
-		mailComposeForm.zToolbarPressButton(Button.B_SEND);
-		
+		mailComposeForm.zSubmit();
 		
 		//-- Verification
 		
-		// Verify the appointment does not appear in the organizers calendar
-		SleepUtil.sleepSmall(); //test fails without sleep
-		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify meeting is deleted from organizer's calendar");
-		
 		// Verify meeting is deleted from attendee's calendar && receive meeting cancellation message
-		SleepUtil.sleepLong(); //importSOAP gives wrong response without sleep
 		MailItem canceledApptMail = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + (char)34 + "Cancelled " + apptSubject + (char)34 + ")");
 		ZAssert.assertNotNull(canceledApptMail, "Verify meeting cancellation message received to attendee");
 		
 		AppointmentItem canceledAppt = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ apptSubject +")");
 		ZAssert.assertNull(canceledAppt, "Verify meeting is deleted from attendee's calendar");
 		
+		// Verify the appointment does not appear in the organizers calendar
+		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify meeting is deleted from organizer's calendar");
 	}
+	
 	
 	@Bugs(ids = "69132,77548")
 	@Test( description = "Modify meeting cancellation message while cancelling appointment",
 			groups = { "functional" })
+	
 	public void CancelMeeting_05() throws HarnessException {
-		
-		
-		//-- Data Setup
-		
 		
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1, modifyApptBody;
@@ -350,8 +318,8 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -383,20 +351,13 @@ public class CancelMeeting extends CalendarWorkWeekTest {
         // Click Edit Cancellation
         // When the form opens, simply click "SEND" (don't edit content)
         FormMailNew mailComposeForm = (FormMailNew)dialog.zClickButton(Button.B_EDIT_CANCELLATION);
-        
-        // For some reason, the form takes some time to render
-        // Sometimes the SEND button is not activated.
-        SleepUtil.sleepMedium();
-        
-		mailComposeForm.zFillField(Field.Body, modifyApptBody);		
-		mailComposeForm.zToolbarPressButton(Button.B_SEND);
-		
+		mailComposeForm.zFillField(Field.Body, " " + modifyApptBody);		
+		mailComposeForm.zSubmit();
 		
 		//-- Verification
 		
 		// Verify the meeting no longer appears in the organizer's calendar
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify meeting is deleted from organizer's calendar");
-		
 
 		// Verify the meeting no longer appears in the attendee's calendar
 		MailItem canceledApptMail = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "in:inbox subject:(Cancelled) subject:("+ apptSubject +")");

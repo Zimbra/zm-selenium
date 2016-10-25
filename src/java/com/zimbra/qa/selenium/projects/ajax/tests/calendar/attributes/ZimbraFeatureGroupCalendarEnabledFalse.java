@@ -56,9 +56,9 @@ public class ZimbraFeatureGroupCalendarEnabledFalse extends CalendarWorkWeekTest
 			+		"<a n='zimbraFeatureGroupCalendarEnabled'>FALSE</a>"
 			+	"</ModifyAccountRequest>");
 
-		// Logout and login to pick up the changes
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
+		app.zPageCalendar.zNavigateTo();
 		
 		// Creating object for appointment data
 		AppointmentItem appt = new AppointmentItem();
@@ -126,9 +126,9 @@ public class ZimbraFeatureGroupCalendarEnabledFalse extends CalendarWorkWeekTest
 			+		"<a n='zimbraFeatureGroupCalendarEnabled'>FALSE</a>"
 			+	"</ModifyAccountRequest>");
 
-		// Logout and login to pick up the changes
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
+		app.zPageCalendar.zNavigateTo();
 	
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);

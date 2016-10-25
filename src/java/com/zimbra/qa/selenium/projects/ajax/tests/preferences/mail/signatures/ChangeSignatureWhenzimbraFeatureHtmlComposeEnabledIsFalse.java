@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
 
-import java.util.HashMap;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
@@ -38,14 +37,8 @@ public class ChangeSignatureWhenzimbraFeatureHtmlComposeEnabledIsFalse extends A
 	String sigName = "signame" + ConfigProperties.getUniqueString();
 	String sigBody = "sigbody" + ConfigProperties.getUniqueString();
 
-	@SuppressWarnings("serial")
 	public ChangeSignatureWhenzimbraFeatureHtmlComposeEnabledIsFalse() {
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
-				put("zimbraPrefComposeFormat", "html");
-			}
-		};
 	}
 
 	@BeforeMethod(groups = { "always" })
@@ -56,18 +49,14 @@ public class ChangeSignatureWhenzimbraFeatureHtmlComposeEnabledIsFalse extends A
 						+ "' >" + "<content type='text/plain'>" + this.sigBody + "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
 
-		// Modify the test account and change zimbraFeatureHtmlComposeEnabled to
-		// FALSE
 		ZimbraAdminAccount.GlobalAdmin()
 				.soapSend("<ModifyAccountRequest xmlns='urn:zimbraAdmin'>" + "<id>" + app.zGetActiveAccount().ZimbraId
 						+ "</id>" + "<a n='zimbraFeatureHtmlComposeEnabled'>FALSE</a>" + "</ModifyAccountRequest>");
 
-		// Logout and login
-		this.app.zPageLogin.zNavigateTo();
-		this.app.zPageMail.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 
 		logger.info("CreateSignature: finish");
-
 	}
 
 	/**
@@ -98,25 +87,19 @@ public class ChangeSignatureWhenzimbraFeatureHtmlComposeEnabledIsFalse extends A
 
 		// Fill out the form with the data
 		mailform.zFill(mail);
+
 		// click Signature drop down and add signature
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_SIGNATURE, this.sigName);
 
 		DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning, app,
 				((AppAjaxClient) app).zPageMail);
-		if (dialog.zIsActive()) {
-			// ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog
-			// opens");
-			dialog.zClickButton(Button.B_OK);
-		}
+		dialog.zClickButton(Button.B_OK);
 
 		// Send the message
 		mailform.zSubmit();
 
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountZWC(),
 				"in:inbox subject:(" + mail.dSubject + ")");
-
-		logger.debug("===========received is: " + received);
-		logger.debug("===========app is: " + app);
 
 		// Verify TO, Subject, Body,Signature
 

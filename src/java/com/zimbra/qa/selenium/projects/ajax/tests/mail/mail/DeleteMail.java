@@ -60,7 +60,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 				
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -105,7 +105,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_MAIL_CHECKBOX, mail.dSubject);
@@ -158,7 +158,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -204,7 +204,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -332,7 +332,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 				
 		// Right click the item, select delete
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, mail.dSubject);
@@ -385,7 +385,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 			}
 		
 		// Refresh current view
-		app.zPageMail.sRefresh();
+		app.zPageMain.sRefresh();
 		
 		//Refreshing it twice as single refresh does not work sometimes
 		app.zPageMail.zVerifyMailExists(subject[52]);
@@ -424,7 +424,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	@Bugs( ids = "53564")
 	@Test( description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut",
 			groups = { "functional" } )
-	public void HardDeleteMail_01() throws HarnessException {
+	public void HardDeleteMail_08() throws HarnessException {
 		app.zGetActiveAccount().soapSend(
 				"<GetFolderRequest xmlns='urn:zimbraMail'/>");
 
@@ -446,7 +446,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		
 		
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 				
 		// Check the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -471,7 +471,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	@Bugs( ids = "53564")
 	@Test( description = "Hard-delete multiple messages (3) by selecting and typing 'shift-del' shortcut",
 			groups = { "functional" })
-	public void HardDeleteMail_02() throws HarnessException {
+	public void HardDeleteMail_09() throws HarnessException {
 		
 		// Create the message data to be sent
 		String subject1 = "subject"+ ConfigProperties.getUniqueString();
@@ -558,7 +558,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 	@Test( description = "Delete a mail from trash - confirm warning dialog",
 			groups = { "functional" })
-	public void DeleteMailFromTrash_01() throws HarnessException {
+	public void DeleteMailFromTrash_10() throws HarnessException {
 		
 		
 		//-- DATA setup
@@ -594,7 +594,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 			
 		
 			// Refresh current view
-			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+			app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 					
 			// Select the trash
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, trash);
@@ -630,7 +630,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 	@Test( description = "Delete multiple messages (3) from trash by select and toolbar delete - confirm warning dialog",
 			groups = { "functional" })
-	public void DeleteMailFromTrash_02() throws HarnessException {
+	public void DeleteMailFromTrash_11() throws HarnessException {
 		
 		
 		//-- DATA setup
@@ -762,7 +762,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	@Bugs(ids = "79188")
 	@Test( description = "Delete a message from drafts",
 			groups = { "functional" })
-	public void DeleteMailFromDrafts_01() throws HarnessException {
+	public void DeleteMailFromDrafts_12() throws HarnessException {
 		
 		//-- DATA
 		String subject = "subject"+ ConfigProperties.getUniqueString();
@@ -792,7 +792,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		try {
 			
 			// Refresh current view
-			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+			app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 					
 			// Click in Drafts
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, drafts);

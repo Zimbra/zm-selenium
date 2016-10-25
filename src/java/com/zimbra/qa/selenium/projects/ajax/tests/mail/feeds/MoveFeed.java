@@ -32,17 +32,17 @@ public class MoveFeed extends PrefGroupMailByMessageTest {
 	public MoveFeed() {
 		logger.info("New "+ MoveFeed.class.getCanonicalName());
 	}
-	
+
 	@Test( description = "Move a feed folder - Right click, Move", groups = { "smoke" })
-	
+
 	public void MoveFeed_01() throws HarnessException, MalformedURLException {
-		
+
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		ZAssert.assertNotNull(inbox, "Verify the inbox is available");
-		
+
 		String feedname = "feed" + ConfigProperties.getUniqueString();
 		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
-		URL feedurl = new URL(ConfigProperties.getStringProperty("feed.rss"));
+		URL feedurl = new URL(ConfigProperties.getStringProperty("rss.sample"));
 
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
@@ -54,7 +54,7 @@ public class MoveFeed extends PrefGroupMailByMessageTest {
 
 		// Create destination folder
 		String foldername = "folder" + ConfigProperties.getUniqueString();
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
                 	"<folder name='"+ foldername +"' l='"+ inbox.getId() +"'/>" +
@@ -62,9 +62,9 @@ public class MoveFeed extends PrefGroupMailByMessageTest {
 
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 		ZAssert.assertNotNull(folder, "Verify the first subfolder is available");
-		
-		
-		
+
+
+
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -72,11 +72,11 @@ public class MoveFeed extends PrefGroupMailByMessageTest {
 		DialogMove dialog = (DialogMove)app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_MOVE, feed);
 		dialog.zClickTreeFolder(folder);
 		dialog.zClickButton(Button.B_OK);
-		
+
 		// Verify the folder is now in the other subfolder
 		feed = FolderItem.importFromSOAP(app.zGetActiveAccount(), feedname);
 		ZAssert.assertNotNull(feed, "Verify the subfolder is again available");
 		ZAssert.assertEquals(folder.getId(), feed.getParentId(), "Verify the subfolder's parent is now the other subfolder");
-		
+
 	}
 }

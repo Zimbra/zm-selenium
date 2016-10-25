@@ -17,182 +17,150 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.folders;
 
 import java.awt.event.KeyEvent;
-
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
-
 public class DeleteFolder extends AjaxCommonTest {
 
 	public DeleteFolder() {
-		logger.info("New "+ DeleteFolder.class.getCanonicalName());
-		
-		// All tests start at the login page
+		logger.info("New " + DeleteFolder.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
-		
-		// Enable user preference checkboxes
-		
-		
 	}
 
-	
-	
-	
-	@Test( description = "Delete a top level addressbook - Right click, Delete",
-			groups = { "smoke" })
+	@Test(description = "Delete a top level addressbook - Right click, Delete", groups = { "smoke" })
 	public void DeleteTopLevelFolderFromContextmenu_01() throws HarnessException {
-		
-		//-- Data
-		
+
+		// -- Data
+
 		FolderItem userRoot = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
-		String name = "ab"+ ConfigProperties.getUniqueString();
-		app.zGetActiveAccount().soapSend(
-				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-						"<folder name='"+ name + "' view='contact' l='"+ userRoot.getId() +"'/>" +
-				"</CreateFolderRequest>");
+		String name = "ab" + ConfigProperties.getUniqueString();
+		app.zGetActiveAccount().soapSend("<CreateFolderRequest xmlns='urn:zimbraMail'>" + "<folder name='" + name
+				+ "' view='contact' l='" + userRoot.getId() + "'/>" + "</CreateFolderRequest>");
 		FolderItem folderItem = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
 
-		//-- GUI
-		
+		// -- GUI
+
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// Delete the folder using context menu
 		app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_DELETE, folderItem);
 
-		
-		//-- Verification
-		
+		// -- Verification
+
 		// Get the folder again
 		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
-		
+
 		// Verify the ab is moved to trash
 		ZAssert.assertEquals(actual.getParentId(), trash.getId(), "Verify the ab is moved to trash");
 
-	}	
-
-				
-
-	
-	@Test( description = "Delete a sub folder - Right click, Delete",
-			groups = { "functional" })
-	public void DeleteSubFolderFromContextmenu_02() throws HarnessException {
-		
-		//-- Data
-		
-		FolderItem contact = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
-		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
-
-		String name = "ab"+ ConfigProperties.getUniqueString();
-		app.zGetActiveAccount().soapSend(
-				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-						"<folder name='"+ name + "' view='contact' l='"+ contact.getId() +"'/>" +
-				"</CreateFolderRequest>");
-		FolderItem folderItem = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
-
-		//-- GUI
-		
-		// Refresh
-		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
-		// Delete the folder using context menu
-		app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_DELETE, folderItem);
-
-		
-		//-- Verification
-		
-		// Get the folder again
-		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
-		
-		// Verify the ab is moved to trash
-		ZAssert.assertEquals(actual.getParentId(), trash.getId(), "Verify the ab is moved to trash");
-
-
-			
 	}
-	
-	@Test( description = "Drag one sub folder to Trash folder", groups = { "functional" })
-	public void DnDFromSubFolderToTrash_03() throws HarnessException {
-		
-		//-- Data
-		
+
+	@Test(description = "Delete a sub folder - Right click, Delete", groups = { "functional" })
+	public void DeleteSubFolderFromContextmenu_02() throws HarnessException {
+
+		// -- Data
+
 		FolderItem contact = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
-		String name = "ab"+ ConfigProperties.getUniqueString();
-		app.zGetActiveAccount().soapSend(
-				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-						"<folder name='"+ name + "' view='contact' l='"+ contact.getId() +"'/>" +
-				"</CreateFolderRequest>");
+		String name = "ab" + ConfigProperties.getUniqueString();
+		app.zGetActiveAccount().soapSend("<CreateFolderRequest xmlns='urn:zimbraMail'>" + "<folder name='" + name
+				+ "' view='contact' l='" + contact.getId() + "'/>" + "</CreateFolderRequest>");
 		FolderItem folderItem = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
 
-		//-- GUI
-		
+		// -- GUI
+
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
+
+		// Delete the folder using context menu
+		app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_DELETE, folderItem);
+
+		// -- Verification
+
+		// Get the folder again
+		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
+
+		// Verify the ab is moved to trash
+		ZAssert.assertEquals(actual.getParentId(), trash.getId(), "Verify the ab is moved to trash");
+
+	}
+
+	@Test(description = "Drag one sub folder to Trash folder", groups = { "functional" })
+	public void DnDFromSubFolderToTrash_03() throws HarnessException {
+
+		// -- Data
+
+		FolderItem contact = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
+		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
+
+		String name = "ab" + ConfigProperties.getUniqueString();
+		app.zGetActiveAccount().soapSend("<CreateFolderRequest xmlns='urn:zimbraMail'>" + "<folder name='" + name
+				+ "' view='contact' l='" + contact.getId() + "'/>" + "</CreateFolderRequest>");
+		FolderItem folderItem = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
+
+		// -- GUI
+
+		// Refresh
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
+
 		// Delete the folder DND
 		app.zPageContacts.zDragAndDrop(
-				"css=td#zti__main_Contacts__" + folderItem.getId() + "_textCell:contains("+ folderItem.getName() + ")",
-				"css=td#zti__main_Contacts__" + trash.getId() + "_textCell:contains("+ trash.getName() + ")");
+				"css=td#zti__main_Contacts__" + folderItem.getId() + "_textCell:contains(" + folderItem.getName() + ")",
+				"css=td#zti__main_Contacts__" + trash.getId() + "_textCell:contains(" + trash.getName() + ")");
 
-		
-		//-- Verification
-		
+		// -- Verification
+
 		// Get the folder again
 		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
-		
+
 		// Verify the ab is moved to trash
 		ZAssert.assertEquals(actual.getParentId(), trash.getId(), "Verify the ab is moved to trash");
-
 
 	}
 
-	@Test( description = "Delete an addressbook folder- Use shortcut Del",
-			groups = { "deprecated" })
+	@Bugs(ids = "103601")
+	@Test(description = "Delete an addressbook folder- Use shortcut Del", groups = { "functional" })
 	public void UseShortcutDel_04() throws HarnessException {
-		
-		//-- Data
-		
+
+		// -- Data
+
 		FolderItem userRoot = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
-		String name = "ab"+ ConfigProperties.getUniqueString();
-		app.zGetActiveAccount().soapSend(
-				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-						"<folder name='"+ name + "' view='contact' l='"+ userRoot.getId() +"'/>" +
-				"</CreateFolderRequest>");
+		String name = "ab" + ConfigProperties.getUniqueString();
+		app.zGetActiveAccount().soapSend("<CreateFolderRequest xmlns='urn:zimbraMail'>" + "<folder name='" + name
+				+ "' view='contact' l='" + userRoot.getId() + "'/>" + "</CreateFolderRequest>");
 		FolderItem folderItem = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
 
-		//-- GUI
-		
+		// -- GUI
+
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// Select the folder
 		app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, folderItem);
-		
- 	    // Delete the folder using shortcut Del		
-	    app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DELETE);
 
-		
-		//-- Verification
-		
+		// Delete the folder using shortcut Del
+		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DELETE);
+
+		// -- Verification
+
 		// Get the folder again
 		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
-		
+
 		// Verify the ab is moved to trash
 		ZAssert.assertEquals(actual.getParentId(), trash.getId(), "Verify the ab is moved to trash");
 
-
-	}	
+	}
 
 }

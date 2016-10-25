@@ -48,8 +48,8 @@ public class ResetStatusAfterModifyingSubject extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 20, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 21, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -74,21 +74,17 @@ public class ResetStatusAfterModifyingSubject extends CalendarWorkWeekTest {
         //Login as attendee and accept the invite
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.Account1());
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		SleepUtil.sleepSmall();
+
 		app.zPageCalendar.zNavigateTo();
-		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);		
 		app.zPageMain.zLogout();			
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());	
 		
         // Modify Subject and re-send the appointment
 		app.zPageCalendar.zNavigateTo();
-		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zFillField(Field.Subject, modifiedSubject);;
-        apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepVeryLong(); 
+        apptForm.zSubmit();
         
 		// --- Check that the organizer shows the attendee as "Accepted" ---
 		app.zGetActiveAccount().soapSend(

@@ -72,12 +72,10 @@ public class ModifyByAddingAttendees extends CalendarWorkWeekTest {
         // Add attendee2 and resend the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zFillField(Field.Attendees, apptAttendee2);
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
         DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
         sendUpdateDialog.zClickButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
         sendUpdateDialog.zClickButton(Button.B_OK);
-        SleepUtil.sleepVeryLong(); // test fails while checking free/busy status, waitForPostqueue is not sufficient here
-        // Tried sleepLong() as well but although fails so using sleepVeryLong()
  
         // Verify that attendee2 present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
@@ -154,12 +152,10 @@ public class ModifyByAddingAttendees extends CalendarWorkWeekTest {
         // Add attendee2 and resend the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zFillField(Field.Attendees, apptAttendee2);
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
         DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
         sendUpdateDialog.zClickButton(Button.B_SEND_UPDATES_TO_ALL_ATTENDEES);
         sendUpdateDialog.zClickButton(Button.B_OK);
-        SleepUtil.sleepVeryLong(); // test fails while checking free/busy status, waitForPostqueue is not sufficient here
-        // Tried sleepLong() as well but although fails so using sleepVeryLong()
         
         // Verify attendee1 receives meeting invitation message
 		ZimbraAccount.AccountA().soapSend(
@@ -238,13 +234,11 @@ public class ModifyByAddingAttendees extends CalendarWorkWeekTest {
         // Add attendee2 and resend the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zFillField(Field.Attendees, distribution.EmailAddress);
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
         DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
         sendUpdateDialog.zClickButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
         sendUpdateDialog.zClickButton(Button.B_OK);
-        SleepUtil.sleepVeryLong(); // test fails while checking free/busy status, waitForPostqueue is not sufficient here
-        // Tried sleepLong() as well but although fails so using sleepVeryLong()
- 
+      
         // Verify that attendee2 present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");

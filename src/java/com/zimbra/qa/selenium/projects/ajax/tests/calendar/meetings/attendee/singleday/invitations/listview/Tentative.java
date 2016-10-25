@@ -85,7 +85,6 @@ public class Tentative extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & mark invite as tentative ----------------------------------------------------
 
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_SERIES_MENU, Button.O_TENTATIVE_MENU, apptSubject);
-		SleepUtil.sleepVeryLong(); //Attendee status changes from NE To TE
 
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       

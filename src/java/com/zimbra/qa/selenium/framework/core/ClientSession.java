@@ -17,7 +17,10 @@
 package com.zimbra.qa.selenium.framework.core;
 
 import java.io.File;
-import java.util.Set;
+import java.util.Arrays;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.logging.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -26,11 +29,13 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.OperatingSystem;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 /**
  * A <code>ClientSession</code> object contains all session information for the
@@ -64,27 +69,29 @@ public class ClientSession {
 
 			String driverPath = null;
 
+			LoggingPreferences logs = new LoggingPreferences();
+	        logs.enable(LogType.BROWSER, Level.SEVERE);
+	        logs.enable(LogType.DRIVER, Level.SEVERE);
+	        logs.enable(LogType.PERFORMANCE, Level.SEVERE);
+
 			if (ConfigProperties.getCalculatedBrowser().contains("iexplore") ||	ConfigProperties.getCalculatedBrowser().contains("ie")) {
 
 				switch (OperatingSystem.getOSType()) {
-				
-					case WINDOWS: default:
-						driverPath = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/IEDriverServer.exe";
-						break;
 
-					case WINDOWS10:
+					case WINDOWS: case WINDOWS10: default:
 						driverPath = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/MicrosoftWebDriver.exe";
 						break;
 				}
 
-				DesiredCapabilities desiredCapabilities = DesiredCapabilities.internetExplorer();
+				DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
 				System.setProperty("webdriver.ie.driver", driverPath);
-				webDriver = new InternetExplorerDriver(desiredCapabilities);
+				capabilities.setCapability(CapabilityType.LOGGING_PREFS, logs);
+				webDriver = new InternetExplorerDriver(capabilities);
 
 			} else if (ConfigProperties.getCalculatedBrowser().contains("firefox")) {
 
 				switch (OperatingSystem.getOSType()) {
-				
+
 					case WINDOWS: default:
 						driverPath = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/geckodriver.exe";
 						break;
@@ -94,32 +101,21 @@ public class ClientSession {
 						break;
 				}
 
-				File file = new File(ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/firebug-2.0.17-fx.xpi");
-				System.setProperty("webdriver.gecko.driver", driverPath);
-				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 				FirefoxProfile profile = new FirefoxProfile();
-				profile.addExtension(file);
-				capabilities.setCapability(FirefoxDriver.PROFILE, profile);
-				capabilities.setCapability("marionette", true);
-				webDriver = new FirefoxDriver(capabilities);
-				
-				// Close the firebug window
-				SleepUtil.sleepLong(); // Firebug window takes time to open it
-				Set <String> windows = webDriver.getWindowHandles();
-			    String mainwindow = webDriver.getWindowHandle();
+				profile.addExtension(new File(ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/firebug-2.0.17-fx.xpi"));
+				profile.setPreference("extensions.firebug.showFirstRunPage", false);
 
-			    for (String handle: windows) {
-			    	webDriver.switchTo().window(handle);
-			        if (!handle.equals(mainwindow)) {
-			        	webDriver.close();
-			        }
-			    }
-			    webDriver.switchTo().window(mainwindow);
+				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+				System.setProperty("webdriver.gecko.driver", driverPath);
+				capabilities.setCapability("marionette", true);
+				capabilities.setCapability(FirefoxDriver.PROFILE, profile);
+				capabilities.setCapability(CapabilityType.LOGGING_PREFS, logs);
+				webDriver = new FirefoxDriver(capabilities);
 
 			} else {
 
 				switch (OperatingSystem.getOSType()) {
-				
+
 					case WINDOWS: default:
 						driverPath = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/chromedriver.exe";
 						break;
@@ -130,13 +126,19 @@ public class ClientSession {
 				}
 
 				ChromeOptions options = new ChromeOptions();
-				options.addArguments("chrome.switches", "--disable-extensions");
-				options.addArguments("--start-maximized");
-				System.setProperty("webdriver.chrome.driver", driverPath);
-				webDriver = new ChromeDriver(options);
+				Map<String, Object> preferences = new Hashtable<String, Object>();
+				options.setExperimentalOption("prefs", preferences);
+				preferences.put("plugins.plugins_disabled", new String[] { "Adobe Flash Player", "Chrome PDF Viewer" });
+
+		        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+		        System.setProperty("webdriver.chrome.driver", driverPath);
+		        capabilities.setCapability("chrome.switches", Arrays.asList("--disable-extensions"));
+		        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+		        capabilities.setCapability(CapabilityType.LOGGING_PREFS, logs);
+		        webDriver = new ChromeDriver(capabilities);
 			}
 		}
-
+		webDriver.manage().window().maximize();
 		return webDriver;
 	}
 

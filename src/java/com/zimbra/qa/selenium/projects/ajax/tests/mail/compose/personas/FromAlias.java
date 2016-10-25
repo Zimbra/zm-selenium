@@ -43,7 +43,7 @@ public class FromAlias extends PrefGroupMailByMessageTest {
 		AliasFromDisplay = "alias" + ConfigProperties.getUniqueString();
 		AliasEmailAddress = AliasFromDisplay + 
 					"@" +
-					ConfigProperties.getStringProperty("testdomain", "testdomain.com");
+					ConfigProperties.getStringProperty("testdomain");
 		
 		String identity = "identity" + ConfigProperties.getUniqueString();
 		
@@ -68,9 +68,8 @@ public class FromAlias extends PrefGroupMailByMessageTest {
 			+		"</identity>"
 			+	"</CreateIdentityRequest>");
 		
-		// Logout and login to pick up the changes
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		
 	}
 

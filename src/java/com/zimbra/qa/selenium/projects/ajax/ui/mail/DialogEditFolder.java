@@ -266,6 +266,32 @@ public class DialogEditFolder extends AbsDialog {
 		
 		this.zWaitForBusyOverlay();
 	}
+	
+	public void zSetNewColor(FolderColor color, AppAjaxClient app) throws HarnessException {
+		
+		logger.info(myPageName() + " zEnterFolderColor(" + color + ")");
+		String actionLocator = null;
+		String optionLocator = null;
+		tracer.trace("Enter folder color " + color);
+
+		if (color == null)
+			throw new HarnessException("folder must not be null");
+
+		if (color == FolderColor.Green) {
+
+			actionLocator = Locators.zBlueColorId;
+			optionLocator = Locators.zGreenColorId;
+
+			zClick(actionLocator);
+			this.zWaitForBusyOverlay();
+			zClick(optionLocator);
+
+		} else {
+			throw new HarnessException("color " + color	+ " not yet implemented");
+		}
+		
+		this.zWaitForBusyOverlay();
+	}
 
 	public enum DialogTab {
 		Properties, Retention, Disposal, Other

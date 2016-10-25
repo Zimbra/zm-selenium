@@ -92,7 +92,6 @@ public class Decline extends CalendarWorkWeekTest {
 		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
 		declineAppt.zClickButton(Button.B_DONT_NOTIFY_ORGANIZER);
 		declineAppt.zClickButton(Button.B_YES);
-		SleepUtil.sleepVeryLong(); //Attendee status changes from NE To DE
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 
@@ -201,7 +200,6 @@ public class Decline extends CalendarWorkWeekTest {
 		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
 		declineAppt.zClickButton(Button.B_NOTIFY_ORGANIZER);
 		declineAppt.zClickButton(Button.B_YES);
-		SleepUtil.sleepVeryLong(); //Attendee status changes from DE To NE
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 

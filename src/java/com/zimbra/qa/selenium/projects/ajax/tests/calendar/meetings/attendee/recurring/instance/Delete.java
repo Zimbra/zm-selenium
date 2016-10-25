@@ -82,7 +82,6 @@ public class Delete extends CalendarWorkWeekTest {
 		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
 		declineAppt.zClickButton(Button.B_NOTIFY_ORGANIZER);
 		declineAppt.zClickButton(Button.B_YES);
-		SleepUtil.sleepVeryLong(); //Attendee status changes
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 

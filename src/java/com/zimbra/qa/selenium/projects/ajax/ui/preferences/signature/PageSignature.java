@@ -39,17 +39,10 @@ public class PageSignature extends AbsTab {
 		public static final String zToolbarSaveID = "zb__PREF__SAVE_title";
 		public static final String zToolbarCancelID = "zb__PREF__CANCEL_title";
 		public static final String zSignatureListView = "//div[@class='ZmSignatureListView']";
-		// public static final String zNewSignature
-		// ="//td[contains(@id,'_title') and contains
-		// (text(),'"+I18N.NEW_SIGNATURE+"')]";
 		public static final String zNewSignature = "css=td[class='ZOptionsField'] td[id$='_title']:contains('"
 				+ I18N.NEW_SIGNATURE + "')";
-
-		// public static final String zDeleteSignature
-		// ="//td[contains(@id,'DWT') and contains (text(),'"+I18N.DELETE+"')]";
 		public static final String zDeleteSignature = "css=td[class='ZOptionsField'] td[id$='_title']:contains('"
 				+ I18N.DELETE + "')";
-
 	}
 
 	@Override
@@ -83,7 +76,6 @@ public class PageSignature extends AbsTab {
 		} finally {
 			this.sSelectFrame("relative=top");
 		}
-
 	}
 
 	@Override

@@ -76,24 +76,20 @@ public class ResetStatusAfterModifyingTime extends CalendarWorkWeekTest {
         //Login as attendee and accept the invite
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.Account1());
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		SleepUtil.sleepSmall();
+
 		app.zPageCalendar.zNavigateTo();
-		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);		
 		app.zPageMain.zLogout();			
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());	
         
         // Modify time and re-send the appointment
 		app.zPageCalendar.zNavigateTo();
-		SleepUtil.sleepMedium(); //"Unable to determine locator for appointment" issue here
 		AppointmentItem appt = new AppointmentItem();
 		appt.setStartTime(changedStartUTC);
 		appt.setEndTime(changedEndUTC);
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zFill(appt);
-        apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepVeryLong(); 
+        apptForm.zSubmit();
         
 		// --- Check that the organizer shows the attendee as "Needs Action" ---
 		app.zGetActiveAccount().soapSend(

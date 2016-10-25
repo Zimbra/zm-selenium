@@ -96,7 +96,7 @@ public class ZimbraFeatureContactsDetailedSearchEnabled extends PrefGroupMailByM
 		} finally {
 			
 			// Refresh due to skipped issue
-			app.zPageMail.sRefresh();
+			app.zPageMain.sRefresh();
 		}
 	}		
 
@@ -177,7 +177,7 @@ public class ZimbraFeatureContactsDetailedSearchEnabled extends PrefGroupMailByM
 		} finally {
 			
 			// Refresh due to skipped issue
-			app.zPageMail.sRefresh();
+			app.zPageMain.sRefresh();
 		}
 		
 	}		

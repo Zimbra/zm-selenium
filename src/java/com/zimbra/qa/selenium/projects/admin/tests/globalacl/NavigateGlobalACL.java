@@ -28,7 +28,7 @@ public class NavigateGlobalACL extends AdminCommonTest {
 		logger.info("New "+ NavigateGlobalACL.class.getCanonicalName());
 
 		// All tests start at the "Cos" page
-		super.startingPage = app.zPageManageACL;
+		super.startingPage = app.zPageManageGlobalACL;
 	}
 	
 	/**

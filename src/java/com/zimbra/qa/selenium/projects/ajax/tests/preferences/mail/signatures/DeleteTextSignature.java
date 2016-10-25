@@ -53,12 +53,12 @@ public class DeleteTextSignature extends AjaxCommonTest {
 				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + this.sigName
 						+ "' >" + "<content type='text/plain'>" + this.sigBody + "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
-		// Logout and login
-		this.app.zPageLogin.zNavigateTo();
+
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		this.app.zPagePreferences.zNavigateTo();
 
 		logger.info("CreateSignature: finish");
-
 	}
 
 	/**
@@ -85,10 +85,10 @@ public class DeleteTextSignature extends AjaxCommonTest {
 		signew.zClick(Locators.zSignatureListView);
 		signew.zClick("//td[contains(text(),'" + signature.getName() + "')]");
 
-		// click Delete button
+		// Click Delete button
 		app.zPageSignature.zToolbarPressButton(Button.B_DELETE);
 
-		// click Save
+		// Click Save
 		signew.zSubmit();
 
 		// To check whether deleted signature is exist
@@ -96,7 +96,7 @@ public class DeleteTextSignature extends AjaxCommonTest {
 
 		String signame = app.zGetActiveAccount().soapSelectValue("//acct:signature[@name='" + this.sigName + "']",
 				"name");
-		ZAssert.assertNull(signame, "Verify  signature is deleted");
+		ZAssert.assertNull(signame, "Verify signature is deleted");
 
 	}
 }

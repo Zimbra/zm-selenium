@@ -54,8 +54,8 @@ public class WeeklyRecurringNoEndDate extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 20, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 22, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee);
@@ -69,9 +69,7 @@ public class WeeklyRecurringNoEndDate extends CalendarWorkWeekTest {
 		apptForm.zFill(appt);
 		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, Button.B_NO_END_DATE_RADIO_BUTTON);
 		ZAssert.assertEquals(app.zPageCalendar.zGetRecurringLink(), "Every " + getInviteDay() + ". No end date. Effective " + getInviteMonthDateYear(), "Recurring link: Verify the appointment data");
-				
-		apptForm.zSubmit();
-		SleepUtil.sleepLong(); //SOAP gives wrong response
+		apptForm.zSubmitWithResources();
 		
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"

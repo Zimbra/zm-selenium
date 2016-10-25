@@ -55,10 +55,10 @@ public class CreateACopy extends CalendarWorkWeekTest {
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		
 		// Use system calendar folder
-		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account1(), FolderItem.SystemFolder.Calendar);
+		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account3(), FolderItem.SystemFolder.Calendar);
 		
 		// Share it
-		ZimbraAccount.Account1().soapSend(
+		ZimbraAccount.Account3().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
 				+		"<action id='"+ folder.getId() +"' op='grant'>"
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx' view='appointment'/>"
@@ -68,20 +68,20 @@ public class CreateACopy extends CalendarWorkWeekTest {
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
-				+		"<link l='1' name='"+ mountPointName +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account1().ZimbraId +"' view='appointment' color='4'/>"
+				+		"<link l='1' name='"+ mountPointName +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account3().ZimbraId +"' view='appointment' color='4'/>"
 				+	"</CreateMountpointRequest>");
 		
 		// Create invite
-		ZimbraAccount.Account2().soapSend(
+		ZimbraAccount.Account4().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
 				+		"<m l='"+ folder.getId() +"' >"
 				+			"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"
 				+				"<s d='"+ startUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
 				+				"<e d='"+ endUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
-				+				"<or a='"+ ZimbraAccount.Account2().EmailAddress +"'/>"
-				+				"<at role='REQ' ptst='NE' rsvp='1' a='" + ZimbraAccount.Account1().EmailAddress + "'/>"
+				+				"<or a='"+ ZimbraAccount.Account4().EmailAddress +"'/>"
+				+				"<at role='REQ' ptst='NE' rsvp='1' a='" + ZimbraAccount.Account3().EmailAddress + "'/>"
 				+			"</inv>"
-				+			"<e a='"+ ZimbraAccount.Account1().EmailAddress +"' t='t'/>"
+				+			"<e a='"+ ZimbraAccount.Account3().EmailAddress +"' t='t'/>"
 				+			"<su>"+ apptSubject +"</su>"
 				+			"<mp content-type='text/plain'>"
 				+				"<content>" + apptContent + "</content>"
@@ -103,42 +103,41 @@ public class CreateACopy extends CalendarWorkWeekTest {
         FormApptNew form = new FormApptNew(app);
         form.zFillField(Field.Subject, newSubject);
         form.zFillField(Field.Body, newContent);
-        form.zFillField(Field.Attendees, ZimbraAccount.Account1().EmailAddress);
-        app.zPageCalendar.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepLong();
+        form.zFillField(Field.Attendees, ZimbraAccount.Account3().EmailAddress);
+        form.zSubmit();
 		
 		// Verify the new invitation appears in the attendee1's inbox
-		ZimbraAccount.Account1().soapSend(
+		ZimbraAccount.Account3().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 			+		"<query>" + "subject:(" + newSubject + ")" + " " + "content:(" + newContent +")" + "</query>"
 			+	"</SearchRequest>");
-		String id = ZimbraAccount.Account1().soapSelectValue("//mail:m", "id");
+		String id = ZimbraAccount.Account3().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify the new invitation appears in the attendee's inbox");
 		
 		// Verify organizer for the copied appointment
-		ZimbraAccount.Account1().soapSend(
+		ZimbraAccount.Account3().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>subject:("+ newSubject +")" + " " + "content:(" + newContent +")</query>"
 			+	"</SearchRequest>");
-		id = ZimbraAccount.Account1().soapSelectValue("//mail:appt", "invId");
-		organizer = ZimbraAccount.Account1().soapSelectValue("//mail:appt/mail:or", "a");
+		id = ZimbraAccount.Account3().soapSelectValue("//mail:appt", "invId");
+		organizer = ZimbraAccount.Account3().soapSelectValue("//mail:appt/mail:or", "a");
 		ZAssert.assertEquals(organizer, app.zGetActiveAccount().EmailAddress, "Verify organizer for the copied appointment");
 
 		// Verify the new invitation appears in the attendee2's inbox
-		ZimbraAccount.Account2().soapSend(
+		ZimbraAccount.Account4().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 			+		"<query>" + "subject:(" + newSubject + ")" + " " + "content:(" + newContent +")" + "</query>"
 			+	"</SearchRequest>");
-		id = ZimbraAccount.Account2().soapSelectValue("//mail:m", "id");
+		id = ZimbraAccount.Account4().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify the new invitation appears in the attendee's inbox");
 		
 		// Verify organizer for the copied appointment
-		ZimbraAccount.Account2().soapSend(
+		ZimbraAccount.Account4().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>subject:("+ newSubject +")" + " " + "content:(" + newContent +")</query>"
 			+	"</SearchRequest>");
-		id = ZimbraAccount.Account2().soapSelectValue("//mail:appt", "invId");
-		organizer = ZimbraAccount.Account2().soapSelectValue("//mail:appt/mail:or", "a");
+		id = ZimbraAccount.Account4().soapSelectValue("//mail:appt", "invId");
+		organizer = ZimbraAccount.Account4().soapSelectValue("//mail:appt/mail:or", "a");
 		ZAssert.assertEquals(organizer, app.zGetActiveAccount().EmailAddress, "Verify organizer for the copied appointment");
 		
 	}

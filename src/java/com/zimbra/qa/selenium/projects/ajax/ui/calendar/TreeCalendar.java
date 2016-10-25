@@ -43,42 +43,45 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder;
 public class TreeCalendar extends AbsTree {
 
 	public static class Locators {
-		
+
 		public static final String MainDivID = "zov__main_Calendar";
-		public static final String CreateNewFolderIconCSS = "css=div[id='"+ MainDivID +"'] table[id='ztih__main_Calendar__CALENDAR_table'] td[id$='_title']";
+		public static final String CreateNewFolderIconCSS = "css=div[id='" + MainDivID
+				+ "'] table[id='ztih__main_Calendar__CALENDAR_table'] td[id$='_title']";
 		public static final String ztih__main_Calendar__ZIMLETCSS = "css=div[id='ztih__main_Calendar__ZIMLET']";
 		public static final String RenameTagMenu = "css=div[id='RENAME_TAG'] td[id='RENAME_TAG_title']";
 		public static final String DeleteTagMenu = "css=div[id='DELETE_WITHOUT_SHORTCUT'] td[id='DELETE_WITHOUT_SHORTCUT_title']";
-		
+
 	}
-	
+
 	public TreeCalendar(AbsApplication application) {
 		super(application);
 		logger.info("new " + TreeCalendar.class.getCanonicalName());
 	}
 
 	protected AbsPage zTreeItem(Action action, Button option, FolderItem folder) throws HarnessException {
-		
-		if ( (action == null) || (option == null) || (folder == null) ) {
+
+		if ((action == null) || (option == null) || (folder == null)) {
 			throw new HarnessException("Must define an action, option, and addressbook");
 		}
 		
+		SleepUtil.sleepMedium();
+
 		tracer.trace("processing " + folder.getName());
 
-		String actionLocator = String.format("css=div[id='zti__main_Calendar__%s'] td[id$='_textCell']", folder.getId());
+		String actionLocator = String.format("css=div[id='zti__main_Calendar__%s'] td[id$='_textCell']",
+				folder.getId());
 		String optionLocator = null;
 		AbsPage page = null;
 
-		// Special case for clicking on "Calendars" header rather than a specific Calendar Item
-		if ( folder.getName().equals("USER_ROOT") ) {
-			
-			if ( (action == Action.A_RIGHTCLICK) && (option == Button.O_NEW_CALENDAR || option == Button.O_NEW_FOLDER) ) {
-				
-			
+		// Special case for clicking on "Calendars" header rather than a
+		// specific Calendar Item
+		if (folder.getName().equals("USER_ROOT")) {
 
-				actionLocator = "css=td[id='ztih__main_Calendar__CALENDAR_textCell']"; // override the default
+			if ((action == Action.A_RIGHTCLICK) && (option == Button.O_NEW_CALENDAR || option == Button.O_NEW_FOLDER)) {
+
+				actionLocator = "css=td[id='ztih__main_Calendar__CALENDAR_textCell']";
 				optionLocator = "css=table[class$='MenuTable'] td[id$='_title']:contains(New Calendar)";
-				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageCalendar);
+				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 
 				zRightClick(actionLocator);
 				zClick(optionLocator);
@@ -93,114 +96,101 @@ public class TreeCalendar extends AbsTree {
 			}
 
 		}
-		
-		// After  clicking REFRESH, sometimes the links don't appear right away
+
+		// After clicking REFRESH, sometimes the links don't appear right away
 		GeneralUtility.waitForElementPresent(this, actionLocator);
-		
+
 		optionLocator = "css=div[id='ZmActionMenu_calendar_CALENDAR']";
-		if ( (action == Action.A_RIGHTCLICK) && (option == Button.B_DELETE) ) {
+		if ((action == Action.A_RIGHTCLICK) && (option == Button.B_DELETE)) {
 
 			// Use default actionLocator
-			// See http://bugzilla.zimbra.com/show_bug.cgi?id=64023 ... POPUP_ needs to be updated
+			// See http://bugzilla.zimbra.com/show_bug.cgi?id=64023 ... POPUP_
+			// needs to be updated
 			optionLocator += " div[id^='DELETE_WITHOUT_SHORTCUT'] td[id$='_title']";
 			page = null;
 
 			this.zRightClick(actionLocator);
 
-			
-			
-		} else if ( (action == Action.A_RIGHTCLICK) && (option == Button.B_TREE_EDIT) ) {
-			
+		} else if ((action == Action.A_RIGHTCLICK) && (option == Button.B_TREE_EDIT)) {
+
 			// Use default actionLocator
 			optionLocator += " div[id^='EDIT_PROPS'] td[id$='_title']";
-			page = new DialogEditFolder(MyApplication,((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogEditFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 
 			this.zRightClick(actionLocator);
 
-			
+		} else if ((action == Action.A_RIGHTCLICK) && (option == Button.B_MOVE)) {
 
-		} else if ( (action == Action.A_RIGHTCLICK) && (option == Button.B_MOVE) ) {
-			
 			// Use default actionLocator
 			optionLocator += " div[id^='MOVE'] td[id$='_title']";
-			page = new DialogMove(MyApplication,((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogMove(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 
 			this.zRightClick(actionLocator);
 
-			
+		} else if ((action == Action.A_RIGHTCLICK) && (option == Button.B_SHARE)) {
 
-		} else if ( (action == Action.A_RIGHTCLICK) && (option == Button.B_SHARE) ) {
-			
 			// Use default actionLocator
 			optionLocator += " div[id^='SHARE_CALENDAR'] td[id$='_title']";
-			page = new DialogShare(MyApplication,((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogShare(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 
 			this.zRightClick(actionLocator);
 
-			
+		} else if ((action == Action.A_RIGHTCLICK) && (option == Button.B_RELOAD)) {
 
-		} else if ( (action == Action.A_RIGHTCLICK) && (option == Button.B_RELOAD) ) {
-			
 			// Use default actionLocator
 			optionLocator += " div[id^='SYNC'] td[id$='_title']";
 			page = null;
 
 			this.zRightClick(actionLocator);
 
-			
+		} else if ((action == Action.A_RIGHTCLICK) && (option == Button.B_LAUNCH_IN_SEPARATE_WINDOW)) {
 
-		} else if ( (action == Action.A_RIGHTCLICK) && (option == Button.B_LAUNCH_IN_SEPARATE_WINDOW) ) {
-			
 			// Use default actionLocator
 			optionLocator += " div[id^='DETACH_WIN'] td[id$='_title']";
 
 			this.zRightClick(actionLocator);
-			this.zClickAt(optionLocator,"");
-			
+			this.zClickAt(optionLocator, "");
+
 			page = new SeparateWindow(this.MyApplication);
-			((SeparateWindow)page).zInitializeWindowNames();
-			
+			((SeparateWindow) page).zInitializeWindowNames();
+
 			this.zWaitForBusyOverlay();
-			
+
 			return (page);
 
-		} else if ( (action == Action.A_RIGHTCLICK) && (option == Button.B_RECOVER_DELETED_ITEMS) ) {
-			
+		} else if ((action == Action.A_RIGHTCLICK) && (option == Button.B_RECOVER_DELETED_ITEMS)) {
+
 			// Use default actionLocator
 			optionLocator += " div[id^='RECOVER_DELETED_ITEMS'] td[id$='_title']";
-			page = null; // TODO
+			page = null;
 
 			this.zRightClick(actionLocator);
 
-			
-
 		} else {
-			throw new HarnessException("No logic defined for action "+ action +" with option "+ option);
+			throw new HarnessException("No logic defined for action " + action + " with option " + option);
 		}
-
 
 		if (actionLocator == null)
 			throw new HarnessException("locator is null for action " + action);
 
 		// Default behavior. Click the locator
-		this.zClickAt(optionLocator,"");
+		this.zClickAt(optionLocator, "");
 		this.zWaitForBusyOverlay();
 
 		if (page != null) {
 			// Wait for the page to become active, if it was specified
 			page.zWaitForActive();
 		}
-		
-		
+
 		return page;
 	}
 
 	protected AbsPage zTreeItem(Action action, Button option, SavedSearchFolderItem folder) throws HarnessException {
-		
-		if ( (action == null) || (option == null) || (folder == null) ) {
+
+		if ((action == null) || (option == null) || (folder == null)) {
 			throw new HarnessException("Must define an action, option, and addressbook");
 		}
-		
+
 		tracer.trace("processing " + folder.getName());
 
 		throw new HarnessException("locator is null for action " + action);
@@ -209,65 +199,67 @@ public class TreeCalendar extends AbsTree {
 	protected AbsPage zTreeItem(Action action, Button option, ZimletItem zimlet) throws HarnessException {
 		throw new HarnessException("implement me!");
 	}
-	
+
 	protected AbsPage zTreeItem(Action action, Button option, TagItem folder) throws HarnessException {
-		
-		if ( (action == null) || (option == null) || (folder == null) ) {
+
+		if ((action == null) || (option == null) || (folder == null)) {
 			throw new HarnessException("Must define an action, option, and calendar");
 		}
-		
-		tracer.trace("processing " + folder.getName());
-		
-		String optionLocator = null;
-		optionLocator = "css=div[id='ztih__main_Calendar__TAG'] td[id*='zti__main_Calendar__']:contains('" + folder.getName() + "')";
 
-		if ( action == Action.A_LEFTCLICK ) {
+		tracer.trace("processing " + folder.getName());
+
+		String optionLocator = null;
+		optionLocator = "css=div[id='ztih__main_Calendar__TAG'] td[id*='zti__main_Calendar__']:contains('"
+				+ folder.getName() + "')";
+
+		if (action == Action.A_LEFTCLICK) {
 
 			// Select the folder
 			this.zClick(optionLocator);
 
 			// return a context menu
 			return (new ContextMenu(MyApplication));
-			
-		} else if ( action == Action.A_RIGHTCLICK && option == Button.B_RENAME) {
+
+		} else if (action == Action.A_RIGHTCLICK && option == Button.B_RENAME) {
 
 			// Select tag
 			this.zRightClick(optionLocator);
 			this.zClick(Locators.RenameTagMenu);
 
-			return (new DialogRenameTag(MyApplication, ((AppAjaxClient)MyApplication).zPageCalendar));
-		
-		} else if ( action == Action.A_RIGHTCLICK && option == Button.B_DELETE) {
+			return (new DialogRenameTag(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar));
+
+		} else if (action == Action.A_RIGHTCLICK && option == Button.B_DELETE) {
 
 			// Select tag
 			this.zRightClick(optionLocator);
 			this.zClick(Locators.DeleteTagMenu);
-			
-			return (new DialogDeleteTag(DialogDeleteTagID.DeleteTag, MyApplication, ((AppAjaxClient)MyApplication).zPageCalendar));
+
+			return (new DialogDeleteTag(DialogDeleteTagID.DeleteTag, MyApplication,
+					((AppAjaxClient) MyApplication).zPageCalendar));
 
 		} else {
-			throw new HarnessException("Action "+ action +" not yet implemented");
+			throw new HarnessException("Action " + action + " not yet implemented");
 		}
-		
+
 	}
 
 	protected AbsPage zTreeItem(Action action, FolderItem folder) throws HarnessException {
-		
-		if ( (action == null) || (folder == null) ) {
+
+		if ((action == null) || (folder == null)) {
 			throw new HarnessException("Must define an action, option, and addressbook");
 		}
-		
+
 		tracer.trace("processing " + folder.getName());
 
 		throw new HarnessException("locator is null for action " + action);
 	}
 
 	protected AbsPage zTreeItem(Action action, SavedSearchFolderItem folder) throws HarnessException {
-		
-		if ( (action == null) || (folder == null) ) {
+
+		if ((action == null) || (folder == null)) {
 			throw new HarnessException("Must define an action, option, and addressbook");
 		}
-		
+
 		tracer.trace("processing " + folder.getName());
 
 		throw new HarnessException("locator is null for action " + action);
@@ -278,83 +270,67 @@ public class TreeCalendar extends AbsTree {
 	}
 
 	public AbsPage zPressPulldown(Button pulldown, Button option) throws HarnessException {
-		logger.info(myPageName() + " zPressPulldown("+ pulldown +", "+ option +")");
+		logger.info(myPageName() + " zPressPulldown(" + pulldown + ", " + option + ")");
 
-		tracer.trace("Click "+ pulldown +" then "+ option);
+		tracer.trace("Click " + pulldown + " then " + option);
 
-		if ( pulldown == null )
+		if (pulldown == null)
 			throw new HarnessException("Pulldown cannot be null");
 
-		if ( option == null )
+		if (option == null)
 			throw new HarnessException("Option cannot be null");
-
 
 		AbsPage page = null;
 		String pulldownLocator = null;
 		String optionLocator = null;
-		
-		
-		if ( pulldown == Button.B_TREE_FOLDERS_OPTIONS ) {
-			
-			pulldownLocator = "css=div[id='zov__main_Calendar'] td[id='ztih__main_Calendar__CALENDAR_optCell'] div[class*=ImgContextMenu]";
-			
-			if ( option == Button.B_TREE_NEWFOLDER ) {
-				
-				optionLocator = "css=div[id='NEW_CALENDAR']";
-				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageMail);
-			
-			} else if ( option == Button.B_TREE_FIND_SHARES ) {
-				
-				optionLocator = "css=div[id='FIND_SHARES']";
-				page = new DialogShareFind(MyApplication, ((AppAjaxClient)MyApplication).zPageMail);
-				
-			} else if ( option == Button.B_TREE_NEW_EXTERNAL_CALENDAR ) {
-				
-				optionLocator = "css=div[id='ADD_EXTERNAL_CALENDAR']";
-				page = new DialogAddExternalCalendar(MyApplication, ((AppAjaxClient)MyApplication).zPageMail);
-				
-				/**
-				 * TODO: add other options:
-				 * 
-				optionLocator = "css=div[id='ZmActionMenu_calendar_CALENDAR'] div[id='CHECK_ALL'] td[id$='_title']";
-				optionLocator = "css=div[id='ZmActionMenu_calendar_CALENDAR'] div[id='CLEAR_ALL'] td[id$='_title']";
-				optionLocator = "css=div[id='ZmActionMenu_calendar_CALENDAR'] div[id='FREE_BUSY_LINK'] td[id$='_title']";
 
-				 */
-				
+		if (pulldown == Button.B_TREE_FOLDERS_OPTIONS) {
+
+			pulldownLocator = "css=div[id='zov__main_Calendar'] td[id='ztih__main_Calendar__CALENDAR_optCell'] div[class*=ImgContextMenu]";
+
+			if (option == Button.B_TREE_NEWFOLDER) {
+
+				optionLocator = "css=div[id='NEW_CALENDAR']";
+				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+
+			} else if (option == Button.B_TREE_FIND_SHARES) {
+
+				optionLocator = "css=div[id='FIND_SHARES']";
+				page = new DialogShareFind(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+
+			} else if (option == Button.B_TREE_NEW_EXTERNAL_CALENDAR) {
+
+				optionLocator = "css=div[id='ADD_EXTERNAL_CALENDAR']";
+				page = new DialogAddExternalCalendar(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+
 			} else {
-				throw new HarnessException("Pulldown/Option "+ pulldown +"/"+ option +" not implemented");
+				throw new HarnessException("Pulldown/Option " + pulldown + "/" + option + " not implemented");
 			}
 
-			
-			
-		} else if ( pulldown == Button.B_TREE_TAGS_OPTIONS ) {
-			
+		} else if (pulldown == Button.B_TREE_TAGS_OPTIONS) {
+
 			pulldownLocator = "css=div[id='zov__main_Calendar'] td[id='ztih__main_Mail__TAG_optCell'] td[id$='_title']";
-			
-			if ( option == Button.B_TREE_NEWTAG ) {
+
+			if (option == Button.B_TREE_NEWTAG) {
 
 				optionLocator = "css=div[id='ZmActionMenu_calendar_TAG'] div[id='NEW_TAG'] td[id$='_title']";
-				page = new DialogTag(MyApplication,((AppAjaxClient) MyApplication).zPageCalendar);
+				page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 
 			} else {
-				throw new HarnessException("Pulldown/Option "+ pulldown +"/"+ option +" not implemented");
+				throw new HarnessException("Pulldown/Option " + pulldown + "/" + option + " not implemented");
 			}
 
-			
-			
 		} else {
-			throw new HarnessException("Pulldown/Option "+ pulldown +"/"+ option +" not implemented");
+			throw new HarnessException("Pulldown/Option " + pulldown + "/" + option + " not implemented");
 		}
-		
-		
 
 		// Default behavior
 		if (pulldownLocator != null) {
 
 			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
-				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
+				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
+						+ pulldownLocator + " not present!");
 			}
 
 			// 8.0 change ... need zClickAt()
@@ -368,7 +344,8 @@ public class TreeCalendar extends AbsTree {
 
 				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
-					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
+					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
+							+ optionLocator + " not present!");
 				}
 
 				// 8.0 change ... need zClickAt()
@@ -385,41 +362,44 @@ public class TreeCalendar extends AbsTree {
 				page.zWaitForActive();
 			}
 		}
-		
+
 		SleepUtil.sleepMedium();
-		
+
 		// Return the specified page, or null if not set
 		return (page);
 
-
 	}
 
-	/* (non-Javadoc)
-	 * @see com.zimbra.qa.selenium.framework.ui.AbsTree#zPressButton(com.zimbra.qa.selenium.framework.ui.Button)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.zimbra.qa.selenium.framework.ui.AbsTree#zPressButton(com.zimbra.qa.
+	 * selenium.framework.ui.Button)
 	 */
 	@Override
 	public AbsPage zPressButton(Button button) throws HarnessException {
 
-		tracer.trace("Click "+ button);
+		tracer.trace("Click " + button);
 
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("Button cannot be null");
 
 		AbsPage page = null;
 		String locator = null;
 
-		if ( button == Button.B_TREE_NEWFOLDER ) {
-			
+		if (button == Button.B_TREE_NEWFOLDER) {
+
 			return (zPressPulldown(Button.B_TREE_FOLDERS_OPTIONS, Button.B_TREE_NEWFOLDER));
 
 		} else if (button == Button.B_TREE_NEWTAG) {
 
 			return (zPressPulldown(Button.B_TREE_TAGS_OPTIONS, Button.B_TREE_NEWTAG));
 
-		} else if ( button == Button.B_TREE_FIND_SHARES ) {
+		} else if (button == Button.B_TREE_FIND_SHARES) {
 
 			locator = "css=TODO#TODO";
-			page = new DialogShareFind(MyApplication,((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogShareFind(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 
 			// Use sClick, not default zClick
 			this.sClick(locator);
@@ -432,7 +412,7 @@ public class TreeCalendar extends AbsTree {
 
 			return (page);
 
-		} else if (button == Button.B_TREE_SHOW_REMAINING_FOLDERS ) {
+		} else if (button == Button.B_TREE_SHOW_REMAINING_FOLDERS) {
 
 			locator = "css=TODO#TODO";
 			page = null;
@@ -440,11 +420,9 @@ public class TreeCalendar extends AbsTree {
 			if (!this.sIsElementPresent(locator)) {
 				throw new HarnessException("Unable to find 'show remaining folders' in tree " + locator);
 			}
-			
-			
-			
+
 		} else {
-			throw new HarnessException("no logic defined for button "+ button);
+			throw new HarnessException("no logic defined for button " + button);
 		}
 
 		// Click it
@@ -458,21 +436,21 @@ public class TreeCalendar extends AbsTree {
 	}
 
 	public AbsPage zTreeItem(Action action, String locator) throws HarnessException {
-		
+
 		locator = "css=td[id^='zti__main_Calendar']:contains('" + locator + "')";
 
-		if ( !this.sIsElementPresent(locator) )
-			throw new HarnessException("Unable to find tag in tree "+ locator);
+		if (!this.sIsElementPresent(locator))
+			throw new HarnessException("Unable to find tag in tree " + locator);
 
-		if ( action == Action.A_LEFTCLICK ) {
+		if (action == Action.A_LEFTCLICK) {
 
 			// Select the folder
 			this.zClick(locator);
 
 			// return a context menu
 			return (new ContextMenu(MyApplication));
-			
-		} else if ( action == Action.A_RIGHTCLICK ) {
+
+		} else if (action == Action.A_RIGHTCLICK) {
 
 			// Select the folder
 			this.zRightClick(locator);
@@ -481,74 +459,78 @@ public class TreeCalendar extends AbsTree {
 			return (new ContextMenu(MyApplication));
 
 		} else {
-			throw new HarnessException("Action "+ action +" not yet implemented");
+			throw new HarnessException("Action " + action + " not yet implemented");
 		}
 	}
 
-
-	/* (non-Javadoc)
-	 * @see framework.ui.AbsTree#zTreeItem(framework.ui.Action, framework.items.FolderItem)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see framework.ui.AbsTree#zTreeItem(framework.ui.Action,
+	 * framework.items.FolderItem)
 	 */
 	public AbsPage zTreeItem(Action action, IItem folder) throws HarnessException {
 
-		tracer.trace("Click "+ action +" on folder "+ folder.getName());
+		tracer.trace("Click " + action + " on folder " + folder.getName());
 
 		// Validate the arguments
-		if ( (action == null) || (folder == null) ) {
+		if ((action == null) || (folder == null)) {
 			throw new HarnessException("Must define an action and addressbook");
 		}
 
-		if ( folder instanceof FolderItem ) {
-			return (zTreeItem(action, (FolderItem)folder));
-		} else if ( folder instanceof SavedSearchFolderItem ) {
-			return (zTreeItem(action, (SavedSearchFolderItem)folder));
-		} else if ( folder instanceof ZimletItem ) {
-			return (zTreeItem(action, (ZimletItem)folder));
+		if (folder instanceof FolderItem) {
+			return (zTreeItem(action, (FolderItem) folder));
+		} else if (folder instanceof SavedSearchFolderItem) {
+			return (zTreeItem(action, (SavedSearchFolderItem) folder));
+		} else if (folder instanceof ZimletItem) {
+			return (zTreeItem(action, (ZimletItem) folder));
 		}
 
-		throw new HarnessException("Must use FolderItem or SavedSearchFolderItem or ZimletItem as argument, but was "+ folder.getClass());
+		throw new HarnessException("Must use FolderItem or SavedSearchFolderItem or ZimletItem as argument, but was " + folder.getClass());
 	}
-	
+
 	public void zMarkOnOffCalendarFolder(String folderName) throws HarnessException {
-		
-		tracer.trace("Click on folder "+ folderName);
-		
+
+		tracer.trace("Click on folder " + folderName);
+
 		FolderItem folderID = FolderItem.importFromSOAP(MyApplication.zGetActiveAccount(), folderName);
 		this.sClickAt("css=div[id='zti__main_Calendar__" + folderID.getId() + "_checkbox']", "");
 		this.zWaitForBusyOverlay();
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 	}
-	
+
 	public void zVerifyCalendarChecked(Boolean status, String folderId) throws HarnessException {
-		ZAssert.assertEquals(this.sIsElementPresent("css=div[id=zti__main_Calendar__" + folderId + "_checkboxImg]"), status, "Verify calendar checked status");
-	}	
-	
+		ZAssert.assertEquals(this.sIsElementPresent("css=div[id=zti__main_Calendar__" + folderId + "_checkboxImg]"),
+				status, "Verify calendar checked status");
+	}
+
 	@Override
 	public AbsPage zTreeItem(Action action, Button option, IItem folder) throws HarnessException {
 
-		tracer.trace("Click "+ action +" then "+ option +" on folder "+ folder.getName());
+		tracer.trace("Click " + action + " then " + option + " on folder " + folder.getName());
 
 		// Validate the arguments
-		if ( (action == null) || (option == null) || (folder == null) ) {
+		if ((action == null) || (option == null) || (folder == null)) {
 			throw new HarnessException("Must define an action, option, and folder");
 		}
 
-		if ( folder instanceof FolderItem ) {
-			return (zTreeItem(action, option, (FolderItem)folder));
-		} else if ( folder instanceof SavedSearchFolderItem ) {
-			return (zTreeItem(action, option, (SavedSearchFolderItem)folder));
-		} else if ( folder instanceof ZimletItem ) {
-			return (zTreeItem(action, option, (ZimletItem)folder));
-		} else if ( folder instanceof TagItem ) {
-			return (zTreeItem(action, option, (TagItem)folder));
+		if (folder instanceof FolderItem) {
+			return (zTreeItem(action, option, (FolderItem) folder));
+		} else if (folder instanceof SavedSearchFolderItem) {
+			return (zTreeItem(action, option, (SavedSearchFolderItem) folder));
+		} else if (folder instanceof ZimletItem) {
+			return (zTreeItem(action, option, (ZimletItem) folder));
+		} else if (folder instanceof TagItem) {
+			return (zTreeItem(action, option, (TagItem) folder));
 		}
 
-		throw new HarnessException("Must use TagItem FolderItem or SavedSearchFolderItem or ZimletItem as argument, but was "+ folder.getClass());
+		throw new HarnessException(
+				"Must use TagItem FolderItem or SavedSearchFolderItem or ZimletItem as argument, but was "
+						+ folder.getClass());
 	}
 
-
 	private FolderItem parseFolderRow(String id) throws HarnessException {
-	
+
 		String locator;
 
 		FolderItem item = new FolderItem();
@@ -556,19 +538,19 @@ public class TreeCalendar extends AbsTree {
 		item.setId(id);
 
 		// Set the name
-		locator = "css=div[id='zti__main_Calendar__"+ id +"'] td[id$='_textCell']";
+		locator = "css=div[id='zti__main_Calendar__" + id + "'] td[id$='_textCell']";
 		item.setName(this.sGetText(locator));
 
 		// Set the expanded boolean
-		locator = "css=div[id='zti__main_Calendar__"+ id +"'] td[id$='_nodeCell']>div";
-		if ( sIsElementPresent(locator) ) {
+		locator = "css=div[id='zti__main_Calendar__" + id + "'] td[id$='_nodeCell']>div";
+		if (sIsElementPresent(locator)) {
 			// The image could be hidden, if there are no subfolders
 			item.gSetIsExpanded("ImgNodeExpanded".equals(sGetAttribute(locator + "@class")));
 		}
-		
+
 		// Set the selected boolean
-		locator = "css=div[id='zti__main_Calendar__"+ id +"'] div[id='zti__main_Calendar__"+ id +"_div']";
-		if ( sIsElementPresent(locator) ) {
+		locator = "css=div[id='zti__main_Calendar__" + id + "'] div[id='zti__main_Calendar__" + id + "_div']";
+		if (sIsElementPresent(locator)) {
 			item.gSetIsSelected("DwtTreeItem-selected".equals(sGetAttribute(locator + "@class")));
 		}
 
@@ -576,9 +558,10 @@ public class TreeCalendar extends AbsTree {
 
 		return (item);
 	}
-	
+
 	/**
 	 * Used for recursively building the tree list for Mail Folders
+	 * 
 	 * @param css
 	 * @return
 	 * @throws HarnessException
@@ -589,27 +572,30 @@ public class TreeCalendar extends AbsTree {
 		String searchLocator = css + " div[class='DwtTreeItem-Control']";
 
 		int count = this.sGetCssCount(searchLocator);
-		logger.debug(myPageName() + " zListGetFolders: number of folders: "+ count);
+		logger.debug(myPageName() + " zListGetFolders: number of folders: " + count);
 
-		for ( int i = 1; i <= count; i++) {
-			String itemLocator = searchLocator + ":nth-child("+i+")";
+		for (int i = 1; i <= count; i++) {
+			String itemLocator = searchLocator + ":nth-child(" + i + ")";
 
-			if ( !this.sIsElementPresent(itemLocator) ) {
+			if (!this.sIsElementPresent(itemLocator)) {
 				continue;
 			}
-			
-			String identifier = sGetAttribute(itemLocator +"@id");
-			logger.debug(myPageName() + " identifier: "+ identifier);
 
-			if ( identifier == null || identifier.trim().length() == 0 || !(identifier.startsWith("zti__main_Calendar__")) ) {
+			String identifier = sGetAttribute(itemLocator + "@id");
+			logger.debug(myPageName() + " identifier: " + identifier);
+
+			if (identifier == null || identifier.trim().length() == 0
+					|| !(identifier.startsWith("zti__main_Calendar__"))) {
 				// Not a folder
 				// Maybe "Find Shares ..."
-				count++; // Add one more to the total 'count' for this 'unknown' item
+				count++; // Add one more to the total 'count' for this 'unknown'
+							// item
 				continue;
 			}
 
 			// Set the locator
-			// TODO: This could probably be made safer, to make sure the id matches an int pattern
+			// TODO: This could probably be made safer, to make sure the id
+			// matches an int pattern
 			String id = identifier.replace("zti__main_Calendar__", "");
 
 			FolderItem item = this.parseFolderRow(id);
@@ -619,7 +605,6 @@ public class TreeCalendar extends AbsTree {
 			// Add any sub folders
 			items.addAll(zListGetFolders(itemLocator));
 
-
 		}
 
 		return (items);
@@ -627,62 +612,64 @@ public class TreeCalendar extends AbsTree {
 	}
 
 	/**
-    * Used for recursively building the tree list for Saved Search Folders
-    * @param top
-    * @return
-    * @throws HarnessException
-    */
-   private List<SavedSearchFolderItem>zListGetSavedSearchFolders(String top) throws HarnessException {
-      List<SavedSearchFolderItem> items = new ArrayList<SavedSearchFolderItem>();
+	 * Used for recursively building the tree list for Saved Search Folders
+	 * 
+	 * @param top
+	 * @return
+	 * @throws HarnessException
+	 */
+	private List<SavedSearchFolderItem> zListGetSavedSearchFolders(String top) throws HarnessException {
+		List<SavedSearchFolderItem> items = new ArrayList<SavedSearchFolderItem>();
 
-      String searchLocator = top + "//div[@class='DwtTreeItem-Control']";
+		String searchLocator = top + "//div[@class='DwtTreeItem-Control']";
 
-      int count = this.sGetXpathCount(searchLocator);
-      for ( int i = 1; i <= count; i++) {
-         String itemLocator = searchLocator + "["+ i + "]";
+		int count = this.sGetXpathCount(searchLocator);
+		for (int i = 1; i <= count; i++) {
+			String itemLocator = searchLocator + "[" + i + "]";
 
-         if ( !this.sIsElementPresent(itemLocator) ) {
-            continue;
-         }
+			if (!this.sIsElementPresent(itemLocator)) {
+				continue;
+			}
 
-         String locator;
+			String locator;
 
-         String id = sGetAttribute("xpath=("+ itemLocator +"/.)@id");
-         if ( id == null || id.trim().length() == 0 || !(id.startsWith("zti__main_Mail__")) ) {
-            // Not a folder
-            // Maybe "Find Shares ..."
-            continue;
-         }
+			String id = sGetAttribute("xpath=(" + itemLocator + "/.)@id");
+			if (id == null || id.trim().length() == 0 || !(id.startsWith("zti__main_Mail__"))) {
+				// Not a folder
+				// Maybe "Find Shares ..."
+				continue;
+			}
 
-         SavedSearchFolderItem item = new SavedSearchFolderItem();
+			SavedSearchFolderItem item = new SavedSearchFolderItem();
 
-         // Set the locator
-         // TODO: This could probably be made safer, to make sure the id matches an int pattern
-         item.setId(id.replace("zti__" + ((AppAjaxClient)MyApplication).zGetActiveAccount().EmailAddress +
-               ":main_Mail__", ""));
+			// Set the locator
+			// TODO: This could probably be made safer, to make sure the id
+			// matches an int pattern
+			item.setId(id.replace(
+					"zti__" + ((AppAjaxClient) MyApplication).zGetActiveAccount().EmailAddress + ":main_Mail__", ""));
 
-         // Set the name
-         locator = itemLocator + "//td[contains(@id, '_textCell')]";
-         item.setName(this.sGetText(locator));
+			// Set the name
+			locator = itemLocator + "//td[contains(@id, '_textCell')]";
+			item.setName(this.sGetText(locator));
 
-         // Set the expanded boolean
-         locator = itemLocator + "//td[contains(@id, '_nodeCell')]/div";
-         if ( sIsElementPresent(locator) ) {
-            // The image could be hidden, if there are no subfolders
-            //item.gSetIsExpanded("ImgNodeExpanded".equals(sGetAttribute("xpath=("+ locator + ")@class")));
-         }
+			// Set the expanded boolean
+			locator = itemLocator + "//td[contains(@id, '_nodeCell')]/div";
+			if (sIsElementPresent(locator)) {
+				// The image could be hidden, if there are no subfolders
+				// item.gSetIsExpanded("ImgNodeExpanded".equals(sGetAttribute("xpath=("+
+				// locator + ")@class")));
+			}
 
-         items.add(item);
+			items.add(item);
 
-         // Add any sub folders
-         items.addAll(zListGetSavedSearchFolders(itemLocator));
+			// Add any sub folders
+			items.addAll(zListGetSavedSearchFolders(itemLocator));
 
+		}
 
-      }
+		return (items);
 
-      return (items);
-
-   }
+	}
 
 	public List<FolderItem> zListGetFolders() throws HarnessException {
 
@@ -699,8 +686,8 @@ public class TreeCalendar extends AbsTree {
 
 		List<SavedSearchFolderItem> items = new ArrayList<SavedSearchFolderItem>();
 
-	// Recursively fill out the list, starting with all mail folders
-      items.addAll(zListGetSavedSearchFolders("//div[@id='ztih__main_Mail__SEARCH']"));
+		// Recursively fill out the list, starting with all mail folders
+		items.addAll(zListGetSavedSearchFolders("//div[@id='ztih__main_Mail__SEARCH']"));
 
 		// Return the list of items
 		return (items);
@@ -709,14 +696,12 @@ public class TreeCalendar extends AbsTree {
 
 	public List<TagItem> zListGetTags() throws HarnessException {
 
-
 		List<TagItem> items = new ArrayList<TagItem>();
 
 		// TODO: implement me!
 
 		// Return the list of items
 		return (items);
-
 
 	}
 
@@ -725,19 +710,17 @@ public class TreeCalendar extends AbsTree {
 	}
 
 	public enum FolderSectionAction {
-		Expand,
-		Collapse
+		Expand, Collapse
 	}
 
 	public enum FolderSection {
-		Folders,
-		Searches,
-		Tags,
-		Zimlets
+		Folders, Searches, Tags, Zimlets
 	}
 
 	/**
-	 * Apply an expand/collpase to the Folders, Searches, Tags and Zimlets sections
+	 * Apply an expand/collpase to the Folders, Searches, Tags and Zimlets
+	 * sections
+	 * 
 	 * @param a
 	 * @param section
 	 * @throws HarnessException
@@ -746,8 +729,9 @@ public class TreeCalendar extends AbsTree {
 		throw new HarnessException("implement me!");
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see framework.ui.AbsTree#myPageName()
 	 */
 	@Override
@@ -759,8 +743,8 @@ public class TreeCalendar extends AbsTree {
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the main page is active
-		if ( !((AppAjaxClient)MyApplication).zPageCalendar.zIsActive() ) {
-			((AppAjaxClient)MyApplication).zPageCalendar.zNavigateTo();
+		if (!((AppAjaxClient) MyApplication).zPageCalendar.zIsActive()) {
+			((AppAjaxClient) MyApplication).zPageCalendar.zNavigateTo();
 		}
 
 		// Zimlets seem to be loaded last
@@ -768,12 +752,11 @@ public class TreeCalendar extends AbsTree {
 		String locator = Locators.ztih__main_Calendar__ZIMLETCSS;
 
 		boolean loaded = this.sIsElementPresent(locator);
-		if ( !loaded )
+		if (!loaded)
 			return (false);
 
 		return (loaded);
 
 	}
-
 
 }

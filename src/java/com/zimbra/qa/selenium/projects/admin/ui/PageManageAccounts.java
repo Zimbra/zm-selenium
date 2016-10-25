@@ -56,7 +56,7 @@ public class PageManageAccounts extends AbsTab {
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=td[id='zmi__ACLV__EDIT_title']:contains('Edit')";
 		public static final String RIGHT_CLICK_MENU_CHANGE_PASSWORD_BUTTON = "css=td[id='zmi__ACLV__CHNG_PWD_title']";
 		public static final String CHANGE_PASSWORD_BUTTON="css=td[id='zmi__zb_currentApp__CHNG_PWD_title']";
-		public static final String ADVANCED="css=div[id='zti__AppAdmin__Home__actLstHV__1__12_textCell']";
+		public static final String ADVANCED="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Advanced')";
 		public static final String RIGHT_CLICK_MENU_VIEW_MAIL_BUTTON="css=td[id='zmi__ACLV__VIEW_MAIL_title']";
 		public static final String VIEW_MAIL="css=td[id='zmi__zb_currentApp__VIEW_MAIL_title']";	
 		public static final String RIGHT_CLICK_INVALIDATE_SESSIONS="css=td[id='zmi__ACLV__EXPIRE_SESSION_title']";
@@ -151,8 +151,7 @@ public class PageManageAccounts extends AbsTab {
 		int m= 50;
 		if (count >= 50) {
 			for (int a1 = 1; a1 <= 10; a1++) { 
-				String p0  = rowsLocator + ":nth-child("+m+")";
-				SleepUtil.sleepSmall();
+				String p0  = rowsLocator + ":nth-child("+m+")";				
 				if (this.sIsElementPresent(p0)) {					
 					sClickAt(p0,"");
 					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);

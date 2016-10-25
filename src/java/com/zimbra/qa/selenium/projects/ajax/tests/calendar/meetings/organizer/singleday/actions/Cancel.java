@@ -119,8 +119,10 @@ public class Cancel extends CalendarWorkWeekTest {
 	    	      app.zGetActiveAccount().ZimbraId + "</id>" + 
 	    	      "<a n='zimbraPrefFromAddress'>" + fromAddress + "</a>" + 
 	    	      "</ModifyAccountRequest>");
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();
+		
+		// Refresh UI
+		app.zPageMain.sRefresh();
+		app.zPageCalendar.zNavigateTo();
 	    
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;

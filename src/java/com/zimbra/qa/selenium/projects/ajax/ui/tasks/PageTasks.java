@@ -105,6 +105,7 @@ public class PageTasks extends AbsTab{
 	public void zNavigateTo() throws HarnessException {
 		
 		if (zIsActive()) {
+			logger.info(myPageName() + " is already loaded");
 			return;
 		}
 
@@ -112,8 +113,7 @@ public class PageTasks extends AbsTab{
 	}
 
 	public boolean isPresent(String itemName) throws HarnessException {
-		String itemLocator = Locators.taskListView
-		+ " td[width*='auto']:contains(" + itemName + ")";
+		String itemLocator = Locators.taskListView + " td[width*='auto']:contains(" + itemName + ")";
 
 		zWaitForElementPresent(itemLocator);
 		return true;

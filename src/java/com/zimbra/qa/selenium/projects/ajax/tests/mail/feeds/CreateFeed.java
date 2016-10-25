@@ -31,13 +31,13 @@ public class CreateFeed extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Create a new feed by clicking 'new folder' on folder tree", groups = { "smoke" })
-		
+
 	public void CreateFeed_01() throws HarnessException, MalformedURLException {
 
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 
 		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
-		String feed = ConfigProperties.getStringProperty("feed.rss");
+		String feed = ConfigProperties.getStringProperty("rss.sample");
 
 		// Click on the "new folder" button
 		DialogCreateFolder createFolderDialog = (DialogCreateFolder)app.zTreeMail.zPressButton(Button.B_TREE_NEWFOLDER);

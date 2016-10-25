@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
 
-import java.util.HashMap;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
@@ -27,7 +26,6 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
@@ -41,14 +39,8 @@ public class ReplyAllMsgWithHtmlSignature extends AjaxCommonTest {
 	String contentHTMLSig = XmlStringUtil
 			.escapeXml("<html>" + "<head></head>" + "<body>" + sigBody + "</body>" + "</html>");
 
-	@SuppressWarnings("serial")
 	public ReplyAllMsgWithHtmlSignature() {
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
-				put("zimbraPrefComposeFormat", "html");
-			}
-		};
 	}
 
 	@BeforeMethod(groups = { "always" })
@@ -59,8 +51,8 @@ public class ReplyAllMsgWithHtmlSignature extends AjaxCommonTest {
 						+ "' >" + "<content type='text/html'>'" + this.contentHTMLSig + "'</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
 
-		this.app.zPageLogin.zNavigateTo();
-		this.app.zPageMail.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 
 		logger.info("CreateSignature: finish");
 	}
@@ -112,8 +104,6 @@ public class ReplyAllMsgWithHtmlSignature extends AjaxCommonTest {
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLYALL);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 
-		SleepUtil.sleepSmall();
-
 		// Send the message
 		mailform.zSubmit();
 
@@ -126,9 +116,6 @@ public class ReplyAllMsgWithHtmlSignature extends AjaxCommonTest {
 				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + id + "' html='1'/>" + "</GetMsgRequest>");
 		Element getMsgResponse = ZimbraAccount.AccountZWC().soapSelectNode("//mail:GetMsgResponse", 1);
 		MailItem received = MailItem.importFromSOAP(getMsgResponse);
-
-		logger.debug("===========received is: " + received);
-		logger.debug("===========app is: " + app);
 
 		// Verify TO, Reply'ed Subject, HtmlBody,HtmlSignature
 		ZAssert.assertStringContains(received.dSubject, "Re", "Verify the subject field contains the 'Re' prefix");

@@ -71,9 +71,9 @@ public class CreateAppointmentFromExternalIMAP extends CalendarWorkWeekTest {
 			+			"username='"+ external.EmailAddress +"' password='"+ external.Password +"' />"
 			+	"</CreateDataSourceRequest>");
 
-		// Need to logout/login to get the new folder
-		app.zPageLogin.zNavigateTo();
-		startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
+		app.zPageCalendar.zNavigateTo();
 		
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();
@@ -95,8 +95,9 @@ public class CreateAppointmentFromExternalIMAP extends CalendarWorkWeekTest {
 		apptForm.zFill(appt);
 		apptForm.zFillField(Field.From, external.EmailAddress);
 		apptForm.zSubmit();
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		
 		// Verify appointment exists in current view
+		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
         //TODO add soap verification once 104525 is fixed

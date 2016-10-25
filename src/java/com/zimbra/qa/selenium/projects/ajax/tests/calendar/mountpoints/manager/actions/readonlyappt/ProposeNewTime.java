@@ -55,10 +55,10 @@ public class ProposeNewTime extends CalendarWorkWeekTest {
 		String modifiedBody = "body" + ConfigProperties.getUniqueString();
 	
 		// Use system calendar folder
-		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account1(), FolderItem.SystemFolder.Calendar);
+		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account2(), FolderItem.SystemFolder.Calendar);
 		
 		// Share it
-		ZimbraAccount.Account1().soapSend(
+		ZimbraAccount.Account2().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
 				+		"<action id='"+ folder.getId() +"' op='grant'>"
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx' view='appointment'/>"
@@ -68,20 +68,20 @@ public class ProposeNewTime extends CalendarWorkWeekTest {
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
-				+		"<link l='1' name='"+ mountPointName +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account1().ZimbraId +"' view='appointment' color='4'/>"
+				+		"<link l='1' name='"+ mountPointName +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account2().ZimbraId +"' view='appointment' color='4'/>"
 				+	"</CreateMountpointRequest>");
 		
 		// Create invite
-		ZimbraAccount.Account2().soapSend(
+		ZimbraAccount.Account3().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
 				+		"<m l='"+ folder.getId() +"' >"
 				+			"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"
 				+				"<s d='"+ startUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
 				+				"<e d='"+ endUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
-				+				"<or a='"+ ZimbraAccount.Account2().EmailAddress +"'/>"
-				+				"<at role='REQ' ptst='NE' rsvp='1' a='" + ZimbraAccount.Account1().EmailAddress + "'/>"
+				+				"<or a='"+ ZimbraAccount.Account3().EmailAddress +"'/>"
+				+				"<at role='REQ' ptst='NE' rsvp='1' a='" + ZimbraAccount.Account2().EmailAddress + "'/>"
 				+			"</inv>"
-				+			"<e a='"+ ZimbraAccount.Account1().EmailAddress +"' t='t'/>"
+				+			"<e a='"+ ZimbraAccount.Account2().EmailAddress +"' t='t'/>"
 				+			"<su>"+ apptSubject +"</su>"
 				+			"<mp content-type='text/plain'>"
 				+				"<content>" + apptBody + "</content>"
@@ -108,46 +108,46 @@ public class ProposeNewTime extends CalendarWorkWeekTest {
 		
 		// -------------- Verification at organizer side --------------
 		
-		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.Account2(), FolderItem.SystemFolder.Inbox).getId();
+		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.Account3(), FolderItem.SystemFolder.Inbox).getId();
 		
-		ZimbraAccount.Account2().soapSend(
+		ZimbraAccount.Account3().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 				+		"<query>inid:"+ inboxId +" subject:("+ apptSubject +")</query>"
 				+	"</SearchRequest>");
-		String messageId = ZimbraAccount.Account2().soapSelectValue("//mail:m", "id");
+		String messageId = ZimbraAccount.Account3().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(messageId, "Verify organizer gets email notification for proposed new time");
 		
 		// Verify from and sender address in accept invitation message		
-		ZimbraAccount.Account2().soapSend(
+		ZimbraAccount.Account3().soapSend(
 				"<GetMsgRequest  xmlns='urn:zimbraMail'>"
 			+		"<m id='"+ messageId +"'/>"
 			+	"</GetMsgRequest>");
 		
-		ZAssert.assertEquals(ZimbraAccount.Account2().soapSelectValue("//mail:e[@t='f']", "a"), ZimbraAccount.Account1().EmailAddress, "Verify From address in accept invitation message");
-		ZAssert.assertEquals(ZimbraAccount.Account2().soapSelectValue("//mail:e[@t='s']", "a"), app.zGetActiveAccount().EmailAddress, "Verify Sender address in accept invitation message");
+		ZAssert.assertEquals(ZimbraAccount.Account3().soapSelectValue("//mail:e[@t='f']", "a"), ZimbraAccount.Account2().EmailAddress, "Verify From address in accept invitation message");
+		ZAssert.assertEquals(ZimbraAccount.Account3().soapSelectValue("//mail:e[@t='s']", "a"), app.zGetActiveAccount().EmailAddress, "Verify Sender address in accept invitation message");
 		
 		// -------------- Verification at attendee side --------------
 
 		// Verify sent mail for accepted appointment notification (action performed by assistant)
-		ZimbraAccount.Account1().soapSend(
+		ZimbraAccount.Account2().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 				+		"<query>" + "in:sent is:unread subject:("+ apptSubject +")</query>"
 				+	"</SearchRequest>");
-		messageId = ZimbraAccount.Account1().soapSelectValue("//mail:m", "id");
+		messageId = ZimbraAccount.Account2().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(messageId, "Verify sent mail for proposed new time appointment (action performed by assistant)");
 		
 		// Verify from and sender address in accept invitation message		
-		ZimbraAccount.Account1().soapSend(
+		ZimbraAccount.Account2().soapSend(
 				"<GetMsgRequest  xmlns='urn:zimbraMail'>"
 			+		"<m id='"+ messageId +"'/>"
 			+	"</GetMsgRequest>");
 		
-		ZAssert.assertEquals(ZimbraAccount.Account1().soapSelectValue("//mail:e[@t='f']", "a"), ZimbraAccount.Account1().EmailAddress, "Verify From address in accept invitation message");
-		ZAssert.assertEquals(ZimbraAccount.Account1().soapSelectValue("//mail:e[@t='s']", "a"), app.zGetActiveAccount().EmailAddress, "Verify Sender address in accept invitation message");
+		ZAssert.assertEquals(ZimbraAccount.Account2().soapSelectValue("//mail:e[@t='f']", "a"), ZimbraAccount.Account2().EmailAddress, "Verify From address in accept invitation message");
+		ZAssert.assertEquals(ZimbraAccount.Account2().soapSelectValue("//mail:e[@t='s']", "a"), app.zGetActiveAccount().EmailAddress, "Verify Sender address in accept invitation message");
 		
 		// Logout to attendee and login as organizer to accept proposed new time
 		app.zPageMain.zLogout();
-		app.zPageLogin.zLogin(ZimbraAccount.Account2());
+		app.zPageLogin.zLogin(ZimbraAccount.Account3());
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 		
 		display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -155,53 +155,55 @@ public class ProposeNewTime extends CalendarWorkWeekTest {
 		SleepUtil.sleepMedium();
 		
 		appt.setSubject(modifiedSubject);
-		appt.setContent(modifiedBody);
+		appt.setContent(" " + modifiedBody);
 		apptForm.zFill(appt);
 		apptForm.zSubmit();
 		
 		// Logout to organizer and login as attendee to accept new time
 		app.zPageMain.zLogout();
-		app.zPageLogin.zLogin(ZimbraAccount.Account1());
+		app.zPageLogin.zLogin(ZimbraAccount.Account2());
 		display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, modifiedSubject);
 		display.zPressButton(Button.B_ACCEPT);
-		SleepUtil.sleepLong();
 		
 		// ------ Organizer ------
 		
 		// Verify that the attendee1 status showing as 'ACCEPTED' for organizer
-		ZimbraAccount.Account2().soapSend(
+		ZimbraAccount.Account3().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 				+		"<query>" + "subject:(" + modifiedSubject + ")" + " " + "content:(" + modifiedBody +")" + "</query>"
 				+	"</SearchRequest>");
-		String organizerInvId = ZimbraAccount.Account2().soapSelectValue("//mail:appt", "invId");
-		ZimbraAccount.Account2().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
-		String attendeeStatus = ZimbraAccount.Account2().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
-		ZAssert.assertEquals(ZimbraAccount.Account2().soapSelectValue("//mail:s", "d"), modifiedStartUTC.toyyyyMMddTHHmmss(), "Verify modified start time of the appointment");
-		ZAssert.assertEquals(ZimbraAccount.Account2().soapSelectValue("//mail:e", "d"), modifiedEndUTC.toyyyyMMddTHHmmss(), "Verify modified end time of the appointment");
+
+		String organizerInvId = ZimbraAccount.Account3().soapSelectValue("//mail:appt", "invId");
+		ZimbraAccount.Account3().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
+
+		String attendeeStatus = ZimbraAccount.Account3().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account2().EmailAddress +"']", "ptst");
+		ZAssert.assertEquals(ZimbraAccount.Account3().soapSelectValue("//mail:s", "d"), modifiedStartUTC.toyyyyMMddTHHmmss(), "Verify modified start time of the appointment");
+		ZAssert.assertEquals(ZimbraAccount.Account3().soapSelectValue("//mail:e", "d"), modifiedEndUTC.toyyyyMMddTHHmmss(), "Verify modified end time of the appointment");
 		ZAssert.assertEquals(attendeeStatus, "AC", "Verify that the attendee shows as 'ACCEPTED' for organizer");
 		
 		// ------ Attendee1 ------
 		
 		// Verify that the attendee1 status showing as 'ACCEPTED' for attendee
-		ZimbraAccount.Account1().soapSend(
+		ZimbraAccount.Account2().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 				+		"<query>" + "subject:(" + modifiedSubject + ")" + " " + "content:(" + modifiedBody +")" + "</query>"
 				+	"</SearchRequest>");
-		String attendeeInvId = ZimbraAccount.Account1().soapSelectValue("//mail:appt", "invId");
-		ZimbraAccount.Account1().soapSend(
-					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		String myStatus = ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
-		ZAssert.assertEquals(ZimbraAccount.Account1().soapSelectValue("//mail:s", "d"), modifiedStartUTC.toyyyyMMddTHHmmss(), "Verify modified start time of the appointment");
-		ZAssert.assertEquals(ZimbraAccount.Account1().soapSelectValue("//mail:e", "d"), modifiedEndUTC.toyyyyMMddTHHmmss(), "Verify modified end time of the appointment");
+
+		String attendeeInvId = ZimbraAccount.Account2().soapSelectValue("//mail:appt", "invId");
+		ZimbraAccount.Account2().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
+
+		String myStatus = ZimbraAccount.Account2().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account2().EmailAddress +"']", "ptst");
+		ZAssert.assertEquals(ZimbraAccount.Account2().soapSelectValue("//mail:s", "d"), modifiedStartUTC.toyyyyMMddTHHmmss(), "Verify modified start time of the appointment");
+		ZAssert.assertEquals(ZimbraAccount.Account2().soapSelectValue("//mail:e", "d"), modifiedEndUTC.toyyyyMMddTHHmmss(), "Verify modified end time of the appointment");
 		ZAssert.assertEquals(myStatus, "AC", "Verify that the attendee1 status showing as 'ACCEPTED'");
 		
-		ZimbraAccount.Account1().soapSend(
+		ZimbraAccount.Account2().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 				+		"<query>" + "subject:(" + "New Time Proposed.*" + ")" + " " + "content:(" + modifiedBody +")" + "</query>"
 			+	"</SearchRequest>");
-		messageId = ZimbraAccount.Account1().soapSelectValue("//mail:m", "id");
+		messageId = ZimbraAccount.Account2().soapSelectValue("//mail:m", "id");
 
-		ZimbraAccount.Account1().soapSend(
+		ZimbraAccount.Account2().soapSend(
 				"<GetMsgRequest  xmlns='urn:zimbraMail'>"
 			+		"<m id='"+ messageId +"'/>"
 			+	"</GetMsgRequest>");

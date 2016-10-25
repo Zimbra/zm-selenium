@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -35,7 +33,7 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "69132")
-	@Test( description = "Create simple meeting with location resource",	groups = { "smoke" })
+	@Test( description = "Create simple meeting with location resource", groups = { "smoke" })
 	
 	public void CreateMeetingWithSingleLocation_01() throws HarnessException {
 		
@@ -60,26 +58,9 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-		apptForm.zSubmit();
-		SleepUtil.sleepVeryLong(); // test fails while checking free/busy status, waitForPostqueue is not sufficient here
-        // Tried sleepLong() as well but although fails so using sleepVeryLong()
-		
-		// Because the response from the resource may take some time, make sure the response is received in the inbox before proceeding
-		for (int i = 0; i < 10; i++) {
-			app.zGetActiveAccount().soapSend(
-						"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
-					+		"<query>in:inbox subject:(aa"+ apptSubject +")</query>"
-					+	"</SearchRequest>");
-			
-			String id = app.zGetActiveAccount().soapSelectValue("//mail:m", "id");
-			if ( id != null ) {
-				break;
-			}
-			SleepUtil.sleep(1000);
-		}
+		apptForm.zSubmitWithResources();
 		
 		// Verify appointment exists on the server
-		SleepUtil.sleepSmall(); //test fails without sleep
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
@@ -94,7 +75,7 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 	
 	
 	@Bugs(ids = "69132")
-	@Test( description = "Create simple meeting with two location resource",	groups = { "functional" })
+	@Test( description = "Create simple meeting with two location resource", groups = { "functional" })
 	
 	public void CreateMeetingWithMultiLocation_02() throws HarnessException {
 		
@@ -120,35 +101,12 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-		apptForm.zSubmit();
+		apptForm.zSubmitWithResources();
 		
-		// Because the response from the resource may take some time, make sure the response is received in the inbox before proceeding
-		for (int i = 0; i < 10; i++) {
-			app.zGetActiveAccount().soapSend(
-						"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
-					+		"<query>in:inbox subject:(aa"+ apptSubject +") from:("+ location1.EmailAddress +")</query>"
-					+	"</SearchRequest>");
-			
-			String id1 = app.zGetActiveAccount().soapSelectValue("//mail:m", "id");
-
-			app.zGetActiveAccount().soapSend(
-					"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
-				+		"<query>in:inbox subject:(aa"+ apptSubject +") from:("+ location2.EmailAddress +")</query>"
-				+	"</SearchRequest>");
-		
-			String id2 = app.zGetActiveAccount().soapSelectValue("//mail:m", "id");
-
-			if ( (id1 != null) && (id2 != null) ) {
-				break;
-			}
-			SleepUtil.sleep(1000);
-		}
-
 		// Verify appointment exists on the server
-		SleepUtil.sleepSmall(); //test fails without sleep
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
-		ZAssert.assertStringContains(actual.getLocation().replace(";", ""), appt.getLocation(), "Location: Verify the appointment data");
+		ZAssert.assertStringContains(appt.getLocation(), actual.getLocation().split(";")[0], "Location: Verify the appointment data");
 		
 		// Verify both location free/busy status
 		String locationStatus1 = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ location1.EmailAddress +"']", "ptst");
@@ -185,7 +143,6 @@ public class CreateMeetingWithLocation extends CalendarWorkWeekTest {
 		apptForm.zSubmit();
 		
 		// Verify appointment exists on the server
-		SleepUtil.sleepSmall(); //test fails without sleep
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		

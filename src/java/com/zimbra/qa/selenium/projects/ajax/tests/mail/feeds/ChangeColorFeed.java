@@ -35,7 +35,7 @@ public class ChangeColorFeed extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Edit a feedfolder, change the color (Context menu -> Edit)", groups = { "functional" })
-	
+
 	public void ChangeColorFeed_01() throws HarnessException, MalformedURLException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
@@ -43,9 +43,9 @@ public class ChangeColorFeed extends PrefGroupMailByMessageTest {
 
 		// Create a subfolder in Inbox
 		String feedname = "feed" + ConfigProperties.getUniqueString();
-		
+
 		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
-		URL feedurl = new URL(ConfigProperties.getStringProperty("feed.rss"));
+		URL feedurl = new URL(ConfigProperties.getStringProperty("rss.sample"));
 
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
@@ -55,7 +55,7 @@ public class ChangeColorFeed extends PrefGroupMailByMessageTest {
 		FolderItem feed = FolderItem.importFromSOAP(app.zGetActiveAccount(), feedname);
 		ZAssert.assertNotNull(feed, "Verify the subfolder is available");
 
-		
+
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 

@@ -30,13 +30,12 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
 public class AttachBriefcaseFileAndSendMail extends PrefGroupMailByMessageTest {
 
 	public AttachBriefcaseFileAndSendMail() {
-		logger.info("New "+ AttachBriefcaseFileAndSendMail.class.getCanonicalName());
+		logger.info("New " + AttachBriefcaseFileAndSendMail.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
-	@Test( description = "Attach an briefcase file to a mail",
-			groups = { "functional" })
-	
+	@Test(description = "Attach an briefcase file to a mail", groups = { "functional" })
+
 	public void AttachBriefcaseFileAndSendMail_01() throws HarnessException {
 
 		// -- DATA
@@ -54,19 +53,9 @@ public class AttachBriefcaseFileAndSendMail extends PrefGroupMailByMessageTest {
 		// Create document using SOAP
 		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<body>" + docText + "</body>" + "</html>");
 
-		account
-				.soapSend("<SaveDocumentRequest requestId='0' xmlns='urn:zimbraMail'>"
-						+ "<doc name='"
-						+ docName
-						+ "' l='"
-						+ briefcaseFolder.getId()
-						+ "' ct='application/x-zimbra-doc'>"
-						+ "<content>"
-						+ contentHTML
-						+ "</content>"
-						+ "</doc>"
-						+ "</SaveDocumentRequest>");
-		
+		account.soapSend("<SaveDocumentRequest requestId='0' xmlns='urn:zimbraMail'>" + "<doc name='" + docName
+				+ "' l='" + briefcaseFolder.getId() + "' ct='application/x-zimbra-doc'>" + "<content>" + contentHTML
+				+ "</content>" + "</doc>" + "</SaveDocumentRequest>");
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
@@ -74,8 +63,7 @@ public class AttachBriefcaseFileAndSendMail extends PrefGroupMailByMessageTest {
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
 		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
 
-
-		//-- GUI
+		// -- GUI
 
 		// Click Get Mail button to get the new contact
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -84,32 +72,30 @@ public class AttachBriefcaseFileAndSendMail extends PrefGroupMailByMessageTest {
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 		mailform.zFill(mail);
-		
+
 		// Click Attach drop down and click Briefcase
 		app.zPageMail.zToolbarPressPulldown(Button.B_ATTACH, Button.O_BRIEFCASEATTACH);
 
-		DialogAttach dialog = new DialogAttach(app, ((AppAjaxClient)app).zPageMail);
-		ZAssert.assertTrue(dialog.zIsActive(),"Attach File dialog gets open and active");
-		
-		//Click on Briefcase folder
+		DialogAttach dialog = new DialogAttach(app, ((AppAjaxClient) app).zPageMail);
+		ZAssert.assertTrue(dialog.zIsActive(), "Attach File dialog gets open and active");
+
+		// Click on Briefcase folder
 		SleepUtil.sleepMedium();
-		dialog.sClickAt(Locators.zAttachBriefcaseFolder,"");
+		dialog.sClick(Locators.zAttachBriefcaseFolder);
 		SleepUtil.sleepMedium();
-		dialog.sClickAt("css=div[id='zv__BCI'] div[id^='zli__BCI__'] tr td:contains('" + docName + "')","");
+		dialog.sClick("css=div[id='zv__BCI'] div[id^='zli__BCI__'] tr td:contains('" + docName + "')");
 		SleepUtil.sleepSmall();
 		dialog.zClickButton(Button.B_ATTACH);
 		SleepUtil.sleepLong();
 		mailform.zSubmit();
 
-		//-- Verification
-		
+		// -- Verification
+
 		// From the receiving end, verify the message details
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mail.dSubject +")");
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + mail.dSubject + ")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
 		ZimbraAccount.AccountA().soapSend(
-				"<GetMsgRequest xmlns='urn:zimbraMail'>"
-						+		"<m id='"+ received.getId() +"'/>"
-						+	"</GetMsgRequest>");
+				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + received.getId() + "'/>" + "</GetMsgRequest>");
 
 		String filename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
 

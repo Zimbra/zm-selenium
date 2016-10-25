@@ -79,7 +79,7 @@ public class AddRequiredAttendee extends CalendarWorkWeekTest {
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zAddRequiredAttendeeFromScheduler(apptAttendee, keyEvent);
         ZAssert.assertTrue(apptForm.zVerifyRequiredAttendee(apptAttendee), "Verify email address bubble after adding attendee from scheduler");
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
  
         // Verify that attendee present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

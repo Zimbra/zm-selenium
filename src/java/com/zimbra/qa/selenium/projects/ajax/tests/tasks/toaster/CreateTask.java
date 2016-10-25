@@ -37,7 +37,6 @@ public class CreateTask extends AjaxCommonTest {
 
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			{
-				// put("zimbraPrefComposeFormat", "html");
 				put("zimbraPrefTasksReadingPaneLocation", "bottom");
 			}
 		};
@@ -47,21 +46,13 @@ public class CreateTask extends AjaxCommonTest {
 	public void CreateTask_01() throws HarnessException {
 
 		String subject = "task" + ConfigProperties.getUniqueString();
-		String body = "taskbody" + ConfigProperties.getUniqueString();
 
 		// Click NEW button
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
 
 		// Fill out the resulting form
 		taskNew.zFillField(Field.Subject, subject);
-		taskNew.zFillField(Field.Body, body);
-		
-		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
-			app.zPageTasks.zClickAt("css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')", "0,0");
-		} else {
-			taskNew.zSubmit();
-		}		
+		app.zPageTasks.sClick("css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')");
 		
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();

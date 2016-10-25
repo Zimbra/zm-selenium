@@ -37,7 +37,7 @@ public class Forward extends CalendarWorkWeekTest {
 			groups = { "smoke" })
 			
 	public void ForwardMeeting_01() throws HarnessException {
-				
+		
 		// Creating a meeting
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptContent = ConfigProperties.getUniqueString();
@@ -77,8 +77,7 @@ public class Forward extends CalendarWorkWeekTest {
         FormApptNew form = new FormApptNew(app);
 		form.zFillField(Field.To, attendee2);
         form.zFillField(Field.Body, ForwardContent);
-        app.zPageCalendar.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepLong();
+        form.zSubmit();
 		
 		// Verify the new invitation appears in the inbox
 		ZimbraAccount.AccountB().soapSend(

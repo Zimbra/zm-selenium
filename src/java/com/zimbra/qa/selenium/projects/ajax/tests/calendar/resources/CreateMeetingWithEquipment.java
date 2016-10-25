@@ -74,25 +74,9 @@ public class CreateMeetingWithEquipment extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		apptForm.zAutocompleteSelectItem(found);
         ZAssert.assertTrue(apptForm.zVerifyEquipment(apptEquipment1), "Verify appointment equipment");
-		apptForm.zSubmit();
-		SleepUtil.sleepVeryLong(); // test fails while checking free/busy status, waitForPostqueue is not sufficient here
-        // Tried sleepLong() as well but although fails so using sleepVeryLong()
-		
-		// Because the response from the resource may take some time, make sure the response is received in the inbox before proceeding
-		for (int i = 0; i < 10; i++) {
-			app.zGetActiveAccount().soapSend(
-						"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
-					+		"<query>in:inbox subject:(aa"+ apptSubject +")</query>"
-					+	"</SearchRequest>");
-			String id = app.zGetActiveAccount().soapSelectValue("//mail:m", "id");
-			if ( id != null ) {
-				break;
-			}
-			SleepUtil.sleep(1000);
-		}
+        apptForm.zSubmitWithResources();
 		
 		// Verify appointment exists on the server
-		SleepUtil.sleepSmall(); //test fails without sleep
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");

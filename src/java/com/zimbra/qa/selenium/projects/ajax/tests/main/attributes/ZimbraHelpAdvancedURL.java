@@ -16,22 +16,21 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.main.attributes;
 
+import java.util.List;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 
 	public ZimbraHelpAdvancedURL() {
-		logger.info("New " + ZimbraHelpAdvancedURL.class.getCanonicalName());
-		super.startingPage = app.zPageMail;
+		logger.info("New " + ZimbraHelpAdvancedURL.class.getCanonicalName());		
 	}
 
 	
@@ -41,13 +40,14 @@ public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 
 	public void ZimbraHelpAdvancedURL_01() throws HarnessException {
 
-		StafServicePROCESS staf = new StafServicePROCESS();
 		String url = "/zimbra/help/advanced/zimbra_user_help.htm";
 		String domainID = null;
+		String tempURL = null;
+		boolean found = false;
 
 		try {
 
-			staf.execute("mkdir -p /helpUrl/help/adv && echo '<html><body><h1>Temp Help</h1><p> This is the advanced help of zimbra </p></body></html>' >/helpUrl/help/adv/help.html");
+			staf.execute("mkdir -p /opt/zimbra/jetty/webapps/zimbra/helpUrl/help/adv && echo '<html><head><title>Zimbra Temp Help</title></head><body><h1>Temp Help</h1><p> This is the new advanced help of zimbra!</p></body></html>' > /opt/zimbra/jetty/webapps/zimbra/helpUrl/help/adv/advhelp.html");
 
 			// To get domain id
 			String targetDomain = ConfigProperties.getStringProperty("testdomain");
@@ -60,22 +60,50 @@ public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 			// Modify the domain and change the help URL
 			ZimbraAdminAccount.AdminConsoleAdmin()
 					.soapSend("<ModifyDomainRequest xmlns='urn:zimbraAdmin'>" + "<id>" + domainID + "</id>"
-							+ "<a n='zimbraHelpAdvancedURL'>/helpUrl/help/adv/help.html</a>"
+							+ "<a n='zimbraHelpAdvancedURL'>/helpUrl/help/adv/advhelp.html</a>"
 							+ "<a n='zimbraVirtualHostname'>" + ConfigProperties.getStringProperty("server.host")
 							+ "</a>" + "</ModifyDomainRequest>");
-
+			
+			app.zPageMain.sRefresh();
 			app.zPageMain.zToolbarPressPulldown(Button.B_ACCOUNT, Button.O_PRODUCT_HELP);
-			SleepUtil.sleepVeryLong();
+			SleepUtil.sleepMedium();
+			
+			// Zimbra advanced help page can open in separate window
+			List<String> windowIds=app.zPageMain.sGetAllWindowIds();
+
+			if (windowIds.size() > 1) {
+
+				for(String id: windowIds) {
+
+				app.zPageMain.sSelectWindow(id);
+					if (app.zPageMain.sGetTitle().contains("Not Found") || app.zPageMain.sGetTitle().contains("Help")) {
+						//Get the opened URL
+						tempURL=app.zPageMain.sGetLocation();
+						found = true;
+						app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
+						break;
+					} else if (!(app.zPageMain.sGetTitle().contains("Zimbra: Inbox"))) {
+								app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());					
+					}
+				}
+				if (!found) {
+
+					tempURL=app.zPageMain.sGetLocation();
+				}
+
+			} else {
+				tempURL=app.zPageMain.sGetLocation();
+			}
 
 			// Check the URL
-			ZAssert.assertTrue(app.zPageMain.sGetWindowURL("ZWC Help").contains("/helpUrl/help/adv/help.html"),	"Product Help URL is not as set in zimbraHelpAdvancedURL");
+			ZAssert.assertTrue(tempURL.contains("/helpUrl/help/adv/advhelp.html"),	"Product Help URL is not as set in zimbraHelpAdvancedURL");
 
 		} finally {
 
-			// Revert the changes done in attribute 'zimbraHelpAdminURL'
+			// Revert the changes done in attribute 'zimbraHelpAdvancedURL'
 			ZimbraAdminAccount.AdminConsoleAdmin()
 					.soapSend("<ModifyDomainRequest xmlns='urn:zimbraAdmin'>" + "<id>" + domainID + "</id>"
-							+ "<a n='zimbraHelpAdminURL'>" + url + "</a>" + "<a n='zimbraVirtualHostname'>" + ""
+							+ "<a n='zimbraHelpAdvancedURL'>" + url + "</a>" + "<a n='zimbraVirtualHostname'>" + ""
 							+ "</a>" + "</ModifyDomainRequest>");
 
 			// Restart zimbra services

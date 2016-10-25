@@ -125,9 +125,8 @@ public class DeclineProposeNewTime extends CalendarWorkWeekTest {
 		
 		String  apptAttendee1InvId= apptAttendee1.soapSelectValue("//mail:appt", "invId");
 		ZAssert.assertNotNull(apptAttendee1InvId, "Original invite body shouldn't be changed for attendee");
-		
-		apptAttendee1.soapSend(
-				"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ apptAttendee1InvId +"'/>");
+
+		apptAttendee1.soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ apptAttendee1InvId +"'/>");
 		String attendee1Status = apptAttendee1.soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 		ZAssert.assertEquals(attendee1Status, "NE", "Verify that the attendee status still shows as 'NEEDS ACTION'");
 	
@@ -157,7 +156,6 @@ public class DeclineProposeNewTime extends CalendarWorkWeekTest {
 		display.zPressButton(Button.B_DECLINE_PROPOSE_NEW_TIME);
 		FormMailNew mailComposeForm = new FormMailNew(app);
 		mailComposeForm.zSubmit();
-		SleepUtil.sleepLong();
 		
 		// ------ Organizer ------
 		

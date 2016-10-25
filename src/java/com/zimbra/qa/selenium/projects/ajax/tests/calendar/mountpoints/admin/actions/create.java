@@ -43,10 +43,10 @@ public class create extends CalendarWorkWeekTest {
 	public void create_01() throws HarnessException {
 		
 		String mountPointName = "mountpoint" + ConfigProperties.getUniqueString();
-		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account1(), SystemFolder.Calendar);
+		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account3(), SystemFolder.Calendar);
 
 		// Share it
-		ZimbraAccount.Account1().soapSend(
+		ZimbraAccount.Account3().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
 				+		"<action id='"+ folder.getId() +"' op='grant'>"
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx' view='appointment'/>"
@@ -56,11 +56,11 @@ public class create extends CalendarWorkWeekTest {
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
-				+		"<link l='1' name='"+ mountPointName +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account1().ZimbraId +"' view='appointment' color='3'/>"
+				+		"<link l='1' name='"+ mountPointName +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account3().ZimbraId +"' view='appointment' color='3'/>"
 				+	"</CreateMountpointRequest>");
 		
 
-		ZimbraAccount.Account1().soapSend(
+		ZimbraAccount.Account3().soapSend(
 	      "<GrantRightsRequest xmlns='urn:zimbraAccount'>"
 	      + " <ace d='" + app.zGetActiveAccount().EmailAddress + "' right='sendAs' gt='usr'/>"
 	      + " <ace d='" + app.zGetActiveAccount().EmailAddress + "' right='sendOnBehalfOf' gt='usr'/>"
@@ -79,8 +79,8 @@ public class create extends CalendarWorkWeekTest {
 				" <CreateIdentityRequest xmlns='urn:zimbraAccount'>"
 			+		"<identity name='"+ persona +"'>"
 			+			"<a name='zimbraPrefIdentityName'>"+ persona +"</a>"
-			+			"<a name='zimbraPrefFromDisplay'>"+ ZimbraAccount.Account1().DisplayName +"</a>"
-			+			"<a name='zimbraPrefFromAddress'>"+ ZimbraAccount.Account1().EmailAddress +"</a>"
+			+			"<a name='zimbraPrefFromDisplay'>"+ ZimbraAccount.Account3().DisplayName +"</a>"
+			+			"<a name='zimbraPrefFromAddress'>"+ ZimbraAccount.Account3().EmailAddress +"</a>"
 			+			"<a name='zimbraPrefFromAddressType'>sendOnBehalfOf</a>"
 			+			"<a name='zimbraPrefReplyToEnabled'>FALSE</a>"
 			+			"<a name='zimbraPrefReplyToDisplay'/>"
@@ -91,9 +91,8 @@ public class create extends CalendarWorkWeekTest {
 			+		"</identity>"
 			+	"</CreateIdentityRequest>");
 
-		// Logout and login to pick up the changes
-		app.zPageLogin.zNavigateTo();
-		this.startingPage.zNavigateTo();		
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		app.zPageCalendar.zNavigateTo();
 		
 		appt.setSubject(apptSubject);
@@ -121,7 +120,7 @@ public class create extends CalendarWorkWeekTest {
 		apptForm.zSubmit();
 		
 		// Verify appointment exists on the server
-		AppointmentItem actual = AppointmentItem.importFromSOAP(ZimbraAccount.Account1(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
+		AppointmentItem actual = AppointmentItem.importFromSOAP(ZimbraAccount.Account3(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 		ZAssert.assertEquals(actual.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");

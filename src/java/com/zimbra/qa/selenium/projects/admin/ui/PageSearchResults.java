@@ -25,9 +25,9 @@ import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 
 
@@ -38,10 +38,10 @@ public class PageSearchResults extends AbsTab {
 		public static final String SEARCH_BUTTON="css=td.xform_container div.ImgSearch";
 		public static final String DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String DELETE_BUTTON_DISABLED="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete ZDisabledImage']";
-		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__SCHLV__MENU_POP'] div[class='ImgDelete']";
+		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__SCHLV__MENU_POP'] td[id='zmi__SCHLV__DELETE_title']";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON_DISABLED="css=div[id='zm__SCHLV__MENU_POP'] div[class='ImgDelete ZDisabledImage']";
-		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id='zm__SCHLV__MENU_POP'] div[class='ImgEdit']";
-		public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP']  div[class='ImgEdit']";
+		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id='zm__SCHLV__MENU_POP'] td[id='zmi__SCHLV__EDIT_title']";
+		public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP']  td[id$='__EDIT_title']";
 		public static final String GEAR_ICON="css=div.ImgConfigure";
 		public static final String zArrowSelectSearchObject		="css=td[id*='dropdown'] div[class='ImgSelectPullDownArrow']";
 		public static final String zCosSearchObject = "css=div[id='zmi__SEARCH_COSES'] td[id='zmi__SEARCH_COSES_title']";
@@ -266,6 +266,10 @@ public class PageSearchResults extends AbsTab {
 			SleepUtil.sleepMedium();
 
 		}
+		
+		if ( button == Button.B_SEARCH ) {
+			SleepUtil.sleepMedium();
+		}
 
 		sMouseOut(locator);
 		return (page);
@@ -375,7 +379,11 @@ public class PageSearchResults extends AbsTab {
 
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();
-			}
+			} 
+			
+			if (option == Button.O_EDIT) {
+				SleepUtil.sleepMedium();	
+			}			
 
 		}
 
@@ -407,7 +415,7 @@ public class PageSearchResults extends AbsTab {
 			for (int a1 = 1; a1 <= 5; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
 				if (this.sIsElementPresent(p0)){
-				zClick(p0);
+				sClickAt(p0,"");
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 				m=m+20;
 				}
@@ -419,7 +427,8 @@ public class PageSearchResults extends AbsTab {
 			
 		}
 		
-		count = this.sGetCssCount(rowsLocator);
+		count = this.sGetCssCount(rowsLocator);	
+		
 		
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
@@ -455,6 +464,12 @@ public class PageSearchResults extends AbsTab {
 
 		// Return the list of items
 		return (items);
+	}
+	
+	public boolean zIsPresentInSearchResult(String email) throws HarnessException {
+		logger.info(myPageName() + " zIsPresentInSearchResult("+ email +")");
+		String rowlocator = "css=div#zl__SEARCH_MANAGE div[id$='__rows'] div[id^='zli__'] td[id^='SEARCH_MANAGE_data_emailaddress_']";		
+		return sIsElementPresent(rowlocator+":contains(" + email + ")");		
 	}
 
 	public boolean zVerifyDisabled(String  buttonID)throws HarnessException{

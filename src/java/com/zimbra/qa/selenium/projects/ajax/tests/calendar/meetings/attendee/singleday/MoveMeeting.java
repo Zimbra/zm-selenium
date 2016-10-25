@@ -24,7 +24,6 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
 
 public class MoveMeeting extends CalendarWorkWeekTest {	
 	
@@ -49,20 +48,15 @@ public class MoveMeeting extends CalendarWorkWeekTest {
 		
 		// create folder to move item to
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		String name1 = "folder" + ConfigProperties.getUniqueString();
+		String moveToFolder = "folder" + ConfigProperties.getUniqueString();
+		
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
-				+	  	"<folder name='"+ name1 +"' l='"+ root.getId() +"' view='appointment'/>"
+				+	  	"<folder name='"+ moveToFolder +"' l='"+ root.getId() +"' view='appointment'/>"
 				+	"</CreateFolderRequest>");
-		
-		// Refresh the view
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
         
-		FolderItem subfolder1 = FolderItem.importFromSOAP(app.zGetActiveAccount(), name1);
-		ZAssert.assertNotNull(subfolder1, "Verify the first subfolder is available");
-		
-		// Refresh the view
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		FolderItem moveToFolderItem = FolderItem.importFromSOAP(app.zGetActiveAccount(), moveToFolder);
+		ZAssert.assertNotNull(moveToFolderItem, "Verify the first subfolder is available");
 	
         // Get meeting invite where it has 2 attendees
 		ZimbraAccount.AccountA().soapSend(
@@ -84,19 +78,17 @@ public class MoveMeeting extends CalendarWorkWeekTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");        
 
-		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
+		// Refresh the view
+        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
        
         // Select the appointment
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         
-        // move appointment using toolbar menu
-        app.zPageCalendar.zToolbarPressButton(Button.O_MOVE_MENU);
-        app.zPageCalendar.zClickAt(Locators.MoveFolderOption + name1 + "')" , "");
-        app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-		
+        // Move appointment using toolbar menu
+        app.zPageCalendar.zToolbarPressPulldown(Button.B_MOVE, moveToFolderItem);
+        
 		//-- Server verification
 		AppointmentItem newAppointment = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
-		ZAssert.assertEquals(newAppointment.getFolder(), subfolder1.getId(), "Verify the appointment moved folders");
+		ZAssert.assertEquals(newAppointment.getFolder(), moveToFolderItem.getId(), "Verify the appointment moved folders");
 	}
 }

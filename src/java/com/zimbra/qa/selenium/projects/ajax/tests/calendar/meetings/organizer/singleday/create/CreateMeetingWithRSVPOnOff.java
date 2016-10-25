@@ -76,10 +76,8 @@ public class CreateMeetingWithRSVPOnOff extends CalendarWorkWeekTest {
 		app.zPageLogin.zLogin(apptAttendee1);
 		
 		// Accept the invite from attendee
-		SleepUtil.sleepMedium(); // let the mails sync , tried sleepSmall() but it fails
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 		display.zPressButton(Button.B_ACCEPT);
-		SleepUtil.sleepVeryLong(); // it passes only when I add sleepVeryLong() twice on my local setup, but currently adding only once lets see if it passes
 		
 		// Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(
@@ -113,7 +111,7 @@ public class CreateMeetingWithRSVPOnOff extends CalendarWorkWeekTest {
 	@Test( description = "Verify organizer receives email notification when attendee responds to the meeting invite while 'Request Response' remains ON", 
 			groups = { "functional" })
 	
-	public void CreateMeetingWithRSVPOn_01() throws HarnessException {
+	public void CreateMeetingWithRSVPOn_02() throws HarnessException {
 
 		// Create appointment data 
 		ZimbraAccount apptAttendee1,organizer;
@@ -148,12 +146,10 @@ public class CreateMeetingWithRSVPOnOff extends CalendarWorkWeekTest {
 		// Logout from organizer and Login as attendee
 		app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(apptAttendee1);
-		SleepUtil.sleepLong();
 		
 		// Accept the invite
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 		display.zPressButton(Button.B_ACCEPT);
-		SleepUtil.sleepVeryLong();
 		
 		// Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(

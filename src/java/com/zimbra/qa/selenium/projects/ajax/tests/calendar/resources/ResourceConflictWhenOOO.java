@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 
 import java.util.Calendar;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -85,13 +83,10 @@ public class ResourceConflictWhenOOO extends CalendarWorkWeekTest {
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject1), "Verify appointment displayed in current view");
 
 		app.zGetActiveAccount().soapSend(
-
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 				+		"<query>subject:("+ apptSubject1 +")" + " " + "content:" + apptSubject1 + "</query>"
 				+	"</SearchRequest>");
 		ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:comp", "fba"), "T", "");
-
-		SleepUtil.sleepVeryLong();
 
 		// Verify location free/busy status shows as psts=AC
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
@@ -113,18 +108,19 @@ public class ResourceConflictWhenOOO extends CalendarWorkWeekTest {
 		// Create meeting which has location conflict with above created appointment
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-		SleepUtil.sleepVeryLong();
-
+		SleepUtil.sleepMedium();
+		
 		// Verify the compose page shows note below resource about conflicting resources
 		ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.ConflictResourceNote),  "Verify that the conflicting resource note appears on appt compose page");
-		DialogWarningConflictingResources  dialog = (DialogWarningConflictingResources) app.zPageCalendar.zToolbarPressButton(Button.B_SEND_WITH_CONFLICT);
+		
+		// Send invite
+		DialogWarningConflictingResources dialog = (DialogWarningConflictingResources) app.zPageCalendar.zToolbarPressButton(Button.B_SEND_WITH_CONFLICT);
 		String dialogContent = dialog.zGetResourceConflictWarningDialogText();
 		ZAssert.assertTrue(dialogContent.contains("The selected resources/location cannot be scheduled for the following instances"), "Verify that the dialog shows expected text");
-		ZAssert.assertTrue(dialogContent.contains(apptLocation+"(Busy)"), "Verify that the dialog shows location name on conflict warning");
+		ZAssert.assertTrue(dialogContent.contains(apptLocation + " (Busy)"), "Verify that the dialog shows location name on conflict warning");
 
 		// Save appt with location conflict 
 		dialog.zClickButton(Button.B_SAVE_WITH_CONFLICT);
-		SleepUtil.sleepMedium();
 
 		// Verify that location with conflict and subject are present in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");

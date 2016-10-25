@@ -17,14 +17,11 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.modify;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
@@ -39,7 +36,6 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
 	public ModifyMeetingPrivateToPublic() {
 		logger.info("New " + ModifyMeetingPrivateToPublic.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
-
 	}
 	
 	@Test( description = "Modify Meeting class from Private to Public", 
@@ -55,7 +51,7 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 18, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -89,8 +85,7 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN, apptSubject);
         appt.setIsPrivate(false);
         apptForm.zFill(appt);
-        apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepMedium();
+        apptForm.zSubmit();
         
         // Verify the Meeting is now a Public Meeting and does not have Private icon
         ZimbraAccount.AccountA().soapSend(
@@ -103,7 +98,7 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
 	
 	@Test( description = "Modify Meeting class from Public to Private", 
 			groups = { "functional" })
-	public void ModifyMeetingPublicToPrivate_01() throws HarnessException {
+	public void ModifyMeetingPublicToPrivate_02() throws HarnessException {
 
 		// Creating object for meeting data
 		String tz = ZTimeZone.TimeZoneEST.getID();
@@ -113,8 +108,8 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 18, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -149,8 +144,7 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN, apptSubject);
         appt.setIsPrivate(true);
         apptForm.zFill(appt);
-        apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepMedium();
+        apptForm.zSubmit();
            
         // Verify the Meeting is now a private Meeting and has Private icon
         ZimbraAccount.AccountA().soapSend(

@@ -56,11 +56,10 @@ public class ForwardMsgWithTextSignature extends AjaxCommonTest {
 						+ "' >" + "<content type='text/plain'>" + this.sigBody + "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
 
-		this.app.zPageLogin.zNavigateTo();
-		this.app.zPageMail.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 
 		logger.info("CreateSignature: finish");
-
 	}
 
 	/**
@@ -109,8 +108,6 @@ public class ForwardMsgWithTextSignature extends AjaxCommonTest {
 		mailform.zSubmit();
 
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:(" + mail.dSubject + ")");
-		logger.debug("===========received is: " + received);
-		logger.debug("===========app is: " + app);
 
 		// Verify TO, Subject, Body,Signature
 		ZAssert.assertStringContains(received.dSubject, "Fwd", "Verify the subject field contains the 'Fwd' prefix");

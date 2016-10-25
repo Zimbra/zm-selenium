@@ -96,9 +96,8 @@ public class ModifyInstance extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.Attendees, apptAttendee2);
 		apptForm.zFillField(Field.Body, modifiedApptBody);
 		apptForm.zFill(appt);
-        apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepMedium();
-
+        apptForm.zSubmit();
+        
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 
 		// Organizer: Search for the appointment (InvId)

@@ -17,25 +17,25 @@
 package com.zimbra.qa.selenium.projects.admin.tests.delegatedadmin;
 
 import java.util.List;
+
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.items.DistributionListItem;
 import com.zimbra.qa.selenium.projects.admin.ui.PageManageSearch;
 
 public class Search extends AdminCommonTest {
-	
-	public Search() {
-		logger.info("New "+ Search.class.getCanonicalName());
 
-		// All tests start at the "Accounts" page
-		super.startingPage = app.zPageManageSearch;
+	public Search() {
+		logger.info("New "+ Search.class.getCanonicalName());		
 	}
-	
+
 	/**
 	 * Testcase : Verify search functionality of all results.
 	 * Steps :
@@ -45,42 +45,29 @@ public class Search extends AdminCommonTest {
 	 */
 	@Test( description = "Verify search functionality of all results.",
 			groups = { "smoke" })
-			public void SearchAllResults_01() throws HarnessException {
-		app.provisionAuthenticateDA();
-		this.startingPage.zNavigateTo();
+	public void SearchAllResults_01() throws HarnessException {		
 
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
-				+		"</CreateAccountRequest>");
-
-		
+				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+		"</CreateAccountRequest>");
 		
 		/*
 		 * Go to navigation path -- "Home --> Search --> Search --> All Results"
 		 */
 		app.zPageManageSearch.zClickTreeItemOfSearch(PageManageSearch.Locators.ALL_RESULT);
-		
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the account list is returned");
-		
-		AccountItem found = null;
-		for (AccountItem a : accounts) {
-			logger.info("Looking for account "+ account.getEmailAddress() + " found: "+ a.getGEmailAddress());
-			if ( account.getEmailAddress().equals(a.getGEmailAddress()) ) {
-				found = a;
-				break;
-			}
-		}
-		ZAssert.assertNotNull(found, "Verify the account is found");
 
-
+		//Verify that the account is displayed in the search result
+		ZAssert.assertTrue(app.zPageSearchResults.zIsPresentInSearchResult(account.getEmailAddress()), "Verify the account is found");
 	}
-	
+
 	/**
 	 * Testcase : Verify search functionality of Accounts.
 	 * Steps :
@@ -90,39 +77,27 @@ public class Search extends AdminCommonTest {
 	 */
 	@Test( description = "Verify search functionality of Accounts.",
 			groups = { "smoke" })
-			public void SearchAccounts_02() throws HarnessException {
-		app.provisionAuthenticateDA();
-		this.startingPage.zNavigateTo();
+	public void SearchAccounts_02() throws HarnessException {		
 
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
-				+		"</CreateAccountRequest>");
+				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+		"</CreateAccountRequest>");
 
-		
 		/*
 		 * Go to navigation path -- "Home --> Search --> Search --> Accounts"
 		 */
 		app.zPageManageSearch.zClickTreeItemOfSearch(PageManageSearch.Locators.ACCOUNTS);
-		
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the account list is returned");
-		
-		AccountItem found = null;
-		for (AccountItem a : accounts) {
-			logger.info("Looking for account "+ account.getEmailAddress() + " found: "+ a.getGEmailAddress());
-			if ( account.getEmailAddress().equals(a.getGEmailAddress()) ) {
-				found = a;
-				break;
-			}
-		}
-		ZAssert.assertNotNull(found, "Verify the account is found");
 
-
+		//Verify that the account is displayed in the search result
+		ZAssert.assertTrue(app.zPageSearchResults.zIsPresentInSearchResult(account.getEmailAddress()), "Verify the account is found");
 	}
 
 	/**
@@ -134,42 +109,31 @@ public class Search extends AdminCommonTest {
 	 */
 	@Test( description = "Verify search functionality of DL",
 			groups = { "smoke" })
-			public void SearchDistributionList_03() throws HarnessException {
-		app.provisionAuthenticateDA();
-		this.startingPage.zNavigateTo();
-
+	public void SearchDistributionList_03() throws HarnessException {
+		
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
 
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-						"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + dlEmailAddress + "</name>"
-				+		"</CreateDistributionListRequest>");
+				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
+						+			"<name>" + dlEmailAddress + "</name>"
+						+		"</CreateDistributionListRequest>");
 
 		/*
 		 * Go to navigation path -- "Home --> Search --> Search --> DLs"
 		 */
 		app.zPageManageSearch.zClickTreeItemOfSearch(PageManageSearch.Locators.DISTRIBUTION_LISTS);
-		
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the account list is returned");
-		
-		AccountItem found = null;
-		for (AccountItem a : accounts) {
-			logger.info("Looking for account "+ dl.getEmailAddress() + " found: "+ a.getGEmailAddress());
-			if ( dl.getEmailAddress().equals(a.getGEmailAddress()) ) {
-				found = a;
-				break;
-			}
-		}
-		ZAssert.assertNotNull(found, "Verify the account is found");
 
-
+		//Verify that the dl is displayed in the search result
+		ZAssert.assertTrue(app.zPageSearchResults.zIsPresentInSearchResult(dlEmailAddress), "Verify the dl is found");
 	}
 
-	
+
 
 	/**
 	 * Testcase : Verify search functionality of locked out accounts.
@@ -180,38 +144,28 @@ public class Search extends AdminCommonTest {
 	 */
 	@Test( description = "Verify search functionality of locked out accounts.",
 			groups = { "smoke" })
-			public void SearchLockedAccount_05() throws HarnessException {
-	
+	public void SearchLockedAccount_05() throws HarnessException {
+
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
-				+			"<a xmlns='' n='zimbraAccountStatus'>lockout</a>"
-				+		"</CreateAccountRequest>");
+				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+			"<a xmlns='' n='zimbraAccountStatus'>lockout</a>"
+						+		"</CreateAccountRequest>");
 
-		
 		/*
 		 * Go to navigation path -- "Home --> Search --> Saved Searches --> Locked Out"
 		 */
 		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.LOCKED_OUT_ACCOUNTS);
-	
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the account list is returned");
-		
-		AccountItem found = null;
-		for (AccountItem a : accounts) {
-			logger.info("Looking for account "+ account.getEmailAddress() + " found: "+ a.getGEmailAddress());
-			if ( account.getEmailAddress().equals(a.getGEmailAddress()) ) {
-				found = a;
-				break;
-			}
-		}
-		ZAssert.assertNotNull(found, "Verify the account is found");
 
-
+		//Verify that the locked out account is displayed in the search result
+		ZAssert.assertTrue(app.zPageSearchResults.zIsPresentInSearchResult(account.getEmailAddress()), "Verify the locked out account is found");		
 	}
 
 	/**
@@ -223,42 +177,30 @@ public class Search extends AdminCommonTest {
 	 */
 	@Test( description = "Verify search functionality of non-active accounts.",
 			groups = { "smoke" })
-			public void SearchNonactiveAccount_06() throws HarnessException {
-		app.provisionAuthenticateDA();
-		this.startingPage.zNavigateTo();
-
+	public void SearchNonactiveAccount_06() throws HarnessException {
+		
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
-				+			"<a xmlns='' n='zimbraAccountStatus'>pending</a>"
-				+		"</CreateAccountRequest>");
+				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+			"<a xmlns='' n='zimbraAccountStatus'>pending</a>"
+						+		"</CreateAccountRequest>");
 
-		
 		/*
 		 * Go to navigation path -- "Home --> Search --> Saved Searches --> Non-Active accounts"
 		 */
 		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.NON_ACTIVE_ACCOUNTS);
-	
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the account list is returned");
-		
-		AccountItem found = null;
-		for (AccountItem a : accounts) {
-			logger.info("Looking for account "+ account.getEmailAddress() + " found: "+ a.getGEmailAddress());
-			if ( account.getEmailAddress().equals(a.getGEmailAddress()) ) {
-				found = a;
-				break;
-			}
-		}
-		ZAssert.assertNotNull(found, "Verify the account is found");
 
-
+		//Verify that the non-active out is displayed in the search result
+		ZAssert.assertTrue(app.zPageSearchResults.zIsPresentInSearchResult(account.getEmailAddress()), "Verify the non-active account is found");
 	}
-	
+
 	/**
 	 * Testcase : Verify search functionality of admin accounts.
 	 * Steps :
@@ -268,60 +210,42 @@ public class Search extends AdminCommonTest {
 	 */
 	@Test( description = "Verify search functionality of admin accounts.",
 			groups = { "smoke" })
-			public void SearchAdmin_07() throws HarnessException {
-		app.provisionAuthenticateDA();
-		this.startingPage.zNavigateTo();
+	public void SearchAdmin_07() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("global_admin" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
-				+			"<a xmlns='' n='zimbraIsAdminAccount'>TRUE</a>"
-				+		"</CreateAccountRequest>");
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+			"<a xmlns='' n='zimbraIsAdminAccount'>TRUE</a>"
+						+		"</CreateAccountRequest>");
 
 		// Create a new account in the Admin Console using SOAP
 		AccountItem del_admin_account = new AccountItem("delegated_admin" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + del_admin_account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
-				+			"<a xmlns='' n='zimbraIsDelegatedAdminAccount'>TRUE</a>"
-				+		"</CreateAccountRequest>");
+						+			"<name>" + del_admin_account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+			"<a xmlns='' n='zimbraIsDelegatedAdminAccount'>TRUE</a>"
+						+		"</CreateAccountRequest>");
 
-		
 		/*
 		 * Go to navigation path -- "Home --> Search --> Saved Searches --> admin"
 		 */
 		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.ADMIN_ACCOUNTS);
-	
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the account list is returned");
-		
-		AccountItem found = null;
-		for (AccountItem a : accounts) {
-			logger.info("Looking for account "+ account.getEmailAddress() + " found: "+ a.getGEmailAddress());
-			if ( account.getEmailAddress().equals(a.getGEmailAddress()) ) {
-				found = a;
-				break;
-			}
-		}
-		ZAssert.assertNotNull(found, "Verify the global admin account is found");
-		
-		found = null;
-		for (AccountItem a : accounts) {
-			logger.info("Looking for account "+ del_admin_account.getEmailAddress() + " found: "+ a.getGEmailAddress());
-			if ( del_admin_account.getEmailAddress().equals(a.getGEmailAddress()) ) {
-				found = a;
-				break;
-			}
-		}
-		ZAssert.assertNotNull(found, "Verify the delegated admin account is found");
 
+		//Verify the global admin account is found
+		ZAssert.assertTrue(app.zPageSearchResults.zIsPresentInSearchResult(account.getEmailAddress()), "Verify the global admin account is found");
+
+		//Verify the delegated admin account is found
+		ZAssert.assertTrue(app.zPageSearchResults.zIsPresentInSearchResult(del_admin_account.getEmailAddress()), "Verify the delegated admin account is found");
 	}
-	
+
 	/**
 	 * Testcase : Verify search functionality of closed accounts.
 	 * Steps :
@@ -331,42 +255,31 @@ public class Search extends AdminCommonTest {
 	 */
 	@Test( description = "Verify search functionality of closed accounts.",
 			groups = { "smoke" })
-			public void SearchClosedAccount_08() throws HarnessException {
-		app.provisionAuthenticateDA();
-		this.startingPage.zNavigateTo();
+	public void SearchClosedAccount_08() throws HarnessException {	
 
 		// Create a new closed account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
-				+			"<a xmlns='' n='zimbraAccountStatus'>closed</a>"
-				+		"</CreateAccountRequest>");
+				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+			"<a xmlns='' n='zimbraAccountStatus'>closed</a>"
+						+		"</CreateAccountRequest>");
 
-		
 		/*
 		 * Go to navigation path -- "Home --> Search --> Saved Searches --> Closed"
 		 */
 		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.CLOSED_ACCOUNTS);
-	
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the account list is returned");
-		
-		AccountItem found = null;
-		for (AccountItem a : accounts) {
-			logger.info("Looking for account "+ account.getEmailAddress() + " found: "+ a.getGEmailAddress());
-			if ( account.getEmailAddress().equals(a.getGEmailAddress()) ) {
-				found = a;
-				break;
-			}
-		}
-		ZAssert.assertNotNull(found, "Verify the account is found");
 
+		//Verify that the closed account is displayed in the search result
+		ZAssert.assertTrue(app.zPageSearchResults.zIsPresentInSearchResult(account.getEmailAddress()), "Verify the closed account is found");
 	}
 
-	
+
 	/**
 	 * Testcase : Verify search functionality of maintenance accounts.
 	 * Steps :
@@ -376,40 +289,37 @@ public class Search extends AdminCommonTest {
 	 */
 	@Test( description = "Verify search functionality of maintenance accounts.",
 			groups = { "smoke" })
-			public void SearchMaintenanceAccount_10() throws HarnessException {
-	
-		app.provisionAuthenticateDA();
-		this.startingPage.zNavigateTo();
+	public void SearchMaintenanceAccount_10() throws HarnessException {	
 
 		// Create a new maintenance account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
-				+			"<a xmlns='' n='zimbraAccountStatus'>maintenance</a>"
-				+		"</CreateAccountRequest>");
+				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+			"<a xmlns='' n='zimbraAccountStatus'>maintenance</a>"
+						+		"</CreateAccountRequest>");
 
-		
+
 		/*
 		 * Go to navigation path -- "Home --> Search --> Saved Searches --> maintenance"
 		 */
 		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.MAINTENANCE_ACCOUNTS);
-	
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the account list is returned");
-		
-		AccountItem found = null;
-		for (AccountItem a : accounts) {
-			logger.info("Looking for account "+ account.getEmailAddress() + " found: "+ a.getGEmailAddress());
-			if ( account.getEmailAddress().equals(a.getGEmailAddress()) ) {
-				found = a;
-				break;
-			}
-		}
-		ZAssert.assertNotNull(found, "Verify the account is found");
 
+		//Verify that the maintenance account is displayed in the search result
+		ZAssert.assertTrue(app.zPageSearchResults.zIsPresentInSearchResult(account.getEmailAddress()), "Verify the closed maintenance is found");
 	}
 
+	@BeforeClass( groups = { "always" } )
+	public void beforeClassMethod() throws HarnessException {		
+		
+		//Delegated admin authentication is required before all of these test 
+		app.provisionAuthenticateDA();
+		super.startingAccount = (ZimbraAdminAccount) app.zGetActiveAccount();
+		app.zPageManageSearch.zNavigateTo();		
+	}
 }

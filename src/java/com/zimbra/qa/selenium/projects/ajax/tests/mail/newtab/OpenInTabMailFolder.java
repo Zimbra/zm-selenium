@@ -170,7 +170,7 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 		"</AddMsgRequest>");
 
 		// Click on Get Mail to refresh the folder list
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Right click on folder, select "Open in Tab"
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_OPENTAB, subfolder1);

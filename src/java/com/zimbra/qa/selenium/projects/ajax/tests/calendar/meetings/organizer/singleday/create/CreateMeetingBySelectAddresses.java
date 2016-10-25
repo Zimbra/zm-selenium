@@ -64,10 +64,7 @@ public class CreateMeetingBySelectAddresses extends CalendarWorkWeekTest {
         dialogFindAttendees.zClickButton(Button.B_SELECT_FIRST_CONTACT);
         dialogFindAttendees.zClickButton(Button.B_CHOOSE_CONTACT_FROM_PICKER);
         dialogFindAttendees.zClickButton(Button.B_OK);
-        
-        // Send the  appt
-        apptForm.zToolbarPressButton(Button.B_SEND);
-		apptForm.zSubmit();
+        apptForm.zSubmit();
 
         // Verify attendee1 receives meeting invitation message
 		ZimbraAccount.AccountA().soapSend(

@@ -49,8 +49,8 @@ public class WeeklyEveryXdayEndByY extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 20, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 22, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee);
@@ -64,9 +64,7 @@ public class WeeklyEveryXdayEndByY extends CalendarWorkWeekTest {
 		apptForm.zFill(appt);
 		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, "Tuesday", Button.B_END_BY_DATE_RADIO_BUTTON, "01/01/2020");
 		ZAssert.assertStringContains(app.zPageCalendar.zGetRecurringLink(), "Every Tuesday. End by Jan 1, 2020. Effective ", "Recurring link: Verify the appointment data");
-				
-		apptForm.zSubmit();
-		SleepUtil.sleepLong(); //SOAP gives wrong response
+		apptForm.zSubmitWithResources();
 		
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
@@ -88,7 +86,7 @@ public class WeeklyEveryXdayEndByY extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getAttendees(), apptAttendee, "Attendees: Verify the appointment data");
 		ZAssert.assertTrue(actual.getLocation().contains(apptLocation), "Location: Verify the appointment data");
 		ZAssert.assertEquals(ruleFrequency, "WEE", "Repeat frequency: Verify the appointment data");
-		ZAssert.assertEquals(until, "20200101T182959Z", "Recurrence until: Verify the appointment data");
+		ZAssert.assertStringContains(until, "202001", "Recurrence until: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
 		ZAssert.assertEquals(weekday, "TU", "Weekday: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
@@ -117,7 +115,7 @@ public class WeeklyEveryXdayEndByY extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(received.getAttendees(), apptAttendee, "Attendees: Verify the appointment data");
 		ZAssert.assertTrue(received.getLocation().contains(apptLocation), "Location: Verify the appointment data");
 		ZAssert.assertEquals(ruleFrequency, "WEE", "Repeat frequency: Verify the appointment data");
-		ZAssert.assertEquals(until, "20200101T182959Z", "Recurrence until: Verify the appointment data");
+		ZAssert.assertStringContains(until, "202001", "Recurrence until: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
 		ZAssert.assertEquals(weekday, "TU", "Weekday: Verify the appointment data");
 		ZAssert.assertEquals(received.getContent(), appt.getContent(), "Content: Verify the appointment data");

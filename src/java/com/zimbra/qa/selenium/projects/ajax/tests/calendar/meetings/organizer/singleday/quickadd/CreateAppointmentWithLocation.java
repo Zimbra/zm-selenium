@@ -64,9 +64,10 @@ public class CreateAppointmentWithLocation extends CalendarWorkWeekTest {
 		quickAddAppt.zNewAppointment();
 		quickAddAppt.zFill(appt);
 		quickAddAppt.zMoreDetails();
+		
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zVerifyLocation(locationName);
-		apptForm.zSubmit();
+		apptForm.zSubmitWithResources();
 		
 		// Verify the new appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));

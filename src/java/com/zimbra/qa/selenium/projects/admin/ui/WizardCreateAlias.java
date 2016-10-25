@@ -19,7 +19,6 @@
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
-import java.awt.event.KeyEvent;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.AbsWizard;
@@ -50,23 +49,13 @@ public class WizardCreateAlias extends AbsWizard {
 
 		String CN = alias.getLocalName();
 		String domain = alias.getDomainName();
-		String targetAccount = alias.getTargetAccountEmail();
-		
+		String targetAccount = alias.getTargetAccountEmail();		
 		sType(Locators.zdlg_ALIAS_NAME, CN);
 		SleepUtil.sleepSmall();
-		this.clearField(Locators.zdlg_ALIAS_DOMAIN_NAME);
-
-		sType(Locators.zdlg_ALIAS_DOMAIN_NAME,"");
-		sType(Locators.zdlg_ALIAS_DOMAIN_NAME,domain);
-
-		//System.out.println(domain);
-		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-
-
-
+		this.clearField(Locators.zdlg_ALIAS_DOMAIN_NAME);		
+		sType(Locators.zdlg_ALIAS_DOMAIN_NAME,domain);	
 		sType(Locators.zdlg_TARGET_ACCOUNT_NAME, targetAccount);
 		zClick(Locators.zdlg_OK);
-
 		return alias;
 
 	}

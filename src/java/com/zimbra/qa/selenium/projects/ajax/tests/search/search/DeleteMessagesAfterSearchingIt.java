@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.search.search;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -27,7 +25,6 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
@@ -42,7 +39,7 @@ public class DeleteMessagesAfterSearchingIt extends PrefGroupMailByMessageTest {
 	}
 	
 	@Bugs( ids = "44826")
-	@Test( description = "Verify bug 44826", groups = { "functional" })
+	@Test( description = " Search in Trash and delete, does not delete", groups = { "functional" })
 	
 	public void DeleteMessagesAfterSearchingIt_01() throws HarnessException {
 		
@@ -135,14 +132,12 @@ public class DeleteMessagesAfterSearchingIt extends PrefGroupMailByMessageTest {
 	}
 	
 	@Bugs( ids = "44826")
-	@Test( description = "Verify bug 44826", groups = { "functional" })
+	@Test( description = " Search in Trash and delete, does not delete", groups = { "functional" })
 	
 	public void DeleteMessagesAfterSearchingIt_02() throws HarnessException {
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inboxFolder);
 
-		SleepUtil.sleepMedium();
-		
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 		// Create a message in trash to move
 		String subject1 = "subject1" + ConfigProperties.getUniqueString();

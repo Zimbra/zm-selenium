@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -97,9 +96,8 @@ public class ReplyMsgWithTwoThreeLineTextSignature extends AjaxCommonTest {
 						+ "<a name='zimbraPrefForwardReplySignatureId'>" + SignatureId1 + "</a>" + "</identity>"
 						+ "</ModifyIdentityRequest>");
 
-		// Refresh
-		app.zPageLogin.zNavigateTo();
-		app.zPageMail.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		// Signature is created
@@ -135,8 +133,6 @@ public class ReplyMsgWithTwoThreeLineTextSignature extends AjaxCommonTest {
 		ZAssert.assertStringContains(mailform.zGetPlainBodyText(), sigBody1,
 				"Verify reply signature is present in body");
 
-		SleepUtil.sleepSmall();
-
 		// Send the message
 		mailform.zSubmit();
 
@@ -148,9 +144,6 @@ public class ReplyMsgWithTwoThreeLineTextSignature extends AjaxCommonTest {
 				.soapSend("<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + id + "' />" + "</GetMsgRequest>");
 		Element getMsgResponse = ZimbraAccount.AccountZWC().soapSelectNode("//mail:GetMsgResponse", 1);
 		MailItem received = MailItem.importFromSOAP(getMsgResponse);
-
-		logger.debug("===========received is: " + received);
-		logger.debug("===========app is: " + app);
 
 		// Verify TO, Subject, Text Body,Text Signature for replied msg
 		ZAssert.assertStringContains(received.dSubject, "Re", "Verify the subject field contains the 'Fwd' prefix");

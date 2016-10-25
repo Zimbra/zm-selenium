@@ -1,7 +1,7 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
  * 
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
@@ -17,14 +17,12 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.outofoffice;
 
 import java.util.Calendar;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
@@ -38,9 +36,10 @@ public class OutOfOfficeCalendarAppointment extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
+	
 	@Bugs(ids = "78890")
-	@Test( description = "Set out of office along with calendar appointment and verify all-day appointment creation", 
-			groups = { "functional" })
+	@Test(description = "Set out of office along with calendar appointment and verify all-day appointment creation", priority = 4, groups = {
+			"functional" })
 	
 	public void OutOfOfficeCalendarAppointment_01() throws HarnessException {
 
@@ -52,7 +51,6 @@ public class OutOfOfficeCalendarAppointment extends AjaxCommonTest {
 		
 		// Navigate to preferences -> Out of office
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailOutOfOffice);
-		SleepUtil.sleepMedium();
 
 		// Select custom work hours for e.g. Tuesday to Friday
 		app.zPagePreferences.zSelectRadioButton(Button.R_SEND_AUTOREPLY_MESSAGE);
@@ -63,23 +61,11 @@ public class OutOfOfficeCalendarAppointment extends AjaxCommonTest {
 		
 		// Save preferences
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
-		SleepUtil.sleepMedium();
 		
 		// Verify the new appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
 		ZAssert.assertEquals(app.zGetActiveAccount().soapMatch("//mail:GetAppointmentResponse//mail:comp", "allDay", "1"), true, "");
-		
-		// Verify appointment exists in current view
-		app.zPageCalendar.zNavigateTo();
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 	}
-	
-	@AfterMethod(groups={"always"})
-	public void afterMethod() throws HarnessException {
-		zFreshLogin();
-		logger.info(app.zGetActiveAccount().EmailAddress);
-	}
-	
 }

@@ -80,7 +80,6 @@ public class DeleteMeeting extends CalendarWorkWeekTest {
  		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
  		declineAppt.zClickButton(Button.B_DONT_NOTIFY_ORGANIZER);
  		declineAppt.zClickButton(Button.B_YES);
- 		SleepUtil.sleepVeryLong();
 
  		
  		// ---------------- Verification at organizer & invitee side both -------------------------------------       
@@ -166,7 +165,6 @@ public class DeleteMeeting extends CalendarWorkWeekTest {
  		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
  		declineAppt.zClickButton(Button.B_NOTIFY_ORGANIZER);
  		declineAppt.zClickButton(Button.B_YES);
- 		SleepUtil.sleepVeryLong();
  		
  		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 

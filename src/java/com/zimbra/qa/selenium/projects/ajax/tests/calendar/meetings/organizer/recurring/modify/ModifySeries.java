@@ -45,7 +45,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 
 		Calendar now = this.calendarWeekDayUTC;
 		String tz = ZTimeZone.TimeZoneEST.getID();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		
 		String apptSubject = ConfigProperties.getUniqueString();
@@ -86,7 +86,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		
 		FormApptNew apptForm = new FormApptNew(app);		
 		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, Button.B_NO_END_DATE_RADIO_BUTTON);
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 
@@ -146,8 +146,8 @@ public class ModifySeries extends CalendarWorkWeekTest {
 
 		Calendar now = this.calendarWeekDayUTC;
 		String tz = ZTimeZone.TimeZoneEST.getID();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 		
 		AppointmentItem appt = new AppointmentItem();
 		String apptSubject = ConfigProperties.getUniqueString();
@@ -190,7 +190,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.Subject, modifiedSubject);
 		apptForm.zFill(appt);
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 
@@ -250,8 +250,8 @@ public class ModifySeries extends CalendarWorkWeekTest {
 
 		Calendar now = this.calendarWeekDayUTC;
 		String tz = ZTimeZone.TimeZoneEST.getID();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		
 		AppointmentItem appt = new AppointmentItem();
 		String apptSubject = ConfigProperties.getUniqueString();
@@ -297,7 +297,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.Subject, modifiedSubject);
 		apptForm.zFill(appt);
-        apptForm.zToolbarPressButton(Button.B_SEND);
+        apptForm.zSubmit();
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 
@@ -362,8 +362,8 @@ public class ModifySeries extends CalendarWorkWeekTest {
 
 		Calendar now = this.calendarWeekDayUTC;
 		String tz = ZTimeZone.TimeZoneEST.getID();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 1, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 2, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
 		
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptBody = ConfigProperties.getUniqueString();
@@ -469,7 +469,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 
 		Calendar now = this.calendarWeekDayUTC;
 		String tz = ZTimeZone.TimeZoneEST.getID();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		
 		String apptSubject = ConfigProperties.getUniqueString();

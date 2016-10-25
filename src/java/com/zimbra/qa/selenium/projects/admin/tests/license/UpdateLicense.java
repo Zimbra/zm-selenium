@@ -30,24 +30,23 @@
 package com.zimbra.qa.selenium.projects.admin.tests.license;
 
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.core.Bugs;
-import com.zimbra.qa.selenium.framework.items.FileItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.ui.WizardUpdateLicense;
-
 
 public class UpdateLicense extends AdminCommonTest {
 
 	public UpdateLicense() {
 		logger.info("New "+ UpdateLicense.class.getCanonicalName());
+		super.startingPage = app.zPageManageLicense;
 	}
 
 	/**
@@ -57,26 +56,22 @@ public class UpdateLicense extends AdminCommonTest {
 	 * 2. Verify that new license is updated successfully 
 	 * @throws HarnessException
 	 */
-	@Bugs( ids = "106019")
-	@Test( description = "Upload new license in admin console",
-	groups = { "smoke" })
+	
+	@Bugs(ids = "106019")
+	@Test(description = "Upload new license in admin console", groups = { "smoke" })
+	
 	public void UpdateLicense_01() throws HarnessException {
 
 		// Create file item
 		final String fileName = "regular.xml";
 		final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\private\\license\\" + fileName;
-		FileItem fileItem = new FileItem(filePath);
-
-		// Verify navigation path - configure >> global settings >> License
-		app.zPageManageLicense.zNavigateTo();
-		SleepUtil.sleepMedium();
-
+		
 		// Click on install certificate option
 		WizardUpdateLicense wizard= (WizardUpdateLicense)app.zPageManageLicense.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_UPDATE_LICENSE);
 		SleepUtil.sleepMedium();
 
 		// Click on Upload File button in the toolbar
-		app.zPageManageLicense.zToolbarPressButton(Button.B_UPLOAD_LICENSE, fileItem);
+		app.zPageManageLicense.zToolbarPressButton(Button.B_UPLOAD_LICENSE);
 
 		// Upload license
 		zUpload(filePath);
@@ -105,10 +100,9 @@ public class UpdateLicense extends AdminCommonTest {
 
 		// Verify "valid until" date
 		String validUntil = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetLicenseResponse/admin:license/admin:attr[@name='ValidUntil']", null);
-		ZAssert.assertEquals(validUntil, "20160905090000Z", "Verify valid until");
+		ZAssert.assertEquals(validUntil, "20161221090000Z", "Verify valid until");
 
 		// Activate license
-		StafServicePROCESS staf = new StafServicePROCESS();
 		staf.execute("zmlicense -a");
 
 		// Create a new account after activation of license

@@ -63,10 +63,6 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		throw new HarnessException("Page never became active: msec="+ millis);
 	}
 
-	public AbsTooltip zHoverOver(Button button) throws HarnessException {
-		throw new HarnessException("implement me");
-	}
-
 	public void zDragAndDrop(String locatorSource, String locatorDestination) throws HarnessException {
 
 		if ( !this.sIsElementPresent(locatorSource) ) {

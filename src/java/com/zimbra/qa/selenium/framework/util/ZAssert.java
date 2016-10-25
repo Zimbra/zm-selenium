@@ -276,8 +276,7 @@ public class ZAssert {
 		trace(message);
 
 		message = "assertStringContains: " + message;
-		String details = String.format("%s -- (%s contains %s) [%s]", "assertStringContains", actual, substring,
-				message);
+		String details = String.format("%s -- (%s contains %s) [%s]", "assertStringContains", actual, substring, message);
 		logger.info(details);
 
 		try {
@@ -304,8 +303,7 @@ public class ZAssert {
 		trace(message);
 
 		message = "assertStringDoesNotContain: " + message;
-		String details = String.format("%s -- (%s does not contain %s) [%s]", "assertStringDoesNotContain", actual,
-				substring, message);
+		String details = String.format("%s -- (%s does not contain %s) [%s]", "assertStringDoesNotContain", actual,	substring, message);
 		logger.info(details);
 
 		try {

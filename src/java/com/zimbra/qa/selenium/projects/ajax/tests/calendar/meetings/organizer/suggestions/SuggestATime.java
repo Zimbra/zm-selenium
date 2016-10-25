@@ -47,8 +47,8 @@ public class SuggestATime extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 6, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 7, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -75,7 +75,8 @@ public class SuggestATime extends CalendarWorkWeekTest {
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zToolbarPressButton(Button.B_SUGGESTATIME);
         apptForm.zToolbarPressButton(Button.B_FIRST_TIME_SUGGESTION);
-        apptForm.zSubmit();SleepUtil.sleepLong(); // test fails while checking location free/busy status, waitForPostqueue is not sufficient here
+        apptForm.zSubmit();
+		SleepUtil.sleepLong(); // test fails while checking location free/busy status, waitForPostqueue is not sufficient here
         // Tried sleepMedium() as well but although fails so using sleepLong()
 
         // Verify appointment start time and end time

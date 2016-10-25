@@ -43,8 +43,8 @@ public class Delete extends CalendarWorkWeekTest {
 		String apptSubject = ConfigProperties.getUniqueString();
 
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 6, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 7, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 
 
 		// --------------- Creating invitation (organizer) ----------------------------
@@ -136,8 +136,8 @@ public class Delete extends CalendarWorkWeekTest {
 		String apptSubject = ConfigProperties.getUniqueString();
 
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 7, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
 
 
 		// --------------- Creating invitation (organizer) ----------------------------
@@ -166,7 +166,6 @@ public class Delete extends CalendarWorkWeekTest {
 		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_DELETE_MENU, apptSubject);
 		declineAppt.zClickButton(Button.B_NOTIFY_ORGANIZER);
 		declineAppt.zClickButton(Button.B_YES);
-		SleepUtil.sleepVeryLong(); //ptst returns wrong value without long delay
 		
 		// Verify appointment is deleted and read-only view closed
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

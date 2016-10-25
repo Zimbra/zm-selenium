@@ -60,8 +60,8 @@ public class DeleteHtmlSignature extends AjaxCommonTest {
 						+ "' >" + "<content type='text/html'>'" + this.contentHTML + "'</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
 
-		// Logout and login
-		this.app.zPageLogin.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		this.app.zPagePreferences.zNavigateTo();
 
 		logger.info("CreateSignature: finish");
@@ -92,9 +92,10 @@ public class DeleteHtmlSignature extends AjaxCommonTest {
 		pagesig.zClick(Locators.zSignatureListView);
 		app.zPageSignature.zClick("//td[contains(text(),'" + signature.getName() + "')]");
 
-		// click Delete button
+		// Click Delete button
 		app.zPageSignature.zToolbarPressButton(Button.B_DELETE);
-		// click Save
+
+		// Click Save
 		signew.zSubmit();
 
 		// To check whether deleted signature is exist
@@ -102,7 +103,7 @@ public class DeleteHtmlSignature extends AjaxCommonTest {
 
 		String signame = app.zGetActiveAccount().soapSelectValue("//acct:signature[@name='" + this.sigHtmlName + "']",
 				"name");
-		ZAssert.assertNull(signame, "Verify  signature is deleted");
+		ZAssert.assertNull(signame, "Verify signature is deleted");
 
 	}
 

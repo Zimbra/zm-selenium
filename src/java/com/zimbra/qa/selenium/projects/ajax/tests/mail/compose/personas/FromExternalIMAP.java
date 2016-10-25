@@ -65,9 +65,8 @@ public class FromExternalIMAP extends PrefGroupMailByMessageTest {
 			+			"username='"+ external.EmailAddress +"' password='"+ external.Password +"' />"
 			+	"</CreateDataSourceRequest>");
 
-		// Need to logout/login to get the new folder
-		app.zPageLogin.zNavigateTo();
-		startingPage.zNavigateTo();
+		// Refresh UI
+		app.zPageMain.sRefresh();
 		
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();

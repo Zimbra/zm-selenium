@@ -111,6 +111,10 @@ public class CreateTag extends AjaxCommonTest {
 
 		//Need to click on Task folder explicitly so that created tag does show in tag list.
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
+		
+		// Work around
+		app.zPageMain.sRefresh();
+		app.zPageTasks.zNavigateTo();
 
 		// Create a new tag using the context menu + New Tag
 		DialogTag dialog = (DialogTag)app.zTreeTasks.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_NEWTAG, tag2);

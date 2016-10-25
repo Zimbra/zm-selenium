@@ -148,7 +148,6 @@ public class DeclineProposeNewTime extends CalendarWorkWeekTest {
 		display.zPressButton(Button.B_DECLINE_PROPOSE_NEW_TIME);
 		FormMailNew mailComposeForm = new FormMailNew(app);
 		mailComposeForm.zSubmit();
-		SleepUtil.sleepLong();
 		
 		// ------ Attendee1 ------
 		

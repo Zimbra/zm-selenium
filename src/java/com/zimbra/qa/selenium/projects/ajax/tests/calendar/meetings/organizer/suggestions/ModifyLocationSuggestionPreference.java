@@ -68,8 +68,7 @@ public class ModifyLocationSuggestionPreference extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(apptForm.zIsLocationExistsInSuggestPane(apptLocation2), false, "Verify location2 is not showing according to location preference");
 		
 		apptForm.zPressButton(Button.B_SUGGESTEDLOCATION, apptLocation1);
-		apptForm.zSubmit();
-		SleepUtil.sleepLong(); //location shows NE instead of AC without sleep
+		apptForm.zSubmitWithResources();
 		
 		// Verify appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")");

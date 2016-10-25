@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.main;
 
 import org.testng.annotations.*;
-import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
@@ -28,11 +27,9 @@ public class ShortcutDialog extends AjaxCommonTest {
 	public ShortcutDialog() {
 		logger.info("New " + ShortcutDialog.class.getCanonicalName());
 		super.startingPage = app.zPageMail;
-		
 	}
 
 
-	@Bugs(ids = "101705")
 	@Test( description = "Open the 'Shortcut' dialog >> Verify contents and Close Link", 
 		groups = { "functional" })
 	
@@ -51,7 +48,6 @@ public class ShortcutDialog extends AjaxCommonTest {
 	}
 	
 
-	@Bugs(ids = "101705")
 	@Test( description = "Open the 'Shortcut' dialog >> Verify in New Window link and contents", 
 		groups = { "functional" })
 	

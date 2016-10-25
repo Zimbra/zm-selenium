@@ -330,6 +330,7 @@ public class PagePreferences extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
+			logger.info(myPageName() + " is already loaded");
 			return;
 		}
 

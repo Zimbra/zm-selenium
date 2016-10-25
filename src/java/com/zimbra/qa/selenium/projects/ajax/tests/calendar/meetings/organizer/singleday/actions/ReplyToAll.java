@@ -139,7 +139,7 @@ public class ReplyToAll extends CalendarWorkWeekTest {
    
         // Verify if Optional attendee appears in the CC feild when organizer replies all to meeting  
         FormMailNew mailComposeForm = (FormMailNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK,Button.O_REPLY_TO_ALL_MENU, apptSubject);
-        String userInCcField = mailComposeForm.ZGetFieldValue(Field.Cc);
+        String userInCcField = mailComposeForm.zGetFieldValue(Field.Cc);
 		ZAssert.assertStringContains(apptAttendee2, userInCcField, "Verify the optional attendee appears in the CC field");
 		
 	}

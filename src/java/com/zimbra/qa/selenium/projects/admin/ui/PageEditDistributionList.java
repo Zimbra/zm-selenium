@@ -35,6 +35,8 @@ public class PageEditDistributionList extends AbsTab {
 	
 	public static class Locators {
 		public static final String DL_EDIT_ACL="css=div[id^='zti__AppAdmin__Home__dlLstHV'] div[class='ZTreeItemTextCell']:contains('ACL')";
+		public static final String DL_EDIT_ACL_ADD = "css=td[id^='ztabv__UNDEFINE_dwt_button_'] td[id$='title']:contains('Add')";
+		public static final String DL_EDIT_ACL_GRANTEE_NAME = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input[id^='zdlgv__EDIT_ACL'][id$='_grantee_email_display']";
 		
 	}
 

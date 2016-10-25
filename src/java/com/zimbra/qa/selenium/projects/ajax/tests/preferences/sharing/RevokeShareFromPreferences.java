@@ -1,7 +1,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.sharing;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -11,9 +10,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeI
 
 public class RevokeShareFromPreferences extends AjaxCommonTest {
 
-	public RevokeShareFromPreferences() {
-		//super.startingPage = app.zPagePreferences;
-			
+	public RevokeShareFromPreferences() {			
 	}
 
 	@Test( description = "Revoke share folder from preferences", groups = { "functional" })
@@ -55,10 +52,23 @@ public class RevokeShareFromPreferences extends AjaxCommonTest {
 
 		// Navigate to preferences -> sharing
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Sharing);
+		
+		// Get row ID
+		String optionLocator;
+		int rows = app.zPagePreferences.sGetCssCount("css=div[id='Prefs_Pages_Sharing_sharesBy'] table tbody tr:nth-child(2) td div");
+		String id;
 
-		// Select Revoke
-		app.zPagePreferences.sClick("css=div[id ='zl__SVG__rows'] a[id$='_revoke' ]"); //Revoke link locator
-		SleepUtil.sleepSmall(); 
+		for (int i=0; i < rows+2; i++) {
+			
+			id = app.zPagePreferences.sGetEval("return window.document.getElementById('zl__SVG__rows').children[" + i + "].children[0].children[0].children[0].children[0].id");
+			if (app.zPagePreferences.sGetText("css=td[id='" + id + "']").equals(ZimbraAccount.AccountB().EmailAddress)) {
+				optionLocator = "css=div[id ='zl__SVG__rows'] a[id='" + id.replace("wi", "revoke") + "']";
+				app.zPagePreferences.sClickAt(optionLocator, "0,0");
+				SleepUtil.sleepMedium();
+				break;
+			}
+		}
+
 		app.zPagePreferences.sClick("css=td[id^='Yes_DWT'] td[id$='_button5_title']:contains('Yes')"); // Yes button locator
 		SleepUtil.sleepMedium(); 
 

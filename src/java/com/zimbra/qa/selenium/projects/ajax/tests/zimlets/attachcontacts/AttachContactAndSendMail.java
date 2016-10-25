@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.attachcontacts;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -34,12 +33,11 @@ public class AttachContactAndSendMail extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
-	@Test( description = "Attach a contact to a mail",
-			groups = { "functional" })
-	
+	@Test(description = "Attach a contact to a mail", groups = { "functional" })
+
 	public void AttachContactAndSendMail_01() throws HarnessException {
 
-		//-- DATA
+		// -- DATA
 
 		// Create a contact item
 		ContactItem contact = new ContactItem();
@@ -47,15 +45,10 @@ public class AttachContactAndSendMail extends PrefGroupMailByMessageTest {
 		contact.lastName = "Last" + ConfigProperties.getUniqueString();
 		contact.email = "email" + ConfigProperties.getUniqueString() + "@domain.com";
 
-		app.zGetActiveAccount().soapSend(
-				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
-						"<cn >" +
-						"<a n='firstName'>" + contact.firstName +"</a>" +
-						"<a n='lastName'>" + contact.lastName +"</a>" +
-						"<a n='email'>" + contact.email + "</a>" +
-						"</cn>" +
-				"</CreateContactRequest>");
-
+		app.zGetActiveAccount()
+				.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='firstName'>"
+						+ contact.firstName + "</a>" + "<a n='lastName'>" + contact.lastName + "</a>" + "<a n='email'>"
+						+ contact.email + "</a>" + "</cn>" + "</CreateContactRequest>");
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
@@ -63,8 +56,7 @@ public class AttachContactAndSendMail extends PrefGroupMailByMessageTest {
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
 		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
 
-
-		//-- GUI
+		// -- GUI
 
 		// Click Get Mail button to get the new contact
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -74,40 +66,34 @@ public class AttachContactAndSendMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 
 		mailform.zFill(mail);
-		
-		//Click attach drop down and select Contact
+
+		// Click attach drop down and select Contact
 		app.zPageMail.zToolbarPressPulldown(Button.B_ATTACH, Button.O_CONTACTATTACH);
 
+		DialogAttach dialog = new DialogAttach(app, ((AppAjaxClient) app).zPageMail);
+		ZAssert.assertTrue(dialog.zIsActive(), "Attach Contact dialog gets open and active");
 
-		DialogAttach dialog = new DialogAttach(app, ((AppAjaxClient)app).zPageMail);
-		ZAssert.assertTrue(dialog.zIsActive(),"Attach Contact dialog gets open and active");
+		// Click on Contact folder
+		dialog.zClick(Locators.zAttachContactFolder);
 
-		//Click on Contact folder
-		dialog.zClickAt(Locators.zAttachContactFolder,"");
-
-		//Select first contact
-		dialog.sClickAt("css=div[id^='attachContactsZimlet_row'] tr td>span:contains('"+contact.firstName+"')","");
+		// Select first contact
+		dialog.sClick("css=div[id^='attachContactsZimlet_row'] tr td>span:contains('" + contact.firstName + "')");
 		dialog.zClickButton(Button.B_ATTACH);
 		SleepUtil.sleepMedium();
 		mailform.zSubmit();
 
-		//-- Verification
+		// -- Verification
 
 		// From the receiving end, verify the message details
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mail.dSubject +")");
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + mail.dSubject + ")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
 		ZimbraAccount.AccountA().soapSend(
-				"<GetMsgRequest xmlns='urn:zimbraMail'>"
-						+		"<m id='"+ received.getId() +"'/>"
-						+	"</GetMsgRequest>");
+				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + received.getId() + "'/>" + "</GetMsgRequest>");
 
 		String filename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
 
 		ZAssert.assertStringContains(filename, contact.firstName, "Verify the attached contacts exist");
 
 	}
-
-
-
 
 }
