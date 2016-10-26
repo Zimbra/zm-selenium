@@ -22,6 +22,7 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
+import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -83,7 +84,6 @@ public class Forward extends CalendarWorkWeekTest {
         form.zFillField(Field.To, attendee2);
         form.zFillField(Field.Body, ForwardContent);
         form.zSubmit();
-		
 		// Verify the new invitation appears in the inbox
 		ZimbraAccount.AccountB().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -245,4 +245,51 @@ public class Forward extends CalendarWorkWeekTest {
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists("Fwd: " + apptSubject), "Verify message displayed in current view");
 	}
 	
+	@Bugs(ids="100340")
+	@Test( description = "forwarding invite shows html source in meeting notes section",
+			groups = { "functional" })
+			
+	public void ForwardMeeting_04() throws HarnessException {
+		
+		app.zPageMain.zLogout();
+		ZimbraAccount.AccountZWC().soapSend(
+				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
+			+		"<pref name='zimbraPrefComposeFormat'>"+ "text" +"</pref>"
+			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "FALSE" +"</pref>"
+			+	"</ModifyPrefsRequest>");
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		
+		String attendee2 = ZimbraAccount.Account3().EmailAddress;
+		
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug106342/bug106342.txt";
+		final String apptSubject = "Group photo with Steve";
+
+		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		
+		// Verify mail exists
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
+		
+		// Forward invite
+		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK,inbox);
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
+		FormMailNew mailForm = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
+		
+		// Fill out the form with the data
+		FormApptNew apptForm = new FormApptNew(app);
+		ZAssert.assertStringDoesNotContain(apptForm.zGetApptBodyValue(), "<div>", "Verify populated appointment does not contain <div> tag");
+		ZAssert.assertStringDoesNotContain(apptForm.zGetApptBodyValue(), "<br>", "Verify populated appointment does not contain <br> tag");
+		ZAssert.assertStringDoesNotContain(apptForm.zGetApptBodyValue(), "<td>", "Verify populated appointment does not contain <td> tag");
+		ZAssert.assertStringDoesNotContain(apptForm.zGetApptBodyValue(), "</div>", "Verify populated appointment does not contain </div> tag");
+		ZAssert.assertStringDoesNotContain(apptForm.zGetApptBodyValue(), "</body>", "Verify populated appointment does not contain </body> tag");
+		ZAssert.assertStringDoesNotContain(apptForm.zGetApptBodyValue(), "</html>", "Verify populated appointment does not contain </html> tag");
+		apptForm.zFillField(Field.To, attendee2);
+		apptForm.zSubmit();
+		
+		// Verify the attendee receives the invitation
+		MailItem invite = MailItem.importFromSOAP(ZimbraAccount.Account3(), "subject:("+ apptSubject +")");
+		ZAssert.assertNotNull(invite, "Verify the invite is received");
+		ZAssert.assertEquals(invite.dSubject, apptSubject, "Subject: Verify the appointment data");
+	}
+
 }
