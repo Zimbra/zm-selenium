@@ -149,6 +149,9 @@ public class SeparateWindow extends AbsSeparateWindow {
 		
 		for (String name : super.sGetAllWindowNames()) {
 			logger.info("Window name: "+ name);
+			if ( name.equals("") ) {
+				name = "selenium_blank";
+			}
 			if ( name.equals(DialogWindowTitle) ) {
 				logger.info("zIsActive() = true ... title = "+ DialogWindowName);
 				return (true);

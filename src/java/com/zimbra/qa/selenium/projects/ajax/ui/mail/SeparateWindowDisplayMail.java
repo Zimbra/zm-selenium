@@ -170,14 +170,14 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		super.zWaitForActive(PageLoadDelay);
 
 		String locator = "css=div[id='zv__MSG-1__MSG'] tr[id='zv__MSG__MSG-1_hdrTableTopRow'] td[class*='SubjectCol']";
-		for (int i = 0; i < 30; i++) {
+		for (int i = 0; i < 15; i++) {
 
 			boolean present = sIsElementPresent(locator);
 			if (present) {
 				return;
 			}
 
-			SleepUtil.sleep(1000);
+			SleepUtil.sleepMedium();
 		}
 		throw new HarnessException("Page never became active!");
 

@@ -23,6 +23,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import com.zimbra.qa.selenium.framework.util.*;
 
@@ -332,7 +333,6 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			changeFocus();
 
 			int n = super.sGetElementPositionLeft(locator);
-
 			return (n);
 
 		} finally {
@@ -350,7 +350,6 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			changeFocus();
 
 			int n = super.sGetElementPositionTop(locator);
-
 			return (n);
 
 		} finally {
@@ -367,7 +366,6 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			super.sSelectWindow(this.DialogWindowID);
 			DoChangeWindowFocus = true;
 			changeFocus();
-
 			super.sFocus(locator);
 
 		} finally {
@@ -383,7 +381,6 @@ public abstract class AbsSeparateWindow extends AbsPage {
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
-
 			super.sMouseDown(locator);
 
 		} finally {
@@ -399,7 +396,6 @@ public abstract class AbsSeparateWindow extends AbsPage {
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
-
 			super.sMouseUp(locator);
 
 		} finally {
@@ -415,7 +411,6 @@ public abstract class AbsSeparateWindow extends AbsPage {
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
-
 			super.sMouseDownAt(locator, coord);
 
 		} finally {
@@ -431,7 +426,6 @@ public abstract class AbsSeparateWindow extends AbsPage {
 		try {
 			super.sSelectWindow(this.DialogWindowID);
 			changeFocus();
-
 			super.sMouseUpAt(locator, coord);
 
 		} finally {
@@ -449,10 +443,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			changeFocus();
 
 			for (String locator : locators) {
-
 				sClick(locator);
-				SleepUtil.sleepMedium();
-
 			}
 
 		} finally {
@@ -528,7 +519,6 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			String mainwindow = webDriver().getWindowHandle();
 
 			for (String handle : windows) {
-
 				webDriver().switchTo().window(handle);
 				if (!handle.equals(mainwindow)) {
 					webDriver().switchTo().window(handle).close();
@@ -559,15 +549,19 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			}
 
 			for (String winHandle : webDriver().getWindowHandles()) {
-				webDriver().switchTo().window(winHandle);
-				if (webDriver().switchTo().window(winHandle).getTitle().contains(title)
-						&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Inbox")
-						&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Contacts")
-						&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Calendar")
-						&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Tasks")
-						&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Briefcase")
-						&& !webDriver().switchTo().window(winHandle).getTitle().contains("Zimbra: Preferences")) {
+				WebDriver window = webDriver().switchTo().window(winHandle);
+				if (window.getTitle().contains(title) && !window.getTitle().contains("Zimbra: Inbox")
+						&& !window.getTitle().contains("Zimbra: Contacts")
+						&& !window.getTitle().contains("Zimbra: Calendar")
+						&& !window.getTitle().contains("Zimbra: Tasks")
+						&& !window.getTitle().contains("Zimbra: Briefcase")
+						&& !window.getTitle().contains("Zimbra: Preferences")) {
 					webDriver().close();
+				}
+				if (title.equals("selenium_blank")) {
+					if (window.getTitle().equals("")) {
+						webDriver().close();
+					}
 				}
 			}
 

@@ -923,7 +923,7 @@ public class PageMail extends AbsTab {
 				this.sClickAt(optionLocator, "0,0");
 				zWaitForBusyOverlay();
 
-				SleepUtil.sleepVeryLong();
+				SleepUtil.sleepMedium();
 
 				return (page);
 
