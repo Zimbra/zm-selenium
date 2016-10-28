@@ -335,29 +335,26 @@ public class DialogEditFilter extends AbsDialog {
 			SleepUtil.sleepMedium();
 			
 			//Go to the option and select it
-			this.sMouseMoveAt(Locators.dropdownOptionCss+":contains(" + option +") td td[id$='_title']","0,0");
 			this.sClickAt(Locators.dropdownOptionCss+":contains(" + option +") td td[id$='_title']","0,0");			
-			SleepUtil.sleepVerySmall();
+			SleepUtil.sleepSmall();
 			
 			//Click 'Browse' button
 			this.sClick(Locators.BrowseButton); //Browse folder
-			SleepUtil.sleepSmall();
+			SleepUtil.sleepMedium();
 			
 			//Click on 'New' Button on Choose folder dialog to create new folder 
-			this.sMouseMoveAt(DialogCreateFolder.Locators.zChooseNewFolderButton,"0,0");
 			this.sClickAt(DialogCreateFolder.Locators.zChooseNewFolderButton,"0,0");
+			SleepUtil.sleepMedium();
 			
 			//Enter the name of the new folder
 			this.sType(DialogCreateFolder.Locators.DialogNameLocatorCSS, name[0]);
 			SleepUtil.sleepVerySmall();
 			
-			//Click Ok buttton to create new folder
-			this.sMouseMoveAt(DialogCreateFolder.Locators.zOkButton,"0,0");
+			//Click Ok button to create new folder
 			this.sClickAt(DialogCreateFolder.Locators.zOkButton,"0,0");
-			SleepUtil.sleepVerySmall();
+			SleepUtil.sleepSmall();
 			
 			//Click Ok to select the folder
-			this.sMouseMoveAt("css=div[id$='FolderDialog_buttons'] td[id^='OK'] td[id$='_title']","0,0");
 			this.sClickAt("css=div[id$='FolderDialog_buttons'] td[id^='OK'] td[id$='_title']","0,0");
 			break;
 
