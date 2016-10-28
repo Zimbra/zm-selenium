@@ -246,7 +246,7 @@ public class PagePreferences extends AbsTab {
 		public static final String zOutGoingFilterTab = "css=div[id$='_tabbar'] td[id$='_title']:contains(Outgoing)";
 		public static final String zAfterFilterRunOKButton = "css=div[id='ZmMsgDialog'] div[id$='MsgDialog_buttons'] td[id^='OK'] td[id$='_title']";
 
-		// Notifications preferences
+		// Notification preferences
 		public static final String zCarrierPullDown = "css=div[id$='DEVICE_EMAIL_CARRIER'] td[id*='DEVICE_EMAIL_CARRIER'] div.ImgSelectPullDownArrow";
 		public static final String zCarrierOptionCustom = "css=div[id$='_DEVICE_EMAIL_CARRIER_Menu_1'] td[id*='_option_']td[id*='_title']:contains('Custom')";
 		public static final String zSMSEmailUsername = "css=div[id$='_DEVICE_EMAIL_CUSTOM_NUMBER'] input[id$='_DEVICE_EMAIL_CUSTOM_NUMBER_input']";

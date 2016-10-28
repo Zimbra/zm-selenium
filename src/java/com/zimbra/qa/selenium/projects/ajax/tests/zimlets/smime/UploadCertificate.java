@@ -33,12 +33,14 @@ public class UploadCertificate extends AjaxCommonTest {
 		logger.info("New "+ UploadCertificate.class.getCanonicalName());		
 	}
 
-	@Test ( description = "Verify that certificate which requires password can be uploaded successfully", priority=4, 
-			groups = { "sanity"})
+	@Test ( description = "Verify that certificate which requires password can be uploaded successfully", priority=2, 
+			groups = { "smime"})
 	
 	public void UploadCertificateWithPassword_01() throws HarnessException  {
+		
+		//Create specific account due to certificate restrictions
 		ZimbraAccount user1 = new ZimbraAccount("user1"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
-		String password = "test123";
+		String certPassword = "test123";
 		user1.provision();
 		user1.authenticate();
 
@@ -55,32 +57,44 @@ public class UploadCertificate extends AjaxCommonTest {
 		// Create file item
 		final String fileName = "user1_digitalid.p12";
 		final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\private\\certs\\" + fileName;
+		
+		//Navigate to preferences
 		app.zPagePreferences.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.SecureEmail);
-
+		
+		//Click on browse button
 		app.zPagePreferences.zToolbarPressButton(Button.B_BROWSE_TO_CERTIFICATE);
-
+		
+		//Browse and Upload file
 		zUploadFile(filePath);
 		SleepUtil.sleepMedium();
+		
+		//Enter password for certificate
 		DialogPasswordRequired dialog = (DialogPasswordRequired) new DialogPasswordRequired(app,app.zPagePreferences);
-		dialog.zEnterPassword(password);
+		dialog.zEnterPassword(certPassword);
+		
 		dialog.zClickButton(Button.B_SUBMIT);
 		SleepUtil.sleepMedium();
+		
+		//UI verifications
         ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zRemoveCertificateLink), "Verify that remove link is present after adding certificate.");
         ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zViewCertificateLink), "Verify that view link is present after adding certificate.");
         
+        //Soap verifications
         user1.soapSend("<GetSmimeCertificateInfoRequest xmlns='urn:zimbraAccount'/>");
         String publicCertId = user1.soapSelectValue("//acct:GetSmimeCertificateInfoResponse/acct:certificate", "pubCertId");
         String privateCertId = user1.soapSelectValue("//acct:GetSmimeCertificateInfoResponse/acct:certificate", "pvtKeyId");
-        ZAssert.assertNotNull(publicCertId, "No certificate returned");
-        ZAssert.assertNotNull(privateCertId, "No certificate returned");
+        ZAssert.assertNotNull(publicCertId, "Public certificate Id returned");
+        ZAssert.assertNotNull(privateCertId, "Private certificate Id returned");
 
 	}
 	
-	@Test ( description = "Verify that certificate which does not require password can be uploaded successfully", priority=4, 
-			groups = { "sanity"})	
+	@Test ( description = "Verify that certificate which does not require password can be uploaded successfully", priority=2, 
+			groups = { "smime"})	
 	
 public void UploadCertificateWithoutPassword_02() throws HarnessException  {
+		
+		//Create specific account due to certificate restrictions
 		ZimbraAccount user2 = new ZimbraAccount("user2"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
 		user2.provision();
 		user2.authenticate();
@@ -98,15 +112,23 @@ public void UploadCertificateWithoutPassword_02() throws HarnessException  {
 		// Create file item
 		final String fileName = "user2_digitalid.p12";
 		final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\private\\certs\\" + fileName;
+		
+		//Navigate to preferences
 		app.zPagePreferences.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.SecureEmail);
 
+		//Click on browse button
 		app.zPagePreferences.zToolbarPressButton(Button.B_BROWSE_TO_CERTIFICATE);
 
+		//Browse and Upload file
 		zUploadFile(filePath);
 		SleepUtil.sleepMedium();
+		
+		//UI verifications
         ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zRemoveCertificateLink), "Verify that remove link is present after adding certificate.");
         ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zViewCertificateLink), "Verify that view link is present after adding certificate.");
+        
+        //Soap verifications
         user2.soapSend("<GetSmimeCertificateInfoRequest xmlns='urn:zimbraAccount'/>");
         String publicCertId = user2.soapSelectValue("//acct:GetSmimeCertificateInfoResponse/acct:certificate", "pubCertId");
         String privateCertId = user2.soapSelectValue("//acct:GetSmimeCertificateInfoResponse/acct:certificate", "pvtKeyId");

@@ -46,7 +46,7 @@ public class TreePreferences extends AbsTree {
 	}
 
 	/**
-	 * Click on an item in the preferences tree
+	 * Click on an item in the preference tree
 	 * 
 	 * @param action
 	 * @param item
