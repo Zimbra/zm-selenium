@@ -243,7 +243,7 @@ public class PagePreferences extends AbsTab {
 
 		// Notifications preferences
 		public static final String zCarrierPullDown = "css=div[id$='DEVICE_EMAIL_CARRIER'] td[id*='DEVICE_EMAIL_CARRIER'] div.ImgSelectPullDownArrow";
-		public static final String zCarrierOptionCustom = "css=div[id$='_DEVICE_EMAIL_CARRIER_Menu_1'] td[id*='_option_']td[id*='_title']:contains('Custom')";
+		public static final String zCarrierOptionCustom = "css=div[id$='_DEVICE_EMAIL_CARRIER_Menu_1'] td[id*='_option_']:contains('Custom')";
 		public static final String zSMSEmailUsername = "css=div[id$='_DEVICE_EMAIL_CUSTOM_NUMBER'] input[id$='_DEVICE_EMAIL_CUSTOM_NUMBER_input']";
 		public static final String zSMSEmailDomainName = "css=div[id$='_DEVICE_EMAIL_CUSTOM_ADDRESS'] input[id$='_DEVICE_EMAIL_CUSTOM_ADDRESS_input']";
 		public static final String zValidationCode = "css=input[id$='_DEVICE_EMAIL_CODE_input']";
