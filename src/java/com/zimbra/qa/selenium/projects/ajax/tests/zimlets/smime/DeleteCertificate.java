@@ -66,15 +66,21 @@ public class DeleteCertificate extends AjaxCommonTest {
 		
 		app.zPagePreferences.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.SecureEmail);
+		
+		//Click on delete certificate link
 		app.zPagePreferences.sClick(Locators.zRemoveCertificateLink);
 		DialogWarning dialog = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.RemoveCertificate, app, app.zPagePreferences);
 		dialog.zClickButton(Button.B_YES);
+		
+		//UI verification, verify that browse button is visible again
         ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zBrowseToCertificate), "Verify that browse button is present after removing certificate.");
+        
+        //Soap Verification
         user3.soapSend("<GetSmimeCertificateInfoRequest xmlns='urn:zimbraAccount'/>");
-        String publicCertId = user3.soapSelectValue("//acct:SaveSmimeCertificateResponse/acct:certificate", "pubCertId");
-        String privateCertId = user3.soapSelectValue("//acct:SaveSmimeCertificateResponse/acct:certificate", "pvtKeyId");
-        ZAssert.assertNull(publicCertId, "No certificate returned");
-        ZAssert.assertNull(privateCertId, "No certificate returned");
+        String publicCertId = user3.soapSelectValue("//acct:GetSmimeCertificateInfoResponse/acct:certificate", "pubCertId");
+        String privateCertId = user3.soapSelectValue("//acct:GetSmimeCertificateInfoResponse/acct:certificate", "pvtKeyId");
+        ZAssert.assertNull(publicCertId, "Public certificate not returned");
+        ZAssert.assertNull(privateCertId, "Private certificate not returned");
 
 	}
 	
