@@ -64,26 +64,24 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 		if (field == Field.From) {
 
-			// locator = container + " tr[id$='_from']
-			// span[id$='_com_zimbra_email']";
 			locator = container + " td[id$='_from'] span:nth-child(1)>span[class='addrBubble']>span";
 
 			if (!this.sIsElementPresent(locator)) {
-				locator = container + " tr[id$='_from']"; // No bubbles
+				locator = container + " tr[id$='_from']";
 			}
 
 		} else if (field == Field.To) {
 
 			locator = container + " tr[id$='_to'] span[id$='_com_zimbra_email']";
 			if (!this.sIsElementPresent(locator)) {
-				locator = container + " tr[id$='_to']"; // No bubbles
+				locator = container + " tr[id$='_to']";
 			}
 
 		} else if (field == Field.Cc) {
 
 			locator = container + " tr[id$='_cc'] span[id$='_com_zimbra_email']";
 			if (!this.sIsElementPresent(locator)) {
-				locator = container + " tr[id$='_cc']"; // No bubbles
+				locator = container + " tr[id$='_cc']";
 			}
 
 		} else if (field == Field.OnBehalfOf) {
@@ -109,7 +107,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			locator = container + " tr[id$='_reply to'] span[class='addrBubble'] span:contains(replyto)";
 
 			if (!sIsElementPresent(locator)) {
-				// no email zimlet case
 				locator = container + " tr[id$='_reply to']";
 			}
 
@@ -135,13 +132,13 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			return (time);
 
 		} else if (field == Field.Body) {
-			
+
 			try {
-				String bodyLocator = "body";				
+				String bodyLocator = "body";
 				webDriver().switchTo().defaultContent();
 				webDriver().switchTo().frame(0);
 				webDriver().findElement(By.cssSelector(bodyLocator));
-				
+
 				String htmlBody = this.sGetHtmlBody();
 				logger.info("DisplayMail.zGetDisplayedValue(" + bodyLocator + ") = " + htmlBody);
 				return (htmlBody);
@@ -173,14 +170,14 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		super.zWaitForActive(PageLoadDelay);
 
 		String locator = "css=div[id='zv__MSG-1__MSG'] tr[id='zv__MSG__MSG-1_hdrTableTopRow'] td[class*='SubjectCol']";
-		for (int i = 0; i < 30; i++) {
+		for (int i = 0; i < 15; i++) {
 
 			boolean present = sIsElementPresent(locator);
 			if (present) {
 				return;
 			}
 
-			SleepUtil.sleep(1000);
+			SleepUtil.sleepMedium();
 		}
 		throw new HarnessException("Page never became active!");
 
@@ -284,6 +281,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		}
 
 		this.sClick(locator);
+		this.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();
 
 		return (page);
@@ -313,32 +311,26 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			if (option == Button.B_PRINT) {
 
 				optionLocator = containerActionMenu + " div[id='PRINT'] td[id$='_title']";
-				page = null;
 
 			} else if (option == Button.B_RESPORTSPAM) {
 
 				optionLocator = containerActionMenu + " div[id='SPAM'] td[id$='_title']";
-				page = null;
 
 			} else if (option == Button.B_RESPORTNOTSPAM) {
 
 				optionLocator = containerActionMenu + " div[id='SPAM'] td[id$='_title']";
-				page = null;
 
 			} else if (option == Button.O_MARK_AS_READ) {
 
 				optionLocator = containerActionMenu + " div[id$='MARK_READ'] td[id$='_title']";
-				page = null;
 
 			} else if (option == Button.O_MARK_AS_UNREAD) {
 
 				optionLocator = containerActionMenu + " div[id$='MARK_UNREAD'] td[id$='_title']";
-				page = null;
 
 			} else if (option == Button.O_SHOW_ORIGINAL) {
 
 				optionLocator = containerActionMenu + " div[id='SHOW_ORIG'] td[id$='_title']";
-				page = null;
 
 			} else if (option == Button.B_REDIRECT) {
 
@@ -348,32 +340,26 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			} else if (option == Button.O_EDIT_AS_NEW) {
 
 				optionLocator = containerActionMenu + " div[id$='EDIT_AS_NEW'] td[id$='_title']";
-				page = null;
 
 			} else if (option == Button.O_CREATE_TASK) {
 
 				optionLocator = containerActionMenu + " div[id$='CREATE_TASK'] td[id$='_title']";
-				page = null;
 
 			} else if (option == Button.O_CREATE_APPOINTMENT) {
 
 				optionLocator = containerActionMenu + " div[id$='CREATE_APPT'] td[id$='_title']";
-				page = null;
 
 			} else if (option == Button.O_NEW_FILTER) {
 
 				optionLocator = containerActionMenu + " div[id$='ADD_FILTER_RULE'] td[id$='_title']";
-				page = null;
 
 			} else if (option == Button.B_FLAG_MESSAGE) {
 
 				optionLocator = containerActionMenu + " div[id$='FLAG'] td[id$='_title']";
-				page = null;
 
 			} else if (option == Button.B_UNFLAG_MESSAGE) {
 
 				optionLocator = containerActionMenu + " div[id$='UNFLAG'] td[id$='_title']";
-				page = null;
 
 			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
@@ -386,12 +372,10 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			if (option == Button.O_TAG_NEWTAG) {
 
 				optionLocator = "css=td[id$='__TAG_MENU|MENU|NEWTAG_title']";
-				page = null;
 
 			} else if (option == Button.O_TAG_REMOVETAG) {
 
 				optionLocator = "css=div[id$='__TAG_MENU|MENU'] div[id='message_removetag'] td[id$='_title']";
-				page = null;
 
 			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
@@ -404,22 +388,52 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 				pulldownLocator = Locators.zOptionsdropdown;
 				optionLocator = Locators.zIncludeOriginalAsAttachmentMenuMail;
 
-				page = null;
-
 			} else if (option == Button.O_FORMAT_AS_HTML) {
 
 				pulldownLocator = Locators.zOptionsdropdown;
 				optionLocator = Locators.FormatAsHTMLMenu;
 
-				page = null;
-
 			} else if (option == Button.O_FORMAT_AS_PLAIN_TEXT) {
 
 				pulldownLocator = Locators.zOptionsdropdown;
 				optionLocator = Locators.FormatAsPlainTextMenu;
-			}
-		} else {
 
+			} else if (option == Button.O_FORMAT_AS_HTML_MULTI_WINDOW) {
+
+				pulldownLocator = Locators.zOptionsdropdown;
+				optionLocator = Locators.FormatAsHTMLMenu;
+
+				this.sClick(pulldownLocator);
+				sClick("css=div[id='zm__COMPOSE-1_REPLY'] div[id='zmi__COMPOSE-1_REPLY__FORMAT_HTML'] td[id='zmi__COMPOSE-1_REPLY__FORMAT_HTML_title']");
+				this.zWaitForBusyOverlay();
+				SleepUtil.sleepMedium();
+
+				String warningMessageOkButton = "css=div[id='OkCancel'] td[id$='_button2_title']:contains('OK')";
+				if (sIsElementPresent(warningMessageOkButton)) {
+					sClick(warningMessageOkButton);
+				}
+
+				return page;
+
+			} else if (option == Button.O_FORMAT_AS_PLAIN_TEXT_MULTI_WINDOW) {
+
+				pulldownLocator = Locators.zOptionsdropdown;
+				optionLocator = Locators.FormatAsPlainTextMenu;
+
+				this.sClick(pulldownLocator);
+				sClick("css=div[id='zm__COMPOSE-1_REPLY'] div[id='zmi__COMPOSE-1_REPLY__FORMAT_TEXT'] td[id='zmi__COMPOSE-1_REPLY__FORMAT_TEXT_title']");
+				this.zWaitForBusyOverlay();
+				SleepUtil.sleepSmall();
+
+				String warningMessageOkButton = "css=div[id='OkCancel'] td[id$='_button2_title']:contains('OK')";
+				if (sIsElementPresent(warningMessageOkButton)) {
+					sClick(warningMessageOkButton);
+				}
+
+				return page;
+			}
+
+		} else {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 
 		}
@@ -430,7 +444,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		this.sClick(locators);
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();
-		
+
 		if (page != null) {
 			page.zWaitForActive();
 		}
@@ -482,6 +496,25 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 				}
 
 				return;
+
+			} else if (frames >= 2) {
+
+				// HTML compose
+
+				try {
+
+					locator = "css=iframe[id$='_body_ifr']";
+
+					if (!this.sIsElementPresent(locator))
+						throw new HarnessException("Unable to locate compose body");
+
+					this.sFocus(locator);
+					this.sClick(locator);
+					this.zTypeCharacters(value);
+
+				} finally {
+					this.sSelectFrame("relative=top");
+				}
 
 			} else {
 				throw new HarnessException("Compose //iframe count was " + frames);
@@ -585,7 +618,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			if (!this.sIsElementPresent(locator))
 				throw new HarnessException("locator is not present for button " + button + " : " + locator);
 
-			this.sClick(locator); // sClick() is required for this element
+			this.sClick(locator);
 
 			this.zWaitForBusyOverlay();
 
@@ -598,8 +631,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			if (!this.sIsElementPresent(locator))
 				throw new HarnessException("locator is not present for button " + button + " : " + locator);
 
-			this.sClick(locator); // sClick() is required for this element
-
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
 			return (page);

@@ -14,10 +14,9 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.admin.tests.Bugs;
+package com.zimbra.qa.selenium.projects.admin.tests.CheckGranteeNameEnabledForACL;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -39,11 +38,12 @@ import com.zimbra.qa.selenium.projects.admin.ui.PageManageDomains;
 import com.zimbra.qa.selenium.projects.admin.ui.PageManageGlobalSettings;
 import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults;
 
-public class Bug_102850 extends AdminCommonTest {
-	public Bug_102850() {
-		logger.info("New "+ Bug_102850.class.getCanonicalName());		
+public class CheckGranteeNameEnabledForACL extends AdminCommonTest {
+	public CheckGranteeNameEnabledForACL() {
+		logger.info("New "+ CheckGranteeNameEnabledForACL.class.getCanonicalName());		
 	}
 
+	
 	/**
 	 * Testcase : Bug 102850 - Grantee name is disabled while adding ACL in account
 	 * Steps :
@@ -56,7 +56,8 @@ public class Bug_102850 extends AdminCommonTest {
 	@Bugs( ids = "102850")
 	@Test( description = "Verify grantee name is enabled while adding ACL in account",
 			groups = { "smoke" })
-	public void Bug_102850_Grantee_Name_At_Account() throws HarnessException {
+	
+	public void CheckGranteeNameEnabledForACL_Account_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
@@ -95,6 +96,7 @@ public class Bug_102850 extends AdminCommonTest {
 		ZAssert.assertEquals(app.zPageEditAccount.zIsElementDisabled(PageEditAccount.ACCOUNT_EDIT_ACL_GRANTEE_NAME), false, "Verify Grantee name is enabled");		
 	}
 
+	
 	/**
 	 * Testcase : Bug 102850 - Grantee name is disabled while adding ACL in cos
 	 * Steps :
@@ -104,9 +106,11 @@ public class Bug_102850 extends AdminCommonTest {
 	 *4. Verify Grantee name field
 	 * @throws HarnessException
 	 */
+	@Bugs( ids = "102850")
 	@Test( description = "Verify grantee name is enabled while adding ACL in COS",
 			groups = { "functional" })
-	public void Bug_102850_Grantee_Name_At_COS() throws HarnessException {
+	
+	public void CheckGranteeNameEnabledForACL_COS_02() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
@@ -145,6 +149,7 @@ public class Bug_102850 extends AdminCommonTest {
 		ZAssert.assertEquals(app.zPageEditCOS.zIsElementDisabled(PageEditCOS.Locators.COS_EDIT_ACL_GRANTEE_NAME), false, "Verify Grantee name is enabled");		
 	}
 
+	
 	/**
 	 * Testcase : Bug 102850 - Grantee name is disabled while adding ACL in DL
 	 * Steps :
@@ -154,9 +159,11 @@ public class Bug_102850 extends AdminCommonTest {
 	 *4. Verify Grantee name field
 	 * @throws HarnessException
 	 */
+	@Bugs( ids = "102850")
 	@Test( description = "Verify grantee name is enabled while adding ACL in DL",
 			groups = { "functional" })
-	public void Bug_102850_Grantee_Name_At_DL() throws HarnessException {
+	
+	public void CheckGranteeNameEnabledForACL_DL_03() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
@@ -187,6 +194,7 @@ public class Bug_102850 extends AdminCommonTest {
 		ZAssert.assertEquals(app.zPageEditDistributionList.zIsElementDisabled(PageEditDistributionList.Locators.DL_EDIT_ACL_GRANTEE_NAME), false, "Verify Grantee name is enabled");
 	}
 
+	
 	/**
 	 * Testcase : Bug 102850 - Grantee name is disabled while adding ACL in domain
 	 * Steps :
@@ -196,10 +204,11 @@ public class Bug_102850 extends AdminCommonTest {
 	 *4. Verify Grantee name field
 	 * @throws HarnessException
 	 */
+	@Bugs( ids = "102850")
 	@Test( description = " Bug 102850 - Grantee name is disabled while adding ACL in domain",
 			groups = { "functional" })
-	public void Bug_102850_Grantee_Name_At_Domain() throws HarnessException {
-
+	
+	public void CheckGranteeNameEnabledForACL_Domain_04() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
@@ -213,9 +222,7 @@ public class Bug_102850 extends AdminCommonTest {
 
 		// Refresh the domain list
 		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-
 		app.zPageManageDomains.zNavigateTo();
-
 
 		// Click on account to be deleted.
 		app.zPageManageDomains.zListItem(Action.A_LEFTCLICK, domain.getName());
@@ -231,6 +238,7 @@ public class Bug_102850 extends AdminCommonTest {
 		ZAssert.assertEquals(app.zPageEditAccount.zIsElementDisabled(PageManageDomains.Locators.DOMAIN_EDIT_ACL_GRANTEE_NAME), false, "Verify Grantee name is enabled");
 	}
 
+	
 	/**
 	 * Testcase : Bug 102850 - Verify Grantee name is enabled while adding ACL in global settings
 	 * Steps :
@@ -240,9 +248,11 @@ public class Bug_102850 extends AdminCommonTest {
 	 *4. Verify Grantee name field
 	 * @throws HarnessException
 	 */
+	@Bugs( ids = "102850")
 	@Test( description = " Bug 102850 - Verify Grantee name is enabled while adding ACL in global settings",
 			groups = { "functional" })
-	public void Bug_102850_Grantee_Name_At_Global_Settings() throws HarnessException {
+	
+	public void CheckGranteeNameEnabledForACL_Global_Settings_05() throws HarnessException {
 
 		//Navigate to global settings page
 		app.zPageManageGlobalSettings.zNavigateTo();

@@ -17,19 +17,15 @@
 package com.zimbra.qa.selenium.projects.admin.tests.domains;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
-
 
 public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 
@@ -43,7 +39,6 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 
 	public void ZimbraHelpAdminURLModification_01() throws HarnessException {
 
-		StafServicePROCESS staf = new StafServicePROCESS();
 		staf.execute("mkdir -p /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/admin && echo '<html><head><title>Zimbra Temp Admin Help</title></head><body><h1>Temp Admin Help</h1><p> This is the new admin help of zimbra!</p></body></html>' > /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/admin/adminhelp.html");
 
 		// To get domain id
@@ -63,7 +58,6 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 						+ "<id>" + domainID +"</id>"
 						+  "<a n='zimbraHelpAdminURL'>/zimbraAdmin/helpUrl/help/admin/adminhelp.html</a>"
 						+	"</ModifyDomainRequest>");
-
 
 		String tempURL = null;
 		boolean found = false;
@@ -115,6 +109,5 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 		ZAssert.assertTrue(tempURL.contains("/zimbraAdmin/helpUrl/help/admin/adminhelp.html"),"Admin Help URL is not as set in zimbraHelpAdminURL");
 
 	}
-
 
 }

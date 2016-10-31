@@ -1,0 +1,175 @@
+Return-Path: aoak@testdomain.com
+Received: from edge04e.testdomain.com (LHLO edge04e.testdomain.com) (10.43.0.14) by
+ mbs01e.testdomain.com with LMTP; Thu, 20 Oct 2016 05:38:26 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by edge04e.testdomain.com (Postfix) with ESMTP id 9DFC9534962;
+	Thu, 20 Oct 2016 05:34:29 -0400 (EDT)
+X-Spam-Flag: NO
+X-Spam-Score: -109.949
+X-Spam-Level:
+X-Spam-Status: No, score=-109.949 required=3 tests=[ALL_TRUSTED=-10,
+	BAYES_00=-0.05, DKIM_SIGNED=0.1, DKIM_VALID=-0.1, DKIM_VALID_AU=-0.1,
+	HTML_MESSAGE=0.001, KAM_MANYTO=0.2, USER_IN_DKIM_WHITELIST=-100]
+	autolearn=no autolearn_force=no
+Authentication-Results: edge04e.testdomain.com (amavisd-new);
+	dkim=pass (1024-bit key) header.d=testdomain.com
+Received: from edge04e.testdomain.com ([127.0.0.1])
+	by localhost (edge04e.testdomain.com [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id ALerZAr2pQGf; Thu, 20 Oct 2016 05:34:07 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by edge04e.testdomain.com (Postfix) with ESMTP id D6D3E534934;
+	Thu, 20 Oct 2016 05:34:06 -0400 (EDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 edge04e.testdomain.com D6D3E534934
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testdomain.com;
+	s=C2AA288C-EE47-11E2-9BB0-E820BDD9BDBF; t=1476956047;
+	bh=cLMuJZ+8ovpKj6pw2+RVhVYlvXC4T6UWq0iAyo/HJW0=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=JLxTJ1hZtWQJuZCscJWTXuAgPLfgV2+aBWl8C1BJPTNzwK1sSu0Q/4Uq1kEYGHczm
+	 FNo7t1+uB2eusSBWxjesfSeqMlJ//3MoWuU/aEzEgNCq4Pphc2UQa12LGbk417Fvqy
+	 DRBkvck6PEgokfjShUDIqLA7hErVDmZ0v8XyDNkw=
+X-Virus-Scanned: amavisd-new at testdomain.com
+Received: from edge04e.testdomain.com ([127.0.0.1])
+	by localhost (edge04e.testdomain.com [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id D9hQVycuLtKL; Thu, 20 Oct 2016 05:34:06 -0400 (EDT)
+Received: from mbs01e.testdomain.com (unknown [52.203.137.206])
+	by edge04e.testdomain.com (Postfix) with ESMTP id 6DAF45348D0;
+	Thu, 20 Oct 2016 05:34:06 -0400 (EDT)
+Date: Thu, 20 Oct 2016 05:38:02 -0400 (EDT)
+From: Ashwini Oak <aoak@testdomain.com>
+To: All Pune Employees <pune-employees@testdomain.com>, 
+	nilesh pawar <nilesh.pawar@testdomain.com>, 
+	sakchhi kiran <sakchhi.kiran@testdomain.com>, 
+	kalpesh patel <kalpesh.patel@testdomain.com>, 
+	mayur sonar <mayur.sonar@testdomain.com>, 
+	abhishek thakur <abhishek.thakur@testdomain.com>, 
+	prashant deshmukh <prashant.deshmukh@testdomain.com>, 
+	tejbahadur singh <tejbahadur.singh@testdomain.com>, 
+	kunal gorai <kunal.gorai@testdomain.com>
+Message-ID: <2021520083.8355581.1476956282541.JavaMail.zimbra@testdomain.com>
+Subject: Group photo with Steve
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="=_94fe13cc-0dcc-4a6c-ac6e-2373a12a7f0c"
+X-Mailer: Zimbra 8.7.0_GA_1659 (ZimbraWebClient - FF49 (Win)/8.7.0_GA_1659)
+Thread-Index: ZR1XKjsDK4rlAO9AKKUYyylDTzrxmw==
+Thread-Topic: Group photo with Steve
+X-Zimbra-DL: pune-employees@testdomain.com
+
+--=_94fe13cc-0dcc-4a6c-ac6e-2373a12a7f0c
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+The following is a new meeting request:
+
+Subject: Group photo with Steve 
+Organizer: "Ashwini Oak" <aoak@testdomain.com> 
+
+Location: Cafeteria 
+Time: Thursday, October 20, 2016, 4:30:00 PM - 5:00:00 PM GMT +05:30 Chennai, Kolkata, Mumbai, New Delhi
+ 
+Invitees: pune-employees@testdomain.com; nilesh.pawar@testdomain.com; sakchhi.kiran@testdomain.com; kalpesh.patel@testdomain.com; mayur.sonar@testdomain.com; abhishek.thakur@testdomain.com; prashant.deshmukh@testdomain.com; tejbahadur.singh@testdomain.com; kunal.gorai@testdomain.com 
+
+
+*~*~*~*~*~*~*~*~*~*
+
+
+
+--=_94fe13cc-0dcc-4a6c-ac6e-2373a12a7f0c
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html><body id='htmlmode'><h3>The following is a new meeting request:</h3>
+
+<p>
+<table border='0'>
+<tr><th align=left>Subject:</th><td>Group photo with Steve </td></tr>
+<tr><th align=left>Organizer:</th><td>"Ashwini Oak" &lt;aoak@testdomain.com&gt; </td></tr>
+</table>
+<p>
+<table border='0'>
+<tr><th align=left>Location:</th><td>Cafeteria </td></tr>
+<tr><th align=left>Time:</th><td>Thursday, October 20, 2016, 4:30:00 PM - 5:00:00 PM GMT +05:30 Chennai, Kolkata, Mumbai, New Delhi
+ </td></tr></table>
+<p>
+<table border='0'>
+<tr><th align=left>Invitees:</th><td>pune-employees@testdomain.com; nilesh.pawar@testdomain.com; sakchhi.kiran@testdomain.com; kalpesh.patel@testdomain.com; mayur.sonar@testdomain.com; abhishek.thakur@testdomain.com; prashant.deshmukh@testdomain.com; tejbahadur.singh@testdomain.com; kunal.gorai@testdomain.com </td></tr>
+</table>
+<div>*~*~*~*~*~*~*~*~*~*</div><br></body></html>
+--=_94fe13cc-0dcc-4a6c-ac6e-2373a12a7f0c
+Content-Type: text/calendar; charset=utf-8; method=REQUEST; name=meeting.ics
+Content-Transfer-Encoding: 7bit
+
+BEGIN:VCALENDAR
+PRODID:Zimbra-Calendar-Provider
+VERSION:2.0
+METHOD:REQUEST
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:16010101T000000
+TZOFFSETTO:+0530
+TZOFFSETFROM:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:c31c4027-b5aa-4c55-8b15-ceab87b2ef5b
+SUMMARY:Group photo with Steve
+LOCATION:Cafeteria
+ATTENDEE;CN=All Pune Employees;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RS
+ VP=TRUE:mailto:pune-employees@testdomain.com
+ATTENDEE;CN=nilesh pawar;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRU
+ E:mailto:nilesh.pawar@testdomain.com
+ATTENDEE;CN=sakchhi kiran;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TR
+ UE:mailto:sakchhi.kiran@testdomain.com
+ATTENDEE;CN=kalpesh patel;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TR
+ UE:mailto:kalpesh.patel@testdomain.com
+ATTENDEE;CN=mayur sonar;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE
+ :mailto:mayur.sonar@testdomain.com
+ATTENDEE;CN=abhishek thakur;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE:mailto:abhishek.thakur@testdomain.com
+ATTENDEE;CN=prashant deshmukh;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSV
+ P=TRUE:mailto:prashant.deshmukh@testdomain.com
+ATTENDEE;CN=tejbahadur singh;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP
+ =TRUE:mailto:tejbahadur.singh@testdomain.com
+ATTENDEE;CN=kunal gorai;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE
+ :mailto:kunal.gorai@testdomain.com
+ORGANIZER;CN=Ashwini Oak:mailto:aoak@testdomain.com
+DTSTART;TZID="Asia/Kolkata":20161020T163000
+DTEND;TZID="Asia/Kolkata":20161020T170000
+STATUS:CONFIRMED
+CLASS:PUBLIC
+X-MICROSOFT-CDO-INTENDEDSTATUS:BUSY
+TRANSP:OPAQUE
+LAST-MODIFIED:20161020T093802Z
+DTSTAMP:20161020T093802Z
+SEQUENCE:0
+DESCRIPTION:The following is a new meeting request:\n\nSubject: Group photo 
+ with Steve \nOrganizer: "Ashwini Oak" <aoak@testdomain.com> \n\nLocation: Cafete
+ ria \nTime: Thursday\, October 20\, 2016\, 4:30:00 PM - 5:00:00 PM GMT +05:3
+ 0 Chennai\, Kolkata\, Mumbai\, New Delhi\n \nInvitees: pune-employees@zimbra
+ .com\; nilesh.pawar@testdomain.com\; sakchhi.kiran@testdomain.com\; kalpesh.patel@
+ testdomain.com\; mayur.sonar@testdomain.com\; abhishek.thakur@testdomain.com\; prasha
+ nt.deshmukh@testdomain.com\; tejbahadur.singh@testdomain.com\; kunal.gorai@synacor
+ .com \n\n\n*~*~*~*~*~*~*~*~*~*\n\n\n
+X-ALT-DESC;FMTTYPE=text/html:<html><body id='htmlmode'><h3>The following is 
+ a new meeting request:</h3>\n\n<p>\n<table border='0'>\n<tr><th align=left>S
+ ubject:</th><td>Group photo with Steve </td></tr>\n<tr><th align=left>Organi
+ zer:</th><td>"Ashwini Oak" &lt\;aoak@testdomain.com&gt\; </td></tr>\n</table>\n<
+ p>\n<table border='0'>\n<tr><th align=left>Location:</th><td>Cafeteria </td>
+ </tr>\n<tr><th align=left>Time:</th><td>Thursday\, October 20\, 2016\, 4:30:
+ 00 PM - 5:00:00 PM GMT +05:30 Chennai\, Kolkata\, Mumbai\, New Delhi\n </td>
+ </tr></table>\n<p>\n<table border='0'>\n<tr><th align=left>Invitees:</th><td
+ >pune-employees@testdomain.com\; nilesh.pawar@testdomain.com\; sakchhi.kiran@synaco
+ r.com\; kalpesh.patel@testdomain.com\; mayur.sonar@testdomain.com\; abhishek.thaku
+ r@testdomain.com\; prashant.deshmukh@testdomain.com\; tejbahadur.singh@testdomain.com
+ \; kunal.gorai@testdomain.com </td></tr>\n</table>\n<div>*~*~*~*~*~*~*~*~*~*</d
+ iv><br></body></html>
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER;RELATED=START:-PT5M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+END:VCALENDAR
+--=_94fe13cc-0dcc-4a6c-ac6e-2373a12a7f0c--

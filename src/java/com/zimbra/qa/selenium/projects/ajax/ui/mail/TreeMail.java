@@ -440,6 +440,7 @@ public class TreeMail extends AbsTree {
 			locator = "css=td[id='zti__main_Mail__" + folder.getId() + "_textCell']";
 
 			// Select the folder
+			zWaitForElementPresent(locator);
 			this.zRightClickAt(locator, "");
 			SleepUtil.sleepSmall();
 
@@ -541,13 +542,10 @@ public class TreeMail extends AbsTree {
 
 		locator = "css=td#zti__main_Mail__" + savedSearch.getId() + "_textCell";
 
-		// Default behavior. Click the locator
 		sClickAt(locator, "");
-		SleepUtil.sleepSmall();
-
-		// If the app is busy, wait until it is ready again
 		this.zWaitForBusyOverlay();
-
+		SleepUtil.sleepSmall();
+		
 		return (page);
 	}
 
@@ -605,43 +603,33 @@ public class TreeMail extends AbsTree {
 			throw new HarnessException("Pulldown/Option " + pulldown + "/" + option + " not implemented");
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
 			if (!this.sIsElementPresent(pulldownLocator)) {
-				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
-						+ pulldownLocator + " not present!");
+				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			this.sClickAt(pulldownLocator, "0,0");
-			SleepUtil.sleepSmall();
-
+			this.sClick(pulldownLocator);
+			SleepUtil.sleepMedium();
 			zWaitForBusyOverlay();
 
 			if (optionLocator != null) {
 
 				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
-					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
-							+ optionLocator + " not present!");
+					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.sClickAt(optionLocator, "0,0");
-
-				// If the app is busy, wait for it to become active
+				this.sClick(optionLocator);
 				zWaitForBusyOverlay();
 			}
 
-			// If we click on pulldown/option and the page is specified, then
-			// wait for the page to go active
 			if (page != null) {
 				page.zWaitForActive();
 			}
 		}
 
-		SleepUtil.sleepMedium();
-
-		// Return the specified page, or null if not set
+		SleepUtil.sleepSmall();
 		return (page);
 
 	}
@@ -666,6 +654,7 @@ public class TreeMail extends AbsTree {
 		String locator = null;
 
 		if (button == Button.B_TREE_NEWFOLDER) {
+			SleepUtil.sleepMedium(); // Create folder test intermittantly fails without any reason
 			return (zPressPulldown(Button.B_TREE_FOLDERS_OPTIONS, Button.B_TREE_NEWFOLDER));
 
 		} else if (button == Button.B_TREE_NEWTAG) {
@@ -710,10 +699,8 @@ public class TreeMail extends AbsTree {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Click it
-		this.sClickAt(locator, "");
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
-		SleepUtil.sleepSmall();
 
 		return (page);
 
@@ -763,10 +750,13 @@ public class TreeMail extends AbsTree {
 
 		if (folder instanceof FolderItem) {
 			return (zTreeItem(action, (FolderItem) folder));
+			
 		} else if (folder instanceof TagItem) {
 			return (zTreeItem(action, (TagItem) folder));
+			
 		} else if (folder instanceof SavedSearchFolderItem) {
 			return (zTreeItem(action, (SavedSearchFolderItem) folder));
+			
 		} else if (folder instanceof ZimletItem) {
 			return (zTreeItem(action, (ZimletItem) folder));
 		}

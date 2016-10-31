@@ -16,8 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.admin.tests.cos;
 
-import java.util.List;
-
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -26,7 +24,6 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.items.CosItem;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 
@@ -61,22 +58,10 @@ public class GetCos extends AdminCommonTest {
 				+		"</CreateCosRequest>");
 
 		// Refresh the account list
-		app.zPageManageCOS.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-
-		// Get the list of displayed accounts
-		List<CosItem> cosList = app.zPageManageCOS.zListGetCos();
+		app.zPageManageCOS.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");		
 		
-		ZAssert.assertNotNull(cosList, "Verify the cos list is returned");
-
-		CosItem found = null;
-		for (CosItem a : cosList) {
-			logger.info("Looking for cos "+ cosName + " found: "+ a.getName());
-			if ( cosName.equals(a.getName()) ) {
-				found = a;
-				break;
-			}
-		}
-		ZAssert.assertNotNull(found, "Verify the cos is returned correctly");
+		//Verify the presence of the created COS in UI 
+		ZAssert.assertTrue(app.zPageManageCOS.zIsCOSPresent(cosName), "Verify the cos is returned correctly");
 
 	}
 
@@ -109,20 +94,9 @@ public class GetCos extends AdminCommonTest {
 
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
-
-		// Get the list of displayed accounts
-		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
-		ZAssert.assertNotNull(accounts, "Verify the cos list is returned");
-
-		AccountItem found = null;
-		for (AccountItem a : accounts) {
-			logger.info("Looking for cos "+ cosName + " found: "+ a.getGEmailAddress());
-			if ( cosName.equals(a.getGEmailAddress()) ) {
-				found = a;
-				break;
-			}
-		}
-		ZAssert.assertNotNull(found, "Verify the cos is returned correctly");
+		
+		//Verify the presence of the created COS in UI 
+		ZAssert.assertTrue(app.zPageManageCOS.zIsCOSPresent(cosName), "Verify the cos is returned correctly");
 
 	}
 }

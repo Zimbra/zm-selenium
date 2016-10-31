@@ -137,7 +137,7 @@ public class SendAs extends PrefGroupMailByMessageTest {
 		
 		// Fill out the form with the data
 		mailform.zFillField(Field.To, ZimbraAccount.AccountB().EmailAddress);
-		mailform.zFillField(Field.From, grantor.EmailAddress);	
+		mailform.zFillField(Field.From, grantor.EmailAddress);
 		
 		// Send the message
 		mailform.zSubmit();

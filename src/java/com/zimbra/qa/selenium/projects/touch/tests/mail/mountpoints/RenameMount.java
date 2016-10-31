@@ -68,7 +68,7 @@ public class RenameMount extends PrefGroupMailByMessageTest{
 						+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"
 						+	"</CreateMountpointRequest>");
 
-		app.zPageMain.zRefresh();	
+		app.zPageMain.sRefresh();	
 
 		// Select the folder from the list and Rename
 		PageCreateFolder createFolderPage = new PageCreateFolder(app, startingPage);
@@ -76,7 +76,7 @@ public class RenameMount extends PrefGroupMailByMessageTest{
 		createFolderPage.zSelectFolder(mountpointname);
 		createFolderPage.zEnterFolderName(renameMountFolder);
 		createFolderPage.zClickButton(Button.B_SAVE);
-		app.zPageMain.zRefresh();
+		app.zPageMain.sRefresh();
 		createFolderPage.zSelectOrganizer();
 
 		//-- Verification

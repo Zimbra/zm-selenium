@@ -125,7 +125,7 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 
 		// Verify Compose appointment format obeys the mail compose format and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
-		ZAssert.assertEquals(apptForm.zVerifyComposeFormatHTML(), "block", "Verify that the HTML formatting toolbar is NOT visible on compose appointment page");
+		ZAssert.assertEquals(apptForm.zVerifyComposeFormatHTML(), "", "Verify that the HTML formatting toolbar is NOT visible on compose appointment page");
 		apptForm.zFill(appt);
 		apptForm.zSubmit();
 

@@ -115,14 +115,14 @@ public class SMSNotificationViaEmail extends CalendarWorkWeekTest {
 
 			apptForm.zFillField(Field.Subject,subject );
 			apptForm.zFillField(Field.Attendees, ZimbraAccount.AccountA().EmailAddress);
-			apptForm.zFillField(Field.Body, "Content "+ConfigProperties.getUniqueString());
+			// apptForm.zFillField(Field.Body, "Content "+ConfigProperties.getUniqueString());
 
 			// Get time for creating the appointment
 			Calendar now = Calendar.getInstance();
 			SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
 
 			// Making start time 2 mins. ahead of the current time
-			now.add(Calendar.MINUTE,2);
+			now.add(Calendar.MINUTE,3);
 			apptForm.zFillField(Field.StartTime, sdf.format(now.getTime()));
 
 			// Making stop time 32 mins. ahead of the current time
@@ -135,8 +135,14 @@ public class SMSNotificationViaEmail extends CalendarWorkWeekTest {
 			// Submit the appointment
 			apptForm.zSubmit();
 
-			// Wait for the Appointment reminder dialog to appear
-			app.zPageCalendar.zWaitForElementVisible(PageCalendar.Locators.zAppointmentReminderDialog);
+			// Wait for the Appointment reminder dialog to appear			
+			logger.info("zWaitForElementVisible(" + PageCalendar.Locators.zAppointmentReminderDialog + ")");
+		    for (int i = 0; i < 120; i++) {
+				if (app.zPageCalendar.sIsVisible(PageCalendar.Locators.zAppointmentReminderDialog)) {
+					return;
+				}
+				SleepUtil.sleepSmall();
+			}
 
 			// Look for notification mail in the other user's mailbox
 			for (int i = 0; i < 40; i++) {

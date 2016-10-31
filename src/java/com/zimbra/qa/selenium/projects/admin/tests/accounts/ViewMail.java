@@ -1,7 +1,7 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014 Zimbra, Inc.
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
  * 
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
@@ -204,7 +204,7 @@ public class ViewMail extends AdminCommonTest {
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");		
 	}
 
-	@AfterMethod(groups={"always"})
+	@AfterMethod( groups = { "always" } )
 	public void afterMethod() throws HarnessException {
 		//Mail opens in new window. Close all the windows except Zimbra administration page
 		List<String> windowIds=app.zPageMain.sGetAllWindowIds();

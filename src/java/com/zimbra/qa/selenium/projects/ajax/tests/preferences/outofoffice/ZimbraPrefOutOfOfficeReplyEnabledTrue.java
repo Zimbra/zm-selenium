@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.outofoffice;
 
 import java.util.HashMap;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -44,8 +43,7 @@ public class ZimbraPrefOutOfOfficeReplyEnabledTrue extends AjaxCommonTest {
 	
 
 	@Bugs(ids = "101356")
-	@Test(description = "Enable out of office", 
-		groups = { "smoke" })
+	@Test(description = "Enable out of office", priority = 4, groups = { "smoke" })
 	
 	public void ZimbraPrefOutOfOfficeReplyEnabledTrue_01() throws HarnessException {
 		
@@ -93,12 +91,6 @@ public class ZimbraPrefOutOfOfficeReplyEnabledTrue extends AjaxCommonTest {
 
 		MailItem mailItem = MailItem.importFromSOAP(account, "in:inbox " + autoReplyMessage);
 		ZAssert.assertTrue(mailItem.dBodyText.contains(autoReplyMessage), "Verify auto-reply message is received");
-
 	}
 	
-	@AfterMethod(groups={"always"})
-	public void afterMethod() throws HarnessException {
-		zFreshLogin();
-		logger.info(app.zGetActiveAccount().EmailAddress);
-	}
 }

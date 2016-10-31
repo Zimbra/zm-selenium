@@ -66,14 +66,15 @@ public class AjaxCommonTest {
 	protected static Logger logger = LogManager.getLogger(AjaxCommonTest.class);
 	protected AppAjaxClient app = null;
 
-	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
-	WebElement we = null;
-
 	protected AbsTab startingPage = null;
 	protected Map<String, String> startingAccountPreferences = null;
 	protected Map<String, String> startingUserPreferences = null;
 	protected Map<String, String> startingUserZimletPreferences = null;
 
+	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
+	WebElement we = null;
+	
+	protected StafServicePROCESS staf = new StafServicePROCESS();
 	String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
 
 	protected AjaxCommonTest() {
@@ -93,7 +94,6 @@ public class AjaxCommonTest {
 		if (ConfigProperties.getStringProperty("staf").equals("true")) {
 			// Grant createDistList right to domain
 			logger.info("Grant createDistList right to domain");
-			StafServicePROCESS staf = new StafServicePROCESS();
 			staf.execute("zmprov grr domain " + ConfigProperties.getStringProperty("testdomain") + " dom "
 					+ ConfigProperties.getStringProperty("testdomain") + " createDistList");
 		}
@@ -253,7 +253,7 @@ public class AjaxCommonTest {
 
 		// Handle open dialogs and tabs
 		logger.info("BeforeMethod: Handle open dialogs and tabs");
-		app.zPageMain.zHandleDialogs(app.zPageMain.zGetCurrentApp());
+		app.zPageMain.zHandleDialogs(startingPage);
 		app.zPageMain.zHandleComposeTabs();
 
 		logger.info("BeforeMethod: finish");

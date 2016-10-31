@@ -38,11 +38,13 @@ public class QuickAddAppointment extends AbsTab {
 		public static final String EndTimeFieldQuickAdd = "css=div[class='DwtDialog'] td[id$='_endTime'] td[id$='_timeSelectInput'] input";
 		public static final String RepeatDropdownQuickAdd = "css=div[class='DwtDialog'] td[id$='_repeat'] td[id$='_title']";
 		public static final String ReminderDropdownQuickAdd = "css=div[class='DwtDialog'] td[id$='_reminderSelect']";
-		public static final String OKButtonQuickAdd = "css=div[class='DwtDialog'] td[id$='_button2_title']:contains(" + "'OK'" + ")";
-		public static final String CancelButtonQuickAdd = "css=div[class='DwtDialog'] td[id$='_button1_title']:contains(" + "'Cancel'" + ")";
+		public static final String OKButtonQuickAdd = "css=div[class='DwtDialog'] td[id$='_button2_title']:contains("
+				+ "'OK'" + ")";
+		public static final String CancelButtonQuickAdd = "css=div[class='DwtDialog'] td[id$='_button1_title']:contains("
+				+ "'Cancel'" + ")";
 		public static final String MoreDetailsButtonQuickAdd = "css=div[class='DwtDialog'] div[id$='_buttons'] td[id^='More Details..._DWT'] td[id$='_title']";
 		public static final String ConfigureReminder = "css=div[class='DwtDialog'] div[class='FakeAnchor']:contains('Configure')";
-		
+
 		public static final String NoneMenuItem = "css=div[id*='_Menu'] div[id^='NON'] td[id$='title']:contains('None')";
 		public static final String NoneButton = "css=td[id$='_title']:contains('None')";
 		public static final String EveryDayMenuItem = "css=div[id*='_Menu'] div[id^='DAI'] td[id$='title']:contains('Every Day')";
@@ -110,55 +112,35 @@ public class QuickAddAppointment extends AbsTab {
 	}
 
 	public void zFillField(Field field, String value) throws HarnessException {
+		
+		SleepUtil.sleepSmall();
 
 		tracer.trace("Set " + field + " to " + value);
 
 		String locator = null;
 		String isRepeat = null;
 
-		// subject
 		if (field == Field.Subject) {
-
 			locator = Locators.SubjectFieldQuickAdd;
 
-
-		// location
 		} else if (field == Field.Location) {
-
 			locator = Locators.LocationFieldQuickAdd;
 
-
-		// start date
 		} else if (field == Field.StartDate) {
-
 			locator = Locators.StartDateFieldQuickAdd;
 
-
-		// start time
 		} else if (field == Field.StartTime) {
-
 			locator = Locators.StartTimeFieldQuickAdd;
 
-
-		// end date
 		} else if (field == Field.EndDate) {
-
 			locator = Locators.EndDateFieldQuickAdd;
 
-
-		// end time
 		} else if (field == Field.EndTime) {
-
 			locator = Locators.EndTimeFieldQuickAdd;
 
-
-		// display
 		} else if (field == Field.Display) {
-
 			locator = Locators.DisplayDropdpwnQuickAdd;
 
-
-		// calendar folder
 		} else if (field == Field.Calendar) {
 
 			locator = Locators.CalendarDropdownQuickAdd;
@@ -169,8 +151,6 @@ public class QuickAddAppointment extends AbsTab {
 
 			return;
 
-
-		// repeat
 		} else if (field == Field.Repeat) {
 
 			isRepeat = value;
@@ -184,35 +164,30 @@ public class QuickAddAppointment extends AbsTab {
 			throw new HarnessException("locator was null for field " + field);
 		}
 
-		// Make sure the button exists
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
 		if (isRepeat != null) {
 			this.sClickAt(locator, "");
 			zRecurringOptions(locator, value, isRepeat);
-			
-		} else if (field == Field.StartDate || field == Field.EndDate || field == Field.StartTime || field == Field.EndTime) {
-			SleepUtil.sleepLong();
+
+		} else if (field == Field.StartDate || field == Field.EndDate || field == Field.StartTime
+				|| field == Field.EndTime) {
 			this.clearField(locator);
-			this.sFocus(locator);
-			this.zClickAt(locator, "");
+			this.sClickAt(locator, "");
 			this.sTypeDateTime(locator, value);
-			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
-			SleepUtil.sleepMedium();
+			this.zKeyboardKeyEvent(KeyEvent.VK_TAB);
 		} else {
-	    	this.clearField(locator);
-	    	SleepUtil.sleepSmall();
-		    this.sType(locator, value);
+			this.clearField(locator);
+			this.sType(locator, value);
 		}
 		this.zWaitForBusyOverlay();
-
 	}
 
 	public void zNewAppointment() throws HarnessException {
-		this.zRightClickAt("css=div[class='calendar_hour_scroll'] td[class='calendar_grid_body_time_td'] div[id$='_10']", "");
-		SleepUtil.sleepSmall();
-		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_APPT_title']", "");
+		this.zRightClickAt(
+				"css=div[class='calendar_hour_scroll'] td[class='calendar_grid_body_time_td'] div[id$='_10']", "");
+		this.sClickAt("css=div[id^='POPUP_'] td[id='NEW_APPT_title']", "");
 		SleepUtil.sleepMedium();
 	}
 
@@ -221,59 +196,64 @@ public class QuickAddAppointment extends AbsTab {
 			this.sDoubleClick("css=td[class='calendar_month_cells_td']");
 		} else if (action.equals(Action.A_RIGHTCLICK)) {
 			this.zRightClickAt("css=td[class='calendar_month_cells_td']", "");
-			SleepUtil.sleepSmall();
-			this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_APPT_title']", "");
+			this.sClick("css=div[id^='POPUP_'] td[id='NEW_APPT_title']");
 		}
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 	}
 
 	public void zNewAppointmentUsingMiniCal() throws HarnessException {
 		this.sClick("css=div[class='DwtCalendar'] td[class='DwtCalendarButton'] div[class='ImgFwdArrowSmall']");
-		if (this.sIsElementPresent("css=td[class='DwtCalendarDay']:contains('25')"))
+		if (this.sIsElementPresent("css=td[class='DwtCalendarDay']:contains('25')")) {
 			this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('25')", "");
-		else
+		} else {
 			this.zRightClickAt("css=td[class='DwtCalendarDay DwtCalendarDay-selected']:contains('25')", "");
-		SleepUtil.sleepMedium();
-		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_APPT_title']", "");
+		}
+		this.sClick("css=div[id^='POPUP_'] td[id='NEW_APPT_title']");
 		SleepUtil.sleepMedium();
 	}
 
 	public void zNewAllDayAppointment() throws HarnessException {
-		this.zRightClickAt("css=div[class='calendar_hour_scroll'] td[class='calendar_grid_body_time_td'] div[id$='_10']", "");
-		SleepUtil.sleepSmall();
-		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_ALLDAY_APPT_title']", "");
+		this.zRightClickAt(
+				"css=div[class='calendar_hour_scroll'] td[class='calendar_grid_body_time_td'] div[id$='_10']", "");
+		this.sClick("css=div[id^='POPUP_'] td[id='NEW_ALLDAY_APPT_title']");
 		SleepUtil.sleepMedium();
 	}
 
-	public void zNewAllDayAppointmentUsingMiniCal() throws HarnessException {		
+	public void zNewAllDayAppointmentUsingMiniCal() throws HarnessException {
 		this.sClick("css=div[class='DwtCalendar'] td[class='DwtCalendarButton'] div[class='ImgFwdArrowSmall']");
-		if (this.sIsElementPresent("css=td[class='DwtCalendarDay']:contains('25')"))
+		if (this.sIsElementPresent("css=td[class='DwtCalendarDay']:contains('25')")) {
 			this.zRightClickAt("css=td[class='DwtCalendarDay']:contains('25')", "");
-		else
+		} else {
 			this.zRightClickAt("css=td[class='DwtCalendarDay DwtCalendarDay-selected']:contains('25')", "");
-		SleepUtil.sleepMedium();
-		this.zClickAt("css=div[id^='POPUP_'] td[id='NEW_ALLDAY_APPT_title']", "");
+		}
+		this.sClick("css=div[id^='POPUP_'] td[id='NEW_ALLDAY_APPT_title']");
 		SleepUtil.sleepMedium();
 	}
 
 	public void zVerifyQuickAddDialog(Boolean status) throws HarnessException {
-		ZAssert.assertEquals(this.sIsElementPresent(Locators.QuickAddDialog), status, "Verify quick add appt dialog status");
+		SleepUtil.sleepSmall();
+		ZAssert.assertEquals(this.sIsElementPresent(Locators.QuickAddDialog), status,
+				"Verify quick add appt dialog status");
+		this.sClick(Locators.CancelButtonQuickAdd);
+		SleepUtil.sleepSmall();
 	}
 
 	public void zVerifyConfigureReminderLink(Boolean status) throws HarnessException {
-		ZAssert.assertEquals(this.sIsElementPresent(Locators.ConfigureReminder), status, "Verify configure reminder link");
+		SleepUtil.sleepSmall();
+		ZAssert.assertEquals(this.sIsElementPresent(Locators.ConfigureReminder), status,
+				"Verify configure reminder link");
 	}
-	
+
 	public void zMoreDetails() throws HarnessException {
-		SleepUtil.sleepMedium(); //see intermittent bug 81945
-		this.zClickAt(Locators.MoreDetailsButtonQuickAdd, "");
-		SleepUtil.sleepLong(); //see intermittent bug 81945
+		SleepUtil.sleepSmall();
+		this.sClick(Locators.MoreDetailsButtonQuickAdd);
+		this.zWaitForBusyOverlay();
+		SleepUtil.sleepLongMedium();
 	}
 
 	public void zFill(IItem item) throws HarnessException {
 
 		logger.info(myPageName() + ".zFill(ZimbraItem)");
-		logger.info(item.prettyPrint());
 
 		// Make sure the item is a MailItem
 		if (!(item instanceof AppointmentItem)) {
@@ -290,10 +270,7 @@ public class QuickAddAppointment extends AbsTab {
 		// Location
 		if (appt.getLocation() != null) {
 			zFillField(Field.Location, appt.getLocation());
-			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-			SleepUtil.sleepSmall();
-			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER); //see intermittent bug 81945
 		}
 
 		// Start date-time
@@ -359,8 +336,7 @@ public class QuickAddAppointment extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, String item) throws HarnessException {
 		return null;
 	}
 
@@ -406,8 +382,7 @@ public class QuickAddAppointment extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
-			throws HarnessException {
+	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		return null;
 	}
 

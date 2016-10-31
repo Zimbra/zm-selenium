@@ -20,7 +20,6 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 public class Login extends AjaxCommonTest {
@@ -238,7 +237,6 @@ public class Login extends AjaxCommonTest {
 				+		"<a n='zimbraMailURL'>"+ zimbraMailURLtemp + "</a>"
 				+	"</ModifyConfigRequest>");
 
-			StafServicePROCESS staf = new StafServicePROCESS();
 			staf.execute("zmmailboxdctl restart");
 
 			// Wait for the service to come up
@@ -269,7 +267,6 @@ public class Login extends AjaxCommonTest {
 					+		"<a n='zimbraMailURL'>"+ zimbraMailURL + "</a>"
 					+	"</ModifyConfigRequest>");
 				
-				StafServicePROCESS staf = new StafServicePROCESS();
 				staf.execute("zmmailboxdctl restart");
 
 				SleepUtil.sleepVeryLong();

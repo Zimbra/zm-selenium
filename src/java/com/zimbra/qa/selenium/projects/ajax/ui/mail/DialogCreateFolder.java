@@ -162,6 +162,8 @@ public class DialogCreateFolder extends AbsDialog {
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("unable to find folder name field " + locator);
 
+		SleepUtil.sleepSmall();
+		sClick(locator);
 		sType(locator, folder);
 	}
 

@@ -47,8 +47,8 @@ public class PageManageCOS extends AbsTab {
 		public static final String CLASS_OS_SERVICE="Class of Service";
 		public static final String DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String EDIT_BUTTON="css=td[id='zmi__zb_currentApp__EDIT_title']:contains('Edit')";
-		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
-		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgProperties']";
+		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zmi__COSLV__DELETE'] td[id$='__DELETE_title']";
+		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id='zmi__COSLV__EDIT'] td[id$='__EDIT_title']";
 		public static final String DUPLICATE_COS= "css= div[id='zm__zb_currentApp__MENU_POP'] td[id='zmi__zb_currentApp__DUPLICATE_title']";
 		public static final String RIGHT_CLICK_DUPLICATE_COS= "css= td[id='zmi__COSLV__DUPLICATE_title']";
 	}
@@ -207,6 +207,7 @@ public class PageManageCOS extends AbsTab {
 			locator=Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
 
 			page=new FormEditCos(this.MyApplication);
+			
 		} else if (button == Button.O_DUPLICATE_COS) {
 
 			locator = Locators.RIGHT_CLICK_DUPLICATE_COS;
@@ -336,12 +337,12 @@ public class PageManageCOS extends AbsTab {
 
 		// Make sure the button exists
 		if ( !this.sIsElementPresent("css=div[id='zl__COS_MANAGE'] div[id$='__rows']") )
-			throw new HarnessException("Account Rows is not present");
+			throw new HarnessException("COS Rows are not present");
 
 		// How many items are in the table?
 		String rowsLocator = "css=div#zl__COS_MANAGE div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
+		logger.debug(myPageName() + " zListGetAccounts: number of COSs: "+ count);
 
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
@@ -351,7 +352,7 @@ public class PageManageCOS extends AbsTab {
 			CosItem item = new CosItem();
 
 			// Email Address
-			locator = cosLocator + "//td[contains(@id,'cos_data_name')]";
+			locator = cosLocator + " td[id^='cos_data_name']";
 			if ( this.sIsElementPresent(locator) ) {
 				item.setCosName(this.sGetText(locator).trim());
 			}
@@ -370,6 +371,11 @@ public class PageManageCOS extends AbsTab {
 		return (items);
 	}
 
+	public boolean zIsCOSPresent(String cosName) throws HarnessException {
+		logger.info(myPageName() + " zIsCOSPresent("+ cosName +")");
+		String rowlocator = "css=div#zl__COS_MANAGE div[id$='__rows'] div[id^='zli__'] td[id^='cos_data_name']";		
+		return sIsElementPresent(rowlocator+":contains(" + cosName + ")");		
+	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
 		if (this.sIsElementPresent("css=span:contains('" + header + "')"))

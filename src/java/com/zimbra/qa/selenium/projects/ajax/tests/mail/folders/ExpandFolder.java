@@ -156,12 +156,13 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		
-		// Expand folder1
-		app.zTreeMail.zTreeItem(Action.A_TREE_EXPAND, folder1);
+		
 		
 		// Expand folder3
 		app.zTreeMail.zTreeItem(Action.A_TREE_EXPAND, folder3);
 		
+		// Expand folder1
+		app.zTreeMail.zTreeItem(Action.A_TREE_EXPAND, folder1);
 		
 		//-- VERIFICATION
 		

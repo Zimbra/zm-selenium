@@ -240,15 +240,15 @@ public class PagePreferences extends AbsTab {
 		public static final String zBrowseToCertificate = "css=div[id$='_UploadCertificateBtn'] td:contains('Browse to certificate...')";
 		public static final String zRemoveCertificateLink = "css=td[class='ZmSecureMailCertificateRow'] td:contains('Remove')";
 		public static final String zViewCertificateLink = "css=td[class='ZmSecureMailCertificateRow'] div:contains('View')";
-		
+
 		// Filters
 		public static final String zFilterRowCss = "css=div[class='DwtListView-Rows'] div[id^='zli_'] td";
 		public static final String zOutGoingFilterTab = "css=div[id$='_tabbar'] td[id$='_title']:contains(Outgoing)";
 		public static final String zAfterFilterRunOKButton = "css=div[id='ZmMsgDialog'] div[id$='MsgDialog_buttons'] td[id^='OK'] td[id$='_title']";
 
-		// Notification preferences
+		// Notifications preferences
 		public static final String zCarrierPullDown = "css=div[id$='DEVICE_EMAIL_CARRIER'] td[id*='DEVICE_EMAIL_CARRIER'] div.ImgSelectPullDownArrow";
-		public static final String zCarrierOptionCustom = "css=div[id$='_DEVICE_EMAIL_CARRIER_Menu_1'] td[id*='_option_']td[id*='_title']:contains('Custom')";
+		public static final String zCarrierOptionCustom = "css=div[id$='_DEVICE_EMAIL_CARRIER_Menu_1'] td[id*='_option_']:contains('Custom')";
 		public static final String zSMSEmailUsername = "css=div[id$='_DEVICE_EMAIL_CUSTOM_NUMBER'] input[id$='_DEVICE_EMAIL_CUSTOM_NUMBER_input']";
 		public static final String zSMSEmailDomainName = "css=div[id$='_DEVICE_EMAIL_CUSTOM_ADDRESS'] input[id$='_DEVICE_EMAIL_CUSTOM_ADDRESS_input']";
 		public static final String zValidationCode = "css=input[id$='_DEVICE_EMAIL_CODE_input']";
@@ -486,8 +486,8 @@ public class PagePreferences extends AbsTab {
 
 		} else if (button == Button.B_BROWSE_TO_CERTIFICATE) {
 
-			locator = Locators.zBrowseToCertificate;
-
+				locator = Locators.zBrowseToCertificate;
+				
 		} else if (button == Button.B_CHANGE_PASSWORD) {
 
 			// locator = "css=td[id='CHANGE_PASSWORD_title']";
