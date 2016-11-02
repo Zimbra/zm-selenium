@@ -247,7 +247,7 @@ public class Forward extends CalendarWorkWeekTest {
 	
 	@Bugs(ids="100340")
 	@Test( description = "forwarding invite shows html source in meeting notes section",
-			groups = { "functional1" })
+			groups = { "functional" })
 			
 	public void ForwardMeeting_04() throws HarnessException {
 		
