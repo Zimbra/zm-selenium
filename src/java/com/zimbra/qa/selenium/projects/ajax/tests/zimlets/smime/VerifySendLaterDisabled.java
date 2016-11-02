@@ -31,6 +31,7 @@ public class VerifySendLaterDisabled extends PrefGroupMailByMessageTest {
 		
 		logger.info("New "+ VerifySendLaterDisabled.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraFeatureMailSendLaterEnabled", "TRUE");
+		super.startingAccountPreferences.put("zimbraFeatureSMIMEEnabled", "TRUE");
 		
 	}
 	
