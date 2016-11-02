@@ -247,7 +247,7 @@ public class Forward extends CalendarWorkWeekTest {
 	
 	@Bugs(ids="100340")
 	@Test( description = "forwarding invite shows html source in meeting notes section",
-			groups = { "functional" })
+			groups = { "functional1" })
 			
 	public void ForwardMeeting_04() throws HarnessException {
 		
@@ -289,7 +289,7 @@ public class Forward extends CalendarWorkWeekTest {
 		// Verify the attendee receives the invitation
 		MailItem invite = MailItem.importFromSOAP(ZimbraAccount.Account3(), "subject:("+ apptSubject +")");
 		ZAssert.assertNotNull(invite, "Verify the invite is received");
-		ZAssert.assertEquals(invite.dSubject, apptSubject, "Subject: Verify the appointment data");
+		ZAssert.assertEquals(invite.dSubject, "Fwd: Group photo with Steve", "Subject: Verify the appointment data");
 	}
 
 }
