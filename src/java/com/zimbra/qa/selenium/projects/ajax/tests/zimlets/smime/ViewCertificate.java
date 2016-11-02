@@ -71,8 +71,13 @@ public class ViewCertificate extends AjaxCommonTest {
 		app.zPagePreferences.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.SecureEmail);
 		
+		//Click on view Certificate Link
 		app.zPagePreferences.sClick(Locators.zViewCertificateLink);
+		
+		//View Certificate dialog opens up
 		DialogViewCertificate dialog = (DialogViewCertificate) new DialogViewCertificate(app, app.zPagePreferences);
+		
+		//Verifying various certificate fields
 		ZAssert.assertEquals(user4.EmailAddress, dialog.zGetDisplayedText(user4.EmailAddress),"Issued to email address matched");
 		ZAssert.assertEquals(issuedToOrganization, dialog.zGetDisplayedTextIssuedToOrganization(),"Issued to Organisation matched");
 		ZAssert.assertEquals(issuedByOrganization, dialog.zGetDisplayedTextIssuedByOrganization(),"Issued by Organisation matched");
