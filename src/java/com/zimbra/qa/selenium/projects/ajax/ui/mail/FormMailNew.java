@@ -68,7 +68,7 @@ public class FormMailNew extends AbsForm {
 		public static final String zIncludeOriginalMessageForward = "css=div[id$='_FORWARD__INC_BODY'] td[id$='_FORWARD__INC_BODY_title']";
 		public static final String zIncludeLastMessageOnlyReply = "css=div[id$='_REPLY__INC_SMART'] td[id$='_REPLY__INC_SMART_title']";
 		public static final String zIncludeLastMessageOnlyForward = "css=div[id$='_FORWARD__INC_SMART'] td[id$='_FORWARD__INC_SMART_title']";
-		public static final String zIncludeOriginalAsAttachmentReply = "css=div[id$='_REPLY__INC_ATTACHMENT'] td[id$='_REPLY__INC_ATTACHMENT_title']";
+		public static final String zIncludeOriginalAsAttachmentReply = "css=div[id$='_REPLY__INC_ATTACHMENT'] td[id$='_REPLY__INC_ATTACHMENT_title']:contains('Include Original As Attachment')";
 		public static final String zIncludeOriginalAsAttachmentForward = "css=div[id$='_FORWARD_ATT__INC_ATTACHMENT'] td[id$='_FORWARD_ATT__INC_ATTACHMENT_title']";
 		public static final String zUsePrefixReply = "css=div[id$='_REPLY__USE_PREFIX'] td[id$='_REPLY__USE_PREFIX_title']";
 		public static final String zUsePrefixForward = "css=div[id$='_FORWARD_ATT__USE_PREFIX'] td[id$='_FORWARD_ATT__USE_PREFIX_title']";
