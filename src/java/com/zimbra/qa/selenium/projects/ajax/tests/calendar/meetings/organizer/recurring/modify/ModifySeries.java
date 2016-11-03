@@ -166,7 +166,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 							"<at role='REQ' ptst='NE' rsvp='1' a='" + ZimbraAccount.AccountA().EmailAddress + "'/>" +
 							"<recur>" +
 								"<add>" +
-									"<rule freq='DAI'>" +
+									"<rule freq='WEE'>" +
 										"<interval ival='1'/>" +
 									"</rule>" +
 								"</add>" +
