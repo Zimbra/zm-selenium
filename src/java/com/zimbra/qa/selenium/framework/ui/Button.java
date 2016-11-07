@@ -683,8 +683,10 @@
 		public static final Button B_IMPORT 				= new Button("B_IMPORT");
 		public static final Button B_IMPORT_OK 				= new Button("B_IMPORT_OK");
 		public static final Button B_ADD_APPLICATION_CODE 	= new Button("B_ADD_APPLICATION_CODE");
+		public static final Button B_BROWSE_TO_CERTIFICATE 	= new Button("B_BROWSE_TO_CERTIFICATE");
+		public static final Button B_SUBMIT 	            = new Button("B_SUBMIT");
 
-
+		
 		// Calendar preferences
 		public static final Button R_CUSTOM_WORK_HOURS					= new Button("R_CUSTOM_WORK_HOURS");
 		public static final Button B_CUSTOMIZE							= new Button("B_CUSTOMIZE");

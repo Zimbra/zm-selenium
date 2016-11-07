@@ -23,6 +23,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 
 public class DialogInformational extends AbsDialog {
 
@@ -99,6 +100,11 @@ public class DialogInformational extends AbsDialog {
 		sClickAt(locator,"0,0");
 		SleepUtil.sleepSmall();
 		zWaitForBusyOverlay();
+		
+		if (button == Button.B_OK) {
+			Stafpostqueue sp = new Stafpostqueue();
+			sp.waitForPostqueue();
+		}
 
 		return (page);
 	}

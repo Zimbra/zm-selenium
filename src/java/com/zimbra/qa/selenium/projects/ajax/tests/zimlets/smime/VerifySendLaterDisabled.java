@@ -31,11 +31,12 @@ public class VerifySendLaterDisabled extends PrefGroupMailByMessageTest {
 		
 		logger.info("New "+ VerifySendLaterDisabled.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraFeatureMailSendLaterEnabled", "TRUE");
+		super.startingAccountPreferences.put("zimbraFeatureSMIMEEnabled", "TRUE");
 		
 	}
 	
     @Test( description = "Verify Send later is disabled when smime security preference is set to 'Sign Only' and 'Sign & Encrypt'",
-            groups = { "functional" })
+            groups = { "smime" })
 
        public void VerifySendLaterDisabledForSigningOptions_01() throws HarnessException {
 		
@@ -62,7 +63,7 @@ public class VerifySendLaterDisabled extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Verify Send later is enabled when smime security preference is set to 'Do not sign or encrypt'",
-			groups = { "functional" })
+			groups = { "smime" })
 	public void VerifySendLaterEnabledWhenDontSign_02() throws HarnessException {
 		
 		//Set Smime pref to do not sign or encrypt only
@@ -84,7 +85,7 @@ public class VerifySendLaterDisabled extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Verify Send later is disabled when smime security preference is set to 'sign only'",
-			groups = { "functional" })
+			groups = { "smime" })
 	public void VerifySendLaterEnabledWithSecureEmailOptions_03() throws HarnessException {
 				
 		// Open the new mail form

@@ -699,7 +699,7 @@ public class PageMail extends AbsTab {
 
 			// Click on Reading pane
 			locator = "css=td[id$=READING_PANE_1_dropdown]>div[class='ImgCascade']";
-			this.zClick(locator);
+			this.sMouseOver(locator);
 			this.zWaitForBusyOverlay();
 
 			// Select Reading Pane At the Bottom/On the Right/Off
@@ -735,12 +735,12 @@ public class PageMail extends AbsTab {
 		} else if ((button == Button.B_MAIL_LIST_GROUPBY_FROM) || (button == Button.B_MAIL_LIST_GROUPBY_DATE)
 				|| (button == Button.B_MAIL_LIST_GROUPBY_SIZE)) {
 
-			locator = "css=td#zlha__TV-main__su";
-			this.zRightClickAt(locator, "");
+			locator = "css=td[id$=VIEW_MENU_dropdown]>div[class='ImgSelectPullDownArrow']";
+			this.zClick(locator);
 			this.zWaitForBusyOverlay();
-
-			// Hover over Group By
-			locator = "css=td[id$='_title']:contains('Group By')";
+			
+			// mouseOver on GroupBy
+			locator = "css=td[id$=GROUP_BY_1_dropdown]>div[class='ImgCascade']";
 			this.sMouseOver(locator);
 			this.zWaitForBusyOverlay();
 
@@ -923,7 +923,7 @@ public class PageMail extends AbsTab {
 				this.sClickAt(optionLocator, "0,0");
 				zWaitForBusyOverlay();
 
-				SleepUtil.sleepVeryLong();
+				SleepUtil.sleepMedium();
 
 				return (page);
 
@@ -1477,7 +1477,7 @@ public class PageMail extends AbsTab {
 
 			if (option == Button.O_MARK_AS_READ) {
 
-				optionLocator += " div[id*S='MARK_READ'] td[id$='_title']";
+				optionLocator += " div[id*='MARK_READ'] td[id$='_title']";
 				page = null;
 
 			} else if (option == Button.O_MARK_AS_UNREAD) {

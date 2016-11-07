@@ -139,11 +139,9 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Verify the To, From, Subject, Body
-		//ZAssert.assertEquals(actual.zGetMailProperty(Field.ResentFrom), resentfrom, "Verify the Resent-From matches the 'Resent-From:' header");
-		String resentfromLocator = "css=div[id='zv__TV-main__MSG'] td[id$='_from'] span[class='addrBubble']span:contains(resentfrom)";
+		String resentfromLocator = "css=div[id='zv__TV-main__MSG'] td[id$='_from'] span:nth-child(3)";
 		ZAssert.assertEquals(app.zPageMail.sGetText(resentfromLocator).trim(), resentfrom, "Verify the From matches the 'From:' header");
 
-		//ZAssert.assertEquals(actual.zGetMailProperty(Field.From), from, "Verify the From matches the 'From:' header");
 		String fromLocator = "css=div[id='zv__TV-main__MSG'] td[id$='_from'] span[class='addrBubble']";
 		ZAssert.assertEquals(app.zPageMail.sGetText(fromLocator).trim(), from, "Verify the From matches the 'From:' header");
 	}

@@ -37,7 +37,7 @@ public class TreePreferences extends AbsTree {
 	}
 
 	public enum TreeItem {
-		General, Mail, MailComposing, MailSignatures, MailAccounts, MailFilters, MailOutOfOffice, MailTrustedAddresses, AddressBook, Calendar, Sharing, Notifications, MobileDevices, ImportExport, Shortcuts, QuickCommands, Zimlets
+		General, Mail, MailComposing, MailSignatures, MailAccounts, MailFilters, MailOutOfOffice, MailTrustedAddresses, AddressBook, Calendar, SecureEmail, Sharing, Notifications, MobileDevices, ImportExport, Shortcuts, QuickCommands, Zimlets
 	}
 
 	public TreePreferences(AbsApplication application) {
@@ -46,7 +46,7 @@ public class TreePreferences extends AbsTree {
 	}
 
 	/**
-	 * Click on an item in the preferences tree
+	 * Click on an item in the preference tree
 	 * 
 	 * @param action
 	 * @param item
@@ -123,6 +123,7 @@ public class TreePreferences extends AbsTree {
 		map.put(TreeItem.Shortcuts, "css=td[id='zti__main_Options__PREF_PAGE_SHORTCUTS_textCell']");
 		map.put(TreeItem.QuickCommands, "css=td[id='zti__main_Options__PREF_PAGE_QUICKCOMMANDS_textCell']");
 		map.put(TreeItem.Zimlets, "css=td[id='zti__main_Options__PREF_PAGE_PREF_ZIMLETS_textCell']");
+		map.put(TreeItem.SecureEmail, "css=td[id='zti__main_Options__PREF_PAGE_SECURITY_textCell']");
 
 		return (Collections.unmodifiableMap(map));
 	}
