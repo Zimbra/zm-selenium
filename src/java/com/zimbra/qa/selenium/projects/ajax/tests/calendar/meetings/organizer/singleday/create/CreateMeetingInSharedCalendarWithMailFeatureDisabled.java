@@ -44,7 +44,7 @@ public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends Calend
   }
   
   @Bugs(ids="71542")
-  @Test( description="Unable to create appointment in shared calendars if mail feature is disabled", groups={"functional"} )
+  @Test( description="Unable to create appointment in shared calendars if mail feature is disabled", groups={"functional1"} )
   
   public void CreateMeetingInSharedCalendarWithMailFeatureDisabled_01() throws HarnessException {
 	  
@@ -122,7 +122,7 @@ public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends Calend
 		actual = AppointmentItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:(" + appt.getSubject() + ")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(),"Subject: Verify the appointment data");
-		ZAssert.assertEquals(actual.getLocation(), appt.getLocation(),"Location: Verify the appointment data");
+		ZAssert.assertStringContains(actual.getLocation(), appt.getLocation(),"Location: Verify the appointment data");
 		ZAssert.assertEquals(actual.getAttendees(), apptAttendee1,"Attendees: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(),"Content: Verify the appointment data");
 		
