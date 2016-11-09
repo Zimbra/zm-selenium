@@ -47,6 +47,7 @@ public class AppAdminConsole extends AbsApplication {
 	public PageEditDistributionList		zPageEditDistributionList = null;
 	public PageManageResources			zPageManageResources = null;
 	public PageEditResource				zPageEditResource = null;
+	public PageManageConfigureGrants    zPageManageConfigureGrants = null;
 	
 	// Configuration
 	public PageManageCOS				zPageManageCOS = null;
@@ -78,9 +79,11 @@ public class AppAdminConsole extends AbsApplication {
 	public PageManageMobileSyncStatistics	zPageManageMobileSyncStatistics = null;
 	public PageManageMailQueues			zPageManageMailQueues = null;
 	
+	// Global settings
+	public PageManageRetentionPolicy	zPageManageRetentionPolicy = null;
+	
 	
 	// Tools
-	
 	public PageEditMailQueue			zPageEditMailQueue = null;
 	public PageManageAccountMigration	zPageManageAccountMigration = null;
 	public PageManageSearch				zPageManageSearch = null;
@@ -101,7 +104,8 @@ public class AppAdminConsole extends AbsApplication {
 	public PageManageCofigureGAL			zPageManageCofigureGAL = null;
 	public PageManageCofigureAuthentication			zPageManageCofigureAuthentication = null;
 	public PageManageMigrationCoexistance			zPageManageMigrationCoexistance = null;
-
+	public PageManageHelp				zPageManageHelp = null;
+	
 	public AppAdminConsole() {
 		super();
 		
@@ -151,6 +155,10 @@ public class AppAdminConsole extends AbsApplication {
 		
 		zPageManageLicense = new PageManageLicense(this);
 		pages.put(zPageManageLicense.myPageName(), zPageManageLicense);
+		
+		zPageManageConfigureGrants = new PageManageConfigureGrants(this);
+		pages.put(zPageManageConfigureGrants.myPageName(), zPageManageConfigureGrants);
+
 		
 		// Configuration pages
 		
@@ -204,7 +212,10 @@ public class AppAdminConsole extends AbsApplication {
 		
 		zPageManageMTA = new PageManageMTA(this);
 		pages.put(zPageManageMTA.myPageName(), zPageManageMTA);
-
+		
+		// Global Settings
+		zPageManageRetentionPolicy = new PageManageRetentionPolicy(this);
+		pages.put(zPageManageRetentionPolicy.myPageName(), zPageManageRetentionPolicy);
 		
 		// Monitoring
 
@@ -292,6 +303,8 @@ public class AppAdminConsole extends AbsApplication {
 		zPageManageMigrationCoexistance = new PageManageMigrationCoexistance(this);
 		pages.put(zPageManageMigrationCoexistance.myPageName(), zPageManageMigrationCoexistance);
 		
+		zPageManageHelp = new PageManageHelp(this);
+		pages.put(zPageManageHelp.myPageName(), zPageManageHelp);
 		
 	}
 

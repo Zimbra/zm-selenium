@@ -100,4 +100,25 @@ public class AclItem implements IItem {
 		return null;
 	}
 	
+	public void setTargetAccountEmail(String emailAddress) throws HarnessException {
+		if ( (aclGranteeEmail != null) && (aclGranteeEmail.equals(emailAddress)) )
+			return; // Nothing to update
+
+		if ( (emailAddress == null) || (emailAddress.trim().length() == 0) )
+			throw new HarnessException("emailAddress cannot be null or blank");
+
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+							"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
+				+                "<account by='name'>"+ emailAddress +"</account>"
+                +            "</GetAccountRequest>");
+		String id = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:account", "id");
+
+		aclGranteeEmail = emailAddress;
+		aclGranteeID = id;
+	}
+	
+	public String getTargetAccountEmail() {
+		return (aclGranteeEmail);
+	}
+	
 }
