@@ -1,0 +1,54 @@
+Date: Tue, 15 Nov 2015 17:10:42 -0800 (PST)
+From: foo@example.com
+To: bar@example.com
+Subject: subject13214016725788
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="=_26c4fbcb-aadf-43cd-b592-ab7fe543583e"
+
+--=_26c4fbcb-aadf-43cd-b592-ab7fe543583e
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+BoldString 
+ItalicString 
+Underline text 
+Red color text 
+Green background 
+
+Number list below : 
+
+
+    1. point one 
+    2. point two 
+    3. point three 
+
+--=_26c4fbcb-aadf-43cd-b592-ab7fe543583e
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><div style=3D"font-family: arial, helvetica, sans-serif; font-s=
+ize: 12pt; color: #000000"><div></div><div data-marker=3D"__QUOTED_TEXT__">=
+<div style=3D"font-family: arial, helvetica, sans-serif; font-size: 12pt; c=
+olor: #000000;" data-mce-style=3D"font-family: arial, helvetica, sans-serif=
+; font-size: 12pt; color: #000000;"><div><span style=3D"color: #ff0000; bac=
+kground-color: #0000ff;" data-mce-style=3D"color: #ff0000; background-color=
+: #0000ff;"></span><div><span style=3D"text-decoration: line-through;" data=
+-mce-style=3D"text-decoration: line-through;"></span><span style=3D"text-de=
+coration: line-through;" data-mce-style=3D"text-decoration: line-through;">=
+<em><strong></strong></em></span><div></div><div><strong>BoldString</strong=
+></div><div><em>ItalicString</em></div></div><div>&nbsp; &nbsp; &nbsp;<span=
+ style=3D"text-decoration: underline;" data-mce-style=3D"text-decoration: u=
+nderline;">Underline text</span></div><span style=3D"color: rgb(255, 0, 0);=
+" data-mce-style=3D"color: #ff0000;">Red color text</span></div><span style=
+=3D"background-color: rgb(51, 153, 102);" data-mce-style=3D"background-colo=
+r: #339966;">Green background</span></div><div style=3D"font-family: arial,=
+ helvetica, sans-serif; font-size: 12pt; color: #000000;" data-mce-style=3D=
+"font-family: arial, helvetica, sans-serif; font-size: 12pt; color: #000000=
+;"><br><div><span style=3D"font-size: 14pt;" data-mce-style=3D"font-size: 1=
+4pt;"><span style=3D"font-family: &quot;comic sans ms&quot;, &quot;comic sa=
+ns&quot;, sans-serif;" data-mce-style=3D"font-family: 'comic sans ms', 'com=
+ic sans', sans-serif;">Number list below</span>:</span></div><ol><li>point =
+one</li><li>point two</li><li>point three</li></ol></div></div></div></body=
+></html>
+--=_26c4fbcb-aadf-43cd-b592-ab7fe543583e--
