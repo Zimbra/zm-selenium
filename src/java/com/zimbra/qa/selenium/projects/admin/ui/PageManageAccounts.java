@@ -63,6 +63,8 @@ public class PageManageAccounts extends AbsTab {
 		public static final String INVALIDATE_SESSIONS="css=td[id='zmi__zb_currentApp__EXPIRE_SESSION_title']";
 		public static final String INVALIDATE_SESSIONS_YES="css=td[id^='zdlg__MSG__GLOBAL__confirm']:contains('Yes')";
 		public static final String MUST_CHANGE_PASSWORD ="css=input[id='ztabv__ACCT_EDIT_zimbraPasswordMustChange']";
+		public static final String CONFIGURE_GRANTS="css=td[id^='zmi__zb_currentApp__UNKNOWN']:contains('Configure Grants')";
+		public static final String RIGHT_CLICK_CONFIGURE_GRANTS="css=td[id^='zmi__ACLV__UNKNOWN']:contains('Configure Grants')";
 		
 		
 	}
@@ -254,6 +256,10 @@ public class PageManageAccounts extends AbsTab {
 
 			locator=Locators.RIGHT_CLICK_MENU_VIEW_MAIL_BUTTON;
 			
+		}else if (button == Button.B_CONFIGURE_GRANTS) {
+			
+			locator = Locators.RIGHT_CLICK_CONFIGURE_GRANTS;			
+		
 		}else if (button == Button.B_INVALIDATE_SESSIONS) {
 
 			locator=Locators.RIGHT_CLICK_INVALIDATE_SESSIONS;
@@ -346,9 +352,10 @@ public class PageManageAccounts extends AbsTab {
 			} else if (option == Button.B_INVALIDATE_SESSIONS) {
 				optionLocator = Locators.INVALIDATE_SESSIONS;
 				
-			}
-
-			else {
+			}  else if (option == Button.B_CONFIGURE_GRANTS) {
+				optionLocator = Locators.CONFIGURE_GRANTS;
+				
+			}else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
 

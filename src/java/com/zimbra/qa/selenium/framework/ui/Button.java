@@ -15,10 +15,7 @@
 	 * ***** END LICENSE BLOCK *****
 	 */
 	package com.zimbra.qa.selenium.framework.ui;
-
-
-
-
+	
 	/**
 	 * The <code>Button</code> class defines constants that represent
 	 * general buttons in the client apps.
@@ -97,7 +94,6 @@
 		public static final Button O_PRINT_TASKFOLDER = new Button("O_PRINT_TASKFOLDER");
 		public static final Button O_DUPLICATE_COS= new Button("O_DUPLICATE_COS");
 
-
 		// Accept decline options
 		public static final Button B_CALENDAR = new Button("B_CALENDAR");
 		public static final Button O_ACCEPT_NOTIFY_ORGANIZER = new Button("O_ACCEPT_NOTIFY_ORGANIZER");
@@ -138,7 +134,6 @@
 		public static final Button O_OFFLINE_SETTINGS = new Button("O_OFFLINE_SETTINGS");
 		public static final Button O_CHANGE_PASSWORD = new Button("O_CHANGE_PASSWORD");
 		public static final Button O_SHORTCUT = new Button("O_SHORTCUT");
-	//	public static final Button O_SIGN_OUT = new Button("O_SIGN_OUT");
 
 		// MailPage buttons and pulldown options
 		public static final Button B_GETMAIL = new Button("B_GETMAIL");
@@ -173,7 +168,6 @@
 
 		public static final Button B_MAIL_VIEW_BY_CONVERSATION = new Button("B_MAIL_VIEW_BY_CONVERSATION");
 		public static final Button B_MAIL_VIEW_BY_MESSAGE = new Button("B_MAIL_VIEW_BY_MESSAGE");
-
 
 		// MailPage list buttons (sort by options)
 		public static final Button B_MAIL_LIST_SORTBY_FLAGGED = new Button("B_MAIL_LIST_SORTBY_FLAGGED");
@@ -263,7 +257,6 @@
 		// Dumpster dialog
 		public static final Button B_RECOVER_DELETED_ITEMS = new Button("B_RECOVER_DELETED_ITEMS");
 		public static final Button B_RECOVER_TO = new Button("B_RECOVER_TO");
-
 
 		// SearchPage buttons and pulldown options
 		public static final Button B_SEARCHTYPE = new Button("B_SEARCHTYPE");
@@ -738,10 +731,9 @@
 		public static final Button B_VIEW_MAIL = new Button("B_VIEW_MAIL");
 		public static final Button B_INVALIDATE_SESSIONS = new Button("B_INVALIDATE_SESSIONS");
 		public static final Button B_MUST_CHANGE_PASSWORD = new Button("B_MUST_CHANGE_PASSWORD");
-
+		public static final Button B_CONFIGURE_GRANTS = new Button("B_CONFIGURE_GRANTS");
 		public static final Button B_ACCOUNTS_LIMIT_PER_DOMAIN = new Button("B_ACCOUNTS_LIMIT_PER_DOMAIN");
 		public static final Button B_ACCOUNTS_LIMIT_PER_COS = new Button("B_ACCOUNTS_LIMIT_PER_COS");
-
 
 		// Distribution List  buttons
 		public static final Button O_DISTRIBUTIUONLISTS_DISTRIBUTIONLIST=new Button("O_DISTRIBUTIUONLISTS_DISTRIBUTIONLIST");
@@ -761,7 +753,14 @@
 		// License buttons
 		public static final Button B_UPDATE_LICENSE = new Button("B_UPDATE_LICENSE");
 		public static final Button B_UPLOAD_LICENSE = new Button("B_UPLOAD_LICENSE");
-
+		public static final Button B_ACTIVATE_LICENSE = new Button("B_ACTIVATE_LICENSE");
+		
+		// Global settings
+		public static final Button O_DAYS = new Button("O_DAYS");
+		public static final Button O_WEEKS = new Button("O_WEEKS");
+		public static final Button O_MONTHS = new Button("O_MONTHS");
+		public static final Button O_YEARS = new Button("O_YEARS");
+		
 		// Bubble buttons
 		public static Button B_NEW_MAIL = new Button("B_NEW_MAIL");
 		public static Button B_GO_TO_URL = new Button("B_GO_TO_URL");
