@@ -1018,13 +1018,21 @@ public class DisplayMail extends AbsDisplay {
 			throw new HarnessException("implement me!");
 
 		} else if (field == Field.Body) {
+			
+			int frames = this.sGetCssCount("css=iframe");
+			logger.debug("Body: # of frames: " + frames);
 
 			try {
 
 				String bodyLocator = "body";
 				webDriver().switchTo().defaultContent();
-				webDriver().switchTo().frame(0);
-				we = webDriver().findElement(By.cssSelector(bodyLocator));
+				
+				if (frames >=1 ) {
+					webDriver().switchTo().frame(0);
+					we = webDriver().findElement(By.cssSelector(bodyLocator));
+				} else {
+					we = webDriver().findElement(By.className("MsgBody-text"));
+				}				
 
 				String html = this.sGetHtmlSource();
 				logger.info("DisplayMail.zGetBody(" + bodyLocator + ") = " + html);
