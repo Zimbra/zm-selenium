@@ -232,6 +232,9 @@ public class PagePreferences extends AbsTab {
 		// Mail > Displaying Messages
 		public static final String zDisplayExternalImage = "css=input[id$='_MAIL_DISPLAY_EXTERNAL_IMAGES']";
 		public static final String zDisplayMessageColor = "css=input[id$='_MAIL_COLOR_MESSAGES']";
+		public static final String zDisplayMailAsHTML = "div[id='Prefs_RadioGroup_VIEW_AS_HTML'] input[value='true']";
+		public static final String zDisplayMailAsText = "div[id='Prefs_RadioGroup_VIEW_AS_HTML'] input[value='false']";
+		
 
 		// Mail > composing
 		public static final String zMandatorySpellCheck = "css=input[id$='_MAIL_MANDATORY_SPELLCHECK']";
