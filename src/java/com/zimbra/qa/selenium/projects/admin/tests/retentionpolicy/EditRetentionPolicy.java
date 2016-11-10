@@ -38,12 +38,13 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.ui.FormManageRetentionPolicy;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 
-public class DeleteRetentionPolicy extends AdminCommonTest {
+public class EditRetentionPolicy extends AdminCommonTest {
 
-	public DeleteRetentionPolicy() {
-		logger.info("New "+ DeleteRetentionPolicy.class.getCanonicalName());
+	public EditRetentionPolicy() {
+		logger.info("New "+ EditRetentionPolicy.class.getCanonicalName());
 	}
 
 	/**
@@ -56,10 +57,12 @@ public class DeleteRetentionPolicy extends AdminCommonTest {
 
 	@Test(	description = "Create retention policy",
 			groups = { "smoke" })
-	public void DeleteRetentionPolicy_01() throws HarnessException {
+	public void EditRetentionPolicy_01() throws HarnessException {
 
 		final String policyName = "test_policy" + ConfigProperties.getUniqueString();
+		final String editedPolicyName = "edited_policy" + ConfigProperties.getUniqueString();
 		final String retentionRange = "3d";
+		final String editedRetentionRange = "4d";
 
 		// Create retention policy
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -70,7 +73,7 @@ public class DeleteRetentionPolicy extends AdminCommonTest {
 						+ "</CreateSystemRetentionPolicyRequest>");
 
 
-		// Refresh the retention list
+		// Refresh the list
 		app.zPageManageRetentionPolicy.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
 		// Verify navigation path - configure >> global settings >> retention policy
@@ -78,16 +81,36 @@ public class DeleteRetentionPolicy extends AdminCommonTest {
 
 		// Click on account to be Edited.
 		app.zPageManageRetentionPolicy.zListItem(Action.A_LEFTCLICK, policyName);
-
-		// Click on delete
-		app.zPageManageRetentionPolicy.zToolbarPressButton( Button.B_DELETE);
-
-		// Click Yes in Confirmation dialog
-		app.zPageManageRetentionPolicy.zClickButton(Button.B_YES);
 		SleepUtil.sleepMedium();
+		
+		// Click on edit
+		FormManageRetentionPolicy form = (FormManageRetentionPolicy) app.zPageManageRetentionPolicy.zToolbarPressButton( Button.B_EDIT);
 
-		// Verify policy not exists on UI
-		ZAssert.assertFalse(app.zPageManageRetentionPolicy.zVerifyPolicyName(policyName), "Policy not displayed on UI ");
+		// Enter policy name
+		form.setPolicyName(editedPolicyName);
+
+		// Enter retention range
+		form.setRetentionRange(editedRetentionRange);
+
+		// Click on OK button
+		form.zClickOkButton();
+
+		// Get retention policy information
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+				"<GetSystemRetentionPolicyRequest xmlns='urn:zimbraAdmin'>"
+						+ "<retentionPolicy>"
+						+ "<keep>"
+						+ "<policy name='"+editedPolicyName+"'></policy>"
+						+ "</keep>"
+						+ "</retentionPolicy>"
+						+"</GetSystemRetentionPolicyRequest>");
+
+		// Verify the retention policy exists in the ZCS
+		String response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetSystemRetentionPolicyResponse/mail:retentionPolicy/mail:keep/mail:policy", "name");
+		ZAssert.assertNotNull(response, "Verify the retention policy is created successfully");
+		
+		// Verify policy exists on UI
+		ZAssert.assertTrue(app.zPageManageRetentionPolicy.zVerifyPolicyName(editedPolicyName), "Policy displayed on UI ");
 	}
 }
 
