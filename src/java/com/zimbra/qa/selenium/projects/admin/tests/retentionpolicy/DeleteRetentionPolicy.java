@@ -54,7 +54,7 @@ public class DeleteRetentionPolicy extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 
-	@Test(	description = "Create retention policy",
+	@Test(	description = "Delete retention policy",
 			groups = { "smoke" })
 	public void DeleteRetentionPolicy_01() throws HarnessException {
 

@@ -55,7 +55,7 @@ public class EditRetentionPolicy extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 
-	@Test(	description = "Create retention policy",
+	@Test(	description = "Edit retention policy",
 			groups = { "smoke" })
 	public void EditRetentionPolicy_01() throws HarnessException {
 
