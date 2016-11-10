@@ -17,12 +17,9 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
 import java.io.File;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.drafts.ReplyingMessageDoesntCreateDraft;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
@@ -38,7 +35,8 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 	
 	@Test( description = "Verify multiline body mail(HTML content) displayed properly when display mail pref set to HTML",
 			groups = { "sanity" })
-	public void DisplayMailContent_01() throws HarnessException {
+	
+	public void DisplayHTMLMailWithHTMLPref_01() throws HarnessException {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email19/multilineHTMLcontent.txt";
 		final String subject = "subject13214016725788";
@@ -66,33 +64,12 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), colorBackgroundContent, "Verify color background text content");
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), fontFamilySizeContent, "Verify font family and size of text content");
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), numberedListContent, "Verify numbered list text content");
-		
 	}
 
-	@Test( description = "Verify multiline body mail(plain text content) displayed properly when display mail pref set to HTML",
-			groups = { "sanity" })
-	public void DisplayMailContent_02() throws HarnessException {
-		
-		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email19/multilineTextcontent.txt";
-		final String subject = "subject13214016777777";
-		final String multilineTextContent = "line 1<br />line 2<br />line 3<br /><br />line 4";
-				
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
-
-		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-
-		// Select the message so that it shows in the reading pane
-		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-						
-		// Verify the Body
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multilineTextContent, "Verify plain text content");
-				
-	}
-	
 	@Test( description = "Verify multiline body mail(HTML content) displayed properly when display mail pref set to PlainText",
 			groups = { "sanity" })
-	public void DisplayMailContent_03() throws HarnessException {
+	
+	public void DisplayHTMLMailWithTextPref_02() throws HarnessException {
 		
 		//Navigate to preference -> Mail and set display mail pref to Text and verify
 		app.zPagePreferences.zNavigateTo();
@@ -130,9 +107,61 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multiLineTextContent, "Verify plain text content");
 	}
 	
+	@Test( description = "Verify multiline body mail(plain text content) displayed properly when display mail pref set to HTML",
+			groups = { "sanity" })
+	
+	public void DisplayTextMailWithHTMLPref_03() throws HarnessException {
+		
+		app.zGetActiveAccount().soapSend(
+				"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
+		+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
+		+		"</GetPrefsRequest>");
+		
+		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefMessageViewHtmlPreferred']", null);
+		
+		if (value.equalsIgnoreCase("FALSE")) {
+			// Navigate to preference -> Mail and set display mail pref to Text and verify
+			app.zPagePreferences.zNavigateTo();
+			app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);	
+			
+			String locator = "css=input[id$='_input'][value='true']";
+			ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(locator), "Verify Display Mail as Text radio button is present");
+			
+			app.zPagePreferences.sClick(locator);
+			app.zPagePreferences.zWaitForBusyOverlay();
+			
+			app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
+			
+			app.zGetActiveAccount().soapSend(
+					"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
+			+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
+			+		"</GetPrefsRequest>");
+			
+			String value1 = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefMessageViewHtmlPreferred']", null);
+			ZAssert.assertEquals(value1, "TRUE", "Verify zimbraPrefMessageViewHtmlPreferred preference changed to HTML");
+		}
+		
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email19/multilineTextcontent.txt";
+		final String subject = "subject13214016777777";
+		final String multilineTextContent = "line 1<br />line 2<br />line 3<br /><br />line 4";
+				
+		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+
+		// Refresh current view
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+
+		// Select the message so that it shows in the reading pane
+		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+						
+		// Verify the Body
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multilineTextContent, "Verify plain text content");
+				
+	}
+		
 	@Test( description = "Verify multiline body mail(plain text content) displayed properly when display mail pref set to PlainText",
 			groups = { "sanity" })
-	public void DisplayMailContent_04() throws HarnessException {
+	
+	public void DisplayTextMailWithTextPref_04() throws HarnessException {
 		
 		app.zGetActiveAccount().soapSend(
 				"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
@@ -167,6 +196,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		final String subject = "subject13214016777777";
 		final String multilineTextContent = "line 1<br />line 2<br />line 3<br /><br />line 4"; 
 		
+		// if mail already exist from previous testcases than don't inject 
 		if (!app.zPageMail.zVerifyMailExists(subject)) {
 			LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
 			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
