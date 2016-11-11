@@ -52,6 +52,7 @@ public class DisplayMail extends AbsDisplay {
 
 		public static final String MessageViewPreviewAtBottomCSS = "css=div[id='zv__TV-main__MSG']";
 		public static final String MessageViewPreviewAtRightCSS = "css=div[id='zv__TV-main__MSG']";
+		public static final String MessageViewPreviewOff="css=td[id='off_check'] div[class='ImgMenuRadio']";
 		// 4/26/2012, the message ID is now used in the locator
 		// public static final String MessageViewOpenMessageCSS =
 		// "css=div[id='zv__MSG-1__MSG']";
@@ -739,9 +740,9 @@ public class DisplayMail extends AbsDisplay {
 			} else {
 
 				// Mouse over
-				this.sMouseOver(locator);
-				this.zWaitForBusyOverlay();
-
+				sMouseOver(locator);
+				//this.zWaitForBusyOverlay();
+				
 				// Make sure the tooltip is active
 				page.zWaitForActive();
 
@@ -1206,7 +1207,11 @@ public class DisplayMail extends AbsDisplay {
 				ContainerLocator = Locators.MessageViewPreviewAtBottomCSS;
 			} else if (this.zIsVisiblePerPosition(Locators.MessageViewPreviewAtRightCSS, 0, 0)) {
 				ContainerLocator = Locators.MessageViewPreviewAtRightCSS;
-			} else {
+			
+			} else if (this.sIsElementPresent(Locators.MessageViewPreviewOff)){
+				ContainerLocator=Locators.MessageViewPreviewOff;
+			}
+			else {
 				throw new HarnessException("Unable to determine the current open view");
 			}
 		} else if (this.zIsVisiblePerPosition(PageMail.Locators.IsConViewActiveCSS, 0, 0)) {
@@ -1214,7 +1219,10 @@ public class DisplayMail extends AbsDisplay {
 				ContainerLocator = Locators.ConversationViewPreviewAtBottomCSS;
 			} else if (this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtRightCSS, 0, 0)) {
 				ContainerLocator = Locators.ConversationViewPreviewAtRightCSS;
-			} else {
+			}else if (this.sIsElementPresent(Locators.MessageViewPreviewOff)){
+				ContainerLocator=Locators.MessageViewPreviewOff;
+			}
+			else {
 				throw new HarnessException("Unable to determine the current open view");
 			}
 		} else {
