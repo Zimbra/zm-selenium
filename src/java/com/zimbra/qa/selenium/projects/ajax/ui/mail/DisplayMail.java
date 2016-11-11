@@ -1202,29 +1202,29 @@ public class DisplayMail extends AbsDisplay {
 				throw new HarnessException("Too many message views open: " + count);
 			}
 			ContainerLocator = "css=div#" + this.sGetAttribute(Locators.MessageViewOpenMessageCSS + "@id");
+			
 		} else if (this.zIsVisiblePerPosition(PageMail.Locators.IsMsgViewActiveCSS, 0, 0)) {
 			if (this.zIsVisiblePerPosition(Locators.MessageViewPreviewAtBottomCSS, 0, 0)) {
 				ContainerLocator = Locators.MessageViewPreviewAtBottomCSS;
 			} else if (this.zIsVisiblePerPosition(Locators.MessageViewPreviewAtRightCSS, 0, 0)) {
 				ContainerLocator = Locators.MessageViewPreviewAtRightCSS;
-			
 			} else if (this.sIsElementPresent(Locators.MessageViewPreviewOff)){
 				ContainerLocator=Locators.MessageViewPreviewOff;
-			}
-			else {
+			} else {
 				throw new HarnessException("Unable to determine the current open view");
 			}
+			
 		} else if (this.zIsVisiblePerPosition(PageMail.Locators.IsConViewActiveCSS, 0, 0)) {
 			if (this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtBottomCSS, 0, 0)) {
 				ContainerLocator = Locators.ConversationViewPreviewAtBottomCSS;
 			} else if (this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtRightCSS, 0, 0)) {
 				ContainerLocator = Locators.ConversationViewPreviewAtRightCSS;
-			}else if (this.sIsElementPresent(Locators.MessageViewPreviewOff)){
+			} else if (this.sIsElementPresent(Locators.MessageViewPreviewOff)){
 				ContainerLocator=Locators.MessageViewPreviewOff;
-			}
-			else {
+			} else {
 				throw new HarnessException("Unable to determine the current open view");
 			}
+			
 		} else {
 			throw new HarnessException("Unable to determine the current open view");
 		}
