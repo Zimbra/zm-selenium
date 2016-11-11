@@ -740,8 +740,8 @@ public class DisplayMail extends AbsDisplay {
 			} else {
 
 				// Mouse over
-				sMouseOver(locator);
-				//this.zWaitForBusyOverlay();
+				this.sMouseOver(locator);
+				this.zWaitForBusyOverlay();
 				
 				// Make sure the tooltip is active
 				page.zWaitForActive();
