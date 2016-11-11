@@ -79,9 +79,6 @@ public class CheckErrorAfterRemovingAttachement extends PrefGroupMailByMessageTe
 
 		ZAssert.assertNotNull(item, "Verify one attachment is in the message");
 
-		// Double click the message to open in full reading pane
-		app.zPageMail.zListItem(Action.A_DOUBLECLICK, subject);
-
 		// Click remove attachment
 		DialogWarning dialog = (DialogWarning)display.zListAttachmentItem(Button.B_REMOVE, item);
 		dialog.zClickButton(Button.B_YES);
