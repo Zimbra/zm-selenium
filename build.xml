@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="zm-selenium" default="jar" basedir=".">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="zm-selenium" default="jar" basedir=".">
 
     <import file="../zm-zcs/ant-global.xml"/>
 	<property name="build.version" value="6.0.0"/>
@@ -128,53 +127,47 @@
 			<fileset dir="${build.classes.dir}"/>
 		</copy>
 
-		<copy todir="${build.staf.selenium.jars.dir}">
-			
-			<fileset dir="${build.deps.dir}">
-				<include name="zm-native-8.8.0.jar"/>
-				<include name="zm-common-8.8.0.jar"/>
-			</fileset>
-			
-			<fileset dir="${build.deps.dir}">
-				<include name="selenium-server-standalone-3.0.0.jar"/>
-				<include name="client-combined-3.0.0-nodeps.jar"/>
-			</fileset>
-			
-			<fileset dir="${build.deps.dir}">
-				<include name="ant-tar-patched.jar"/>
-				<include name="apache-log4j-extras-1.0.jar"/>
-				<include name="commons-beanutils-1.7.jar"/>
-				<include name="commons-cli-1.2.jar"/>
-				<include name="commons-codec-1.7.jar"/>
-				<include name="commons-collections-3.2.2.jar"/>
-				<include name="commons-configuration-1.10.jar"/>
-				<include name="commons-httpclient-3.1.jar"/>
-				<include name="commons-io-2.5.jar"/>
-				<include name="commons-lang-2.6.jar"/>
-				<include name="commons-logging.jar"/>
-				<include name="dom4j-1.5.2.jar"/>
-				<include name="ezmorph-1.0.6.jar"/>
-				<include name="guava-13.0.1.jar"/>
-				<include name="htmlcleaner-2.2.jar"/>
-				<include name="javamail-1.4.5.jar"/>
-				<include name="jaxen-1.1-beta-6.jar"/>
-				<include name="jsch-0.1.53.jar"/>
-				<include name="json-lib-2.3-jdk15.jar"/>
-				<include name="json.jar"/>
-				<include name="JSTAF.jar"/>
-				<include name="ldtp-1.0.jar"/>
-				<include name="libidn-1.24.jar"/>
-				<include name="log4j-1.2.16.jar"/>
-				<include name="mariadb-java-client-1.1.8.jar"/>
-				<include name="ocutil-2.4.2.jar"/>
-				<include name="serializer-2.7.2.jar"/>
-				<include name="testng-5.12.1.jar"/>
-				<include name="ws-commons-util-1.0.2.jar"/>				
-				<include name="xml-apis.jar"/>
-				<include name="xmlrpc-client-3.1.3.jar"/>
-				<include name="xmlrpc-common-3.1.3.jar"/>
-			</fileset>
-			
+        <ivy:install organisation="selenium-server-standalone" module="selenium-server-standalone" revision="3.0.0" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="client-combined" module="client-combined" revision="3.0.0-nodeps" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="ant-tar-patched" module="ant-tar-patched" revision="1.0" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="log4j" module="apache-log4j-extras" revision="1.0" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="commons-beanutils" module="commons-beanutils" revision="1.7.0" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="commons-cli" module="commons-cli" revision="1.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="commons-codec" module="commons-codec" revision="1.7" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="commons-collections" module="commons-collections" revision="3.2.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>       
+		<ivy:install organisation="commons-configuration" module="commons-configuration" revision="1.10" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="commons-httpclient" module="commons-httpclient" revision="3.1" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="commons-io" module="commons-io" revision="2.5" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="commons-lang" module="commons-lang" revision="2.6" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="commons-logging" module="commons-logging" revision="1.0.3" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="dom4j" module="dom4j" revision="1.5.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="net.sf.ezmorph" module="ezmorph" revision="1.0.6" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="com.google.guava" module="guava" revision="13.0.1" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="net.sourceforge.htmlcleaner" module="htmlcleaner" revision="2.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="javamail" module="javamail" revision="1.4.5" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="jaxen" module="jaxen" revision="1.1-beta-6" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="jsch" module="jsch" revision="0.1.53" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>       
+		<ivy:install organisation="net.sf.json-lib" module="json-lib" revision="2.4" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="org.json" module="json" revision="20160810" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="net.sf.staf" module="jstaf" revision="3.4.4" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="libidn" module="libidn" revision="1.24" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="log4j" module="log4j" revision="1.2.16" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="mariadb-java-client" module="mariadb-java-client" revision="1.1.8" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="ocutil" module="ocutil" revision="2.4.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="xalan" module="serializer" revision="2.7.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="org.testng" module="testng" revision="5.12.1" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="org.apache.ws.commons.util" module="ws-commons-util" revision="1.0.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="xml-apis" module="xml-apis" revision="2.0.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="org.apache.xmlrpc" module="xmlrpc-client" revision="3.1.3" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="org.apache.xmlrpc" module="xmlrpc-common" revision="3.1.3" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="zimbra" module="zm-common" revision="latest.integration" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="zimbra" module="zm-native" revision="latest.integration" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+
+		<copy todir="${build.staf.selenium.jars.dir}">		
+            <fileset dir="${build.tmp.dir}">
+                <include name="*.jar"/>
+            </fileset>
+						
 			<fileset dir="${dist.lib.dir}">
 				<include name="resources.jar"/>
 			</fileset>
@@ -193,6 +186,8 @@
 				</section>
 			</manifest>
 		</jar>
+        <!-- Delete tmp folder that may have been left over, e.g.: older versions of same libs -->
+        <delete dir="${build.tmp.dir}"/>
 	</target>
 
 	<target name="jar-staf" depends="jar-staf-selenium" description="Creates all the STAF jar files"> </target>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
-	<info organisation="com.zimbra" module="zm-selenium" status="release"> </info>
+	<info organisation="zimbra" module="zm-selenium" status="integration"> </info>
 	<dependencies>
 		<dependency org="ant-contrib" name="ant-contrib" rev="1.0b3"/>
 		<dependency org="ant-tar-patched" name="ant-tar-patched" rev="1.0"/>
@@ -35,8 +35,8 @@
 		<dependency org="xalan" name="serializer" rev="2.7.2"/>
 		<dependency org="xerces" name="xercesImpl" rev="2.9.1"/>
 		<dependency org="xml-apis" name="xml-apis" rev="2.0.2"/>
-		<dependency org="zm-native" name="zm-native" rev="8.8.0"/>
-		<dependency org="zm-common" name="zm-common" rev="8.8.0"/>
+		<dependency org="zimbra" name="zm-native" rev="latest.integration"/>
+        <dependency org="zimbra" name="zm-common" rev="latest.integration"/>
 		<dependency org="selenium-server-standalone" name="selenium-server-standalone" rev="3.0.0"/>
 		<dependency org="client-combined" name="client-combined" rev="3.0.0-nodeps"/>
 	</dependencies>
