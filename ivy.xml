@@ -15,14 +15,14 @@
 		<dependency org="commons-lang" name="commons-lang" rev="2.6"/>
 		<dependency org="commons-logging" name="commons-logging" rev="1.0.3"/>
 		<dependency org="dom4j" name="dom4j" rev="1.5.2"> <exclude org="xerces" module="xerces"/> </dependency>
-		<dependency org="javamail" name="javamail" rev="1.4.5"/>
+		<dependency org="javax.mail" name="mail" rev="1.4.5"/>
 		<dependency org="jaxen" name="jaxen" rev="1.1-beta-6"/>
-		<dependency org="jsch" name="jsch" rev="0.1.53"/>
+		<dependency org="com.jcraft" name="jsch" rev="0.1.53"/>
 		<dependency org="net.sf.json-lib" name="json-lib" rev="2.4"> <artifact name="json-lib" url="http://repo1.maven.org/maven2/net/sf/json-lib/json-lib/2.4/json-lib-2.4-jdk15.jar"/> </dependency>
-		<dependency org="libidn" name="libidn" rev="1.24"/>
+		<dependency org="libidn" name="libidn" rev="1.24" />
 		<dependency org="log4j" name="apache-log4j-extras" rev="1.0"/>
 		<dependency org="log4j" name="log4j" rev="1.2.16"/>
-		<dependency org="mariadb-java-client" name="mariadb-java-client" rev="1.1.8"/>
+		<dependency org="org.mariadb.jdbc" name="mariadb-java-client" rev="1.1.8"/>
 		<dependency org="net.sf.ezmorph" name="ezmorph" rev="1.0.6"/>
 		<dependency org="net.sf.staf" name="jstaf" rev="3.4.4"/>
 		<dependency org="net.sourceforge.htmlcleaner" name="htmlcleaner" rev="2.2"/>
