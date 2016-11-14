@@ -95,6 +95,7 @@ public class DisplayMail extends AbsDisplay {
 		public static final String zReplyButton = "css=div[id$='__REPLY']";
 		public static final String zReplyAllButton = "css=div[id$='__REPLY_ALL']";
 		public static final String zForwardButton = "css=div[id$='__FORWARD']";
+		public static final String zDeleteButton = "css=div[parentid='z_shell']:not([aria-hidden='true']) div[id$='__DELETE']";
 
 	}
 
@@ -102,19 +103,7 @@ public class DisplayMail extends AbsDisplay {
 	 * The various displayed fields in a message
 	 */
 	public static enum Field {
-		ReceivedTime, // Message received time
-		ReceivedDate, // Message received date
-		From, ResentFrom, ReplyTo, To, Cc, OnBehalfOf, OnBehalfOfLabel, Bcc, // Does
-																				// this
-																				// show
-																				// in
-																				// any
-																				// mail
-																				// views?
-																				// Maybe
-																				// in
-																				// Sent?
-		Subject, Body
+		ReceivedTime,ReceivedDate,From, ResentFrom, ReplyTo, To, Cc, OnBehalfOf, OnBehalfOfLabel, Bcc,Subject, Body
 	}
 
 	public String ContainerLocator = Locators.MessageViewPreviewAtBottomCSS;
@@ -304,6 +293,12 @@ public class DisplayMail extends AbsDisplay {
 		} else if (button == Button.B_REPLYALL) {
 
 			locator = Locators.zReplyAllButton;
+			page = null;
+			doPostfixCheck = true;
+
+		} else if (button == Button.B_DELETE) {
+
+			locator = Locators.zDeleteButton;
 			page = null;
 			doPostfixCheck = true;
 
@@ -551,7 +546,7 @@ public class DisplayMail extends AbsDisplay {
 
 		List<AttachmentItem> items = new ArrayList<AttachmentItem>();
 
-		String listLocator = "css=table[id$='attLinks_table']";
+		String listLocator = "css=div[parentid='z_shell']:not([aria-hidden='true']) table[id$='attLinks_table']";
 
 		// Make sure the button exists
 		if (!this.sIsElementPresent(listLocator)) {
