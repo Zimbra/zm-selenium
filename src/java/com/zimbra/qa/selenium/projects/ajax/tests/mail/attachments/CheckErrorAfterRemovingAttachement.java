@@ -21,6 +21,7 @@ import java.io.File;
 import java.util.List;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -32,9 +33,10 @@ public class CheckErrorAfterRemovingAttachement extends PrefGroupMailByMessageTe
 
 	public CheckErrorAfterRemovingAttachement() throws HarnessException {
 		logger.info("New "+ CheckErrorAfterRemovingAttachement.class.getCanonicalName());
-
 	}
 
+	
+	@Bugs(ids = "88160")
 	@Test( description = "Bug 88160 - Remove an attachment from a mail and then delete mail", groups = { "functional" })
 
 	public void CheckErrorAfterRemovingAttachement_01() throws HarnessException {
@@ -116,10 +118,7 @@ public class CheckErrorAfterRemovingAttachement extends PrefGroupMailByMessageTe
 		ZAssert.assertEquals(nodes.length, 0, "Verify the message no longer has the attachment");
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-
-		// Select message and then click delete
-		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
-		app.zPageMail.zToolbarPressButton(Button.B_DELETE);
+		display.zPressButton(Button.B_DELETE);
 
 		// Verify the message no longer exist in the list
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
