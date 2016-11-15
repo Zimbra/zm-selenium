@@ -54,18 +54,22 @@ public class ActivateLicense extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 
-	@Test(description = "Activate license in admin console", groups = { "sanity" })
+	@Test(description = "Activate license in admin console", groups = { "testpk1" })
 
 	public void ActivateLicense_01() throws HarnessException {
 
 		// Click on Activate license
 		DialogForActivateLicense dialog = (DialogForActivateLicense) app.zPageManageLicense.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_ACTIVATE_LICENSE);
-
+		
 		SleepUtil.sleepSmall();
+		
+		// Verify message - Your license is successfully activated.
+		String checkMessage= app.zPageManageGlobalSettings.sGetText(DialogForActivateLicense.Locators.MESSAGE_DIALOG);	
+		ZAssert.assertStringContains(checkMessage, "successfully activated.","Verify message - Your license is successfully activated.");
 
 		// Click Ok on "Zimbra Administration" dialog
 		dialog.zClickButton(Button.B_OK);
-
+		
 		// Get license information
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetLicenseRequest xmlns='urn:zimbraAdmin'>"
