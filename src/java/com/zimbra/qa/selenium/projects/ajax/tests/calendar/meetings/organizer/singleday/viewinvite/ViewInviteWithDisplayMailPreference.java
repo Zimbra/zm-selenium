@@ -61,12 +61,12 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 		final String fontFamilySizeContent ="<br /><div><span style=\"font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif; font-size: 14pt;\">Number list below :</span> </div><br />";
 		final String numberedListContent ="<ol><li>point one</li><li>point two</li><li>point three</li></ol>";
 		final String htmlContentForSOAP = XmlStringUtil.escapeXml("<html><body id='htmlmode'><h3>The following is a new meeting request:</h3><p><table border='0'><tr><th align=left>Subject:</th><td>multiline HTML body </td></tr><tr><th align=left>Organizer:</th><td>'foo' &lt;foo@example.com&gt; </td></tr></table><p><table border='0'><tr><th align=left>Location:</th><td>https://test.webex.com/testweb </td></tr><tr><th align=left>Time:</th><td>Monday, November 7, 2016, 1:30:00 PM - 2:00:00 PM GMT +05:30 Chennai, Kolkata, Mumbai, New Delhi </td></tr></table><p><table border='0'><tr><th align=left>Invitees:</th><td>bar@example.com </td></tr></table><div>*~*~*~*~*~*~*~*~*~*</div><br><div style='font-family: arial, helvetica, sans-serif; font-size: 12pt; color: #000000'><div><strong>BoldString</strong></div><div><em>ItalicString</em></div><div><span style='text-decoration: underline;' data-mce-style='text-decoration: underline;'>Underline String</span></div><div><span style='color: rgb(255, 0, 0);' data-mce-style='color: #ff0000;'>Red Color text</span></div><div><span style='background-color: rgb(0, 128, 0);' data-mce-style='background-color: #008000;'>Green Background</span></div><div><br data-mce-bogus='1'></div><div><span style='font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif; font-size: 14pt;' data-mce-style='font-family: 'comic sans ms', 'comic sans', sans-serif; font-size: 14pt;'>Number list below :</span>&nbsp;</div><div><br data-mce-bogus='1'></div><ol><li>point one</li><li>point two</li><li>point three</li></ol></div></body></html>");
-		final String plainTextContentForSOAP = "BoldString\nItalicString\nUnderline String\nRed Color text\nGreen Background\n\nNumber list below :\n\n\n1. point one\n2. point two\n3. point three'";
+		final String plainTextContentForSOAP = "BoldString\nItalicString\nUnderline String\nRed Color text\nGreen Background\n\nNumber list below :\n\n\n1. point one\n2. point two\n3. point three";
 		
 		// Absolute dates in UTC zone
 		Calendar now = calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 		String tz = ZTimeZone.TimeZoneEST.getID();
 		
 		// Send the message from AccountB to the current login user
@@ -192,7 +192,7 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 		
 		Calendar now = calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
 		String tz = ZTimeZone.TimeZoneEST.getID();
 		
 		// Send the message from AccountB to the current login user
