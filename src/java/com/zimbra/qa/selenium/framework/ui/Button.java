@@ -421,10 +421,6 @@
 		public static final Button B_AB_Y = new Button("26");
 		public static final Button B_AB_Z = new Button("27");
 
-
-
-		//TODO: add more
-
 		// Task buttons
 		public static final Button B_TASK_FILTERBY = new Button("B_TASK_FILTERBY");
 		public static final Button B_TASK_MARKCOMPLETED = new Button("B_TASK_MARKCOMPLETED");
@@ -734,7 +730,23 @@
 		public static final Button B_CONFIGURE_GRANTS = new Button("B_CONFIGURE_GRANTS");
 		public static final Button B_ACCOUNTS_LIMIT_PER_DOMAIN = new Button("B_ACCOUNTS_LIMIT_PER_DOMAIN");
 		public static final Button B_ACCOUNTS_LIMIT_PER_COS = new Button("B_ACCOUNTS_LIMIT_PER_COS");
-
+		public static final Button B_DESCRIPTION = new Button("B_DESCRIPTION");
+		public static final Button B_NOTES = new Button("B_NOTES");
+		public static final Button O_VIEW_RESULTS = new Button("O_VIEW_RESULTS");
+		public static final Button B_MAIL = new Button("B_MAIL");
+		public static final Button B_SHOW_SEARCH_STRINGS = new Button("B_SHOW_SEARCH_STRINGS");
+		public static final Button B_SHOW_IMAP_SEARCH_FOLDERS = new Button("B_SHOW_IMAP_SEARCH_FOLDERS");
+		public static final Button B_ENABLE_MOBILE_SYNC = new Button("B_ENABLE_MOBILE_SYNC");
+		public static final Button B_ENABLE_MOBILE_POLICY = new Button("B_ENABLE_MOBILE_POLICY");
+		public static final Button B_FEATURES = new Button("B_FEATURES");
+		public static final Button B_PREFERENCES = new Button("B_PREFERENCES");
+		public static final Button B_ALIASES = new Button("B_ALIASES");
+		public static final Button B_MOBILE_ACCESS = new Button("B_MOBILE_ACCESS");
+		public static final Button B_ENABLE_ARCHIVING = new Button("B_ENABLE_ARCHIVING");
+		public static final Button B_ARCHIVING = new Button("B_ARCHIVING");
+		
+		
+		
 		// Distribution List  buttons
 		public static final Button O_DISTRIBUTIUONLISTS_DISTRIBUTIONLIST=new Button("O_DISTRIBUTIUONLISTS_DISTRIBUTIONLIST");
 
