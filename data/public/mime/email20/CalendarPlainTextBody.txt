@@ -1,0 +1,76 @@
+Date: Mon, 7 Nov 2016 13:17:52 +0530 (IST)
+From: foo@example.com
+To: bar@example.com
+Subject: multiline plain text body
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="=_9f423623-1c7d-4a6e-b726-5d74bf6eb355"
+
+--=_9f423623-1c7d-4a6e-b726-5d74bf6eb355
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+The following is a new meeting request:
+
+Subject: multiline plain text body 
+Organizer: "foo" <foo@example.com> 
+
+Location: https://test.webex.com/testweb 
+Time: Monday, November 7, 2016, 1:30:00 PM - 2:00:00 PM GMT +05:30 Chennai, Kolkata, Mumbai, New Delhi
+ 
+Invitees: bar@example.com 
+
+
+*~*~*~*~*~*~*~*~*~*
+
+line 1
+line two
+
+
+line 3
+--=_9f423623-1c7d-4a6e-b726-5d74bf6eb355
+Content-Type: text/calendar; charset=utf-8; method=REQUEST; name=meeting.ics
+Content-Transfer-Encoding: 7bit
+
+BEGIN:VCALENDAR
+PRODID:Zimbra-Calendar-Provider
+VERSION:2.0
+METHOD:REQUEST
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:16010101T000000
+TZOFFSETTO:+0530
+TZOFFSETFROM:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:a35295a9-c9a1-4115-a28f-f92f0e666164
+SUMMARY:multiline plain text body
+LOCATION:webex.com
+ATTENDEE;CN=bar;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:mailto:
+ bar@example.com
+ORGANIZER:mailto:foo@example.com
+DTSTART;TZID="Asia/Kolkata":20161107T163000
+DTEND;TZID="Asia/Kolkata":20161107T173000
+STATUS:CONFIRMED
+CLASS:PUBLIC
+X-MICROSOFT-CDO-INTENDEDSTATUS:BUSY
+TRANSP:OPAQUE
+LAST-MODIFIED:20161107T105341Z
+DTSTAMP:20161107T105341Z
+SEQUENCE:0
+DESCRIPTION:The following is a new meeting request:\n\nSubject: multiline pl
+ ain text body \nOrganizer: "foo" <foo@example.com> \n\nLocation: webex.co
+ m \nTime: Monday\, November 7\, 2016\, 4:30:00 PM - 5:30:00 PM GMT +05:30 Ch
+ ennai\, Kolkata\, Mumbai\, New Delhi\n \nInvitees: bar@example.com \n\n\n
+ *~*~*~*~*~*~*~*~*~*\n\nline 1\nline two\n\n\nline 3
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER;RELATED=START:-PT5M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+END:VCALENDAR
+--=_9f423623-1c7d-4a6e-b726-5d74bf6eb355--
