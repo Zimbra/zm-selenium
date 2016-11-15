@@ -103,6 +103,7 @@ public class MailItem implements IItem {
 	 * The flags associated with this mail (see soap.txt for details)
 	 */
 	public String dFlags;
+
 	
 	/**
 	 * The tag names (tn attribute) associated with this mail (see soap.txt for details)
@@ -113,6 +114,8 @@ public class MailItem implements IItem {
 	 * The autoSaveTime associated with this draft) (see soap.txt for details)
 	 */
 	public String dAutoSendTime = null;
+	
+	public String dIsSigned = "false";
 
 	////
 	// FINISH: SOAP Data
@@ -126,7 +129,7 @@ public class MailItem implements IItem {
 	public boolean gIsChecked;
 	
 	public boolean gIsFlagged;
-
+	
 	public enum Priority {
 		High,
 		Normal,
@@ -302,6 +305,10 @@ public class MailItem implements IItem {
 			
 			// Create the object
 			mail = new MailItem();
+			// All day
+
+			//Set IsSigned
+			mail.dIsSigned = m.getAttribute("isSigned",null);
 			
 			// Set the ID
 			mail.setId(m.getAttribute("id", null));
@@ -455,6 +462,7 @@ public class MailItem implements IItem {
 		sb.append("From: ").append(gFrom).append('\n');
 		sb.append("Has Attachments: ").append(gHasAttachments).append('\n');
 		sb.append("Subject: ").append(gSubject).append('\n');
+		sb.append("Is Signed: ").append(dIsSigned).append('\n');
 		sb.append("Fragment: ").append(gFragment).append('\n');
 		sb.append("Folder: ").append(gFolder).append('\n');
 		sb.append("Size: ").append(gSize).append('\n');
@@ -480,7 +488,6 @@ public class MailItem implements IItem {
 	public String getBodyHtml() {
 		return (gBodyHtml);
 	}
-
 
 	/**
 	 * Generate a sample mime from this object

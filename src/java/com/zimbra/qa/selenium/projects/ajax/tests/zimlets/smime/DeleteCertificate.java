@@ -81,6 +81,12 @@ public class DeleteCertificate extends AjaxCommonTest {
         String privateCertId = user3.soapSelectValue("//acct:GetSmimeCertificateInfoResponse/acct:certificate", "pvtKeyId");
         ZAssert.assertNull(publicCertId, "Public certificate not returned");
         ZAssert.assertNull(privateCertId, "Private certificate not returned");
+        
+        //Deleting the account created for the test-case
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+				"<DeleteAccountRequest xmlns='urn:zimbraAdmin'>"
+			+		"<id>"+ user3.ZimbraId + "</id>"
+			+	"</DeleteAccountRequest>");
 
 	}
 	
