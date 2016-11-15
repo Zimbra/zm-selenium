@@ -30,6 +30,9 @@ public class DialogForActivateLicense extends AbsDialog {
 		public static final String YES_BUTTON="css=td[id='zdlg__MSG__GLOBAL__confirm2btn_button5_title']";
 		public static final String NO_BUTTON="zdlg__MSG__GLOBAL__confirm2btn_button4_title";
 		public static final String OK_BUTTON="css=div[id^='zdlg__MSG_button'] table tbody tr td:nth-child(2)";
+		public static final String MESSAGE_DIALOG="css=div[id^='zdlg__MSG_content']";
+		
+		
 	}
 
 	public DialogForActivateLicense(AbsApplication application, AbsTab page) {
