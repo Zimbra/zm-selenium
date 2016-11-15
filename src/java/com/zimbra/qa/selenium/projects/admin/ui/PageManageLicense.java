@@ -192,6 +192,7 @@ public class PageManageLicense extends AbsTab {
 				}
 
 				this.zClickAt(optionLocator,"");
+				SleepUtil.sleepSmall();
 
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();

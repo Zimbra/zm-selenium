@@ -33,7 +33,6 @@ import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
@@ -54,14 +53,12 @@ public class ActivateLicense extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 
-	@Test(description = "Activate license in admin console", groups = { "testpk1" })
+	@Test(description = "Activate license in admin console", groups = { "sanity" })
 
 	public void ActivateLicense_01() throws HarnessException {
 
 		// Click on Activate license
 		DialogForActivateLicense dialog = (DialogForActivateLicense) app.zPageManageLicense.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_ACTIVATE_LICENSE);
-		
-		SleepUtil.sleepSmall();
 		
 		// Verify message - Your license is successfully activated.
 		String checkMessage= app.zPageManageGlobalSettings.sGetText(DialogForActivateLicense.Locators.MESSAGE_DIALOG);	
