@@ -45,6 +45,7 @@ public class PageManageLicense extends AbsTab {
 		public static final String GLOBAL_SETTINGS_LICENSE="css=div[id^='zti__AppAdmin__CONFIGURATION__GSET'] div[class='ZTreeItemTextCell']:contains('License')";
 		public static final String GENERAL_INFORMATION="css=div[id^='zti__AppAdmin__CONFIGURATION__GSET'] div[class='ZTreeItemTextCell']:contains('General Information')";
 		public static final String UPDATE_LICENSE="css=div[id^='zmi__zb_currentApp__']:contains('Update License')";
+		public static final String ACTIVATE_LICENSE="css=div[id^='zmi__zb_currentApp__']:contains('Activate License')";
 		public static final String UPLOAD_LICENSE ="css=input[name='licenseFile']";
 		public static final String NEXT_BUTTON="css=td[id$='_button12_title']";
 		public static final String INSTALL_COMMERCIAL_CERTIFICATE="css=input[id='zdlgv__UNDEFINE_comm']";
@@ -96,7 +97,7 @@ public class PageManageLicense extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if ( zIsActive() ) {
-			
+
 			return;
 		}
 
@@ -105,7 +106,7 @@ public class PageManageLicense extends AbsTab {
 		SleepUtil.sleepMedium();		
 		zClickAt(Locators.GLOBAL_SETTING, "");
 		zClickAt(Locators.GLOBAL_SETTINGS_LICENSE, "");
-	
+
 		zWaitForActive();
 	}
 
@@ -125,7 +126,7 @@ public class PageManageLicense extends AbsTab {
 			throws HarnessException {
 		return null;
 	}
-	
+
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButtonWithPulldown("+ pulldown +", "+ option +")");
@@ -139,7 +140,7 @@ public class PageManageLicense extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 
 
-		
+
 		String pulldownLocator = null;
 		String optionLocator = null;
 		AbsPage page = null;
@@ -152,9 +153,14 @@ public class PageManageLicense extends AbsTab {
 				optionLocator = Locators.UPDATE_LICENSE;
 				page = new WizardUpdateLicense(this);
 
-				
-			}
-			
+
+			}else if (option == Button.B_ACTIVATE_LICENSE) {
+
+				optionLocator = Locators.ACTIVATE_LICENSE; 
+				page = new DialogForActivateLicense(this.MyApplication,null);
+
+			}	
+
 			else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
@@ -186,6 +192,7 @@ public class PageManageLicense extends AbsTab {
 				}
 
 				this.zClickAt(optionLocator,"");
+				SleepUtil.sleepSmall();
 
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();
@@ -197,7 +204,7 @@ public class PageManageLicense extends AbsTab {
 		return (page);
 
 	}
-	
+
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
@@ -208,7 +215,7 @@ public class PageManageLicense extends AbsTab {
 			throw new HarnessException("Button cannot be null!");
 
 
-		
+
 		//
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
@@ -217,10 +224,11 @@ public class PageManageLicense extends AbsTab {
 		//
 
 		if (button == Button.B_UPLOAD_LICENSE) {
-			
+
 			locator = Locators.UPLOAD_LICENSE; 
-			
+
 			page = new DialogUploadFile(MyApplication, this);
+
 		}
 		else {
 			throw new HarnessException("no logic defined for button "+ button);
