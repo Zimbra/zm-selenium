@@ -52,6 +52,7 @@ public class DisplayMail extends AbsDisplay {
 
 		public static final String MessageViewPreviewAtBottomCSS = "css=div[id='zv__TV-main__MSG']";
 		public static final String MessageViewPreviewAtRightCSS = "css=div[id='zv__TV-main__MSG']";
+		public static final String MessageViewPreviewOff="css=td[id='off_check'] div[class='ImgMenuRadio']";
 		// 4/26/2012, the message ID is now used in the locator
 		// public static final String MessageViewOpenMessageCSS =
 		// "css=div[id='zv__MSG-1__MSG']";
@@ -94,6 +95,7 @@ public class DisplayMail extends AbsDisplay {
 		public static final String zReplyButton = "css=div[id$='__REPLY']";
 		public static final String zReplyAllButton = "css=div[id$='__REPLY_ALL']";
 		public static final String zForwardButton = "css=div[id$='__FORWARD']";
+		public static final String zDeleteButton = "css=div[parentid='z_shell']:not([aria-hidden='true']) div[id$='__DELETE']";
 
 	}
 
@@ -101,19 +103,7 @@ public class DisplayMail extends AbsDisplay {
 	 * The various displayed fields in a message
 	 */
 	public static enum Field {
-		ReceivedTime, // Message received time
-		ReceivedDate, // Message received date
-		From, ResentFrom, ReplyTo, To, Cc, OnBehalfOf, OnBehalfOfLabel, Bcc, // Does
-																				// this
-																				// show
-																				// in
-																				// any
-																				// mail
-																				// views?
-																				// Maybe
-																				// in
-																				// Sent?
-		Subject, Body
+		ReceivedTime,ReceivedDate,From, ResentFrom, ReplyTo, To, Cc, OnBehalfOf, OnBehalfOfLabel, Bcc,Subject, Body
 	}
 
 	public String ContainerLocator = Locators.MessageViewPreviewAtBottomCSS;
@@ -303,6 +293,12 @@ public class DisplayMail extends AbsDisplay {
 		} else if (button == Button.B_REPLYALL) {
 
 			locator = Locators.zReplyAllButton;
+			page = null;
+			doPostfixCheck = true;
+
+		} else if (button == Button.B_DELETE) {
+
+			locator = Locators.zDeleteButton;
 			page = null;
 			doPostfixCheck = true;
 
@@ -550,7 +546,7 @@ public class DisplayMail extends AbsDisplay {
 
 		List<AttachmentItem> items = new ArrayList<AttachmentItem>();
 
-		String listLocator = "css=table[id$='attLinks_table']";
+		String listLocator = "css=div[parentid='z_shell']:not([aria-hidden='true']) table[id$='attLinks_table']";
 
 		// Make sure the button exists
 		if (!this.sIsElementPresent(listLocator)) {
@@ -741,7 +737,7 @@ public class DisplayMail extends AbsDisplay {
 				// Mouse over
 				this.sMouseOver(locator);
 				this.zWaitForBusyOverlay();
-
+				
 				// Make sure the tooltip is active
 				page.zWaitForActive();
 
@@ -1201,22 +1197,29 @@ public class DisplayMail extends AbsDisplay {
 				throw new HarnessException("Too many message views open: " + count);
 			}
 			ContainerLocator = "css=div#" + this.sGetAttribute(Locators.MessageViewOpenMessageCSS + "@id");
+			
 		} else if (this.zIsVisiblePerPosition(PageMail.Locators.IsMsgViewActiveCSS, 0, 0)) {
 			if (this.zIsVisiblePerPosition(Locators.MessageViewPreviewAtBottomCSS, 0, 0)) {
 				ContainerLocator = Locators.MessageViewPreviewAtBottomCSS;
 			} else if (this.zIsVisiblePerPosition(Locators.MessageViewPreviewAtRightCSS, 0, 0)) {
 				ContainerLocator = Locators.MessageViewPreviewAtRightCSS;
+			} else if (this.sIsElementPresent(Locators.MessageViewPreviewOff)){
+				ContainerLocator=Locators.MessageViewPreviewOff;
 			} else {
 				throw new HarnessException("Unable to determine the current open view");
 			}
+			
 		} else if (this.zIsVisiblePerPosition(PageMail.Locators.IsConViewActiveCSS, 0, 0)) {
 			if (this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtBottomCSS, 0, 0)) {
 				ContainerLocator = Locators.ConversationViewPreviewAtBottomCSS;
 			} else if (this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtRightCSS, 0, 0)) {
 				ContainerLocator = Locators.ConversationViewPreviewAtRightCSS;
+			} else if (this.sIsElementPresent(Locators.MessageViewPreviewOff)){
+				ContainerLocator=Locators.MessageViewPreviewOff;
 			} else {
 				throw new HarnessException("Unable to determine the current open view");
 			}
+			
 		} else {
 			throw new HarnessException("Unable to determine the current open view");
 		}

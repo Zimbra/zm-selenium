@@ -24,6 +24,7 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.drafts.ReplyingMessageDoesntCreateDraft;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
 public class DisplayMailContent extends PrefGroupMailByMessageTest {
@@ -75,10 +76,9 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		app.zPagePreferences.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);	
 		
-		String locator = "css=input[id$='_input'][value='false']";
-		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(locator), "Verify Display Mail as Text radio button is present");
+		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(PagePreferences.Locators.zDisplayMailAsText), "Verify Display Mail as Text radio button is present");
 		
-		app.zPagePreferences.sClick(locator);
+		app.zPagePreferences.sClick(PagePreferences.Locators.zDisplayMailAsText);
 		app.zPagePreferences.zWaitForBusyOverlay();
 		
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
@@ -124,10 +124,9 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 			app.zPagePreferences.zNavigateTo();
 			app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);	
 			
-			String locator = "css=input[id$='_input'][value='true']";
-			ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(locator), "Verify Display Mail as Text radio button is present");
+			ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(PagePreferences.Locators.zDisplayMailAsHTML), "Verify Display Mail as HTML radio button is present");
 			
-			app.zPagePreferences.sClick(locator);
+			app.zPagePreferences.sClick(PagePreferences.Locators.zDisplayMailAsHTML);
 			app.zPagePreferences.zWaitForBusyOverlay();
 			
 			app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
@@ -175,10 +174,9 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 			app.zPagePreferences.zNavigateTo();
 			app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);	
 			
-			String locator = "css=input[id$='_input'][value='false']";
-			ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(locator), "Verify Display Mail as Text radio button is present");
+			ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(PagePreferences.Locators.zDisplayMailAsText), "Verify Display Mail as Text radio button is present");
 			
-			app.zPagePreferences.sClick(locator);
+			app.zPagePreferences.sClick(PagePreferences.Locators.zDisplayMailAsText);
 			app.zPagePreferences.zWaitForBusyOverlay();
 			
 			app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
