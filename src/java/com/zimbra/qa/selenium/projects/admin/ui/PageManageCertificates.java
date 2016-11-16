@@ -45,13 +45,13 @@ public class PageManageCertificates extends AbsTab {
 		public static final String CERTIFICATES="Certificates";
 		public static final String SERVER_HOST_NAME="css=div[id^='zl__SERVER_MANAGE'] table tbody tr:nth-child(2) td div[id^='zli__DWT']";
 		public static final String VIEW_CERTIFICATE ="css=div[id='zmi__zb_currentApp__VIEW']";
-		public static final String LDAP_CERTIFICATE_LABEL ="css=div.DwtComposite td:contains('zimbra.com')";
+		public static final String LDAP_CERTIFICATE_LABEL ="css=div[id='DWT124'] div table tr td+td:contains('Zimbra')";
 		public static final String INSTALL_MESSAGE ="css=td[class='DwtAlertContent']:contains('Your certificate was installed successfully')";
 		public static final String UPLOAD_CERTIFICATE ="css=input[name='certFile']";
 		public static final String UPLOAD_ROOT_CERTIFICATE ="css=input[name='rootCA']";
-		
-		
-		
+
+
+
 		public static final String INSTALL_CERTIFICATE="css=div[id='zmi__zb_currentApp__NEW']";
 	}
 
@@ -100,32 +100,23 @@ public class PageManageCertificates extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if ( zIsActive() ) {
+			// This page is already active.
 			return;
 		}
 
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.CONFIGURE_ICON,"");
-		SleepUtil.sleepMedium();
 		sIsElementPresent(Locators.CERTIFICATE);
 		zClickAt(Locators.CERTIFICATE, "");
-
 		zWaitForActive();
+		SleepUtil.sleepMedium();
 
 	}
 
-	@Override
-	public AbsPage zListItem(Action action, String item)
-			throws HarnessException {
-		return null;
-	}
+
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item)
-			throws HarnessException {
-		return null;
-	}
-	@Override
-	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
 			throws HarnessException {
 		return null;
 	}
@@ -139,7 +130,7 @@ public class PageManageCertificates extends AbsTab {
 			throw new HarnessException("Button cannot be null!");
 
 
-		
+		// Default behavior variables
 		//
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
@@ -153,12 +144,17 @@ public class PageManageCertificates extends AbsTab {
 			locator = PageMain.Locators.HomeInstallCertificate;
 			// Create the page
 			page = new WizardInstallCertificate(this);
-			
+			// FALL THROUGH
 
 		} else if (button == Button.B_UPLOAD_CERTIFICATE) {
-			
+
 			locator = Locators.UPLOAD_CERTIFICATE;
-			
+
+			page = new DialogUploadFile(MyApplication, this);
+		}else if (button == Button.B_UPLOAD_ROOT_CERTIFICATE) {
+
+			locator = Locators.UPLOAD_ROOT_CERTIFICATE;
+
 			page = new DialogUploadFile(MyApplication, this);
 		}
 		else {
@@ -183,7 +179,7 @@ public class PageManageCertificates extends AbsTab {
 		sMouseOut(locator);
 		return (page);
 	}
-	
+
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButtonWithPulldown("+ pulldown +", "+ option +")");
@@ -197,10 +193,10 @@ public class PageManageCertificates extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 
 
-		
-		String pulldownLocator = null;
-		String optionLocator = null;
-		AbsPage page = null;
+		// Default behavior variables
+		String pulldownLocator = null; // If set, this will be expanded
+		String optionLocator = null; // If set, this will be clicked
+		AbsPage page = null; // If set, this page will be returned
 
 		if (pulldown == Button.B_GEAR_BOX) {
 			pulldownLocator = Locators.GEAR_ICON;
@@ -209,14 +205,14 @@ public class PageManageCertificates extends AbsTab {
 
 				optionLocator = Locators.VIEW_CERTIFICATE;
 
-				
-			} else if (option == Button.B_INSTALL_CERTIFICATE) {
+				// FALL THROUGH
+			}else if (option == Button.B_INSTALL_CERTIFICATE) {
 
 				optionLocator = Locators.INSTALL_CERTIFICATE;
 
 				page = new WizardInstallCertificate(this);
 			}
-			
+
 			else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
@@ -261,7 +257,7 @@ public class PageManageCertificates extends AbsTab {
 	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
-		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
+		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}
@@ -271,6 +267,64 @@ public class PageManageCertificates extends AbsTab {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public AbsPage zSelectServer() throws HarnessException {
+		AbsPage page = null;
+		SleepUtil.sleepMedium();
+		if(this.sIsElementPresent(Locators.SERVER_HOST_NAME))
+			this.zClickAt(PageManageCertificates.Locators.SERVER_HOST_NAME, "");
+		return (page);
+	}
+
+	@Override
+	public AbsPage zListItem(Action action, String item)
+			throws HarnessException {
+		logger.info(myPageName() + " zListItem("+ action +", "+ item +")");
+
+		tracer.trace(action +" on subject = "+ item);
+
+		AbsPage page = null;
+		SleepUtil.sleepMedium();
+
+		// How many items are in the table?
+		String rowsLocator = "css=div[id='zl__SERVER_MANAGE'] div[id$='__rows'] div[id^='zli__']";
+		int count = this.sGetCssCount(rowsLocator);
+		logger.debug(myPageName() + " zListGetPolicy: number of policys: "+ count);
+
+		// Get each conversation's data from the table list
+		for (int i = 1; i <= count; i++) {
+			final String serverLocator = rowsLocator + ":nth-child("+i+")";
+			String locator;
+
+			// Email Address
+			locator = serverLocator + " tr";
+
+
+			if(this.sIsElementPresent(locator))
+			{
+				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
+				{
+					if(action == Action.A_LEFTCLICK) {
+						zClick(locator);
+						break;
+					} else if(action == Action.A_RIGHTCLICK) {
+						zRightClick(locator);
+						break;
+					}
+
+				}
+			}
+		}
+		return page;
+	}
+
+	@Override
+	public AbsPage zListItem(Action action, Button option, Button subOption,
+			String item) throws HarnessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 }
