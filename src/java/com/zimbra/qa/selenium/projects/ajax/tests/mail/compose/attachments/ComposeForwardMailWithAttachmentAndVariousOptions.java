@@ -90,6 +90,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 					mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
 				}
 
+				SleepUtil.sleepSmall();
 				// Verify that the message is included as attachment
 				ZAssert.assertTrue(mailform.zHasAttachment(subject),"Original message is not present as attachment");
 
