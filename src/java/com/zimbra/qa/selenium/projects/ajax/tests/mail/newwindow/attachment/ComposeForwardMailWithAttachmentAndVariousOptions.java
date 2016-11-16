@@ -42,7 +42,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 
 	@Bugs(ids = "103903, 106583")
 	@Test( description = "Verify the presence of attachment while forwarding a mail and changing option from 'Include Original as an attachment' to 'Include Original message' in new window", 
-			groups = { "functional","mitesh" })
+			groups = { "functional" })
 
 	public void ComposeForwardMailWithAttachmentAndVariousOptions_01() throws HarnessException {
 
@@ -111,6 +111,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 					app.zPageMail.zPressButton(Button.B_MY_COMPUTER);
 					zUploadFile(filePath);
 
+					SleepUtil.sleepSmall();
 					// Include the original message in the body and not as attachment
 					mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_MESSAGE);
 					SleepUtil.sleepSmall();
