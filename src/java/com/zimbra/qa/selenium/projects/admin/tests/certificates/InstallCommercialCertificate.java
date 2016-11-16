@@ -48,7 +48,7 @@ public class InstallCommercialCertificate extends AdminCommonTest {
 	@Test(	description = "Install Commercial Certificate",
 			groups = { "smoke" })
 
-	public void InstallSelfSignedCertificate_01() throws HarnessException {
+	public void InstallCommercialCertificate_01() throws HarnessException {
 
 		// Create file item
 		final String fileName = "commercial.crt";
@@ -64,8 +64,7 @@ public class InstallCommercialCertificate extends AdminCommonTest {
 
 		// Click on install certificate
 		WizardInstallCertificate wizard= (WizardInstallCertificate)app.zPageManageCertificates.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_INSTALL_CERTIFICATE);
-		SleepUtil.sleepMedium();
-
+		
 		// Click on next
 		wizard.sClickAt(Locators.NEXT_BUTTON,"");
 		SleepUtil.sleepMedium();
