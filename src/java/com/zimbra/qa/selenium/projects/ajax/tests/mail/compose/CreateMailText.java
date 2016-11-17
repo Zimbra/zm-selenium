@@ -17,6 +17,7 @@
 
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
@@ -26,6 +27,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Locators;
 
 public class CreateMailText extends PrefGroupMailByMessageTest {
 
@@ -235,12 +237,48 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		
 		ZAssert.assertStringContains(received.getFlags(), verify, "Verify the correct priority was sent");
 	}
+	
+	@Test( description = "Send a multiline plain text mail using Text editor", 
+			groups = { "sanity" })
+	
+	public void CreateMailWithMultilineText_06() throws HarnessException {
+		
+		final String toRecipients = ZimbraAccount.AccountC().EmailAddress;
+		final String subject = "subject" + ConfigProperties.getUniqueString();
+		final String plainTextBody = "Plain text line 1" + '\n' + "Plain text line two" + '\n' + "Plain text line 3";
+		
+		// Open the new mail form
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+		ZAssert.assertNotNull(mailform, "Verify the new form opened");
+		
+		// Fill out the form with the data
+		mailform.zFillField(Field.To, toRecipients);
+		mailform.zFillField(Field.Subject, subject);
+		
+		// Enter multiline plain text
+		mailform.sFocus(Locators.zPlainTextBodyField);
+		//mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
+		mailform.zKeyboard.zTypeCharacters("Plain text line 1");
+		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+		mailform.zKeyboard.zTypeCharacters("Plain text line two");
+		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+		mailform.zKeyboard.zTypeCharacters("Plain text line 3");
+		
+		// Send the message
+		mailform.zSubmit();
 
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountC(), "subject:("+ subject +")");
+
+		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
+		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountC().EmailAddress, "Verify the to field is correct");
+		ZAssert.assertEquals(received.dSubject, subject, "Verify the subject field is correct");
+		ZAssert.assertStringContains(received.dBodyText, plainTextBody, "Verify the body field text is correct");
+	}
 	
 	@Test( description = "Send a mail to 100 recipients",
 			groups = { "deprecated" } ) // The harness doesn't handle the postqueue for such a large message
 
-	public void CreateMailText_06() throws HarnessException {
+	public void CreateMailText_07() throws HarnessException {
 		
 		//-- Data
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -272,5 +310,5 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received");
 		
-	}
+	}	
 }
