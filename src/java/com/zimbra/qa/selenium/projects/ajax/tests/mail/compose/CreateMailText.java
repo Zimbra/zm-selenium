@@ -64,6 +64,42 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(received.dSubject, mail.dSubject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(received.dBodyText, mail.dBodyText, "Verify the body field is correct");
 	}
+	
+	@Test( description = "Send a multiline plain text mail using Text editor", 
+			groups = { "sanity" })
+	
+	public void CreateMailWithMultilineText_02() throws HarnessException {
+		
+		final String toRecipients = ZimbraAccount.AccountC().EmailAddress;
+		final String subject = "subject" + ConfigProperties.getUniqueString();
+		final String plainTextBody = "Plain text line 1" + '\n' + "Plain text line two" + '\n' + "Plain text line 3";
+		
+		// Open the new mail form
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+		ZAssert.assertNotNull(mailform, "Verify the new form opened");
+		
+		// Fill out the form with the data
+		mailform.zFillField(Field.To, toRecipients);
+		mailform.zFillField(Field.Subject, subject);
+		
+		// Enter multiline plain text
+		mailform.sFocus(Locators.zPlainTextBodyField);
+		mailform.zKeyboard.zTypeCharacters("Plain text line 1");
+		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+		mailform.zKeyboard.zTypeCharacters("Plain text line two");
+		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+		mailform.zKeyboard.zTypeCharacters("Plain text line 3");
+		
+		// Send the message
+		mailform.zSubmit();
+
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountC(), "subject:("+ subject +")");
+
+		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
+		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountC().EmailAddress, "Verify the to field is correct");
+		ZAssert.assertEquals(received.dSubject, subject, "Verify the subject field is correct");
+		ZAssert.assertStringContains(received.dBodyText, plainTextBody, "Verify the body field text is correct");
+	}
 
 	
 	@DataProvider(name = "DataProvideNewMessageShortcuts")
@@ -80,7 +116,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			groups = { "functional" },
 			dataProvider = "DataProvideNewMessageShortcuts")
 	
-	public void CreateMailText_02(Shortcut shortcut, String keys) throws HarnessException {
+	public void CreateMailText_03(Shortcut shortcut, String keys) throws HarnessException {
 		
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		// Create the message data to be sent
@@ -112,7 +148,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	
 	@Test( description = "Send a mail with CC", groups = { "functional" })
 	
-	public void CreateMailText_03() throws HarnessException {
+	public void CreateMailText_04() throws HarnessException {
 		
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
@@ -156,7 +192,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	
 	@Test( description = "Send a mail with BCC", groups = { "functional" })
 	
-	public void CreateMailText_04() throws HarnessException {
+	public void CreateMailText_05() throws HarnessException {
 		
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
@@ -207,7 +243,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			groups = { "functional" },
 			dataProvider = "DataProvidePriorities")
 	
-	public void CreateMailText_05(Button option, String verify) throws HarnessException {
+	public void CreateMailText_06(Button option, String verify) throws HarnessException {
 		
 		// option: Button.B_PRIORITY_HIGH/NORMAL/LOW
 		// verify: the f field in the GetMsgResponse
@@ -236,42 +272,6 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(received, "Verify the message is received");
 		
 		ZAssert.assertStringContains(received.getFlags(), verify, "Verify the correct priority was sent");
-	}
-	
-	@Test( description = "Send a multiline plain text mail using Text editor", 
-			groups = { "sanity" })
-	
-	public void CreateMailWithMultilineText_06() throws HarnessException {
-		
-		final String toRecipients = ZimbraAccount.AccountC().EmailAddress;
-		final String subject = "subject" + ConfigProperties.getUniqueString();
-		final String plainTextBody = "Plain text line 1" + '\n' + "Plain text line two" + '\n' + "Plain text line 3";
-		
-		// Open the new mail form
-		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
-		// Fill out the form with the data
-		mailform.zFillField(Field.To, toRecipients);
-		mailform.zFillField(Field.Subject, subject);
-		
-		// Enter multiline plain text
-		mailform.sFocus(Locators.zPlainTextBodyField);
-		mailform.zKeyboard.zTypeCharacters("Plain text line 1");
-		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-		mailform.zKeyboard.zTypeCharacters("Plain text line two");
-		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-		mailform.zKeyboard.zTypeCharacters("Plain text line 3");
-		
-		// Send the message
-		mailform.zSubmit();
-
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountC(), "subject:("+ subject +")");
-
-		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
-		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountC().EmailAddress, "Verify the to field is correct");
-		ZAssert.assertEquals(received.dSubject, subject, "Verify the subject field is correct");
-		ZAssert.assertStringContains(received.dBodyText, plainTextBody, "Verify the body field text is correct");
 	}
 	
 	@Test( description = "Send a mail to 100 recipients",

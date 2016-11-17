@@ -49,7 +49,6 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 		
 		// Fill out the form with the data
-
 		mailform.zFill(mail);
 		
 		// Send the message
