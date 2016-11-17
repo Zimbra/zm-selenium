@@ -81,12 +81,12 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 		                     "</comp></inv>" +
 		                     "<e a='"+ app.zGetActiveAccount().EmailAddress +"' t='t'/>" +
 		                     "<mp ct='multipart/alternative'>" +
-		                     "<mp ct='text/plain'>" +
-		                     "<content>"+ plainTextContentForSOAP +"</content>" +
-		                     "</mp>" +
-		                     "<mp ct='text/html'>" +
-		                     "<content>"+ htmlContentForSOAP +"</content>" +
-		                     "</mp>" +
+		                     	"<mp ct='text/plain'>" +
+		                     	"<content>"+ plainTextContentForSOAP +"</content>" +
+		                     	"</mp>" +
+		                     	"<mp ct='text/html'>" +
+		                     	"<content>"+ htmlContentForSOAP +"</content>" +
+		                     	"</mp>" +
 		                     "</mp>" +
 		                     "<su>"+ subject +"</su>" +
 		                     "</m>" +

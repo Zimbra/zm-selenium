@@ -607,15 +607,11 @@ public class AjaxCommonTest {
 			robot.keyRelease(KeyEvent.VK_V);
 			robot.keyRelease(KeyEvent.VK_CONTROL);
 
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
+			robot.delay(1000);
+			
 			robot.keyPress(KeyEvent.VK_ENTER);
 			robot.keyRelease(KeyEvent.VK_ENTER);
-
+			
 		} catch (AWTException e) {
 			e.printStackTrace();
 		}

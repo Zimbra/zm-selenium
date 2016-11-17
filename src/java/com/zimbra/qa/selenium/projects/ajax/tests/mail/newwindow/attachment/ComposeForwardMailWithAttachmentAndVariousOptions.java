@@ -107,9 +107,11 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 					// Verify that the message is included as attachment in new window
 					ZAssert.assertTrue(mailform.zHasAttachment(subject),"Original message is not present as attachment");
 
-					app.zPageMail.zKeyboard.zTypeCharacters("<CTRL><O>");
+					app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
+					app.zPageMail.zPressButton(Button.B_MY_COMPUTER);
 					zUploadFile(filePath);
 
+					SleepUtil.sleepSmall();
 					// Include the original message in the body and not as attachment
 					mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_MESSAGE);
 					SleepUtil.sleepSmall();
