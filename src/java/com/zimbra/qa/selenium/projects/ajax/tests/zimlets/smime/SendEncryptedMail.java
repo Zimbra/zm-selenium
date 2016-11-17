@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.smime;
 
 import org.testng.annotations.Test;
 
-import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.RecipientItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -31,53 +30,82 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.zimlet.DialogViewCertificate;
 
 
-public class SendSignedMail extends AjaxCommonTest {
+public class SendEncryptedMail extends AjaxCommonTest {
 
-	public SendSignedMail() {
+	public SendEncryptedMail() {
 		
-		logger.info("New "+ SendSignedMail.class.getCanonicalName());		
+		logger.info("New "+ SendEncryptedMail.class.getCanonicalName());		
 	}
 
 	@Test ( description = "Verify that Signed message can be sent from Web-client correctly and user can view it", priority=4, 
 			groups = { "smime"})
 	
-	public void SendSignedMail_01() throws HarnessException  {
-		ZimbraAccount user3 = new ZimbraAccount("user3"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
-		user3.provision();
-		user3.authenticate();
+	public void SendEncryptedMail_01() throws HarnessException  {
+		ZimbraAccount user1 = new ZimbraAccount("user1"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
+		user1.provision();
+		user1.authenticate();
 
+		ZimbraAccount user4 = new ZimbraAccount("user4"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
+		user4.provision();
+		user4.authenticate();
+
+		String user4PublicCert = "MIICTTCCAbYCAxAAATANBgkqhkiG9w0BAQsFADBuMQ8wDQYDVQQKEwZaaW1icmExIzAhBgkqhkiG9w0BCQEWFGFkbWluQHRlc3Rkb21haW4uY29tMRIwEAYDVQQHEwlQYWxvIEFsdG8xCzAJBgNVBAgTAkNBMRUwEwYDVQQDEwxUZXN0IERlbW8gQ0EwHhcNMTYxMTAyMDQ0MTI0WhcNMTcxMTAyMDQ0MTI0WjBuMQswCQYDVQQGEwJJTjELMAkGA1UECAwCTVMxEDAOBgNVBAoMB1N5bmFjb3IxDjAMBgNVBAMMBXVzZXI0MSMwIQYJKoZIhvcNAQkBFhR1c2VyNEB0ZXN0ZG9tYWluLmNvbTELMAkGA1UECwwCUkQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAOpPcN6qG2yHRMxiqxlGg1Bm+dnBFjbpDbNZ9YDgTub+QzpLTyrySiofJoYeX0t2ToknEcgF1Jmb7i/I4/m5kxfKZCZT4Jv8cqoIdA7E2TXVZv62rodp6ZU/qEaubEOPrh/UQy4xW29iV2eIxcoBCamNnOf28vW2miyHeHUexipZAgMBAAEwDQYJKoZIhvcNAQELBQADgYEAqwkOiMOkfvmhqG0Ec2Ezsk5HAkZQt/1+qPPV6BBgb/mMCEMSmM+j/VJZtacQJ1wGWx51zlGbXWnESAkcIDHYtAMnmbPTOSEaYn9LGjHlboelI7wHHluoU2DyQFdwAkNvNMkegGIsnaiUv5YbMfndGdpxcknbqAUbbETk9eP1Qi4=";
+		
 		// Modify the test account and change zimbraFeatureSMIMEEnabled to TRUE
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
-			+		"<id>"+ user3.ZimbraId +"</id>"
+			+		"<id>"+ user1.ZimbraId +"</id>"
 			+		"<a n='zimbraFeatureSMIMEEnabled'>TRUE</a>"
 			+	"</ModifyAccountRequest>");
 
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
-			+		"<id>"+ ZimbraAccount.Account1().ZimbraId +"</id>"
+			+		"<id>"+ user4.ZimbraId +"</id>"
 			+		"<a n='zimbraFeatureSMIMEEnabled'>TRUE</a>"
 			+	"</ModifyAccountRequest>");
 		
 		// Create file item
 		String filePath = ConfigProperties.getBaseDirectory()
-				+ "/data/private/certs/user3_digitalid.p12";
+				+ "/data/private/certs/user1_digitalid.p12";
 
 		// Upload file to server through RestUtil
-		String attachmentId = user3.uploadFile(filePath);
+		String attachmentId = user1.uploadFile(filePath);
 
-		user3.soapSend(
+		user1.soapSend(
+				"<SaveSmimeCertificateRequest xmlns='urn:zimbraAccount'>" +
+				"<upload id='" + attachmentId + "'></upload>" +
+                "<password>test123</password>" +
+                "</SaveSmimeCertificateRequest>");
+
+		// Create file item
+		filePath = ConfigProperties.getBaseDirectory()
+				+ "/data/private/certs/user4_digitalid.p12";
+
+		// Upload file to server through RestUtil
+		 attachmentId = user4.uploadFile(filePath);
+
+		user4.soapSend(
 				"<SaveSmimeCertificateRequest xmlns='urn:zimbraAccount'>" +
 				"<upload id='" + attachmentId + "'></upload>" +
                 "<password>test123</password>" +
                 "</SaveSmimeCertificateRequest>");
 		
+		user1.soapSend(
+				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
+				"<cn>"+
+				"<a n='firstName'>user4</a>" +
+				"<a n='lastName'>user</a>" +
+				"<a n='email'>" + user4.EmailAddress + "</a>" +
+				"<a n='userCertificate'>" + user4PublicCert + "</a>" +
+				"</cn>" +
+				"</CreateContactRequest>");
+	
         app.zPageMain.zLogout();
-		app.zPageLogin.zLogin(user3);
+		app.zPageLogin.zLogin(user1);
 		
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
-		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.Account1()));
+		mail.dToRecipients.add(new RecipientItem(user4));
 		mail.dSubject = "SignedMessage" + ConfigProperties.getUniqueString();
 		mail.dBodyHtml = "SignedMessageBody" + ConfigProperties.getUniqueString();
 
@@ -89,31 +117,25 @@ public class SendSignedMail extends AjaxCommonTest {
 		mailform.zFill(mail);
 
 		//Choose sign only from the secure email drop-down
-		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN);
+		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN_AND_ENCRYPT);
 		SleepUtil.sleepMedium();
 		
 		// Send the message
 		mailform.zSubmit();
 		
 		//Search for the signed mail in recipients inbox
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.Account1(), "subject:("+ mail.dSubject +")");
-		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, user3.EmailAddress, "Verify the from field is correct");
-		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.Account1().EmailAddress, "Verify the to field is correct");
+		MailItem received = MailItem.importFromSOAP(user4, "subject:("+ mail.dSubject +")");
+		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, user1.EmailAddress, "Verify the from field is correct");
+		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, user4.EmailAddress, "Verify the to field is correct");
 		ZAssert.assertEquals(received.dSubject, mail.dSubject, "Verify the subject field is correct");
-		ZAssert.assertStringContains(received.dBodyText, mail.dBodyHtml, "Verify the body field is correct");
+		//ZAssert.assertStringContains(received.dBodyText, mail.dBodyHtml, "Verify the body field is correct");
 		ZAssert.assertEquals(received.dIsSigned, "true", "Verify that message is signed correctly");
 
-		// Go to sent
-		FolderItem sent = FolderItem.importFromSOAP(user3, FolderItem.SystemFolder.Sent);
-		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
-
-		// Select the mail and verify that Mail Security String is present
-		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
-		ZAssert.assertTrue(display.zMailSecurityPresent(user3.EmailAddress), "Signed by String present");
-
+		//TODO UI verification to be done once UI changes and decryption stories are completed.
+		/*
 		//Login as the recipient
         app.zPageMain.zLogout();
-		app.zPageLogin.zLogin(ZimbraAccount.Account1());
+		app.zPageLogin.zLogin(user4);
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -122,7 +144,7 @@ public class SendSignedMail extends AjaxCommonTest {
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), mail.dBodyHtml, "Verify plain text content");
 		
 		//Verify the Mail security String
-		ZAssert.assertTrue(actual.zMailSecurityPresent(user3.EmailAddress), "Signed by String present");
+		ZAssert.assertTrue(actual.zMailSecurityPresent(user1.EmailAddress), "Signed by String present");
 
 		//Data required for matching certificate details
 		String issuedToOrganization = "Synacor";
@@ -135,17 +157,25 @@ public class SendSignedMail extends AjaxCommonTest {
 		DialogViewCertificate dialog = (DialogViewCertificate) new DialogViewCertificate(app, app.zPageMail);
 
 		//Verify certificate details
-		ZAssert.assertEquals(user3.EmailAddress, dialog.zGetDisplayedText(user3.EmailAddress),"Issued to email address matched");
+		ZAssert.assertEquals(user1.EmailAddress, dialog.zGetDisplayedText(user1.EmailAddress),"Issued to email address matched");
 		ZAssert.assertEquals(issuedToOrganization, dialog.zGetDisplayedTextIssuedToOrganization(),"Issued to Organisation matched");
 		ZAssert.assertEquals(issuedByOrganization, dialog.zGetDisplayedTextIssuedByOrganization(),"Issued by Organisation matched");
 		ZAssert.assertEquals(issuedByEmail, dialog.zGetDisplayedTextIssuedByEmail(),"Issued by email address matched");
 		ZAssert.assertEquals(algorithm, dialog.zGetDisplayedTextAlgorithm(),"Algorithm matched");
-
+*/
+		
         //Deleting the account created for the test-case
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<DeleteAccountRequest xmlns='urn:zimbraAdmin'>"
-			+		"<id>"+ user3.ZimbraId + "</id>"
+			+		"<id>"+ user1.ZimbraId + "</id>"
 			+	"</DeleteAccountRequest>");
+		
+        //Deleting the account created for the test-case
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+				"<DeleteAccountRequest xmlns='urn:zimbraAdmin'>"
+			+		"<id>"+ user4.ZimbraId + "</id>"
+			+	"</DeleteAccountRequest>");
+		
 
 	}
 	
