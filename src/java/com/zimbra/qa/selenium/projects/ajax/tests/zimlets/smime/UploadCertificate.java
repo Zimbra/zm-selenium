@@ -87,6 +87,12 @@ public class UploadCertificate extends AjaxCommonTest {
         ZAssert.assertNotNull(publicCertId, "Public certificate Id returned");
         ZAssert.assertNotNull(privateCertId, "Private certificate Id returned");
 
+        //Deleting the account created for the test-case
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+				"<DeleteAccountRequest xmlns='urn:zimbraAdmin'>"
+			+		"<id>"+ user1.ZimbraId + "</id>"
+			+	"</DeleteAccountRequest>");
+        
 	}
 	
 	@Test ( description = "Verify that certificate which does not require password can be uploaded successfully", priority=2, 
