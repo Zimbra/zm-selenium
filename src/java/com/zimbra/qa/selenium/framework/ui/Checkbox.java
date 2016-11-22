@@ -51,6 +51,7 @@
 		public static final Checkbox C_MTA_CLIENTS_IP_ADDRESS = new Checkbox("C_MTA_CLIENTS_IP_ADDRESS");
 		public static final Checkbox C_MTA_ENABLE_MILTER_SERVER = new Checkbox("C_MTA_ENABLE_MILTER_SERVER");
 		public static final Checkbox C_MTA_TLS_AUTHENTICATION_ONLY = new Checkbox("C_MTA_TLS_AUTHENTICATION_ONLY");
+		public static final Checkbox C_MTA_ENABLE_ARCHIVING = new Checkbox("C_MTA_ENABLE_ARCHIVING");
 		
 		// Checkbox properties
 		private final String ID;
