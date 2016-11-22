@@ -28,6 +28,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
 public class PageMail extends AbsTab {
@@ -868,6 +869,10 @@ public class PageMail extends AbsTab {
 
 				optionLocator = "css=td[id$='__NEW_MENU_NEW_FOLDER_left_icon']>div[class='ImgNewFolder']";
 				page = new DialogCreateFolder(this.MyApplication, this);
+
+			} else if (option == Button.O_NEW_APPOINTMENT) {
+				optionLocator = "css=td[id='zb__NEW_MENU_NEW_APPT_title']";
+				page = new FormApptNew(this.MyApplication);
 
 			}
 
