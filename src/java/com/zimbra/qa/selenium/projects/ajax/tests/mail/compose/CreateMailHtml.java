@@ -16,12 +16,15 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose;
 
+import java.awt.event.KeyEvent;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Locators;
 
 public class CreateMailHtml extends PrefGroupMailByMessageTest {
 
@@ -46,7 +49,6 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 		
 		// Fill out the form with the data
-
 		mailform.zFill(mail);
 		
 		// Send the message
@@ -72,5 +74,76 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(to, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
 		ZAssert.assertEquals(subject, mail.dSubject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(html, mail.dBodyHtml, "Verify the html content");
+	}
+	
+	@Test( description = "Send a mail multiline body content using HTML editor", 
+			groups = { "sanity" })
+	
+	public void CreateMultilineContentMailHtml_02() throws HarnessException {
+		
+		// Create the message data to be sent
+		final String dToRecipients = ZimbraAccount.AccountA().EmailAddress;
+		final String dSubject = "subject" + ConfigProperties.getUniqueString();
+		final String dBodyHtmlBold = "<strong>﻿BoldString</strong>";
+		final String dBodyHtmlItalic = "<br></div><div><span id=\"_mce_caret\"><em>﻿ItalicString</em>";
+		final String dBodyHtmlRedColorText = "</span></span><br></div><div><span id=\"_mce_caret\"><span style=\"color: rgb(255, 0, 0);\">﻿RedColorText</span><span id=\"_mce_caret\">﻿</span></span>";
+		final String dBodyHtmlGreenBackgroundText = "<br></div><div><span id=\"_mce_caret\"><span style=\"background-color: rgb(0, 128, 0);\">﻿GreenBackgroundText</span><span id=\"_mce_caret\">﻿</span></span>";
+		
+		// Open the new mail form
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+		ZAssert.assertNotNull(mailform, "Verify the new form opened");
+		
+		// Fill out the form with the data
+		mailform.zFillField(Field.To, dToRecipients);
+		mailform.zFillField(Field.Subject, dSubject);
+		
+		// Enter multiline body HTML text
+		mailform.sClick(Locators.zBoldButton);
+		mailform.zKeyboard.zTypeCharacters("BoldString");
+		mailform.sClick(Locators.zBoldButton);
+		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+		mailform.sClick(Locators.zItalicButton);
+		mailform.zKeyboard.zTypeCharacters("ItalicString");
+		mailform.sClick(Locators.zItalicButton);
+		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+		mailform.sClick(Locators.zTextColorDropdown);
+		mailform.sClick(Locators.zTextColorRed);
+		mailform.zKeyboard.zTypeCharacters("RedColorText");
+		mailform.sClick(Locators.zTextColorDropdown);
+		mailform.sClick(Locators.zTextColorTransparent);
+		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+		mailform.sClick(Locators.zTextBackgroundColorDropdown);
+		mailform.sClick(Locators.zTextBackgroundColorGreen);
+		mailform.zKeyboard.zTypeCharacters("GreenBackgroundText");
+		mailform.sClick(Locators.zTextBackgroundColorDropdown);
+		mailform.sClick(Locators.zTextBackgroundColorTransparent);
+		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+		
+		// Send the message
+		mailform.zSubmit();
+
+		ZimbraAccount.AccountA().soapSend(
+					"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
+			+			"<query>subject:("+ dSubject +")</query>"
+			+		"</SearchRequest>");
+		String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
+		
+		ZimbraAccount.AccountA().soapSend(
+					"<GetMsgRequest xmlns='urn:zimbraMail'>"
+			+			"<m id='"+ id +"' html='1'/>"
+			+		"</GetMsgRequest>");
+
+		String from = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a");
+		String to = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='t']", "a");
+		String subject = ZimbraAccount.AccountA().soapSelectValue("//mail:su", null);
+		String html = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null);
+		
+		ZAssert.assertEquals(from, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
+		ZAssert.assertEquals(to, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
+		ZAssert.assertEquals(subject, dSubject, "Verify the subject field is correct");
+		ZAssert.assertStringContains(html, dBodyHtmlBold, "Verify the html content");
+		ZAssert.assertStringContains(html, dBodyHtmlItalic, "Verify the html content");
+		ZAssert.assertStringContains(html, dBodyHtmlRedColorText, "Verify the html content");
+		ZAssert.assertStringContains(html, dBodyHtmlGreenBackgroundText, "Verify the html content");
 	}
 }
