@@ -89,8 +89,8 @@ public class DeleteMailSearch extends AdminCommonTest {
 		// Click on Delete
 		app.zPageManageSearchMail.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DELETE);
 		
-		// Verify search is created successfully
-		ZAssert.assertFalse(app.zPageManageSearchMail.zVerifySearchResult(emailAddress), "Verfiy email address is returned in search result");
+		// Verify search is deleted successfully
+		ZAssert.assertFalse(app.zPageManageSearchMail.zVerifySearchResult(emailAddress), "Verfiy mail search is deleted successfully!");
 
 	}
 }
