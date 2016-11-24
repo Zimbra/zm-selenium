@@ -744,8 +744,7 @@
 		public static final Button B_MOBILE_ACCESS = new Button("B_MOBILE_ACCESS");
 		public static final Button B_ENABLE_ARCHIVING = new Button("B_ENABLE_ARCHIVING");
 		public static final Button B_ARCHIVING = new Button("B_ARCHIVING");
-		
-		
+		public static final Button B_ADD_ACL_AT_DOMAIN = new Button("B_ADD_ACL_AT_DOMAIN");
 		
 		// Distribution List  buttons
 		public static final Button O_DISTRIBUTIUONLISTS_DISTRIBUTIONLIST=new Button("O_DISTRIBUTIUONLISTS_DISTRIBUTIONLIST");
