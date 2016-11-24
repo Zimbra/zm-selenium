@@ -84,6 +84,7 @@ public class FormMailNew extends AbsForm {
 		public static final String zAttachmentCheckbox = "css=div[id$=_attachments_div] input[name='ZmComposeView_forAttName1']";
 		public static final String zAttachmentText = "css=div[id$=_attachments_div] a[class='AttLink']:contains(";
 		public static final String zLinkText = "css=iframe[id*='DWT'][class*='Editor']";
+		public static final String zPlainTextBodyField = "css=div[class='ZmHtmlEditor'] [class='ZmHtmlEditorTextArea']";
 
 		public static final String zBodyFrameHTML = "//div[contains(id,'zv__COMPOSE')]//iframe";
 		public static final String zBodyFrameCss = "css=[id$='_body_ifr']";
@@ -118,6 +119,13 @@ public class FormMailNew extends AbsForm {
 		public static final String zDirectionLeftButton = "css=i[class='mce-ico mce-i-ltr']";
 		public static final String zDirectionRightButton = "css=i[class='mce-ico mce-i-rtl']";
 		public static final String zBoldButton = "css=i[class='mce-ico mce-i-bold']";
+		public static final String zItalicButton = "css=i[class='mce-ico mce-i-italic']";
+		public static final String zTextColorDropdown = "css=div[class='mce-widget mce-btn mce-btn-small mce-colorbutton mce-first'] [class='mce-open']";
+		public static final String zTextBackgroundColorDropdown = "css=div[class='mce-widget mce-btn mce-btn-small mce-colorbutton mce-last'] [class='mce-open']";
+		public static final String zTextColorRed = "css=div[data-mce-color='#FF0000']";
+		public static final String zTextColorTransparent = "css=div[data-mce-color='transparent']";
+		public static final String zTextBackgroundColorGreen = "css=div[class='mce-container mce-panel mce-floatpanel mce-popover mce-bottom mce-start']:not([style*='display']) [data-mce-color='#008000']";
+		public static final String zTextBackgroundColorTransparent = "css=div[class='mce-container mce-panel mce-floatpanel mce-popover mce-bottom mce-start']:not([style*='display']) [data-mce-color='transparent']";
 
 		public static final String zAddAttachmentFromOriginalMsgLink = "css=tr[id$='_reply_attachments_link'] a";
 

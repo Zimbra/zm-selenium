@@ -83,6 +83,12 @@ public class ViewCertificate extends AjaxCommonTest {
 		ZAssert.assertEquals(issuedByOrganization, dialog.zGetDisplayedTextIssuedByOrganization(),"Issued by Organisation matched");
 		ZAssert.assertEquals(issuedByEmail, dialog.zGetDisplayedTextIssuedByEmail(),"Issued by email address matched");
 		ZAssert.assertEquals(algorithm, dialog.zGetDisplayedTextAlgorithm(),"Algorithm matched");
+		
+        //Deleting the account created for the test-case
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+				"<DeleteAccountRequest xmlns='urn:zimbraAdmin'>"
+			+		"<id>"+ user4.ZimbraId + "</id>"
+			+	"</DeleteAccountRequest>");
 
 	}
 	
