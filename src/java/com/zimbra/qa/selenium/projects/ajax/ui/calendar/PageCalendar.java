@@ -39,7 +39,7 @@ public class PageCalendar extends AbsTab {
 		// Buttons
 		public static final String NewButton = "css=td#zb__CLWW__NEW_MENU_title";
 		public static final String SendButton = "css=div[id^='ztb__APPT-'] td[id$='_SEND_INVITE_title']";
-		public static final String SaveButton = "css=div[id^='ztb__APPT-1'] td[id$='__SAVE_title']";
+		public static final String SaveButton = "css=div[id^='ztb__APPT'] td[id$='__SAVE_title']";
 		public static final String OrganizerSaveButton = "css=div[id$='zb__APPT-1__SAVE'] ";
 		public static final String CloseButton = "css=td[id$='__CANCEL_title']:contains('Close')";
 		public static final String ViewButton = "id=zb__CLD__VIEW_MENU_dropdown";
