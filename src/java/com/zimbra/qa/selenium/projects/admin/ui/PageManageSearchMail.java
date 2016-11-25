@@ -306,7 +306,6 @@ public class PageManageSearchMail extends AbsTab {
 			}
 
 		}
-
 		return found;
 	}
 
