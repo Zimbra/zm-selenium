@@ -48,6 +48,8 @@ public class PageManageSearchMail extends AbsTab {
 		public static final String VIEW="css=div[id='zm__zb_currentApp__MENU_POP'] div[id='zmi__zb_currentApp__EDIT']";
 		public static final String VIEW_RESULTS="css=div[id='zm__zb_currentApp__MENU_POP'] div[id^='zmi__zb_currentApp__']:contains('View results')";
 		public static final String STATUS="css=td#_XForm_";
+		
+		public static final String SEARCH_QUERY_LABEL="css=div#_XForm_";
 	}
 
 	public PageManageSearchMail(AbsApplication application) {
@@ -308,4 +310,36 @@ public class PageManageSearchMail extends AbsTab {
 		return found;
 	}
 
+	public boolean zVerifySearchPage() throws HarnessException {
+		
+		String rowsLocator = "css=div[id='_XForm_";
+		boolean found = false;
+		String locator;
+		for(int i=12;i>=0;i--) {
+			 
+			locator = rowsLocator + i + "_output_7']:contains('Search query')";
+			
+			if (sIsElementPresent(locator)) {
+				found = true;
+				break;
+			}
+			
+		 else 
+			{
+				logger.info("search result not displayed in current view");
+			}
+		}
+		
+		if (sIsElementPresent(rowsLocator + "output_7']:contains('Search query')")) {
+			found = true;
+		}
+		
+		if (found == true) {
+			SleepUtil.sleepSmall();
+			logger.info("Search result displayed in current view");
+			ZAssert.assertTrue(found, "Search result displayed in current view");
+		}
+		
+		return found;
+	}
 }
