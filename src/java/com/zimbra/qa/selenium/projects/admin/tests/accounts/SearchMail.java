@@ -71,9 +71,6 @@ public class SearchMail extends AdminCommonTest {
 		// Right click account >>  Search mail
 		app.zPageManageAccounts.zToolbarPressButton(Button.B_SEARCH_MAIL);
 
-		// Wait for page to load
-		SleepUtil.sleepMedium();
-		
 		// Verify Search Mail page is opened up
 		boolean isPageDisplayed = app.zPageManageSearchMail.zVerifySearchPage();
 		ZAssert.assertTrue(isPageDisplayed, "Verify Search Mail page is opened up!!");
@@ -108,10 +105,7 @@ public class SearchMail extends AdminCommonTest {
 
 		// Gearbox >> Search mail
 		app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_SEARCH_MAIL);
-
-		// Wait for page to load
-		SleepUtil.sleepMedium();
-				
+	
 		// Verify Search Mail page is opened up
 		boolean isPageDisplayed = app.zPageManageSearchMail.zVerifySearchPage();
 		ZAssert.assertTrue(isPageDisplayed, "Verify Search Mail page is opened up!!");	

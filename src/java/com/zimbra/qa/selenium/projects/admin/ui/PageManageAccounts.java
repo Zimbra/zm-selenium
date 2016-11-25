@@ -293,7 +293,7 @@ public class PageManageAccounts extends AbsTab {
 		// Default behavior, process the locator by clicking on it
 		//
 		this.zClickAt(locator,"");
-
+		SleepUtil.sleepMedium();
 
 
 		// If page was specified, make sure it is active
