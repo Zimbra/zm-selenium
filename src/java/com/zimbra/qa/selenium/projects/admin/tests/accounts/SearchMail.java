@@ -50,7 +50,7 @@ public class SearchMail extends AdminCommonTest {
 	 */
 
 	@Test( description = "Search mail  -- manage account > right click > Search mail",
-	groups = { "smoke" })
+			groups = { "smoke" })
 	public void SearchMail_01() throws HarnessException {
 
 		// Create a new account in the admin Console using SOAP
@@ -67,14 +67,13 @@ public class SearchMail extends AdminCommonTest {
 		// Right click on account 
 		app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, account.getEmailAddress());
 
-
 		// Right click account >>  Search mail
 		app.zPageManageAccounts.zToolbarPressButton(Button.B_SEARCH_MAIL);
 
 		// Verify Search Mail page is opened up
 		boolean isPageDisplayed = app.zPageManageSearchMail.zVerifySearchPage();
 		ZAssert.assertTrue(isPageDisplayed, "Verify Search Mail page is opened up!!");
-	
+
 	}
 
 	/**
@@ -105,12 +104,12 @@ public class SearchMail extends AdminCommonTest {
 
 		// Gearbox >> Search mail
 		app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_SEARCH_MAIL);
-	
+
 		// Verify Search Mail page is opened up
 		boolean isPageDisplayed = app.zPageManageSearchMail.zVerifySearchPage();
 		ZAssert.assertTrue(isPageDisplayed, "Verify Search Mail page is opened up!!");	
 	}
-	
+
 	/**
 	 * Testcase : Search mail in Search List view
 	 * Steps :
@@ -143,18 +142,14 @@ public class SearchMail extends AdminCommonTest {
 		// Click on account 
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
 
-
 		// Gearbox >> Search mail
 		app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_SEARCH_MAIL);
 
-		// Wait for page to load
-		SleepUtil.sleepMedium();
-				
 		// Verify Search Mail page is opened up
 		boolean isPageDisplayed = app.zPageManageSearchMail.zVerifySearchPage();
 		ZAssert.assertTrue(isPageDisplayed, "Verify Search Mail page is opened up!!");			
 	}	
-	
+
 	/**
 	 * Testcase : Search mail in Search List view
 	 * Steps :
@@ -179,8 +174,6 @@ public class SearchMail extends AdminCommonTest {
 						+			"<a xmlns='' n='zimbraAccountStatus'>lockout</a>"
 						+		"</CreateAccountRequest>");
 
-
-
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(account.getEmailAddress());
 
@@ -190,13 +183,9 @@ public class SearchMail extends AdminCommonTest {
 		// Click on account 
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
 
-
 		// Gearbox >> Search mail
 		app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_SEARCH_MAIL);
 
-		// Wait for page to load
-		SleepUtil.sleepMedium();
-						
 		// Verify Search Mail page is opened up
 		boolean isPageDisplayed = app.zPageManageSearchMail.zVerifySearchPage();
 		ZAssert.assertTrue(isPageDisplayed, "Verify Search Mail page is opened up!!");		

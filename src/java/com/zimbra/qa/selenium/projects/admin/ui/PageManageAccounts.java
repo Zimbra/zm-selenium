@@ -397,7 +397,7 @@ public class PageManageAccounts extends AbsTab {
 				}
 
 				this.zClickAt(optionLocator,"");
-
+				SleepUtil.sleepMedium();
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();
 			}
