@@ -25,6 +25,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 
 /**
@@ -40,6 +41,7 @@ public class PageManageServers extends AbsTab {
 		public static final String HOME="Home";
 		public static final String CONFIGURE="Configure";
 		public static final String SERVERS="Servers";
+		public static final String EDIT="css=div[id='zmi__zb_currentApp__EDIT']";
 	}
 
 
@@ -96,7 +98,7 @@ public class PageManageServers extends AbsTab {
 		zClickAt(Locators.CONFIGURE_ICON,"");
 		sIsElementPresent(Locators.SERVER);
 		zClickAt(Locators.SERVER, "");
-
+		SleepUtil.sleepSmall();
 		zWaitForActive();
 
 	}
@@ -104,9 +106,117 @@ public class PageManageServers extends AbsTab {
 	@Override
 	public AbsPage zListItem(Action action, String item)
 			throws HarnessException {
-		return null;
-	}
+		logger.info(myPageName() + " zListItem("+ action +", "+ item +")");
 
+		tracer.trace(action +" on subject = "+ item);
+
+		AbsPage page = null;
+		SleepUtil.sleepMedium();
+
+		// How many items are in the table?
+		String rowsLocator = "css=div[id='zl__SERVER_MANAGE'] div[id$='__rows'] div[id^='zli__']";
+		int count = this.sGetCssCount(rowsLocator);
+		logger.debug(myPageName() + " zListGetPolicy: number of policys: "+ count);
+
+		// Get each conversation's data from the table list
+		for (int i = 1; i <= count; i++) {
+			final String serverLocator = rowsLocator + ":nth-child("+i+")";
+			String locator;
+
+			// Email Address
+			locator = serverLocator + " tr";
+
+
+			if(this.sIsElementPresent(locator))
+			{
+				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
+				{
+					if(action == Action.A_LEFTCLICK) {
+						zClick(locator);
+						break;
+					} else if(action == Action.A_RIGHTCLICK) {
+						zRightClick(locator);
+						break;
+					}
+
+				}
+			}
+		}
+		return page;
+	}
+	
+	@Override
+	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
+		logger.info(myPageName() + " zToolbarPressButtonWithPulldown("+ pulldown +", "+ option +")");
+
+		tracer.trace("Click pulldown "+ pulldown +" then "+ option);
+
+		if (pulldown == null)
+			throw new HarnessException("Pulldown cannot be null!");
+
+		if (option == null)
+			throw new HarnessException("Option cannot be null!");
+
+
+		// Default behavior variables
+		String pulldownLocator = null; // If set, this will be expanded
+		String optionLocator = null; // If set, this will be clicked
+		AbsPage page = null; // If set, this page will be returned
+
+		if (pulldown == Button.B_GEAR_BOX) {
+			pulldownLocator = Locators.GEAR_ICON;
+
+			if (option == Button.B_EDIT) {
+
+				optionLocator = Locators.EDIT;
+				page = new FormEditServer(this.MyApplication);
+
+				// FALL THROUGH
+			}
+			
+			else {
+				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
+			}
+
+		} else {
+			throw new HarnessException("no logic defined for pulldown/option "
+					+ pulldown + "/" + option);
+		}
+
+		// Default behavior
+		if (pulldownLocator != null) {
+
+			// Make sure the locator exists
+			if (!this.sIsElementPresent(pulldownLocator)) {
+				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
+			}
+
+			this.zClickAt(pulldownLocator,"");
+			SleepUtil.sleepSmall();
+
+			// If the app is busy, wait for it to become active
+			//zWaitForBusyOverlay();
+
+			if (optionLocator != null) {
+
+				// Make sure the locator exists
+				if (!this.sIsElementPresent(optionLocator)) {
+					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
+				}
+
+				this.zClickAt(optionLocator,"");
+
+				// If the app is busy, wait for it to become active
+				//zWaitForBusyOverlay();
+			}
+
+		}
+
+		// Return the specified page, or null if not set
+		return (page);
+
+	}
+	
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item)
 			throws HarnessException {
@@ -123,11 +233,6 @@ public class PageManageServers extends AbsTab {
 		return null;
 	}
 
-	@Override
-	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
-			throws HarnessException {
-		return null;
-	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
 		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
