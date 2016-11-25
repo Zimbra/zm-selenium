@@ -31,6 +31,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
+import com.zimbra.qa.selenium.projects.admin.ui.PageEditCOS.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
 
 /**
@@ -58,15 +59,17 @@ public class PageManageAccounts extends AbsTab {
 		public static final String CHANGE_PASSWORD_BUTTON="css=td[id='zmi__zb_currentApp__CHNG_PWD_title']";
 		public static final String ADVANCED="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Advanced')";
 		public static final String RIGHT_CLICK_MENU_VIEW_MAIL_BUTTON="css=td[id='zmi__ACLV__VIEW_MAIL_title']";
+		public static final String RIGHT_CLICK_MENU_SEARCH_MAIL_BUTTON="css=td[id^='zmi__ACLV__UNKNOWN']:contains('Search Mail')";
 		public static final String VIEW_MAIL="css=td[id='zmi__zb_currentApp__VIEW_MAIL_title']";	
+		public static final String SEARCH_MAIL="css=td[id^='zmi__zb_currentApp__UNKNOWN']:contains('Search Mail')";
 		public static final String RIGHT_CLICK_INVALIDATE_SESSIONS="css=td[id='zmi__ACLV__EXPIRE_SESSION_title']";
 		public static final String INVALIDATE_SESSIONS="css=td[id='zmi__zb_currentApp__EXPIRE_SESSION_title']";
 		public static final String INVALIDATE_SESSIONS_YES="css=td[id^='zdlg__MSG__GLOBAL__confirm']:contains('Yes')";
 		public static final String MUST_CHANGE_PASSWORD ="css=input[id='ztabv__ACCT_EDIT_zimbraPasswordMustChange']";
 		public static final String CONFIGURE_GRANTS="css=td[id^='zmi__zb_currentApp__UNKNOWN']:contains('Configure Grants')";
 		public static final String RIGHT_CLICK_CONFIGURE_GRANTS="css=td[id^='zmi__ACLV__UNKNOWN']:contains('Configure Grants')";
-		
-		
+		public static final String SEARCH_QUERY_LABEL="div[id^='_XForm_4_output']:contains('Search query')";
+			
 	}
 
 	public PageManageAccounts(AbsApplication application) {
@@ -256,6 +259,10 @@ public class PageManageAccounts extends AbsTab {
 
 			locator=Locators.RIGHT_CLICK_MENU_VIEW_MAIL_BUTTON;
 			
+		}else if (button == Button.B_SEARCH_MAIL) {
+
+			locator=Locators.RIGHT_CLICK_MENU_SEARCH_MAIL_BUTTON;
+			
 		}else if (button == Button.B_CONFIGURE_GRANTS) {
 			
 			locator = Locators.RIGHT_CLICK_CONFIGURE_GRANTS;			
@@ -286,7 +293,7 @@ public class PageManageAccounts extends AbsTab {
 		// Default behavior, process the locator by clicking on it
 		//
 		this.zClickAt(locator,"");
-
+		SleepUtil.sleepMedium();
 
 
 		// If page was specified, make sure it is active
@@ -349,7 +356,11 @@ public class PageManageAccounts extends AbsTab {
 			}  else if (option == Button.B_VIEW_MAIL) {
 				optionLocator = Locators.VIEW_MAIL;
 				
-			} else if (option == Button.B_INVALIDATE_SESSIONS) {
+			}  else if (option == Button.B_SEARCH_MAIL) {
+				optionLocator = Locators.SEARCH_MAIL;
+				
+			}
+			else if (option == Button.B_INVALIDATE_SESSIONS) {
 				optionLocator = Locators.INVALIDATE_SESSIONS;
 				
 			}  else if (option == Button.B_CONFIGURE_GRANTS) {
@@ -386,7 +397,7 @@ public class PageManageAccounts extends AbsTab {
 				}
 
 				this.zClickAt(optionLocator,"");
-
+				SleepUtil.sleepMedium();
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();
 			}
@@ -527,5 +538,9 @@ public class PageManageAccounts extends AbsTab {
 		logger.info("toaster is active: "+ toaster.zIsActive());
 		return (toaster);
 	}
+	
+	
+	
+	
 
 }
