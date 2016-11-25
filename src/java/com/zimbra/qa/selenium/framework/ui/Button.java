@@ -745,6 +745,9 @@
 		public static final Button B_ENABLE_ARCHIVING = new Button("B_ENABLE_ARCHIVING");
 		public static final Button B_ARCHIVING = new Button("B_ARCHIVING");
 		public static final Button B_ADD_ACL_AT_DOMAIN = new Button("B_ADD_ACL_AT_DOMAIN");
+		public static final Button B_SEARCH_MAIL = new Button("B_SEARCH_MAIL");
+		public static final Button B_TOGGLE_STATUS = new Button("B_TOGGLE_STATUS");
+		public static final Button B_ADD_GLOBAL_ACL = new Button("B_ADD_GLOBAL_ACL");
 		
 		// Distribution List  buttons
 		public static final Button O_DISTRIBUTIUONLISTS_DISTRIBUTIONLIST=new Button("O_DISTRIBUTIUONLISTS_DISTRIBUTIONLIST");
@@ -833,7 +836,6 @@
 		public static Button B_CONVERSATION_ACTION_DROPDOWN =	new Button("B_CONVERSATION_ACTION_DROPDOWN");
 		public static Button B_FLAG_MESSAGE 	=   new Button("B_FLAG_MESSAGE");
 		public static Button B_UNFLAG_MESSAGE 	=   new Button("B_UNFLAG_MESSAGE");
-
 
 		public static Button B_SEARCH_TYPE =	new Button("B_SEARCH_TYPE");
 		public static Button O_ACCOUNTS =	new Button("O_ACCOUNTS");
