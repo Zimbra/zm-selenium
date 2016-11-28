@@ -43,6 +43,9 @@ public class PageManageACL extends AbsTab {
 		public static final String YES_BUTTON="css=td[id='zdlg__MSG__GLOBAL__confirm2btn_button5_title']";
 		public static final String NO_BUTTON="zdlg__MSG__GLOBAL__confirm2btn_button4_title";
 		public static final String OK_BUTTON="css=td#zdlg__UNDEFINE";
+		public static final String DOMAIN_EDIT_ACL_ADD = "css=td[id^='ztabv__DOAMIN_EDIT_dwt_button'] td[id$='title']:contains('Add')";
+		public static final String ADD_GLOBAL_ACL = "css=td[id='zmi__zb_currentApp__NEW_title']";
+		
 	}
 
 	public PageManageACL(AbsApplication application) {
@@ -121,7 +124,16 @@ public class PageManageACL extends AbsTab {
 			// Create the page
 			page = new WizardAddACL(this);
 				
-		}else {
+		}else if ( button == Button.B_ADD_ACL_AT_DOMAIN ) {
+
+			// Add button
+			locator = Locators.DOMAIN_EDIT_ACL_ADD;
+
+			// Create the page
+			page = new WizardAddACL(this);
+				
+		}
+		else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
@@ -131,6 +143,7 @@ public class PageManageACL extends AbsTab {
 
 		// Default behavior, process the locator by clicking on it
 		this.zClickAt(locator,"");
+		SleepUtil.sleepMedium();
 
 		// If page was specified, make sure it is active
 		if ( page != null ) {
@@ -202,11 +215,73 @@ public class PageManageACL extends AbsTab {
 		return null;
 	}
 
+
 	@Override
-	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
-			throws HarnessException {
-		// TODO Auto-generated method stub
-		return null;
+	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
+		logger.info(myPageName() + " zToolbarPressButtonWithPulldown("+ pulldown +", "+ option +")");
+
+		tracer.trace("Click pulldown "+ pulldown +" then "+ option);
+
+		if (pulldown == null)
+			throw new HarnessException("Pulldown cannot be null!");
+
+		if (option == null)
+			throw new HarnessException("Option cannot be null!");
+
+
+		String pulldownLocator = null; 
+		String optionLocator = null; 
+		AbsPage page = null; 
+		if (pulldown == Button.B_GEAR_BOX) {
+			pulldownLocator = Locators.GEAR_ICON;
+
+			if (option == Button.B_ADD_GLOBAL_ACL) {
+
+				optionLocator = Locators.ADD_GLOBAL_ACL;
+
+				// Create the page
+				page = new WizardAddACL(this);
+
+				
+			}else {
+				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
+			}
+
+		} else {
+			throw new HarnessException("no logic defined for pulldown/option "
+					+ pulldown + "/" + option);
+		}
+
+		// Default behavior
+		if (pulldownLocator != null) {
+
+			// Make sure the locator exists
+			if (!this.sIsElementPresent(pulldownLocator)) {
+				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
+			}
+
+			this.zClickAt(pulldownLocator,"");
+			SleepUtil.sleepMedium();
+
+			// If the app is busy, wait for it to become active
+			//zWaitForBusyOverlay();
+
+			if (optionLocator != null) {
+
+				// Make sure the locator exists
+				if (!this.sIsElementPresent(optionLocator)) {
+					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
+				}
+
+				this.zClickAt(optionLocator,"");
+
+			}
+
+		}
+
+		// Return the specified page, or null if not set
+		return (page);
+
 	}
 
 	@Override

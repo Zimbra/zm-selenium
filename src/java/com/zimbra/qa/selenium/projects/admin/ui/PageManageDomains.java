@@ -47,7 +47,6 @@ public class PageManageDomains extends AbsTab {
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=td[id='zmi__DMLV__EDIT_title']:contains('Edit')";
 		public static final String DOMAIN_EDIT_ACL="css=div[id^='zti__AppAdmin__CONFIGURATION__DOMAINS'][class='ZTreeItemTextCell']:contains('ACL')";
-		public static final String DOMAIN_EDIT_ACL_ADD = "css=td[id^='ztabv__DOAMIN_EDIT_dwt_button'] td[id$='title']:contains('Add')";
 		public static final String DOMAIN_EDIT_ACL_GRANTEE_NAME = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input[id^='zdlgv__EDIT_ACL'][id$='_grantee_email_display']";		
 		public static final String DOMAIN_ACCOUNTS_LIMITS="css=div[id^='zti__AppAdmin__CONFIGURATION__DOMAINS'] div[class='ZTreeItemTextCell']:contains('Account Limits')";
 		public static final String DOMAIN_ACCOUNTS_LIMITS_ADD = "css=div[id$='account_form_account_limits_tab'] td[class='ZWidgetTitle']:contains('Add')";
@@ -55,6 +54,7 @@ public class PageManageDomains extends AbsTab {
 		public static final String DOMAIN_ACCOUNTS_LIMITS_COS_LIMIT = "css=table[id='zdlgv__UNDEFINE1_group_table'] tbody tr td[id='zdlgv__UNDEFINE1_limits___container'] input";
 		public static final String MAXIMUM_ACCOUNTS_FOR_DOMAIN = "css=input[id='ztabv__DOAMIN_EDIT_zimbraDomainMaxAccounts']";
 		public static final String DOMAIN_ACCOUNTS_LIMITS_AT_COS_OK = "css=td[id^='zdlg__UNDEFINE']:contains('OK')";
+		public static final String DOMAIN_EDIT_ACL_ADD = "css=td[id^='ztabv__DOAMIN_EDIT_dwt_button'] td[id$='title']:contains('Add')";
 		
 		
 	}
