@@ -40,7 +40,7 @@ public class ConfigureGrants extends AdminCommonTest {
 	}
 
 	/**
-	 * Testcase : Add ACE to account using right click  menu option
+	 * Testcase : Add ACE to account 
 	 * 1. Go to Manage Account View
 	 * 2. Select an Account.
 	 * 3. Right click on Account and select Configure grants option
@@ -48,8 +48,8 @@ public class ConfigureGrants extends AdminCommonTest {
 	 * 5. Verify ACE is added successfully
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify Configure Grants option",
-			groups = { "testpk" })
+	@Test( description = "Verify Configure Grants option by selecting it from right click menu option",
+			groups = { "sanity" })
 	public void AddACE_01() throws HarnessException {
 
 		// Create grantee account
@@ -108,7 +108,7 @@ public class ConfigureGrants extends AdminCommonTest {
 	}
 
 	/**
-	 * Testcase : Add ACE to account by using gear icon options 
+	 * Testcase : Add ACE to account 
 	 * 1. Go to Manage Account View
 	 * 2. Select an Account.
 	 * 3. Click on gear icon and select Configure Grants
@@ -116,7 +116,7 @@ public class ConfigureGrants extends AdminCommonTest {
 	 * 5. Verify ACE is added successfully
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify Configure Grants option",
+	@Test( description = "Verify Configure Grants option by selecting it from gear menu option",
 			groups = { "sanity" })
 	public void AddACE_02() throws HarnessException {
 
