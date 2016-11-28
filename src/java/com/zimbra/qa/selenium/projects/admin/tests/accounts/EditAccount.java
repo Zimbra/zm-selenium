@@ -505,10 +505,10 @@ public class EditAccount extends AdminCommonTest {
 		ZAssert.assertNotNull(response2, "Verify the account is edited successfully");
 		ZAssert.assertStringContains(response2.toString(),"TRUE", " Verify the Require two-step authentication is set to true");
 
-		// Verify the enable application passcodes is set to true
+		// Verify the enable application passcodes is set to False
 		Element response4 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureAppSpecificPasswordsEnabled']", 1);
 		ZAssert.assertNotNull(response4, "Verify the account is edited successfully");
-		ZAssert.assertStringContains(response4.toString(),"FALSE", "Verify the Enable application passcodes is set to true");
+		ZAssert.assertStringContains(response4.toString(),"FALSE", "Verify the Enable application passcodes is set to false");
 	}
 
 
