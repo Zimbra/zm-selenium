@@ -65,17 +65,17 @@ public class AddACL extends AdminCommonTest {
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
 		String domainName=domain.getName();
-	
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + domainName + "</name>"
-				+		"</CreateDomainRequest>");
-	
-	
+						+			"<name>" + domainName + "</name>"
+						+		"</CreateDomainRequest>");
+
+
 		// Refresh the domain list
 		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-	
-		// Click on account to be edited.
+
+		// Click on domain to be edited.
 		app.zPageManageDomains.zListItem(Action.A_LEFTCLICK, domain.getName());
 		app.zPageManageDomains.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
@@ -85,13 +85,12 @@ public class AddACL extends AdminCommonTest {
 		// Click on Add ACL
 		WizardAddACL wizard = 
 				(WizardAddACL)app.zPageManageACL.zToolbarPressButton(Button.B_ADD_ACL_AT_DOMAIN);
-		
-		
+
 		// Fill out the wizard	
 		wizard.zCompleteWizard(acl);
 
 		// Verify added ACL is displayed on UI 
-		ZAssert.assertTrue(app.zPageManageACL.sIsElementPresent(PageManageACL.Locators.GRANTED_ACL), "Verify general tab is displayed");
+		ZAssert.assertTrue(app.zPageManageACL.sIsElementPresent(PageManageACL.Locators.GRANTED_ACL), "Verify added ACL is displayed on UI");
 
 		// Verify right is granted
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
