@@ -37,7 +37,7 @@ public class SendEncryptedMail extends AjaxCommonTest {
 		logger.info("New "+ SendEncryptedMail.class.getCanonicalName());		
 	}
 
-	@Test ( description = "Verify that Signed message can be sent from Web-client correctly and user can view it", priority=4, 
+	@Test ( description = "Verify that Signed and encrypted message can be sent from Web-client correctly and user can view it", priority=4, 
 			groups = { "smime"})
 	
 	public void SendEncryptedMail_01() throws HarnessException  {

@@ -30,6 +30,7 @@ public class PageContacts extends AbsTab {
 		public static final String zContactsZimletsPane = "ztih__main_Contacts__ZIMLET_textCell";
 		public static final String zContactsTagsPane = "ztih__main_Contacts__TAG_textCell";
 		public static final String zContactsFolder = "zti__main_Contacts__7_textCell";
+		public static final String zViewCertificate = "css=td[class='ZmSecureMailCertificateRow'] div[class='FakeAnchor'] td[id$='title']:contains('View certificate')";
 	}
 
 	public static class CONTEXT_MENU {
@@ -418,6 +419,19 @@ public class PageContacts extends AbsTab {
 			if (zIsElementDisabled(locator)) {
 				throw new HarnessException("Tried clicking on " + locator + " but it was disabled ");
 			}
+			
+		} else if (button == Button.B_VIEW_CERTIFICATE) {
+
+			locator = "css=td[class='ZmSecureMailCertificateRow'] div[class='FakeAnchor'] td[id$='title']:contains('View certificate')";
+
+			if (!this.sIsElementPresent(locator))
+				throw new HarnessException("locator is not present for button " + button + " : " + locator);
+
+			this.sClick(locator); // sClick() is required for this element
+
+			this.zWaitForBusyOverlay();
+
+			return (page);
 
 		} else if (button == Button.B_DISTRIBUTIONLIST_PROPERTIES) {
 			locator = "css=td[id$='_title']:contains('Distribution List Properties')";
@@ -1343,7 +1357,18 @@ public class PageContacts extends AbsTab {
 				|| (button == Button.B_AB_W) || (button == Button.B_AB_X) || (button == Button.B_AB_Y)
 				|| (button == Button.B_AB_Z);
 	}
+	
+	public boolean zVerifyCertificatePresent(String emailAddress) throws HarnessException{
+		
+		String locator="css=td[class='ZmSecureMailCertificateRow'] td[id$='title']:contains('" + emailAddress + "')";
+		
+		if (this.sIsElementPresent(locator)) {
+			//Mail Security header found
+			return true;
+		}
 
+		return false;
+	}
 	private boolean zIsInSearchView() throws HarnessException {
 		return zIsVisiblePerPosition("css=div#z_filterPanel__SR-1", 0, 0);
 	}
