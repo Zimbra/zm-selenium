@@ -434,5 +434,82 @@ public class EditAccount extends AdminCommonTest {
 		ZAssert.assertNotNull(response4, "Verify the account is edited successfully");
 		ZAssert.assertStringContains(response4.toString(),"TRUE", "Verify the Enable application passcodes is set to true");
 	}
+	
+	/**
+	 * Testcase : Administrator should be able to disable the ability for specific users to generate app specific passwords  
+	 * Steps :
+	 * 1. Create an account using SOAP.
+	 * 2. Go to advanced tab >> Select option 'Enable two-factor authentication' displayed under 'Two Factor Authentication' section 
+	 * 3. Uncheck Enable application codes
+	 * 4. Verify two factor authentication attributes are changed using SOAP.
+	 * @throws HarnessException
+	 */
+	@Test( description = "Administrator should be able to disable the ability for specific users to generate app specific passwords",
+			groups = { "functional", "network" })
+	
+	public void EditAccount_08() throws HarnessException {
+
+		// Create a new account in the Admin Console using SOAP
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+		"</CreateAccountRequest>");
+
+		// Refresh the account list
+		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		SleepUtil.sleepMedium();
+
+		// Enter the search string to find the account
+		app.zPageSearchResults.zAddSearchQuery(account.getEmailAddress());
+
+		// Click search
+		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
+
+		// Click on account to be edited
+		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
+
+		// Click on Edit button
+		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.ACCOUNT);
+		FormEditAccount form = (FormEditAccount) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
+		SleepUtil.sleepMedium();
+
+		// Click on Advanced section
+		form.sClick(PageManageAccounts.Locators.ADVANCED);
+		SleepUtil.sleepMedium();
+
+		// Check "Enable two-factor authentication"
+		app.zPageEditCOS.zPreferenceCheckboxSet(Button.B_ENABLE_TWO_FACTOR_AUTH,true);
+
+		// Check "Require two-step authentication"
+		app.zPageEditCOS.zPreferenceCheckboxSet(Button.B_REQUIRED_TWO_FACTOR_AUTH,true);
+
+		// Check "Enable application passcodes"
+		app.zPageEditCOS.zPreferenceCheckboxSet(Button.B_ENABLE_APPLICATION_PASSCODES,false);
+
+		// Submit the form
+		form.zSubmit();
+
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
+						+			"<account by='name'>"+ account.getEmailAddress() +"</account>"
+						+		"</GetAccountRequest>");
+
+		Element response1 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureTwoFactorAuthAvailable']", 1);
+		ZAssert.assertNotNull(response1, "Verify the account is edited successfully");
+		ZAssert.assertStringContains(response1.toString(),"TRUE", "Verify the Enable two-factor authentication is set to true");
+
+		// Verify the require two-step authentication is set to true
+		Element response2 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureTwoFactorAuthRequired']", 1);
+		ZAssert.assertNotNull(response2, "Verify the account is edited successfully");
+		ZAssert.assertStringContains(response2.toString(),"TRUE", " Verify the Require two-step authentication is set to true");
+
+		// Verify the enable application passcodes is set to False
+		Element response4 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureAppSpecificPasswordsEnabled']", 1);
+		ZAssert.assertNotNull(response4, "Verify the account is edited successfully");
+		ZAssert.assertStringContains(response4.toString(),"FALSE", "Verify the Enable application passcodes is set to false");
+	}
+
 
 }
