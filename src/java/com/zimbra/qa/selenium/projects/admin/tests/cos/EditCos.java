@@ -414,7 +414,6 @@ public class EditCos extends AdminCommonTest {
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(cosName);
 
-
 		// Click search
 		app.zPageSearchResults.zToolbarPressPulldown(Button.B_SEARCH_TYPE, Button.O_CLASS_OF_SERVICE);
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
