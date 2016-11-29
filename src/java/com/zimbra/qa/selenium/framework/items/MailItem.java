@@ -116,6 +116,7 @@ public class MailItem implements IItem {
 	public String dAutoSendTime = null;
 	
 	public String dIsSigned = "false";
+	public String dIsEncrypted = "false";
 
 	////
 	// FINISH: SOAP Data
@@ -309,6 +310,7 @@ public class MailItem implements IItem {
 
 			//Set IsSigned
 			mail.dIsSigned = m.getAttribute("isSigned",null);
+			mail.dIsEncrypted = m.getAttribute("isEncrypted",null);
 			
 			// Set the ID
 			mail.setId(m.getAttribute("id", null));
@@ -463,6 +465,7 @@ public class MailItem implements IItem {
 		sb.append("Has Attachments: ").append(gHasAttachments).append('\n');
 		sb.append("Subject: ").append(gSubject).append('\n');
 		sb.append("Is Signed: ").append(dIsSigned).append('\n');
+		sb.append("Is Encrypted: ").append(dIsEncrypted).append('\n');
 		sb.append("Fragment: ").append(gFragment).append('\n');
 		sb.append("Folder: ").append(gFolder).append('\n');
 		sb.append("Size: ").append(gSize).append('\n');
