@@ -165,7 +165,7 @@ public class DisplayMail extends AbsDisplay {
 
 		} else if (button == Button.B_VIEW_CERTIFICATE) {
 
-			locator = "css=td[class^='ZmSecureMailCertificateRow '] div[class='FakeAnchor'] td[id$='title']:contains('View certificate')";
+			locator = "css=td[class='ZmSecureMailCertificateRow'] div[class='FakeAnchor'] td[id$='title']:contains('View certificate')";
 
 			if (!this.sIsElementPresent(locator))
 				throw new HarnessException("locator is not present for button " + button + " : " + locator);
@@ -586,7 +586,7 @@ public class DisplayMail extends AbsDisplay {
 
 	public boolean zMailSecurityPresent(String emailAddress) throws HarnessException{
 		
-		String locator="css=td[class^='ZmSecureMailCertificateRow '] td[id$='title']:contains('" + emailAddress + "')";
+		String locator="css=td[class='ZmSecureMailCertificateRow'] td[id$='title']:contains('" + emailAddress + "')";
 		
 		if (this.sIsElementPresent(locator)) {
 			//Mail Security header found

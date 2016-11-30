@@ -87,6 +87,7 @@ public class FormContactNew extends AbsForm {
 		public static final String zSuffixCheckbox = "td.ZWidgetTitle:contains('Suffix')";
 		public static final String zNicknameCheckbox = "td.ZWidgetTitle:contains('Nickname')";
 		public static final String zDepartmentCheckbox = "td.ZWidgetTitle:contains('Department')";
+		public static final String zRemoveCertificateLink = "css=td[class='ZmSecureMailCertificateRow'] td:contains('Remove')";
 
 	}
 
@@ -637,6 +638,10 @@ public class FormContactNew extends AbsForm {
 
 			locator = "css=div#" + getToolbarID() + " div[id$='__SAVE'] td[id$='_title']";
 			page = null;
+			
+		} else if (button == Button.B_BROWSE_TO_CERTIFICATE) {
+
+			locator = "css=div[id$='_UploadCertificateBtn'] td:contains('Browse to certificate...')";
 
 		} else if (button == Button.B_CANCEL || button == Button.B_CLOSE) {
 
