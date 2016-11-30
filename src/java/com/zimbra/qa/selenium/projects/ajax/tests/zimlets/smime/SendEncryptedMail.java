@@ -112,8 +112,8 @@ public class SendEncryptedMail extends AjaxCommonTest {
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(user5));
-		mail.dSubject = "SignedMessage" + ConfigProperties.getUniqueString();
-		mail.dBodyHtml = "SignedMessageBody" + ConfigProperties.getUniqueString();
+		mail.dSubject = "Signed and Encrypted Message" + ConfigProperties.getUniqueString();
+		mail.dBodyHtml = "Signed and Encrypted Message Body" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
