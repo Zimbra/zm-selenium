@@ -34,10 +34,9 @@ public class TagDocument extends FeatureBriefcaseTest {
 
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 	}
-
 	
 	@Test(description = "Tag a Document using Toolbar -> Tag -> New Tag", 
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 
 	public void TagDocument_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -110,10 +109,9 @@ public class TagDocument extends FeatureBriefcaseTest {
 		// delete Document upon test completion
 		app.zPageBriefcase.deleteFileByName(docName);
 	}
-
 	
 	@Test(description = "Tag a Document using pre-existing Tag", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 
 	public void TagDocument_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -169,9 +167,8 @@ public class TagDocument extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(docName);
 	}
 
-	
 	@Test(description = "Tag a Document using Right Click context menu", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 
 	public void TagDocument_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
