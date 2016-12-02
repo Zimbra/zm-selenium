@@ -36,7 +36,9 @@ public class SendMailToContactGroup extends AjaxCommonTest {
 	}
 
 	@Bugs(ids = "97157")
-	@Test(description = "Right click then click New Email", groups = { "smoke" })
+	@Test(description = "Right click then click New Email", 
+	groups = { "smoke", "L0" })
+	
 	public void NewEmail_01() throws HarnessException {
 
 		// -- Data

@@ -47,8 +47,8 @@ public class DeleteContactGroup extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Delete a contact group by click Delete button on toolbar and verify toast msg", groups = {
-			"functional" })
+	@Test(description = "Delete a contact group by click Delete button on toolbar and verify toast msg", 
+			groups = {"functional", "L2"})
 	public void DeleteContactGroupToastMsg_01() throws HarnessException {
 
 		// Create a contact group
@@ -71,8 +71,8 @@ public class DeleteContactGroup extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Delete a contact group by click Delete on Context Menu and verify toast msg", groups = {
-			"functional" })
+	@Test(description = "Delete a contact group by click Delete on Context Menu and verify toast msg", 
+			groups = {"functional", "L2"})
 	public void DeleteContactGroupToastMsg_02() throws HarnessException {
 
 		// Create a contact group
@@ -93,8 +93,8 @@ public class DeleteContactGroup extends AjaxCommonTest {
 				"Verify toast message: Contact group Moved to Trash");
 	}
 
-	@Test(description = "Delete a contact group selected by checkbox by click Delete button on toolbar and verify toast msg", groups = {
-			"functional" })
+	@Test(description = "Delete a contact group selected by checkbox by click Delete button on toolbar and verify toast msg", 
+			groups = {"functional", "L2"})
 	public void DeleteContactGroupToastMsg_03() throws HarnessException {
 
 		ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
@@ -119,7 +119,8 @@ public class DeleteContactGroup extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Delete a contact group use shortcut Del and verify toast msg", groups = { "functional" })
+	@Test(description = "Delete a contact group use shortcut Del and verify toast msg", 
+			groups = { "functional", "L2"})
 	public void DeleteContactGroupToastMsg_04() throws HarnessException {
 
 		// Create a contact group
@@ -144,7 +145,8 @@ public class DeleteContactGroup extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Delete a contact group use shortcut backspace and verify toast msg", groups = { "functional" })
+	@Test(description = "Delete a contact group use shortcut backspace and verify toast msg", 
+			groups = { "functional", "L2"})
 	public void DeleteContactGroupToastMsg_05() throws HarnessException {
 
 		// Create a contact group
@@ -167,7 +169,8 @@ public class DeleteContactGroup extends AjaxCommonTest {
 	}
 
 	@Bugs(ids = "78829")
-	@Test(description = "Delete multiple contact groups at once and verify toast msg", groups = { "functional" })
+	@Test(description = "Delete multiple contact groups at once and verify toast msg", 
+	groups = { "functional", "L3"})
 	public void DeleteContactGroupToastMsg_06() throws HarnessException {
 
 		// Create a contact group
@@ -197,7 +200,8 @@ public class DeleteContactGroup extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Delete contact + contact group at once and verify toast msg", groups = { "functional" })
+	@Test(description = "Delete contact + contact group at once and verify toast msg", 
+			groups = { "functional", "L3"})
 	public void DeleteContactGroupToastMsg_07() throws HarnessException {
 
 		// Create a contact group
@@ -225,8 +229,8 @@ public class DeleteContactGroup extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Move a contact group to folder Trash by expand Move dropdown then select Trash and verify toast msg", groups = {
-			"functional" })
+	@Test(description = "Move a contact group to folder Trash by expand Move dropdown then select Trash and verify toast msg", 
+			groups = {"functional", "L3"})
 	public void DeleteContactGroupToastMsg_08() throws HarnessException {
 
 		// The trash folder

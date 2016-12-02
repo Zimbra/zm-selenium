@@ -24,21 +24,16 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.performance.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
-
 public class ZmContactsAppFolders extends AjaxCommonTest {
 
 	public ZmContactsAppFolders() {
 		logger.info("New "+ ZmContactsAppFolders.class.getCanonicalName());
-
-
 		super.startingPage = app.zPageMail;
-		
 
 	}
 
 	@Test( description = "Measure the time to load the contacts app, 1 addressbook",
-			groups = { "performance" })
+			groups = { "performance", "L3"})
 	public void ZmContactsAppFolders_01() throws HarnessException {
 
 		// Create a folder
@@ -68,7 +63,7 @@ public class ZmContactsAppFolders extends AjaxCommonTest {
 	}
 
 	@Test( description = "Measure the time to load the contacts app, 100 addressbooks",
-			groups = { "performance" })
+			groups = { "performance", "L3"})
 	public void ZmContactsAppFolders_02() throws HarnessException {
 
 		// Create 100 folders
@@ -98,6 +93,5 @@ public class ZmContactsAppFolders extends AjaxCommonTest {
 
 
 	}
-
 
 }

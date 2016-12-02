@@ -36,9 +36,8 @@ public class ViewContactGroup extends AjaxCommonTest  {
 
 	}
 
-
 	@Test( description = "View a contact group", 
-			groups = { "smoke" } )
+			groups = { "smoke", "L0" } )
 	
 	public void DisplayContactGroupInfo_01() throws HarnessException {
 

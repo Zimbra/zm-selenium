@@ -38,8 +38,8 @@ public class EditContactGroup extends AjaxCommonTest {
 	}
 
 	@Bugs(ids = "97157")
-	@Test(description = "Edit a contact group by click Edit on Toolbar button and verify Toast msg", groups = {
-			"functional" })
+	@Test(description = "Edit a contact group by click Edit on Toolbar button and verify Toast msg", 
+			groups = {"functional", "L2"})
 	public void EditContactGroupToastMsg_01() throws HarnessException {
 
 		// A new group name
@@ -77,8 +77,8 @@ public class EditContactGroup extends AjaxCommonTest {
 	}
 
 	@Bugs(ids = "97157")
-	@Test(description = "Edit a contact group by click Edit Group on Context Menu and verify toast msg", groups = {
-			"functional" })
+	@Test(description = "Edit a contact group by click Edit Group on Context Menu and verify toast msg", 
+			groups = {"functional", "L2"})
 	public void EditContactGroupToastMsg_02() throws HarnessException {
 
 		// A new group name
@@ -114,8 +114,8 @@ public class EditContactGroup extends AjaxCommonTest {
 	}
 
 	@Bugs(ids = "97157")
-	@Test(description = "Edit a contact group by double click on the contact group and verify toast msg  ", groups = {
-			"functional" })
+	@Test(description = "Edit a contact group by double click on the contact group and verify toast msg  ", 
+			groups = {"functional", "L2"})
 	public void EditContactGroupToastMsg_03() throws HarnessException {
 
 		// A new group name

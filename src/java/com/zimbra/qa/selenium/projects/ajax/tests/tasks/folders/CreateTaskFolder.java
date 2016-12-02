@@ -26,7 +26,6 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.DialogCreateTaskFolder;
 
-
 public class CreateTaskFolder extends AjaxCommonTest {
 
 	private boolean _folderIsCreated = false;
@@ -46,7 +45,7 @@ public class CreateTaskFolder extends AjaxCommonTest {
 	}	
 
 	@Test( description = "Create a new tasklist by clicking 'Create a new task' on task folders tree", 
-			groups = { "sanity" })
+			groups = { "sanity", "L0"})
 	
 	public void CreateTaskFolder_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -75,7 +74,8 @@ public class CreateTaskFolder extends AjaxCommonTest {
 		ZAssert.assertEquals(folder.getName(), _folderName,"Verify the server and client folder names match");
 	}
 	
-	@Test( description = "Create a new tasklist using tasks app New -> New Task Folder", groups = { "functional" })
+	@Test( description = "Create a new tasklist using tasks app New -> New Task Folder", 
+			groups = { "functional", "L2"})
 	public void CreateTaskFolder_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 

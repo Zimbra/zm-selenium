@@ -48,9 +48,8 @@ public class RenameTaskFolder extends AjaxCommonTest {
 		}};
 	}
 	
-	
 	@Test( description = "Rename Task list -right click Rename", 
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	
 	public void RenameTaskFolder_01() throws HarnessException {
 		
@@ -89,10 +88,9 @@ public class RenameTaskFolder extends AjaxCommonTest {
 		ZAssert.assertEquals(eFolder2.length, 1, "Verify the new tasklist/folder name exists");
 	}
 	
-	
 	@Bugs(ids="62365")
 	@Test( description = "Rename a tasklist - set to an invalid name with ':'", 
-		groups = { "functional" })
+		groups = { "functional", "L3"})
 	
 	public void RenameTaskFolder_02() throws HarnessException {
 		
@@ -129,9 +127,8 @@ public class RenameTaskFolder extends AjaxCommonTest {
 		dlgRename.zClickButton(Button.B_CANCEL);
 	}
 	
-	
 	@Test( description = "Rename Task list -right click Edit, Change name(Context menu -> Edit)", 
-			groups = { "functional" })
+			groups = { "functional", "L3"})
 	
 	public void RenameTaskFolder_03() throws HarnessException {
 		
