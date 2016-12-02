@@ -34,7 +34,7 @@ public class CreateTag extends FeatureBriefcaseTest {
 
 	
 	@Test(description = "Create a new tag by clicking 'new tag' on folder tree", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 
 	public void CreateTag_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

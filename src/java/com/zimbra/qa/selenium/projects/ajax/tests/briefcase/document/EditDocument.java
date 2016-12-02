@@ -47,7 +47,8 @@ public class EditDocument extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 	}
 
-	@Test(description = "Create document through SOAP - edit name & verify through GUI", groups = { "smoke" })
+	@Test(description = "Create document through SOAP - edit name & verify through GUI", 
+			groups = { "smoke", "L2" })
 
 	public void EditDocument_01() throws HarnessException {
 
@@ -109,7 +110,8 @@ public class EditDocument extends FeatureBriefcaseTest {
 	}
 
 	@Bugs(ids = "97124")
-	@Test(description = "Create document through SOAP - edit text & name & verify through GUI", groups = { "smoke" })
+	@Test(description = "Create document through SOAP - edit text & name & verify through GUI",
+	groups = { "smoke", "L2" })
 
 	public void EditDocument_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -205,7 +207,8 @@ public class EditDocument extends FeatureBriefcaseTest {
 	}
 
 	@Bugs(ids = "97124")
-	@Test(description = "Create document & edit text through SOAP & verify through GUI", groups = { "smoke" })
+	@Test(description = "Create document & edit text through SOAP & verify through GUI", 
+	groups = { "smoke", "L3" })
 
 	public void EditDocument_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -281,105 +284,10 @@ public class EditDocument extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(docItem.getName());
 	}
 
-	@Bugs(ids = "97124")
-	@Test(description = "Create document through SOAP - edit text & verify through GUI", groups = { "smoke" })
+	@Test(description = "Create document through SOAP - Edit Document using Right Click Context Menu & verify through GUI", 
+			groups = {"functional", "L2" })
 
 	public void EditDocument_04() throws HarnessException {
-		ZimbraAccount account = app.zGetActiveAccount();
-
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
-
-		// Create document item
-		DocumentItem docItem = new DocumentItem();
-
-		// Create document using SOAP
-		String contentHTML = XmlStringUtil
-				.escapeXml("<html>" + "<body>" + docItem.getDocText() + "</body>" + "</html>");
-
-		account.soapSend("<SaveDocumentRequest requestId='0' xmlns='urn:zimbraMail'>" + "<doc name='"
-				+ docItem.getName() + "' l='" + briefcaseFolder.getId() + "' ct='application/x-zimbra-doc'>"
-				+ "<content>" + contentHTML + "</content>" + "</doc>" + "</SaveDocumentRequest>");
-
-		// refresh briefcase page
-		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-
-		// Click on created document
-		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, docItem);
-
-		// Click on Edit document icon in toolbar
-		DocumentBriefcaseEdit documentBriefcaseEdit = (DocumentBriefcaseEdit) app.zPageBriefcase
-				.zToolbarPressButton(Button.B_EDIT_FILE, docItem);
-
-		app.zPageBriefcase.isEditDocLoaded(docItem);
-
-		String editText = "";
-		String newName = "";
-
-		// Select document window opened for editing
-		try {
-			app.zPageBriefcase.zSelectWindow(docItem.getName());
-
-			editText = "editText" + ConfigProperties.getUniqueString();
-			newName = "newname" + ConfigProperties.getUniqueString();
-
-			// Fill out the document with the new data
-			documentBriefcaseEdit.zFillField(DocumentBriefcaseNew.Field.Name, newName);
-			documentBriefcaseEdit.zFillField(DocumentBriefcaseNew.Field.Body, editText);
-
-			// Save and close
-			documentBriefcaseEdit.zSubmit();
-		} catch (Exception ex) {
-			throw new HarnessException("error in editing document " + docItem.getName(), ex);
-		} finally {
-			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
-		}
-
-		docItem.setDocText(editText);
-		docItem.setDocName(newName);
-
-		// refresh briefcase page
-		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-
-		// Click on modified document
-		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, docItem);
-
-		// Click on open in a separate window icon in toolbar
-		DocumentBriefcaseOpen documentBriefcaseOpen;
-		if (ConfigProperties.zimbraGetVersionString().contains("7.1."))
-			documentBriefcaseOpen = (DocumentBriefcaseOpen) app.zPageBriefcase
-					.zToolbarPressButton(Button.B_OPEN_IN_SEPARATE_WINDOW, docItem);
-		else
-			documentBriefcaseOpen = (DocumentBriefcaseOpen) app.zPageBriefcase.zToolbarPressPulldown(Button.B_ACTIONS,
-					Button.B_LAUNCH_IN_SEPARATE_WINDOW, docItem);
-
-		app.zPageBriefcase.isOpenDocLoaded(docItem);
-
-		String text = "";
-
-		// Select document opened in a separate window
-		try {
-			app.zPageBriefcase.zSelectWindow(docItem.getName());
-
-			text = documentBriefcaseOpen.retriveDocumentText();
-
-			// close
-			app.zPageBriefcase.zSelectWindow(docItem.getName());
-
-			app.zPageBriefcase.closeWindow();
-		} finally {
-			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
-		}
-
-		ZAssert.assertStringContains(text, docItem.getDocText(), "Verify document text through GUI");
-
-		// delete file upon test completion
-		app.zPageBriefcase.deleteFileByName(docItem.getName());
-	}
-
-	@Test(description = "Create document through SOAP - Edit Document using Right Click Context Menu & verify through GUI", 
-			groups = {"functional" })
-
-	public void EditDocument_05() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);

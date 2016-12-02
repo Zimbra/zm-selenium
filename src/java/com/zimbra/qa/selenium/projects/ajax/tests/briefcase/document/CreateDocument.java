@@ -53,7 +53,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 
 	@Bugs(ids = "97124")
 	@Test( description = "Create document through GUI - verify through GUI", 
-		groups = { "sanity" })
+		groups = { "sanity", "L0" })
 	
 	public void CreateDocument_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -118,75 +118,11 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		ZAssert.assertStringContains(name, docName,	"Verify document name through GUI");
 		ZAssert.assertStringContains(text, docText,	"Verify document text through GUI");
 	}
-
-	
-	@Test( description = "Create document using New menu pulldown menu - verify through SOAP & RestUtil", groups = { "functional" })
-	public void CreateDocument_02() throws HarnessException {
-		ZimbraAccount account = app.zGetActiveAccount();
-
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
-
-		// Create document item
-		DocumentItem document = new DocumentItem();
-		String docName = document.getName();
-		String docText = document.getDocText();
-
-		// Refresh briefcase page before creating a new document
-		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
-
-		// Create a new document using New pull down menu
-		DocumentBriefcaseNew documentBriefcaseNew = (DocumentBriefcaseNew) app.zPageBriefcase.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_DOCUMENT, document);
-
-		try {
-			app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
-			app.zPageBriefcase.sWindowFocus();
-
-			// Fill out the document with the data
-			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name, docName);
-			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Body, docText);
-			documentBriefcaseNew.zSubmit();
-
-		} finally {
-			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
-			app.zPageBriefcase.sWindowFocus();
-		}
-
-		app.zPageBriefcase.zWaitForWindowClosed(DocumentBriefcaseNew.pageTitle);
-
-		// Refresh briefcase page
-		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-
-		// Display file through RestUtil
-		EnumMap<PageBriefcase.Response.ResponsePart, String> response = app.zPageBriefcase
-				.displayFile(docName, new HashMap<String, String>() {
-					private static final long serialVersionUID = 1L;
-					{
-						put("fmt", PageBriefcase.Response.Format.NATIVE.getFormat());
-					}
-				});
-
-		// Search for created document
-		account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>" + "<query>" + docName + "</query>" + "</SearchRequest>");
-
-		String name = account.soapSelectValue("//mail:doc", "name");
-
-		ZAssert.assertNotNull(name,	"Verify the search response returns the document name");
-		ZAssert.assertStringContains(docName, name, "Verify document name through SOAP");
-
-		HtmlElement element = HtmlElement.clean(response.get(PageBriefcase.Response.ResponsePart.BODY));
-		HtmlElement.evaluate(element, "//body", null, Pattern.compile(".*" + docText + ".*"), 1);
-
-		ZAssert.assertStringContains(response.get(PageBriefcase.Response.ResponsePart.BODY), docText, "Verify document content through GUI");
-
-		// delete file upon test completion
-		app.zPageBriefcase.deleteFileByName(docName);
-	}
-
 	
 	@Test( description = "Create document using keyboard shortcut - verify through SOAP & RestUtil", 
-			groups = { "functional" })
+			groups = { "functional", "L1" })
 	
-	public void CreateDocument_03() throws HarnessException {
+	public void CreateDocument_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
@@ -249,13 +185,12 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		// delete file upon test completion
 		app.zPageBriefcase.deleteFileByName(docName);
 	}
-
 	
 	@Bugs(ids="81299")
 	@Test( description = "Create document using New menu pulldown menu - verify through SOAP & RestUtil", 
-			groups = { "functional" })
+			groups = { "functional", "L1" })
 	
-	public void CreateDocument_04() throws HarnessException {
+	public void CreateDocument_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
