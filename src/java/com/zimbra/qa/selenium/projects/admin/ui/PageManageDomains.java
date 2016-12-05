@@ -27,6 +27,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
@@ -44,6 +45,7 @@ public class PageManageDomains extends AbsTab {
 		public static final String DOMAIN="Domains";
 		public static final String DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String EDIT_BUTTON="css=td[id='zmi__zb_currentApp__EDIT_title']:contains('Edit')";
+		public static final String CONFIGURE_GAL="div[id='zmi__zb_currentApp__GAL_WIZARD'] td[id$='_title']";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=td[id='zmi__DMLV__EDIT_title']:contains('Edit')";
 		public static final String DOMAIN_EDIT_ACL="css=div[id^='zti__AppAdmin__CONFIGURATION__DOMAINS'][class='ZTreeItemTextCell']:contains('ACL')";
@@ -55,7 +57,7 @@ public class PageManageDomains extends AbsTab {
 		public static final String MAXIMUM_ACCOUNTS_FOR_DOMAIN = "css=input[id='ztabv__DOAMIN_EDIT_zimbraDomainMaxAccounts']";
 		public static final String DOMAIN_ACCOUNTS_LIMITS_AT_COS_OK = "css=td[id^='zdlg__UNDEFINE']:contains('OK')";
 		public static final String DOMAIN_EDIT_ACL_ADD = "css=td[id^='ztabv__DOAMIN_EDIT_dwt_button'] td[id$='title']:contains('Add')";
-		
+		public static final String DEFAULT_DOMAIN = "css=td[id^='domain_data_name_']:contains('" + ConfigProperties.getStringProperty("server.host") +"')";
 		
 	}
 
@@ -90,18 +92,17 @@ public class PageManageDomains extends AbsTab {
 		// Make sure the Admin Console is loaded in the browser
 		if ( !MyApplication.zIsLoaded() )
 			throw new HarnessException("Admin Console application is not active!");
-
-
-		boolean present = sIsElementPresent(Locators.GEAR_ICON);
+		
+		boolean present = sIsElementPresent(Locators.DEFAULT_DOMAIN);
 		if ( !present ) {
 			return (false);
 		}
 
-		boolean visible = zIsVisiblePerPosition(Locators.GEAR_ICON, 0, 0);
-		if ( !visible ) {
-			logger.debug("isActive() visible = "+ visible);
-			return (false);
-		}
+//		boolean visible = zIsVisiblePerPosition(Locators.GEAR_ICON, 0, 0);
+//		if ( !visible ) {
+//			logger.debug("isActive() visible = "+ visible);
+//			return (false);
+//		}
 
 		return (true);
 
@@ -123,17 +124,16 @@ public class PageManageDomains extends AbsTab {
 
 
 		if ( zIsActive() ) {
-			
 			return;
 		}
 
-		// Click on Addresses -> Accounts
-		SleepUtil.sleepLong();
-
-		zClickAt(Locators.CONFIGURE_ICON,"");
-		sIsElementPresent(Locators.DOMAINS);
-		SleepUtil.sleepLong();
-		zClickAt(Locators.DOMAINS, "");
+		//Refresh the page if page is not the main page
+		if(!sIsElementPresent(Locators.CONFIGURE_ICON)) {
+			sRefresh();
+		}
+		sClickAt(Locators.CONFIGURE_ICON,"");
+		zWaitForElementPresent(Locators.DOMAINS);
+		sClickAt(Locators.DOMAINS, "");
 		SleepUtil.sleepMedium();
 		zWaitForActive();
 	}
@@ -188,6 +188,9 @@ public class PageManageDomains extends AbsTab {
 						break;
 					} else if (action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);
+						break;
+					} else if (action == Action.A_DOUBLECLICK) {
+						sDoubleClick(locator);
 						break;
 					}
 
@@ -333,6 +336,11 @@ public class PageManageDomains extends AbsTab {
 					page=new FormEditDomain(this.MyApplication);
 				else if (typeOfObject.equals(TypeOfObject.DOMAIN_ALIAS))
 					page=new WizardCreateDomainAlias(this);
+
+			} else if (option == Button.O_CONFIGURE_GAL) {
+				optionLocator = Locators.CONFIGURE_GAL;
+				
+				page = new WizardConfigureGAL(this);
 
 			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);

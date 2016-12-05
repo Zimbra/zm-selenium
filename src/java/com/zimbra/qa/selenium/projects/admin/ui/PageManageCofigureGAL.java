@@ -26,6 +26,9 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.projects.admin.items.GALItem;
+import com.zimbra.qa.selenium.projects.admin.items.GALItem.GALMode;
 
 
 /**
@@ -35,6 +38,13 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 public class PageManageCofigureGAL extends AbsTab {
 
 	public static class Locators {
+		public static final String GAL_HEADER = "css=span:contains('GAL')";
+		public static final String DOMAIN_GAL = "css=div[id^='zti__AppAdmin__CONFIGURATION__DOMAINS__'] div[id$='_textCell']:contains('GAL')";
+		public static final String GAL_MODE = "css=div[id^='ztabv__DOAMIN_EDIT'][id$='_zimbraGalMode']";
+		public static final String EXT_DATA_SRC_NAME = "css=div[id$='ldap_ds.name']";
+		public static final String INT_DATA_SRC_NAME = "css=div[id$='zimbra_ds.name']";
+		public static final String SERVER_TYPE = "css=div[id$='_galservertype']";
+	
 	
 	}
 
@@ -48,8 +58,8 @@ public class PageManageCofigureGAL extends AbsTab {
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
-		// Make sure the Admin Console is loaded in the browser
-		return false;
+		// return if GAL configure page is loaded in the browser
+		return sIsElementPresent(Locators.GAL_HEADER);
 	}
 
 	/* (non-Javadoc)
@@ -62,10 +72,18 @@ public class PageManageCofigureGAL extends AbsTab {
 
 	/* (non-Javadoc)
 	 * @see projects.admin.ui.AbsTab#navigateTo()
+	 * use this only for navigating to GAL Details page after opening the domain
 	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
+		
+		if ( zIsActive() ) {
+			// This page is already active.
+			return;
+		}
 
+		sClick(Locators.DOMAIN_GAL);
+		zWaitForActive();
 	}
 
 	@Override
@@ -145,6 +163,30 @@ public class PageManageCofigureGAL extends AbsTab {
 		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
+	}
+	
+	//Verify the displayed GAL configuration data
+	public boolean zVerifyGALConfigData(GALItem gItem) throws HarnessException {
+		boolean status = false;
+		ZAssert.assertEquals(this.getElement(Locators.GAL_MODE).getText(), gItem.getNewGALMode().toString(), "GAL is not correct!");
+		
+		if(gItem.getCurrentGALMode().equals(GALMode.Internal)) {
+			
+			ZAssert.assertEquals(this.getElement(Locators.EXT_DATA_SRC_NAME).getText(), gItem.getDataSourceName(), "External Data source is not displayed correctly!");
+			ZAssert.assertStringContains(this.getElement(Locators.SERVER_TYPE).getText().replaceAll(" ",""),gItem.getServerType().toString(), "GAL Server type is not correct!");
+		
+		} else if(gItem.getCurrentGALMode().equals(GALMode.External)) {
+			
+			ZAssert.assertEquals(this.getElement(Locators.INT_DATA_SRC_NAME).getText(), gItem.getDataSourceName(), "Internal Data source is not displayed correctly!");
+			//ZAssert.assertStringContains(this.getElement(Locators.SERVER_TYPE).getText().replaceAll(" ",""),gItem.getServerType().toString(), "GAL Server type is not correct!");
+		
+		} else {
+			throw new HarnessException("Implement me for "+ gItem.getCurrentGALMode() + "GAL mode");
+		}
+		
+		
+		status = true;
+		return status;
 	}
 
 
