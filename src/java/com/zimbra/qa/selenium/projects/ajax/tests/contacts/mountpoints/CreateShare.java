@@ -24,20 +24,18 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare;
 
-
 public class CreateShare extends AjaxCommonTest  {
 
 	public CreateShare() {
 		logger.info("New "+ CreateShare.class.getCanonicalName());
 		
 		// All tests start at the login page
-		super.startingPage = app.zPageContacts;
-		
+		super.startingPage = app.zPageContacts;		
 
 	}
 	
 	@Test( description = "Share an addressbook - Viewer",
-			groups = { "smoke" })
+			groups = { "smoke", "L1"})
 	public void CreateShare_01() throws HarnessException {
 		
 		String addressbookname = "addressbook" + ConfigProperties.getUniqueString();
@@ -91,8 +89,5 @@ public class CreateShare extends AjaxCommonTest  {
 		ZAssert.assertEquals(granteeType, "usr", "Verify the grantee type is 'user'");
 
 	}
-
 	
-	
-
 }

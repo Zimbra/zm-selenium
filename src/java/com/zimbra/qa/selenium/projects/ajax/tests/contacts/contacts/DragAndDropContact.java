@@ -30,10 +30,9 @@ public class DragAndDropContact extends AjaxCommonTest  {
 		super.startingPage = app.zPageContacts;
 		
 	}
-
 	
 	@Test( description = "Move a contact item to sub-addressbook",
-			groups = { "smoke" })
+			groups = { "smoke", "L0"})
 	
 	public void DragAndDropContact_01() throws HarnessException {
 		
@@ -82,10 +81,9 @@ public class DragAndDropContact extends AjaxCommonTest  {
         ZAssert.assertNotNull(actual, "Verify the contact is deleted from the addressbook");
         ZAssert.assertEquals(actual.getFolderId(), folder.getId(), "Verify the contact is in the Trash folder");
    	}
-	
-	
+		
 	@Test( description = "Move a contact item to trash folder by drag and drop",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	
 	public void DnDToTrash_02() throws HarnessException {
 		

@@ -37,8 +37,8 @@ public class CreateContact extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Create a basic contact item by click New in page Addressbook and verify toast msg ", groups = {
-			"functional" })
+	@Test(description = "Create a basic contact item by click New in page Addressbook and verify toast msg ", 
+			groups = {"functional", "L2"})
 
 	public void CreateContactToastMsg_01() throws HarnessException {
 

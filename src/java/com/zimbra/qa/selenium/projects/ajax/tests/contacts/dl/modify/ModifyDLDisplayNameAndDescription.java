@@ -33,10 +33,9 @@ public class ModifyDLDisplayNameAndDescription extends AjaxCommonTest  {
 		logger.info("New "+ ModifyDLDisplayNameAndDescription.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
 	}
-
 	
 	@Test( description = "Modify DL display name and description", 
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 
 	public void ModifyDLDisplayNameAndDescription_01 () throws HarnessException {
 

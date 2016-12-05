@@ -36,7 +36,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 	
 	@Bugs(ids="97157")
 	@Test( description = "Edit a contact group by click Edit on Toolbar button", 
-		groups = { "smoke" })
+		groups = { "smoke", "L0" })
 	
 	public void EditContactGroup_01() throws HarnessException {
 
@@ -62,11 +62,10 @@ public class EditContactGroup extends AjaxCommonTest  {
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newname);
 		ZAssert.assertNotNull(actual, "Verify the contact group with new name exists");
 	}
-
 	
 	@Bugs(ids="97157")
 	@Test( description = "Edit a contact group by click Edit Group on Context Menu ", 
-		groups = { "functional" })
+		groups = { "functional", "L1" })
 	
 	public void EditContactGroup_02() throws HarnessException {
 
@@ -91,10 +90,9 @@ public class EditContactGroup extends AjaxCommonTest  {
 
 	}
 	
-
 	@Bugs(ids="97157")
 	@Test( description = "Edit a contact group by double click on the contact group", 
-		groups = { "functional" })
+		groups = { "functional", "L1" })
 	
 	public void EditContactGroup_03() throws HarnessException {
 
@@ -120,9 +118,8 @@ public class EditContactGroup extends AjaxCommonTest  {
 
 	}
 	
-
 	@Test( description = "Cancel Editing a contact group by click Close", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void EditContactGroup_04() throws HarnessException {
 		// Create a contact group
@@ -149,10 +146,9 @@ public class EditContactGroup extends AjaxCommonTest  {
 		ZAssert.assertNotNull(actual, "Verify the contact group with new name exists");
 
 	}
-
 	
 	@Test( description = "Cancel an edited contact group by click Close, then click No", 
-			groups = { "functional" })
+			groups = { "functional", "L0" })
 	
 	public void EditContactGroup_05() throws HarnessException {
 
@@ -194,11 +190,10 @@ public class EditContactGroup extends AjaxCommonTest  {
 		actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newname);
 		ZAssert.assertNull(actual, "Verify the contact group with new name exists");
 	}
-	
-	
+		
 	@Bugs(ids="97157")
 	@Test( description = "Cancel an edited contact by click Close, then click Cancel", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void EditContactGroup_06() throws HarnessException {
 
@@ -235,11 +230,10 @@ public class EditContactGroup extends AjaxCommonTest  {
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newname);
 		ZAssert.assertNotNull(actual, "Verify the contact group with new name exists");
 	}
-	
-	
+		
 	@Bugs(ids="97157")
 	@Test( description = "Cancel an edited contact by click Close, then click Yes", 
-		groups = { "functional" })
+		groups = { "functional", "L2" })
 	
 	public void EditContactGroup_07() throws HarnessException {
 

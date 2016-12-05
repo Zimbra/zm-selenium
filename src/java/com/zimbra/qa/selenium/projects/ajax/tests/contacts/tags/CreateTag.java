@@ -24,26 +24,19 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
 
-
-
-
 public class CreateTag extends PrefGroupMailByMessageTest {
 
 	public CreateTag() {
 		logger.info("New "+ CreateTag.class.getCanonicalName());
-		
-		
 		// All tests start at the addressbook page
 		super.startingPage = app.zPageContacts;
-		
 
 	}
 	
 	@Test( description = "Create a new tag by clicking 'new tag' on folder tree",
-			groups = { "sanity" })
+			groups = { "sanity", "L0"})
 	
 	public void CreateTag_01() throws HarnessException {
-		
 		
 		// Set the new tag name
 		String name = "tag" + ConfigProperties.getUniqueString();
@@ -63,16 +56,12 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(tag.getName(), name, "Verify the server and client tag names match");
 		
 	}
-
-	
 	
 	@Test( description = "Create a new tag using keyboard shortcuts",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	public void CreateTag_02() throws HarnessException {
 		
 		Shortcut shortcut = Shortcut.S_NEWTAG;
-		
-		
 		
 		// Set the new tag name
 		String name = "tag" + ConfigProperties.getUniqueString();
@@ -95,7 +84,7 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Create a new tag using context menu from a tag",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	public void CreateTag_03() throws HarnessException {
 		
 		// Work around due to duplicate dialog ids
@@ -128,7 +117,6 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 		dialog.zSetTagName(name1);
 		dialog.zSubmit();
 
-
 		// Make sure the folder was created on the server
 		TagItem tag1 = TagItem.importFromSOAP(app.zGetActiveAccount(), name1);
 
@@ -139,9 +127,8 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Create a new tag using mail app New -> New Tag",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	public void CreateTag_04() throws HarnessException {
-		
 		
 		// Set the new folder name
 		String name = "tag" + ConfigProperties.getUniqueString();
@@ -154,7 +141,6 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 		// Fill out the form with the basic details
 		dialog.zSetTagName(name);
 		dialog.zSubmit();
-
 
 		// Make sure the folder was created on the server
 		TagItem tag = TagItem.importFromSOAP(app.zGetActiveAccount(), name);

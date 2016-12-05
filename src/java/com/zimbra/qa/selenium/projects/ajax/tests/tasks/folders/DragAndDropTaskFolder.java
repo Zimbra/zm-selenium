@@ -16,8 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.folders;
 
-
-
 import java.util.HashMap;
 
 import org.testng.annotations.Test;
@@ -31,8 +29,6 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
-
 public class DragAndDropTaskFolder extends AjaxCommonTest {
 	@SuppressWarnings("serial")
 	public DragAndDropTaskFolder() {
@@ -45,10 +41,10 @@ public class DragAndDropTaskFolder extends AjaxCommonTest {
 			put("zimbraPrefShowSelectionCheckbox", "TRUE");
 		}};
 	}	
-
 	
 	@Bugs(ids="69661")
-	@Test( description = "Drag one Task folder and Drop into other", groups = { "smoke" })
+	@Test( description = "Drag one Task folder and Drop into other", 
+			groups = { "smoke", "L1"})
 	public void DragAndDropTaskFolder_01() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		ZAssert.assertNotNull(taskFolder, "Verify the task is available");

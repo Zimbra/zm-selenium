@@ -28,7 +28,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
 
 public class TagContactGroup extends AjaxCommonTest  {
 	
-	
 	public TagContactGroup() {
 		logger.info("New "+ TagContactGroup.class.getCanonicalName());
 		
@@ -41,22 +40,18 @@ public class TagContactGroup extends AjaxCommonTest  {
 		{
 		    put("zimbraPrefShowSelectionCheckbox", "TRUE");
 		}};			
-					
 		
 	}
 	
 	@Test( description = "Tag a contact group, click pulldown menu Tag->New Tag",
-			groups = { "smoke" })
+			groups = { "smoke", "L1"})
 	public void  ClickPulldownMenuTagNewTag_01() throws HarnessException {
-	
-		//-- Data
 		
 		// Create a tag
 		String tagName = "tag"+ ConfigProperties.getUniqueString();
 
 		// Create a contact group via Soap then select
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-
 
 		//-- GUI
 		
@@ -74,8 +69,6 @@ public class TagContactGroup extends AjaxCommonTest  {
         DialogTag dialogTag = (DialogTag) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_NEWTAG , group.getName());        
     	dialogTag.zSetTagName(tagName);
 		dialogTag.zClickButton(Button.B_OK);		
-    	
-		
 		
 		//-- Verification
 		
@@ -87,25 +80,18 @@ public class TagContactGroup extends AjaxCommonTest  {
 		String tn = app.zGetActiveAccount().soapSelectValue("//mail:cn", "tn");
 		ZAssert.assertNotNull(tn, "Verify the contact has tags");
 		ZAssert.assertStringContains(tn, tagName, "Verify the contact is tagged with the correct tag");
-		
-
-
 	           
    	}
-	
 		
 	@Test( description = "Right click then click Tag Contact->New Tag",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	public void ClickContextMenuTagGroupNewTag_02() throws HarnessException {
-		
-		//-- Data
 		
 		// Create a tag
 		String tagName = "tag"+ ConfigProperties.getUniqueString();
 
 		// Create a contact group via Soap then select
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-
 
 		//-- GUI
 		
@@ -116,8 +102,6 @@ public class TagContactGroup extends AjaxCommonTest  {
         DialogTag dialogTag = (DialogTag) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_NEWTAG , group.getName());        
 		dialogTag.zSetTagName(tagName);
 		dialogTag.zClickButton(Button.B_OK);		
-    	
-		
 		
 		//-- Verification
 		
@@ -129,22 +113,18 @@ public class TagContactGroup extends AjaxCommonTest  {
 		String tn = app.zGetActiveAccount().soapSelectValue("//mail:cn", "tn");
 		ZAssert.assertNotNull(tn, "Verify the contact has tags");
 		ZAssert.assertStringContains(tn, tagName, "Verify the contact is tagged with the correct tag");
-		
 
    	}
 	
 	@Test( description = "Right click then click Tag Contact Group->a tag name",
-			groups = { "functional" })	
+			groups = { "functional", "L2"})	
 	public void ClickContextMenuTagContactExistingTag_03() throws HarnessException {
-		
-		//-- Data
 		
 		// Create a tag
 		TagItem tagItem = TagItem.CreateUsingSoap(app.zGetActiveAccount());		
 
 		// Create a contact group via Soap then select
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-
 
 		//-- GUI
 		
@@ -153,8 +133,6 @@ public class TagContactGroup extends AjaxCommonTest  {
 		
 		// Right Click -> Tag -> Existing Tag
 		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, tagItem, group.getName());        
-    	
-		
 		
 		//-- Verification
 		
@@ -166,22 +144,18 @@ public class TagContactGroup extends AjaxCommonTest  {
 		String t = app.zGetActiveAccount().soapSelectValue("//mail:cn", "t");
 		ZAssert.assertNotNull(t, "Verify the contact has tags");
 		ZAssert.assertStringContains(t, tagItem.getId(), "Verify the contact is tagged with the correct tag");
-		
 
 	}
 
 	@Test( description = "Click pulldown menu Tag->A tag name",
-			groups = { "smoke" })	
+			groups = { "smoke", "L1"})	
 	public void ClickPulldownMenuTagExistingTag_04() throws HarnessException {
-		
-		//-- Data
-		
+
 		// Create a tag
 		TagItem tagItem = TagItem.CreateUsingSoap(app.zGetActiveAccount());		
 
 		// Create a contact group via Soap then select
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-
 
 		//-- GUI
 		
@@ -193,8 +167,6 @@ public class TagContactGroup extends AjaxCommonTest  {
 
 		// Tag -> Existing Tag
 		app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, tagItem);
-    	
-		
 		
 		//-- Verification
 		
@@ -206,15 +178,12 @@ public class TagContactGroup extends AjaxCommonTest  {
 		String t = app.zGetActiveAccount().soapSelectValue("//mail:cn", "t");
 		ZAssert.assertNotNull(t, "Verify the contact has tags");
 		ZAssert.assertStringContains(t, tagItem.getId(), "Verify the contact is tagged with the correct tag");
-		
 
 	}
 	
 	@Test( description = "Double tag a group ",
-			groups = { "functional" })	
+			groups = { "functional", "L2"})	
 	public void DoubleTag_05() throws HarnessException {
-		
-		//-- Data
 		
 		// Create a tag
 		TagItem tag1 = TagItem.CreateUsingSoap(app.zGetActiveAccount());		
@@ -222,7 +191,6 @@ public class TagContactGroup extends AjaxCommonTest  {
 
 		// Create a contact group via Soap then select
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-
 
 		//-- GUI
 		
@@ -235,8 +203,6 @@ public class TagContactGroup extends AjaxCommonTest  {
 		// Tag -> Existing Tag
 		app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, tag1);
 		app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, tag2);
-    	
-		
 		
 		//-- Verification
 		
@@ -251,18 +217,16 @@ public class TagContactGroup extends AjaxCommonTest  {
 		ZAssert.assertStringContains(t, tag2.getId(), "Verify the contact is tagged with the correct tag");
 		
 	}
+	
 	@Test( description = "Tag a contact group by dnd on an existing tag",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	public void DnDOnExistingTag_06() throws HarnessException {
-		
-		//-- Data
 		
 		// Create a tag
 		TagItem tagItem = TagItem.CreateUsingSoap(app.zGetActiveAccount());		
 
 		// Create a contact group via Soap then select
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-
 
 		//-- GUI
 		
@@ -273,8 +237,6 @@ public class TagContactGroup extends AjaxCommonTest  {
 		app.zPageContacts.zDragAndDrop(
 				"css=[id=zlif__CNS-main__" + group.getId() + "__fileas]:contains("+ group.getName() + ")",
 				"css=div[id=main_Contacts-parent-TAG] div[id=ztih__main_Contacts__TAG] td[id^=zti__main_Contacts__][id$=_textCell]:contains("+ tagItem.getName() + ")");
-    	
-		
 		
 		//-- Verification
 		
@@ -286,9 +248,6 @@ public class TagContactGroup extends AjaxCommonTest  {
 		String t = app.zGetActiveAccount().soapSelectValue("//mail:cn", "t");
 		ZAssert.assertNotNull(t, "Verify the contact has tags");
 		ZAssert.assertStringContains(t, tagItem.getId(), "Verify the contact is tagged with the correct tag");
-		
-
-
 			  
    	}
 }

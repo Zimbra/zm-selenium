@@ -32,9 +32,8 @@ public class CreateDuplicateDL extends AjaxCommonTest  {
 		super.startingPage = app.zPageContacts;
 	}
 
-
 	@Test( description = "Try to create duplicate DL", 
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 
 	public void TryToCreateDuplicateDL_01 () throws HarnessException {
 

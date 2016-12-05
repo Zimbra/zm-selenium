@@ -61,7 +61,7 @@ public class ZimbraFeatureTaskEnabled extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Load the Task tab with just Tasks enabled",
-			groups = { "functional-skip" })
+			groups = { "functional-skip", "L3"})
 	public void ZimbraFeatureTaskEnabled_01() throws HarnessException {
 		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

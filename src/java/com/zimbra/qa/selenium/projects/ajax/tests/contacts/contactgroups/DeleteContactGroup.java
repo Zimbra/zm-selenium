@@ -42,7 +42,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 	
 	
 	@Test( description = "Delete a contact group by click Delete button on toolbar", 
-			groups = { "smoke" })
+			groups = { "smoke", "L0" })
 	
 	public void ClickDeleteOnToolbar_01() throws HarnessException {
 
