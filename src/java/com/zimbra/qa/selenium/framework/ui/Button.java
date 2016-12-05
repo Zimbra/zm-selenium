@@ -722,6 +722,7 @@
 
 		//// Admin Console
 		// Accounts buttons
+		public static final Button O_CONFIGURE_GAL = new Button("O_CONFIGURE_GAL");
 		public static final Button O_ACCOUNTS_ACCOUNT = new Button("O_ACCOUNTS_ACCOUNT");
 		public static final Button O_ADD_DOMAIN_ALIAS = new Button("O_ADD_DOMAIN_ALIAS");
 		public static final Button B_VIEW_MAIL = new Button("B_VIEW_MAIL");
