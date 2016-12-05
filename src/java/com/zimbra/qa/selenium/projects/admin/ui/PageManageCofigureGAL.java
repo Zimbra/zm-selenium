@@ -168,7 +168,7 @@ public class PageManageCofigureGAL extends AbsTab {
 	//Verify the displayed GAL configuration data
 	public boolean zVerifyGALConfigData(GALItem gItem) throws HarnessException {
 		boolean status = false;
-		ZAssert.assertEquals(this.getElement(Locators.GAL_MODE).getText(), gItem.getNewGALMode().toString(), "GAL is not correct!");
+		ZAssert.assertEquals(this.getElement(Locators.GAL_MODE).getText(), gItem.getNewGALMode().toString(), "GAL mode is not correct!");
 		
 		if(gItem.getCurrentGALMode().equals(GALMode.Internal)) {
 			
@@ -178,10 +178,9 @@ public class PageManageCofigureGAL extends AbsTab {
 		} else if(gItem.getCurrentGALMode().equals(GALMode.External)) {
 			
 			ZAssert.assertEquals(this.getElement(Locators.INT_DATA_SRC_NAME).getText(), gItem.getDataSourceName(), "Internal Data source is not displayed correctly!");
-			//ZAssert.assertStringContains(this.getElement(Locators.SERVER_TYPE).getText().replaceAll(" ",""),gItem.getServerType().toString(), "GAL Server type is not correct!");
 		
 		} else {
-			throw new HarnessException("Implement me for "+ gItem.getCurrentGALMode() + "GAL mode");
+			throw new HarnessException("Implement me for changing GAL mode from "+ gItem.getCurrentGALMode() + " to " + gItem.getNewGALMode() +"!");
 		}
 		
 		

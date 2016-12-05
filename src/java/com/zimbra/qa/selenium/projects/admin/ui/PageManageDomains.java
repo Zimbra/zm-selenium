@@ -22,12 +22,12 @@ package com.zimbra.qa.selenium.projects.admin.ui;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
@@ -37,6 +37,7 @@ public class PageManageDomains extends AbsTab {
 	public static class Locators {
 		public static final String CONFIGURE_ICON="css=div.ImgAdministration";
 		public static final String DOMAINS="zti__AppAdmin__CONFIGURATION__DOMAINS_textCell";
+		public static final String HIGHLIGHTED_DOMAINS_TREEITEM="css=div[id='zti__AppAdmin__CONFIGURATION__DOMAINS'][aria-selected='true']";
 		public static final String GEAR_ICON="css=div.ImgConfigure";
 		public static final String NEW_MENU="css=td[id='zmi__zb_currentApp__NEW_title']:contains('New')";
 		public static final String ADD_DOMAIN_ALIAS="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDomainAlias']";
@@ -57,7 +58,6 @@ public class PageManageDomains extends AbsTab {
 		public static final String MAXIMUM_ACCOUNTS_FOR_DOMAIN = "css=input[id='ztabv__DOAMIN_EDIT_zimbraDomainMaxAccounts']";
 		public static final String DOMAIN_ACCOUNTS_LIMITS_AT_COS_OK = "css=td[id^='zdlg__UNDEFINE']:contains('OK')";
 		public static final String DOMAIN_EDIT_ACL_ADD = "css=td[id^='ztabv__DOAMIN_EDIT_dwt_button'] td[id$='title']:contains('Add')";
-		public static final String DEFAULT_DOMAIN = "css=td[id^='domain_data_name_']:contains('" + ConfigProperties.getStringProperty("server.host") +"')";
 		
 	}
 
@@ -93,20 +93,12 @@ public class PageManageDomains extends AbsTab {
 		if ( !MyApplication.zIsLoaded() )
 			throw new HarnessException("Admin Console application is not active!");
 		
-		boolean present = sIsElementPresent(Locators.DEFAULT_DOMAIN);
+		boolean present = sIsElementPresent(Locators.HIGHLIGHTED_DOMAINS_TREEITEM);
 		if ( !present ) {
 			return (false);
 		}
-
-//		boolean visible = zIsVisiblePerPosition(Locators.GEAR_ICON, 0, 0);
-//		if ( !visible ) {
-//			logger.debug("isActive() visible = "+ visible);
-//			return (false);
-//		}
-
 		return (true);
-
-	}
+		}
 
 	/* (non-Javadoc)
 	 * @see projects.admin.ui.AbsTab#myPageName()
@@ -121,8 +113,7 @@ public class PageManageDomains extends AbsTab {
 	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
-
-
+		
 		if ( zIsActive() ) {
 			return;
 		}
@@ -134,7 +125,6 @@ public class PageManageDomains extends AbsTab {
 		sClickAt(Locators.CONFIGURE_ICON,"");
 		zWaitForElementPresent(Locators.DOMAINS);
 		sClickAt(Locators.DOMAINS, "");
-		SleepUtil.sleepMedium();
 		zWaitForActive();
 	}
 
