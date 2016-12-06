@@ -33,7 +33,8 @@ public class AutoCompleteDL extends AjaxCommonTest  {
 		
 	}
 
-	@Test( description = "Auto complete DL and send mail to DL", groups = { "smoke" })
+	@Test( description = "Auto complete DL and send mail to DL", 
+			groups = { "smoke", "L0"})
 
 	public void AutoCompleteDL_01() throws HarnessException {
 

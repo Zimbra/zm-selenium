@@ -25,20 +25,17 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
-
 public class RenameTag extends PrefGroupMailByMessageTest {
 
 	public RenameTag() {
 		logger.info("New "+ RenameTag.class.getCanonicalName());
-		
 		// All tests start at the addressbook page
 		super.startingPage = app.zPageContacts;
-		
 
 	}
 	
 	@Test( description = "Rename a tag - Right click, Rename",
-			groups = { "smoke" })
+			groups = { "smoke", "L1"})
 	public void RenameTag_01() throws HarnessException {
 		
 		// Create the tag to rename
@@ -53,7 +50,6 @@ public class RenameTag extends PrefGroupMailByMessageTest {
 		TagItem tag = TagItem.importFromSOAP(app.zGetActiveAccount(), name1);
 		ZAssert.assertNotNull(tag, "Verify the tag was created");
 		
-		
 		// Click on Get Mail to refresh the folder list
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
@@ -64,7 +60,6 @@ public class RenameTag extends PrefGroupMailByMessageTest {
 		// Set the new name, click OK
 		dialog.zSetNewName(name2);
 		dialog.zClickButton(Button.B_OK);
-
 		
 		// Verify the tag is no longer found
 		app.zGetActiveAccount().soapSend("<GetTagRequest xmlns='urn:zimbraMail'/>");
@@ -74,11 +69,7 @@ public class RenameTag extends PrefGroupMailByMessageTest {
 		
 		Element[] eTag2 = app.zGetActiveAccount().soapSelectNodes("//mail:tag[@name='"+ name2 +"']");
 		ZAssert.assertEquals(eTag2.length, 1, "Verify the new tag name exists");
-
 		
 	}
-
-	
-
 
 }

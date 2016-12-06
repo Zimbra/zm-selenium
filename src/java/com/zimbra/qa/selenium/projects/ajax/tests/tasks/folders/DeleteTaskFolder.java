@@ -29,8 +29,6 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
-
 public class DeleteTaskFolder extends AjaxCommonTest {
 	@SuppressWarnings("serial")
 	public DeleteTaskFolder() {
@@ -43,10 +41,9 @@ public class DeleteTaskFolder extends AjaxCommonTest {
 			put("zimbraPrefShowSelectionCheckbox", "TRUE");
 		}};
 	}	
-
 	
-	
-	@Test( description = "Delete Task list -right click delete", groups = { "smoke" })
+	@Test( description = "Delete Task list -right click delete", 
+			groups = { "smoke", "L0"})
 	public void DeleteTaskFolder_01() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		ZAssert.assertNotNull(taskFolder, "Verify the task is available");

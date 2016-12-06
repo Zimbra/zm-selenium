@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.tags;
 
-
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.items.*;
@@ -24,25 +23,18 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
 public class UnTagContact extends AjaxCommonTest  {
 	public UnTagContact() {
 		logger.info("New "+ UnTagContact.class.getCanonicalName());
 		
 		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
-
-				
 		
 	}
 	
 	@Test( description = "Untag a contact by click Toolbar Tag, then select Remove Tag",
-			groups = { "smoke" })
+			groups = { "smoke", "L1"})
 	public void ClickToolbarTagRemoveTag_01() throws HarnessException {
-		
-		
-		
-		//-- Data
 		
 		// Create a tag
 		TagItem tagItem = TagItem.CreateUsingSoap(app.zGetActiveAccount());		
@@ -55,7 +47,6 @@ public class UnTagContact extends AjaxCommonTest  {
 				"<ContactActionRequest xmlns='urn:zimbraMail'>" +
 					"<action id='"+ contact.getId() +"' op='tag' tag='"+ tagItem.getId() +"'/>" +
 				"</ContactActionRequest>");
-
 		
 		//-- GUI
 		
@@ -68,8 +59,6 @@ public class UnTagContact extends AjaxCommonTest  {
 
     	// Untag it
 		app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_REMOVETAG);
-    	
-		
 		
 		//-- Verification
 		
@@ -82,15 +71,10 @@ public class UnTagContact extends AjaxCommonTest  {
 		ZAssert.assertNull(t, "Verify the contact has no tags");
 
    	}
-
 	   
 	@Test( description = "Untag a contact by click Tag->Remove Tag on context menu",
-				groups = { "smoke" })
+				groups = { "smoke", "L1"})
 	public void ClickContextMenuTagRemoveTag_02() throws HarnessException {
-		
-		
-		
-		//-- Data
 		
 		// Create a tag
 		TagItem tagItem = TagItem.CreateUsingSoap(app.zGetActiveAccount());		
@@ -103,7 +87,6 @@ public class UnTagContact extends AjaxCommonTest  {
 				"<ContactActionRequest xmlns='urn:zimbraMail'>" +
 					"<action id='"+ contact.getId() +"' op='tag' tag='"+ tagItem.getId() +"'/>" +
 				"</ContactActionRequest>");
-
 		
 		//-- GUI
 		
@@ -114,8 +97,6 @@ public class UnTagContact extends AjaxCommonTest  {
 		
     	// Untag it
         app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_REMOVETAG , contact.fileAs);
-    	
-		
 		
 		//-- Verification
 		

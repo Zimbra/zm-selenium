@@ -25,6 +25,8 @@ import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
 
 
 /**
@@ -87,7 +89,7 @@ public class PageManageGlobalACL extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if ( zIsActive() ) {
-			
+
 			return;
 		}
 
@@ -126,6 +128,46 @@ public class PageManageGlobalACL extends AbsTab {
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
 			throws HarnessException {
 		return null;
+	}
+
+	public boolean zVerifyGranteeName(String item) throws HarnessException {
+
+		logger.info(myPageName() + " zVerifyPolicyName("+ item +")");
+		boolean found = false;
+		SleepUtil.sleepMedium();
+
+		// How many items are in the table?
+		String rowsLocator = "css=div[id='zl'] div[id$='__rows'] div[id^='zli__']";
+		int count = this.sGetCssCount(rowsLocator);
+		logger.debug(myPageName() + " zVerifyPolicyName: number of policys: "+ count);
+
+		// Get each row data from the table list
+		for (int i = 1; i <= count; i++) {
+			final String accountLocator = rowsLocator + ":nth-child("+i+")";
+			String locator;
+			locator = accountLocator + " td" + ":nth-child(1)";
+
+			if(this.sIsElementPresent(locator))
+			{
+				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
+				{
+					found = true;
+					break;
+				} else 
+				{
+					logger.info("search result not displayed in current view");
+				}
+			} 
+
+			if (found == true) {
+				SleepUtil.sleepSmall();
+				logger.info("Search result displayed in current view");
+				ZAssert.assertTrue(found, "Search result displayed in current view");
+				break;
+			}
+
+		}
+		return found;
 	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {

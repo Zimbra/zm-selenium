@@ -35,7 +35,8 @@ public class RenameFolder extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Rename a folder - Context menu -> Rename", groups = { "smoke" })
+	@Test(description = "Rename a folder - Context menu -> Rename", 
+			groups = { "smoke", "L1"})
 	public void SelectFolderRenameOnContextMenu_01() throws HarnessException {
 
 		// -- Data
@@ -72,7 +73,8 @@ public class RenameFolder extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Rename a sub folder - Context menu -> Rename", groups = { "functional" })
+	@Test(description = "Rename a sub folder - Context menu -> Rename", 
+			groups = { "functional", "L3"})
 	public void SelectSubFolderRenameOnContextMenu_02() throws HarnessException {
 
 		// -- Data
@@ -109,8 +111,8 @@ public class RenameFolder extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Cannot rename an addressbook system folder- Right click, Rename option disabled", groups = {
-			"functional" })
+	@Test(description = "Cannot rename an addressbook system folder- Right click, Rename option disabled", 
+			groups = {"functional", "L3"})
 	public void SystemFoldersRenameButtonDisabledFromContextmenu_03() throws HarnessException {
 
 		// -- Data

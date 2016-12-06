@@ -24,9 +24,6 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
-
-
 public class ContextMenuAddressbooks extends AjaxCommonTest {
 
 	public ContextMenuAddressbooks() {
@@ -39,15 +36,10 @@ public class ContextMenuAddressbooks extends AjaxCommonTest {
 		
 		
 	}
-
-	
-	
-	
-
 				
 	@Test(
 			description = "Cannot delete an addressbook system folder- Right click, Delete",
-			groups = { "functional" },
+			groups = { "functional", "L3"},
 			dataProvider = "DataProviderSystemFolders"
 			)
 	public void SystemFoldersDeleteButtonDisabledFromContextmenu_01(String name, SystemFolder systemFolder) throws HarnessException {
@@ -83,7 +75,7 @@ public class ContextMenuAddressbooks extends AjaxCommonTest {
 	
 	@Test(
 			description = "Verify 'Rename folder' dialog is not present from right click context menu",
-			groups = { "functional" },
+			groups = { "functional", "L3"},
 			dataProvider = "DataProviderSystemFolders"
 			)
 	public void CannotRenameSystemFolders_02(String name, SystemFolder systemFolder) throws HarnessException {

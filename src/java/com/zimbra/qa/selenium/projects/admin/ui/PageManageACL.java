@@ -45,7 +45,7 @@ public class PageManageACL extends AbsTab {
 		public static final String OK_BUTTON="css=td#zdlg__UNDEFINE";
 		public static final String DOMAIN_EDIT_ACL_ADD = "css=td[id^='ztabv__DOAMIN_EDIT_dwt_button'] td[id$='title']:contains('Add')";
 		public static final String ADD_GLOBAL_ACL = "css=td[id='zmi__zb_currentApp__NEW_title']";
-		
+
 	}
 
 	public PageManageACL(AbsApplication application) {
@@ -92,12 +92,12 @@ public class PageManageACL extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item)
-	throws HarnessException {
+			throws HarnessException {
 		return null;
 	}
 	@Override
 	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
-	throws HarnessException {
+			throws HarnessException {
 		return null;
 	}
 
@@ -123,7 +123,7 @@ public class PageManageACL extends AbsTab {
 
 			// Create the page
 			page = new WizardAddACL(this);
-				
+
 		}else if ( button == Button.B_ADD_ACL_AT_DOMAIN ) {
 
 			// Add button
@@ -131,7 +131,7 @@ public class PageManageACL extends AbsTab {
 
 			// Create the page
 			page = new WizardAddACL(this);
-				
+
 		}
 		else {
 			throw new HarnessException("no logic defined for button "+ button);
@@ -153,7 +153,7 @@ public class PageManageACL extends AbsTab {
 		sMouseOut(locator);
 		return (page);
 	}
-	
+
 
 	public AbsPage zClickButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zClickButton(" + button + ")");
@@ -190,10 +190,6 @@ public class PageManageACL extends AbsTab {
 			throw new HarnessException("Button " + button + " locator "
 					+ locator + " not present!");
 		}
-
-		// if (zIsActive())
-		// zGetDisplayedText("css=div[class=" + Locators.zDialogContentClassId +
-		// "]");
 
 		this.sClickAt(locator,"");
 		SleepUtil.sleepLong();
@@ -240,9 +236,9 @@ public class PageManageACL extends AbsTab {
 				optionLocator = Locators.ADD_GLOBAL_ACL;
 
 				// Create the page
-				page = new WizardAddACL(this);
+				page = new WizardGlobalACL(this);
 
-				
+
 			}else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
@@ -287,7 +283,7 @@ public class PageManageACL extends AbsTab {
 	@Override
 	public void zNavigateTo() throws HarnessException {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }

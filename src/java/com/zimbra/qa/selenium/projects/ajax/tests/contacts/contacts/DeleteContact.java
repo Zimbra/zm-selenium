@@ -38,10 +38,9 @@ public class DeleteContact extends AjaxCommonTest  {
 			    put("zimbraPrefShowSelectionCheckbox", "TRUE");		         
 			}};
 	}
-	
-	
+		
 	@Test( description = "Delete a contact item",
-			groups = { "smoke" })
+			groups = { "smoke", "L0"})
 	
 	public void ClickDeleteOnToolbar_01() throws HarnessException {
 
@@ -84,10 +83,9 @@ public class DeleteContact extends AjaxCommonTest  {
         actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #firstname:"+ contact.firstName);
         ZAssert.assertNotNull(actual, "Verify the contact is in the trash");
    	}
-
 	
 	@Test( description = "Delete a contact item selected with checkbox",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void DeleteContactSelectedWithCheckbox_02() throws HarnessException {
 
@@ -126,7 +124,6 @@ public class DeleteContact extends AjaxCommonTest  {
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
         ZAssert.assertNull(actual, "Verify the contact is deleted from the addressbook");        
    	}
-
 	
 	@DataProvider(name = "DataProviderDeleteKeys")
 	public Object[][] DataProviderDeleteKeys() {
@@ -135,10 +132,9 @@ public class DeleteContact extends AjaxCommonTest  {
 	    new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE },
 	  };
 	}
-
 	
 	@Test( description = "Delete a contact item using keyboard short cut Del",
-			groups = { "functional" },
+			groups = { "functional", "L2"},
 			dataProvider = "DataProviderDeleteKeys")
 	
 	public void UseShortcut_03(String name, int keyEvent) throws HarnessException {
@@ -182,9 +178,8 @@ public class DeleteContact extends AjaxCommonTest  {
         ZAssert.assertNull(actual, "Verify the contact is deleted from the addressbook");    
    	}
 	
-
 	@Test( description = "Right click then click delete",
-			groups = { "smoke" })
+			groups = { "smoke", "L0"})
 	
 	public void DeleteFromContextMenu_04() throws HarnessException {		
 
@@ -220,10 +215,9 @@ public class DeleteContact extends AjaxCommonTest  {
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
         ZAssert.assertNull(actual, "Verify the contact is deleted from the addressbook");
    	}
-
 	
 	@Test( description = "Delete multiple contact items",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	
 	public void DeleteMultipleContacts_05() throws HarnessException {
 

@@ -35,7 +35,7 @@ public class CreateFolder extends AjaxCommonTest {
 	}
 
 	@Test( description = "Create a new folder by clicking 'new folder' on folder tree", 
-			groups = { "sanity" } )
+			groups = { "sanity", "L0"} )
 	
 	public void ClickNewFolderOnFolderTree_01() throws HarnessException {
 	
@@ -53,10 +53,9 @@ public class CreateFolder extends AjaxCommonTest {
 		ZAssert.assertEquals(folder.getName(), folderName,"Verify folder name found on server");
 		
 	}
- 
-	
+ 	
 	@Test( description = "Create a new folder using context menu from root folder", 
-			groups = { "sanity" } )
+			groups = { "sanity", "L0"} )
 	
 	public void ClickContextMenuNewAddressbook_02() throws HarnessException {
 		
@@ -78,9 +77,8 @@ public class CreateFolder extends AjaxCommonTest {
 		
 	}
 	
-
 	@Test( description = "Create a new folder using context menu from root folder",	
-			groups = { "smoke" } )
+			groups = { "smoke", "L1"} )
 	
 	public void CreateSubFolderUnderContactsClickContextMenuNewAddressbook_03() throws HarnessException {	
 		
@@ -105,10 +103,9 @@ public class CreateFolder extends AjaxCommonTest {
 		ZAssert.assertEquals(folder.getName(), folderName,"Verify folder name found on server");
 		
 	}
-
 	
 	@Test( description = "Create a new folder using   New -> New Addressbook", 
-			groups = { "functional" } )
+			groups = { "functional", "L2"} )
 	
 	public void ClickMenuNewNewAddressbook_04() throws HarnessException {
 		

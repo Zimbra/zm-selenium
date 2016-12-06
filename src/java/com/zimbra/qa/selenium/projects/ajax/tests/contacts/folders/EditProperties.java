@@ -36,7 +36,8 @@ public class EditProperties extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Edit a folder, change the color (Context menu -> Edit)", groups = { "functional" })
+	@Test(description = "Edit a folder, change the color (Context menu -> Edit)", 
+			groups = { "functional", "L3"})
 	public void ChangeColorOfTopLevelFolder_01() throws HarnessException {
 
 		// -- Data
@@ -71,7 +72,8 @@ public class EditProperties extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Edit a folder, change the color (Context menu -> Edit)", groups = { "functional" })
+	@Test(description = "Edit a folder, change the color (Context menu -> Edit)", 
+			groups = { "functional", "L3"})
 	public void ChangeColorOfSystemFolders_02() throws HarnessException {
 
 		// -- Data
@@ -100,7 +102,8 @@ public class EditProperties extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Edit a folder, change the color (Context menu -> Edit)", groups = { "functional" })
+	@Test(description = "Edit a folder, change the color (Context menu -> Edit)", 
+			groups = { "functional", "L3"})
 	public void ChangeColorOfSubFolder_03() throws HarnessException {
 
 		// -- Data
@@ -134,7 +137,8 @@ public class EditProperties extends AjaxCommonTest {
 		ZAssert.assertEquals(actual.getColor(), "5", "Verify the color of the folder is set to red (5)");
 	}
 
-	@Test(description = "Edit a folder, change name(Context menu -> Edit)", groups = { "smoke" })
+	@Test(description = "Edit a folder, change name(Context menu -> Edit)", 
+			groups = { "smoke", "L1"})
 	public void ChangeNameOfTopLevelFolder_04() throws HarnessException {
 
 		// -- Data
@@ -173,7 +177,8 @@ public class EditProperties extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Edit a folder, change name(Context menu -> Edit)", groups = { "smoke" })
+	@Test(description = "Edit a folder, change name(Context menu -> Edit)", 
+			groups = { "smoke", "L1"})
 	public void ChangeNameOfSubFolder_05() throws HarnessException {
 
 		// -- Data
@@ -212,8 +217,8 @@ public class EditProperties extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Edit a top level folder, change name and color Context menu -> Edit)", groups = {
-			"functional" })
+	@Test(description = "Edit a top level folder, change name and color Context menu -> Edit)", 
+			groups = {"functional", "L2"})
 	public void ChangeNameColorOfTopLevelFolder_06() throws HarnessException {
 
 		// -- Data
@@ -254,7 +259,8 @@ public class EditProperties extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Edit a subfolder, change name and color Context menu -> Edit)", groups = { "functional" })
+	@Test(description = "Edit a subfolder, change name and color Context menu -> Edit)", 
+			groups = { "functional", "L2"})
 	public void ChangeNameColorOfSubFolder_07() throws HarnessException {
 
 		// -- Data

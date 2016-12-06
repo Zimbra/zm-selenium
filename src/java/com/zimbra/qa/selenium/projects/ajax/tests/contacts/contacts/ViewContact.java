@@ -29,10 +29,9 @@ public class ViewContact extends AjaxCommonTest  {
 		super.startingPage = app.zPageContacts;
 	}
 
-
 	//First Last 
 	@Test( description = "View a contact, file as First Last",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	
 	public void ViewContact_FileAsFirstLast_01() throws HarnessException {		         		
 
@@ -87,11 +86,10 @@ public class ViewContact extends AjaxCommonTest  {
 
 		ZAssert.assertTrue(found, "Verify contact (" + expected + ") displayed with First Last ");
 	}
-
 	
 	//Last, First
 	@Test( description = "View a contact, file as Last, First",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	
 	public void ViewContact_FileAsLastFirst_02() throws HarnessException {		         		
 
@@ -146,11 +144,10 @@ public class ViewContact extends AjaxCommonTest  {
 
 		ZAssert.assertTrue(found, "Verify contact (" + expected + ") displayed with Last, First ");
 	}
-
 	
 	//Company(Last, First)
 	@Test( description = "View a contact, file as Company(Last, First)",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	
 	public void ViewContact_FileAsCompanyLastFirst_03() throws HarnessException {		         		
 
@@ -205,11 +202,10 @@ public class ViewContact extends AjaxCommonTest  {
 
 		ZAssert.assertTrue(found, "Verify contact (" + expected + ") displayed with Company(Last, First) ");
 	}
-
 	
 	//Company
 	@Test( description = "View a contact, file as Company",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	
 	public void ViewContact_FileAsCompany_04() throws HarnessException {		         		
 
@@ -264,11 +260,10 @@ public class ViewContact extends AjaxCommonTest  {
 
 		ZAssert.assertTrue(found, "Verify contact (" + expected + ") displayed with company ");
 	}
-
 	
 	//Last, First (Company)
 	@Test( description = "View a contact, file as Last, First (Company)",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	
 	public void ViewContact_FileAsLastFirstCompany_05() throws HarnessException {		         		
 
@@ -324,10 +319,9 @@ public class ViewContact extends AjaxCommonTest  {
 		ZAssert.assertTrue(found, "Verify contact (" + expected + ") displayed with 'Last, First (company)' ");
 	}
 
-
 	//First Last (Company)
 	@Test( description = "View a contact, file as First Last (Company)",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	
 	public void ViewContact_FileAsFirstLastCompany_06() throws HarnessException {		         		
 
@@ -382,11 +376,10 @@ public class ViewContact extends AjaxCommonTest  {
 
 		ZAssert.assertTrue(found, "Verify contact (" + expected + ") displayed with First Last (Company) ");
 	}
-
 	
 	//Company (First Last)
 	@Test( description = "View a contact, file as Company (First Last)",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	
 	public void ViewContact_FileAsCompanyFirstLast_07() throws HarnessException {		         		
 

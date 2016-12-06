@@ -40,9 +40,9 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 		}};			
 		
 	}
-	
-	
-	@Test( description = "Create a new contact group by right click on existing contact", groups = { "smoke" })
+		
+	@Test( description = "Create a new contact group by right click on existing contact", 
+			groups = { "smoke", "L0"})
 	
 	public void CreateContactGroupWith1Contact_01() throws HarnessException {			
 		
@@ -81,10 +81,10 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 				new ContactGroupItem.MemberItemContact(contact), 
 				"Verify the contact group conatins the contact");
 	}
-
 	
 	@Bugs(ids = "77882")
-	@Test( description = "Add a contact to an existing group", groups = { "smoke" })
+	@Test( description = "Add a contact to an existing group", 
+		groups = { "smoke", "L0"})
 	
 	public void Add1ContactToExistingContactGroup_02() throws HarnessException {			
 		
@@ -120,10 +120,10 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 				new ContactGroupItem.MemberItemContact(contact), 
 				"Verify the contact group conatins the contact");				
 	}
-
 	
 	@Bugs(ids = "77882")
-	@Test( description = "Add 3 contacts to an existing group", groups = { "functional" })
+	@Test( description = "Add 3 contacts to an existing group", 
+			groups = { "functional", "L2"})
 	
 	public void Add3ContactsToExistingContactGroup_03() throws HarnessException {
 		
@@ -179,8 +179,8 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 
 	}
 	
-	
-	@Test( description = "Create a contact group with 3 contacts",	groups = { "functional" })
+	@Test( description = "Create a contact group with 3 contacts",	
+			groups = { "functional", "L2"})
 	
 	public void CreateContactGroupWith3Contacts_04() throws HarnessException {			
 		
@@ -241,10 +241,10 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 				"Verify the contact group conatins the contact");
 
 	}
-
 	
 	@Bugs(ids = "65500,15646")
-	@Test( description = "Create a contact group with 1 contact + 1 group", groups = { "functional" })
+	@Test( description = "Create a contact group with 1 contact + 1 group", 
+			groups = { "functional", "L2"})
 	
 	public void CreateContactGroupWith1ContactAnd1ContactGroup_05() throws HarnessException {			
 		
@@ -300,10 +300,10 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 		}
 		
 	}		
-	
-	
+		
 	@Bugs(ids = "77882,15646")
-	@Test( description = "Add 1 contact + 1 group to an existing group", groups = { "functional" })
+	@Test( description = "Add 1 contact + 1 group to an existing group", 
+			groups = { "functional", "L2"})
 	
 	public void Add1ContactAnd1GroupToExistingContactGroup_06() throws HarnessException {
 		

@@ -78,7 +78,8 @@ public class ContactContextMenu extends AjaxCommonTest {
 		return createSelectAContactItem(firstName, lastName, email, tagIdArray);
 	}
 
-	@Test(description = "Right click a contact to show a menu", groups = { "smoke" })
+	@Test(description = "Right click a contact to show a menu", 
+			groups = { "smoke", "L0"})
 	public void ShowContextMenu_01() throws HarnessException {
 
 		ContactItem contactItem = createSelectARandomContactItem();
@@ -105,7 +106,8 @@ public class ContactContextMenu extends AjaxCommonTest {
 				"Verify print option in context menu");
 	}
 
-	@Test(description = "Right click then click New Email", groups = { "smoke" })
+	@Test(description = "Right click then click New Email", 
+			groups = { "smoke", "L0"})
 	public void NewEmail_02() throws HarnessException {
 
 		ContactItem contactItem = createSelectARandomContactItem();
@@ -128,7 +130,8 @@ public class ContactContextMenu extends AjaxCommonTest {
 		// TODO: Verify send email
 	}
 
-	@Test(description = "Right click then click Advanced Search", groups = { "deprecated" })
+	@Test(description = "Right click then click Advanced Search", 
+			groups = { "deprecated", "L3"})
 	public void AdvancedSearch_03() throws HarnessException {
 
 		ContactItem contactItem = createSelectARandomContactItem();
@@ -144,7 +147,8 @@ public class ContactContextMenu extends AjaxCommonTest {
 		pageAdvancedSearch.zToolbarPressButton(Button.B_CLOSE);
 	}
 
-	@Test(description = "Right click then click Print", groups = { "smoke-skip" })
+	@Test(description = "Right click then click Print", 
+			groups = { "smoke-skip", "L1" })
 	public void Print_04() throws HarnessException {
 		ContactItem contactItem = createSelectARandomContactItem();
 
@@ -166,7 +170,8 @@ public class ContactContextMenu extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Right click then  click Find Emails->Received From contact", groups = { "smoke" })
+	@Test(description = "Right click then  click Find Emails->Received From contact", 
+			groups = { "smoke" , "L1"})
 	public void FindEmailsReceivedFromContact_05() throws HarnessException {
 
 		// Create email sent to this contacts
@@ -205,7 +210,8 @@ public class ContactContextMenu extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Right click then  click Find Emails->Sent To contact", groups = { "smoke" })
+	@Test(description = "Right click then  click Find Emails->Sent To contact", 
+			groups = { "smoke", "L1" })
 	public void FindEmailsSentToContact_06() throws HarnessException {
 
 		// Create email sent to this contacts
