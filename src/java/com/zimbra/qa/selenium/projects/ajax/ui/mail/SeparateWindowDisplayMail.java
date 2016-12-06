@@ -183,6 +183,18 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 	}
 
+	public boolean zMailSecurityPresent(String emailAddress) throws HarnessException{
+		
+		String locator="css=td[class='ZmSecureMailCertificateRow'] td[id$='title']:contains('" + emailAddress + "')";
+		
+		if (this.sIsElementPresent(locator)) {
+			//Mail Security header found
+			return true;
+		}
+
+		return false;
+	}
+	
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
@@ -623,7 +635,20 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			this.zWaitForBusyOverlay();
 
 			return (page);
+			
+		} else if (button == Button.B_VIEW_CERTIFICATE) {
 
+			locator = "css=td[class='ZmSecureMailCertificateRow'] div[class='FakeAnchor'] td[id$='title']:contains('View certificate')";
+
+			if (!this.sIsElementPresent(locator))
+				throw new HarnessException("locator is not present for button " + button + " : " + locator);
+
+			this.sClick(locator); // sClick() is required for this element
+
+			this.zWaitForBusyOverlay();
+			
+			return (page);
+			
 		} else if (button == Button.B_HIGHLIGHT_OBJECTS) {
 
 			locator = this.ContainerLocator + " span[id$='_highlightObjects_link']";
