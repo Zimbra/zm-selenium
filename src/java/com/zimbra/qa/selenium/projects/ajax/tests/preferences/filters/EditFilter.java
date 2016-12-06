@@ -43,7 +43,7 @@ public class EditFilter extends AjaxCommonTest {
 
     @Test(
 			description = "Edit an incoming filter",
-			groups = { "functional" }
+			groups = { "functional", "L2" }
 			)
 	public void EditFilter_01() throws HarnessException {
 
@@ -100,7 +100,7 @@ public class EditFilter extends AjaxCommonTest {
     
     @Test(
 			description = "Edit a outgoing filter",
-			groups = { "functional" }
+			groups = { "functional", "L2" }
 			)
 	public void EditFilter_02() throws HarnessException {
 

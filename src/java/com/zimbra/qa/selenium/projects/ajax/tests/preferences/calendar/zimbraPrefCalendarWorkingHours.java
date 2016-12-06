@@ -38,7 +38,7 @@ public class zimbraPrefCalendarWorkingHours extends AjaxCommonTest {
 	@Bugs(ids = "77465")
 	@Test(
 			description = "Set calendar custom working hours and verify accordingly", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void zimbraPrefCalendarWorkingHours_01() throws HarnessException {
 
@@ -72,7 +72,7 @@ public class zimbraPrefCalendarWorkingHours extends AjaxCommonTest {
 
 	@Bugs(ids = "103862")
 	@Test( description = "Verify that modifying 'Work Week:' preference prompts for UI refresh", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void zimbraPrefCalendarWorkingHours_02() throws HarnessException {
 		

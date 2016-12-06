@@ -44,7 +44,7 @@ public class ZimbraFeatureMailForwardingEnabled extends AjaxCommonTest {
 	}
 	@Bugs(ids="98850")
 	@Test( description = "Verify preferences does not show 'Forward a copy to', if zimbraFeatureMailForwardingEnabled=FALSE",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void zimbraFeatureMailForwardingEnabled_01() throws HarnessException {
 		
 		//-- DATA		
@@ -81,7 +81,7 @@ public class ZimbraFeatureMailForwardingEnabled extends AjaxCommonTest {
 
 	@Bugs(ids = "71403")
 	@Test( description = "Bug 71403: Verify duplicate message lables do not exist in preferences ('When a message arrives')",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void zimbraFeatureMailForwardingEnabled_02() throws HarnessException {
 		
 		//-- DATA		

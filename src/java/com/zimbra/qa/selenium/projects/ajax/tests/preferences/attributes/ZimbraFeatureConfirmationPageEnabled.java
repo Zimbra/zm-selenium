@@ -38,7 +38,7 @@ public class ZimbraFeatureConfirmationPageEnabled extends PrefGroupMailByMessage
 	
 	@Bugs(ids = "21979")
 	@Test( description = "Send a message and confirm the confirmation page",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ZimbraFeatureConfirmationPageEnabled01() throws HarnessException {
 		
 		// Create the message data to be sent

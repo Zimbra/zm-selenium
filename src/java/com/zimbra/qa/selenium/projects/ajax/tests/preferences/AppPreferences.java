@@ -48,7 +48,7 @@ public class AppPreferences extends AjaxCommonTest {
 
 	}
 
-	@Test( description = "?app=options in url", groups = { "smoke" })
+	@Test( description = "?app=options in url", groups = { "sanity", "L0"  })
 	public void AppPreferences_01() throws HarnessException {
 
 		// Reload the application, with app=options query parameter

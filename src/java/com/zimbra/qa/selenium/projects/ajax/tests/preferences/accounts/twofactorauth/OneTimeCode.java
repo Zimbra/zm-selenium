@@ -36,7 +36,7 @@ public class OneTimeCode extends AjaxCommonTest {
 	}
 
 	@Test( description = "Login using One time Code instead of TOTP code", priority=4, 
-			groups = { "smoke", "network" })
+			groups = { "smoke", "L0", "network" })
 	
 	public void OneTimeCode_01() throws HarnessException {
 		

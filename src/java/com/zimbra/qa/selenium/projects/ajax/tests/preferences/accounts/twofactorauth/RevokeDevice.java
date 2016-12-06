@@ -42,7 +42,7 @@ public class RevokeDevice extends AjaxCommonTest {
 	}
 
 	@Test( description = "Revoke the trusted computer and verify that totp is required after that", priority=4, 
-			groups = { "functional", "network" })
+			groups = { "functional", "L2", "network" })
 	
 	public void RevokeThisDevie_01() throws HarnessException {
 		

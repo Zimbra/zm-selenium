@@ -34,7 +34,7 @@ public class DiscardMessageAutomatically extends PrefGroupMailByMessageTest {
 
 	}
 	
-	@Test( description = "Set discard message automatically and send a message to self", groups = { "functional" })
+	@Test( description = "Set discard message automatically and send a message to self", groups = { "functional", "L2" })
 	
 	public void DiscardMessageAutomatically_01() throws HarnessException {
 		

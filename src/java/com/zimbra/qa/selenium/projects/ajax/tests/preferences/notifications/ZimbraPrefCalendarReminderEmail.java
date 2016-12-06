@@ -38,7 +38,7 @@ public class ZimbraPrefCalendarReminderEmail extends AjaxCommonTest {
 
 	@Test(
 			description = "Set zimbraPrefCalendarReminderEmail to a valid Email address'",
-			groups = { "functional" }
+			groups = { "functional", "L3" }
 			)
 	public void ZimbraPrefCalendarReminderEmail_01() throws HarnessException {
 		

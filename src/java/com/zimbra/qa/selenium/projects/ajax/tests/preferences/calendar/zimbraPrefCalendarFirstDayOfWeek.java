@@ -39,7 +39,7 @@ public class zimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
 	@Bugs(ids = "101729,103862")
 	@Test(
 			description = "Set First day of the week and verify that first day is set correctly", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void zimbraPrefCalendarFirstDayOfWeek_01() throws HarnessException {
 		

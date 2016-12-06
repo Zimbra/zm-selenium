@@ -69,7 +69,7 @@ public class DeleteTextSignature extends AjaxCommonTest {
 	 *         button. Verify signature doesn't exist from soap
 	 * @throws HarnessException
 	 */
-	@Test(description = " Delete Text signature using Delete button and verify  through soap ", groups = { "smoke" })
+	@Test(description = " Delete Text signature using Delete button and verify  through soap ", groups = { "sanity", "L1"  })
 	public void DeleteTextSignatures_01() throws HarnessException {
 
 		// Click on Mail/signature

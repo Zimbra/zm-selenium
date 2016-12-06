@@ -46,7 +46,7 @@ public class ZimbraPrefClientTypeAdvanced extends AjaxCommonTest {
 	
 	@Test(
 			description = "Verify the 'Sign in using' option can be toggled", 
-			groups = { "functional" }
+			groups = { "functional", "L3" }
 			)
 	public void ZimbraPrefClientTypeAdvanced_01() throws HarnessException {
 				

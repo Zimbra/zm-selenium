@@ -44,7 +44,7 @@ public class ZimbraPrefCalendarAlwaysShowMiniCalFALSE extends AjaxCommonTest {
 	@Bugs(ids = "78547")
 	@Test(
 			description = "Set zimbraPrefCalendarAlwaysShowMiniCal to 'FALSE'",
-			groups = { "functional" }
+			groups = { "functional", "L3" }
 			)
 	public void ZimbraPrefCalendarAlwaysShowMiniCalFALSE_01() throws HarnessException {
 		

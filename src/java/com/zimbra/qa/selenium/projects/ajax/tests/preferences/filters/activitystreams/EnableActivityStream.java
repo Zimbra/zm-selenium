@@ -37,7 +37,7 @@ public class EnableActivityStream extends AjaxCommonTest {
 
 	@Test(
 			description = "Enable the Activity Streams feature",
-			groups = { "functional" }
+			groups = { "functional", "L2" }
 			)
 	public void EnableActivityStream_01() throws HarnessException {
 

@@ -45,7 +45,7 @@ public class ChangeSignatureAndVerifyBody extends AjaxCommonTest {
 
 	@Bugs(ids="47375")
 	@Test(description = "Change signature by deleting the previous signature and verify the body of the mail",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 
 	public void ChangeSignatureAndVerifyBody_01() throws HarnessException {
 
@@ -103,7 +103,7 @@ public class ChangeSignatureAndVerifyBody extends AjaxCommonTest {
 
 	@Bugs(ids="47375")
 	@Test(description = "Verify the body of the mail after deleting the signature and changing the From Persona which has a different signature",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 
 	public void ChangeSignatureAndVerifyBody_02() throws HarnessException {
 

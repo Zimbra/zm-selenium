@@ -47,7 +47,7 @@ public class ZimbraPrefShowSearchStringTrue extends AjaxCommonTest {
 	
 
 	@Test( description = "Change zimbraPrefShowSearchString setting TRUE",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void PreferencesGeneralSearches_zimbraPrefShowSearchString_01() throws HarnessException {
 		
 

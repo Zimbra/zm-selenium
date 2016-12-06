@@ -39,7 +39,7 @@ public class AddTrustedEmail extends AjaxCommonTest {
 
 	@Test(
 			description = "Add a trusted email address",
-			groups = { "smoke" }
+			groups = { "sanity", "L0"  }
 			)
 	public void AddTrustedEmail_01() throws HarnessException {
 

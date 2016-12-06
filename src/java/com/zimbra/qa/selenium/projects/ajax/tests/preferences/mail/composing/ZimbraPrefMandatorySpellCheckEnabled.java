@@ -45,7 +45,7 @@ public class ZimbraPrefMandatorySpellCheckEnabled extends AjaxCommonTest {
 
 	@Test(
 			description = "Verify mandatory spellcheck before sending a message",
-			groups = { "functional" }
+			groups = { "functional", "L2" }
 			)
 
 	public void ZimbraPrefMandatorySpellCheckEnabled_01() throws HarnessException {

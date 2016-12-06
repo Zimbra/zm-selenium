@@ -54,7 +54,7 @@ public class RemoveTrustedEmail extends AjaxCommonTest {
 	
 	@Test(
 			description = "Remove a trusted email address",
-			groups = { "smoke" }
+			groups = { "sanity", "L0"  }
 			)
 	public void RemoveTrustedEmail_01() throws HarnessException {
 

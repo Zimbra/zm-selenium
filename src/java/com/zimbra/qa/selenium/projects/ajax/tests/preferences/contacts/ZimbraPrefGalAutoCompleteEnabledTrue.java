@@ -43,7 +43,7 @@ public class ZimbraPrefGalAutoCompleteEnabledTrue extends AjaxCommonTest {
 
 	@Test(
 			description = "Set zimbraPrefGalAutoCompleteEnabled to 'TRUE'",
-			groups = { "functional" }
+			groups = { "functional", "L2" }
 	)
 	public void zimbraPrefGalAutoCompleteEnabledTrue_01() throws HarnessException {
 

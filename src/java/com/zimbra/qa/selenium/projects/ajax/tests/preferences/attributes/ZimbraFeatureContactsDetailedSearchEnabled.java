@@ -38,7 +38,7 @@ public class ZimbraFeatureContactsDetailedSearchEnabled extends PrefGroupMailByM
 	
 	@Bugs(ids = "70708")
 	@Test( description = "Filter addresses using department name after selecting To: while composing mail", 
-		groups = { "functional" })
+		groups = { "functional", "L2" })
 	
 	public void ZimbraFeatureContactsDetailedSearchEnabled_01() throws HarnessException {
 		
@@ -103,7 +103,7 @@ public class ZimbraFeatureContactsDetailedSearchEnabled extends PrefGroupMailByM
 	
 	@Bugs(ids = "70708")
 	@Test( description = "Filter addresses using department name after selecting To: while composing appointments", 
-		groups = { "functional" })
+		groups = { "functional", "L2" })
 	
 	public void ZimbraFeatureContactsDetailedSearchEnabled_02() throws HarnessException {
 

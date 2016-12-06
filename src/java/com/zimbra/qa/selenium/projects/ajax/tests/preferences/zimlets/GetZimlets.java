@@ -121,7 +121,7 @@ public class GetZimlets extends AjaxCommonTest {
 
 	@Test(
 			description = "Verify the Phone table text",
-			groups = { "functional" }
+			groups = { "functional", "L3" }
 			)
 	public void GetZimlets_03() throws HarnessException {
 
@@ -143,7 +143,7 @@ public class GetZimlets extends AjaxCommonTest {
 	
 	@Test(
 			description = "Verify the Search Highlighter table text",
-			groups = { "functional" }
+			groups = { "functional", "L3" }
 			)
 	public void GetZimlets_04() throws HarnessException {
 
@@ -165,7 +165,7 @@ public class GetZimlets extends AjaxCommonTest {
 
 	@Test(
 			description = "Verify the WebEx table text",
-			groups = { "functional" }
+			groups = { "functional", "L2" }
 			)
 	public void GetZimlets_05() throws HarnessException {
 
@@ -209,7 +209,7 @@ public class GetZimlets extends AjaxCommonTest {
 
 	@Test(
 			description = "Verify the Y-Emoticons table text",
-			groups = { "functional" }
+			groups = { "functional", "L2" }
 			)
 	public void GetZimlets_07() throws HarnessException {
 

@@ -46,7 +46,7 @@ public class ZimbraPrefIncludeSpamInSearchFalse extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Change zimbraPrefIncludeSpamInSearch setting FALSE",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void PreferencesGeneralSearches_zimbraPrefIncludeSpamInSearch_01() throws HarnessException {
 		
 		//-- SETUP

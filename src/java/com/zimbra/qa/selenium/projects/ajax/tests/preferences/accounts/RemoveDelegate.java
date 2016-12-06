@@ -40,7 +40,7 @@ public class RemoveDelegate extends AjaxCommonTest {
 
 	@Test(
 			description = "Remove a delegate",
-			groups = { "functional" }
+			groups = { "functional", "L2" }
 			)
 	public void RemoveDelegate_01() throws HarnessException {
 

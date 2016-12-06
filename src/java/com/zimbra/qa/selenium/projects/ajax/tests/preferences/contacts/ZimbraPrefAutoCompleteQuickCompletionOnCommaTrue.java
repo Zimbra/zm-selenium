@@ -43,7 +43,7 @@ public class ZimbraPrefAutoCompleteQuickCompletionOnCommaTrue extends AjaxCommon
 
 	@Test(
 			description = "Set zimbraPrefAutoCompleteQuickCompletionOnComma to 'TRUE'",
-			groups = { "functional" }
+			groups = { "functional", "L2" }
 	)
 	public void ZimbraPrefAutoCompleteQuickCompletionOnCommaTrue_01() throws HarnessException {
 

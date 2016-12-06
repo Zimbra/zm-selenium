@@ -36,7 +36,7 @@ public class EmptySignature extends AjaxCommonTest {
 		
 	}
 
-	@Test( description = "Verify Toast Msg for Empty Signature Name", groups = { "smoke" })
+	@Test( description = "Verify Toast Msg for Empty Signature Name", groups = { "functional", "L2"  })
 	public void EmptySignature_01() throws HarnessException {
 
 		String sigName = "";		

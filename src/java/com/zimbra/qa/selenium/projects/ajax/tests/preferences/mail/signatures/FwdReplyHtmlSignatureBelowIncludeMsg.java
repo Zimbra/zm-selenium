@@ -74,7 +74,7 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 
 	@Bugs(ids = "102479")
 	@Test(description = "Verify Html Signature place BelowIncludedMsg While Fwd'ing- Verify through GUI ", groups = {
-			"functional" })
+			"functional", "L2" })
 	public void FwdMsgWithTextSignatureBelowIncludeMsg_01() throws HarnessException {
 
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
@@ -123,7 +123,7 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 	 * @throws HarnessException
 	 */
 	@Bugs(ids = "102479")
-	@Test(description = "Verify Html Signature placed BelowIncludedMsg While Replying Msg", groups = { "functional" })
+	@Test(description = "Verify Html Signature placed BelowIncludedMsg While Replying Msg", groups = { "functional", "L2" })
 	public void ReplyMsgWithTextSignatureBelowIncludeMsg_02() throws HarnessException {
 
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
@@ -174,7 +174,7 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 	 */
 
 	@Bugs(ids = "102479")
-	@Test(description = "Verify Html Signature placed BelowIncludedMsg While ReplyingAll", groups = { "functional" })
+	@Test(description = "Verify Html Signature placed BelowIncludedMsg While ReplyingAll", groups = { "functional", "L2" })
 	public void ReplyAllMsgWithTextSignatureBelowIncludeMsg_03() throws HarnessException {
 
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);

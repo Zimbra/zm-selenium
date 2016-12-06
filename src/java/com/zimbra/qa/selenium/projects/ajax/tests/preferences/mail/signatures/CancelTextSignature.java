@@ -35,7 +35,7 @@ public class CancelTextSignature extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Test(description = "Cancel text signature", groups = { "smoke" })
+	@Test(description = "Cancel text signature", groups = { "functional", "L3"  })
 	public void CancelTextSignature_01() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();

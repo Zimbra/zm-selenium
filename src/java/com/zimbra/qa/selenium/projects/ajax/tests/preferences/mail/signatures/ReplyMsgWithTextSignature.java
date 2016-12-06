@@ -71,7 +71,7 @@ public class ReplyMsgWithTextSignature extends AjaxCommonTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test(description = " Reply Msg with text signature and Verify signature through soap", groups = { "functional" })
+	@Test(description = " Reply Msg with text signature and Verify signature through soap", groups = { "functional", "L3" })
 	public void ReplyMsgWithTextSignature_01() throws HarnessException {
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		// Signature is created

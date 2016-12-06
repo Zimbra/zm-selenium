@@ -40,7 +40,7 @@ public class CreateFilter extends AjaxCommonTest {
 
 	@Bugs(ids="97040")
 	@Test( description = "Create a basic Incoming Message Filter",	
-			groups = { "sanity" } )
+			groups = { "smoke", "L0" } )
     
 	public void CreateFilter_01() throws HarnessException {
 
@@ -82,7 +82,7 @@ public class CreateFilter extends AjaxCommonTest {
 	}
     
     
-    @Test( description = "Create a basic Outgoing Message Filter",	groups = { "smoke" } )
+    @Test( description = "Create a basic Outgoing Message Filter",	groups = { "smoke", "L0"  } )
     
 	public void CreateFilter_02() throws HarnessException {
     	
