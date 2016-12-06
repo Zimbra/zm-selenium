@@ -34,7 +34,8 @@ public class UnTagDocument extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");				
 	}
 
-	@Test( description = "Remove a tag from a Document using Toolbar -> Tag -> Remove Tag", groups = { "smoke" })
+	@Test( description = "Remove a tag from a Document using Toolbar -> Tag -> Remove Tag", 
+			groups = { "smoke", "L1" })
 	public void UnTagDocument_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 

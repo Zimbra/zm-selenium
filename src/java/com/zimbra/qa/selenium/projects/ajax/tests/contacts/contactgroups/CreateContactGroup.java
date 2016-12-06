@@ -38,7 +38,7 @@ public class CreateContactGroup extends AjaxCommonTest  {
 	
 	
 	@Test( description = "Create a basic contact group with 2 addresses using  New -> Contact Group", 
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	
 	public void CreateContactGroup_01() throws HarnessException {			
 
@@ -101,10 +101,9 @@ public class CreateContactGroup extends AjaxCommonTest  {
 		ZAssert.assertTrue(found2, "Verify member 2 is in the group");
 		
 	}
-	
-	
+		
 	@Test( description = "Create a basic contact group with 2 GAL addresses", 
-			groups = { "functional" })
+			groups = { "functional", "L0" })
 	
 	public void CreateContactGroup_02() throws HarnessException {
 		
@@ -147,9 +146,8 @@ public class CreateContactGroup extends AjaxCommonTest  {
 
 	}
 	
-
 	@Test( description = "Create a contact group with existing contacts", 
-			groups = { "functional" })
+			groups = { "functional", "L0" })
 	
 	public void CreateContactGroup_03() throws HarnessException {
 		
@@ -198,7 +196,7 @@ public class CreateContactGroup extends AjaxCommonTest  {
 	}
 
 	@Test( description = "Create a contact group with GAL + existing contacts + new emails", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void CreateContactGroup_04() throws HarnessException {			
 
@@ -255,7 +253,7 @@ public class CreateContactGroup extends AjaxCommonTest  {
 	
 	@Bugs(ids = "77968,70905,66623")
 	@Test( description="Create a new contact group from GAL search result", 
-		groups= { "functional"  } )
+		groups= { "functional", "L0"  } )
 	
 	public void CreateContactGroupFromGALSearchResult_05() throws HarnessException{
 		

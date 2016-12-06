@@ -49,7 +49,8 @@ public class MoveFile extends FeatureBriefcaseTest {
 		// super.startingAccountPreferences.put("zimbraPrefGroupMailBy", "message");
 	}
 
-	@Test( description = "Upload file through RestUtil - move & verify through GUI", groups = { "smoke" })
+	@Test( description = "Upload file through RestUtil - move & verify through GUI", 
+			groups = { "smoke", "L1" })
 	public void MoveFile_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -146,7 +147,8 @@ public class MoveFile extends FeatureBriefcaseTest {
 				"Verify document was moved to the selected folder");
 	}
 
-	@Test( description = "Move File using 'm' keyboard shortcut", groups = { "functional" })
+	@Test( description = "Move File using 'm' keyboard shortcut", 
+			groups = { "functional", "L3" })
 	public void MoveFile_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -252,7 +254,8 @@ public class MoveFile extends FeatureBriefcaseTest {
 				+ subFolders[1].getName());
 	}
 
-	@Test( description = "Upload file through RestUtil - move using Right Click Context Menu & verify through GUI", groups = { "functional" })
+	@Test( description = "Upload file through RestUtil - move using Right Click Context Menu & verify through GUI", 
+			groups = { "functional", "L2" })
 	public void MoveFile_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 

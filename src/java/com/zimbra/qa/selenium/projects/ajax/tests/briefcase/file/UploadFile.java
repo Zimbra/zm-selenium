@@ -42,7 +42,7 @@ public class UploadFile extends FeatureBriefcaseTest {
 	}
 
 	@Test( description = "Upload file through RestUtil - verify through GUI", 
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	
 	public void UploadFile_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -76,7 +76,7 @@ public class UploadFile extends FeatureBriefcaseTest {
 	}
 
 	@Test( description = "Upload file through GUI - verify through GUI", 
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	
 	public void UploadFile_02() throws HarnessException {
 
@@ -126,7 +126,8 @@ public class UploadFile extends FeatureBriefcaseTest {
 
 	}
 
-	@Test( description = "Upload file through RestUtil - verify through SOAP", groups = { "smoke" })
+	@Test( description = "Upload file through RestUtil - verify through SOAP", 
+			groups = { "smoke", "L1" })
 	public void UploadFile_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 

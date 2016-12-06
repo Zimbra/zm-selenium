@@ -33,7 +33,8 @@ public class DeleteFolder extends AjaxCommonTest {
 		super.startingPage = app.zPageContacts;
 	}
 
-	@Test(description = "Delete a top level addressbook - Right click, Delete", groups = { "smoke" })
+	@Test(description = "Delete a top level addressbook - Right click, Delete", 
+			groups = { "smoke", "L1"})
 	public void DeleteTopLevelFolderFromContextmenu_01() throws HarnessException {
 
 		// -- Data
@@ -64,7 +65,8 @@ public class DeleteFolder extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Delete a sub folder - Right click, Delete", groups = { "functional" })
+	@Test(description = "Delete a sub folder - Right click, Delete", 
+			groups = { "functional", "L2"})
 	public void DeleteSubFolderFromContextmenu_02() throws HarnessException {
 
 		// -- Data
@@ -95,7 +97,8 @@ public class DeleteFolder extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Drag one sub folder to Trash folder", groups = { "functional" })
+	@Test(description = "Drag one sub folder to Trash folder", 
+			groups = { "functional", "L2"})
 	public void DnDFromSubFolderToTrash_03() throws HarnessException {
 
 		// -- Data
@@ -129,7 +132,8 @@ public class DeleteFolder extends AjaxCommonTest {
 	}
 
 	@Bugs(ids = "103601")
-	@Test(description = "Delete an addressbook folder- Use shortcut Del", groups = { "functional" })
+	@Test(description = "Delete an addressbook folder- Use shortcut Del", 
+	groups = { "functional", "L2"})
 	public void UseShortcutDel_04() throws HarnessException {
 
 		// -- Data

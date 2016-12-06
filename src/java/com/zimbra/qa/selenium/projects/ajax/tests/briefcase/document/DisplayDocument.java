@@ -42,7 +42,8 @@ public class DisplayDocument extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 	}
 
-	@Test( description = "Create document through SOAP - verify through GUI", groups = { "smoke" })
+	@Test( description = "Create document through SOAP - verify through GUI", 
+			groups = { "smoke", "L0" })
 	public void DisplayDocument_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -93,7 +94,8 @@ public class DisplayDocument extends FeatureBriefcaseTest {
 	}
 
 	@Bugs(ids = "79994")
-	@Test( description = " german umlauts breaks briefcase ", groups = { "functional" })
+	@Test( description = " german umlauts breaks briefcase ", 
+	groups = { "functional", "L3" })
 	public void DisplayDocument_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 

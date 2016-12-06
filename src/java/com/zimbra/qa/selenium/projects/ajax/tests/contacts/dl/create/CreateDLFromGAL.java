@@ -33,7 +33,7 @@ public class CreateDLFromGAL extends AjaxCommonTest  {
 	
 
 	@Test( description = "Create user DL with atleast 2 contacts from GAL", 
-			groups = { "sanity" })
+			groups = { "sanity", "L0"})
 
 	public void CreateDLFromGAL_01 () throws HarnessException {
 

@@ -30,10 +30,9 @@ public class MoveFolder extends AjaxCommonTest {
 		logger.info("New "+ MoveFolder.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
 	}
-	
-	
+		
 	@Test( description = "Drag one folder from top level and Drop into sub folder", 
-			groups = { "smoke" })
+			groups = { "smoke", "L1"})
 	
 	public void DnDFromTopLevelToSubFolder_01() throws HarnessException {
 

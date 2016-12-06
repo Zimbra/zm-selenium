@@ -35,7 +35,8 @@ public class DeleteTag extends FeatureBriefcaseTest {
 		super.startingPage = app.zPageBriefcase;
 	}
 
-	@Test( description = "Delete a tag - Right click, Delete", groups = { "functional" })
+	@Test( description = "Delete a tag - Right click, Delete", 
+			groups = { "functional", "L3" })
 	public void DeleteTag_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 

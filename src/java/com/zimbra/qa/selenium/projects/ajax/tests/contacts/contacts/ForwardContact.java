@@ -32,10 +32,9 @@ public class ForwardContact extends AjaxCommonTest  {
 		super.startingPage = app.zPageContacts;
 	}
 	
-	
 	@Bugs(ids = "77708")
 	@Test( description = "Forward a contact by click Forward on the toolbar",
-			groups = { "deprecated" })
+			groups = { "deprecated", "L3"})
 	
 	public void InDisplayViewClickForwardOnToolbar_01() throws HarnessException {
 		
@@ -92,9 +91,8 @@ public class ForwardContact extends AjaxCommonTest  {
         ZAssert.assertStringContains(filename, ".vcf", "Make sure filename contains .vcf");
    	}
 
-	
 	@Test( description = "Forward an editing contact by click Forward on the toolbar",
-			groups = { "deprecated" })
+			groups = { "deprecated", "L3"})
 	
 	public void InEditViewClickForwardOnToolbar_02() throws HarnessException {
 				
@@ -155,9 +153,8 @@ public class ForwardContact extends AjaxCommonTest  {
 			
    	}
 	
-
 	@Test( description = "Forward a contact by click Forward on the context menu",
-			groups = { "smoke" })
+			groups = { "smoke", "L1"})
 	
 	public void ClickForwardOnContextmenu_03() throws HarnessException {
 		

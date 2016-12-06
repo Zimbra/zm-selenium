@@ -42,8 +42,8 @@ public class GetContactGroup extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Click Alphabetbar button All: Verify contact groups started with digit and A-Z listed", groups = {
-			"smoke" })
+	@Test(description = "Click Alphabetbar button All: Verify contact groups started with digit and A-Z listed", 
+			groups = {"smoke", "L0" })
 
 	public void GetContactGroup_All_Button_01() throws HarnessException {
 
@@ -111,8 +111,8 @@ public class GetContactGroup extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Click Alphabetbar button All: Verify contact groups started with digit and A-Z listed", groups = {
-			"smoke" })
+	@Test(description = "Click Alphabetbar button All: Verify contact groups started with digit and A-Z listed", 
+			groups = {"smoke", "L0"})
 	public void GetContactGroup_123_Button_02() throws HarnessException {
 
 		String groupname;
@@ -180,8 +180,8 @@ public class GetContactGroup extends AjaxCommonTest {
 	}
 
 	@Bugs(ids = "100227")
-	@Test(description = "Click Alphabetbar button Z: Verify only contact groups started with Z|z is listed", groups = {
-			"functional" })
+	@Test(description = "Click Alphabetbar button Z: Verify only contact groups started with Z|z is listed", 
+			groups = {"functional", "L2"})
 	public void GetContactGroup_B_Button_03() throws HarnessException {
 
 		String groupname;
@@ -248,8 +248,8 @@ public class GetContactGroup extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Click all Alphabetbar buttons: Verify only contact group started with the alphabet is listed", groups = {
-			"functional" })
+	@Test(description = "Click all Alphabetbar buttons: Verify only contact group started with the alphabet is listed", 
+			groups = {"functional", "L2"})
 	public void GetContactGroup_Iterate_Buttons_04() throws HarnessException {
 
 		// -- Data

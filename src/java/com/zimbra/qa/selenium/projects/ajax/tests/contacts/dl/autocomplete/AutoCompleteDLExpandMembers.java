@@ -34,7 +34,8 @@ public class AutoCompleteDLExpandMembers extends AjaxCommonTest  {
 		
 	}
 
-	@Test( description = "Auto complete DL, expand members and send mail to all", groups = { "functional" })
+	@Test( description = "Auto complete DL, expand members and send mail to all", 
+			groups = { "functional", "L2"})
 
 	public void AutoCompleteDLExpandMembers_01() throws HarnessException {
 

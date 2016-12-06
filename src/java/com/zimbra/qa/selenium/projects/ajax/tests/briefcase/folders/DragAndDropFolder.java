@@ -29,10 +29,9 @@ public class DragAndDropFolder extends FeatureBriefcaseTest {
 		logger.info("New " + DragAndDropFolder.class.getCanonicalName());
 		super.startingPage = app.zPageBriefcase;
 	}
-
 	
 	@Test(description = "Drag one briefcase sub-folder and Drop into other", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void DragAndDropFolder_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

@@ -34,10 +34,9 @@ public class ModifyDLByAddingListOwnersAndOwnerDeletesDL extends AjaxCommonTest 
 		super.startingPage = app.zPageContacts;
 		super.startingAccountPreferences = null;
 	}
-
 	
 	@Test( description = "Modify DL by adding list owners and owner deletes DL", 
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 
 	public void ModifyDLByAddingListOwnersAndOwnerDeletesDL_01() throws HarnessException {
 

@@ -45,7 +45,7 @@ public class ChangeColorTaskFolder extends AjaxCommonTest {
 	
 	
 	@Test( description = "Edit a folder, change the color (Context menu -> Edit)", 
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	
 	public void ChangeColorTaskFolder_01() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

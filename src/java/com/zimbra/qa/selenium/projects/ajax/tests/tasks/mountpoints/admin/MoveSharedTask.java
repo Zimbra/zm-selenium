@@ -35,8 +35,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
-
 public class MoveSharedTask extends AjaxCommonTest {
 	
 	@SuppressWarnings("serial")
@@ -55,7 +53,7 @@ public class MoveSharedTask extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Move task  from shared folder to local task folder (admin rights)",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	public void MoveSharedTaskToLocalFolder() throws HarnessException {
 		
 		String foldername = "tasklist" + ConfigProperties.getUniqueString();
@@ -156,9 +154,8 @@ public class MoveSharedTask extends AjaxCommonTest {
 		ZAssert.assertNotNull(movetask,	"Verify the task is moved to the local folder");
 	}
 	
-	
 	@Test( description = "Move task from local task folder  to shared folder(admin rights)",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	public void MoveTaskToSharedFolder() throws HarnessException {
 		
 		String foldername = "tasklist" + ConfigProperties.getUniqueString();

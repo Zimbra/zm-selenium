@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.mountpoints;
 
-
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.items.*;
@@ -25,10 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
 public class DeleteMountpoint extends AjaxCommonTest {
-
-	
 	
 	public DeleteMountpoint() {
 		logger.info("New "+ DeleteMountpoint.class.getCanonicalName());
@@ -36,12 +32,10 @@ public class DeleteMountpoint extends AjaxCommonTest {
 		// All tests start at the login page
 		super.startingPage = app.zPageContacts;
 		
-
-		
 	}
 	
 	@Test( description = "Delete a mountpoint to a shared addressbook (right click -> Delete)",
-			groups = { "smoke" })
+			groups = { "smoke", "L1"})
 	public void DeleteMountpoint_01() throws HarnessException {
 		
 		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();
@@ -93,10 +87,5 @@ public class DeleteMountpoint extends AjaxCommonTest {
 		ZAssert.assertEquals(trash.getId(), mountpoint.getParentId(), "Verify the subfolder's parent is now the trash folder ID");
 		
 	}
-
-	
-	
-
-	
 
 }
