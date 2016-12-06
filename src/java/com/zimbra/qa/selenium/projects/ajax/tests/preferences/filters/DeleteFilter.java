@@ -42,7 +42,7 @@ public class DeleteFilter extends AjaxCommonTest {
 
 	@Test(
 			description = "Delete an incoming filter",
-			groups = { "smoke", "L0" }
+			groups = { "sanity", "L0" }
 			)
 	public void DeleteFilter_01() throws HarnessException {
 
@@ -99,7 +99,7 @@ public class DeleteFilter extends AjaxCommonTest {
 
 	@Test(
 			description = "Delete a outgoing filter",
-			groups = { "smoke", "L0" }
+			groups = { "smoke", "L1" }
 			)
 	public void DeleteFilter_02() throws HarnessException {
 

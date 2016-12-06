@@ -48,7 +48,7 @@ public class ChangePassword extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Change the account password",
-			groups = { "sanity", "L1" })
+			groups = { "sanity", "L0" })
 	public void ChangePassword_01() throws HarnessException {
 		
 		String password = "password"+ ConfigProperties.getUniqueString();

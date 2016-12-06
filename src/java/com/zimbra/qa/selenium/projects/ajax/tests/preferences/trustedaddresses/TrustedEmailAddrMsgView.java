@@ -56,7 +56,7 @@ public class TrustedEmailAddrMsgView extends AjaxCommonTest {
 	 * 5.Yellow color Warning Msg Info bar should not present for trusted eamil address.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify Display Image link in Trusted Addresses for message view", groups = { "sanity", "L1"  })
+	@Test( description = "Verify Display Image link in Trusted Addresses for message view", groups = { "smoke", "L1"  })
 	public void TrustedEmailAddrMsgView_01() throws HarnessException {
 
 		final String subject = "TestTrustedAddress";

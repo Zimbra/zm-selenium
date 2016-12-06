@@ -53,7 +53,7 @@ public class RemoveTrustedDomain extends AjaxCommonTest {
 	@Bugs( ids = "101356")
 	@Test(
 			description = "Remove a trusted domain",
-			groups = { "sanity", "L0"  }
+			groups = { "smoke", "L1"  }
 			)
 	public void RemoveTrustedDomain_01() throws HarnessException {
 
