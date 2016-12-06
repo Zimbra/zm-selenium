@@ -148,7 +148,7 @@ public class SendSignedMail extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that Signed message can be sent from Web-client correctly and user can view it", priority=4, 
-			groups = { "smime1"})
+			groups = { "smime"})
 	
 	public void SendSignedMail_02() throws HarnessException  {
 		ZimbraAccount user3 = new ZimbraAccount("user3"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
