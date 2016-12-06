@@ -74,7 +74,7 @@ public class ForwardMsgWithHtmlSignature extends AjaxCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(description = "Forward Msg with html signature and Verify html signature through soap", groups = {
-			"functional" })
+			"functional", "L2" })
 	public void ForwardMsgWithHtmlSignature_01() throws HarnessException {
 
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);

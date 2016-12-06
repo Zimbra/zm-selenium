@@ -42,7 +42,7 @@ public class ViewMobileDevices extends AjaxCommonTest {
 	
 	@Bugs(ids = "101596")
 	
-	@Test( description = "View connected devices and apps in preferences", groups = { "functional", "network" } )
+	@Test( description = "View connected devices and apps in preferences", groups = { "functional", "L2", "network" } )
 	
 	public void ViewMobileDevices_01() throws HarnessException {
 

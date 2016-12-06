@@ -33,7 +33,7 @@ public class CreateSignature extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Test(description = "Create Simple text signature and verify Toast Msg through GUI", groups = { "smoke" })
+	@Test(description = "Create Simple text signature and verify Toast Msg through GUI", groups = { "functional", "L3"  })
 	public void CreateTextSignatureToastMsg_01() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();
@@ -57,7 +57,7 @@ public class CreateSignature extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Create Simple Html signature and verify Toast Msg through GUI", groups = { "smoke" })
+	@Test(description = "Create Simple Html signature and verify Toast Msg through GUI", groups = { "functional", "L3"  })
 	public void CreateHtmlSignatureToastMsg_02() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();

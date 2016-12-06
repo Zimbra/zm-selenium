@@ -66,7 +66,7 @@ public class ReplyAllMsgWithHtmlSignature extends AjaxCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(description = " ReplyAll Msg with html signature and Verify signature through soap", groups = {
-			"functional" })
+			"functional", "L2" })
 	public void ReplyAllMsgWithHtmlSignature_01() throws HarnessException {
 
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);

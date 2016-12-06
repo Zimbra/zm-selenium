@@ -33,7 +33,7 @@ public class SendANotificationMessageTo extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 	
-	@Test( description = "Send a notification to other user after recieving a message", groups = { "functional" })
+	@Test( description = "Send a notification to other user after recieving a message", groups = { "functional", "L2" })
 	
 	public void SendANotificationMessageTo_01() throws HarnessException {
 		

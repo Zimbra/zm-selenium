@@ -42,7 +42,7 @@ public class ZimbraPrefComposeFormatHtml extends AjaxCommonTest {
 
 	@Test(
 			description = "Set zimbraPrefComposeFormat to 'html'",
-			groups = { "functional" }
+			groups = { "functional", "L2" }
 	)
 	public void ZimbraPrefComposeFormatHtml_01() throws HarnessException {
 

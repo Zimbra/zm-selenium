@@ -66,7 +66,7 @@ public class DeleteSignature extends AjaxCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(description = " Delete Text signature using Delete button and verify toast msg throguh GUI ", groups = {
-			"smoke" })
+			"functional", "L3"  })
 	public void DeleteSignaturesToastMsg_01() throws HarnessException {
 
 		// Click on Mail/signature

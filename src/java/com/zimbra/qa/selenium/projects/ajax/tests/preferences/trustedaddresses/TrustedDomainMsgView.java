@@ -57,7 +57,7 @@ public class TrustedDomainMsgView extends AjaxCommonTest {
 	 * 5.Yellow color Warning Msg Info bar should not present for trusted domain
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify Display Image link in Trusted doamin for message view", groups = { "smoke" })
+	@Test( description = "Verify Display Image link in Trusted doamin for message view", groups = { "smoke", "L1"  })
 	public void TrustedDomainMsgView_01() throws HarnessException {
 
 		final String subject = "TestTrustedAddress";

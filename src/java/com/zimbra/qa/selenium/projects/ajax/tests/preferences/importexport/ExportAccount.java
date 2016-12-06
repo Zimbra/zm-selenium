@@ -36,7 +36,7 @@ public class ExportAccount extends AjaxCommonTest {
 
 	@Test(
 			description = "Verify clicking on 'export account' radio button",
-			groups = { "functional" }
+			groups = { "functional", "L2" }
 	)
 	public void ExportAccount_01() throws HarnessException {
 
@@ -68,7 +68,7 @@ public class ExportAccount extends AjaxCommonTest {
 
 	@Test(
 			description = "Verify clicking on 'Advanced Settings' checkbox",
-			groups = { "functional" }
+			groups = { "functional", "L3" }
 	)
 	public void ExportAccount_02() throws HarnessException {
 

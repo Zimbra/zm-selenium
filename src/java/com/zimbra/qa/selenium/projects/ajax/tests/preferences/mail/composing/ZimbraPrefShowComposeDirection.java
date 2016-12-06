@@ -40,7 +40,7 @@ public class ZimbraPrefShowComposeDirection extends AjaxCommonTest {
 	@Bugs(ids = "103002")
 	@Test(
 			description = "Verify the presence and working of direction buttons in compose mail screen",
-			groups = { "functional" }
+			groups = { "functional", "L3" }
 			)
 
 	public void ZimbraPrefShowComposeDirection_01() throws HarnessException {

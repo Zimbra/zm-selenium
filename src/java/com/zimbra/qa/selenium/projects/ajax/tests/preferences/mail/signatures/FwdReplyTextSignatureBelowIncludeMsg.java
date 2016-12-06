@@ -69,7 +69,7 @@ public class FwdReplyTextSignatureBelowIncludeMsg extends AjaxCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(description = "Verify Text Signature BelowIncludedMsg While Fwd'ing- Verify through GUI ", groups = {
-			"functional" })
+			"functional", "L2" })
 	public void FwdMsgWithTextSignatureBelowIncludeMsg_01() throws HarnessException {
 
 		// Signature is created
@@ -115,7 +115,7 @@ public class FwdReplyTextSignatureBelowIncludeMsg extends AjaxCommonTest {
 	 * @throws HarnessException
 	 */
 
-	@Test(description = "Verify Text Signature BelowIncludedMsg While Replying Msg ", groups = { "functional" })
+	@Test(description = "Verify Text Signature BelowIncludedMsg While Replying Msg ", groups = { "functional", "L3" })
 	public void ReplyMsgWithTextSignatureBelowIncludeMsg_02() throws HarnessException {
 
 		// Signature is created
@@ -161,7 +161,7 @@ public class FwdReplyTextSignatureBelowIncludeMsg extends AjaxCommonTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test(description = "Verify Text Signature BelowIncludedMsg While ReplyingAll Msg ", groups = { "functional" })
+	@Test(description = "Verify Text Signature BelowIncludedMsg While ReplyingAll Msg ", groups = { "functional", "L3" })
 	public void ReplyAllMsgWithTextSignatureBelowIncludeMsg_03() throws HarnessException {
 
 		// Signature is created

@@ -70,7 +70,7 @@ public class EditHtmlSignature extends AjaxCommonTest {
 	 * @throws HarnessException
 	 */
 
-	@Test(description = "Edit signature through GUI and verify through soap", groups = { "smoke" })
+	@Test(description = "Edit signature through GUI and verify through soap", groups = { "sanity", "L0"  })
 	public void EditHtmlSignature_01() throws HarnessException {
 
 		String sigEditName = "edit name " + ConfigProperties.getUniqueString();

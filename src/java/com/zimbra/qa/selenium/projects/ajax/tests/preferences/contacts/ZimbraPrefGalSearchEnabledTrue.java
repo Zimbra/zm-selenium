@@ -43,7 +43,7 @@ public class ZimbraPrefGalSearchEnabledTrue extends AjaxCommonTest {
 
 	@Test(
 			description = "Set zimbraPrefGalSearchEnabled to 'TRUE'",
-			groups = { "functional" }
+			groups = { "functional", "L2" }
 	)
 	public void ZimbraPrefGalSearchEnabledTrue_01() throws HarnessException {
 

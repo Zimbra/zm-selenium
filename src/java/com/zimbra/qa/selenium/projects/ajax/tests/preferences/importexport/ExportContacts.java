@@ -36,7 +36,7 @@ public class ExportContacts extends AjaxCommonTest {
 
 	@Test(
 			description = "Verify clicking on 'export contacts' radio button",
-			groups = { "functional" }
+			groups = { "functional", "L2" }
 			)
 	public void ExportContacts_01() throws HarnessException {
 

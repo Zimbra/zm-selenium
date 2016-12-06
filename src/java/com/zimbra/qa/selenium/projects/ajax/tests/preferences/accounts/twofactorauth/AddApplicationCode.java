@@ -38,7 +38,7 @@ public class AddApplicationCode extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Add application code for IMAP application from preferences and verify the same", priority=4, 
-			groups = { "sanity", "network" })
+			groups = { "sanity", "L0", "network" })
 	
 	public void AddApplicationCode_01() throws HarnessException  {
 		

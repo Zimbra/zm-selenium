@@ -42,8 +42,8 @@ public class ZimbraPrefDisplayExternalImages extends AjaxCommonTest {
 	}
 	
 	@Test(
-			description = "Verify the Automatic display if external image when 'zimbraPrefDisplayExternalImages' is Set TRUE",
-			groups = { "functional" }
+			description = "Verify the Automatic display of external image when 'zimbraPrefDisplayExternalImages' is Set TRUE",
+			groups = { "functional", "L2" }
 			)
 
 	public void ZimbraPrefDisplayExternalImages_01() throws HarnessException {

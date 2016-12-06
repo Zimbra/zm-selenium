@@ -46,7 +46,7 @@ public class ZimbraFeaturePortalEnabled extends AjaxCommonTest {
 	
 	@Bugs(ids = "67462")
 	@Test( description = "Login to the Ajax Client with the 'example' portal enabled",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void BasicLogin01() throws HarnessException {
 		
 		// Login

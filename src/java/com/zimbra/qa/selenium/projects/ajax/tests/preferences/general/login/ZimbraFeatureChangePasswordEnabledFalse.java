@@ -53,7 +53,7 @@ public class ZimbraFeatureChangePasswordEnabledFalse extends AjaxCommonTest {
 	@Bugs(ids="63439")	
 	@Test(
 			description = "Verify the 'Change Password' option is not present in preferences", 
-			groups = { "functional" }
+			groups = { "functional", "L2" }
 			)
 	public void ZimbraFeatureChangePasswordEnabledFalse_01() throws HarnessException {
 				

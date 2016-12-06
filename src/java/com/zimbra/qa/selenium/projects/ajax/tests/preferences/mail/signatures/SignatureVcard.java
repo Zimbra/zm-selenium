@@ -44,7 +44,7 @@ public class SignatureVcard extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Test(description = "Verify Signature Vcard thoough GUI", groups = { "functional" })
+	@Test(description = "Verify Signature Vcard thoough GUI", groups = { "functional", "L2" })
 	public void SignatureVcard_01() throws HarnessException {
 
 		// Create a contact

@@ -43,7 +43,7 @@ public class ZimbraPrefIncludeTrashInSearchTrue extends AjaxCommonTest {
 
 
 	@Test( description = "Verify that mails in trash are also included in search when 'zimbraPrefIncludeTrashInSearch' is TRUE",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ZimbraPrefIncludeTrashInSearchTrue_01() throws HarnessException {
 
 		//Data required to create a mail in Trash

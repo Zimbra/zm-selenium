@@ -56,7 +56,7 @@ public class SMSNotificationViaEmail extends CalendarWorkWeekTest {
 
 	@Test(
 			description = "Verify SMS notification via Email for appointment reminder.",
-			groups = { "functional" }
+			groups = { "functional", "L2" }
 			)
 	public void SMSNotificationViaEmail_01() throws HarnessException {
 

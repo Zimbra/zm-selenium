@@ -70,7 +70,7 @@ public class ForwardMsgWithTextSignature extends AjaxCommonTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test(description = " Forward Msg with text signature and Verify signature through soap", groups = { "functional" })
+	@Test(description = " Forward Msg with text signature and Verify signature through soap", groups = { "functional", "L2" })
 	public void ForwardMsgWithTextSignature_01() throws HarnessException {
 
 		// Signature is created

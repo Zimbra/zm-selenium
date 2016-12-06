@@ -66,7 +66,7 @@ public class EditSignature extends AjaxCommonTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test(description = " Edit Text singature and verify toast msg", groups = { "smoke" })
+	@Test(description = " Edit Text singature and verify toast msg", groups = { "functional", "L3"  })
 	public void EditTextSignatureToastMsg_01() throws HarnessException {
 
 		String sigEditName = "editsigname" + ConfigProperties.getUniqueString();

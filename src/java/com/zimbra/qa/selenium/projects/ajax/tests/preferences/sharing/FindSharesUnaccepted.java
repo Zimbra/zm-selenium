@@ -42,7 +42,7 @@ public class FindSharesUnaccepted extends AjaxCommonTest {
 
 	@Test(
 			description = "View the sharing preference page - show unaccepted shares",
-			groups = { "functional" }
+			groups = { "functional", "L2" }
 			)
 	public void FindSharesUnaccepted_01() throws HarnessException {
 

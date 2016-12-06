@@ -42,7 +42,7 @@ public class zimbraPrefShowCalendarWeek extends AjaxCommonTest {
 
 	@Test(
 			description = "Set 'Show Calendars with week numbers' and verify accordingly", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void zimbraPrefShowCalendarWeek_01() throws HarnessException {
 

@@ -62,8 +62,8 @@ public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test(description = " Compose Html Msg with html signature and Verify signature thropugh soap", groups = {
-			"functional" })
+	@Test(description = " Compose Html Msg with html signature and Verify signature through soap", groups = {
+			"functional", "L2" })
 	public void ComposeHtmlMsgWithHtmlSignature_01() throws HarnessException {
 
 		// Signature is created
