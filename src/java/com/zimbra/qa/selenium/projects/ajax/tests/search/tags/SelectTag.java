@@ -42,7 +42,7 @@ public class SelectTag extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Left click on tag - verify tagged messages are shown",
-			groups = { "functional" })
+			groups = { "functional","L2" })
 	public void SelectTag_01() throws HarnessException {
 		
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);

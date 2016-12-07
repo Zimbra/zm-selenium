@@ -30,7 +30,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.zimlet.DialogViewCertificate;
 
-
 public class SendSignedMail extends AjaxCommonTest {
 
 	public SendSignedMail() {
@@ -39,7 +38,7 @@ public class SendSignedMail extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that Signed message can be sent from Web-client correctly and user can view it", priority=4, 
-			groups = { "smime"})
+			groups = { "smime", "L0"})
 	
 	public void SendSignedMail_01() throws HarnessException  {
 		ZimbraAccount user3 = new ZimbraAccount("user3"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);

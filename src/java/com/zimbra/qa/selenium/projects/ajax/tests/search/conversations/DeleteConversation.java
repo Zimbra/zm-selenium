@@ -35,17 +35,13 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 	
 	@Bugs( ids = "81074")
 	@Test( description = "From search: Delete a conversation using the Delete Toolbar button",
-			groups = { "functional" })
+			groups = { "functional","L2"})
 	public void DeleteConversation_01() throws HarnessException {
 		
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
 		// Create the message data to be sent
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
-		
-		
-		//-- GUI
-		
 		
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -69,9 +65,6 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 			app.zPageSearch.zClose();
 		}
 		
-		
-		
-		
 		//-- Verification
 		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere from:("+ ZimbraAccount.AccountA().EmailAddress + ") subject:("+ c.getSubject() +")");
@@ -79,9 +72,5 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		ZAssert.assertEquals(message.dFolderId, trash.getId(), "Verify the message exists in the trash");
 		
 	}
-
-	
-	
-	
 
 }

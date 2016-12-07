@@ -25,17 +25,15 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-
 public class MoveMessage extends PrefGroupMailByMessageTest {
 
 	public MoveMessage() {
 		logger.info("New "+ MoveMessage.class.getCanonicalName());
-		
 	
 	}
 	
 	@Test( description = "From serch: Move a message to a subfolder",
-			groups = { "functional" })
+			groups = { "functional","L2" })
 	public void MoveConversation01() throws HarnessException {
 		
 		//-- DATA
@@ -68,9 +66,6 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			    	+			"</content>"
 			    	+		"</m>"
 					+	"</AddMsgRequest>");
-
-
-		
 		
 		//-- GUI
 		
@@ -95,8 +90,6 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			app.zPageSearch.zClose();
 		}
 
-
-		
 		//-- Verification
 		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
@@ -107,7 +100,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 
 	@Bugs(ids = "77217")
 	@Test( description = "From search: Move a message in Trash to a subfolder",
-			groups = { "functional	" })
+			groups = { "functional","L2" })
 	public void MoveConversation02() throws HarnessException {
 		
 		//-- DATA
@@ -176,11 +169,10 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(message.dFolderId, subfolder.getId(), "Verify the message exists in the correct folder");
 		
 	}
-
 	
 	@Bugs(ids = "80611")
 	@Test( description = "From search: Move a message in Sent to a subfolder",
-			groups = { "functional" })
+			groups = { "functional","L2" })
 	public void MoveConversation03() throws HarnessException {
 		
 		//-- DATA

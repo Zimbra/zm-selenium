@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
 //TODO: add more in ContactItem.java
 
 public class DeleteSavedSearch extends AjaxCommonTest  {
@@ -39,13 +38,11 @@ public class DeleteSavedSearch extends AjaxCommonTest  {
 		super.startingPage = app.zPageMail;
 
 		// Make sure we are using an account with conversation view
-				
 		
 	}
 	
-	
 	@Test( description = "Delete a saved search",
-			groups = { "smoke" })
+			groups = { "smoke","L0" })
 	public void DeleteSavedSearch_01() throws HarnessException {				
 
 		// Create the message data to be sent

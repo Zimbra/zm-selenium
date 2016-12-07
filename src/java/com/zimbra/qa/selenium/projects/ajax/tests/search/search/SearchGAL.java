@@ -32,7 +32,8 @@ public class SearchGAL extends AjaxCommonTest {
 		super.startingPage = app.zPageContacts;
 	}
 
-	@Test(description = "Search for a GAL contact", groups = { "functional" })
+	@Test(description = "Search for a GAL contact", 
+			groups = { "functional","L2" })
 	public void SearchGAL_01() throws HarnessException {
 
 		// -- Data
@@ -80,7 +81,8 @@ public class SearchGAL extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Search for a non-existing GAL contact", groups = { "functional" })
+	@Test(description = "Search for a non-existing GAL contact", 
+			groups = { "functional","L2"})
 	public void SearchGAL_02() throws HarnessException {
 
 		// -- Data

@@ -26,7 +26,6 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogRenameFolder;
 
-
 //TODO: add more in ContactItem.java
 
 public class RenameSavedSearch extends AjaxCommonTest  {
@@ -38,13 +37,11 @@ public class RenameSavedSearch extends AjaxCommonTest  {
 		super.startingPage = app.zPageMail;
 
 		// Make sure we are using an account with conversation view
-				
 		
 	}
 	
-	
 	@Test( description = "Rename a saved search",
-			groups = { "smoke" })
+			groups = { "smoke","L1" })
 	public void RenameSavedSearch_01() throws HarnessException {				
 				
 			

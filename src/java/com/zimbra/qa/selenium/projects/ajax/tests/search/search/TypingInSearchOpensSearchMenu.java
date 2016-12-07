@@ -37,7 +37,7 @@ public class TypingInSearchOpensSearchMenu extends PrefGroupMailByMessageTest {
 	
 	@Bugs( ids = "102600" )
 	@Test( description = "Typing in: in search input and pressing down arrow >> it opens Search menu list as well", 
-			groups = { "functional" })
+			groups = { "functional","L1" })
 	
 	public void TypingInSearchOpensSearchMenu_01() throws HarnessException {
 

@@ -46,7 +46,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Receive a mail with a basic date",
-			groups = { "smoke" })
+			groups = { "smoke", "L0" })
 	public void GetMessage_01() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -82,9 +82,8 @@ public class GetMessage extends AjaxCommonTest {
 
 	}
 
-
 	@Test( description = "Receive a mail with two dates in body",
-			groups = { "functional" })
+			groups = { "functional", "L1" })
 	public void GetMessage_02() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -123,10 +122,8 @@ public class GetMessage extends AjaxCommonTest {
 
 	}
 
-	
-
 	@Test( description = "Validate the date zimlet matches valid dates",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetMessage_03() throws HarnessException {
 
 		final String subject = "subject12912323015009";
@@ -162,9 +159,8 @@ public class GetMessage extends AjaxCommonTest {
 
 	}
 
-
 	@Test( description = "Validate the date zimlet does not match invalid dates",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetMessage_04() throws HarnessException {
 
 		final String subject = "subject1293323025009";
@@ -193,7 +189,7 @@ public class GetMessage extends AjaxCommonTest {
 
 	@Bugs(ids="86667")
 	@Test( description = "Receive a mail with a date in subject(as Per bug this is invalid test case",
-			groups = { "deprecated" })
+			groups = { "deprecated", "L3" })
 	public void GetMessage_05() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -229,9 +225,8 @@ public class GetMessage extends AjaxCommonTest {
 
 	}
 
-
 	@Test( description = "Receive a mail with a date string, such as today, tomorrow, last night, etc.",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetMessage_11() throws HarnessException {
 		String newline = String.format("%n");
 		
@@ -308,6 +303,5 @@ format7.rule = now week={weekord},{dayname}
 		
 
 	}
-
 
 }

@@ -30,7 +30,7 @@ public class SetArchiveFolder extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "On clicking 'Archive', client should prompt to set the archive folder",
-			groups = { "functional" })
+			groups = { "functional","L3" })
 	public void SetArchiveFolder_01() throws HarnessException {
 		
 		// Create the message data to be sent

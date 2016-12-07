@@ -29,7 +29,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 	}
 	
 	@Test( description = "Archive a message",
-			groups = { "smoke" })
+			groups = { "smoke","L0" })
 	public void ArchiveMessage_01() throws HarnessException {
 		
 		// Create the message data to be sent
