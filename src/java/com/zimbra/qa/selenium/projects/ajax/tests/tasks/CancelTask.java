@@ -57,7 +57,8 @@ public class CancelTask extends AjaxCommonTest {
 	 * Task should not show in list 
 	 * @throws HarnessException
 	 */
-	@Test( description = "Cancel composing of new task through GUI", groups = { "functional" })
+	@Test( description = "Cancel composing of new task through GUI", 
+			groups = { "functional", "L3"})
 	public void CancelTask_01() throws HarnessException {
 
 		String subject = "task" + ConfigProperties.getUniqueString();
@@ -93,7 +94,8 @@ public class CancelTask extends AjaxCommonTest {
 		ZAssert.assertNull(found, "Verify the task is no longer present in task list");
 
 	}
-	@Test( description = "Cancel composing of new task using Esc shortcut", groups = { "functional" })
+	
+	@Test( description = "Cancel composing of new task using Esc shortcut", groups = { "functional", "L3"})
 	public void CancelTask_02() throws HarnessException {
 
 		Shortcut shortcut = Shortcut.S_ESCAPE;
@@ -145,7 +147,8 @@ public class CancelTask extends AjaxCommonTest {
 	 * user click on cancel 
 	 */
 	@Bugs(ids = "74670")
-	@Test( description = "cancelling empty attachment task in 2nd attempt", groups = { "functional" })
+	@Test( description = "cancelling empty attachment task in 2nd attempt", 
+			groups = { "functional", "L3"})
 	public void Bug_74670() throws HarnessException {
 
 		//1st attempt

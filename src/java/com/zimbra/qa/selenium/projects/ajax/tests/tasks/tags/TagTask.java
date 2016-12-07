@@ -38,11 +38,11 @@ public class TagTask extends AjaxCommonTest{
 
 		// All tests start at the login page
 		super.startingPage = app.zPageTasks;
-
 		
 	}
 
-	@Test( description = "Tag a Task using Toolbar -> Tag -> New Tag", groups = { "smoke" })
+	@Test( description = "Tag a Task using Toolbar -> Tag -> New Tag", 
+			groups = { "smoke", "L1"})
 	public void TagTask_01() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
@@ -61,8 +61,6 @@ public class TagTask extends AjaxCommonTest{
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateTaskRequest>");
-
-		
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(),subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
@@ -84,8 +82,6 @@ public class TagTask extends AjaxCommonTest{
 		//Fill Name  and Press OK button
 		dialogtag.zSetTagName(tagName);
 		dialogtag.zClickButton(Button.B_OK);
-
-		
 
 		// Make sure the tag was created on the server (get the tag ID)
 		app.zGetActiveAccount().soapSend("<GetTagRequest xmlns='urn:zimbraMail'/>");;

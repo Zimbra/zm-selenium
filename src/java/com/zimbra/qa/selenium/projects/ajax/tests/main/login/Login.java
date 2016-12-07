@@ -31,7 +31,7 @@ public class Login extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Login to the Ajax Client", 
-			groups = { "sanity" })
+			groups = { "sanity", "L0"})
 	
 	public void Login01() throws HarnessException {
 		

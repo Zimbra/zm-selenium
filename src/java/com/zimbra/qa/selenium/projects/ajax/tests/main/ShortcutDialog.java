@@ -31,7 +31,7 @@ public class ShortcutDialog extends AjaxCommonTest {
 
 
 	@Test( description = "Open the 'Shortcut' dialog >> Verify contents and Close Link", 
-		groups = { "functional" })
+		groups = { "functional", "L3"})
 	
 	public void Shortcutdialog_Close_01() throws HarnessException {
 

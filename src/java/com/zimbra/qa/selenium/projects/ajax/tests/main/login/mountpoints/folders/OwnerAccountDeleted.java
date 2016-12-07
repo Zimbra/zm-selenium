@@ -48,7 +48,7 @@ public class OwnerAccountDeleted extends AjaxCommonTest {
 	
 	
 	@Test( description = "Login to the Ajax Client - with a mountpoint to a deleted account",
-			groups = { "functional" })
+			groups = { "functional", "L3"})
 	public void OwnerAccountDeleted01() throws HarnessException {
 		
 		// Data setup

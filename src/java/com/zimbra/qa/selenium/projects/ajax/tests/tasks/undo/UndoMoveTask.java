@@ -29,8 +29,6 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
 
-
-
 public class UndoMoveTask extends AjaxCommonTest {
 
 	@SuppressWarnings("serial")
@@ -45,8 +43,9 @@ public class UndoMoveTask extends AjaxCommonTest {
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 		}};
 	}
+	
 	@Bugs( ids = "96832")
-	@Test( description = "Undo moved task", groups = { "smoke" })
+	@Test( description = "Undo moved task", groups = { "smoke", "L1"})
 	public void UndoMoveTask_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

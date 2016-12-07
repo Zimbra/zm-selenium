@@ -50,7 +50,8 @@ public class TagTask extends AjaxCommonTest{
 	}
 
 	@Bugs( ids = "96832")
-	@Test( description = "Tag a Task using Toolbar -> Tag -> New Tag", groups = { "smoke" })
+	@Test( description = "Tag a Task using Toolbar -> Tag -> New Tag", 
+			groups = { "smoke", "L1"})
 	public void TagTask_01() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 

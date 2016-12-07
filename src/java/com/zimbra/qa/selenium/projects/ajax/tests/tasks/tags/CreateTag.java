@@ -35,7 +35,7 @@ public class CreateTag extends AjaxCommonTest {
 	}
 
 	@Test( description = "Create a new tag by clicking 'new tag' on Task page", 
-			groups = { "sanity" })
+			groups = { "sanity", "L0"})
 	
 	public void CreateTag_01() throws HarnessException {
 
@@ -56,9 +56,8 @@ public class CreateTag extends AjaxCommonTest {
 		ZAssert.assertEquals(tag.getName(), name, "Verify the server and client tag names match");
 	}
 
-
-	@Test( description = "Create a new tag using keyboard shortcuts on Task apge", 
-			groups = { "smoke" })
+	@Test( description = "Create a new tag using keyboard shortcuts on Task page", 
+			groups = { "smoke", "L1"})
 	
 	public void CreateTag_02() throws HarnessException {
 
@@ -89,10 +88,9 @@ public class CreateTag extends AjaxCommonTest {
 		ZAssert.assertEquals(tag.getName(), name, "Verify the server and client tag names match");
 
 	}
-
 	
 	@Test( description = "Create a new tag using context menu from a tag", 
-			groups = { "smoke" })
+			groups = { "smoke", "L1"})
 	
 	public void CreateTag_03() throws HarnessException {
 
@@ -129,10 +127,9 @@ public class CreateTag extends AjaxCommonTest {
 
 		ZAssert.assertEquals(tag1.getName(), name1, "Verify the server and client tag names match");
 	}
-
 	
 	@Test( description = "Create a new tag using task app New -> Tag", 
-			groups = { "smoke" })
+			groups = { "smoke", "L1"})
 	
 	public void CreateTag_04() throws HarnessException {
 
@@ -154,6 +151,5 @@ public class CreateTag extends AjaxCommonTest {
 		"Verify the server and client tag names match");
 
 	}
-
 
 }

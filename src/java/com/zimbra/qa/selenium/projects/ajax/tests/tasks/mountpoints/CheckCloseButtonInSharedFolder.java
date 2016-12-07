@@ -50,9 +50,9 @@ public class CheckCloseButtonInSharedFolder extends AjaxCommonTest {
 
 	}
 
-
 	@Bugs( ids = "73226")
-	@Test( description = "Verify Close button on Share Task Window and its functionality",	groups = { "functional" })
+	@Test( description = "Verify Close button on Share Task Window and its functionality",	
+			groups = { "functional", "L2" })
 
 	public void CheckCloseButtonInSharedFolder_01() throws HarnessException {
 
@@ -128,9 +128,9 @@ public class CheckCloseButtonInSharedFolder extends AjaxCommonTest {
 
 	}
 
-
 	@Bugs( ids = "75277")
-	@Test( description = "Verify Close button on Share Task Window and its functionality",	groups = { "smoke" })
+	@Test( description = "Verify Close button on Share Task Window and its functionality",	
+	groups = { "smoke", "L1"})
 
 	public void CheckCloseButtonInSharedFolder_02() throws HarnessException {
 

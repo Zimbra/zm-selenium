@@ -54,10 +54,9 @@ public class EditHtmlTask extends AjaxCommonTest{
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 		}};
 	}
-
 	
 	@Test( description = "Create Html task through SOAP - edit subject and verify through Soap",
-			groups = { "smoke" })
+			groups = { "smoke", "L0"})
 	
 	public void EditHtmlTask_01() throws HarnessException {
 
@@ -117,7 +116,6 @@ public class EditHtmlTask extends AjaxCommonTest{
 
 
 	}
-
 	
 	/**
 	 * 	1. Go to Tasks
@@ -130,7 +128,7 @@ public class EditHtmlTask extends AjaxCommonTest{
 	 */
 	@Bugs(ids="64647")
 	@Test( description = "Create Html task through SOAP - edit duedate >> Refresh task >>verify Due Date in list view through GUI",
-			groups = { "functional" })
+			groups = { "functional", "L1"})
 	
 	public void EditHtmlTask_02() throws HarnessException {
 
@@ -193,9 +191,8 @@ public class EditHtmlTask extends AjaxCommonTest{
 
 	}
 	
-	
 	@Test( description = "Create Html task through SOAP - Edit html task using Right Click Context Menu & verify through GUI",
-			groups = { "functional" })
+			groups = { "functional", "L1"})
 	
 	public void EditHtmlTask_03() throws HarnessException {
 
@@ -275,9 +272,8 @@ public class EditHtmlTask extends AjaxCommonTest{
 
 	}
 	
-	
 	@Test( description = "Create Html task through SOAP - Edit> convert Html to Plain Text and veirfy Warning dialog and its content",
-			groups = { "functional" })
+			groups = { "functional", "L1"})
 	
 	public void EditHtmlTask_04() throws HarnessException {
 
@@ -326,6 +322,5 @@ public class EditHtmlTask extends AjaxCommonTest{
 		ZAssert.assertEquals(text,dialogWarning.zGetWarningContent()," Verify content is " + text);	
 
 	}
-
 
 }

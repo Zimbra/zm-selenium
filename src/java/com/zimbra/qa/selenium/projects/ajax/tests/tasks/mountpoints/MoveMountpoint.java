@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.mountpoints;
 
-
 import java.util.HashMap;
 
 import org.testng.annotations.Test;
@@ -32,10 +31,7 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
 public class MoveMountpoint extends AjaxCommonTest {
-
-	
 	
 	@SuppressWarnings("serial")
 	public MoveMountpoint() {
@@ -52,7 +48,7 @@ public class MoveMountpoint extends AjaxCommonTest {
 	
 	@Bugs(ids="69661")
 	@Test( description = "Move a mountpoint under a subfolder - Drag and Drop, Move",
-			groups = { "smoke" })
+			groups = { "smoke", "L1"})
 	public void MoveMountpoint_01() throws HarnessException {
 		
 		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();
@@ -119,8 +115,5 @@ public class MoveMountpoint extends AjaxCommonTest {
 		ZAssert.assertEquals(folder.getId(), mountpoint.getParentId(), "Verify the mountpoint's parent is now the other subfolder");
 		
 	}	
-	
-
-	
 
 }

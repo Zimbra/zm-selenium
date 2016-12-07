@@ -18,8 +18,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
 
-
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,7 +29,6 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-
 
 public class AppTasks extends PrefGroupMailByMessageTest {
 
@@ -51,7 +48,7 @@ public class AppTasks extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "?app=tasks in url",
-			groups = { "smoke" })
+			groups = { "smoke", "L0"})
 	public void AppTasks_01() throws HarnessException {
 
 		//Go to AB tab

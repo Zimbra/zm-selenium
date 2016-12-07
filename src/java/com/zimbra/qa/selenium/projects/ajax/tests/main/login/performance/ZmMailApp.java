@@ -38,7 +38,7 @@ public class ZmMailApp extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Measure the time to load the ajax client",
-			groups = { "performance" })
+			groups = { "performance", "L3"})
 	public void ZmMailApp01() throws HarnessException {
 		
 		
