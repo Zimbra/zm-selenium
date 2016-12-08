@@ -39,7 +39,7 @@ public class NavigateGlobalSettings extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Global Settings",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateGlobalSettings_01() throws HarnessException {
 		
 		/*

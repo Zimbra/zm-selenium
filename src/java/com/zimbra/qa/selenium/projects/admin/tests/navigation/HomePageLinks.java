@@ -46,7 +46,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Install License",
-			groups = { "obsolete" })
+			groups = { "obsolete", "L4" })
 			public void NavigateHomePageLinks_01() throws HarnessException {
 		
 		// click on Install license Link on Home page and check if it redirects to proper page
@@ -64,7 +64,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Configure Backup",
-			groups = { "sanity","network" })
+			groups = { "sanity", "L0","network" })
 			public void NavigateHomePageLinks_02() throws HarnessException {
 		
 		app.zPageMain.sClickAt(Locators.HomeConfigureBackups,"");
@@ -82,7 +82,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Install certificate wizard",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateHomePageLinks_03() throws HarnessException {
 
 		WizardInstallCertificate wizard = 
@@ -105,7 +105,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Configure default COS",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateHomePageLinks_04() throws HarnessException {
 		
 		/*
@@ -128,7 +128,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to create Domain wizard",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateHomePageLinks_05() throws HarnessException {
 		
 		// Navigate back to home page 
@@ -153,7 +153,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Configure GAL wizard",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateHomePageLinks_06() throws HarnessException {
 
 		// Navigate back to Home page 
@@ -178,7 +178,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Configure Authentication wizard",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateHomePageLinks_07() throws HarnessException {
 
 		// Navigate back to Home page
@@ -201,7 +201,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to create account wizard",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateHomePageLinks_08() throws HarnessException {
 	
 		// Navigate back to Home page
@@ -223,7 +223,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Configure manage accounts",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateHomePageLinks_09() throws HarnessException {
 		
 		// Navigate back to Home page
@@ -243,7 +243,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to migration and co Existance wizard",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateHomePageLinks_10() throws HarnessException {
 		
 		// Navigate Back to Home page

@@ -52,7 +52,7 @@ public class DeleteAlias extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete alias operation  -- Manage alias View",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void DeleteAlias_01() throws HarnessException {
 
 		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
@@ -110,7 +110,7 @@ public class DeleteAlias extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete alias operation-- Manage alias View/Right Click Menu",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void DeleteAlias_02() throws HarnessException {
 
 		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
@@ -167,7 +167,7 @@ public class DeleteAlias extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete alias operation - Search list view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void DeleteAlias_03() throws HarnessException {
 
 		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
@@ -227,7 +227,7 @@ public class DeleteAlias extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete alias operation - Search list view/Right Click menu.",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 			public void DeleteAlias_04() throws HarnessException {
 
 		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));

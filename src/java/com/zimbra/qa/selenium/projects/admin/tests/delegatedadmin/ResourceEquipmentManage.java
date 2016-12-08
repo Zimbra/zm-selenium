@@ -56,7 +56,7 @@ public class ResourceEquipmentManage extends AdminCommonTest {
 
 
 	@Test( description = "Delegated Admin's Create a basic resource Equipment using New -> resource",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	public void reateResourceEquipment_01() throws HarnessException {
 
 		app.provisionAuthenticateDA();
@@ -97,7 +97,7 @@ public class ResourceEquipmentManage extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Delegated Admin's: Delete a basic  resource Equipment -- Manage  resource  View",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	public void DeleteResourceEquipment_01() throws HarnessException {
 
 		// Create and authenticate delegated admin
@@ -159,7 +159,7 @@ public class ResourceEquipmentManage extends AdminCommonTest {
 	 * @throws ServiceException 
 	 */
 	@Test( description = "Delegated Admin's : Edit equipment name  - Manage resource View",
-			groups = { "sanity" })
+			groups = { "smoke", "L1" })
 	public void EditResourceEquipment_01() throws HarnessException, ServiceException {
 
 		app.provisionAuthenticateDA();

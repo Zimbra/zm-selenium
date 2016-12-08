@@ -45,7 +45,7 @@ public class EditServer extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit Server from gear menu option",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void EditServer_01() throws HarnessException {
 		
 		String hostname = ConfigProperties.getStringProperty("server.host");

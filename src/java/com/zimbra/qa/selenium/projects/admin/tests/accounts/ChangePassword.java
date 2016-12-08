@@ -47,7 +47,7 @@ public class ChangePassword extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit password  -- manage account > right click > change password",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void ChangePassword_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -96,7 +96,7 @@ public class ChangePassword extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit password  -- manage account > Gearbox > edit account > change password",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void ChangePassword_02() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP

@@ -43,7 +43,7 @@ public class ViewMailSearch extends AdminCommonTest {
 	 */
 
 	@Test( description = "View mail search",
-			groups = { "functional","network" })
+			groups = { "functional", "L2","network" })
 	public void ViewMailSearch_01() throws HarnessException {
 
 		String hostname = ConfigProperties.getStringProperty("server.host");

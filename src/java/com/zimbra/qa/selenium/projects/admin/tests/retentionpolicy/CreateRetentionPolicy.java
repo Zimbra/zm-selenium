@@ -54,7 +54,7 @@ public class CreateRetentionPolicy extends AdminCommonTest {
 	 */
 
 	@Test(	description = "Create retention policy",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void CreateRetentionPolicy_01() throws HarnessException {
 
 		final String policyName = "test_policy" + ConfigProperties.getUniqueString();

@@ -53,7 +53,7 @@ public class DeleteAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Delete a basic account -- Manage Account View",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void DeleteAccount_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -106,7 +106,7 @@ public class DeleteAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Delete a basic account - Manage Account View/Right Click Menu",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void DeleteAccount_02() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -159,7 +159,7 @@ public class DeleteAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Delete a delegated admin account -- Manage Account View",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void DeleteAccount_03() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -211,7 +211,7 @@ public class DeleteAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Delete a global admin account -- Manage Account View",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void DeleteAccount_04() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -266,7 +266,7 @@ public class DeleteAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Delete a basic account - Search List View",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void DeleteAccount_05() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -320,7 +320,7 @@ public class DeleteAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Delete a basic account - Search List View/Right Click Menu",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void DeleteAccount_06() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP

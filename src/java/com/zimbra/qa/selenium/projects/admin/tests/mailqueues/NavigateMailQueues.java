@@ -39,7 +39,7 @@ public class NavigateMailQueues extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Mail Queues",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateMailQueues_01() throws HarnessException {
 		
 		/*

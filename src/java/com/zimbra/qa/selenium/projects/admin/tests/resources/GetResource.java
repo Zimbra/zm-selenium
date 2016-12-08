@@ -52,8 +52,8 @@ public class GetResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete resource operation -- Manage resource View -- Location",
-			groups = { "smoke" })
+	@Test( description = "Verify get resource operation -- Manage resource View -- Location",
+			groups = { "smoke", "L1" })
 	public void GetResource_01() throws HarnessException {
 	
 		// Create a new resource in the Admin Console using SOAP
@@ -98,8 +98,8 @@ public class GetResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete resource operation -- Manage resource View -- Equipment",
-			groups = { "smoke" })
+	@Test( description = "Verify get resource operation -- Manage resource View -- Equipment",
+			groups = { "smoke", "L1" })
 	public void GetResource_02() throws HarnessException {
 	
 		// Create a new resource in the Admin Console using SOAP
@@ -140,7 +140,7 @@ public class GetResource extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify created resource is present in the resource list view",
-			groups = { "smoke" })
+			groups = { "functional", "L2" })
 	public void GetResource_03() throws HarnessException {
 
 		// Create a new resource in the Admin Console using SOAP
@@ -184,7 +184,7 @@ public class GetResource extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify created resource is present in the resource list view",
-			groups = { "smoke" })
+			groups = { "functional", "L2" })
 	public void GetResource_04() throws HarnessException {
 
 		// Create a new resource in the Admin Console using SOAP

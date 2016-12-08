@@ -51,7 +51,7 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify search functionality of COS.",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void HomeSearchFunctionalityCOS_01() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
@@ -96,7 +96,7 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 */
 	@Bugs( ids = "96768")
 	@Test( description = "Verify search functionality of Account Object.",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void HomeSearchFunctionalityAccount_02() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -140,7 +140,7 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify search functionality of Resource Object.",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void HomeSearchFunctionalityResource_03() throws HarnessException {
 
 
@@ -187,7 +187,7 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify search functionality of DL Object.",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void HomeSearchFunctionalityDL_04() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
@@ -230,7 +230,7 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify search functionality of Alias Object.",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void HomeSearchFunctionalityAlias_05() throws HarnessException {
 
 		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
@@ -277,7 +277,7 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify search functionality of domain Object.",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void HomeSearchFunctionalityDomain_06() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP

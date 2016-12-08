@@ -40,7 +40,7 @@ public class NavigateAlias extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Aliases",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateAlias_01() throws HarnessException {
 		
 		/*

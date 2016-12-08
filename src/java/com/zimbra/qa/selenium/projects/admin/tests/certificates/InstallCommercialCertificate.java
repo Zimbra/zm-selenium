@@ -46,7 +46,7 @@ public class InstallCommercialCertificate extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Install Commercial Certificate",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 
 	public void InstallCommercialCertificate_01() throws HarnessException {
 

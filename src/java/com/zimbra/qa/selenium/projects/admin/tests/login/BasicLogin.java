@@ -37,7 +37,7 @@ public class BasicLogin extends AdminCommonTest {
 	}
 	
 	@Test( description = "Login to the Admin Console",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	public void BasicLogin01() throws HarnessException {
 		
 		// Login
@@ -49,7 +49,7 @@ public class BasicLogin extends AdminCommonTest {
 	}
 
 	@Test( description = "Login to the Admin Console as a different Admin Account",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void BasicLogin02() throws HarnessException {
 		
 		// Create a new AdminAccount

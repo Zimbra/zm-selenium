@@ -46,7 +46,7 @@ public class AddGlobalACL extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Add ACL to account",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void AddGlobalACL_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP

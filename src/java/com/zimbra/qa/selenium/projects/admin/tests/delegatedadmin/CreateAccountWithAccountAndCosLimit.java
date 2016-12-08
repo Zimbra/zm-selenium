@@ -46,11 +46,12 @@ public class CreateAccountWithAccountAndCosLimit extends AdminCommonTest {
 	 * 2. Edit any domain
 	 * 3. GO to account limits >>  "set Maximum accounts per COS:" default say 1000
 	 * Re-login/refresh admin console >> click on add account 
-	  @throws HarnessException*/
+	 * @throws HarnessException
+	 */
 
 	@Bugs( ids = "58379")
 	@Test( description = "Delegated admin should be able to create a new account when account limit is set",
-	groups = { "smoke" })
+	groups = { "smoke", "L1" })
 	public void CreateAccountWithAccountAndCosLimit_01() throws HarnessException {
 
 		String cos_name="default";
@@ -117,11 +118,12 @@ public class CreateAccountWithAccountAndCosLimit extends AdminCommonTest {
 	 * 2. Edit any domain
 	 * 3. GO to account limits >>  "set Maximum accounts per COS:" default cos say 1000
 	 * 4. Login as delegated admin >> click on add account 
-	 @throws HarnessException*/
+	 * @throws HarnessException
+	 */
 
 	@Bugs( ids = "103122")
-	@Test( description = "Delegated should be able to create new accounts when account limit per COS is set",
-	groups = { "smoke" })
+	@Test( description = "Delegated admin should be able to create new accounts when account limit per COS is set",
+	groups = { "smoke", "L1" })
 	public void CreateAccountWithAccountAndCosLimit_02() throws HarnessException {
 
 		String cos_name="default";
@@ -227,9 +229,10 @@ public class CreateAccountWithAccountAndCosLimit extends AdminCommonTest {
 	 * 2. Edit any domain
 	 * 3. GO to account limits >>  "set Maximum accounts per COS:" default and non-default" 
 	 * 4. Login as delegated admin >> click on add account 
-		 @throws HarnessException*/
+	 * @throws HarnessException
+	 */
 	@Test( description = " Delegated Admins should be able to create new accounts when account limit per COS and domain is set",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void CreateAccountWithAccountAndCosLimit_03() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP

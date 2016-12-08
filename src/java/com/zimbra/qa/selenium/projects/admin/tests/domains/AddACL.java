@@ -48,7 +48,7 @@ public class AddACL extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Add ACL to domain",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void AddACL_01() throws HarnessException {
 
 		// Create grantee account

@@ -47,7 +47,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify search functionality of all results.",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void SearchFunctionality_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -90,7 +90,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify search functionality of Accounts.",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void SearchFunctionality_02() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -132,7 +132,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify search functionality of DL",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void SearchFunctionality_03() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
@@ -174,7 +174,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify search functionality of Domain",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void SearchFunctionality_04() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP
@@ -215,7 +215,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify search functionality of locked out accounts.",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void SearchFunctionality_05() throws HarnessException {
 	
 		// Create a new account in the Admin Console using SOAP
@@ -258,7 +258,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify search functionality of non-active accounts.",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void SearchFunctionality_06() throws HarnessException {
 	
 		// Create a new account in the Admin Console using SOAP
@@ -301,7 +301,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify search functionality of admin accounts.",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void SearchFunctionality_07() throws HarnessException {
 	
 		// Create a new account in the Admin Console using SOAP
@@ -362,7 +362,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify search functionality of closed accounts.",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void SearchFunctionality_08() throws HarnessException {
 	
 		// Create a new closed account in the Admin Console using SOAP
@@ -405,7 +405,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify search functionality of maintenance accounts.",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void SearchFunctionality_9() throws HarnessException {
 	
 		// Create a new maintenance account in the Admin Console using SOAP

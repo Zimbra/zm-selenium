@@ -49,7 +49,7 @@ public class AliasManage extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Delegated Admin: Create a basic alias",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void CreateAlias_01() throws HarnessException {
 
 		app.provisionAuthenticateDA();
@@ -91,7 +91,7 @@ public class AliasManage extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Delegated Admin: Edit alias",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void EditAlias_01() throws HarnessException {
 
 		app.provisionAuthenticateDA();
@@ -145,7 +145,7 @@ public class AliasManage extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Delegated Admin: Verify delete alias operation  -- Manage alias View",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void DeleteAlias_01() throws HarnessException {
 
 		app.provisionAuthenticateDA();
@@ -211,7 +211,7 @@ public class AliasManage extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Delegated Admin: Verify delete alias operation-- Manage alias View/Right Click Menu",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void DeleteAlias_02() throws HarnessException {
 
 		app.provisionAuthenticateDA();

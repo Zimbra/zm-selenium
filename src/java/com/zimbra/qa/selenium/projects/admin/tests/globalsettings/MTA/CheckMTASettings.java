@@ -64,7 +64,7 @@ public class CheckMTASettings extends AdminCommonTest {
 	 */
 	@Bugs( ids = "104512")
 	@Test(	description = "Verify MTA restriction values after changing some MTA configuration through Command line and Admin console",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void CheckMTASettings_01() throws HarnessException {
 		

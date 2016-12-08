@@ -47,7 +47,7 @@ public class DeleteDomain extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete domain operation --  Manage Domain List View",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void DeleteDomain_01() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP
@@ -93,7 +93,7 @@ public class DeleteDomain extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete domain operation",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void DeleteDomain_02() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP
@@ -137,7 +137,7 @@ public class DeleteDomain extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete domain alias operation - Manage Domain list view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void DeleteDomain_03() throws HarnessException {
 		
 		
@@ -200,7 +200,7 @@ public class DeleteDomain extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete domain alias operation - Manage Domain list view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void DeleteDomain_04() throws HarnessException {
 		
 		

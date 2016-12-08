@@ -47,7 +47,7 @@ public class DeleteDomainSR extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete domain operation is absent from leftclick > gear icon --  Search List View",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void DeleteDomain_05() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP
@@ -86,7 +86,7 @@ public class DeleteDomainSR extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = " Verify delete domain operation is disabled -- Search List View/Right Click Menu",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 			public void DeleteDomain_06() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP
@@ -122,7 +122,7 @@ public class DeleteDomainSR extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete domain alias operation is disabled- Search list view.",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void DeleteDomain_07() throws HarnessException {
 		
 		
@@ -174,7 +174,7 @@ public class DeleteDomainSR extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete domain alias operation is disabled- Search list view.",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 			public void DeleteDomain_08() throws HarnessException {
 		
 		

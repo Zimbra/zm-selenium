@@ -41,7 +41,7 @@ public class NavigateBackupRestore extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Backups",
-			groups = { "sanity","network" })
+			groups = { "sanity", "L0","network" })
 			public void NavigateMigration_01() throws HarnessException {
 		
 		/*

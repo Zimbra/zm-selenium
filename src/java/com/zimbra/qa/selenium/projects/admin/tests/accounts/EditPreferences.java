@@ -48,7 +48,7 @@ public class EditPreferences extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit account - Edit preferences at account level",
-			groups = { "smoke", "network" })
+			groups = { "smoke", "L1", "network" })
 
 	public void EditPreferences_01() throws HarnessException {
 

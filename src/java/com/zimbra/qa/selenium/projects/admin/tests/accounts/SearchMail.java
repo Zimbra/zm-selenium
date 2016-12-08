@@ -48,9 +48,8 @@ public class SearchMail extends AdminCommonTest {
 	 * 3. Verify Search mail functionality
 	 * @throws HarnessException
 	 */
-
 	@Test( description = "Search mail  -- manage account > right click > Search mail",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void SearchMail_01() throws HarnessException {
 
 		// Create a new account in the admin Console using SOAP
@@ -85,7 +84,7 @@ public class SearchMail extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = " Search mail  -- manage account >> Gearbox >> edit account >>  Search mail",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void SearchMail_02() throws HarnessException {
 
 		// Create a new account in the admin Console using SOAP
@@ -122,7 +121,7 @@ public class SearchMail extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit a basic account - Search List Search",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void SearchMail_03() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -162,7 +161,7 @@ public class SearchMail extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit a basic account - Search List",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 	public void SearchMail_04() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP

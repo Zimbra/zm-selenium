@@ -39,7 +39,7 @@ public class NavigateGlobalACL extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Global ACL",
-			groups = { "sanity","network" })
+			groups = { "sanity", "L0","network" })
 			public void NavigateGlobalACL_01() throws HarnessException {
 		
 		/*

@@ -39,7 +39,7 @@ public class NavigateMessageCount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Message Count",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateMessageCount_01() throws HarnessException {
 		
 		/*

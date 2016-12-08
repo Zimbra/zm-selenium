@@ -34,15 +34,16 @@ public class SetAccountLimits extends AdminCommonTest {
 		super.startingPage = app.zPageManageDomains;
 	}
 
-	/**
+	/*
 	 * Testcase : Admin should be able modify domain limit
 	 * Steps :
 	 * 1. Login to admin console
 	 * 2. Edit any domain
 	 * 3. GO to account limits >> set Maximum accounts for this domain:  say 1000
-	  @throws HarnessException*/
+	 * @throws HarnessException
+	 */
 	@Test( description = "Admin should be able modify domain limit",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void SetAccountLimits_01() throws HarnessException {
 
 		String domain_limit="1000";

@@ -44,7 +44,7 @@ public class CreateDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Create a basic DL",
-			groups = { "obsolete" })
+			groups = { "obsolete", "L4" })
 			public void CreateDistributionList_01() throws HarnessException {
 
 		// Create a new dl in the Admin Console
@@ -73,7 +73,7 @@ public class CreateDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Create a basic DL.",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void CreateDistributionList_02() throws HarnessException {
 		
 		this.startingPage.zNavigateTo();
@@ -103,7 +103,7 @@ public class CreateDistributionList extends AdminCommonTest {
 	 * @throws ServiceException 
 	 */
 	@Test( description = "Create a basic dynamic  DL.",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void CreateDistributionList_03() throws HarnessException, ServiceException {
 
 		this.startingPage.zNavigateTo();

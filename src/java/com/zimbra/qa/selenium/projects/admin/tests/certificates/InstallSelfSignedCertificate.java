@@ -46,7 +46,7 @@ public class InstallSelfSignedCertificate extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test(	description = "Install self-signed certificate",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void InstallSelfSignedCertificate_01() throws HarnessException {
 
 		String CountryName="US";

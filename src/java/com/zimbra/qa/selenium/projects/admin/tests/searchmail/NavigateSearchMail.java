@@ -39,7 +39,7 @@ public class NavigateSearchMail extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Search Mail",
-			groups = { "sanity","network" })
+			groups = { "sanity", "L0","network" })
 			public void NavigateAccountSearchMail_01() throws HarnessException {
 		
 		/*

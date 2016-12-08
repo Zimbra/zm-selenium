@@ -29,7 +29,7 @@ public class BasicSearch extends AdminCommonTest {
 	}
 	
 	@Test( description = "Verify the Top Menu displays the Search bar correctly",
-			groups = { "skip" })
+			groups = { "skip", "L4" })
 	public void TopMenu_BasicSearch_01() throws HarnessException {
 		throw new HarnessException("Implement me!");
 	}

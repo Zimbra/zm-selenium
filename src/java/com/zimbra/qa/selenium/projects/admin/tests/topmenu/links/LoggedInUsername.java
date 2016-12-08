@@ -34,7 +34,7 @@ public class LoggedInUsername extends AdminCommonTest {
 	}
 	
 	@Test( description = "Verify the Top Menu displays the correct Admin username",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void TopMenu_LoggedInUsername_01() throws HarnessException {
 		
 		// The displayed name is part of the full email address.  

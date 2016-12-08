@@ -52,7 +52,7 @@ public class DeleteCos extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete cos operation -- Manage cos view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void DeleteCos_01() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
@@ -97,7 +97,7 @@ public class DeleteCos extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete cos operation -- Manage COS list view/Right click menu",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void DeleteCos_02() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
@@ -141,7 +141,7 @@ public class DeleteCos extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete cos operation -- Search list view",
-			groups = { "obsolete" })
+			groups = { "obsolete", "L4" })
 			public void functional() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
@@ -196,7 +196,7 @@ public class DeleteCos extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete cos in -- Search list view/Right click menu",
-			groups = { "obsolete" })
+			groups = { "obsolete", "L4" })
 			public void DeleteCos_04() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
@@ -242,8 +242,8 @@ public class DeleteCos extends AdminCommonTest {
 	}
 	
 	
-	@Test( description = "Verify Delete COS operation via tree menu is disabled inn search results",
-			groups = { "functional" })
+	@Test( description = "Verify Delete COS operation via tree menu is disabled in search results",
+			groups = { "functional", "L3" })
 			public void DeleteCos_05() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
@@ -269,7 +269,7 @@ public class DeleteCos extends AdminCommonTest {
 	}
 
 	@Test( description = "Verify Delete COS operation via context option is disabled inn search results",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 			public void DeleteCos_06() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP

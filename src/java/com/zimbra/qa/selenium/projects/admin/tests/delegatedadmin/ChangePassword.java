@@ -47,7 +47,7 @@ public class ChangePassword extends AdminCommonTest {
 	 */
 	@Bugs( ids = "78780")
 	@Test( description = "Delegated Admin - Edit password  -- manage account > Gearbox > edit account > change password ",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ChangePassword_01() throws HarnessException {
 
 		app.provisionAuthenticateDA();
@@ -96,7 +96,7 @@ public class ChangePassword extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit password  -- manage account >> right click",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ChangePassword_02() throws HarnessException {
 
 		app.provisionAuthenticateDA();

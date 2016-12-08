@@ -41,7 +41,7 @@ public class VerifyMaximumSizeOfaFileUpload extends AdminCommonTest {
 	 */
 	@Bugs( ids = "81323")
 	@Test( description = "Verify field text in Global Settings > General Information = Maximum size of a file uploaded from the desktop (KB):",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void VerifyMaximumSizeOfaFileUpload_01() throws HarnessException {
 		
 		String fileUploadMaxSizeLabel = "Maximum size of a file uploaded from the desktop (KB):";

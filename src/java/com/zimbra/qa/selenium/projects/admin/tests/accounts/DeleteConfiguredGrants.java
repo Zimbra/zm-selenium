@@ -47,7 +47,7 @@ public class DeleteConfiguredGrants extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify Configure Grants option",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	public void DeleteACE_01() throws HarnessException {
 
 		// Create grantee account
@@ -112,7 +112,7 @@ public class DeleteConfiguredGrants extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify Configure Grants option",
-			groups = { "sanity" })
+			groups = { "functional", "L2" })
 	public void AddACE_02() throws HarnessException {
 
 		// Create grantee account

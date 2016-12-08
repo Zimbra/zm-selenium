@@ -40,7 +40,7 @@ public class NavigateDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to DL",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateDistributionList_01() throws HarnessException {
 		
 		/*

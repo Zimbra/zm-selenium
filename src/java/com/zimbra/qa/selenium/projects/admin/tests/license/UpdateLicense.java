@@ -58,7 +58,7 @@ public class UpdateLicense extends AdminCommonTest {
 	 */
 	
 	@Bugs(ids = "106019")
-	@Test(description = "Upload new license in admin console", groups = { "smoke" })
+	@Test(description = "Upload new license in admin console", groups = { "smoke", "L1" })
 	
 	public void UpdateLicense_01() throws HarnessException {
 

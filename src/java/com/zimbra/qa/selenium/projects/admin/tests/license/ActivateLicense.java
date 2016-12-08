@@ -53,7 +53,7 @@ public class ActivateLicense extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 
-	@Test(description = "Activate license in admin console", groups = { "sanity" })
+	@Test(description = "Activate license in admin console", groups = { "sanity", "L0" })
 
 	public void ActivateLicense_01() throws HarnessException {
 

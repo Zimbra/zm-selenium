@@ -39,7 +39,7 @@ public class NavigateMessageVolume extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Message Volume",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateMessageVolume_01() throws HarnessException {
 		
 		/*

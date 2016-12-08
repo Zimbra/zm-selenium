@@ -46,8 +46,9 @@ public class ManageMobileAccess extends AdminCommonTest {
 	 * 3. Verify two factor authentication attributes are changed using SOAP.
 	 * @throws HarnessException
 	 */
+	
 	@Test( description = "Edit account - Two Factor Authentication",
-			groups = { "smoke", "network" })
+			groups = { "smoke", "L1", "network" })
 
 	public void EnableMobileAccess_01() throws HarnessException {
 
@@ -115,7 +116,7 @@ public class ManageMobileAccess extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit account - Two Factor Authentication",
-			groups = { "smoke", "network" })
+			groups = { "smoke", "L1", "network" })
 
 	public void EnableMobileAccess_02() throws HarnessException {
 

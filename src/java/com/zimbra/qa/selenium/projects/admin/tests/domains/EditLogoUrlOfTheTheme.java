@@ -49,7 +49,7 @@ public class EditLogoUrlOfTheTheme extends AdminCommonTest {
 	 */
 	@Bugs( ids = "50660")
 	@Test( description = "zimbra admin console theme customization should support the change of logoURL",
-	groups = { "functional" })
+	groups = { "functional", "L2" })
 	public void EditLogoUrlOfTheTheme_01() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP

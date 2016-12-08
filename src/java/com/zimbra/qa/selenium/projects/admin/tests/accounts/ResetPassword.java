@@ -17,15 +17,18 @@
 package com.zimbra.qa.selenium.projects.admin.tests.accounts;
 
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.*;
+import com.zimbra.qa.selenium.projects.admin.ui.FormEditAccount;
 import com.zimbra.qa.selenium.projects.admin.ui.PageLogin.Locators;
+import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 
 public class ResetPassword extends AdminCommonTest {
 	public ResetPassword() {
@@ -42,9 +45,10 @@ public class ResetPassword extends AdminCommonTest {
 	 *2. zmprov ma testadmin@foo.com zimbraPasswordMustChange TRUE
 	 *3. Log in to Admin Console with testadmin account, enter password.
 	 * @throws HarnessException
+	 */
 	   @Bugs( ids = "72655")
-	 */	@Test( description = "Edit password  -- manage account > Select account > Options > Edit > change password",
-			groups = { "functional" })
+	   @Test( description = "Edit password  -- manage account > Select account > Options > Edit > change password",
+			groups = { "functional", "L2" })
 			public void ResetPassword_01() throws HarnessException {
 			
 			// Create admin account

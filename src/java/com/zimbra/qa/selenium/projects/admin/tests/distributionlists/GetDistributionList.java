@@ -47,7 +47,7 @@ public class GetDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify created dl is present in the list view",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void GetDistributionList_01() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
@@ -87,7 +87,7 @@ public class GetDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify created admin dl is present in the list view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void GetDistributionList_02() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
@@ -128,7 +128,7 @@ public class GetDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify created dynamic admin dl is present in the list view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void GetDistributionList_03() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
@@ -170,7 +170,7 @@ public class GetDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify created dl is present in the list view  - Search view",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 			public void GetDistributionList_04() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP

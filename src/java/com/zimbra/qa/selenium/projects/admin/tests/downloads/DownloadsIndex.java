@@ -77,7 +77,7 @@ public class DownloadsIndex extends AdminCommonTest {
 
 
 	@Test( description = "Verify the Downloads Index opens",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void DownloadsIndex_01() throws HarnessException {	
 
 		String windowTitle = "Zimbra Collaboration Suite :: Downloads";	
@@ -85,7 +85,7 @@ public class DownloadsIndex extends AdminCommonTest {
 	}
 
 	@Test( description = "Verify the Downloads Tab contains the correct FOSS vs NETWORK links",
-			groups = { "functional"  })
+			groups = { "functional", "L2"  })
 	public void DownloadsIndex_02() throws HarnessException {		
 		String windowTitle = "Zimbra Collaboration Suite :: Downloads";		
 
@@ -120,7 +120,7 @@ public class DownloadsIndex extends AdminCommonTest {
 	}
 
 	@Test( description = "Verify the downloads links return 200 rather than 404",
-			groups = { "functional"  })
+			groups = { "functional", "L2"  })
 	public void DownloadsIndex_03() throws HarnessException {
 
 		String windowTitle = "Zimbra Collaboration Suite :: Downloads";		
