@@ -50,8 +50,8 @@ public class EditDomainAlias extends AdminCommonTest {
 	 * 5. Verify domain is edited using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete domain operation --  Manage Domain List View",
-			groups = { "smoke" })
+	@Test( description = "Verify edit domain operation --  Manage Domain List View",
+			groups = { "smoke", "L1" })
 			public void EditDomainAlias_01() throws HarnessException {
 		
 		
@@ -112,7 +112,7 @@ public class EditDomainAlias extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete domain operation",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 			public void EditDomainAlias_02() throws HarnessException {
 		
 		
@@ -173,7 +173,7 @@ public class EditDomainAlias extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit domain name  - Search list View",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void EditdomainAlias_03() throws HarnessException {
 		
 		
@@ -237,7 +237,7 @@ public class EditDomainAlias extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit domain name -- right click",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 			public void EditdomainAlias_04() throws HarnessException {
 		
 		
@@ -271,7 +271,7 @@ public class EditDomainAlias extends AdminCommonTest {
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
 		// Click on alias to be edited.
-		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, domainAliasName);
+		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, domainAliasName);
 
 
 		// Click on Edit button

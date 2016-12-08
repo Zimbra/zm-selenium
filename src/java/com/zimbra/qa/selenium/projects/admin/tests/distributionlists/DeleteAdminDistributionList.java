@@ -40,7 +40,7 @@ public class DeleteAdminDistributionList extends AdminCommonTest {
 
 	
 	@Test( description = "Verify delete operation for admin distribution list - Manage distribution list view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void DeleteAdminDistributionList_01() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
@@ -92,7 +92,7 @@ public class DeleteAdminDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete operation for dynamic admin distribution list - Manage distribution list view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void DeleteAdminDistributionList_02() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP

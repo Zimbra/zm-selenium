@@ -51,7 +51,7 @@ public class EditAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit Account name  - Manage Account View",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void EditAccount_01() throws HarnessException {
 
@@ -97,7 +97,7 @@ public class EditAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit account name -- right click",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void EditAccount_02() throws HarnessException {
 
@@ -146,7 +146,7 @@ public class EditAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit delegated admin account name  - Manage Account View",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void EditAccount_03() throws HarnessException {
 
@@ -196,7 +196,7 @@ public class EditAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit global admin Account name  - Manage Account View",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void EditAccount_04() throws HarnessException {
 
@@ -248,7 +248,7 @@ public class EditAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit a basic account - Search List View",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void EditAccount_05() throws HarnessException {
 
@@ -305,7 +305,7 @@ public class EditAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit a basic account - Search List View",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 	
 	public void EditAccount_06() throws HarnessException {
 
@@ -361,7 +361,7 @@ public class EditAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit account - Two Factor Authentication",
-			groups = { "sanity", "network" })
+			groups = { "sanity", "L0", "network" })
 	
 	public void EditAccount_07() throws HarnessException {
 
@@ -445,7 +445,7 @@ public class EditAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Administrator should be able to disable the ability for specific users to generate app specific passwords",
-			groups = { "functional", "network" })
+			groups = { "functional", "L3", "network" })
 	
 	public void EditAccount_08() throws HarnessException {
 

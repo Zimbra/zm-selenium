@@ -49,8 +49,8 @@ public class EditDomain extends AdminCommonTest {
 	 * 5. Verify domain is edited using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete domain operation --  Manage Domain List View",
-			groups = { "smoke" })
+	@Test( description = "Verify edit domain operation --  Manage Domain List View",
+			groups = { "smoke", "L1" })
 			public void EditDomain_01() throws HarnessException {
 	
 		// Create a new domain in the Admin Console using SOAP
@@ -99,8 +99,8 @@ public class EditDomain extends AdminCommonTest {
 	 * 4. Verify domain is deleted using SOAP..
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete domain operation",
-			groups = { "functional" })
+	@Test( description = "Verify edit domain operation",
+			groups = { "functional", "L3" })
 			public void EditDomain_02() throws HarnessException {
 	
 		// Create a new domain in the Admin Console using SOAP
@@ -150,7 +150,7 @@ public class EditDomain extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit domain name  - Search list View",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void Editdomain_03() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP
@@ -204,7 +204,7 @@ public class EditDomain extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit domain name -- right click",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 			public void Editdomain_04() throws HarnessException {
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();

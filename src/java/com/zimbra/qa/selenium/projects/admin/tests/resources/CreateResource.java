@@ -46,7 +46,7 @@ public class CreateResource extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Create a basic resource",
-			groups = { "obsolete" })
+			groups = { "obsolete", "L4" })
 			public void CreateResource_01() throws HarnessException {
 
 		// Create a new resource in the Admin Console
@@ -80,7 +80,7 @@ public class CreateResource extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Create a basic resource using Manage Accounts --> Resources --> Gear box --> New",
-			groups = { "sanity" })
+			groups = { "obsolete", "L4" })
 			public void CreateResource_02() throws HarnessException {
 
 		// Create a new resource in the Admin Console
@@ -114,7 +114,7 @@ public class CreateResource extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Create a basic Location resource",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void CreateResource_03() throws HarnessException {
 
 		// Create a new resource in the Admin Console
@@ -149,7 +149,7 @@ public class CreateResource extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Create a basic Equipment resource",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void CreateResource_04() throws HarnessException {
 
 		// Create a new resource in the Admin Console

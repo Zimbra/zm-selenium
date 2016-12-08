@@ -43,7 +43,7 @@ public class ViewCertificate extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Certificates",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void ViewCertificate_01() throws HarnessException {
 		
 		// Go to "Home --> Configure --> Certificates"

@@ -40,7 +40,7 @@ public class HelpLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify Help Center links",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	
 		public void HelpLinks_01() throws HarnessException {
 		

@@ -49,8 +49,8 @@ public class GetAlias extends AdminCommonTest {
 	 * 5. Verify alias is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete alias operation  -- Manage alias View",
-			groups = { "smoke" })
+	@Test( description = "Verify alias creation operation   -- Manage alias View",
+			groups = { "smoke", "L1" })
 			public void GetAlias_01() throws HarnessException {
 	
 		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
@@ -82,7 +82,7 @@ public class GetAlias extends AdminCommonTest {
 				break;
 			}
 		}
-		ZAssert.assertNotNull(found, "Verify alias is deleted successfully");
+		ZAssert.assertNotNull(found, "Verify alias is present in the list!");
 	}
 
 	
@@ -94,7 +94,7 @@ public class GetAlias extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify created alias is present in the list view",
-			groups = { "smoke" })
+			groups = { "functional", "L2" })
 			public void GetAlias_02() throws HarnessException {
 
 		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));

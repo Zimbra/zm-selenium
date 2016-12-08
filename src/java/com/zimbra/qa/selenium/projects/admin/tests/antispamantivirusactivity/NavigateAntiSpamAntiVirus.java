@@ -39,7 +39,7 @@ public class NavigateAntiSpamAntiVirus extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Anti-Spam/Anti-Virus Activity",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateAnitSpamAntiVirus_01() throws HarnessException {
 		
 		/*

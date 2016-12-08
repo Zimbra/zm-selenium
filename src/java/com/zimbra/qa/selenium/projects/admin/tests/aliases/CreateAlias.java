@@ -44,7 +44,7 @@ public class CreateAlias extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Create a basic alias",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	public void CreateAlias_01() throws HarnessException {
 
 		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));

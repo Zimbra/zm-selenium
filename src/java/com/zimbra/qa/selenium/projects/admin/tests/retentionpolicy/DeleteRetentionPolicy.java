@@ -55,7 +55,7 @@ public class DeleteRetentionPolicy extends AdminCommonTest {
 	 */
 
 	@Test(	description = "Delete retention policy",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void DeleteRetentionPolicy_01() throws HarnessException {
 
 		final String policyName = "test_policy" + ConfigProperties.getUniqueString();

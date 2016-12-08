@@ -53,7 +53,7 @@ public class DistributionListManage extends AdminCommonTest {
 
 
 	@Test( description = "Delegated Admin's Create a basic DL using New->Distribution List",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	public void CreateDistributionList_01() throws HarnessException {
 
 		app.provisionAuthenticateDA();
@@ -87,7 +87,7 @@ public class DistributionListManage extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Delegated Admin's: Delete a basic DL -- Manage distribution list View",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	public void DeleteDistributionList_01() throws HarnessException {
 
 		// Create and authenticate delelgated admin
@@ -140,7 +140,7 @@ public class DistributionListManage extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Delegated Admin's : Edit distribution list name  - Manage distribution list View",
-			groups = { "sanity" })
+			groups = { "smoke", "L1" })
 	public void EditDistributionList_01() throws HarnessException {
 
 		app.provisionAuthenticateDA();

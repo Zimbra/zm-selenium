@@ -46,7 +46,7 @@ public class GetDomain extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify created domain is present in the domain list view",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void GetDomain_01() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP
@@ -86,8 +86,8 @@ public class GetDomain extends AdminCommonTest {
 	 * 4. Verify domain alias is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete domain alias operation - Search list view",
-			groups = { "functional" })
+	@Test( description = "Verify get domain alias operation",
+			groups = { "functional", "L2" })
 			public void GetDomain_02() throws HarnessException {
 		
 		
@@ -129,7 +129,7 @@ public class GetDomain extends AdminCommonTest {
 				break;
 			}
 		}
-		ZAssert.assertNotNull(found, "Verify the domain is found");
+		ZAssert.assertNotNull(found, "Verify the domain alias is found");
 
 	}
 
@@ -143,7 +143,7 @@ public class GetDomain extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify created domain is present in the domain list view",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void GetDomain_03() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP
@@ -189,8 +189,8 @@ public class GetDomain extends AdminCommonTest {
 	 * 4. Verify domain alias is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete domain alias operation - Search list view",
-			groups = { "functional" })
+	@Test( description = "Verify get domain alias operation - Search list view",
+			groups = { "functional", "L3" })
 			public void GetDomain_04() throws HarnessException {
 		
 		

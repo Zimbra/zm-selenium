@@ -59,7 +59,7 @@ public class ResourceLocationManage extends AdminCommonTest {
 
 
 	@Test( description = "Delegated Admin's Create a basic resource location using New -> resource",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	public void CreateResource_01() throws HarnessException {
 
 		app.provisionAuthenticateDA();
@@ -102,7 +102,7 @@ public class ResourceLocationManage extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Delegated Admin's: Delete a basic  resource location -- Manage  resource  View",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	public void DeleteResource_01() throws HarnessException {
 
 		// Create and authenticate delegated admin
@@ -167,7 +167,7 @@ public class ResourceLocationManage extends AdminCommonTest {
 	 * @throws ServiceException 
 	 */
 	@Test( description = "Delegated Admin's : Edit Account name  - Manage Account View",
-			groups = { "sanity" })
+			groups = { "smoke", "L1" })
 	public void EditResource_01() throws HarnessException, ServiceException {
 
 		app.provisionAuthenticateDA();

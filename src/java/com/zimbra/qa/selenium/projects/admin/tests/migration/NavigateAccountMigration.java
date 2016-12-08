@@ -39,7 +39,7 @@ public class NavigateAccountMigration extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Account Migration",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateAccountMigration_01() throws HarnessException {
 		
 		/*

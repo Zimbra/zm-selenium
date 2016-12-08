@@ -49,7 +49,7 @@ public class ConfigureGrants extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify Configure Grants option by selecting it from right click menu option",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	public void AddACE_01() throws HarnessException {
 
 		// Create grantee account
@@ -117,7 +117,7 @@ public class ConfigureGrants extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify Configure Grants option by selecting it from gear menu option",
-			groups = { "sanity" })
+			groups = { "functional", "L2" })
 	public void AddACE_02() throws HarnessException {
 
 		// Create grantee account

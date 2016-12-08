@@ -39,7 +39,7 @@ public class NavigateCertificates extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Certificates",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateCertificates_01() throws HarnessException {
 		
 		/*

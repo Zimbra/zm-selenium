@@ -56,7 +56,7 @@ public class ResourceSearchAndManage extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = " DA Edit Resource name  -- Manage resource View -- Location",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void EditResource_06() throws HarnessException {
 
 		app.provisionAuthenticateDA();
@@ -120,7 +120,7 @@ public class ResourceSearchAndManage extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "DA Edit Resource name -- Manage resource View/Right Click Menu -- Equipment",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void EditResource_01() throws HarnessException {
 
 		app.provisionAuthenticateDA();
@@ -184,7 +184,7 @@ public class ResourceSearchAndManage extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete resource operation -- Search List View -- Location",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void EditResource_02() throws HarnessException {
 
 		app.provisionAuthenticateDA();
@@ -245,7 +245,7 @@ public class ResourceSearchAndManage extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete resource operation -- Search List View -- Equipment",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void EditResource_03() throws HarnessException {
 		app.provisionAuthenticateDA();
 		this.startingPage.zNavigateTo();
@@ -305,7 +305,7 @@ public class ResourceSearchAndManage extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete resource operation -- Search List View/Right Click Menu -- Location",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 	public void EditResource_04() throws HarnessException {
 
 		app.provisionAuthenticateDA();
@@ -366,7 +366,7 @@ public class ResourceSearchAndManage extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete resource operation -- Search List View/Right Click Menu -- Equipment",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 	public void EditResource_05() throws HarnessException {
 
 		app.provisionAuthenticateDA();

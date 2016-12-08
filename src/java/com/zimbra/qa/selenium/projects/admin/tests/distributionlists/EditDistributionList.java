@@ -50,7 +50,7 @@ public class EditDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit Distribution List name - Manage Distribution List view",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void EditDistributionList_01() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
@@ -104,7 +104,7 @@ public class EditDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit Distribution List name - Manage Distribution List view + Right Click Menu",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void EditDistributionList_02() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
@@ -157,7 +157,7 @@ public class EditDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit Admin Distribution List name - Manage Distribution List view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void EditDistributionList_03() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
@@ -212,7 +212,7 @@ public class EditDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit Dynamic Admin Distribution List name - Manage Distribution List view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void EditDistributionList_04() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
@@ -274,7 +274,7 @@ public class EditDistributionList extends AdminCommonTest {
 	 */
 	@Bugs(ids = "97150")
 	@Test( description = "Edit dynamic Distribution List name - Manage Distribution List view",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 	public void EditDistributionList_05() throws HarnessException {
 
 		// Create a new dynamic dl in the Admin Console using SOAP
@@ -334,7 +334,7 @@ public class EditDistributionList extends AdminCommonTest {
 	 */
 	@Bugs(ids = "97150")
 	@Test( description = "Edit Dynamic Distribution List name - Manage Distribution List view + Right Click Menu",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 	public void EditDistributionList_06() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP

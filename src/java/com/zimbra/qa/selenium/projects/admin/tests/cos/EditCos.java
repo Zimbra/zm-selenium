@@ -50,7 +50,7 @@ public class EditCos extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit Cos name  - Manage Cos View",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void EditCos_01() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
@@ -97,7 +97,7 @@ public class EditCos extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit cos name -- right click",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void EditCos_02() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
@@ -148,7 +148,7 @@ public class EditCos extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit Cos name  - Search Cos View",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 	public void EditCos_03() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
@@ -204,7 +204,7 @@ public class EditCos extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit cos name -- right click",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 	public void EditCos_04() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
@@ -257,7 +257,7 @@ public class EditCos extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit cos - Two Factor Authentication",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void EditCos_05() throws HarnessException {
 
 		app.zPageMain.sRefresh();
@@ -338,7 +338,7 @@ public class EditCos extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = " Administrator should be able to disabled two factor authentication at the COS level",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void EditCos_06() throws HarnessException {
 
 		app.zPageMain.sRefresh();
@@ -395,7 +395,7 @@ public class EditCos extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Administrator should be able to disable the ability to generate app specific passwords at COS level",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void EditCos_07() throws HarnessException {
 
 		app.zPageMain.sRefresh();

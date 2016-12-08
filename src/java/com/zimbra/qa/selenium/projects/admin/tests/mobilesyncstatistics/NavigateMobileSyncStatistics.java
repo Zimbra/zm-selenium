@@ -39,7 +39,7 @@ public class NavigateMobileSyncStatistics extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to MobileSync Statistics",
-			groups = { "sanity","network" })
+			groups = { "sanity", "L0","network" })
 			public void NavigateMobileSync_01() throws HarnessException {
 		
 		/*

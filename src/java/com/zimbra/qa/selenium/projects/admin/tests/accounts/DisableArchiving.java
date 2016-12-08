@@ -45,7 +45,7 @@ public class DisableArchiving extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify administrator should be able to disable archiving at the account level",
-			groups = { "smoke", "network" })
+			groups = { "smoke", "L1", "network" })
 
 	public void DisableArchiving_01() throws HarnessException {
 

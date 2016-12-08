@@ -53,7 +53,7 @@ public class EditDistributionListSR extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify edit operation for distribution list - Search distribution list view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void EditDistributionListSR_01() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
@@ -110,7 +110,7 @@ public class EditDistributionListSR extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify edit operation for distribution list - Search distribution list view + right click",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 	public void EditDistributionListSR_02() throws HarnessException {
 
 		super.startingPage.zNavigateTo();
@@ -171,7 +171,7 @@ public class EditDistributionListSR extends AdminCommonTest {
 	 */
 	@Bugs(ids = "97150")
 	@Test( description = "Verify edit operation for dynamic distribution list - Search distribution list view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void EditDistributionListSR_03() throws HarnessException {
 
 

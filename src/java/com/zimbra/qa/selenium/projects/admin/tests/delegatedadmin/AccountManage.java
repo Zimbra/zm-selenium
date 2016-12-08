@@ -49,7 +49,7 @@ public class AccountManage extends AdminCommonTest {
 	 */
 	@Bugs( ids = "61658")
 	@Test( description = "Delegated Admin's Create a basic account using New->Account",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	public void CreateAccount_01() throws HarnessException {
 
 		app.provisionAuthenticateDA();
@@ -83,7 +83,7 @@ public class AccountManage extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Delegated Admin's : Edit Account name  - Manage Account View",
-			groups = { "sanity" })
+			groups = { "functional", "L2" })
 	public void EditAccount_01() throws HarnessException {
 
 		app.provisionAuthenticateDA();
@@ -133,7 +133,7 @@ public class AccountManage extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Delegated Admin's: Delete a basic account -- Manage Account View",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	public void DeleteAccount_01() throws HarnessException {
 
 		// Create and authenticate delelgated admin

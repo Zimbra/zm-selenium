@@ -1,7 +1,7 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
+ * Copyright (C) 2015, 2016 Synacor, Inc.
  * 
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
@@ -50,7 +50,7 @@ public class AddACL extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Add ACL to account",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void AddACL_01() throws HarnessException {
 
 		// Create target account

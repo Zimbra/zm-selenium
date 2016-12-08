@@ -39,7 +39,7 @@ public class NavigateClientUpload extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Client Upload",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateClientUpload_01() throws HarnessException {
 		
 		/*

@@ -44,7 +44,7 @@ public class CreateAdminDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Create a Admin group",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void CreateAdminDistributionList_01() throws HarnessException {
 	
 		// Create a new account in the Admin Console

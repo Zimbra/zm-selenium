@@ -39,7 +39,7 @@ public class NavigateVoiceChatServices extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Voice/Chat Services",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateVoiceChatServices_01() throws HarnessException {
 		
 		/*

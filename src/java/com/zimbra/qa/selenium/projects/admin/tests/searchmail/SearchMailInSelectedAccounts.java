@@ -42,7 +42,7 @@ public class SearchMailInSelectedAccounts extends AdminCommonTest {
 	 */
 	
 	@Test( description = "Navigate to Search Mail",
-			groups = { "smoke","network" })
+			groups = { "smoke", "L1","network" })
 			public void SearchMailInSelectedAccounts_01() throws HarnessException {
 		
 		String hostname = ConfigProperties.getStringProperty("server.host");

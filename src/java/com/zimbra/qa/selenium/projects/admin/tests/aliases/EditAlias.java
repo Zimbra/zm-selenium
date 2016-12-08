@@ -46,7 +46,7 @@ public class EditAlias extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit a basic alias",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void EditAlias_01() throws HarnessException {
 
 		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
@@ -86,7 +86,7 @@ public class EditAlias extends AdminCommonTest {
 	 */
 	@Bugs( ids = "58191")
 	@Test( description = "Bug 58191 - JavaScript error while clicking on alias of resource",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void EditAlias_02() throws HarnessException {
 	
 		//Create calendar resource

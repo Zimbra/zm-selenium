@@ -35,7 +35,7 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 
 	@Bugs(ids="101023")
 	@Test( description = "Verify that zimbra admin help page is opened as per the value set in attribute ZimbraHelpAdminURL",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 
 	public void ZimbraHelpAdminURLModification_01() throws HarnessException {
 

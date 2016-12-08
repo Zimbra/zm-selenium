@@ -1,7 +1,7 @@
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ * Copyright (C) 2015, 2016 Synacor, Inc.
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
@@ -47,7 +47,7 @@ public class AddAlias extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit account - Add Alias at account level ",
-			groups = { "smoke", "network" })
+			groups = { "smoke", "L1", "network" })
 
 	public void AddAlias_01() throws HarnessException {
 

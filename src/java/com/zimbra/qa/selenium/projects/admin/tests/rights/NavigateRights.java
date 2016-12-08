@@ -39,7 +39,7 @@ public class NavigateRights extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Rights",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void NavigateRights_01() throws HarnessException {
 		
 		/*

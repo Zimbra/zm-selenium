@@ -55,7 +55,7 @@ public class CheckGranteeNameEnabledForACL extends AdminCommonTest {
 	 */
 	@Bugs( ids = "102850")
 	@Test( description = "Verify grantee name is enabled while adding ACL in account",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void CheckGranteeNameEnabledForACL_Account_01() throws HarnessException {
 
@@ -108,7 +108,7 @@ public class CheckGranteeNameEnabledForACL extends AdminCommonTest {
 	 */
 	@Bugs( ids = "102850")
 	@Test( description = "Verify grantee name is enabled while adding ACL in COS",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void CheckGranteeNameEnabledForACL_COS_02() throws HarnessException {
 
@@ -161,7 +161,7 @@ public class CheckGranteeNameEnabledForACL extends AdminCommonTest {
 	 */
 	@Bugs( ids = "102850")
 	@Test( description = "Verify grantee name is enabled while adding ACL in DL",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void CheckGranteeNameEnabledForACL_DL_03() throws HarnessException {
 
@@ -206,7 +206,7 @@ public class CheckGranteeNameEnabledForACL extends AdminCommonTest {
 	 */
 	@Bugs( ids = "102850")
 	@Test( description = " Bug 102850 - Grantee name is disabled while adding ACL in domain",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void CheckGranteeNameEnabledForACL_Domain_04() throws HarnessException {
 
@@ -250,7 +250,7 @@ public class CheckGranteeNameEnabledForACL extends AdminCommonTest {
 	 */
 	@Bugs( ids = "102850")
 	@Test( description = " Bug 102850 - Verify Grantee name is enabled while adding ACL in global settings",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void CheckGranteeNameEnabledForACL_Global_Settings_05() throws HarnessException {
 

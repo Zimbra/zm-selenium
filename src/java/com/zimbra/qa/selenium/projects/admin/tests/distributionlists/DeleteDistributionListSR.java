@@ -37,7 +37,7 @@ public class DeleteDistributionListSR extends AdminCommonTest {
 	}
 
 	@Test( description = "Verify delete operation for distribution list - Search distribution list view",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void DeleteDistributionList_03() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
@@ -92,7 +92,7 @@ public class DeleteDistributionListSR extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete operation for distribution list - Search distribution list view/Right Click Menu.",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void DeleteDistributionList_04() throws HarnessException {
 
 	

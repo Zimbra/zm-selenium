@@ -43,7 +43,7 @@ public class DeleteMailSearch extends AdminCommonTest {
 	 */
 
 	@Test( description = "Delete mail search",
-			groups = { "smoke","network" })
+			groups = { "smoke", "L1","network" })
 	public void DeleteMailSearch_01() throws HarnessException {
 
 		String hostname = ConfigProperties.getStringProperty("server.host");

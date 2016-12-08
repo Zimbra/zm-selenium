@@ -46,7 +46,7 @@ public class CreateDomainAlias extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Create a domain alias",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			public void CreateAlias_01() throws HarnessException {
 
 		// Create a new account in the Admin Console

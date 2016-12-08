@@ -48,7 +48,7 @@ public class InvalidateSession extends AdminCommonTest {
 	 */
 	@Bugs( ids = "74482")
 	@Test( description = "Invalidate Session -- manage account > right click > Invalidate Session",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			public void InvalidateSession_01() throws HarnessException {
 
 		// Create a new account in the admin Console using SOAP
@@ -84,7 +84,7 @@ public class InvalidateSession extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = " Invalidate Session  -- manage account >> Gearbox >> edit account >>  Invalidate Session",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			public void InvalidateSession_02() throws HarnessException {
 
 		// Create a new account in the admin Console using SOAP
@@ -122,7 +122,7 @@ public class InvalidateSession extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Invalidate Session from search list view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void InvalidateSession_03() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP

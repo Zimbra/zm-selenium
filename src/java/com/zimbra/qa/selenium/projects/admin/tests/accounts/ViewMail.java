@@ -51,7 +51,7 @@ public class ViewMail extends AdminCommonTest {
 	 */
 	@Bugs( ids = "69155")
 	@Test( description = "View mail  -- manage account > right click > view mail",
-	groups = { "smoke" })
+	groups = { "smoke", "L1" })
 	public void ViewMail_01() throws HarnessException {
 
 		// Create a new account in the admin Console using SOAP
@@ -88,7 +88,7 @@ public class ViewMail extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = " View mail  -- manage account >> Gearbox >> edit account >>  View mail",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void ViewMail_02() throws HarnessException {
 
 		// Create a new account in the admin Console using SOAP
@@ -127,7 +127,7 @@ public class ViewMail extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit a basic account - Search List View",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ViewMail_03() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -170,7 +170,7 @@ public class ViewMail extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit a basic account - Search List View",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 	public void ViewMail_04() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP

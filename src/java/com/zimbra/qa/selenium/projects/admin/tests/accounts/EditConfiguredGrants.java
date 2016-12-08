@@ -48,8 +48,8 @@ public class EditConfiguredGrants extends AdminCommonTest {
 	 * 5. Verify ACE is added successfully
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify Configure Grants option",
-			groups = { "sanity" })
+	@Test( description = "Verify Configure Grants option --> Right-click",
+			groups = { "smoke", "L1" })
 	public void EditACE_01() throws HarnessException {
 
 		// Create grantee account
@@ -130,7 +130,7 @@ public class EditConfiguredGrants extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify Configure Grants option",
-			groups = { "sanity" })
+			groups = { "functional", "L3" })
 	public void EditACE_02() throws HarnessException {
 
 		// Create grantee account

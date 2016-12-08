@@ -46,7 +46,7 @@ public class EditFeatures extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit account - Edit features",
-			groups = { "smoke", "network" })
+			groups = { "smoke", "L1", "network" })
 
 	public void EditFeatures_01() throws HarnessException {
 

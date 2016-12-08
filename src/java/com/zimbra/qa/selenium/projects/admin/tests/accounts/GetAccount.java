@@ -49,7 +49,7 @@ public class GetAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify created account is displayed in UI -- Manage Account View.",
-			groups = { "smoke" })
+			groups = { "sanity", "L0" })
 	public void GetAccount_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -90,7 +90,7 @@ public class GetAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify created delegated admin account is displayed in UI -- Manage Account View.",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetAccount_02() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -133,7 +133,7 @@ public class GetAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify created global admin account is displayed in UI -- Manage Account View.",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetAccount_03() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -179,7 +179,7 @@ public class GetAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify created account is displayed in UI -- Search list view",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 	public void GetAccount_04() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -226,7 +226,7 @@ public class GetAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify that system accounts such as spam/ham, wiki and galsync accounts are not displayed in the list.",
-			groups = { "smoke" })
+			groups = { "functional", "L3" })
 	public void GetAccount_05() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -289,7 +289,7 @@ public class GetAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify system accounts i.e. spam/ham, wiki, galsync account is displayed in Search list view",
-			groups = { "smoke" })
+			groups = { "functional", "L2" })
 	public void GetAccount_06() throws HarnessException {
 
 		
