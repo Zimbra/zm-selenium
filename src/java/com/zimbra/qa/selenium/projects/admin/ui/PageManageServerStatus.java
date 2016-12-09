@@ -92,10 +92,10 @@ public class PageManageServerStatus extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.MONITOR_ICON,"");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent("css=td:contains('"+Locators.SERVER_STATUS+"')");
 		zClickAt("css=td:contains('"+Locators.SERVER_STATUS+"')", "");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 
 	}

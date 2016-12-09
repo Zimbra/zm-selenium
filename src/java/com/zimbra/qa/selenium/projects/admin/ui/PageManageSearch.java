@@ -124,7 +124,7 @@ public class PageManageSearch extends AbsTab {
 
 		// Click on Search
 		zClickAt(Locators.SEARCH_MENU,"");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		//SleepUtil.sleepLong();
 		zWaitForActive();
 	}

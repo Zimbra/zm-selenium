@@ -109,10 +109,10 @@ public class DA_PageManageAccounts extends AbsTab {
 
 		// Click on Manage Accounts -> Accounts
 		zClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent(Locators.ACCOUNTS);
 		zClickAt(Locators.ACCOUNTS, "");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 
 	}

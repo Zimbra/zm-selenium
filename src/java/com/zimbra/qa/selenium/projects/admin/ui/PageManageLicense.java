@@ -103,12 +103,12 @@ public class PageManageLicense extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.CONFIGURE_ICON,"");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		SleepUtil.sleepMedium();		
 		zClickAt(Locators.GLOBAL_SETTING, "");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		zClickAt(Locators.GLOBAL_SETTINGS_LICENSE, "");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 	}
 

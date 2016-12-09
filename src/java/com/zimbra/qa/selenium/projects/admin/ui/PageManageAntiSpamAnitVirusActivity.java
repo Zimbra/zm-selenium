@@ -92,10 +92,10 @@ public class PageManageAntiSpamAnitVirusActivity extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.MONITOR_ICON,"");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent("css=td:contains('"+Locators.ANTISPAM_ANTIVIRUS_ACTIVITY+"')");
 		zClickAt("css=td:contains('"+Locators.ANTISPAM_ANTIVIRUS_ACTIVITY+"')", "");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 
 	}

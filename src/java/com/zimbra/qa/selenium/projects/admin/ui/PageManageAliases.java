@@ -108,10 +108,10 @@ public class PageManageAliases extends AbsTab {
 		// Click on Addresses -> Accounts
 		//SleepUtil.sleepMedium();
 		zClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent(Locators.ALIASES);
 		zClickAt(Locators.ALIASES, "");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		SleepUtil.sleepMedium();
 		
 	}

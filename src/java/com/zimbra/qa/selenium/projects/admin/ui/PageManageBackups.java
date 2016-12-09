@@ -104,10 +104,10 @@ public class PageManageBackups extends AbsTab {
 
 		// Click on Tools and Migration -> Downloads
 		zClick(Locators.TOOLS_AND_MIGRATION_ICON);
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		if (sIsElementPresent(Locators.BACKUP));
 		sClickAt(Locators.BACKUP, "");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 	}
 

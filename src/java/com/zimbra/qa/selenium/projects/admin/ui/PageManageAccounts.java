@@ -126,10 +126,10 @@ public class PageManageAccounts extends AbsTab {
 		// Click on Manage Accounts -> Accounts
 		SleepUtil.sleepLong();
 		sClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		//SleepUtil.sleepLong();
 		sClickAt(Locators.ACCOUNTS, "");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 
 	}
 

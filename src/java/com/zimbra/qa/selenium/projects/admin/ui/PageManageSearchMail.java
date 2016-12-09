@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageAccounts.Locators;
 
 
 /**
@@ -102,11 +101,11 @@ public class PageManageSearchMail extends AbsTab {
 
 		// Click on Tools and Migration -> Downloads
 		zClickAt(Locators.TOOLS_AND_MIGRATION_ICON,"");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		//SleepUtil.sleepMedium();
 		if (sIsElementPresent(Locators.SEARCHMAIL));
 		sClickAt(Locators.SEARCHMAIL, "");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 	}
 

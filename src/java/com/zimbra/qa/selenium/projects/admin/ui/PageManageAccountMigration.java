@@ -95,10 +95,10 @@ public class PageManageAccountMigration extends AbsTab {
 
 		// Click on Tools and Migration -> Downloads
 		zClickAt(Locators.TOOLS_AND_MIGRATION_ICON,"");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		if (sIsElementPresent(Locators.ACCOUNTMIGRATION));
 		sClickAt(Locators.ACCOUNTMIGRATION, "");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 	}
 

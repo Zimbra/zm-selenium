@@ -92,10 +92,10 @@ public class PageManageMessageCount extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.MONITOR_ICON,"");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent("css=td:contains('"+Locators.MESSAGE_COUNT+"')");
 		zClickAt("css=td:contains('"+Locators.MESSAGE_COUNT+"')", "");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 
 	}

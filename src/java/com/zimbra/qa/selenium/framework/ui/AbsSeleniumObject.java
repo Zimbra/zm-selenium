@@ -2123,10 +2123,9 @@ public abstract class AbsSeleniumObject {
 		jse.executeScript("window.scrollBy(0," + scrollTo + ")", "");
 	}
 	
-	public boolean zWaitForProgressDialogInvisibble() throws HarnessException {
+	public boolean zWaitForWorkInProgressDialogInVisible() throws HarnessException {
 		boolean status = true;
 		if(this.sIsElementPresent("css=div.DwtShellBusyDialog")) {
-			status = false;
 			status = waitForElementPresent("css=div.DwtShellBusyDialog[aria-hidden='true']",true,20);
 			if(status) {
 				return status;

@@ -107,11 +107,11 @@ public class PageManageResources extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		//SleepUtil.sleepMedium();
 		sIsElementPresent(Locators.RESOURCES);
 		zClickAt(Locators.RESOURCES,"");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		//SleepUtil.sleepLong();
 		zWaitForActive();
 	}

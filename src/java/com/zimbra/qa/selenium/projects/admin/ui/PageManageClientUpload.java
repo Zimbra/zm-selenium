@@ -93,10 +93,10 @@ public class PageManageClientUpload extends AbsTab {
 
 		// Click on Tools and Migration -> Downloads
 		zClickAt(Locators.TOOLS_AND_MIGRATION_ICON,"");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		if (sIsElementPresent(Locators.CLIENTUPLOAD));
 		sClickAt(Locators.CLIENTUPLOAD, "");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 	}
 

@@ -92,10 +92,10 @@ public class PageManageMessageVolume extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.MONITOR_ICON,"");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent("css=td:contains('"+Locators.MESSAGE_VOLUME+"')");
 		zClickAt("css=td:contains('"+Locators.MESSAGE_VOLUME+"')", "");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 
 	}

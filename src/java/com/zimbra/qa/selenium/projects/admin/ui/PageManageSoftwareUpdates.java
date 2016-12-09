@@ -92,10 +92,10 @@ public class PageManageSoftwareUpdates extends AbsTab {
 
 		// Click on Tools and Migration -> Downloads
 		zClickAt(Locators.TOOLS_AND_MIGRATION_ICON,"");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		if (sIsElementPresent(Locators.SOFTWAREUPDATES));
 		sClickAt(Locators.SOFTWAREUPDATES, "");
-		zWaitForProgressDialogInvisibble();
+		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 	}
 
