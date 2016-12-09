@@ -22,18 +22,17 @@ package com.zimbra.qa.selenium.projects.admin.ui;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
-import com.zimbra.qa.selenium.projects.admin.ui.PageEditCOS.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
-
 /**
  * Admin Console -> Manage Accounts -> Accounts
  * @author Matt Rhoades
@@ -126,10 +125,11 @@ public class PageManageAccounts extends AbsTab {
 
 		// Click on Manage Accounts -> Accounts
 		SleepUtil.sleepLong();
-		zClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
-		SleepUtil.sleepLong();
-		zClickAt(Locators.ACCOUNTS, "");
-
+		sClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
+		zWaitForWorkInProgressDialogInVisible();
+		//SleepUtil.sleepLong();
+		sClickAt(Locators.ACCOUNTS, "");
+		zWaitForWorkInProgressDialogInVisible();
 
 	}
 

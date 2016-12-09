@@ -96,9 +96,11 @@ public class PageManageServers extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.CONFIGURE_ICON,"");
+		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent(Locators.SERVER);
 		zClickAt(Locators.SERVER, "");
-		SleepUtil.sleepSmall();
+		zWaitForWorkInProgressDialogInVisible();
+		//SleepUtil.sleepSmall();
 		zWaitForActive();
 
 	}

@@ -36,8 +36,8 @@ public class PageManageDomains extends AbsTab {
 
 	public static class Locators {
 		public static final String CONFIGURE_ICON="css=div.ImgAdministration";
-		public static final String DOMAINS="zti__AppAdmin__CONFIGURATION__DOMAINS_textCell";
-		public static final String HIGHLIGHTED_DOMAINS_TREEITEM="css=div[id='zti__AppAdmin__CONFIGURATION__DOMAINS'][aria-selected='true']";
+		public static final String DOMAINS="css=div[id^='zti__AppAdmin__CONFIGURATION__DOMAINS_'][id$='textCell']";
+		public static final String HIGHLIGHTED_DOMAINS_TREEITEM="css=div[id^='zti__AppAdmin__CONFIGURATION__DOMAINS'][aria-selected='true']";
 		public static final String GEAR_ICON="css=div.ImgConfigure";
 		public static final String NEW_MENU="css=td[id='zmi__zb_currentApp__NEW_title']:contains('New')";
 		public static final String ADD_DOMAIN_ALIAS="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDomainAlias']";
@@ -123,8 +123,10 @@ public class PageManageDomains extends AbsTab {
 			sRefresh();
 		}
 		sClickAt(Locators.CONFIGURE_ICON,"");
+		zWaitForWorkInProgressDialogInVisible();
 		zWaitForElementPresent(Locators.DOMAINS);
 		sClickAt(Locators.DOMAINS, "");
+		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 	}
 

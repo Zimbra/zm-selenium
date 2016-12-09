@@ -92,9 +92,10 @@ public class PageManageMobileSyncStatistics extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.MONITOR_ICON,"");
+		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent("css=td:contains('"+Locators.MOBILESYNC_STATISTICS+"')");
 		zClickAt("css=td:contains('"+Locators.MOBILESYNC_STATISTICS+"')", "");
-
+		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 
 	}

@@ -41,17 +41,11 @@ public class PageEditAccount extends AbsTab {
 		public static final String MOBILE_ACCESS="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Mobile Access')";
 		public static final String ARCHIVING="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Archiving')";
 
-
 	}
-
-
-
 
 	public PageEditAccount(AbsApplication application) {
 		super(application);
-
 		logger.info("new " + myPageName());
-
 	}
 
 	@Override

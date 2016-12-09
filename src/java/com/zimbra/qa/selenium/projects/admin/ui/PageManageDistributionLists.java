@@ -108,12 +108,14 @@ public class PageManageDistributionLists extends AbsTab {
 		}
 
 		zClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
-		SleepUtil.sleepLong();
+		zWaitForWorkInProgressDialogInVisible();
+		//SleepUtil.sleepLong();
 		sIsElementPresent(Locators.DISTRIBUTION_LISTS);
-		SleepUtil.sleepLong();
+		//SleepUtil.sleepLong();
 		zClickAt(Locators.DISTRIBUTION_LISTS,"");
+		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
-		SleepUtil.sleepMedium();
+		//SleepUtil.sleepMedium();
 	}
 
 	@Override

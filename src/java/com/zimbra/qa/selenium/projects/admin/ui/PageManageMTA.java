@@ -105,6 +105,7 @@ public class PageManageMTA extends AbsTab {
 		}
 
 		sClick(Locators.GLOBAL_SETTINGS_MTA);
+		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 	}
 	
