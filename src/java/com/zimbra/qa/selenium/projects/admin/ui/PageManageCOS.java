@@ -106,8 +106,10 @@ public class PageManageCOS extends AbsTab {
 		// Click on Addresses -> Accounts
 		SleepUtil.sleepMedium();
 		zClickAt(Locators.CONFIGURE_ICON,"");
+		zWaitForProgressDialogInvisibble();
 		SleepUtil.sleepMedium();
 		zClickAt(Locators.COS, "");
+		zWaitForProgressDialogInvisibble();
 		SleepUtil.sleepMedium();
 
 

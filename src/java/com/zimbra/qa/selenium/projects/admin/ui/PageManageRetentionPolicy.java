@@ -110,10 +110,12 @@ public class PageManageRetentionPolicy extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.CONFIGURE_ICON,"");
+		zWaitForProgressDialogInvisibble();
 		sIsElementPresent(Locators.GLOBAL_SETTING);
 		zClickAt(Locators.GLOBAL_SETTING, "");
+		zWaitForProgressDialogInvisibble();
 		zClickAt(Locators.GLOBAL_SETTINGS_RETENTION_POLICY, "");
-
+		zWaitForProgressDialogInvisibble();
 		zWaitForActive();
 	}
 

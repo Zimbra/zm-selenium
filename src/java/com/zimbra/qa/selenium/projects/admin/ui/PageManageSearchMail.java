@@ -102,10 +102,11 @@ public class PageManageSearchMail extends AbsTab {
 
 		// Click on Tools and Migration -> Downloads
 		zClickAt(Locators.TOOLS_AND_MIGRATION_ICON,"");
-		SleepUtil.sleepMedium();
+		zWaitForProgressDialogInvisibble();
+		//SleepUtil.sleepMedium();
 		if (sIsElementPresent(Locators.SEARCHMAIL));
 		sClickAt(Locators.SEARCHMAIL, "");
-
+		zWaitForProgressDialogInvisibble();
 		zWaitForActive();
 	}
 

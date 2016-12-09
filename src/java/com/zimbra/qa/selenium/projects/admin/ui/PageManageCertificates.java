@@ -106,8 +106,10 @@ public class PageManageCertificates extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.CONFIGURE_ICON,"");
+		zWaitForProgressDialogInvisibble();
 		sIsElementPresent(Locators.CERTIFICATE);
 		zClickAt(Locators.CERTIFICATE, "");
+		zWaitForProgressDialogInvisibble();
 		zWaitForActive();
 		SleepUtil.sleepMedium();
 

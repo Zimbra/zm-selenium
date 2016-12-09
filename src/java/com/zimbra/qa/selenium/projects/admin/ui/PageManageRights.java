@@ -93,9 +93,10 @@ public class PageManageRights extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.CONFIGURE_ICON,"");
+		zWaitForProgressDialogInvisibble();
 		sIsElementPresent(Locators.RIGHT);
 		zClickAt(Locators.RIGHT, "");
-
+		zWaitForProgressDialogInvisibble();
 		zWaitForActive();
 	}
 

@@ -93,9 +93,10 @@ public class PageManageAdminExtensions extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.CONFIGURE_ICON,"");
+		zWaitForProgressDialogInvisibble();
 		sIsElementPresent(Locators.ADMIN_EXTENSION);
 		zClickAt(Locators.ADMIN_EXTENSION, "");
-
+		zWaitForProgressDialogInvisibble();
 		zWaitForActive();
 
 	}

@@ -92,9 +92,10 @@ public class PageManageAdvancedStatistics extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.MONITOR_ICON,"");
+		zWaitForProgressDialogInvisibble();
 		sIsElementPresent("css=td:contains('"+Locators.ADVANCED_STATISTICS+"')");
 		zClickAt("css=td:contains('"+Locators.ADVANCED_STATISTICS+"')", "");
-
+		zWaitForProgressDialogInvisibble();
 		zWaitForActive();
 
 	}

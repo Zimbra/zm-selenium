@@ -102,10 +102,11 @@ public class PageManageGlobalSettings extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		sClick(Locators.CONFIGURE_ICON);
+		zWaitForProgressDialogInvisibble();
 		SleepUtil.sleepMedium();
 		sIsElementPresent(Locators.GLOBAL_SETTING);
 		zClick(Locators.GLOBAL_SETTING);
-
+		zWaitForProgressDialogInvisibble();
 		zWaitForActive();
 		zWaitForElementInvisible(Locators.WORK_IN_PROGRESS_DIALOG);
 	}

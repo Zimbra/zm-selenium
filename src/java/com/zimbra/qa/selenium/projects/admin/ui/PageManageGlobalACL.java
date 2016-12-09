@@ -95,9 +95,10 @@ public class PageManageGlobalACL extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.CONFIGURE_ICON,"");
+		zWaitForProgressDialogInvisibble();
 		sIsElementPresent(Locators.GLOBALACL);
 		zClickAt(Locators.GLOBALACL, "");
-
+		zWaitForProgressDialogInvisibble();
 		zWaitForActive();
 
 	}

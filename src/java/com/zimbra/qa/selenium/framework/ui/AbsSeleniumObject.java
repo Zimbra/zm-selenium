@@ -2122,5 +2122,19 @@ public abstract class AbsSeleniumObject {
 		JavascriptExecutor jse = (JavascriptExecutor)webDriver();
 		jse.executeScript("window.scrollBy(0," + scrollTo + ")", "");
 	}
+	
+	public boolean zWaitForProgressDialogInvisibble() throws HarnessException {
+		boolean status = true;
+		if(this.sIsElementPresent("css=div.DwtShellBusyDialog")) {
+			status = false;
+			status = waitForElementPresent("css=div.DwtShellBusyDialog[aria-hidden='true']",true,20);
+			if(status) {
+				return status;
+			} else {
+				sClickAt("css=td[id^='Cancel Request_'] td[id$='_title']", "0,0");
+			}
+		}
+		return status;
+	}
 
 }

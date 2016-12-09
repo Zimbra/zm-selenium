@@ -67,8 +67,10 @@ public class PageDownloads extends AbsTab {
 
 		// Click on Tools and Migration -> Downloads
 		zClickAt(Locators.TOOLS_AND_MIGRATION_ICON,"");
+		zWaitForProgressDialogInvisibble();
 		if (sIsElementPresent(Locators.DOWNLOADS));
 		sClickAt(Locators.DOWNLOADS, "");
+		zWaitForProgressDialogInvisibble();
 		
 		zWaitForActive();
 	}
