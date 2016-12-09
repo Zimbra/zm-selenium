@@ -2126,10 +2126,13 @@ public abstract class AbsSeleniumObject {
 	public boolean zWaitForWorkInProgressDialogInVisible() throws HarnessException {
 		boolean status = true;
 		if(this.sIsElementPresent("css=div.DwtShellBusyDialog")) {
+			logger.info("'Work In Progress' dialog is displayed. Waiting for it to close...");
 			status = waitForElementPresent("css=div.DwtShellBusyDialog[aria-hidden='true']",true,20);
 			if(status) {
+				logger.info("'Work In Progress' dialog is closed");
 				return status;
 			} else {
+				logger.info("'Work In Progress' dialog is not closed on its own. Cancelling it!");
 				sClickAt("css=td[id^='Cancel Request_'] td[id$='_title']", "0,0");
 			}
 		}
