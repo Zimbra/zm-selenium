@@ -2136,6 +2136,7 @@ public abstract class AbsSeleniumObject {
 				sClickAt("css=td[id^='Cancel Request_'] td[id$='_title']", "0,0");
 				//Click OK
 				sClickAt("css=div[id^='zdlg__ERR_'] td[id$='button2_title']", "0,0");
+				SleepUtil.sleepLong();
 			}
 		}
 		return status;
