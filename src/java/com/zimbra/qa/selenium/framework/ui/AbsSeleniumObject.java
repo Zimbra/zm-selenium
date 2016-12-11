@@ -2134,6 +2134,8 @@ public abstract class AbsSeleniumObject {
 			} else {
 				logger.info("'Work In Progress' dialog is not closed on its own. Cancelling it!");
 				sClickAt("css=td[id^='Cancel Request_'] td[id$='_title']", "0,0");
+				//Click OK
+				sClickAt("css=div[id^='zdlg__ERR_'] td[id$='button2_title']", "0,0");
 			}
 		}
 		return status;
