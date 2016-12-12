@@ -55,7 +55,8 @@ public class WizardCreateAlias extends AbsWizard {
 		this.clearField(Locators.zdlg_ALIAS_DOMAIN_NAME);		
 		sType(Locators.zdlg_ALIAS_DOMAIN_NAME,domain);	
 		sType(Locators.zdlg_TARGET_ACCOUNT_NAME, targetAccount);
-		zClick(Locators.zdlg_OK);
+		SleepUtil.sleepSmall();
+		sClick(Locators.zdlg_OK);
 		return alias;
 
 	}
