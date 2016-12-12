@@ -44,7 +44,7 @@ public class EnableArchiving extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify administrator should be able to enable archiving at the global level",
-			groups = { "functional", "network" })
+			groups = { "smoke", "L1" })
 
 	public void EnableArchiving_01() throws HarnessException {
 
