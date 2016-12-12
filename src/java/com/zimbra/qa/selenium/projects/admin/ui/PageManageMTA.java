@@ -51,6 +51,7 @@ public class PageManageMTA extends AbsTab {
 		public static final String SAVE = "css=td[id='zb__ZaCurrentAppBar__SAVE_title']";
 		public static final String CLOSE = "css=td[id='zb__ZaCurrentAppBar__CLOSE_title']";
 		public static final String SAVE_CSS = "div[id$='__SAVE']";
+		public static final String ENABLE_ARCHIVING = "css=input[id='ztabv__GSET_EDIT_zimbraArchiveEnabled']";
 
 	}
 
@@ -128,6 +129,9 @@ public class PageManageMTA extends AbsTab {
 										 	
 			case "C_MTA_ENABLE_MILTER_SERVER":locator=Locators.ENABLE_MILTER_SERVER;
 										 	break;
+										 	
+			case "C_MTA_ENABLE_ARCHIVING":locator=Locators.ENABLE_ARCHIVING;
+											break;
 										 	
 			default: new  HarnessException("Action for "+ checkbox + " is not implemented!");
 		}
