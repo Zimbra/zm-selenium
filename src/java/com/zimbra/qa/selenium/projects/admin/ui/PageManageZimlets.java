@@ -22,6 +22,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 
 /**
@@ -38,6 +39,7 @@ public class PageManageZimlets extends AbsTab {
 		public static final String HOME="Home";
 		public static final String CONFIGURE="Configure";
 		public static final String ZIMLETS="Zimlets";
+		public static final String TOGGLE_STATUS="css=div[id='zmi__zb_currentApp__TOGGLE']";
 	}
 
 
@@ -94,9 +96,68 @@ public class PageManageZimlets extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
-			throws HarnessException {
-		return null;
+	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
+		logger.info(myPageName() + " zToolbarPressButtonWithPulldown("+ pulldown +", "+ option +")");
+
+		tracer.trace("Click pulldown "+ pulldown +" then "+ option);
+
+		if (pulldown == null)
+			throw new HarnessException("Pulldown cannot be null!");
+
+		if (option == null)
+			throw new HarnessException("Option cannot be null!");
+
+
+		// Default behavior variables
+		String pulldownLocator = null; // If set, this will be expanded
+		String optionLocator = null; // If set, this will be clicked
+		AbsPage page = null; // If set, this page will be returned
+
+		if (pulldown == Button.B_GEAR_BOX) {
+			pulldownLocator = Locators.GEAR_ICON;
+
+			if (option == Button.B_TOGGLE_STATUS) {
+
+				optionLocator = Locators.TOGGLE_STATUS;
+				// FALL THROUGH
+			}
+
+			else {
+				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
+			}
+
+		} else {
+			throw new HarnessException("no logic defined for pulldown/option "
+					+ pulldown + "/" + option);
+		}
+
+		// Default behavior
+		if (pulldownLocator != null) {
+
+			// Make sure the locator exists
+			if (!this.sIsElementPresent(pulldownLocator)) {
+				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
+			}
+
+			this.sClickAt(pulldownLocator,"");
+			SleepUtil.sleepLong();
+
+			if (optionLocator != null) {
+
+				// Make sure the locator exists
+				if (!this.sIsElementPresent(optionLocator)) {
+					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
+				}
+
+				this.zClickAt(optionLocator,"");
+				SleepUtil.sleepLong();
+
+			}
+
+		}
+
+		// Return the specified page, or null if not set
+		return (page);
 	}
 
 	@Override
@@ -120,6 +181,12 @@ public class PageManageZimlets extends AbsTab {
 
 		return (true);
 
+	}
+	
+	public boolean zVerifyZimletIsDisabled (String item) throws HarnessException {
+		if(this.sIsElementPresent("css=div#zl__ZIMLET_MANAGE div[id$='__rows'] div[id$='__"+item+"']:contains('Disabled')"))
+			return true;
+		return false;
 	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
