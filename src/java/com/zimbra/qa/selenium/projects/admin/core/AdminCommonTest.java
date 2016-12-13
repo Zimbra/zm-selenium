@@ -183,18 +183,11 @@ public class AdminCommonTest {
 			logger.debug("commonTestBeforeMethod: startingAccount is defined");
 
 			if (!startingAccount.equals(app.zGetActiveAccount())) {
-				if (app.zPageMain.zIsActive())
-					try {
-
-						app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
-
-					} catch (Exception ex) {
-						if (!app.zPageLogin.zIsActive()) {
-							logger.error("Login page is not active ", ex);
-
-							app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
-						}
-					}
+				
+				if (app.zPageMain.zIsActive()) {
+					app.zPageMain.sOpen(ConfigProperties.getBaseURL());
+					app.zPageMain.zWaitForActive();
+				}
 				app.zPageLogin.login(startingAccount);
 			}
 
