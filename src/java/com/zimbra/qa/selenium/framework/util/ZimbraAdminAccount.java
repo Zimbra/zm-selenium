@@ -55,7 +55,8 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			
 			// Build the list of default preferences
 			Map<String, String> attributes = new HashMap<String, String>();
-			attributes.put("zimbraMailHost", ZimbraMailHost);	// Set zimbraMailHost
+			attributes.put("zimbraMailHost", ZimbraMailHost);// Set zimbraMailHost
+			attributes.put("zimbraPrefAdminConsoleWarnOnExit","FALSE");
 			
 			// Add the display name
 			StringBuilder prefs = new StringBuilder();
@@ -70,6 +71,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 					+			"<name>" + account.getEmailAddress() + "</name>"
 					+			"<password>test123</password>"
 					+			"<a xmlns='' n='zimbraIsDelegatedAdminAccount'>TRUE</a>"
+					+			"<a xmlns='' n='zimbraPrefAdminConsoleWarnOnExit'>FALSE</a>"
 					+		"</CreateAccountRequest>");
 
 			Element[] createAccountResponse = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNodes("//admin:CreateAccountResponse");
@@ -160,6 +162,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			// Build the list of default preferences
 			Map<String, String> attributes = new HashMap<String, String>();
 			attributes.put("zimbraMailHost", ZimbraMailHost);	// Set zimbraMailHost
+			attributes.put("zimbraPrefAdminConsoleWarnOnExit","FALSE");
 			
 			// Add the display name
 			StringBuilder prefs = new StringBuilder();

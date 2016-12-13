@@ -86,6 +86,9 @@ public class ResetPassword extends AdminCommonTest {
 			// Verify admin is able to login with new password
 			ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify admin cosole is opened up");
 			
+			//Logout the current user
+			app.zPageMain.logout();
+			
 	}
 
 }
