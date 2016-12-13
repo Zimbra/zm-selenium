@@ -749,6 +749,8 @@
 		public static final Button B_SEARCH_MAIL = new Button("B_SEARCH_MAIL");
 		public static final Button B_TOGGLE_STATUS = new Button("B_TOGGLE_STATUS");
 		public static final Button B_ADD_GLOBAL_ACL = new Button("B_ADD_GLOBAL_ACL");
+		public static final Button B_DEPLOY_ZIMLET = new Button("B_DEPLOY_ZIMLET");
+		public static final Button B_UPLOAD_ZIMLET = new Button("B_UPLOAD_ZIMLET");
 		
 		// Distribution List  buttons
 		public static final Button O_DISTRIBUTIUONLISTS_DISTRIBUTIONLIST=new Button("O_DISTRIBUTIUONLISTS_DISTRIBUTIONLIST");
