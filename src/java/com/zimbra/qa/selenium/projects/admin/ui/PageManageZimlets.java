@@ -16,13 +16,17 @@
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
+import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DialogUploadFile;
 
+import net.sf.antcontrib.design.Depends;
 
 /**
  * The "Manage Zimlets" has the same functionality as "Manage Admin Extensions"
@@ -38,8 +42,10 @@ public class PageManageZimlets extends AbsTab {
 		public static final String HOME="Home";
 		public static final String CONFIGURE="Configure";
 		public static final String ZIMLETS="Zimlets";
+		public static final String TOGGLE_STATUS="css=div[id='zmi__zb_currentApp__TOGGLE']";
+		public static final String DEPLOY_ZIMLET="css=div[id='zmi__zb_currentApp__DEPLOY_ZIMLET']";
+		public static final String UPLOAD_ZIMLET ="css=input[name='zimletFile']";
 	}
-
 
 	public PageManageZimlets(AbsApplication application) {
 		super(application);
@@ -94,10 +100,120 @@ public class PageManageZimlets extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
-			throws HarnessException {
-		return null;
+	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
+		logger.info(myPageName() + " zToolbarPressButtonWithPulldown("+ pulldown +", "+ option +")");
+
+		tracer.trace("Click pulldown "+ pulldown +" then "+ option);
+
+		if (pulldown == null)
+			throw new HarnessException("Pulldown cannot be null!");
+
+		if (option == null)
+			throw new HarnessException("Option cannot be null!");
+
+
+		// Default behavior variables
+		String pulldownLocator = null; // If set, this will be expanded
+		String optionLocator = null; // If set, this will be clicked
+		AbsPage page = null; // If set, this page will be returned
+
+		if (pulldown == Button.B_GEAR_BOX) {
+			pulldownLocator = Locators.GEAR_ICON;
+
+			if (option == Button.B_TOGGLE_STATUS) {
+
+				optionLocator = Locators.TOGGLE_STATUS;
+				// FALL THROUGH
+			} else if (option == Button.B_DEPLOY_ZIMLET) {
+
+				optionLocator = Locators.DEPLOY_ZIMLET;
+				page = new WizardDeployZimlet(this);
+				// FALL THROUGH
+			} 
+			else {
+				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
+			}
+
+		} else {
+			throw new HarnessException("no logic defined for pulldown/option "
+					+ pulldown + "/" + option);
+		}
+
+		// Default behavior
+		if (pulldownLocator != null) {
+
+			// Make sure the locator exists
+			if (!this.sIsElementPresent(pulldownLocator)) {
+				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
+			}
+
+			this.sClickAt(pulldownLocator,"");
+			SleepUtil.sleepLong();
+
+			if (optionLocator != null) {
+
+				// Make sure the locator exists
+				if (!this.sIsElementPresent(optionLocator)) {
+					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
+				}
+
+				this.zClickAt(optionLocator,"");
+				SleepUtil.sleepLong();
+
+			}
+
+		}
+
+		// Return the specified page, or null if not set
+		return (page);
 	}
+	
+	public AbsPage zToolbarPressButton(Button button, IItem item) throws HarnessException {
+		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+
+		tracer.trace("Press the "+ button +" button");
+
+		if ( button == null )
+			throw new HarnessException("Button cannot be null!");
+
+
+		// Default behavior variables
+		//
+		String locator = null;			// If set, this will be clicked
+		AbsPage page = null;	// If set, this page will be returned
+
+		// Based on the button specified, take the appropriate action(s)
+		//
+		if (button == Button.B_UPLOAD_ZIMLET) {
+
+			locator = Locators.UPLOAD_ZIMLET;
+
+			//page = new DialogUploadFile(MyApplication, this);
+			page = new WizardDeployZimlet(this);
+		}
+		else {
+			throw new HarnessException("no logic defined for button "+ button);
+		}
+
+		if ( locator == null ) {
+			throw new HarnessException("locator was null for button "+ button);
+		}
+
+		// Default behavior, process the locator by clicking on it
+		//
+		this.sClickAt(locator,"");
+
+
+
+		// If page was specified, make sure it is active
+		if ( page != null ) {
+			SleepUtil.sleepMedium();
+		}
+
+		sMouseOut(locator);
+		return (page);
+	}
+
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
@@ -121,12 +237,16 @@ public class PageManageZimlets extends AbsTab {
 		return (true);
 
 	}
+	
+	public boolean zVerifyZimletIsDisabled (String item) throws HarnessException {
+		if(this.sIsElementPresent("css=div#zl__ZIMLET_MANAGE div[id$='__rows'] div[id$='__"+item+"']:contains('Disabled')"))
+			return true;
+		return false;
+	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
 		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}
-
-
 }
