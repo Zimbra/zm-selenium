@@ -55,7 +55,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	
 	@Bugs(ids = "102053")
 	@Test( description = "Forget an autocomplete address - invalid email",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void AutoCompleteForget_01() throws HarnessException {
 		
@@ -137,7 +137,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Verify the 'forget' link for Contacts",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteForget_02() throws HarnessException {
 		
 		// Create two contacts
@@ -206,7 +206,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 
 	@Bugs(ids = "97118")
 	@Test( description = "Verify the 'forget' link for GAL",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void AutoCompleteForget_03() throws HarnessException {
 		
@@ -289,7 +289,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	
 	@Bugs(ids = "97123")
 	@Test( description = "Verify 'forget' functionality resets the ranking order - Contacts",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void AutoCompleteForget_04() throws HarnessException {
 		
@@ -463,7 +463,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	 */
 	@Bugs(ids = "97118")
 	@Test( description = "Verify 'forget' functionality resets the ranking order - GAL",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void AutoCompleteForget_05() throws HarnessException {
 		

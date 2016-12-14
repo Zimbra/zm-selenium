@@ -35,7 +35,7 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 	}
 
 	@Test( description = "Reply a mail  with an inline attachment by pressing Reply button>>attach>>Inline - in separate window",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void ReplyMailWithAnInlineAttachment_01() throws HarnessException {
 

@@ -40,7 +40,7 @@ public class Cyrillic extends PrefGroupMailByMessageTest {
 	
 	@Bugs(ids = "48736")
 	@Test( description = "Autocomplete using Cyrillic characters in the name - local contact",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void AutoComplete_01() throws HarnessException {
 		
@@ -88,7 +88,7 @@ public class Cyrillic extends PrefGroupMailByMessageTest {
 
 	@Bugs(ids = "48736")
 	@Test( description = "Autocomplete using Cyrillic characters in the name - GAL contact",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void AutoComplete_02() throws HarnessException {
 		

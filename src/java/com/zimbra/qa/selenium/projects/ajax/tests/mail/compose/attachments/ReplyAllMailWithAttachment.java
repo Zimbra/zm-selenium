@@ -37,7 +37,7 @@ public class ReplyAllMailWithAttachment extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Reply to a mail with attachment - Verify both attachment sent",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 
 	public void ReplyAllMailWithAttachment_01() throws HarnessException {
 

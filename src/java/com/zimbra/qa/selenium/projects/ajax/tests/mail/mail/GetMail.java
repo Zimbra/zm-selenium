@@ -38,7 +38,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 
 	
 	@Test( description = "Receive a text mail - Right Click From Msg Header and verify all context menus",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	
 	public void GetMail_VerifyMsgHdrContextmenu_01() throws HarnessException {
 
@@ -73,7 +73,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 	
 	
 	@Test( description = "Receive a mail",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void GetMail_02() throws HarnessException {
 		
@@ -115,7 +115,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 
 	
 	@Test( description = "Receive a text mail - verify mail contents",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void GetMail_03() throws HarnessException {
 		
@@ -158,7 +158,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 
 	
 	@Test( description = "Receive an html mail - verify mail contents",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void GetMail_04() throws HarnessException {
 		
@@ -210,7 +210,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "Click 'Get Mail' to receive any new messages",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void GetMail_05() throws HarnessException {
 
@@ -249,7 +249,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Verify new messages are polled based on the preference setting",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void GetMail_06() throws HarnessException {
 
@@ -290,7 +290,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 	
 	
 	@Test( description = "Type keyboard shortcut (=) for 'Get Mail' to receive any new messages",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void GetMail_07() throws HarnessException {
 		

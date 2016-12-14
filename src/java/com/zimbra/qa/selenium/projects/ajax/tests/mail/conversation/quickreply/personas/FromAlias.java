@@ -39,7 +39,7 @@ public class FromAlias extends PrefGroupMailByConversationTest {
 	
 	@Bugs(ids = "73698")
 	@Test( description = "Send a quick reply with alias as from",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void FromAlias_01() throws HarnessException {
 		
 		

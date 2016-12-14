@@ -35,7 +35,7 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 	}
 	
 	@Test( description = "Quick Reply (Forward) a conversation (1 message, 1 recipient)",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void QuickForward_01() throws HarnessException {
 		
 		ZimbraAccount destination = new ZimbraAccount();
@@ -93,7 +93,7 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 	}
 
 	@Test( description = "Quick Reply (forward) a conversation (1 message, 2 recipients)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void QuickForward_02() throws HarnessException {
 		
 		ZimbraAccount destination1 = new ZimbraAccount();
@@ -166,7 +166,7 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 	}
 
 	@Test( description = "Quick Reply (forward) a conversation (1 message, 1 recipient, 1 CC, 1 BCC)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void QuickForward_03() throws HarnessException {
 		
 		ZimbraAccount destination = new ZimbraAccount();
@@ -250,7 +250,7 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 
 	
 	@Test( description = "Quick Forward two a 3 message conversation - first message",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void QuickForward_10() throws HarnessException {
 		
 		ZimbraAccount destination = new ZimbraAccount();
@@ -347,7 +347,7 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 	}
 
 	@Test( description = "Quick Forward two a 3 message conversation - middle message",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void QuickForward_11() throws HarnessException {
 		
 		ZimbraAccount destination = new ZimbraAccount();
@@ -442,7 +442,7 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 	}
 
 	@Test( description = "Quick Forward two a 3 message conversation - last message",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void QuickForward_12() throws HarnessException {
 		
 		ZimbraAccount destination = new ZimbraAccount();

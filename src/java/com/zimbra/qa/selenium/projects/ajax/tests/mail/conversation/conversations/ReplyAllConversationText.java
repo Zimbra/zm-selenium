@@ -37,7 +37,7 @@ public class ReplyAllConversationText extends PrefGroupMailByConversationTest {
 	}
 	
 	@Test( description = "Reply-All to a conversation",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void ReplyAllConversationText_01() throws HarnessException {
 
 		//-- DATA

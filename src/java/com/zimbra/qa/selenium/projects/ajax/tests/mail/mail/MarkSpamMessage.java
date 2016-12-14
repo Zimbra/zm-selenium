@@ -37,7 +37,7 @@ public class MarkSpamMessage extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Mark a message as spam, using 'Spam' toolbar button",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void MarkSpamMessage_01() throws HarnessException {
 		
 		String subject = "subject"+ ConfigProperties.getUniqueString();
@@ -84,7 +84,7 @@ public class MarkSpamMessage extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "Mark a message as spam, using keyboard shortcut (keyboard='ms')",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void MarkSpamMessage_02() throws HarnessException {
 		
 		String subject = "subject"+ ConfigProperties.getUniqueString();
@@ -130,7 +130,7 @@ public class MarkSpamMessage extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Mark multiple messages (3) as spam by select and toolbar delete",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void MarkSpamMessage_03() throws HarnessException {
 		
 		FolderItem junk = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Junk);

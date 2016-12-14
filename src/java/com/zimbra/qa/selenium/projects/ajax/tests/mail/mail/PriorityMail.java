@@ -34,7 +34,7 @@ public class PriorityMail extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Receive a high priority mail",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetMail_01() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -76,7 +76,7 @@ public class PriorityMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Receive a low priority mail",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetMail_02() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -117,7 +117,7 @@ public class PriorityMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Receive a normal priority mail",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetMail_03() throws HarnessException {
 
 		

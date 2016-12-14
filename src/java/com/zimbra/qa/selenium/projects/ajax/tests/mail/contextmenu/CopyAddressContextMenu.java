@@ -36,7 +36,7 @@ public class CopyAddressContextMenu extends PrefGroupMailByMessageTest {
 
 	
 	@Test( description = "Right click BCc bubble address >> Copy", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void CopyToAddressContextMenu() throws HarnessException {
 

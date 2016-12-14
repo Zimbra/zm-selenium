@@ -34,7 +34,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Create an html mail using the deep link URL",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void CreateMailHtml_01() throws HarnessException {
 		
 		

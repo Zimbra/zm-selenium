@@ -36,7 +36,7 @@ public class ReadMore extends PrefGroupMailByConversationTest {
 	
 	
 	@Test( description = "Use the 'Read More' button to scroll through the conversation content",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ViewMail_01() throws HarnessException {
 		
 		

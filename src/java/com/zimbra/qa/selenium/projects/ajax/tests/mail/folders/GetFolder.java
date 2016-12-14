@@ -40,7 +40,7 @@ public class GetFolder extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Get a folder",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void GetFolder_01() throws HarnessException {
 		
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
@@ -79,7 +79,7 @@ public class GetFolder extends PrefGroupMailByMessageTest {
 
 	@Test(
 			description = "Get a folder with non-ASCII special characters", 
-			groups = { "functional" },
+			groups = { "functional", "L2" },
 			dataProvider = "DataProviderSupportedCharsets")
 	public void GetFolder_02(ZCharset charset, String foldername) throws HarnessException {
 		

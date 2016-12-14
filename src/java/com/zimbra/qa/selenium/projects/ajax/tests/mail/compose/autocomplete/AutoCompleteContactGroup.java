@@ -116,7 +116,7 @@ public class AutoCompleteContactGroup extends PrefGroupMailByMessageTest {
 
 	@Bugs(ids = "97112")
 	@Test( description = "Autocomplete using a Contact Group - Group Name",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteContactGroups_01() throws HarnessException {
 		
 		// Contact group is created in @BeforeMethod CreateContactGroup()
@@ -163,7 +163,7 @@ public class AutoCompleteContactGroup extends PrefGroupMailByMessageTest {
 
 	@Bugs(ids = "97112")
 	@Test( description = "Autocomplete using the Contacts - Partial First Name",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteContactGroups_02() throws HarnessException {
 		
 		// Message properties
@@ -205,7 +205,7 @@ public class AutoCompleteContactGroup extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "Autocomplete using a Contact - Multiple Matches",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteContactGroups_03() throws HarnessException {
 		
 		// Create 3 contact groups, all starting with groupPrefix

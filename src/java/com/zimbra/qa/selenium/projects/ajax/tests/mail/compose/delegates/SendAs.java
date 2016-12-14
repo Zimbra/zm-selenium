@@ -38,7 +38,7 @@ public class SendAs extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Send As another user",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void SendAs_01() throws HarnessException {
 		
 		// Mail data
@@ -99,7 +99,7 @@ public class SendAs extends PrefGroupMailByMessageTest {
 	
 	@Bugs(ids="106931,102475")
 	@Test( description = "Forward a mail with attachment as a delegate - Verify attachment sent",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void SendAs_02() throws HarnessException {
 		
 		ZimbraAccount grantor = null;

@@ -72,7 +72,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 
 	@Test(
 			description = "Accept a meeting using Accept button from  New window invitation message", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AcceptMeeting_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -182,7 +182,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 
 	@Test(
 			description = "Accept meeting from New window - Verify organizer gets notification message", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AcceptMeeting_02() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -251,7 +251,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 
 	@Test(
 			description = "Accept meeting using 'Accept -> Notify Organizer' from new window", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AcceptMeeting_03() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -375,7 +375,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 
 	@Test(
 			description = "Accept meeting using 'Accept -> Don't Notify Organizer' from New window", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AcceptMeeting_04() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------

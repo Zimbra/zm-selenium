@@ -40,7 +40,7 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "Mark a message as unread by clicking on it, then using 'mu' hotkeys",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void MarkUnReadMail_01() throws HarnessException {
 		
 
@@ -98,7 +98,7 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 	
 	@Bugs( ids = "103950")
 	@Test( description = "Mark a message as unread by action menu -> mark read",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void MarkUnReadMail_02() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -157,7 +157,7 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 		
 	@Bugs(ids = "64133")
 	@Test( description = "Verify mark unread is enabled in the separate window",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void MarkUnReadMail_03() throws HarnessException {
 		
 		// Create the message data to be sent

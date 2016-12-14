@@ -37,7 +37,7 @@ public class SortByAttachment extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Sort a list of messages by attachment",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void SortByAttachment_01() throws HarnessException {
 		
 		// Create the message data
@@ -134,7 +134,7 @@ public class SortByAttachment extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "Sort a list of messages by attachment",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void SortByAttachment_02() throws HarnessException {
 		
 		// Create the message data

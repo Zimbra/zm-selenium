@@ -36,7 +36,7 @@ public class TagMail extends PrefGroupMailByMessageTest {
 
 	@Bugs(ids = "99519")
 	@Test( description = "Tag a message using Toolbar -> Tag -> Existing Tag - in a separate window", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void TagMail_01() throws HarnessException {
 
 		// Create the tag to delete

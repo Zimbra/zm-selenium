@@ -39,7 +39,7 @@ public class UndoMarkSpamMessage extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Undo - Mark a message as spam, using 'Spam' toolbar button",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void UndoMarkSpamMessage_01() throws HarnessException {
 		
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);

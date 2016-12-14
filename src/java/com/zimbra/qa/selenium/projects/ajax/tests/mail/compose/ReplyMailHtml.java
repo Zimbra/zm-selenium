@@ -39,7 +39,7 @@ public class ReplyMailHtml extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Reply to an html mail using html editor",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void replyHtmlMail() throws HarnessException {
 		
 		String subject = "subject"+ ConfigProperties.getUniqueString();

@@ -34,7 +34,7 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
-	@Test( description = "Verify attachment in Normal Compose window as well as in New compose window", groups = { "functional" })
+	@Test( description = "Verify attachment in Normal Compose window as well as in New compose window", groups = { "functional", "L2" })
 	
 	public void OpenComposedMsgWithAnAttachmentInNewWindow_01() throws HarnessException {
 

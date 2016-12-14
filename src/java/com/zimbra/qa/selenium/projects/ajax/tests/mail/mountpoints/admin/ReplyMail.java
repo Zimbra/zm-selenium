@@ -36,7 +36,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 	
 	@Bugs( ids = "86168")
 	@Test( description = "Reply (on behalf of) to a message in a shared folder (admin rights)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void ReplyMail_01() throws HarnessException {
 
@@ -138,7 +138,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 
 	@Bugs(ids="102475")
 	@Test( description = "Reply (on behalf of) to a message in a shared folder (admin rights) - no SOBO rights",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void ReplyMail_02() throws HarnessException {
 

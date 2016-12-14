@@ -42,7 +42,7 @@ public class ZmMailAppComposeText extends AjaxCommonTest {
 
 	}
 
-	@Test( description = "Measure the time to load the text compose  window", groups = { "performance" })
+	@Test( description = "Measure the time to load the text compose  window", groups = { "performance", "L4" })
 	public void ZmMailAppComposeText_01() throws HarnessException {
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailAppCompose,"Load the compose window in text view");

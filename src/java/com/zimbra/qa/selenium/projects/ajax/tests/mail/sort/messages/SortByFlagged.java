@@ -38,7 +38,7 @@ public class SortByFlagged extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Sort a list of messages by unflagged",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void SortByFlagged_01() throws HarnessException {
 		
 		// Create the message data
@@ -121,7 +121,7 @@ public class SortByFlagged extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "Sort a list of messages by flagged",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void SortByFlagged_02() throws HarnessException {
 		
 		// Create the message data

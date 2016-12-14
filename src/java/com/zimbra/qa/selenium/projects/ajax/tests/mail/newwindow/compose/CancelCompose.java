@@ -35,7 +35,7 @@ public class CancelCompose extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Compose a message in a separate window - click Cancel",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void CancelCompose_01() throws HarnessException {
 		

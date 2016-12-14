@@ -39,7 +39,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	
 	@Bugs( ids = "103950")
 	@Test( description = "Delete a message from a separate window",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void DeleteMail_01() throws HarnessException {
 		
 		final String subject = "subject13150210210153";

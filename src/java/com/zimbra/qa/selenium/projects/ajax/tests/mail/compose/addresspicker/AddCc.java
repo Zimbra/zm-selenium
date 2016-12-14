@@ -43,7 +43,7 @@ public class AddCc extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Select a 'Cc' address in the addresspicker",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AddCc_01() throws HarnessException {
 		
 		// The account must exist before the picker is opened

@@ -34,7 +34,7 @@ public class FlagUnFlagConversation extends PrefGroupMailByConversationTest {
 	}
 	
 	@Test( description = "Un-Flag a conversation by clicking flagged icon",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void FlagConversation_01() throws HarnessException {
 
 		//-- DATA
@@ -76,7 +76,7 @@ public class FlagUnFlagConversation extends PrefGroupMailByConversationTest {
 	}
 
 	@Test( description = "Un-Flag a conversation by using shortcut 'mf'",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void FlagConversation_02() throws HarnessException {
 
 		//-- DATA

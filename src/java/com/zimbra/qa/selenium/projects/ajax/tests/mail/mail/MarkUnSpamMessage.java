@@ -31,7 +31,7 @@ public class MarkUnSpamMessage extends PrefGroupMailByMessageTest {
 	
 	
 	@Test( description = "Mark a message as not spam, using 'Not Spam' toolbar button",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void MarkUnSpamMessage_01() throws HarnessException {
 		
