@@ -169,7 +169,7 @@ public class DeleteTask extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Delete a task by selecting and typing 'delete' keyboard",
-			groups = { "smoke", "L0"},
+			groups = { "smoke", "L1"},
 			dataProvider = "DataProviderDeleteKeys")
 	public void DeleteTask_03(String name, int keyEvent) throws HarnessException {
 		
@@ -682,7 +682,7 @@ public class DeleteTask extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Delete Attachment from edit window and - verify through GUI", 
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L1"})
 	public void DeleteAttachment_10() throws HarnessException {
 
 		String subject = "task" + ConfigProperties.getUniqueString();
