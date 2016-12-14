@@ -29,7 +29,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-
 public class SearchMail extends PrefGroupMailByMessageTest {
 
 	int pollIntervalSeconds = 60;
@@ -50,7 +49,7 @@ public class SearchMail extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Search for a message by subject",
-			groups = { "functional" })
+			groups = { "functional","L2" })
 	public void SearchMail_01() throws HarnessException {
 		
 		// Create the message data to be sent

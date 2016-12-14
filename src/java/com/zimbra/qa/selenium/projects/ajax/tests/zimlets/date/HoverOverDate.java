@@ -31,7 +31,7 @@ public class HoverOverDate extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Hover over a date in a message body",
-			groups = { "functional" })
+			groups = { "functional","L2" })
 	
 	public void HoverOverDate_01() throws HarnessException {
 
@@ -73,9 +73,8 @@ public class HoverOverDate extends PrefGroupMailByMessageTest {
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
 	}
 	
-	
 	@Test( description = "Hovor over a date string in the body, such as today, tomorrow, last night, etc.",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void HoverOverDate_02() throws HarnessException {
 		

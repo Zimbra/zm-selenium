@@ -30,11 +30,10 @@ public class MoveSavedSearch extends AjaxCommonTest  {
 		logger.info("New "+ MoveSavedSearch.class.getCanonicalName());
 		super.startingPage = app.zPageMail;		
 	}
-
 	
 	@Bugs( ids = "102547")
 	@Test( description = "Move a saved search",
-			groups = { "smoke" })
+			groups = { "smoke","L0" })
 	
 	public void MoveSavedSearch_01() throws HarnessException {
 

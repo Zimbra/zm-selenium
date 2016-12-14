@@ -30,7 +30,8 @@ public class SearchContact extends AjaxCommonTest {
 		super.startingPage = app.zPageContacts;
 	}
 
-	@Test(description = "Search for a contact", groups = { "functional" })
+	@Test(description = "Search for a contact", 
+			groups = { "functional","L2" })
 	public void SearchContact_01() throws HarnessException {
 
 		// -- Data
@@ -65,7 +66,8 @@ public class SearchContact extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Search for a non-existing contact", groups = { "functional" })
+	@Test(description = "Search for a non-existing contact", 
+			groups = { "functional","L3" })
 	public void SearchContact_02() throws HarnessException {
 
 		// -- Data

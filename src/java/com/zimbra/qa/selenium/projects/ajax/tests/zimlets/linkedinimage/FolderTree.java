@@ -36,12 +36,11 @@ public class FolderTree extends AjaxCommonTest {
 		// All tests start at the login page
 		super.startingPage = app.zPageMail;
 		
-		
 	}
 	
 	@Bugs( ids = "81078")
 	@Test( description = "Verify the LinkedIn zimlet appears in the folder tree",
-			groups = { "deprecated" })
+			groups = { "deprecated", "L3" })
 	public void FolderTree_01() throws HarnessException {
 		
 		ZimletItem linkedin = CoreZimletItem.getCoreZimlet(CoreZimletName.com_zimbra_linkedinimage, app);

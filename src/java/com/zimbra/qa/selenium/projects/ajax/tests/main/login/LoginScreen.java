@@ -42,7 +42,7 @@ public class LoginScreen extends AjaxCommonTest {
 	}
 
 	@Test( description = "Verify the label text on the ajax client login screen",
-			groups = { "smoke" })
+			groups = { "smoke", "L0"})
 	public void LoginScreen01() throws HarnessException {
 		
 		String username = app.zPageLogin.sGetText(PageLogin.Locators.zDisplayedusername);

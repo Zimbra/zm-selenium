@@ -53,10 +53,9 @@ public class CreateHtmlTask extends AjaxCommonTest {
 			put("zimbraPrefShowSelectionCheckbox", "TRUE");
 		}};
 	}
-
 	
 	@Test( description = "Create Simple Html task through GUI - verify through soap", 
-			groups = { "sanity" })
+			groups = { "sanity", "L0"})
 	
 	public void CreateHtmlTask_01() throws HarnessException {
 
@@ -78,10 +77,9 @@ public class CreateHtmlTask extends AjaxCommonTest {
 		ZAssert.assertStringContains(task.getHtmlTaskBody().trim().toLowerCase(), taskHtmlbody.trim(), "Verify the html content of task body");
 
 	}
-
 	
 	@Test( description = "Create new Html task using keyboard shortcut Esc- Verify through Soap", 
-			groups = { "smoke" })
+			groups = { "smoke", "L0"})
 	
 	public void CreateHtmlTask_02() throws HarnessException {
 
@@ -110,10 +108,9 @@ public class CreateHtmlTask extends AjaxCommonTest {
 		ZAssert.assertStringContains(task.getHtmlTaskBody().trim().toLowerCase(), taskHtmlbody.trim(), "Verify the html content of task body");
 
 	}
-
 	
 	@Test( description = "Create Html task using New menu pulldown  - verify through SOAP",	
-			groups = { "smoke" })
+			groups = { "smoke", "L0"})
 	
 	public void CreateHtmlTask_03() throws HarnessException {
 
@@ -135,10 +132,9 @@ public class CreateHtmlTask extends AjaxCommonTest {
 		ZAssert.assertStringContains(task.getHtmlTaskBody().trim().toLowerCase(), taskHtmlbody.trim(), "Verify the html content of task body");
 
 	}
-
 	
 	@Test( description = "Create new Html task using keyboard shortcut 'NK'- Verify through Soap",
-			groups = { "smoke" })
+			groups = { "smoke", "L0"})
 	
 	public void CreateHtmlTask_04() throws HarnessException {
 
@@ -166,10 +162,9 @@ public class CreateHtmlTask extends AjaxCommonTest {
 		ZAssert.assertStringContains(task.getHtmlTaskBody().trim().toLowerCase(), taskHtmlbody.trim(), "Verify the html content of task body");
 
 	}
-
 	
 	@Test( description = "Create Html Tasks, using 'Right Click' Html Mail subject -> 'Create Task'-Verify through Soap", 
-			groups = { "smoke" })
+			groups = { "smoke", "L0"})
 	
 	public void CreateHtmlTask_05() throws HarnessException {
 
@@ -228,9 +223,8 @@ public class CreateHtmlTask extends AjaxCommonTest {
 		
 	}
 	
-	
 	@Test( description = "Create Html task with attachment through RestUtil - verify through GUI", 
-			groups = { "smoke" })
+			groups = { "smoke", "L0"})
 	
 	public void CreateHtmlTask_06() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -278,9 +272,8 @@ public class CreateHtmlTask extends AjaxCommonTest {
 		
 	}
 	
-	
 	@Test( description = "Create Html task with attachment through RestUtil - verify through Soap", 
-			groups = { "smoke" })
+			groups = { "smoke", "L0"})
 	
 	public void CreateHtmlTask_07() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

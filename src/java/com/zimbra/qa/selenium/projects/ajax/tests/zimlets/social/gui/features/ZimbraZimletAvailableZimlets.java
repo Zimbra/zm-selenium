@@ -25,9 +25,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
-public class ZimbraZimletAvailableZimlets extends AjaxCommonTest {
-
+	public class ZimbraZimletAvailableZimlets extends AjaxCommonTest {
 	
 	@SuppressWarnings("serial")
 	public ZimbraZimletAvailableZimlets() {
@@ -53,9 +51,7 @@ public class ZimbraZimletAvailableZimlets extends AjaxCommonTest {
 
 				}};
 
-
 	}
-	
 
 	/**
 	 * See http://bugzilla.zimbra.com/show_bug.cgi?id=61982 - WONTFIX
@@ -63,7 +59,7 @@ public class ZimbraZimletAvailableZimlets extends AjaxCommonTest {
 	 */
 	@Bugs(ids = "50123")
 	@Test( description = "Load the client with just Social enabled",
-			groups = { "deprecated" })
+			groups = { "deprecated", "L3" })
 	public void ZimbraZimletAvailableZimlets_01() throws HarnessException {
 		
 		ZAssert.assertTrue(app.zPageSocial.zIsActive(), "Verify the social page is active");

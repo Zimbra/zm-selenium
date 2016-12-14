@@ -46,10 +46,9 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 			}
 		};			
 	}
-	
 
 	@Test( description = "Drag task  from shared folder and drop into local task folder (manager rights)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void DragAndDropSharedTaskToLocalFolder() throws HarnessException {
 
@@ -157,7 +156,7 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 
 
 	@Test( description = "Drag task from local task folder to shared folder(manager rights)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void DragAndDropTaskToSharedFolder() throws HarnessException {
 

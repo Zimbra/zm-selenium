@@ -53,10 +53,9 @@ public class EditTask extends AjaxCommonTest{
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 		}};
 	}
-
 	
 	@Test( description = "Create task through SOAP - edit subject and verify through GUI",
-			groups = { "smoke" })
+			groups = { "smoke", "L0"})
 	
 	public void EditTask_01() throws HarnessException {
 
@@ -130,7 +129,6 @@ public class EditTask extends AjaxCommonTest{
 
 	}
 	
-	
 	/**
 	 * 	1. Go to Tasks
 	 * 	2. Create a new task with no due date
@@ -140,9 +138,10 @@ public class EditTask extends AjaxCommonTest{
 	 * 	   Expected result:Task should show due date
 	 * @throws HarnessException
 	 */
+	
 	@Bugs(ids="64647")
 	@Test( description = "Create task through SOAP - edit duedate >> Refresh task >>verify Due Date in list view through GUI",
-			groups = { "functional" })
+			groups = { "functional", "L1"})
 	
 	public void EditTask_02() throws HarnessException {
 
@@ -197,9 +196,8 @@ public class EditTask extends AjaxCommonTest{
 		ZAssert.assertEquals(actual.zGetTaskListViewProperty(com.zimbra.qa.selenium.projects.ajax.ui.tasks.DisplayTask.Field.DueDate), dueDate.toMM_DD_YYYY(), "Verify the due date matches after refresh");	
 	}
 	
-	
 	@Test( description = "Create task through SOAP - Edit task using Right Click Context Menu & verify through GUI",
-			groups = { "functional" })
+			groups = { "functional", "L1"})
 	
 	public void EditTask_03() throws HarnessException {
 

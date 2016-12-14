@@ -16,14 +16,12 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.smime;
 
-
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
-
 
 public class VerifySendLaterDisabled extends PrefGroupMailByMessageTest {
 
@@ -36,9 +34,9 @@ public class VerifySendLaterDisabled extends PrefGroupMailByMessageTest {
 	}
 	
     @Test( description = "Verify Send later is disabled when smime security preference is set to 'Sign Only' and 'Sign & Encrypt'",
-            groups = { "smime" })
+            groups = { "smime", "L1" })
 
-       public void VerifySendLaterDisabledForSigningOptions_01() throws HarnessException {
+    public void VerifySendLaterDisabledForSigningOptions_01() throws HarnessException {
 		
 	        String[] signingOptions = { "sign", "both" };
 
@@ -63,7 +61,7 @@ public class VerifySendLaterDisabled extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Verify Send later is enabled when smime security preference is set to 'Do not sign or encrypt'",
-			groups = { "smime" })
+			groups = { "smime", "L1" })
 	public void VerifySendLaterEnabledWhenDontSign_02() throws HarnessException {
 		
 		//Set Smime pref to do not sign or encrypt only
@@ -85,7 +83,7 @@ public class VerifySendLaterDisabled extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Verify Send later is disabled when smime security preference is set to 'sign only'",
-			groups = { "smime" })
+			groups = { "smime", "L1" })
 	public void VerifySendLaterEnabledWithSecureEmailOptions_03() throws HarnessException {
 				
 		// Open the new mail form

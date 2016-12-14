@@ -32,7 +32,8 @@ public class SearchContactGroup extends AjaxCommonTest {
 		super.startingPage = app.zPageContacts;
 	}
 
-	@Test(description = "Search for an existing contact group", groups = { "functional" })
+	@Test(description = "Search for an existing contact group", 
+			groups = { "functional","L2" })
 	public void SearchContactGroup_01() throws HarnessException {
 
 		// -- Data
@@ -67,7 +68,8 @@ public class SearchContactGroup extends AjaxCommonTest {
 	}
 
 	@Bugs(ids = "77950")
-	@Test(description = "Search for an existing contact group, by member", groups = { "deprecated" })
+	@Test(description = "Search for an existing contact group, by member",
+			groups = { "deprecated","L3" })
 	public void SearchContactGroup_02() throws HarnessException {
 
 		// -- Data

@@ -30,7 +30,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogMove;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.DialogCreateTaskFolder;
 
-
 public class MoveTask extends AjaxCommonTest {
 
 	@SuppressWarnings("serial")
@@ -45,8 +44,10 @@ public class MoveTask extends AjaxCommonTest {
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 		}};
 	}
+	
 	//@Bugs(ids="61471")
-	@Test( description = "Create task through SOAP - move & verify through GUI", groups = { "smoke" })
+	@Test( description = "Create task through SOAP - move & verify through GUI", 
+			groups = { "smoke", "L0"})
 	public void MoveTask_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -127,7 +128,9 @@ public class MoveTask extends AjaxCommonTest {
 		ZAssert.assertNotNull(movetask,	"Verify the task is moved to the selected folder");
 		
 	}
-	@Test( description = "Move a task by selecting task, then click 'm' shortcut", groups = { "functional" })
+	
+	@Test( description = "Move a task by selecting task, then click 'm' shortcut", 
+			groups = { "functional", "L2"})
 	public void MoveTask_02() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -210,9 +213,9 @@ public class MoveTask extends AjaxCommonTest {
 		}
 		ZAssert.assertNotNull(movetask,	"Verify the task is moved to the selected folder");
 	}
-	
 
-	@Test( description = "Create task through SOAP - move using Right Click Context Menu & verify through GUI", groups = { "functional" })
+	@Test( description = "Create task through SOAP - move using Right Click Context Menu & verify through GUI", 
+			groups = { "functional", "L1"})
 	public void MoveTask_03() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -296,7 +299,8 @@ public class MoveTask extends AjaxCommonTest {
 		ZAssert.assertNotNull(movetask,	"Verify the task is moved to the selected folder");
 	}
 	
-	@Test( description = "Move a task by using Move -> New folder & verify through GUI", groups = { "functional" })
+	@Test( description = "Move a task by using Move -> New folder & verify through GUI", 
+			groups = { "functional", "L2"})
 	public void MoveTask_04() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -368,7 +372,6 @@ public class MoveTask extends AjaxCommonTest {
 		}
 		ZAssert.assertNotNull(movetask,	"Verify the task is moved to the newTasklist");
 	}
-	
 	
 	@AfterMethod(groups = { "always" })
 	public void afterMethod() throws HarnessException {

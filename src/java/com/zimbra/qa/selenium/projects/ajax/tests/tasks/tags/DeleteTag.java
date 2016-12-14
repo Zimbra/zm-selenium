@@ -43,7 +43,8 @@ public class DeleteTag extends AjaxCommonTest {
 		};
 	}
 
-	@Test( description = "Delete a tag - Right click, Delete", groups = { "smoke" })
+	@Test( description = "Delete a tag - Right click, Delete", 
+			groups = { "smoke", "L1"})
 	public void DeleteTag_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

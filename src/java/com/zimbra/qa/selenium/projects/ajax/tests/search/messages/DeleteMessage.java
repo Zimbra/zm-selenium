@@ -24,22 +24,18 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 
-
 public class DeleteMessage extends PrefGroupMailByMessageTest {
 
 	public DeleteMessage() {
 		logger.info("New "+ DeleteMessage.class.getCanonicalName());
 		
-		
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
-
 		
 	}
 	
 	@Test( description = "From search: Delete a mail using toolbar delete button",
-			groups = { "smoke" })
+			groups = { "smoke","L1" })
 	public void DeleteMail_01() throws HarnessException {
-		
 		
 		//-- Data
 		
@@ -60,8 +56,6 @@ public class DeleteMessage extends PrefGroupMailByMessageTest {
 					"</SendMsgRequest>");
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-		
-		
 		
 		//-- GUI
 		
@@ -86,7 +80,6 @@ public class DeleteMessage extends PrefGroupMailByMessageTest {
 			app.zPageSearch.zClose();
 		}
 
-
 		//-- Verification
 		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:("+ subject +")");
@@ -94,6 +87,5 @@ public class DeleteMessage extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(message.dFolderId, trash.getId(), "Verify the message exists in the correct folder");
 
 	}
-
 
 }

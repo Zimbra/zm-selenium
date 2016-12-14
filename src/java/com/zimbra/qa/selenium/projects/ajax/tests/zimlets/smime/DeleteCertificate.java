@@ -25,7 +25,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-
 public class DeleteCertificate extends AjaxCommonTest {
 
 	public DeleteCertificate() {
@@ -34,7 +33,7 @@ public class DeleteCertificate extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that certificate can be deleted from web-client", priority=4, 
-			groups = { "smime"})
+			groups = { "smime", "L1"})
 	
 	public void DeleteCertificate_01() throws HarnessException  {
 		ZimbraAccount user3 = new ZimbraAccount("user3"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);

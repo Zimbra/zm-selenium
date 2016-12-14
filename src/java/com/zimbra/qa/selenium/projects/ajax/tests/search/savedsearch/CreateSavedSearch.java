@@ -28,7 +28,6 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.search.DialogSaveSearch;
 
-
 //TODO: add more in ContactItem.java
 
 public class CreateSavedSearch extends AjaxCommonTest  {
@@ -40,13 +39,11 @@ public class CreateSavedSearch extends AjaxCommonTest  {
 		super.startingPage = app.zPageMail;
 
 		// Make sure we are using an account with conversation view
-				
 		
 	}
 	
-	
 	@Test( description = "Create a basic saved search",
-			groups = { "sanity" })
+			groups = { "sanity","L0" })
 	
 	public void CreateSavedSearch_01() throws HarnessException {				
 				

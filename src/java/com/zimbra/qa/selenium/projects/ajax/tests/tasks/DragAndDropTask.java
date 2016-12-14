@@ -24,11 +24,10 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
 public class DragAndDropTask extends AjaxCommonTest {
 
 	@SuppressWarnings("serial")
-	public DragAndDropTask() {
+public DragAndDropTask() {
 		logger.info("DragAndDropTask " + DragAndDropTask.class.getCanonicalName());		
 		super.startingPage = app.zPageTasks;
 		
@@ -38,9 +37,8 @@ public class DragAndDropTask extends AjaxCommonTest {
 		}};
 	}
 	
-	
 	@Test( description = "Drag and Drop a task from Tasks to subfolder", 
-			groups = { "smoke" })
+			groups = { "smoke", "L1"})
 	
 	public void DragAndDropTask_01() throws HarnessException {
 

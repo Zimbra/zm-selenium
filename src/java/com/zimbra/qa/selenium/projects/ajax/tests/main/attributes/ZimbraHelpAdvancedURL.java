@@ -36,7 +36,7 @@ public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 	
 	@Bugs(ids = "101023")
 	@Test(description = "Verify the product help URL", priority=5, 
-		groups = { "functional" })
+		groups = { "functional", "L3"})
 
 	public void ZimbraHelpAdvancedURL_01() throws HarnessException {
 
