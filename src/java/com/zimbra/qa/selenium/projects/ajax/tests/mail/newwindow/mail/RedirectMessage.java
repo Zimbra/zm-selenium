@@ -31,7 +31,7 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Redirect message, using 'Redirect' toolbar button - in separate window",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void RedirectMessage_01() throws HarnessException {
 		
 		String subject = "subject"+ ConfigProperties.getUniqueString();

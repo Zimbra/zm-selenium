@@ -35,7 +35,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 
 	@Bugs( ids = "13911,11684")
 	@Test( description = "Verify bug 13911",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void CheckMailContentForSpecificMime_01() throws HarnessException {
 		
@@ -60,7 +60,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 	}
 	
 	@Bugs( ids = "21415")
-	@Test( description = "Verify bug 21415", groups = { "functional" })
+	@Test( description = "Verify bug 21415", groups = { "functional", "L2" })
 	
 	public void CheckMailContentForSpecificMime_02() throws HarnessException {
 
@@ -87,7 +87,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 	}
 	
 	@Bugs( ids = "21415")
-	@Test( description = "Verify bug 21415", groups = { "functional" })
+	@Test( description = "Verify bug 21415", groups = { "functional", "L2" })
 	
 	public void CheckMailContentForSpecificMime_03() throws HarnessException {
 
@@ -114,7 +114,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 	}
 	
 	@Bugs( ids = "25624")
-	@Test( description = "Verify bug 25624", groups = { "functional" })
+	@Test( description = "Verify bug 25624", groups = { "functional", "L2" })
 	
 	public void CheckMailContentForSpecificMime_04() throws HarnessException {
 
@@ -134,7 +134,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 	}
 	
 	@Bugs( ids = "27796")
-	@Test( description = "Verify bug 27796", groups = { "functional" })
+	@Test( description = "Verify bug 27796", groups = { "functional", "L2" })
 	
 	public void CheckMailContentForSpecificMime_05() throws HarnessException {
 
@@ -157,7 +157,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 	}
 	
 	@Bugs(ids="83527")
-	@Test( description = "Verify bug 34401", groups = { "functional" })
+	@Test( description = "Verify bug 34401", groups = { "functional", "L2" })
 	
 	public void CheckMailContentForSpecificMime_06() throws HarnessException {
 
@@ -178,7 +178,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 	}
 	
 	@Bugs( ids = "66192")
-	@Test( description = "Blank body with JS error on viewing some messages", groups = { "functional" })
+	@Test( description = "Blank body with JS error on viewing some messages", groups = { "functional", "L2" })
 	
 	public void CheckMailContentForSpecificMime_07() throws HarnessException {
 

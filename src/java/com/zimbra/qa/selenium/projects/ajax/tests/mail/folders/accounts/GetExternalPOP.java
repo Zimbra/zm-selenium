@@ -48,7 +48,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "View an external folder - POP",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void GetExternalPOP_01() throws HarnessException {
 		
 		
@@ -158,7 +158,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "POP: get updates from the external account - 'refresh' button",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetExternalPOP_02() throws HarnessException {
 		
 		// Create the external data source on the same server
@@ -279,7 +279,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "POP: get updates from the external account - right click -> sync",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetExternalPOP_03() throws HarnessException {
 		
 		// Create the external data source on the same server

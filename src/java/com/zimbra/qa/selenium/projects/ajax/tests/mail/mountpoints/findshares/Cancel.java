@@ -40,7 +40,7 @@ public class Cancel extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Open the find shares dialog.  Cancel the dialog.",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void CancelFindShares_01() throws HarnessException {
 		
 

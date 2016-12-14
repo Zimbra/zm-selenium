@@ -38,7 +38,7 @@ public class Forward extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Forward a mail with attachment - Verify attachment sent",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void Forward_01() throws HarnessException {
 		

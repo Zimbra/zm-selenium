@@ -32,7 +32,7 @@ public class FromExternalPOP extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Compose message from - External POP",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void FromExternalPOP_01() throws HarnessException {
 		

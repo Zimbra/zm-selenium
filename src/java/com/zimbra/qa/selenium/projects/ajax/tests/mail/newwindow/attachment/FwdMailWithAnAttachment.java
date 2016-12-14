@@ -34,7 +34,7 @@ public class FwdMailWithAnAttachment extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Forward a mail  with an attachment by pressing Forward button>>attach - in separate window",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void FwdMailWithAnAttachment_01() throws HarnessException {
 

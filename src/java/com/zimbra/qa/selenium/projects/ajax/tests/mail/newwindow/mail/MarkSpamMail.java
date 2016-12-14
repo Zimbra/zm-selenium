@@ -37,7 +37,7 @@ public class MarkSpamMail extends PrefGroupMailByMessageTest {
 	}
 	@Bugs( ids = "103950")
 	@Test( description = "Mark a message as spam, using 'Spam' toolbar button - in separate window",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void MarkSpamMail_01() throws HarnessException {
 		
 		String subject = "subject"+ ConfigProperties.getUniqueString();
@@ -96,7 +96,7 @@ public class MarkSpamMail extends PrefGroupMailByMessageTest {
 
 	@Bugs( ids = "103950")
 	@Test( description = "Mark a message as spam, using keyboard shortcut (keyboard='ms') - in a separate window",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void MarkSpamMail_02() throws HarnessException {
 		
 		String subject = "subject"+ ConfigProperties.getUniqueString();

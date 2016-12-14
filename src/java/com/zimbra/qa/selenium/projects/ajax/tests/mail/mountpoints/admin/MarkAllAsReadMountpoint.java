@@ -40,7 +40,7 @@ public class MarkAllAsReadMountpoint extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Mark all messages as read in folder (context menu)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void MarkAllAsReadMountpoint_01() throws HarnessException {
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();

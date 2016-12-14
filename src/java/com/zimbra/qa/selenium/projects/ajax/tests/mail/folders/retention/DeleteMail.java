@@ -33,7 +33,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Delete a mail that falls within the retention time", groups = { "functional" })
+	@Test(description = "Delete a mail that falls within the retention time", groups = { "functional", "L2" })
 	public void DeleteMail_01() throws HarnessException {
 
 		// -- Data
@@ -110,7 +110,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test(description = "Delete a mail that falls within the retention time - click cancel to the confirmation", groups = {
-			"functional" })
+			"functional", "L2" })
 	public void DeleteMail_02() throws HarnessException {
 
 		// -- Data
@@ -184,7 +184,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut", groups = { "functional" })
+	@Test(description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut", groups = { "functional", "L2" })
 	public void HardDeleteMail_01() throws HarnessException {
 
 		// -- Data
@@ -273,7 +273,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test(description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut - click cancel to the confirmation", groups = {
-			"functional" })
+			"functional", "L2" })
 	public void HardDeleteMail_02() throws HarnessException {
 
 		// -- Data

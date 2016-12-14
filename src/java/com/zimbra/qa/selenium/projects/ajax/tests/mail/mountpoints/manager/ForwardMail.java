@@ -36,7 +36,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Forward (on behalf of) to a message in a shared folder (admin rights)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void ForwardMail_01() throws HarnessException {
 
@@ -136,7 +136,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 	}
 	@Bugs(ids="102475")
 	@Test( description = "Forward (on behalf of) to a message in a shared folder (admin rights)  - no SOBO rights",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void ForwardMail_02() throws HarnessException {
 

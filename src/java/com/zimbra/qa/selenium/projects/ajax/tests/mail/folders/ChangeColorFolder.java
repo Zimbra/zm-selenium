@@ -37,7 +37,7 @@ public class ChangeColorFolder extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test( description = "Edit a folder, change the color (Context menu -> Edit)", groups = { "functional" })
+	@Test( description = "Edit a folder, change the color (Context menu -> Edit)", groups = { "functional", "L2" })
 	public void ChangeColorFolder_01() throws HarnessException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(),

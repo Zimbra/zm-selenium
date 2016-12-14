@@ -40,7 +40,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	
 	@Bugs( ids = "98054")
 	@Test( description = "Delete a mail using toolbar delete button",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void DeleteMail_01() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -84,7 +84,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Delete a mail using checkbox and toolbar delete button",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void DeleteMail_02() throws HarnessException {
 		
@@ -137,7 +137,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Delete a mail by selecting and typing 'delete' keyboard",
-			groups = { "functional" },
+			groups = { "functional", "L2" },
 			dataProvider = "DataProviderDeleteKeys")
 	public void DeleteMail_03(String name, int keyEvent) throws HarnessException {
 		
@@ -184,7 +184,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Delete a mail by selecting and typing '.t' shortcut",
-			groups = { "functional" } )
+			groups = { "functional", "L2" } )
 	public void DeleteMail_04() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -229,7 +229,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Delete multiple messages (3) by select and toolbar delete",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void DeleteMail_05() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -312,7 +312,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Delete a mail using context menu delete button",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void DeleteMail_06() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -354,7 +354,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Verify that a mail which was present towards bottom of the list does not appear after deleting it.",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void DeleteMail_07() throws HarnessException, AWTException {
 
@@ -423,7 +423,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 	@Bugs( ids = "53564")
 	@Test( description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut",
-			groups = { "functional" } )
+			groups = { "functional", "L2" } )
 	public void HardDeleteMail_08() throws HarnessException {
 		app.zGetActiveAccount().soapSend(
 				"<GetFolderRequest xmlns='urn:zimbraMail'/>");
@@ -470,7 +470,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 	@Bugs( ids = "53564")
 	@Test( description = "Hard-delete multiple messages (3) by selecting and typing 'shift-del' shortcut",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void HardDeleteMail_09() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -557,7 +557,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Delete a mail from trash - confirm warning dialog",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void DeleteMailFromTrash_10() throws HarnessException {
 		
 		
@@ -629,7 +629,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Delete multiple messages (3) from trash by select and toolbar delete - confirm warning dialog",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void DeleteMailFromTrash_11() throws HarnessException {
 		
 		
@@ -761,7 +761,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 	@Bugs(ids = "79188")
 	@Test( description = "Delete a message from drafts",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void DeleteMailFromDrafts_12() throws HarnessException {
 		
 		//-- DATA

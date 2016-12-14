@@ -31,7 +31,7 @@ public class CreateShare extends PrefGroupMailByMessageTest {
 		logger.info("New "+ CreateShare.class.getCanonicalName());
 	}
 	
-	@Test( description = "Share a folder - External", groups = { "smoke" })
+	@Test( description = "Share a folder - External", groups = { "smoke", "L1" })
 	
 	public void CreateShare_01() throws HarnessException {
 		

@@ -72,7 +72,7 @@ public class FromAllowAddress extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Send a mail using zimbraAllowFromAddress",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void FromAllowAddress_01() throws HarnessException {
 		
 		// Create the message data to be sent

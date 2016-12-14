@@ -33,7 +33,7 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 	}
 	
 	@Test( description = "Receive a conversation",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void GetConversation01() throws HarnessException {
 		
 		

@@ -35,7 +35,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Reply to a message sent to test account (To field) - verify only the sender is used",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ReplyMail_01() throws HarnessException {
 
 		//-- DATA
@@ -85,7 +85,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Reply to a message sent to test account (cc field) - verify only the sender is used",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ReplyMail_02() throws HarnessException {
 
 		//-- DATA
@@ -135,7 +135,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Reply to a message sent from test account (From field) - verify only the sender is used",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ReplyMail_03() throws HarnessException {
 
 		//-- DATA
@@ -204,7 +204,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Reply to a message - Verify no drafts saved",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ReplyMail_04() throws HarnessException {
 
 		//-- DATA

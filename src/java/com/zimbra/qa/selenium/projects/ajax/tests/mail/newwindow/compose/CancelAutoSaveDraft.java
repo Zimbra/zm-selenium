@@ -19,7 +19,7 @@ public class CancelAutoSaveDraft extends PrefGroupMailByMessageTest {
 
 
 	@Bugs(ids = "99875")
-	@Test( description = "Bug 99875 - 'Message gets auto saved while clicking cancel and 'Auto draft save'= No, from New window ", groups = { "functional" })
+	@Test( description = "Bug 99875 - 'Message gets auto saved while clicking cancel and 'Auto draft save'= No, from New window ", groups = { "functional", "L2" })
 
 	public void CancelAutoSaveDraft_01() throws HarnessException {
 

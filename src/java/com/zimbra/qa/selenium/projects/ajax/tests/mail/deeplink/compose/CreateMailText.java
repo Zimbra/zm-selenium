@@ -34,7 +34,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Create a text mail using the deep link URL",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void CreateMailText_01() throws HarnessException {
 		
 		

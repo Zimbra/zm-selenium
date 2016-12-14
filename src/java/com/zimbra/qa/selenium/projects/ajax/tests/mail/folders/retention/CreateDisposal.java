@@ -33,7 +33,7 @@ public class CreateDisposal extends PrefGroupMailByMessageTest {
 
 	@Test(
 			description = "Save a new basic disposal on a folder (Context menu -> Edit -> Retention)", 
-			groups = { "smoke" }
+			groups = { "smoke", "L1" }
 			)
 	public void CreateDisposal_01() throws HarnessException {
 
@@ -98,7 +98,7 @@ public class CreateDisposal extends PrefGroupMailByMessageTest {
 
 	@Test(
 			description = "Create day, week, month, year disposals", 
-			groups = { "functional" },
+			groups = { "functional", "L2" },
 			dataProvider = "DataProviderRetentions"
 				)
 	public void CreateDisposal_02(DialogEditFolder.RetentionRangeUnits units, String expected) throws HarnessException {

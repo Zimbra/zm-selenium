@@ -40,7 +40,7 @@ public class EditShare extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "Share and edit folder with admin rights",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void EditShare_01() throws HarnessException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);

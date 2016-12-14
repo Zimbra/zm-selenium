@@ -39,7 +39,7 @@ public class OpenMail extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Double click a mail",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void OpenMail_01() throws HarnessException {
 		
 		// Create the message data to be sent

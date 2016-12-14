@@ -42,7 +42,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	
 	
 	@Test( description = "Receive an ics file in the email and add to calendar",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void AddToCalendar_01() throws HarnessException {
 
@@ -114,7 +114,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	
 	@Bugs(ids = "49734")
 	@Test( description = "JS error (t is undefined) while click to 'Add to Calendar' when viewing in separate window",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void AddToCalendar_NewWindow_02() throws HarnessException {
 
@@ -182,7 +182,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	
 	@Bugs(ids = "51442")
 	@Test( description = "Js error (ZmNewCalendarDialog is not defined) while pressing New Calendar from new window and can't open new calendar dialog",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void AddToCalendar_NewWindow_03() throws HarnessException {
 		
@@ -268,7 +268,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	
 	@Bugs(ids = "49734")
 	@Test( description = "Bug 49734 - JS error (t is undefined) while click to 'Add to Calendar' when viewing in separate window",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void AddToCalendar_rfc822Attachment_04() throws HarnessException {
 
@@ -324,7 +324,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	
 	@Bugs(ids = "107000")
 	@Test( description = "Bug 77131 - Cannot 'add to calendar' an ics into a shared calendar",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void AddToCalendar_SharedCalendar_05() throws HarnessException {
 		
@@ -421,7 +421,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	
 	@Bugs(ids = "102578")
 	@Test( description = "Links in email messages to .ics files should provide method to add to calendar",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void AddToCalendar_icsLink_06() throws HarnessException {
 

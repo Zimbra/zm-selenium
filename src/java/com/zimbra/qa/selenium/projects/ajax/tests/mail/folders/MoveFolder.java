@@ -34,7 +34,7 @@ public class MoveFolder extends PrefGroupMailByMessageTest {
 	
 	
 	@Test( description = "Move a folder - Right click, Move",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void MoveFolder_01() throws HarnessException {
 		

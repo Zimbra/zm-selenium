@@ -40,7 +40,7 @@ public class CreateMountpoint extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Receive an invitation to a shared folder, accept it.",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void CreateMountpoint_01() throws HarnessException {
 		
 		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();

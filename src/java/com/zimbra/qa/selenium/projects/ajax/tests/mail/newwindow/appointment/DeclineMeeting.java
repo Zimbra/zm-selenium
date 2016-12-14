@@ -70,7 +70,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 	@Test(
 			description = " From New Windoow Decline a meeting using Decline button from invitation message", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void DeclineMeeting_01() throws HarnessException {
 
 
@@ -192,7 +192,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 	@Test(
 			description = " From New Window >>Decline meeting - Verify organizer gets notification message", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void DeclineMeeting_02() throws HarnessException {
 
 
@@ -266,7 +266,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 	@Test(
 			description = "From New Window >>Decline meeting using 'Decline -> Notify Organizer'", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void DeclineMeeting_03() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -390,7 +390,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 	@Test(
 			description = "Decline meeting using 'Decline -> Don't Notify Organizer'", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void DeclineMeeting_04() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------

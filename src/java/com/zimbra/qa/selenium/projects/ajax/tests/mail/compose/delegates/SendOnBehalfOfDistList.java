@@ -32,7 +32,7 @@ public class SendOnBehalfOfDistList extends PrefGroupMailByMessageTest {
 	
 	
 	@Test( description = "Send On Behalf Of Distribution List",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void SendOnBehalfOfDistList_01() throws HarnessException {
 		

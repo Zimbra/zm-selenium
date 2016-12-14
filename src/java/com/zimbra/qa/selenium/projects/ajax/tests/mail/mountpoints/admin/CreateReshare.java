@@ -42,7 +42,7 @@ public class CreateReshare extends PrefGroupMailByMessageTest {
 	 */
 	@Bugs(ids = "68760")
 	@Test( description = "Reshare a folder that is shared as admin",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void CreateReshare_01() throws HarnessException {
 
 		// Create the owner and destination accounts
