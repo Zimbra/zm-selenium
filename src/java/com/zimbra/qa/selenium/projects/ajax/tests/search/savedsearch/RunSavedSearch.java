@@ -25,7 +25,6 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
 //TODO: add more in ContactItem.java
 
 public class RunSavedSearch extends AjaxCommonTest  {
@@ -44,9 +43,8 @@ public class RunSavedSearch extends AjaxCommonTest  {
 		
 	}
 	
-	
 	@Test( description = "Run a saved search",
-			groups = { "smoke" })
+			groups = { "smoke","L0" })
 	public void RunSavedSearch_01() throws HarnessException {				
 				
 			

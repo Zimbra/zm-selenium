@@ -37,7 +37,7 @@ public class CreateFilter extends PrefGroupMailByMessageTest {
 	}
 
 	@Bugs(ids="88916")
-	@Test( description = "Verify Add Filter dialog from new window action menu -> Create Filter", groups = { "smoke" })
+	@Test( description = "Verify Add Filter dialog from new window action menu -> Create Filter", groups = { "smoke", "L1" })
 	public void CreatefilterFromNewWindow() throws HarnessException {
 
 		// Create the message data to be sent

@@ -33,7 +33,7 @@ public class CreateShare extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Share a folder - Viewer",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void CreateShare_01() throws HarnessException {
 		
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
@@ -93,7 +93,7 @@ public class CreateShare extends PrefGroupMailByMessageTest {
 
 	
 	@Test( description = "Share a folder - Manager",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void CreateShare_02() throws HarnessException {
 		
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);

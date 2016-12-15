@@ -35,7 +35,7 @@ public class DeleteTag extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Delete a tag - Right click, Delete",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void DeleteTag_01() throws HarnessException {
 		
 		

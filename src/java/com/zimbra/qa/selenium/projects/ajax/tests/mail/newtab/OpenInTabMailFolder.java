@@ -42,7 +42,7 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Verify Open in new tab option for mail app - Inbox",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void OpenInTabMailFolder_01() throws HarnessException {
 
 		// Create the message data to be sent
@@ -86,7 +86,7 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Verify Open in new tab option for mail app - Draft",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void OpenInTabMailFolder_02() throws HarnessException {
 
 		// Create the message data to be sent
@@ -133,7 +133,7 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Verify Open in new tab option for mail app - Custom folder",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void OpenInTabMailFolder_03() throws HarnessException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);

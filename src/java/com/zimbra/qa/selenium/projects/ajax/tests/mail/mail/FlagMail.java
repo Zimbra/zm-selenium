@@ -38,7 +38,7 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Flag a mail  clicking flagged icon",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void FlagMail_01() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -95,7 +95,7 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 
 	
 	@Test( description = "Flag a mail by using shortcut 'mf'",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void FlagMail_02() throws HarnessException {
 		
 		// Create the message data to be sent

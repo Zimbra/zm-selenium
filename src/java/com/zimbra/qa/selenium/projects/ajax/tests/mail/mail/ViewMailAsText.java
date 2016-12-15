@@ -50,7 +50,7 @@ public class ViewMailAsText extends AjaxCommonTest {
 	
 	
 	@Test( description = "zimbraPrefMessageViewHtmlPreferred=FALSE: Receive message with text only parts - should be rendered as text",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ViewMail_01() throws HarnessException {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email04/mimeTextOnly.txt";
@@ -71,7 +71,7 @@ public class ViewMailAsText extends AjaxCommonTest {
 	}
 
 	@Test( description = "zimbraPrefMessageViewHtmlPreferred=FALSE: Receive message with html only parts - should be rendered as text conversion",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ViewMail_02() throws HarnessException {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email04/mimeHtmlOnly.txt";
@@ -96,7 +96,7 @@ public class ViewMailAsText extends AjaxCommonTest {
 	}
 	
 	@Test( description = "zimbraPrefMessageViewHtmlPreferred=FALSE: Receive message with text and html  parts - should be rendered as text",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ViewMail_03() throws HarnessException {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email04/mimeTextAndHtml.txt";

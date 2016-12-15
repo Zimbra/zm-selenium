@@ -41,7 +41,7 @@ public class ZimbraPrefMailPollingIntervalAsMailArrives extends PrefGroupMailByM
 	}
 	
 	@Test( description = "Receive a mail with - As Mail Arrives set",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ZimbraPrefMailPollingIntervalAsMailArrives_01() throws HarnessException {
 		
 		

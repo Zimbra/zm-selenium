@@ -43,7 +43,7 @@ public class AutoCompleteQuickCompleteKeys extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Type comma (',') to automatically accept autocomplete",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void AutoCompleteQuickCompleteKeys_01() throws HarnessException {
 		
@@ -81,7 +81,7 @@ public class AutoCompleteQuickCompleteKeys extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Type semicolon (';') to automatically accept autocomplete",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void AutoCompleteQuickCompleteKeys_02() throws HarnessException {
 		
@@ -118,7 +118,7 @@ public class AutoCompleteQuickCompleteKeys extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Type tab ('	') to automatically accept autocomplete",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void AutoCompleteQuickCompleteKeys_03() throws HarnessException {
 		

@@ -40,7 +40,7 @@ public class AddToContactsAddressContextMenu extends PrefGroupMailByMessageTest 
 	
 	@Bugs(ids = "102204")
 	@Test( description = "Right click to bubble address >> AddToContact", 
-		groups = { "smoke" })
+		groups = { "smoke", "L1" })
 	
 	public void AddToContactAddressContextMenu_01() throws HarnessException {
 

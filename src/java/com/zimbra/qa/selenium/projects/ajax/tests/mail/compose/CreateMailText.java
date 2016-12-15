@@ -37,7 +37,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Send a mail using Text editor", 
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	
 	public void CreateMailText_01() throws HarnessException {
 		
@@ -66,7 +66,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Send a multiline plain text mail using Text editor", 
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	
 	public void CreateMailWithMultilineText_02() throws HarnessException {
 		
@@ -113,7 +113,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	
 	
 	@Test( description = "Send a mail using Text editor using keyboard shortcuts",
-			groups = { "functional" },
+			groups = { "functional", "L2" },
 			dataProvider = "DataProvideNewMessageShortcuts")
 	
 	public void CreateMailText_03(Shortcut shortcut, String keys) throws HarnessException {
@@ -146,7 +146,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test( description = "Send a mail with CC", groups = { "functional" })
+	@Test( description = "Send a mail with CC", groups = { "functional", "L2" })
 	
 	public void CreateMailText_04() throws HarnessException {
 		
@@ -190,7 +190,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test( description = "Send a mail with BCC", groups = { "functional" })
+	@Test( description = "Send a mail with BCC", groups = { "functional", "L2" })
 	
 	public void CreateMailText_05() throws HarnessException {
 		
@@ -240,7 +240,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Send a mail with different priorities high/normal/low",
-			groups = { "functional" },
+			groups = { "functional", "L2" },
 			dataProvider = "DataProvidePriorities")
 	
 	public void CreateMailText_06(Button option, String verify) throws HarnessException {

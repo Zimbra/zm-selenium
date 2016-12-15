@@ -30,7 +30,7 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 		logger.info("New " + UnFlagMail.class.getCanonicalName());
 	}
 
-	@Test(description = "Un-Flag a mail by clicking flagged icon", groups = { "smoke" })
+	@Test(description = "Un-Flag a mail by clicking flagged icon", groups = { "smoke", "L1" })
 	public void UnFlagMail_01() throws HarnessException {
 
 		// Create the message data to be sent
@@ -80,7 +80,7 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Un-Flag a mail by using shortcut 'mf'", groups = { "functional" })
+	@Test(description = "Un-Flag a mail by using shortcut 'mf'", groups = { "functional", "L2" })
 	public void UnFlagMail_02() throws HarnessException {
 
 		// Create the message data to be sent

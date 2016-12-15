@@ -25,7 +25,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Locat
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 import com.zimbra.qa.selenium.projects.ajax.ui.zimlet.DialogPasswordRequired;
 
-
 public class UploadCertificate extends AjaxCommonTest {
 
 	public UploadCertificate() {
@@ -34,7 +33,7 @@ public class UploadCertificate extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that certificate which requires password can be uploaded successfully", priority=2, 
-			groups = { "smime"})
+			groups = { "smime", "L0"})
 	
 	public void UploadCertificateWithPassword_01() throws HarnessException  {
 		
@@ -96,9 +95,9 @@ public class UploadCertificate extends AjaxCommonTest {
 	}
 	
 	@Test ( description = "Verify that certificate which does not require password can be uploaded successfully", priority=2, 
-			groups = { "smime"})	
+			groups = { "smime", "L0"})	
 	
-public void UploadCertificateWithoutPassword_02() throws HarnessException  {
+	public void UploadCertificateWithoutPassword_02() throws HarnessException  {
 		
 		//Create specific account due to certificate restrictions
 		ZimbraAccount user2 = new ZimbraAccount("user2"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);

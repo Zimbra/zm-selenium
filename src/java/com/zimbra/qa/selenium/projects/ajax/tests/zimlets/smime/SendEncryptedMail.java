@@ -33,7 +33,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.zimlet.DialogViewCertificate;
 
-
 public class SendEncryptedMail extends AjaxCommonTest {
 
 	public SendEncryptedMail() {
@@ -42,7 +41,7 @@ public class SendEncryptedMail extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that Signed and encrypted message can be sent from Web-client correctly and user can view it", priority=4, 
-			groups = { "smime"})
+			groups = { "smime", "L0"})
 	
 	public void SendEncryptedMail_01() throws HarnessException  {
 		ZimbraAccount user3 = new ZimbraAccount("user3"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);

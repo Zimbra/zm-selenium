@@ -43,7 +43,7 @@ public class ChangeColorMountpoint extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Edit a folder, change the color (Context menu -> Edit)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ChangeColorMountpoint_01() throws HarnessException {
 		
 		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();

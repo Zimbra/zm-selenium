@@ -36,7 +36,7 @@ public class RevokeShare extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Revoke a folder share - External",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void RevokeShare_01() throws HarnessException {
 		
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);

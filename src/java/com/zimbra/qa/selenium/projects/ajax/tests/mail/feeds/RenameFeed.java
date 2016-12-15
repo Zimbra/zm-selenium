@@ -36,7 +36,7 @@ public class RenameFeed extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "Rename a feed folder - Context menu -> Rename",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 
 	public void RenameFeed_01() throws HarnessException, MalformedURLException {
 

@@ -26,9 +26,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-
 public class PriorityTask extends AjaxCommonTest {
-
 	
 	public PriorityTask() {
 		logger.info("New "+ PriorityTask.class.getCanonicalName());
@@ -38,7 +36,7 @@ public class PriorityTask extends AjaxCommonTest {
 	}
 	
 	@Test( description = "View a high priority task (priority=1)",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	public void PriorityTask_01() throws HarnessException {
 		
 		//-- DATA
@@ -90,7 +88,7 @@ public class PriorityTask extends AjaxCommonTest {
 	}
 
 	@Test( description = "View a low priority task (priority=9)",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	public void PriorityTask_02() throws HarnessException {
 		
 		//-- DATA
@@ -142,7 +140,7 @@ public class PriorityTask extends AjaxCommonTest {
 	}
 
 	@Test( description = "View a normal priority task (priority=5)",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	public void PriorityTask_03() throws HarnessException {
 		
 		//-- DATA
@@ -192,7 +190,5 @@ public class PriorityTask extends AjaxCommonTest {
 
 		ZAssert.assertEquals(found.gPriority, "normal", "Verify the task has normal priority");
 	}
-
-
 
 }

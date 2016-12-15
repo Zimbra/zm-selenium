@@ -46,7 +46,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Autocomplete using the GAL - First Name",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteGAL_01() throws HarnessException {
 		
 		// Message properties
@@ -91,7 +91,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Autocomplete using the GAL - Partial First Name",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteGAL_02() throws HarnessException {
 		
 		// Message properties
@@ -138,7 +138,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Autocomplete using the GAL - Last Name",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteGAL_03() throws HarnessException {
 		
 		// Message properties
@@ -185,7 +185,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Autocomplete using the GAL - Partial Last Name",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteGAL_04() throws HarnessException {
 		
 		// Message properties
@@ -232,7 +232,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Autocomplete using the GAL - Full Name",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteGAL_05() throws HarnessException {
 		
 		// Message properties
@@ -279,7 +279,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Autocomplete using the GAL - First Name and Last Initial",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteGAL_07() throws HarnessException {
 		
 		// Message properties
@@ -327,7 +327,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "Autocomplete using the GAL - Multiple Matches",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteGAL_08() throws HarnessException {
 		int count = 3;
 		
@@ -365,7 +365,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Autocomplete using the GAL - No Matches",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteGAL_09() throws HarnessException {
 		
 		// Message properties
@@ -394,7 +394,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 
 	@Bugs( ids = "45815")
 	@Test( description = "Autocomplete using the GAL - Apostrophe character",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteGAL_10() throws HarnessException {
 		
 		final String givenName = "Thomas" + ConfigProperties.getUniqueString();
@@ -453,7 +453,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 
 	@Bugs(ids = "47045")
 	@Test( description = "Autocomplete including a period/dot '.' in the string",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteGAL_Bug47045A() throws HarnessException {
 		
 
@@ -502,7 +502,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 
 	@Bugs(ids = "47045")
 	@Test( description = "Autocomplete including a period/dot '.' in the string",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteGAL_Bug47045B() throws HarnessException {
 		
 
@@ -551,7 +551,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 
 	@Bugs(ids = "40959, 65081")
 	@Test( description = "Autocomplete on 'mike m' should not return all 'mike' names, only those with last name starting with 'm'",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteGAL_Bug40959() throws HarnessException {
 		
 		final String givenName1 = "Mike";

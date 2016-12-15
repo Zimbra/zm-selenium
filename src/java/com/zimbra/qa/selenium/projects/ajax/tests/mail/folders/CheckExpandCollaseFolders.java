@@ -52,7 +52,7 @@ public class CheckExpandCollaseFolders extends PrefGroupMailByMessageTest {
 
 	@Bugs( ids = "57468")
 	@Test( description = "Verify collapsed folders remain collapsed when getting mail",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void CheckExpandCollaseFolders_01() throws HarnessException {
 

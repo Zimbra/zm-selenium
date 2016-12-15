@@ -28,7 +28,6 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.TreeMail.FolderSection;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.TreeMail.FolderSectionAction;
 
-
 public class FolderTree extends AjaxCommonTest {
 
 	public FolderTree() {
@@ -36,12 +35,10 @@ public class FolderTree extends AjaxCommonTest {
 		
 		// All tests start at the login page
 		super.startingPage = app.zPageMail;
-		
-		
 	}
 	
 	@Test( description = "Verify the WebEx zimlet appears in the folder tree",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void FolderTree_01() throws HarnessException {
 		ZimletItem webex = CoreZimletItem.getCoreZimlet(CoreZimletName.com_zimbra_webex, app);
 		

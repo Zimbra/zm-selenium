@@ -33,7 +33,7 @@ public class ModifyRetention extends PrefGroupMailByMessageTest {
 
 	@Test(
 			description = "Modify a basic retention (Context menu -> Edit -> Retention)", 
-			groups = { "functional" }
+			groups = { "functional", "L2" }
 			)
 	public void ModifyRetention_01() throws HarnessException {
 

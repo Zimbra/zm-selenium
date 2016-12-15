@@ -32,8 +32,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
-
 public class DeleteEditMove extends AjaxCommonTest {
 	
 	@SuppressWarnings("serial")
@@ -52,7 +50,7 @@ public class DeleteEditMove extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Verify Delete Edit Move button are visible on mountpoint task (manager rights)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void DeleteEditMove_01() throws HarnessException {
 		
 		String foldername = "tasklist" + ConfigProperties.getUniqueString();

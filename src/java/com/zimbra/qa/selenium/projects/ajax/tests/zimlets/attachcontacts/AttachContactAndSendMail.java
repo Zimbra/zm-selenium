@@ -33,7 +33,8 @@ public class AttachContactAndSendMail extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
-	@Test(description = "Attach a contact to a mail", groups = { "functional" })
+	@Test(description = "Attach a contact to a mail", 
+			groups = { "functional", "L2" })
 
 	public void AttachContactAndSendMail_01() throws HarnessException {
 

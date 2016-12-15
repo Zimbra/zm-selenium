@@ -25,8 +25,6 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
 
-
-
 public class MoveTask extends AjaxCommonTest {
 
 	@SuppressWarnings("serial")
@@ -41,7 +39,8 @@ public class MoveTask extends AjaxCommonTest {
 		}};
 	}
 	
-	@Test( description = "Verify Toaster message on moving  Task", groups = { "functional" })
+	@Test( description = "Verify Toaster message on moving Task", 
+			groups = { "functional", "L3"})
 	public void MoveTask_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

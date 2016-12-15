@@ -109,7 +109,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 
 	
 	@Test( description = "Autocomplete using a Shared Contact - First Name",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteSharedContacts_01() throws HarnessException {
 		
 		
@@ -150,7 +150,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Autocomplete using the Shared Contacts - Partial First Name",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteSharedContacts_02() throws HarnessException {
 		
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
@@ -192,7 +192,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Autocomplete using a Shared Contact - Last Name",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteSharedContacts_03() throws HarnessException {
 		
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
@@ -235,7 +235,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Autocomplete using a Shared Contact - Partial Last Name",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteSharedContacts_04() throws HarnessException {
 		
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
@@ -278,7 +278,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Autocomplete using a Shared Contact - Full Name",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteSharedContacts_05() throws HarnessException {
 		
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
@@ -321,7 +321,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Autocomplete using a Shared Contact - First Name and Last Initial",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteSharedContacts_07() throws HarnessException {
 		
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
@@ -365,7 +365,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "Autocomplete using a Shared Contact - Multiple Matches",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteSharedContacts_08() throws HarnessException {
 		int count = 3;
 		
@@ -419,7 +419,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Autocomplete using a Shared Contact - No Matches",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AutoCompleteSharedContacts_09() throws HarnessException {
 		
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);

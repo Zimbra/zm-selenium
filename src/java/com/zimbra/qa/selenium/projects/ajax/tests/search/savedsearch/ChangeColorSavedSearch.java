@@ -30,15 +30,11 @@ public class ChangeColorSavedSearch extends PrefGroupMailByMessageTest {
 	public ChangeColorSavedSearch() {
 		logger.info("New " + ChangeColorSavedSearch.class.getCanonicalName());
 
-		
-		
-		
-
 	}
 
 	@Test(
 			description = "Edit a folder, change the color (Context menu -> Edit)",
-			groups = { "functional" }
+			groups = { "functional","L3" }
 			)
 	public void ChangeColorSavedSearch_01() throws HarnessException {
 

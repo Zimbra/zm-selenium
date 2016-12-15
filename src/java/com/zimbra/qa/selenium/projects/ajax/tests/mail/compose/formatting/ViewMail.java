@@ -34,7 +34,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "View a message with Excel data formatting", 
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void ViewMail_01() throws HarnessException {
 

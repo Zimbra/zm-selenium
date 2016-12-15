@@ -34,7 +34,8 @@ public class AttachBriefcaseFileAndSendMail extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
-	@Test(description = "Attach an briefcase file to a mail", groups = { "functional" })
+	@Test(description = "Attach an briefcase file to a mail", 
+			groups = { "functional", "L2" })
 
 	public void AttachBriefcaseFileAndSendMail_01() throws HarnessException {
 

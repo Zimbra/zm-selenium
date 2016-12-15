@@ -28,9 +28,7 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 
-
 public class GetMessage extends AjaxCommonTest {
-
 	
 	@SuppressWarnings("serial")
 	public GetMessage() {
@@ -46,7 +44,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Receive a mail with a basic URL",
-			groups = { "smoke" })
+			groups = { "smoke", "L0" })
 	public void GetMessage_01() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -86,9 +84,8 @@ public class GetMessage extends AjaxCommonTest {
 
 	}
 
-
 	@Test( description = "Receive a mail with two URLs in body",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetMessage_02() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -132,10 +129,8 @@ public class GetMessage extends AjaxCommonTest {
 
 	}
 
-	
-
 	@Test( description = "Validate the url zimlet matches valid URLs",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetMessage_03() throws HarnessException {
 
 		final String subject = "subject12955323015009";
@@ -170,9 +165,8 @@ public class GetMessage extends AjaxCommonTest {
 
 	}
 
-
 	@Test( description = "Validate the url zimlet does not match invalid URLs",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 	public void GetMessage_04() throws HarnessException {
 
 		final String subject = "subject12976223025009";
@@ -203,7 +197,7 @@ public class GetMessage extends AjaxCommonTest {
 
 	@Bugs(ids="86667")
 	@Test( description = "Receive a mail with a url in subject reference bug 86667",
-			groups = { "deprecated" })
+			groups = { "deprecated", "L3" })
 	public void GetMessage_05() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -242,7 +236,7 @@ public class GetMessage extends AjaxCommonTest {
 
 	@Bugs(ids = "29018,67927")
 	@Test( description = "Receive a mail with a URL in angled brackets",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetMessage_06() throws HarnessException {
 		
 		// Create the message data to be sent

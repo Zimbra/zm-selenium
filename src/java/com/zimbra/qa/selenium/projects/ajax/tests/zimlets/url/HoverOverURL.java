@@ -42,9 +42,8 @@ public class HoverOverURL extends AjaxCommonTest {
 		};
 	}
 	
-	
 	@Test( description = "Hover over a URL",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void HoverOverURL_01() throws HarnessException {
 
@@ -82,9 +81,8 @@ public class HoverOverURL extends AjaxCommonTest {
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
 	}
 	
-	
 	@Test( description = "Hover over a URL - verify tooltip content",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void HoverOverURL_02() throws HarnessException {
 
@@ -124,11 +122,10 @@ public class HoverOverURL extends AjaxCommonTest {
 		String content = tooltip.zGetContents();
 		ZAssert.assertStringContains(content, server, "Verify basic tooltip content");
 	}
-
 	
 	@Bugs(ids = "82303")
 	@Test( description = "Hover over a URL with 'javascript' in the path.  Verify no change to JAVASCRIPT-BLOCKED",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void HoverOverURL_03() throws HarnessException {
 

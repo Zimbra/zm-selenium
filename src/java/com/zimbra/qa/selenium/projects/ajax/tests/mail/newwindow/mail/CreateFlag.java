@@ -34,7 +34,7 @@ public class CreateFlag extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefMarkMsgRead", "" + delaySeconds);
 	}
 
-	@Test( description = "Create flag from new window from action menu -> Create Flag", groups = { "functional" })
+	@Test( description = "Create flag from new window from action menu -> Create Flag", groups = { "functional", "L2" })
 	
 	public void CreateFlagFromNewWindow_01() throws HarnessException {
 
@@ -107,7 +107,7 @@ public class CreateFlag extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test( description = "Create flag from new window using shortcut key 'mf'", groups = { "functional" })
+	@Test( description = "Create flag from new window using shortcut key 'mf'", groups = { "functional", "L2" })
 	
 	public void CreateFlagFromNewWindow_02() throws HarnessException {
 

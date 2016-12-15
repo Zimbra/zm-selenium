@@ -29,7 +29,6 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.TreeMail.FolderSection;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.TreeMail.FolderSectionAction;
 
-
 public class FolderTree extends AjaxCommonTest {
 
 	public FolderTree() {
@@ -37,7 +36,6 @@ public class FolderTree extends AjaxCommonTest {
 		
 		// All tests start at the login page
 		super.startingPage = app.zPageMail;
-		
 		
 	}
 	
@@ -65,9 +63,8 @@ public class FolderTree extends AjaxCommonTest {
 				
 	}
 
-
 	// All these tests require the Folder tree to be fully loaded
-	@BeforeMethod( groups = { "deprecated" } )
+	@BeforeMethod( groups = { "deprecated", "L3" } )
 	public void folderTreeBeforeMethod() throws HarnessException {
 		logger.info("folderTreeBeforeMethod: start");
 		

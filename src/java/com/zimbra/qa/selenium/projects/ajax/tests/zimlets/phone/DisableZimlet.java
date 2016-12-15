@@ -49,9 +49,8 @@ public class DisableZimlet extends AjaxCommonTest {
       }};
    }
 
-
    @Test( description = "Receive a text mail - verify numeric mail contents is not converted into phone number hyperlink",
-         groups = { "functional" })
+         groups = { "functional", "L2" })
 
    public void DisableZimlet_01() throws HarnessException {
 
@@ -94,9 +93,8 @@ public class DisableZimlet extends AjaxCommonTest {
 
    }
 
-
    @Test(   description = "Receive an html mail - verify numeric mail contents is not converted into phone number hyperlink",
-         groups = { "functional" })
+         groups = { "functional", "L3" })
 
    public void DisableZimlet_02() throws HarnessException {
 

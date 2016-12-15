@@ -49,7 +49,7 @@ public class ApplyQuickCommandMessage extends AjaxQuickCommandTest {
 
 	@Bugs(ids = "71389")	// Hold off on GUI implementation of Quick Commands in 8.X
 	@Test( description = "Apply a Quick Command to a message",
-			groups = { "deprectated" })
+			groups = { "deprectated", "L4" })
 	public void ApplyQuickCommandMessage_01() throws HarnessException {
 
 		// Create the message data to be sent

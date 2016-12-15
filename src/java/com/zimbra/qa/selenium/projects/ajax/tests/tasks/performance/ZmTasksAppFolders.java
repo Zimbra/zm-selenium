@@ -24,8 +24,6 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.performance.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
-
 public class ZmTasksAppFolders extends AjaxCommonTest {
 
 	public ZmTasksAppFolders() {
@@ -38,7 +36,7 @@ public class ZmTasksAppFolders extends AjaxCommonTest {
 	}
 
 	@Test( description = "Measure the time to load the tasks app, 1 task list",
-			groups = { "performance" })
+			groups = { "performance", "L3"})
 	public void ZmTasksAppFolders_01() throws HarnessException {
 
 		// Create a folder
@@ -68,7 +66,7 @@ public class ZmTasksAppFolders extends AjaxCommonTest {
 	}
 
 	@Test( description = "Measure the time to load the tasks app, 100 task lists",
-			groups = { "performance" })
+			groups = { "performance", "L3"})
 	public void ZmTasksAppFolders_02() throws HarnessException {
 
 		// Create 100 folders
@@ -97,6 +95,5 @@ public class ZmTasksAppFolders extends AjaxCommonTest {
 		app.zPageTasks.zWaitForActive();
 
 	}
-
 
 }

@@ -37,7 +37,7 @@ public class AttachmentIcons extends PrefGroupMailByMessageTest {
 	
 	
 	@Test( description = "Verify icon: ImgGenericDoc",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ImgGenericDoc_01() throws HarnessException {
 		
 		// This mime contains an attachment that should map to ImgGenericDoc
@@ -72,7 +72,7 @@ public class AttachmentIcons extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "Verify icon: ImgImageDoc",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ImgImageDoc_01() throws HarnessException {
 		
 		// This mime contains an attachment that should map to ImgGenericDoc

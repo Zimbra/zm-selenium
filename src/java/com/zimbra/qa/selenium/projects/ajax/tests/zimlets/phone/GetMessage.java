@@ -28,9 +28,7 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 
-
 public class GetMessage extends AjaxCommonTest {
-
 	
 	@SuppressWarnings("serial")
 	public GetMessage() {
@@ -44,12 +42,10 @@ public class GetMessage extends AjaxCommonTest {
 		    put("zimbraPrefGroupMailBy", "message");
 		}};
 
-
-
 	}
 	
 	@Test( description = "Receive a mail with a basic US Phone number",
-			groups = { "smoke" })
+			groups = { "smoke", "L0" })
 	public void GetMessage_01() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -89,9 +85,8 @@ public class GetMessage extends AjaxCommonTest {
 
 	}
 
-
 	@Test( description = "Receive a mail with two phone numbers in body",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetMessage_02() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -135,10 +130,8 @@ public class GetMessage extends AjaxCommonTest {
 
 	}
 
-	
-
 	@Test( description = "Validate the phone zimlet matches NANP phone numbers",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 	public void GetMessage_03() throws HarnessException {
 
 		final String subject = "subject12977323015009";
@@ -190,9 +183,8 @@ public class GetMessage extends AjaxCommonTest {
 
 	}
 
-
 	@Test( description = "Validate the phone zimlet matches NANP phone numbers",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetMessage_04() throws HarnessException {
 
 		final String subject = "subject12977323025009";
@@ -240,9 +232,8 @@ public class GetMessage extends AjaxCommonTest {
 
 	}
 
-
 	@Test( description = "Receive a mail with a phone numbers in subject( reference bug 86667)",
-			groups = { "deprecated" })
+			groups = { "deprecated", "L3" })
 	public void GetMessage_05() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -281,7 +272,7 @@ public class GetMessage extends AjaxCommonTest {
 
 	@Bugs(ids = "73264")
 	@Test( description = "Receive a mail with an unformated number string - should not match",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 	public void GetMessage_06() throws HarnessException {
 		
 		// Create the message data to be sent

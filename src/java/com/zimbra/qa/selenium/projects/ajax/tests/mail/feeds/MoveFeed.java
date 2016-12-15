@@ -33,7 +33,7 @@ public class MoveFeed extends PrefGroupMailByMessageTest {
 		logger.info("New "+ MoveFeed.class.getCanonicalName());
 	}
 
-	@Test( description = "Move a feed folder - Right click, Move", groups = { "smoke" })
+	@Test( description = "Move a feed folder - Right click, Move", groups = { "smoke", "L1" })
 
 	public void MoveFeed_01() throws HarnessException, MalformedURLException {
 

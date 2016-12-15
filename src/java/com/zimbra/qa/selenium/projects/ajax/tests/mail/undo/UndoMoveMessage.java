@@ -38,7 +38,7 @@ public class UndoMoveMessage extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Undo - Move a mail by selecting message, then clicking toolbar 'Move' button",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void Undo_MoveMail_01() throws HarnessException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);

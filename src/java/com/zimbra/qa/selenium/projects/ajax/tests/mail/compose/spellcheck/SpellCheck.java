@@ -32,7 +32,7 @@ public class SpellCheck extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test(description = "Spell check a single word", groups = { "functional" })
+	@Test(description = "Spell check a single word", groups = { "functional", "L2" })
 	
 	public void SpellCheck_01() throws HarnessException {
 
@@ -61,7 +61,7 @@ public class SpellCheck extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test(description = "Spell check multiple words", groups = { "functional" })
+	@Test(description = "Spell check multiple words", groups = { "functional", "L2" })
 	
 	public void SpellCheck_02() throws HarnessException {
 		

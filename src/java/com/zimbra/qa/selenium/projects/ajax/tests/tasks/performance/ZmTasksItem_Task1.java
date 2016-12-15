@@ -41,8 +41,8 @@ public class ZmTasksItem_Task1 extends AjaxCommonTest{
    }
 
    @Test( description="Measure the time to view a task",
-		   groups={"performance"})
-		   public void ZmTasksItem_01() throws HarnessException {
+		   groups={"performance", "L3"})
+   public void ZmTasksItem_01() throws HarnessException {
 	   String subject1 = "task1"+ ConfigProperties.getUniqueString();
 	   String subject2 = "task2"+ ConfigProperties.getUniqueString();
 

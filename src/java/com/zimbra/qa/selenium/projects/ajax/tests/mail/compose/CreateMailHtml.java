@@ -34,7 +34,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Send a mail using HTML editor", 
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	
 	public void CreateMailHtml_01() throws HarnessException {
 		
@@ -77,7 +77,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Send a mail multiline body content using HTML editor", 
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	
 	public void CreateMultilineContentMailHtml_02() throws HarnessException {
 		

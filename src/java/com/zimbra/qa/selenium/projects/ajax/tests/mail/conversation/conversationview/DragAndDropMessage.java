@@ -45,7 +45,7 @@ public class DragAndDropMessage extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Delete a message from a conversation",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void DeleteConversation01() throws HarnessException {
 		
 		// Create a subfolder

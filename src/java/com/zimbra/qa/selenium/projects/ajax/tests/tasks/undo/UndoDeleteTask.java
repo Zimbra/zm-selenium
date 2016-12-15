@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.undo;
 
-
 import java.util.HashMap;
 
 import org.testng.annotations.*;
@@ -28,9 +27,6 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
-
-
-
 
 public class UndoDeleteTask extends AjaxCommonTest {
 
@@ -48,8 +44,9 @@ public class UndoDeleteTask extends AjaxCommonTest {
 		}};
 
 	}
+	
 	@Bugs( ids = "96832")
-	@Test( description = "Undone deleted  task",groups = { "smoke" })
+	@Test( description = "Undone deleted  task",groups = { "smoke", "L1"})
 	public void UndoDeleteTask_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

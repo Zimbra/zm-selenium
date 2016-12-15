@@ -39,7 +39,7 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 	
 	
 	@Test( description = "Receive a message with one attachment",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void GetAttachment_01() throws HarnessException {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
@@ -69,7 +69,7 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Receive a message with three attachments",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetAttachment_02() throws HarnessException {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime02.txt";

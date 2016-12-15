@@ -20,7 +20,7 @@ public class ForwardMessageWithIncludeOriginalMessageAsAnAttachment extends Pref
 	}
 	
 	@Test( description = "Bug 102745 - 'Forward email with 'Include original message as attachment' option enabled ",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void Forward_01() throws HarnessException {
 		

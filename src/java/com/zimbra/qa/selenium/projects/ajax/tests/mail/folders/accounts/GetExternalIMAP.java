@@ -50,7 +50,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "View an external folder - IMAP",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void GetExternalIMAP_01() throws HarnessException {
 		
 		// Create the external data source on the same server
@@ -187,7 +187,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "IMAP: get updates from the external account - 'refresh' button",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetExternalIMAP_02() throws HarnessException {
 		
 		// Create the external data source on the same server
@@ -337,7 +337,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 
 	
 	@Test( description = "IMAP: get updates from the external account - right click -> sync",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetExternalIMAP_03() throws HarnessException {
 		
 		// Create the external data source on the same server

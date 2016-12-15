@@ -50,9 +50,8 @@ public class EditShare extends AjaxCommonTest {
 
 	}
 
-
 	@Test( description = "Share and edit folder with admin rights",
-			groups = { "smoke" })
+			groups = { "smoke", "L1"})
 	public void EditShare_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

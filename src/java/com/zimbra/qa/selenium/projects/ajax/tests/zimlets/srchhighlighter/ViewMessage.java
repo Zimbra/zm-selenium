@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.search.*;
 
-public class ViewMessage extends AjaxCommonTest {
+	public class ViewMessage extends AjaxCommonTest {
 	
 	public ViewMessage() {
 		logger.info("New "+ ViewMessage.class.getCanonicalName());
@@ -42,7 +42,7 @@ public class ViewMessage extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Search for mail content.  Verify search terms are highlighted.",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void ViewMessage_01() throws HarnessException {
 		

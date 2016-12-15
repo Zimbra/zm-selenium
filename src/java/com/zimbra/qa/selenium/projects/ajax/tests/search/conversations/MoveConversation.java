@@ -25,17 +25,15 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByConversationTest;
 
-
 public class MoveConversation extends PrefGroupMailByConversationTest {
 
 	public MoveConversation() {
 		logger.info("New "+ MoveConversation.class.getCanonicalName());
-		
 	
 	}
 	
 	@Test( description = "From search: Move a conversation to a subfolder",
-			groups = { "functional" })
+			groups = { "functional","L2" })
 	public void MoveConversation01() throws HarnessException {
 		
 		//-- DATA
@@ -54,9 +52,6 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 
 		// Create a conversation in inbox to move
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
-
-
-		
 		
 		//-- GUI
 		
@@ -93,7 +88,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 
 	@Bugs(ids = "77217")
 	@Test( description = "From search: Move a conversation in Trash to a subfolder",
-			groups = { "functional" })
+			groups = { "functional","L2" })
 	public void MoveConversation02() throws HarnessException {
 		
 		//-- DATA
@@ -162,11 +157,10 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		ZAssert.assertEquals(message.dFolderId, subfolder.getId(), "Verify the message exists in the correct folder");
 		
 	}
-
 	
 	@Bugs(ids = "80611")
 	@Test( description = "From search: Move a conversation in Sent to a subfolder",
-			groups = { "functional" })
+			groups = { "functional","L2" })
 	public void MoveConversation03() throws HarnessException {
 		
 		//-- DATA

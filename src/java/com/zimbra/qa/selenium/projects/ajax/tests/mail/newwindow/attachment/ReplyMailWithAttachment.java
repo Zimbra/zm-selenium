@@ -32,7 +32,7 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Reply to a mail  with an attachment by pressing Reply button>>attach - in separate window",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void ReplyMailWithAttachment_01() throws HarnessException {
 

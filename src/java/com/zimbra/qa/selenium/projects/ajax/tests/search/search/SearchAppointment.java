@@ -28,7 +28,6 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
 
-
 public class SearchAppointment extends CalendarWorkWeekTest {
 
 	int pollIntervalSeconds = 60;
@@ -39,7 +38,7 @@ public class SearchAppointment extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Search for an appointment by subject",
-			groups = { "functional" })
+			groups = { "functional","L2" })
 	
 	public void SearchAppointment_01() throws HarnessException {
 		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
@@ -81,11 +80,10 @@ public class SearchAppointment extends CalendarWorkWeekTest {
 		}
 		ZAssert.assertNotNull(found, "Verify the appt list exists");
 	}
-	
 
 	@Bugs(ids = "49386")
 	@Test( description = "Script error when searching in calendar list view", 
-			groups = { "functional" })
+			groups = { "functional","L2" })
 	
 	public void SearchAppointment_02() throws HarnessException {
 		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);

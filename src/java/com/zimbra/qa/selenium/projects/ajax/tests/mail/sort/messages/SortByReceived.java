@@ -37,7 +37,7 @@ public class SortByReceived extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Sort a list of messages by received (oldest -> newest)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void SortByReceived_01() throws HarnessException {
 		
 		// Create the message data
@@ -112,7 +112,7 @@ public class SortByReceived extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "Sort a list of messages by received (newest -> oldest)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void SortByReceived_02() throws HarnessException {
 		
 		// Create the message data

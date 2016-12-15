@@ -39,7 +39,8 @@ public class DeleteMessagesAfterSearchingIt extends PrefGroupMailByMessageTest {
 	}
 	
 	@Bugs( ids = "44826")
-	@Test( description = " Search in Trash and delete, does not delete", groups = { "functional" })
+	@Test( description = " Search in Trash and delete, does not delete", 
+			groups = { "functional","L2" })
 	
 	public void DeleteMessagesAfterSearchingIt_01() throws HarnessException {
 		
@@ -132,7 +133,8 @@ public class DeleteMessagesAfterSearchingIt extends PrefGroupMailByMessageTest {
 	}
 	
 	@Bugs( ids = "44826")
-	@Test( description = " Search in Trash and delete, does not delete", groups = { "functional" })
+	@Test( description = " Search in Trash and delete, does not delete", 
+			groups = { "functional","L2" })
 	
 	public void DeleteMessagesAfterSearchingIt_02() throws HarnessException {
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);

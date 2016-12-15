@@ -49,7 +49,7 @@ public class ZmMailItemHTML extends AjaxCommonTest {
 	
 	
 	@Test( description = "Measure the performance for preview pane, html message, initial load",
-			groups = { "performance" })
+			groups = { "performance", "L4" })
 	public void ZmMailItem_01() throws HarnessException {
 		
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
@@ -72,7 +72,7 @@ public class ZmMailItemHTML extends AjaxCommonTest {
 	}
 
 	@Test( description = "Measure the performance for preview pane, html message, 1 message",
-			groups = { "performance" })
+			groups = { "performance", "L4" })
 	public void ZmMailItem_02() throws HarnessException {
 		
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";

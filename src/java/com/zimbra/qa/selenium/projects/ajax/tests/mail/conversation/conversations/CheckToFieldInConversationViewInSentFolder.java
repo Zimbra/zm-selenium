@@ -51,7 +51,7 @@ public class CheckToFieldInConversationViewInSentFolder extends AjaxCommonTest {
 	
 	@Bugs(ids = "67986,64067,47288,16213")
 	@Test( description = "To field should not display blank in a conversation in Sent folder",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void CheckToFieldInConversationViewInSentFolder_01() throws HarnessException {
 

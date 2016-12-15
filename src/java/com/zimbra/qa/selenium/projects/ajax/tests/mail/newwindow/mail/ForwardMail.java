@@ -40,7 +40,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Fwd to a mail by pressing Fwd button - in separate window",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void FwdMailFromNewWindow_01() throws HarnessException {
 
 		String subject = "subject"+ ConfigProperties.getUniqueString();		
@@ -118,7 +118,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "Forward a  message , using keyboard shortcut (keyboard='f') - in a separate window",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void FwdMailFromNewWindow_02() throws HarnessException {
 
 		String subject = "subject"+ ConfigProperties.getUniqueString();		

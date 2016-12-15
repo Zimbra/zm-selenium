@@ -50,8 +50,8 @@ public class DeleteShare extends AjaxCommonTest {
 
 	}
 
-
-	@Test( description = "Share and Revoke folder ",groups = { "smoke" })
+	@Test( description = "Share and Revoke folder ",
+			groups = { "smoke", "L1"})
 	public void DeleteShare_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

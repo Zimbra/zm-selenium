@@ -31,7 +31,7 @@ public class DeleteFolder extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "Delete a folder - Right click, Delete",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 
 	public void DeleteFolder_01() throws HarnessException {
 
@@ -67,7 +67,7 @@ public class DeleteFolder extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "Deleting the folder where the Trash already has a folder with the same name",
-	      groups = { "functional" })
+	      groups = { "functional", "L2" })
 
 	public void DeleteFolder_02() throws HarnessException {
 

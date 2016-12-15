@@ -37,7 +37,7 @@ public class SortBySize extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Sort a list of messages by size (large->small)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void SortBySize_01() throws HarnessException {
 		
 		// Create the message data
@@ -134,7 +134,7 @@ public class SortBySize extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "Sort a list of messages by size (small->large)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void SortBySize_02() throws HarnessException {
 		
 		// Create the message data

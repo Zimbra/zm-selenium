@@ -48,7 +48,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Receive a mail with a basic emoticon",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetMessage_01() throws HarnessException {
 		
 		// Create the message data to be sent

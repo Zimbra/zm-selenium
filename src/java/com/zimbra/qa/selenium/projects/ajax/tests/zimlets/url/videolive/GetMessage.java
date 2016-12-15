@@ -24,18 +24,15 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
 public class GetMessage extends AjaxCommonTest {
-
 	
 	public GetMessage() {
 		logger.info("New "+ GetMessage.class.getCanonicalName());
 
-
 	}
 	
 	@Test( description = "Receive a mail with embedded video",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetMail_01() throws HarnessException {
 		
 		//-- Data

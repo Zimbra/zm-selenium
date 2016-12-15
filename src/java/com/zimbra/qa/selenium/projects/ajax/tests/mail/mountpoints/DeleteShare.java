@@ -43,7 +43,7 @@ public class DeleteShare extends PrefGroupMailByMessageTest{
 
 
 	@Test( description = "Delete (Revoke) an existing share",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void DeleteShare_01() throws HarnessException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);

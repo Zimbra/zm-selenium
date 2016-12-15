@@ -41,7 +41,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 	
 	
 	@Test( description = "Remove an attachment from a mail",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void RemoveAttachment_01() throws HarnessException {
 
 		//-- Data Setup
@@ -127,7 +127,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Remove all attachments (2 attachments) from a mail",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void RemoveAttachment_02() throws HarnessException {
 
 		//-- Data Setup
@@ -204,7 +204,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 
 	@Bugs( ids = "81565")
 	@Test( description = "Remove an attachment from a meeting invite",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void RemoveAttachment_03() throws HarnessException {
 
 		//-- Data Setup
@@ -291,7 +291,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 
 	@Bugs( ids = "81565")
 	@Test( description = "Remove all attachments (2 attachments) from a meeting invite",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void RemoveAttachment_04() throws HarnessException {
 
 		//-- Data Setup
@@ -367,7 +367,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 	}
 	
 	@Bugs(ids = "83243")
-	@Test( description = "Remove an attachment from a mail from Show Conversation view", groups = { "functional" })
+	@Test( description = "Remove an attachment from a mail from Show Conversation view", groups = { "functional", "L2" })
 	public void RemoveAttachment_05() throws HarnessException {
 
 		// -- Data Setup

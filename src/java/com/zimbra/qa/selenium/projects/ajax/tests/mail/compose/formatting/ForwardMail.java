@@ -39,7 +39,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 	
 	
 	@Test( description = "Forward an Excel formatting data message  and verify its formatting", 
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void ForwardMail_01() throws HarnessException {
 		

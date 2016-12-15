@@ -35,10 +35,9 @@ public class RenameTag extends AjaxCommonTest {
 		super.startingPage = app.zPageTasks;
 		
 	}
-
 	
 	@Test( description = "Rename a tag - Right click, Rename", 
-			groups = { "smoke" })
+			groups = { "smoke", "L1"})
 	
 	public void RenameTag_01() throws HarnessException {
 

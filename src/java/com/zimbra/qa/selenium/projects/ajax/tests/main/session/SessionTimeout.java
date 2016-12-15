@@ -40,7 +40,7 @@ public class SessionTimeout extends PrefGroupMailByMessageTest {
 	
 	@Bugs(ids = "75133")
 	@Test( description = "Verify content is saved when compose is interupted by zimbraMailIdleSessionTimeout",
-			groups = { "functional" })
+			groups = { "functional", "L1"})
 	public void SessionTimeout_01() throws HarnessException {
 		
 		

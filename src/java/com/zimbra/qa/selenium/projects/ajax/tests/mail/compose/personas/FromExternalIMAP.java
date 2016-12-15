@@ -32,7 +32,7 @@ public class FromExternalIMAP extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Compose message from - External IMAP",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void FromExternalIMAP_01() throws HarnessException {
 		

@@ -44,7 +44,7 @@ public class DeleteMountpoint extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Delete a mountpoint to a shared folder (right click -> Delete)",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void DeleteMountpoint_01() throws HarnessException {
 		
 		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();
