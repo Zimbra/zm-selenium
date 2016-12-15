@@ -34,7 +34,7 @@ public class CreateACopy extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "View meeting invite by opening it and Copy read-only meeting invite",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void CopyMeeting_01() throws HarnessException {
 

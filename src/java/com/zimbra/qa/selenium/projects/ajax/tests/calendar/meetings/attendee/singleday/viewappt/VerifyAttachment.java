@@ -32,7 +32,7 @@ public class VerifyAttachment extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "View invite which has attachment present as an organizer",
-			groups = { "functional" }
+			groups = { "functional", "L2" }
 	)
 	public void VerifyAttachment_01() throws HarnessException {
 		

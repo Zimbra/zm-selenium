@@ -36,7 +36,7 @@ public class Delete extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "95961")
 	@Test( description = "Rt-click to appointment from the calendar app and delete the meeting invite (Series)", 
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void DeleteMeeting_01() throws HarnessException {
 

@@ -36,7 +36,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 	@Bugs(ids = "69132")
 	@Test(
 			description = "Delete entire series of recurring appointment (every day) using toolbar button", 
-			groups = { "smoke" } )
+			groups = { "smoke", "L1" } )
 	public void DeleteSeries_01() throws HarnessException {
 		
 		// Appointment data
@@ -123,7 +123,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 	@Bugs(ids = "69132")
 	@Test(
 			description = "Delete entire series of recurring appointment (every week) using context menu", 
-			groups = { "smoke" } )
+			groups = { "smoke", "L1" } )
 	public void DeleteSeries_02() throws HarnessException {
 		
 		// Appointment data
@@ -211,7 +211,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 
 	@Bugs(ids = "69132")
 	@Test( description = "Delete entire series appointment (every week) using keyboard shortcuts Del & Backspace",
-			groups = { "functional" },
+			groups = { "functional", "L2" },
 			dataProvider = "DataProviderShortcutKeys")
 			
 	public void DeleteSeries_03(String name, int keyEvent) throws HarnessException {

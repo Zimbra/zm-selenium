@@ -41,7 +41,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "69920,75559")	
 	@Test( description = "Delete series from third instance and onwards", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void DeleteSeries_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------

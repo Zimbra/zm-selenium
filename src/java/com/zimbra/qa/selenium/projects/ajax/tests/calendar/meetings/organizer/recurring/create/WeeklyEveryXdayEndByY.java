@@ -33,7 +33,7 @@ public class WeeklyEveryXdayEndByY extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Create weekly recurring invite with attendee and location with every Tuesday and end by particular date",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			
 	public void WeeklyEveryXdayEndByY_01() throws HarnessException {
 		

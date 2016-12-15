@@ -34,7 +34,7 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "106759,102475")
 	@Test( description = "View meeting invite by opening it and reply to all by sending message",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void ReplyToAllMeeting_01() throws HarnessException {
 		

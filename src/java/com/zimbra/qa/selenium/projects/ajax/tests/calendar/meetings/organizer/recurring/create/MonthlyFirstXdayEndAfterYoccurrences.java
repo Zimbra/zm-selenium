@@ -33,7 +33,7 @@ public class MonthlyFirstXdayEndAfterYoccurrences extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Create monthly recurring invite with attendee and location with particular week & end date",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void MonthlyFirstXdayEndAfterYoccurrences_01() throws HarnessException {
 		

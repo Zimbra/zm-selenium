@@ -33,7 +33,7 @@ public class Forward extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Forward particular instance by changing content",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			
 	public void ForwardMeeting_01() throws HarnessException {
 				

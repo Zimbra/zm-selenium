@@ -38,7 +38,7 @@ public class WeeklyRecurringNoEndDate extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Create weekly recurring invite with attendee and location with no end date, effective from today",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			
 	public void WeeklyRecurringNoEndDate_01() throws HarnessException {
 		

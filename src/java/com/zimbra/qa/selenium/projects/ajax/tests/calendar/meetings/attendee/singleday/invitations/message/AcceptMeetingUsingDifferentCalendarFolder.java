@@ -77,7 +77,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 	@Bugs(ids = "69132,96556")
 	@Test(
 			description = "Accept a meeting using Accept button from invitation message", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AcceptMeeting_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -183,7 +183,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 	@Bugs(ids = "69132,96556")
 	@Test(
 			description = "Accept meeting - Verify organizer gets notification message", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AcceptMeeting_02() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -251,7 +251,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 	@Bugs(ids = "69132,96556")
 	@Test(
 			description = "Accept meeting using 'Accept -> Notify Organizer'", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AcceptMeeting_03() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -372,7 +372,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 	@Bugs(ids = "69132,96556")
 	@Test(
 			description = "Accept meeting using 'Accept -> Edit Reply' and verify modified content", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AcceptMeeting_04() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -492,7 +492,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 	@Bugs(ids = "69132,65356,80407,96556")
 	@Test(
 			description = "Accept meeting using 'Accept -> Don't Notify Organizer'", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void AcceptMeeting_05() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------

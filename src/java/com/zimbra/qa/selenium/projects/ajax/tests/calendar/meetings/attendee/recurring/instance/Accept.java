@@ -36,7 +36,7 @@ public class Accept extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "83240")
 	@Test( description = "Rt-click to appointment from the calendar app and Accept the meeting invite (Instance)", 
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void AcceptMeeting_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------

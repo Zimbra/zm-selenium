@@ -41,7 +41,7 @@ public class VerifySplitView extends CalendarWorkWeekTest {
 
 	@Bugs(ids = "66603")
 	@Test( description = "Verify that in Day-split view all calendars are visible correctly",
-			groups = { "smoke" } )
+			groups = { "smoke", "L1" } )
 	
 	public void VerifySplitView_01() throws HarnessException {
 

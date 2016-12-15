@@ -31,7 +31,7 @@ public class Open extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Rt-click to invite and open it",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void OpenMeeting_01() throws HarnessException {
 		
 		organizerTest = false;

@@ -40,13 +40,11 @@ public class CreateAppointment extends AjaxCommonTest {
 		super.startingPage = app.zPageCalendar;
 
 		// Make sure we are using an account with message view
-		
-
 
 	}
 	
 	@Test( description = "Create a basic appointment using the Zimbra Assistant",
-			groups = { "deprecated" })
+			groups = { "deprecated", "L4" })
 	public void CreateAppointment_01() throws HarnessException {
 
 		Calendar start = Calendar.getInstance();
@@ -86,7 +84,7 @@ public class CreateAppointment extends AjaxCommonTest {
 
 	@Bugs(ids = "53005")
 	@Test( description = "Verify location is saved when using assistant",
-			groups = { "deprecated" })
+			groups = { "deprecated", "L4" })
 	public void CreateAppointment_02() throws HarnessException {
 
 		Calendar start = Calendar.getInstance();

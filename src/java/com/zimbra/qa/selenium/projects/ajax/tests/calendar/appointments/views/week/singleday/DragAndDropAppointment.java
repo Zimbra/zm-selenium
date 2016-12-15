@@ -43,7 +43,7 @@ public class DragAndDropAppointment extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Drag and Drop a appointment from calendar to different calendar in week view",
-			groups = { "smoke" })
+			groups = { "smoke", "L3" })
 	public void DragAndDropAppointment_01() throws HarnessException {
 
 		String foldername = "folder"+ ConfigProperties.getUniqueString();
@@ -104,7 +104,7 @@ public class DragAndDropAppointment extends CalendarWorkWeekTest {
 	}
 
 	@Test( description = "Drag and Drop a appointment from one time to a different time in week view",
-			groups = { "smoke" })
+			groups = { "smoke", "L3" })
 	public void DragAndDropAppointment_02() throws HarnessException {
 
 

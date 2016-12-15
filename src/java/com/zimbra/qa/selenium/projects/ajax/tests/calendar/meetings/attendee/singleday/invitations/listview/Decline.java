@@ -40,7 +40,7 @@ public class Decline extends CalendarWorkWeekTest {
 
 	@Bugs(ids = "69342")	
 	@Test( description = "Rt-click to appointment and Decline the meeting invite by selecting 'Don't notify organizer'", 
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void DeclineMeeting_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------

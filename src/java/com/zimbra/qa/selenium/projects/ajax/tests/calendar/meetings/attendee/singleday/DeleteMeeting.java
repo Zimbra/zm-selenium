@@ -37,7 +37,7 @@ public class DeleteMeeting extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Delete appointment in the week view - Don't Notify Organizer",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 
 	public void DeleteMeeting_01() throws HarnessException {
 		
@@ -121,7 +121,7 @@ public class DeleteMeeting extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "104604")
 	@Test( description = "Delete appointment in the week view - Notify Organizer",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 
 	public void DeleteMeeting_02() throws HarnessException {
 		

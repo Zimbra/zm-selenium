@@ -27,9 +27,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.ApptWorkWeekView;
 
-
 public class GetAppointment extends CalendarWorkWeekTest {
-
 	
 	public GetAppointment() {
 		logger.info("New "+ GetAppointment.class.getCanonicalName());
@@ -48,7 +46,7 @@ public class GetAppointment extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "69132")
 	@Test( description = "View a basic appointment in week view",
-			groups = { "smoke" }) // smoke
+			groups = { "smoke", "L3" }) // smoke
 	public void GetAppointment_01() throws HarnessException {
 		
 		// Create the appointment on the server

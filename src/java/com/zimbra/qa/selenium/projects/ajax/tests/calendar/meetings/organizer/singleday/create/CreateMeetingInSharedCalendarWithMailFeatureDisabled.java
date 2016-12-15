@@ -44,7 +44,8 @@ public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends Calend
   }
   
   @Bugs(ids="71542")
-  @Test( description="Unable to create appointment in shared calendars if mail feature is disabled", groups={"functional1"} )
+  @Test( description="Unable to create appointment in shared calendars if mail feature is disabled", 
+  		groups={"functional", "L2"} )
   
   public void CreateMeetingInSharedCalendarWithMailFeatureDisabled_01() throws HarnessException {
 	  

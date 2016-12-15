@@ -36,7 +36,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 	}
 
 	@Test( description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=text & zimbraPrefForwardReplyInOriginalFormat=TRUE",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 
 	public void CreateMeetingUsingMessage_01() throws HarnessException {
 
@@ -97,7 +97,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 	@Bugs(ids = "80922")
 	@Test( description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=text & zimbraPrefForwardReplyInOriginalFormat=FALSE",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 
 	public void CreateMeetingUsingMessage_02() throws HarnessException {
 
@@ -156,7 +156,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 	}
 
 	@Test( description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=text & zimbraPrefForwardReplyInOriginalFormat=FALSE",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 
 	public void CreateMeetingUsingMessage_03() throws HarnessException {
 
@@ -216,7 +216,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 	}
 
 	@Test( description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=text & zimbraPrefForwardReplyInOriginalFormat=TRUE",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 
 	public void CreateMeetingUsingMessage_04() throws HarnessException {
 
@@ -276,7 +276,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 	}
 
 	@Test( description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=TRUE",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 
 	public void CreateMeetingUsingMessage_05() throws HarnessException {
 
@@ -335,7 +335,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 	}
 
 	@Test( description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=FALSE",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 
 	public void CreateMeetingUsingMessage_06() throws HarnessException {
 
@@ -394,7 +394,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 	}
 
 	@Test( description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=TRUE",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 
 	public void CreateMeetingUsingMessage_07() throws HarnessException {
 
@@ -454,7 +454,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 	@Bugs(ids = "80922")
 	@Test( description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=FALSE",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 
 	public void CreateMeetingUsingMessage_08() throws HarnessException {
 
@@ -515,7 +515,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 	@Bugs(ids = "76043")
 	@Test( description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=TRUE",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 
 	public void CreateMeetingUsingMessage_09() throws HarnessException {
 

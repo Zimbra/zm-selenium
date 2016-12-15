@@ -32,7 +32,7 @@ public class CreateAppointment extends AjaxCommonTest {
 	
 	
 	@Test( description = "Verify Toaster message on Create Appointment",
-			groups = { "functional" } )
+			groups = { "functional", "L0" } )
 	
 	public void Toaster_CreateAppointment_01() throws HarnessException {
 		

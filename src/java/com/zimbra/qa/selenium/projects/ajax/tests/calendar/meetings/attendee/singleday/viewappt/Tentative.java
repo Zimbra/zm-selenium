@@ -33,7 +33,7 @@ public class Tentative extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "View meeting invite by opening it and mark as Tentative", 
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 
 	public void TentativeMeeting_01() throws HarnessException {
 

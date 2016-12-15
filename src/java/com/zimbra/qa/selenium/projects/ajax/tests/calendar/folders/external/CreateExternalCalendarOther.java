@@ -39,7 +39,7 @@ public class CreateExternalCalendarOther extends AjaxCommonTest {
 
 	@Bugs(ids = "66576")
 	@Test( description = "Create a new external calendar (type=other) by clicking 'Gear' -> 'new folder' on folder tree", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void CreateExternalCalendarOther_01() throws HarnessException {
 
 		ZimbraAccount icalAccount = new ZimbraAccount();

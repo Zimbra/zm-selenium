@@ -38,7 +38,7 @@ public class Move extends CalendarWorkWeekTest {
 
 	@Bugs(ids = "95961")
 	@Test( description = "Move entire series to different calendar folder",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			
 	public void MoveMeeting_01() throws HarnessException {
 		

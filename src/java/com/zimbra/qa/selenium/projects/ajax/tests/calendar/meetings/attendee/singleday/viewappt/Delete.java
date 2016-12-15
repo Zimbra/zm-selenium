@@ -34,7 +34,7 @@ public class Delete extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "View meeting invite by opening it and Delete the invitation by selecting 'Don't notify organizer'", 
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			
 	public void DeleteMeeting_01() throws HarnessException {
 
@@ -127,7 +127,7 @@ public class Delete extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "View meeting invite by opening it and Delete the invitation by selecting 'Notify organizer'", 
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			
 	public void DeleteMeeting_02() throws HarnessException {
 

@@ -35,7 +35,7 @@ public class VerifyOptionalAttendee extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "View meeting invite by opening it, Edit the invitation and locally save it", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void VerifyOptionalAttendee_01() throws HarnessException {
 

@@ -26,9 +26,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
 public class GetAppointment extends AjaxCommonTest {
-
 	
 	@SuppressWarnings("serial")
 	public GetAppointment() {
@@ -42,12 +40,11 @@ public class GetAppointment extends AjaxCommonTest {
 		    put("zimbraPrefCalendarInitialView", "month");
 		}};
 
-
 	}
 	
 	@Bugs(ids = "69132")
 	@Test( description = "View a basic appointment in the month view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetAppointment_01() throws HarnessException {
 		
 		// Create the appointment on the server

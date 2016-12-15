@@ -40,7 +40,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "107050")
 	@Test( description = "Create basic appointment using quick add dialog",
-			groups = { "smoke" } )
+			groups = { "smoke", "L0" } )
 	
 	public void CreateAppointment_01() throws HarnessException {
 		

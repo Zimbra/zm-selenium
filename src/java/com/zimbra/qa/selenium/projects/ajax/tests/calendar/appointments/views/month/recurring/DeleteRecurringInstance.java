@@ -45,7 +45,7 @@ public class DeleteRecurringInstance extends CalendarWorkWeekTest {
 
 	
 	@Test( description = "Verify if deleting a later instance from recurring appt does not causes Wrong/first instace of Appointment being deleted in a monthly view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void DeleteRecurringInstance_01() throws HarnessException {
 

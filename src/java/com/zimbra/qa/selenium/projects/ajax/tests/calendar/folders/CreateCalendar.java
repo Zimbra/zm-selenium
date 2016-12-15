@@ -41,7 +41,7 @@ public class CreateCalendar extends AjaxCommonTest {
 
 
 	@Test( description = "Create a new calendar by clicking 'new folder' on folder tree", 
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	
 	public void CreateCalendar_01() throws HarnessException {
 
@@ -66,7 +66,7 @@ public class CreateCalendar extends AjaxCommonTest {
 	}
 
 	@Test( description = "Create a new calendar using keyboard shortcuts", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void CreateCalendar_02() throws HarnessException {
 
 		
@@ -90,7 +90,7 @@ public class CreateCalendar extends AjaxCommonTest {
 	}
 
 	@Test( description = "Create a new folder using context menu from root folder", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void CreateCalendar_03() throws HarnessException {
 
 		// Set the new calendar name
@@ -116,7 +116,7 @@ public class CreateCalendar extends AjaxCommonTest {
 	}
 
 	@Test( description = "Create a new folder using mail app New -> New Folder", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void CreateCalendar_04() throws HarnessException {
 
 		// Set the new calendar name

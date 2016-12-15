@@ -36,7 +36,8 @@ public class EditAttendeeContextMenu extends PrefGroupMailByMessageTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Test( description = "Right click To attendee bubble address>>Verify Edit menus", groups = { "smoke" })
+	@Test( description = "Right click To attendee bubble address>>Verify Edit menus", 
+				groups = { "smoke", "L1" })
 	
 	public void EditAttendeesContextMenu_01() throws HarnessException {
 

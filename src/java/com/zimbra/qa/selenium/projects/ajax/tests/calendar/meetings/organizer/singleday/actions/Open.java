@@ -38,7 +38,7 @@ public class Open extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "103056")
 	@Test( description = "Rt-click to invite and open it",
-			groups = { "smoke" })
+			groups = { "smoke", "L0" })
 	
 	public void OpenMeeting_01() throws HarnessException, ParseException {
 		

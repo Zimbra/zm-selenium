@@ -45,7 +45,7 @@ public class VerifyConfigureReminderRemoved extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "97410")	
 	@Test( description = "Verify 'configure' link from quick add dialog for calendar",
-			groups = { "smoke" }
+			groups = { "smoke", "L1" }
 	)
 	public void VerifyConfigureReminderRemoved_01() throws HarnessException {
 		

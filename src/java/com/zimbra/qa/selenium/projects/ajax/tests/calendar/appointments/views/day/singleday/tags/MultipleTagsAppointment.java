@@ -43,7 +43,7 @@ public class MultipleTagsAppointment extends AjaxCommonTest {
 	}
 
 	@Test( description = "Apply multiple tags to appointment using toolbar button in day view and remove all tags in day view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void MultipleTagsAppointment_01() throws HarnessException {
 		
 		// Create objects
