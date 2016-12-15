@@ -29,6 +29,7 @@ import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditAccount;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
+import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults;
 
 public class ManageMobileAccess extends AdminCommonTest {
 
@@ -37,17 +38,15 @@ public class ManageMobileAccess extends AdminCommonTest {
 		super.startingPage = app.zPageManageAccounts;
 	}
 
-
 	/**
-	 * Testcase : Edit account - Two Factor Authentication
+	 * Testcase : Edit account - Enable mobile access
 	 * Steps :
 	 * 1. Create an account using SOAP.
-	 * 2. Edit the two factor authentication attributes using UI
-	 * 3. Verify two factor authentication attributes are changed using SOAP.
+	 * 2. Edit account > navigate to mobile access
+	 * 3. Enable mobile access
 	 * @throws HarnessException
 	 */
-	
-	@Test( description = "Edit account - Two Factor Authentication",
+	@Test( description = "Edit account - Enable mobile access",
 			groups = { "smoke", "L1", "network" })
 
 	public void EnableMobileAccess_01() throws HarnessException {
@@ -56,9 +55,9 @@ public class ManageMobileAccess extends AdminCommonTest {
 		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-		+			"<name>" + account.getEmailAddress() + "</name>"
-		+			"<password>test123</password>"
-		+		"</CreateAccountRequest>");
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+		"</CreateAccountRequest>");
 
 		// Refresh the account list
 		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
@@ -69,19 +68,14 @@ public class ManageMobileAccess extends AdminCommonTest {
 		// Click on Edit button
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
-		// CLick on Features
-		//form.ClickOnFeatures();
+		// CLick on mobile access
 		app.zPageEditAccount.zToolbarPressButton(Button.B_MOBILE_ACCESS);
-		
 		SleepUtil.sleepMedium();
 
-		Boolean isMobileAccessEnabled = app.zPageEditAccount.sIsChecked(FormEditAccount.Locators.ENABLE_MOBILE_SYNC);	
-		ZAssert.assertFalse(isMobileAccessEnabled, "Verify right is deleted without any error!!");
-		
-		// Uncheck Mail
+		// Enable mobile sync
 		form.zSetMobileAccess(Button.B_ENABLE_MOBILE_SYNC,true);
 
-		// Uncheck Calendar
+		// Enable mobile policy
 		form.zSetMobileAccess(Button.B_ENABLE_MOBILE_POLICY,true);
 
 		// Submit the form
@@ -92,58 +86,58 @@ public class ManageMobileAccess extends AdminCommonTest {
 						+			"<account by='name'>"+ account.getEmailAddress() +"</account>"
 						+		"</GetAccountRequest>");
 
-		// Verify calendar feature is disabled
+		// Verify mobile sync is enabled
 		Element response1 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureMobileSyncEnabled']", 1);
 		ZAssert.assertNotNull(response1, "Verify the account is edited successfully");
-		ZAssert.assertStringContains(response1.toString(),"TRUE", "Verify calendar feature is disabled");
-		
-		Boolean status = app.zPageEditAccount.sIsChecked(FormEditAccount.Locators.ENABLE_MOBILE_SYNC);	
-		ZAssert.assertTrue(status, "Verify right is deleted without any error!!");
+		ZAssert.assertStringContains(response1.toString(),"TRUE", "Verify Enable mobile sync is checked");
 
-		// Verify mail feature is disabled
+		Boolean status = app.zPageEditAccount.sIsChecked(FormEditAccount.Locators.ENABLE_MOBILE_SYNC);	
+		ZAssert.assertTrue(status, "Verify Enable mobile sync is checked!!");
+
 		Element response2 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureMobilePolicyEnabled']", 1);
 		ZAssert.assertNotNull(response2, "Verify the account is edited successfully");
-		ZAssert.assertStringContains(response2.toString(),"TRUE", "Verify mail feature is disabled");
+		ZAssert.assertStringContains(response2.toString(),"TRUE", "Verify Enable mobile policy is checked");
 
 	}
-	
+
 	/**
-	 * Testcase : Edit account - Two Factor Authentication
+	 * Testcase : Edit account - Disable mobile access
 	 * Steps :
 	 * 1. Create an account using SOAP.
-	 * 2. Edit the two factor authentication attributes using UI
-	 * 3. Verify two factor authentication attributes are changed using SOAP.
+	 * 2. Edit account > navigate to mobile access
+	 * 3. Disable mobile access
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit account - Two Factor Authentication",
+	@Test( description = "Edit account - Disable mobile access",
 			groups = { "smoke", "L1", "network" })
 
-	public void EnableMobileAccess_02() throws HarnessException {
+	public void DisableMobileAccess_02() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(account);
 
-		// Refresh the account list
-		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Enter the search string to find the account
+		app.zPageSearchResults.zAddSearchQuery(account.getEmailAddress());
 
-		// Click on account to be Edited.
-		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
+		// Click search
+		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
-		// Click on Edit button
-		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
+		// Click on account to be edited.
+		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
 
-		// CLick on Features
-		//form.ClickOnFeatures();
+
+		// Click on edit button
+		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.ACCOUNT);
+		FormEditAccount form = (FormEditAccount) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
+
+		// Click on mobile access
 		app.zPageEditAccount.zToolbarPressButton(Button.B_MOBILE_ACCESS);
-		
 		SleepUtil.sleepMedium();
 
-		// Uncheck Mail
-		form.zSetMobileAccess(Button.B_ENABLE_MOBILE_SYNC,false);
 
-		// Uncheck Calendar
-		form.zSetMobileAccess(Button.B_ENABLE_MOBILE_POLICY,false);
+		// Uncheck 'enable mobile sync'
+		form.zSetMobileAccess(Button.B_ENABLE_MOBILE_SYNC,false);
 
 		// Submit the form
 		form.zSubmit();
@@ -153,15 +147,10 @@ public class ManageMobileAccess extends AdminCommonTest {
 						+			"<account by='name'>"+ account.getEmailAddress() +"</account>"
 						+		"</GetAccountRequest>");
 
-		// Verify calendar feature is disabled
+		// Verify mobile sync feature is disabled
 		Element response1 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureMobileSyncEnabled']", 1);
 		ZAssert.assertNotNull(response1, "Verify the account is edited successfully");
 		ZAssert.assertStringContains(response1.toString(),"FALSE", "Verify calendar feature is disabled");
-
-		// Verify mail feature is disabled
-		Element response2 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureMobilePolicyEnabled']", 1);
-		ZAssert.assertNotNull(response2, "Verify the account is edited successfully");
-		ZAssert.assertStringContains(response2.toString(),"FALSE", "Verify mail feature is disabled");
 
 	}
 

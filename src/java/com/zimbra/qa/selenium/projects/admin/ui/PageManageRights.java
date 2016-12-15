@@ -19,6 +19,7 @@
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
+import com.sun.glass.events.KeyEvent;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
@@ -106,7 +107,59 @@ public class PageManageRights extends AbsTab {
 	@Override
 	public AbsPage zListItem(Action action, String item)
 			throws HarnessException {
-		return null;
+		logger.info(myPageName() + " zListItem("+ action +", "+ item +")");
+
+		tracer.trace(action +" on subject = "+ item);
+
+		AbsPage page = null;
+		SleepUtil.sleepSmall();
+
+		// How many items are in the table?
+		String rowsLocator = "css=div#zl__RIGHTS div[id$='__rows'] div[id^='zli__']";
+		int count = this.sGetCssCount(rowsLocator);
+		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
+
+		int m= 50;
+		if (count >= 50) {
+			for (int a1 = 1; a1 <= 10; a1++) { 
+				String p0  = rowsLocator + ":nth-child("+m+")";				
+				if (this.sIsElementPresent(p0)) {					
+					sClickAt(p0,"");
+					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+					m=m+20;
+				}
+				else
+					break;
+			}
+
+		}
+
+		count = this.sGetCssCount(rowsLocator);
+		// Get each conversation's data from the table list
+		for (int i = 1; i <= count; i++) {
+			final String accountLocator = rowsLocator + ":nth-child("+i+")";
+			String locator;
+
+			// Email Address
+			locator = accountLocator + " td[id^='RIGHTS_name']";
+
+
+			if (this.sIsElementPresent(locator))
+			{
+				if (this.sGetText(locator).trim().equalsIgnoreCase(item))
+				{
+					if (action == Action.A_LEFTCLICK) {
+						sClick(locator);
+						break;
+					} else if(action == Action.A_RIGHTCLICK) {
+						zRightClick(locator);
+						break;
+					}
+
+				}
+			}
+		}
+		return page;
 	}
 
 	@Override
