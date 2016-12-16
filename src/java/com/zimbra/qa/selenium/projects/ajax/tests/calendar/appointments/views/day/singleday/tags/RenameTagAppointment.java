@@ -44,7 +44,7 @@ public class RenameTagAppointment extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Apply tag to appointment and rename tag name in day view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void RenameTagAppointment_01() throws HarnessException {
 		
 		// Create objects

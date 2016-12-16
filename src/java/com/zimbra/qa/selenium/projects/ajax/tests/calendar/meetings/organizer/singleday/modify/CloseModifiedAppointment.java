@@ -41,7 +41,7 @@ public class CloseModifiedAppointment extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Close modifying appt and take action from warning dialog : Save Changes and send updates", 
-			groups = { "functional"})
+			groups = { "functional", "L2"})
 	public void CloseModifiedAppointment_01() throws HarnessException {
 
 		// Create appointment data 
@@ -107,7 +107,7 @@ public class CloseModifiedAppointment extends CalendarWorkWeekTest {
 	}
 
 	@Test( description = "Close modifying appt and take action from warning dialog : Discard and close", 
-			groups = { "functional"})
+			groups = { "functional", "L2"})
 	public void CloseModifiedAppointment_02() throws HarnessException {
 
 		// Creating object for appointment data
@@ -178,7 +178,7 @@ public class CloseModifiedAppointment extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Close modifying appt and take action from warning dialog : Dont save But keep open", 
-			groups = { "functional"})
+			groups = { "functional", "L2"})
 	public void CloseModifiedAppointment_03() throws HarnessException {
 		
 		// Creating object for appointment data

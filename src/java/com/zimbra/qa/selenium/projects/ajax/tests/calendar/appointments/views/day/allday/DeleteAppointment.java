@@ -49,7 +49,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	
 	@Bugs(ids = "69132")
 	@Test( description = "Delete all-day appointment using Delete toolbar button in day view",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void DeleteAllDayAppointment_01() throws HarnessException {
 		
 		//-- Data Setup

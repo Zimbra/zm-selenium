@@ -41,7 +41,7 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 	
 	
 	@Test( description = "Add optional attendee by typing in the field and resend the appointment",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 		
 	public void AddOptionalAttendee_01() throws HarnessException {
 		
@@ -104,7 +104,7 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 	
 	
 	@Test( description = "Create appt and add optional attendee to existing appointment from contact picker",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 	
 	public void CreateMeetingBySelectAttendees_01() throws HarnessException {
 		

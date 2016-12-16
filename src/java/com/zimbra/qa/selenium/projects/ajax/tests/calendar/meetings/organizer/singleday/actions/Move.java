@@ -37,7 +37,7 @@ public class Move extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "102771")
 	@Test( description = "Move meeting invite using context menu",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 
 	public void MoveMeeting_01() throws HarnessException {
 		

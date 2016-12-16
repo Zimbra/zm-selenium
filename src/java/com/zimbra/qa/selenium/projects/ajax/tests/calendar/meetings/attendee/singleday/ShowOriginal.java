@@ -42,7 +42,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 	
 	
 	@Test( description = "check context menu for Show Original option and check of the its displayed", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void ShowOriginal_01() throws HarnessException {
 		

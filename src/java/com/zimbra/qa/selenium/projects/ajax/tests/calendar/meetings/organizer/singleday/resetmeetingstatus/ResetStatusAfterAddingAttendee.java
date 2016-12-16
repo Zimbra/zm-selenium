@@ -37,7 +37,7 @@ public class ResetStatusAfterAddingAttendee extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "49881")
 	@Test( description = "Check reset status of meeting after adding more attendee",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 			
 	public void ResetStatusAfterAddingAttendee_01() throws HarnessException {
 		

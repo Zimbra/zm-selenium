@@ -38,7 +38,8 @@ public class create extends CalendarWorkWeekTest {
 	}
 
 	@Bugs(ids = "75771")
-	@Test( description = "Verify sending invite using OBO although user2 granted OBO rights to user1", groups = { "functional" })
+	@Test( description = "Verify sending invite using OBO although user2 granted OBO rights to user1", 
+			groups = { "functional","L2" })
 	
 	public void create_01() throws HarnessException {
 		

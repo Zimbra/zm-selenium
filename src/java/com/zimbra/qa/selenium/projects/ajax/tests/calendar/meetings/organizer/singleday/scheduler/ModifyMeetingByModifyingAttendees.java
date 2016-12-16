@@ -34,7 +34,7 @@ public class ModifyMeetingByModifyingAttendees extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "58104, 100809")
 	@Test( description = "Blank row added in f/b scheduler after removing and adding attendee back from attendees field",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 			
 	public void ModifyMeetingByModifyingAttendees_01() throws HarnessException {
 		

@@ -34,7 +34,7 @@ public class Decline extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Rt-click to appointment and Decline the meeting invite by selecting 'Don't notify organizer'", 
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void DeclineMeeting_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -133,7 +133,7 @@ public class Decline extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Rt-click to appointment and Decline the meeting invite by selecting 'Notify organizer'", 
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void DeclineMeeting_02() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------

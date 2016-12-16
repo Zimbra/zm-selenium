@@ -30,7 +30,7 @@ public class VerifyNestedState extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Grantee opens appointment from grantor's calendar and close it without making any changes",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void VerifyNestedState_01() throws HarnessException {
 		

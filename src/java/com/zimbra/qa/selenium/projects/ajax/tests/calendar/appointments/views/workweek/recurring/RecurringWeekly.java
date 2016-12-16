@@ -41,7 +41,7 @@ public class RecurringWeekly extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "103157")
 	@Test( description = "Create weekly recurring appointment and verify that start date and other details appear correct after opening",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void RecurringWeekly_01() throws HarnessException, ParseException {
 		

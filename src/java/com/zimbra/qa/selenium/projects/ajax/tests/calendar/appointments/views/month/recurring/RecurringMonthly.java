@@ -48,7 +48,7 @@ public class RecurringMonthly extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "103157")
 	@Test( description = "Create Monthly recurring appointment and verify that start date and other details appear correct after opening",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void RecurringMonthly_01() throws HarnessException, ParseException {
 		

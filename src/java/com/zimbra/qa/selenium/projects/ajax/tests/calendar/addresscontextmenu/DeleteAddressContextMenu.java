@@ -33,9 +33,9 @@ public class DeleteAddressContextMenu extends PrefGroupMailByMessageTest {
 		logger.info("New " + DeleteAddressContextMenu.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
 
-	@Test( description = "Right click To bubble address >> Delete", groups = { "smoke" })
+	@Test( description = "Right click To bubble address >> Delete", 
+			groups = { "smoke", "L1" })
 	public void DeleteAttendeeContextMenu_01() throws HarnessException {
 
 		String apptAttendee1;
@@ -51,9 +51,9 @@ public class DeleteAddressContextMenu extends PrefGroupMailByMessageTest {
 
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=td[id='zcs1_person'] div div[class='addrBubbleHolder-empty']"),"Attendee should be empty");
 	}
-
 	
-	@Test( description = "Right click To bubble address >> Delete (Keyboard shortcut)", groups = { "smoke" })
+	@Test( description = "Right click To bubble address >> Delete (Keyboard shortcut)", 
+			groups = { "smoke", "L1" })
 	public void DeleteAttendeeContextMenu_DeleteShortcut_02() throws HarnessException {
 
 		String apptAttendee1;
@@ -70,9 +70,9 @@ public class DeleteAddressContextMenu extends PrefGroupMailByMessageTest {
 		app.zPageCalendar.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DELETE);
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=td[id='zcs1_person'] div div[class='addrBubbleHolder-empty']"),"Attendee should be empty");
 	}
-
 	
-	@Test( description = "Right click To bubble address >> Delete (BackSpace shortcut)", groups = { "smoke" })
+	@Test( description = "Right click To bubble address >> Delete (BackSpace shortcut)", 
+			groups = { "smoke", "L1" })
 	public void DeleteAttendeeContextMenu_Backspace_03() throws HarnessException {
 
 		String apptAttendee1;

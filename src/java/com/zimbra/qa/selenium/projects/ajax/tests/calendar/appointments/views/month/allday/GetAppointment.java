@@ -47,7 +47,7 @@ public class GetAppointment extends AjaxCommonTest {
 	
 	@Bugs(ids = "69132")
 	@Test( description = "View a basic appointment in the month view",
-			groups = { "functional" })
+			groups = { "functional", "L1" })
 	public void GetAppointment_01() throws HarnessException {
 		
 		// Create an appointment on the server
@@ -86,7 +86,7 @@ public class GetAppointment extends AjaxCommonTest {
 
 	@Bugs(ids = "69132")
 	@Test( description = "View a multi-day appointment in the month view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetAppointment_02() throws HarnessException {
 		
 		// Create an appointment on the server

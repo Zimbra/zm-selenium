@@ -39,7 +39,7 @@ public class ModifyAppointment extends CalendarWorkWeekTest {
 
 	@Test(
 			description = "Modify appointment with subject & body and verify it", 
-			groups = { "smoke" }) // smoke
+			groups = { "smoke", "L1" }) // smoke
 	public void ModifyAppointment_01() throws HarnessException {
 
 		// Creating object for appointment data

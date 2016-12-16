@@ -32,7 +32,7 @@ public class CreateShare extends CalendarWorkWeekTest  {
 	}
 	
 	@Test( description = "Share calendar folder with manager rights",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			
 	public void CreateShare_01() throws HarnessException {
 		

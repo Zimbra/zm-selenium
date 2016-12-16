@@ -34,7 +34,7 @@ public class RemoveLocation extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "77588,96593")
 	@Test( description = "Remove location from existing appointment and verify F/B",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void RemoveLocation_01() throws HarnessException {
 		

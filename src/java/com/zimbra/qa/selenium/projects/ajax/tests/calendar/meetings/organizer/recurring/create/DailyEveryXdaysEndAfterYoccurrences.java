@@ -35,7 +35,7 @@ public class DailyEveryXdaysEndAfterYoccurrences extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "96566")
 	@Test( description = "Create daily recurring invite with attendee and location with particular week day & end after particular instances",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			
 	public void DailyEveryXdaysEndAfterYoccurrences_01() throws HarnessException {
 		

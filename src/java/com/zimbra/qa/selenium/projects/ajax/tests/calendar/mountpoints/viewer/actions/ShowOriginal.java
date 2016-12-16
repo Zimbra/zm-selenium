@@ -32,7 +32,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Grantee views show original of the appointment from grantor's calendar",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void ShowOriginal_01() throws HarnessException {
 		

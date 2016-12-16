@@ -33,12 +33,11 @@ public class DragAndDropCalendar extends AjaxCommonTest{
 
 		// All tests start at the login page
 		super.startingPage = app.zPageCalendar;
-		
 
 	}
 
 	@Test( description = "Drag one calendar and Drop into other",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void DragDropCalendar_01() throws HarnessException {
 
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);

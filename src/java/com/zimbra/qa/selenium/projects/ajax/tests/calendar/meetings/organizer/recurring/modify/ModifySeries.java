@@ -35,9 +35,8 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		super.startingPage =  app.zPageCalendar;
 	}
 	
-	
 	@Test( description = "Modify series from every day to every week", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void ModifySeries_01() throws HarnessException {
 
@@ -136,9 +135,8 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(messageId, "Verify attendee1 gets new email notification");
 	}
 	
-	
 	@Test( description = "Modify summary of a weekly recurring series", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void ModifySeries_02() throws HarnessException {
 
@@ -239,10 +237,9 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		String messageId = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(messageId, "Verify attendee1 gets new email notification");
 	}
-
 	
 	@Test( description = "Modify summary of a daily recurring series", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void ModifySeries_03() throws HarnessException {
 
@@ -350,11 +347,10 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		String messageId = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(messageId, "Verify attendee1 gets new email notification");
 	}
-	
 
 	@Bugs(ids = "100575")
 	@Test( description = "Modify series by setting end date", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void ModifySeries_04() throws HarnessException {
 
@@ -458,10 +454,9 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(messageId, "Verify attendee1 gets new email notification");
 	}
 	
-	
 	@Bugs(ids = "101610")	
 	@Test( description = "Modifying daily custom series doesn't update new selection in custom repeat dialog ", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void ModifySeries_05() throws HarnessException {
 

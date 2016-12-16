@@ -34,7 +34,7 @@ public class ModifyBySelectAttendees extends CalendarWorkWeekTest {
 	}
 
 	@Test( description = "modify appt and Add attendee to existing appointment from contact picker",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ModifyBySelectAttendees_01() throws HarnessException {
 		
 		// Create a meeting

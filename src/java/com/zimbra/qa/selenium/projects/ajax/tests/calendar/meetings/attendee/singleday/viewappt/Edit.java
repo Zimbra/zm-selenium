@@ -34,7 +34,7 @@ public class Edit extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "View meeting invite by opening it, Edit the invitation and locally save it", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void EditMeeting_01() throws HarnessException {
 

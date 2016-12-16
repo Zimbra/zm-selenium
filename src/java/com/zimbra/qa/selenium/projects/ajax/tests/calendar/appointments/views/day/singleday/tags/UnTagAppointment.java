@@ -43,7 +43,7 @@ public class UnTagAppointment extends AjaxCommonTest {
 
 
 	@Test( description = "Untag an appointment using toolbar button in day view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 
 	public void UnTagAppointment_01() throws HarnessException {
 
@@ -82,7 +82,7 @@ public class UnTagAppointment extends AjaxCommonTest {
 
 
 	@Test( description = "Untag tagged appointment using context menu in day view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 
 	public void UnTagAppointment_02() throws HarnessException, AWTException {
 

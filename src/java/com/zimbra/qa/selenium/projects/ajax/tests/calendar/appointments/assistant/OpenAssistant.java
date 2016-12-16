@@ -34,13 +34,11 @@ public class OpenAssistant extends AjaxCommonTest {
 		super.startingPage = app.zPageCalendar;
 
 		// Make sure we are using an account with message view
-		
-
 
 	}
 	
 	@Test( description = "Open the assistant",
-			groups = { "deprecated" })
+			groups = { "deprecated", "L4" })
 	public void OpenAssistant_01() throws HarnessException {
 		
 		// Click Get Mail button

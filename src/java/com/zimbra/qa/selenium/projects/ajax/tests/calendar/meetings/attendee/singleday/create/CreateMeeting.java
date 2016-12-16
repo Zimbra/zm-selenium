@@ -34,7 +34,7 @@ public class CreateMeeting extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Send a meeting invite by entering multiline body content with HTML compose preferences", 
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	
 	public void CreateMeetingWithHTMLComposePreference_01() throws HarnessException {
 				
@@ -109,7 +109,7 @@ public class CreateMeeting extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Send a meeting invite by entering multiline body content with Plain text compose preferences", 
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	
 	public void CreateMeetingWithPlainTextComposePreference_02() throws HarnessException {
 

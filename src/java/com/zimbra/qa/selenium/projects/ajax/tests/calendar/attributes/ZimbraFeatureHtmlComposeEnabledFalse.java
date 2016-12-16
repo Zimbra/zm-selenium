@@ -41,7 +41,7 @@ public class ZimbraFeatureHtmlComposeEnabledFalse extends CalendarWorkWeekTest {
 	@Bugs(ids = "59504")
 	@Test(
 			description = "If zimbraFeatureHtmlComposeEnabled to FALSE then check if user can create appt", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ZimbraFeatureHtmlComposeEnabledFalse_01() throws HarnessException {
 		
 		// Modify the test account and change zimbraFeatureHtmlComposeEnabled to FALSE

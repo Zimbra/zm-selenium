@@ -46,7 +46,7 @@ public class ZimbraFeatureGroupCalendarEnabledFalse extends CalendarWorkWeekTest
 	@Bugs(ids = "56440")
 	@Test(
 			description = "If zimbraFeatureGroupCalendarEnabled to FALSE then check if user can edit existing appt", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ZimbraFeatureGroupCalendarEnabledFalse_01() throws HarnessException {
 
 		// Modify the test account and change zimbraFeatureGroupCalendarEnabled to FALSE
@@ -111,7 +111,7 @@ public class ZimbraFeatureGroupCalendarEnabledFalse extends CalendarWorkWeekTest
 
 	@Test(
 			description = "Bug 59940 -  Location: edit field can display upto 4 characters only if group calendar feature is OFF", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ZimbraFeatureGroupCalendarEnabledFalse_02() throws HarnessException {
 
 		// Create appointment data

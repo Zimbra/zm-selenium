@@ -37,7 +37,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "102271")
 	@Test( description = "Verify sending appt invite when Location resource has conflicts shows conflict dialog", 
-			groups = { "functional"})
+			groups = { "functional", "L2"})
 	
 	public void CreateMeetingWithLocationConflict_01() throws HarnessException {
 		
@@ -113,7 +113,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 	
 	
 	@Test( description = "Verify Cancelling create appt when Location resource has conflicts shows conflict dialog", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void CreateMeetingWithLocationConflict_02() throws HarnessException {
 
@@ -188,7 +188,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 	
 	
 	@Test( description = "Verify Saving meeting invite when Location resource has conflicts shows conflict dialog",  
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void CreateMeetingWithLocationConflict_03() throws HarnessException {
 		
@@ -270,7 +270,7 @@ public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
 	
 	
 	@Test( description = "Verify organizer can close modified appointment with location Conflict",  
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void CreateMeetingWithLocationConflict_04() throws HarnessException {
 		

@@ -32,7 +32,7 @@ public class ViewInviteWhichContainsAttachment extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "View invite which has attachment present as an organizer",
-			groups = {"smoke" }
+			groups = { "smoke", "L1"}
 	)
 	public void ViewInviteWhichContainsAttachment_01() throws HarnessException {
 		

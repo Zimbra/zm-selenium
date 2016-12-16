@@ -40,7 +40,7 @@ public class DailyEveryXdaysEndByY extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "96566")
 	@Test( description = "Create daily recurring invite with attendee and location with every day & end by particular date",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void DailyEveryXdaysEndByY_01() throws HarnessException {
 		

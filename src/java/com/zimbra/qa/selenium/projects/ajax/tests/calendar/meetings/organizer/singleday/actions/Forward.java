@@ -37,7 +37,7 @@ public class Forward extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Forward a meeting invite using context menu",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			
 	public void ForwardMeeting_01() throws HarnessException {
 				
@@ -99,7 +99,7 @@ public class Forward extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Forward a meeting invite by changing content",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			
 	public void ForwardMeeting_02() throws HarnessException {
 				
@@ -181,7 +181,7 @@ public class Forward extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "59724")
 	@Test( description = "Forwarding if a conf-room is already scheduled for same invite",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void ForwardMeeting_03() throws HarnessException {
 		
@@ -251,7 +251,7 @@ public class Forward extends CalendarWorkWeekTest {
 
 	@Bugs(ids="100340")
 	@Test( description = "forwarding invite shows html source in meeting notes section",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void ForwardMeeting_04() throws HarnessException {
 		

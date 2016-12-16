@@ -32,7 +32,7 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "47629")
 	@Test( description = " HTML view of public shared calendar not showing appointments",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 			
 	public void ViewAppointment_01() throws HarnessException {
 		

@@ -29,7 +29,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 
 public class CreateAppointment extends CalendarWorkWeekTest {
 
-
 	public CreateAppointment() {
 		logger.info("New "+ CreateAppointment.class.getCanonicalName());
 		
@@ -44,11 +43,10 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		}};
 
 	}
-
 	
 	@Test(
 			description = "Create basic recurring appointment (every day) in week view", 
-			groups = { "smoke" } )
+			groups = { "smoke", "L3" } )
 	public void CreateRecurringAppointment_01() throws HarnessException {
 		
 		//-- Data Setup

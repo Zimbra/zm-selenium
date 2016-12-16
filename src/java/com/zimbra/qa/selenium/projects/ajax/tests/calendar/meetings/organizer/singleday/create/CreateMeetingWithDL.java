@@ -39,7 +39,7 @@ public class CreateMeetingWithDL extends CalendarWorkWeekTest {
 	
 
 	@Test( description = " Create appointment with DL by choosing DL address from 'Select Addresses' dialog",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void CreateMeetingWithDL_01() throws HarnessException {
 		
 		organizerTest = false;

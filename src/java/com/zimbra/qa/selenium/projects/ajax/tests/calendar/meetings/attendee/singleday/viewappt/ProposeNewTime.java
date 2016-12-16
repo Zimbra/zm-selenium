@@ -34,7 +34,7 @@ public class ProposeNewTime extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "View meeting invite by opening it and propose new time to organizer", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void MeetingProposeNewTime_01() throws HarnessException {
 

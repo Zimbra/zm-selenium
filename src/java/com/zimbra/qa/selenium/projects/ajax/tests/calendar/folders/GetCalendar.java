@@ -36,7 +36,7 @@ public class GetCalendar extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Get a calendar (under USER_ROOT)",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void GetCalendar_01() throws HarnessException {
 		
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
@@ -74,7 +74,7 @@ public class GetCalendar extends CalendarWorkWeekTest {
 	}	
 
 	@Test( description = "Get a calendar (under subcalendar)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetCalendar_02() throws HarnessException {
 		
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
@@ -128,7 +128,7 @@ public class GetCalendar extends CalendarWorkWeekTest {
 
 	@Bugs(ids = "28846")
 	@Test( description = "Get a calendar (under subcalendar) - verify appointments appear",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void GetCalendar_03() throws HarnessException {
 		
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);

@@ -33,7 +33,7 @@ public class Accept extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "View meeting invite by opening it and Accept the invitation", 
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			
 	public void AcceptMeeting_01() throws HarnessException {
 

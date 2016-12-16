@@ -32,7 +32,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "View meeting invite by opening it and view meeting show original", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void MeetingShowOriginal_01() throws HarnessException {
 		

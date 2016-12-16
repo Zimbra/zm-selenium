@@ -38,7 +38,7 @@ public class AddEquipment extends CalendarWorkWeekTest {
 	
 	
 	@Test( description = "Add Equipment to existing appointment by typing equipment name and verify F/B",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	
 	public void AddEquipment_01() throws HarnessException {
 		
@@ -105,7 +105,7 @@ public class AddEquipment extends CalendarWorkWeekTest {
 	
 	
 	@Test( description = "Add equipment to exisiting appt by from Serach equipment dialog",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	
 	public void AddEquipment_02() throws HarnessException {
 		

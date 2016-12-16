@@ -27,9 +27,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.*;
 
-
 public class DeleteAppointment extends AjaxCommonTest {
-
 	
 	@SuppressWarnings("serial")
 	public DeleteAppointment() {
@@ -43,12 +41,11 @@ public class DeleteAppointment extends AjaxCommonTest {
 		    put("zimbraPrefCalendarInitialView", "month");
 		}};
 
-
 	}
 	
 	@Bugs(ids = "69132")
 	@Test( description = "Delete a basic appointment in the month view",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void DeleteAppointment_01() throws HarnessException {
 		
 		// Create the appointment on the server

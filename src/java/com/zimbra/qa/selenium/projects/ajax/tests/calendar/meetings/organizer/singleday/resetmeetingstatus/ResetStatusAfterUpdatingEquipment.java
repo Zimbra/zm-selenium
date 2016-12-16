@@ -34,7 +34,7 @@ public class ResetStatusAfterUpdatingEquipment extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "49881")
 	@Test( description = "Check reset status of meeting after Updating Equipment",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 			
 	public void ResetStatusAfterUpdatingEquipment_01() throws HarnessException {
 		

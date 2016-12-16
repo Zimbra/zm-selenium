@@ -48,7 +48,7 @@ public class DeleteInstance extends AjaxCommonTest {
 	@Bugs(ids = "69132")
 	@Test(
 			description = "Delete instance of recurring appointment (every month) using toolbar button in day view", 
-			groups = { "functional" } )
+			groups = { "functional", "L3" } )
 	public void DeleteInstance_01() throws HarnessException {
 		
 		// Appointment data
@@ -127,7 +127,7 @@ public class DeleteInstance extends AjaxCommonTest {
 	@Bugs(ids = "69132")
 	@Test(
 			description = "Delete instance of recurring appointment (every year) using context menu in day view", 
-			groups = { "functional" } )
+			groups = { "functional", "L3" } )
 	public void DeleteInstance_02() throws HarnessException {
 		
 		// Appointment data
@@ -213,7 +213,7 @@ public class DeleteInstance extends AjaxCommonTest {
 	@Bugs(ids = "69132")
 	@Test(
 			description = "Delete instance of series appointment (every week) using keyboard shortcuts Del & Backspace in day view",
-			groups = { "functional" },
+			groups = { "functional", "L3" },
 			dataProvider = "DataProviderShortcutKeys" )
 	public void DeleteInstance_03(String name, int keyEvent) throws HarnessException {
 		

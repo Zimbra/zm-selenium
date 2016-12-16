@@ -37,7 +37,7 @@ public class DeleteCalendar extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Delete a calendar - Right click, Delete",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 	public void DeleteCalendar_01() throws HarnessException {
 		
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);

@@ -32,7 +32,7 @@ public class ViewChangeViaMenu extends CalendarWorkWeekTest {
 
 	
 	@Test( description = "Verify changing view via right click view change options",
-			groups = { "sanity" } )
+			groups = { "sanity", "L0" } )
 	
 	public void ViewChangeViaMenu_01() throws HarnessException {
 		

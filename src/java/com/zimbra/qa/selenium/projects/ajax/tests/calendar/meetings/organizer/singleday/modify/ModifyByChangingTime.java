@@ -36,7 +36,7 @@ public class ModifyByChangingTime extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "102759")
 	@Test( description = "Rescheduled appointments do not show the correct time in the summary",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void ModifyByChangingTime_01() throws HarnessException {
 		super.startingAccountPreferences.put("zimbraPrefGroupMailBy", "message");

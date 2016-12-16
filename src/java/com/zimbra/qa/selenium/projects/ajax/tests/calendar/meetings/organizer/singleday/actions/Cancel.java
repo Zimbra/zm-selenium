@@ -36,7 +36,7 @@ public class Cancel extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "69132")
 	@Test( description = "Cancel meeting using context menu",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void CancelMeeting_01() throws HarnessException {
 		
 		
@@ -104,7 +104,7 @@ public class Cancel extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "65749")
 	@Test( description = "Reply to Cancelled Appointments not using zimbraPrefFromAddress",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void CancelMeeting_02() throws HarnessException {
 		
 		String tz, apptSubject, apptBody, apptAttendee1, fromAddress;

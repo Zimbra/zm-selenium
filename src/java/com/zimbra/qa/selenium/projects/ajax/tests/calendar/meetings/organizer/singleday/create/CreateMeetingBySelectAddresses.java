@@ -33,7 +33,7 @@ public class CreateMeetingBySelectAddresses extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Compose appointment by selecting attendees using 'Select Addresses' dialog and send the appointment",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void CreateMeetingBySelectAttendees_01() throws HarnessException {
 		
 		// Create appointment data
