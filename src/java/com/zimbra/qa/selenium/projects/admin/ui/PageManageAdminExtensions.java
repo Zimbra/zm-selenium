@@ -40,6 +40,7 @@ public class PageManageAdminExtensions extends AbsTab {
 		public static final String HOME="Home";
 		public static final String CONFIGURE="Configure";
 		public static final String ADMIN_EXTENSIONS="Admin Extensions";
+		public static final String ADMIN_EXTENSIONS_LIST="css=div[id='zl__ADMEXT_MANAGE']";
 	}
 
 	public PageManageAdminExtensions(AbsApplication application) {
@@ -56,18 +57,10 @@ public class PageManageAdminExtensions extends AbsTab {
 		if ( !MyApplication.zIsLoaded() )
 			throw new HarnessException("Admin Console application is not active!");
 
-
-		boolean present = sIsElementPresent(Locators.GEAR_ICON);
+		boolean present = sIsElementPresent(Locators.ADMIN_EXTENSIONS_LIST);
 		if ( !present ) {
 			return (false);
 		}
-
-		boolean visible = zIsVisiblePerPosition(Locators.GEAR_ICON, 0, 0);
-		if ( !visible ) {
-			logger.debug("isActive() visible = "+ visible);
-			return (false);
-		}
-
 		return (true);
 
 	}
@@ -87,11 +80,11 @@ public class PageManageAdminExtensions extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if ( zIsActive() ) {
-			
+
 			return;
 		}
 
-		// Click on Addresses -> Accounts
+		// Click on configure > Admin extensions
 		zClickAt(Locators.CONFIGURE_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForElementPresent(Locators.ADMIN_EXTENSION);
@@ -128,7 +121,7 @@ public class PageManageAdminExtensions extends AbsTab {
 			throws HarnessException {
 		return null;
 	}
-	
+
 	public boolean zVerifyZimletName (String item) throws HarnessException {
 		if(this.sIsElementPresent("css=div#zl__ADMEXT_MANAGE div[id$='__rows'] div[id$='__"+item+"']"))
 			return true;
