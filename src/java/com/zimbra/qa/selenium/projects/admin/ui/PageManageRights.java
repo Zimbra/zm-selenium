@@ -19,7 +19,8 @@
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
-import com.sun.glass.events.KeyEvent;
+
+import java.awt.event.KeyEvent;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
@@ -27,7 +28,6 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-
 
 /**
  * @author Matt Rhoades
