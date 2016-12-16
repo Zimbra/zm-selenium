@@ -127,11 +127,11 @@ public class PageManageZimlets extends AbsTab {
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.CONFIGURE_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
-		sIsElementPresent(Locators.ZIMLET);
+		zWaitForElementPresent(Locators.ZIMLET);
 		zClickAt(Locators.ZIMLET, "");
-		zWaitForWorkInProgressDialogInVisible();
-		zWaitForActive();
 		SleepUtil.sleepMedium();
+		zWaitForWorkInProgressDialogInVisible();
+		zWaitForActive();	
 	}
 
 	@Override

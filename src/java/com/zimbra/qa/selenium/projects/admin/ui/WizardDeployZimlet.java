@@ -25,11 +25,19 @@ import com.zimbra.qa.selenium.framework.ui.AbsWizard;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
 
+
 /**
  * @author Matt Rhoades
  *
  */
 public class WizardDeployZimlet extends AbsWizard {
+	
+	public static class Locators {
+		public static final String DEPLOY_BUTTON="css=td[id^='zdlg__ZIM_DEPLOY_button']:contains('Deploy')";
+		public static final String FLUSH_CHACHE="css=input[id='zdlgv__ZIM_DEPLOY_flushCache']";
+		public static final String FINISH_BUTTON="css=td[id^='zdlg__ZIM_DEPLOY_button13_title']:contains('Finish')";
+		
+	}
 
 	public WizardDeployZimlet(AbsTab page) {
 		super(page);

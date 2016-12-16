@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 /**
  * @author Matt Rhoades
@@ -40,6 +40,7 @@ public class PageManageAdminExtensions extends AbsTab {
 		public static final String HOME="Home";
 		public static final String CONFIGURE="Configure";
 		public static final String ADMIN_EXTENSIONS="Admin Extensions";
+		public static final String ADMIN_EXTENSIONS_LIST="css=div[id='zl__ADMEXT_MANAGE']";
 	}
 
 	public PageManageAdminExtensions(AbsApplication application) {
@@ -56,18 +57,10 @@ public class PageManageAdminExtensions extends AbsTab {
 		if ( !MyApplication.zIsLoaded() )
 			throw new HarnessException("Admin Console application is not active!");
 
-
-		boolean present = sIsElementPresent(Locators.GEAR_ICON);
+		boolean present = sIsElementPresent(Locators.ADMIN_EXTENSIONS_LIST);
 		if ( !present ) {
 			return (false);
 		}
-
-		boolean visible = zIsVisiblePerPosition(Locators.GEAR_ICON, 0, 0);
-		if ( !visible ) {
-			logger.debug("isActive() visible = "+ visible);
-			return (false);
-		}
-
 		return (true);
 
 	}
@@ -87,18 +80,18 @@ public class PageManageAdminExtensions extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if ( zIsActive() ) {
-			
+
 			return;
 		}
 
-		// Click on Addresses -> Accounts
+		// Click on configure > Admin extensions
 		zClickAt(Locators.CONFIGURE_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
-		sIsElementPresent(Locators.ADMIN_EXTENSION);
+		zWaitForElementPresent(Locators.ADMIN_EXTENSION);
 		zClickAt(Locators.ADMIN_EXTENSION, "");
+		SleepUtil.sleepMedium();
 		zWaitForWorkInProgressDialogInVisible();
-		zWaitForActive();
-
+		zWaitForActive();	
 	}
 
 	@Override
@@ -127,6 +120,12 @@ public class PageManageAdminExtensions extends AbsTab {
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
 			throws HarnessException {
 		return null;
+	}
+
+	public boolean zVerifyZimletName (String item) throws HarnessException {
+		if(this.sIsElementPresent("css=div#zl__ADMEXT_MANAGE div[id$='__rows'] div[id$='__"+item+"']"))
+			return true;
+		return false;
 	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
