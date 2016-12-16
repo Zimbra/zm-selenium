@@ -37,7 +37,7 @@ public class CreateACopy extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "80322")
 	@Test( description = "Assistant right clicks to calendar invite from shared calendar and creates a copy of it",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void CreateACopy_01() throws HarnessException {
 		

@@ -47,7 +47,7 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "View invite with display mail preference as HTML and verify body multiline HTML content ",
-			groups = {"sanity" }
+			groups = {"sanity", "L0" }
 	)
 	public void ViewHTMLInviteWithHTMLPreference_01() throws HarnessException {
 		
@@ -108,7 +108,7 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "View invite with display mail preference as Plain text and verify body multiline HTML content ",
-			groups = {"sanity" } )
+			groups = {"sanity", "L0" } )
 	
 	public void ViewHTMLInviteWithPlainTextPreference_02() throws HarnessException {
 		
@@ -151,7 +151,7 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "View invite with display mail preference as HTML and verify body multiline plain text content ",
-			groups = {"sanity" } )
+			groups = {"sanity", "L0" } )
 	
 	public void ViewPlainTextInviteWithHTMLPreference_03() throws HarnessException {
 		
@@ -226,7 +226,7 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Verify invite with display mail as PlainText and verify body multiline plain text content ",
-			groups = { "sanity" })
+			groups = { "sanity", "L0" })
 	public void ViewPlainTextInviteWithPlainTextPreference_04() throws HarnessException {
 		
 		// Work around for getting correct body locator

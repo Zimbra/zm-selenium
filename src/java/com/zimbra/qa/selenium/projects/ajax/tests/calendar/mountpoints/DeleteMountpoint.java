@@ -35,7 +35,7 @@ public class DeleteMountpoint extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Delete a mountpoint to a shared calendar (right click -> Delete)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void DeleteMountpoint_01() throws HarnessException {
 		

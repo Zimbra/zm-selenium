@@ -34,7 +34,7 @@ public class Delete extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Assistant right clicks to calendar invite from shared calendar and deletes the invite OBO boss (Don't notify organizer)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void Delete_01() throws HarnessException {
 		
@@ -125,7 +125,7 @@ public class Delete extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Assistant right clicks to calendar invite from shared calendar and deletes the invite OBO boss (Notify organizer)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void Delete_02() throws HarnessException {
 		
@@ -271,7 +271,7 @@ public class Delete extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Assistant clicks to calendar invite from shared calendar and deletes the invite OBO boss",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void Delete_03() throws HarnessException {
 		

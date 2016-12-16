@@ -34,7 +34,7 @@ public class Reply extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Grantee replies to appointment from grantor's calendar (Actions -> Reply)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void Reply_01() throws HarnessException {
 		

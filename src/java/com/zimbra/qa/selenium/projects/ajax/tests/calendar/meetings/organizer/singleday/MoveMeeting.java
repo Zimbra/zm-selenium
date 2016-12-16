@@ -35,7 +35,7 @@ public class MoveMeeting extends CalendarWorkWeekTest {
 	}
 
 	@Test( description = "Move meeting invite using toolbar menu as organizer",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 			
 	public void MoveMeeting_01() throws HarnessException {
 

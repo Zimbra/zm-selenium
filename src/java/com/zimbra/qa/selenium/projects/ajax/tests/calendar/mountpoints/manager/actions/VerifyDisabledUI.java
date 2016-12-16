@@ -34,7 +34,7 @@ public class VerifyDisabledUI extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "82558")
 	@Test( description = "Verify Share Calendar option remains disabled & Reply option is enabled on mountpoint appointment (manager share)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void VerifyDisabledUI_01() throws HarnessException {
 		

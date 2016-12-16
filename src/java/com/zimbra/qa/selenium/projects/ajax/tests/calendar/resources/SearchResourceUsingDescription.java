@@ -36,7 +36,7 @@ public class SearchResourceUsingDescription extends CalendarWorkWeekTest {
 	}
 
 	@Bugs(ids = "60134")
-	@Test( description = "Cannot search resource using 'description'", groups = { "functional" } )
+	@Test( description = "Cannot search resource using 'description'", groups = { "functional", "L2" } )
 	
 	public void SearchResourceUsingDescription_01() throws HarnessException {
 		

@@ -42,7 +42,7 @@ public class AddLocation extends CalendarWorkWeekTest {
 		};
 	}
 	@Test( description = "Add location from scheduler pane using keyboard Enter and Tab key",
-			groups = { "functional" },
+			groups = { "functional", "L2" },
 			dataProvider = "DataProviderShortcutKeys")
 	public void AddLocation_01(String name, int keyEvent) throws HarnessException {
 		

@@ -32,7 +32,7 @@ public class CreateACopy extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Grantee copies appointment from grantor's calendar and creates new invite (Actions -> Create a Copy)",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void CreateACopy_01() throws HarnessException {
 		

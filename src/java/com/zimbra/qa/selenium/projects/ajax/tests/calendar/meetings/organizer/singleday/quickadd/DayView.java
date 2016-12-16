@@ -39,7 +39,7 @@ public class DayView extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Verify quick add dialog opens after hitting new appointment in day view",
-			groups = { "functional" } )
+			groups = { "functional", "L2" } )
 	
 	public void DayView_01() throws HarnessException {
 			

@@ -36,7 +36,7 @@ public class ResetStatusAfterModifyingContent extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "49881")
 	@Test( description = "Check reset status of meeting after modifying Content",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 			
 	public void ResetStatusAfterModifyingContent_01() throws HarnessException {
 		

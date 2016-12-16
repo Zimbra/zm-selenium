@@ -36,7 +36,7 @@ public class ModifyCalendar extends CalendarWorkWeekTest {
 
 	@Bugs(ids = "102771")
 	@Test( description = "Modify meeting calendar",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 
 	public void ModifyMeetingCalendar_01() throws HarnessException {
 

@@ -35,7 +35,7 @@ public class BookLocationBySuggestingTime extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "73966,88287")
 	@Test( description = "Suggest a free time and book location for selected time while creating new appointment",
-			groups = { "smoke" })
+			groups = { "smoke", "L1"})
 	
 	public void BookLocationBySuggestingTime_01() throws HarnessException {
 		

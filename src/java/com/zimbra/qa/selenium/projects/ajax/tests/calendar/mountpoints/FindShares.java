@@ -40,7 +40,7 @@ public class FindShares extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "82125,84339")
 	@Test( description = "Search for a share using 'Find Shares' and add it",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void FindShares_01() throws HarnessException {
 		

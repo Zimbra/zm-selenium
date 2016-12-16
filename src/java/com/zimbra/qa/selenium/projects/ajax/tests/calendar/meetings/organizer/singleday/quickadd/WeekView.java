@@ -39,7 +39,7 @@ public class WeekView extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Verify quick add dialog opens after hitting new appointment in week view",
-			groups = { "functional" } )
+			groups = { "functional", "L2" } )
 	
 	public void WeekView_01() throws HarnessException {
 			

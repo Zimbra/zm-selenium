@@ -35,7 +35,7 @@ public class SuggestALocation extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "73966,88287,96567")
 	@Test( description = "Suggest a free location while creating appointment",
-			groups = { "smoke" })
+			groups = { "smoke", "L1"})
 	public void SuggestALocation_01() throws HarnessException {
 		
 		// Create a meeting

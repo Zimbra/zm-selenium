@@ -39,7 +39,7 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Modify Meeting class from Private to Public", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ModifyMeetingPrivateToPublic_01() throws HarnessException {
 
 		// Creating object for meeting data
@@ -97,7 +97,7 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Modify Meeting class from Public to Private", 
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 	public void ModifyMeetingPublicToPrivate_02() throws HarnessException {
 
 		// Creating object for meeting data

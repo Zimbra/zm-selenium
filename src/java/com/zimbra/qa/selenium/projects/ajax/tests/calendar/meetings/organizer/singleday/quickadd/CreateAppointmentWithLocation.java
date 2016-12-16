@@ -43,7 +43,7 @@ public class CreateAppointmentWithLocation extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "101584")
 	@Test( description = "Create appointment with location using quick add dialog",
-			groups = { "functional" } )
+			groups = { "functional", "L2" } )
 	
 	public void CreateAppointmentWithLocation_01() throws HarnessException {
 		

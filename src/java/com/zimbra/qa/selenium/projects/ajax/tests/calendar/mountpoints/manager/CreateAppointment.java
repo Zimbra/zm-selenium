@@ -36,7 +36,8 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Test( description = "Create a basic meeting with attendee and location on shared mailbox", groups = { "smoke" })
+	@Test( description = "Create a basic meeting with attendee and location on shared mailbox", 
+			groups = { "smoke", "L1" })
 	
 	public void CreateAppointment_01() throws HarnessException {
 

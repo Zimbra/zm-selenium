@@ -35,7 +35,7 @@ public class Reshare extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "36754")
 	@Test( description = " Unwanted 'Accept Share' and 'Decline Share' buttons appeared in sent mail ",
-			groups = { "smoke" })
+			groups = { "smoke","L1" })
 			
 	public void Reshare_01() throws HarnessException {
 		

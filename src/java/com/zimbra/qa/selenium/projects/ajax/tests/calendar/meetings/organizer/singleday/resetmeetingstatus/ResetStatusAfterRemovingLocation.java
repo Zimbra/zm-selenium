@@ -35,7 +35,7 @@ public class ResetStatusAfterRemovingLocation extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "49881")
 	@Test( description = "Check reset status of meeting after removing attendee",
-			groups = { "functional" })
+			groups = { "functional", "L2"})
 			
 	public void ResetStatusAfterRemovingLocation_01() throws HarnessException {
 		

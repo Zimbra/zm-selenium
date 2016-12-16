@@ -34,7 +34,7 @@ public class Decline extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "81647")
 	@Test( description = "Assistant right clicks to calendar invite from shared calendar and declines the invite OBO boss (Don't notify organizer)",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			
 	public void Decline_01() throws HarnessException {
 		
@@ -150,7 +150,7 @@ public class Decline extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Assistant right clicks to calendar invite from shared calendar and declines the invite OBO boss (Notify organizer)",
-			groups = { "smoke" })
+			groups = { "smoke", "L1" })
 			
 	public void Decline_02() throws HarnessException {
 		
