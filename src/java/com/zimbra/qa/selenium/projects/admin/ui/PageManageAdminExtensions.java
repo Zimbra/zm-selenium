@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 /**
  * @author Matt Rhoades
@@ -98,7 +98,7 @@ public class PageManageAdminExtensions extends AbsTab {
 		zClickAt(Locators.ADMIN_EXTENSION, "");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
-
+		SleepUtil.sleepLong();
 	}
 
 	@Override
@@ -127,6 +127,12 @@ public class PageManageAdminExtensions extends AbsTab {
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
 			throws HarnessException {
 		return null;
+	}
+	
+	public boolean zVerifyZimletName (String item) throws HarnessException {
+		if(this.sIsElementPresent("css=div#zl__ADMEXT_MANAGE div[id$='__rows'] div[id$='__"+item+"']"))
+			return true;
+		return false;
 	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
