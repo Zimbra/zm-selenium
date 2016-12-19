@@ -41,6 +41,7 @@ public class PageManageZimlets extends AbsTab {
 		public static final String ZIMLETS="Zimlets";
 		public static final String TOGGLE_STATUS="css=div[id='zmi__zb_currentApp__TOGGLE']";
 		public static final String DEPLOY_ZIMLET="css=div[id='zmi__zb_currentApp__DEPLOY_ZIMLET']";
+		public static final String UNDEPLOY_ZIMLET="css=div[id='zmi__zb_currentApp__DELETE']";
 		public static final String UPLOAD_ZIMLET ="css=input[name='zimletFile']";
 		public static final String UPLOAD_SUCESS_MESSAGE ="css=td[id$='uploadStatusMsg_2___container']";
 		public static final String DEPLOY_SUCESS_MESSAGE ="css=td[id$='deployStatusMsg_2___container']";	
@@ -129,7 +130,7 @@ public class PageManageZimlets extends AbsTab {
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForElementPresent(Locators.ZIMLET);
 		zClickAt(Locators.ZIMLET, "");
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();	
 	}
@@ -169,6 +170,11 @@ public class PageManageZimlets extends AbsTab {
 				optionLocator = Locators.DEPLOY_ZIMLET;
 				page = new WizardDeployZimlet(this);
 				// FALL THROUGH
+			} else if (option == Button.B_UNDEPLOY_ZIMLET) {
+
+				optionLocator = Locators.UNDEPLOY_ZIMLET;
+				page = new DialogForUndeployZimlet(this.MyApplication,null);
+			
 			} 
 			else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
