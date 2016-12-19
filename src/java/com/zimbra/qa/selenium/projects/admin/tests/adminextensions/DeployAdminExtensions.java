@@ -84,7 +84,7 @@ public class DeployAdminExtensions extends AdminCommonTest {
 		SleepUtil.sleepMedium();
 		
 		// Verify extension is deployed
-		boolean isDeploySuccessful = app.zPageManageAdminExtensions.zVerifyZimletName(zimletName);
+		boolean isDeploySuccessful = app.zPageManageAdminExtensions.zVerifyAdminExtensionName(zimletName);
 		ZAssert.assertTrue(isDeploySuccessful, "Verify extension is deployed!");
 	
 		
