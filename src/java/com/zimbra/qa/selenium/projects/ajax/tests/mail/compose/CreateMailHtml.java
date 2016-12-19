@@ -84,10 +84,10 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 		// Create the message data to be sent
 		final String dToRecipients = ZimbraAccount.AccountA().EmailAddress;
 		final String dSubject = "subject" + ConfigProperties.getUniqueString();
-		final String dBodyHtmlBold = "<strong>﻿BoldString</strong>";
-		final String dBodyHtmlItalic = "<br></div><div><span id=\"_mce_caret\"><em>﻿ItalicString</em>";
-		final String dBodyHtmlRedColorText = "</span></span><br></div><div><span id=\"_mce_caret\"><span style=\"color: rgb(255, 0, 0);\">﻿RedColorText</span><span id=\"_mce_caret\">﻿</span></span>";
-		final String dBodyHtmlGreenBackgroundText = "<br></div><div><span id=\"_mce_caret\"><span style=\"background-color: rgb(0, 128, 0);\">﻿GreenBackgroundText</span><span id=\"_mce_caret\">﻿</span></span>";
+		final String dBodyHtmlBold = "<strong>BoldString</strong>";
+		final String dBodyHtmlItalic = "<br></div><div><span id=\"_mce_caret\"><em>ItalicString</em>";
+		final String dBodyHtmlRedColorText = "</span></span><br></div><div><span id=\"_mce_caret\"><span style=\"color: rgb(255, 0, 0);\">RedColorText</span><span id=\"_mce_caret\"></span></span>";
+		final String dBodyHtmlGreenBackgroundText = "<br></div><div><span id=\"_mce_caret\"><span style=\"background-color: rgb(0, 128, 0);\">GreenBackgroundText</span><span id=\"_mce_caret\"></span></span>";
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -136,7 +136,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 		String from = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a");
 		String to = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='t']", "a");
 		String subject = ZimbraAccount.AccountA().soapSelectValue("//mail:su", null);
-		String html = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null);
+		String html = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null).replace("\uFEFF", "");
 		
 		ZAssert.assertEquals(from, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(to, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");

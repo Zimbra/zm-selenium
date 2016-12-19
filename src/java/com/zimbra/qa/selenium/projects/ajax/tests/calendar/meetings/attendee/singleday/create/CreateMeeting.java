@@ -41,10 +41,10 @@ public class CreateMeeting extends AjaxCommonTest {
 		// Create the message data to be sent
 		final String attendees = ZimbraAccount.AccountC().EmailAddress;
 		final String dSubject = "subject" + ConfigProperties.getUniqueString();
-		final String dBodyHtmlBold = "<strong>﻿BoldString</strong>";
-		final String dBodyHtmlItalic = "<br></div><div><span id=\"_mce_caret\"><em>﻿ItalicString</em>";
-		final String dBodyHtmlRedColorText = "</span></span><br></div><div><span id=\"_mce_caret\"><span style=\"color: rgb(255, 0, 0);\">﻿RedColorText</span><span id=\"_mce_caret\">﻿</span></span>";
-		final String dBodyHtmlGreenBackgroundText = "<br></div><div><span id=\"_mce_caret\"><span style=\"background-color: rgb(0, 128, 0);\">﻿GreenBackgroundText</span><span id=\"_mce_caret\">﻿</span></span>";
+		final String dBodyHtmlBold = "<strong>BoldString</strong>";
+		final String dBodyHtmlItalic = "<br></div><div><span id=\"_mce_caret\"><em>ItalicString</em>";
+		final String dBodyHtmlRedColorText = "</span></span><br></div><div><span id=\"_mce_caret\"><span style=\"color: rgb(255, 0, 0);\">RedColorText</span><span id=\"_mce_caret\"></span></span>";
+		final String dBodyHtmlGreenBackgroundText = "<br></div><div><span id=\"_mce_caret\"><span style=\"background-color: rgb(0, 128, 0);\">GreenBackgroundText</span><span id=\"_mce_caret\"></span></span>";
 		
 		// Open the new appointment form
 		FormApptNew apptForm = (FormApptNew) app.zPageMail.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_APPOINTMENT);
@@ -96,7 +96,7 @@ public class CreateMeeting extends AjaxCommonTest {
 		String from = ZimbraAccount.AccountC().soapSelectValue("//mail:e[@t='f']", "a");
 		String to = ZimbraAccount.AccountC().soapSelectValue("//mail:e[@t='t']", "a");
 		String subject = ZimbraAccount.AccountC().soapSelectValue("//mail:su", null);
-		String html = ZimbraAccount.AccountC().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null);
+		String html = ZimbraAccount.AccountC().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null).replace("\uFEFF", "");;
 		
 		// Verification
 		ZAssert.assertEquals(from, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
