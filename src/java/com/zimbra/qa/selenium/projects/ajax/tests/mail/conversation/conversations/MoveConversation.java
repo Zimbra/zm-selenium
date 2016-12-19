@@ -152,7 +152,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 
 
 	@Test( description = "Move a conversation by using 'move to trash' shortcut '.t'",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void MoveConversation_03() throws HarnessException {
 		
 		
@@ -195,7 +195,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 
 
 	@Test( description = "Move a conversation by using 'move to inbox' shortcut '.i'",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void MoveConversation_04() throws HarnessException {
 		
 		

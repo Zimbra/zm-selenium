@@ -117,7 +117,7 @@ public class DragAndDropConversation extends PrefGroupMailByConversationTest {
 	}
 
 	@Test( description = "Drag and Drop a conversation - verify sent messages are not moved",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void DragAndDropConversation02() throws HarnessException {
 		
 		// Create a subfolder
@@ -212,7 +212,7 @@ public class DragAndDropConversation extends PrefGroupMailByConversationTest {
 	}
 	
 	@Test( description = "Drag and Drop a conversation - verify trashed messages are not moved",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void DragAndDropConversation03() throws HarnessException {
 		
 		// Create a subfolder

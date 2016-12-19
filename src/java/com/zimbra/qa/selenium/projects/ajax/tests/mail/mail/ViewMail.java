@@ -115,7 +115,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	
 	@Bugs( ids = "61575")
 	@Test( description = "Receive a mail with Resent-From: specified",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	
 	public void ViewMail_03() throws HarnessException {
 		
@@ -444,7 +444,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	
 	@Bugs(ids = "96820")
 	@Test( description = "View very large message using 'View entire message' link",
-			groups = { "functional", "L2" } )
+			groups = { "functional", "L3" } )
 	
 	public void ViewMail_16() throws HarnessException {
 

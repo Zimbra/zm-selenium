@@ -33,9 +33,7 @@ public class ZimbraPrefMarkMsgReadNever extends PrefGroupMailByConversationTest 
 		logger.info("New "+ ZimbraPrefMarkMsgReadNever.class.getCanonicalName());
 		
 		super.startingAccountPreferences.put("zimbraPrefMarkMsgRead", "-1");
-
-
-	}
+    }
 	
 	@Bugs( ids = "78178")
 	@Test( description = "Verify a conversation (1 message) is not marked read if zimbraPrefMarkMsgRead=Never",
@@ -89,10 +87,8 @@ public class ZimbraPrefMarkMsgReadNever extends PrefGroupMailByConversationTest 
 		// Verify the message is marked read in the server (flags attribute should not contain (u)nread)
 		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertStringContains(mail.getFlags(), "u", "Verify the message is still unread in the server");
-		
-
-		
-	}
+	
+    }
 
 	@Bugs( ids = "78178")
 	@Test( description = "Verify a conversation (multiple message) is not marked read if zimbraPrefMarkMsgRead=Never",
@@ -122,13 +118,6 @@ public class ZimbraPrefMarkMsgReadNever extends PrefGroupMailByConversationTest 
 		for (MailItem m : c.getMessageList()) {
 			ZAssert.assertStringContains(m.getFlags(), "u", "Verify the message is still unread in the server");
 		}
-
-		
-
-		
-	}
-
-
-
+    }
 
 }

@@ -79,7 +79,7 @@ public class GetFolder extends PrefGroupMailByMessageTest {
 
 	@Test(
 			description = "Get a folder with non-ASCII special characters", 
-			groups = { "functional", "L2" },
+			groups = { "functional", "L3" },
 			dataProvider = "DataProviderSupportedCharsets")
 	public void GetFolder_02(ZCharset charset, String foldername) throws HarnessException {
 		
