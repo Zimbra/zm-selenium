@@ -57,8 +57,8 @@ public class FormContactNew extends AbsForm {
 		public static String zPostalCode1EditField = "css=div#EDITCONTACTFORM_ADDRESS_0_ZIP input";
 		public static String zCountry1EditField = "css=div#EDITCONTACTFORM_ADDRESS_0_COUNTRY input";
 		public static String zURL1EditField = "css=div#EDITCONTACTFORM_URL_0 input";
-		public static String zOther1EditField = "css=div[id='editcontactform_OTHER_0'] input";
-		public static String zOther2EditField = "css=div[id='editcontactform_OTHER_1'] input";
+		public static String zOther1EditField = "css=div[class='ZmEditContactView']:not([aria-hidden='true']) div[id$='OTHER_0_value'] input[placeholder='Date']";
+		public static String zOther2EditField = "css=div[class='ZmEditContactView']:not([aria-hidden='true']) div[id$='OTHER_1_value'] input[placeholder='Date']";
 		public static String zNotesEditField = "css=textarea#EDITCONTACTFORM_NOTES_input";
 		public static String zLocation = "css=td#EDITCONTACTFORM_FOLDER_title";
 
@@ -74,12 +74,12 @@ public class FormContactNew extends AbsForm {
 		public static String zFileAsCompanyFirstLast = "td.ZWidgetTitle:contains('Company (First Last)')";
 
 		// Other field locators
-		public static String zAddNewOtherRowBtn = "css=div[id$='_OTHER'] div[id$='_add'] td[id$='_add_left_icon'] div[class='ImgAdd']";
-		public static String zOther1DatePickerPullDown = "css=div[id$='_OTHER_0_picker'] div[class='ImgSelectPullDownArrow']";
-		public static String zOther2DatePickerPullDown = "css=div[id$='_OTHER_1_picker'] div[class='ImgSelectPullDownArrow']";
-		public static String zOther2OptionsPullDown = "css=div[id$='_OTHER_1_select'] td[id$='_dropdown'] div[class='ImgSelectPullDownArrow']";
+		public static String zAddNewOtherRowBtn = "css=div[class='ZmEditContactView']:not([aria-hidden='true']) div[id$='_OTHER'] div[id$='_add'] td[id$='_add_left_icon'] div[class='ImgAdd']";
+		public static String zOther1DatePickerPullDown = "css=div[class='ZmEditContactView']:not([aria-hidden='true']) div[id$='_OTHER_0_picker'] div[class='ImgSelectPullDownArrow']";
+		public static String zOther2DatePickerPullDown = "css=div[class='ZmEditContactView']:not([aria-hidden='true']) div[id$='_OTHER_1_picker'] div[class='ImgSelectPullDownArrow']";
+		public static String zOther2OptionsPullDown = "css=div[class='ZmEditContactView']:not([aria-hidden='true']) div[id$='_OTHER_1_select'] td[id$='_dropdown'] div[class='ImgSelectPullDownArrow']";
 		public static String zAnniversaryOption = "css=table[class='ZWidgetTable ZMenuItemTable ZMenuItemBorder'] tr td:contains('Anniversary')";
-		public static String zDay20InDatePicker = "css=div.DwtMenu div.DwtComposite div.DwtCalendar td.DwtCalendarBody td.DwtCalendarDay[id^='c:20:']";
+		public static String zDay20InDatePicker = "css=div.DwtMenu[style*='display: block'] div.DwtComposite div.DwtCalendar td.DwtCalendarBody td.DwtCalendarDay:contains('20')";
 
 		public static final String zPrefixCheckbox = "td.ZWidgetTitle:contains('Prefix')";
 		public static final String zMiddleCheckbox = "td.ZWidgetTitle:contains('Middle')";
