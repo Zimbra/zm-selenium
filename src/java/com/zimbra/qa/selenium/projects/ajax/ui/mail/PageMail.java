@@ -123,8 +123,8 @@ public class PageMail extends AbsTab {
 		public static final String zDeleteButtonFullViewPane = "css=div[id^='ztb__MSG'] div[id$='DELETE'] tr td[id$='DELETE_title']";
 
 		// Reading pane separator bar locators
-		public static final String zBottomReadingPaneSeparatorBar = "css=div[class='AppSash-vert']";
-		public static final String zRightReadingPaneSeparatorBar = "css=div[class='AppSash-horiz']";
+		public static final String zBottomReadingPaneSeparatorBar = "css=div[class='AppSash-vert'][style*='display: block']";
+		public static final String zRightReadingPaneSeparatorBar = "css=div[class='AppSash-horiz'][style*='display: block']";
 
 		public static class CONTEXT_MENU {
 			// TODO: Until https://bugzilla.zimbra.com/show_bug.cgi?id=56273 is
@@ -694,22 +694,22 @@ public class PageMail extends AbsTab {
 				|| (button == Button.B_MAIL_VIEW_READING_PANE_RIGHT)
 				|| (button == Button.B_MAIL_VIEW_READING_PANE_OFF)) {
 
-			locator = "css=td[id$=VIEW_MENU_dropdown]>div[class='ImgSelectPullDownArrow']";
+			locator = "css=div.ZToolbar:not([aria-hidden='true']) td[id$=VIEW_MENU_dropdown]>div[class='ImgSelectPullDownArrow']";
 			this.zClick(locator);
 			this.zWaitForBusyOverlay();
 
 			// Click on Reading pane
-			locator = "css=td[id$=READING_PANE_1_dropdown]>div[class='ImgCascade']";
+			locator = "css=div[id^='POPUP'][style*='display: block'] td[id^=READING_PANE]>div[class='ImgCascade']";
 			this.sMouseOver(locator);
 			this.zWaitForBusyOverlay();
 
 			// Select Reading Pane At the Bottom/On the Right/Off
 			if (button == Button.B_MAIL_VIEW_READING_PANE_BOTTOM) {
-				locator = "css=div#bottom td[id$='_title']";
+				locator = "css=div[id^='POPUP'][style*='display: block'] div[id^='bottom'] td[id$='_title']";
 			} else if (button == Button.B_MAIL_VIEW_READING_PANE_RIGHT) {
-				locator = "css=div#right td[id$='_title']";
+				locator = "css=div[id^='POPUP'][style*='display: block'] div[id^='right'] td[id$='_title']";
 			} else if (button == Button.B_MAIL_VIEW_READING_PANE_OFF) {
-				locator = "css=div#off td[id$='_title']";
+				locator = "css=div[id^='POPUP'][style*='display: block'] div[id^='off'] td[id$='_title']";
 			}
 			this.zClick(locator);
 			this.zWaitForBusyOverlay();
