@@ -37,7 +37,7 @@ public class UndoDeleteMail extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Undo a delete",
-			groups = { "functional", "L2" })
+			groups = { "smoke", "L1" })
 	public void Undo_DeleteMail_01() throws HarnessException {
 		
 		// Create the message to be deleted/undone

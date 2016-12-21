@@ -41,10 +41,10 @@ public class ToggleStatus extends AdminCommonTest {
 	 */
 	@Test( description = "Verify administrator should be able to toggle zimlet status",
 			groups = { "smoke","L1" })
-	public void EnableZimlet_01() throws HarnessException {
+	public void ToggleStatus_01() throws HarnessException {
 	
 		String zimletName ="com_zimbra_webex";
-		
+
 		// Click on Zimlets
 		app.zPageManageZimlets.zListItem(Action.A_LEFTCLICK, zimletName);
 		

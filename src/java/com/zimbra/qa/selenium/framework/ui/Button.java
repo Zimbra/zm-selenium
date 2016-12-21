@@ -751,6 +751,8 @@
 		public static final Button B_ADD_GLOBAL_ACL = new Button("B_ADD_GLOBAL_ACL");
 		public static final Button B_DEPLOY_ZIMLET = new Button("B_DEPLOY_ZIMLET");
 		public static final Button B_UPLOAD_ZIMLET = new Button("B_UPLOAD_ZIMLET");
+		public static final Button B_UNDEPLOY_ZIMLET = new Button("B_UNDEPLOY_ZIMLET");
+		public static final Button B_BACKUP = new Button("B_BACKUP");
 		
 		// Distribution List  buttons
 		public static final Button O_DISTRIBUTIUONLISTS_DISTRIBUTIONLIST=new Button("O_DISTRIBUTIUONLISTS_DISTRIBUTIONLIST");

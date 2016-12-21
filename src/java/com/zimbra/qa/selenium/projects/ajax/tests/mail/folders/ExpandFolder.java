@@ -183,7 +183,7 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 	}	
 
 	@Test( description = "Expand-All subfolders",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void ExpandAllFolders_01() throws HarnessException {
 		
 		

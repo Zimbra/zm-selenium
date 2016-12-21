@@ -24,9 +24,6 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DialogUploadFile;
-
-import net.sf.antcontrib.design.Depends;
 
 /**
  * The "Manage Zimlets" has the same functionality as "Manage Admin Extensions"
@@ -44,7 +41,10 @@ public class PageManageZimlets extends AbsTab {
 		public static final String ZIMLETS="Zimlets";
 		public static final String TOGGLE_STATUS="css=div[id='zmi__zb_currentApp__TOGGLE']";
 		public static final String DEPLOY_ZIMLET="css=div[id='zmi__zb_currentApp__DEPLOY_ZIMLET']";
+		public static final String UNDEPLOY_ZIMLET="css=div[id='zmi__zb_currentApp__DELETE']";
 		public static final String UPLOAD_ZIMLET ="css=input[name='zimletFile']";
+		public static final String UPLOAD_SUCESS_MESSAGE ="css=td[id$='uploadStatusMsg_2___container']";
+		public static final String DEPLOY_SUCESS_MESSAGE ="css=td[id$='deployStatusMsg_2___container']";	
 	}
 
 	public PageManageZimlets(AbsApplication application) {
@@ -62,7 +62,47 @@ public class PageManageZimlets extends AbsTab {
 	@Override
 	public AbsPage zListItem(Action action, String item)
 			throws HarnessException {
-		return null;
+		logger.info(myPageName() + " zListItem("+ action +", "+ item +")");
+
+		tracer.trace(action +" on subject = "+ item);
+
+		AbsPage page = null;
+		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
+		// How many items are in the table?
+		String rowsLocator = "css=div#zl__ZIMLET_MANAGE div[id$='__rows'] div[id^='zli__']";
+		int count = this.sGetCssCount(rowsLocator);
+		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
+
+		count = this.sGetCssCount(rowsLocator);
+		
+		// Get each conversation's data from the table list
+		for (int i = 1; i <= count; i++) {
+			final String accountLocator = rowsLocator;
+			String locator;
+
+			// Email Address
+			locator = accountLocator +":nth-child("+i+")";
+			SleepUtil.sleepSmall();
+			
+			if (this.sIsElementPresent(locator))
+			{
+				SleepUtil.sleepSmall();
+				if (this.sGetText(locator).trim().contains(item))
+				{
+					if (action == Action.A_LEFTCLICK) {
+						sClick(locator);
+						SleepUtil.sleepLong();
+						break;
+					} else if(action == Action.A_RIGHTCLICK) {
+						zRightClick(locator);
+						break;
+					}
+
+				}
+			}
+		}
+		return page;
 	}
 
 	@Override
@@ -88,10 +128,11 @@ public class PageManageZimlets extends AbsTab {
 		// Click on Addresses -> Accounts
 		zClickAt(Locators.CONFIGURE_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
-		sIsElementPresent(Locators.ZIMLET);
+		zWaitForElementPresent(Locators.ZIMLET);
 		zClickAt(Locators.ZIMLET, "");
+		SleepUtil.sleepLong();
 		zWaitForWorkInProgressDialogInVisible();
-		zWaitForActive();
+		zWaitForActive();	
 	}
 
 	@Override
@@ -129,6 +170,11 @@ public class PageManageZimlets extends AbsTab {
 				optionLocator = Locators.DEPLOY_ZIMLET;
 				page = new WizardDeployZimlet(this);
 				// FALL THROUGH
+			} else if (option == Button.B_UNDEPLOY_ZIMLET) {
+
+				optionLocator = Locators.UNDEPLOY_ZIMLET;
+				page = new DialogForUndeployZimlet(this.MyApplication,null);
+			
 			} 
 			else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
@@ -214,7 +260,6 @@ public class PageManageZimlets extends AbsTab {
 		return (page);
 	}
 
-
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -242,6 +287,28 @@ public class PageManageZimlets extends AbsTab {
 		if(this.sIsElementPresent("css=div#zl__ZIMLET_MANAGE div[id$='__rows'] div[id$='__"+item+"']:contains('Disabled')"))
 			return true;
 		return false;
+	}
+	
+	public boolean zVerifyZimletName (String item) throws HarnessException {
+		if(this.sIsElementPresent("css=div#zl__ZIMLET_MANAGE div[id$='__rows'] div[id$='__"+item+"']"))
+			return true;
+		return false;
+	}
+	
+	public boolean zVerifyUploadSuccessMessage() throws HarnessException {
+			if (sIsElementPresent(Locators.UPLOAD_SUCESS_MESSAGE+":contains('Successfully')") ) {
+				return true;
+			}
+
+		return false;
+	}
+	
+	public boolean zVerifyDeploySuccessMessage() throws HarnessException {
+		if (sIsElementPresent(Locators.DEPLOY_SUCESS_MESSAGE+":contains('Successfully')") ) {
+			return true;
+		}
+
+	return false;
 	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {

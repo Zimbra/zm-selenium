@@ -131,7 +131,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 	}
 
 	@Test( description = "Delete a conversation by selecting and typing '.t' shortcut",
-			groups = { "functional", "L2" } )
+			groups = { "functional", "L3" } )
 	public void DeleteConversation_04() throws HarnessException {
 		
 		// Create the message data to be sent

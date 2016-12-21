@@ -98,7 +98,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 	
 
 	@Bugs(ids = "81920")
-	@Test( description = "Reply to a conversation with a trashed message",	groups = { "functional", "L2" })
+	@Test( description = "Reply to a conversation with a trashed message",	groups = { "functional", "L3" })
 	
 	public void ReplyToConversationWithDraft_02() throws HarnessException {
 
@@ -159,7 +159,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 
 	
 	@Bugs(ids = "81920")
-	@Test( description = "Reply to a conversation with a spammed message",	groups = { "functional", "L2" })
+	@Test( description = "Reply to a conversation with a spammed message",	groups = { "functional", "L3" })
 	
 	public void ReplyToConversationWithDraft_03() throws HarnessException {
 

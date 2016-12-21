@@ -137,7 +137,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 
 	@Bugs( ids = "61575")
 	@Test( description = "Receive a mail with Resent-From: specified",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 
 	public void ViewMail_03() throws HarnessException {
 		

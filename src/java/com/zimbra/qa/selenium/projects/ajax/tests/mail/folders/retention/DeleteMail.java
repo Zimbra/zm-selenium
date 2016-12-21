@@ -184,7 +184,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut", groups = { "functional", "L2" })
+	@Test(description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut", groups = { "functional", "L3" })
 	public void HardDeleteMail_01() throws HarnessException {
 
 		// -- Data
@@ -273,7 +273,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test(description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut - click cancel to the confirmation", groups = {
-			"functional", "L2" })
+			"functional", "L3" })
 	public void HardDeleteMail_02() throws HarnessException {
 
 		// -- Data

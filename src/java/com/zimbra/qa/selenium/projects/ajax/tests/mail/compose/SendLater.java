@@ -120,7 +120,7 @@ public class SendLater extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Send a mail now using Send -> Send",
-			groups = { "smoke", "L1" })
+			groups = { "functional", "L3" })
 	public void SendLater_03() throws HarnessException {
 		
 		

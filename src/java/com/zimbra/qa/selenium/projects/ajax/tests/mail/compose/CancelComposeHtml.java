@@ -85,7 +85,7 @@ public class CancelComposeHtml extends PrefGroupMailByMessageTest {
 	 */
 	
 	@Test( description = "Cancel html composed mail using keyboard shortcut 'Escape'",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void CancelComposeHtml_A_02() throws HarnessException {
 		
 		Shortcut shortcut = Shortcut.S_ESCAPE;

@@ -107,7 +107,7 @@ public class ZimbraPrefColorMessagesEnabledTrue extends PrefGroupMailByMessageTe
 	}
 	
 	@Test( description = "ZimbraPrefColorMessagesEnabledTrue=TRUE: Display messages with 2 tags",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void ZimbraPrefColorMessagesEnabledTrue_02() throws HarnessException {
 		
 		//-- DATA

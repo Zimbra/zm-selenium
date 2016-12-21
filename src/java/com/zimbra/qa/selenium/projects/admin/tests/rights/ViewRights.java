@@ -47,7 +47,7 @@ public class ViewRights extends AdminCommonTest {
 		String rightDesc = "access GAL(global address list)";
 		String rightType = "preset";
 		String targetType = "domain";
-
+	
 		// Click on Right
 		app.zPageManageRights.zListItem(Action.A_LEFTCLICK, rightName);
 

@@ -43,7 +43,7 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Un Flag from new window ,action menu -> UnFlag", groups = { "functional", "L2" })
+	@Test( description = "Unflag from new window ,action menu -> UnFlag", groups = { "functional", "L2" })
 	public void UnFlagrFromNewWindow_01() throws HarnessException {
 
 		// Create the message data to be sent

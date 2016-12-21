@@ -39,7 +39,7 @@ public class CreateTask extends PrefGroupMailByMessageTest {
 
 	}
 	
-	@Test( description = "Create Task from new windownby action menu -> Create Task",
+	@Test( description = "Create Task from new window by action menu -> Create Task",
 			groups = { "functional", "L2" })
 	public void CreateTask_01() throws HarnessException {
 		
