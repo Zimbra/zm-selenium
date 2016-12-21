@@ -93,10 +93,16 @@ public class ZimbraPrefMandatorySpellCheckEnabled extends AjaxCommonTest {
 
 		//Click on correct spelling button
 		mailform.sClick(Locators.zCorrectSpellingBtn);
-
+		
+		//Select body frame
+		mailform.sSelectFrame(Locators.zBodyFrameCss);
+		
 		//CLick on the misspelled word
 		mailform.sClickAt(Locators.zMisspelledWordCss+":contains('"+misspelledWord+"')","0,0");
 
+		//switch to main window
+		mailform.sSelectFrame("relative=top");
+		
 		//Click on Add  to add the word to spell check dictionary
 		SleepUtil.sleepSmall();
 		mailform.sClickAt(Locators.zAddMisspelledWord,"0,0");		
