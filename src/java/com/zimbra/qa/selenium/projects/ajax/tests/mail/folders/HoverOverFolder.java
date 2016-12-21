@@ -156,7 +156,7 @@ public class HoverOverFolder extends PrefGroupMailByMessageTest {
 	}	
 
 	@Test( description = "Hover over an empty folder",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void TooltipFolder_03() throws HarnessException {
 		
 		//-- Data

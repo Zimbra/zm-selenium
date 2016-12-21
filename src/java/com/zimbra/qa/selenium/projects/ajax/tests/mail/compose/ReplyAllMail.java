@@ -353,7 +353,7 @@ public class ReplyAllMail extends PrefGroupMailByMessageTest {
 
 	@Bugs( ids = "79880")
 	@Test( description = "Verify user account is not To/Cc when mismatched case)",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void ReplyMail_04() throws HarnessException {
 
 		// Steps:
@@ -413,7 +413,7 @@ public class ReplyAllMail extends PrefGroupMailByMessageTest {
 	
 	@Bugs( ids = "79880")
 	@Test( description = "Verify user account is not To/Cc when mismatched case)",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void ReplyMail_05() throws HarnessException {
 
 		// Steps:

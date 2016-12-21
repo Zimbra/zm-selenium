@@ -109,7 +109,7 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 	
 	
 	@Test( description = "Add txt attachment to Briefcase when viewing email in a separate window",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 			
 	public void AddToBriefcase_02() throws HarnessException {
 		

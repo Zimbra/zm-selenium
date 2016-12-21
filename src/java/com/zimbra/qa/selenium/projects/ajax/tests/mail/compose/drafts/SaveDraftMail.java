@@ -161,7 +161,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test( description = "Save draft with two receipients in To field", groups = { "functional", "L2" })
+	@Test( description = "Save draft with two receipients in To field", groups = { "functional", "L3" })
 	
 	public void SaveDraftMail_04() throws HarnessException {
 

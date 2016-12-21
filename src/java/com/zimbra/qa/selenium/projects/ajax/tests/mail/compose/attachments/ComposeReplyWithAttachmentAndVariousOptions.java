@@ -133,7 +133,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 
 	@Bugs(ids = "103903")
 	@Test( description = "Verify the presence of attachment while replying to mail and selecting 'Use Prefixes' option from Options'",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 
 	public void ComposeReplyWithAttachmentAndVariousOptions_02() throws HarnessException {
 
@@ -209,7 +209,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 
 	@Bugs(ids = "103903")
 	@Test( description = "Verify the presence of attachment while replying to mail and selecting 'Include Headers' option from Options'",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 
 	public void ComposeReplyWithAttachmentAndVariousOptions_03() throws HarnessException {
 

@@ -160,7 +160,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Autocomplete using a Contact - Last Name",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void AutoCompleteContacts_03() throws HarnessException {
 		
 		// Create a contact
@@ -220,7 +220,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Autocomplete using a Contact - Partial Last Name",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void AutoCompleteContacts_04() throws HarnessException {
 		
 		// Create a contact
@@ -280,7 +280,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Autocomplete using a Contact - Full Name",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void AutoCompleteContacts_05() throws HarnessException {
 		
 		// Create a contact
@@ -340,7 +340,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Autocomplete using a Contact - First Name and Last Initial",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void AutoCompleteContacts_07() throws HarnessException {
 		
 		// Create a contact
@@ -504,7 +504,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 
 	@Bugs(ids = "47045")
 	@Test( description = "Autocomplete including a period/dot '.' in the string",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void AutoCompleteContactsBug47045A() throws HarnessException {
 		
 		// Create a contact
@@ -564,7 +564,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 
 	@Bugs(ids = "47045")
 	@Test( description = "Autocomplete including a period/dot '.' in the string",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void AutoCompleteContactsBug47045B() throws HarnessException {
 		
 		// Create a contact
@@ -754,7 +754,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 
 	@Bugs(ids = "47044")
 	@Test( description = "Autocomplete should not match contacts in trashed addressbook",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void AutoCompleteContacts_Bug47044C() throws HarnessException {
 		
 		
@@ -830,7 +830,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 
 
 	@Test( description = "Autocomplete should match contacts in addressbooks and subaddressbooks",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void AutoCompleteContacts_10() throws HarnessException {
 		
 		

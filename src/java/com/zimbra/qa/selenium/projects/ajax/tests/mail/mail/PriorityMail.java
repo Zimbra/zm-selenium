@@ -117,7 +117,7 @@ public class PriorityMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Receive a normal priority mail",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void GetMail_03() throws HarnessException {
 
 		

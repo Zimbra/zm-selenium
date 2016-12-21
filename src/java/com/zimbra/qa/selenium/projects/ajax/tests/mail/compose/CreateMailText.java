@@ -146,7 +146,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test( description = "Send a mail with CC", groups = { "functional", "L2" })
+	@Test( description = "Send a mail with CC", groups = { "functional", "L3" })
 	
 	public void CreateMailText_04() throws HarnessException {
 		
@@ -190,7 +190,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test( description = "Send a mail with BCC", groups = { "functional", "L2" })
+	@Test( description = "Send a mail with BCC", groups = { "functional", "L3" })
 	
 	public void CreateMailText_05() throws HarnessException {
 		
@@ -275,7 +275,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Send a mail to 100 recipients",
-			groups = { "deprecated" } ) // The harness doesn't handle the postqueue for such a large message
+			groups = { "deprecated", "L4" } ) // The harness doesn't handle the postqueue for such a large message
 
 	public void CreateMailText_07() throws HarnessException {
 		

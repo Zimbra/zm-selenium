@@ -74,7 +74,7 @@ public class CancelComposeText extends PrefGroupMailByMessageTest {
 	 */
 	
 	@Test( description = "Cancel Text composed mail using keyboard shortcut 'Escape'",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	
 	public void CancelComposeText_02() throws HarnessException {
 		

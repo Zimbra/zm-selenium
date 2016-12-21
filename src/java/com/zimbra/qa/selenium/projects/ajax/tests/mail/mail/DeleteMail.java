@@ -184,7 +184,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Delete a mail by selecting and typing '.t' shortcut",
-			groups = { "functional", "L2" } )
+			groups = { "functional", "L3" } )
 	public void DeleteMail_04() throws HarnessException {
 		
 		// Create the message data to be sent
@@ -354,7 +354,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Test( description = "Verify that a mail which was present towards bottom of the list does not appear after deleting it.",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	
 	public void DeleteMail_07() throws HarnessException, AWTException {
 

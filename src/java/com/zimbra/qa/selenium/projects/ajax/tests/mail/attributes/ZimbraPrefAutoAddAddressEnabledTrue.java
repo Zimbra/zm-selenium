@@ -96,7 +96,7 @@ public class ZimbraPrefAutoAddAddressEnabledTrue extends AjaxCommonTest {
 	 */
 	@Test(
 			description = " send message to 2 receiver, the addresses should be added into Emailed Contact", 
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 	public void SendEmailTo2Receivers_02() throws HarnessException {
 
 		FolderItem emailedContacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.EmailedContacts);

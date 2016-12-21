@@ -117,7 +117,7 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test( description = "Create a folder with non-ASCII special characters", groups = { "functional", "L2" }, dataProvider = "DataProviderSupportedCharsets")
+	@Test( description = "Create a folder with non-ASCII special characters", groups = { "functional", "L3" }, dataProvider = "DataProviderSupportedCharsets")
 	
 	public void CreateFolder_05(ZCharset charset, String foldername) throws HarnessException {
 

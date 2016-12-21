@@ -89,7 +89,7 @@ public class ZimbraPrefAutoAddAddressEnabledFalse extends AjaxCommonTest {
 	 * Verify receiver' addresses of out-going mails not added to "Emailed Contacts" folder automatically 
 	 * @throws HarnessException
 	 */
-	@Test( description = " send message to 2 receivers, the address should not be added into Emailed Contact", groups = { "functional", "L2" })
+	@Test( description = " send message to 2 receivers, the address should not be added into Emailed Contact", groups = { "functional", "L3" })
 	public void SendEmailTo2Receivers_02() throws HarnessException {
 
 		ZimbraAccount receiver1 = new ZimbraAccount();

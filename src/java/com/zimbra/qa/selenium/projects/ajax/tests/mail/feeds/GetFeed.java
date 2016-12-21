@@ -33,7 +33,7 @@ public class GetFeed extends PrefGroupMailByMessageTest {
 		logger.info("New " + GetFeed.class.getCanonicalName());
 	}
 
-	@Test( description = "Verify a feed appears in the folder tree", groups = { "smoke", "L1" })
+	@Test( description = "Verify a feed appears in the folder tree", groups = { "functional", "L2" })
 
 	public void GetFeed_01() throws HarnessException, MalformedURLException {
 

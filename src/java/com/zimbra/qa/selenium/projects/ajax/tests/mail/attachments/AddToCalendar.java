@@ -42,7 +42,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	
 	
 	@Test( description = "Receive an ics file in the email and add to calendar",
-			groups = { "functional", "L2" })
+			groups = { "smoke", "L1" })
 			
 	public void AddToCalendar_01() throws HarnessException {
 
@@ -268,7 +268,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	
 	@Bugs(ids = "49734")
 	@Test( description = "Bug 49734 - JS error (t is undefined) while click to 'Add to Calendar' when viewing in separate window",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L3" })
 			
 	public void AddToCalendar_rfc822Attachment_04() throws HarnessException {
 

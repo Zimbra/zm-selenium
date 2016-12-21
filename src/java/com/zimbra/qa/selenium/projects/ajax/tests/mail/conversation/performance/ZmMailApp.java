@@ -45,7 +45,7 @@ public class ZmMailApp extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Measure the time to load the mail app, conversation view, initial load",
-			groups = { "performance" })
+			groups = { "performance", "L4" })
 	public void ZmMailApp_01() throws HarnessException {
 		
 		// Fill out the login page
