@@ -99,9 +99,9 @@ public class FormMailNew extends AbsForm {
 		public static final String zBubbleBccField = "css=[id^=zv__COMPOSE][id$=_bcc_cell]";
 		public static final String CcField = "css= td[id='zv__COMPOSE-1_cc_cell']  div[class='addrBubbleContainer']";
 
-		public static final String FormatAsHTMLMenu = "css=div[id^='zm__COMPOSE'] div[id$='NEW_MESSAGE__FORMAT_HTML'] tr[id^='POPUP_zmi__COMPOSE']";
-		public static final String FormatAsPlainTextMenu = "css=div[id^='zm__COMPOSE'] div[id$='NEW_MESSAGE__FORMAT_TEXT'] tr[id^='POPUP_zmi__COMPOSE']";
-		public static final String zOptionsdropdown = "css=[id^=zb__COMPOSE][id$=__COMPOSE_OPTIONS_dropdown]";
+		public static final String FormatAsHTMLMenu = "css=div[id^='zm__COMPOSE'][style*='z-index'] div[id$='__FORMAT_HTML'] tr[id^='POPUP_zmi__COMPOSE']";
+		public static final String FormatAsPlainTextMenu = "css=div[id^='zm__COMPOSE'][style*='z-index'] div[id$='__FORMAT_TEXT'] tr[id^='POPUP_zmi__COMPOSE']";
+		public static final String zOptionsdropdown = "css=div[id^='ztb__COMPOSE']:not([aria-hidden='true']) [id^=zb__COMPOSE][id$=__COMPOSE_OPTIONS_dropdown]";
 
 		// Spell check locators
 		public static final String zMisspelledWordCss = "css=body[id='tinymce'] span[class='ZM-SPELLCHECK-MISSPELLED']";
