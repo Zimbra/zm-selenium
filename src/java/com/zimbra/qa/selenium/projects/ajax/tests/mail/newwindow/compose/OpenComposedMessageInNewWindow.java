@@ -75,7 +75,8 @@ public class OpenComposedMessageInNewWindow extends PrefGroupMailByMessageTest {
 			ZAssert.assertStringContains(mailform.zGetHtmltBodyText(),body, "Verify Body field value");
 
 			// Enter some additional text in body of the newly opened compose window.
-			mailform.zFillField(Field.Body, " appended text");
+			mailform.sClick(Locators.zBodyFrameCss);
+			mailform.zKeyboard.zTypeCharacters(" appended text");
 
 			// Send the message
 			mailform.zSubmit();
