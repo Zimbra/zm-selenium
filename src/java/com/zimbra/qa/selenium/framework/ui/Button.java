@@ -93,7 +93,9 @@
 		public static final Button O_TAG_REMOVETAG = new Button("O_TAG_REMOVETAG");
 		public static final Button O_PRINT_TASKFOLDER = new Button("O_PRINT_TASKFOLDER");
 		public static final Button O_DUPLICATE_COS= new Button("O_DUPLICATE_COS");
-
+		public static final Button O_VIEW_ACCOUNTS= new Button("O_VIEW_ACCOUNTS");
+		public static final Button O_CONFIGURE_GRANTS= new Button("O_CONFIGURE_GRANTS");
+		
 		// Accept decline options
 		public static final Button B_CALENDAR = new Button("B_CALENDAR");
 		public static final Button O_ACCEPT_NOTIFY_ORGANIZER = new Button("O_ACCEPT_NOTIFY_ORGANIZER");
@@ -756,7 +758,8 @@
 		
 		// Distribution List  buttons
 		public static final Button O_DISTRIBUTIUONLISTS_DISTRIBUTIONLIST=new Button("O_DISTRIBUTIUONLISTS_DISTRIBUTIONLIST");
-
+		public static final Button O_VIEW_RIGHTS=new Button("O_VIEW_RIGHTS");
+		
 		// Aliases buttons
 		public static final Button O_ALIASES_ALIAS = new Button("O_ALIASES_ALIAS");
 
