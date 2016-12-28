@@ -26,6 +26,7 @@ public class AclItem implements IItem {
 	protected String RightName;
 	protected String aclGranteeEmail;
 	protected String aclGranteeID;
+	protected String GranteeType;
 	
 	public AclItem() {
 		super();
@@ -92,6 +93,14 @@ public class AclItem implements IItem {
 	
 	public String getRightName() {
 		return (RightName);
+	}
+	
+	public void setGranteeType(String name) {
+		GranteeType = name;
+	}
+	
+	public String getGranteeType() {
+		return (GranteeType);
 	}
 
 	@Override
