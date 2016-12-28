@@ -68,7 +68,7 @@ public class PageManageAccounts extends AbsTab {
 		public static final String CONFIGURE_GRANTS="css=td[id^='zmi__zb_currentApp__UNKNOWN']:contains('Configure Grants')";
 		public static final String RIGHT_CLICK_CONFIGURE_GRANTS="css=td[id^='zmi__ACLV__UNKNOWN']:contains('Configure Grants')";
 		public static final String SEARCH_QUERY_LABEL="div[id^='_XForm_4_output']:contains('Search query')";
-			
+
 	}
 
 	public PageManageAccounts(AbsApplication application) {
@@ -140,7 +140,7 @@ public class PageManageAccounts extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, String item)
-	throws HarnessException {
+			throws HarnessException {
 		logger.info(myPageName() + " zListItem("+ action +", "+ item +")");
 
 		tracer.trace(action +" on subject = "+ item);
@@ -152,7 +152,7 @@ public class PageManageAccounts extends AbsTab {
 		String rowsLocator = "css=div#zl__ACCT_MANAGE div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
-		
+
 		int m= 50;
 		if (count >= 50) {
 			for (int a1 = 1; a1 <= 10; a1++) { 
@@ -164,12 +164,12 @@ public class PageManageAccounts extends AbsTab {
 				}
 				else
 					break;
-				
-			
+
+
+			}
+
 		}
-			
-		}
-		
+
 		count = this.sGetCssCount(rowsLocator);
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
@@ -178,8 +178,8 @@ public class PageManageAccounts extends AbsTab {
 
 			// Email Address
 			locator = accountLocator + " td[id^='account_data_emailaddress']";
-			
-		
+
+
 			if (this.sIsElementPresent(locator))
 			{
 				if (this.sGetText(locator).trim().equalsIgnoreCase(item))
@@ -200,12 +200,12 @@ public class PageManageAccounts extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item)
-	throws HarnessException {
+			throws HarnessException {
 		return null;
 	}
 	@Override
 	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
-	throws HarnessException {
+			throws HarnessException {
 		return null;
 	}
 
@@ -234,7 +234,7 @@ public class PageManageAccounts extends AbsTab {
 			locator ="";
 			// Create the page
 			page = new WizardCreateAccount(this);
-			
+
 		} else if (button == Button.B_TREE_DELETE) {
 
 			locator=Locators.RIGHT_CLICK_MENU_DELETE_BUTTON;
@@ -254,23 +254,23 @@ public class PageManageAccounts extends AbsTab {
 
 			locator=Locators.RIGHT_CLICK_MENU_CHANGE_PASSWORD_BUTTON;
 			page = new WizardChangePassword(this);
-			
+
 		}else if (button == Button.B_VIEW_MAIL) {
 
 			locator=Locators.RIGHT_CLICK_MENU_VIEW_MAIL_BUTTON;
-			
+
 		}else if (button == Button.B_SEARCH_MAIL) {
 
 			locator=Locators.RIGHT_CLICK_MENU_SEARCH_MAIL_BUTTON;
-			
+
 		}else if (button == Button.B_CONFIGURE_GRANTS) {
-			
+
 			locator = Locators.RIGHT_CLICK_CONFIGURE_GRANTS;			
-		
+
 		}else if (button == Button.B_INVALIDATE_SESSIONS) {
 
 			locator=Locators.RIGHT_CLICK_INVALIDATE_SESSIONS;
-			
+
 		}else if ( button == Button.B_HOME_ACCOUNT) {
 
 			// New button
@@ -280,8 +280,8 @@ public class PageManageAccounts extends AbsTab {
 			page = new WizardCreateAccount(this);
 			this.sClickAt(locator,"");
 			return page;
-			
-			} 
+
+		} 
 		else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
@@ -332,7 +332,7 @@ public class PageManageAccounts extends AbsTab {
 
 				page = new WizardCreateAccount(this);
 
-				
+
 			}else if (option == Button.O_NEW_ADMIN) {
 				optionLocator = Locators.NEW_ADMIN_USER;
 
@@ -355,17 +355,17 @@ public class PageManageAccounts extends AbsTab {
 
 			}  else if (option == Button.B_VIEW_MAIL) {
 				optionLocator = Locators.VIEW_MAIL;
-				
+
 			}  else if (option == Button.B_SEARCH_MAIL) {
 				optionLocator = Locators.SEARCH_MAIL;
-				
+
 			}
 			else if (option == Button.B_INVALIDATE_SESSIONS) {
 				optionLocator = Locators.INVALIDATE_SESSIONS;
-				
+
 			}  else if (option == Button.B_CONFIGURE_GRANTS) {
 				optionLocator = Locators.CONFIGURE_GRANTS;
-				
+
 			}else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
@@ -428,28 +428,28 @@ public class PageManageAccounts extends AbsTab {
 		int count = this.sGetXpathCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
 
-		
-		
+
+
 
 		int m= 50;
 		if (count >= 50){
 			for (int a1 = 1; a1 <= 5; a1++) { 
 				String p0  = rowsLocator + "["+ m +"]";
 				if (this.sIsElementPresent(p0)){
-				zClick(p0);
-				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
-				m=m+20;
+					zClick(p0);
+					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+					m=m+20;
 				}
 				else
 					break;
-				
-			
+
+
+			}
+
 		}
-			
-		}
-		
+
 		count = this.sGetXpathCount(rowsLocator);
-		
+
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + "["+ i +"]";
@@ -491,7 +491,7 @@ public class PageManageAccounts extends AbsTab {
 			return true;
 		return false;
 	}
-	
+
 	public AbsPage zPreferenceCheckboxSet(Button button, boolean status) throws HarnessException {
 		logger.info(myPageName() + " zPreferenceSet("+ button +")");
 		tracer.trace("Click page button "+ button);
@@ -531,16 +531,16 @@ public class PageManageAccounts extends AbsTab {
 		SleepUtil.sleepSmall();
 		return (page);
 	}
-	
+
 	public Toaster zGetToaster() throws HarnessException {
 		SleepUtil.sleepMedium();
 		Toaster toaster = new Toaster(this.MyApplication);
 		logger.info("toaster is active: "+ toaster.zIsActive());
 		return (toaster);
 	}
-	
-	
-	
-	
+
+
+
+
 
 }

@@ -22,7 +22,6 @@ package com.zimbra.qa.selenium.projects.admin.ui;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
@@ -32,7 +31,6 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
-
 
 /**
  * @author Matt Rhoades
@@ -53,6 +51,10 @@ public class PageManageResources extends AbsTab {
 		public static final String EDIT_BUTTON="css=td[id='zmi__zb_currentApp__EDIT_title']:contains('Edit')";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id^='zm__ACLV__MENU_POP'] div[class='ImgDelete']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=td[id^='zmi__ACLV__EDIT__']:contains('Edit')";
+		public static final String ACL="css=div[id^='zti__AppAdmin__Home__resLstHV'][class='ZTreeItemTextCell']:contains(ACL)";
+		public static final String ADD_ACL ="css=td[id^='ztabv__RES_EDIT_dwt_button'] td[id$='title']:contains('Add')";
+		public static final String EDIT_ACL ="css=td[id^='ztabv__RES_EDIT_dwt_button'] td:contains('Edit')";
+		public static final String DELETE_ACL ="css=td[id^='ztabv__RES_EDIT_dwt_button'] td[id$='title']:contains('Delete')";
 	}
 
 
@@ -101,7 +103,7 @@ public class PageManageResources extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if ( zIsActive() ) {
-			
+
 			return;
 		}
 
@@ -118,7 +120,7 @@ public class PageManageResources extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, String item)
-	throws HarnessException {
+			throws HarnessException {
 		logger.info(myPageName() + " zListItem("+ action +", "+ item +")");
 
 		tracer.trace(action +" on subject = "+ item);
@@ -135,18 +137,18 @@ public class PageManageResources extends AbsTab {
 			for (int a1 = 1; a1 <= 10; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
 				if (this.sIsElementPresent(p0)) {
-				zClick(p0);
-				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
-				m=m+20;
+					zClick(p0);
+					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+					m=m+20;
 				}
 				else
 					break;
-				
-			
+
+
+			}
+
 		}
-			
-		}
-		
+
 		count = this.sGetCssCount(rowsLocator);
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
@@ -159,23 +161,23 @@ public class PageManageResources extends AbsTab {
 
 			if (this.sIsElementPresent(locator))
 			{    String listItem = this.sGetText(locator).trim();
-				if (listItem.equalsIgnoreCase(item))
-				{
-					if (action == Action.A_LEFTCLICK) {
-						zClick(locator);
-					
-						
-					} else if (action == Action.A_RIGHTCLICK) {
-						
-						zRightClick(locator);
-						
-					} else if (action == Action.A_DOUBLECLICK) {
-						page = new FormEditResource(this.MyApplication);
-						sDoubleClick(locator);
-						return page;
-					}
+			if (listItem.equalsIgnoreCase(item))
+			{
+				if (action == Action.A_LEFTCLICK) {
+					zClick(locator);
 
+
+				} else if (action == Action.A_RIGHTCLICK) {
+
+					zRightClick(locator);
+
+				} else if (action == Action.A_DOUBLECLICK) {
+					page = new FormEditResource(this.MyApplication);
+					sDoubleClick(locator);
+					return page;
 				}
+
+			}
 			} else {
 				throw new HarnessException("Action is not implemented!");
 			}
@@ -185,13 +187,13 @@ public class PageManageResources extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item)
-	throws HarnessException {
+			throws HarnessException {
 		return null;
 	}
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
-	throws HarnessException {
+			throws HarnessException {
 		return null;
 	}
 
@@ -206,7 +208,7 @@ public class PageManageResources extends AbsTab {
 			throw new HarnessException("Button cannot be null!");
 
 
-		
+
 		//
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
@@ -223,7 +225,7 @@ public class PageManageResources extends AbsTab {
 			// Create the page
 			page = new WizardCreateResource(this);
 
-			
+
 
 		} else if (button == Button.B_TREE_DELETE) {
 
@@ -240,6 +242,23 @@ public class PageManageResources extends AbsTab {
 			locator=Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
 
 			page = new FormEditResource(this.MyApplication);
+		}else if (button == Button.B_ADD_ACL) {
+
+			locator=Locators.ADD_ACL;
+
+			page = new WizardAddACL(this);
+		}else if (button == Button.B_EDIT_ACL) {
+
+			locator=Locators.EDIT_ACL;
+
+			page = new WizardEditACL(this);
+		} else if ( button == Button.B_DELETE_ACL ) {
+
+			// Add button
+			locator = Locators.DELETE_ACL;
+
+			page = new DialogForDeleteOperationACL(this.MyApplication, null);
+
 		}
 		else {
 			throw new HarnessException("no logic defined for button "+ button);
@@ -276,7 +295,7 @@ public class PageManageResources extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 
 
-		
+
 		String pulldownLocator = null;
 		String optionLocator = null;
 		AbsPage page = null;
@@ -290,7 +309,7 @@ public class PageManageResources extends AbsTab {
 
 				page = new WizardCreateResource(this);
 
-				
+
 
 			} else if (option == Button.O_EDIT) {
 				optionLocator = Locators.EDIT_BUTTON;
@@ -320,7 +339,7 @@ public class PageManageResources extends AbsTab {
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
-				
+
 			SleepUtil.sleepLong();
 			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepLong();
@@ -370,26 +389,26 @@ public class PageManageResources extends AbsTab {
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
 
-		
+
 
 		int m= 50;
 		if (count >= 50) {
 			for (int a1 = 1; a1 <= 5; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
 				if (this.sIsElementPresent(p0)) {
-				zClick(p0);
-				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
-				m=m+20;
+					zClick(p0);
+					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+					m=m+20;
 				}
 				else
 					break;
-				
-			
-		}
-			
+
+
+			}
+
 		}
 		count = this.sGetCssCount(rowsLocator);
-		
+
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator +":nth-child("+i+")";
@@ -401,7 +420,7 @@ public class PageManageResources extends AbsTab {
 			// ImgAdminUser ImgAccount ImgSystemResource (others?)accountLocator + " td[id^='dl_data_emailaddress']";
 			locator = accountLocator + " td[id^='calresource_data_type_'] div";
 			if ( this.sIsElementPresent(locator) ) {
-			//   item.setGAccountType(this.sGetAttribute("("+ locator + ")@class"));
+				//   item.setGAccountType(this.sGetAttribute("("+ locator + ")@class"));
 			}
 
 

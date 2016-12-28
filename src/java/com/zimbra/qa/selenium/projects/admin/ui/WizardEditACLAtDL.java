@@ -30,7 +30,7 @@ import com.zimbra.qa.selenium.projects.admin.items.AclItem;
  * @author Matt Rhoades
  *
  */
-public class WizardEditACL extends AbsWizard {
+public class WizardEditACLAtDL extends AbsWizard {
 
 	public static class Locators {
 		public static final String ACL_RIGHT_NAME ="css=input[id$='right_display']";
@@ -41,7 +41,7 @@ public class WizardEditACL extends AbsWizard {
 		public static final String EDIT_AND_FINISH_BUTTON="css=td[class='ZWidgetTitle']:contains('Edit and Finish')";	
 	}
 
-	public WizardEditACL(AbsTab page) {
+	public WizardEditACLAtDL(AbsTab page) {
 		super(page);
 	}
 

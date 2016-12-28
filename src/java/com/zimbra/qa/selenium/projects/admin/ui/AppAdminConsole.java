@@ -64,6 +64,7 @@ public class AppAdminConsole extends AbsApplication {
 	public PageManageLicense        	zPageManageLicense = null;
 	public PageManageRights				zPageManageRights = null;
 	public PageManageACL			    zPageManageACL = null;
+	public PageManageACLAtDL			zPageManageACLAtDL = null;
 	public PageManageGlobalACL			zPageManageGlobalACL = null;
 	public PageManageVoiceChatService	zPageManageVoiceChatService = null;
 	public PageManageMTA 				zPageManageMTA = null;
@@ -200,6 +201,9 @@ public class AppAdminConsole extends AbsApplication {
 		
 		zPageManageACL = new PageManageACL(this);
 		pages.put(zPageManageACL.myPageName(), zPageManageACL);
+		
+		zPageManageACLAtDL = new PageManageACLAtDL(this);
+		pages.put(zPageManageACLAtDL.myPageName(), zPageManageACLAtDL);
 		
 		zPageManageGlobalACL = new PageManageGlobalACL(this);
 		pages.put(zPageManageGlobalACL.myPageName(), zPageManageGlobalACL);

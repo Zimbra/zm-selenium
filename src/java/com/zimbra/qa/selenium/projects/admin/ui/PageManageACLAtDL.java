@@ -26,31 +26,32 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
 
 /**
  * @author Matt Rhoades
  *
  */
-public class PageManageACL extends AbsTab {
+public class PageManageACLAtDL extends AbsTab {
 
 	public static class Locators {
 
 		// ** OverviewTreePanel -> Manage -> Aliases
 
 		public static final String GEAR_ICON="css=div[class=ImgConfigure]";
-		public static final String ACL_ADD ="css=td[id^='ztabv__ACCT_EDIT_dwt_button_'] td[id$='title']:contains('Add')";
-		public static final String GRANTED_ACL = "css=div[id='zl'] table tr:nth-child(2) td div div table";
+		public static final String ACL_ADD ="css=td[id$='_dwt_button_14___container'] td:contains('Add')";
+		public static final String GRANTED_ACL = "css=td[id$='_grantsList___container'] div[id^='zl'] div[id$='_rows'] div";
 		public static final String YES_BUTTON="css=div[id^='zdlg__MSG__DWT'] td[id$='_button5_title']:contains('Yes')";
 		public static final String NO_BUTTON="zdlg__MSG__GLOBAL__confirm2btn_button4_title";
 		public static final String OK_BUTTON="css=td#zdlg__UNDEFINE";
 		public static final String DOMAIN_EDIT_ACL_ADD = "css=td[id^='ztabv__DOAMIN_EDIT_dwt_button'] td[id$='title']:contains('Add')";
-		public static final String EDIT_ACL = "css=td[id^='ztabv__ACCT_EDIT_dwt_button'] td:contains('Edit')";
-		public static final String DELETE_ACL = "css=td[id^='ztabv__ACCT_EDIT_dwt_button'] div:contains('Delete')";
+		public static final String EDIT_ACL = "css=td[id$='_dwt_button_15___container'] td:contains('Edit')";
+		public static final String DELETE_ACL = "css=td[id$='_dwt_button_16___container'] td:contains('Delete')";
 		public static final String ADD_GLOBAL_ACL = "css=td[id='zmi__zb_currentApp__NEW_title']";
 
 	}
 
-	public PageManageACL(AbsApplication application) {
+	public PageManageACLAtDL(AbsApplication application) {
 		super(application);
 	}
 
@@ -124,7 +125,7 @@ public class PageManageACL extends AbsTab {
 			locator = Locators.ACL_ADD;
 
 			// Create the page
-			page = new WizardAddACL(this);
+			page = new WizardAddACLAtDL(this);
 
 		}else if ( button == Button.B_ADD_ACL_AT_DOMAIN ) {
 
@@ -140,7 +141,7 @@ public class PageManageACL extends AbsTab {
 			locator = Locators.EDIT_ACL;
 
 			// Create the page
-			page = new WizardEditACL(this);
+			page = new WizardEditACLAtDL(this);
 
 		}else if ( button == Button.B_DELETE ) {
 
@@ -295,6 +296,47 @@ public class PageManageACL extends AbsTab {
 		// Return the specified page, or null if not set
 		return (page);
 
+	}
+
+	public boolean zVerifyACL(String item) throws HarnessException {
+
+		logger.info(myPageName() + " zVerifyACL("+ item +")");
+		boolean found = false;
+		SleepUtil.sleepMedium();
+
+		// How many items are in the table?
+		String rowsLocator = "css=td[id$='_grantsList___container'] div[id$='__rows'] div[id^='zli__']";
+
+		int count = this.sGetCssCount(rowsLocator);
+		logger.debug(myPageName() + " zVerifyPolicyName: number of policys: "+ count);
+
+		// Get each row data from the table list
+		for (int i = 1; i <= count; i++) {
+			final String aclLocator = rowsLocator + ":nth-child("+i+")";
+			String locator;
+			locator = aclLocator + " td" + ":nth-child(3)";
+
+			if(this.sIsElementPresent(locator))
+			{
+				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
+				{
+					found = true;
+					break;
+				} else 
+				{
+					logger.info("search result not displayed in current view");
+				}
+			} 
+
+			if (found == true) {
+				SleepUtil.sleepSmall();
+				logger.info("Search result displayed in current view");
+				ZAssert.assertTrue(found, "Search result displayed in current view");
+				break;
+			}
+
+		}
+		return found;
 	}
 
 	@Override

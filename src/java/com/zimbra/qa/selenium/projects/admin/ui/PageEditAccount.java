@@ -23,6 +23,7 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
 
 public class PageEditAccount extends AbsTab {
 
@@ -183,6 +184,46 @@ public class PageEditAccount extends AbsTab {
 
 
 		return null;
+	}
+
+	public boolean zVerifyACL(String item) throws HarnessException {
+
+		logger.info(myPageName() + " zVerifyACL("+ item +")");
+		boolean found = false;
+		SleepUtil.sleepMedium();
+
+		// How many items are in the table?
+		String rowsLocator = "css=td[id='ztabv__ACCT_EDIT_grantsList___container'] div[id$='__rows'] div[id^='zli__']";
+		int count = this.sGetCssCount(rowsLocator);
+		logger.debug(myPageName() + " zVerifyPolicyName: number of policys: "+ count);
+
+		// Get each row data from the table list
+		for (int i = 1; i <= count; i++) {
+			final String aclLocator = rowsLocator + ":nth-child("+i+")";
+			String locator;
+			locator = aclLocator + " td" + ":nth-child(3)";
+
+			if(this.sIsElementPresent(locator))
+			{
+				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
+				{
+					found = true;
+					break;
+				} else 
+				{
+					logger.info("search result not displayed in current view");
+				}
+			} 
+
+			if (found == true) {
+				SleepUtil.sleepSmall();
+				logger.info("Search result displayed in current view");
+				ZAssert.assertTrue(found, "Search result displayed in current view");
+				break;
+			}
+
+		}
+		return found;
 	}
 
 

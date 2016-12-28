@@ -30,7 +30,7 @@ import com.zimbra.qa.selenium.projects.admin.items.AclItem;
  * @author Matt Rhoades
  *
  */
-public class WizardEditACL extends AbsWizard {
+public class WizardAddACLAtDL extends AbsWizard {
 
 	public static class Locators {
 		public static final String ACL_RIGHT_NAME ="css=input[id$='right_display']";
@@ -38,10 +38,12 @@ public class WizardEditACL extends AbsWizard {
 		public static final String ACL_RIGHT_TYPE_SYSTEM_DEFINED="css=div[id$='right_type_choice_0']";
 		public static final String ACL_RIGHT_TYPE_CUSTOM="css=div[id$='right_type_choice_1']";
 		public static final String Pull_DOWN="css=div[id^='zdlgv__EDIT_ACL'][id*='_right_type'] div[class='ImgSelectPullDownArrow']";
-		public static final String EDIT_AND_FINISH_BUTTON="css=td[class='ZWidgetTitle']:contains('Edit and Finish')";	
+		public static final String ADD_AND_FINISH_BUTTON="css=td[class='ZWidgetTitle']:contains('Add and Finish')";	
+		public static final String GRANTEE_TYPE ="css=td[id$='_grantee_type___container'] input";
+		public static final String SYSTEM_DEFINED_RIGHTS="css=div[id='zdlgv__EDIT_ACLundefined_right_type_choice_0']";
 	}
 
-	public WizardEditACL(AbsTab page) {
+	public WizardAddACLAtDL(AbsTab page) {
 		super(page);
 	}
 
@@ -54,18 +56,22 @@ public class WizardEditACL extends AbsWizard {
 		AclItem acl = (AclItem)item;
 		String granteeAccount = acl.getGranteeAccountEmail();
 		String rightName= acl.getRightName();
+		String granteeType = acl.getGranteeType();
+
+		sType(Locators.GRANTEE_TYPE, granteeType);
+		SleepUtil.sleepSmall();
+
 		sClick(Locators.ACL_GRANTEE_NAME);
-		sType(Locators.ACL_GRANTEE_NAME, "");
 		sType(Locators.ACL_GRANTEE_NAME, granteeAccount);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 
 		sClick(Locators.Pull_DOWN);	
-
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 
 		sType(Locators.ACL_RIGHT_NAME, rightName);
+		SleepUtil.sleepSmall();
 
-		sClickAt(Locators.EDIT_AND_FINISH_BUTTON, "");
+		sClickAt(Locators.ADD_AND_FINISH_BUTTON, "");
 
 		return item;
 

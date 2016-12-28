@@ -22,7 +22,6 @@ package com.zimbra.qa.selenium.projects.admin.ui;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
@@ -38,18 +37,23 @@ public class PageManageDistributionLists extends AbsTab {
 	public static class Locators {
 		public static final String MANAGE_ACCOUNTS_ICON="css=div[class=ImgManageAccounts]";
 		public static final String DISTRIBUTION_LISTS="css=div[id='zti__AppAdmin__Home__dlLstHV_textCell']";
-		
+
 		public static final String GEAR_ICON="css=div[class=ImgConfigure]";
 		public static final String NEW_MENU="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDistributionList']";
 		public static final String HOME="Home";
 		public static final String MANAGE="Manage";
 		public static final String DISTRIBUTION_LIST="Distribution Lists";
 		public static final String DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
-	//	public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgEdit']";
+		//	public static final String EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgEdit']";
 		public static final String EDIT_BUTTON="css=td[id='zmi__zb_currentApp__EDIT_title']:contains('Edit')";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON = "css=div[id^='zm__ACLV__MENU_POP__'] td[id^='zmi__ACLV__DELETE'][id$='title']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON = "css=div[id^='zm__ACLV__MENU_POP__'] td[id^='zmi__ACLV__EDIT'][id$='title']";
 		public static final String REFRESH_BUTTON = "css=div.ImgSearchRefreshWhite";
+		public static final String VIEW_RIGHTS_BUTTON="css=td[id^='zmi__zb_currentApp__UNKNOWN_']:contains('View Rights')";
+		public static final String COS_TAB="css=td[id='ztabv__UNDEFINE_xform_tabbar___container']:contains('Class of Service')";
+		public static final String RESOURCES_TAB="css=td[id='ztabv__UNDEFINE_xform_tabbar___container']:contains('Class of Service')";
+		public static final String ACL_TAB="css=div[id^='zti__AppAdmin__Home__dlLstHV'] div[class='ZTreeItemTextCell']:contains('ACL')";
+
 	}
 
 	public PageManageDistributionLists(AbsApplication application) {
@@ -77,7 +81,7 @@ public class PageManageDistributionLists extends AbsTab {
 			logger.debug("isActive() visible = "+ visible);
 			return (false);
 		}
-		
+
 
 		boolean onPage = zIsVisiblePerPosition(Locators.DISTRIBUTION_LISTS, 0, 0);
 		if ( !onPage ) {
@@ -120,7 +124,7 @@ public class PageManageDistributionLists extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, String item)
-	throws HarnessException {
+			throws HarnessException {
 		logger.info(myPageName() + " zListItem("+ action +", "+ item +")");
 
 		tracer.trace(action +" on subject = "+ item);
@@ -138,16 +142,14 @@ public class PageManageDistributionLists extends AbsTab {
 			for (int a1 = 1; a1 <= 5; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
 				if (this.sIsElementPresent(p0)) {
-				zClick(p0);
-				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
-				m=m+20;
+					zClick(p0);
+					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+					m=m+20;
 				}
 				else
 					break;
-				
-			
-		}
-			
+			}
+
 		}
 		count = this.sGetCssCount(rowsLocator);
 		// Get each conversation's data from the table list
@@ -180,12 +182,12 @@ public class PageManageDistributionLists extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item)
-	throws HarnessException {
+			throws HarnessException {
 		return null;
 	}
 	@Override
 	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
-	throws HarnessException {
+			throws HarnessException {
 		return null;
 	}
 
@@ -200,7 +202,7 @@ public class PageManageDistributionLists extends AbsTab {
 			throw new HarnessException("Button cannot be null!");
 
 
-		
+
 		//
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
@@ -217,7 +219,7 @@ public class PageManageDistributionLists extends AbsTab {
 			// Create the page
 			page = new WizardCreateDL(this);
 
-			
+
 
 		} else if (button == Button.B_TREE_DELETE) {
 			locator=Locators.RIGHT_CLICK_MENU_DELETE_BUTTON;
@@ -264,7 +266,7 @@ public class PageManageDistributionLists extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 
 
-		
+
 		String pulldownLocator = null;
 		String optionLocator = null;
 		AbsPage page = null;
@@ -276,15 +278,19 @@ public class PageManageDistributionLists extends AbsTab {
 				optionLocator = Locators.NEW_MENU;
 				page = new WizardCreateDL(this);
 
-				
+
 			} else if (option == Button.O_EDIT) {
 				optionLocator = Locators.EDIT_BUTTON;
 				page = new FormEditDistributionList(this.MyApplication);
-				
+
 			} else if (option == Button.O_DELETE) {
 				optionLocator = Locators.DELETE_BUTTON;
 				page = new DialogForDeleteOperation(this.MyApplication,null);
-				
+
+			} else if (option == Button.O_VIEW_RIGHTS) {
+				optionLocator = Locators.VIEW_RIGHTS_BUTTON;
+				page = new DialogForDeleteOperation(this.MyApplication,null);
+
 			}
 			else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
@@ -306,7 +312,7 @@ public class PageManageDistributionLists extends AbsTab {
 			SleepUtil.sleepLong();
 			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepLong();
-			
+
 			// If the app is busy, wait for it to become active
 			//zWaitForBusyOverlay();
 
@@ -354,16 +360,15 @@ public class PageManageDistributionLists extends AbsTab {
 			for (int a1 = 1; a1 <= 5; a1++) { 
 				String p0  = rowsLocator + "["+ m +"]";
 				if (this.sIsElementPresent(p0)) {
-				zClick(p0);
-				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
-				m=m+20;
+					zClick(p0);
+					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+					m=m+20;
 				}
 				else
 					break;
-				
-			
-		}
-			
+
+			}
+
 		}
 		count =this.sGetXpathCount(rowsLocator);
 		// Get each conversation's data from the table list
@@ -402,6 +407,26 @@ public class PageManageDistributionLists extends AbsTab {
 		return (items);
 	}
 
+	public boolean zVerifyMailTab (String header) throws HarnessException {
+		if (this.sIsElementPresent("css=td[id='ztabv__UNDEFINE_xform_tabbar___container'] div[id$='_tabbar'] div[id$='_items'] td:nth-child(2):contains('" + header + "')"))
+			return true;
+		return false;
+	}
+
+	public boolean zVerifyResourceTab () throws HarnessException {
+		if (this.sIsElementPresent("css=td[id='ztabv__UNDEFINE_xform_tabbar___container'] div[id$='_tabbar'] div[id$='_items'] td:nth-child(3):contains('Resources')"))
+			return true;
+		return false;
+	}
+
+	public boolean zVerifyTab (String header) throws HarnessException {
+		for(int i=0;i<=10;i++)
+		{
+			if (this.sIsElementPresent("css=td[id='ztabv__UNDEFINE_xform_tabbar___container'] div[id$='_tabbar'] div[id$='_items'] td:nth-child("+i+"):contains('" + header + "')"))
+				return true;
+		}
+		return false;
+	}
 
 	public boolean zVerifyHeader (String header) throws HarnessException {
 		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
