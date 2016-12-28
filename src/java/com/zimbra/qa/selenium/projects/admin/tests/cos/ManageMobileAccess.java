@@ -45,7 +45,7 @@ public class ManageMobileAccess extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Edit COS - Enable mobile access",
-			groups = { "test", "L1"})
+			groups = { "smoke", "L1"})
 
 	public void EnableMobileAccess_01() throws HarnessException {
 
