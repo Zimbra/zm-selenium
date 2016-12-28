@@ -23,7 +23,8 @@ import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.AbsWizard;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.projects.admin.items.AclItem;
 
 /**
  * @author Matt Rhoades
@@ -31,13 +32,43 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
  */
 public class WizardEditACL extends AbsWizard {
 
+	public static class Locators {
+		public static final String ACL_RIGHT_NAME ="css=input[id$='right_display']";
+		public static final String ACL_GRANTEE_NAME = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input";
+		public static final String ACL_RIGHT_TYPE_SYSTEM_DEFINED="css=div[id$='right_type_choice_0']";
+		public static final String ACL_RIGHT_TYPE_CUSTOM="css=div[id$='right_type_choice_1']";
+		public static final String Pull_DOWN="css=div[id^='zdlgv__EDIT_ACL'][id*='_right_type'] div[class='ImgSelectPullDownArrow']";
+		public static final String EDIT_AND_FINISH_BUTTON="css=td[class='ZWidgetTitle']:contains('Edit and Finish')";	
+	}
+
 	public WizardEditACL(AbsTab page) {
 		super(page);
 	}
 
-	@Override
+	/* (non-Javadoc)
+	 * @see projects.admin.ui.AbsWizard#completeWizard(projects.admin.clients.Item)
+	 */
+
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
-		throw new HarnessException("implement me");
+
+		AclItem acl = (AclItem)item;
+		String granteeAccount = acl.getGranteeAccountEmail();
+		String rightName= acl.getRightName();
+		sClick(Locators.ACL_GRANTEE_NAME);
+		sType(Locators.ACL_GRANTEE_NAME, "");
+		sType(Locators.ACL_GRANTEE_NAME, granteeAccount);
+		SleepUtil.sleepMedium();
+
+		sClick(Locators.Pull_DOWN);	
+
+		SleepUtil.sleepMedium();
+
+		sType(Locators.ACL_RIGHT_NAME, rightName);
+
+		sClickAt(Locators.EDIT_AND_FINISH_BUTTON, "");
+
+		return item;
+
 	}
 
 	@Override

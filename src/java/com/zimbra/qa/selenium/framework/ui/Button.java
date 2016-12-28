@@ -766,7 +766,10 @@
 		// Resources button
 		public static final Button O_RESOURCES_RESOURCE = new Button("O_RESOURCES_RESOURCE");
 		public static final Button B_CANCEL_INSTANCE_LINK = new Button("B_CANCEL_INSTANCE_LINK");
-
+		public static final Button B_ADD_ACL = new Button("B_ADD_ACL");
+		public static final Button B_EDIT_ACL = new Button("B_EDIT_ACL");
+		public static final Button B_DELETE_ACL = new Button("B_DELETE_ACL");
+		
 		// Certificate buttons
 		public static final Button B_VIEW_CERTIFICATE = new Button("B_VIEW_CERTIFICATE");
 		public static final Button B_UPLOAD_CERTIFICATE = new Button("B_UPLOAD_CERTIFICATE");
