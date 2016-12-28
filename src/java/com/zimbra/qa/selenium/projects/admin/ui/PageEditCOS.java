@@ -26,6 +26,7 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+
 /**
  * @author Matt Rhoades
  *
@@ -41,7 +42,14 @@ public class PageEditCOS extends AbsTab {
 		public static final String COS_EDIT_ACL="css=div[id^='zti__AppAdmin__Home__actLstHV'] div[class='ZTreeItemTextCell']:contains('ACL')";
 		public static final String COS_EDIT_ACL_ADD = "css=td[id^='ztabv__COS_EDIT_dwt_button_'] td[id$='title']:contains('Add')";
 		public static final String COS_EDIT_ACL_GRANTEE_NAME = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input[id^='zdlgv__EDIT_ACL'][id$='_grantee_email_display']";
-		
+		public static final String FEATURES="css=div[id^='zti__AppAdmin__CONFIGURATION__COS'][id$='_textCell']:contains('Features')";
+		public static final String PREFERENCES="css=div[id^='zti__AppAdmin__CONFIGURATION__COS'][id$='_textCell']:contains('Preferences')";
+
+		public static final String ALIASES="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Aliases')";
+		public static final String MOBILE_ACCESS="css=div[id^='zti__AppAdmin__CONFIGURATION__COS'][id$='_textCell']:contains('Mobile Access')";
+		public static final String ARCHIVING="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Archiving')";
+		public static final String ADD_BUTTON = "css=td[id$='dwt_button_5___container']:contains('Add')";
+
 	}
 
 	public PageEditCOS(AbsApplication application) {
@@ -89,15 +97,85 @@ public class PageEditCOS extends AbsTab {
 		return null;
 	}
 
-	@Override
-	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		return null;
-	}
 
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
 			throws HarnessException {
 		return null;
+
+	}
+
+	@Override
+	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
+
+		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+
+		tracer.trace("Press the "+ button +" button");
+
+		if ( button == null )
+			throw new HarnessException("Button cannot be null!");
+
+
+		//
+		String locator = null;			// If set, this will be clicked
+		AbsPage page = null;	// If set, this page will be returned
+
+		// Based on the button specified, take the appropriate action(s)
+		//
+
+		if (button == Button.B_ADD) {
+
+			locator=Locators.ADD_BUTTON;
+
+			page = new FormEditAccount(this.MyApplication);
+		} else if (button == Button.B_FEATURES) {
+
+			locator=Locators.FEATURES;
+
+			page = new FormEditAccount(this.MyApplication);
+		} else if (button == Button.B_PREFERENCES) {
+
+			locator=Locators.PREFERENCES;
+
+			page = new FormEditAccount(this.MyApplication);
+		} else if (button == Button.B_ALIASES) {
+
+			locator=Locators.ALIASES;
+
+			page = new FormEditAccount(this.MyApplication);
+		}  else if (button == Button.B_MOBILE_ACCESS) {
+
+			locator=Locators.MOBILE_ACCESS;
+
+			page = new FormEditAccount(this.MyApplication);
+		} else if (button == Button.B_ARCHIVING) {
+
+			locator=Locators.ARCHIVING;
+
+			page = new FormEditAccount(this.MyApplication);
+		} 
+		else {
+			throw new HarnessException("no logic defined for button "+ button);
+		}
+
+		if ( locator == null ) {
+			throw new HarnessException("locator was null for button "+ button);
+		}
+
+		// Default behavior, process the locator by clicking on it
+		//
+		this.zClickAt(locator,"");
+		SleepUtil.sleepMedium();
+
+
+		// If page was specified, make sure it is active
+		if ( page != null ) {
+			SleepUtil.sleepMedium();
+		}
+
+		//sMouseOut(locator);
+		return (page);
+
 
 	}
 
