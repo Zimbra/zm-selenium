@@ -265,8 +265,6 @@ public class PageManageDistributionLists extends AbsTab {
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-
-
 		String pulldownLocator = null;
 		String optionLocator = null;
 		AbsPage page = null;
