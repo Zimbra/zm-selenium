@@ -755,6 +755,14 @@
 		public static final Button B_UPLOAD_ZIMLET = new Button("B_UPLOAD_ZIMLET");
 		public static final Button B_UNDEPLOY_ZIMLET = new Button("B_UNDEPLOY_ZIMLET");
 		public static final Button B_BACKUP = new Button("B_BACKUP");
+		public static final Button B_ZIMLETS = new Button("B_ZIMLETS");
+		public static final Button B_THEMES = new Button("B_THEMES");
+		public static final Button B_PROPERTIES = new Button("B_PROPERTIES");
+		public static final Button B_DYNAMIC_GROUP = new Button("B_DYNAMIC_GROUP");
+		public static final Button B_HIDE_IN_GAL = new Button("B_HIDE_IN_GAL");
+		public static final Button B_ADMIN_GROUP = new Button("B_ADMIN_GROUP");
+		public static final Button B_SET_REPLY_TO = new Button("B_SET_REPLY_TO");
+		
 		
 		// Distribution List  buttons
 		public static final Button O_DISTRIBUTIUONLISTS_DISTRIBUTIONLIST=new Button("O_DISTRIBUTIUONLISTS_DISTRIBUTIONLIST");

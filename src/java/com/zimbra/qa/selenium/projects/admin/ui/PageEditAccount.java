@@ -41,7 +41,8 @@ public class PageEditAccount extends AbsTab {
 		public static final String ALIASES="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Aliases')";
 		public static final String MOBILE_ACCESS="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Mobile Access')";
 		public static final String ARCHIVING="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Archiving')";
-
+		public static final String ZIMLETS="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Zimlets')";
+		public static final String THEMES="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Themes')";
 	}
 
 	public PageEditAccount(AbsApplication application) {
@@ -146,7 +147,17 @@ public class PageEditAccount extends AbsTab {
 			locator=Locators.ARCHIVING;
 
 			page = new FormEditAccount(this.MyApplication);
-		} 
+		} else if (button == Button.B_ZIMLETS) {
+
+			locator=Locators.ZIMLETS;
+
+			page = new FormEditAccount(this.MyApplication);
+		} else if (button == Button.B_THEMES) {
+
+			locator=Locators.THEMES;
+
+			page = new FormEditAccount(this.MyApplication);
+		}
 		else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}

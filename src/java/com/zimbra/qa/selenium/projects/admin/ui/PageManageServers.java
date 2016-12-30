@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
-
 /**
  * @author Matt Rhoades
  *
@@ -42,6 +41,8 @@ public class PageManageServers extends AbsTab {
 		public static final String CONFIGURE="Configure";
 		public static final String SERVERS="Servers";
 		public static final String EDIT="css=div[id='zmi__zb_currentApp__EDIT']";
+		public static final String ACL_TAB="css=div[id^='zti__AppAdmin__CONFIGURATION__serverHV'][class='ZTreeItemTextCell']:contains('ACL')";
+		public static final String ADD_ACL="css=td[id$='_button_4___container'] td:contains('Add')";
 	}
 
 
@@ -232,7 +233,47 @@ public class PageManageServers extends AbsTab {
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		return null;
+		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+
+		tracer.trace("Press the "+ button +" button");
+
+		if ( button == null )
+			throw new HarnessException("Button cannot be null!");
+
+		String locator = null;			// If set, this will be clicked
+		AbsPage page = null;	// If set, this page will be returned
+
+		// Based on the button specified, take the appropriate action(s)
+		//
+
+		if ( button == Button.B_ADD_ACL ) {
+
+			// Add button
+			locator = Locators.ADD_ACL;
+
+			// Create the page
+			page = new WizardAddACLAtCos(this);
+
+		}
+		else {
+			throw new HarnessException("no logic defined for button "+ button);
+		}
+
+		if ( locator == null ) {
+			throw new HarnessException("locator was null for button "+ button);
+		}
+
+		// Default behavior, process the locator by clicking on it
+		this.zClickAt(locator,"");
+		SleepUtil.sleepMedium();
+
+		// If page was specified, make sure it is active
+		if ( page != null ) {
+			SleepUtil.sleepLong();
+		}
+
+		sMouseOut(locator);
+		return (page);
 	}
 
 

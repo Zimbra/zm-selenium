@@ -51,6 +51,10 @@ public class PageManageCOS extends AbsTab {
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id='zmi__COSLV__EDIT'] td[id$='__EDIT_title']";
 		public static final String DUPLICATE_COS= "css= div[id='zm__zb_currentApp__MENU_POP'] td[id='zmi__zb_currentApp__DUPLICATE_title']";
 		public static final String RIGHT_CLICK_DUPLICATE_COS= "css= td[id='zmi__COSLV__DUPLICATE_title']";
+		public static final String COS_EDIT_ACL_TAB="css=div[id^='zti__AppAdmin__CONFIGURATION__COS'][class='ZTreeItemTextCell']:contains('ACL')";
+		public static final String ADD_ACL ="css=td[id$='_button_17___container'] td:contains('Add')";
+		public static final String EDIT_ACL ="css=td[id$='_dwt_button_18___container'] td:contains('Edit')";
+		public static final String DELETE_ACL ="css=td[id$='_dwt_button_19___container'] td:contains('Edit')";
 	}
 
 	public PageManageCOS(AbsApplication application) {
@@ -99,7 +103,7 @@ public class PageManageCOS extends AbsTab {
 
 
 		if ( zIsActive() ) {
-			
+
 			return;
 		}
 
@@ -117,7 +121,7 @@ public class PageManageCOS extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, String item)
-	throws HarnessException {
+			throws HarnessException {
 		logger.info(myPageName() + " zListItem("+ action +", "+ item +")");
 
 		tracer.trace(action +" on subject = "+ item);
@@ -160,12 +164,12 @@ public class PageManageCOS extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item)
-	throws HarnessException {
+			throws HarnessException {
 		return null;
 	}
 	@Override
 	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
-	throws HarnessException {
+			throws HarnessException {
 		return null;
 	}
 
@@ -180,7 +184,7 @@ public class PageManageCOS extends AbsTab {
 			throw new HarnessException("Button cannot be null!");
 
 
-		
+
 		//
 		String locator = null;			// If set, this will be clicked
 		AbsPage page = null;	// If set, this page will be returned
@@ -196,7 +200,7 @@ public class PageManageCOS extends AbsTab {
 
 			// Create the page
 			page = new WizardCreateCos(this);
-			
+
 
 		} else if (button == Button.B_TREE_DELETE) {
 
@@ -209,14 +213,21 @@ public class PageManageCOS extends AbsTab {
 			locator=Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
 
 			page=new FormEditCos(this.MyApplication);
-			
+
 		} else if (button == Button.O_DUPLICATE_COS) {
 
 			locator = Locators.RIGHT_CLICK_DUPLICATE_COS;
 
 			page = new WizardCreateCos(this);
 
-		} else {
+		}  else if (button == Button.B_ADD_ACL) {
+
+			locator = Locators.ADD_ACL;
+
+			// Create the page
+			page = new WizardAddACLAtCos(this);
+
+		}else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
@@ -251,7 +262,7 @@ public class PageManageCOS extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 
 
-		
+
 		String pulldownLocator = null;
 		String optionLocator = null;
 		AbsPage page = null;
@@ -265,7 +276,7 @@ public class PageManageCOS extends AbsTab {
 
 				page = new WizardCreateCos(this);
 
-				
+
 
 			}   else if (option == Button.O_DELETE) {
 
@@ -364,7 +375,7 @@ public class PageManageCOS extends AbsTab {
 			// Lost Login Time
 			// Description
 			// Add the new item to the list
-			
+
 			items.add(item);
 			logger.info(item.prettyPrint());
 		}
