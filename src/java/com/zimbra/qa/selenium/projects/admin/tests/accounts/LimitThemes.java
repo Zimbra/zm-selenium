@@ -37,7 +37,7 @@ public class LimitThemes extends AdminCommonTest {
 	}
 
 	@Test( description = "Edit account - Verify option 'Limit Themes available to this user to:'",
-			groups = { "test", "L1", "network" })
+			groups = { "smoke", "L1", "network" })
 
 	public void LimitThemes_01() throws HarnessException {
 
