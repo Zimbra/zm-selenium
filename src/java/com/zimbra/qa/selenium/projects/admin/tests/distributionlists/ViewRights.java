@@ -36,7 +36,7 @@ public class ViewRights extends AdminCommonTest {
 	}
 
 	@Test( description = "View Rights of Admin DL",
-			groups = { "test12", "L2" })
+			groups = { "smoke", "L2" })
 	public void ViewRights_01() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
