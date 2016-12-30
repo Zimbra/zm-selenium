@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.admin.tests.distributionlists;
+package com.zimbra.qa.selenium.projects.admin.tests.domains;
 
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -28,22 +28,22 @@ import com.zimbra.qa.selenium.projects.admin.items.*;
 import com.zimbra.qa.selenium.projects.admin.ui.DialogForDeleteOperationACL;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 import com.zimbra.qa.selenium.projects.admin.ui.PageManageACLAtDL;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageDistributionLists.Locators;
+import com.zimbra.qa.selenium.projects.admin.ui.PageManageDomains;
 
 public class DeleteACL extends AdminCommonTest {
 
 	public DeleteACL() {
 		logger.info("New " + DeleteACL.class.getCanonicalName());
 
-		// All tests start at the "Accounts" page
-		super.startingPage = app.zPageManageDistributionList;
+		// All tests start at the "Domains" page
+		this.startingPage=app.zPageManageDomains;
 	}
 
 	/**
 	 * Testcase : Delete ACL
-	 * 1. Go to Manage DL View
+	 * 1. Go to Manage domain View
 	 * 2. Select DL
-	 * 3. Edit an account using edit button in Gear box menu > Delete ACL
+	 * 3. Edit an domain using edit button in Gear box menu > Delete ACL
 	 * 4. Verify ACL is Deleted 
 	 * @throws HarnessException
 	 */
@@ -51,60 +51,55 @@ public class DeleteACL extends AdminCommonTest {
 			groups = { "smoke", "L1" })
 	public void DeleteACL_01() throws HarnessException {
 
-
 		// Create grantee account
 		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(account);
 
-		String rightName="sendAsDistList";
+		String rightName="sendToDistList";
 		String granteeType="usr";
 		AclItem acl = new AclItem();
 		acl.setGranteeType(granteeType);
 
-		// Create a new dl in the Admin Console using SOAP
-		DistributionListItem dl = new DistributionListItem();
-		String dlEmailAddress=dl.getEmailAddress();
+		// Create a new domain in the Admin Console using SOAP
+		DomainItem domain = new DomainItem();
+		String domainName=domain.getName();
 
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
-						+			"<name>" + dlEmailAddress + "</name>"
-						+		"</CreateDistributionListRequest>");
+				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
+						+			"<name>" + domainName + "</name>"
+						+		"</CreateDomainRequest>");
 
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<GrantRightRequest xmlns='urn:zimbraAdmin'>" 
-						+	"<target  by='name' type='dl'>" + dlEmailAddress + "</target>"
+						+	"<target  by='name' type='domain'>" + domainName + "</target>"
 						+	"<grantee  by='name' type='usr'>" + account.getEmailAddress() + "</grantee>" 
 						+	"<right>"+ rightName + "</right>" 
 						+ "</GrantRightRequest>");
 
-		String editedRightName="viewDistList";
-		acl.setRightName(editedRightName);
-
 		// Set grantee account email address
 		acl.setGranteeAccountEmail(account.getEmailAddress());
 
-		// Refresh the list
-		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the domain list
+		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
-		// Click on distribution list to be deleted.
-		app.zPageManageDistributionList.zListItem(Action.A_LEFTCLICK, dl.getEmailAddress());
-
-		// Click on Edit button
-		app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
+		// Click on domain to be edited.
+		app.zPageManageDomains.zListItem(Action.A_LEFTCLICK, domain.getName());
+		
+		app.zPageManageDomains.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
 		//Click on ACL tab
-		app.zPageManageDistributionList.zClickAt(Locators.ACL_TAB,"");
+		app.zPageManageDomains.zClickAt(PageManageDomains.Locators.DOMAIN_EDIT_ACL,"");
+
+		//Click on granted ACL
 		app.zPageManageACLAtDL.zClickAt(PageManageACLAtDL.Locators.GRANTED_ACL,"");
 
 		// Click on Delete button
-		DialogForDeleteOperationACL dialog = (DialogForDeleteOperationACL) app.zPageManageACLAtDL.zToolbarPressButton(Button.B_DELETE);
+		DialogForDeleteOperationACL dialog = (DialogForDeleteOperationACL) app.zPageManageDomains.zToolbarPressButton(Button.B_DELETE_ACL);
 
 		// Click Yes in Confirmation dialog
 		dialog.zClickButton(Button.B_YES);
 
 		// Verify ACL is deleted
-		ZAssert.assertFalse(app.zPageManageACLAtDL.zVerifyACL(rightName), "Verfiy email address is returned in search result");
-
-
+		ZAssert.assertFalse(app.zPageManageACLAtDL.zVerifyACL(rightName), "Verfiy right name is returned in search result");
 	}
 }

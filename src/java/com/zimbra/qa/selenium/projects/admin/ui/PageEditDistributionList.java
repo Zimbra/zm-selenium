@@ -25,19 +25,21 @@ import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 /**
  * @author Matt Rhoades
  *
  */
 public class PageEditDistributionList extends AbsTab {
-	
+
 	public static class Locators {
 		public static final String DL_EDIT_ACL="css=div[id^='zti__AppAdmin__Home__dlLstHV'] div[class='ZTreeItemTextCell']:contains('ACL')";
 		public static final String DL_EDIT_ACL_ADD = "css=td[id^='ztabv__UNDEFINE_dwt_button_'] td[id$='title']:contains('Add')";
 		public static final String DL_EDIT_ACL_GRANTEE_NAME = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input[id^='zdlgv__EDIT_ACL'][id$='_grantee_email_display']";
-		
+		public static final String PROPERTIES="css=div[id^='zti__AppAdmin__Home__dlLstHV'] div[class='ZTreeItemTextCell']:contains('Properties')";
+		public static final String PREFERENCES="css=div[id^='zti__AppAdmin__Home__dlLstHV'] div[class='ZTreeItemTextCell']:contains('Preferences')";
+
 	}
 
 	public PageEditDistributionList(AbsApplication application) {
@@ -87,8 +89,55 @@ public class PageEditDistributionList extends AbsTab {
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		return null;
+
+		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+
+		tracer.trace("Press the "+ button +" button");
+
+		if ( button == null )
+			throw new HarnessException("Button cannot be null!");
+
+
+		//
+		String locator = null;			// If set, this will be clicked
+		AbsPage page = null;	// If set, this page will be returned
+
+		// Based on the button specified, take the appropriate action(s)
+		//
+
+		if (button == Button.B_PROPERTIES) {
+
+			locator=Locators.PROPERTIES;
+
+			page = new FormEditDistributionList(this.MyApplication);
+		} else if (button == Button.B_PREFERENCES) {
+
+			locator=Locators.PREFERENCES;
+
+			page = new FormEditDistributionList(this.MyApplication);
+		} else {
+			throw new HarnessException("no logic defined for button "+ button);
+		}
+
+		if ( locator == null ) {
+			throw new HarnessException("locator was null for button "+ button);
+		}
+
+		// Default behavior, process the locator by clicking on it
+		//
+		this.zClickAt(locator,"");
+		SleepUtil.sleepMedium();
+
+
+		// If page was specified, make sure it is active
+		if ( page != null ) {
+			SleepUtil.sleepMedium();
+		}
+
+		//sMouseOut(locator);
+		return (page);
 	}
+
 
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)

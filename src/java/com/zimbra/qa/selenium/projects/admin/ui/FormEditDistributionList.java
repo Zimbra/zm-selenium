@@ -16,12 +16,14 @@
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
+import java.awt.event.KeyEvent;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsForm;
+import com.zimbra.qa.selenium.framework.ui.AbsPage;
+import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-
 
 public class FormEditDistributionList extends AbsForm {
 
@@ -39,6 +41,13 @@ public class FormEditDistributionList extends AbsForm {
 		public static final String NAME_TEXT_BOX="css=input#ztabv__UNDEFINE_";
 		public static final String SAVE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__SAVE']";
 		public static final String CLOSE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__CLOSE']";
+		public static final String DYNAMIC_GROUP="css=input[id$='_dlType']";
+		public static final String ADMIN_GROUP="css=input[id$='zimbraIsAdminGroup']";
+		public static final String HIDE_IN_GAL="css=input[id$='zimbraHideInGal']";
+		public static final String SET_REPLY_TO="css=input[id$='zimbraPrefReplyToEnabled']";
+		public static final String REPLY_TO_DISPLAY_NAME="css=input[id$='zimbraPrefReplyToDisplay']";
+		public static final String REPLY_TO_ADDRESS="css=input[id$='zimbraPrefReplyToAddress_display']";
+		
 	}
 
 	public FormEditDistributionList(AbsApplication application) {
@@ -97,6 +106,127 @@ public class FormEditDistributionList extends AbsForm {
 		}
 		sType(Locators.NAME_TEXT_BOX+"name_2", name);
 		SleepUtil.sleepVerySmall();
-		}
 	}
 
+
+	public AbsPage zPropertiesCheckboxSet(Button button, boolean status) throws HarnessException {
+		logger.info(myPageName() + " zFeatureCheckboxSet("+ button +")");
+		tracer.trace("Click page button "+ button);
+
+		AbsPage page = null;
+		String locator = null;
+
+		SleepUtil.sleepSmall();
+
+		if ( button == Button.B_DYNAMIC_GROUP) {
+
+			locator = Locators.DYNAMIC_GROUP;
+
+		} else if ( button == Button.B_HIDE_IN_GAL ) {
+
+			locator = Locators.HIDE_IN_GAL;
+
+		} else if ( button == Button.B_ADMIN_GROUP ) {
+
+			locator = Locators.ADMIN_GROUP;
+
+		} 
+		else {
+			throw new HarnessException("Button "+ button +" not implemented");
+		}
+
+		// Make sure the locator was set
+		if ( locator == null ) {
+			throw new HarnessException("Button "+ button +" not implemented");
+		}
+
+		// Make sure the locator exists
+		if ( !this.sIsElementPresent(locator) ) {
+			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
+		}
+
+		if ( this.sIsChecked(locator) == status ) {
+			logger.debug("checkbox status matched. not doing anything");
+			return (page);
+		}
+
+		if ( status == true ) {
+			this.sClickAt(locator,"");
+
+		} else {
+			this.sUncheck(locator);
+		}
+
+		SleepUtil.sleepSmall();
+		return (page);
+	}
+	
+	public AbsPage zPreferencesCheckboxSet(Button button, boolean status) throws HarnessException {
+		logger.info(myPageName() + " zFeatureCheckboxSet("+ button +")");
+		tracer.trace("Click page button "+ button);
+
+		AbsPage page = null;
+		String locator = null;
+
+		SleepUtil.sleepSmall();
+
+		if ( button == Button.B_SET_REPLY_TO) {
+
+			locator = Locators.SET_REPLY_TO;
+
+		}  else {
+			throw new HarnessException("Button "+ button +" not implemented");
+		}
+
+		// Make sure the locator was set
+		if ( locator == null ) {
+			throw new HarnessException("Button "+ button +" not implemented");
+		}
+
+		// Make sure the locator exists
+		if ( !this.sIsElementPresent(locator) ) {
+
+			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
+		}
+
+		if ( this.sIsChecked(locator) == status ) {
+			logger.debug("checkbox status matched. not doing anything");
+			return (page);
+		}
+
+		if ( status == true ) {
+			this.sClickAt(locator,"");
+
+		} else {
+			this.sUncheck(locator);
+		}
+
+		SleepUtil.sleepSmall();
+		return (page);
+	}
+	
+	public void zSetDisplayNameInReplyToMessage(String name) throws HarnessException {
+
+			if (sIsElementPresent(Locators.REPLY_TO_DISPLAY_NAME)) {
+				sType(Locators.REPLY_TO_DISPLAY_NAME, name);
+				return;
+			}
+	}
+	
+	public void zSetReplyToAddress(String email) throws HarnessException {
+		logger.info(myPageName() + " zSetReplyToAddress(" + email + ")");
+
+		// Make sure the locator exists
+		if (!this.sIsElementPresent(Locators.REPLY_TO_ADDRESS)) {
+			throw new HarnessException("zSetReplyToAddress " + Locators.REPLY_TO_ADDRESS + " is not present");
+		}
+
+		this.sFocus(Locators.REPLY_TO_ADDRESS);
+		this.zClick(Locators.REPLY_TO_ADDRESS);
+		this.zWaitForBusyOverlay();
+		this.sType(Locators.REPLY_TO_ADDRESS, email);
+		SleepUtil.sleepSmall();
+		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+		SleepUtil.sleepSmall();
+	}
+}

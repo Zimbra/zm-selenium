@@ -83,7 +83,6 @@ public class AppAdminConsole extends AbsApplication {
 	// Global settings
 	public PageManageRetentionPolicy	zPageManageRetentionPolicy = null;
 	
-	
 	// Tools
 	public PageEditMailQueue			zPageEditMailQueue = null;
 	public PageManageAccountMigration	zPageManageAccountMigration = null;

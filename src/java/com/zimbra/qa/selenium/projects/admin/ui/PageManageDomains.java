@@ -62,6 +62,8 @@ public class PageManageDomains extends AbsTab {
 		public static final String VIEW_ACCOUNTS="css=td[id='zmi__zb_currentApp__VIEW_DOMAIN_ACCOUNTS_title']:contains('View Accounts')";
 		public static final String RIGHT_CLICK_CONFIGURE_GRANTS="css=td[id^='zmi__DMLV__UNKNOWN']:contains('Configure Grants')";
 		public static final String CONFIGURE_GRANTS="css=td[id^='zmi__zb_currentApp__UNKNOWN']:contains('Configure Grants')";
+		public static final String EDIT_ACL = "css=td[id$='_dwt_button_12___container'] td:contains('Edit')";
+		public static final String DELETE_ACL = "css=td[id$='_dwt_button_13___container'] td:contains('Delete')";
 	}
 
 	public static class TypeOfObject {
@@ -262,6 +264,21 @@ public class PageManageDomains extends AbsTab {
 		} else if (button == Button.B_CONFIGURE_GRANTS) {
 
 			locator = Locators.RIGHT_CLICK_CONFIGURE_GRANTS;			
+
+		}else if (button == Button.B_EDIT_ACL) {
+
+			locator = Locators.EDIT_ACL;
+			
+			// Create the page
+			page = new WizardEditACLAtDL(this);
+
+		}
+		else if (button == Button.B_DELETE_ACL) {
+
+			locator = Locators.DELETE_ACL;
+			
+			// Create the page
+			page = new DialogForDeleteOperationACL(this.MyApplication, null);
 
 		}else {
 			throw new HarnessException("no logic defined for button "+ button);
