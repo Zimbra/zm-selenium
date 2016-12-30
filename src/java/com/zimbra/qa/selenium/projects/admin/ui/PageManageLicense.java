@@ -260,5 +260,90 @@ public class PageManageLicense extends AbsTab {
 			return true;
 		return false;
 	}
+	
+	public boolean zVerifyCompanyName (String Value) throws HarnessException {
+		if (this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase_'] tr:nth-child(4) td:contains('Company name:')") && this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(4) td:nth-child(2) div:contains('" + Value + "')"))
+			return true;
+		return false;
+	}
+	
+	public boolean zVerifyLicenseType (String Value) throws HarnessException {
+		if (this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(5) td:contains('License type:')") && this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(5) td:nth-child(2) div:contains('" + Value + "')"))
+			return true;
+		return false;
+	}
+	
+	public boolean zVerifyLicenseID (String Value) throws HarnessException {
+		if (this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(6) td:contains('License ID:')") && this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(6) td:nth-child(2) div:contains('" + Value + "')"))
+			return true;
+		return false;
+	}
+	
+	public boolean zVerifyIssueDateLabel () throws HarnessException {
+		if (this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(7) td:contains('Issue date:')"))
+			return true;
+		return false;
+	}
+	
+	public boolean zVerifyEffectiveDateLabel () throws HarnessException {
+		if (this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(8) td:contains('Effective date:')"))
+			return true;
+		return false;
+	}
+	
+	public boolean zVerifyExpirationDateLabel() throws HarnessException {
+		if (this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(9) td:contains('Expiration date:')"))
+			return true;
+		return false;
+	}
+	
+	public boolean zVerifyAccountLimit(String Value) throws HarnessException {
+
+		if (this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(11) td:contains('Accounts limit:')") && this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(11) td:nth-child(2) div:contains('" + Value + "')"))
+			return true;
+		return false;
+	}
+	
+	public boolean zVerifyMobileAccountLimit(String Value) throws HarnessException {
+
+		if (this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(12) td:contains('Mobile accounts limit:')") && this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(12) td:nth-child(2) div:contains('" + Value + "')"))
+			return true;
+		return false;
+	}
+	
+	public boolean zVerifyMapiAccountLimit(String Value) throws HarnessException {
+
+		if (this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(13) td:contains('MAPI accounts limit:')") && this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(13) td:nth-child(2) div:contains('" + Value + "')"))
+			return true;
+		return false;
+	}
+	
+	public boolean zVerifyArchivingAccountLimit(String Value) throws HarnessException {
+
+		if (this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(14) td:contains('Archiving accounts limit:')") && this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(14) td:nth-child(2) div:contains('" + Value + "')"))
+			return true;
+		return false;
+	}
+	
+	public boolean zVerifyIndexingAccountLimit(String Value) throws HarnessException {
+
+		if (this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(15) td:contains('Attachment indexing accounts limit:')") && this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(15) td:nth-child(2) div:contains('" + Value + "')"))
+			return true;
+		return false;
+	}
+	
+	public boolean zVerifySMIMEAccountLimit(String Value) throws HarnessException {
+
+		if (this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(16) td:contains('SMIME accounts limit:')") && this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(16) td:nth-child(2) div:contains('" + Value + "')"))
+			return true;
+		return false;
+	}
+	
+	public boolean zVerifyVoiceAccountLimit(String Value) throws HarnessException {
+
+		if (this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(17) td:contains('Voice accounts limit:')") && this.sIsElementPresent("css=div[id^='ztabv__GSET_EDIT_zatabcase'] table[id^='ztabv__GSET_EDIT_zatabcase'] tr:nth-child(17) td:nth-child(2) div:contains('" + Value + "')"))
+			return true;
+		return false;
+	}
 
 }
