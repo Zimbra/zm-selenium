@@ -35,13 +35,13 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
-public class ReplyToMsgWithSignatureContaingImage extends AjaxCommonTest {
+public class ReplyToMsgWithSignatureContainingImage extends AjaxCommonTest {
 	String sigName = "signame" + ConfigProperties.getUniqueString();
 	String sigBody = "signature<b>bold" + ConfigProperties.getUniqueString() + "</b>signature";
 	String contentHTMLSig = XmlStringUtil
 			.escapeXml("<html>" + "<head></head>" + "<body>" + sigBody + "</body>" + "</html>");
 
-	public ReplyToMsgWithSignatureContaingImage() {
+	public ReplyToMsgWithSignatureContainingImage() {
 		super.startingPage = app.zPageMail;
 	}
 
