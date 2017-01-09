@@ -251,6 +251,10 @@ public class QuickAddAppointment extends AbsTab {
 		SleepUtil.sleepLongMedium();
 	}
 
+	public Boolean zVerifyMeetingInPastWarning() throws HarnessException {
+		return sIsElementPresent("//div[@id='zcs1_meetingInPastWarningMessageText']");
+	}
+	
 	public void zFill(IItem item) throws HarnessException {
 
 		logger.info(myPageName() + ".zFill(ZimbraItem)");

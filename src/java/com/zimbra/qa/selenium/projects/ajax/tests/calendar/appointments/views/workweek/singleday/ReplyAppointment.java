@@ -39,7 +39,7 @@ public class ReplyAppointment extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Verify Reply & ReplyAll context menu option for saved appt",
-			groups = { "functional" },
+			groups = { "functional", "L2" },
 			dataProvider = "DataProviderReply")
 			
 	public void ReplyAppointment_01(String menuName) throws HarnessException {

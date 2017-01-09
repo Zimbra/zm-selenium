@@ -36,7 +36,7 @@ public class CreateAppointmentWithGALFalse extends CalendarWorkWeekTest {
 	}
 
 	@Bugs(ids = "99777")
-	@Test( description = "Create a basic appointment this zimbraFeatureGalEnabled=FALSE", groups = { "functional" } )
+	@Test( description = "Create a basic appointment this zimbraFeatureGalEnabled=FALSE", groups = { "functional", "L2" } )
 	
 	public void CreateAppointmentWithGALFalse_01() throws HarnessException {
 		
