@@ -1292,5 +1292,19 @@ public class FormMailNew extends AbsForm {
 
 		return false;
 	}
+	
+	public String zGetSignatueImageSrc() throws HarnessException {
+		String imageSrc;
+		try {
+
+			this.sSelectFrame("css=iframe[id$='ZmHtmlEditor1_body_ifr']");
+			imageSrc = sGetAttribute("css=div[data-marker='__QUOTED_TEXT__'] img@src");
+
+		} finally {
+			
+			this.sSelectFrame("relative=top");
+		}
+		return imageSrc;
+	}
 
 }
