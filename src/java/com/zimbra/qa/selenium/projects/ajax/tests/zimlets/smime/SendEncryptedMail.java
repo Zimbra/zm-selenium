@@ -27,6 +27,8 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogError;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.DialogErrorID;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
@@ -385,10 +387,16 @@ public class SendEncryptedMail extends AjaxCommonTest {
 		// Send the message
 		mailform.zSubmit();
 		
+		// Verification
+		DialogError error = new DialogError(DialogErrorID.Zimbra, app, app.zPageContacts);
+		ZAssert.assertEquals(error.zGetWarningContent(), "Message encryption failed. No certificate found.", "Verify error message when try to create duplicate distribution list");
+		error.zClickButton(Button.B_OK);
+        
+		
 	}
 
 	@Test ( description = "Verify that proper error is displayed when trying to sendSigned and encrypted message without private key of the sender", priority=4, 
-			groups = { "smime", "L0"})
+			groups = { "smime", "L2"})
 	
 	public void SendEncryptedMail_04() throws HarnessException  {
 		
@@ -398,6 +406,8 @@ public class SendEncryptedMail extends AjaxCommonTest {
 			+		"<id>"+ app.zGetActiveAccount().ZimbraId +"</id>"
 			+		"<a n='zimbraFeatureSMIMEEnabled'>TRUE</a>"
 			+	"</ModifyAccountRequest>");
+		
+		app.zPageMain.sRefreshPage();
 				
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
@@ -419,10 +429,15 @@ public class SendEncryptedMail extends AjaxCommonTest {
 		// Send the message
 		mailform.zSubmit();
 		
+		// Verification
+		DialogError error = new DialogError(DialogErrorID.Zimbra, app, app.zPageMail);
+		ZAssert.assertEquals(error.zGetWarningContent(), "Message encryption failed. No certificate found.", "Verify error message when try to create duplicate distribution list");
+		error.zClickButton(Button.B_OK);
+		
 	}
 
 	@Test ( description = "Verify that Signed and encrypted messged cannot be viewed if user has not uploaded the private key", priority=4, 
-			groups = { "smime", "L0"})
+			groups = { "smime", "L2"})
 	
 	public void SendEncryptedMail_05() throws HarnessException  {
 		ZimbraAccount user3 = new ZimbraAccount("user3"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
@@ -504,122 +519,6 @@ public class SendEncryptedMail extends AjaxCommonTest {
 		ZAssert.assertTrue(actual.zMessageCannotBeDecrypted(), "Message cannot be decrypted string present");
 
 	}
-
-	@Test ( description = "Verify that Signed and encrypted message can be sent from Web-client correctly and user can view it", priority=4, 
-			groups = { "smime", "L0"})
-	
-	public void SendEncryptedMail_06() throws HarnessException  {
-		ZimbraAccount user4 = new ZimbraAccount("user4"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
-		user4.provision();
-		user4.authenticate();
-
-		ZimbraAccount user5 = new ZimbraAccount("user5"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
-		user5.provision();
-		user5.authenticate();
-		
-		// Modify the test account and change zimbraFeatureSMIMEEnabled to TRUE
-		ZimbraAdminAccount.GlobalAdmin().soapSend(
-				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
-			+		"<id>"+ user4.ZimbraId +"</id>"
-			+		"<a n='zimbraFeatureSMIMEEnabled'>TRUE</a>"
-			+	"</ModifyAccountRequest>");
-
-		ZimbraAdminAccount.GlobalAdmin().soapSend(
-				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
-			+		"<id>"+ user5.ZimbraId +"</id>"
-			+		"<a n='zimbraFeatureSMIMEEnabled'>TRUE</a>"
-			+	"</ModifyAccountRequest>");
-		
-		// Create file item
-		String filePath = ConfigProperties.getBaseDirectory()
-				+ "/data/private/certs/corrupted keys/user4_digitalid.p12";
-
-		// Upload file to server through RestUtil
-		String attachmentId = user4.uploadFile(filePath);
-
-		user4.soapSend(
-				"<SaveSmimeCertificateRequest xmlns='urn:zimbraAccount'>" +
-				"<upload id='" + attachmentId + "'></upload>" +
-                "<password>test123</password>" +
-                "</SaveSmimeCertificateRequest>");
-
-		// Create file item
-		filePath = ConfigProperties.getBaseDirectory()
-				+ "/data/private/certs/corrupted keys/user5_digitalid.p12";
-
-		// Upload file to server through RestUtil
-		 attachmentId = user5.uploadFile(filePath);
-
-		user5.soapSend(
-				"<SaveSmimeCertificateRequest xmlns='urn:zimbraAccount'>" +
-				"<upload id='" + attachmentId + "'></upload>" +
-                "<password>test123</password>" +
-                "</SaveSmimeCertificateRequest>");
-	
-		// Create file item
-		String certPath = ConfigProperties.getBaseDirectory()
-				+ "/data/private/certs/corrupted keys/user5_old.cer";
-
-		// Upload file to server through RestUtil
-		String certId = user4.uploadFile(certPath);
-
-		
-		user4.soapSend(
-				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
-				"<cn>"+
-				"<a n='firstName'>user5</a>" +
-				"<a n='lastName'>user</a>" +
-				"<a n='email'>" + user5.EmailAddress + "</a>" +
-				"<a n='userCertificate' aid='" + certId + "'></a>" +
-				"</cn>" +
-				"</CreateContactRequest>");
-	
-        app.zPageMain.zLogout();
-		app.zPageLogin.zLogin(user4);
-		
-		// Create the message data to be sent
-		MailItem mail = new MailItem();
-		mail.dToRecipients.add(new RecipientItem(user5));
-		mail.dSubject = "Signed and Encrypted Message" + ConfigProperties.getUniqueString();
-		mail.dBodyHtml = "Signed and Encrypted Message Body" + ConfigProperties.getUniqueString();
-
-		// Open the new mail form
-		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-
-		// Fill out the form with the data
-		mailform.zFill(mail);
-
-		//Choose sign only from the secure email drop-down
-		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN_AND_ENCRYPT);
-		SleepUtil.sleepMedium();
-		
-		// Send the message
-		mailform.zSubmit();
-		
-		//Search for the signed mail in recipients inbox
-		MailItem received = MailItem.importFromSOAP(user5, "subject:("+ mail.dSubject +")");
-		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, user4.EmailAddress, "Verify the from field is correct");
-		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, user5.EmailAddress, "Verify the to field is correct");
-		ZAssert.assertEquals(received.dSubject, mail.dSubject, "Verify the subject field is correct");
-		ZAssert.assertEquals(received.dIsSigned, "true", "Verify that message is signed correctly");
-		ZAssert.assertEquals(received.dIsEncrypted, "true", "Verify that message is encrypted correctly");
-
-		//Login as the recipient
-        app.zPageMain.zLogout();
-		app.zPageLogin.zLogin(user5);
-
-		// Select the message so that it shows in the reading pane
-		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
-		
-		// Verify body content
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), mail.dBodyHtml, "Verify plain text content");
-		
-		//Verify the Mail security String
-		ZAssert.assertTrue(actual.zMailSecurityPresent(user4.EmailAddress), "Signed and Encrypted by String present");
-		
-	}
-
 	
 		@AfterMethod(groups={"always"})
 	public void afterMethod() throws HarnessException {
