@@ -347,6 +347,10 @@ public class FormApptNew extends AbsForm {
 		return sGetValue("css=div[class='ZmHtmlEditor'] textarea[class='ZmHtmlEditorTextArea']");
 	}
 
+	public Boolean zVerifyMeetingInPastWarning() throws HarnessException {
+		return sIsElementPresent("//div[@id='zcs1_meetingInPastWarningMessageText']");
+	}
+
 	public String zGetApptBodyHtml() throws HarnessException {
 		String bodyText;
 		this.sSelectFrame("css=iframe[id$='ZmHtmlEditor1_body_ifr']");
