@@ -118,10 +118,11 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		String apptSubject;
 		apptSubject = ConfigProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
+		Calendar now = this.calendarWeekDayUTC;
 		
 		appt.setSubject(apptSubject);
-		appt.setStartTime(new ZDate(this.calendarWeekDayUTC));
-		appt.setEndTime(new ZDate(this.calendarWeekDayUTC));
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) - 4, 12, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) - 4, 14, 0, 0));
 		appt.setContent("content" + ConfigProperties.getUniqueString());
 		appt.setAttendees(ZimbraAccount.AccountA().EmailAddress);
 		appt.setIsAllDay(true);
@@ -141,9 +142,6 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 		ZAssert.assertEquals(app.zGetActiveAccount().soapMatch("//mail:GetAppointmentResponse//mail:comp", "allDay", "1"), true, "");
 		
-		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-
 	}
 
 }

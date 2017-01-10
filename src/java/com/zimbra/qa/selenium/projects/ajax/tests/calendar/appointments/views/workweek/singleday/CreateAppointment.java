@@ -35,8 +35,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		logger.info("New "+ CreateAppointment.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
-	
+		
 	@Test( description = "Create a basic appointment without an attendee",
 			groups = { "sanity", "L0" } )
 	
@@ -65,7 +64,6 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 	}
-	
 	
 	@Test( description = "Create appointment with all the fields and verify it",
 			groups = { "functional", "L1" } )
@@ -122,8 +120,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertStringContains(actual.getEquipment(), appt.getEquipment(), "Equipment: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
 	}
-	
-	
+		
 	@Test( description = "Create private appointment",
 			groups = { "functional", "L2"} )
 	
@@ -158,7 +155,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 	}
 
 	@Test( description = "Create a basic appointment without an attendee in the past ",
-			groups = { "smoke1", "L1" } )
+			groups = { "smoke", "L1" } )
 	
 	public void CreateAppointment_04() throws HarnessException {
 		

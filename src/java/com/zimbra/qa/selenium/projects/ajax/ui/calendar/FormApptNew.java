@@ -348,7 +348,7 @@ public class FormApptNew extends AbsForm {
 	}
 
 	public Boolean zVerifyMeetingInPastWarning() throws HarnessException {
-		return sIsElementPresent("//div[@id='zcs1_meetingInPastWarningMessageText']");
+		return sIsElementPresent("css=div[id='zcs1_meetingInPastWarningMessageText']");
 	}
 
 	public String zGetApptBodyHtml() throws HarnessException {
