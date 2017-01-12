@@ -63,4 +63,29 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 	}
 
+	@Test( description = "Create basic appointment using quick add dialog in the past and verify the warning message",
+			groups = { "smoke", "L1" } )
+	
+	public void CreateAppointment_02() throws HarnessException {
+		
+		// Create appointment
+		AppointmentItem appt = new AppointmentItem();
+		Calendar now = this.calendarWeekDayUTC;
+		appt.setSubject(ConfigProperties.getUniqueString());
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) - 4, 12, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH)- 4, 14, 0, 0));
+	
+		// Quick add appointment dialog
+		QuickAddAppointment quickAddAppt = new QuickAddAppointment(app) ;
+		quickAddAppt.zNewAppointment();
+		quickAddAppt.zFill(appt);
+        ZAssert.assertTrue(quickAddAppt.zVerifyMeetingInPastWarning(), "Verify meeting in past warning appears");
+		quickAddAppt.zSubmit();
+		
+		// Verify the new appointment exists on the server
+		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
+		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
+		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
+	}
+
 }

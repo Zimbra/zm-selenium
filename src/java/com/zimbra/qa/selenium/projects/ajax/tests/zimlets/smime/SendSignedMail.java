@@ -28,6 +28,8 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogError;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.DialogErrorID;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
@@ -146,8 +148,8 @@ public class SendSignedMail extends AjaxCommonTest {
 
 	}
 
-	@Test ( description = "Verify that Signed message can be sent from Web-client correctly and user can view it", priority=4, 
-			groups = { "smime"})
+	@Test ( description = "Verify that Signed message can be sent from Web-client correctly and user can view it in new window", priority=4, 
+			groups = { "smime", "L3"})
 	
 	public void SendSignedMail_02() throws HarnessException  {
 		ZimbraAccount user3 = new ZimbraAccount("user3"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
@@ -279,6 +281,51 @@ public class SendSignedMail extends AjaxCommonTest {
 
 	}
 
+	@Test ( description = "Verify that Signed message cannot be sent from Web-client, if user has not uploaded his private key", priority=4, 
+			groups = { "smime", "L2"})
+	
+	public void SendSignedMail_03() throws HarnessException  {
+		ZimbraAccount user3 = new ZimbraAccount("user3"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
+		user3.provision();
+		user3.authenticate();
+
+		// Modify the test account and change zimbraFeatureSMIMEEnabled to TRUE
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
+			+		"<id>"+ app.zGetActiveAccount().ZimbraId +"</id>"
+			+		"<a n='zimbraFeatureSMIMEEnabled'>TRUE</a>"
+			+	"</ModifyAccountRequest>");
+		
+		app.zPageMain.sRefreshPage();
+		
+		// Create the message data to be sent
+		MailItem mail = new MailItem();
+		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.Account1()));
+		mail.dSubject = "SignedMessage" + ConfigProperties.getUniqueString();
+		mail.dBodyHtml = "SignedMessageBody" + ConfigProperties.getUniqueString();
+
+		// Open the new mail form
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+		ZAssert.assertNotNull(mailform, "Verify the new form opened");
+
+		// Fill out the form with the data
+		mailform.zFill(mail);
+
+		//Choose sign only from the secure email drop-down
+		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN);
+		SleepUtil.sleepMedium();
+		
+		// Send the message
+		mailform.zSubmit();
+		
+		// Verification
+		DialogError error = new DialogError(DialogErrorID.Zimbra, app, app.zPageMail);
+		ZAssert.assertEquals(error.zGetWarningContent(), "Message signing failed. No certificate found.", "Verify error message when try to create duplicate distribution list");
+		error.zClickButton(Button.B_OK);
+
+	}
+
+	
 	@AfterMethod(groups={"always"})
 	public void afterMethod() throws HarnessException {
 	
