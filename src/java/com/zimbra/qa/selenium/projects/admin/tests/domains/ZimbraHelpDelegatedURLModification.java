@@ -120,7 +120,7 @@ public class ZimbraHelpDelegatedURLModification extends AdminCommonTest {
 							+	"</ModifyDomainRequest>");
 
 			// Restart zimbra services
-			staf.execute("zmmailboxdctl restart");
+			/*staf.execute("zmmailboxdctl restart");
 			SleepUtil.sleepVeryLong();
 
 			for (int i=0; i<=10; i++) {
@@ -135,7 +135,7 @@ public class ZimbraHelpDelegatedURLModification extends AdminCommonTest {
 					}
 					continue;
 				}
-			}
+			}*/
 
 		}
 	}

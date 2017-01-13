@@ -109,7 +109,7 @@ public class CheckMTASettings extends AdminCommonTest {
 
 			//Verify through UI that the MTA configuration change made above is present  
 			app.zPageManageMTA.sRefresh();
-			app.zPageManageMTA.zWaitTillElementPresent(Locators.HOME);
+			app.zPageMain.zWaitForActive();
 			app.zPageManageGlobalSettings.zNavigateTo();
 			app.zPageManageMTA.zNavigateTo();		
 

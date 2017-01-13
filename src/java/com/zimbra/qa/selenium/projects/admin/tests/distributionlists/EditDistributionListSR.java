@@ -218,7 +218,6 @@ public class EditDistributionListSR extends AdminCommonTest {
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
 		ZAssert.assertNotNull(response, "Verify the distribution list is edited successfully");
-		app.zPageMain.logout();
 	}
 
 }
