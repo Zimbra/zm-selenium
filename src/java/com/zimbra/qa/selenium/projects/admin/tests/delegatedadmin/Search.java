@@ -33,7 +33,8 @@ import com.zimbra.qa.selenium.projects.admin.ui.PageManageSearch;
 public class Search extends AdminCommonTest {
 
 	public Search() {
-		logger.info("New "+ Search.class.getCanonicalName());		
+		logger.info("New "+ Search.class.getCanonicalName());
+		startingPage = app.zPageManageSearch;
 	}
 
 	/**
@@ -319,7 +320,7 @@ public class Search extends AdminCommonTest {
 		
 		//Delegated admin authentication is required before all of these test 
 		app.provisionAuthenticateDA();
-		super.startingAccount = (ZimbraAdminAccount) app.zGetActiveAccount();
-		app.zPageManageSearch.zNavigateTo();		
+		//super.startingAccount = (ZimbraAdminAccount) app.zGetActiveAccount();
+		//app.zPageManageSearch.zNavigateTo();		
 	}
 }

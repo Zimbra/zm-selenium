@@ -184,10 +184,10 @@ public class AdminCommonTest {
 
 			if (!startingAccount.equals(app.zGetActiveAccount())) {
 				
-				if (app.zPageMain.zIsActive()) {
-					app.zPageMain.sOpen(ConfigProperties.getBaseURL());
-					app.zPageMain.zWaitForActive();
-				}
+				//if (app.zPageMain.zIsActive()) {
+					//app.zPageMain.sOpen(ConfigProperties.getBaseURL());
+					//app.zPageMain.zWaitForActive();
+				//}
 				app.zPageLogin.login(startingAccount);
 			}
 

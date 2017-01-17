@@ -36,7 +36,7 @@ public class PageManageGlobalSettings extends AbsTab {
 
 	public static class Locators {
 		public static final String CONFIGURE_ICON="css=div.ImgAdministration";
-		public static final String GLOBAL_SETTING="zti__AppAdmin__CONFIGURATION__GSET_textCell";
+		public static final String GLOBAL_SETTING="css=div[id='zti__AppAdmin__CONFIGURATION__GSET_textCell']";
 		public static final String GEAR_ICON="css=div.ImgConfigure";
 		public static final String HOME="Home";
 		public static final String CONFIGURE="Configure";
@@ -104,11 +104,10 @@ public class PageManageGlobalSettings extends AbsTab {
 		sClick(Locators.CONFIGURE_ICON);
 		zWaitForWorkInProgressDialogInVisible();
 		SleepUtil.sleepMedium();
-		sIsElementPresent(Locators.GLOBAL_SETTING);
-		zClick(Locators.GLOBAL_SETTING);
+		zWaitForElementPresent(Locators.GLOBAL_SETTING);
+		sClick(Locators.GLOBAL_SETTING);
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
-		zWaitForElementInvisible(Locators.WORK_IN_PROGRESS_DIALOG);
 	}
 
 	@Override

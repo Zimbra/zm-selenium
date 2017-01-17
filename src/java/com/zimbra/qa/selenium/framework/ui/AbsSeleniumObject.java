@@ -54,6 +54,7 @@ import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.projects.admin.ui.PageLogin;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -874,8 +875,12 @@ public abstract class AbsSeleniumObject {
 				zWaitTillElementPresent(PageMail.Locators.zMailTagsPane);
 			}
 
-		} else if (ConfigProperties.getAppType().equals("ADMIN")) {
-			zWaitTillElementPresent(PageMain.Locators.zHelpButton);
+		} else if (ConfigProperties.getAppType().name().equals("ADMIN")) {
+			try {
+					zWaitTillElementPresent(PageMain.Locators.zHelpButton);
+				} catch(HarnessException e) {
+					zWaitTillElementPresent(PageLogin.Locators.zLoginButtonContainer);
+			}
 		}
 		SleepUtil.sleepMedium();
 	}
@@ -2125,10 +2130,12 @@ public abstract class AbsSeleniumObject {
 	
 	public boolean zWaitForWorkInProgressDialogInVisible() throws HarnessException {
 		boolean status = true;
-		if(this.sIsElementPresent("css=div.DwtShellBusyDialog")) {
+		SleepUtil.sleepSmall();
+		if(sIsElementPresent("css=div.DwtShellBusyDialog")) {
 			logger.info("'Work In Progress' dialog is displayed. Waiting for it to close...");
 			status = waitForElementPresent("css=div.DwtShellBusyDialog[aria-hidden='true']",true,20);
 			if(status) {
+				SleepUtil.sleepSmall();
 				logger.info("'Work In Progress' dialog is closed");
 				return status;
 			} else {
