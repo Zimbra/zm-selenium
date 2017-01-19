@@ -239,7 +239,7 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 	
 	@Bugs(ids="56467")
 	@Test( description = "Delete a Html task by selecting and typing '.t' shortcut",
-			groups = { "functional", "L1"} )
+			groups = { "smoke", "L1"} )
 	public void DeleteHtmlTask_04() throws HarnessException {
 		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -494,7 +494,7 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Create Html task through SOAP - delete using Backspace Key & verify through GUI",
-			groups = { "functional", "L1"} )
+			groups = { "smoke", "L1"} )
 	public void DeleteHtmlTask_07() throws HarnessException {
 		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

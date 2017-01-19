@@ -34,7 +34,7 @@ public class NavigateToToday extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "78821")
 	@Test( description = "Verify clicking on Today button highlights today when moved to next week",
-			groups = { "functional", "L0" })
+			groups = { "smoke", "L0" })
 	
 	public void NavigateToToday_01() throws HarnessException {
 		
@@ -91,7 +91,7 @@ public class NavigateToToday extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Verify clicking on Today button highlights today",
-			groups = { "functional", "L0" })
+			groups = { "smoke", "L0" })
 	
 	public void NavigateToToday_02() throws HarnessException {
 		

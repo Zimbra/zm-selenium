@@ -103,7 +103,7 @@ public class CreateContactGroup extends AjaxCommonTest  {
 	}
 		
 	@Test( description = "Create a basic contact group with 2 GAL addresses", 
-			groups = { "functional", "L0" })
+			groups = { "smoke", "L0" })
 	
 	public void CreateContactGroup_02() throws HarnessException {
 		
@@ -147,7 +147,7 @@ public class CreateContactGroup extends AjaxCommonTest  {
 	}
 	
 	@Test( description = "Create a contact group with existing contacts", 
-			groups = { "functional", "L0" })
+			groups = { "smoke", "L0" })
 	
 	public void CreateContactGroup_03() throws HarnessException {
 		
@@ -253,7 +253,7 @@ public class CreateContactGroup extends AjaxCommonTest  {
 	
 	@Bugs(ids = "77968,70905,66623")
 	@Test( description="Create a new contact group from GAL search result", 
-		groups= { "functional", "L0"  } )
+		groups= { "smoke", "L0"  } )
 	
 	public void CreateContactGroupFromGALSearchResult_05() throws HarnessException{
 		

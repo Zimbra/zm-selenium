@@ -32,7 +32,7 @@ public class AboutDialog extends AjaxCommonTest {
 	
 	
 	@Test( description = "Open the 'About' dialog",
-			groups = { "functional", "L0"})
+			groups = { "smoke", "L0" })
 	
 	public void AboutDialog_01() throws HarnessException {
 		

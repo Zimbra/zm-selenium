@@ -128,7 +128,7 @@ public class EditHtmlTask extends AjaxCommonTest{
 	 */
 	@Bugs(ids="64647")
 	@Test( description = "Create Html task through SOAP - edit duedate >> Refresh task >>verify Due Date in list view through GUI",
-			groups = { "functional", "L1"})
+			groups = { "smoke", "L1"})
 	
 	public void EditHtmlTask_02() throws HarnessException {
 
@@ -192,7 +192,7 @@ public class EditHtmlTask extends AjaxCommonTest{
 	}
 	
 	@Test( description = "Create Html task through SOAP - Edit html task using Right Click Context Menu & verify through GUI",
-			groups = { "functional", "L1"})
+			groups = { "smoke", "L1"})
 	
 	public void EditHtmlTask_03() throws HarnessException {
 
@@ -273,7 +273,7 @@ public class EditHtmlTask extends AjaxCommonTest{
 	}
 	
 	@Test( description = "Create Html task through SOAP - Edit> convert Html to Plain Text and veirfy Warning dialog and its content",
-			groups = { "functional", "L1"})
+			groups = { "smoke", "L1"})
 	
 	public void EditHtmlTask_04() throws HarnessException {
 

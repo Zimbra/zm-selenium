@@ -77,7 +77,7 @@ public class DragAndDropContactGroup extends AjaxCommonTest  {
    	}
 	
 	@Test( description = "Move a contact group to trash folder by drag and drop",
-			groups = { "functional", "L1" })
+			groups = { "smoke", "L1" })
 	
 	public void DnDToTrash_02() throws HarnessException {
 

@@ -376,7 +376,7 @@ public class DeleteTask extends AjaxCommonTest {
 	}
 
 	@Test( description = "Create task through SOAP - delete using Backspace Key & verify Toast message through GUI",
-			groups = { "functional", "L1"} )
+			groups = { "smoke", "L1"} )
 			public void DeleteTaskToastMsg_07() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

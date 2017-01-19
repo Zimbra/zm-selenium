@@ -58,7 +58,7 @@ public class ZimbraFeatureOptionsEnabled extends AjaxCommonTest {
 	 * @throws HarnessException
 	 */
 	@Bugs(ids="62011")	
-	@Test( description = "Load the Preferences tab with just Preferences enabled", groups = { "deprecated" })
+	@Test( description = "Load the Preferences tab with just Preferences enabled", groups = { "deprecated", "L4" })
 	public void ZimbraFeatureOptionsEnabled_01() throws HarnessException {
 		
 		// Go to "General"

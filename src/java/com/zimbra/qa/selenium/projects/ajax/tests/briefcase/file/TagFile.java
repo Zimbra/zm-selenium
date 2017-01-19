@@ -149,7 +149,7 @@ public class TagFile extends FeatureBriefcaseTest {
 	}
 
 	@Test( description = "Tag uploaded File using pre-existing Tag", 
-			groups = { "functional", "L1" })
+			groups = { "smoke", "L1" })
 	public void TagFile_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 

@@ -41,7 +41,7 @@ public class FolderTree extends AjaxCommonTest {
 	
 	@Bugs(ids = "50123")
 	@Test( description = "Verify the LinkedIn zimlet appears in the folder tree",
-			groups = { "deprecated" })
+			groups = { "deprecated", "L4" })
 	public void FolderTree_01() throws HarnessException {
 		ZimletItem linkedin = CoreZimletItem.getCoreZimlet(CoreZimletName.com_zimbra_linkedin, app);
 		
@@ -64,7 +64,7 @@ public class FolderTree extends AjaxCommonTest {
 	}
 
 	// All these tests require the Folder tree to be fully loaded
-	@BeforeMethod( groups = { "deprecated", "L3" } )
+	@BeforeMethod( groups = { "deprecated", "L4" } )
 	public void folderTreeBeforeMethod() throws HarnessException {
 		logger.info("folderTreeBeforeMethod: start");
 		

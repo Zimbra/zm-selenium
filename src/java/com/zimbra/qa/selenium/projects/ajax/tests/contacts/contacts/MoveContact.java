@@ -75,7 +75,7 @@ public class MoveContact extends AjaxCommonTest {
 	}
 
 	@Test(description = "Move a contact item to sub addressbook by click shortcut m", 
-			groups = { "functional", "L0"})
+			groups = { "smoke", "L0" })
 	public void MoveContact_02() throws HarnessException {
 
 		// -- Data

@@ -120,7 +120,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 	}
 	
 	@Test( description = "Create document using keyboard shortcut - verify through SOAP & RestUtil", 
-			groups = { "functional", "L1" })
+			groups = { "smoke", "L1" })
 	
 	public void CreateDocument_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -188,7 +188,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 	
 	@Bugs(ids="81299")
 	@Test( description = "Create document using New menu pulldown menu - verify through SOAP & RestUtil", 
-			groups = { "functional", "L1" })
+			groups = { "smoke", "L1" })
 	
 	public void CreateDocument_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

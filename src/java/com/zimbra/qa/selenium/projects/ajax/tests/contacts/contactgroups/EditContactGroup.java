@@ -65,7 +65,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 	
 	@Bugs(ids="97157")
 	@Test( description = "Edit a contact group by click Edit Group on Context Menu ", 
-		groups = { "functional", "L1" })
+		groups = { "smoke", "L1" })
 	
 	public void EditContactGroup_02() throws HarnessException {
 
@@ -92,7 +92,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 	
 	@Bugs(ids="97157")
 	@Test( description = "Edit a contact group by double click on the contact group", 
-		groups = { "functional", "L1" })
+		groups = { "smoke", "L1" })
 	
 	public void EditContactGroup_03() throws HarnessException {
 
@@ -148,7 +148,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 	}
 	
 	@Test( description = "Cancel an edited contact group by click Close, then click No", 
-			groups = { "functional", "L0" })
+			groups = { "smoke", "L0" })
 	
 	public void EditContactGroup_05() throws HarnessException {
 
