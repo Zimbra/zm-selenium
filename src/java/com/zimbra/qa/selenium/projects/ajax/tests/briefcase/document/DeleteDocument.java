@@ -129,7 +129,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 	}
 
 	@Test( description = "Create document through SOAP - delete using Delete Key & verify through GUI", 
-			groups = { "smoke", "L0" })
+			groups = { "functional", "L2" })
 	public void DeleteDocument_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -192,7 +192,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 	}
 
 	@Test( description = "Create document through SOAP - delete using Backspace Key & verify through GUI",
-			groups = { "functional","L1" })
+			groups = { "functional","L3" })
 	public void DeleteDocument_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 

@@ -449,7 +449,7 @@ public class DeleteTask extends AjaxCommonTest {
 	
 	@Bugs(ids="61625")
 	@Test( description = "Hard-delete a task by selecting and typing 'shift-del' shortcut",
-			groups = { "smoke", "L1"})
+			groups = { "functional", "L2"})
 	public void HardDeleteTask_07() throws HarnessException {
 
 		
@@ -626,7 +626,7 @@ public class DeleteTask extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Create task through SOAP - delete using Backspace Key & verify through GUI",
-			groups = { "smoke", "L1"} )
+			groups = { "functional", "L3"} )
 	public void DeleteTask_09() throws HarnessException {
 		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

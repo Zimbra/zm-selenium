@@ -73,7 +73,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 	
 	@Bugs(ids = "67061")
 	@Test( description = "According to Comment#1 in the bug 67061 Create a new folder using 'nf' keyboard shortcut is for mail only", 
-	groups = { "skip", "L3-skip" })
+	groups = { "functional-skip", "L3-skip" })
 	public void CreateFolder_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 

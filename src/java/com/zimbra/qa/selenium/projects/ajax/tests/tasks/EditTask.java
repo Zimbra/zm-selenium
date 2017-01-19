@@ -140,7 +140,7 @@ public class EditTask extends AjaxCommonTest{
 	 */
 	
 	@Bugs(ids="64647")
-	@Test( description = "Create task through SOAP - edit duedate >> Refresh task >>verify Due Date in list view through GUI",
+	@Test( description = "Create task through SOAP - edit due date >> Refresh task >>verify Due Date in list view through GUI",
 			groups = { "smoke", "L1"})
 	
 	public void EditTask_02() throws HarnessException {

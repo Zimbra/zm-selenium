@@ -148,7 +148,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 	}
 	
 	@Test( description = "Cancel an edited contact group by click Close, then click No", 
-			groups = { "smoke", "L0" })
+			groups = { "functional", "L3" })
 	
 	public void EditContactGroup_05() throws HarnessException {
 
