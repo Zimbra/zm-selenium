@@ -34,7 +34,7 @@ public class ForwardContact extends AjaxCommonTest  {
 	
 	@Bugs(ids = "77708")
 	@Test( description = "Forward a contact by click Forward on the toolbar",
-			groups = { "deprecated", "L3"})
+			groups = { "deprecated", "L4"})
 	
 	public void InDisplayViewClickForwardOnToolbar_01() throws HarnessException {
 		
@@ -92,7 +92,7 @@ public class ForwardContact extends AjaxCommonTest  {
    	}
 
 	@Test( description = "Forward an editing contact by click Forward on the toolbar",
-			groups = { "deprecated", "L3"})
+			groups = { "deprecated", "L4"})
 	
 	public void InEditViewClickForwardOnToolbar_02() throws HarnessException {
 				

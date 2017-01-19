@@ -260,7 +260,7 @@ public class GetTask extends AjaxCommonTest {
 	}
 
 	@Test( description = "Click on task folder to receive any new tasks",
-			groups = { "functional", "L1"})
+			groups = { "smoke", "L1"})
 
 	public void GetTask_05() throws HarnessException {
 		
@@ -397,7 +397,7 @@ public class GetTask extends AjaxCommonTest {
 
 	@Bugs(ids="64681,72236")
 	@Test( description = "No refresh after task is marked complete in filter to-do list",
-			groups = { "functional", "L1"})
+			groups = { "functional", "L3"})
 
 	public void GetTask_07() throws HarnessException {
 		

@@ -37,7 +37,7 @@ public class ZmBriefcaseAppFolders extends FeatureBriefcaseTest {
 	}
 
 	@Test( description = "Measure the time to load the briefcase app, 1 briefcase",
-			groups = { "performance", "L0" })
+			groups = { "performance", "L4" })
 	public void ZmBriefcaseAppFolders_01() throws HarnessException {
 
 		// Create a folder
@@ -67,7 +67,7 @@ public class ZmBriefcaseAppFolders extends FeatureBriefcaseTest {
 	}
 
 	@Test( description = "Measure the time to load the briefcase app, 100 briefcases",
-			groups = { "performance" })
+			groups = { "performance", "L4" })
 	public void ZmBriefcaseAppFolders_02() throws HarnessException {
 
 		// Create 100 folders
