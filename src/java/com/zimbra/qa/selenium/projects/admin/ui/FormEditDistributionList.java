@@ -24,6 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.projects.admin.ui.FormEditAccount.Locators;
 
 public class FormEditDistributionList extends AbsForm {
 
@@ -47,6 +48,9 @@ public class FormEditDistributionList extends AbsForm {
 		public static final String SET_REPLY_TO="css=input[id$='zimbraPrefReplyToEnabled']";
 		public static final String REPLY_TO_DISPLAY_NAME="css=input[id$='zimbraPrefReplyToDisplay']";
 		public static final String REPLY_TO_ADDRESS="css=input[id$='zimbraPrefReplyToAddress_display']";
+		public static final String ALIAS_NAME = "css=input[id^='zdlgv__EDIT_ALIAS']";
+		public static final String ALIAS_DOMAIN_NAME = "css=input[id$='_name_3_display']";
+		public static final String zdlg_OK="css=td[id$='_button2_title']:contains('OK')";
 		
 	}
 
@@ -229,4 +233,25 @@ public class FormEditDistributionList extends AbsForm {
 		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		SleepUtil.sleepSmall();
 	}
+	
+
+	public void zAddDLAliases(String cn, String domain) throws HarnessException {
+		logger.info(myPageName() + " zAddAccountAliases("+ cn +")");
+		tracer.trace("Click page button ");
+
+
+		this.clearField(Locators.ALIAS_NAME);		
+		sType(Locators.ALIAS_NAME,cn);
+
+		SleepUtil.sleepSmall();
+
+		//this.clearField(Locators.ALIAS_DOMAIN_NAME);	
+		//sType(Locators.ALIAS_DOMAIN_NAME,"");
+		//SleepUtil.sleepSmall();
+		//zType(Locators.ALIAS_DOMAIN_NAME,domain);
+		//SleepUtil.sleepSmall();
+		zClick(Locators.zdlg_OK);
+		SleepUtil.sleepSmall();	
+	}
+	
 }
