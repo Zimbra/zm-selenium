@@ -87,7 +87,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "69132")
 	@Test( description = "Delete all-day appointment using context menu",
-			groups = { "functional", "L1" })
+			groups = { "smoke", "L1" })
 	public void DeleteAllDayAppointment_02() throws HarnessException {
 		
 		

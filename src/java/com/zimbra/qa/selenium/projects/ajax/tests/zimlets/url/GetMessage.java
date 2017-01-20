@@ -197,7 +197,7 @@ public class GetMessage extends AjaxCommonTest {
 
 	@Bugs(ids="86667")
 	@Test( description = "Receive a mail with a url in subject reference bug 86667",
-			groups = { "deprecated", "L3" })
+			groups = { "deprecated", "L4" })
 	public void GetMessage_05() throws HarnessException {
 		
 		// Create the message data to be sent

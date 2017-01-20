@@ -40,7 +40,7 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 	 */
 	@Bugs(ids = "50123")
 	@Test( description = "Basic test case: Load the Social tab",
-			groups = { "deprecated", "L3" })
+			groups = { "deprecated", "L4" })
 	public void LoadSocialTab_01() throws HarnessException {
 		
 		ZAssert.assertTrue(app.zPageSocial.zIsActive(), "Verify the social page is active");

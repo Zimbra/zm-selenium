@@ -43,7 +43,7 @@ public class CreateTask extends AjaxCommonTest {
 	}
 
 	@Test( description = "Verify Toaster message on Create Task", 
-			groups = { "functional", "L2"})
+			groups = { "smoke", "L1"})
 	public void CreateTask_01() throws HarnessException {
 
 		String subject = "task" + ConfigProperties.getUniqueString();

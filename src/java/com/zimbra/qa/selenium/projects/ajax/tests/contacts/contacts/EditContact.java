@@ -67,7 +67,7 @@ public class EditContact extends AjaxCommonTest  {
 	}
 	
 	@Test( description = "Edit a contact item, Right click then click Edit",
-			groups = { "functional", "L1"})
+			groups = { "smoke", "L1"})
 	
 	public void ClickContextMenuEdit_02() throws HarnessException {
 		
@@ -100,7 +100,7 @@ public class EditContact extends AjaxCommonTest  {
 	}
 	
 	@Test( description = "Edit a contact item, double click the contact",
-			groups = { "functional", "L1" })
+			groups = { "smoke", "L1" })
 	
 	public void DoubleClickContact_03() throws HarnessException {
 		

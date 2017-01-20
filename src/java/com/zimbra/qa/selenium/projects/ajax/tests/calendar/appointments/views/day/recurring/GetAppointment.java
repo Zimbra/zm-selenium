@@ -42,7 +42,7 @@ public class GetAppointment extends AjaxCommonTest {
 	
 	@Bugs(ids = "69132")
 	@Test( description = "View a basic appointment in day view",
-			groups = { "smoke", "L1" }) // smoke
+			groups = { "smoke", "L1" })
 	public void GetAppointment_01() throws HarnessException {
 		
 		// Create the appointment on the server
