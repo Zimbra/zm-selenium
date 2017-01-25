@@ -26,7 +26,6 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.projects.admin.ui.PageEditAccount.Locators;
 
 /**
  * @author Matt Rhoades
@@ -41,6 +40,7 @@ public class PageEditDistributionList extends AbsTab {
 		public static final String PROPERTIES="css=div[id^='zti__AppAdmin__Home__dlLstHV'] div[class='ZTreeItemTextCell']:contains('Properties')";
 		public static final String PREFERENCES="css=div[id^='zti__AppAdmin__Home__dlLstHV'] div[class='ZTreeItemTextCell']:contains('Preferences')";
 		public static final String ALIASES="css=div[id^='zti__AppAdmin__Home__dlLstHV'] div[class='ZTreeItemTextCell']:contains('Aliases')";
+		public static final String OWNER="css=div[id^='zti__AppAdmin__Home__dlLstHV'] div[class='ZTreeItemTextCell']:contains('Owners')";
 		public static final String ADD_BUTTON = "css=td#ztabv__UNDEFINE_dwt_button_";
 	}
 
@@ -122,7 +122,12 @@ public class PageEditDistributionList extends AbsTab {
 			locator=Locators.ALIASES;
 
 			//page = new FormEditDistributionList(this.MyApplication);
-		} else if (button == Button.B_ADD) {
+		} else if (button == Button.B_OWNER) {
+
+			locator=Locators.OWNER;
+
+			//page = new FormEditDistributionList(this.MyApplication);
+		}else if (button == Button.B_ADD) {
 			for(int i=0;i<=15;i++) {
 				if (sIsElementPresent("css=td[id^='ztabv__UNDEFINE_dwt_button_"+i+"___container'] div table tbody tr td:nth-child(2):contains('Add')")) {
 					locator="css=td[id^='ztabv__UNDEFINE_dwt_button_"+i+"___container'] div table tbody tr td:nth-child(2):contains('Add')";
