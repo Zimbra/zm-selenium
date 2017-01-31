@@ -24,7 +24,6 @@ import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.projects.admin.ui.FormEditAccount.Locators;
 
 public class FormEditDistributionList extends AbsForm {
 
@@ -238,18 +237,34 @@ public class FormEditDistributionList extends AbsForm {
 	public void zAddDLAliases(String cn, String domain) throws HarnessException {
 		logger.info(myPageName() + " zAddAccountAliases("+ cn +")");
 		tracer.trace("Click page button ");
+		this.clearField(Locators.ALIAS_NAME);		
+		sType(Locators.ALIAS_NAME,cn);
+		SleepUtil.sleepSmall();
+		zClick(Locators.zdlg_OK);
+		SleepUtil.sleepSmall();	
+	}
+	
+	public void zAddDLOwner(String cn, String domain) throws HarnessException {
+		logger.info(myPageName() + " zAddAccountAliases("+ cn +")");
+		tracer.trace("Click page button ");
 
 
 		this.clearField(Locators.ALIAS_NAME);		
 		sType(Locators.ALIAS_NAME,cn);
 
 		SleepUtil.sleepSmall();
-
-		//this.clearField(Locators.ALIAS_DOMAIN_NAME);	
-		//sType(Locators.ALIAS_DOMAIN_NAME,"");
-		//SleepUtil.sleepSmall();
-		//zType(Locators.ALIAS_DOMAIN_NAME,domain);
-		//SleepUtil.sleepSmall();
+		
+		for(int i=12;i>=0;i--) {
+			if (sIsElementPresent("css=input[id='zdlgv__EDIT_ALIAS_"+i+"_name_3_display']")) {
+				sType("css=input[id='zdlgv__EDIT_ALIAS_"+i+"_name_3_display']", "");
+				sType("css=input[id='zdlgv__EDIT_ALIAS_"+i+"_name_3_display']", domain);
+			}
+			else if(sIsElementPresent("css=input[id='zdlgv__EDIT_ALIAS_name_3_display']")) {
+				sType("css=input[id='zdlgv__EDIT_ALIAS_name_3_display']", "");
+				sType("css=input[id='zdlgv__EDIT_ALIAS_name_3_display']", domain);
+			}
+		}
+		SleepUtil.sleepSmall();
 		zClick(Locators.zdlg_OK);
 		SleepUtil.sleepSmall();	
 	}
