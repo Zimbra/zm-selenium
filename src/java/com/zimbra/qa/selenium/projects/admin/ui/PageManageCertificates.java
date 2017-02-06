@@ -266,8 +266,30 @@ public class PageManageCertificates extends AbsTab {
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		// TODO Auto-generated method stub
-		return null;
+
+		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+		
+		tracer.trace("Press the "+ button +" button");
+		
+		if ( button == null )
+			throw new HarnessException("Button cannot be null!");
+		
+		String locator = null;			// If set, this will be clicked
+		AbsPage page = null;	// If set, this page will be returned
+
+		// Based on the button specified, take the appropriate action(s)
+		
+		if ( button == Button.B_INSTALL_CERTIFICATE ) {
+
+			locator = PageMain.Locators.HomeInstallCertificate;
+			page = new WizardInstallCertificate(this);
+			this.sClickAt(locator,"");
+			return page;
+			
+		} else {
+			throw new HarnessException("no logic defined for button "+ button);
+		}
+	
 	}
 
 	public AbsPage zSelectServer() throws HarnessException {

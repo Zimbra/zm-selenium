@@ -19,11 +19,9 @@ package com.zimbra.qa.selenium.projects.admin.tests.backuprestore;
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.ui.PageManageBackups;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageBackups.Locators;
 
 public class NavigateBackupRestore extends AdminCommonTest {
 	
@@ -47,9 +45,7 @@ public class NavigateBackupRestore extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Tools and Migraton --> Backups"
 		 */
-		app.zPageManageBackups.zClick(Locators.TOOLS_AND_MIGRATION_ICON);
-		SleepUtil.sleep(5000);
-		app.zPageManageBackups.zClickAt(Locators.BACKUP,"");
+		
 		ZAssert.assertTrue(app.zPageManageBackups.zVerifyHeader(PageManageBackups.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageBackups.zVerifyHeader(PageManageBackups.Locators.TOOLS_AND_MIGRATION), "Verfiy the \"Tools and Migration\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageBackups.zVerifyHeader(PageManageBackups.Locators.BACKUPS), "Verfiy the \"Backups\" text exists in navigation path");
