@@ -284,11 +284,12 @@ public class PageManageCertificates extends AbsTab {
 			locator = PageMain.Locators.HomeInstallCertificate;
 			page = new WizardInstallCertificate(this);
 			this.sClickAt(locator,"");
-			return page;
-			
+
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
+		
+		return page;
 	
 	}
 
