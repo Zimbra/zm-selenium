@@ -69,7 +69,7 @@ public class SearchContactGroup extends AjaxCommonTest {
 
 	@Bugs(ids = "77950")
 	@Test(description = "Search for an existing contact group, by member",
-			groups = { "deprecated","L3" })
+			groups = { "deprecated","L4" })
 	public void SearchContactGroup_02() throws HarnessException {
 
 		// -- Data

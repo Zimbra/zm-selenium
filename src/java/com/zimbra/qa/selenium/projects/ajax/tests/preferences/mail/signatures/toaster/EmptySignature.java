@@ -60,7 +60,7 @@ public class EmptySignature extends AjaxCommonTest {
 
 	}
 
-	@Test( description = "Verify Toast Msg for Empty Signature body (asp per bug comment#10)", groups = { "deprecated" })
+	@Test( description = "Verify Toast Msg for Empty Signature body (asp per bug comment#10)", groups = { "deprecated", "L4" })
 	public void EmptySignature_02() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();

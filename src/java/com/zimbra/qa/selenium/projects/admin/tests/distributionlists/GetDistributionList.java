@@ -75,7 +75,6 @@ public class GetDistributionList extends AdminCommonTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the dl is returned correctly");
-		app.zPageMain.logout();
 	}
 		
 	/**
@@ -116,7 +115,6 @@ public class GetDistributionList extends AdminCommonTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the dl is returned correctly");
-		app.zPageMain.logout();
 	}
 
 	/**
@@ -158,7 +156,7 @@ public class GetDistributionList extends AdminCommonTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the dl is returned correctly");
-		app.zPageMain.logout();
+		
 	}
 
 	/**
@@ -201,7 +199,6 @@ public class GetDistributionList extends AdminCommonTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the dl is returned correctly");
-		app.zPageMain.logout();
 	}
 	
  

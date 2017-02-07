@@ -215,7 +215,7 @@ public class MoveTask extends AjaxCommonTest {
 	}
 
 	@Test( description = "Create task through SOAP - move using Right Click Context Menu & verify through GUI", 
-			groups = { "functional", "L1"})
+			groups = { "smoke", "L1"})
 	public void MoveTask_03() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

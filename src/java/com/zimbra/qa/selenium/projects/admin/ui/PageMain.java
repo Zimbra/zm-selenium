@@ -16,11 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
-import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
@@ -178,8 +173,10 @@ public class PageMain extends AbsTab {
 	}
 
 	public void zHandleDialogs() throws HarnessException {
+		sRefresh();
+	}
 
-		// Opened dialogs
+		/*// Opened dialogs
 		String zIndex;
 		List<WebElement> dialogLocators = webDriver().findElements(By.cssSelector("div[class^='Dwt'][class$='Dialog']"));
 
@@ -196,7 +193,7 @@ public class PageMain extends AbsTab {
 		}
 
 		logger.info("No active dialogs found");
-	}
+	}*/
 
 	@Override
 	public AbsPage zListItem(Action action, String item)

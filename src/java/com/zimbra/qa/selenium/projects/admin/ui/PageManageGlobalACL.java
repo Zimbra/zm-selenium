@@ -102,12 +102,48 @@ public class PageManageGlobalACL extends AbsTab {
 		zWaitForActive();
 
 	}
-
+	
 	@Override
 	public AbsPage zListItem(Action action, String item)
 			throws HarnessException {
-		return null;
+		logger.info(myPageName() + " zListItem("+ action +", "+ item +")");
+
+		tracer.trace(action +" on subject = "+ item);
+
+		AbsPage page = null;
+		SleepUtil.sleepMedium();
+
+		// How many items are in the table?
+		String rowsLocator = "css=div[id='zl'] div[id$='__rows'] div[id^='zli__']";
+		int count = this.sGetCssCount(rowsLocator);
+		logger.debug(myPageName() + " zListItem: number of results: "+ count);
+
+		// Get each conversation's data from the table list
+		for (int i = 1; i <= count; i++) {
+			final String accountLocator = rowsLocator + ":nth-child("+i+")";
+			String locator;
+
+			locator = accountLocator + " td" + ":nth-child(1)";
+
+
+			if(this.sIsElementPresent(locator))
+			{
+				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
+				{
+					if(action == Action.A_LEFTCLICK) {
+						zClick(locator);
+						break;
+					} else if(action == Action.A_RIGHTCLICK) {
+						zRightClick(locator);
+						break;
+					}
+
+				}
+			}
+		}
+		return page;
 	}
+
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item)

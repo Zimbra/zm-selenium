@@ -47,6 +47,9 @@ public class FormEditDistributionList extends AbsForm {
 		public static final String SET_REPLY_TO="css=input[id$='zimbraPrefReplyToEnabled']";
 		public static final String REPLY_TO_DISPLAY_NAME="css=input[id$='zimbraPrefReplyToDisplay']";
 		public static final String REPLY_TO_ADDRESS="css=input[id$='zimbraPrefReplyToAddress_display']";
+		public static final String ALIAS_NAME = "css=input[id^='zdlgv__EDIT_ALIAS']";
+		public static final String ALIAS_DOMAIN_NAME = "css=input[id$='_name_3_display']";
+		public static final String zdlg_OK="css=td[id$='_button2_title']:contains('OK')";
 		
 	}
 
@@ -229,4 +232,41 @@ public class FormEditDistributionList extends AbsForm {
 		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		SleepUtil.sleepSmall();
 	}
+	
+
+	public void zAddDLAliases(String cn, String domain) throws HarnessException {
+		logger.info(myPageName() + " zAddAccountAliases("+ cn +")");
+		tracer.trace("Click page button ");
+		this.clearField(Locators.ALIAS_NAME);		
+		sType(Locators.ALIAS_NAME,cn);
+		SleepUtil.sleepSmall();
+		zClick(Locators.zdlg_OK);
+		SleepUtil.sleepSmall();	
+	}
+	
+	public void zAddDLOwner(String cn, String domain) throws HarnessException {
+		logger.info(myPageName() + " zAddAccountAliases("+ cn +")");
+		tracer.trace("Click page button ");
+
+
+		this.clearField(Locators.ALIAS_NAME);		
+		sType(Locators.ALIAS_NAME,cn);
+
+		SleepUtil.sleepSmall();
+		
+		for(int i=12;i>=0;i--) {
+			if (sIsElementPresent("css=input[id='zdlgv__EDIT_ALIAS_"+i+"_name_3_display']")) {
+				sType("css=input[id='zdlgv__EDIT_ALIAS_"+i+"_name_3_display']", "");
+				sType("css=input[id='zdlgv__EDIT_ALIAS_"+i+"_name_3_display']", domain);
+			}
+			else if(sIsElementPresent("css=input[id='zdlgv__EDIT_ALIAS_name_3_display']")) {
+				sType("css=input[id='zdlgv__EDIT_ALIAS_name_3_display']", "");
+				sType("css=input[id='zdlgv__EDIT_ALIAS_name_3_display']", domain);
+			}
+		}
+		SleepUtil.sleepSmall();
+		zClick(Locators.zdlg_OK);
+		SleepUtil.sleepSmall();	
+	}
+	
 }

@@ -66,7 +66,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Create appointment with all the fields and verify it",
-			groups = { "functional", "L1" } )
+			groups = { "smoke", "L1" } )
 	
 	public void CreateAppointment_02() throws HarnessException {
 		

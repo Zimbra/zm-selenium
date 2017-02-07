@@ -39,7 +39,9 @@ public class PageEditDistributionList extends AbsTab {
 		public static final String DL_EDIT_ACL_GRANTEE_NAME = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input[id^='zdlgv__EDIT_ACL'][id$='_grantee_email_display']";
 		public static final String PROPERTIES="css=div[id^='zti__AppAdmin__Home__dlLstHV'] div[class='ZTreeItemTextCell']:contains('Properties')";
 		public static final String PREFERENCES="css=div[id^='zti__AppAdmin__Home__dlLstHV'] div[class='ZTreeItemTextCell']:contains('Preferences')";
-
+		public static final String ALIASES="css=div[id^='zti__AppAdmin__Home__dlLstHV'] div[class='ZTreeItemTextCell']:contains('Aliases')";
+		public static final String OWNER="css=div[id^='zti__AppAdmin__Home__dlLstHV'] div[class='ZTreeItemTextCell']:contains('Owners')";
+		public static final String ADD_BUTTON = "css=td#ztabv__UNDEFINE_dwt_button_";
 	}
 
 	public PageEditDistributionList(AbsApplication application) {
@@ -115,6 +117,25 @@ public class PageEditDistributionList extends AbsTab {
 			locator=Locators.PREFERENCES;
 
 			page = new FormEditDistributionList(this.MyApplication);
+		} else if (button == Button.B_ALIASES) {
+
+			locator=Locators.ALIASES;
+
+			//page = new FormEditDistributionList(this.MyApplication);
+		} else if (button == Button.B_OWNER) {
+
+			locator=Locators.OWNER;
+
+			//page = new FormEditDistributionList(this.MyApplication);
+		}else if (button == Button.B_ADD) {
+			for(int i=0;i<=15;i++) {
+				if (sIsElementPresent("css=td[id^='ztabv__UNDEFINE_dwt_button_"+i+"___container'] div table tbody tr td:nth-child(2):contains('Add')")) {
+					locator="css=td[id^='ztabv__UNDEFINE_dwt_button_"+i+"___container'] div table tbody tr td:nth-child(2):contains('Add')";
+					break;
+				}
+			}
+			page = new FormEditDistributionList(this.MyApplication);
+			
 		} else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
@@ -125,7 +146,8 @@ public class PageEditDistributionList extends AbsTab {
 
 		// Default behavior, process the locator by clicking on it
 		//
-		this.zClickAt(locator,"");
+		
+		this.sClickAt(locator,"");
 		SleepUtil.sleepMedium();
 
 
@@ -137,8 +159,7 @@ public class PageEditDistributionList extends AbsTab {
 		//sMouseOut(locator);
 		return (page);
 	}
-
-
+	
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
 			throws HarnessException {

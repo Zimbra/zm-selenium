@@ -47,7 +47,7 @@ public class PageManageACL extends AbsTab {
 		public static final String EDIT_ACL = "css=td[id^='ztabv__ACCT_EDIT_dwt_button'] td:contains('Edit')";
 		public static final String DELETE_ACL = "css=td[id^='ztabv__ACCT_EDIT_dwt_button'] div:contains('Delete')";
 		public static final String ADD_GLOBAL_ACL = "css=td[id='zmi__zb_currentApp__NEW_title']";
-
+		public static final String DELETE_GLOBAL_ACL = "css=div[id='zmi__zb_currentApp__DELETE'] td[id='zmi__zb_currentApp__DELETE_title']";
 	}
 
 	public PageManageACL(AbsApplication application) {
@@ -256,7 +256,16 @@ public class PageManageACL extends AbsTab {
 				page = new WizardGlobalACL(this);
 
 
-			}else {
+			}else if (option == Button.B_DELETE) {
+
+				optionLocator = Locators.DELETE_GLOBAL_ACL;
+
+				// Create the page
+				page = new DialogForDeleteOperationACL(this.MyApplication,null);
+
+
+			}
+				else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
 

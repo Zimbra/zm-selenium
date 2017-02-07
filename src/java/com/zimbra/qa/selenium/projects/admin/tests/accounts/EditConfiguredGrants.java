@@ -116,8 +116,6 @@ public class EditConfiguredGrants extends AdminCommonTest {
 
 		boolean isACEAdded = app.zPageManageConfigureGrants.zVerifyACE(account.getEmailAddress());
 		ZAssert.assertTrue(isACEAdded, "Verify ACE is edited successfully!!");
-		app.zPageMain.logout();
-
 	}
 
 	/**
@@ -196,7 +194,6 @@ public class EditConfiguredGrants extends AdminCommonTest {
 
 		boolean isACEAdded = app.zPageManageConfigureGrants.zVerifyACE(account.getEmailAddress());
 		ZAssert.assertTrue(isACEAdded, "Verify ACE is edited successfully!!");
-		app.zPageMain.logout();
 
 	}
 

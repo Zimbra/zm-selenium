@@ -22,27 +22,21 @@ import com.zimbra.qa.selenium.framework.ui.AbsForm;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
-public class FormEditServer extends AbsForm {
+public class FormEditVoiceChatService extends AbsForm {
 
 	public static class TreeItem {
 		public static final String GENERAL_INFORMATION="General Information";
 	}
 
 	public static class Locators {
-		public static final String NAME_TEXT_BOX="css=input#ztabv__ACCT_EDIT_";
-		public static final String DA_NAME_TEXT_BOX="css=input[id='ztabv__ACCT_EDIT_name_2']";
+		public static final String NAME_TEXT_BOX="css=input#ztabv__UC_Service_";
 		public static final String SAVE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__SAVE']";
 		public static final String CLOSE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__CLOSE']";
 		public static final String Pull_DOWN="css=div[aria-controls='zm__zb_currentApp__MENU_POP'] div[class='ImgSelectPullDownArrow']";
 		public static final String PULL_DOWN_CLOSE="css=td[id='zmi__zb_currentApp__CLOSE_title']";
-		public static final String PASSWORD = "css=input[id$='ztabv__ACCT_EDIT_password']";
-		public static final String CONFIRM_PASSWORD= "css=input[id$='ztabv__ACCT_EDIT_confirmPassword']";
-		public static final String zdlg_OK="css=td[id$='_button2_title']:contains('OK')";
-		public static final String DESCRIPTION="css=input[id^='ztabv__SERVER_EDIT_description']";
-		public static final String NOTES="css=textarea[id='ztabv__SERVER_EDIT_zimbraNotes']";
 	}
 
-	public FormEditServer(AbsApplication application) {
+	public FormEditVoiceChatService(AbsApplication application) {
 		super(application);
 
 		logger.info("new " + myPageName());
@@ -55,7 +49,6 @@ public class FormEditServer extends AbsForm {
 		// Make sure the Admin Console is loaded in the browser
 		if ( !MyApplication.zIsLoaded() )
 			throw new HarnessException("Admin Console application is not active!");
-
 
 		boolean present = sIsElementPresent("");
 		if ( !present ) {
@@ -79,7 +72,7 @@ public class FormEditServer extends AbsForm {
 	@Override
 	public void zFill(IItem item) throws HarnessException {
 	}
-
+	
 	@Override
 	public void zSubmit() throws HarnessException {
 		sClickAt(Locators.SAVE_BUTTON,"");
@@ -91,18 +84,17 @@ public class FormEditServer extends AbsForm {
 		sClickAt("css=td:contains('" + treeItem + "')", "");
 	}
 
-
-	
-	public void setDescription(String desc) throws HarnessException {
-		sType(Locators.DESCRIPTION, desc);
-		SleepUtil.sleepSmall();
+	public void setName(String name) throws HarnessException {
+		for(int i=12;i>=0;i--) {
+			if (sIsElementPresent("css=input[id='ztabv__UC_Service_"+i+"_cn']")) {
+				sType("css=input[id='ztabv__UC_Service_"+i+"_cn']", name);
+				SleepUtil.sleepSmall();
+				return;
+			}
 		}
-	
-	public void setNotes(String notes) throws HarnessException {
-		sType(Locators.NOTES, notes);
+		sType("css=input[id='ztabv__UC_Service_cn']", name);
 		SleepUtil.sleepSmall();
-		}
-	
-
 	}
+	
+}
 

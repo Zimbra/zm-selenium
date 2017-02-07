@@ -37,15 +37,15 @@ public class PageManageLicense extends AbsTab {
 
 	public static class Locators {
 		public static final String CONFIGURE_ICON="css=div.ImgAdministration";
-		public static final String GLOBAL_SETTING="zti__AppAdmin__CONFIGURATION__GSET_textCell";
+		public static final String GLOBAL_SETTING="css=div[id='zti__AppAdmin__CONFIGURATION__GSET_textCell']";
 		public static final String GEAR_ICON="css=div.ImgConfigure";
 		public static final String HOME="Home";
 		public static final String CONFIGURE="Configure";
 		public static final String GLOBAL_SETTINGS="Global Settings";
-		public static final String GLOBAL_SETTINGS_LICENSE="css=div[id^='zti__AppAdmin__CONFIGURATION__GSET'] div[class='ZTreeItemTextCell']:contains('License')";
+		public static final String GLOBAL_SETTINGS_LICENSE="css=td[id^='zti__AppAdmin__CONFIGURATION__GSET__'] div[id$='_textCell']:contains('Licen')";
 		public static final String GENERAL_INFORMATION="css=div[id^='zti__AppAdmin__CONFIGURATION__GSET'] div[class='ZTreeItemTextCell']:contains('General Information')";
-		public static final String UPDATE_LICENSE="css=div[id^='zmi__zb_currentApp__']:contains('Update License')";
-		public static final String ACTIVATE_LICENSE="css=div[id^='zmi__zb_currentApp__']:contains('Activate License')";
+		public static final String UPDATE_LICENSE="css=div[id^='zmi__zb_currentApp__']:contains('Update Licen')";
+		public static final String ACTIVATE_LICENSE="css=div[id^='zmi__zb_currentApp__']:contains('Activate Licen')";
 		public static final String UPLOAD_LICENSE ="css=input[name='licenseFile']";
 		public static final String NEXT_BUTTON="css=td[id$='_button12_title']";
 		public static final String INSTALL_COMMERCIAL_CERTIFICATE="css=input[id='zdlgv__UNDEFINE_comm']";
@@ -102,12 +102,12 @@ public class PageManageLicense extends AbsTab {
 		}
 
 		// Click on Addresses -> Accounts
-		zClickAt(Locators.CONFIGURE_ICON,"");
+		sClick(Locators.CONFIGURE_ICON);
 		zWaitForWorkInProgressDialogInVisible();
 		SleepUtil.sleepMedium();		
-		zClickAt(Locators.GLOBAL_SETTING, "");
+		sClick(Locators.GLOBAL_SETTING);
 		zWaitForWorkInProgressDialogInVisible();
-		zClickAt(Locators.GLOBAL_SETTINGS_LICENSE, "");
+		sClick(Locators.GLOBAL_SETTINGS_LICENSE);
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 	}
