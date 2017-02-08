@@ -251,7 +251,7 @@ public class QuickAddAppointment extends AbsTab {
 	}
 
 	public Boolean zVerifyMeetingInPastWarning() throws HarnessException {
-		return sIsElementPresent("div[id$='meetingInPastWarningMessageText']");
+		return sIsElementPresent("css=div[id$='meetingInPastWarningMessageText']");
 	}
 	
 	public void zFill(IItem item) throws HarnessException {
