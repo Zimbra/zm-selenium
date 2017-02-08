@@ -619,7 +619,7 @@ public class PageManageDomains extends AbsTab {
 		SleepUtil.sleepMedium();
 
 		// How many items are in the table?
-		String rowsLocator = "css=div[id='zl'] div[id$='__rows'] div[id^='zli__']";
+		String rowsLocator = "css=div[id='zl__SEARCH_MANAGE'] div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetPolicy: number of policys: "+ count);
 
@@ -629,12 +629,12 @@ public class PageManageDomains extends AbsTab {
 			String locator;
 
 			// Email Address
-			locator = aceLocator + " td";
+			locator = aceLocator + " tr";
 
 
 			if(this.sIsElementPresent(locator))
 			{
-				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
+				if(this.sGetText(locator).trim().contains(item))
 				{
 
 					found = true;
