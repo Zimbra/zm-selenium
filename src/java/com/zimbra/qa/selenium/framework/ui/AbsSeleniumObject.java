@@ -1599,6 +1599,15 @@ public abstract class AbsSeleniumObject {
 		WebElement we = getElement(locator);
 		we.clear();
 	}
+	
+	protected void clearDateTimeField(String locator) throws HarnessException{
+		logger.info("clearDateTimeField(" + locator + ")");
+		WebElement we = getElement(locator);
+		we.click();
+		we.sendKeys("\u0001");//for Ctrl+A
+		SleepUtil.sleepVerySmall();
+		we.sendKeys("\b");//for backspace
+	}
 
 
 	protected String executeScript(String script, Object... arg) {
