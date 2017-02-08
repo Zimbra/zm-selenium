@@ -390,6 +390,12 @@ public class PageManageCOS extends AbsTab {
 		return sIsElementPresent(rowlocator+":contains(" + cosName + ")");		
 	}
 
+	public boolean zIsSearchCOSPresent(String cosName) throws HarnessException {
+		logger.info(myPageName() + " zIsCOSPresent(" + cosName + ")");
+		String rowlocator = "css=div#zl__SEARCH_MANAGE div[id$='__rows'] div[id^='zli__'] td[id^='SEARCH_MANAGE_data_emailaddress']";
+		return sIsElementPresent(rowlocator+":contains(" + cosName + ")");
+	}
+	
 	public boolean zVerifyHeader (String header) throws HarnessException {
 		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
