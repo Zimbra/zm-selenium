@@ -327,7 +327,7 @@ public class PageManageCertificates extends AbsTab {
 			locator = serverLocator + " tr";
 
 			if (this.sIsElementPresent(locator)) {
-				if (this.sGetText(locator).trim().equalsIgnoreCase(item)) {
+				if (this.sGetText(locator).trim().contains(item)) {
 					if (action == Action.A_LEFTCLICK) {
 						zClick(locator);
 						break;

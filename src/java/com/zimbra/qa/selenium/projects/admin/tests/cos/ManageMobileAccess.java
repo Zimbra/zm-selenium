@@ -33,7 +33,7 @@ public class ManageMobileAccess extends AdminCommonTest {
 
 	public ManageMobileAccess() {
 		logger.info("New "+ ManageMobileAccess.class.getCanonicalName());
-		super.startingPage = app.zPageManageAccounts;
+		super.startingPage = app.zPageManageCOS;
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class ManageMobileAccess extends AdminCommonTest {
 		FormEditCos form = (FormEditCos) app.zPageManageCOS.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
 		// CLick on mobile access
-		app.zPageManageCOS.zToolbarPressButton(Button.B_MOBILE_ACCESS);
+		app.zPageEditCOS.zToolbarPressButton(Button.B_MOBILE_ACCESS);
 		SleepUtil.sleepMedium();
 
 		// Enable mobile sync
@@ -94,7 +94,7 @@ public class ManageMobileAccess extends AdminCommonTest {
 		Boolean status = app.zPageManageCOS.sIsChecked(FormEditCos.Locators.ENABLE_MOBILE_SYNC);	
 		ZAssert.assertTrue(status, "Verify Enable mobile sync is checked!!");
 
-		Element response2 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureMobilePolicyEnabled']", 1);
+		Element response2 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos/admin:a[@n='zimbraFeatureMobilePolicyEnabled']", 1);
 		ZAssert.assertNotNull(response2, "Verify the account is edited successfully");
 		ZAssert.assertStringContains(response2.toString(),"TRUE", "Verify Enable mobile policy is checked");
 
