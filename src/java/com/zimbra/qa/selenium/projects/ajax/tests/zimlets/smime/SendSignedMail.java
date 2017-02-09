@@ -44,7 +44,7 @@ public class SendSignedMail extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that Signed message can be sent from Web-client correctly and user can view it", priority=4, 
-			groups = { "smime", "L0"})
+			groups = { "smime", "L4"})
 	
 	public void SendSignedMail_01() throws HarnessException  {
 		ZimbraAccount user3 = new ZimbraAccount("user3"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
@@ -149,7 +149,7 @@ public class SendSignedMail extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that Signed message can be sent from Web-client correctly and user can view it in new window", priority=4, 
-			groups = { "smime", "L3"})
+			groups = { "smime", "L4"})
 	
 	public void SendSignedMail_02() throws HarnessException  {
 		ZimbraAccount user3 = new ZimbraAccount("user3"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
@@ -282,7 +282,7 @@ public class SendSignedMail extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that Signed message cannot be sent from Web-client, if user has not uploaded his private key", priority=4, 
-			groups = { "smime", "L2"})
+			groups = { "smime", "L4"})
 	
 	public void SendSignedMail_03() throws HarnessException  {
 		ZimbraAccount user3 = new ZimbraAccount("user3"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
