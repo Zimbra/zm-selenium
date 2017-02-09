@@ -37,7 +37,7 @@ public class ContactCertificate extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that user's public certificate can be uploaded from contacts", priority=4, 
-			groups = { "smime", "L2"})
+			groups = { "smime", "L4"})
 	
 	public void ContactUploadCertificate_01() throws HarnessException  {
 		
@@ -129,7 +129,7 @@ public class ContactCertificate extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that user's public certificate can be updated from contacts", priority=4, 
-			groups = { "smime", "L2"})
+			groups = { "smime", "L4"})
 	
 	public void ContactEditCertificate_01() throws HarnessException  {
 		
@@ -240,7 +240,7 @@ public class ContactCertificate extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that certificate can be deleted from a contact", priority=4, 
-			groups = { "smime", "L2"})
+			groups = { "smime", "L4"})
 	
 	public void ContactDeleteCertificate_01() throws HarnessException  {
 		

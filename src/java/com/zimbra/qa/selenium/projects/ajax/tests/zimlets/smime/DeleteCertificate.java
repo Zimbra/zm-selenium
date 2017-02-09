@@ -33,7 +33,7 @@ public class DeleteCertificate extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that certificate can be deleted from web-client", priority=4, 
-			groups = { "smime", "L1"})
+			groups = { "smime", "L4"})
 	
 	public void DeleteCertificate_01() throws HarnessException  {
 		ZimbraAccount user3 = new ZimbraAccount("user3"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
