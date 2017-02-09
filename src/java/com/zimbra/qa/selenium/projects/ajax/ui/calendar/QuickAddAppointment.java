@@ -173,10 +173,9 @@ public class QuickAddAppointment extends AbsTab {
 
 		} else if (field == Field.StartDate || field == Field.EndDate || field == Field.StartTime
 				|| field == Field.EndTime) {
-			this.clearField(locator);
 			this.sClickAt(locator, "");
+			this.clearDateTimeField(locator);
 			this.sTypeDateTime(locator, value);
-			this.zKeyboardKeyEvent(KeyEvent.VK_TAB);
 		} else {
 			this.clearField(locator);
 			this.sType(locator, value);
@@ -252,7 +251,7 @@ public class QuickAddAppointment extends AbsTab {
 	}
 
 	public Boolean zVerifyMeetingInPastWarning() throws HarnessException {
-		return sIsElementPresent("//div[@id='zcs1_meetingInPastWarningMessageText']");
+		return sIsElementPresent("css=div[id$='meetingInPastWarningMessageText']");
 	}
 	
 	public void zFill(IItem item) throws HarnessException {
