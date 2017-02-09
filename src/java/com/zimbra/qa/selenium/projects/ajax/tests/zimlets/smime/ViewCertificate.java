@@ -32,7 +32,7 @@ public class ViewCertificate extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that certificate can be viewwed from web-client", priority=4, 
-			groups = { "smime", "L0"})
+			groups = { "smime", "L4"})
 	
 	public void ViewCertificate_01() throws HarnessException  {
 		
