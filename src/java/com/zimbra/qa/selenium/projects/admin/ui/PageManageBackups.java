@@ -49,7 +49,7 @@ public class PageManageBackups extends AbsTab {
 		public static final String HOME="Home";
 		public static final String TOOLS_AND_MIGRATION="Tools and Migration";
 		public static final String BACKUPS="Backups";
-		public static final String BACKUP_OPTION="css=div[id='zmi__zb_currentApp__UNKNOWN_72']";
+		public static final String BACKUP_OPTION="css=div[id^='zmi__zb_currentApp__UNKNOWN'] td[id^=zmi__zb_currentApp__UNKNOWN]:contains('Backup')";
 		public static final String TOOLS_AND_MIGRATION_HEADER="css=span:contains('Tools and Migration')";
 		public static final String VIEW_OPTION="css=div[id='zmi__zb_currentApp__VIEW']";
 
