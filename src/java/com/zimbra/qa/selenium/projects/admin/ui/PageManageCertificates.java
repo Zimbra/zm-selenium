@@ -44,7 +44,7 @@ public class PageManageCertificates extends AbsTab {
 		public static final String CERTIFICATES = "Certificates";
 		public static final String SERVER_HOST_NAME = "css=div[id^='zl__SERVER_MANAGE'] table tbody tr:nth-child(2) td div[id^='zli__DWT']";
 		public static final String VIEW_CERTIFICATE = "css=div[id='zmi__zb_currentApp__VIEW']";
-		public static final String LDAP_CERTIFICATE_LABEL = "css=div[id='DWT124'] div table tr td+td:contains('Zimbra')";
+		public static final String LDAP_CERTIFICATE_LABEL = "css=div.ZaApp:not([aria-hidden='true']) > div.DwtComposite > div > table:nth-child(3) tr:nth-child(1) td:nth-child(2):contains('zimbra')";
 		public static final String INSTALL_MESSAGE = "css=td[class='DwtAlertContent']:contains('Your certificate was installed successfully')";
 		public static final String UPLOAD_CERTIFICATE = "css=input[name='certFile']";
 		public static final String UPLOAD_ROOT_CERTIFICATE = "css=input[name='rootCA']";
