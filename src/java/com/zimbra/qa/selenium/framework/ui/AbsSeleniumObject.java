@@ -1604,6 +1604,7 @@ public abstract class AbsSeleniumObject {
 		logger.info("clearDateTimeField(" + locator + ")");
 		WebElement we = getElement(locator);
 		we.click();
+		SleepUtil.sleepVerySmall();
 		we.sendKeys("\u0001");//for Ctrl+A
 		SleepUtil.sleepVerySmall();
 		we.sendKeys("\b");//for backspace
