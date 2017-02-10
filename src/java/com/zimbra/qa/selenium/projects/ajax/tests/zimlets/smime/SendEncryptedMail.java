@@ -392,7 +392,7 @@ public class SendEncryptedMail extends AjaxCommonTest {
 		
 		// Verification
 		DialogError error = new DialogError(DialogErrorID.Zimbra, app, app.zPageContacts);
-		ZAssert.assertEquals(error.zGetWarningContent(), "Message encryption failed. No valid public certificate found for No valid public certificate found for " + ZimbraAccount.AccountA().EmailAddress +"", "Verify error message sending email");
+		ZAssert.assertEquals(error.zGetWarningContent(), "Message encryption failed. No valid public certificate found for " + ZimbraAccount.AccountA().EmailAddress +"", "Verify error message sending email");
 		error.zClickButton(Button.B_OK);
         
 		
