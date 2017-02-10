@@ -357,9 +357,6 @@ public class TreeContacts extends AbsTree {
 			throw new HarnessException("Action " + action + " not yet implemented");
 		}
 
-		sClickAt(locator, "0,0");
-		SleepUtil.sleepMedium();
-
 		return (page);
 	}
 
