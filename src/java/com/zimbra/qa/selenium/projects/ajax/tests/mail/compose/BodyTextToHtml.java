@@ -60,7 +60,6 @@ public class BodyTextToHtml extends PrefGroupMailByMessageTest {
 		
 		// Send the message
 		mailform.zSubmit();
-		SleepUtil.sleepMedium();
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mail.dSubject +")");
 		// TODO: add checks for TO, Subject, Body
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
