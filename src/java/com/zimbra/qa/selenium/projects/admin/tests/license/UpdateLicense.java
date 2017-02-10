@@ -112,6 +112,10 @@ public class UpdateLicense extends AdminCommonTest {
 						+			"<name>" + account.getEmailAddress() + "</name>"
 						+			"<password>test123</password>"
 						+		"</CreateAccountRequest>");
+		
+		//verification of account created
+		String emailId = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:CreateAccountResponse/admin:account", "name");
+		ZAssert.assertEquals(emailId, account.getEmailAddress(), "Verify account successfully created");
 
 	}
 
