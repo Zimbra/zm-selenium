@@ -54,8 +54,6 @@ public class WizardEditACLAtDL extends AbsWizard {
 		String granteeAccount = acl.getGranteeAccountEmail();
 		String rightName = acl.getRightName();
 		sType(Locators.ACL_GRANTEE_NAME, "");
-		sFocus(Locators.ACL_RIGHT_NAME);
-		sFocus(Locators.ACL_GRANTEE_NAME);
 		sType(Locators.ACL_GRANTEE_NAME, granteeAccount);
 		sType(Locators.ACL_RIGHT_NAME, rightName);
 
