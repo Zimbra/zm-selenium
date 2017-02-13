@@ -277,7 +277,6 @@ public class PageManageResources extends AbsTab {
 			SleepUtil.sleepMedium();
 		}
 
-		sMouseOut(locator);
 		return (page);
 
 	}
