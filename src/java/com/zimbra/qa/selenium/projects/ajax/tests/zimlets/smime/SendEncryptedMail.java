@@ -399,7 +399,7 @@ public class SendEncryptedMail extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that proper error is displayed when trying to sendSigned and encrypted message without private key of the sender", priority=4, 
-			groups = { "smime", "L2"})
+			groups = { "smime", "L4"})
 	
 	public void SendEncryptedMail_04() throws HarnessException  {
 		
@@ -524,7 +524,7 @@ public class SendEncryptedMail extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that proper error is displayed when trying to send Signed and encrypted message in new window without public key of the receiver", priority=4, 
-			groups = { "smime", "L3"})
+			groups = { "smime", "L4"})
 	
 	public void SendEncryptedMail_06() throws HarnessException  {
 
