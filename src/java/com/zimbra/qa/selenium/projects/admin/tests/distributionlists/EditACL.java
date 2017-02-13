@@ -119,7 +119,6 @@ public class EditACL extends AdminCommonTest {
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetGrantsResponse/admin:grant/admin:right", 1); 
 		ZAssert.assertStringContains(response.getText(), editedRightName, "Verify right is granted!");
-		app.zPageMain.logout();
 	}
 
 }
