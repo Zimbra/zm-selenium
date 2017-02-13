@@ -23,7 +23,6 @@ import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.AbsWizard;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.items.AclItem;
 
 /**
@@ -34,7 +33,7 @@ public class WizardEditACLAtDL extends AbsWizard {
 
 	public static class Locators {
 		public static final String ACL_RIGHT_NAME ="css=input[id$='right_display']";
-		public static final String ACL_GRANTEE_NAME = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input";
+		public static final String ACL_GRANTEE_NAME = "css=div[class='DwtDialog']:not([aria-hidden='true']) div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input[type='text'][id$='grantee_email_display']";
 		public static final String ACL_RIGHT_TYPE_SYSTEM_DEFINED="css=div[id$='right_type_choice_0']";
 		public static final String ACL_RIGHT_TYPE_CUSTOM="css=div[id$='right_type_choice_1']";
 		public static final String Pull_DOWN="css=div[id^='zdlgv__EDIT_ACL'][id*='_right_type'] div[class='ImgSelectPullDownArrow']";
@@ -51,18 +50,11 @@ public class WizardEditACLAtDL extends AbsWizard {
 
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
 
-		AclItem acl = (AclItem)item;
+		AclItem acl = (AclItem) item;
 		String granteeAccount = acl.getGranteeAccountEmail();
-		String rightName= acl.getRightName();
-		sClick(Locators.ACL_GRANTEE_NAME);
+		String rightName = acl.getRightName();
 		sType(Locators.ACL_GRANTEE_NAME, "");
 		sType(Locators.ACL_GRANTEE_NAME, granteeAccount);
-		SleepUtil.sleepMedium();
-
-		sClick(Locators.Pull_DOWN);	
-
-		SleepUtil.sleepMedium();
-
 		sType(Locators.ACL_RIGHT_NAME, rightName);
 
 		sClickAt(Locators.EDIT_AND_FINISH_BUTTON, "");
