@@ -114,7 +114,7 @@ public class Forward extends CalendarWorkWeekTest {
 	
 	@Bugs(ids="50663")
 	@Test( description = "Forward a meeting invite after accepting it",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void ForwardMeeting_02() throws HarnessException {
 				
@@ -200,7 +200,7 @@ public class Forward extends CalendarWorkWeekTest {
 
 	@Bugs(ids="100340")
 	@Test( description = "forwarding invite shows html source in meeting notes section",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void ForwardMeeting_03() throws HarnessException {
 		
@@ -247,7 +247,7 @@ public class Forward extends CalendarWorkWeekTest {
 	
 	@Bugs(ids="100340")
 	@Test( description = "forwarding invite shows html source in meeting notes section",
-			groups = { "functional" })
+			groups = { "functional", "L2" })
 			
 	public void ForwardMeeting_04() throws HarnessException {
 		
