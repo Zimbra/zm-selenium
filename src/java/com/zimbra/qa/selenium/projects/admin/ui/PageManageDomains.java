@@ -48,7 +48,7 @@ public class PageManageDomains extends AbsTab {
 		public static final String DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
 		public static final String EDIT_BUTTON="css=td[id='zmi__zb_currentApp__EDIT_title']:contains('Edit')";
 		public static final String CONFIGURE_GAL="div[id='zmi__zb_currentApp__GAL_WIZARD'] td[id$='_title']";
-		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
+		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=td[id='zmi__DMLV__DELETE_title']:contains('Delete')";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=td[id='zmi__DMLV__EDIT_title']:contains('Edit')";
 		public static final String DOMAIN_EDIT_ACL="css=div[id^='zti__AppAdmin__CONFIGURATION__DOMAINS'][class='ZTreeItemTextCell']:contains('ACL')";
 		public static final String DOMAIN_EDIT_ACL_GRANTEE_NAME = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input[id^='zdlgv__EDIT_ACL'][id$='_grantee_email_display']";		
