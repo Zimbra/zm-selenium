@@ -23,6 +23,7 @@ import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.AbsWizard;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.items.AclItem;
 
 /**
@@ -54,6 +55,9 @@ public class WizardEditACLAtDL extends AbsWizard {
 		String granteeAccount = acl.getGranteeAccountEmail();
 		String rightName = acl.getRightName();
 		sType(Locators.ACL_GRANTEE_NAME, "");
+		sFocus(Locators.ACL_RIGHT_NAME);
+		sFocus(Locators.ACL_GRANTEE_NAME);
+		SleepUtil.sleepVerySmall();
 		sType(Locators.ACL_GRANTEE_NAME, granteeAccount);
 		sType(Locators.ACL_RIGHT_NAME, rightName);
 
