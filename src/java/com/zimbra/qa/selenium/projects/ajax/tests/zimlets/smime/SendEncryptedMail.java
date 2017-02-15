@@ -32,8 +32,11 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.DialogErrorID;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowFormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.zimlet.DialogViewCertificate;
+import org.openqa.selenium.NoSuchWindowException; 
 
 public class SendEncryptedMail extends AjaxCommonTest {
 
@@ -389,14 +392,14 @@ public class SendEncryptedMail extends AjaxCommonTest {
 		
 		// Verification
 		DialogError error = new DialogError(DialogErrorID.Zimbra, app, app.zPageContacts);
-		ZAssert.assertEquals(error.zGetWarningContent(), "Message encryption failed. No certificate found.", "Verify error message when try to create duplicate distribution list");
+		ZAssert.assertEquals(error.zGetWarningContent(), "Message encryption failed. No valid public certificate found for " + ZimbraAccount.AccountA().EmailAddress +"", "Verify error message sending email");
 		error.zClickButton(Button.B_OK);
         
 		
 	}
 
 	@Test ( description = "Verify that proper error is displayed when trying to sendSigned and encrypted message without private key of the sender", priority=4, 
-			groups = { "smime", "L2"})
+			groups = { "smime", "L4"})
 	
 	public void SendEncryptedMail_04() throws HarnessException  {
 		
@@ -431,7 +434,7 @@ public class SendEncryptedMail extends AjaxCommonTest {
 		
 		// Verification
 		DialogError error = new DialogError(DialogErrorID.Zimbra, app, app.zPageMail);
-		ZAssert.assertEquals(error.zGetWarningContent(), "Message encryption failed. No certificate found.", "Verify error message when try to create duplicate distribution list");
+		ZAssert.assertEquals(error.zGetWarningContent(), "Message encryption failed. No certificate found.", "Verify error message sending email");
 		error.zClickButton(Button.B_OK);
 		
 	}
@@ -519,6 +522,88 @@ public class SendEncryptedMail extends AjaxCommonTest {
 		ZAssert.assertTrue(actual.zMessageCannotBeDecrypted(), "Message cannot be decrypted string present");
 
 	}
+
+	@Test ( description = "Verify that proper error is displayed when trying to send Signed and encrypted message in new window without public key of the receiver", priority=4, 
+			groups = { "smime", "L4"})
+	
+	public void SendEncryptedMail_06() throws HarnessException  {
+
+		ZimbraAccount user4 = new ZimbraAccount("user4"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
+		user4.provision();
+		user4.authenticate();
+		
+		// Modify the test account and change zimbraFeatureSMIMEEnabled to TRUE
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
+			+		"<id>"+ user4.ZimbraId +"</id>"
+			+		"<a n='zimbraFeatureSMIMEEnabled'>TRUE</a>"
+			+	"</ModifyAccountRequest>");
+		
+		// Create file item
+		String filePath = ConfigProperties.getBaseDirectory()
+				+ "/data/private/certs/user4_digitalid.p12";
+
+		// Upload file to server through RestUtil
+		String attachmentId = user4.uploadFile(filePath);
+
+		user4.soapSend(
+				"<SaveSmimeCertificateRequest xmlns='urn:zimbraAccount'>" +
+				"<upload id='" + attachmentId + "'></upload>" +
+                "<password>test123</password>" +
+                "</SaveSmimeCertificateRequest>");
+		
+        app.zPageMain.zLogout();
+		app.zPageLogin.zLogin(user4);
+
+		String subject = "Signed and Encrypted Message" + ConfigProperties.getUniqueString();
+		String body = "Signed and Encrypted Message Body" + ConfigProperties.getUniqueString();
+		
+		// Create the message data to be sent
+		FormMailNew mail = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+		ZAssert.assertNotNull(mail, "Verify the new form opened");
+		mail.zFillField(com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field.To, ZimbraAccount.AccountB().EmailAddress);
+		mail.zFillField(com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field.Subject, subject);
+		mail.zFillField(com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field.Body, body);	
+
+		SeparateWindowFormMailNew window = null;
+		String windowTitle = "Zimbra: Compose";
+
+		try {
+
+			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
+
+			window.zSetWindowTitle(windowTitle);
+			window.zWaitForActive();
+			window.waitForComposeWindow();			
+			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+
+			// Select the window
+			window.sSelectWindow(windowTitle);					
+
+			// Verify the data appearing in fields in New window
+			ZAssert.assertStringContains(
+					mail.sGetText(Locators.zBubbleToField) + "@" + ConfigProperties.getStringProperty("testdomain"),
+					ZimbraAccount.AccountB().EmailAddress, "Verify To field value");
+			ZAssert.assertEquals(mail.sGetValue(Locators.zSubjectField),subject, "Verify Subject field value");
+			ZAssert.assertStringContains(mail.zGetHtmltBodyText(),body, "Verify Body field value");
+			mail.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN_AND_ENCRYPT);
+			// Send the message
+			mail.zSubmit();
+			
+			// Verification
+			DialogError error = new DialogError(DialogErrorID.Zimbra, app, app.zPageContacts);
+			ZAssert.assertEquals(error.zGetWarningContent(), "Message encryption failed. No valid public certificate found for " + ZimbraAccount.AccountB().EmailAddress +"", "Verify error message sending email");
+			error.zClickButton(Button.B_OK);
+			
+		} catch (NoSuchWindowException e) {
+			
+		}
+		
+		 finally {
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
+		}
+        		
+	}
 	
 		@AfterMethod(groups={"always"})
 	public void afterMethod() throws HarnessException {
@@ -558,4 +643,5 @@ public class SendEncryptedMail extends AjaxCommonTest {
 		
 	}
 
+		
 }

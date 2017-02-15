@@ -26,7 +26,7 @@ public class QuickAddAppointment extends AbsTab {
 
 	public static class Locators {
 
-		// Quick add appointment
+		// Quick add appointment locators
 		public static final String SubjectFieldQuickAdd = "css=div[class='DwtDialog'] td[id$='_subject'] input";
 		public static final String LocationFieldQuickAdd = "css=div[class='DwtDialog'] td[id$='_location'] input";
 		public static final String DisplayDropdpwnQuickAdd = "css=div[class='DwtDialog'] td[id$='_showAs']";
@@ -251,6 +251,7 @@ public class QuickAddAppointment extends AbsTab {
 	}
 
 	public Boolean zVerifyMeetingInPastWarning() throws HarnessException {
+
 		return sIsElementPresent("css=div[id$='meetingInPastWarningMessageText']");
 	}
 	
