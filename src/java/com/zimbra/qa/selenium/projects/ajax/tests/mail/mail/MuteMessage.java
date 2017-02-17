@@ -30,10 +30,10 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 		logger.info("New "+ MuteMessage.class.getCanonicalName());
 	}
 	
-	//TODO: Remove x from groups to enable when feature is implemented  
+	//TODO: Update the LX group appropriately when the feature is implemented  
 	@Bugs(ids = "38449")
 	@Test( description = "Mute a message (conversation) using Actions -> Mute",
-			groups = { "smoke", "L1" })
+			groups = { "smoke", "L5" })
 	public void MuteMessage_01() throws HarnessException {
 		
 		String subject = "subject"+ ConfigProperties.getUniqueString();
@@ -69,18 +69,18 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 	}
 
 	
-	//TODO: Remove x from groups to enable when feature is implemented  
+	//TODO: Update the LX group appropriately when the feature is implemented  
 	@Bugs( ids = "38449")
 	@Test( description = "Mute message, using 'Mute' shortcut key",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L5" })
 	public void MuteMessage_02() throws HarnessException {
 		throw new HarnessException("See bug https://bugzilla.zimbra.com/show_bug.cgi?id=65844");
 	}
 	
 	
-	//TODO: Remove x from groups to enable when feature is implemented  
+	//TODO: Update the LX group appropriately when the feature is implemented   
 	@Test( description = "Mute message, using 'Right Click' -> 'Mute'",
-			groups = { "smoke", "L1" })
+			groups = { "smoke", "L5" })
 	public void MuteMessage_03() throws HarnessException {
 		
 		String subject = "subject"+ ConfigProperties.getUniqueString();
