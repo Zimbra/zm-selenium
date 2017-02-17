@@ -49,7 +49,7 @@ public class ShortcutDialog extends AjaxCommonTest {
 	
 
 	@Test( description = "Open the 'Shortcut' dialog >> Verify in New Window link and contents", 
-		groups = { "functional" })
+		groups = { "functional", "L3" })
 	
 	public void Shortcutdialog_NewWindow_02() throws HarnessException {
 

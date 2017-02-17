@@ -36,7 +36,7 @@ public class Toolbar extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test(description = "Hover over Reply button", groups = { "functional" })
+	@Test(description = "Hover over Reply button", groups = { "functional","L3" })
 	public void Toolbar_02() throws HarnessException {
 
 		// No DOM or java script support to verify tooltip so checking through attributes
