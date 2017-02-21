@@ -88,7 +88,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 	}
 
 	@Test( description = "Verify the 'archive' button is not present in separate window",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 	
 	public void ArchiveMessage_02() throws HarnessException {
 		

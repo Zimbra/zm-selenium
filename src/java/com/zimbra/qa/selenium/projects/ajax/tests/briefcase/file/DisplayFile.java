@@ -77,7 +77,7 @@ public class DisplayFile extends FeatureBriefcaseTest {
 
 	@Bugs(ids = "79994")
 	@Test( description = " german umlauts breaks briefcase", 
-	groups = { "deprecate" })
+	groups = { "deprecate", "L4" })
 	public void DisplayFile_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 

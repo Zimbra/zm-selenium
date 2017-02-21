@@ -45,7 +45,7 @@ public class Login extends AjaxCommonTest {
 
 	
 	@Test( description = "Login to the Ajax Client, with a mounted folder",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 	
 	public void Login02() throws HarnessException {
 		
@@ -121,7 +121,7 @@ public class Login extends AjaxCommonTest {
 	
 	@Bugs( ids = "59847")
 	@Test( description = "Login to the Ajax Client, with a mounted folder of a deleted account",
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 	
 	public void Login03() throws HarnessException {
 		
@@ -214,7 +214,7 @@ public class Login extends AjaxCommonTest {
 
 	@Bugs( ids = "66788")
 	@Test( description = "Change the zimbraMailURL and login", priority=5, 
-			groups = { "inprogress" },
+			groups = { "inprogress", "L3" },
 			dataProvider = "DataProvider_zimbraMailURL")
 	
 	public void Login04(String zimbraMailURLtemp, String notused) throws HarnessException {

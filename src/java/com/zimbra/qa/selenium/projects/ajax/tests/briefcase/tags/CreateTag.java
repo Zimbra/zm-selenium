@@ -59,7 +59,7 @@ public class CreateTag extends FeatureBriefcaseTest {
 
 	
 	@Test(description = "Create a new tag using keyboard shortcuts", 
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 
 	public void CreateTag_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -100,7 +100,7 @@ public class CreateTag extends FeatureBriefcaseTest {
 
 	
 	@Test(description = "Create a new tag using context menu on a tag", 
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 
 	public void CreateTag_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -142,7 +142,7 @@ public class CreateTag extends FeatureBriefcaseTest {
 
 	
 	@Test(description = "Create a new tag using briefcase app New -> New Tag", 
-			groups = { "functional" })
+			groups = { "functional", "L3" })
 
 	public void CreateTag_04() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
