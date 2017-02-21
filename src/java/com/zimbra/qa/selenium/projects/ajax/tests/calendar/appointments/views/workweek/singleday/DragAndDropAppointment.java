@@ -173,7 +173,7 @@ public class DragAndDropAppointment extends CalendarWorkWeekTest {
         String otherApptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
 
         // Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(otherSubject), "Verify appointment displayed in current view");
 
         SleepUtil.sleepMedium();
         

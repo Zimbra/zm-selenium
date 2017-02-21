@@ -21,13 +21,13 @@ import java.util.GregorianCalendar;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning.DialogWarningID;
@@ -84,17 +84,23 @@ public class SendLater extends PrefGroupMailByMessageTest {
 		// 
 	}
 
-	
+	@Bugs(ids="ZCS-700")
 	@Test( description = "Send a mail later using Send -> Send Later - specify time in future",
 			groups = { "smoke", "L1" })
 	public void SendLater_02() throws HarnessException {
 		
 		// Create the message data to be sent
-		GregorianCalendar calendar = new GregorianCalendar(2016, 11, 25, 12, 0, 0); // Dec 25, 2015 at noon local time
+		GregorianCalendar calendar = new GregorianCalendar(2020, 11, 25, 12, 0, 0);// Use below code once bug (zcs-700) get fixed  	
+		/*
+		 * 
+		Calendar now = Calendar.getInstance();
+		GregorianCalendar calendar = new GregorianCalendar(now.get(Calendar.YEAR) + 1, now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		*/
+		
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
-
 		// Open the new mail form
+
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 		
@@ -106,9 +112,7 @@ public class SendLater extends PrefGroupMailByMessageTest {
 		DialogSendLater dialog = (DialogSendLater)mailform.zToolbarPressPulldown(Button.B_SEND, Button.O_SEND_SEND_LATER);
 
 		// Enter the dialog information
-		dialog.zFill(calendar);
-		SleepUtil.sleepMedium();
-		
+		dialog.zFill(calendar);		
 		dialog.zClickButton(Button.B_OK);
 		
 		

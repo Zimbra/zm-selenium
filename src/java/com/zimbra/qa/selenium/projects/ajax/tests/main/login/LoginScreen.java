@@ -54,7 +54,8 @@ public class LoginScreen extends AjaxCommonTest {
 	
 	
 	@Test( description = "Verify the copyright on the login screen contains the current year",
-			groups = { "functional" , "L3"})
+			groups = { "functional","L2" })
+
 	public void LoginScreen02() throws HarnessException {
 		
 		Calendar calendar = new GregorianCalendar();
@@ -69,7 +70,7 @@ public class LoginScreen extends AjaxCommonTest {
 	}
 
 	@Test( description = "Verify initial focus on the login screen should be in username",
-			groups = { "functional", "L3" })
+			groups = { "functional","L2" })
 	public void LoginScreen03() throws HarnessException {
 		
 		// Get to the login screen
@@ -92,7 +93,7 @@ public class LoginScreen extends AjaxCommonTest {
 
 	@Bugs(ids = "50457")
 	@Test( description = "Verify 'web client' rather than 'collaboration suite'",
-			groups = { "functional", "L3" })
+			groups = { "functional", "L2" })
 	public void LoginScreen04() throws HarnessException {
 		
 

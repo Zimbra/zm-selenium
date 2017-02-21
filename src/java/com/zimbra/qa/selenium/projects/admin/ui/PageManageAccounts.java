@@ -424,49 +424,44 @@ public class PageManageAccounts extends AbsTab {
 			throw new HarnessException("Account Rows is not present");
 
 		// How many items are in the table?
-		String rowsLocator = "//div[@id='zl__ACCT_MANAGE']//div[contains(@id, '__rows')]//div[contains(@id,'zli__')]";
-		int count = this.sGetXpathCount(rowsLocator);
+		String rowsLocator = "css=div[id='zl__ACCT_MANAGE'] div[id$='__rows'] div[id^='zli__']";
+		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
 
-
-
-
-		int m= 50;
-		if (count >= 50){
-			for (int a1 = 1; a1 <= 5; a1++) { 
-				String p0  = rowsLocator + "["+ m +"]";
-				if (this.sIsElementPresent(p0)){
-					zClick(p0);
+		int m = 50;
+		if (count >= 50) {
+			for (int a1 = 1; a1 <= 5; a1++) {
+				String p0 = rowsLocator + ":nth-child(" + m + ")";
+				if (this.sIsElementPresent(p0)) {
+					sClickAt(p0, "");
 					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
-					m=m+20;
-				}
-				else
+					m = m + 20;
+				} else
 					break;
-
 
 			}
 
 		}
 
-		count = this.sGetXpathCount(rowsLocator);
+		count = this.sGetCssCount(rowsLocator);
 
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
-			final String accountLocator = rowsLocator + "["+ i +"]";
+			final String accountLocator = rowsLocator + ":nth-child("+i+")";
 			String locator;
 
 			AccountItem item = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 
 			// Type (image)
 			// ImgAdminUser ImgAccount ImgSystemResource (others?)
-			locator = accountLocator + "//td[contains(@id, 'account_data_type_')]//div";
+			locator = accountLocator + "  td:nth-child(1)" + " div[class^=Img]";
 			if ( this.sIsElementPresent(locator) ) {
-				item.setGAccountType(this.sGetAttribute("xpath=("+ locator + ")@class"));
+				item.setGAccountType(this.sGetAttribute(locator + "@class"));
 			}
 
 
 			// Email Address
-			locator = accountLocator + "//td[contains(@id, 'account_data_emailaddress_')]";
+			locator = accountLocator + "  td:nth-child(2)";
 			if ( this.sIsElementPresent(locator) ) {
 				item.setGEmailAddress(this.sGetText(locator).trim());
 			}

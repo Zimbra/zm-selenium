@@ -60,9 +60,6 @@ public class EditACL extends AdminCommonTest {
 		AccountItem grantee = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(grantee);
 
-		AccountItem update_grantee = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
-		AccountItem.createUsingSOAP(update_grantee);
-
 		String rightName="sendAsDistList";
 		String granteeType="usr";
 		AclItem acl = new AclItem();
@@ -89,7 +86,7 @@ public class EditACL extends AdminCommonTest {
 		acl.setRightName(editedRightName);
 
 		// Set grantee account email address
-		acl.setGranteeAccountEmail(account.getEmailAddress());
+		acl.setGranteeAccountEmail(grantee.getEmailAddress());
 
 		// Refresh the list
 		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
@@ -105,8 +102,7 @@ public class EditACL extends AdminCommonTest {
 		app.zPageManageACLAtDL.zClickAt(PageManageACLAtDL.Locators.GRANTED_ACL,"");
 
 		// Click "Edit"
-		WizardEditACLAtDL wizard = 
-				(WizardEditACLAtDL)app.zPageManageACLAtDL.zToolbarPressButton(Button.B_EDIT);
+		WizardEditACLAtDL wizard = (WizardEditACLAtDL)app.zPageManageACLAtDL.zToolbarPressButton(Button.B_EDIT);
 
 		// Complete wizard
 		wizard.zCompleteWizard(acl);
