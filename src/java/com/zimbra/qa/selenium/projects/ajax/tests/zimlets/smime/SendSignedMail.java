@@ -325,7 +325,7 @@ public class SendSignedMail extends AjaxCommonTest {
 
 	}
 
-	@Test ( description = "Verify that Signed message can be sent from Web-client correctly and user can view it", priority=4, 
+	@Test ( description = "Verify that Signed message can be sent from Web-client using different persona", priority=4, 
 			groups = { "smime", "L4"})
 	
 	public void SendSignedMail_04() throws HarnessException  {
@@ -426,7 +426,7 @@ public class SendSignedMail extends AjaxCommonTest {
 
 		// Select the mail and verify that Mail Security String is present
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
-		ZAssert.assertTrue(display.zCertificateValidationFailed(), "Certificate validation failed String present");
+		ZAssert.assertTrue(display.zCertificateValidationFailed(), "Certificate is invalid String present");
 
 		//Login as the recipient
         app.zPageMain.zLogout();
@@ -439,7 +439,7 @@ public class SendSignedMail extends AjaxCommonTest {
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), mail.dBodyHtml, "Verify plain text content");
 		
 		//Verify the Mail security String
-		ZAssert.assertTrue(display.zCertificateValidationFailed(), "Certificate validation failed String present");
+		ZAssert.assertTrue(display.zCertificateValidationFailed(), "Certificate is invalid String present");
 
 	}
 		
