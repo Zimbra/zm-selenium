@@ -655,7 +655,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 	@Bugs(ids = "102051")
 	@Test( description = "Hard-delete a appt by selecting and typing 'shift-del' shortcut",
-			groups = { "functional", "L2" } )
+			groups = { "functional", "L5" } )
 	
 	public void HardDeleteAppointment_01() throws HarnessException {
 
@@ -731,7 +731,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 	@Bugs(ids = "102051")
 	@Test( description = "Hard-delete multiple appts (3) by selecting and typing 'shift-del' shortcut",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L5" })
 	
 	public void HardDeleteAppointment_02() throws HarnessException {
 

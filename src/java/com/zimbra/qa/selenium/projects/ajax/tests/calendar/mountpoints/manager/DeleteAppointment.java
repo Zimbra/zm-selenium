@@ -134,7 +134,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 	}
 	
 	@Test( description = "Verify Delete keyboard shortcut is functional on mountpoint appointment (manager share)",
-			groups = { "functional", "L2" },
+			groups = { "functional", "L5" },
 			dataProvider = "DataProviderShortcutKeys")
 			
 	public void DeleteAppointment_02(String name, int keyEvent) throws HarnessException {
