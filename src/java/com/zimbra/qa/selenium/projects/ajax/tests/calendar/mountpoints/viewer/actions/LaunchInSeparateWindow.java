@@ -35,70 +35,11 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	
-	@Bugs(ids = "106999")
-	@Test( description = "Grantee with view rights launches grantor's calendar in the new window",
-			groups = { "functional", "L5" })
-			
-	public void LaunchInSeparateWindow_01() throws HarnessException {
-		
-		String body = null;
-		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();
-
-		// Owner creates a folder, shares it with current user with viewer rights
-		String ownerFoldername = "ownerfolder"+ ConfigProperties.getUniqueString();        
-		Owner.soapSend(
-					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
-				+		"<folder name='" + ownerFoldername +"' l='1' view='appointment'/>"
-				+	"</CreateFolderRequest>");
-		
-		FolderItem ownerFolder = FolderItem.importFromSOAP(Owner, ownerFoldername);
-		ZAssert.assertNotNull(ownerFolder, "Verify the new owner folder exists");
-		
-		Owner.soapSend(
-					"<FolderActionRequest xmlns='urn:zimbraMail'>"
-				+		"<action id='"+ ownerFolder.getId() +"' op='grant'>"
-				+			"<grant d='" + app.zGetActiveAccount().EmailAddress + "' gt='usr' perm='r'/>"
-				+		"</action>"
-				+	"</FolderActionRequest>");
-		
-
-		// Current user creates the mountpoint that points to the share
-		String mountpointFoldername = "mountpoint"+ ConfigProperties.getUniqueString();
-		app.zGetActiveAccount().soapSend(
-					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
-				+		"<link l='1' name='"+ mountpointFoldername +"' view='appointment' rid='"+ ownerFolder.getId() +"' zid='"+ Owner.ZimbraId +"'/>"
-				+	"</CreateMountpointRequest>");
-		
-		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointFoldername);
-		ZAssert.assertNotNull(mountpoint, "Verify the subfolder is available");
-
-		// Click to Refresh button to load the mounted shared calender 
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-		SeparateWindow window = null;
-		
-		try {
-			// Launch shared folder in separate window through context menu
-			window = (SeparateWindow)app.zTreeCalendar.zTreeItem(Action.A_RIGHTCLICK, Button.B_LAUNCH_IN_SEPARATE_WINDOW, mountpoint);
-			window.zWaitForActive();
-			body = window.sGetBodyText();
-
-			// Verify launched calender in new windows shows all calender data correctly
-			ZAssert.assertStringContains(body, "Day Work Week Week Month" , "Verify calender views are shown in new window");
-			ZAssert.assertStringContains(body, "Sunday Monday Tuesday Wednesday Thursday Friday Saturday" , "Verify weekday names are shown in new window");
-			ZAssert.assertStringContains(body, ownerFoldername, "Verify owners calender name is displayed in new window");
-
-		} finally {
-			app.zPageMain.zCloseWindow(window, app);
-		}
-	}
-
-	
-	@Bugs(ids = "106999")
+	// remove this test case and move below testcase to L2 from L5 once bug #106999 is resolved
 	@Test( description = "Grantee with view rights launches grantor's calendar with appt in the new window and clicks on the appt",
-			groups = { "functional", "L5" })
-
-	public void LaunchInSeparateWindow_02() throws HarnessException {
+			groups = { "functional", "L2" })
+	
+	public void LaunchInSeparateWindow_01() throws HarnessException {
 
 		String apptSubject = "Test";
 		String apptContent = ConfigProperties.getUniqueString();
@@ -168,7 +109,6 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 			// Verify launched calender in new windows shows all calender data correctly
 			ZAssert.assertStringContains(body, "Day Work Week Week Month" , "Verify calender views are shown in new window");
 			ZAssert.assertStringContains(body, "Sunday Monday Tuesday Wednesday Thursday Friday Saturday" , "Verify weekday names are shown in new window");
-			ZAssert.assertStringContains(body, foldername, "Verify owners calender name is displayed in new window");
 			 
 			// Verify aapointment on launched calender in new windows is clickable and shows appointment details correctly
 			window.zSetWindowName();
@@ -186,10 +126,69 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 			app.zPageMain.zCloseWindow(window, app);
 		}
 	}
+	
+	@Bugs(ids = "106999")
+	@Test( description = "Grantee with view rights launches grantor's calendar in the new window",
+			groups = { "functional", "L5" })
+			
+	public void LaunchInSeparateWindow_02() throws HarnessException {
+		
+		String body = null;
+		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();
 
-	// remove this test case and move above testcase to L2 from L5 once bug #106999 is resolved
+		// Owner creates a folder, shares it with current user with viewer rights
+		String ownerFoldername = "ownerfolder"+ ConfigProperties.getUniqueString();        
+		Owner.soapSend(
+					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
+				+		"<folder name='" + ownerFoldername +"' l='1' view='appointment'/>"
+				+	"</CreateFolderRequest>");
+		
+		FolderItem ownerFolder = FolderItem.importFromSOAP(Owner, ownerFoldername);
+		ZAssert.assertNotNull(ownerFolder, "Verify the new owner folder exists");
+		
+		Owner.soapSend(
+					"<FolderActionRequest xmlns='urn:zimbraMail'>"
+				+		"<action id='"+ ownerFolder.getId() +"' op='grant'>"
+				+			"<grant d='" + app.zGetActiveAccount().EmailAddress + "' gt='usr' perm='r'/>"
+				+		"</action>"
+				+	"</FolderActionRequest>");
+		
+
+		// Current user creates the mountpoint that points to the share
+		String mountpointFoldername = "mountpoint"+ ConfigProperties.getUniqueString();
+		app.zGetActiveAccount().soapSend(
+					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
+				+		"<link l='1' name='"+ mountpointFoldername +"' view='appointment' rid='"+ ownerFolder.getId() +"' zid='"+ Owner.ZimbraId +"'/>"
+				+	"</CreateMountpointRequest>");
+		
+		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointFoldername);
+		ZAssert.assertNotNull(mountpoint, "Verify the subfolder is available");
+
+		// Click to Refresh button to load the mounted shared calender 
+		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		SeparateWindow window = null;
+		
+		try {
+			// Launch shared folder in separate window through context menu
+			window = (SeparateWindow)app.zTreeCalendar.zTreeItem(Action.A_RIGHTCLICK, Button.B_LAUNCH_IN_SEPARATE_WINDOW, mountpoint);
+			window.zWaitForActive();
+			body = window.sGetBodyText();
+
+			// Verify launched calender in new windows shows all calender data correctly
+			ZAssert.assertStringContains(body, "Day Work Week Week Month" , "Verify calender views are shown in new window");
+			ZAssert.assertStringContains(body, "Sunday Monday Tuesday Wednesday Thursday Friday Saturday" , "Verify weekday names are shown in new window");
+			ZAssert.assertStringContains(body, ownerFoldername, "Verify owners calender name is displayed in new window");
+
+		} finally {
+			app.zPageMain.zCloseWindow(window, app);
+		}
+	}
+
+	
+	@Bugs(ids = "106999")
 	@Test( description = "Grantee with view rights launches grantor's calendar with appt in the new window and clicks on the appt",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L5" })
+
 	public void LaunchInSeparateWindow_03() throws HarnessException {
 
 		String apptSubject = "Test";
@@ -260,6 +259,7 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 			// Verify launched calender in new windows shows all calender data correctly
 			ZAssert.assertStringContains(body, "Day Work Week Week Month" , "Verify calender views are shown in new window");
 			ZAssert.assertStringContains(body, "Sunday Monday Tuesday Wednesday Thursday Friday Saturday" , "Verify weekday names are shown in new window");
+			ZAssert.assertStringContains(body, foldername, "Verify owners calender name is displayed in new window");
 			 
 			// Verify aapointment on launched calender in new windows is clickable and shows appointment details correctly
 			window.zSetWindowName();
