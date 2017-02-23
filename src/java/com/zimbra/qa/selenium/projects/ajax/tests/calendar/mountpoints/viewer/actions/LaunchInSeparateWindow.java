@@ -38,7 +38,7 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "106999")
 	@Test( description = "Grantee with view rights launches grantor's calendar in the new window",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L5" })
 			
 	public void LaunchInSeparateWindow_01() throws HarnessException {
 		
@@ -96,7 +96,7 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "106999")
 	@Test( description = "Grantee with view rights launches grantor's calendar with appt in the new window and clicks on the appt",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L5" })
 
 	public void LaunchInSeparateWindow_02() throws HarnessException {
 
@@ -170,12 +170,10 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 			ZAssert.assertStringContains(body, "Sunday Monday Tuesday Wednesday Thursday Friday Saturday" , "Verify weekday names are shown in new window");
 			ZAssert.assertStringContains(body, foldername, "Verify owners calender name is displayed in new window");
 			 
-			
 			// Verify aapointment on launched calender in new windows is clickable and shows appointment details correctly
-			window.zWaitForActive();
+			window.zSetWindowName();
 			window.sClickAt(Locators.openApptOnLaunchedWindow, "0,0");
 			SleepUtil.sleepMedium();
-			window.zWaitForActive();
 			
 			String bodyOfAppt = window.sGetBodyText();
 			ZAssert.assertStringContains(bodyOfAppt , "Close" , "Verify appt shows Close label");
@@ -189,4 +187,95 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 		}
 	}
 
+	// remove this test case and move above testcase to L2 from L5 once bug #106999 is resolved
+	@Test( description = "Grantee with view rights launches grantor's calendar with appt in the new window and clicks on the appt",
+			groups = { "functional", "L2" })
+	public void LaunchInSeparateWindow_03() throws HarnessException {
+
+		String apptSubject = "Test";
+		String apptContent = ConfigProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
+		Calendar now = this.calendarWeekDayUTC;
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 06, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 07, 0, 0);
+
+		// Create a folder to share
+		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
+		ZAssert.assertNotNull(root, "Verify the inbox is available");
+
+		FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.Account10(), FolderItem.SystemFolder.Calendar);
+
+		// Create a folder to share
+		ZimbraAccount.Account10().soapSend(
+				"<CreateFolderRequest xmlns='urn:zimbraMail'>"
+				+		"<folder name='" + foldername + "' l='" + calendarFolder.getId() + "' view='appointment'/>"
+				+	"</CreateFolderRequest>");
+		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account10(), foldername);
+		
+		// Share the folder 
+		ZimbraAccount.Account10().soapSend(
+				"<FolderActionRequest xmlns='urn:zimbraMail'>"
+				+		"<action id='"+ folder.getId() +"' op='grant'>"
+				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='r' view='appointment'/>"
+				+		"</action>"
+				+	"</FolderActionRequest>");
+
+		// Mount the shared folder at grantee
+		app.zGetActiveAccount().soapSend(
+				"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
+				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account10().ZimbraId +"' view='appointment' color='5'/>"
+				+	"</CreateMountpointRequest>");
+
+		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
+
+		// Create appointment
+		ZimbraAccount.Account10().soapSend(
+				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
+				+		"<m l='"+ folder.getId() +"' >"
+				+			"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"
+				+				"<s d='"+ startUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
+				+				"<e d='"+ endUTC.toTimeZone(ZTimeZone.TimeZoneEST.getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.TimeZoneEST.getID() +"'/>"
+				+				"<or a='"+ ZimbraAccount.Account10().EmailAddress +"'/>"
+				+				"<at role='REQ' ptst='NE' rsvp='1' a='" + app.zGetActiveAccount().EmailAddress + "'/>"
+				+			"</inv>"
+				+			"<e a='"+ app.zGetActiveAccount().EmailAddress +"' t='t'/>"
+				+			"<su>"+ apptSubject +"</su>"
+				+			"<mp content-type='text/plain'>"
+				+				"<content>" + apptContent + "</content>"
+				+			"</mp>"
+				+		"</m>"
+				+	"</CreateAppointmentRequest>");
+		
+		// Verify appointment exists in current view
+        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
+
+		// Launch shared folder in separate window through context menu
+		SeparateWindow window = (SeparateWindow)app.zTreeCalendar.zTreeItem(Action.A_RIGHTCLICK, Button.B_LAUNCH_IN_SEPARATE_WINDOW, mountpoint);
+
+		try { 
+			window.zWaitForActive();
+			String body = window.sGetBodyText();
+
+			// Verify launched calender in new windows shows all calender data correctly
+			ZAssert.assertStringContains(body, "Day Work Week Week Month" , "Verify calender views are shown in new window");
+			ZAssert.assertStringContains(body, "Sunday Monday Tuesday Wednesday Thursday Friday Saturday" , "Verify weekday names are shown in new window");
+			 
+			// Verify aapointment on launched calender in new windows is clickable and shows appointment details correctly
+			window.zSetWindowName();
+			window.sClickAt(Locators.openApptOnLaunchedWindow, "0,0");
+			SleepUtil.sleepMedium();
+			
+			String bodyOfAppt = window.sGetBodyText();
+			ZAssert.assertStringContains(bodyOfAppt , "Close" , "Verify appt shows Close label");
+			ZAssert.assertStringContains(bodyOfAppt , "Subject :" , "Verify appt shows subject header");
+			ZAssert.assertStringContains(bodyOfAppt , apptSubject , "Verify appt shows correct subject");
+			ZAssert.assertStringContains(bodyOfAppt , app.zGetActiveAccount().EmailAddress , "Verify appt shows correct Email Address");
+			ZAssert.assertStringContains(bodyOfAppt , apptContent , "Verify appt shows correct appt content");
+
+		} finally {
+			app.zPageMain.zCloseWindow(window, app);
+		}
+	}
+	
 }
