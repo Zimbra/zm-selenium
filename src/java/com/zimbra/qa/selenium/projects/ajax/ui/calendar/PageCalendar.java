@@ -2906,9 +2906,9 @@ public class PageCalendar extends AbsTab {
 
 	}
 	
-	public boolean zVerifyMultidayAppointmentInMonthView(Calendar cal, int duration, String subject) throws HarnessException {
+	public boolean zVerifyMultidayAllDayAppointmentInMonthView(Calendar cal, int duration, String subject) throws HarnessException {
 		
-		logger.info(myPageName() + " zVerifyMultidayAppointmentInMonthView(Start Date "+ cal.getTime() + " duration " + duration + " subject)");
+		logger.info(myPageName() + " zVerifyMultidayAllDayAppointmentInMonthView(Start Date "+ cal.getTime() + " duration " + duration + " subject)");
 		
 		//Get all the calendar cells in the month which contain all-day appointments
 		List<WebElement> elements = getElements("//table[@class='calendar_month_day_table']/following-sibling::table//div[@class='allday_item_filler']");
@@ -2919,7 +2919,7 @@ public class PageCalendar extends AbsTab {
 			return false;
 		}
 		
-		//Get the total number of appointment displayed in the view
+		//Get the total number of all-day appointment displayed in the view
 		elements = getElements("div[class^=appt][aria-label$='" + subject +"']");
 		
 		//Verify the total number appointments displayed in the view
