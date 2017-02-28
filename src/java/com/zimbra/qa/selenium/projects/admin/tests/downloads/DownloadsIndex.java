@@ -119,7 +119,7 @@ public class DownloadsIndex extends AdminCommonTest {
 
 	}
 
-	@Test( description = "Verify the downloads links return 403 rather than 404",
+	@Test( description = "Verify the downloads links return 200 rather than 404",
 			groups = { "functional", "L2"  })
 	public void DownloadsIndex_03() throws HarnessException {
 
@@ -146,15 +146,16 @@ public class DownloadsIndex extends AdminCommonTest {
 
 		for (String locator : locators ) {
 			String href = app.zPageDownloads.sGetAttribute(locator +"@href");
+			String page = ConfigProperties.getBaseURL() + href;
 
 			HttpURLConnection  connection = null;
 			try {
 
-				URL url = new URL(href);
+				URL url = new URL(page);
 				int authResponse = app.zPageDownloads.getAuthResponse(url);
 
-				// 403 is acceptable
-				ZAssert.assertStringContains("403", ""+authResponse, "Verify the download URL is valid: "+ url.toString());
+				// 200 and 400 are acceptable
+				ZAssert.assertStringContains("200 400", ""+authResponse, "Verify the download URL is valid: "+ url.toString());
 
 			} catch (MalformedURLException e) {
 				throw new HarnessException(e);
