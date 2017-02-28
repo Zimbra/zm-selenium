@@ -1754,7 +1754,16 @@ public abstract class AbsSeleniumObject {
 			return we;
 		}
 	}
+	
+	protected List<WebElement> getElements(String locator) throws HarnessException{
+		List<WebElement> we = getElementsOrNull(locator);
 
+		if (we==null) {
+			throw new HarnessException("WebElement is null: " + locator );
+		} else {
+			return we;
+		}
+	}
 
 	private WebElement getElementByXPath(String locator) {
 		WebElement element = null;
@@ -1768,7 +1777,19 @@ public abstract class AbsSeleniumObject {
 		}
 		return element;
 	}
-
+	
+	private List<WebElement> getElementsByXPath(String locator) {
+		List<WebElement> elements = null;
+		WebDriver driver = webDriver();
+		if (locator != null) {
+			try {
+				elements = driver.findElements(By.xpath(locator));
+			} catch(Exception ex) {
+				logger.info("getElementsByXPath()" + ex);
+			}
+		}
+		return elements;
+	}
 
 	private WebElement getElementById(String locator) {
 		String startSuffix = "id=";
@@ -1788,7 +1809,24 @@ public abstract class AbsSeleniumObject {
 		return element;
 	}
 
-
+	private List<WebElement> getElementsById(String locator) {
+		String startSuffix = "id=";
+		List<WebElement> elements = null;
+		WebDriver driver = webDriver();
+		String modifiedLocator = locator;
+		if (modifiedLocator != null) {
+			if ( modifiedLocator.startsWith(startSuffix)) {
+				modifiedLocator = modifiedLocator.substring(startSuffix.length());
+			}
+			try {
+				elements = driver.findElements(By.id(modifiedLocator));
+			} catch(Exception ex) {
+				logger.info("getElementsByIds()" + ex);
+			}
+		}
+		return elements;
+	}
+	
 	private WebElement getElementByClassName(String locator) {
 		String startSuffix = "class=";
 		WebElement element = null;
@@ -1806,7 +1844,24 @@ public abstract class AbsSeleniumObject {
 		}
 		return element;
 	}
-
+	
+	private List<WebElement> getElementsByClassName(String locator) {
+		String startSuffix = "class=";
+		List<WebElement> elements = null;
+		WebDriver driver = webDriver();
+		String modifiedLocator = locator;
+		if (modifiedLocator != null) {
+			if ( modifiedLocator.startsWith(startSuffix)) {
+				modifiedLocator = modifiedLocator.substring(startSuffix.length());
+			}
+			try {
+				elements = driver.findElements(By.className(modifiedLocator));
+			} catch(Exception ex) {
+				logger.info("getElementsByClassName()" + ex);
+			}
+		}
+		return elements;
+	}
 
 	private WebElement getElementByCss(String locator) {
 		String startSuffix = "css=";
@@ -1849,7 +1904,25 @@ public abstract class AbsSeleniumObject {
 		return we;
 	}
 
-
+	private List<WebElement> getElementsByCss(String locator) {
+		String startSuffix = "css=";		
+		List<WebElement> elements = null;
+		WebDriver driver = null;		
+		driver = webDriver();
+		String modifiedLocator = locator;
+		if (modifiedLocator != null) {
+			if ( modifiedLocator.startsWith(startSuffix)) {
+				modifiedLocator = modifiedLocator.substring(startSuffix.length());
+			}
+			try {
+				elements = driver.findElements(By.cssSelector(modifiedLocator));
+			} catch(Exception ex) {
+				logger.info("getElementsByCss()" + ex);
+			}
+		}
+		return elements;
+	}
+	
 	private WebElement getElementOrNull(String locator) {
 
 		WebElement we = null;
@@ -1878,7 +1951,36 @@ public abstract class AbsSeleniumObject {
 		}
 		return we;
 	}
+	
+	private List<WebElement> getElementsOrNull(String locator) {
 
+		List<WebElement> elements = null;
+		if (locator.startsWith("id=")) {
+			logger.info("getElementsById(" + locator + ")");
+			elements = getElementsById(locator);
+
+		} else if (locator.startsWith("class=")) {
+			logger.info("getElementsByClassName(" + locator + ")");
+			elements = getElementsByClassName(locator);
+
+		} else if (locator.startsWith("css=")) {
+			logger.info("getElementsByCss(" + locator + ")");
+			elements = getElementsByCss(locator);
+
+		} else if (locator.startsWith("//") || locator.startsWith("xpath=")) {
+			logger.info("getElementsByXPath(" + locator + ")");
+			elements = getElementsByXPath(locator);
+
+		} else {
+			if (locator.contains("=")) {
+				elements = getElementsByCss(locator);
+			} else {
+				logger.info("getElementByIds(" + locator + ")");
+				elements = getElementsById(locator);
+			}
+		}
+		return elements;
+	}
 
 	private boolean elementPresent(String locator) {
 		WebElement el = getElementOrNull(locator);
