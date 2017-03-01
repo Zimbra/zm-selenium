@@ -1766,11 +1766,16 @@ public abstract class AbsSeleniumObject {
 	}
 
 	private WebElement getElementByXPath(String locator) {
+		String startSuffix = "xpath=";
 		WebElement element = null;
 		WebDriver driver = webDriver();
-		if (locator != null) {
+		String modifiedLocator = locator;
+		if (modifiedLocator != null) {
+			if ( modifiedLocator.startsWith(startSuffix)) {
+				modifiedLocator = modifiedLocator.substring(startSuffix.length());
+			}
 			try {
-				element = driver.findElement(By.xpath(locator));
+				element = driver.findElement(By.xpath(modifiedLocator));
 			} catch(Exception ex) {
 				logger.info("getElementByXPath()" + ex);
 			}
@@ -1779,11 +1784,16 @@ public abstract class AbsSeleniumObject {
 	}
 	
 	private List<WebElement> getElementsByXPath(String locator) {
+		String startSuffix = "xpath=";
 		List<WebElement> elements = null;
 		WebDriver driver = webDriver();
-		if (locator != null) {
+		String modifiedLocator = locator;
+		if (modifiedLocator != null) {
+			if ( modifiedLocator.startsWith(startSuffix)) {
+				modifiedLocator = modifiedLocator.substring(startSuffix.length());
+			}
 			try {
-				elements = driver.findElements(By.xpath(locator));
+				elements = driver.findElements(By.xpath(modifiedLocator));
 			} catch(Exception ex) {
 				logger.info("getElementsByXPath()" + ex);
 			}
