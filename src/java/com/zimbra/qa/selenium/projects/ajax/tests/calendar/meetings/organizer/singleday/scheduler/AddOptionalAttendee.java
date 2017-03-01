@@ -42,7 +42,7 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 		};
 	}
 	@Test( description = "Add optional attendee from scheduler pane using keyboard Enter and Tab key",
-			groups = { "functional", "L2"},
+			groups = { "functional", "L5"},
 			dataProvider = "DataProviderShortcutKeys")
 	public void AddOptionalAttendee_01(String name, int keyEvent) throws HarnessException {
 		

@@ -32,12 +32,6 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 	
 	public RedirectMessage() {
 		logger.info("New "+ RedirectMessage.class.getCanonicalName());
-		
-		
-		
-
-
-		
 	}
 	
 	@Bugs(ids = "14110")
@@ -46,8 +40,6 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 	public void RedirectMessage_01() throws HarnessException {
 		
 		String subject = "subject"+ ConfigProperties.getUniqueString();
-	
-
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -62,8 +54,6 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 		
 		// Get the mail item for the new message
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-		
-		
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -76,19 +66,16 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 		dialog.zFillField(Field.To, ZimbraAccount.AccountB().EmailAddress);
 		dialog.zClickButton(Button.B_OK);
 		
-
 		// Verify the redirected message is received
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the redirected message is received");
 		ZAssert.assertEquals(received.dRedirectedFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the message shows as redirected from the test account");
-
-
 	}
 
 	//TODO: Remove x from groups to enable when feature is implemented  
 	@Bugs( ids = "62170")
 	@Test( description = "Redirect message, using 'Redirect' shortcut key",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L5" })
 	public void RedirectMessage_02() throws HarnessException {
 		throw new HarnessException("See bug https://bugzilla.zimbra.com/show_bug.cgi?id=62170");
 	}
@@ -99,7 +86,6 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 		
 		String subject = "subject"+ ConfigProperties.getUniqueString();
 	
-
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -115,8 +101,6 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 		// Get the mail item for the new message
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		
-		
-
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		
@@ -125,16 +109,9 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 		dialog.zFillField(Field.To, ZimbraAccount.AccountB().EmailAddress);
 		dialog.zClickButton(Button.B_OK);
 		
-
 		// Verify the redirected message is received
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the redirected message is received");
 		ZAssert.assertEquals(received.dRedirectedFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the message shows as redirected from the test account");
-
-
 	}
-
-
-
-
 }

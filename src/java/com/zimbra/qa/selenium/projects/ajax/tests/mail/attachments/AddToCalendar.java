@@ -324,7 +324,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	
 	@Bugs(ids = "107000")
 	@Test( description = "Bug 77131 - Cannot 'add to calendar' an ics into a shared calendar",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L5" })
 			
 	public void AddToCalendar_SharedCalendar_05() throws HarnessException {
 		
