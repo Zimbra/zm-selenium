@@ -426,7 +426,7 @@ public class SendSignedMail extends AjaxCommonTest {
 
 		// Select the mail and verify that Mail Security String is present
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
-		ZAssert.assertTrue(display.zCertificateValidationFailed(), "Certificate is invalid String present");
+		ZAssert.assertTrue(display.zCertificateValidationFailed(), "Certificate is invalid because the email address does not match, String present");
 
 		//Login as the recipient
         app.zPageMain.zLogout();
@@ -439,7 +439,7 @@ public class SendSignedMail extends AjaxCommonTest {
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), mail.dBodyHtml, "Verify plain text content");
 		
 		//Verify the Mail security String
-		ZAssert.assertTrue(display.zCertificateValidationFailed(), "Certificate is invalid String present");
+		ZAssert.assertTrue(display.zCertificateValidationFailed(), "Certificate is invalid because the email address does not match, String present");
 
 	}
 		

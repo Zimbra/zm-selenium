@@ -97,7 +97,7 @@ public class DisplayMail extends AbsDisplay {
 		public static final String zForwardButton = "css=div[id$='__FORWARD']";
 		public static final String zDeleteButton = "css=div[parentid='z_shell']:not([aria-hidden='true']) div[id$='__DELETE']";
 		public static final String zMessageDecryptionFailed = "css=td[class$='ZmSecureMailCertificateRow'] td[id$='title']:contains('This message can't be decrypted because your certificate is not valid or is missing')";
-		public static final String zCertificateValidationFailed = "css=td[class$='ZmSecureMailCertificateRow'] td[id$='title']:contains('Certificate is invalid')";
+		public static final String zCertificateValidationFailed = "css=td[class$='ZmSecureMailCertificateRow'] td[id$='title']:contains('Certificate is invalid because the email address does not match')";
 	}
 
 	/**
