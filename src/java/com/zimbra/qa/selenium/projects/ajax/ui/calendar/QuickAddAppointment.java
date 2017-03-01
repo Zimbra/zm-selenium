@@ -254,7 +254,19 @@ public class QuickAddAppointment extends AbsTab {
 
 		return sIsElementPresent("css=div[id$='meetingInPastWarningMessageText']");
 	}
+
+	public void zPickStartDateFromDatePicker(String Day) throws HarnessException {
+		this.sClick("css=td[id$='startMiniCal']");
+		this.sClick("css=div[class='DwtMenu'][style*='z-index: 7'] div[class='DwtCalendar'] td[class='DwtCalendarBody'] td[id^='c:" + Day + "'][class='DwtCalendarDay']");
+		
+	}
 	
+	public void zPickEndDateFromDatePicker(String Day) throws HarnessException {
+		this.sClick("css=td[id$='endMiniCal']");
+		this.sClick("css=div[class='DwtMenu'][style*='z-index: 7'] div[class='DwtCalendar'] td[class='DwtCalendarBody'] td[id^='c:" + Day + "'][class='DwtCalendarDay-hover DwtCalendarDay-selected']");
+		
+	}
+
 	public void zFill(IItem item) throws HarnessException {
 
 		logger.info(myPageName() + ".zFill(ZimbraItem)");

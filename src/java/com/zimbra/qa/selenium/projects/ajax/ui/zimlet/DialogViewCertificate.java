@@ -90,7 +90,7 @@ public class DialogViewCertificate extends AbsDialog {
 	public String zGetDisplayedText(String issuedToEmail) throws HarnessException {
 		logger.info(myPageName() + " Issued to email");
 
-		String locator = "css=div[id='ZmMsgDialog_content'] table[class='CertificateDetails'] tbody tr[data-name='Email'] td[class='Value']" ;
+		String locator = "css=div[class='CertificateDetailsWrapper'] table[class='CertificateDetails'] tbody tr[data-name='Email'] td[class='Value']" ;
 		
 		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
@@ -103,7 +103,7 @@ public class DialogViewCertificate extends AbsDialog {
 	public String zGetDisplayedTextIssuedToOrganization() throws HarnessException {
 		logger.info(myPageName() + " Issued to Organisation");
 
-		String locator = "css=div[id='ZmMsgDialog_content'] table[class='CertificateDetails'] tbody tr[data-name='Organization(O)'] td[class='Value']" ;
+		String locator = "css=div[class='CertificateDetailsWrapper'] table[class='CertificateDetails'] tbody tr[data-name='Organization(O)'] td[class='Value']" ;
 		
 		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
@@ -139,7 +139,7 @@ public class DialogViewCertificate extends AbsDialog {
 	public String zGetDisplayedTextAlgorithm() throws HarnessException {
 		logger.info(myPageName() + " Algorithm");
 
-		String locator = "div[id='ZmMsgDialog_content'] table[class='CertificateDetails'] tbody tr[data-name='Algorithm'] td[class='Value']" ;
+		String locator = "css=div[class='CertificateDetailsWrapper'] table[class='CertificateDetails'] tbody tr[data-name='Algorithm'] td[class='Value']" ;
 		
 		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {

@@ -184,4 +184,39 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 	}
 
+	@Test( description = "Create a basic appointment without an attendee",
+			groups = { "sanity", "L0" } )
+	
+	public void CreateAppointment_05() throws HarnessException {
+		
+		// Create appointment
+		AppointmentItem appt = new AppointmentItem();
+		Calendar now = this.calendarWeekDayUTC;
+		String apptSubject = ConfigProperties.getUniqueString();
+		String apptContent = "content" + ConfigProperties.getUniqueString();
+		appt.setSubject(apptSubject);
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0));
+		appt.setContent(apptContent);
+		String startday = String.valueOf(now.get(Calendar.DAY_OF_MONTH) + 3);
+		
+		// Open the new mail form
+		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
+		ZAssert.assertNotNull(apptForm, "Verify the new form opened");
+
+		// Fill out the form with the data
+		apptForm.zFillField(Field.Subject, apptSubject);
+		apptForm.zPickStartDateFromDatePicker(startday);
+		apptForm.zFillField(Field.StartTime, "08:00");
+		apptForm.zFillField(Field.EndTime, "09:00");
+		apptForm.zFillField(Field.Body, apptContent);
+		apptForm.zSubmit();
+		SleepUtil.sleepMedium();
+			
+		// Verify the new appointment exists on the server
+		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
+		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
+		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
+	}
+
 }
