@@ -49,10 +49,10 @@ public class MultipleDayAppointment extends AjaxCommonTest {
 		}};
 	}
 
-	@Bugs(ids = "69132, ZCS-725")
+	@Bugs(ids = "107583, 69132, ZCS-725")
 	@Test( description = "Verify the display of a multi-day all-day appointment in the month view",
 	groups = { "functional", "L2" })
-	public void GetAppointment_02() throws HarnessException {
+	public void DisplayMultipleDayAppointment_01() throws HarnessException {
 
 		// Appointment subject
 		String subject = ConfigProperties.getUniqueString();

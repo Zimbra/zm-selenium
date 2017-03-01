@@ -801,12 +801,11 @@ public class AppointmentItem implements IItem {
 
 		// Convert the calendar to a ZDate
 		ZDate start = new ZDate(date.get(Calendar.YEAR), date.get(Calendar.MONTH) + 1, date.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		String at = null;
 		
 		//Getting attendees for adding them in appointment request
-		if(attendees!=null) {
-			at = "<at role='REQ' ptst='NE' rsvp='1' a='" + attendees.get(0).EmailAddress + "'/>";
-			for(int i=1;i < attendees.size();i++) {
+		if(attendees!=null) {							//This check is required as some previously written tests sends attendees as null. 
+			String at = "";
+			for(int i=0;i < attendees.size();i++) {
 				at = at + "<at role='REQ' ptst='NE' rsvp='1' a='" + attendees.get(i).EmailAddress + "'/>";
 			}
 			account.soapSend(

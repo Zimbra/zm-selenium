@@ -2908,7 +2908,7 @@ public class PageCalendar extends AbsTab {
 	
 	public boolean zVerifyMultidayAllDayAppointmentInMonthView(Calendar cal, int duration, String subject) throws HarnessException {
 		
-		logger.info(myPageName() + " zVerifyMultidayAllDayAppointmentInMonthView(Start Date "+ cal.getTime() + " duration " + duration + " subject)");
+		logger.info(myPageName() + " zVerifyMultidayAllDayAppointmentInMonthView(Start Date "+ cal.getTime() + " duration: " + duration + " subject: " + subject + ")");
 		
 		//Get all the calendar cells in the month which contain all-day appointments
 		List<WebElement> elements = getElements("//table[@class='calendar_month_day_table']/following-sibling::table//div[@class='allday_item_filler']");
@@ -2937,7 +2937,7 @@ public class PageCalendar extends AbsTab {
 			String[] time = cal.getTime().toString().split(" ");
 			String dayOfWeek = time[0] + ",";
 			String month = time[1];
-			String dayOfMonth = time[2];
+			int dayOfMonth = Integer.parseInt(time[2]);
 			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) + 1);
 			
 			//Get appointment element on the day of month
