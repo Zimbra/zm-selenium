@@ -820,19 +820,6 @@ public class FormApptNew extends AbsForm {
 		this.zWaitForBusyOverlay();
 
 	}
-
-	public void zPickStartDateFromDatePicker(String Day) throws HarnessException {
-		this.sClick("css=td[id='zcs1_startMiniCalBtn']");
-		this.sClick("css=div[class='DwtMenu'][style*='z-index: 5'] div[class='DwtCalendar'] td[class='DwtCalendarBody'] td[id^='c:" + Day + "'][class='DwtCalendarDay']");
-		
-	}
-	
-	public void zPickEndDateFromDatePicker(String Day) throws HarnessException {
-		this.sClick("css=td[id='zcs1_endMiniCalBtn']");
-		this.sClick("css=div[class='DwtMenu'][style*='z-index: 5'] div[class='DwtCalendar'] td[class='DwtCalendarBody'] td[id^='c:" + Day + "'][class='DwtCalendarDay']");
-		
-	}
-
 	
 	public void zFillField(Field field, String value) throws HarnessException {
 

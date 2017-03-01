@@ -99,8 +99,8 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		Calendar now = this.calendarWeekDayUTC;
 		String apptSubject = ConfigProperties.getUniqueString();
 		
-		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
-		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) +1, 13, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH)+1 , 15, 0, 0));
 		appt.setSubject(apptSubject);
 		String startday = String.valueOf(now.get(Calendar.DAY_OF_MONTH) + 3);
 		
@@ -108,16 +108,18 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		QuickAddAppointment quickAddAppt = new QuickAddAppointment(app) ;
 		quickAddAppt.zNewAppointment();
 		quickAddAppt.zFillField(Field.Subject, apptSubject);
-		quickAddAppt.zPickStartDateFromDatePicker(startday);
+		quickAddAppt.zSelectStartDateFromDatePicker(startday);
 		quickAddAppt.zFillField(Field.StartTime, "13:00");
 		quickAddAppt.zFillField(Field.EndTime, "15:00");
 		quickAddAppt.zSubmit();
-		SleepUtil.sleepMedium();
 		
 		// Verify the new appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
+		ZAssert.assertEquals(actual.getGStartDate(), appt.getGStartDate(), "Start date: Verify the appointment data");
+		ZAssert.assertEquals(actual.getGEndDate(), appt.getGEndDate(), "End date: Verify the appointment data");
+		
 	}
 
 }
