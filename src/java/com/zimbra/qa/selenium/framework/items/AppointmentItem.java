@@ -801,24 +801,48 @@ public class AppointmentItem implements IItem {
 
 		// Convert the calendar to a ZDate
 		ZDate start = new ZDate(date.get(Calendar.YEAR), date.get(Calendar.MONTH) + 1, date.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-
-		account.soapSend(
-				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
-			+		"<m l='10'>"
-			+			"<inv>"
-			+				"<comp allDay='1' name='"+ subject +"' "+ loc + " draft='0' status='CONF' class='PUB' transp='O' fb='F'>"
-			+					"<s d='" + start.toYYYYMMDD() +"'/>"
-			+					"<e d='" + start.addDays(duration > 0 ? duration - 1 : 0).toYYYYMMDD() +"'/>"
-			+					"<or a='" + account.EmailAddress +"'/>"
-			+				"</comp>"
-			+			"</inv>"
-			+			"<su>"+ subject + "</su>"
-			+			"<mp ct='text/plain'>"
-			+				"<content>" + content + "</content>"
-			+			"</mp>"
-			+		"</m>"
-			+	"</CreateAppointmentRequest>");
-
+		
+		//Getting attendees for adding them in appointment request
+		if(attendees!=null) {							//This check is required as some previously written tests sends attendees as null. 
+			String at = "";
+			for(int i=0;i < attendees.size();i++) {
+				at = at + "<at role='REQ' ptst='NE' rsvp='1' a='" + attendees.get(i).EmailAddress + "'/>";
+			}
+			account.soapSend(
+					"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
+							+		"<m l='10'>"
+							+			"<inv>"
+							+				"<comp allDay='1' name='"+ subject +"' "+ loc + " draft='0' status='CONF' class='PUB' transp='O' fb='F'>"
+							+					"<s d='" + start.toYYYYMMDD() +"'/>"
+							+					"<e d='" + start.addDays(duration > 0 ? duration - 1 : 0).toYYYYMMDD() +"'/>"
+							+					"<or a='" + account.EmailAddress +"'/>"
+							+					at
+							+ 				"</comp>"
+							+			"</inv>"
+							+			"<su>"+ subject + "</su>"
+							+			"<mp ct='text/plain'>"
+							+				"<content>" + content + "</content>"
+							+			"</mp>"
+							+		"</m>"
+							+	"</CreateAppointmentRequest>");
+		} else {
+			account.soapSend(
+					"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
+							+		"<m l='10'>"
+							+			"<inv>"
+							+				"<comp allDay='1' name='"+ subject +"' "+ loc + " draft='0' status='CONF' class='PUB' transp='O' fb='F'>"
+							+					"<s d='" + start.toYYYYMMDD() +"'/>"
+							+					"<e d='" + start.addDays(duration > 0 ? duration - 1 : 0).toYYYYMMDD() +"'/>"
+							+					"<or a='" + account.EmailAddress +"'/>"
+							+ 				"</comp>"
+							+			"</inv>"
+							+			"<su>"+ subject + "</su>"
+							+			"<mp ct='text/plain'>"
+							+				"<content>" + content + "</content>"
+							+			"</mp>"
+							+		"</m>"
+							+	"</CreateAppointmentRequest>");
+		}
 		AppointmentItem result = AppointmentItem.importFromSOAP(account, "subject:("+ subject +")", start.addDays(-7), start.addDays(7));
 
 		return (result);

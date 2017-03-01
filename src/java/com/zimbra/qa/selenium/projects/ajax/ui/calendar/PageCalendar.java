@@ -17,13 +17,31 @@
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
 
 import java.awt.event.KeyEvent;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebElement;
+
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
-import com.zimbra.qa.selenium.framework.ui.*;
-import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.framework.ui.AbsApplication;
+import com.zimbra.qa.selenium.framework.ui.AbsPage;
+import com.zimbra.qa.selenium.framework.ui.AbsTab;
+import com.zimbra.qa.selenium.framework.ui.Action;
+import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.ui.Shortcut;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogAssistant;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogInformational;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogMove;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
+import com.zimbra.qa.selenium.projects.ajax.ui.SeparateWindow;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogOpenRecurringItem.Confirmation;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
@@ -144,12 +162,12 @@ public class PageCalendar extends AbsTab {
 		public static final String CalendarViewDayDivID			= "zv__CLD";
 		public static final String CalendarViewWeekDivID		= "zv__CLW";
 		public static final String CalendarViewWorkWeekDivID	= "zv__CLWW";
-		public static final String CalendarViewMonthDivID		= "zv__CLM";
 		public static final String CalendarViewScheduleDivID	= "zv__CLS";
 		public static final String CalendarViewFreeBusyDivID	= "zv__CLFB";
 
 		public static final String CalendarViewListCSS			= "css=div[id^='" + CalendarViewListDivID + "']";
 		public static final String CalendarViewSearchListCSS	= "css=div[id^='" + CalendarViewListDivID + "__DWT']";
+		public static final String CalendarViewMonthDivID		= "zv__CLM";
 		public static final String CalendarViewDayCSS			= "css=div#"+ CalendarViewDayDivID;
 		public static final String CalendarViewWeekCSS			= "css=div#"+ CalendarViewWeekDivID;
 		public static final String CalendarViewWorkWeekCSS		= "css=div#"+ CalendarViewWorkWeekDivID;
@@ -2672,7 +2690,7 @@ public class PageCalendar extends AbsTab {
 
 		// Make sure the div exists
 		if ( !this.sIsElementPresent(divLocator) ) {
-			throw new HarnessException("Day View is not present: " + divLocator);
+			throw new HarnessException("Month View is not present: " + divLocator);
 		}
 
 		// Process the non-all-day items first
@@ -2887,6 +2905,75 @@ public class PageCalendar extends AbsTab {
 		}
 
 	}
-
-
+	
+	public boolean zVerifyMultidayAllDayAppointmentInMonthView(Calendar cal, int duration, String subject) throws HarnessException {
+		
+		logger.info(myPageName() + " zVerifyMultidayAllDayAppointmentInMonthView(Start Date "+ cal.getTime() + " duration: " + duration + " subject: " + subject + ")");
+		
+		//Get all the calendar cells in the month which contain all-day appointments
+		List<WebElement> elements = getElements("//table[@class='calendar_month_day_table']/following-sibling::table//div[@class='allday_item_filler']");
+		
+		//Verify the total number of cells containing the all-day appointment
+		if(elements.size() != duration) {
+			logger.error("number of dates which contains all-day appointment: " + elements.size() + " but duration was for " + duration + " days!");
+			return false;
+		}
+		
+		//Get the total number of all-day appointment displayed in the view
+		elements = getElements("div[class^=appt][aria-label$='" + subject +"']");
+		
+		//Verify the total number appointments displayed in the view
+		if(elements.size() != duration) {
+			logger.error("number of all-day appointment displayed are: " + elements.size() + " but duration was for " + duration + " days!");
+			return false;
+		}
+		
+		//Verify the position of displayed appointment with respect to the position of date cell
+		int cell_x, appt_x, cell_y, appt_y;
+		
+		//Check the display of appointment on each date
+		for ( int day = 1; day <= duration; day++ ) {
+			
+			String[] time = cal.getTime().toString().split(" ");
+			String dayOfWeek = time[0] + ",";
+			String month = time[1];
+			int dayOfMonth = Integer.parseInt(time[2]);
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) + 1);
+			
+			//Get appointment element on the day of month
+			elements = getElements("//table[@class='calendar_month_day_table'][.='" + dayOfMonth + "']/following-sibling::table//div[@class='allday_item_filler']");
+			if(elements.size() > 1) {
+				logger.error("Appointments are not created properly!");
+				return false;
+			} else {
+				
+				Point p1 = elements.get(0).getLocation();
+				cell_x = p1.x;
+				cell_y = p1.y;
+			}
+			
+			//Get appointments displayed on the date
+			elements = getElements("div[class^=appt][aria-label*='" + dayOfWeek + "'][aria-label*='" + month + "'][aria-label*='" + dayOfMonth + "'][aria-label*='" + subject + "']");
+			if(elements.size() > 1) {
+				logger.error("Appointments are not created properly!");
+				return false;
+			} else {
+				
+				Point p2 = elements.get(0).getLocation();
+				appt_x = p2.x;
+				appt_y = p2.y;
+			}	
+			//X - co-ordinate matching
+			if(!(cell_x-5 <= appt_x && appt_x <= cell_x+5)) {
+				logger.error("Appointments are not displayed correctly in the month view!");
+				return false;
+			}
+			//Y - co-ordinate matching
+			if(!(cell_y-5 <= appt_y && appt_y <= cell_y+5)) {
+				logger.error("Appointments are not displayed correctly in the month view!");
+				return false;
+			}
+		}
+		return true;
+	}
 }
