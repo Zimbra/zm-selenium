@@ -179,7 +179,7 @@ public class SendEncryptedMail extends AjaxCommonTest {
 	}
 	
 	@Test ( description = "Verify that Signed and encrypted message can be sent from Web-client correctly and user can view it in new window", priority=4, 
-			groups = { "functional", "L3", "network"})
+			groups = { "functional", "L2", "network"})
 	
 	public void SendEncryptedMail_02() throws HarnessException  {
 		ZimbraAccount user3 = new ZimbraAccount("user3"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
