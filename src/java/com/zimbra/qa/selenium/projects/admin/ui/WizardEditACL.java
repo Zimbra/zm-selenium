@@ -54,15 +54,11 @@ public class WizardEditACL extends AbsWizard {
 		AclItem acl = (AclItem)item;
 		String granteeAccount = acl.getGranteeAccountEmail();
 		String rightName= acl.getRightName();
-		sClick(Locators.ACL_GRANTEE_NAME);
-		sType(Locators.ACL_GRANTEE_NAME, "");
+		sType(Locators.ACL_GRANTEE_NAME,"");
+		sFocus(Locators.ACL_RIGHT_NAME);
+		sFocus(Locators.ACL_GRANTEE_NAME);
+		SleepUtil.sleepVerySmall();
 		sType(Locators.ACL_GRANTEE_NAME, granteeAccount);
-		SleepUtil.sleepMedium();
-
-		sClick(Locators.Pull_DOWN);	
-
-		SleepUtil.sleepMedium();
-
 		sType(Locators.ACL_RIGHT_NAME, rightName);
 
 		sClickAt(Locators.EDIT_AND_FINISH_BUTTON, "");
