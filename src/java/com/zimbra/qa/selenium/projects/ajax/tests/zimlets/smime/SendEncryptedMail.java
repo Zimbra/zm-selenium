@@ -46,7 +46,7 @@ public class SendEncryptedMail extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that Signed and encrypted message can be sent from Web-client correctly and user can view it", priority=4, 
-			groups = { "smime", "L4"})
+			groups = {"sanity", "L0", "network"})
 	
 	public void SendEncryptedMail_01() throws HarnessException  {
 		ZimbraAccount user3 = new ZimbraAccount("user3"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
@@ -179,7 +179,7 @@ public class SendEncryptedMail extends AjaxCommonTest {
 	}
 	
 	@Test ( description = "Verify that Signed and encrypted message can be sent from Web-client correctly and user can view it in new window", priority=4, 
-			groups = { "smime","L4"})
+			groups = { "functional", "L2", "network"})
 	
 	public void SendEncryptedMail_02() throws HarnessException  {
 		ZimbraAccount user3 = new ZimbraAccount("user3"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
@@ -339,7 +339,7 @@ public class SendEncryptedMail extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that proper error is displayed when trying to sendSigned and encrypted message without public key of the receiver", priority=4, 
-			groups = { "smime", "L4"})
+			groups = { "functional", "L2", "network"})
 	
 	public void SendEncryptedMail_03() throws HarnessException  {
 
@@ -399,7 +399,7 @@ public class SendEncryptedMail extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that proper error is displayed when trying to sendSigned and encrypted message without private key of the sender", priority=4, 
-			groups = { "smime", "L4"})
+			groups = {"functional", "L2", "network"})
 	
 	public void SendEncryptedMail_04() throws HarnessException  {
 		
@@ -440,7 +440,7 @@ public class SendEncryptedMail extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that Signed and encrypted messged cannot be viewed if user has not uploaded the private key", priority=4, 
-			groups = { "smime", "L4"})
+			groups = {"functional", "L2", "network"})
 	
 	public void SendEncryptedMail_05() throws HarnessException  {
 		ZimbraAccount user3 = new ZimbraAccount("user3"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
@@ -524,7 +524,7 @@ public class SendEncryptedMail extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that proper error is displayed when trying to send Signed and encrypted message in new window without public key of the receiver", priority=4, 
-			groups = { "smime", "L4"})
+			groups = {"functional", "L2", "network"})
 	
 	public void SendEncryptedMail_06() throws HarnessException  {
 

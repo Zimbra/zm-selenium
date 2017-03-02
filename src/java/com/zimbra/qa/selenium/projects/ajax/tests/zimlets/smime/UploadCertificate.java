@@ -33,7 +33,7 @@ public class UploadCertificate extends AjaxCommonTest {
 	}
 
 	@Test ( description = "Verify that certificate which requires password can be uploaded successfully", priority=2, 
-			groups = { "smime", "L4"})
+			groups = { "sanity", "L0", "network"})
 	
 	public void UploadCertificateWithPassword_01() throws HarnessException  {
 		
@@ -95,7 +95,7 @@ public class UploadCertificate extends AjaxCommonTest {
 	}
 	
 	@Test ( description = "Verify that certificate which does not require password can be uploaded successfully", priority=2, 
-			groups = { "smime", "L4"})	
+			groups = { "smoke", "L1", "network"})	
 	
 	public void UploadCertificateWithoutPassword_02() throws HarnessException  {
 		
