@@ -201,7 +201,7 @@ public class ContactCertificate extends AjaxCommonTest {
 
 		//Data required for matching certificate details
 		String issuedToOrganization = "Internet Widgits Pty Ltd";
-		String issuedByOrganization = "admin@zqa-061.eng.zimbra.com";
+		String issuedByOrganization = "ZImbra";
 		
 		//View certificate of the contact
 		app.zPageContacts.zToolbarPressButton(Button.B_VIEW_CERTIFICATE);
