@@ -90,7 +90,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 	}
 
 	@Test( description = "Create appointment using quick add dialog and add date from date picker",
-			groups = { "sanity1", "L0" } )
+			groups = { "sanity", "L0" } )
 	
 	public void CreateAppointment_03() throws HarnessException {
 		
