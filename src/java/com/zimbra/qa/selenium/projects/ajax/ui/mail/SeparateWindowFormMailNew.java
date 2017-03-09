@@ -368,6 +368,26 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			} else {
 				throw new HarnessException("unsupported priority option " + option);
 			}
+			
+		} else if (pulldown == Button.B_SECURE_EMAIL) {
+
+			pulldownLocator = "css=td[id$='_com_zimbra_securemail_checkbox_title']";
+
+			if (option == Button.O_DONT_SIGN) {
+				optionLocator = "css=div[id$='_com_zimbra_securemail_menu'] table tbody tr:nth-child(1)";
+				page = this;
+
+			} else if (option == Button.O_SIGN) {
+				optionLocator = "css=div[id$='_com_zimbra_securemail_menu'] table tbody tr:nth-child(2)";
+				page = this;
+
+			} else if (option == Button.O_SIGN_AND_ENCRYPT) {
+				optionLocator = "css=div[id$='_com_zimbra_securemail_menu'] table tbody tr:nth-child(3)";
+				page = this;
+
+			} else {
+				throw new HarnessException("unsupported priority option " + option);
+			}
 
 		} else {
 			throw new HarnessException("no logic defined for pulldown " + pulldown);
