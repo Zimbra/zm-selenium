@@ -132,10 +132,11 @@ public class SendEncryptedMail extends AjaxCommonTest {
 
 		//Choose sign only from the secure email drop-down
 		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN_AND_ENCRYPT);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 		
 		// Send the message
 		mailform.zSubmit();
+		SleepUtil.sleepMedium();
 		
 		//Search for the signed mail in recipients inbox
 		MailItem received = MailItem.importFromSOAP(user5, "subject:("+ mail.dSubject +")");
@@ -265,10 +266,11 @@ public class SendEncryptedMail extends AjaxCommonTest {
 
 		//Choose sign only from the secure email drop-down
 		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN_AND_ENCRYPT);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 		
 		// Send the message
 		mailform.zSubmit();
+		SleepUtil.sleepMedium();
 		
 		//Search for the signed mail in recipients inbox
 		MailItem received = MailItem.importFromSOAP(user5, "subject:("+ mail.dSubject +")");
@@ -385,10 +387,11 @@ public class SendEncryptedMail extends AjaxCommonTest {
 
 		//Choose sign only from the secure email drop-down
 		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN_AND_ENCRYPT);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 		
 		// Send the message
 		mailform.zSubmit();
+		SleepUtil.sleepMedium();
 		
 		// Verification
 		DialogError error = new DialogError(DialogErrorID.Zimbra, app, app.zPageContacts);
@@ -427,10 +430,11 @@ public class SendEncryptedMail extends AjaxCommonTest {
 
 		//Choose sign only from the secure email drop-down
 		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN_AND_ENCRYPT);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 		
 		// Send the message
 		mailform.zSubmit();
+		SleepUtil.sleepMedium();
 		
 		// Verification
 		DialogError error = new DialogError(DialogErrorID.Zimbra, app, app.zPageMail);
@@ -587,8 +591,13 @@ public class SendEncryptedMail extends AjaxCommonTest {
 			ZAssert.assertEquals(mail.sGetValue(Locators.zSubjectField),subject, "Verify Subject field value");
 			ZAssert.assertStringContains(mail.zGetHtmltBodyText(),body, "Verify Body field value");
 			mail.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN_AND_ENCRYPT);
+
+			SleepUtil.sleepSmall();
+			
 			// Send the message
 			mail.zSubmit();
+			SleepUtil.sleepMedium();
+
 			
 			// Verification
 			DialogError error = new DialogError(DialogErrorID.Zimbra, app, app.zPageContacts);

@@ -91,10 +91,11 @@ public class ReplyUnsignedMail extends AjaxCommonTest {
 		
 		//Choose sign only from the secure email drop-down
 		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 		
 		// Send the message
 		mailform.zSubmit();
+		SleepUtil.sleepMedium();
 		
 		//Search for the signed mail in recipients inbox
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.Account1(), "in:inbox subject:("+ subject +")");
@@ -235,10 +236,11 @@ public class ReplyUnsignedMail extends AjaxCommonTest {
 		
 		//Choose sign only from the secure email drop-down
 		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN_AND_ENCRYPT);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 		
 		// Send the message
 		mailform.zSubmit();
+		SleepUtil.sleepMedium();
 		
 		//Search for the signed mail in recipients inbox
 		MailItem received = MailItem.importFromSOAP(user5, "in:inbox subject:("+ subject +")");

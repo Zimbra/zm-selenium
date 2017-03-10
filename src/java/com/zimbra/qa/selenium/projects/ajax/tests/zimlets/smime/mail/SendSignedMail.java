@@ -96,10 +96,11 @@ public class SendSignedMail extends AjaxCommonTest {
 
 		//Choose sign only from the secure email drop-down
 		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 		
 		// Send the message
 		mailform.zSubmit();
+		SleepUtil.sleepMedium();
 		
 		//Search for the signed mail in recipients inbox
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.Account1(), "subject:("+ mail.dSubject +")");
@@ -201,10 +202,11 @@ public class SendSignedMail extends AjaxCommonTest {
 
 		//Choose sign only from the secure email drop-down
 		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 		
 		// Send the message
 		mailform.zSubmit();
+		SleepUtil.sleepMedium();
 		
 		//Search for the signed mail in recipients inbox
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.Account1(), "subject:("+ mail.dSubject +")");
@@ -314,10 +316,11 @@ public class SendSignedMail extends AjaxCommonTest {
 
 		//Choose sign only from the secure email drop-down
 		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 		
 		// Send the message
 		mailform.zSubmit();
+		SleepUtil.sleepMedium();
 		
 		// Verification
 		DialogError error = new DialogError(DialogErrorID.Zimbra, app, app.zPageMail);
@@ -408,10 +411,12 @@ public class SendSignedMail extends AjaxCommonTest {
 		//Choose sign only from the secure email drop-down
 		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN);
 		mailform.zFillField(com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field.From, AliasEmailAddress);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 		
 		// Send the message
 		mailform.zSubmit();
+		SleepUtil.sleepMedium();
+
 		
 		//Search for the signed mail in recipients inbox
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.Account1(), "subject:("+ mail.dSubject +")");

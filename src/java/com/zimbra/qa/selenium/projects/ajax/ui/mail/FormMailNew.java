@@ -181,7 +181,6 @@ public class FormMailNew extends AbsForm {
 
 	@Override
 	public void zSubmit() throws HarnessException {
-		SleepUtil.sleepMedium();
 		zToolbarPressButton(Button.B_SEND);
 	}
 
