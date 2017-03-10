@@ -398,19 +398,19 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			pulldownLocator = "css=td[id$='_com_zimbra_securemail_checkbox_title']";
 
 			if (option == Button.O_DONT_SIGN) {
-				optionLocator = "css=div[id$='_com_zimbra_securemail_menu'] table tbody tr:nth-child(1)";
+				optionLocator = "css=div[id$='_com_zimbra_securemail_menu'] table tbody tr:contains('Don't Sign')";
 				page = this;
 
 			} else if (option == Button.O_SIGN) {
-				optionLocator = "css=div[id$='_com_zimbra_securemail_menu'] table tbody tr:nth-child(2)";
+				optionLocator = "//*[contains(@id,'_com_zimbra_securemail_menu')]/descendant::td[text()='Sign']";
 				page = this;
 
 			} else if (option == Button.O_SIGN_AND_ENCRYPT) {
-				optionLocator = "css=div[id$='_com_zimbra_securemail_menu'] table tbody tr:contains('Sign and Encrypt')";
+				optionLocator = "//*[contains(@id,'_com_zimbra_securemail_menu')]/descendant::td[text()='Sign and Encrypt']";
 				page = this;
 
 			} else {
-				throw new HarnessException("unsupported priority option " + option);
+				throw new HarnessException("unsupported signing option " + option);
 			}
 
 		} else if (pulldown == Button.B_OPTIONS) {
