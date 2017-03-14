@@ -9,12 +9,14 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayConversation;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayConversationMessage;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 
 public class QuickReplySignedEncryptedMail extends AjaxCommonTest {
@@ -119,10 +121,10 @@ public class QuickReplySignedEncryptedMail extends AjaxCommonTest {
 		
 	}
 	
-	@Test ( description = "Verify sending quick reply to a signed email", priority=4, 
+	@Test ( description = "Verify sending quick reply(Forward) to an encrypted email", priority=4, 
 			groups = {"smoke", "L1", "network"})
 	
-	public void QuickReplySignedAndEncryptedMail_02() throws HarnessException  {
+	public void QuickForwardSignedAndEncryptedMail_02() throws HarnessException  {
 		ZimbraAccount user5 = new ZimbraAccount("user5"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
 		user5.provision();
 		user5.authenticate();
@@ -169,30 +171,13 @@ public class QuickReplySignedEncryptedMail extends AjaxCommonTest {
 				"<upload id='" + attachmentId + "'></upload>" +
                 "<password>zimbra</password>" +
                 "</SaveSmimeCertificateRequest>");
-	
+			
 		// Create file item
 		String certPath = ConfigProperties.getBaseDirectory()
-				+ "/data/private/certs/user6.cer";
-
-		// Upload file to server through RestUtil
-		String certId = user5.uploadFile(certPath);
-		
-		user5.soapSend(
-				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
-				"<cn>"+
-				"<a n='firstName'>user6</a>" +
-				"<a n='lastName'>user</a>" +
-				"<a n='email'>" + user6.EmailAddress + "</a>" +
-				"<a n='userCertificate' aid='" + certId + "'></a>" +
-				"</cn>" +
-				"</CreateContactRequest>");
-		
-		// Create file item
-		String certPath1 = ConfigProperties.getBaseDirectory()
 				+ "/data/private/certs/user5.cer";
 
 		// Upload file to server through RestUtil
-		String certId1 = user6.uploadFile(certPath1);
+		String certId = user6.uploadFile(certPath);
 		
 		user6.soapSend(
 				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
@@ -200,7 +185,7 @@ public class QuickReplySignedEncryptedMail extends AjaxCommonTest {
 				"<a n='firstName'>user5</a>" +
 				"<a n='lastName'>user</a>" +
 				"<a n='email'>" + user5.EmailAddress + "</a>" +
-				"<a n='userCertificate' aid='" + certId1 + "'></a>" +
+				"<a n='userCertificate' aid='" + certId + "'></a>" +
 				"</cn>" +
 				"</CreateContactRequest>");
 		
@@ -208,7 +193,7 @@ public class QuickReplySignedEncryptedMail extends AjaxCommonTest {
 		app.zPageLogin.zLogin(user5);
 		
 		String subject = "subject"+ ConfigProperties.getUniqueString();
-		String reply = "quickreply" + ConfigProperties.getUniqueString();
+		String forward = "quickforward" + ConfigProperties.getUniqueString();
 		user6.soapSend(
 				"<SendSecureMsgRequest sign='true' encrypt='true' xmlns='urn:zimbraMail'>" +
 					"<m>" +
@@ -230,28 +215,29 @@ public class QuickReplySignedEncryptedMail extends AjaxCommonTest {
 		List<DisplayConversationMessage> messages = display.zListGetMessages();
 				
 		// Quick Reply
-		messages.get(0).zPressButton(Button.B_QUICK_REPLY_REPLY);
-		messages.get(0).zFillField(Field.Body, reply);
-		messages.get(0).zPressButton(Button.B_QUICK_REPLY_SEND);
-	
+		FormMailNew form = (FormMailNew)messages.get(0).zPressButton(Button.B_QUICK_REPLY_FORWARD);
+		form.zFillField(FormMailNew.Field.To, ZimbraAccount.Account1().EmailAddress);
+		form.zFillField(FormMailNew.Field.Body, forward);
+		form.zToolbarPressButton(Button.B_SEND);
+		SleepUtil.sleepMedium();
+		
 		// Verify message in Sent
 		MailItem sent = MailItem.importFromSOAP(user5, "subject:("+ subject +") from:("+ user5.EmailAddress +")");
 		ZAssert.assertNotNull(sent, "Verify the message is in the sent folder");
 
 		// Verify message is Received by sender
-		MailItem received = MailItem.importFromSOAP(user6, "subject:("+ subject +") from:("+ user5.EmailAddress +")");
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.Account1(), "subject:("+ subject +") from:("+ user5.EmailAddress +")");
 		ZAssert.assertNotNull(received, "Verify the message is received by the original sender");
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, user5.EmailAddress, "Verify the from field is correct");
-		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, user6.EmailAddress, "Verify the to field is correct");
-		ZAssert.assertStringContains(received.dBodyText, reply, "Verify the body field is correct");
-		ZAssert.assertEquals(received.dIsSigned, "false", "Verify that message is signed correctly");
-		ZAssert.assertEquals(received.dIsEncrypted, "false", "Verify that message is encrypted correctly");
+		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress,  ZimbraAccount.Account1().EmailAddress, "Verify the to field is correct");
+		ZAssert.assertStringContains(received.dBodyText, forward, "Verify the body field is correct");
+		ZAssert.assertNull(received.dIsSigned,"Verify that message is signed correctly");
+		ZAssert.assertNull(received.dIsEncrypted, "Verify that message is encrypted correctly");
 		
 	}
-
 	
 	@AfterMethod(groups={"always"})
-public void afterMethod() throws HarnessException {
+    public void afterMethod() throws HarnessException {
 	
 	ZimbraAdminAccount.GlobalAdmin().soapSend(
 			"<GetAccountRequest xmlns='urn:zimbraAdmin'> "+
