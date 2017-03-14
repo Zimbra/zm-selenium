@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.smime;
+package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.smime.mail;
 
 import java.util.List;
 
@@ -33,6 +33,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.DialogErrorID;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowFormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.zimlet.DialogViewCertificate;
 
@@ -95,10 +96,11 @@ public class SendSignedMail extends AjaxCommonTest {
 
 		//Choose sign only from the secure email drop-down
 		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 		
 		// Send the message
 		mailform.zSubmit();
+		SleepUtil.sleepMedium();
 		
 		//Search for the signed mail in recipients inbox
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.Account1(), "subject:("+ mail.dSubject +")");
@@ -200,10 +202,11 @@ public class SendSignedMail extends AjaxCommonTest {
 
 		//Choose sign only from the secure email drop-down
 		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 		
 		// Send the message
 		mailform.zSubmit();
+		SleepUtil.sleepMedium();
 		
 		//Search for the signed mail in recipients inbox
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.Account1(), "subject:("+ mail.dSubject +")");
@@ -313,10 +316,11 @@ public class SendSignedMail extends AjaxCommonTest {
 
 		//Choose sign only from the secure email drop-down
 		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 		
 		// Send the message
 		mailform.zSubmit();
+		SleepUtil.sleepMedium();
 		
 		// Verification
 		DialogError error = new DialogError(DialogErrorID.Zimbra, app, app.zPageMail);
@@ -407,10 +411,12 @@ public class SendSignedMail extends AjaxCommonTest {
 		//Choose sign only from the secure email drop-down
 		mailform.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN);
 		mailform.zFillField(com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field.From, AliasEmailAddress);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 		
 		// Send the message
 		mailform.zSubmit();
+		SleepUtil.sleepMedium();
+
 		
 		//Search for the signed mail in recipients inbox
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.Account1(), "subject:("+ mail.dSubject +")");
@@ -442,7 +448,88 @@ public class SendSignedMail extends AjaxCommonTest {
 		ZAssert.assertTrue(display.zCertificateValidationFailed(), "Certificate is invalid because the email address does not match, String present");
 
 	}
+
+	@Test ( description = "Verify that Signed message composed from a new window can be sent from Web-client correctly", priority=4, 
+			groups = { "functional", "L2", "network"})
+	
+	public void SendSignedMail_05() throws HarnessException  {
+		ZimbraAccount user3 = new ZimbraAccount("user3"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
+		user3.provision();
+		user3.authenticate();
+
+		// Modify the test account and change zimbraFeatureSMIMEEnabled to TRUE
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
+			+		"<id>"+ user3.ZimbraId +"</id>"
+			+		"<a n='zimbraFeatureSMIMEEnabled'>TRUE</a>"
+			+	"</ModifyAccountRequest>");
+
+		user3.soapSend(
+				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
+			+		"<pref name='zimbraPrefComposeInNewWindow'>TRUE</pref>"
+			+	"</ModifyPrefsRequest>");
 		
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
+			+		"<id>"+ ZimbraAccount.Account1().ZimbraId +"</id>"
+			+		"<a n='zimbraFeatureSMIMEEnabled'>TRUE</a>"
+			+	"</ModifyAccountRequest>");
+		
+		// Create file item
+		String filePath = ConfigProperties.getBaseDirectory()
+				+ "/data/private/certs/user3_digitalid.p12";
+
+		// Upload file to server through RestUtil
+		String attachmentId = user3.uploadFile(filePath);
+
+		user3.soapSend(
+				"<SaveSmimeCertificateRequest xmlns='urn:zimbraAccount'>" +
+				"<upload id='" + attachmentId + "'></upload>" +
+                "<password>test123</password>" +
+                "</SaveSmimeCertificateRequest>");
+		
+        app.zPageMain.zLogout();
+		app.zPageLogin.zLogin(user3);
+		
+		// Create the message data to be sent
+		MailItem mail = new MailItem();
+		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.Account1()));
+		mail.dSubject = "SignedMessage" + ConfigProperties.getUniqueString();
+		mail.dBodyHtml = "SignedMessageBody" + ConfigProperties.getUniqueString();
+
+		// Open the new mail form
+		SeparateWindowFormMailNew window = null;
+		String windowTitle = "Zimbra: Compose";
+
+		try {
+
+			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
+
+			window.zSetWindowTitle(windowTitle);
+			window.zWaitForActive();
+			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+
+			// Fill out the form with the data
+			window.zFill(mail);
+			window.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN);
+
+			// Send the message
+			window.zToolbarPressButton(Button.B_SEND);
+
+		} finally {
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
+		}
+		
+		//Search for the signed mail in recipients inbox
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.Account1(), "subject:("+ mail.dSubject +")");
+		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, user3.EmailAddress, "Verify the from field is correct");
+		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.Account1().EmailAddress, "Verify the to field is correct");
+		ZAssert.assertEquals(received.dSubject, mail.dSubject, "Verify the subject field is correct");
+		ZAssert.assertStringContains(received.dBodyText, mail.dBodyHtml, "Verify the body field is correct");
+		ZAssert.assertEquals(received.dIsSigned, "true", "Verify that message is signed correctly");
+
+	}
+
 	@AfterMethod(groups={"always"})
 	public void afterMethod() throws HarnessException {
 	
