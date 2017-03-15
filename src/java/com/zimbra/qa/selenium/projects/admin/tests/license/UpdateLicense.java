@@ -100,7 +100,7 @@ public class UpdateLicense extends AdminCommonTest {
 
 		// Verify "valid until" date
 		String validUntil = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetLicenseResponse/admin:license/admin:attr[@name='ValidUntil']", null);
-		ZAssert.assertEquals(validUntil, "20170501090000Z", "Verify valid until");
+		ZAssert.assertEquals(validUntil, "20170515090000Z", "Verify valid until");
 
 		// Activate license
 		staf.execute("zmlicense -a");

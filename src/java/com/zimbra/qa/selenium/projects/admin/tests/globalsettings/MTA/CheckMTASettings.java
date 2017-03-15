@@ -62,7 +62,7 @@ public class CheckMTASettings extends AdminCommonTest {
 	 * 5. Check that the changes are also present in ADMIn UI
 	 * @throws HarnessException
 	 */
-	@Bugs( ids = "104512")
+	@Bugs( ids = "104512,106769")
 	@Test(	description = "Verify MTA restriction values after changing some MTA configuration through Command line and Admin console",
 			groups = { "functional", "L2" })
 	
