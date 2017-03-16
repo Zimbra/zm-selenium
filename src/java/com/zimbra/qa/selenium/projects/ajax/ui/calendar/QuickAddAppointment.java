@@ -256,14 +256,14 @@ public class QuickAddAppointment extends AbsTab {
 	}
 
 	public void zSelectStartDateFromDatePicker(String Day) throws HarnessException {
-		this.sClick("css=td[id$='startMiniCal']");
-		this.sClick("css=div[class='DwtMenu'][style*='z-index: 7'] div[class='DwtCalendar'] td[class='DwtCalendarBody'] td[id^='c:" + Day + "'][class='DwtCalendarDay']");
+		this.sClick("css=td[id$='startMiniCal'] div");
+		this.sClick("//div[@class='DwtMenu' and contains(@style,'display: block;')]/descendant::td[text()='" + Day + "' and not(contains(@class,'DwtCalendarDay-grey'))]");
 		
 	}
 	
 	public void zSelectEndDateFromDatePicker(String Day) throws HarnessException {
-		this.sClick("css=td[id$='endMiniCal']");
-		this.sClick("css=div[class='DwtMenu'][style*='z-index: 7'] div[class='DwtCalendar'] td[class='DwtCalendarBody'] td[id^='c:" + Day + "'][class='DwtCalendarDay-hover DwtCalendarDay-selected']");
+		this.sClick("css=td[id$='endMiniCal'] div");
+		this.sClick("//div[@class='DwtMenu' and contains(@style,'display: block;')]/descendant::td[text()='" + Day +"' and not(contains(@class,'DwtCalendarDay-grey'))]");
 		
 	}
 
