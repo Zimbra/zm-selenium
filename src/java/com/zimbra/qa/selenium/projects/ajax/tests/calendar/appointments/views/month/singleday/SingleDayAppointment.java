@@ -26,32 +26,32 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-public class GetAppointment extends AjaxCommonTest {
-	
+public class SingleDayAppointment extends AjaxCommonTest {
+
 	@SuppressWarnings("serial")
-	public GetAppointment() {
-		logger.info("New "+ GetAppointment.class.getCanonicalName());
-		
+	public SingleDayAppointment() {
+		logger.info("New "+ SingleDayAppointment.class.getCanonicalName());
+
 		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
 
 		// Make sure we are using an account with month view
 		super.startingAccountPreferences = new HashMap<String, String>() {{
-		    put("zimbraPrefCalendarInitialView", "month");
+			put("zimbraPrefCalendarInitialView", "month");
 		}};
 
 	}
-	
+
 	@Bugs(ids = "69132")
-	@Test( description = "View a basic appointment in the month view",
-			groups = { "functional", "L2" })
-	public void GetAppointment_01() throws HarnessException {
-		
+	@Test( description = "Verify the display of a basic appointment in the month view",
+	groups = { "functional", "L2" })
+	public void DisplaySingleDayAppointment_01() throws HarnessException {
+
 		// Create the appointment on the server
-		// Create the message data to be sent
-		String subject = ConfigProperties.getUniqueString();
-		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
-		
+		String subject = "Appointment"+ ConfigProperties.getUniqueString();
+		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + 1, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
+
+		//Create an appointment of duration 120 mins on current date
 		AppointmentItem.createAppointmentSingleDay(
 				app.zGetActiveAccount(),
 				startDate,
@@ -62,25 +62,14 @@ public class GetAppointment extends AjaxCommonTest {
 				"location" + ConfigProperties.getUniqueString(),
 				null);
 
-		
+
 		// Refresh the calendar
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
-		// Get the list of appointments in the current view
-		List<AppointmentItem> items = app.zPageCalendar.zListGetAppointments();
-		ZAssert.assertNotNull(items, "Get the list of appointments");
-		
-		// Verify the appointment is in the view
-		AppointmentItem found = null;
-		for(AppointmentItem item : items) {
-			if ( item.getSubject().contains(subject) ) {
-				found = item;
-				break;
-			}
-		}
-		
-		ZAssert.assertNotNull(found, "Verify the new appointment appears in the view");
-	    
+		//Verify that multi-day appointments are displayed correctly in month view 
+		boolean b =app.zPageCalendar.zVerifyAppointmentInMonthView(startDate,subject);
+		ZAssert.assertTrue(b, "The appointment is not created and displayed correctlly in month view");
+
 	}
 
 
