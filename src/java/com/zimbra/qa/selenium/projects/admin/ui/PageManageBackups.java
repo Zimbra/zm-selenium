@@ -229,7 +229,11 @@ public class PageManageBackups extends AbsTab {
 					if (action == Action.A_LEFTCLICK) {
 						zClick(locator);
 						break;
-					} else if (action == Action.A_RIGHTCLICK) {
+					}else if (action == Action.A_DOUBLECLICK) {
+						sDoubleClick(locator);
+						SleepUtil.sleepSmall();
+						break;
+					}else if (action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);
 						break;
 					}

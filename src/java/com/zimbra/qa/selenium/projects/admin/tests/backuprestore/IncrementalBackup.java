@@ -74,12 +74,8 @@ public class IncrementalBackup extends AdminCommonTest {
 
 		// Fill out the wizard	
 		wizard.zCompleteWizard(backup);
-
-		// Select backup
-		app.zPageManageBackups.zListItem(Action.A_LEFTCLICK, hostname);
-
-		// Select view option from gear menu
-		app.zPageManageBackups.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.B_VIEW);
+		
+		app.zPageManageBackups.zListItem(Action.A_DOUBLECLICK, hostname);
 
 		// Verfiy backup is Running/completed
 		ZAssert.assertTrue(app.zPageManageBackups.zVerifyBackupStatus(backupStatus), "Verfiy backup is Running/completed!");
