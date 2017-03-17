@@ -52,9 +52,6 @@ public class zimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
 		
 		// Save preferences
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
-		DialogWarning dialog = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.ReloadApplication, app, app.zPagePreferences);
-		ZAssert.assertNotNull(dialog, "Dialog is present");
-		dialog.zClickButton(Button.B_YES);
 
 		app.zPageLogin.zNavigateTo();
 		this.startingPage.zNavigateTo();
@@ -68,6 +65,10 @@ public class zimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
 		
 		// Save preferences
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
+		DialogWarning dialog = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.ReloadApplication, app, app.zPagePreferences);
+		ZAssert.assertNotNull(dialog, "Dialog is present");
+		dialog.zClickButton(Button.B_YES);
+		
 		app.zPageCalendar.zNavigateTo();
 		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayOfWorkWeek(1), "Tue", "First day matched");
 		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayOfWorkWeek(2), "Wed", "Second day matched");
