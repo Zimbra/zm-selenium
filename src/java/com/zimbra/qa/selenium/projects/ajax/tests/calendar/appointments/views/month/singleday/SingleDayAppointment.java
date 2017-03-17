@@ -50,11 +50,11 @@ public class SingleDayAppointment extends AjaxCommonTest {
 	
 	public void DisplaySingleDayAppointment_01() throws HarnessException {
 
-		// Create the appointment on the server
+		// Appointment data
 		String subject = "Appointment"+ ConfigProperties.getUniqueString();
 		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + 1, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
 
-		//Create an appointment of duration 120 mins on current date
+		//Create an appointment of duration 120 mins on next day
 		AppointmentItem.createAppointmentSingleDay(
 				app.zGetActiveAccount(),
 				startDate,
@@ -69,7 +69,7 @@ public class SingleDayAppointment extends AjaxCommonTest {
 		// Refresh the calendar
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
-		//Verify that multi-day appointments are displayed correctly in month view 
+		//Verify that the appointments is displayed correctly in month view 
 		boolean b =app.zPageCalendar.zVerifyAppointmentInMonthView(startDate,subject);
 		ZAssert.assertTrue(b, "The appointment is not created and displayed correctlly in month view");
 

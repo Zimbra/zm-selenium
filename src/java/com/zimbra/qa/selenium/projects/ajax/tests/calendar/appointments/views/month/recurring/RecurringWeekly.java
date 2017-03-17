@@ -100,6 +100,7 @@ public class RecurringWeekly extends CalendarWorkWeekTest {
 
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		
+		//Verifying that the appointments are displayed correctly in month view  
 		boolean b = app.zPageCalendar.zVerifyWeeklyAppointmentInMonthView(startUTC, noOfApptInSeries, apptSubject);
 		ZAssert.assertTrue(b, "Weekly recurring appointments are not displayed correctly in month view!");	
 		
