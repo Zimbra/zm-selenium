@@ -21,6 +21,7 @@ import java.util.HashMap;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -44,7 +45,7 @@ public class SingleDayAppointment extends AjaxCommonTest {
 		}};
 
 	}
-
+	@Bugs(ids = "69132")
 	@Test( description = "Verify the display of a basic appointment in the month view",
 			groups = { "functional", "L2" })
 	
