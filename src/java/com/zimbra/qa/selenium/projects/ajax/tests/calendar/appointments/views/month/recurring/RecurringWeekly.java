@@ -22,7 +22,6 @@ import java.util.HashMap;
 
 import org.testng.annotations.Test;
 
-import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -46,11 +45,10 @@ public class RecurringWeekly extends CalendarWorkWeekTest {
 			}};
 	}
 	
-	@Bugs(ids = "103157")
-	@Test( description = "Create Weekly recurring appointment and verify that start date and other details appear correct after opening",
+	@Test( description = "Verify the display of a weekly recurring appointment in month view.",
 			groups = { "functional", "L2" })
 			
-	public void RecurringMonthly_01() throws HarnessException, ParseException {
+	public void DisplayRecurringWeeklyAppointment_01() throws HarnessException, ParseException {
 		
 		// ------------------------ Test data ------------------------------------
 
@@ -103,7 +101,7 @@ public class RecurringWeekly extends CalendarWorkWeekTest {
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		
 		boolean b = app.zPageCalendar.zVerifyWeeklyAppointmentInMonthView(startUTC, noOfApptInSeries, apptSubject);
-		ZAssert.assertTrue(b, "Weekly recurring appointments are not displayed correctly!");	
+		ZAssert.assertTrue(b, "Weekly recurring appointments are not displayed correctly in month view!");	
 		
 	}
 

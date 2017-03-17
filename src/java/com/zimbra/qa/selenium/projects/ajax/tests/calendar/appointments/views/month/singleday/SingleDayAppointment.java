@@ -16,14 +16,17 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.month.singleday;
 
-import java.util.*;
+import java.util.Calendar;
+import java.util.HashMap;
 
 import org.testng.annotations.Test;
 
-import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
-import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 public class SingleDayAppointment extends AjaxCommonTest {
@@ -42,9 +45,9 @@ public class SingleDayAppointment extends AjaxCommonTest {
 
 	}
 
-	@Bugs(ids = "69132")
 	@Test( description = "Verify the display of a basic appointment in the month view",
-	groups = { "functional", "L2" })
+			groups = { "functional", "L2" })
+	
 	public void DisplaySingleDayAppointment_01() throws HarnessException {
 
 		// Create the appointment on the server

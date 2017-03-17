@@ -3020,8 +3020,7 @@ public class PageCalendar extends AbsTab {
 		return true;
 	}
 	
-	//Verify the display of weekly recurring appointment. The appointments should not exceed the current month 
-	//   and number of appointment in the series should not be more than 4.
+	//Verify the display of weekly recurring appointment. 
 	public boolean zVerifyWeeklyAppointmentInMonthView(ZDate date, int noOfAppts, String subject) throws HarnessException {
 
 		logger.info(myPageName() + " zVerifyWeeklyAppointmentInMonthView(Start time: "+ date.toMMDDYYYYhmmss() + " Number of Appointments in series:" + noOfAppts + " subject: " + subject + ")");
@@ -3034,7 +3033,7 @@ public class PageCalendar extends AbsTab {
 		
 		for(int i=1; i<= noOfAppts; i++) {
 			
-			if(month < Integer.parseInt(date.toMM_DD_YYYY().split("/")[0])) {
+			if(month < Integer.parseInt(date.toMM_DD_YYYY().split("/")[0])) {  //handling the appointments displayed in next month
 				zToolbarPressButton(Button.B_NEXT_PAGE);
 				SleepUtil.sleepSmall();
 				month = Integer.parseInt(date.toMM_DD_YYYY().split("/")[0]);
