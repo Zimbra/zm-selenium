@@ -23,7 +23,7 @@ public class EditAsNewSignedEncryptedMail extends AjaxCommonTest {
 		logger.info("New "+ EditAsNewSignedEncryptedMail.class.getCanonicalName());		
 	}
 
-	@Test ( description = "Verify that signed and encrypted email can be edited as new", priority=4, 
+	@Test ( description = "Verify that signed and encrypted email can be edited as new from new window", priority=4, 
 			groups = {"functional", "L2", "network"})
 	
 	public void EditAsNewSignedEncryptedMail_01() throws HarnessException  {
@@ -284,6 +284,146 @@ public class EditAsNewSignedEncryptedMail extends AjaxCommonTest {
 		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, user5.EmailAddress, "Verify the to field is correct");
 		ZAssert.assertStringContains(received.dBodyText, content, "Verify the body field is correct");
 		ZAssert.assertEquals(received.dIsSigned, "true", "Verify that message is signed correctly");
+		
+	}
+
+	@Test ( description = "Verify that signed and encrypted email can be edited as new", priority=4, 
+			groups = {"functional", "L2", "network"})
+	
+	public void EditAsNewSignedEncryptedMail_03() throws HarnessException  {
+		ZimbraAccount user5 = new ZimbraAccount("user5"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
+		user5.provision();
+		user5.authenticate();
+
+		ZimbraAccount user6 = new ZimbraAccount("user6"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
+		user6.provision();
+		user6.authenticate();
+		
+		// Modify the test account and change zimbraFeatureSMIMEEnabled to TRUE
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
+			+		"<id>"+ user5.ZimbraId +"</id>"
+			+		"<a n='zimbraFeatureSMIMEEnabled'>TRUE</a>"
+			+	"</ModifyAccountRequest>");
+
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
+			+		"<id>"+ user6.ZimbraId +"</id>"
+			+		"<a n='zimbraFeatureSMIMEEnabled'>TRUE</a>"
+			+	"</ModifyAccountRequest>");
+		
+		// Create file item
+		String filePath = ConfigProperties.getBaseDirectory()
+				+ "/data/private/certs/user5_digitalid.p12";
+
+		// Upload file to server through RestUtil
+		String attachmentId = user5.uploadFile(filePath);
+
+		user5.soapSend(
+				"<SaveSmimeCertificateRequest xmlns='urn:zimbraAccount'>" +
+				"<upload id='" + attachmentId + "'></upload>" +
+                "<password>zimbra</password>" +
+                "</SaveSmimeCertificateRequest>");
+
+		// Create file item
+		filePath = ConfigProperties.getBaseDirectory()
+				+ "/data/private/certs/user6_digitalid.p12";
+
+		// Upload file to server through RestUtil
+		 attachmentId = user6.uploadFile(filePath);
+
+		user6.soapSend(
+				"<SaveSmimeCertificateRequest xmlns='urn:zimbraAccount'>" +
+				"<upload id='" + attachmentId + "'></upload>" +
+                "<password>zimbra</password>" +
+                "</SaveSmimeCertificateRequest>");
+	
+		// Create file item
+		String certPath = ConfigProperties.getBaseDirectory()
+				+ "/data/private/certs/user6.cer";
+
+		// Upload file to server through RestUtil
+		String certId = user5.uploadFile(certPath);
+		
+		user5.soapSend(
+				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
+				"<cn>"+
+				"<a n='firstName'>user6</a>" +
+				"<a n='lastName'>user</a>" +
+				"<a n='email'>" + user6.EmailAddress + "</a>" +
+				"<a n='userCertificate' aid='" + certId + "'></a>" +
+				"</cn>" +
+				"</CreateContactRequest>");
+
+		// Create file item
+		String certPath2 = ConfigProperties.getBaseDirectory()
+				+ "/data/private/certs/user5.cer";
+
+		// Upload file to server through RestUtil
+		String certId2 = user5.uploadFile(certPath2);
+		
+		user5.soapSend(
+				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
+				"<cn>"+
+				"<a n='firstName'>user5</a>" +
+				"<a n='lastName'>user</a>" +
+				"<a n='email'>" + user5.EmailAddress + "</a>" +
+				"<a n='userCertificate' aid='" + certId2 + "'></a>" +
+				"</cn>" +
+				"</CreateContactRequest>");
+		
+		// Create file item
+		String certPath1 = ConfigProperties.getBaseDirectory()
+				+ "/data/private/certs/user5.cer";
+
+		// Upload file to server through RestUtil
+		String certId1 = user6.uploadFile(certPath1);
+		
+		user6.soapSend(
+				"<CreateContactRequest xmlns='urn:zimbraMail'>" +
+				"<cn>"+
+				"<a n='firstName'>user5</a>" +
+				"<a n='lastName'>user</a>" +
+				"<a n='email'>" + user5.EmailAddress + "</a>" +
+				"<a n='userCertificate' aid='" + certId1 + "'></a>" +
+				"</cn>" +
+				"</CreateContactRequest>");
+		
+        app.zPageMain.zLogout();
+		app.zPageLogin.zLogin(user5);
+		
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		user6.soapSend(
+				"<SendSecureMsgRequest sign='true' encrypt='true' xmlns='urn:zimbraMail'>" +
+					"<m>" +
+						"<e t='t' a='"+ user5.EmailAddress +"'/>" +
+						"<su>"+ subject +"</su>" +
+						"<mp ct='text/plain'>" +
+							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
+						"</mp>" +
+					"</m>" +
+				"</SendSecureMsgRequest>");
+	
+		// Refresh current view
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+	
+		// Select the item
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+		
+		FormMailNew form = (FormMailNew)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_EDIT_AS_NEW);
+		form.zToolbarPressPulldown(Button.B_SECURE_EMAIL, Button.O_SIGN_AND_ENCRYPT);
+		SleepUtil.sleepSmall();
+
+		form.zSubmit();
+		SleepUtil.sleepMedium();
+		
+		//Search for the signed mail in recipients inbox
+		MailItem received = MailItem.importFromSOAP(user5, "in:sent subject:("+ subject +")");
+		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, user5.EmailAddress, "Verify the from field is correct");
+		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, user5.EmailAddress, "Verify the to field is correct");
+		ZAssert.assertStringContains(received.dBodyText, subject, "Verify the body field is correct");
+		ZAssert.assertEquals(received.dIsSigned, "true", "Verify that message is signed correctly");
+		ZAssert.assertEquals(received.dIsEncrypted, "true", "Verify that message is encrypted correctly");
 		
 	}
 	
