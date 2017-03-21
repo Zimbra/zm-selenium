@@ -34,6 +34,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogAssistant;
@@ -2974,6 +2975,95 @@ public class PageCalendar extends AbsTab {
 				return false;
 			}
 		}
+		return true;
+	}
+	
+	public boolean zVerifyAppointmentInMonthView(ZDate date, String subject) throws HarnessException {
+
+		logger.info(myPageName() + " zVerifyAppointmentInMonthView(Start time: "+ date.toMMDDYYYYhmmss() + " subject: " + subject + ")");
+
+		//Get all the calendar cells in the month which contain the appointment
+		List<WebElement> elements = getElements("//table[@class='calendar_month_day_table']/following-sibling::table//div//span[contains(text(),'"  + subject + "')]");
+		
+		//Verify the total number of cells containing the appointment
+		if(elements.size() != 1 ) {
+			logger.error("number of dates which contain the appointment: " + elements.size() + " but it should be for 1 day only!");
+			return false;
+		}
+
+		//Verify the position of displayed appointment with respect to the position of date cell
+		int cell_x, appt_x, cell_y, appt_y;
+
+		//Get the position of day cell
+		WebElement element = getElement("//table[@class='calendar_month_day_table'][.='" + Integer.parseInt(date.toDD()) + "']");				
+		Point p1 = element.getLocation();
+		cell_x = p1.x;
+		cell_y = p1.y;
+
+		//Get the position of the appointment in the month view
+		element = getElement("//table[@class='calendar_month_day_table']/following-sibling::table//div//span[contains(text(),'"  + subject + "')]");				
+		p1 = element.getLocation();
+		appt_x = p1.x;
+		appt_y = p1.y;
+
+
+		//X - co-ordinate matching
+		if(!(cell_x-60 <= appt_x && appt_x <= cell_x+60)) {
+			logger.error("Appointment is not displayed correctly in the month view!");
+			return false;
+		}
+		//Y - co-ordinate matching
+		if(!(cell_y-50 <= appt_y && appt_y <= cell_y+50)) {
+			logger.error("Appointment is not displayed correctly in the month view!");
+			return false;
+		}
+		return true;
+	}
+	
+	//Verify the display of weekly recurring appointment. 
+	public boolean zVerifyWeeklyAppointmentInMonthView(ZDate date, int noOfAppts, String subject) throws HarnessException {
+
+		logger.info(myPageName() + " zVerifyWeeklyAppointmentInMonthView(Start time: "+ date.toMMDDYYYYhmmss() + " Number of Appointments in series:" + noOfAppts + " subject: " + subject + ")");
+
+		//Verify the position of displayed appointment with respect to the position of date cell
+		int cell_x, appt_x, cell_y, appt_y;
+		int month = Integer.parseInt(date.toMM_DD_YYYY().split("/")[0]);
+		WebElement element;
+		Point p1;
+		
+		for(int i=1; i<= noOfAppts; i++) {
+			
+			if(month < Integer.parseInt(date.toMM_DD_YYYY().split("/")[0])) {  //handling the appointments displayed in next month
+				zToolbarPressButton(Button.B_NEXT_PAGE);
+				SleepUtil.sleepSmall();
+				month = Integer.parseInt(date.toMM_DD_YYYY().split("/")[0]);
+			}
+			
+		//Get the position of day cell
+		element = getElement("//table[@class='calendar_month_day_table'][.='" + Integer.parseInt(date.toDD()) + "']");				
+		p1 = element.getLocation();
+		cell_x = p1.x;
+		cell_y = p1.y;
+
+		//Get the position of the appointment in the month view
+		element = getElement("//table[@class='calendar_month_day_table'][.='" + Integer.parseInt(date.toDD()) + "']/following-sibling::table//div//span[contains(text(),'"  + subject + "')]");				
+		p1 = element.getLocation();
+		appt_x = p1.x;
+		appt_y = p1.y;
+
+
+		//X - co-ordinate matching
+		if(!(cell_x-60 <= appt_x && appt_x <= cell_x+60)) {
+			logger.error("Appointment is not displayed correctly in the month view!");
+			return false;
+		}
+		//Y - co-ordinate matching
+		if(!(cell_y-50 <= appt_y && appt_y <= cell_y+50)) {
+			logger.error("Appointment is not displayed correctly in the month view!");
+			return false;
+		}
+		date = date.addDays(7);
+	}
 		return true;
 	}
 }

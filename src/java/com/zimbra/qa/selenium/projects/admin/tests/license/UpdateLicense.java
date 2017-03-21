@@ -58,7 +58,7 @@ public class UpdateLicense extends AdminCommonTest {
 	 */
 	
 	@Bugs(ids = "106019")
-	@Test(description = "Upload new license in admin console", groups = { "smoke", "L1" })
+	@Test(description = "Upload new license in admin console", priority=5, groups = { "smoke", "L1" })
 	
 	public void UpdateLicense_01() throws HarnessException {
 
@@ -100,7 +100,7 @@ public class UpdateLicense extends AdminCommonTest {
 
 		// Verify "valid until" date
 		String validUntil = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetLicenseResponse/admin:license/admin:attr[@name='ValidUntil']", null);
-		ZAssert.assertEquals(validUntil, "20170515090000Z", "Verify valid until");
+		ZAssert.assertEquals(validUntil, "20170522090000Z", "Verify valid until");
 
 		// Activate license
 		staf.execute("zmlicense -a");
