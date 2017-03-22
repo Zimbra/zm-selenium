@@ -19,7 +19,10 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.attachments;
 import java.io.File;
 import java.util.List;
 import org.testng.annotations.Test;
+import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AttachmentItem;
+import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.LmtpInject;
@@ -28,16 +31,13 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 
-
 public class GetAttachment extends PrefGroupMailByMessageTest {
 
-	
 	public GetAttachment() throws HarnessException {
 		logger.info("New "+ GetAttachment.class.getCanonicalName());
 		
 	}
-	
-	
+		
 	@Test( description = "Receive a message with one attachment",
 			groups = { "smoke", "L1" })
 	public void GetAttachment_01() throws HarnessException {
@@ -113,5 +113,45 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 		
 	}
 
+	@Bugs(ids = "60769")
+	@Test( description = "Receive a message with an inline attachment",
+			groups = { "smoke", "L1" })
+	public void GetAttachment_03() throws HarnessException {
+		
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug60769/Bug60769.txt";
+		final String subject = "FW: Christian cartoons [SEC=UNCLASSIFIED]";
+		final String fileName = "image001.gif";
+		
+		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+
+		// Refresh current view
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+
+		// Verify UI for attachment
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the email");
+		ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline attachment exists in the email");
+
+		//-- Verification
+
+		// From the receiving end, verify the message details
+		MailItem received = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
+		ZAssert.assertNotNull(received, "Verify the message is received correctly");
+
+		app.zGetActiveAccount().soapSend(
+				"<GetMsgRequest xmlns='urn:zimbraMail'>"
+				+		"<m id='"+ received.getId() +"'/>"
+				+	"</GetMsgRequest>");
+
+		String getFilename = app.zGetActiveAccount().soapSelectValue("//mail:mp[@cd='inline']", "filename");
+		ZAssert.assertEquals(getFilename, fileName, "Verify existing attachment exists in the forwarded mail");
+
+		getFilename = app.zGetActiveAccount().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
+		ZAssert.assertEquals(getFilename, fileName, "Verify attachment exists in the forwarded mail");
+
+		Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
+		ZAssert.assertEquals(nodes.length, 2, "Verify attachment exist in the forwarded mail");
+		
+	}
 
 }
