@@ -20,6 +20,7 @@ import java.io.File;
 import java.util.List;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AttachmentItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -112,6 +113,7 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 		
 	}
 
+	@Bugs(ids = "60769")
 	@Test( description = "Receive a message with an inline attachment",
 			groups = { "smoke", "L1" })
 	public void GetAttachment_03() throws HarnessException {
