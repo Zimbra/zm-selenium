@@ -118,6 +118,26 @@ public class FormSignatureNew extends AbsForm {
 		return (page);
 	}
 
+	public String zGetSignatureBodyText() throws HarnessException {
+
+		// bug 59078
+		String locator = null;
+		locator = "return document.getElementById('TEXTAREA_SIGNATURE').value";
+		String textsig = this.sGetEval(locator);
+		return textsig;
+
+	}
+
+	public String zGetHtmlSignatureBody() throws HarnessException {
+		try {
+			sSelectFrame("css=iframe[id='TEXTAREA_SIGNATURE_ifr']");
+			String sigbodyhtml = this.sGetHtmlSource();
+			return sigbodyhtml;
+		} finally {
+			this.sSelectFrame("relative=top");
+		}
+	}
+
 	@Override
 	public boolean zIsActive() throws HarnessException {
 		return false;
@@ -166,7 +186,8 @@ public class FormSignatureNew extends AbsForm {
 
 	}
 
-	public void zSelectFormat(String format) throws HarnessException {
+	public AbsPage zSelectFormat(String format) throws HarnessException {
+		AbsPage page = null;
 		if (format.equals("html")) {
 			boolean isExists = this.sIsElementPresent(Locators.formatAsText);
 			if (isExists) {
@@ -176,6 +197,14 @@ public class FormSignatureNew extends AbsForm {
 				this.zClick(Locators.formatAsHtml);
 			}
 			this.zClick(Locators.formatAsHtml);
+			return page;
+		} else {
+
+			this.zClick(Locators.formatAsHtml);
+			this.zClick(Locators.formatAsText);
+			page = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning, this.MyApplication,
+					((AppAjaxClient) this.MyApplication).zPagePreferences);
+			return page;
 		}
 
 	}
