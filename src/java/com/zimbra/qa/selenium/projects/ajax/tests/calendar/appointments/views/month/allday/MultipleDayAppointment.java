@@ -53,11 +53,12 @@ public class MultipleDayAppointment extends AjaxCommonTest {
 	@Test( description = "Verify the display of a multi-day all-day appointment in the month view",
 	groups = { "functional", "L2" })
 	public void DisplayMultipleDayAppointment_01() throws HarnessException {
-
+		
 		// Appointment subject
 		String subject = ConfigProperties.getUniqueString();
-
-		// Start Date is 2 days ahead if current date is greater than or equal to 21 else 8 days behind
+		int noOfDays =5;
+		
+		// Start Date is 2 days ahead if current date is less than or equal to 21 else 8 days behind
 		Calendar now = Calendar.getInstance();
 		if(now.get(Calendar.DAY_OF_MONTH) <= 21) {
 			now.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH) + 2 );
@@ -66,13 +67,13 @@ public class MultipleDayAppointment extends AjaxCommonTest {
 		}
 
 		//Attendees
-		List<ZimbraAccount> attendees = Arrays.asList(ZimbraAccount.Account1(), ZimbraAccount.Account2(), ZimbraAccount.Account3());
+		List<ZimbraAccount> attendees = Arrays.asList(ZimbraAccount.Account8());
 
 		//Create multiple day spanning all-day appointments for 5 days
 		AppointmentItem.createAppointmentAllDay(
 				app.zGetActiveAccount(),
 				now,
-				5,
+				noOfDays,
 				subject,
 				"content" + ConfigProperties.getUniqueString(),
 				"location" + ConfigProperties.getUniqueString(),
@@ -82,7 +83,7 @@ public class MultipleDayAppointment extends AjaxCommonTest {
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
 		//Verify that multi-day appointments are displayed correctly in month view 
-		boolean b =app.zPageCalendar.zVerifyMultidayAllDayAppointmentInMonthView(now,5,subject);
+		boolean b =app.zPageCalendar.zVerifyMultidayAllDayAppointmentInMonthView(now,noOfDays,subject);
 		ZAssert.assertTrue(b, "Multi-day all-day appointments are not created and displayed correctlly in month view");
 	}
 }

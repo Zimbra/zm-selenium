@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.month.singleday;
+package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.month.multiday;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -30,11 +30,11 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-public class SingleDayAppointment extends AjaxCommonTest {
+public class NonAllDayMultiDayAppointment extends AjaxCommonTest {
 
 	@SuppressWarnings("serial")
-	public SingleDayAppointment() {
-		logger.info("New "+ SingleDayAppointment.class.getCanonicalName());
+	public NonAllDayMultiDayAppointment() {
+		logger.info("New "+ NonAllDayMultiDayAppointment.class.getCanonicalName());
 
 		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
@@ -46,20 +46,30 @@ public class SingleDayAppointment extends AjaxCommonTest {
 
 	}
 	@Bugs(ids = "69132")
-	@Test( description = "Verify the display of a basic appointment in the month view",
+	@Test( description = "Verify the display of a non-all-day-multiday appointment in the month view",
 			groups = { "functional", "L2" })
 	
 	public void DisplaySingleDayAppointment_01() throws HarnessException {
 
 		// Appointment data
 		String subject = "Appointment"+ ConfigProperties.getUniqueString();
-		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + 1, 10, 0, 0);
+		int noOfDays = 5;
 
-		//Create an appointment of duration 120 mins on next day
+		// Start Date is 2 days ahead if current date is less than or equal to 21 else 8 days behind
+		Calendar now = Calendar.getInstance();
+		if(now.get(Calendar.DAY_OF_MONTH) <= 21) {
+			now.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH) + 2 );
+		} else {
+			now.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH) - 8 );
+		}
+
+		ZDate startDate = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 0, 0, 0);
+
+		//Create a non-all-day-multiday appointment of duration 5 days
 		AppointmentItem.createAppointmentSingleDay(
 				app.zGetActiveAccount(),
 				startDate,
-				120,
+				(noOfDays*24*60),
 				null,
 				subject,
 				"content" + ConfigProperties.getUniqueString(),
@@ -70,11 +80,8 @@ public class SingleDayAppointment extends AjaxCommonTest {
 		// Refresh the calendar
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
-		//Verify that the appointments is displayed correctly in month view 
-		boolean b =app.zPageCalendar.zVerifyAppointmentInMonthView(startDate,subject);
+		//Verify that the appointments is displayed correctly in month view
+		boolean b =app.zPageCalendar.zVerifyNonAllDayMultiDayAppointmentInMonthView(startDate,noOfDays, subject);
 		ZAssert.assertTrue(b, "The appointment is not created and displayed correctlly in month view");
-
 	}
-
-
 }
