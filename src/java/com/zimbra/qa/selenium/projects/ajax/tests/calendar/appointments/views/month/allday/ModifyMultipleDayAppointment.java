@@ -28,13 +28,12 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindAttendees;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindAttendees.Locators;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 
 public class ModifyMultipleDayAppointment extends CalendarWorkWeekTest {
@@ -92,7 +91,6 @@ public class ModifyMultipleDayAppointment extends CalendarWorkWeekTest {
 
 		// Open appointment & modify start date, end date and subject, and send it.
 		FormApptNew form = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
-		SleepUtil.sleepMedium();
 		ZAssert.assertNotNull(form, "Verify the appointment form opens correctly");
 		
 		//Increasing the start date by 1 day
@@ -103,15 +101,14 @@ public class ModifyMultipleDayAppointment extends CalendarWorkWeekTest {
 		
 		form.zFillField(Field.Subject, subject+"_new");
 		form.zToolbarPressButton(Button.B_SEND);
-		SleepUtil.sleepMedium();
 		
 		//Verify that multi-day appointments are displayed correctly in month view 
-		boolean b =app.zPageCalendar.zVerifyMultidayAllDayAppointmentInMonthView(now, 4, subject+"_new");
-		ZAssert.assertTrue(b, "Multi-day all-day appointments are not created and displayed correctly in month view");
+		boolean displayed = app.zPageCalendar.zVerifyMultidayAllDayAppointmentInMonthView(now, 4, subject+"_new");
+		ZAssert.assertTrue(displayed, "Multi-day all-day appointments are not created and displayed correctly in month view");
 	}
 	
 	@Test( description = "Modify multiple-day all-day appointment (Add attendee) and verify its display in month view.", 
-			groups = { "functional1", "L3" })
+			groups = { "functional", "L3" })
 	
 	public void ModifyAllDayAppointment_02() throws HarnessException {
 
@@ -145,7 +142,6 @@ public class ModifyMultipleDayAppointment extends CalendarWorkWeekTest {
 
 		// Open appointment & modify start date, end date and subject, and send it.
 		FormApptNew form = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
-		SleepUtil.sleepMedium();
 		ZAssert.assertNotNull(form, "Verify the appointment form opens correctly");
 		
 		form.zToolbarPressButton(Button.B_TO);
@@ -165,7 +161,6 @@ public class ModifyMultipleDayAppointment extends CalendarWorkWeekTest {
         //Save and send the appointment
 		form.zToolbarPressButton(Button.B_SAVE);
 		form.zToolbarPressButton(Button.B_SEND);
-		SleepUtil.sleepMedium();
 		
 		//Login to attendee's account and go to calendar
 		app.zPageLogin.zLogin(ZimbraAccount.AccountA());
@@ -175,8 +170,8 @@ public class ModifyMultipleDayAppointment extends CalendarWorkWeekTest {
 		app.zPageCalendar.zToolbarPressButton(Button.B_MONTH);
 		
 		//Verify that multi-day appointments are displayed correctly in month view 
-		boolean b =app.zPageCalendar.zVerifyMultidayAllDayAppointmentInMonthView(now, noOfDays, subject);
-		ZAssert.assertTrue(b, "Multi-day all-day appointments are not created and displayed correctly in month view");
+		boolean displayed = app.zPageCalendar.zVerifyMultidayAllDayAppointmentInMonthView(now, noOfDays, subject);
+		ZAssert.assertTrue(displayed, "Multi-day all-day appointments are not created and displayed correctly in month view");
 		ZimbraAccount.ResetAccountZWC();
 	}
 }

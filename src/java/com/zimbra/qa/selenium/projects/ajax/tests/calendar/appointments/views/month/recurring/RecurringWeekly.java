@@ -48,7 +48,7 @@ public class RecurringWeekly extends CalendarWorkWeekTest {
 	@Test( description = "Verify the display of a weekly recurring appointment in month view.",
 			groups = { "functional", "L2" })
 			
-	public void DisplayRecurringWeeklyAppointment_01() throws HarnessException, ParseException {
+	public void RecurringWeekly_01() throws HarnessException, ParseException {
 		
 		// ------------------------ Test data ------------------------------------
 
@@ -101,8 +101,8 @@ public class RecurringWeekly extends CalendarWorkWeekTest {
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		
 		//Verifying that the appointments are displayed correctly in month view  
-		boolean b = app.zPageCalendar.zVerifyWeeklyAppointmentInMonthView(startUTC, noOfApptInSeries, apptSubject);
-		ZAssert.assertTrue(b, "Weekly recurring appointments are not displayed correctly in month view!");	
+		boolean displayed = app.zPageCalendar.zVerifyWeeklyAppointmentInMonthView(startUTC, noOfApptInSeries, apptSubject);
+		ZAssert.assertTrue(displayed, "Weekly recurring appointments are not displayed correctly in month view!");	
 		
 	}
 

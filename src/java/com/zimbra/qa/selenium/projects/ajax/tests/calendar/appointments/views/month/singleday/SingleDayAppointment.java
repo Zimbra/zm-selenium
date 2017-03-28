@@ -47,9 +47,9 @@ public class SingleDayAppointment extends AjaxCommonTest {
 	}
 	@Bugs(ids = "69132")
 	@Test( description = "Verify the display of a basic appointment in the month view",
-			groups = { "functional", "L2" })
+			groups = { "sanity", "L1" })
 	
-	public void DisplaySingleDayAppointment_01() throws HarnessException {
+	public void SingleDayAppointment_01() throws HarnessException {
 
 		// Appointment data
 		String subject = "Appointment"+ ConfigProperties.getUniqueString();
@@ -71,8 +71,8 @@ public class SingleDayAppointment extends AjaxCommonTest {
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
 		//Verify that the appointments is displayed correctly in month view 
-		boolean b =app.zPageCalendar.zVerifyAppointmentInMonthView(startDate,subject);
-		ZAssert.assertTrue(b, "The appointment is not created and displayed correctlly in month view");
+		boolean displayed =app.zPageCalendar.zVerifyAppointmentInMonthView(startDate,subject);
+		ZAssert.assertTrue(displayed, "The appointment is not created and displayed correctlly in month view");
 
 	}
 

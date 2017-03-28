@@ -49,7 +49,7 @@ public class NonAllDayMultiDayAppointment extends AjaxCommonTest {
 	@Test( description = "Verify the display of a non-all-day-multiday appointment in the month view",
 			groups = { "functional", "L2" })
 	
-	public void DisplaySingleDayAppointment_01() throws HarnessException {
+	public void NonAllDayMultiDayAppointment_01() throws HarnessException {
 
 		// Appointment data
 		String subject = "Appointment"+ ConfigProperties.getUniqueString();
@@ -69,7 +69,7 @@ public class NonAllDayMultiDayAppointment extends AjaxCommonTest {
 		AppointmentItem.createAppointmentSingleDay(
 				app.zGetActiveAccount(),
 				startDate,
-				(noOfDays*24*60),
+				(noOfDays * 24 * 60),    //number of days in minutes.
 				null,
 				subject,
 				"content" + ConfigProperties.getUniqueString(),
@@ -81,7 +81,7 @@ public class NonAllDayMultiDayAppointment extends AjaxCommonTest {
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
 		//Verify that the appointments is displayed correctly in month view
-		boolean b =app.zPageCalendar.zVerifyNonAllDayMultiDayAppointmentInMonthView(startDate,noOfDays, subject);
-		ZAssert.assertTrue(b, "The appointment is not created and displayed correctlly in month view");
+		boolean displayed =app.zPageCalendar.zVerifyNonAllDayMultiDayAppointmentInMonthView(startDate,noOfDays, subject);
+		ZAssert.assertTrue(displayed, "The appointment is not created and displayed correctlly in month view");
 	}
 }

@@ -52,7 +52,7 @@ public class MultipleDayAppointment extends AjaxCommonTest {
 	@Bugs(ids = "107583, 69132, ZCS-725")
 	@Test( description = "Verify the display of a multi-day all-day appointment in the month view",
 	groups = { "functional", "L2" })
-	public void DisplayMultipleDayAppointment_01() throws HarnessException {
+	public void MultipleDayAppointment_01() throws HarnessException {
 		
 		// Appointment subject
 		String subject = ConfigProperties.getUniqueString();
@@ -83,7 +83,7 @@ public class MultipleDayAppointment extends AjaxCommonTest {
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
 		//Verify that multi-day appointments are displayed correctly in month view 
-		boolean b =app.zPageCalendar.zVerifyMultidayAllDayAppointmentInMonthView(now,noOfDays,subject);
-		ZAssert.assertTrue(b, "Multi-day all-day appointments are not created and displayed correctlly in month view");
+		boolean displayed =app.zPageCalendar.zVerifyMultidayAllDayAppointmentInMonthView(now,noOfDays,subject);
+		ZAssert.assertTrue(displayed, "Multi-day all-day appointments are not created and displayed correctlly in month view");
 	}
 }
