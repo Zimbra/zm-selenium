@@ -1475,4 +1475,16 @@ public class FormApptNew extends AbsForm {
 		this.zWaitForBusyOverlay();
 
 	}
+	
+	public void zSelectStartDateFromDatePicker(String Day) throws HarnessException {
+		this.sClick("css=td[id$='_startMiniCalBtn'] div[class='ImgSelectPullDownArrow']");
+		this.sClick("//div[@class='DwtMenu' and contains(@style,'display: block;')]/descendant::td[text()='" + Day + "' and not(contains(@class,'DwtCalendarDay-grey'))]");
+		
+	}
+	
+	public void zSelectEndDateFromDatePicker(String Day) throws HarnessException {
+		this.sClick("td[id$='_endMiniCalBtn'] div[class='ImgSelectPullDownArrow']");
+		this.sClick("//div[@class='DwtMenu' and contains(@style,'display: block;')]/descendant::td[text()='" + Day +"' and not(contains(@class,'DwtCalendarDay-grey'))]");
+		
+	}
 }
