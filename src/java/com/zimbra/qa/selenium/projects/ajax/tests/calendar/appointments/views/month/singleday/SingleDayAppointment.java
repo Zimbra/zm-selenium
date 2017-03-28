@@ -71,7 +71,7 @@ public class SingleDayAppointment extends AjaxCommonTest {
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
 		//Verify that the appointments is displayed correctly in month view 
-		boolean displayed =app.zPageCalendar.zVerifyAppointmentInMonthView(startDate,subject);
+		boolean displayed = app.zPageCalendar.zVerifyAppointmentInMonthView(startDate,subject);
 		ZAssert.assertTrue(displayed, "The appointment is not created and displayed correctlly in month view");
 
 	}

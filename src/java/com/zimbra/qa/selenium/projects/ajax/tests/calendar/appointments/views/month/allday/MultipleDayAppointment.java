@@ -83,7 +83,7 @@ public class MultipleDayAppointment extends AjaxCommonTest {
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
 		//Verify that multi-day appointments are displayed correctly in month view 
-		boolean displayed =app.zPageCalendar.zVerifyMultidayAllDayAppointmentInMonthView(now,noOfDays,subject);
+		boolean displayed = app.zPageCalendar.zVerifyMultidayAllDayAppointmentInMonthView(now,noOfDays,subject);
 		ZAssert.assertTrue(displayed, "Multi-day all-day appointments are not created and displayed correctlly in month view");
 	}
 }
