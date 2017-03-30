@@ -23,7 +23,7 @@ public class VerifyReadingPaneOptions extends PrefGroupMailByConversationTest {
 	}
 
 	@Bugs(ids = "91533")
-	@Test( description = "Verify reading pane options in message view (bottom, right, off)", groups = { "functional", "L2" })
+	@Test( description = "Verify reading pane options in message view (bottom, right, off)", groups = { "functional", "L2","mitesh" })
 	public void VerifyReadingPaneOptionsInMessageView_01() throws HarnessException {
 					
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_BY_MESSAGE);
@@ -31,24 +31,25 @@ public class VerifyReadingPaneOptions extends PrefGroupMailByConversationTest {
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_READING_PANE_RIGHT);
+		SleepUtil.sleepVerySmall();
 		ZAssert.assertTrue(app.zPageMail.sIsVisible(Locators.zRightReadingPaneSeparatorBar), "Verify horizontal seperator is visible");
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zBottomReadingPaneSeparatorBar), "Verify vertical seperator is not visible");
-		SleepUtil.sleepVerySmall();
+		
 		
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_READING_PANE_BOTTOM);
+		SleepUtil.sleepVerySmall();
 		ZAssert.assertTrue(app.zPageMail.sIsVisible(Locators.zBottomReadingPaneSeparatorBar), "Verify vertical seperator is visible");
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zRightReadingPaneSeparatorBar), "Verify horizontal seperator is not visible");
-		SleepUtil.sleepVerySmall();
 		
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_READING_PANE_OFF);
+		SleepUtil.sleepVerySmall();
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zBottomReadingPaneSeparatorBar), "Verify vertical seperator is not visible");
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zRightReadingPaneSeparatorBar), "Verify horizontal seperator is not visible");
-		SleepUtil.sleepVerySmall();
 	}
 	
 	
 	@Bugs(ids = "91533")
-	@Test( description = "Verify reading pane options in conversation view (bottom, right, off)", groups = { "functional", "L2" })
+	@Test( description = "Verify reading pane options in conversation view (bottom, right, off)", groups = { "functional", "L2","mitesh" })
 	public void VerifyReadingPaneOptionsInConversationView_02() throws HarnessException {
 		
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);
@@ -78,19 +79,19 @@ public class VerifyReadingPaneOptions extends PrefGroupMailByConversationTest {
 		SleepUtil.sleepSmall();
 				
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_READING_PANE_RIGHT);
+		SleepUtil.sleepVerySmall();
 		ZAssert.assertTrue(app.zPageMail.sIsVisible(Locators.zRightReadingPaneSeparatorBar), "Verify horizontal seperator is visible");
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zBottomReadingPaneSeparatorBar), "Verify vertical appsash bar is not visible");
-		SleepUtil.sleepVerySmall();
-		
+				
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_READING_PANE_BOTTOM);
+		SleepUtil.sleepVerySmall();
 		ZAssert.assertTrue(app.zPageMail.sIsVisible(Locators.zBottomReadingPaneSeparatorBar), "Verify horizontal appSash bar is visible");
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zRightReadingPaneSeparatorBar), "Issues in Bottom reading pane");
-		SleepUtil.sleepVerySmall();
 		
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_READING_PANE_OFF);
+		SleepUtil.sleepVerySmall();
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zBottomReadingPaneSeparatorBar), "Issues in reading pane off option");
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zRightReadingPaneSeparatorBar), "Issues in reading pane off option");
-		SleepUtil.sleepVerySmall();
 	}
 	
 }
