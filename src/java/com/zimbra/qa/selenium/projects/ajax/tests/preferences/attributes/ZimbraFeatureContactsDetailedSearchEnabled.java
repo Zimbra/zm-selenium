@@ -67,7 +67,10 @@ public class ZimbraFeatureContactsDetailedSearchEnabled extends PrefGroupMailByM
 							+		"<a n='ou'>HR</a>"
 							+	"</ModifyAccountRequest>");
 	
-	
+			ZimbraDomain domain = new ZimbraDomain(ZimbraAccount.Account5().EmailAddress.split("@")[1]);
+			domain.provision();
+			domain.syncGalAccount();
+			
 			// Open the new mail form
 			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 			ZAssert.assertNotNull(mailform, "Verify the new form opened");
@@ -93,8 +96,7 @@ public class ZimbraFeatureContactsDetailedSearchEnabled extends PrefGroupMailByM
 			//Verify that  the selected address has been moved to recipient box and department name is displayed in recipient box as well
 			ZAssert.assertTrue(selectAddress.sIsElementPresent(Locators.SearchResultArea+":contains('" + department + "'):contains('To:')"), "Verify that department is displayed in recipient box as well");
 	    
-		} finally {
-			
+		} finally {	
 			// Refresh due to skipped issue
 			app.zPageMain.sRefresh();
 		}

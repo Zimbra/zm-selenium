@@ -46,27 +46,12 @@ public class ZimbraFeatureMailForwardingEnabled extends AjaxCommonTest {
 	@Test( description = "Verify preferences does not show 'Forward a copy to', if zimbraFeatureMailForwardingEnabled=FALSE",
 			groups = { "functional", "L2" })
 	public void zimbraFeatureMailForwardingEnabled_01() throws HarnessException {
-		
-		//-- DATA		
-		
-		
-		//-- GUI
-		
 		// Login
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
-
 		// Go to preferences - mail
 		app.zPagePreferences.zNavigateTo();
-		
-		//
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
-		
-		
-
-
 		//-- VERIFICATION
-		
-
 		// Verify the field is not present
 		String locator = "css=input[id$='MAIL_FORWARDING_ADDRESS']";
 		boolean exists = app.zPagePreferences.sIsElementPresent(locator);
@@ -75,7 +60,6 @@ public class ZimbraFeatureMailForwardingEnabled extends AjaxCommonTest {
 		locator = "css=td.ZOptionsField:contains('Forward a copy to:')";
 		exists = app.zPagePreferences.sIsElementPresent(locator);
 		ZAssert.assertFalse(exists, "Verify the 'Forward a copy to:' label is not present");
-
 	}
 
 
@@ -83,38 +67,20 @@ public class ZimbraFeatureMailForwardingEnabled extends AjaxCommonTest {
 	@Test( description = "Bug 71403: Verify duplicate message lables do not exist in preferences ('When a message arrives')",
 			groups = { "functional", "L2" })
 	public void zimbraFeatureMailForwardingEnabled_02() throws HarnessException {
-		
-		//-- DATA		
-		
-		
-		//-- GUI
-		
 		// Login
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
-
 		// Go to preferences - mail
 		app.zPagePreferences.zNavigateTo();
-		
-		//
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
 		
-		
-
-
 		//-- VERIFICATION
-		
-
 		// Verify the field is not present
-		String locator = "css=td.ZOptionsLabel:contains('Message Arrival')";
+		String locator = "//td[@class='ZOptionsLabel'][contains(text(),'Message Arrival')]";
 		
 		boolean exists = app.zPagePreferences.sIsElementPresent(locator);
 		ZAssert.assertTrue(exists, "Verify the 'Message Arrival' label exists");
 		
-		int count = app.zPagePreferences.sGetCssCount(locator);
+		int count = app.zPagePreferences.sGetXpathCount(locator);
 		ZAssert.assertEquals(count, 1, "Verify only 1 'Message Arrival' label exists");
-
-
 	}
-
-
 }
