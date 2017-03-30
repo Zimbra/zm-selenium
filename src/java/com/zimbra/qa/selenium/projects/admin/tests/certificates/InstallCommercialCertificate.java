@@ -49,6 +49,25 @@ public class InstallCommercialCertificate extends AdminCommonTest {
 			groups = { "smoke", "L1" })
 
 	public void InstallCommercialCertificate_01() throws HarnessException {
+		
+		String hostname = ConfigProperties.getStringProperty("server.host");
+
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+						"<GetServerRequest xmlns='urn:zimbraAdmin'>"
+								+	"<server by='name'>" + hostname + "</server>"
+								+		"</GetServerRequest>");
+		String id = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:server", "id");
+
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+						"<GenCSRRequest xmlns='urn:zimbraAdmin' type='comm' digest='sha256' keysize='2048' new='1' server= '"+id+"'>"
+								+		"<SubjectAltName>" + hostname + "</SubjectAltName>"
+								+		"<CN>*.zimbra.com</CN>"
+								+		"<C>US</C>"
+								+		"<ST>Texas</ST>"
+								+		"<L>Frisco</L>"
+								+		"<O>Zimbra</O>"
+								+		"<OU>Zimbra</OU>"
+								+	"</GenCSRRequest>");
 
 		// Create file item
 		final String fileName = "commercial.crt";
@@ -56,7 +75,6 @@ public class InstallCommercialCertificate extends AdminCommonTest {
 		final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\private\\certificates\\" + fileName;
 		final String rootCertfilePath = ConfigProperties.getBaseDirectory() + "\\data\\private\\certificates\\" + rootCertfileName;
 		String issuer = "DigiCert";
-		String hostname = ConfigProperties.getStringProperty("server.host");
 		FileItem fileItem = new FileItem(filePath);
 
 		// Click on server
@@ -100,14 +118,6 @@ public class InstallCommercialCertificate extends AdminCommonTest {
 		// Click on install
 		wizard.sClickAt(Locators.INSTALL_BUTTON,"");
 		SleepUtil.sleepVeryVeryLong();
-
-
-		// Get server ID
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<GetServerRequest xmlns='urn:zimbraAdmin'>"
-						+	"<server by='name'>" + hostname + "</server>"
-						+		"</GetServerRequest>");
-		String id = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:server", "id");
 
 		// Verify certificate installed correctly
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
