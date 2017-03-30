@@ -23,7 +23,7 @@ public class VerifyReadingPaneOptions extends PrefGroupMailByConversationTest {
 	}
 
 	@Bugs(ids = "91533")
-	@Test( description = "Verify reading pane options in message view (bottom, right, off)", groups = { "functional", "L2","mitesh" })
+	@Test( description = "Verify reading pane options in message view (bottom, right, off)", groups = { "functional", "L2" })
 	public void VerifyReadingPaneOptionsInMessageView_01() throws HarnessException {
 					
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_BY_MESSAGE);
@@ -49,7 +49,7 @@ public class VerifyReadingPaneOptions extends PrefGroupMailByConversationTest {
 	
 	
 	@Bugs(ids = "91533")
-	@Test( description = "Verify reading pane options in conversation view (bottom, right, off)", groups = { "functional", "L2","mitesh" })
+	@Test( description = "Verify reading pane options in conversation view (bottom, right, off)", groups = { "functional", "L2" })
 	public void VerifyReadingPaneOptionsInConversationView_02() throws HarnessException {
 		
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);
