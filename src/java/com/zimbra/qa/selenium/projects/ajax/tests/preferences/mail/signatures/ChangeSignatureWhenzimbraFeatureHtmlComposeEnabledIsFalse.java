@@ -91,10 +91,6 @@ public class ChangeSignatureWhenzimbraFeatureHtmlComposeEnabledIsFalse extends A
 		// click Signature drop down and add signature
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_SIGNATURE, this.sigName);
 
-		DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning, app,
-				((AppAjaxClient) app).zPageMail);
-		dialog.zClickButton(Button.B_OK);
-
 		// Send the message
 		mailform.zSubmit();
 

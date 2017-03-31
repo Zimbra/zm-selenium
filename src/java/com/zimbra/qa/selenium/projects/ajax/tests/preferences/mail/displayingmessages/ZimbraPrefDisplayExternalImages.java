@@ -97,6 +97,7 @@ public class ZimbraPrefDisplayExternalImages extends AjaxCommonTest {
 		// Verify Warning info bar with other links is not present
 		ZAssert.assertFalse(app.zPageMail.zHasWDDLinks(), "Verify display images link");
 		
+		app.zPageMail.sSelectFrame("iframe[name$='__body__iframe']");
 		//Verify the external image is displayed
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(Locators.zMsgExternalImage), "Verify the external is displayed");
 		

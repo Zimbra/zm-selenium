@@ -16,6 +16,8 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
 
+import java.util.HashMap;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
@@ -39,6 +41,11 @@ public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
 
 	public ComposeHtmlMsgWithHtmlSignature() {
 		super.startingPage = app.zPageMail;
+		super.startingAccountPreferences = new HashMap<String, String>() {
+			{
+				put("zimbraPrefComposeFormat", "html");
+			}
+		};
 	}
 
 	@BeforeMethod(groups = { "always" })
