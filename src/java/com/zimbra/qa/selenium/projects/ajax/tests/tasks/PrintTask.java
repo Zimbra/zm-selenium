@@ -80,12 +80,13 @@ public class PrintTask extends AjaxCommonTest {
 			// Right click the item, select Show Original
 			window = (SeparateWindowPrintPreview)app.zPageTasks.zListItem(Action.A_RIGHTCLICK, Button.O_PRINT_MENU, subject);
 
-			// Press esc from keyboard
-			app.zPageTasks.sKeyPressNative("27");
 			window.zWaitForActive();
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-
+			
+			// Press esc from keyboard
+			window.sKeyPressNative("27");
+			
 			// Verify content in Print view.
 			String printContent = window.sGetBodyContent(windowTitle, "css=div[class='ZhCallListPrintView']");
 			ZAssert.assertStringContains(printContent, subject, "Verify subject in Print view");
@@ -139,12 +140,12 @@ public class PrintTask extends AjaxCommonTest {
 
 			// Press keyboard shortcut p
 			window = (SeparateWindowPrintPreview)app.zPageTasks.zKeyboardShortcut(Shortcut.S_PRINTTASK);
-
-			// Press esc from keyboard
-			app.zPageTasks.sKeyPressNative("27");
 			window.zWaitForActive();
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			
+			// Press esc from keyboard
+			window.sKeyPressNative("27");
 
 			// Verify content in Print view.
 			String printContent = window.sGetBodyContent(windowTitle, "css=div[class='ZhCallListPrintView']");
@@ -231,12 +232,12 @@ public class PrintTask extends AjaxCommonTest {
 
 			// Pull down Print button and select Print Task folder.
 			window = (SeparateWindowPrintPreview)app.zPageTasks.zToolbarPressPulldown(Button.B_PRINT, Button.O_PRINT_TASKFOLDER);
-			
-			// Press esc from keyboard
-			app.zPageTasks.sKeyPressNative("27");
 			window.zWaitForActive();
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			
+			// Press esc from keyboard
+			window.sKeyPressNative("27");
 
 			// Verify subjects in Print view.
 			String printContent = window.sGetBodyContent(windowTitle, "css=div[class='ZhCallListPrintView']");
