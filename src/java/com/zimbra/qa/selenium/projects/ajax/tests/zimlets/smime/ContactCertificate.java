@@ -18,9 +18,14 @@ package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.smime;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
-import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew;
@@ -121,6 +126,10 @@ public class ContactCertificate extends AjaxCommonTest {
 		String certificate = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='" + contactId + "']//mail:a[@n='userCertificate']",
 				null);
 		
+		//To test the working of "returnCertInfo='1'" flag
+		Element issuedTo = app.zGetActiveAccount().soapSelectNode("//mail:GetContactsResponse//mail:cn[@id='" + contactId + "']/acct:certificate//acct:issuedTo/acct:emailAddress", 1);
+		ZAssert.assertNull(issuedTo, "Cerificate info is getting displayed in the responce even if the returnCertInfo='1' is not set!");
+		
 		ZAssert.assertEquals(lastname, contactLast, "Verify the last name was saved correctly");
 		ZAssert.assertEquals(firstname, contactFirst, "Verify the first name was saved correctly");
 		ZAssert.assertEquals(email, contactEmail, "Verify the email was saved correctly");
@@ -219,7 +228,7 @@ public class ContactCertificate extends AjaxCommonTest {
 
 		ZAssert.assertNotNull(contactId, "Verify the contact is returned in the search");
 
-		app.zGetActiveAccount().soapSend("<GetContactsRequest xmlns='urn:zimbraMail'>" + "<cn id='" + contactId + "'/>"
+		app.zGetActiveAccount().soapSend("<GetContactsRequest xmlns='urn:zimbraMail' returnCertInfo='1'>" + "<cn id='" + contactId + "'/>"
 				+ "</GetContactsRequest>");
 
 		String lastname = app.zGetActiveAccount()
@@ -232,6 +241,10 @@ public class ContactCertificate extends AjaxCommonTest {
 		String certificate = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='" + contactId + "']//mail:a[@n='userCertificate']",
 				null);
 		
+		//To test the working of "returnCertInfo='1'" flag
+		Element issuedTo = app.zGetActiveAccount().soapSelectNode("//mail:GetContactsResponse//mail:cn[@id='" + contactId + "']/acct:certificate//acct:issuedTo/acct:emailAddress", 1);
+		ZAssert.assertEquals(issuedTo.getText(),contactEmail, "Cerificate info is getting displayed in the responce when returnCertInfo='1' is set!");
+				
 		ZAssert.assertEquals(lastname, contactLast, "Verify the last name was saved correctly");
 		ZAssert.assertEquals(firstname, contactFirst, "Verify the first name was saved correctly");
 		ZAssert.assertEquals(email, contactEmail, "Verify the email was saved correctly");
@@ -318,6 +331,10 @@ public class ContactCertificate extends AjaxCommonTest {
 		String certificate = app.zGetActiveAccount().soapSelectValue("//mail:cn[@id='" + contactId + "']//mail:a[@n='userCertificate']",
 				null);
 		
+		//To test the working of "returnCertInfo='1'" flag
+		Element issuedTo = app.zGetActiveAccount().soapSelectNode("//mail:GetContactsResponse//mail:cn[@id='" + contactId + "']/acct:certificate//acct:issuedTo/acct:emailAddress", 1);
+		ZAssert.assertNull(issuedTo, "Cerificate info is getting displayed in the responce even if the returnCertInfo='1' is not set!");
+
 		ZAssert.assertEquals(lastname, contactLast, "Verify the last name was saved correctly");
 		ZAssert.assertEquals(firstname, contactFirst, "Verify the first name was saved correctly");
 		ZAssert.assertEquals(email, contactEmail, "Verify the email was saved correctly");
