@@ -84,9 +84,9 @@ public class RevokeShareFromPreferences extends AjaxCommonTest {
 
 		// UI verification
 		ZAssert.assertFalse(app.zPagePreferences.sIsElementPresent("css=div[id='Prefs_Pages_Sharing_sharesBy'] td[id$='_wi']:contains('" + ZimbraAccount.AccountB().EmailAddress  + "')"), "Verify user email id is not on the list");
-		ZAssert.assertFalse(app.zPagePreferences.sIsElementPresent("css=div[id ='zl__SVG__rows'] a[id$='_edit' ]"), "Verify edit link does not exists"); 
-		ZAssert.assertFalse(app.zPagePreferences.sIsElementPresent("css=div[id ='zl__SVG__rows'] a[id$='_revoke' ]"), "Verify revoke button does not exists");
-		ZAssert.assertFalse(app.zPagePreferences.sIsElementPresent("css=div[id ='zl__SVG__rows'] a[id$='_resend' ]"), "Verify resend button does not exists");	
+		ZAssert.assertFalse(app.zPagePreferences.sIsElementPresent("css=div[id='Prefs_Pages_Sharing_sharesBy'] td[id$='_wi']:contains('" + ZimbraAccount.AccountB().EmailAddress  +"') ~ td a[id$='_edit' ]"), "Verify edit link does not exists"); 
+		ZAssert.assertFalse(app.zPagePreferences.sIsElementPresent("css=div[id='Prefs_Pages_Sharing_sharesBy'] td[id$='_wi']:contains('" + ZimbraAccount.AccountB().EmailAddress  +"') ~ td a[id$='_revoke']"), "Verify revoke button does not exists");
+		ZAssert.assertFalse(app.zPagePreferences.sIsElementPresent("css=div[id='Prefs_Pages_Sharing_sharesBy'] td[id$='_wi']:contains('" + ZimbraAccount.AccountB().EmailAddress  +"') ~ td a[id$='_resend']"), "Verify resend button does not exists");	
 
 	}		
 }

@@ -52,7 +52,8 @@ public class OpenEditPropertiesWithSharingDisabled extends AjaxCommonTest {
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
 		ZAssert.assertNotNull(subfolder, "Verify the subfolder is available");
 
-		// Select edit properties for the folder
+		// Click the refresh button and select edit properties for the folder
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_EDIT, subfolder);
 		
 		// Verify that the 'folder properties' dialogue opens
