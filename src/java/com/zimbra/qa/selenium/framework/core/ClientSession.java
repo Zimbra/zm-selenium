@@ -127,9 +127,13 @@ public class ClientSession {
 
 				ChromeOptions options = new ChromeOptions();
 				Map<String, Object> preferences = new Hashtable<String, Object>();
-				options.setExperimentalOption("prefs", preferences);
+				
 				preferences.put("plugins.plugins_disabled", new String[] { "Adobe Flash Player", "Chrome PDF Viewer" });
-
+				preferences.put("credentials_enable_service", false);
+				preferences.put("password_manager_enabled", false); 
+				options.setExperimentalOption("prefs", preferences);
+				options.addArguments("disable-infobars");
+				
 		        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 		        System.setProperty("webdriver.chrome.driver", driverPath);
 		        capabilities.setCapability("chrome.switches", Arrays.asList("--disable-extensions"));
