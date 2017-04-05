@@ -393,13 +393,14 @@ public class EditAsNewSignedEncryptedMail extends AjaxCommonTest {
 		app.zPageLogin.zLogin(user5);
 		
 		String subject = "subject"+ ConfigProperties.getUniqueString();
+		String body = "content"+ ConfigProperties.getUniqueString();
 		user6.soapSend(
 				"<SendSecureMsgRequest sign='true' encrypt='true' xmlns='urn:zimbraMail'>" +
 					"<m>" +
 						"<e t='t' a='"+ user5.EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
+							"<content>"+body +"</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendSecureMsgRequest>");
@@ -421,7 +422,7 @@ public class EditAsNewSignedEncryptedMail extends AjaxCommonTest {
 		MailItem received = MailItem.importFromSOAP(user5, "in:sent subject:("+ subject +")");
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, user5.EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, user5.EmailAddress, "Verify the to field is correct");
-		ZAssert.assertStringContains(received.dBodyText, subject, "Verify the body field is correct");
+		ZAssert.assertStringContains(received.dBodyText, body, "Verify the body field is correct");
 		ZAssert.assertEquals(received.dIsSigned, "true", "Verify that message is signed correctly");
 		ZAssert.assertEquals(received.dIsEncrypted, "true", "Verify that message is encrypted correctly");
 		

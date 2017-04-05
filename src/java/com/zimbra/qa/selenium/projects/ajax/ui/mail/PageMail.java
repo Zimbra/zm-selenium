@@ -537,8 +537,15 @@ public class PageMail extends AbsTab {
 			page = null;
 			throw new HarnessException("implement Print dialog");
 
-		} else if (button == Button.B_REPLY) {
+		} else if (button == Button.B_EDIT) {
+			page = new FormMailNew(this.MyApplication);
+			locator = "css=div[role='toolbar']:not([aria-hidden='true']) [id$='main__EDIT_title']";
 
+			if (!this.sIsElementPresent(locator)) {
+				throw new HarnessException("Edit icon not present " + button);
+			}
+
+		} else if (button == Button.B_REPLY) {
 			page = new FormMailNew(this.MyApplication);
 			locator = Locators.zReplyToolbarButton;
 
