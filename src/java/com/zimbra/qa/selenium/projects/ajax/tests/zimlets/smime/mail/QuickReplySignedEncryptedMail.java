@@ -133,6 +133,10 @@ public class QuickReplySignedEncryptedMail extends AjaxCommonTest {
 		user6.provision();
 		user6.authenticate();
 		
+		ZimbraAccount user7 = new ZimbraAccount("user7"+ "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com"), null);
+		user7.provision();
+		user7.authenticate();
+		
 		// Modify the test account and change zimbraFeatureSMIMEEnabled to TRUE
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
@@ -216,7 +220,7 @@ public class QuickReplySignedEncryptedMail extends AjaxCommonTest {
 				
 		// Quick Reply
 		FormMailNew form = (FormMailNew)messages.get(0).zPressButton(Button.B_QUICK_REPLY_FORWARD);
-		form.zFillField(FormMailNew.Field.To, ZimbraAccount.Account1().EmailAddress);
+		form.zFillField(FormMailNew.Field.To, user7.EmailAddress);
 		form.zFillField(FormMailNew.Field.Body, forward);
 		form.zToolbarPressButton(Button.B_SEND);
 		SleepUtil.sleepMedium();
@@ -226,10 +230,10 @@ public class QuickReplySignedEncryptedMail extends AjaxCommonTest {
 		ZAssert.assertNotNull(sent, "Verify the message is in the sent folder");
 
 		// Verify message is Received by sender
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.Account1(), "subject:("+ subject +") from:("+ user5.EmailAddress +")");
+		MailItem received = MailItem.importFromSOAP(user7, "subject:("+ subject +") from:("+ user5.EmailAddress +")");
 		ZAssert.assertNotNull(received, "Verify the message is received by the original sender");
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, user5.EmailAddress, "Verify the from field is correct");
-		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress,  ZimbraAccount.Account1().EmailAddress, "Verify the to field is correct");
+		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress,  user7.EmailAddress, "Verify the to field is correct");
 		ZAssert.assertStringContains(received.dBodyText, forward, "Verify the body field is correct");
 		ZAssert.assertNull(received.dIsSigned,"Verify that message is signed correctly");
 		ZAssert.assertNull(received.dIsEncrypted, "Verify that message is encrypted correctly");

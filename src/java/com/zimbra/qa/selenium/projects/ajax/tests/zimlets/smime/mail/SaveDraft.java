@@ -137,11 +137,11 @@ public class SaveDraft extends AjaxCommonTest {
 
 		// Select the mail,Click Edit
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
-		mailform.zToolbarPressButton(Button.B_EDIT);
+		FormMailNew mailformEdit = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_EDIT);
 		SleepUtil.sleepSmall();
 
 		// Send the message
-		mailform.zSubmit();
+		mailformEdit.zSubmit();
 		SleepUtil.sleepMedium();
 		
 		//Search for the signed mail in recipients inbox
@@ -299,11 +299,11 @@ public class SaveDraft extends AjaxCommonTest {
 
 		// Select the mail,Click Edit
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		mailform.zToolbarPressButton(Button.B_EDIT);
+		FormMailNew mailformEdit = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_EDIT);
 		SleepUtil.sleepSmall();
 
 		// Send the message
-		mailform.zSubmit();
+		mailformEdit.zSubmit();
 		SleepUtil.sleepMedium();
 		
 		//Search for the signed mail in recipients inbox
