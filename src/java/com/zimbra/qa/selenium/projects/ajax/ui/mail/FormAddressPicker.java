@@ -44,7 +44,7 @@ public class FormAddressPicker extends AbsForm {
 		public static final String ZmContactPickerLocatorCSS = "css=div[id='ZmContactPicker']";
 		public static final String SearchResultArea = "css=div[id$='ContactPicker_chooser'] div[class$='ListView']";
 		public static final String ContactPickerFirstContact = "css=div[id='ZmContactPicker'] div[class='DwtChooserListView'] div[id^='zli__DWT']";
-
+		public static final String contactRowsCSS = "css=div[id^='zl__'][id$='__rows'] > div";
 	}
 
 	public static class Field {
@@ -340,6 +340,13 @@ public class FormAddressPicker extends AbsForm {
 
 		if ( !this.zIsVisiblePerPosition(locator, 0, 0) )
 			return (false);
+		
+		//Check the existing contacts are loaded in the dialog
+		int count = this.sGetCssCount(Locators.contactRowsCSS);
+		if(count < 1) {
+			logger.info(myPageName() + " Contacts are not displayed in address picker dialog");
+			return (false);
+		}
 
 		return (true);
 
