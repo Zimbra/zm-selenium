@@ -96,6 +96,9 @@ public class AjaxCommonTest {
 			logger.info("Grant createDistList right to domain");
 			staf.execute("zmprov grr domain " + ConfigProperties.getStringProperty("testdomain") + " dom "
 					+ ConfigProperties.getStringProperty("testdomain") + " createDistList");
+			
+			// Disable SMIME OCSP attribute
+			staf.execute("zmprov mcf zimbraSmimeOCSPEnabled FALSE");
 		}
 	}
 
