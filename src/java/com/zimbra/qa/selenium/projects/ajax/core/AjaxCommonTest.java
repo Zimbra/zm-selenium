@@ -88,17 +88,24 @@ public class AjaxCommonTest {
 	}
 
 	public void commonTestZimbraConfiguration() throws HarnessException {
-
+		
 		logger.info("-------------- Pre-configuration and required setup --------------");
 
 		if (ConfigProperties.getStringProperty("staf").equals("true")) {
-			// Grant createDistList right to domain
-			logger.info("Grant createDistList right to domain");
-			staf.execute("zmprov grr domain " + ConfigProperties.getStringProperty("testdomain") + " dom "
-					+ ConfigProperties.getStringProperty("testdomain") + " createDistList");
 			
-			// Disable SMIME OCSP attribute
-			staf.execute("zmprov mcf zimbraSmimeOCSPEnabled FALSE");
+			try {
+				// Grant createDistList right to domain
+				logger.info("Grant createDistList right to domain");
+				staf.execute("zmprov grr domain " + ConfigProperties.getStringProperty("testdomain") + " dom "
+						+ ConfigProperties.getStringProperty("testdomain") + " createDistList");
+				
+				// Disable zimbraSmimeOCSPEnabled attribute for S/MIME
+				logger.info("Disable zimbraSmimeOCSPEnabled attribute for S/MIME");
+				staf.execute("zmprov mcf zimbraSmimeOCSPEnabled FALSE");
+				
+			} catch(Exception e) {
+				logger.error("Unable to grant createDistList right and can't disable zimbraSmimeOCSPEnabled for S/MIME", e);
+			}
 		}
 	}
 
