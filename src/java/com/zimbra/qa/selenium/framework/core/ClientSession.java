@@ -133,6 +133,7 @@ public class ClientSession {
 				preferences.put("password_manager_enabled", false); 
 				options.setExperimentalOption("prefs", preferences);
 				options.addArguments("disable-infobars");
+				options.addArguments("start-maximized");
 				
 		        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 		        System.setProperty("webdriver.chrome.driver", driverPath);
@@ -142,7 +143,6 @@ public class ClientSession {
 		        webDriver = new ChromeDriver(capabilities);
 			}
 		}
-		webDriver.manage().window().maximize();
 		return webDriver;
 	}
 

@@ -41,6 +41,8 @@ public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
 	public ComposeHtmlMsgWithHtmlSignature() {
 		super.startingPage = app.zPageMail;
 		super.startingAccountPreferences = new HashMap<String, String>() {
+			private static final long serialVersionUID = 1L;
+
 			{
 				put("zimbraPrefComposeFormat", "html");
 			}
