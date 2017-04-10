@@ -4,7 +4,7 @@
 	<dependencies>
 		<dependency org="ant-contrib" name="ant-contrib" rev="1.0b3"/>
 		<dependency org="ant-tar-patched" name="ant-tar-patched" rev="1.0"/>
-		<dependency org="com.google.guava" name="guava" rev="13.0.1"/>
+		<dependency org="com.google.guava" name="guava" rev="21.0"/>
 		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.7.0"/>
 		<dependency org="commons-cli" name="commons-cli" rev="1.2"/>
 		<dependency org="commons-codec" name="commons-codec" rev="1.7"/>
@@ -37,7 +37,7 @@
 		<dependency org="xml-apis" name="xml-apis" rev="2.0.2"/>
 		<dependency org="zimbra" name="zm-native" rev="latest.integration"/>
         <dependency org="zimbra" name="zm-common" rev="latest.integration"/>
-		<dependency org="selenium-server-standalone" name="selenium-server-standalone" rev="3.0.0"/>
-		<dependency org="client-combined" name="client-combined" rev="3.0.0-nodeps"/>
+		<dependency org="selenium-server-standalone" name="selenium-server-standalone" rev="3.3.1"/>
+		<dependency org="client-combined" name="client-combined" rev="3.3.1-nodeps"/>
 	</dependencies>
 </ivy-module>
