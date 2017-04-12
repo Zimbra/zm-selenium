@@ -276,6 +276,8 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 				locator = "css=div[id^='ztb__COMPOSE'] div[id*='SEND'] td[id$='_title']";
 			}
 
+			SleepUtil.sleepSmall();
+			
 			// Click on send
 			this.sClick(locator);
 
