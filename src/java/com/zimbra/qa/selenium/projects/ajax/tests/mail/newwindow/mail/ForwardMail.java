@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -17,11 +15,9 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
  * ***** END LICENSE BLOCK *****
  */
 
-
-import java.awt.event.KeyEvent;
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -29,22 +25,19 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
 
-
 public class ForwardMail extends PrefGroupMailByMessageTest {
-
 
 	public ForwardMail() {
 		logger.info("New "+ ForwardMail.class.getCanonicalName());
-
-
 	}
 
-	@Test( description = "Fwd to a mail by pressing Fwd button - in separate window",
+
+	@Test( description = "Forward mail from new window",
 			groups = { "smoke", "L1" })
-	public void FwdMailFromNewWindow_01() throws HarnessException {
 
-		String subject = "subject"+ ConfigProperties.getUniqueString();		
+	public void ForwardMailFromNewWindow_01() throws HarnessException {
 
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
@@ -57,7 +50,6 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 						"</mp>" +
 						"</m>" +
 				"</SendMsgRequest>");
-
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -76,53 +68,37 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 
 			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
-
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
-			window.zToolbarPressButton(Button.B_FORWARD);
-			
 			windowTitle = "Zimbra: Forward";
+			window.zToolbarPressButton(Button.B_FORWARD);
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
-			window.sSelectWindow(windowTitle);
-			String locator = FormMailNew.Locators.zToField;
-			window.sClick(locator);
-			window.sType(locator, ZimbraAccount.AccountB().EmailAddress);
-			window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-			SleepUtil.sleepSmall();
-			window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
-			SleepUtil.sleepSmall();			
+			window.sType(FormMailNew.Locators.zToField, ZimbraAccount.AccountB().EmailAddress);
 			window.zToolbarPressButton(Button.B_SEND);
-			
+
 			windowTitle = "Zimbra: " + subject;
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
 			window.zToolbarPressButton(Button.B_CLOSE);
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
-		// From the receiving end, verify the message details
-		// Need 'in:inbox' to seprate the message from the sent message
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "in:inbox subject:("+subject +")");
-
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountB().EmailAddress, "Verify the to field is correct");
 		ZAssert.assertStringContains(received.dSubject, subject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(received.dSubject, "Fwd", "Verify the subject field contains the 'fwd' prefix");
-
 	}
 
 
 	@Test( description = "Forward a  message , using keyboard shortcut (keyboard='f') - in a separate window",
 			groups = { "smoke", "L1" })
-	public void FwdMailFromNewWindow_02() throws HarnessException {
 
-		String subject = "subject"+ ConfigProperties.getUniqueString();		
+	public void ForwardMailFromNewWindow_02() throws HarnessException {
 
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
@@ -135,7 +111,6 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 						"</mp>" +
 						"</m>" +
 				"</SendMsgRequest>");
-
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -154,40 +129,24 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 
 			window.zSetWindowTitle(windowTitle);
 			window.zWaitForActive();
-
-			ZAssert.assertTrue(window.zIsActive(),
-					"Verify the window is active");
-
-			window.zKeyboardShortcut(Shortcut.S_MAIL_FOWARD);
-			
-			windowTitle = "Zimbra: Forward";
-			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
-			window.sSelectWindow(windowTitle);
-			String locator = FormMailNew.Locators.zToField;
-			window.sClick(locator);
-			window.sType(locator, ZimbraAccount.AccountB().EmailAddress);
-			window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-			SleepUtil.sleepSmall();
-			window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
-			SleepUtil.sleepSmall();			
-			window.zToolbarPressButton(Button.B_SEND);		
-			
+			windowTitle = "Zimbra: Forward";
+			window.zKeyboardShortcut(Shortcut.S_MAIL_FOWARD);
+			window.zSetWindowTitle(windowTitle);
+
+			window.sType(FormMailNew.Locators.zToField, ZimbraAccount.AccountB().EmailAddress);
+			window.zToolbarPressButton(Button.B_SEND);
+
 			windowTitle = "Zimbra: " + subject;
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
 			window.zToolbarPressButton(Button.B_CLOSE);
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
-		// From the receiving end, verify the message details
-		// Need 'in:inbox' to seprate the message from the sent message
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "in:inbox subject:("+subject +")");
-
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountB().EmailAddress, "Verify the to field is correct");
 		ZAssert.assertStringContains(received.dSubject, subject, "Verify the subject field is correct");
@@ -195,6 +154,4 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 
 	}
 
-
 }
-
