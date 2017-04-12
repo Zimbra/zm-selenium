@@ -127,10 +127,10 @@ public class PageManageDomains extends AbsTab {
 		if(!sIsElementPresent(Locators.CONFIGURE_ICON)) {
 			sRefresh();
 		}
-		sClickAt(Locators.CONFIGURE_ICON,"");
+		sClick(Locators.CONFIGURE_ICON);
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForElementPresent(Locators.DOMAINS);
-		sClickAt(Locators.DOMAINS, "");
+		sClick(Locators.DOMAINS);
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 	}

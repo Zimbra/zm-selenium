@@ -102,16 +102,15 @@ public class ClientSession {
 				}
 
 				FirefoxProfile profile = new FirefoxProfile();
-				profile.addExtension(new File(ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/firebug-2.0.17-fx.xpi"));
+				profile.addExtension(new File(ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/firebug-2.0.19-fx.xpi"));
 				profile.setPreference("extensions.firebug.showFirstRunPage", false);
 
 				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 				System.setProperty("webdriver.gecko.driver", driverPath);
-				capabilities.setCapability("marionette", true);
-				capabilities.setCapability(FirefoxDriver.PROFILE, profile);
 				capabilities.setCapability(CapabilityType.LOGGING_PREFS, logs);
 				webDriver = new FirefoxDriver(capabilities);
-
+				webDriver.manage().window().maximize(); 
+				
 			} else {
 
 				switch (OperatingSystem.getOSType()) {
