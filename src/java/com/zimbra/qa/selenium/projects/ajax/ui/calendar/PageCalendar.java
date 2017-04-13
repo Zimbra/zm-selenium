@@ -679,11 +679,6 @@ public class PageCalendar extends AbsTab {
 
 		} else if ( this.sIsElementPresent(itemsLocator + " td[class='appt_name']")) {
 
-			// Locator for appointment in trash
-			locator = itemsLocator + " td[class='appt_name']";
-
-		} else if ( this.sIsElementPresent(itemsLocator + " td[class='appt_name']")) {
-
 			// All day single occurrence locator
 			locator = itemsLocator + " td[class='appt_name']";
 
