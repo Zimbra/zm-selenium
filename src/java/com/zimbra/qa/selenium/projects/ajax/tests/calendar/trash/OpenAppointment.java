@@ -41,7 +41,7 @@ public class OpenAppointment extends AjaxCommonTest {
 	}
 
 	@Test( description = "Open an appointment in trash and verify its details.",
-			groups = { "smoke", "L0" })
+			groups = { "sanity", "L1" })
 	
 	public void OpenAppointment_01() throws HarnessException {
 
