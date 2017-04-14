@@ -31,6 +31,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.ui.Checkbox;
 import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
@@ -54,6 +55,10 @@ public class PageCalendar extends AbsTab {
 		public static final String zCalendarZimletsPane = "ztih__main_Calendar__ZIMLET_textCell";
 		public static final String zCalendarTagsPane = "ztih__main_Calendar__TAG_textCell";
 		public static final String zCalendarFolder = "zti__main_Calendar__10_textCell";
+		
+		// Checkboxes
+		public static final String zCalendarCheckBox = "css=div[id='zti__main_Calendar__10_checkbox']";
+		public static final String zTrashCheckBox = "css=div[id='zti__main_Calendar__3_checkbox']";
 
 		// Buttons
 		public static final String NewButton = "css=td#zb__CLWW__NEW_MENU_title";
@@ -355,6 +360,12 @@ public class PageCalendar extends AbsTab {
 			return false;
 		}
 	}
+	
+	public boolean zIsAppointmentPresentInTrash(String apptSubject) throws HarnessException {
+		SleepUtil.sleepSmall();
+		return (sIsElementPresent("css=div[id='zv__CLT'] div[id='zl__CLT__rows'] div[id^='zli__CLT__'] td[id$='__su']:contains('" + apptSubject + "')")) ;
+		}
+
 
 	public boolean zIsAppointmentVisible(String apptSubject) throws HarnessException {
 		SleepUtil.sleepSmall();
@@ -403,6 +414,10 @@ public class PageCalendar extends AbsTab {
 
 	public String zGetApptSubjectFromReadOnlyAppt() throws HarnessException {
 		return sGetText("css=div[class='MsgHeader'] td[class='SubjectCol']");
+	}
+	
+	public String zGetApptDateFromReadOnlyAppt() throws HarnessException {
+		return sGetText("//td[@class='LabelColName' and contains(text(),'Date')]/following-sibling::td");
 	}
 
 	public String zGetApptBodyFromReadOnlyAppt() throws HarnessException {
@@ -547,6 +562,33 @@ public class PageCalendar extends AbsTab {
 
 		return (page);
 	}
+	
+	public AbsPage zListItemTrashView(Action action, String subject) throws HarnessException {
+		logger.info(myPageName() + " zListItemTrashView("+ action + ", "+ subject + ")");
+
+		// The default locator points at the subject of an appointment in trash
+		String locator = "css=div[id='zv__CLT'] div[id='zl__CLT__rows'] div[id^='zli__CLT__'] td[id$='__su']:contains('" + subject + "')";
+		AbsPage page = null;
+		
+		if ( action == Action.A_DOUBLECLICK ) {
+
+			// Double-Click on the item
+			this.sDoubleClick(locator);
+			this.zWaitForBusyOverlay();
+			page = null;
+		
+		}  else if ( action == Action.A_LEFTCLICK ) {
+
+			// Left-Click on the item
+			this.sClick(locator);
+			page = null;
+		
+		}  else {
+			throw new HarnessException("implement me!  action = "+ action);
+		}
+
+		return (page);
+	}
 
 	public AbsPage zMouseOver(Button button) throws HarnessException {
 
@@ -640,7 +682,7 @@ public class PageCalendar extends AbsTab {
 			// All day single occurrence locator
 			locator = itemsLocator + " td[class='appt_name']";
 
-		}
+		} 
 
 		// Make sure one of the locators found the appt
 		if ( locator == null ) {
@@ -2906,6 +2948,43 @@ public class PageCalendar extends AbsTab {
 			throw new HarnessException(ex);
 		}
 
+	}
+	
+	public void zCheckboxSet(Checkbox checkbox, boolean status) throws HarnessException {
+		logger.info("zCheckboxSet(" + checkbox + ") = " + status);
+		
+		if(checkbox == null) {
+			throw new HarnessException("Checkbox cannot be null!");
+		}
+		
+		String locator = null;
+		
+		switch(checkbox.toString()) {
+		
+			case "C_CALENDAR" :locator = Locators.zCalendarCheckBox;
+											break;
+											
+			case "C_TRASH":locator = Locators.zTrashCheckBox;
+										 	break;
+										 	
+			default: new HarnessException("Action for "+ checkbox + " is not implemented!");
+		}
+				
+		if ( !this.sIsElementPresent(locator) ) {
+			throw new HarnessException(locator + " not present!");
+		}
+
+		if ( this.sIsChecked(locator) == status ) {
+			logger.debug("checkbox status matched.  not doing anything");
+			return;
+		}
+		if ( status == true ) {
+			this.sCheck(locator);
+		} else {
+			this.sUncheck(locator);
+		}
+
+		this.zWaitForBusyOverlay();
 	}
 	
 	public boolean zVerifyMultidayAllDayAppointmentInMonthView(Calendar cal, int duration, String subject) throws HarnessException {

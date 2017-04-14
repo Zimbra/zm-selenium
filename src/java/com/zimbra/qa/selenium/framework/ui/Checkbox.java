@@ -46,6 +46,9 @@
 
 		// General CheckBoxes
 		
+		// Calender checkBoxes
+		public static final Checkbox C_CALENDAR = new Checkbox("C_CALENDAR");
+		public static final Checkbox C_TRASH = new Checkbox("C_TRASH");
 		
 		//Admin UI MTA configuration page checkboxes
 		public static final Checkbox C_MTA_CLIENTS_IP_ADDRESS = new Checkbox("C_MTA_CLIENTS_IP_ADDRESS");
