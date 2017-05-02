@@ -13,9 +13,10 @@
 	<property name="tms.tgz.file" value="selng.tgz"/>
 	<property name="tms.tgz.filepath" location="${dist.dir}/${tms.tgz.file}"/>
 
-	<property name="server-conf.dir" location="../zm-store-conf"/>
-	<property name="webclient.dir" location="../zm-web-client"/>
-	<property name="zimlet.dir" location="../zm-zimlets"/>
+	<property name="network-selenium.dir" location="../zm-network-selenium"/>
+	<property name="store-conf.dir" location="../zm-store-conf"/>
+	<property name="web-client.dir" location="../zm-web-client"/>
+	<property name="zimlets.dir" location="../zm-zimlets"/>
 
 	<path id="all.java.path">
 		<pathelement location="${src.java.dir}"/>
@@ -35,7 +36,7 @@
 		<mkdir dir="${build.classes.dir}"/>
 	</target>
 
-	<target name="compile" depends="build-init,bundles-jar,coverage-jar,resolve" description="Compiles the source code">
+	<target name="compile" depends="build-init,network,bundles-jar,coverage-jar,resolve" description="Compiles the source code">
 		<echo message="Compiling framework..."/>
 		<javac destdir="${build.classes.dir}" debug="true" classpathref="class.path" nowarn="on" encoding="iso-8859-1">
 			<src refid="all.java.path"/>
@@ -59,46 +60,46 @@
 
 	<target name="bundles-classes" description="Copies the I18N properties files to build">
 		<copy todir="${build.resources.dir}">
-			<fileset dir="${webclient.dir}/WebRoot/messages/"/>
+			<fileset dir="${web-client.dir}/WebRoot/messages/"/>
 		</copy>
 		<copy todir="${build.resources.dir}">
-			<fileset dir="${server-conf.dir}/conf/msgs/"/>
+			<fileset dir="${store-conf.dir}/conf/msgs/"/>
 		</copy>
 		<copy todir="${build.resources.dir}">
-			<fileset dir="${zimlet.dir}/src/zimlet/com_zimbra_attachcontacts/">
+			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_attachcontacts/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlet.dir}/src/zimlet/com_zimbra_attachmail/">
+			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_attachmail/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlet.dir}/src/zimlet/com_zimbra_date/">
+			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_date/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlet.dir}/src/zimlet/com_zimbra_dnd/">
+			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_dnd/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlet.dir}/src/zimlet/com_zimbra_email/">
+			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_email/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlet.dir}/src/zimlet/com_zimbra_linkedin/">
+			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_linkedin/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlet.dir}/src/zimlet/com_zimbra_linkedinimage/">
+			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_linkedinimage/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlet.dir}/src/zimlet/com_zimbra_phone/">
+			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_phone/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlet.dir}/src/zimlet/com_zimbra_social/">
+			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_social/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlet.dir}/src/zimlet/com_zimbra_srchhighlighter/">
+			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_srchhighlighter/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlet.dir}/src/zimlet/com_zimbra_url/">
+			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_url/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlet.dir}/src/zimlet/com_zimbra_webex/">
+			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_webex/">
 				<filename name="*.properties"/>
 			</fileset>
 		</copy>
@@ -214,6 +215,20 @@
 	        <include name="*.jar"/>
 		</fileset>
 	</path>
+	
+	<target name="network" description="Specific to network related data and testcases">
+		<if> <available file="${network-selenium.dir}" type="dir"/>
+			<then>
+				<copy todir="src">
+					<fileset dir="${network-selenium.dir}/src/"/>
+				</copy>
+				<copy todir="${tms.dir}/data">
+					<fileset dir="${network-selenium.dir}/data/"/>
+				</copy>
+			</then>
+		</if>
+	</target>
+	
 	<target name="Run-ExecuteHarnessMain" depends="jar" description="Run all tests per specified arguments">
 		<property name="jarfile" value="${dist.lib.dir}/zimbraselenium.jar"/>
 		<property name="pattern" value="ajax.tests"/>
@@ -251,7 +266,7 @@
 			</fileset>
 		</copy>
 	</target>
-
+	
 	<target name="tgz-file" depends="tgz-contents" description="Creates the tms package tgz file">
 		<echo message="Creating tms package tgz file..."/>
 		<tar destfile="${tms.tgz.filepath}" compression="gzip">
