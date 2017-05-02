@@ -14,7 +14,7 @@
 	<property name="tms.tgz.filepath" location="${dist.dir}/${tms.tgz.file}"/>
 
 	<property name="network-selenium.dir" location="../zm-network-selenium"/>
-	<property name="store-conf.dir" location="../zm-store-conf"/>
+	<property name="store-conf.dir" location="../zm-mailbox/store-conf"/>
 	<property name="web-client.dir" location="../zm-web-client"/>
 	<property name="zimlets.dir" location="../zm-zimlets"/>
 
