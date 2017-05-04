@@ -1,0 +1,69 @@
+Return-Path: mbannon@yahoo-inc.com
+Received: from dogfood.zimbra.com (LHLO dogfood.zimbra.com) (10.10.140.44)
+ by dogfood.zimbra.com with LMTP; Fri, 7 Mar 2008 14:29:55 -0800 (PST)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by dogfood.zimbra.com (Postfix) with ESMTP id 9E1F7106743
+	for <charrison@testdomain.com>; Fri,  7 Mar 2008 14:29:55 -0800 (PST)
+X-Virus-Scanned: amavisd-new at dogfood.zimbra.com
+X-Spam-Flag: NO
+X-Spam-Score: -2.599
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.599 tagged_above=-10 required=3 tests=[AWL=0.001,
+	BAYES_00=-2.599]
+Received: from dogfood.zimbra.com ([127.0.0.1])
+	by localhost (dogfood.zimbra.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 6r-8h213U+Zx for <charrison@testdomain.com>;
+	Fri,  7 Mar 2008 14:29:55 -0800 (PST)
+Received: from mta01.zimbra.com (mta01.zimbra.com [10.10.140.35])
+	by dogfood.zimbra.com (Postfix) with ESMTP id F2125106742
+	for <charrison@testdomain.com>; Fri,  7 Mar 2008 14:29:54 -0800 (PST)
+Received: from rsmtp1.corp.yahoo.com (rsmtp1.corp.yahoo.com [207.126.228.149])
+	by mta01.zimbra.com (Postfix) with ESMTP id EFD33DE8BF4
+	for <charrison@testdomain.com>; Fri,  7 Mar 2008 14:29:54 -0800 (PST)
+Received: from canfoolstormlx (canfoolstorm-lx.hillsboro.corp.yahoo.com [10.72.195.144])
+	(authenticated bits=0)
+	by rsmtp1.corp.yahoo.com (8.13.8/8.13.8/y.rout) with ESMTP id m27MTrnt048820
+	(version=TLSv1/SSLv3 cipher=RC4-MD5 bits=128 verify=NO)
+	for <charrison@testdomain.com>; Fri, 7 Mar 2008 14:29:54 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; s=serpent; d=yahoo-inc.com; c=nofws; q=dns;
+	h=from:to:subject:date:message-id:mime-version:content-type:
+	content-transfer-encoding:x-mailer:x-mimeole:thread-index;
+	b=uZw13Cast6fDmQxVYl4wjU7u4vyPZBphGfp0Spat14/ACeRZaDVdrZpt8Wm7VdvQ
+From: "Michelle McPeters" <mbannon@yahoo-inc.com>
+To: "'Candace Harrison'" <charrison@testdomain.com>
+Subject: Accepted: subject13001430504373
+Date: Fri, 7 Mar 2008 14:29:53 -0800
+Message-ID: <00d501c880a2$c3eee610$d41c490a@ds.corp.yahoo.com>
+MIME-Version: 1.0
+Content-Type: text/calendar; method=REPLY;
+	charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Office Outlook 11
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.3198
+Thread-Index: AciAooviPEsGJ8YCQjWqigsuR8Ir6gAAAr8AAAAD9cA=
+
+BEGIN:VCALENDAR
+PRODID:-//Microsoft Corporation//Outlook 11.0 MIMEDIR//EN
+VERSION:2.0
+METHOD:REPLY
+BEGIN:VEVENT
+ORGANIZER:MAILTO:charrison@testdomain.com
+DTSTART:20080311T170000Z
+DTEND:20080311T180000Z
+LOCATION:Buildinig A-2 Room = Itally
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:f9a430ca-b868-42ba-ac4d-23aa2cb31355
+DTSTAMP:20080307T222904Z
+DESCRIPTION:Hi Candace\, \n\nThis time works\, however I am in Hillsboro.
+   Do you have a bridge available?  If not I do or you can just call me at
+  my desk  503-6153726. \n\nThanks!\n
+SUMMARY:Accepted: Customer Care Tier 1 Duties and Escalation process
+  brainstorm session
+PRIORITY:5
+X-MICROSOFT-CDO-IMPORTANCE:1
+CLASS:PUBLIC
+ATTENDEE;PARTSTAT=ACCEPTED:MAILTO:mbannon@yahoo-inc.com
+END:VEVENT
+END:VCALENDAR
+

@@ -1,0 +1,42 @@
+Received: from localhost (localhost [127.0.0.1])
+	by demo.zimbra.com (Postfix) with ESMTP id E08F01E9B95
+	for <ljk20k00k1je@demo.zimbra.com>; Thu, 27 Jul 2006 15:49:54 -0500 (CDT)
+Received: from demo.zimbra.com ([127.0.0.1])
+ by localhost (demo.zimbra.com [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 00930-02 for <ljk20k00k1je@demo.zimbra.com>;
+ Thu, 27 Jul 2006 15:49:46 -0500 (CDT)
+Received: from py-out-1112.google.com (py-out-1112.google.com [64.233.166.181])
+	by demo.zimbra.com (Postfix) with ESMTP id C4A121E9B90
+	for <ljk20k00k1je@demo.zimbra.com>; Thu, 27 Jul 2006 15:49:45 -0500 (CDT)
+Received: by py-out-1112.google.com with SMTP id n25so347552pyg
+        for <ljk20k00k1je@demo.zimbra.com>; Thu, 27 Jul 2006 13:49:44 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+       s=beta; d=gmail.com;
+       h=received:message-id:date:from:to:subject:mime-version:content-type:content-transfer-encoding:content-disposition;
+       b=rwyv2YrYLBQEeE9VKzYMZSRg4qMIeYYIXucD2lHaAo2emwCbqmMg0LxJ7h9vNKD2FWZ+t/B4jQSIn4tOHqRCqvKyCmV9a/pXllfWAHbq31WYtwnVUjFF/meiiCLurgisGVJ8C4zkvvjCSrMAZQLYk6m3wAX36D676Ks3/kOipwk=
+Received: by 10.35.22.17 with SMTP id z17mr13692098pyi;
+        Thu, 27 Jul 2006 13:49:44 -0700 (PDT)
+Received: by 10.35.9.5 with HTTP; Thu, 27 Jul 2006 13:49:44 -0700 (PDT)
+Message-ID: <1b5a348d06sdg072713@mail.gmail.com>
+Date: Thu, 27 Jul 2006 17:49:44 -0300
+To: ljk20k00k1je@demo.zimbra.com
+Subject: Re: =?ISO-8859-1?Q?Encoding_test_-_ISO-8?=
+ =?ISO-8859-1?Q?859-1_=E1=E1=E1_=E9=E9=E9_=ED=ED=ED_=E7=E7=E7?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+X-DSPAM-Result: Innocent
+X-DSPAM-Processed: Thu Jul 27 15:49:53 2006
+X-DSPAM-Confidence: 0.9014
+X-DSPAM-Probability: 0.0000
+X-DSPAM-Signature: 44c926f190211804284693
+X-DSPAM-Factors: 27,
+X-Virus-Scanned: amavisd-new at 
+X-Spam-Status: No, score=-2.576 tagged_above=-10 required=6.6 autolearn=no
+ tests=[ALL_TRUSTED=-1.8, BAYES_00=-2.599, DNS_FROM_RFC_ABUSE=0.2,
+ DSPAM_HAM=-0.1, SUBJECT_ENCODED_TWICE=1.723]
+X-Spam-Score: -2.576
+X-Spam-Level: 
+
+Note that this message is missing a From: header.
