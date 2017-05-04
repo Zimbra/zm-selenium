@@ -60,30 +60,12 @@ public class HomePageLinks extends AdminCommonTest {
 	/**
 	 * Testcase : Navigate to Search page
 	 * Steps :
-	 * 1. Verify navigation path -- "Home --> Configure Backup"
-	 * @throws HarnessException
-	 */
-	@Test( description = "Navigate to Configure Backup",
-			groups = { "sanity", "L0","network" })
-			public void NavigateHomePageLinks_02() throws HarnessException {
-		
-		app.zPageMain.sClickAt(Locators.HomeConfigureBackups,"");
-		boolean isNavigationSuccess = app.zPageMain.zVerifyHeader("Backup/Restore");
-		ZAssert.assertTrue(isNavigationSuccess, "Verify the Backup/Restore page is opened");
-		app.zPageMain.logout();
-
-	}
-	
-	
-	/**
-	 * Testcase : Navigate to Search page
-	 * Steps :
 	 * 1. Verify navigation path -- "Home --> Install License --> Install certificate Wizard"
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Install certificate wizard",
 			groups = { "sanity", "L0" })
-			public void NavigateHomePageLinks_03() throws HarnessException {
+			public void NavigateHomePageLinks_02() throws HarnessException {
 
 		WizardInstallCertificate wizard = 
 			(WizardInstallCertificate)app.zPageManageCertificates.zToolbarPressButton(Button.B_INSTALL_CERTIFICATE);
@@ -93,10 +75,7 @@ public class HomePageLinks extends AdminCommonTest {
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the install certificate wizard is closed");
 		app.zPageMain.logout();
-
-		
 	}
-	
 	
 	/**
 	 * Testcase : Navigate to Configure default COS from home page link
@@ -106,7 +85,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 */
 	@Test( description = "Navigate to Configure default COS",
 			groups = { "sanity", "L0" })
-			public void NavigateHomePageLinks_04() throws HarnessException {
+			public void NavigateHomePageLinks_03() throws HarnessException {
 		
 		/*
 		 * Verify navigation path -- "Home --> Configure Default COS""
@@ -129,7 +108,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 */
 	@Test( description = "Navigate to create Domain wizard",
 			groups = { "sanity", "L0" })
-			public void NavigateHomePageLinks_05() throws HarnessException {
+			public void NavigateHomePageLinks_04() throws HarnessException {
 		
 		// Navigate back to home page 
 
@@ -154,7 +133,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 */
 	@Test( description = "Navigate to Configure GAL wizard",
 			groups = { "sanity", "L0" })
-			public void NavigateHomePageLinks_06() throws HarnessException {
+			public void NavigateHomePageLinks_05() throws HarnessException {
 
 		// Navigate back to Home page 
 		
@@ -179,7 +158,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 */
 	@Test( description = "Navigate to Configure Authentication wizard",
 			groups = { "sanity", "L0" })
-			public void NavigateHomePageLinks_07() throws HarnessException {
+			public void NavigateHomePageLinks_06() throws HarnessException {
 
 		// Navigate back to Home page
 		WizardConfigureAuthentication wizard = 
@@ -202,7 +181,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 */
 	@Test( description = "Navigate to create account wizard",
 			groups = { "sanity", "L0" })
-			public void NavigateHomePageLinks_08() throws HarnessException {
+			public void NavigateHomePageLinks_07() throws HarnessException {
 	
 		// Navigate back to Home page
 		WizardCreateAccount wizard = 
@@ -224,7 +203,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 */
 	@Test( description = "Navigate to Configure manage accounts",
 			groups = { "sanity", "L0" })
-			public void NavigateHomePageLinks_09() throws HarnessException {
+			public void NavigateHomePageLinks_08() throws HarnessException {
 		
 		// Navigate back to Home page
 	
@@ -244,7 +223,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 */
 	@Test( description = "Navigate to migration and co Existance wizard",
 			groups = { "sanity", "L0" })
-			public void NavigateHomePageLinks_10() throws HarnessException {
+			public void NavigateHomePageLinks_09() throws HarnessException {
 		
 		// Navigate Back to Home page
 
