@@ -59,7 +59,7 @@ public class CheckFromHeaderInConversationView extends AjaxCommonTest {
 		String subject = "Encoding test";
 		String to = "ljk20k00k1je";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug16213";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug16213";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 
 		// Click on folder in the tree

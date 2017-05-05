@@ -260,7 +260,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		// Inject the sample mime
 		String subject = "subject13189993282183";
 		String content = "Incident Title";
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug65079";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65079";
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
 
 		// Refresh the inbox

@@ -51,7 +51,7 @@ public class DeployZimlet extends AdminCommonTest {
 		// Create file item
 		final String fileName = "com_zimbra_dnd.zip";
 		String zimletName ="com_zimbra_dnd";
-		final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\private\\zimlet\\" + fileName;
+		final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\zimlet\\" + fileName;
 		FileItem fileItem = new FileItem(filePath);
 		
 		// Click on deploy zimlet

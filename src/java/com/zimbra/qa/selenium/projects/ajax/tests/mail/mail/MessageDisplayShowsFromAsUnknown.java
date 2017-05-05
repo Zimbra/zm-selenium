@@ -56,7 +56,7 @@ public class MessageDisplayShowsFromAsUnknown extends AjaxCommonTest {
 		String subject = "Encoding test";
 		String from = "Unknown";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug16213";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug16213";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 
 		// Refresh current view
