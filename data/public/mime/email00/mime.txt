@@ -58,7 +58,7 @@ Hopefully the list will be quite short.  I’ll send out an email next Monday.
 
 
 
-From: Kevin Henrikson [mailto:kevinh@vmware.com]
+From: Kevin Henrikson [mailto:kevinh@testdomain.com]
 Sent: Thursday, June 21, 2012 2:11 PM
 To: Jeff Wagner; Jeff Flanigan; Todd Richmond; Brian P. Peterson; Ellen 
 Shen; Matt Rhoades; Bill Hwang; Sandesh Joseph Almeida
@@ -1806,7 +1806,7 @@ style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
 0in 0in'><p class=3DMsoNormal><b><span =
 style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
 </b><span style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> =
-Kevin Henrikson [mailto:kevinh@vmware.com] <br><b>Sent:</b> Thursday, =
+Kevin Henrikson [mailto:kevinh@testdomain.com] <br><b>Sent:</b> Thursday, =
 June 21, 2012 2:11 PM<br><b>To:</b> Jeff Wagner; Jeff Flanigan; Todd =
 Richmond; Brian P. Peterson; Ellen Shen; Matt Rhoades; Bill Hwang; =
 Sandesh Joseph Almeida<br><b>Cc:</b> Jon Dybik; Lavanya Shastri; John =

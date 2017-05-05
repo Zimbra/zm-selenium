@@ -1,6 +1,6 @@
-Return-Path: dconnelly@gmail.com
-Message-Id: <98E8C173-CB55-4168-A9B3-1E8DA94D83B2@gmail.com>
-From: David Connelly <dconnelly@gmail.com>
+Return-Path: dconnelly@testdomain.com
+Message-Id: <98E8C173-CB55-4168-A9B3-1E8DA94D83B2@testdomain.com>
+From: David Connelly <dconnelly@testdomain.com>
 To: JJ Zhuang <jjzhuang@testdomain.com>
 Content-Type: multipart/mixed; boundary=Apple-Mail-12--163757278
 Mime-Version: 1.0 (Apple Message framework v930.3)

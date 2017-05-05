@@ -1,30 +1,30 @@
-Return-Path: mabraham@uwm.edu
-Received: from mta03.pantherlink.uwm.edu (LHLO mta03.pantherlink.uwm.edu)
- (129.89.7.83) by mail04.pantherlink.uwm.edu with LMTP; Wed, 3 Sep 2008
+Return-Path: mabraham@testdomain.com
+Received: from mta03.pantherlink.testdomain.com (LHLO mta03.pantherlink.testdomain.com)
+ (129.89.7.83) by mail04.pantherlink.testdomain.com with LMTP; Wed, 3 Sep 2008
  10:29:08 -0500 (CDT)
 Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mta03.pantherlink.uwm.edu (Postfix) with ESMTP id 88B12C085AB
-	for <spremeau@uwm.edu>; Wed,  3 Sep 2008 10:29:08 -0500 (CDT)
+	by mta03.pantherlink.testdomain.com (Postfix) with ESMTP id 88B12C085AB
+	for <spremeau@testdomain.com>; Wed,  3 Sep 2008 10:29:08 -0500 (CDT)
 X-Virus-Scanned: amavisd-new at 
 X-Spam-Flag: NO
 X-Spam-Score: -2.599
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.599 tagged_above=-10 required=5
 	tests=[BAYES_00=-2.599]
-Received: from mta03.pantherlink.uwm.edu ([127.0.0.1])
-	by localhost (mta03.pantherlink.uwm.edu [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id LwGmTocVsW+O for <spremeau@uwm.edu>;
+Received: from mta03.pantherlink.testdomain.com ([127.0.0.1])
+	by localhost (mta03.pantherlink.testdomain.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id LwGmTocVsW+O for <spremeau@testdomain.com>;
 	Wed,  3 Sep 2008 10:29:08 -0500 (CDT)
-Received: from mail04.imt.uwm.edu (mail04.imt.uwm.edu [129.89.7.46])
-	by mta03.pantherlink.uwm.edu (Postfix) with ESMTP id 18D1AC085A8
-	for <spremeau@uwm.edu>; Wed,  3 Sep 2008 10:29:08 -0500 (CDT)
-Received: from cfdevws02.imt.uwm.edu (cfdevws02.imt.uwm.edu [129.89.70.85])
-	by mail04.imt.uwm.edu (8.13.1/8.13.1) with ESMTP id m83FT7S9004523;
+Received: from mail04.imt.testdomain.com (mail04.imt.testdomain.com [129.89.7.46])
+	by mta03.pantherlink.testdomain.com (Postfix) with ESMTP id 18D1AC085A8
+	for <spremeau@testdomain.com>; Wed,  3 Sep 2008 10:29:08 -0500 (CDT)
+Received: from cfdevws02.imt.testdomain.com (cfdevws02.imt.testdomain.com [129.89.70.85])
+	by mail04.imt.testdomain.com (8.13.1/8.13.1) with ESMTP id m83FT7S9004523;
 	Wed, 3 Sep 2008 10:29:07 -0500
 Date: Wed, 3 Sep 2008 10:29:07 -0500 (CDT)
-From: mabraham@uwm.edu
-To: mydev@uwm.edu
-Message-ID: <28849117.9461220455747839.JavaMail.jrun@cfdevws02.imt.uwm.edu>
+From: mabraham@testdomain.com
+To: mydev@testdomain.com
+Message-ID: <28849117.9461220455747839.JavaMail.jrun@cfdevws02.imt.testdomain.com>
 Subject: now there is a change . . . Just sending off the correction for the
  event I just reg'd you for
 MIME-Version: 1.0
@@ -58,12 +58,12 @@ VERSION:2.0
 METHOD:REQUEST
 BEGIN:VEVENT
 SEQUENCE:08931028
-UID:165515-26067-mydev.uwm.edu
+UID:165515-26067-mydev.testdomain.com
 SUMMARY:happyhappyjoyjoy fun time
 LOCATION:that weird little place behind your knee
 ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;
-   RSVP=FALSE:mailto:spremeau@uwm.edu
-ORGANIZER:mailto:spremeau@uwm.edu
+   RSVP=FALSE:mailto:spremeau@testdomain.com
+ORGANIZER:mailto:spremeau@testdomain.com
 DTSTART:20080923T143000
 DTEND:20080923T163000
 STATUS:CONFIRMED

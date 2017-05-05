@@ -1,10 +1,10 @@
-Return-Path: gacc.encerramento@itau.com.br
-Received: from correio.suchygiozza.com.br (LHLO correio.suchygiozza.com.br)
- (100.100.100.250) by correio.suchygiozza.com.br with LMTP; Tue, 29 Apr 2008
+Return-Path: gacc.encerramento@testdomain.com
+Received: from correio.testdomain.com (LHLO correio.testdomain.com)
+ (100.100.100.250) by correio.testdomain.com with LMTP; Tue, 29 Apr 2008
  16:09:42 -0300 (BRT)
 Received: from localhost (localhost.localdomain [127.0.0.1])
-	by correio.suchygiozza.com.br (Postfix) with ESMTP id 534589CC1E4
-	for <matriz@suchygiozza.com.br>; Tue, 29 Apr 2008 16:09:42 -0300 (BRT)
+	by correio.testdomain.com (Postfix) with ESMTP id 534589CC1E4
+	for <matriz@testdomain.com>; Tue, 29 Apr 2008 16:09:42 -0300 (BRT)
 X-Virus-Scanned: amavisd-new at 
 X-Spam-Flag: NO
 X-Spam-Score: -0.987
@@ -12,23 +12,23 @@ X-Spam-Level:
 X-Spam-Status: No, score=-0.987 tagged_above=-10 required=6.6
 	tests=[AWL=-0.466, BAYES_00=-2.599, HTML_MESSAGE=0.001,
 	SUBJ_ALL_CAPS=2.077]
-Received: from correio.suchygiozza.com.br ([127.0.0.1])
-	by localhost (correio.suchygiozza.com.br [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id J+vOkZ7preKE for <matriz@suchygiozza.com.br>;
+Received: from correio.testdomain.com ([127.0.0.1])
+	by localhost (correio.testdomain.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id J+vOkZ7preKE for <matriz@testdomain.com>;
 	Tue, 29 Apr 2008 16:09:37 -0300 (BRT)
-Received: from gwmail.suchygiozza.com.br (unknown [100.100.100.241])
-	by correio.suchygiozza.com.br (Postfix) with ESMTP id A84799CC1E0
-	for <matriz@suchygiozza.com.br>; Tue, 29 Apr 2008 16:09:37 -0300 (BRT)
+Received: from gwmail.testdomain.com (unknown [100.100.100.241])
+	by correio.testdomain.com (Postfix) with ESMTP id A84799CC1E0
+	for <matriz@testdomain.com>; Tue, 29 Apr 2008 16:09:37 -0300 (BRT)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
-Received: from post5.itau.com.br (post5.itau.com.br [200.196.152.236])
-	by gwmail.suchygiozza.com.br (Postfix) with ESMTP id 8167E24454F
-	for <MATRIZ@SUCHYGIOZZA.COM.BR>; Tue, 29 Apr 2008 16:00:41 -0300 (BRT)
-X-TM-IMSS-Message-ID:<b400b0eb000cbf2b@post3.itau.com.br>
-Received: from simx003cto.itau ([10.58.25.44]) by post3.itau.com.br ([128.100.0.161]) with ESMTP (TREND IMSS SMTP Service 7.0) id b400b0eb000cbf2b ; Tue, 29 Apr 2008 16:11:06 -0300
+Received: from post5.testdomain.com (post5.testdomain.com [200.196.152.236])
+	by gwmail.testdomain.com (Postfix) with ESMTP id 8167E24454F
+	for <MATRIZ@TESTDOMAIN>COM>; Tue, 29 Apr 2008 16:00:41 -0300 (BRT)
+X-TM-IMSS-Message-ID:<b400b0eb000cbf2b@post3.testdomain.com>
+Received: from simx003cto.itau ([10.58.25.44]) by post3.testdomain.com ([128.100.0.161]) with ESMTP (TREND IMSS SMTP Service 7.0) id b400b0eb000cbf2b ; Tue, 29 Apr 2008 16:11:06 -0300
 Received: from zeus.itau (zeus.itau [10.48.105.56])
 	by simx003cto.itau (8.13.8/8.12.11) with ESMTP id m3TJB7ML016587
-	for <MATRIZ@SUCHYGIOZZA.COM.BR>; Tue, 29 Apr 2008 16:11:13 -0300 (EST)
-	(envelope-from gacc.encerramento@itau.com.br)
+	for <MATRIZ@TESTDOMAIN.COM>; Tue, 29 Apr 2008 16:11:13 -0300 (EST)
+	(envelope-from gacc.encerramento@testdomain.com)
 Received: from scmt922cto.corp1.rc.itau ([10.58.58.45])
           by zeus.itau (Lotus Domino Release 6.5.4FP1)
           with ESMTP id 2008042916093769-189595 ;
@@ -42,13 +42,13 @@ Date: Tue, 29 Apr 2008 16:09:39 -0300
 Message-ID: <0198471B7CAA3445A6D00FFA981C89C28BBFDC@VCMT917CTO.corp1.rc.itau>
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-Thread-Topic: ORDEM DE BLOQUEIO PASTA: 070170093044
+Thread-Topic: ORDEM DE BLOQUEIO PASTA: 000000000000
 Thread-Index: AciqLIbOS5CXZn++THuoAHUqwgjdZQ==
 X-Priority: 1 (High)
 Priority: Urgent
 Importance: High
-From: "GACC ENCERRAMENTO" <gacc.encerramento@itau.com.br>
-To: <MATRIZ@SUCHYGIOZZA.COM.BR>
+From: "GACC ENCERRAMENTO" <gacc.encerramento@testdomain.com>
+To: <MATRIZ@TESTDOMAIN.COM>
 X-OriginalArrivalTime: 29 Apr 2008 19:09:35.0109 (UTC) FILETIME=[8FFD6350:01C8AA2C]
 X-MIMETrack: Itemize by SMTP Server on Zeus/Itaubanco(Release 6.5.4FP1 | June 19, 2005) at
  29/04/2008 16:09:37,
@@ -63,7 +63,7 @@ X-SuchyGiozza-MailScanner: Mensagem OK
 X-SuchyGiozza-HSC_MAILINSPECTOR-SpamCheck: nao spam, AntiSpam (not cached,
 	escore=-0.521, requerido 6, BAYES_00 -2.60, HTML_MESSAGE 0.00,
 	SUBJ_ALL_CAPS 2.08)
-X-SuchyGiozza-HSC_MAILINSPECTOR-From: gacc.encerramento@itau.com.br
+X-SuchyGiozza-HSC_MAILINSPECTOR-From: gacc.encerramento@testdomain.com
 
 This is a multi-part message in MIME format.
 
@@ -85,7 +85,7 @@ Autor:VANESSA=20RODRIGUES=20DE=20QUADROS=20
 
 Processo:00130700057780=20
 
-Pasta:070170093044
+Pasta:000000000000
 
 FAVOR=20COLOCAR=20A=20RESPOSTA=20DO=20QUESTIONAMENTO=20NO=20ANDAMENTO=20D=
 O=20SISTEMA=20PJUR=20
@@ -117,7 +117,7 @@ iva=20libera=E7=E3o.
 
 A=20cobran=E7a=20da=20libera=E7=E3o=20do=20valor=20solicitado=20via=20sis=
 tema=20pjur=20deve=20ser=20encaminhada=20=E0=20caixa=20do=20GACC.ENCERRAM=
-ENTO@ITAU.COM.BR,=20mencionando-se=20que=20h=E1=20ordem=20de=20bloqueio=
+ENTO@TESTDOMAIN.COM,=20mencionando-se=20que=20h=E1=20ordem=20de=20bloqueio=
 =20em=20andamento.
 
 Quando=20o=20da=20juntada=20do=20comprovante=20do=20dep=F3sito,=20favor=
@@ -183,7 +183,7 @@ style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial"><o:p></o:p></SPAN></F=
 ONT></P>
 <P><STRONG><B><SPAN=20style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial"=
 >Pasta:<SPAN=20
-class=3D103010619-29042008>070170093044</SPAN></SPAN></B></STRONG></P>
+class=3D103010619-29042008>000000000000</SPAN></SPAN></B></STRONG></P>
 <P><SPAN=20style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial"><SPAN=20
 class=3D103010619-29042008><SPAN=20style=3D"FONT-SIZE:=2010pt;=20FONT-FAM=
 ILY:=20Arial"><SPAN=20
@@ -263,8 +263,8 @@ SPAN></P>
 valor=20solicitado=20via=20s</SPAN><SPAN=20
 style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial">istema=20pjur=20deve=
 =20ser=20encaminhada=20=E0=20
-caixa=20do=20<A=20title=3Dmailto:GACC.ENCERRAMENTO@ITAU.COM.BR=20
-href=3D"mailto:GACC.ENCERRAMENTO@ITAU.COM.BR">GACC.ENCERRAMENTO@ITAU.COM.=
+caixa=20do=20<A=20title=3Dmailto:GACC.ENCERRAMENTO@TESTDOMAIN.COM=20
+href=3D"mailto:GACC.ENCERRAMENTO@TESTDOMAIN.COM">GACC.ENCERRAMENTO@TESTDOMAIN.COM.=
 BR</A>,=20
 mencionando-se=20que=20h=E1=20ordem=20de=20bloqueio=20em=20andamento.</SP=
 AN></P>
@@ -298,7 +298,7 @@ p></P>
 <P=20class=3DMsoNormal=20style=3D"LINE-HEIGHT:=2012pt"><SPAN=20
 style=3D"FONT-SIZE:=2010pt;=20COLOR:=20black;=20FONT-FAMILY:=20Helv">S=E3=
 o=20Paulo&nbsp;=20
--&nbsp;&nbsp;=20SP.&nbsp;&nbsp;=20-&nbsp;=20Cep.=2004344-902</SPAN><o:p><=
+-&nbsp;&nbsp;=20SP.&nbsp;&nbsp;=20-&nbsp;=20Cep.=2000000-902</SPAN><o:p><=
 /o:p></P>
 <P=20class=3DMsoNormal><SPAN=20
 style=3D"FONT-SIZE:=2010pt;=20COLOR:=20black;=20FONT-FAMILY:=20Helv"></SP=

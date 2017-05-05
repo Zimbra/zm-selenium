@@ -1,8 +1,8 @@
 Return-Path: rrao@testdomain.com
-Received: from mta02.zimbra.com (LHLO mta02.zimbra.com) (207.126.229.144) by
+Received: from testdomain.com (LHLO testdomain.com) (207.126.229.144) by
  corp.zimbra.com with LMTP; Wed, 26 Aug 2009 08:54:20 -0700 (PDT)
 Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mta02.zimbra.com (Postfix) with ESMTP id 5E908C7808D;
+	by testdomain.com (Postfix) with ESMTP id 5E908C7808D;
 	Wed, 26 Aug 2009 08:54:20 -0700 (PDT)
 X-DSPAM-Result: Whitelisted
 X-DSPAM-Confidence: 0.9899
@@ -16,11 +16,11 @@ X-Spam-Level:
 X-Spam-Status: No, score=-4.26 tagged_above=-10 required=3
 	tests=[ALL_TRUSTED=-1.8, AWL=0.138, BAYES_00=-2.599,
 	HTML_MESSAGE=0.001] autolearn=ham
-Received: from mta02.zimbra.com ([127.0.0.1])
-	by localhost (mta02.zimbra.com [127.0.0.1]) (amavisd-new, port 10024)
+Received: from testdomain.com ([127.0.0.1])
+	by localhost (testdomain.com [127.0.0.1]) (amavisd-new, port 10024)
 	with ESMTP id 0onCUgqDl9L0; Wed, 26 Aug 2009 08:54:19 -0700 (PDT)
 Received: from dogfood.zimbra.com (dogfood.zimbra.com [207.126.229.140])
-	by mta02.zimbra.com (Postfix) with ESMTP id 09202C78065;
+	by testdomain.com (Postfix) with ESMTP id 09202C78065;
 	Wed, 26 Aug 2009 08:54:19 -0700 (PDT)
 Date: Wed, 26 Aug 2009 08:54:18 -0700 (PDT)
 From: Raja Rao <raja.rao@testdomain.com>
@@ -143,8 +143,8 @@ http://www.youtube.com/watch?v=ZiJG6fW3leQ
 
 
 Juan Bocanegra 
-| > > | 408.349.5336 
-| > > | 408.464.4668 (cell) 
+| > > | 000.000.0000 
+| > > | 000.000.0000 (cell) 
 | > > | http://www.zimbra.com 
 | > > | 
 | > > | 
@@ -176,8 +176,8 @@ Juan Bocanegra
 
 
 Juan Bocanegra 
-| > 408.349.5336 
-| > 408.464.4668 (cell) 
+| > 000.000.0000 
+| > 000.000.0000 (cell) 
 | > http://www.zimbra.com 
 | > 
 | > 
@@ -209,8 +209,8 @@ Juan Bocanegra
 
 
 Juan Bocanegra 
-| 408.349.5336 
-| 408.464.4668 (cell) 
+| 000.000.0000 
+| 000.000.0000 (cell) 
 | http://www.zimbra.com 
 | 
 | 
@@ -278,7 +278,7 @@ ou,<br>| &gt; &gt; | &gt; | <br>| &gt; &gt; | &gt; | Jason Bryan<br>| &gt; =
 <div><div><div><div><div><div><div><div><div><div><div><div><div><div><div>=
 <div><div><div><div><div><div><div><div><font size=3D"2"><span style=3D"col=
 or: rgb(51, 51, 255);">Juan Bocanegra<br>| &gt; &gt; | </span><span style=
-=3D"color: rgb(51, 51, 255);">408.349.5336<br>| &gt; &gt; | 408.464.4668 (c=
+=3D"color: rgb(51, 51, 255);">000.000.0000<br>| &gt; &gt; | 000.000.0000 (c=
 ell) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
 p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
 nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </s=
@@ -291,7 +291,7 @@ iv></div></div></div></div></div></div></div></div></div></div></div></div>=
 ; -- <br>| &gt; <div><div><div><div><div><div><div><div><div><div><div><div=
 ><div><div><div><div><div><div><div><div><div><div><div><font size=3D"2"><s=
 pan style=3D"color: rgb(51, 51, 255);">Juan Bocanegra<br>| &gt; </span><spa=
-n style=3D"color: rgb(51, 51, 255);">408.349.5336<br>| &gt; 408.464.4668 (c=
+n style=3D"color: rgb(51, 51, 255);">000.000.0000<br>| &gt; 000.000.0000 (c=
 ell) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
 p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
 nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </s=
@@ -303,7 +303,7 @@ div></div></div></div></div></div></div></div></div></div></div></div></div=
 pan></div><span><br>| <br>| -- <br>| <div><div><div><div><div><div><div><di=
 v><div><div><div><div><div><div><div><div><div><div><div><div><div><div><di=
 v><font size=3D"2"><span style=3D"color: rgb(51, 51, 255);">Juan Bocanegra<=
-br>| </span><span style=3D"color: rgb(51, 51, 255);">408.349.5336<br>| 408.=
+br>| </span><span style=3D"color: rgb(51, 51, 255);">000.000.0000<br>| 408.=
 464.4668 (cell) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
 ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
 bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
@@ -657,8 +657,8 @@ I am attaching the snapshots that tells you the settings. I have reverted the Ca
 
 Website(Broadsoft's admin console): 
 https://ews2.eng.broadsoft.com/Login/ 
-opaul2@as.eng.broadsoft.com 
-g0dz1lla 
+zimbra@testdomain.com 
+test123 
 
 After you log in, Click on 'Call Control' and then 'Broadworks Anywhere' 
 
@@ -695,7 +695,7 @@ whats the actual name of that account is.<br><br>Ramesh,<br>I am attaching =
 the snapshots that tells you the settings. I have reverted the Call Anywher=
 e to my cellphone, please login to broadsoft's site and change it back to y=
 our cell phone.<br><br>Website(Broadsoft's admin console):<br>https://ews2.=
-eng.broadsoft.com/Login/<br>opaul2@as.eng.broadsoft.com<br>g0dz1lla<br><br>=
+eng.broadsoft.com/Login/<br>zimbra@testdomain.com<br>test123<br><br>=
 After you log in, Click on 'Call Control' and then 'Broadworks Anywhere'<br=
 ><br><br><br><span><br><br><div><div><div><div><div><div>thanks,<br>raja<br=
 ><br><font style=3D"color: rgb(102, 102, 102);" size=3D"1">What kind of wor=

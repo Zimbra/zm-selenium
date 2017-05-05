@@ -1,4 +1,4 @@
-Return-Path: britishtc@aol.com
+Return-Path: testZimbra@testdomain.com
 Received: from mta02.zimbra.com (LHLO mta02.zimbra.com) (207.126.229.144) by
  dogfood.zimbra.com with LMTP; Tue, 19 Jan 2010 03:33:49 -0800 (PST)
 Received: from localhost (localhost.localdomain [127.0.0.1])
@@ -28,30 +28,30 @@ Received: from mailrelay2.mail.surf.sy (localhost [127.0.0.1])
 	by mta01.zimbra.com (Spam Firewall) with ESMTP
 	id C44F88731E; Tue, 19 Jan 2010 03:33:38 -0800 (PST)
 Received: from mailrelay2.mail.surf.sy (mailrelay2.surf.sy [94.252.191.129]) by mta01.zimbra.com with ESMTP id kzDDOcgSSkgUgEJe; Tue, 19 Jan 2010 03:33:37 -0800 (PST)
-X-Barracuda-Envelope-From: britishtc@aol.com
-Received-SPF: neutral (mta01.zimbra.com: domain of britishtc@aol.com is neutral about designating 94.252.191.129 as permitted sender)
+X-Barracuda-Envelope-From: testZimbra@testdomain.com
+Received-SPF: neutral (mta01.zimbra.com: domain of testZimbra@testdomain.com is neutral about designating 94.252.191.129 as permitted sender)
 Received: from [94.252.245.200] (helo=DannyPC)
 	by mailrelay2.mail.surf.sy with esmtp (Exim 4.69)
-	(envelope-from <britishtc@aol.com>)
+	(envelope-from <testZimbra@testdomain.com>)
 	id 1NXCKb-0001XL-56; Tue, 19 Jan 2010 13:33:11 +0200
-From: "Salma Al-Jandali--British Training" <britishtc@aol.com>
+From: "Salma Al-Jandali--British Training" <testZimbra@testdomain.com>
 X-Barracuda-BBL-IP: 94.252.245.200
 X-Barracuda-RBL-IP: 94.252.245.200
-To: "Salma Al-Jandali--British Training" <britishtc@aol.com>
+To: "Salma Al-Jandali--British Training" <testZimbra@testdomain.com>
 References: 
 In-Reply-To: 
 X-ASG-Orig-Subj: =?windows-1256?B?z+bRx8og5uPEyuPRx8ogx+Hj0d/SIMfhyNHt2Mfk7SDdyNHH7dEgMg==?=
 	=?windows-1256?B?MDEw?=
 Subject: Continous read receipt prompting
 Date: Tue, 19 Jan 2010 11:32:22 -0000
-Message-ID: <!&!AAAAAAAAAAAYAAAAAAAAAKdyAVHtvBpBikrTh3ikvPjCgAAAEAAAAPumLkq9Hp5OoJH/RxSK2tYBAAAAAA==@aol.com>
+Message-ID: <!&!AAAAAAAAAAAYAAAAAAAAAKdyAVHtvBpBikrTh3ikvPjCgAAAEAAAAPumLkq9Hp5OoJH/RxSK2tYBAAAAAA==@testdomain.com>
 MIME-Version: 1.0
 Content-Type: multipart/alternative;
 	boundary="----=_NextPart_000_089C_01CA98FB.2A52E790"
 X-Mailer: Microsoft Office Outlook 12.0
 Thread-Index: AcqY9w4KrU/jDKMJQjGESmQ/5lgd5AAAAeDgAAD2UVA=
 Content-Language: ar-sy
-Disposition-Notification-To: "Salma Al-Jandali--British Training" <britishtc@aol.com>
+Disposition-Notification-To: "Salma Al-Jandali--British Training" <testZimbra@testdomain.com>
 X-Barracuda-Connect: mailrelay2.surf.sy[94.252.191.129]
 X-Barracuda-Start-Time: 1263900819
 X-Barracuda-Virus-Scanned: by Barracuda Spam Firewall at zimbra.com
@@ -1048,14 +1048,14 @@ dir=3DRTL></span> </span></b><span
   dir=3DLTR></span><b><span style=3D'font-size:12.0pt'><span =
 dir=3DLTR></span>4 </span></b><b><span
   style=3D'font-size:12.0pt;font-family:"Times New =
-Roman","serif"'>2610821</span></b><span
+Roman","serif"'>0000000</span></b><span
   dir=3DRTL></span><b><span lang=3DAR-SA dir=3DRTL =
 style=3D'font-size:12.0pt;
   font-family:"Arial","sans-serif"'><span dir=3DRTL></span> =
 &nbsp;</span></b><span
   dir=3DLTR></span><b><span style=3D'font-size:12.0pt'><span =
 dir=3DLTR></span>&nbsp;Fax:00971
-  4 2958955 </span></b><span dir=3DRTL></span><b><span lang=3DAR-SA =
+  4 0000000 </span></b><span dir=3DRTL></span><b><span lang=3DAR-SA =
 dir=3DRTL
   style=3D'font-size:12.0pt;font-family:"Arial","sans-serif"'><span =
 dir=3DRTL></span>&nbsp;&nbsp;</span></b><b><span
@@ -1063,7 +1063,7 @@ dir=3DRTL></span>&nbsp;&nbsp;</span></b><b><span
 dir=3DRTL></span><b><span
   lang=3DAR-SA dir=3DRTL =
 style=3D'font-size:12.0pt;font-family:"Arial","sans-serif"'><span
-  dir=3DRTL></span>508765022</span></b><b><span =
+  dir=3DRTL></span>0000000</span></b><b><span =
 style=3D'font-size:12.0pt;
   font-family:"Times New Roman","serif"'><o:p></o:p></span></b></p>
   <p class=3DMsoNormal align=3Dcenter style=3D'text-align:center'><span
@@ -1072,7 +1072,7 @@ href=3D"http://www.al-britani.com">www.al-britani.com</a>&nbsp;&nbsp;&nbs=
 p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
 ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
 &nbsp;&nbsp;&nbsp;&nbsp;
-  <a href=3D"mailto:training@al-britani.com">training@al-britani.com</a> =
+  <a href=3D"mailto:training@testdomain.com">training@testdomain.com</a> =
 <o:p></o:p></span></p>
   </td>
  </tr>
