@@ -6325,17 +6325,17 @@ Content-Type: multipart/alternative;
 	boundary="----_=_NextPart_003_01C8F61D.8E2F2D00"
 Received:  from mrout1-b.corp.re1.yahoo.com ([69.147.107.20]) by SNV-EXBH01.ds.corp.yahoo.com with Microsoft SMTPSVC(6.0.3790.3959); Mon, 4 Aug 2008 03:33:37 -0700
 Received:  from mrin1-b.corp.re1.yahoo.com (mrin1-b.corp.re1.yahoo.com [69.147.105.207]) by mrout1-b.corp.re1.yahoo.com (8.13.8/8.13.8/y.out) with ESMTP id m74AXA86003468 for <mum-bcd@exchange.corp.yahoo.com>; Mon, 4 Aug 2008 03:33:10 -0700 (PDT)
-Received:  from mail1.amadeus.net (mail1.amadeus.net [82.150.225.79]) by mrin1-b.corp.re1.yahoo.com (8.13.8/8.13.8/y.in) with ESMTP id m74AX8Ns068643 for <MUM-BCD@testdomain.com>; Mon, 4 Aug 2008 03:33:08 -0700 (PDT)
-Received:  from mucddp02 (unknown [82.150.225.129]) by mail1.amadeus.net (Postfix) with ESMTP id 2D0441D9C7A for <MUM-BCD@testdomain.com>; Mon,  4 Aug 2008 10:33:08 +0000 (GMT)
+Received:  from mail1.testdomain.com (mail1.testdomain.com [82.150.225.79]) by mrin1-b.corp.re1.yahoo.com (8.13.8/8.13.8/y.in) with ESMTP id m74AX8Ns068643 for <MUM-BCD@testdomain.com>; Mon, 4 Aug 2008 03:33:08 -0700 (PDT)
+Received:  from mucddp02 (unknown [82.150.225.129]) by mail1.testdomain.com (Postfix) with ESMTP id 2D0441D9C7A for <MUM-BCD@testdomain.com>; Mon,  4 Aug 2008 10:33:08 +0000 (GMT)
 Content-class: urn:content-classes:message
 Subject: YOUR TRAVEL INFORMATION
 Date: Mon, 4 Aug 2008 03:33:08 -0700
-Message-ID: <20080804103308.2D0441D9C7A@mail1.amadeus.net>
+Message-ID: <20080804103308.2D0441D9C7A@mail1.testdomain.com>
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 Thread-Topic: YOUR TRAVEL INFORMATION
 Thread-Index: Acj2HZC7PnItKKLwTuyN9A7vznE66Q==
-From: "BCD TRAVEL INDIA PVT.LTD          (AGENTID01998137)" <emailserver@pop3.amadeus.net>
+From: "BCD TRAVEL INDIA PVT.LTD          (AGENTID01998137)" <emailserver@pop3.testdomain.com>
 To: "Neena Kulkarni" <mum-bcd@testdomain.com>
 
 This is a multi-part message in MIME format.
