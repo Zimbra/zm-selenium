@@ -76,40 +76,4 @@ public class CreateAccount extends AdminCommonTest {
 
 	}
 	
-	
-
-	/**
-	 * Testcase : Create a global admin account.
-	 * Steps :
-	 * 1. Create an global admin account from GUI.
-	 * 2. Verify account is created using SOAP.
-	 * @throws HarnessException
-	 */
-	@Test( description = "Create a global admin account",
-			groups = { "sanity", "L0","network" })
-			public void CreateAccount_02() throws HarnessException {
-
-		// Create a new account in the Admin Console
-		AccountItem account = new AccountItem("global_admin" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
-
-		// Click "New" -> "Admin Account"
-		WizardCreateAdminAccount wizard = 
-			(WizardCreateAdminAccount)app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_NEW_ADMIN);
-
-		// Fill out the wizard and click Finish
-		wizard.setAdminType(WizardCreateAdminAccount.Locators.ADMIN_USER);
-		wizard.setGlobalAdmin(true);
-		wizard.zCompleteWizard(account);
-
-
-		// Verify the account exists in the ZCS
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-				+			"<account by='name'>"+ account.getEmailAddress() +"</account>"
-				+		"</GetAccountRequest>");
-		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account", 1); 
-		ZAssert.assertNotNull(response, "Verify the admin account is created successfully");
-
-	}
-
 }
