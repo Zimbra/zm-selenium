@@ -1,0 +1,77 @@
+Return-Path: aclark@testdomain.com
+Received: from dogfood.zimbra.com (LHLO dogfood.zimbra.com) (10.10.130.20)
+ by dogfood.zimbra.com with LMTP; Wed, 12 Dec 2007 18:39:44 -0800 (PST)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by dogfood.zimbra.com (Postfix) with ESMTP id 10908185F1E;
+	Wed, 12 Dec 2007 18:39:44 -0800 (PST)
+X-Virus-Scanned: amavisd-new at dogfood.zimbra.com
+X-Spam-Flag: NO
+X-Spam-Score: -3.837
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.837 tagged_above=-10 required=3
+	tests=[ALL_TRUSTED=-1.8, AWL=-0.562, BAYES_00=-2.599,
+	SORTED_RECIPS=1.125]
+Received: from dogfood.zimbra.com ([127.0.0.1])
+	by localhost (dogfood.zimbra.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id h+PYpzPz5wwP; Wed, 12 Dec 2007 18:39:43 -0800 (PST)
+Received: from depot.liquidsys.com (unknown [10.10.130.31])
+	by dogfood.zimbra.com (Postfix) with ESMTP id 19AC5185CE5;
+	Wed, 12 Dec 2007 18:39:43 -0800 (PST)
+From: Andy Clark <aclark@testdomain.com>
+To: "Anand Palaniswamy" <anandp@testdomain.com>, "Boris Burtin" <bburtin@testdomain.com>, "Brian Peterson" <brian@testdomain.com>, "Conrad Damon" <cdamon@testdomain.com>, "dcomfort" <dcomfort@testdomain.com>, "Dan Karp" <dkarp@testdomain.com>, "Ellen Shen" <eshen@testdomain.com>, "greg" <greg@testdomain.com>, "Jiho Hahm" <jhahm@testdomain.com>, "J.J.Zhuang" <jjzhuang@testdomain.com>, "Jong Yoon Lee" <jylee@testdomain.com>, "Kevin Henrikson" <khenrikson@testdomain.com>, "Kevin Kluge" <kluge@testdomain.com>, "marcmac" <marcmac@testdomain.com>, "Matt Rhoades" <matt@testdomain.com>, "Mihai Bazon" <mihai@testdomain.com>, "Parag Shah" <pshah@testdomain.com>, "Phoebe Shao" <pshao@testdomain.com>, "Quanah Gibson-Mount" <quanah@testdomain.com>, "Ross Dargahi" <rossd@testdomain.com>, "Sam Khavari" <sam@testdomain.com>, "Roland Schemers" <schemers@testdomain.com>, "tim brennan" <tim@testdomain.com>, "vstamatoiu" <vstamatoiu@testdomain.com>
+X-From-Perforce: Indeed
+Precedence: bulk
+Subject: subject12998912514374
+Message-Id: <20071213023943.19AC5185CE5@dogfood.zimbra.com>
+Date: Wed, 12 Dec 2007 18:39:43 -0800 (PST)
+
+Change 77406 by aclark@aclark on 2007/12/12 18:35:02
+
+	bug: 22926
+	Replaced all of the hard-coded values of "sand" with
+	"beach". I hope I got them all...
+	
+	http://bugzilla.zimbra.com/show_bug.cgi?id=22926
+
+Affected files ...
+
+... //depot/main/ZimbraCustomerServices/ZimbraCCWebClient/WebRoot/WEB-INF/tags/head.tag#3 edit
+... //depot/main/ZimbraCustomerServices/ZimbraCCWebClient/WebRoot/WEB-INF/tags/infra/view.tag#3 edit
+... //depot/main/ZimbraCustomerServices/ZimbraCCWebClient/WebRoot/WEB-INF/tags/rest/restHead.tag#3 edit
+... //depot/main/ZimbraCustomerServices/ZimbraCCWebClient/WebRoot/WEB-INF/web.xml#3 edit
+... //depot/main/ZimbraCustomerServices/ZimbraCCWebClient/WebRoot/admin_skins/beach/manifest.xml#1 branch
+... //depot/main/ZimbraCustomerServices/ZimbraCCWebClient/WebRoot/admin_skins/beach/skin.properties#1 branch
+... //depot/main/ZimbraCustomerServices/ZimbraCCWebClient/WebRoot/admin_skins/sand/manifest.xml#3 delete
+... //depot/main/ZimbraCustomerServices/ZimbraCCWebClient/WebRoot/admin_skins/sand/skin.properties#3 delete
+... //depot/main/ZimbraCustomerServices/ZimbraCCWebClient/WebRoot/h/changepass#3 edit
+... //depot/main/ZimbraCustomerServices/ZimbraCCWebClient/WebRoot/public/Resources.jsp#3 edit
+... //depot/main/ZimbraCustomerServices/ZimbraCCWebClient/WebRoot/public/admin.jsp#3 edit
+... //depot/main/ZimbraCustomerServices/ZimbraCCWebClient/WebRoot/public/login.jsp#3 edit
+... //depot/main/ZimbraCustomerServices/ZimbraCCWebClient/src/com/zimbra/webClient/servlet/SkinResources.java#3 edit
+... //depot/main/ZimbraCustomerServices/velodrome/ZimbraWebClient/WebRoot/skins/velodrome2/skin.css#103 edit
+... //depot/main/ZimbraServer/conf/attrs/zimbra-attrs.xml#233 edit
+... //depot/main/ZimbraServer/docs/clienturls.txt#4 edit
+... //depot/main/ZimbraServer/src/java/com/zimbra/cs/util/SkinUtil.java#10 edit
+... //depot/main/ZimbraServer/src/java/com/zimbra/qa/unittest/TestAccess.java#4 edit
+... //depot/main/ZimbraWebClient/WebRoot/WEB-INF/tags/head.tag#24 edit
+... //depot/main/ZimbraWebClient/WebRoot/WEB-INF/tags/infra/view.tag#84 edit
+... //depot/main/ZimbraWebClient/WebRoot/WEB-INF/tags/rest/restHead.tag#8 edit
+... //depot/main/ZimbraWebClient/WebRoot/WEB-INF/web.xml#85 edit
+... //depot/main/ZimbraWebClient/WebRoot/admin_skins/beach/manifest.xml#1 branch
+... //depot/main/ZimbraWebClient/WebRoot/admin_skins/beach/skin.properties#1 branch
+... //depot/main/ZimbraWebClient/WebRoot/admin_skins/sand/manifest.xml#3 delete
+... //depot/main/ZimbraWebClient/WebRoot/admin_skins/sand/skin.properties#4 delete
+... //depot/main/ZimbraWebClient/WebRoot/h/changepass#13 edit
+... //depot/main/ZimbraWebClient/WebRoot/public/Resources.jsp#5 edit
+... //depot/main/ZimbraWebClient/WebRoot/public/Spreadsheet.jsp#6 edit
+... //depot/main/ZimbraWebClient/WebRoot/public/SpreadsheetEmbed.jsp#6 edit
+... //depot/main/ZimbraWebClient/WebRoot/public/admin.jsp#83 edit
+... //depot/main/ZimbraWebClient/WebRoot/public/launchNewWindow.jsp#38 edit
+... //depot/main/ZimbraWebClient/WebRoot/public/launchZimbraMail.jsp#111 edit
+... //depot/main/ZimbraWebClient/WebRoot/public/login.jsp#59 edit
+... //depot/main/ZimbraWebClient/WebRoot/public/proto/index.jsp#9 edit
+... //depot/main/ZimbraWebClient/WebRoot/test/skins/index.jsp#6 edit
+... //depot/main/ZimbraWebClient/src/com/zimbra/webClient/servlet/SkinResources.java#54 edit
+
+
+

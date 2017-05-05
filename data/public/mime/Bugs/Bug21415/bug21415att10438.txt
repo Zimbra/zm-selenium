@@ -1,0 +1,316 @@
+Return-Path: gacc.encerramento@itau.com.br
+Received: from correio.suchygiozza.com.br (LHLO correio.suchygiozza.com.br)
+ (100.100.100.250) by correio.suchygiozza.com.br with LMTP; Tue, 29 Apr 2008
+ 16:09:42 -0300 (BRT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by correio.suchygiozza.com.br (Postfix) with ESMTP id 534589CC1E4
+	for <matriz@suchygiozza.com.br>; Tue, 29 Apr 2008 16:09:42 -0300 (BRT)
+X-Virus-Scanned: amavisd-new at 
+X-Spam-Flag: NO
+X-Spam-Score: -0.987
+X-Spam-Level: 
+X-Spam-Status: No, score=-0.987 tagged_above=-10 required=6.6
+	tests=[AWL=-0.466, BAYES_00=-2.599, HTML_MESSAGE=0.001,
+	SUBJ_ALL_CAPS=2.077]
+Received: from correio.suchygiozza.com.br ([127.0.0.1])
+	by localhost (correio.suchygiozza.com.br [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id J+vOkZ7preKE for <matriz@suchygiozza.com.br>;
+	Tue, 29 Apr 2008 16:09:37 -0300 (BRT)
+Received: from gwmail.suchygiozza.com.br (unknown [100.100.100.241])
+	by correio.suchygiozza.com.br (Postfix) with ESMTP id A84799CC1E0
+	for <matriz@suchygiozza.com.br>; Tue, 29 Apr 2008 16:09:37 -0300 (BRT)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from post5.itau.com.br (post5.itau.com.br [200.196.152.236])
+	by gwmail.suchygiozza.com.br (Postfix) with ESMTP id 8167E24454F
+	for <MATRIZ@SUCHYGIOZZA.COM.BR>; Tue, 29 Apr 2008 16:00:41 -0300 (BRT)
+X-TM-IMSS-Message-ID:<b400b0eb000cbf2b@post3.itau.com.br>
+Received: from simx003cto.itau ([10.58.25.44]) by post3.itau.com.br ([128.100.0.161]) with ESMTP (TREND IMSS SMTP Service 7.0) id b400b0eb000cbf2b ; Tue, 29 Apr 2008 16:11:06 -0300
+Received: from zeus.itau (zeus.itau [10.48.105.56])
+	by simx003cto.itau (8.13.8/8.12.11) with ESMTP id m3TJB7ML016587
+	for <MATRIZ@SUCHYGIOZZA.COM.BR>; Tue, 29 Apr 2008 16:11:13 -0300 (EST)
+	(envelope-from gacc.encerramento@itau.com.br)
+Received: from scmt922cto.corp1.rc.itau ([10.58.58.45])
+          by zeus.itau (Lotus Domino Release 6.5.4FP1)
+          with ESMTP id 2008042916093769-189595 ;
+          Tue, 29 Apr 2008 16:09:37 -0300 
+Received: from VCMT917CTO.corp1.rc.itau ([10.58.57.248]) by scmt922cto.corp1.rc.itau with Microsoft SMTPSVC(6.0.3790.1830);
+	 Tue, 29 Apr 2008 16:09:35 -0300
+X-MimeOLE: Produced By Microsoft Exchange V6.5
+MIME-Version: 1.0
+Subject: subject12998858731253
+Date: Tue, 29 Apr 2008 16:09:39 -0300
+Message-ID: <0198471B7CAA3445A6D00FFA981C89C28BBFDC@VCMT917CTO.corp1.rc.itau>
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Thread-Topic: ORDEM DE BLOQUEIO PASTA: 070170093044
+Thread-Index: AciqLIbOS5CXZn++THuoAHUqwgjdZQ==
+X-Priority: 1 (High)
+Priority: Urgent
+Importance: High
+From: "GACC ENCERRAMENTO" <gacc.encerramento@itau.com.br>
+To: <MATRIZ@SUCHYGIOZZA.COM.BR>
+X-OriginalArrivalTime: 29 Apr 2008 19:09:35.0109 (UTC) FILETIME=[8FFD6350:01C8AA2C]
+X-MIMETrack: Itemize by SMTP Server on Zeus/Itaubanco(Release 6.5.4FP1 | June 19, 2005) at
+ 29/04/2008 16:09:37,
+	Serialize by Router on Zeus/Itaubanco(Release 6.5.4FP1 | June 19, 2005) at
+ 29/04/2008 16:11:13,
+	Serialize complete at 29/04/2008 16:11:13
+Content-class: urn:content-classes:message
+Content-Type: multipart/alternative;
+	boundary="----_=_NextPart_001_01C8AA2C.92B18618"
+X-SuchyGiozza-HSC_MAILINSPECTOR-Information: Por Favor Contacte com seu Provedor para maiores detalhes
+X-SuchyGiozza-MailScanner: Mensagem OK
+X-SuchyGiozza-HSC_MAILINSPECTOR-SpamCheck: nao spam, AntiSpam (not cached,
+	escore=-0.521, requerido 6, BAYES_00 -2.60, HTML_MESSAGE 0.00,
+	SUBJ_ALL_CAPS 2.08)
+X-SuchyGiozza-HSC_MAILINSPECTOR-From: gacc.encerramento@itau.com.br
+
+This is a multi-part message in MIME format.
+
+
+------_=_NextPart_001_01C8AA2C.92B18618
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset="iso-8859-1"
+
+________________________________
+
+Uso=20Interno.=20=20Observar=20crit=E9rios=20da=20circular=20Ita=FA=20AG-=
+33.
+________________________________
+
+
+
+Autor:VANESSA=20RODRIGUES=20DE=20QUADROS=20
+
+Processo:00130700057780=20
+
+Pasta:070170093044
+
+FAVOR=20COLOCAR=20A=20RESPOSTA=20DO=20QUESTIONAMENTO=20NO=20ANDAMENTO=20D=
+O=20SISTEMA=20PJUR=20
+
+OBS:=20O=20OF=CDCIO=20FOI=20RECEPCIONADO=20EM=2011/04/2008
+
+Prezados,=20
+
+Recebemos=20of=EDcio=20=20de=20bloqueio=20on-line=20valor=20de=20R$=20124=
+0.30=20datado=20de=2020/02/2008,=20portanto,=20solicitamos=20a=20esse=20e=
+scrit=F3rio=20verificar=20se=20o=20valor=20est=E1=20correto=20e=20atentar=
+=20para=20o=20prazo=20de=20interposi=E7=E3o=20de=20embargos/impugna=E7=E3=
+o.
+
+Com=20o=20objetivo=20de=20desbloquear=20a=20conta=20da=20empresa=20execut=
+ada,=20dever=E1=20esse=20escrit=F3rio,=20se=20correto=20o=20valor=20bloqu=
+eado,=20providenciar=20a=20inclus=E3o=20da=20solicita=E7=E3o=20do=20pagam=
+ento=20(provis=F3rio=20ou=20definitivo)=20no=20sistema=20pjur,=20seguindo=
+-se=20a=20rota:=20Pagamento=20/=20solicita=E7=E3o=20de=20pagamento=20extr=
+anet=20e=20atentando-se=20para=20os=20procedimentos=20da=20Carta=20Circul=
+ar=20126,=20BOJ=2015=20Aditamento=206=20e=20Manual=20de=20Pagamento.=20Ca=
+so=20tal=20solicita=E7=E3o=20j=E1=20tenha=20sido=20feita,=20favor=20comun=
+icar-nos=20pela=20mesma=20via.
+
+Considerando=20que=20h=E1=20valor=20bloqueado=20na=20conta=20da=20empresa=
+=20executada,=20deve=20esse=20escrit=F3rio=20manter=20rigoroso=20acompanh=
+amento=20do=20caso,=20cobrando-nos,=20em=20tempo=20h=E1bil,=20a=20respect=
+iva=20libera=E7=E3o.
+
+A=20cobran=E7a=20da=20libera=E7=E3o=20do=20valor=20solicitado=20via=20sis=
+tema=20pjur=20deve=20ser=20encaminhada=20=E0=20caixa=20do=20GACC.ENCERRAM=
+ENTO@ITAU.COM.BR,=20mencionando-se=20que=20h=E1=20ordem=20de=20bloqueio=
+=20em=20andamento.
+
+Quando=20o=20da=20juntada=20do=20comprovante=20do=20dep=F3sito,=20favor=
+=20requerer=20o=20desbloqueio=20do=20valor=20bloqueado.
+
+Atenciosamente,
+
+BANCO=20ITA=DA=20S/A
+
+GACC=20-=20Ger=EAncia=20de=20A=E7=F5es=20Contra=20Cobran=E7a
+
+P=E7a.=20Alfredo=20Egydio=20de=20Souza=20Aranha,=20100=20-=20=20Torre=20A=
+=20-=201=BA
+
+S=E3o=20Paulo=20=20-=20=20=20SP.=20=20=20-=20=20Cep.=2004344-902
+
+=20
+
+
+Esta=20mensagem=20e=20uma=20correspond=EAncia=20reservada.=20Se=20voc=EA=
+=20a=20recebeu=20por=20engano,=20por=20favor=20desconsidere-a.=20
+O=20sistema=20de=20mensagens=20da=20Internet=20n=E3o=20=E9=20considerado=
+=20seguro=20ou=20livre=20de=20erros.=20Esta=20instituic=E3o=20n=E3o=20se=
+=20responsabiliza=20por=20opini=F5es=20ou=20declarac=F5es=20veiculadas=20=
+atrav=E9s=20de=20e-mails.
+
+------_=_NextPart_001_01C8AA2C.92B18618
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset="iso-8859-1"
+
+<HTML><BODY><FONT=20face=3DArial=20color=3Dblack=20size=3D2><STRONG><HR=
+=20color=3Dblack=20id=3DHR1=20style=3D'LEFT:=200px;=20WIDTH:=20315px;=20H=
+EIGHT:=202px'=20align=3Dleft></STRONG></FONT><FONT=20face=3DArial=20color=
+=3Dblack=20size=3D2><STRONG>Uso=20Interno.&nbsp;&nbsp;</STRONG>Observar=
+=20crit=E9rios=20da=20circular=20Ita=FA=20AG-33.</FONT><FONT=20face=3DAri=
+al=20color=3Dblack=20size=3D2><STRONG><HR=20color=3Dblack=20style=3D'LEFT=
+:=20177px;=20WIDTH:=20315px;=20TOP:=2054px;=20HEIGHT:=202px'=20align=3Dle=
+ft></STRONG><br></FONT><!DOCTYPE=20HTML=20PUBLIC=20"-//W3C//DTD=20HTML=20=
+4.0=20Transitional//EN">
+<HTML><HEAD>
+
+<META=20content=3D"MSHTML=206.00.2900.3268"=20name=3DGENERATOR></HEAD>
+<BODY>
+<DIV>
+<P><FONT=20face=3DArial=20size=3D2><SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial"><STRONG>Autor:</STRON=
+G><FONT=20
+face=3D"Times=20New=20Roman"=20size=3D3>VANESSA=20RODRIGUES=20DE=20QUADRO=
+S=20
+</FONT></SPAN></FONT><FONT=20face=3DArial=20size=3D2><SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial"><?xml:namespace=20pre=
+fix=20=3D=20o=20ns=20=3D=20
+"urn:schemas-microsoft-com:office:office"=20/><o:p></o:p></SPAN></FONT></=
+P>
+<P><FONT=20face=3DArial=20size=3D2><SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial"><STRONG>Processo:</ST=
+RONG><FONT=20
+face=3D"Times=20New=20Roman"=20size=3D3>00130700057780=20</FONT></SPAN></=
+FONT><FONT=20
+face=3DArial=20size=3D2><SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial"><o:p></o:p></SPAN></F=
+ONT></P>
+<P><STRONG><B><SPAN=20style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial"=
+>Pasta:<SPAN=20
+class=3D103010619-29042008>070170093044</SPAN></SPAN></B></STRONG></P>
+<P><SPAN=20style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial"><SPAN=20
+class=3D103010619-29042008><SPAN=20style=3D"FONT-SIZE:=2010pt;=20FONT-FAM=
+ILY:=20Arial"><SPAN=20
+class=3D125201920-22042008><SPAN=20class=3D870433212-22042008><STRONG>FAV=
+OR=20COLOCAR=20A=20
+RESPOSTA=20DO=20QUESTIONAMENTO=20NO=20ANDAMENTO=20DO=20SISTEMA=20PJUR</ST=
+RONG>=20
+</SPAN></SPAN></SPAN></SPAN></SPAN></P>
+<P><SPAN=20style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial"><SPAN=20
+class=3D103010619-29042008><SPAN=20style=3D"FONT-SIZE:=2010pt;=20FONT-FAM=
+ILY:=20Arial"><SPAN=20
+class=3D125201920-22042008><SPAN=20class=3D870433212-22042008><STRONG>OBS=
+:=20O=20OF=CDCIO=20
+FOI=20RECEPCIONADO=20EM=2011/04/2008</STRONG></SPAN></SPAN></SPAN></SPAN>=
+</SPAN></P>
+<P><FONT=20face=3DArial=20size=3D2><SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial">Prezados,=20
+<o:p></o:p></SPAN></FONT></P>
+<P><SPAN=20style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial">Recebemos&=
+nbsp;<SPAN=20
+class=3D103010619-29042008>of=EDcio=20</SPAN>&nbsp;de=20bloqueio=20on-lin=
+e&nbsp;valor=20de=20
+R$&nbsp;<SPAN=20class=3D103010619-29042008>1240.30</SPAN>=20datado=20de&n=
+bsp;<SPAN=20
+class=3D103010619-29042008>20</SPAN>/<SPAN=20
+class=3D103010619-29042008>02</SPAN>/<SPAN=20
+class=3D103010619-29042008>2008</SPAN><SPAN=20class=3D637431113-24072007>=
+,=20portanto,=20
+solicitamos&nbsp;a=20esse&nbsp;</SPAN>escrit=F3rio&nbsp;<SPAN=20
+class=3D637431113-24072007>verificar=20se=20o=20valor=20est=E1=20correto=
+=20e=20</SPAN></SPAN><SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial"><SPAN=20
+class=3D637431113-24072007><STRONG><U>atentar=20para=20o=20prazo=20de=20i=
+nterposi=E7=E3o=20de=20
+embargos/impugna=E7=E3o.</U></STRONG></SPAN></SPAN></P>
+<P><SPAN=20style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial"><SPAN=20
+class=3D637431113-24072007>Com=20o=20objetivo=20de=20desbloquear=20a=20co=
+nta=20da=20empresa=20
+executada,&nbsp;</SPAN></SPAN><SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial"><SPAN=20
+class=3D637431113-24072007>dever=E1=20esse=20escrit=F3rio,=20<STRONG><U>s=
+e=20correto=20o=20valor=20
+bloqueado</U></STRONG>,&nbsp;providenciar=20a=20inclus=E3o&nbsp;</SPAN></=
+SPAN><SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial">da&nbsp;</SPAN><SPAN=
+=20
+style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial">solicita=E7=E3o=20do=
+=20pagamento<SPAN=20
+class=3D637431113-24072007>=20(</SPAN>provis=F3rio=20ou&nbsp;defi</SPAN><=
+SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial">nitivo)=20no=20sistem=
+a=20pjur,=20seguindo-se=20
+a&nbsp;</SPAN><SPAN=20style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial"=
+>rota:=20Pagamento=20
+/=20solicita=E7=E3o=20de=20pagamento=20extranet=20e=20atentando-se=20para=
+&nbsp;</SPAN><SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial">os=20procedimentos=20
+da&nbsp;Carta&nbsp;Circular=20126,&nbsp;BOJ=2015&nbsp;Aditamento&nbsp;<SP=
+AN=20
+class=3D103010619-29042008>6</SPAN>=20e&nbsp;Manual=20de&nbsp;Pagamento.=
+=20<U>Caso=20tal=20
+solicita=E7=E3o=20j=E1=20tenha=20sido=20feita,=20favor=20comunicar-nos=20=
+pela=20mesma=20
+via.</U></SPAN></P>
+<P><SPAN=20style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial">Consideran=
+do=20que=20h=E1=20valor=20
+bloqueado=20na&nbsp;</SPAN><SPAN=20style=3D"FONT-SIZE:=2010pt;=20FONT-FAM=
+ILY:=20Arial">conta=20
+da=20empresa=20executada,=20deve=20esse=20escrit=F3rio=20manter=20rigoros=
+o=20acompanhamento=20
+do&nbsp;</SPAN><SPAN=20style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial=
+">caso,=20
+cobrando-nos,=20em=20tempo=20h=E1bil,=20a=20respectiva=20libera=E7=E3o.</=
+SPAN></P>
+<P><SPAN=20style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial">A=20cobran=
+=E7a=20da=20libera=E7=E3o=20do=20
+valor=20solicitado=20via=20s</SPAN><SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial">istema=20pjur=20deve=
+=20ser=20encaminhada=20=E0=20
+caixa=20do=20<A=20title=3Dmailto:GACC.ENCERRAMENTO@ITAU.COM.BR=20
+href=3D"mailto:GACC.ENCERRAMENTO@ITAU.COM.BR">GACC.ENCERRAMENTO@ITAU.COM.=
+BR</A>,=20
+mencionando-se=20que=20h=E1=20ordem=20de=20bloqueio=20em=20andamento.</SP=
+AN></P>
+<P><STRONG><U><SPAN=20style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial"=
+>Quando=20
+</SPAN><SPAN=20style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial">o=20da=
+=20juntada=20do=20
+comprovante=20do=20dep=F3sito,=20favor=20requerer=20o=20</SPAN></U></STRO=
+NG><STRONG><U><SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial">desbloqueio=20do=20va=
+lor=20
+bloqueado.</SPAN></U></STRONG></P>
+<P><SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial">Atenciosamente,</SPAN=
+></P><SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20FONT-FAMILY:=20Arial">
+<DIV=20align=3Dleft>
+<P=20class=3DMsoNormal=20style=3D"LINE-HEIGHT:=2012pt"><SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20COLOR:=20black;=20FONT-FAMILY:=20Helv">BANC=
+O=20ITA=DA=20
+S/A</SPAN><o:p></o:p></P>
+<P=20class=3DMsoNormal=20style=3D"LINE-HEIGHT:=2012pt"><SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20COLOR:=20black;=20FONT-FAMILY:=20Helv">GACC=
+=20-=20Ger=EAncia=20de=20
+A=E7=F5es=20Contra=20Cobran=E7a</SPAN><o:p></o:p></P>
+<P=20class=3DMsoNormal=20style=3D"LINE-HEIGHT:=2012pt"><SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20COLOR:=20black;=20FONT-FAMILY:=20Helv">P=E7=
+a.=20Alfredo=20Egydio=20de=20
+Souza=20Aranha,=20100=20-&nbsp;=20Torre=20A&nbsp;-=201=BA</SPAN><o:p></o:=
+p></P>
+<P=20class=3DMsoNormal=20style=3D"LINE-HEIGHT:=2012pt"><SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20COLOR:=20black;=20FONT-FAMILY:=20Helv">S=E3=
+o=20Paulo&nbsp;=20
+-&nbsp;&nbsp;=20SP.&nbsp;&nbsp;=20-&nbsp;=20Cep.=2004344-902</SPAN><o:p><=
+/o:p></P>
+<P=20class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE:=2010pt;=20COLOR:=20black;=20FONT-FAMILY:=20Helv"></SP=
+AN>&nbsp;</P></DIV></SPAN></DIV></BODY></HTML>
+</BODY></HTML>
+<table><tr><td=20bgcolor=3D#ffffff><font=20color=3D#000000><pre>Esta=20me=
+nsagem=20e=20uma=20correspond=EAncia=20reservada.=20Se=20voc=EA=20a=20rec=
+ebeu=20por=20engano,=20por=20favor=20desconsidere-a.=20
+O=20sistema=20de=20mensagens=20da=20Internet=20n=E3o=20=E9=20considerado=
+=20seguro=20ou=20livre=20de=20erros.=20Esta=20instituic=E3o=20n=E3o=20se=
+=20responsabiliza=20por=20opini=F5es=20ou=20declarac=F5es=20veiculadas=20=
+atrav=E9s=20de=20e-mails.</pre></font></td></tr></table>
+
+------_=_NextPart_001_01C8AA2C.92B18618--
+

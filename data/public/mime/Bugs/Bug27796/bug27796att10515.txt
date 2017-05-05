@@ -1,0 +1,108 @@
+Return-Path: devel-random-owner@yahoo-inc.com
+Received: from dogfood.zimbra.com (LHLO dogfood.zimbra.com) (10.10.140.44)
+ by dogfood.zimbra.com with LMTP; Wed, 7 May 2008 16:57:47 -0700 (PDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by dogfood.zimbra.com (Postfix) with ESMTP id 015991067C7
+	for <schemers@testdomain.com>; Wed,  7 May 2008 16:57:47 -0700 (PDT)
+X-Virus-Scanned: amavisd-new at dogfood.zimbra.com
+X-Spam-Flag: NO
+X-Spam-Score: -2.599
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.599 tagged_above=-10 required=3 tests=[AWL=0.000,
+	BAYES_00=-2.599]
+Received: from dogfood.zimbra.com ([127.0.0.1])
+	by localhost (dogfood.zimbra.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id xL8rqSlZqRU6 for <schemers@testdomain.com>;
+	Wed,  7 May 2008 16:57:46 -0700 (PDT)
+Received: from mta01.zimbra.com (mta01.zimbra.com [10.10.140.35])
+	by dogfood.zimbra.com (Postfix) with ESMTP id 66B9F1067C3
+	for <rschemers@testdomain.com>; Wed,  7 May 2008 16:57:46 -0700 (PDT)
+Received: from mrout1-b.corp.re1.yahoo.com (mrout1-b.corp.re1.yahoo.com [69.147.107.20])
+	by mta01.zimbra.com (Postfix) with ESMTP id 4496CDE96A0
+	for <rschemers@testdomain.com>; Wed,  7 May 2008 16:57:46 -0700 (PDT)
+Received: from ilist.yahoo.com (ilist.yahoo.com [216.145.54.177])
+	by mrout1-b.corp.re1.yahoo.com (8.13.8/8.13.8/y.out) with ESMTP id m47NvP70059242;
+	Wed, 7 May 2008 16:57:25 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; s=serpent; d=yahoo-inc.com; c=nofws; q=dns;
+	h=received:authentication-results:message-id:date:from:
+	user-agent:x-accept-language:mime-version:to:subject:reply-to:x-loop:
+	x-sequence:errors-to:precedence:x-no-archive:list-id:content-type;
+	b=HlAKsCz6hYF98dEpxGaN5+iancXRJde2vPvNeuXXIB1HQdAjhW74jKr0ZGWTPzMy
+Received: (from root@localhost)
+	by ilist.yahoo.com (8.13.8/8.13.8/ilist) id m47NvPSQ061416;
+	Wed, 7 May 2008 16:57:25 -0700 (PDT)
+Received: from mrout2.yahoo.com (mrout2.yahoo.com [216.145.54.172])
+	by ilist.yahoo.com (8.13.8/8.13.8/ilist) with ESMTP id m47NuOZc060689
+	for <devel-random@ilist.yahoo.com>; Wed, 7 May 2008 16:56:24 -0700 (PDT)
+Authentication-Results: ilist.yahoo.com from=swang@yahoo-inc.com; domainkeys=fail (testing)
+Received: from rsmtp1.corp.yahoo.com (rsmtp1.corp.yahoo.com [207.126.228.149])
+	by mrout2.yahoo.com (8.13.6/8.13.6/y.out) with ESMTP id m47NuIb1047415
+	for <devel-random@yahoo-inc.com>; Wed, 7 May 2008 16:56:18 -0700 (PDT)
+Authentication-Results: mrout2.yahoo.com from=swang@yahoo-inc.com; domainkeys=fail (testing)
+Received: from [10.72.121.124] (swang2.corp.yahoo.com [10.72.121.124])
+	by rsmtp1.corp.yahoo.com (8.13.8/8.13.8/y.rout) with ESMTP id m47NuHTX096875
+	for <devel-random@yahoo-inc.com>; Wed, 7 May 2008 16:56:17 -0700 (PDT)
+Message-ID: <482241A1.3050405@yahoo-inc.com>
+Date: Wed, 07 May 2008 16:56:17 -0700
+From: Jilong Wang <swang@yahoo-inc.com>
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.7.2) Gecko/20040804 Netscape/7.2 (ax)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: "'devel-random'" <devel-random@yahoo-inc.com>
+Subject: subject13001430504374
+Reply-To: Jilong Wang <swang@yahoo-inc.com>
+X-Loop: devel-random@yahoo-inc.com
+X-Sequence: 4707
+Errors-to: devel-random-owner@yahoo-inc.com
+Precedence: bulk
+X-no-archive: yes
+List-Id: <devel-random.yahoo-inc.com>
+Content-type: multipart/mixed; boundary="----------=_1210204643-59108-0"
+
+This is a multi-part message in MIME format...
+
+------------=_1210204643-59108-0
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Hi,
+
+I realized that may be the best place to post this question.
+BUT, from all of my experience, devel-randow was the BEST place for this 
+question.
+So, I go for it.
+
+Thanks
+
+Steven
+
+*************************************************************
+
+I am setting-up a BSD 6.3-YAHOO-20080122 web-server.
+
+But it failed with the errors blows:
+/libexec/ld-elf.so.1: /home/y/lib/libyfor.so.1: unsupported file layout
+
+my pkgs related to yfor are below:
+miners_dh_yfor-1.1.2
+yapache_yfor_wrapper-1.1.1
+yfor-1.21.4
+yphp_yfor-1.2.0
+yratings_yfor_westcoast-0.0.2
+
+I tried to install latest current yfor, but failed.
+
+Please help.
+
+Thanks
+
+Steven
+
+------------=_1210204643-59108-0
+Content-Type: text/plain; name="message-footer.txt"
+Content-Disposition: inline; filename="message-footer.txt"
+Content-Transfer-Encoding: 8bit
+
+-- 
+FAQ: http://twiki.corp.yahoo.com/view/Devel/DevelRandom
+------------=_1210204643-59108-0--
