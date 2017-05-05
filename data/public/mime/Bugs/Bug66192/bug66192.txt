@@ -1,28 +1,28 @@
-Return-Path: tony@flashbay.com
-Received: from mail2.flashbay.com (LHLO mail2.flashbay.com) (212.64.156.12)
- by mail2.flashbay.com with LMTP; Wed, 19 Oct 2011 11:50:38 +0100 (BST)
+Return-Path: tony@testdomain.com
+Received: from mail2.testdomain.com (LHLO mail2.testdomain.com) (212.64.156.12)
+ by mail2.testdomain.com with LMTP; Wed, 19 Oct 2011 11:50:38 +0100 (BST)
 Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail2.flashbay.com (Postfix) with ESMTP id 16FAA4D48009
-	for <robert@flashbay.com>; Wed, 19 Oct 2011 11:50:38 +0100 (BST)
-X-Virus-Scanned: amavisd-new at mail2.flashbay.com
+	by mail2.testdomain.com (Postfix) with ESMTP id 16FAA4D48009
+	for <robert@testdomain.com>; Wed, 19 Oct 2011 11:50:38 +0100 (BST)
+X-Virus-Scanned: amavisd-new at mail2.testdomain.com
 X-Spam-Flag: NO
 X-Spam-Score: -1.105
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.105 tagged_above=-10 required=6.6
 	tests=[BAYES_00=-1.9, HELO_NO_DOMAIN=0.001, HTML_MESSAGE=0.001,
 	RDNS_NONE=0.793] autolearn=no
-Received: from mail2.flashbay.com ([127.0.0.1])
-	by localhost (mail2.flashbay.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id vfxLfoUM9Lbw for <robert@flashbay.com>;
+Received: from mail2.testdomain.com ([127.0.0.1])
+	by localhost (mail2.testdomain.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id vfxLfoUM9Lbw for <robert@testdomain.com>;
 	Wed, 19 Oct 2011 11:50:30 +0100 (BST)
-Received: from mail2.flashbay.com (mail2.flashbay.com [212.64.156.12])
-	by mail2.flashbay.com (Postfix) with ESMTP id 3892A4D48006
-	for <robert@flashbay.com>; Wed, 19 Oct 2011 11:50:29 +0100 (BST)
+Received: from mail2.testdomain.com (mail2.testdomain.com [212.64.156.12])
+	by mail2.testdomain.com (Postfix) with ESMTP id 3892A4D48006
+	for <robert@testdomain.com>; Wed, 19 Oct 2011 11:50:29 +0100 (BST)
 Date: Wed, 19 Oct 2011 11:50:28 +0100 (BST)
-From: Tony Hu <tony@flashbay.com>
-To: Robert Zhang <robert@flashbay.com>
+From: Tony Hu <tony@testdomain.com>
+To: Robert Zhang <robert@testdomain.com>
 Subject: Fwd: test bug66192
-In-Reply-To: <4051e4be-9fd8-4d33-be1e-2babaef0796b@mail2.flashbay.com>
+In-Reply-To: <4051e4be-9fd8-4d33-be1e-2babaef0796b@mail2.testdomain.com>
 Content-Type: multipart/mixed;
  boundary="=_11765149-b6d2-40ad-981f-3ad95eec2117"
 MIME-Version: 1.0
@@ -125,8 +125,8 @@ div style=3D'font-family: arial,helvetica,sans-serif; font-size: 12pt; colo=
 r: #333333'><br><br><hr id=3D"zwchr"><div style=3D"color:#000;font-weight:n=
 ormal;font-style:normal;text-decoration:none;font-family:Helvetica,Arial,sa=
 ns-serif;font-size:12pt;"><b>=E5=8F=91=E4=BB=B6=E4=BA=BA: </b>"Kelly He" &l=
-t;kelly@flashbay.com&gt;<br><b>=E6=94=B6=E4=BB=B6=E4=BA=BA: </b>"Tony Hu" &=
-lt;tony@flashbay.com&gt;<br><b>=E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4: </b>=
+t;kelly@testdomain.com&gt;<br><b>=E6=94=B6=E4=BB=B6=E4=BA=BA: </b>"Tony Hu" &=
+lt;tony@testdomain.com&gt;<br><b>=E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4: </b>=
 =E6=98=9F=E6=9C=9F=E4=B8=80, 2011=E5=B9=B4 10 =E6=9C=88 17=E6=97=A5 =E4=B8=
 =8B=E5=8D=88 2:58:57<br><b>=E4=B8=BB=E9=A2=98: </b>Fwd: =E5=90=8A=E5=B8=A6=
 =E4=B8=9D=E5=8D=B0=E6=9C=BA=E5=99=A8<br><br><style>p { margin: 0; }</style>=
@@ -139,9 +139,9 @@ amily: Arial,helvetica,sans-serif; font-size: 10pt; color: rgb(85, 85, 85);=
 </span></span><span></span><br></div><hr id=3D"zwchr"><div style=3D"color:#=
 000;font-weight:normal;font-style:normal;text-decoration:none;font-family:H=
 elvetica,Arial,sans-serif;font-size:12pt;"><b>=E5=8F=91=E4=BB=B6=E4=BA=BA: =
-</b>"Henry Guo" &lt;henry@flashbay.com&gt;<br><b>=E6=94=B6=E4=BB=B6=E4=BA=
-=BA: </b>"Kevin Zhao" &lt;zhao@flashbay.com&gt;, "Fang Guopu" &lt;fang@flas=
-hbay.com&gt;, "Kelly He" &lt;kelly@flashbay.com&gt;<br><b>=E5=8F=91=E9=80=
+</b>"Henry Guo" &lt;henry@testdomain.com&gt;<br><b>=E6=94=B6=E4=BB=B6=E4=BA=
+=BA: </b>"Kevin Zhao" &lt;zhao@testdomain.com&gt;, "Fang Guopu" &lt;fang@flas=
+hbay.com&gt;, "Kelly He" &lt;kelly@testdomain.com&gt;<br><b>=E5=8F=91=E9=80=
 =81=E6=97=B6=E9=97=B4: </b>=E6=98=9F=E6=9C=9F=E4=B8=80, 2011=E5=B9=B4 10 =
 =E6=9C=88 17=E6=97=A5 =E4=B8=8B=E5=8D=88 2:44:39<br><b>=E4=B8=BB=E9=A2=98: =
 </b>Fwd: =E5=90=8A=E5=B8=A6=E4=B8=9D=E5=8D=B0=E6=9C=BA=E5=99=A8<br><br><sty=
@@ -159,7 +159,7 @@ e: 12pt; color: #333333">=E5=B0=8FZhao,<div><br></div><div>=E8=AF=B7=E4=B8=
 hr"><div style=3D"color:#000;font-weight:normal;font-style:normal;text-deco=
 ration:none;font-family:Helvetica,Arial,sans-serif;font-size:12pt;"><b>From=
 : </b>"=E5=A4=9A=E6=99=AE=E6=A3=AE-=E8=8B=9F=E5=85=B5" &lt;dopsing.go@gmail=
-.com&gt;<br><b>To: </b>"Henry Guo" &lt;henry@flashbay.com&gt;, zhao@flashba=
+.com&gt;<br><b>To: </b>"Henry Guo" &lt;henry@testdomain.com&gt;, zhao@flashba=
 y.com<br><b>Sent: </b>Saturday, 15 October, 2011 6:00:36 PM<br><b>Subject: =
 </b>Re: =E5=90=8A=E5=B8=A6=E4=B8=9D=E5=8D=B0=E6=9C=BA=E5=99=A8<br><br><div>=
 =E9=83=AD=E6=80=BB=EF=BC=8C=E8=B5=B5=E4=B8=BB=E7=AE=A1=EF=BC=9A</div>
@@ -187,7 +187,7 @@ y.com<br><b>Sent: </b>Saturday, 15 October, 2011 6:00:36 PM<br><b>Subject: =
 <div><br><br>&nbsp;</div>
 <div class=3D"gmail_quote">=E5=9C=A8 2011=E5=B9=B410=E6=9C=8813=E6=97=A5 =
 =E4=B8=8B=E5=8D=885:21=EF=BC=8CHenry Guo <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:henry@flashbay.com" target=3D"_blank">henry@flashbay.com</a>&gt;</spa=
+ailto:henry@testdomain.com" target=3D"_blank">henry@testdomain.com</a>&gt;</spa=
 n>=E5=86=99=E9=81=93=EF=BC=9A<br>
 <blockquote style=3D"BORDER-LEFT: #ccc 1px solid; MARGIN: 0px 0px 0px 0.8ex=
 ; PADDING-LEFT: 1ex" class=3D"gmail_quote">
@@ -209,12 +209,12 @@ n>=E5=86=99=E9=81=93=EF=BC=9A<br>
 
 <div style=3D"FONT-STYLE: normal; FONT-FAMILY: Helvetica, Arial, sans-serif=
 ; COLOR: #000; FONT-SIZE: 12pt; FONT-WEIGHT: normal; TEXT-DECORATION: none"=
-><b>From: </b>"Henry Guo" &lt;<a href=3D"mailto:henry@flashbay.com" target=
-=3D"_blank">henry@flashbay.com</a>&gt;<br>
-<b>To: </b><a href=3D"mailto:sales@topsonchina.com" target=3D"_blank">sales=
-@topsonchina.com</a><br><b>Cc: </b><a href=3D"mailto:cha@topsonchina.com" t=
-arget=3D"_blank">cha@topsonchina.com</a>, "Kevin Zhao" &lt;<a href=3D"mailt=
-o:zhao@flashbay.com" target=3D"_blank">zhao@flashbay.com</a>&gt;<br>
+><b>From: </b>"Henry Guo" &lt;<a href=3D"mailto:henry@testdomain.com" target=
+=3D"_blank">henry@testdomain.com</a>&gt;<br>
+<b>To: </b><a href=3D"mailto:sales@testdomain.com" target=3D"_blank">sales=
+@testdomain.com</a><br><b>Cc: </b><a href=3D"mailto:cha@testdomain.com" t=
+arget=3D"_blank">cha@testdomain.com</a>, "Kevin Zhao" &lt;<a href=3D"mailt=
+o:zhao@testdomain.com" target=3D"_blank">zhao@testdomain.com</a>&gt;<br>
 <b>Sent: </b>Wednesday, 12 October, 2011 11:36:34 AM<br><b>Subject: </b>=
 =E5=90=8A=E5=B8=A6=E4=B8=9D=E5=8D=B0=E6=9C=BA=E5=99=A8
 <div>
@@ -259,10 +259,10 @@ o:zhao@flashbay.com" target=3D"_blank">zhao@flashbay.com</a>&gt;<br>
 
 <div style=3D"FONT-STYLE: normal; FONT-FAMILY: Helvetica, Arial, sans-serif=
 ; COLOR: #000; FONT-SIZE: 12pt; FONT-WEIGHT: normal; TEXT-DECORATION: none"=
-><b>From: </b>"Yuan Dandan" &lt;<a href=3D"mailto:yuandandan@flashbay.com" =
-target=3D"_blank">yuandandan@flashbay.com</a>&gt;<br>
-<b>To: </b>"Henry Guo" &lt;<a href=3D"mailto:henry@flashbay.com" target=3D"=
-_blank">henry@flashbay.com</a>&gt;<br><b>Sent: </b>Tuesday, 11 October, 201=
+><b>From: </b>"Yuan Dandan" &lt;<a href=3D"mailto:yuandandan@testdomain.com" =
+target=3D"_blank">yuandandan@testdomain.com</a>&gt;<br>
+<b>To: </b>"Henry Guo" &lt;<a href=3D"mailto:henry@testdomain.com" target=3D"=
+_blank">henry@testdomain.com</a>&gt;<br><b>Sent: </b>Tuesday, 11 October, 201=
 1 10:31:29 PM<br><b>Subject: </b>NS=E9=97=AE=E9=A2=98=E7=82=B9<br><br>
 <div style=3D"FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 12pt">HI &nbsp=
 ; HENRY:
@@ -297,8 +297,8 @@ _blank">henry@flashbay.com</a>&gt;<br><b>Sent: </b>Tuesday, 11 October, 201=
 =E4=B8=9A=E5=9B=ADB=E6=A0=8B=E4=B8=89=E6=A5=BC<br>=E5=A4=A9=E7=9B=AE=E7=94=
 =B5=E5=AD=90(=E6=B7=B1=E5=9C=B3)=E6=9C=89=E9=99=90=E5=85=AC=E5=8F=B8<br>518=
 103</td>
-<td>=E7=94=B5=E8=AF=9D: 0755 2977 3450 (CN)<br>=E4=BC=A0=E7=9C=9F: +86 (0)7=
-55 2977 3574 (CN)<br>Web:<a href=3D"http://www.flashbay.cn/" target=3D"_bla=
+<td>=E7=94=B5=E8=AF=9D: 0000 0000 0000 (CN)<br>=E4=BC=A0=E7=9C=9F: +86 (0)7=
+55 0000 0000 (CN)<br>Web:<a href=3D"http://www.flashbay.cn/" target=3D"_bla=
 nk">www.flashbay.cn</a><br></td></tr>
 <tr>
 <td colspan=3D"2"><img></td></tr></tbody></table><span style=3D"FONT-SIZE: =
@@ -347,7 +347,7 @@ g></div>
 <div><font color=3D"#00cccc">=E4=BC=A0=E7=9C=9F=EF=BC=9A86-769-81583782-801=
 4</font></div>
 <div><font color=3D"#00cccc">=E9=82=AE=E7=AE=B1=EF=BC=9A<a href=3D"mailto:d=
-opsing.go@gmail.com" target=3D"_blank">dopsing.go@gmail.com</a></font></div=
+opsing.go@testdomain.com" target=3D"_blank">dopsing.go@testdomain.com</a></font></div=
 >
 <div><font color=3D"#00cccc">=E5=9C=B0=E5=9D=80=EF=BC=9A=E5=B9=BF=E4=B8=9C=
 =E4=B8=9C=E8=8E=9E=E6=B2=99=E7=94=B0=E9=95=87=E7=8E=AF=E4=BF=9D=E5=A4=A7=

@@ -33,7 +33,7 @@ Content-Type: multipart/mixed; boundary=Apple-Mail-7--322391395
 Subject: subject13010064065623
 Date: Thu, 18 Jan 2007 10:00:53 +0100
 X-Mailer: Apple Mail (2.752.3)
-From: Tor Christensen <x@gmail.com>
+From: Test Account <x@gmail.com>
 
 
 --Apple-Mail-7--322391395
@@ -742,6 +742,6 @@ du er problematisk (p=E5 den gode m=E5de) vil jeg enormt gerne h=F8re =
 fra dig.
 
 Mvh
-Tor Christensen
+Test Account
 
 --Apple-Mail-7--322391395--

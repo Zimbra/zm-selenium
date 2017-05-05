@@ -1,7 +1,7 @@
-Return-Path: sender@senderdomain.com
-From: "Sender" <sender@senderdomain.com>
+Return-Path: sender@testdomain.com
+From: "Sender" <sender@testdomain.com>
 To: <user@domain.com>,
-	<sender@senderdomain.com>
+	<sender@testdomain.com>
 Cc: 
 Subject: subject13189993282183
 Date: Thu, 6 Oct 2011 08:33:52 -0700
@@ -75,7 +75,7 @@ Contact Us <http://www.dptechnology.com/en/company_contactus.asp>  |
 Login & Support <https://www.dptechnology.com/ew/login/login.asp>  |
 Site Map <http://www.dptechnology.com/en/site_map.asp> 	=20
 Copyright =A9 1985-2011 DP Technology Corp. All rights reserved.
-U.S. Patent No. 6,907,313. Other US patents pending.=09
+U.S. Patent No. 0,000,000. Other US patents pending.=09
 
 ------=_NextPart_000_0221_01CC8402.ADDD6330
 Content-Type: text/html
@@ -231,7 +231,7 @@ AA</td>
 
 <tr><td class="copyright">
 Copyright &copy; 1985-2011 DP Technology Corp. All rights reserved.<br>
-U.S. Patent No. 6,907,313.  Other US patents pending.</td></tr>
+U.S. Patent No. 0,000,000.  Other US patents pending.</td></tr>
 
 </table>
 <!---------------------------- Footer End ---------------------------->

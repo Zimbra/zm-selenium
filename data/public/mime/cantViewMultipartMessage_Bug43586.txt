@@ -1,30 +1,30 @@
-Return-Path: ufficiostampa@cia.it
-Received: from mail.informatoreagrario.it (LHLO
- webmail.informatoreagrario.it) (192.168.50.22) by
- webmail.informatoreagrario.it with LMTP; Tue, 15 Dec 2009 14:54:54 +0100
+Return-Path: ufficiostampa@testdomain.com
+Received: from mail.testdomain.com (LHLO
+ webmail.testdomain.com) (192.168.50.22) by
+ webmail.testdomain.com with LMTP; Tue, 15 Dec 2009 14:54:54 +0100
  (CET)
 Received: from nodoa.infagri.lan (nodoa.infagri.lan [192.168.50.4])
-	by webmail.informatoreagrario.it (Postfix) with ESMTP id 919E1202C35B
-	for <l.andreotti@webmail.informatoreagrario.it>; Tue, 15 Dec 2009 14:54:54 +0100 (CET)
-Resent-To: l.andreotti@webmail.informatoreagrario.it
-Resent-From: l.andreotti@informatoreagrario.it
+	by webmail.testdomain.com (Postfix) with ESMTP id 919E1202C35B
+	for <l.andreotti@webmail.testdomain.com>; Tue, 15 Dec 2009 14:54:54 +0100 (CET)
+Resent-To: l.andreotti@webmail.testdomain.com
+Resent-From: l.andreotti@testdomain.com
 Resent-Message-Id: <B0003570366@nodoa.infagri.lan>
 Resent-Date: Tue, 15 Dec 2009 14:54:54 +0100
-Received: from mail.informatoreagrario.it (unverified [213.171.100.43]) by informatoreagrario.it
- (Rockliffe SMTPRA 5.3.11) with SMTP id <B0003570365@nodoa.infagri.lan> for <l.andreotti@informatoreagrario.it>;
+Received: from mail.testdomain.com (unverified [213.171.100.43]) by testdomain.com
+ (Rockliffe SMTPRA 5.3.11) with SMTP id <B0003570365@nodoa.infagri.lan> for <l.andreotti@testdomain.com>;
  Tue, 15 Dec 2009 14:54:54 +0100
 Received: from www.agrinform.it ([88.61.38.130]) by eSafe SMTP Relay 1260857651; Tue, 15 Dec 2009 14:51:57 +0100
 Received: from www.agrinform.it (localhost [127.0.0.1]) by www.agrinform.it (8.13.3/8.13.3) with ESMTP id nBFDfPWD005708;
 	 Tue, 15 Dec 2009 14:41:25 +0100
 Message-ID: <31582402.1260884485318.JavaMail.tomcat@www.agrinform.it>
 Date: Tue, 15 Dec 2009 14:41:25 +0100 (CET)
-From: Gestore lista dal Territorio <ufficiostampa@cia.it>
+From: Gestore lista dal Territorio <ufficiostampa@testdomain.com>
 Subject: dal Territorio
 Mime-Version: 1.0
 Content-Type: multipart/alternative;
 	boundary="----=_Part_443_14339790.1260884485291"
-X-ESAFE-STATUS:[mail.informatoreagrario.it] Mail clean
-X-ESAFE-DETAILS:[mail.informatoreagrario.it]
+X-ESAFE-STATUS:[mail.testdomain.com] Mail clean
+X-ESAFE-DETAILS:[mail.testdomain.com]
 
 ------=_Part_443_14339790.1260884485291
 Content-Type: multipart/related;
@@ -518,8 +518,8 @@ bidi-font-family: Arial"><o:p></o:p></SPAN></P>
 <tr>
 <td class=3D"text-10">La versione completa pu&ograve; essere letta all' i=
 ndirizzo:<br>
-<a class=3D"text-10pt" href=3D"http://www.cia.it/cia/svl/documentiRead?do=
-c_id=3D24007&tpl_id=3D4">http://www.cia.it/cia/svl/documentiRead?doc_id=3D=
+<a class=3D"text-10pt" href=3D"http://www.testdomain.com/cia/svl/documentiRead?do=
+c_id=3D24007&tpl_id=3D4">http://www.testdomain.com/cia/svl/documentiRead?doc_id=3D=
 24007&amp;tpl_id=3D4</a>
 =2E</td>
 </tr>

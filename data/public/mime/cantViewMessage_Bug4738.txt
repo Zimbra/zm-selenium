@@ -21,7 +21,7 @@ Received: from mail.winstor.net ([127.0.0.1])
 Received: from frontdesk (adsl-67-122-179-222.dsl.pltn13.pacbell.net [67.122.179.222])
 	by mail.winstor.net (Postfix) with ESMTP id 705FF348003
 	for <kevinh@testdomain.com>; Fri, 28 Oct 2005 14:13:14 -0700 (PDT)
-From: "Sandy Zimmer" <sandy@winstor.com>
+From: "Sandy Zimmer" <sandy@testdomain.com>
 To: "'Kevin Henrikson'" <kevinh@testdomain.com>
 Subject: RE: funny messages
 Date: Fri, 28 Oct 2005 14:23:41 -0700
@@ -35,7 +35,7 @@ X-Mailer: Microsoft Outlook CWS, Build 9.0.2416 (9.0.2910.0)
 X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1506
 Importance: Normal
 In-Reply-To: <1814603.18681130533600447.JavaMail.root@dogfood.liquidsys.com>
-Disposition-Notification-To: "Sandy Zimmer" <sandy@winstor.com>
+Disposition-Notification-To: "Sandy Zimmer" <sandy@testdomain.com>
 X-Virus-Scanned: amavisd-new at winstor.net
 X-Virus-Scanned: amavisd-new at dogfood
 X-Spam-Status: No, hits=-2.355 tagged_above=-10 required=6.6 autolearn=no
@@ -68,9 +68,9 @@ I'll try and get some of those files over for you today.
 Sandy
 
 WinStor, Inc.
-949-261-1021
-877-WINSTOR (946-7867)
-www.winstor.com
+949-261-0000
+877-WINSTOR (946-0000)
+www.testdomain.com
 
 
 --
@@ -116,9 +116,9 @@ you today.</SPAN></P>
 class=3D453162121-28102005>
 <P><B><I><FONT face=3DGeorgia>WinStor, Inc.</FONT></I></B> <BR><FONT =
 face=3DArial=20
-size=3D2>949-261-1021</FONT> <BR><FONT face=3DArial size=3D2>877-WINSTOR =
+size=3D2>949-261-0000</FONT> <BR><FONT face=3DArial size=3D2>877-WINSTOR =
 
-(946-7867)</FONT> <BR><FONT face=3DArial size=3D2>www.winstor.com</FONT> =
+(946-0000)</FONT> <BR><FONT face=3DArial size=3D2>www.testdomain.com</FONT> =
 
 </P></SPAN></BODY></HTML>
 <BR>

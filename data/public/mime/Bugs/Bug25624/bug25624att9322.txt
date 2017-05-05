@@ -1,4 +1,4 @@
-Return-Path: mbannon@yahoo-inc.com
+Return-Path: mbannon@testdomain.com
 Received: from dogfood.zimbra.com (LHLO dogfood.zimbra.com) (10.10.140.44)
  by dogfood.zimbra.com with LMTP; Fri, 7 Mar 2008 14:29:55 -0800 (PST)
 Received: from localhost (localhost.localdomain [127.0.0.1])
@@ -17,23 +17,23 @@ Received: from dogfood.zimbra.com ([127.0.0.1])
 Received: from mta01.zimbra.com (mta01.zimbra.com [10.10.140.35])
 	by dogfood.zimbra.com (Postfix) with ESMTP id F2125106742
 	for <charrison@testdomain.com>; Fri,  7 Mar 2008 14:29:54 -0800 (PST)
-Received: from rsmtp1.corp.yahoo.com (rsmtp1.corp.yahoo.com [207.126.228.149])
+Received: from rsmtp1.corp.testdomain.com (rsmtp1.corp.testdomain.com [207.126.228.149])
 	by mta01.zimbra.com (Postfix) with ESMTP id EFD33DE8BF4
 	for <charrison@testdomain.com>; Fri,  7 Mar 2008 14:29:54 -0800 (PST)
-Received: from canfoolstormlx (canfoolstorm-lx.hillsboro.corp.yahoo.com [10.72.195.144])
+Received: from canfoolstormlx (canfoolstorm-lx.hillsboro.corp.testdomain.com [10.72.195.144])
 	(authenticated bits=0)
-	by rsmtp1.corp.yahoo.com (8.13.8/8.13.8/y.rout) with ESMTP id m27MTrnt048820
+	by rsmtp1.corp.testdomain.com (8.13.8/8.13.8/y.rout) with ESMTP id m27MTrnt048820
 	(version=TLSv1/SSLv3 cipher=RC4-MD5 bits=128 verify=NO)
 	for <charrison@testdomain.com>; Fri, 7 Mar 2008 14:29:54 -0800 (PST)
-DomainKey-Signature: a=rsa-sha1; s=serpent; d=yahoo-inc.com; c=nofws; q=dns;
+DomainKey-Signature: a=rsa-sha1; s=serpent; d=testdomain.com; c=nofws; q=dns;
 	h=from:to:subject:date:message-id:mime-version:content-type:
 	content-transfer-encoding:x-mailer:x-mimeole:thread-index;
 	b=uZw13Cast6fDmQxVYl4wjU7u4vyPZBphGfp0Spat14/ACeRZaDVdrZpt8Wm7VdvQ
-From: "Michelle McPeters" <mbannon@yahoo-inc.com>
+From: "Michelle McPeters" <mbannon@testdomain.com>
 To: "'Candace Harrison'" <charrison@testdomain.com>
 Subject: Accepted: subject13001430504373
 Date: Fri, 7 Mar 2008 14:29:53 -0800
-Message-ID: <00d501c880a2$c3eee610$d41c490a@ds.corp.yahoo.com>
+Message-ID: <00d501c880a2$c3eee610$d41c490a@ds.corp.testdomain.com>
 MIME-Version: 1.0
 Content-Type: text/calendar; method=REPLY;
 	charset="UTF-8"
@@ -63,7 +63,7 @@ SUMMARY:Accepted: Customer Care Tier 1 Duties and Escalation process
 PRIORITY:5
 X-MICROSOFT-CDO-IMPORTANCE:1
 CLASS:PUBLIC
-ATTENDEE;PARTSTAT=ACCEPTED:MAILTO:mbannon@yahoo-inc.com
+ATTENDEE;PARTSTAT=ACCEPTED:MAILTO:mbannon@testdomain.com
 END:VEVENT
 END:VCALENDAR
 

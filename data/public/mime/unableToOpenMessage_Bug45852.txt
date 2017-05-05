@@ -105,10 +105,10 @@ zone for account preferences is set to US/Eastern as well.
 
 Should be able to repro with their test account.
 
-https://gregor.mendelbio.com
+https://gregor.testdomain.com
 
-username: zmsupport
-password: 2imbr4
+username: zimbratest
+password: test123
 
 Just now I set my PC Timezone for US/Eastern, created an appt for March
 30 @ 1:00pm, but when I view the public calendar, the appt shows March
@@ -199,7 +199,7 @@ Best Regards,
 
 -- Rick King
 Zimbra Support Team
------ "Omer Ayfer" <oayfer@mendelbio.com> wrote:
+----- "Omer Ayfer" <oayfer@testdomain.com> wrote:
 
 | Rick,
 |
@@ -209,13 +209,13 @@ Zimbra Support Team
 | Take a look at this:
 |
 |
-| https://gregor.mendelbio.com/zimbra/user/zmsupport/calendar.html?view=week&fmt=freebusy
+| https://gregor.testdomain.com/zimbra/user/zimbratest/calendar.html?view=week&fmt=freebusy
 |
-| Then feel free to login to our server, gregor.mendelbio.com, as this
+| Then feel free to login to our server, gregor.testdomain.com, as this
 | user:
 |
-| username: zmsupport
-| password: 2imbr4
+| username: zimbratest
+| password: test123
 |
 | You will see that the user's calendar shows the only event for this
 | week was set up on March 30th.
@@ -277,10 +277,10 @@ zone for account preferences is set to US/Eastern as well.
 
 Should be able to repro with their test account.
 
-https://gregor.mendelbio.com
+https://gregor.testdomain.com
 
-username: zmsupport
-password: 2imbr4
+username: zimbratest
+password: test123
 
 Just now I set my PC Timezone for US/Eastern, created an appt for March
 30 @ 1:00pm, but when I view the public calendar, the appt shows March
@@ -371,7 +371,7 @@ Best Regards,
 
 -- Rick King
 Zimbra Support Team
------ "Omer Ayfer" <oayfer@mendelbio.com> wrote:
+----- "Omer Ayfer" <oayfer@testdomain.com> wrote:
 
 | Rick,
 |
@@ -381,13 +381,13 @@ Zimbra Support Team
 | Take a look at this:
 |
 |
-| https://gregor.mendelbio.com/zimbra/user/zmsupport/calendar.html?view=week&fmt=freebusy
+| https://gregor.testdomain.com/zimbra/user/zimbratest/calendar.html?view=week&fmt=freebusy
 |
-| Then feel free to login to our server, gregor.mendelbio.com, as this
+| Then feel free to login to our server, gregor.testdomain.com, as this
 | user:
 |
-| username: zmsupport
-| password: 2imbr4
+| username: zimbratest
+| password: test123
 |
 | You will see that the user's calendar shows the only event for this
 | week was set up on March 30th.

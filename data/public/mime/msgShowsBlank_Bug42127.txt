@@ -1,8 +1,8 @@
 Return-Path: mnichols@testdomain.com
-Received: from mta03.zimbra.com (LHLO mta03.zimbra.com) (66.163.172.82) by
+Received: from testdomain.com (LHLO testdomain.com) (66.163.172.82) by
  dogfood.zimbra.com with LMTP; Mon, 26 Oct 2009 16:41:49 -0700 (PDT)
 Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mta03.zimbra.com (Postfix) with ESMTP id 12DA378406
+	by testdomain.com (Postfix) with ESMTP id 12DA378406
 	for <charrison@testdomain.com>; Mon, 26 Oct 2009 16:41:50 -0700 (PDT)
 X-DSPAM-Result: Innocent
 X-DSPAM-Confidence: 0.9933
@@ -16,18 +16,18 @@ X-Spam-Level:
 X-Spam-Status: No, score=-4.517 tagged_above=-10 required=3
 	tests=[ALL_TRUSTED=-1.8, AWL=0.209, BAYES_00=-2.599, DSPAM_HAM=-0.5,
 	HTML_IMAGE_RATIO_04=0.172, HTML_MESSAGE=0.001] autolearn=ham
-Received: from mta03.zimbra.com ([127.0.0.1])
-	by localhost (mta03.zimbra.com [127.0.0.1]) (amavisd-new, port 10024)
+Received: from testdomain.com ([127.0.0.1])
+	by localhost (testdomain.com [127.0.0.1]) (amavisd-new, port 10024)
 	with ESMTP id b+WUJbbEK-K1 for <charrison@testdomain.com>;
 	Mon, 26 Oct 2009 16:41:47 -0700 (PDT)
 Received: from corp.zimbra.com (mail-archive.zimbra.com [207.126.229.142])
-	by mta03.zimbra.com (Postfix) with ESMTP id 1835778401
+	by testdomain.com (Postfix) with ESMTP id 1835778401
 	for <candace@testdomain.com>; Mon, 26 Oct 2009 16:41:47 -0700 (PDT)
 From: "Mark Nichols" <mnichols@testdomain.com>
 To: candace@testdomain.com
 Date: Mon, 26 Oct 2009 16:41:46 -0700 (PDT)
 Subject: Fwd: Bad Link to 6.0 User Guide on Zimbra Site
-In-Reply-To: <63722BBB75A5AC489D42D6EEFBF7B3FED4A4C8@ASHS00053.amers.ibechtel.com>
+In-Reply-To: <63722BBB75A5AC489D42D6EEFBF7B3FED4A4C8@ASHS00053.amers.itestdomain.com>
 MIME-Version: 1.0
 Content-Type: multipart/mixed; boundary=gmsm1.0.0rc2eqg19vdvree8xtvrcb91
 X-Mailer: Zimbra 6.0.2_GA_1912.RHEL4_64 (ZimbraWebClient - FF3.0 (Win)/6.0.2_GA_1912.RHEL4_64)
@@ -66,9 +66,9 @@ Content-Type: text/html; charset=us-ascii
 style="font-family: Times New Roman; font-size: 12pt; color: rgb(0, 0, 0);"
 ><span><br><br><div><div>Mark Nichols<br>Yahoo!/Zimbra Professional
 Services</div></div><br></span><br>----- Forwarded Message -----<br>From:
-"Julie Watson" &lt;jawatson@bechtel.com&gt;<br>To: "Mark Nichols (Zimbra)"
+"Julie Watson" &lt;jawatson@testdomain.com&gt;<br>To: "Mark Nichols (Zimbra)"
 &lt;mnichols@testdomain.com&gt;<br>Cc: "Lisa Vaughn"
-&lt;lcvaughn@bechtel.com&gt;, "Karen Kirby" &lt;kkirby@bechtel.com&gt;<br
+&lt;lcvaughn@testdomain.com&gt;, "Karen Kirby" &lt;kkirby@testdomain.com&gt;<br
 >Sent: Monday, October 26, 2009 2:20:19 PM<br>Subject: Bad Link to 6.0 User
 Guide on Zimbra Site<br><br>
 
@@ -173,8 +173,8 @@ id="Picture_x0020_1" width="783" border="0" height="432"></p>
 IS&amp;T Global Engineering - Infrastructure </p>
 
 <p class="MsoNormal">Cell:&#160; +1 713 295 1072<br>
-<a href="mailto:jawatson@bechtel.com" target="_blank"><span style="color:
-blue;">mailto:jawatson@bechtel.com</span></a><span style="color: rgb(31,
+<a href="mailto:jawatson@testdomain.com" target="_blank"><span style="color:
+blue;">mailto:jawatson@testdomain.com</span></a><span style="color: rgb(31,
 73, 125);"></span></p>
 
 <p class="MsoNormal">&#160;</p>

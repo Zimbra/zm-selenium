@@ -1,4 +1,4 @@
-Return-Path: msanders@gatech.edu
+Return-Path: msanders@testdomain.com
 Received: from mta02.zimbra.com (LHLO mta02.zimbra.com) (207.126.229.144) by
  dogfood.zimbra.com with LMTP; Fri, 17 Apr 2009 12:22:05 -0700 (PDT)
 Received: from localhost (localhost.localdomain [127.0.0.1])
@@ -17,33 +17,33 @@ Received: from mta01.zimbra.com (mta01.zimbra.com [207.126.229.143])
 	Fri, 17 Apr 2009 12:22:02 -0700 (PDT)
 X-ASG-Debug-ID: 1239996112-5c3200590000-Lnog9l
 X-Barracuda-URL: http://207.126.229.143:8000/cgi-bin/mark.cgi
-Received: from deliverator3.ecc.gatech.edu (localhost [127.0.0.1])
+Received: from deliverator3.ecc.testdomain.com (localhost [127.0.0.1])
 	by mta01.zimbra.com (Spam Firewall) with ESMTP
 	id 735C35F887; Fri, 17 Apr 2009 12:21:52 -0700 (PDT)
-Received: from deliverator3.ecc.gatech.edu (deliverator3.ecc.gatech.edu [130.207.185.173]) by mta01.zimbra.com with ESMTP id Q5J4ET4FewKBUMeV; Fri, 17 Apr 2009 12:21:52 -0700 (PDT)
-X-Barracuda-Envelope-From: msanders@gatech.edu
-Received: from deliverator3.ecc.gatech.edu (localhost [127.0.0.1])
+Received: from deliverator3.ecc.testdomain.com (deliverator3.ecc.testdomain.com [130.207.185.173]) by mta01.zimbra.com with ESMTP id Q5J4ET4FewKBUMeV; Fri, 17 Apr 2009 12:21:52 -0700 (PDT)
+X-Barracuda-Envelope-From: msanders@testdomain.com
+Received: from deliverator3.ecc.testdomain.com (localhost [127.0.0.1])
 	by localhost (Postfix) with SMTP id 0835839C199;
 	Fri, 17 Apr 2009 15:21:51 -0400 (EDT)
-Received: from mail6.gatech.edu (bigip.ecc.gatech.edu [130.207.185.140])
-	by deliverator3.ecc.gatech.edu (Postfix) with ESMTP id CA0D739C0FA;
+Received: from mail6.testdomain.com (bigip.ecc.testdomain.com [130.207.185.140])
+	by deliverator3.ecc.testdomain.com (Postfix) with ESMTP id CA0D739C0FA;
 	Fri, 17 Apr 2009 15:21:40 -0400 (EDT)
-Received: from lawn-128-61-118-246.lawn.gatech.edu (bigip.ecc.gatech.edu [130.207.185.140])
+Received: from lawn-128-61-118-246.lawn.testdomain.com (bigip.ecc.testdomain.com [130.207.185.140])
 	(Authenticated sender: msanders)
-	by mail6.gatech.edu (Postfix) with ESMTP id C893C225A0E;
+	by mail6.testdomain.com (Postfix) with ESMTP id C893C225A0E;
 	Fri, 17 Apr 2009 15:21:39 -0400 (EDT)
 X-Barracuda-BBL-IP: 130.207.185.140
 X-Barracuda-RBL-IP: 130.207.185.140
-Message-Id: <5260EE25-58D7-4E26-9E41-A152345A441B@gatech.edu>
-From: Matt Sanders <msanders@gatech.edu>
-To: msanders Sanders <msanders@gatech.edu>
+Message-Id: <5260EE25-58D7-4E26-9E41-A152345A441B@testdomain.com>
+From: Matt Sanders <msanders@testdomain.com>
+To: msanders Sanders <msanders@testdomain.com>
 Content-Type: multipart/mixed; boundary=Apple-Mail-216--304106344
 X-ASG-Orig-Subj: Invitation to Review for the 2009 Convergence Innovation Competition
 Subject: Invitation to Review for the 2009 Convergence Innovation Competition
 Mime-Version: 1.0 (Apple Message framework v930.3)
 Date: Fri, 17 Apr 2009 15:21:38 -0400
 X-Mailer: Apple Mail (2.930.3)
-X-Barracuda-Connect: deliverator3.ecc.gatech.edu[130.207.185.173]
+X-Barracuda-Connect: deliverator3.ecc.testdomain.com[130.207.185.173]
 X-Barracuda-Start-Time: 1239996117
 X-Barracuda-Virus-Scanned: by Barracuda Spam Firewall at zimbra.com
 X-Barracuda-Spam-Score: -1001.00
@@ -74,7 +74,7 @@ If you would like to participate, please take these first steps.
 If another associate is particularly well suited and highly =20
 interested, you may send a copy of this to him/her as well.
 
-	=95 Go to http:///www.cip.gatech.edu/
+	=95 Go to http:///www.cip.testdomain.com/
 	=95 Select: "Create new account" at the bottom left of the =
 screen.
 	=95 Enter a user name and your email address.
@@ -30971,7 +30971,7 @@ Content-Transfer-Encoding: 7bit
 --
 Matt Sanders | Research Scientist | Academic and Research Technologies
 Office of Information Technology | Georgia Institute of Technology
-msanders@gatech.edu | 404-894-9107 | 105 Rich
+msanders@testdomain.com | 000-000-0000 | 105 Rich
 
 
 --Apple-Mail-216--304106344--
