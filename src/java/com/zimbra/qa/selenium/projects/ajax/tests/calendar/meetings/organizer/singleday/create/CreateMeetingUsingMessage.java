@@ -527,7 +527,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 			+	"</ModifyPrefsRequest>");
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 
-		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/private/mime/email00/mime.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00/mime.txt";
 		final String subject = "ZCS 8 triage";
 		final String content = "Dev is aggressively";
 		// Absolute dates in UTC zone

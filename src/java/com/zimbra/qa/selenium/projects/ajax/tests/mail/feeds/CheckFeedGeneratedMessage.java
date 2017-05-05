@@ -43,7 +43,7 @@ public class CheckFeedGeneratedMessage extends PrefGroupMailByMessageTest {
 		String subject = "\"Wear-with-all\"";
 		String bodytext = "Barbara's suggestion:";
 	
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug52121";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug52121";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 				
 		// Refresh current view

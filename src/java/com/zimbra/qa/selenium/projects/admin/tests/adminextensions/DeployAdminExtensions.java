@@ -51,7 +51,7 @@ public class DeployAdminExtensions extends AdminCommonTest {
 		// Create file item
 		final String fileName = "de_dieploegers_admin_vacation.zip";
 		String zimletName ="de_dieploegers_admin_vacation";
-		final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\private\\adminextension\\" + fileName;
+		final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\adminextension\\" + fileName;
 		FileItem fileItem = new FileItem(filePath);
 		
 		// Click on deploy admin extension

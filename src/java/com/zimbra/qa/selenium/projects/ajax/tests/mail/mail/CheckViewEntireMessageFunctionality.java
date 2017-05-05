@@ -39,7 +39,7 @@ public class CheckViewEntireMessageFunctionality extends PrefGroupMailByMessageT
 	public void CheckViewEntireMessageFunctionality_01() throws HarnessException  {	
 			
 		final String subject = "Bug39246";
-		final String mime = ConfigProperties.getBaseDirectory() + "/data/private/mime/viewEntireMessage_Bug39246.txt";
+		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/viewEntireMessage_Bug39246.txt";
 		
 		// Inject the example message
 		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));

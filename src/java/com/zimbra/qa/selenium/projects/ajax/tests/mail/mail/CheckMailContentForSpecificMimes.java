@@ -43,7 +43,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 		String bodyBeforeImage = "K\u00e6re alle"; 
 		String bodyAfterImage = "Problemet best\u00E5r";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug13911";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug13911";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 		
 		// Refresh current view
@@ -68,7 +68,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 		String beginningContent = "Uso Interno";
 		String endingContent = "Esta mensagem";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug21415";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug21415";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 		
 		// Refresh current view
@@ -95,7 +95,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 		String beginningContent = "Change 77406";
 		String endingContent = "SkinResources.java";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug21415";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug21415";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 
 		// Refresh current view
@@ -120,7 +120,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 
 		String subject = "subject13001430504373";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug25624";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug25624";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 
 		// Refresh current view
@@ -140,7 +140,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 
 		String subject = "subject13001430504374";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug27796";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug27796";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 
 		
@@ -163,7 +163,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 
 		String subject = "subject13002239738283";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug31535";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug31535";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 
 		// Refresh current view
@@ -185,7 +185,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 		String subject = "Fwd: test bug66192";
 		String bodytext = "Kind regards,";
 	
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/private/mime/Bugs/Bug66192";
+		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug66192";
 		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
 				
 		// Refresh current view
