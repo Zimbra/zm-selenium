@@ -9,16 +9,24 @@
 
 3. Clone following git repos:
     ```
-    git clone https://git@github.com:Zimbra/zimbra-package-stub.git
-    git clone ssh://git@stash.corp.synacor.com:7999/zimbra/zm-zcs.git
-    git clone ssh://git@stash.corp.synacor.com:7999/zimbra/zm-store-conf.git
-    git clone ssh://git@stash.corp.synacor.com:7999/zimbra/zm-web-client.git
-    git clone ssh://git@stash.corp.synacor.com:7999/zimbra/zm-zimlets.git
+    git clone https://github.com/Zimbra/zimbra-package-stub.git
+	git clone https://github.com/Zimbra/zm-mailbox.git
+    git clone https://github.com/Zimbra/zm-zcs.git
+    git clone https://github.com/Zimbra/zm-web-client.git
+    git clone https://github.com/Zimbra/zm-zimlets.git
     ```
 
-4. Clone zm-common and zm-native and do a publish-local for both repos.
+4. Build zm-native and zm-common using zm-mailbox repo.
+   ```
+   - Go to zm-mailbox and build using following command.
+         ant publish-local-all -Dzimbra.buildinfo.version=8.7.6_GA
+ 
+   ```It will create zm-common.jar and zm-native.jar file 
+   
 
-5. ant jar
+5. Build zm-selenium using the following command 
+
+	ant jar 
 
     ```
     It will create 3 jars at ..\zm-selenium\build\dist\lib:
