@@ -37,7 +37,7 @@ public class LimitZimlets extends AdminCommonTest {
 	}
 
 	@Test( description = "Edit account - Verify option 'Limit Zimlets available to this user to:'",
-			groups = { "smoke", "L1", "network" })
+			groups = { "smoke", "L1" })
 
 	public void LimitZimlets_01() throws HarnessException {
 
