@@ -222,7 +222,7 @@
 				<copy todir="src">
 					<fileset dir="${network-selenium.dir}/src/"/>
 				</copy>
-				<copy todir="${tms.dir}/data">
+				<copy todir="data">
 					<fileset dir="${network-selenium.dir}/data/"/>
 				</copy>
 			</then>
