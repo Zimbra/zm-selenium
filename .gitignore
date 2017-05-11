@@ -1,2 +1,5 @@
 build/
 test-output/
+data/private/
+src/java/com/zimbra/qa/selenium/projects/ajax/tests/network/
+src/java/com/zimbra/qa/selenium/projects/admin/tests/network/
