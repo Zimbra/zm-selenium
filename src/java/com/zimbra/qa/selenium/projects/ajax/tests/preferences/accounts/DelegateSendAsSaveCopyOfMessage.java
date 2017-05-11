@@ -31,7 +31,7 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 		super.startingPage = app.zPageMail;
 	}
 
-	@Test(description = "Save a copy of sent messages to owner's Sent folder", groups = { "functional", "L3", "network" })
+	@Test(description = "Save a copy of sent messages to owner's Sent folder", groups = { "functional", "L3" })
 
 	public void DelegateSendAsSaveCopyOfMessage_01() throws HarnessException {
 
