@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.admin.tests.accounts;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -25,8 +24,6 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.ui.WizardCreateAccount;
-import com.zimbra.qa.selenium.projects.admin.ui.WizardCreateAdminAccount;
-
 
 public class CreateAccount extends AdminCommonTest {
 
@@ -49,7 +46,8 @@ public class CreateAccount extends AdminCommonTest {
 	@Bugs( ids = "100779")
 	@Test( description = "Create a basic account using New->Account",
 			groups = { "sanity", "L0" })
-			public void CreateAccount_01() throws HarnessException {
+	
+	public void CreateAccount_01() throws HarnessException {
 
 		// Create a new account in the Admin Console
 		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
