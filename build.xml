@@ -14,6 +14,9 @@
 	<property name="tms.tgz.filepath" location="${dist.dir}/${tms.tgz.file}"/>
 
 	<property name="network-selenium.dir" location="../zm-network-selenium"/>
+	<property name="network-private-data.dir" location="../zm-selenium/data/private"/>
+	<property name="network-ajax-tests.dir" location="../zm-selenium/src/java/com/zimbra/qa/selenium/projects/ajax/tests/network"/>
+	<property name="network-admin-tests.dir" location="../zm-selenium/src/java/com/zimbra/qa/selenium/projects/admin/tests/network"/>
 	<property name="store-conf.dir" location="../zm-mailbox/store-conf"/>
 	<property name="web-client.dir" location="../zm-web-client"/>
 	<property name="zimlets.dir" location="../zm-zimlets"/>
@@ -23,7 +26,7 @@
 		<pathelement location="${generated.java.dir}"/>
 	</path>
 
-	<target name="clean" description="Removes all built files">
+	<target name="clean" depends="delete-network-content" description="Removes all built files">
 		<delete dir="${build.dir}"/>
 	</target>
 
@@ -128,9 +131,8 @@
 			<fileset dir="${build.classes.dir}"/>
 		</copy>
 
-        <ivy:install organisation="selenium-server-standalone" module="selenium-server-standalone" revision="3.3.1" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="client-combined" module="client-combined" revision="3.3.1-nodeps" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-        <ivy:install organisation="ant-tar-patched" module="ant-tar-patched" revision="1.0" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="ant-contrib" module="ant-contrib" revision="1.0b3" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="ant-tar-patched" module="ant-tar-patched" revision="1.0" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
         <ivy:install organisation="log4j" module="apache-log4j-extras" revision="1.0" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
 		<ivy:install organisation="commons-beanutils" module="commons-beanutils" revision="1.7.0" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
         <ivy:install organisation="commons-cli" module="commons-cli" revision="1.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
@@ -153,16 +155,18 @@
 		<ivy:install organisation="net.sf.staf" module="jstaf" revision="3.4.4" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
         <ivy:install organisation="libidn" module="libidn" revision="1.24" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
         <ivy:install organisation="log4j" module="log4j" revision="1.2.16" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-        <ivy:install organisation="mariadb-java-client" module="mariadb-java-client" revision="1.1.8" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-        <ivy:install organisation="ocutil" module="ocutil" revision="2.4.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="org.mariadb.jdbc" module="mariadb-java-client" revision="1.1.8" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="org.clapper" module="javautil" revision="3.2.0" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
         <ivy:install organisation="xalan" module="serializer" revision="2.7.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
         <ivy:install organisation="org.testng" module="testng" revision="5.12.1" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
         <ivy:install organisation="org.apache.ws.commons.util" module="ws-commons-util" revision="1.0.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
         <ivy:install organisation="xml-apis" module="xml-apis" revision="2.0.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
         <ivy:install organisation="org.apache.xmlrpc" module="xmlrpc-client" revision="3.1.3" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
         <ivy:install organisation="org.apache.xmlrpc" module="xmlrpc-common" revision="3.1.3" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-        <ivy:install organisation="zimbra" module="zm-common" revision="latest.integration" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-        <ivy:install organisation="zimbra" module="zm-native" revision="latest.integration" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+        <ivy:install organisation="selenium-server-standalone" module="selenium-server-standalone" revision="3.4.0" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="client-combined" module="client-combined" revision="3.4.0-nodeps" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="zimbra" module="zm-common" revision="latest.integration" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="zimbra" module="zm-native" revision="latest.integration" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
 
 		<copy todir="${build.staf.selenium.jars.dir}">
             <fileset dir="${build.tmp.dir}">
@@ -215,8 +219,8 @@
 	        <include name="*.jar"/>
 		</fileset>
 	</path>
-	
-	<target name="network" description="Specific to network related data and testcases">
+
+	<target name="network" description="Specific to network related data and tests">
 		<if> <available file="${network-selenium.dir}" type="dir"/>
 			<then>
 				<copy todir="src">
@@ -229,6 +233,12 @@
 		</if>
 	</target>
 	
+	<target name="delete-network-content" description="Deletes network related data and tests">
+		<delete dir="${network-private-data.dir}"/>
+		<delete dir="${network-ajax-tests.dir}"/>
+		<delete dir="${network-admin-tests.dir}"/>
+	</target>
+
 	<target name="Run-ExecuteHarnessMain" depends="jar" description="Run all tests per specified arguments">
 		<property name="jarfile" value="${dist.lib.dir}/zimbraselenium.jar"/>
 		<property name="pattern" value="ajax.tests"/>
@@ -266,7 +276,7 @@
 			</fileset>
 		</copy>
 	</target>
-	
+
 	<target name="tgz-file" depends="tgz-contents" description="Creates the tms package tgz file">
 		<echo message="Creating tms package tgz file..."/>
 		<tar destfile="${tms.tgz.filepath}" compression="gzip">
