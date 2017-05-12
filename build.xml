@@ -14,6 +14,9 @@
 	<property name="tms.tgz.filepath" location="${dist.dir}/${tms.tgz.file}"/>
 
 	<property name="network-selenium.dir" location="../zm-network-selenium"/>
+	<property name="network-private-data.dir" location="../zm-selenium/data/private"/>
+	<property name="network-ajax-tests.dir" location="../zm-selenium/src/java/com/zimbra/qa/selenium/projects/ajax/tests/network"/>
+	<property name="network-admin-tests.dir" location="../zm-selenium/src/java/com/zimbra/qa/selenium/projects/admin/tests/network"/>
 	<property name="store-conf.dir" location="../zm-mailbox/store-conf"/>
 	<property name="web-client.dir" location="../zm-web-client"/>
 	<property name="zimlets.dir" location="../zm-zimlets"/>
@@ -23,7 +26,7 @@
 		<pathelement location="${generated.java.dir}"/>
 	</path>
 
-	<target name="clean" description="Removes all built files">
+	<target name="clean" depends="delete-network-content" description="Removes all built files">
 		<delete dir="${build.dir}"/>
 	</target>
 
@@ -217,7 +220,7 @@
 		</fileset>
 	</path>
 
-	<target name="network" description="Specific to network related data and testcases">
+	<target name="network" description="Specific to network related data and tests">
 		<if> <available file="${network-selenium.dir}" type="dir"/>
 			<then>
 				<copy todir="src">
@@ -228,6 +231,12 @@
 				</copy>
 			</then>
 		</if>
+	</target>
+	
+	<target name="delete-network-content" description="Deletes network related data and tests">
+		<delete dir="${network-private-data.dir}"/>
+		<delete dir="${network-ajax-tests.dir}"/>
+		<delete dir="${network-admin-tests.dir}"/>
 	</target>
 
 	<target name="Run-ExecuteHarnessMain" depends="jar" description="Run all tests per specified arguments">
