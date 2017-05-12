@@ -1,3 +1,5 @@
+# Building zm-selenium
+
 1. Create .zcs-deps directory at your %UserProfile%
 2. Install ant, ivy and set respective environment variables.
 3. Copy following jars at %UserProfile%/.zcs-deps
