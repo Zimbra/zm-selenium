@@ -22,11 +22,11 @@
 		<dependency org="libidn" name="libidn" rev="1.24" />
 		<dependency org="log4j" name="apache-log4j-extras" rev="1.0"/>
 		<dependency org="log4j" name="log4j" rev="1.2.16"/>
-		<dependency org="org.mariadb.jdbc" name="mariadb-java-client" rev="1.1.8"/>
+		<dependency org="org.mariadb.jdbc" name="mariadb-java-client" rev="1.1.8"> <artifact name="mariadb-java-client" url="http://central.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/1.1.8/mariadb-java-client-1.1.8.jar"/> </dependency>
 		<dependency org="net.sf.ezmorph" name="ezmorph" rev="1.0.6"/>
 		<dependency org="net.sf.staf" name="jstaf" rev="3.4.4"/>
 		<dependency org="net.sourceforge.htmlcleaner" name="htmlcleaner" rev="2.2"/>
-		<dependency org="ocutil" name="ocutil" rev="2.4.2"/>
+		<dependency org="org.clapper" name="javautil" rev="3.2.0"/>
 		<dependency org="org.apache.ws.commons.util" name="ws-commons-util" rev="1.0.2"/>
 		<dependency org="org.apache.xmlrpc" name="xmlrpc-client" rev="3.1.3"/>
 		<dependency org="org.apache.xmlrpc" name="xmlrpc-common" rev="3.1.3"/>
@@ -35,9 +35,9 @@
 		<dependency org="xalan" name="serializer" rev="2.7.2"/>
 		<dependency org="xerces" name="xercesImpl" rev="2.9.1"/>
 		<dependency org="xml-apis" name="xml-apis" rev="2.0.2"/>
+		<dependency org="selenium-server-standalone" name="selenium-server-standalone" rev="3.4.0"/>
+		<dependency org="client-combined" name="client-combined" rev="3.4.0-nodeps"/>
 		<dependency org="zimbra" name="zm-native" rev="latest.integration"/>
         <dependency org="zimbra" name="zm-common" rev="latest.integration"/>
-		<dependency org="selenium-server-standalone" name="selenium-server-standalone" rev="3.3.1"/>
-		<dependency org="client-combined" name="client-combined" rev="3.3.1-nodeps"/>
 	</dependencies>
 </ivy-module>
