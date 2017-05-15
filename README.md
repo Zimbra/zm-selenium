@@ -1,12 +1,10 @@
 # Building zm-selenium
 
-1. Create .zcs-deps directory at your %UserProfile%
-2. Install ant, ivy and set respective environment variables.
-3. Copy following jars at %UserProfile%/.zcs-deps
+1. Create .zcs-deps directory at your %UserProfile%.
+2. Install ant, ivy, Java1.8+ and set respective environment variables.
+3. Copy following jars at %UserProfile%/.zcs-deps:
     ```
     ant-contrib-1.0b1.jar
-    selenium-server-standalone-3.4.0.jar (according to ivy version)
-    client-combined-3.4.0-nodeps.jar (according to ivy version)
     ```
 4. Clone following git repos:
     ```
@@ -23,7 +21,7 @@
          ant publish-local-all -Dzimbra.buildinfo.version=8.7.6_GA
  
    It will create zm-common.jar and zm-native.jar file
-6. Build zm-selenium using the following command
+6. Build zm-selenium using the following command:
 
     ant jar
     ```
