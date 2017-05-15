@@ -39,7 +39,7 @@
 		<mkdir dir="${build.classes.dir}"/>
 	</target>
 
-	<target name="compile" depends="build-init,network,bundles-jar,coverage-jar,resolve" description="Compiles the source code">
+	<target name="compile" depends="build-init,network-content,bundles-jar,coverage-jar,resolve" description="Compiles the source code">
 		<echo message="Compiling framework..."/>
 		<javac destdir="${build.classes.dir}" debug="true" classpathref="class.path" nowarn="on" encoding="iso-8859-1">
 			<src refid="all.java.path"/>
@@ -232,7 +232,7 @@
 		</fileset>
 	</path>
 
-	<target name="network" description="Specific to network related data and tests">
+	<target name="network-content" description="Specific to network related data and tests">
 		<if> <available file="${network-selenium.dir}" type="dir"/>
 			<then>
 				<copy todir="src">
