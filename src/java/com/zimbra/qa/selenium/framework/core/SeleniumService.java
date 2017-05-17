@@ -71,6 +71,7 @@ public class SeleniumService {
 				runTimeProcess.exec("killall chrome");
 			}
 		}
+
 		try {
 
 			if ( mode == SeleniumMode.Local ) {

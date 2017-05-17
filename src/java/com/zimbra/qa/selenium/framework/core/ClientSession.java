@@ -79,8 +79,7 @@ public class ClientSession {
 
 			URL driverURL = null;
 			File driverBinary = null;
-			String driverFile = null, driverZipFile = null, driverVersion = null;
-			String driverDirectory = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase();
+			String driverFile = null, driverZipFile = null, driverVersion = null, driverDirectory = null;
 
 			LoggingPreferences logs = new LoggingPreferences();
 	        logs.enable(LogType.BROWSER, Level.SEVERE);
@@ -89,7 +88,9 @@ public class ClientSession {
 
 	        if (ConfigProperties.getCalculatedBrowser().contains("firefox")) {
 
+
 	        	driverVersion = ConfigProperties.getStringProperty("geckoDriverURL").split("/")[7];
+	        	driverDirectory = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/" + ConfigProperties.getCalculatedBrowser() + "/" + driverVersion;
 
 				switch (OperatingSystem.getOSType()) {
 
@@ -150,6 +151,7 @@ public class ClientSession {
 			} else {
 
 				driverVersion = ConfigProperties.getStringProperty("chromeDriverURL").split("/")[3];
+				driverDirectory = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/" + ConfigProperties.getCalculatedBrowser() + "/" + driverVersion;
 
 				switch (OperatingSystem.getOSType()) {
 
