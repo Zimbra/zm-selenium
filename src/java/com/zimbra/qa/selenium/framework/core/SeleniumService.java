@@ -53,7 +53,24 @@ public class SeleniumService {
 
 	}
 
-	public void stopSeleniumExecution() throws HarnessException {
+	public void stopSeleniumExecution() throws HarnessException, IOException {
+
+		Runtime runTimeProcess = Runtime.getRuntime();
+		if (OperatingSystem.getOSType().toString().equals("WINDOWS")) {
+			if (ConfigProperties.getCalculatedBrowser().contains("firefox")) {
+				runTimeProcess.exec("taskkill /F /IM firefox.exe");
+				runTimeProcess.exec("taskkill /F /IM geckodriver.exe");
+			} else if (ConfigProperties.getCalculatedBrowser().contains("chrome")) {
+				runTimeProcess.exec("taskkill /F /IM chrome.exe");
+				runTimeProcess.exec("taskkill /F /IM chromedriver.exe");
+			}
+		} else {
+			if (ConfigProperties.getCalculatedBrowser().contains("firefox")) {
+				runTimeProcess.exec("killall firefox");
+			} else if (ConfigProperties.getCalculatedBrowser().contains("chrome")) {
+				runTimeProcess.exec("killall chrome");
+			}
+		}
 
 		try {
 
