@@ -55,22 +55,7 @@ public class SeleniumService {
 
 	public void stopSeleniumExecution() throws HarnessException, IOException {
 
-		Runtime runTimeProcess = Runtime.getRuntime();
-		if (OperatingSystem.getOSType().toString().equals("WINDOWS")) {
-			if (ConfigProperties.getCalculatedBrowser().contains("firefox")) {
-				runTimeProcess.exec("taskkill /F /IM firefox.exe");
-				runTimeProcess.exec("taskkill /F /IM geckodriver.exe");
-			} else if (ConfigProperties.getCalculatedBrowser().contains("chrome")) {
-				runTimeProcess.exec("taskkill /F /IM chrome.exe");
-				runTimeProcess.exec("taskkill /F /IM chromedriver.exe");
-			}
-		} else {
-			if (ConfigProperties.getCalculatedBrowser().contains("firefox")) {
-				runTimeProcess.exec("killall firefox");
-			} else if (ConfigProperties.getCalculatedBrowser().contains("chrome")) {
-				runTimeProcess.exec("killall chrome");
-			}
-		}
+		stopBrowsers();
 
 		try {
 
@@ -141,6 +126,7 @@ public class SeleniumService {
 			    CommandLine.CmdExec("taskkill /f /t /im iexplore.exe");
 			} else if (SeleniumBrowser.contains("firefox")) {
 				CommandLine.CmdExec("taskkill /f /t /im firefox.exe");
+				CommandLine.CmdExec("taskkill /f /t /im geckodriver.exe");
 			} else if (SeleniumBrowser.contains("safari")) {
 			    CommandLine.CmdExec("taskkill /f /t /im safari.exe");
 			} else if (SeleniumBrowser.contains("chrome")) {
@@ -165,10 +151,11 @@ public class SeleniumService {
 
 		try {
 			if (SeleniumBrowser.contains("firefox")) {
-				CommandLine.CmdExec("pkill -f firefox");
+				CommandLine.CmdExec("killall firefox");
+				CommandLine.CmdExec("killall geckodriver");
 			} else if (SeleniumBrowser.contains("chrome")) {
-				CommandLine.CmdExec("pkill -f googlechrome");
-				CommandLine.CmdExec("pkill -f chromedriver");
+				CommandLine.CmdExec("killall googlechrome");
+				CommandLine.CmdExec("killall chromedriver");
 			}
 
 		} catch (IOException e) {
@@ -188,6 +175,7 @@ public class SeleniumService {
 		try {
 			if (SeleniumBrowser.contains("firefox")) {
 				CommandLine.CmdExec("pkill -f firefox");
+				CommandLine.CmdExec("pkill -f geckodriver");
 			} else if (SeleniumBrowser.contains("chrome")) {
 				CommandLine.CmdExec("pkill -f googlechrome");
 				CommandLine.CmdExec("pkill -f chromedriver");

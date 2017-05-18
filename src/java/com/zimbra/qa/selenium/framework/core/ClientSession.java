@@ -44,8 +44,12 @@ import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
+import com.zimbra.common.util.tar.TarEntry;
+import com.zimbra.common.util.tar.TarInputStream;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.OperatingSystem;
+import java.util.zip.GZIPInputStream;
+
 
 /**
  * A <code>ClientSession</code> object contains all session information for the
@@ -77,7 +81,7 @@ public class ClientSession {
 
 		if (webDriver == null) {
 
-			URL driverURL = null;
+			URL driverZipURL = null;
 			File driverBinary = null;
 			String driverFile = null, driverZipFile = null, driverVersion = null, driverDirectory = null;
 
@@ -87,7 +91,6 @@ public class ClientSession {
 	        logs.enable(LogType.PERFORMANCE, Level.SEVERE);
 
 	        if (ConfigProperties.getCalculatedBrowser().contains("firefox")) {
-
 
 	        	driverVersion = ConfigProperties.getStringProperty("geckoDriverURL").split("/")[7];
 	        	driverDirectory = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/" + ConfigProperties.getCalculatedBrowser() + "/" + driverVersion;
@@ -100,7 +103,7 @@ public class ClientSession {
 						driverFile = driverDirectory + "/geckodriver.exe";
 						driverBinary = new File(driverFile);
 						try {
-							driverURL = new URL(ConfigProperties.getStringProperty("geckoDriverURL") + "/" + driverZipFile);
+							driverZipURL = new URL(ConfigProperties.getStringProperty("geckoDriverURL") + "/" + driverZipFile);
 						} catch (MalformedURLException e1) {
 							e1.printStackTrace();
 						}
@@ -111,7 +114,7 @@ public class ClientSession {
 						driverFile = driverDirectory + "/geckodriver";
 						driverBinary = new File(driverFile);
 						try {
-							driverURL = new URL(ConfigProperties.getStringProperty("geckoDriverURL") + "/" + driverZipFile);
+							driverZipURL = new URL(ConfigProperties.getStringProperty("geckoDriverURL") + "/" + driverZipFile);
 						} catch (MalformedURLException e1) {
 							e1.printStackTrace();
 						}
@@ -122,7 +125,7 @@ public class ClientSession {
 						driverFile = driverDirectory + "/geckodriver";
 						driverBinary = new File(driverFile);
 						try {
-							driverURL = new URL(ConfigProperties.getStringProperty("geckoDriverURL") + "/" + driverZipFile);
+							driverZipURL = new URL(ConfigProperties.getStringProperty("geckoDriverURL") + "/" + driverZipFile);
 						} catch (MalformedURLException e1) {
 							e1.printStackTrace();
 						}
@@ -132,8 +135,12 @@ public class ClientSession {
 				try {
 					if (!driverBinary.exists() && !driverBinary.isFile()) {
 						setupDir(driverDirectory);
-						downloadFile(driverBinary, driverURL, driverDirectory, driverZipFile);
-						unzipFile(driverBinary, driverDirectory + "/" + driverZipFile, driverDirectory);
+						downloadFile(driverBinary, driverZipURL, driverDirectory, driverZipFile);
+						if (driverZipFile.contains("tar")) {
+							untarFile(driverDirectory + "/" + driverZipFile, driverDirectory);
+						} else {
+							unzipFile(driverBinary, driverDirectory + "/" + driverZipFile, driverDirectory);
+						}
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -160,7 +167,7 @@ public class ClientSession {
 						driverFile = driverDirectory + "/chromedriver.exe";
 						driverBinary = new File(driverFile);
 						try {
-							driverURL = new URL(ConfigProperties.getStringProperty("chromeDriverURL") + "/" + driverZipFile);
+							driverZipURL = new URL(ConfigProperties.getStringProperty("chromeDriverURL") + "/" + driverZipFile);
 						} catch (MalformedURLException e1) {
 							e1.printStackTrace();
 						}
@@ -171,7 +178,7 @@ public class ClientSession {
 						driverFile = driverDirectory + "/chromedriver";
 						driverBinary = new File(driverFile);
 						try {
-							driverURL = new URL(ConfigProperties.getStringProperty("chromeDriverURL") + "/" + driverZipFile);
+							driverZipURL = new URL(ConfigProperties.getStringProperty("chromeDriverURL") + "/" + driverZipFile);
 						} catch (MalformedURLException e1) {
 							e1.printStackTrace();
 						}
@@ -182,7 +189,7 @@ public class ClientSession {
 						driverFile = driverDirectory + "/chromedriver";
 						driverBinary = new File(driverFile);
 						try {
-							driverURL = new URL(ConfigProperties.getStringProperty("chromeDriverURL") + "/" + driverZipFile);
+							driverZipURL = new URL(ConfigProperties.getStringProperty("chromeDriverURL") + "/" + driverZipFile);
 						} catch (MalformedURLException e1) {
 							e1.printStackTrace();
 						}
@@ -192,8 +199,12 @@ public class ClientSession {
 				try {
 					if (!driverBinary.exists() && !driverBinary.isFile()) {
 						setupDir(driverDirectory);
-						downloadFile(driverBinary, driverURL, driverDirectory, driverZipFile);
-						unzipFile(driverBinary, driverDirectory + "/" + driverZipFile, driverDirectory);
+						downloadFile(driverBinary, driverZipURL, driverDirectory, driverZipFile);
+						if (driverZipFile.contains("tar")) {
+							untarFile(driverDirectory + "/" + driverZipFile, driverDirectory);
+						} else {
+							unzipFile(driverBinary, driverDirectory + "/" + driverZipFile, driverDirectory);
+						}
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -225,13 +236,14 @@ public class ClientSession {
         driverOSDirectory.mkdirs();
 	}
 
-	public void downloadFile(File driverBinary, URL driverURL, String driverDirectory, String driverZipFile) throws IOException {
+	public void downloadFile(File driverBinary, URL driverZipURL, String driverDirectory, String driverZipFile) throws IOException {
 
-		System.out.println("Downloading driver from " + driverURL + " at " + driverDirectory + "/" + driverZipFile + "...");
+		System.out.println("Downloading driver from " + driverZipURL + " ...");
+		System.out.println("\t & putting driver at " + driverDirectory + "/" + driverZipFile + " ...");
 
 		ReadableByteChannel rbc = null;
 		try {
-			rbc = Channels.newChannel(driverURL.openStream());
+			rbc = Channels.newChannel(driverZipURL.openStream());
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}
@@ -249,6 +261,8 @@ public class ClientSession {
 	}
 
 	public void unzipFile(File driverBinary, String zipFilePath, String driverDirectory) throws IOException {
+
+		int BUFFER_SIZE = 4096;
         File destDir = new File(driverDirectory);
         if (!destDir.exists()) {
             destDir.mkdir();
@@ -259,7 +273,18 @@ public class ClientSession {
         while (entry != null) {
             String filePath = driverDirectory + File.separator + entry.getName();
             if (!entry.isDirectory()) {
-                extractFile(zipIn, filePath);
+            	BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(filePath));
+                byte[] bytesIn = new byte[BUFFER_SIZE];
+                int read = 0;
+                while ((read = zipIn.read(bytesIn)) != -1) {
+                    bos.write(bytesIn, 0, read);
+                }
+                bos.close();
+
+                Runtime runTimeProcess = Runtime.getRuntime();
+        		if (!OperatingSystem.getOSType().toString().equals("WINDOWS")) {
+        			runTimeProcess.exec("chmod +x " + filePath);
+        		}
             } else {
                 File dir = new File(filePath);
                 dir.mkdir();
@@ -270,16 +295,30 @@ public class ClientSession {
         zipIn.close();
     }
 
-	private void extractFile(ZipInputStream zipIn, String filePath) throws IOException {
-		int BUFFER_SIZE = 4096;
-        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(filePath));
-        byte[] bytesIn = new byte[BUFFER_SIZE];
-        int read = 0;
-        while ((read = zipIn.read(bytesIn)) != -1) {
-            bos.write(bytesIn, 0, read);
-        }
-        bos.close();
-    }
+	private void untarFile(String driverTarFile, String driverDirectory) throws FileNotFoundException, IOException {
+
+		TarInputStream tin = new TarInputStream (new GZIPInputStream (new FileInputStream(new File(driverTarFile))));
+		TarEntry tarEntry = tin.getNextEntry();
+
+		while (tarEntry != null) {
+			File filePath = new File(driverDirectory.toString() + File.separatorChar + tarEntry.getName());
+
+			if(tarEntry.isDirectory()){
+				filePath.mkdir();
+			} else {
+				FileOutputStream fout = new FileOutputStream(filePath);
+				tin.copyEntryContents(fout);
+				fout.close();
+
+				Runtime runTimeProcess = Runtime.getRuntime();
+				if (!OperatingSystem.getOSType().toString().equals("WINDOWS")) {
+					runTimeProcess.exec("chmod +x " + filePath);
+				}
+			}
+			tarEntry = tin.getNextEntry();
+		}
+		tin.close();
+	}
 
 	public String currentUserName() {
 		if (currentAccount == null) {
