@@ -46,7 +46,7 @@ public class DisablePersonaCreation extends AjaxCommonTest {
 		//Disable the External IMAP and POP3 access for the user
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
-						+		"<id>"+app.zGetActiveAccount().ZimbraId +"</id>"
+						+		"<id>"+ app.zGetActiveAccount().ZimbraId +"</id>"
 						+		"<a n='zimbraFeatureIdentitiesEnabled'>FALSE</a>"
 						+	"</ModifyAccountRequest>");
 
@@ -64,7 +64,7 @@ public class DisablePersonaCreation extends AjaxCommonTest {
 		// Enable Persona for the user
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
-						+		"<id>"+app.zGetActiveAccount().ZimbraId +"</id>"
+						+		"<id>"+ app.zGetActiveAccount().ZimbraId +"</id>"
 						+		"<a n='zimbraFeatureIdentitiesEnabled'>TRUE</a>"
 						+	"</ModifyAccountRequest>");
 

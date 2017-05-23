@@ -225,6 +225,8 @@ public class PagePreferences extends AbsTab {
 		public static final String zExternalAccountRow1 = "css=div[id^='zlic__ACCT__new-dsrc'][id$='__na_name']:contains('New External Account')";
 		public static final String zAddPersonaButton = "css=td[id$='_title']:contains('Add Persona')";
 		public static final String zPersonaRow1 = "css=div[id^='zlic__ACCT__new-persona'][id$='__na_name']:contains('New Persona')";
+		public static final String zPop3RadioButton = "css=input[id$='_input'][value='Pop']";
+		public static final String zImapRadioButton = "css=input[id$='_input'][value='Imap']";
 		
 		// Import/Export
 		public static final String zBrowseFileButton = "css=input#ZmImportView_FILE";
