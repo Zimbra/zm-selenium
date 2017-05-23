@@ -50,10 +50,10 @@ public class DisablePersonaCreation extends AjaxCommonTest {
 						+		"<a n='zimbraFeatureIdentitiesEnabled'>FALSE</a>"
 						+	"</ModifyAccountRequest>");
 
-		//Refresh Web-client
+		// Refresh Web-client
 		app.zPageMail.sRefresh();
 
-		//Navigate to Preferences-->Accounts
+		// Navigate to Preferences-->Accounts
 		startingPage.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
 
@@ -61,24 +61,24 @@ public class DisablePersonaCreation extends AjaxCommonTest {
 		ZAssert.assertFalse(app.zPagePreferences.sIsElementPresent(Locators.zAddPersonaButton), 
 				"Add persona button is displayed even if the Persona access is disabled!");
 
-		//Enable Persona for the user
+		// Enable Persona for the user
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
 						+		"<id>"+app.zGetActiveAccount().ZimbraId +"</id>"
 						+		"<a n='zimbraFeatureIdentitiesEnabled'>TRUE</a>"
 						+	"</ModifyAccountRequest>");
 
-		//Refresh Web-client
+		// Refresh Web-client
 		app.zPageMail.sRefresh();
 
-		//Navigate to Preferences-->Accounts
+		// Navigate to Preferences-->Accounts
 		startingPage.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
 
-		//Add a Persona
+		// Add a Persona
 		app.zPagePreferences.sClick(Locators.zAddPersonaButton);
 
-		//Verify that a Persona row has been added
+		// Verify that a Persona row has been added
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zPersonaRow1), "Persona is not getting created!");
 	}
 

@@ -26,16 +26,16 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-public class DisableExternalAcountCreation extends AjaxCommonTest {
+public class DisableExternalAccountCreation extends AjaxCommonTest {
 
-	public DisableExternalAcountCreation() {
+	public DisableExternalAccountCreation() {
 		super.startingPage = app.zPagePreferences;
 	}
 
 	@Test(description = "Verify the display of 'Add External Account' button when External IMAP and POP3 is disabled", 
 			groups = { "functional", "L3" })
 
-	public void DisableExternalAcountCreation_01() throws HarnessException {
+	public void DisableExternalAccountCreation_01() throws HarnessException {
 
 		// Navigate to preferences -> Accounts
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
@@ -44,18 +44,18 @@ public class DisableExternalAcountCreation extends AjaxCommonTest {
 		// Verify the display of Add External Account button when External IMAP/POP3 access is allowed.
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zAddExternalAccountButton), "Add External Account button is not present!");
 
-		//Disable the External IMAP and POP3 access for the user
+		// Disable the External IMAP and POP3 access for the user
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
-						+		"<id>"+app.zGetActiveAccount().ZimbraId +"</id>"
+						+		"<id>"+ app.zGetActiveAccount().ZimbraId +"</id>"
 						+		"<a n='zimbraFeatureImapDataSourceEnabled'>FALSE</a>"
 						+		"<a n='zimbraFeaturePop3DataSourceEnabled'>FALSE</a>"
 						+	"</ModifyAccountRequest>");
 
-		//Refresh Web-client
+		// Refresh Web-client
 		app.zPageMail.sRefresh();
 
-		//Navigate to Preferences-->Accounts
+		// Navigate to Preferences-->Accounts
 		startingPage.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
 
@@ -63,25 +63,25 @@ public class DisableExternalAcountCreation extends AjaxCommonTest {
 		ZAssert.assertFalse(app.zPagePreferences.sIsElementPresent(Locators.zAddExternalAccountButton), 
 				"Add External Account button is displayed even if the external IMAP and POP3 accesses are disabled!");
 
-		//Enable External IMAP and POP3 access for the user
+		// Enable External IMAP and POP3 access for the user
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
-						+		"<id>"+app.zGetActiveAccount().ZimbraId +"</id>"
+						+		"<id>"+ app.zGetActiveAccount().ZimbraId +"</id>"
 						+		"<a n='zimbraFeatureImapDataSourceEnabled'>TRUE</a>"
 						+		"<a n='zimbraFeaturePop3DataSourceEnabled'>TRUE</a>"
 						+	"</ModifyAccountRequest>");
 
-		//Refresh Web-client
+		// Refresh Web-client
 		app.zPageMail.sRefresh();
 
-		//Navigate to Preferences-->Accounts
+		// Navigate to Preferences-->Accounts
 		startingPage.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
 
-		//Add an external account
+		// Add an external account
 		app.zPagePreferences.sClick(Locators.zAddExternalAccountButton);
 
-		//Verify that a new External account row has been added
+		// Verify that a new External account row has been added
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zExternalAccountRow1), "External account is not getting created!");
 	}
 
