@@ -221,7 +221,13 @@ public class PagePreferences extends AbsTab {
 		public static final String zRevokeThisDeviceLink = "css=td[class='ZOptionsField'] a[id='Prefs_Pages_ACCOUNTS_TRUSTED_DEVICE_REVOKE_LINK']:contains('revoke this device')";
 		public static final String zChangePwdButton = "css=td[id='CHANGE_PASSWORD_title']";
 		public static final String zAddApplicationCodeButton = "css=td[id='addApplicationCodeBtn_title']";
-
+		public static final String zAddExternalAccountButton = "css=td[id$='_title']:contains('Add External Account')";
+		public static final String zExternalAccountRow1 = "css=div[id^='zlic__ACCT__new-dsrc'][id$='__na_name']:contains('New External Account')";
+		public static final String zAddPersonaButton = "css=td[id$='_title']:contains('Add Persona')";
+		public static final String zPersonaRow1 = "css=div[id^='zlic__ACCT__new-persona'][id$='__na_name']:contains('New Persona')";
+		public static final String zPop3RadioButton = "css=input[id$='_input'][value='Pop']";
+		public static final String zImapRadioButton = "css=input[id$='_input'][value='Imap']";
+		
 		// Import/Export
 		public static final String zBrowseFileButton = "css=input#ZmImportView_FILE";
 		public static final String zImportButton = "css=div[id='IMPORT_BUTTON'] td[id$='_title']";
