@@ -19,6 +19,7 @@
 	<property name="network-admin-tests.dir" location="../zm-selenium/src/java/com/zimbra/qa/selenium/projects/admin/tests/network"/>
 	<property name="store-conf.dir" location="../zm-mailbox/store-conf"/>
 	<property name="web-client.dir" location="../zm-web-client"/>
+	<property name="ajax.dir" location="../zm-ajax"/>
 	<property name="zimlets.dir" location="../zm-zimlets"/>
 
 	<path id="all.java.path">
@@ -64,6 +65,7 @@
 	<target name="bundles-classes" description="Copies the I18N properties files to build">
 		<copy todir="${build.resources.dir}">
 			<fileset dir="${web-client.dir}/WebRoot/messages/"/>
+			<fileset dir="${ajax.dir}/WebRoot/messages/"/>
 		</copy>
 		<copy todir="${build.resources.dir}">
 			<fileset dir="${store-conf.dir}/conf/msgs/"/>
