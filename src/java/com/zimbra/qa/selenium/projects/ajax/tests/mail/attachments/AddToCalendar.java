@@ -421,7 +421,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	
 	@Bugs(ids = "102578")
 	@Test( description = "Links in email messages to .ics files should provide method to add to calendar",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L5" })
 			
 	public void AddToCalendar_icsLink_06() throws HarnessException {
 

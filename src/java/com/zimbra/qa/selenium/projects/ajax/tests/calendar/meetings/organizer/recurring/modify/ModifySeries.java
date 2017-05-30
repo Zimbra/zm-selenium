@@ -456,7 +456,7 @@ public class ModifySeries extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "101610")	
 	@Test( description = "Modifying daily custom series doesn't update new selection in custom repeat dialog ", 
-			groups = { "functional", "L2" })
+			groups = { "functional", "L5" })
 	
 	public void ModifySeries_05() throws HarnessException {
 
