@@ -37,7 +37,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "102271")
 	@Test( description = "Verify sending appt invite when Equipment resource has conflicts shows conflict dialog", 
-			groups = { "functional", "L2" })
+			groups = { "functional", "L5" })
 	
 	public void CreateMeetingWithEquipmentConflict_01() throws HarnessException {
 		

@@ -35,7 +35,7 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Bugs(ids = "99519")
-	@Test( description = "Un-Tag a message using Toolbar -> Tag -> Remove Tag - in a separate window", groups = { "functional", "L2" })
+	@Test( description = "Un-Tag a message using Toolbar -> Tag -> Remove Tag - in a separate window", groups = { "functional", "L5" })
 	public void UnTagMail_01() throws HarnessException {
 
 		// Create the tag to delete

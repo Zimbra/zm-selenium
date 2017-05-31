@@ -138,7 +138,7 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 
 	@Bugs( ids = "82734")
 	@Test( description = "Create a mail with two 'to' adn two 'cc' addresses using the deep link URL",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L5" })
 	public void CreateMail_03() throws HarnessException {
 		
 		

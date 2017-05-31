@@ -36,7 +36,7 @@ public class ResourceConflictWhenOOO extends CalendarWorkWeekTest {
 	
 	@Bugs(ids = "102271")
 	@Test( description = "Verify if OOO status of Location causes double booking",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L5" })
 	
 	public void LocationConflictWhenOOO_01() throws HarnessException {
 
