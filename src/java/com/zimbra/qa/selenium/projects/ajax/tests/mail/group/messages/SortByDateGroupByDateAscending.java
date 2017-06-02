@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.testng.annotations.Test;
 
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -47,7 +48,8 @@ public class SortByDateGroupByDateAscending extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefGroupMailBy", "message");
 		super.startingAccountPreferences.put("zimbraPrefMailPollingInterval", "500");
 	}
-
+	
+	@Bugs(ids ="ZCS-1337")
 	@Test( description = "Sort a list of messages by Date in ascending order and Group by Date",
 			groups = { "functional", "L2" })
 	
@@ -55,8 +57,9 @@ public class SortByDateGroupByDateAscending extends PrefGroupMailByMessageTest {
 
 		if (OperatingSystem.isWindows() == true) {
 
-			//-- File to import
-			final String fileName = "mailOutOfOrder.tgz";
+			// File (export of an Inbox which contained mail of different past dates) to import. 
+			// The is required so that mails can be grouped by date and issue can be reproduced.
+			final String fileName = "pastMails.tgz";
 			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\tgz\\" + fileName;
 
 			// Navigate to preferences -> Import/Export
