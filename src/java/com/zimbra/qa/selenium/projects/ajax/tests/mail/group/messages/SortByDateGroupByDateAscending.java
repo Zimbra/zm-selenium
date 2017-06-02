@@ -49,7 +49,7 @@ public class SortByDateGroupByDateAscending extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefMailPollingInterval", "500");
 	}
 	
-	@Bugs(ids ="ZCS-1337")
+	@Bugs(ids = "ZCS-1337")
 	@Test( description = "Sort a list of messages by Date in ascending order and Group by Date",
 			groups = { "functional", "L2" })
 	
