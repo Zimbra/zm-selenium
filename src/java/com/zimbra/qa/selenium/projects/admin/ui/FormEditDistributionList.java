@@ -30,7 +30,7 @@ public class FormEditDistributionList extends AbsForm {
 	public static class TreeItem {
 		public static final String MEMBERS="Members";
 		public static final String Notes="Notes";
-		public static final String MEMBERS_OF="Members Of";
+		public static final String MEMBER_OF="Member Of";
 		public static final String ALIASES="Aliases";
 		public static final String OWNERS="Owners";
 		public static final String PREFERENCES="Preferences";
@@ -50,7 +50,12 @@ public class FormEditDistributionList extends AbsForm {
 		public static final String ALIAS_NAME = "css=input[id^='zdlgv__EDIT_ALIAS']";
 		public static final String ALIAS_DOMAIN_NAME = "css=input[id$='_name_3_display']";
 		public static final String zdlg_OK="css=td[id$='_button2_title']:contains('OK')";
-		
+		public static final String DirectMemberOf = "css=td[id$='_directMemberList___container'] div[id$='__rows']";
+		public static final String IndirectMemberOf = "css=td[id$='_indirectMemberList___container'] div[id$='__rows']";
+		public static final String FIND_DL_TEXTBOX = "css=div[id^='ztab__UNDEFINE']:not([aria-hidden=true]) input[id$='query_2']";
+		public static final String SEARCH_DL_BUTTON = "css=div[id^='ztab__UNDEFINE']:not([aria-hidden=true]) td[id$='button_7___container'] td[id$='_title']:contains('Search')";
+		public static final String SelectDLRowCSS = "css=div[id^='zl__'][id$='rows'] div[id^='zli_'] td[width='auto']";
+		public static final String ADD_DL = "css=div[id^='ztab__UNDEFINE']:not([aria-hidden=true]) td[id$='button_8___container'] td[id$='_title']:contains('Add')";
 	}
 
 	public FormEditDistributionList(AbsApplication application) {
@@ -94,10 +99,11 @@ public class FormEditDistributionList extends AbsForm {
 	@Override
 	public void zSubmit() throws HarnessException {
 		sClickAt(Locators.SAVE_BUTTON,"");
+		SleepUtil.sleepMedium();
 	}
 
 	public void zClickTreeItem(String treeItem) throws HarnessException {
-		sClickAt("css=td:contains('" + treeItem + "')", "");
+		sClickAt("css=div[id^='zti__AppAdmin__Home__dlLstHV'] div[class='ZTreeItemTextCell']:contains('" + treeItem + "')", "");
 	}
 
 	public void setName(String name) throws HarnessException {
@@ -267,6 +273,19 @@ public class FormEditDistributionList extends AbsForm {
 		SleepUtil.sleepSmall();
 		zClick(Locators.zdlg_OK);
 		SleepUtil.sleepSmall();	
+	}
+	
+	public void zAddDistributionList(com.zimbra.qa.selenium.projects.admin.items.DistributionListItem d ) throws HarnessException {
+		logger.info(myPageName() + " zAddDistributionList("+ d.getEmailAddress() +")");
+		
+		//Enter Dl to search
+		this.sType(Locators.FIND_DL_TEXTBOX, d.getEmailAddress());
+		this.sClick(Locators.SEARCH_DL_BUTTON);
+		SleepUtil.sleepSmall();
+		
+		//Select DL and Add it.
+		this.sClick(Locators.SelectDLRowCSS+":contains('" + d.getEmailAddress() +"')");
+		this.sClick(Locators.ADD_DL);
 	}
 	
 }
