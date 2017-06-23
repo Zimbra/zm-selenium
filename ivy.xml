@@ -39,7 +39,7 @@
 		<dependency org="org.mariadb.jdbc" name="mariadb-java-client" rev="1.1.8"> <artifact name="mariadb-java-client" url="http://central.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/1.1.8/mariadb-java-client-1.1.8.jar"/> </dependency>
 		<dependency org="org.testng" name="testng" rev="5.12.1"/>
 		<dependency org="xalan" name="serializer" rev="2.7.2"/>
-		<dependency org="xerces" name="xercesImpl" rev="2.9.1"/>
+		<dependency org="xerces" name="xercesImpl" rev="2.9.1-patch-01"/>
 		<dependency org="xml-apis" name="xml-apis" rev="2.0.2"/>
 		<dependency org="org.seleniumhq.selenium" name="selenium-api" rev="3.4.0"/>
 		<dependency org="org.seleniumhq.selenium" name="selenium-chrome-driver" rev="3.4.0"/>
