@@ -52,10 +52,10 @@ public class FormEditDistributionList extends AbsForm {
 		public static final String zdlg_OK="css=td[id$='_button2_title']:contains('OK')";
 		public static final String DirectMemberOf = "css=td[id$='_directMemberList___container'] div[id$='__rows']";
 		public static final String IndirectMemberOf = "css=td[id$='_indirectMemberList___container'] div[id$='__rows']";
-		public static final String FIND_DL_TEXTBOX = "css=input[id='ztabv__UNDEFINE_query_2']";
-		public static final String SEARCH_DL_BUTTON = "css=td[id='ztabv__UNDEFINE_dwt_button_7___container'] td[id$='_title']:contains('Search')";
+		public static final String FIND_DL_TEXTBOX = "css=div[id^='ztab__UNDEFINE']:not([aria-hidden=true]) input[id$='query_2']";
+		public static final String SEARCH_DL_BUTTON = "css=div[id^='ztab__UNDEFINE']:not([aria-hidden=true]) td[id$='button_7___container'] td[id$='_title']:contains('Search')";
 		public static final String SelectDLRowCSS = "css=div[id^='zl__'][id$='rows'] div[id^='zli_'] td[width='auto']";
-		public static final String ADD_DL = "css=td[id^='ztabv__UNDEFINE_dwt_button_8___container'] td[id$='_title']:contains('Add')";
+		public static final String ADD_DL = "css=div[id^='ztab__UNDEFINE']:not([aria-hidden=true]) td[id$='button_8___container'] td[id$='_title']:contains('Add')";
 	}
 
 	public FormEditDistributionList(AbsApplication application) {
