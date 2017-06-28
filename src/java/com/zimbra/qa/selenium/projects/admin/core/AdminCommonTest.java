@@ -174,6 +174,7 @@ public class AdminCommonTest {
 			}
 		}
 
+		handleNGDialog();
 		// Close all the dialogs left opened by the previous test
 		app.zPageMain.zHandleDialogs();
 
@@ -181,7 +182,8 @@ public class AdminCommonTest {
 		// as that user
 		if (startingAccount != null) {
 			logger.debug("commonTestBeforeMethod: startingAccount is defined");
-
+			handleNGDialog();
+			
 			if (!startingAccount.equals(app.zGetActiveAccount())) {
 				
 				//if (app.zPageMain.zIsActive()) {
@@ -214,6 +216,7 @@ public class AdminCommonTest {
 			}
 		}
 
+		handleNGDialog();
 		// If a startingPage is defined, then make sure we are on that page
 		if (startingPage != null) {
 			logger.debug("commonTestBeforeMethod: startingPage is defined");
@@ -230,6 +233,16 @@ public class AdminCommonTest {
 		}
 
 		logger.info("BeforeMethod: finish");
+	}
+
+	public void handleNGDialog(){
+		
+		try{
+			ClientSessionFactory.session().webDriver().findElement(By.xpath("//div[contains(text(),' Network Modules NG Notification')]/ancestor::div[@class='DwtDialog'][not(@aria-hidden)]/descendant::td[contains(@id,'Close')]")).click();	
+		}
+		catch(Exception e){
+			logger.info("Network Module NG Notification Dialog not found.");	
+		}
 	}
 
 	public File fGetJavaScriptErrorsHtmlFile() throws HarnessException {
