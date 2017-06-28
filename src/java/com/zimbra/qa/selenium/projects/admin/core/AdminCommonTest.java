@@ -174,7 +174,8 @@ public class AdminCommonTest {
 			}
 		}
 
-		handleNGDialog();
+		zHandleNetworkModulesNG();
+		
 		// Close all the dialogs left opened by the previous test
 		app.zPageMain.zHandleDialogs();
 
@@ -182,7 +183,8 @@ public class AdminCommonTest {
 		// as that user
 		if (startingAccount != null) {
 			logger.debug("commonTestBeforeMethod: startingAccount is defined");
-			handleNGDialog();
+			
+			zHandleNetworkModulesNG();
 			
 			if (!startingAccount.equals(app.zGetActiveAccount())) {
 				
@@ -216,7 +218,8 @@ public class AdminCommonTest {
 			}
 		}
 
-		handleNGDialog();
+		zHandleNetworkModulesNG();
+		
 		// If a startingPage is defined, then make sure we are on that page
 		if (startingPage != null) {
 			logger.debug("commonTestBeforeMethod: startingPage is defined");
@@ -235,8 +238,7 @@ public class AdminCommonTest {
 		logger.info("BeforeMethod: finish");
 	}
 
-	public void handleNGDialog(){
-		
+	public void zHandleNetworkModulesNG(){
 		try{
 			ClientSessionFactory.session().webDriver().findElement(By.xpath("//div[contains(text(),' Network Modules NG Notification')]/ancestor::div[@class='DwtDialog'][not(@aria-hidden)]/descendant::td[contains(@id,'Close')]")).click();	
 		}
