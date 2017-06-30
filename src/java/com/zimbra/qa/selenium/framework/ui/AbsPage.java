@@ -20,6 +20,8 @@ import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import org.apache.log4j.*;
+import org.openqa.selenium.interactions.Actions;
+
 import com.zimbra.qa.selenium.framework.util.*;
 
 /**
@@ -72,21 +74,9 @@ public abstract class AbsPage extends AbsSeleniumObject {
 			throw new HarnessException("locator (destination) cannot be found: "+ locatorDestination);
 		}
 
-		SleepUtil.sleepMedium();
-		this.sMouseDownAt(locatorSource,"");
-		SleepUtil.sleepMedium();
+		Actions action = new Actions(webDriver());
+		action.dragAndDrop(getElement(locatorSource), getElement(locatorDestination)).build().perform();
 
-		// Drag the mouse to the destination, plus the offset
-		this.sMouseMoveAt(locatorDestination,"");
-		SleepUtil.sleepSmall();
-
-		this.sMouseMoveAt(locatorDestination,"");
-		this.sMouseOver(locatorDestination);
-		SleepUtil.sleepSmall();
-
-		// Release the mouse
-		this.sMouseUpAt(locatorDestination,"");
-		SleepUtil.sleepSmall();
 		this.zWaitForBusyOverlay();
 
 	}
