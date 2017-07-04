@@ -34,7 +34,7 @@ public class VerifyTimezoneView extends AjaxCommonTest {
 			
 	}
 
-	@Test (description = "Check timezone options in preferences", groups = { "smoke", "L1"  } )
+	@Test (description = "Check timezone options in preferences", groups = { "smoke", "L1","mitesh"  } )
 	
 	public void VerifyTimezoneView_01() throws HarnessException {
 		
@@ -102,10 +102,8 @@ public class VerifyTimezoneView extends AjaxCommonTest {
 		for (int i=0; i<=6; i++) {
 			ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Timezone[i]), "Verify " + Timezone[i] + " timezone present"); 
 		}
-		
 		for (int i=7; i<=Timezone.length-1; i++) {
 			System.out.println("Verify " + Timezone[i] + " timezone present");
-			app.zPagePreferences.zClick(Locators.zDownArrow);
 			ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Timezone[i]), "Verify " + Timezone[i] + " timezone present"); 
 		}
 		
