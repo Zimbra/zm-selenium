@@ -59,7 +59,8 @@ public class LoginWithCsrfTokenCheckDisabled extends AdminCommonTest {
 			app.zPageLogin.login(gAdmin);
 
 			// Verify main page becomes active
-			ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
+			ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in with zimbraCsrfTokenCheckEnabledValue as FALSE");
+			app.zPageMain.logout();
 		}
 
 		finally {
@@ -76,6 +77,8 @@ public class LoginWithCsrfTokenCheckDisabled extends AdminCommonTest {
 						
 			// Open the base URL
 			app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
+			app.zPageLogin.login(gAdmin);
+			ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in after zimbraCsrfTokenCheckEnabledValue as TRUE");
 			app.zPageMain.logout();
 		}
 
