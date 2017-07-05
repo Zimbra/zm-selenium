@@ -33,7 +33,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogInformational;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogShare.ShareRole;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
@@ -318,8 +318,8 @@ public class PagePreferences extends AbsTab {
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the main page is active
-		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
-			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
+		if (!((AppUniversalClient) MyApplication).zPageMain.zIsActive()) {
+			((AppUniversalClient) MyApplication).zPageMain.zNavigateTo();
 		}
 
 		// If the "folders" tree is visible, then mail is active
@@ -352,7 +352,7 @@ public class PagePreferences extends AbsTab {
 		sClick(PageMain.Locators.zPreferenceOption);
 		zWaitForElementPresent(Locators.zGeneralPreferencesOverviewPane);
 		
-		//((AppAjaxClient) MyApplication).zPageMain.zCheckAppLoaded(PageMain.Locators.zPreferencesTab);
+		//((AppUniversalClient) MyApplication).zPageMain.zCheckAppLoaded(PageMain.Locators.zPreferencesTab);
 	}
 
 	/**
@@ -510,17 +510,17 @@ public class PagePreferences extends AbsTab {
 		} else if (button == Button.B_NEW_IN_FILTER) {
 
 			locator = "css=div[id='zb__FRV__ADD_FILTER_RULE'] td[id$='_title']";
-			page = new DialogEditFilter(MyApplication, ((AppAjaxClient) MyApplication).zPagePreferences);
+			page = new DialogEditFilter(MyApplication, ((AppUniversalClient) MyApplication).zPagePreferences);
 
 		} else if (button == Button.B_EDIT_IN_FILTER) {
 
 			locator = "css=div[id='zb__FRV__EDIT_FILTER_RULE'] td[id$='_title']";
-			page = new DialogEditFilter(MyApplication, ((AppAjaxClient) MyApplication).zPagePreferences);
+			page = new DialogEditFilter(MyApplication, ((AppUniversalClient) MyApplication).zPagePreferences);
 		} else if (button == Button.B_DELETE_IN_FILTER) {
 
 			locator = "css=div[id='zb__FRV__REMOVE_FILTER_RULE'] td[id$='_title']";
 			page = new DialogWarning(DialogWarningID.DeleteFilterWarningMessage, MyApplication,
-					((AppAjaxClient) MyApplication).zPagePreferences);
+					((AppUniversalClient) MyApplication).zPagePreferences);
 		} else if (button == Button.B_RUN_IN_FILTER) {
 
 			locator = "css=div[id='zb__FRV__RUN_FILTER_RULE'] td[id$='_title']";
@@ -528,17 +528,17 @@ public class PagePreferences extends AbsTab {
 		} else if (button == Button.B_NEW_OUT_FILTER) {
 
 			locator = "css=div[id^='zb__FRV__ADD_FILTER_RULE__DWT'] td[id$='_title']";
-			page = new DialogEditFilter(MyApplication, ((AppAjaxClient) MyApplication).zPagePreferences);
+			page = new DialogEditFilter(MyApplication, ((AppUniversalClient) MyApplication).zPagePreferences);
 
 		} else if (button == Button.B_EDIT_OUT_FILTER) {
 
 			locator = "css=div[id^='zb__FRV__EDIT_FILTER_RULE__DWT'] td[id$='_title']";
-			page = new DialogEditFilter(MyApplication, ((AppAjaxClient) MyApplication).zPagePreferences);
+			page = new DialogEditFilter(MyApplication, ((AppUniversalClient) MyApplication).zPagePreferences);
 		} else if (button == Button.B_DELETE_OUT_FILTER) {
 
 			locator = "css=div[id^='zb__FRV__REMOVE_FILTER_RULE__DWT'] td[id$='_title']";
 			page = new DialogWarning(DialogWarningID.DeleteFilterWarningMessage, MyApplication,
-					((AppAjaxClient) MyApplication).zPagePreferences);
+					((AppUniversalClient) MyApplication).zPagePreferences);
 		} else if (button == Button.B_RUN_OUT_FILTER) {
 
 			locator = "css=div[id^='zb__FRV__RUN_FILTER_RULE__DWT'] td[id$='_title']";
@@ -546,23 +546,23 @@ public class PagePreferences extends AbsTab {
 		} else if (button == Button.B_ACTIVITY_STREAM_SETTINGS) {
 
 			locator = "css=div[id$='_ACTIVITY_STREAM_BUTTON'] td[id$='_title']";
-			page = new DialogActivityStream(MyApplication, ((AppAjaxClient) MyApplication).zPagePreferences);
+			page = new DialogActivityStream(MyApplication, ((AppUniversalClient) MyApplication).zPagePreferences);
 
 		} else if (button == Button.B_NEW_QUICK_COMMAND) {
 
 			locator = "css=div[id='zb__QCV__ADD_QUICK_COMMAND'] td[id$='_title']";
-			page = new DialogEditQuickCommand(MyApplication, ((AppAjaxClient) MyApplication).zPagePreferences);
+			page = new DialogEditQuickCommand(MyApplication, ((AppUniversalClient) MyApplication).zPagePreferences);
 
 		} else if (button == Button.B_EDIT_QUICK_COMMAND) {
 
 			locator = "css=div[id='zb__QCV__EDIT_QUICK_COMMAND'] td[id$='_title']";
-			page = new DialogEditQuickCommand(MyApplication, ((AppAjaxClient) MyApplication).zPagePreferences);
+			page = new DialogEditQuickCommand(MyApplication, ((AppUniversalClient) MyApplication).zPagePreferences);
 
 		} else if (button == Button.B_DELETE_QUICK_COMMAND) {
 
 			locator = "css=div[id='zb__QCV__REMOVE_QUICK_COMMAND'] td[id$='_title']";
 			page = new DialogWarning(DialogWarningID.QuickCommandConfirmDelete, MyApplication,
-					((AppAjaxClient) MyApplication).zPagePreferences);
+					((AppUniversalClient) MyApplication).zPagePreferences);
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
@@ -798,7 +798,7 @@ public class PagePreferences extends AbsTab {
 		} else if (button == Button.B_ADD_APPLICATION_CODE) {
 
 			locator = Locators.zAddApplicationCodeButton;
-			page = new DialogAddApplicationCode(MyApplication, ((AppAjaxClient) MyApplication).zPagePreferences);
+			page = new DialogAddApplicationCode(MyApplication, ((AppUniversalClient) MyApplication).zPagePreferences);
 
 		} else if (button == Button.B_IMPORT_OK) {
 
@@ -809,7 +809,7 @@ public class PagePreferences extends AbsTab {
 
 			locator = Locators.zSendVerificationCodeBtn;
 			page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, this.MyApplication,
-					((AppAjaxClient) this.MyApplication).zPagePreferences);
+					((AppUniversalClient) this.MyApplication).zPagePreferences);
 
 		} else if (button == Button.B_VALIDATE_CODE) {
 

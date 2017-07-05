@@ -88,14 +88,14 @@ public class TreeBriefcase extends AbsTree {
 			optionLocator = Locators.zNewTagTreeMenuItem;
 
 			page = new DialogTag(MyApplication,
-					((AppAjaxClient) MyApplication).zPageBriefcase);
+					((AppUniversalClient) MyApplication).zPageBriefcase);
 
 		} else if (option == Button.B_TREE_RENAMETAG) {
 
 			optionLocator = Locators.zRenameTagTreeMenuItem;
 
 			page = new DialogRenameTag(MyApplication,
-					((AppAjaxClient) MyApplication).zPageBriefcase);
+					((AppUniversalClient) MyApplication).zPageBriefcase);
 		} else if (option == Button.B_TREE_DELETE) {
 
 			optionLocator = Locators.zDeleteTreeMenuItem;
@@ -104,21 +104,21 @@ public class TreeBriefcase extends AbsTree {
 				page = new DialogWarning(
 						DialogWarning.DialogWarningID.DeleteTagWarningMessage,
 						MyApplication,
-						((AppAjaxClient) MyApplication).zPageBriefcase);
+						((AppUniversalClient) MyApplication).zPageBriefcase);
 			}
 		} else if (option == Button.B_TREE_NEWFOLDER) {
 
 			optionLocator = Locators.zNewFolderTreeMenuItem;
 
 			page = new DialogCreateBriefcaseFolder(MyApplication,
-					((AppAjaxClient) MyApplication).zPageBriefcase);
+					((AppUniversalClient) MyApplication).zPageBriefcase);
 
 		} else if (option == Button.B_TREE_EDIT_PROPERTIES) {
 
 			optionLocator = Locators.zEditPropertiesTreeMenuItem;
 
 			page = new DialogEditProperties(MyApplication,
-					((AppAjaxClient) MyApplication).zPageBriefcase);
+					((AppUniversalClient) MyApplication).zPageBriefcase);
 
 		} else {
 			throw new HarnessException("button " + option
@@ -176,7 +176,7 @@ public class TreeBriefcase extends AbsTree {
 					+ "_imageCell]";
 
 		} else if (item instanceof LinkItem) {
-			page = new DialogFindShares(MyApplication, ((AppAjaxClient) MyApplication).zPageBriefcase);
+			page = new DialogFindShares(MyApplication, ((AppUniversalClient) MyApplication).zPageBriefcase);
 			clickBy(By.id("ztih__main_Briefcase__BRIEFCASE"), By.linkText("Find Shares..."));
 			return page;
 			
@@ -233,7 +233,7 @@ public class TreeBriefcase extends AbsTree {
 
 			locator = "css=div[id=ztih__main_Briefcase__BRIEFCASE] div[class^=ImgNewFolder ZWidget]";
 			page = new DialogCreateBriefcaseFolder(MyApplication,
-					((AppAjaxClient) MyApplication).zPageBriefcase);
+					((AppUniversalClient) MyApplication).zPageBriefcase);
 
 			if (!this.sIsElementPresent(locator)) {
 				throw new HarnessException(
@@ -253,7 +253,7 @@ public class TreeBriefcase extends AbsTree {
 			if (!this.sIsElementPresent(locator)) {
 				throw new HarnessException("Unable to locate folder in tree " + locator);
 			}
-			page = new DialogTag(MyApplication,	((AppAjaxClient) MyApplication).zPageBriefcase);
+			page = new DialogTag(MyApplication,	((AppUniversalClient) MyApplication).zPageBriefcase);
 			
 		} else if (button == Button.B_TREE_BRIEFCASE_EXPANDCOLLAPSE) {
 
@@ -308,13 +308,13 @@ public class TreeBriefcase extends AbsTree {
 
 				optionLocator ="css=div[id='NEW_BRIEFCASE']";
 				page = new DialogCreateBriefcaseFolder(MyApplication,
-						((AppAjaxClient) MyApplication).zPageBriefcase);
+						((AppUniversalClient) MyApplication).zPageBriefcase);
 
 			} else if (option == Button.B_TREE_FIND_SHARES) {
 
 				optionLocator ="css=div[id='FIND_SHARES']";
 				page = new DialogFindShares(MyApplication,
-						((AppAjaxClient) MyApplication).zPageBriefcase);
+						((AppUniversalClient) MyApplication).zPageBriefcase);
 			} else {
 				throw new HarnessException("Pulldown/Option " + pulldown + "/"
 						+ option + " not implemented");
@@ -332,7 +332,7 @@ public class TreeBriefcase extends AbsTree {
 				optionLocator ="css=div[id='NEW_TAG']";
 				
 				page = new DialogTag(MyApplication,
-						((AppAjaxClient) MyApplication).zPageBriefcase);
+						((AppUniversalClient) MyApplication).zPageBriefcase);
 
 			} else {
 				throw new HarnessException("Pulldown/Option " + pulldown + "/"
@@ -434,8 +434,8 @@ public class TreeBriefcase extends AbsTree {
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the briefcase page is active
-		if (!((AppAjaxClient) MyApplication).zPageBriefcase.zIsActive()) {
-			((AppAjaxClient) MyApplication).zPageBriefcase.zNavigateTo();
+		if (!((AppUniversalClient) MyApplication).zPageBriefcase.zIsActive()) {
+			((AppUniversalClient) MyApplication).zPageBriefcase.zNavigateTo();
 		}
 
 		boolean loaded = this.sIsElementPresent(Locators.briefcaseListView);

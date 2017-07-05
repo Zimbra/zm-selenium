@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.AutocompleteEntry;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.universal.ui.AutocompleteEntry.Icon;
@@ -740,7 +740,7 @@ public class FormApptNew extends AbsForm {
 
 				this.zWaitForBusyOverlay();
 				page = new DialogWarning(DialogWarning.DialogWarningID.SwitchToTextComposeAppointment,
-						this.MyApplication, ((AppAjaxClient) this.MyApplication).zPageCalendar);
+						this.MyApplication, ((AppUniversalClient) this.MyApplication).zPageCalendar);
 
 			}
 
@@ -1253,7 +1253,7 @@ public class FormApptNew extends AbsForm {
 
 		DialogCustomRepeat dlgCustomRepeat = (DialogCustomRepeat) new DialogCustomRepeat(
 				DialogCustomRepeat.DialogWarningID.DialogCustomRepeat, MyApplication,
-				((AppAjaxClient) MyApplication).zPageCalendar);
+				((AppUniversalClient) MyApplication).zPageCalendar);
 		dlgCustomRepeat.zClickButton(Button.B_OK);
 	}
 

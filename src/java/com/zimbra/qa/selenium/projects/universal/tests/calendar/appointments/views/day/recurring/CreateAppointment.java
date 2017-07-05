@@ -84,7 +84,7 @@ public class CreateAppointment extends UniversalCommonTest {
 //		// Open instance and verify corresponding UI
 //		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 //        app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, appt.getSubject());
-//        DialogOpenRecurringItem dlgConfirm = new DialogOpenRecurringItem(DialogOpenRecurringItem.Confirmation.OPENRECURRINGITEM, app, ((AppAjaxClient) app).zPageCalendar);
+//        DialogOpenRecurringItem dlgConfirm = new DialogOpenRecurringItem(DialogOpenRecurringItem.Confirmation.OPENRECURRINGITEM, app, ((AppUniversalClient) app).zPageCalendar);
 //		dlgConfirm.zClickButton(Button.B_OK);
 //		ZAssert.assertEquals(app.zPageCalendar.sIsElementPresent(Locators.RepeatDisabled), true, "Verify 'Every Week' menu item is disabled");
 //		SleepUtil.sleepMedium();
@@ -92,7 +92,7 @@ public class CreateAppointment extends UniversalCommonTest {
 //		
 //		// Open entire series and verify corresponding UI
 //		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, appt.getSubject());
-//        dlgConfirm = new DialogOpenRecurringItem(DialogOpenRecurringItem.Confirmation.OPENRECURRINGITEM, app, ((AppAjaxClient) app).zPageCalendar);
+//        dlgConfirm = new DialogOpenRecurringItem(DialogOpenRecurringItem.Confirmation.OPENRECURRINGITEM, app, ((AppUniversalClient) app).zPageCalendar);
 //        app.zPageCalendar.zCheckRadioButton(Button.B_OPEN_THE_SERIES);
 //		dlgConfirm.zClickButton(Button.B_OK);
 //		ZAssert.assertEquals(app.zPageCalendar.sIsElementPresent(Locators.RepeatEnabled), true, "Verify 'Every Week' menu item is enabled");

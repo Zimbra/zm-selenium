@@ -351,7 +351,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 
 		// Check if the "Move Dialog is still open
 		DialogMove dialog = new DialogMove(app,
-				((AppAjaxClient) app).zPageBriefcase);
+				((AppUniversalClient) app).zPageBriefcase);
 		if (dialog.zIsActive()) {
 			logger.warn(dialog.myPageName()
 					+ " was still active.  Cancelling ...");

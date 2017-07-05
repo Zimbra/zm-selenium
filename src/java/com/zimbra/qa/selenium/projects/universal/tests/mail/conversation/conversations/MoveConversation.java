@@ -34,7 +34,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		logger.info("Checking for the Move Dialog ...");
 
 		// Check if the "Move Dialog is still open
-		DialogMove dialog = new DialogMove(app, ((AppAjaxClient)app).zPageMail);
+		DialogMove dialog = new DialogMove(app, ((AppUniversalClient)app).zPageMail);
 		if ( dialog.zIsActive() ) {
 			logger.warn(dialog.myPageName() +" was still active.  Cancelling ...");
 			dialog.zClickButton(Button.B_CANCEL);
@@ -131,7 +131,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		app.zPageMail.zKeyboardShortcut(Shortcut.S_MOVE);
 		
 		// A move dialog will pop up
-		DialogMove dialog = new DialogMove(app, ((AppAjaxClient)app).zPageMail);
+		DialogMove dialog = new DialogMove(app, ((AppUniversalClient)app).zPageMail);
 		dialog.zClickTreeFolder(subfolder);
 		dialog.zClickButton(Button.B_OK);
 

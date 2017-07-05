@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogMove;
 import com.zimbra.qa.selenium.projects.universal.ui.tasks.DialogCreateTaskFolder;
 
@@ -378,7 +378,7 @@ public class MoveTask extends UniversalCommonTest {
 		logger.info("Checking for the Move Dialog ...");
 
 		// Check if the "Move Dialog is still open
-		DialogMove dialog = new DialogMove(app, ((AppAjaxClient)app).zPageTasks);
+		DialogMove dialog = new DialogMove(app, ((AppUniversalClient)app).zPageTasks);
 		if (dialog.zIsActive()) {
 			logger.warn(dialog.myPageName()
 					+ " was still active.  Cancelling ...");

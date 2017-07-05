@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.universal.ui.contacts.*;
 import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactGroupNew.Field;
@@ -79,7 +79,7 @@ public class CheckPopulatedContactsWhenCreatingContactGroup extends UniversalCom
 		// Try to close out the window
 		formGroup.zToolbarPressButton(Button.B_CLOSE);
 		
-		DialogWarning dialog =  new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.app, ((AppAjaxClient)this.app).zPageContacts);
+		DialogWarning dialog =  new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.app, ((AppUniversalClient)this.app).zPageContacts);
 
 		// Wait for the dialog to appear
 		dialog.zWaitForActive();

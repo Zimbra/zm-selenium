@@ -37,7 +37,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogAssistant;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogInformational;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogMove;
@@ -709,7 +709,7 @@ public class PageCalendar extends AbsTab {
 			this.zWaitForBusyOverlay();
 			SleepUtil.sleepMedium();
 
-			page = new DialogOpenRecurringItem(Confirmation.OPENRECURRINGITEM, MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogOpenRecurringItem(Confirmation.OPENRECURRINGITEM, MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
@@ -775,7 +775,7 @@ public class PageCalendar extends AbsTab {
 			this.zWaitForBusyOverlay();
 			SleepUtil.sleepLong();
 			
-			DialogOpenRecurringItem openRecurring = new DialogOpenRecurringItem(Confirmation.OPENRECURRINGITEM, MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			DialogOpenRecurringItem openRecurring = new DialogOpenRecurringItem(Confirmation.OPENRECURRINGITEM, MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( openRecurring.zIsActive() ) {
 				openRecurring.zClickButton(Button.B_OPEN_THE_SERIES);
 				openRecurring.zClickButton(Button.B_OK);
@@ -882,7 +882,7 @@ public class PageCalendar extends AbsTab {
 			} else if ( option == Button.O_DELETE ) {
 
 				optionLocator = Locators.DeleteMenu;
-				page = new DialogConfirmDeleteAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+				page = new DialogConfirmDeleteAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
 			} else if ( option == Button.O_MOVE ) {
 
@@ -1104,24 +1104,24 @@ public class PageCalendar extends AbsTab {
 				}
 
 				// If the organizer deletes an appointment, you get "Send Cancellation" dialog
-				page = new DialogConfirmDeleteOrganizer(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+				page = new DialogConfirmDeleteOrganizer(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 				if ( page.zIsActive() ) {
 					return (page);
 				}
 
 				// If an attendee deletes an appointment, you get a "Confirm Delete" dialog with "Notify Organizer?"
-				page = new DialogConfirmDeleteAttendee(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+				page = new DialogConfirmDeleteAttendee(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 				if ( page.zIsActive() ) {
 					return (page);
 				}
 
 				// If an attendee deletes an appointment, you get a "Confirm Delete" dialog
-				page = new DialogConfirmDeleteAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+				page = new DialogConfirmDeleteAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 				if ( page.zIsActive() ) {
 					return (page);
 				}
 
-				page = new DialogConfirmDeleteRecurringAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+				page = new DialogConfirmDeleteRecurringAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 				if ( page.zIsActive() ) {
 					return (page);
 				}
@@ -1321,7 +1321,7 @@ public class PageCalendar extends AbsTab {
 				// Use default actionLocator
 				optionLocator = Locators.MoveMenu;
 
-				page = new DialogMove(MyApplication,((AppAjaxClient) MyApplication).zPageCalendar);
+				page = new DialogMove(MyApplication,((AppUniversalClient) MyApplication).zPageCalendar);
 
 				this.zClickAt(optionLocator,"");
 
@@ -1350,7 +1350,7 @@ public class PageCalendar extends AbsTab {
 
 				if (com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.actions.CreateACopy.organizerTest == false ||
 						com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.viewappt.CreateACopy.organizerTest == false) {
-					page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+					page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 				} else {
 					page = null;
 				}
@@ -1440,7 +1440,7 @@ public class PageCalendar extends AbsTab {
 				this.zClickAt(optionLocator, "");
 				this.zWaitForBusyOverlay();
 
-				page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+				page = new DialogTag(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
 			} else if ( option == Button.O_REMOVE_TAG ) {
 
@@ -1458,7 +1458,7 @@ public class PageCalendar extends AbsTab {
 				this.zClickAt(optionLocator, "");
 				this.zWaitForBusyOverlay();
 
-				page = new DialogWarning(DialogWarning.DialogWarningID.ZmMsgDialog, MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+				page = new DialogWarning(DialogWarning.DialogWarningID.ZmMsgDialog, MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
 			} else if ( option == Button.O_CREATE_A_COPY_MENU ) {
 
@@ -1467,7 +1467,7 @@ public class PageCalendar extends AbsTab {
 				this.zClickAt(optionLocator, "");
 				this.zWaitForBusyOverlay();
 
-				page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+				page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
 			} else if ( option == Button.O_REPLY_MENU ) {
 
@@ -1512,7 +1512,7 @@ public class PageCalendar extends AbsTab {
 				this.zClickAt(optionLocator, "");
 				this.zWaitForBusyOverlay();
 
-				page = new DialogConfirmationDeclineAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+				page = new DialogConfirmationDeclineAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
 			} else if ( option == Button.O_SHOW_ORIGINAL_MENU ) {
 
@@ -1714,40 +1714,40 @@ public class PageCalendar extends AbsTab {
 			sp.waitForPostqueue();
 
 			// If the organizer deletes an appointment, you get "Send Cancellation" dialog
-			page = new DialogConfirmDeleteOrganizer(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteOrganizer(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
 
 			// If an attendee deletes an appointment, you get a "Confirm Delete / Notify Organizer" dialog
-			page = new DialogConfirmDeleteAttendee(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteAttendee(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
 
 			// If an organizer deletes an appointment (no attendees), you get a "Confirm Delete" dialog
-			page = new DialogConfirmDeleteAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
 
-			page = new DialogConfirmationDeleteAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmationDeleteAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
 
 
-			page = new DialogConfirmDeleteRecurringAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteRecurringAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
 
-			page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
 
-			page = new DialogMove(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogMove(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
@@ -1761,7 +1761,7 @@ public class PageCalendar extends AbsTab {
 			this.zWaitForBusyOverlay();
 			SleepUtil.sleepLong();
 
-			/*page = new DialogOpenRecurringItem(Confirmation.OPENRECURRINGITEM, MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			/*page = new DialogOpenRecurringItem(Confirmation.OPENRECURRINGITEM, MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}*/
@@ -1846,7 +1846,7 @@ public class PageCalendar extends AbsTab {
 			this.zClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
-			page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogTag(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
 		} else if ( subOption == Button.O_REMOVE_TAG ) {
 
@@ -1864,7 +1864,7 @@ public class PageCalendar extends AbsTab {
 			this.zClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
-			page = new DialogWarning(DialogWarning.DialogWarningID.ZmMsgDialog, MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogWarning(DialogWarning.DialogWarningID.ZmMsgDialog, MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
 		} else if ( subOption == Button.O_CREATE_A_COPY_MENU ) {
 
@@ -1873,7 +1873,7 @@ public class PageCalendar extends AbsTab {
 			this.zClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
-			page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
 		} else if ( subOption == Button.O_REPLY_MENU ) {
 
@@ -1918,7 +1918,7 @@ public class PageCalendar extends AbsTab {
 			this.zClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
-			page = new DialogConfirmationDeclineAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmationDeclineAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
 		} else if ( subOption == Button.O_SHOW_ORIGINAL_MENU ) {
 
@@ -1966,7 +1966,7 @@ public class PageCalendar extends AbsTab {
 		AbsPage page = null;
 
 		if (button == Button.B_REFRESH) {
-			return (((AppAjaxClient)this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
+			return (((AppUniversalClient)this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
 
 		} else if (button == Button.B_NEW) {
 			locator = "css=td#zb__NEW_MENU_title";
@@ -2007,24 +2007,24 @@ public class PageCalendar extends AbsTab {
 			sp.waitForPostqueue();
 
 			// If the organizer deletes an appointment, you get "Send Cancellation" dialog
-			page = new DialogConfirmDeleteOrganizer(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteOrganizer(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
 
 			// If an attendee deletes an appointment, you get a "Confirm Delete / Notify Organizer" dialog
-			page = new DialogConfirmDeleteAttendee(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteAttendee(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
 
 			// If an organizer deletes an appointment (no attendees), you get a "Confirm Delete" dialog
-			page = new DialogConfirmDeleteAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
 
-			page = new DialogConfirmDeleteRecurringAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteRecurringAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
@@ -2039,7 +2039,7 @@ public class PageCalendar extends AbsTab {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 			SleepUtil.sleepMedium();
-			page = new DialogWarningConflictingResources(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogWarningConflictingResources(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			return (page);
 
 		} else if (button == Button.B_SAVE_WITH_CONFLICT) {
@@ -2049,7 +2049,7 @@ public class PageCalendar extends AbsTab {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 			SleepUtil.sleepMedium();
-			page = new DialogWarningConflictingResources(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);			
+			page = new DialogWarningConflictingResources(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);			
 			return (page);
 
 		} else if (button == Button.B_MONTH) {
@@ -2254,24 +2254,24 @@ public class PageCalendar extends AbsTab {
 			SleepUtil.sleepMedium();
 
 			// If the organizer deletes an appointment, you get "Send Cancellation" dialog
-			page = new DialogConfirmDeleteOrganizer(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteOrganizer(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
 
 			// If an attendee deletes an appointment, you get a "Confirm Delete" dialog with "Notify Organizer?"
-			page = new DialogConfirmDeleteAttendee(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteAttendee(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
 
 			// If an attendee deletes an appointment, you get a "Confirm Delete" dialog
-			page = new DialogConfirmDeleteAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
 
-			page = new DialogConfirmDeleteRecurringAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteRecurringAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
@@ -2294,21 +2294,21 @@ public class PageCalendar extends AbsTab {
 
 		if ( shortcut == Shortcut.S_ASSISTANT ) {
 
-			page = new DialogAssistant(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogAssistant(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
 		} else if ( shortcut == Shortcut.S_DELETE ) {
 
-			page = new DialogConfirmDeleteAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
 		} else if (
 				shortcut == Shortcut.S_MAIL_MOVETOTRASH ||
 				shortcut == Shortcut.S_MAIL_HARDELETE ) {
 
-			page = new DialogConfirmDeleteAppointment(MyApplication,  ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteAppointment(MyApplication,  ((AppUniversalClient) MyApplication).zPageCalendar);
 
 		} else if ( shortcut == Shortcut.S_NEWCALENDAR ) {
 
-			page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageCalendar);
+			page = new DialogCreateFolder(MyApplication, ((AppUniversalClient)MyApplication).zPageCalendar);
 
 		}
 
@@ -2346,7 +2346,7 @@ public class PageCalendar extends AbsTab {
 
 				pulldownLocator = "css=div[id='zb__NEW_MENU'] td[id$='_dropdown'] div[class='ImgSelectPullDownArrow']";
 				optionLocator = "css=div[id='zb__NEW_MENU_NEW_CALENDAR'] td[id$='_title']";
-				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient)MyApplication).zPageCalendar);
+				page = new DialogCreateFolder(MyApplication, ((AppUniversalClient)MyApplication).zPageCalendar);
 
 			} else {
 
@@ -2401,15 +2401,15 @@ public class PageCalendar extends AbsTab {
 			return;
 		}
 
-		((AppAjaxClient) MyApplication).zPageMain.zCheckAppLoaded(Locators.zCalendarFolder);
+		((AppUniversalClient) MyApplication).zPageMain.zCheckAppLoaded(Locators.zCalendarFolder);
 	}
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the main page is active
-		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
-			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
+		if (!((AppUniversalClient) MyApplication).zPageMain.zIsActive()) {
+			((AppUniversalClient) MyApplication).zPageMain.zNavigateTo();
 		}
 
 		String locator = "css=div#ztb__CLD";
@@ -2890,7 +2890,7 @@ public class PageCalendar extends AbsTab {
 		return (page);
 	}
 
-	public void zCreateTag(AppAjaxClient app, String tagName, int tagColor) throws HarnessException {
+	public void zCreateTag(AppUniversalClient app, String tagName, int tagColor) throws HarnessException {
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateTagRequest xmlns='urn:zimbraMail'>" +

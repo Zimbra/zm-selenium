@@ -79,8 +79,8 @@ public class PageExternalRegistration extends PageLogin {
 	public void zNavigateTo() throws HarnessException {
 
 		// Logout
-		if ( ((AppAjaxClient)MyApplication).zPageMain.zIsActive() ) {
-			((AppAjaxClient)MyApplication).zPageMain.zLogout();
+		if ( ((AppUniversalClient)MyApplication).zPageMain.zIsActive() ) {
+			((AppUniversalClient)MyApplication).zPageMain.zLogout();
 		}
 		
 		// Open MyURL
@@ -107,8 +107,8 @@ public class PageExternalRegistration extends PageLogin {
 
 		// Wait for the app to load
 		sWaitForPageToLoad();
-		((AppAjaxClient)MyApplication).zPageExternalMain.zWaitForActive();
-		((AppAjaxClient)MyApplication).zSetActiveAcount(account);
+		((AppUniversalClient)MyApplication).zPageExternalMain.zWaitForActive();
+		((AppUniversalClient)MyApplication).zSetActiveAcount(account);
 	}
 	
 	/**

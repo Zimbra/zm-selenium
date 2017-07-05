@@ -81,7 +81,7 @@ public class TreeCalendar extends AbsTree {
 
 				actionLocator = "css=td[id='ztih__main_Calendar__CALENDAR_textCell']";
 				optionLocator = "css=table[class$='MenuTable'] td[id$='_title']:contains(New Calendar)";
-				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+				page = new DialogCreateFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
 				zRightClick(actionLocator);
 				zClick(optionLocator);
@@ -115,7 +115,7 @@ public class TreeCalendar extends AbsTree {
 
 			// Use default actionLocator
 			optionLocator += " div[id^='EDIT_PROPS'] td[id$='_title']";
-			page = new DialogEditFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogEditFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
 			this.zRightClick(actionLocator);
 
@@ -123,7 +123,7 @@ public class TreeCalendar extends AbsTree {
 
 			// Use default actionLocator
 			optionLocator += " div[id^='MOVE'] td[id$='_title']";
-			page = new DialogMove(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogMove(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
 			this.zRightClick(actionLocator);
 
@@ -131,7 +131,7 @@ public class TreeCalendar extends AbsTree {
 
 			// Use default actionLocator
 			optionLocator += " div[id^='SHARE_CALENDAR'] td[id$='_title']";
-			page = new DialogShare(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogShare(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
 			this.zRightClick(actionLocator);
 
@@ -226,7 +226,7 @@ public class TreeCalendar extends AbsTree {
 			this.zRightClick(optionLocator);
 			this.zClick(Locators.RenameTagMenu);
 
-			return (new DialogRenameTag(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar));
+			return (new DialogRenameTag(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar));
 
 		} else if (action == Action.A_RIGHTCLICK && option == Button.B_DELETE) {
 
@@ -235,7 +235,7 @@ public class TreeCalendar extends AbsTree {
 			this.zClick(Locators.DeleteTagMenu);
 
 			return (new DialogDeleteTag(DialogDeleteTagID.DeleteTag, MyApplication,
-					((AppAjaxClient) MyApplication).zPageCalendar));
+					((AppUniversalClient) MyApplication).zPageCalendar));
 
 		} else {
 			throw new HarnessException("Action " + action + " not yet implemented");
@@ -291,17 +291,17 @@ public class TreeCalendar extends AbsTree {
 			if (option == Button.B_TREE_NEWFOLDER) {
 
 				optionLocator = "css=div[id='NEW_CALENDAR']";
-				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+				page = new DialogCreateFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 			} else if (option == Button.B_TREE_FIND_SHARES) {
 
 				optionLocator = "css=div[id='FIND_SHARES']";
-				page = new DialogShareFind(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+				page = new DialogShareFind(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 			} else if (option == Button.B_TREE_NEW_EXTERNAL_CALENDAR) {
 
 				optionLocator = "css=div[id='ADD_EXTERNAL_CALENDAR']";
-				page = new DialogAddExternalCalendar(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+				page = new DialogAddExternalCalendar(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 			} else {
 				throw new HarnessException("Pulldown/Option " + pulldown + "/" + option + " not implemented");
@@ -314,7 +314,7 @@ public class TreeCalendar extends AbsTree {
 			if (option == Button.B_TREE_NEWTAG) {
 
 				optionLocator = "css=div[id='ZmActionMenu_calendar_TAG'] div[id='NEW_TAG'] td[id$='_title']";
-				page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+				page = new DialogTag(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
 			} else {
 				throw new HarnessException("Pulldown/Option " + pulldown + "/" + option + " not implemented");
@@ -399,7 +399,7 @@ public class TreeCalendar extends AbsTree {
 		} else if (button == Button.B_TREE_FIND_SHARES) {
 
 			locator = "css=TODO#TODO";
-			page = new DialogShareFind(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogShareFind(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
 			// Use sClick, not default zClick
 			this.sClick(locator);
@@ -646,7 +646,7 @@ public class TreeCalendar extends AbsTree {
 			// TODO: This could probably be made safer, to make sure the id
 			// matches an int pattern
 			item.setId(id.replace(
-					"zti__" + ((AppAjaxClient) MyApplication).zGetActiveAccount().EmailAddress + ":main_Mail__", ""));
+					"zti__" + ((AppUniversalClient) MyApplication).zGetActiveAccount().EmailAddress + ":main_Mail__", ""));
 
 			// Set the name
 			locator = itemLocator + "//td[contains(@id, '_textCell')]";
@@ -743,8 +743,8 @@ public class TreeCalendar extends AbsTree {
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the main page is active
-		if (!((AppAjaxClient) MyApplication).zPageCalendar.zIsActive()) {
-			((AppAjaxClient) MyApplication).zPageCalendar.zNavigateTo();
+		if (!((AppUniversalClient) MyApplication).zPageCalendar.zIsActive()) {
+			((AppUniversalClient) MyApplication).zPageCalendar.zNavigateTo();
 		}
 
 		// Zimlets seem to be loaded last

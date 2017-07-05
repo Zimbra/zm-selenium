@@ -609,7 +609,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 			// Warning dialog will appear
 			DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyDeleteTheItem,
 											app,
-											((AppAjaxClient) app).zPageMail);
+											((AppUniversalClient) app).zPageMail);
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
 			dialog.zClickButton(Button.B_OK);
 		
@@ -720,7 +720,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 			// Warning dialog will appear
 			DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyDeleteTheItem,
 											app,
-											((AppAjaxClient) app).zPageMail);
+											((AppUniversalClient) app).zPageMail);
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
 			dialog.zClickButton(Button.B_OK);
 

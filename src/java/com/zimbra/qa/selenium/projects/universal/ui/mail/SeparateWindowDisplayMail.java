@@ -232,7 +232,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 			locator = Locators.zCancelIconBtn;
 			page = new DialogWarning(DialogWarning.DialogWarningID.SaveCurrentMessageAsDraft, this.MyApplication,
-					((AppAjaxClient) this.MyApplication).zPageMail);
+					((AppUniversalClient) this.MyApplication).zPageMail);
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 

@@ -646,7 +646,7 @@ public class FormContactNew extends AbsForm {
 			}
 
 			page = new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.MyApplication,
-					((AppAjaxClient) this.MyApplication).zPageContacts);
+					((AppUniversalClient) this.MyApplication).zPageContacts);
 
 			// The dialog will only appear if the contact is dirty.
 			// so, don't check for active here - instead check in the
@@ -671,7 +671,7 @@ public class FormContactNew extends AbsForm {
 		} else if (button == Button.B_MOVE) {
 
 			locator = "css=div#" + MyDivID + " div[id$='_FOLDER'] td[id$='_title']";
-			page = new DialogMove(this.MyApplication, ((AppAjaxClient) this.MyApplication).zPageContacts);
+			page = new DialogMove(this.MyApplication, ((AppUniversalClient) this.MyApplication).zPageContacts);
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);

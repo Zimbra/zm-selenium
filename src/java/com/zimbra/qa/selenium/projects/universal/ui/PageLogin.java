@@ -93,7 +93,7 @@ public class PageLogin extends AbsTab {
 		}
 
 		// Logout
-		if ( ((AppAjaxClient)MyApplication).zPageMain.zIsActive() ) {
+		if ( ((AppUniversalClient)MyApplication).zPageMain.zIsActive() ) {
 			sOpen(ConfigProperties.getLogoutURL());
 			sOpen(ConfigProperties.getBaseURL());
 		}
@@ -136,8 +136,8 @@ public class PageLogin extends AbsTab {
 				logger.info("1st login retry - successfully logged in using " + account.EmailAddress);
 			}
 			
-			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(100000);
-			((AppAjaxClient)MyApplication).zSetActiveAcount(account);
+			((AppUniversalClient)MyApplication).zPageMain.zWaitForActive(100000);
+			((AppUniversalClient)MyApplication).zSetActiveAcount(account);
 
 		} finally {
 			
@@ -161,7 +161,7 @@ public class PageLogin extends AbsTab {
 		SleepUtil.sleepLong();
 		
 		AbsPage page = null;
-		page = new Dialog2FactorAuthEnable(MyApplication, ((AppAjaxClient) MyApplication).zPageLogin);
+		page = new Dialog2FactorAuthEnable(MyApplication, ((AppUniversalClient) MyApplication).zPageLogin);
 		if ( page.zIsActive() ) {
 			return (page);
 		}
@@ -196,9 +196,9 @@ public class PageLogin extends AbsTab {
 			
 			sClickAt(Locators.zBtnLogin, "");
 		
-			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(180000);
+			((AppUniversalClient)MyApplication).zPageMain.zWaitForActive(180000);
 
-			((AppAjaxClient)MyApplication).zSetActiveAcount(account);
+			((AppUniversalClient)MyApplication).zSetActiveAcount(account);
 
 
 		} finally {

@@ -22,7 +22,7 @@ import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsForm;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.briefcase.DocumentBriefcaseNew.Field;
 
 public class DocumentBriefcaseEdit extends AbsForm {
@@ -152,7 +152,7 @@ public class DocumentBriefcaseEdit extends AbsForm {
 
 		// add version notes
 		DialogAddVersionNotes dlgAddNotes = new DialogAddVersionNotes(
-				MyApplication, ((AppAjaxClient) MyApplication).zPageBriefcase);
+				MyApplication, ((AppUniversalClient) MyApplication).zPageBriefcase);
 
 		dlgAddNotes.zDismissAddVersionNotesDlg(docItem.getName());
 	}

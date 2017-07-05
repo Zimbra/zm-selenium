@@ -39,13 +39,13 @@ import com.zimbra.qa.selenium.projects.universal.ui.social.PageSocial;
 import com.zimbra.qa.selenium.projects.universal.ui.tasks.*;
 
 /**
- * The <code>AppAjaxClient</code> class defines the Zimbra Ajax client.
+ * The <code>AppUniversalClient</code> class defines the Zimbra Ajax client.
  * <p>
- * The <code>AppAjaxClient</code> contains all pages, folder trees,
+ * The <code>AppUniversalClient</code> contains all pages, folder trees,
  * dialog boxes, forms, menus for the Ajax client.
  * <p>
  * In {@link UniversalCommonTest}, there is one
- * AppAjaxClient object created per test case class (ensuring
+ * AppUniversalClient object created per test case class (ensuring
  * class-level concurrency).  The test case methods can access
  * different application pages and trees, using the object
  * properties.
@@ -67,7 +67,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.tasks.*;
  *
  */
 
-public class AppAjaxClient extends AbsApplication {
+public class AppUniversalClient extends AbsApplication {
 
 	// Pages
 	public PageLogin					zPageLogin = null;
@@ -96,10 +96,10 @@ public class AppAjaxClient extends AbsApplication {
 	public PageSocial					zPageSocial = null;
 
 
-	public AppAjaxClient() {
+	public AppUniversalClient() {
 		super();
 
-		logger.info("new " + AppAjaxClient.class.getCanonicalName());
+		logger.info("new " + AppUniversalClient.class.getCanonicalName());
 
 
 		// Login page

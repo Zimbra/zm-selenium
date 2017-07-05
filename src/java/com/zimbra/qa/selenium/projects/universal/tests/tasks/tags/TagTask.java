@@ -28,7 +28,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogTag;
 
 public class TagTask extends UniversalCommonTest{
@@ -117,7 +117,7 @@ public class TagTask extends UniversalCommonTest{
 		logger.info("Checking for the Create New Tag Dialog ...");
 
 		// Check if the "Create New Tag Dialog is still open
-		DialogTag dialogtag = new DialogTag(app, ((AppAjaxClient)app).zPageTasks);
+		DialogTag dialogtag = new DialogTag(app, ((AppUniversalClient)app).zPageTasks);
 		if (dialogtag.zIsActive()) {
 			logger.warn(dialogtag.myPageName()
 					+ " was still active.  Cancelling ...");

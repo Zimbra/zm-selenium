@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsForm;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 
 public class DocumentBriefcaseNew extends AbsForm {
 
@@ -160,7 +160,7 @@ public class DocumentBriefcaseNew extends AbsForm {
 				// add version notes
 				DialogAddVersionNotes dlgAddNotes = new DialogAddVersionNotes(
 						MyApplication,
-						((AppAjaxClient) MyApplication).zPageBriefcase);
+						((AppUniversalClient) MyApplication).zPageBriefcase);
 
 				dlgAddNotes.zDismissAddVersionNotesDlg(pageTitle);
 

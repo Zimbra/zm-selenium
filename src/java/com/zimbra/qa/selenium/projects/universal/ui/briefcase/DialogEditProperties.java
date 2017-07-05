@@ -21,7 +21,7 @@ package com.zimbra.qa.selenium.projects.universal.ui.briefcase;
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogShare;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogShareRevoke;
 
@@ -104,7 +104,7 @@ public class DialogEditProperties extends AbsDialog {
 		} else if (button == Button.O_REVOKE_LINK) {
 			
 			locator = "//div[@class='" + Locators.zEditPropertiesDialogId+ "']//div[contains(@id,'_content')]//div/fieldset/div/table/tbody/tr/td/a[contains(text(),'Revoke')]";
-			page = new DialogShareRevoke(MyApplication,((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogShareRevoke(MyApplication,((AppUniversalClient) MyApplication).zPageMail);
 			
 			// Click the link
 			this.sClick(locator);
@@ -120,7 +120,7 @@ public class DialogEditProperties extends AbsDialog {
 		} else if (button == Button.O_EDIT_LINK) {
 
 			locator = "//div[@class='" + Locators.zEditPropertiesDialogId+ "']//div[contains(@id,'_content')]//div/fieldset/div/table/tbody/tr/td/a[contains(text(),'Edit')]";
-			page = new DialogShare(MyApplication,((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogShare(MyApplication,((AppUniversalClient) MyApplication).zPageMail);
 			
 			// Click the link
 			this.sClick(locator);

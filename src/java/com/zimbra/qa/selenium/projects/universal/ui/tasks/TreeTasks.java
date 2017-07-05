@@ -58,12 +58,12 @@ public class TreeTasks extends AbsTree {
 			if (!this.sIsElementPresent(locator)) {
 				throw new HarnessException("Unable to locator folder in tree " + locator);
 			}
-			page = new DialogTag(MyApplication,((AppAjaxClient) MyApplication).zPageTasks);
+			page = new DialogTag(MyApplication,((AppUniversalClient) MyApplication).zPageTasks);
 			
 		} else if (button == Button.B_TREE_NEWTASKLIST) {
 
 			locator = "css=div[id=ztih__main_Tasks__TASK] div[class^=ImgNewTaskList ZWidget]";
-			page = new DialogCreateTaskFolder(MyApplication,((AppAjaxClient) MyApplication).zPageTasks);
+			page = new DialogCreateTaskFolder(MyApplication,((AppUniversalClient) MyApplication).zPageTasks);
 
 			if (!this.sIsElementPresent(locator)) {
 				throw new HarnessException("Unable to locate folder in the tree " + locator);
@@ -116,7 +116,7 @@ public class TreeTasks extends AbsTree {
 			if (option == Button.B_TREE_NEWTASKLIST) {
 
 				optionLocator = "css=div[id='ZmActionMenu_tasks_TASK'] div[id='NEW_TASK_FOLDER'] td[id$='_title']";
-				page = new DialogCreateTaskFolder(MyApplication,((AppAjaxClient) MyApplication).zPageTasks);
+				page = new DialogCreateTaskFolder(MyApplication,((AppUniversalClient) MyApplication).zPageTasks);
 
 			} else {
 				throw new HarnessException("Pulldown/Option " + pulldown + "/" + option + " not implemented");
@@ -128,7 +128,7 @@ public class TreeTasks extends AbsTree {
 
 			if (option == Button.B_TREE_NEWTAG) {
 				optionLocator = "css=div[id='ZmActionMenu_tasks_TAG'] div[id='NEW_TAG'] td[id$='_title']";
-				page = new DialogTag(MyApplication,((AppAjaxClient) MyApplication).zPageTasks);
+				page = new DialogTag(MyApplication,((AppUniversalClient) MyApplication).zPageTasks);
 
 			} else {
 				throw new HarnessException("Pulldown/Option " + pulldown + "/" + option + " not implemented");
@@ -234,7 +234,7 @@ public class TreeTasks extends AbsTree {
 
 			actionLocator = "css=td[id^='zti__main_Tasks__']:contains('"+ t.getName() +"')";
 			this.zRightClickAt(actionLocator,"");
-			page = new DialogTag(MyApplication,((AppAjaxClient) MyApplication).zPageTasks);
+			page = new DialogTag(MyApplication,((AppUniversalClient) MyApplication).zPageTasks);
 
 		} else {
 			throw new HarnessException("Action " + action+ " not yet implemented");
@@ -248,13 +248,13 @@ public class TreeTasks extends AbsTree {
 
 			optionLocator = Locators.zDeleteTreeMenuItem;
 
-			page = new DialogWarning(DialogWarning.DialogWarningID.DeleteTagWarningMessage, MyApplication, ((AppAjaxClient) MyApplication).zPageTasks);
+			page = new DialogWarning(DialogWarning.DialogWarningID.DeleteTagWarningMessage, MyApplication, ((AppUniversalClient) MyApplication).zPageTasks);
 
 		} else if (option == Button.B_RENAME) {
 
 			optionLocator = Locators.zRenameTagTreeMenuItem;
 
-			page = new DialogRenameTag(MyApplication,((AppAjaxClient) MyApplication).zPageTasks);
+			page = new DialogRenameTag(MyApplication,((AppUniversalClient) MyApplication).zPageTasks);
 
 		} else {
 			throw new HarnessException("button " + option + " not yet implemented");
@@ -314,17 +314,17 @@ public class TreeTasks extends AbsTree {
 
 			optionLocator = Locators.zRenameTreeMenuItem;
 
-			page = new DialogRenameFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageTasks);
+			page = new DialogRenameFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageTasks);
 
 		} else if (option == Button.B_TREE_EDIT) {
 
 			optionLocator = Locators.zEditTreeMenuItem;
-			page = new DialogEditFolder(MyApplication,((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogEditFolder(MyApplication,((AppUniversalClient) MyApplication).zPageMail);
 
 		} else if (option == Button.B_SHARE) {
 			
 			optionLocator =Locators.zShareTreeMenuItem;
-			page = new DialogShare(MyApplication,((AppAjaxClient) MyApplication).zPageTasks);
+			page = new DialogShare(MyApplication,((AppUniversalClient) MyApplication).zPageTasks);
 
 		}  else {
 			throw new HarnessException("button " + option + " not yet implemented");
@@ -353,8 +353,8 @@ public class TreeTasks extends AbsTree {
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the main page is active
-		if ( !((AppAjaxClient)MyApplication).zPageTasks.zIsActive() ) {
-			((AppAjaxClient)MyApplication).zPageTasks.zNavigateTo();
+		if ( !((AppUniversalClient)MyApplication).zPageTasks.zIsActive() ) {
+			((AppUniversalClient)MyApplication).zPageTasks.zNavigateTo();
 		}
 		
 		String locator = Locators.ztih__main_Tasks__ZIMLET_ID;

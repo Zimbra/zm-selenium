@@ -152,7 +152,7 @@ public class FormTaskNew extends AbsForm {
 			page = new DialogWarning(
 					DialogWarning.DialogWarningID.SaveTaskChangeMessage,
 					this.MyApplication,
-					((AppAjaxClient)this.MyApplication).zPageTasks);
+					((AppUniversalClient)this.MyApplication).zPageTasks);
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
@@ -272,7 +272,7 @@ public class FormTaskNew extends AbsForm {
 				page = new DialogWarning(
 						DialogWarning.DialogWarningID.SwitchingToTextWillDiscardHtmlFormatting,
 						this.MyApplication,
-						((AppAjaxClient)this.MyApplication).zPageTasks);
+						((AppUniversalClient)this.MyApplication).zPageTasks);
 
 				//Intentionally adding this code.
 				SleepUtil.sleepMedium();

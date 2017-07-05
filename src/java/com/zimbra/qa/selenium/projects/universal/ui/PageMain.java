@@ -144,11 +144,11 @@ public class PageMain extends AbsTab {
 			return;
 		}
 
-		if (!((AppAjaxClient) MyApplication).zPageLogin.zIsActive()) {
-			((AppAjaxClient) MyApplication).zPageLogin.zNavigateTo();
+		if (!((AppUniversalClient) MyApplication).zPageLogin.zIsActive()) {
+			((AppUniversalClient) MyApplication).zPageLogin.zNavigateTo();
 		}
 		
-		((AppAjaxClient) MyApplication).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		((AppUniversalClient) MyApplication).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 	}
 
 	public void zLogout() throws HarnessException {
@@ -162,8 +162,8 @@ public class PageMain extends AbsTab {
 		getElement("css=tr[id=POPUP_logOff]>td[id=logOff_title]").click();
 		this.zWaitForBusyOverlay();
 
-		((AppAjaxClient) MyApplication).zPageLogin.zWaitForActive();
-		((AppAjaxClient) MyApplication).zSetActiveAcount(null);
+		((AppUniversalClient) MyApplication).zPageLogin.zWaitForActive();
+		((AppUniversalClient) MyApplication).zSetActiveAcount(null);
 	}
 
 	@Override
@@ -403,26 +403,26 @@ public class PageMain extends AbsTab {
 
 	// Various kind of close window (with title) methods
 
-	public void zCloseWindow(SeparateWindow window, String windowTitle, AppAjaxClient app) throws HarnessException {
+	public void zCloseWindow(SeparateWindow window, String windowTitle, AppUniversalClient app) throws HarnessException {
 		zCoreCloseWindow(window, windowTitle, app);
 	}
 
-	public void zCloseWindow(SeparateWindowFormMailNew window, String windowTitle, AppAjaxClient app)
+	public void zCloseWindow(SeparateWindowFormMailNew window, String windowTitle, AppUniversalClient app)
 			throws HarnessException {
 		zCoreCloseWindow(window, windowTitle, app);
 	}
 
-	public void zCloseWindow(SeparateWindowDisplayMail window, String windowTitle, AppAjaxClient app)
+	public void zCloseWindow(SeparateWindowDisplayMail window, String windowTitle, AppUniversalClient app)
 			throws HarnessException {
 		zCoreCloseWindow(window, windowTitle, app);
 	}
 
-	public void zCloseWindow(SeparateWindowOpenAttachment window, String windowTitle, AppAjaxClient app)
+	public void zCloseWindow(SeparateWindowOpenAttachment window, String windowTitle, AppUniversalClient app)
 			throws HarnessException {
 		zCoreCloseWindow(window, windowTitle, app);
 	}
 
-	private void zCoreCloseWindow(AbsSeparateWindow window, String windowTitle, AppAjaxClient app)
+	private void zCoreCloseWindow(AbsSeparateWindow window, String windowTitle, AppUniversalClient app)
 			throws HarnessException {
 		if (window != null) {
 			window.zCloseWindow(windowTitle);
@@ -437,15 +437,15 @@ public class PageMain extends AbsTab {
 
 	// Various kind of close window (without title) methods
 
-	public void zCloseWindow(SeparateWindow window, AppAjaxClient app) throws HarnessException {
+	public void zCloseWindow(SeparateWindow window, AppUniversalClient app) throws HarnessException {
 		zCoreCloseWindow(window, app);
 	}
 
-	public void zCloseWindow(SeparateWindowOpenAttachment window, AppAjaxClient app) throws HarnessException {
+	public void zCloseWindow(SeparateWindowOpenAttachment window, AppUniversalClient app) throws HarnessException {
 		zCoreCloseWindow(window, app);
 	}
 
-	private void zCoreCloseWindow(AbsSeparateWindow window, AppAjaxClient app) throws HarnessException {
+	private void zCoreCloseWindow(AbsSeparateWindow window, AppUniversalClient app) throws HarnessException {
 		if (window != null) {
 			window.zCloseWindow();
 			window = null;
@@ -470,20 +470,20 @@ public class PageMain extends AbsTab {
 		generalPreferencesOverviewPane = PagePreferences.Locators.zGeneralPreferencesOverviewPane;
 
 		if (sIsVisible(inbox)) {
-			return ((AppAjaxClient) MyApplication).zPageMail;
+			return ((AppUniversalClient) MyApplication).zPageMail;
 		} else if (sIsVisible(contacts)) {
-			return ((AppAjaxClient) MyApplication).zPageContacts;
+			return ((AppUniversalClient) MyApplication).zPageContacts;
 		} else if (sIsVisible(calendar)) {
-			return ((AppAjaxClient) MyApplication).zPageCalendar;
+			return ((AppUniversalClient) MyApplication).zPageCalendar;
 		} else if (sIsVisible(tasks)) {
-			return ((AppAjaxClient) MyApplication).zPageTasks;
+			return ((AppUniversalClient) MyApplication).zPageTasks;
 		} else if (sIsVisible(briefcase)) {
-			return ((AppAjaxClient) MyApplication).zPageBriefcase;
+			return ((AppUniversalClient) MyApplication).zPageBriefcase;
 		} else if (sIsVisible(generalPreferencesOverviewPane)) {
-			return ((AppAjaxClient) MyApplication).zPagePreferences;
+			return ((AppUniversalClient) MyApplication).zPagePreferences;
 		} else {
 			logger.info("Unable to find current app");
-			return ((AppAjaxClient) MyApplication).zPageMail;
+			return ((AppUniversalClient) MyApplication).zPageMail;
 		}
 	}
 
@@ -493,34 +493,34 @@ public class PageMain extends AbsTab {
 		String appLocator = null;
 
 		if (appIdentifier.contains("Mail")) {
-			appTab = ((AppAjaxClient) MyApplication).zPageMail;
+			appTab = ((AppUniversalClient) MyApplication).zPageMail;
 			appLocator = PageMain.Locators.zMailApp;
 
 		} else if (appIdentifier.contains("Contacts")) {
-			appTab = ((AppAjaxClient) MyApplication).zPageContacts;
+			appTab = ((AppUniversalClient) MyApplication).zPageContacts;
 			appLocator = PageMain.Locators.zContactsApp;
 
 		} else if (appIdentifier.contains("Calendar")) {
-			appTab = ((AppAjaxClient) MyApplication).zPageCalendar;
+			appTab = ((AppUniversalClient) MyApplication).zPageCalendar;
 			appLocator = PageMain.Locators.zCalendarApp;
 
 		} else if (appIdentifier.contains("Tasks")) {
-			appTab = ((AppAjaxClient) MyApplication).zPageTasks;
+			appTab = ((AppUniversalClient) MyApplication).zPageTasks;
 			appLocator = PageMain.Locators.zTasksApp;
 
 		} else if (appIdentifier.contains("Briefcase")) {
-			appTab = ((AppAjaxClient) MyApplication).zPageBriefcase;
+			appTab = ((AppUniversalClient) MyApplication).zPageBriefcase;
 			appLocator = PageMain.Locators.zBriefcaseApp;
 
 		} else {
-			appTab = ((AppAjaxClient) MyApplication).zPageMail;
+			appTab = ((AppUniversalClient) MyApplication).zPageMail;
 			appLocator = PageMain.Locators.zMailApp;
 			logger.info("Unable to find application tab identifier " + appIdentifier);
 		}
 
-		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
+		if (!((AppUniversalClient) MyApplication).zPageMain.zIsActive()) {
 			zHandleDialogs(appTab);
-			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
+			((AppUniversalClient) MyApplication).zPageMain.zNavigateTo();
 		}
 
 		logger.info("Navigate to " + appTab.myPageName());
@@ -530,7 +530,7 @@ public class PageMain extends AbsTab {
 			zHandleDialogs(appTab);
 
 			for (int i = 0; i <= 2; i++) {
-				if (appTab.equals(((AppAjaxClient) MyApplication).zPageCalendar)) {
+				if (appTab.equals(((AppUniversalClient) MyApplication).zPageCalendar)) {
 					SleepUtil.sleepMedium();
 				} else {
 					SleepUtil.sleepSmall();

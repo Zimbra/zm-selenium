@@ -100,7 +100,7 @@ public class TreeMail extends AbsTree {
 			if ((option == Button.B_NEW) || (option == Button.O_NEW_FOLDER)) {
 
 				optionLocator += " div[id^='NEW_FOLDER'] td[id$='_title']";
-				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+				page = new DialogCreateFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 			} else if ((option == Button.O_MARK_AS_READ) || (option == Button.B_TREE_FOLDER_MARKASREAD)) {
 
@@ -115,22 +115,22 @@ public class TreeMail extends AbsTree {
 			} else if (option == Button.B_RENAME) {
 
 				optionLocator += " div[id^='RENAME_FOLDER'] td[id$='_title']";
-				page = new DialogRenameFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+				page = new DialogRenameFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 			} else if (option == Button.B_MOVE) {
 
 				optionLocator += " div[id^='MOVE'] td[id$='_title']";
-				page = new DialogMove(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+				page = new DialogMove(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 			} else if (option == Button.B_SHARE) {
 
 				optionLocator += " div[id^='SHARE_FOLDER'] td[id$='_title']";
-				page = new DialogShare(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+				page = new DialogShare(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 			} else if (option == Button.B_TREE_EDIT) {
 
 				optionLocator += " div[id^='EDIT_PROPS'] td[id$='_title']";
-				page = new DialogEditFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+				page = new DialogEditFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 			} else if (option == Button.B_TREE_FOLDER_EXPANDALL) {
 
@@ -146,7 +146,7 @@ public class TreeMail extends AbsTree {
 
 				optionLocator += " div[id^='EMPTY_FOLDER'] td[id$='_title']";
 				page = new DialogWarning(DialogWarning.DialogWarningID.EmptyFolderWarningMessage, MyApplication,
-						((AppAjaxClient) MyApplication).zPageMail);
+						((AppUniversalClient) MyApplication).zPageMail);
 
 			} else if (option == Button.B_RECOVER_DELETED_ITEMS) {
 
@@ -223,17 +223,17 @@ public class TreeMail extends AbsTree {
 		} else if (option == Button.B_RENAME) {
 
 			optionLocator += " div[id^='RENAME_SEARCH'] td[id$='_title']";
-			page = new DialogRenameFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogRenameFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 		} else if (option == Button.B_EDIT) {
 
 			optionLocator += " div[id^='EDIT_PROPS'] td[id$='_title']";
-			page = new DialogEditFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogEditFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 		} else if (option == Button.B_MOVE) {
 
 			optionLocator += " div[id^='MOVE'] td[id$='_title']";
-			page = new DialogMove(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogMove(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 		}
 
@@ -276,7 +276,7 @@ public class TreeMail extends AbsTree {
 
 			this.zWaitForBusyOverlay();
 
-			page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogTag(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 			optionLocator = Locators.ContextMenuTVTagsCSS; // css=div[id='ZmActionMenu_mail_TAG']
 			if (!(this.sIsElementPresent(optionLocator) && this.zIsVisiblePerPosition(optionLocator, 0, 0))) {
@@ -304,7 +304,7 @@ public class TreeMail extends AbsTree {
 
 			optionLocator += " div[id^='DELETE_WITHOUT_SHORTCUT'] td[id$='_title']";
 			page = new DialogWarning(DialogWarning.DialogWarningID.DeleteTagWarningMessage, MyApplication,
-					((AppAjaxClient) MyApplication).zPageMail);
+					((AppUniversalClient) MyApplication).zPageMail);
 
 		} else if (option == Button.O_MARK_AS_READ) {
 
@@ -313,7 +313,7 @@ public class TreeMail extends AbsTree {
 		} else if (option == Button.B_RENAME) {
 
 			optionLocator += " div[id^='RENAME_TAG'] td[id$='_title']";
-			page = new DialogRenameTag(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogRenameTag(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 		} else {
 			throw new HarnessException("button " + option + " not yet implemented");
@@ -575,12 +575,12 @@ public class TreeMail extends AbsTree {
 			if (option == Button.B_TREE_NEWFOLDER) {
 
 				optionLocator = "css=div[id='NEW_FOLDER']";
-				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+				page = new DialogCreateFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 			} else if (option == Button.B_TREE_FIND_SHARES) {
 
 				optionLocator = "css=div[id='FIND_SHARES']";
-				page = new DialogShareFind(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+				page = new DialogShareFind(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 			} else {
 				throw new HarnessException("Pulldown/Option " + pulldown + "/" + option + " not implemented");
@@ -593,7 +593,7 @@ public class TreeMail extends AbsTree {
 			if (option == Button.B_TREE_NEWTAG) {
 
 				optionLocator = "css=div[id='NEW_TAG']";
-				page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+				page = new DialogTag(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 			} else {
 				throw new HarnessException("Pulldown/Option " + pulldown + "/" + option + " not implemented");
@@ -668,7 +668,7 @@ public class TreeMail extends AbsTree {
 				throw new HarnessException("Unable to locator folder in tree " + locator);
 			}
 
-			page = new DialogShareFind(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogShareFind(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 			// Use sClick, not default zClick
 			this.sClickAt(locator, "");
@@ -917,7 +917,7 @@ public class TreeMail extends AbsTree {
 			// TODO: This could probably be made safer, to make sure the id
 			// matches an int pattern
 			item.setId(id.replace(
-					"zti__" + ((AppAjaxClient) MyApplication).zGetActiveAccount().EmailAddress + ":main_Mail__", ""));
+					"zti__" + ((AppUniversalClient) MyApplication).zGetActiveAccount().EmailAddress + ":main_Mail__", ""));
 
 			// Set the name
 			locator = itemLocator + " td[id$='_textCell']";
@@ -1094,8 +1094,8 @@ public class TreeMail extends AbsTree {
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the main page is active
-		if (!((AppAjaxClient) MyApplication).zPageMail.zIsActive()) {
-			((AppAjaxClient) MyApplication).zPageMail.zNavigateTo();
+		if (!((AppUniversalClient) MyApplication).zPageMail.zIsActive()) {
+			((AppUniversalClient) MyApplication).zPageMail.zNavigateTo();
 		}
 
 		// Zimlets seem to be loaded last

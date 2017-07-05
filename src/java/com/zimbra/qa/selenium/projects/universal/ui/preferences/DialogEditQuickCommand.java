@@ -412,11 +412,11 @@ public class DialogEditQuickCommand extends AbsDialog {
 			
 			if ( operation.equals("Move into folder") ) {
 				
-				page = new DialogMove(MyApplication, ((AppAjaxClient) MyApplication).zPagePreferences);
+				page = new DialogMove(MyApplication, ((AppUniversalClient) MyApplication).zPagePreferences);
 				
 			} else if ( operation.equals("Tag with") ) {
 				
-				page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPagePreferences);
+				page = new DialogTag(MyApplication, ((AppUniversalClient) MyApplication).zPagePreferences);
 				
 			} else {
 				throw new HarnessException("Unknown operation: "+ operation);

@@ -135,7 +135,7 @@ public class FormContactGroupNew extends AbsForm {
 
 			locator = "css=div#" + getToolbarID() + " div[id$='__CANCEL'] td[id$='_title']";
 			page = new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.MyApplication,
-					((AppAjaxClient) this.MyApplication).zPageContacts);
+					((AppUniversalClient) this.MyApplication).zPageContacts);
 
 			// If there are pending changes, the dialog will appear.
 			// If no pending changes, the dialog will not appear.
@@ -155,7 +155,7 @@ public class FormContactGroupNew extends AbsForm {
 
 			// click the folder menu
 			locator = "css=div#" + MyDivID + " td[id$='_LOCATION_FOLDER'] td[id$='_title']";
-			page = new DialogMove(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+			page = new DialogMove(MyApplication, ((AppUniversalClient) MyApplication).zPageContacts);
 
 		} else if (button == Button.B_CONTACTGROUP_ADD_ADDRESS) {
 
@@ -488,7 +488,7 @@ public class FormContactGroupNew extends AbsForm {
 
 	}
 
-	public void select(AppAjaxClient app, String dropdown, String option) throws HarnessException {
+	public void select(AppUniversalClient app, String dropdown, String option) throws HarnessException {
 
 		String postfix = " td[id$='_dropdown'] div[class='ImgSelectPullDownArrow']";
 		String textLocator = " td[id$='_title']";

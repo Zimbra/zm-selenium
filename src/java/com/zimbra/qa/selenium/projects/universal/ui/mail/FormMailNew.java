@@ -33,7 +33,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.AutocompleteEntry;
 import com.zimbra.qa.selenium.projects.universal.ui.AutocompleteEntry.Icon;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
@@ -225,7 +225,7 @@ public class FormMailNew extends AbsForm {
 
 			locator = Locators.zCancelIconBtn;
 			page = new DialogWarning(DialogWarning.DialogWarningID.SaveCurrentMessageAsDraft, this.MyApplication,
-					((AppAjaxClient) this.MyApplication).zPageMail);
+					((AppUniversalClient) this.MyApplication).zPageMail);
 			this.sClickAt(locator, "0,0");
 			this.zWaitForBusyOverlay();
 
@@ -372,7 +372,7 @@ public class FormMailNew extends AbsForm {
 				optionLocator = Locators.FormatAsPlainTextMenu;
 
 				page = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning, this.MyApplication,
-						((AppAjaxClient) this.MyApplication).zPageMail);
+						((AppUniversalClient) this.MyApplication).zPageMail);
 
 			} else if (option == Button.O_DONT_INCLUDE_ORIGINAL_MESSAGE) {
 
@@ -526,7 +526,7 @@ public class FormMailNew extends AbsForm {
 			} else if (option == Button.O_SEND_SEND_LATER) {
 
 				optionLocator = "css=tr#POPUP_SEND_LATER td#SEND_LATER_title";
-				page = new DialogSendLater(this.MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+				page = new DialogSendLater(this.MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 				if (!this.sIsElementPresent(pulldownLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
@@ -619,7 +619,7 @@ public class FormMailNew extends AbsForm {
 		}
 
 		DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning,
-				MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+				MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 		if (dialog.zIsActive()) {
 			dialog.zClickButton(Button.B_OK);
 		}

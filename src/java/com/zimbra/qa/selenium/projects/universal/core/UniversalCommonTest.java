@@ -51,7 +51,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactNew;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.SeparateWindowDisplayMail;
@@ -64,7 +64,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactGroupNew
 public class UniversalCommonTest {
 
 	protected static Logger logger = LogManager.getLogger(UniversalCommonTest.class);
-	protected AppAjaxClient app = null;
+	protected AppUniversalClient app = null;
 
 	protected AbsTab startingPage = null;
 	protected Map<String, String> startingAccountPreferences = null;
@@ -80,7 +80,7 @@ public class UniversalCommonTest {
 	protected UniversalCommonTest() {
 		logger.info("New " + UniversalCommonTest.class.getCanonicalName());
 
-		app = new AppAjaxClient();
+		app = new AppUniversalClient();
 
 		startingPage = app.zPageMain;
 		startingAccountPreferences = new HashMap<String, String>();
@@ -748,12 +748,12 @@ public class UniversalCommonTest {
 
 		try {
 
-			((AppAjaxClient) app).zPageLogin.sOpen(ConfigProperties.getLogoutURL());
+			((AppUniversalClient) app).zPageLogin.sOpen(ConfigProperties.getLogoutURL());
 			if (ConfigProperties.getAppType() == AppType.AJAX) {
 				if (ZimbraAccount.AccountZWC() != null) {
-					((AppAjaxClient) app).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+					((AppUniversalClient) app).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 				} else {
-					((AppAjaxClient) app).zPageLogin.zLogin(ZimbraAccount.Account10());
+					((AppUniversalClient) app).zPageLogin.zLogin(ZimbraAccount.Account10());
 				}
 			}
 

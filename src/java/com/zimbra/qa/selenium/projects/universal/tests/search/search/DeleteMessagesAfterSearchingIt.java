@@ -28,7 +28,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
 
 public class DeleteMessagesAfterSearchingIt extends PrefGroupMailByMessageTest {
@@ -101,7 +101,7 @@ public class DeleteMessagesAfterSearchingIt extends PrefGroupMailByMessageTest {
 			app.zPageSearch.zToolbarPressButton(Button.B_DELETE);
 			
 			// Warning dialog will appear
-			DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyDeleteTheItem, app, ((AppAjaxClient) app).zPageSearch);
+			DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyDeleteTheItem, app, ((AppUniversalClient) app).zPageSearch);
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
 			dialog.zClickButton(Button.B_OK);
 			
@@ -198,7 +198,7 @@ public class DeleteMessagesAfterSearchingIt extends PrefGroupMailByMessageTest {
 			// Warning dialog will appear
 			DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyDeleteTheItem,
 											app,
-											((AppAjaxClient) app).zPageSearch);
+											((AppUniversalClient) app).zPageSearch);
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
 			dialog.zClickButton(Button.B_OK);
 			

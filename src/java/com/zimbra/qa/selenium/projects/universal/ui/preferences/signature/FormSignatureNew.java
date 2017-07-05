@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.I18N;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
 
 public class FormSignatureNew extends AbsForm {
@@ -100,7 +100,7 @@ public class FormSignatureNew extends AbsForm {
 
 			locator = "id=" + Locators.zToolbarCancelID;
 			page = new DialogWarning(DialogWarning.DialogWarningID.SaveSignatureChangeMessage, this.MyApplication,
-					((AppAjaxClient) this.MyApplication).zPageSignature);
+					((AppUniversalClient) this.MyApplication).zPageSignature);
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
@@ -203,7 +203,7 @@ public class FormSignatureNew extends AbsForm {
 			this.zClick(Locators.formatAsHtml);
 			this.zClick(Locators.formatAsText);
 			page = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning, this.MyApplication,
-					((AppAjaxClient) this.MyApplication).zPagePreferences);
+					((AppUniversalClient) this.MyApplication).zPagePreferences);
 			return page;
 		}
 

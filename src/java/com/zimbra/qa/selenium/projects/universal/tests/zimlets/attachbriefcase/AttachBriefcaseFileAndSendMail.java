@@ -22,7 +22,7 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogAttach;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.*;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.PageMail.Locators;
@@ -77,7 +77,7 @@ public class AttachBriefcaseFileAndSendMail extends PrefGroupMailByMessageTest {
 		// Click Attach drop down and click Briefcase
 		app.zPageMail.zToolbarPressPulldown(Button.B_ATTACH, Button.O_BRIEFCASEATTACH);
 
-		DialogAttach dialog = new DialogAttach(app, ((AppAjaxClient) app).zPageMail);
+		DialogAttach dialog = new DialogAttach(app, ((AppUniversalClient) app).zPageMail);
 		ZAssert.assertTrue(dialog.zIsActive(), "Attach File dialog gets open and active");
 
 		// Click on Briefcase folder

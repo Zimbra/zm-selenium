@@ -43,7 +43,7 @@ import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.ContextMenu;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogAddToBriefcase;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogAddToCalendar;
@@ -193,8 +193,8 @@ public class PageMail extends AbsTab {
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the main page is active
-		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
-			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
+		if (!((AppUniversalClient) MyApplication).zPageMain.zIsActive()) {
+			((AppUniversalClient) MyApplication).zPageMain.zNavigateTo();
 		}
 
 		String locator;
@@ -232,7 +232,7 @@ public class PageMail extends AbsTab {
 			return;
 		}
 
-		((AppAjaxClient) MyApplication).zPageMain.zCheckAppLoaded(Locators.zInboxFolder);
+		((AppUniversalClient) MyApplication).zPageMain.zCheckAppLoaded(Locators.zInboxFolder);
 	}
 
 	public boolean zVerifyMailExists(String subject) throws HarnessException {
@@ -509,7 +509,7 @@ public class PageMail extends AbsTab {
 
 		} else if (button == Button.B_REFRESH || button == Button.B_LOADFEED) {
 
-			return (((AppAjaxClient) this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
+			return (((AppUniversalClient) this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
 
 		} else if (button == Button.B_DELETE) {
 
@@ -1583,7 +1583,7 @@ public class PageMail extends AbsTab {
 
 			} else if (option == Button.O_CREATE_APPOINTMENT) {
 				optionLocator += " div[id^='zmi__CLV-main__CREATE_APPT'] td[id^='zmi__CLV-main__CREATE_APPT']";
-				page = new DialogAddAttendees(this.MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+				page = new DialogAddAttendees(this.MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
 			} else if (option == Button.O_CREATE_TASK) {
 
@@ -1641,35 +1641,35 @@ public class PageMail extends AbsTab {
 
 			// "New Message" shortcuts result in a compose form opening
 			// page = new FormMailNew(this.MyApplication);
-			page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogTag(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 		} else if ((shortcut == Shortcut.S_MAIL_TAG)) {
 
 			// "New Message" shortcuts result in a compose form opening
 			// page = new FormMailNew(this.MyApplication);
-			page = new DialogTagPicker(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogTagPicker(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 		} else if ((shortcut == Shortcut.S_NEWFOLDER)) {
 
 			// "New Message" shortcuts result in a compose form opening
 			// page = new FormMailNew(this.MyApplication);
-			page = new DialogCreateFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogCreateFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 		} else if ((shortcut == Shortcut.S_MAIL_HARDELETE)) {
 
 			// Hard Delete shows the Warning Dialog : Are you sure you want to
 			// permanently delete it?
 			page = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyDeleteTheItem, MyApplication,
-					((AppAjaxClient) MyApplication).zPageMail);
+					((AppUniversalClient) MyApplication).zPageMail);
 
 		} else if (shortcut == Shortcut.S_ASSISTANT) {
 
-			page = new DialogAssistant(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogAssistant(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 		} else if (shortcut == Shortcut.S_ESCAPE) {
 
 			page = new DialogWarning(DialogWarning.DialogWarningID.SaveCurrentMessageAsDraft, this.MyApplication,
-					((AppAjaxClient) this.MyApplication).zPageMail);
+					((AppUniversalClient) this.MyApplication).zPageMail);
 			WebElement we = getElement("css=div#z_banner");
 			we.sendKeys(Keys.ESCAPE);
 			this.zWaitForBusyOverlay();
@@ -1863,7 +1863,7 @@ public class PageMail extends AbsTab {
 		}
 
 		DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning,
-				MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+				MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 		if (dialog.zIsActive()) {
 			dialog.zClickButton(Button.B_OK);
 		}

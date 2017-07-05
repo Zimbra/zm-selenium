@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Field;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.DialogEditFilter;
@@ -70,7 +70,7 @@ public class CreateFilterMsgHdrContextMenu extends PrefGroupMailByMessageTest {
 		app.zPageMail.zRightClickAddressBubble(Field.From);
 		app.zPageMail.zCreateFilterMsgHdrContextMenu();
 		SleepUtil.sleepMedium();
-		DialogEditFilter dialog = new DialogEditFilter(app,((AppAjaxClient) app).zPagePreferences);		
+		DialogEditFilter dialog = new DialogEditFilter(app,((AppUniversalClient) app).zPagePreferences);		
 		ZAssert.assertTrue(dialog.zIsActive(),"Add filter dialog should active");
 
 	}

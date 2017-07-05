@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.PageMain;
 
 
@@ -46,7 +46,7 @@ public class PageSocial extends AbsTab {
 	}
 
 	private boolean zDismissWelcomeDialog() throws HarnessException {
-		DialogSocialZimletWelcome dialog = new DialogSocialZimletWelcome(MyApplication, ((AppAjaxClient) MyApplication).zPageSocial);
+		DialogSocialZimletWelcome dialog = new DialogSocialZimletWelcome(MyApplication, ((AppUniversalClient) MyApplication).zPageSocial);
 		if ( dialog.zIsActive() ) {
 			dialog.zClickButton(Button.B_OK);
 			return (true);
@@ -57,8 +57,8 @@ public class PageSocial extends AbsTab {
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
-		if ( !((AppAjaxClient)MyApplication).zPageMain.zIsActive() ) {
-			((AppAjaxClient)MyApplication).zPageMain.zNavigateTo();
+		if ( !((AppUniversalClient)MyApplication).zPageMain.zIsActive() ) {
+			((AppUniversalClient)MyApplication).zPageMain.zNavigateTo();
 		}
 
 		this.zDismissWelcomeDialog();
@@ -89,8 +89,8 @@ public class PageSocial extends AbsTab {
 			return;
 		}
 
-		if ( !((AppAjaxClient)MyApplication).zPageMain.zIsActive() ) {
-			((AppAjaxClient)MyApplication).zPageMain.zNavigateTo();
+		if ( !((AppUniversalClient)MyApplication).zPageMain.zIsActive() ) {
+			((AppUniversalClient)MyApplication).zPageMain.zNavigateTo();
 		}
 
 		logger.info("Navigate to "+ this.myPageName());

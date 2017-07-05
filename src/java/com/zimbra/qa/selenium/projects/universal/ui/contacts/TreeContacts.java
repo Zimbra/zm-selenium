@@ -136,7 +136,7 @@ public class TreeContacts extends AbsTree {
 
 			if (option == Button.B_TREE_NEWFOLDER) {
 				optionLocator = "css=div[id^='NEW_ADDRBOOK']";
-				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+				page = new DialogCreateFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageContacts);
 
 			} else if (option == Button.B_DELETE) {
 				optionLocator += " div[id='DELETE_WITHOUT_SHORTCUT'] td[id$='_title']";
@@ -144,16 +144,16 @@ public class TreeContacts extends AbsTree {
 
 			} else if (option == Button.B_RENAME) {
 				optionLocator += " div[id='RENAME_FOLDER'] td[id$='_title']";
-				page = new DialogRenameFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+				page = new DialogRenameFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageContacts);
 
 			} else if (option == Button.B_TREE_EDIT) {
 				optionLocator += " div[id='EDIT_PROPS'] td[id$='_title']";
-				page = new DialogEditFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+				page = new DialogEditFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageContacts);
 
 			} else if (option == Button.B_TREE_FOLDER_EMPTY) {
 				optionLocator += " div[id='EMPTY_FOLDER'] td[id$='_title']";
 				page = new DialogWarning(DialogWarning.DialogWarningID.EmptyFolderWarningMessage, MyApplication,
-						((AppAjaxClient) MyApplication).zPageContacts);
+						((AppUniversalClient) MyApplication).zPageContacts);
 
 			} else {
 				throw new HarnessException("implement action:" + action + " option:" + option);
@@ -203,7 +203,7 @@ public class TreeContacts extends AbsTree {
 
 			if (option == Button.B_TREE_NEWFOLDER) {
 				optionLocator = "css=div[id^='NEW_ADDRBOOK']";
-				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+				page = new DialogCreateFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageContacts);
 
 			} else if (option == Button.B_DELETE) {
 				optionLocator = "css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='DELETE_WITHOUT_SHORTCUT'] td[id$='_title']";
@@ -211,20 +211,20 @@ public class TreeContacts extends AbsTree {
 
 			} else if (option == Button.B_RENAME) {
 				optionLocator = "css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='RENAME_FOLDER'] td[id$='_title']";
-				page = new DialogRenameFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+				page = new DialogRenameFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageContacts);
 
 			} else if (option == Button.B_TREE_EDIT) {
 				optionLocator = "css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='EDIT_PROPS'] td[id$='_title']";
-				page = new DialogEditFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+				page = new DialogEditFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageContacts);
 
 			} else if (option == Button.B_TREE_FOLDER_EMPTY) {
 				optionLocator = "css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='EMPTY_FOLDER'] td[id$='_title']";
 				page = new DialogWarning(DialogWarning.DialogWarningID.EmptyFolderWarningMessage, MyApplication,
-						((AppAjaxClient) MyApplication).zPageContacts);
+						((AppUniversalClient) MyApplication).zPageContacts);
 
 			} else if (option == Button.B_SHARE) {
 				optionLocator = "css=div[id='ZmActionMenu_contacts_ADDRBOOK'] div[id='SHARE_ADDRBOOK'] td[id$='_title']";
-				page = new DialogShare(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+				page = new DialogShare(MyApplication, ((AppUniversalClient) MyApplication).zPageContacts);
 
 			} else {
 				throw new HarnessException("implement action:" + action + " option:" + option);
@@ -254,7 +254,7 @@ public class TreeContacts extends AbsTree {
 
 				sClickAt("css=div[class^=ImgNewContactsFolder][class*=ZWidget]", "0,0");
 				SleepUtil.sleepSmall();
-				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+				page = new DialogCreateFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageContacts);
 
 			} else {
 				throw new HarnessException("implement action:" + action + " option:" + option);
@@ -300,16 +300,16 @@ public class TreeContacts extends AbsTree {
 
 		if (option == Button.B_TREE_NEWTAG) {
 			optionLocator += " div[id^='NEW_TAG'] td[id$='_title']";
-			page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogTag(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 		} else if (option == Button.B_DELETE) {
 			optionLocator += " div[id^='DELETE_WITHOUT_SHORTCUT'] td[id$='_title']";
 			page = new DialogWarning(DialogWarning.DialogWarningID.DeleteTagWarningMessage, MyApplication,
-					((AppAjaxClient) MyApplication).zPageContacts);
+					((AppUniversalClient) MyApplication).zPageContacts);
 
 		} else if (option == Button.B_RENAME) {
 			optionLocator += " div[id^='RENAME_TAG'] td[id$='_title']";
-			page = new DialogRenameTag(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+			page = new DialogRenameTag(MyApplication, ((AppUniversalClient) MyApplication).zPageContacts);
 
 		} else {
 			throw new HarnessException("button " + option + " not yet implemented");
@@ -374,12 +374,12 @@ public class TreeContacts extends AbsTree {
 
 			locator = "css=div[id=main_Contacts-parent-ADDRBOOK] div[class*=ImgContextMenu]";
 			subLocator = "css=div[id^='NEW_ADDRBOOK']";
-			page = new DialogCreateFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+			page = new DialogCreateFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageContacts);
 
 		} else if (button == Button.B_TREE_NEWTAG) {
 			locator = "css=div[id=main_Contacts-parent-TAG] div[class*=ImgContextMenu]"; // td#ztih__main_Contacts__TAG_optCell";
 			subLocator = "css=div[id='NEW_TAG']";
-			page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+			page = new DialogTag(MyApplication, ((AppUniversalClient) MyApplication).zPageContacts);
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);

@@ -81,8 +81,8 @@ public class PageTasks extends AbsTab{
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the main page is active
-		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
-			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
+		if (!((AppUniversalClient) MyApplication).zPageMain.zIsActive()) {
+			((AppUniversalClient) MyApplication).zPageMain.zNavigateTo();
 		}
 		
 		String id = "zb__App__Tasks";
@@ -109,7 +109,7 @@ public class PageTasks extends AbsTab{
 			return;
 		}
 
-		((AppAjaxClient) MyApplication).zPageMain.zCheckAppLoaded(Locators.zTasksFolder);
+		((AppUniversalClient) MyApplication).zPageMain.zCheckAppLoaded(Locators.zTasksFolder);
 	}
 
 	public boolean isPresent(String itemName) throws HarnessException {
@@ -437,7 +437,7 @@ public class PageTasks extends AbsTab{
 
 		if (button == Button.B_REFRESH) {
 
-			return (((AppAjaxClient)this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
+			return (((AppUniversalClient)this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
 
 		} else if (button == Button.B_NEW) {
 
@@ -968,23 +968,23 @@ public class PageTasks extends AbsTab{
 
 			// "New Message" shortcuts result in a compose form opening
 			//page = new FormMailNew(this.MyApplication);
-			page = new DialogTag(MyApplication,((AppAjaxClient) MyApplication).zPageTasks);
+			page = new DialogTag(MyApplication,((AppUniversalClient) MyApplication).zPageTasks);
 			keyCode = "78,84";
 
 		} else if (shortcut== Shortcut.S_ESCAPE) {
 			page = new DialogWarning(
 					DialogWarning.DialogWarningID.SaveTaskChangeMessage,
 					this.MyApplication,
-					((AppAjaxClient)this.MyApplication).zPageTasks);	
+					((AppUniversalClient)this.MyApplication).zPageTasks);	
 
 			keyCode = "27";
 
 		} else if ( shortcut == Shortcut.S_ASSISTANT ) {			
-			page = new DialogAssistant(MyApplication, ((AppAjaxClient) MyApplication).zPageTasks);
+			page = new DialogAssistant(MyApplication, ((AppUniversalClient) MyApplication).zPageTasks);
 			keyCode= "192";
 
 		} else if ( shortcut == Shortcut.S_NEWTASK ) {			
-			//page = new DialogAssistant(MyApplication, ((AppAjaxClient) MyApplication).zPageTasks);
+			//page = new DialogAssistant(MyApplication, ((AppUniversalClient) MyApplication).zPageTasks);
 			page= new FormTaskNew(this.MyApplication);
 			keyCode= "78,75";
 
@@ -993,7 +993,7 @@ public class PageTasks extends AbsTab{
 			// permanently delete it?
 			page = new DialogWarning(
 					DialogWarning.DialogWarningID.PermanentlyDeleteTheItem,
-					MyApplication, ((AppAjaxClient) MyApplication).zPageTasks);
+					MyApplication, ((AppUniversalClient) MyApplication).zPageTasks);
 
 			zKeyboard.zTypeCharacters(shortcut.getKeys());
 			return (page);

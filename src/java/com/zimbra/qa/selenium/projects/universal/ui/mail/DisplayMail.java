@@ -140,7 +140,7 @@ public class DisplayMail extends AbsDisplay {
 
 			locator = this.ContainerLocator + " a[id$='_removeAll']";
 			page = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyRemoveTheAttachment, MyApplication,
-					((AppAjaxClient) MyApplication).zPageMail);
+					((AppUniversalClient) MyApplication).zPageMail);
 
 			if (!this.sIsElementPresent(locator))
 				throw new HarnessException("locator is not present for button " + button + " : " + locator);
@@ -283,13 +283,13 @@ public class DisplayMail extends AbsDisplay {
 		} else if (button == Button.B_ACCEPT_SHARE) {
 
 			locator = this.ContainerLocator + " td[id$='__Shr__SHARE_ACCEPT_title']";
-			page = new DialogShareAccept(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogShareAccept(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 			doPostfixCheck = true;
 
 		} else if (button == Button.B_DECLINE_SHARE) {
 
 			locator = this.ContainerLocator + " td[id$='__Shr__SHARE_DECLINE_title']";
-			page = new DialogShareDecline(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogShareDecline(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 			doPostfixCheck = true;
 
 		} else if (button == Button.B_FORWARD) {
@@ -634,7 +634,7 @@ public class DisplayMail extends AbsDisplay {
 
 			locator = attachment.getLocator() + "a[id$='_remove']";
 			page = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyRemoveTheAttachment, MyApplication,
-					((AppAjaxClient) MyApplication).zPageMail);
+					((AppUniversalClient) MyApplication).zPageMail);
 
 			this.sClick(locator);
 
@@ -649,7 +649,7 @@ public class DisplayMail extends AbsDisplay {
 		} else if (button == Button.B_ADD_TO_CALENDAR) {
 
 			locator = attachment.getLocator() + "a[id$='_calendar']";
-			page = new DialogAddToCalendar(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogAddToCalendar(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 			this.sClick(locator);
 
@@ -664,7 +664,7 @@ public class DisplayMail extends AbsDisplay {
 		} else if (button == Button.B_BRIEFCASE) {
 
 			locator = attachment.getLocator() + "a[id$='_briefcase']";
-			page = new DialogAddToBriefcase(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+			page = new DialogAddToBriefcase(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
 			this.sClick(locator);
 

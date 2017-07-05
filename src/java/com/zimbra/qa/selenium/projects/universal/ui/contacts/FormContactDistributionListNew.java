@@ -472,7 +472,7 @@ public class FormContactDistributionListNew extends AbsForm {
 
 	}
 
-	public void select(AppAjaxClient app, String dropdown, String option) throws HarnessException {
+	public void select(AppUniversalClient app, String dropdown, String option) throws HarnessException {
 
 		String postfix = " td[id$='_dropdown'] div[class='ImgSelectPullDownArrow']";
 		String textLocator = " td[id$='_title']";

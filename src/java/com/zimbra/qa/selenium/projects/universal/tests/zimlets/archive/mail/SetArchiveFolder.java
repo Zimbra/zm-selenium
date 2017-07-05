@@ -72,7 +72,7 @@ public class SetArchiveFolder extends PrefGroupMailByMessageTest {
 		app.zPageMail.zToolbarPressButton(Button.B_ARCHIVE);
 		
 		// A choose folder dialog will pop up
-		DialogMove dialog = new DialogMove(app, ((AppAjaxClient)app).zPageMail);
+		DialogMove dialog = new DialogMove(app, ((AppUniversalClient)app).zPageMail);
 		dialog.zWaitForActive();
 		dialog.zClickTreeFolder(subfolder);
 		dialog.zClickButton(Button.B_OK);

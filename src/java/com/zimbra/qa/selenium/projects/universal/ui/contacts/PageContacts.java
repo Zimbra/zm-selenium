@@ -138,8 +138,8 @@ public class PageContacts extends AbsTab {
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the main page is active
-		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
-			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
+		if (!((AppUniversalClient) MyApplication).zPageMain.zIsActive()) {
+			((AppUniversalClient) MyApplication).zPageMain.zNavigateTo();
 		}
 
 		boolean active = sIsElementPresent("css=div[id='zb__App__Contacts'][class*=ZSelected]");
@@ -164,7 +164,7 @@ public class PageContacts extends AbsTab {
 			return;
 		}
 
-		((AppAjaxClient) MyApplication).zPageMain.zCheckAppLoaded(Locators.zContactsFolder);
+		((AppUniversalClient) MyApplication).zPageMain.zCheckAppLoaded(Locators.zContactsFolder);
 	}
 
 	// get subFolders
@@ -363,7 +363,7 @@ public class PageContacts extends AbsTab {
 		AbsPage page = null; // If set, this page will be returned
 
 		if (button == Button.B_REFRESH) {
-			return (((AppAjaxClient) this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
+			return (((AppUniversalClient) this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
 
 		} else if (button == Button.B_NEW) {
 
@@ -412,7 +412,7 @@ public class PageContacts extends AbsTab {
 			}
 
 			page = new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.MyApplication,
-					((AppAjaxClient) this.MyApplication).zPageContacts);
+					((AppUniversalClient) this.MyApplication).zPageContacts);
 
 		} else if (button == Button.B_CLOSE) {
 			locator = "css=div[id^=zb__CN][id$=__CANCEL]";
@@ -465,7 +465,7 @@ public class PageContacts extends AbsTab {
 		AbsPage page = null; // If set, this page will be returned
 
 		if (shortcut == Shortcut.S_NEWTAG) {
-			page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+			page = new DialogTag(MyApplication, ((AppUniversalClient) MyApplication).zPageContacts);
 		} else if (shortcut == Shortcut.S_MOVE) {
 			page = new DialogMove(MyApplication, this);
 			zKeyDown("77");
@@ -473,7 +473,7 @@ public class PageContacts extends AbsTab {
 			page.zWaitForActive();
 			return (page);
 		} else if (shortcut == Shortcut.S_ASSISTANT) {
-			page = new DialogAssistant(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+			page = new DialogAssistant(MyApplication, ((AppUniversalClient) MyApplication).zPageContacts);
 		} else if (shortcut == Shortcut.S_MAIL_REMOVETAG) {
 			page = null;
 		} else {
@@ -492,7 +492,7 @@ public class PageContacts extends AbsTab {
 		return (page);
 	}
 
-	public void clickDistributionListsFolder(AppAjaxClient app) throws HarnessException {
+	public void clickDistributionListsFolder(AppUniversalClient app) throws HarnessException {
 		FolderItem contactFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), "Distribution Lists");
 		app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, contactFolder);
 	}
@@ -544,7 +544,7 @@ public class PageContacts extends AbsTab {
 
 			} else if (option == Button.O_NEW_CONTACTS_FOLDER) {
 				optionLocator = "css=div#zb__NEW_MENU_NEW_ADDRBOOK td#zb__NEW_MENU_NEW_ADDRBOOK_title";
-				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
+				page = new DialogCreateFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageContacts);
 
 			} else {
 				pulldownLocator = null;
@@ -883,17 +883,17 @@ public class PageContacts extends AbsTab {
 				if (subOption == Button.O_NEW_CONTACTGROUP) {
 					cmi = CONTEXT_MENU.CONTACT_GROUP;
 					sub_cmi = CONTEXT_SUB_MENU.CONTACT_SUB_NEW_CONTACT_GROUP;
-					page = new DialogNewContactGroup((AppAjaxClient) MyApplication, this);
+					page = new DialogNewContactGroup((AppUniversalClient) MyApplication, this);
 				}
 
 			} else if (option == Button.B_SEARCH) {
 				cmi = CONTEXT_MENU.CONTACT_SEARCH;
 				if (subOption == Button.O_SEARCH_MAIL_SENT_TO_CONTACT) {
 					sub_cmi = CONTEXT_SUB_MENU.CONTACT_SUB_SENT_TO_CONTACT;
-					page = ((AppAjaxClient) MyApplication).zPageSearch;
+					page = ((AppUniversalClient) MyApplication).zPageSearch;
 				} else if (subOption == Button.O_SEARCH_MAIL_RECEIVED_FROM_CONTACT) {
 					sub_cmi = CONTEXT_SUB_MENU.CONTACT_SUB_RECEIVED_FROM_CONTACT;
-					page = ((AppAjaxClient) MyApplication).zPageSearch;
+					page = ((AppUniversalClient) MyApplication).zPageSearch;
 				}
 
 			} else {
@@ -1141,7 +1141,7 @@ public class PageContacts extends AbsTab {
 			} else if (option == Button.O_DELETE_MENU) {
 				cmi = CONTEXT_MENU.DL_DELETE_MENU;
 				page = new DialogWarning(DialogWarning.DialogWarningID.EmptyFolderWarningMessage, this.MyApplication,
-						((AppAjaxClient) this.MyApplication).zPageContacts);
+						((AppUniversalClient) this.MyApplication).zPageContacts);
 
 			} else if (option == Button.O_NEW_EMAIL) {
 				cmi = CONTEXT_MENU.DL_NEW_EMAIL_MENU;

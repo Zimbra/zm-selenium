@@ -21,7 +21,7 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogAttach;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.*;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.PageMail.Locators;
@@ -71,7 +71,7 @@ public class AttachContactAndSendMail extends PrefGroupMailByMessageTest {
 		// Click attach drop down and select Contact
 		app.zPageMail.zToolbarPressPulldown(Button.B_ATTACH, Button.O_CONTACTATTACH);
 
-		DialogAttach dialog = new DialogAttach(app, ((AppAjaxClient) app).zPageMail);
+		DialogAttach dialog = new DialogAttach(app, ((AppUniversalClient) app).zPageMail);
 		ZAssert.assertTrue(dialog.zIsActive(), "Attach Contact dialog gets open and active");
 
 		// Click on Contact folder

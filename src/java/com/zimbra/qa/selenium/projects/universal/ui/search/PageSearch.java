@@ -35,7 +35,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.ContextMenu;
 
 /**
@@ -141,8 +141,8 @@ public class PageSearch extends AbsTab {
 		}
 
 		// If search is not active, then we must not be logged in
-		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
-			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
+		if (!((AppUniversalClient) MyApplication).zPageMain.zIsActive()) {
+			((AppUniversalClient) MyApplication).zPageMain.zNavigateTo();
 		}
 		SleepUtil.sleepSmall();
 
@@ -779,7 +779,7 @@ public class PageSearch extends AbsTab {
 		for (int i = 1; i <= count; i++) {
 
 			// Add the new item to the list
-			MailItem item = ((AppAjaxClient) this.MyApplication).zPageMail
+			MailItem item = ((AppUniversalClient) this.MyApplication).zPageMail
 					.parseMessageRow(listLocator + " li:nth-of-type(" + i + ") ");
 			items.add(item);
 			logger.info(item.prettyPrint());

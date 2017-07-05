@@ -40,7 +40,7 @@ import com.zimbra.qa.selenium.framework.util.RestUtil;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogMove;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogTag;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.DialogCreateFolder;
@@ -170,7 +170,7 @@ public class PageBriefcase extends AbsTab {
 			return;
 		}
 
-		((AppAjaxClient) MyApplication).zPageMain.zCheckAppLoaded(Locators.zBriefcaseFolder);
+		((AppUniversalClient) MyApplication).zPageMain.zCheckAppLoaded(Locators.zBriefcaseFolder);
 	}
 
 	public AbsPage zToolbarPressButton(Button button, IItem item) throws HarnessException {
@@ -301,7 +301,7 @@ public class PageBriefcase extends AbsTab {
 
 				optionLocator = "css=div#zb__NEW_MENU_NEW_BRIEFCASE";
 				page = new DialogCreateBriefcaseFolder(this.MyApplication,
-						((AppAjaxClient) MyApplication).zPageBriefcase);
+						((AppUniversalClient) MyApplication).zPageBriefcase);
 
 				
 			} else if (option == Button.O_NEW_DOCUMENT) {
@@ -1358,7 +1358,7 @@ public class PageBriefcase extends AbsTab {
 
 		if (button == Button.B_REFRESH) {
 
-			return (((AppAjaxClient) this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
+			return (((AppUniversalClient) this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
 
 		}
 		return (null);

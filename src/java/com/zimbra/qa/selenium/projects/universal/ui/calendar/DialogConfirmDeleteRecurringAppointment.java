@@ -94,17 +94,17 @@ public class DialogConfirmDeleteRecurringAppointment extends DialogWarning {
 			// for a while to make sure the dialog pops up.
 			SleepUtil.sleepMedium();
 			
-			page = new DialogConfirmDeleteSeries(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteSeries(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if (page.zIsActive()) {
 				return (page);
 			}
 			
-			page = new DialogConfirmDeleteAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if (page.zIsActive()) {
 				return (page);
 			}
 
-			page = new DialogConfirmDeleteRecurringAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteRecurringAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if (page.zIsActive()) {
 				return (page);
 			}

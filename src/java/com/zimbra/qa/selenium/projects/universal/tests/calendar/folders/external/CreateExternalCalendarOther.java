@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.calendar.*;
 
 public class CreateExternalCalendarOther extends UniversalCommonTest {
@@ -64,7 +64,7 @@ public class CreateExternalCalendarOther extends UniversalCommonTest {
 		dialog.zSetSourceServer(icalAccount.ZimbraMailHost);
 		dialog.zClickButton(Button.B_NEXT);
 		
-		DialogCreateCalendarFolder dailog2 = new DialogCreateCalendarFolder(app, ((AppAjaxClient) app).zPageCalendar);
+		DialogCreateCalendarFolder dailog2 = new DialogCreateCalendarFolder(app, ((AppUniversalClient) app).zPageCalendar);
 		dailog2.zWaitForActive();
 		dailog2.zEnterFolderName(calendarname);
 		dailog2.zClickButton(Button.B_OK);
