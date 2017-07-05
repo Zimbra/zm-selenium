@@ -232,7 +232,7 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 		// Re-login to pick up the new preferences
 		app.zPageMain.sRefresh();
 
-		// The UniversalCommonTest.commonTestBeforeMethod() method will log into the client
+		// The AjaxCommonTest.commonTestBeforeMethod() method will log into the client
 		logger.info("addQuickCommands: finish");
 	}
 
