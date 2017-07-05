@@ -33,16 +33,16 @@ import com.zimbra.qa.selenium.framework.util.*;
  * @author Matt Rhoades
  *
  */
-public class AjaxQuickCommandTest extends AjaxCommonTest {
-	protected static Logger logger = LogManager.getLogger(AjaxQuickCommandTest.class);
+public class UniversalQuickCommandTest extends UniversalCommonTest {
+	protected static Logger logger = LogManager.getLogger(UniversalQuickCommandTest.class);
 
 	private QuickCommand command1;
 	private QuickCommand command2;
 	private QuickCommand command3;
 
 
-	public AjaxQuickCommandTest() {
-		logger.info("New "+ AjaxQuickCommandTest.class.getCanonicalName());
+	public UniversalQuickCommandTest() {
+		logger.info("New "+ UniversalQuickCommandTest.class.getCanonicalName());
 		
 		command1 = null;
 		command2 = null;
@@ -232,7 +232,7 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 		// Re-login to pick up the new preferences
 		app.zPageMain.sRefresh();
 
-		// The AjaxCommonTest.commonTestBeforeMethod() method will log into the client
+		// The UniversalCommonTest.commonTestBeforeMethod() method will log into the client
 		logger.info("addQuickCommands: finish");
 	}
 

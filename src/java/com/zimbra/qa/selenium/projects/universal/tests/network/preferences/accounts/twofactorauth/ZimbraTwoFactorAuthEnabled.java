@@ -24,12 +24,12 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.PagePreferences.Locators;
 import com.zimbra.qa.selenium.projects.universal.ui.Dialog2FactorAuthEnable;
 
-public class ZimbraTwoFactorAuthEnabled extends AjaxCommonTest {
+public class ZimbraTwoFactorAuthEnabled extends UniversalCommonTest {
 
 	public ZimbraTwoFactorAuthEnabled() {
 		super.startingPage = app.zPagePreferences;

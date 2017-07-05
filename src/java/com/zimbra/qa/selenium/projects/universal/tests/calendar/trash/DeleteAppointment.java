@@ -29,10 +29,10 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
 
-public class DeleteAppointment extends AjaxCommonTest {
+public class DeleteAppointment extends UniversalCommonTest {
 
 
 	public DeleteAppointment() {

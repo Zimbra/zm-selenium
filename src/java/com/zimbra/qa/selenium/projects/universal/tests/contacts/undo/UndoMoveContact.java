@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 import com.zimbra.qa.selenium.projects.universal.ui.*;
 
-public class UndoMoveContact extends AjaxCommonTest {
+public class UndoMoveContact extends UniversalCommonTest {
 
 	public UndoMoveContact() {
 		logger.info("New " + UndoMoveContact.class.getCanonicalName());

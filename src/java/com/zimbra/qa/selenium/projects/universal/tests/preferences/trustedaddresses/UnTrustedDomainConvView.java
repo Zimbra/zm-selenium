@@ -31,10 +31,10 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 //import com.zimbra.qa.selenium.projects.universal.ui.preferences.trustedaddresses.DisplayTrustedAddress;
 
-public class UnTrustedDomainConvView extends AjaxCommonTest {
+public class UnTrustedDomainConvView extends UniversalCommonTest {
 
 	@SuppressWarnings("serial")
 	public UnTrustedDomainConvView() throws HarnessException {

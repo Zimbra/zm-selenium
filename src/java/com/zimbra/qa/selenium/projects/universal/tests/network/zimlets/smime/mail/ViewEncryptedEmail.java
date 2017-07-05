@@ -11,12 +11,12 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.universal.ui.zimlet.DialogViewCertificate;
 
-public class ViewEncryptedEmail extends AjaxCommonTest {
+public class ViewEncryptedEmail extends UniversalCommonTest {
 
 	public ViewEncryptedEmail() {
 		

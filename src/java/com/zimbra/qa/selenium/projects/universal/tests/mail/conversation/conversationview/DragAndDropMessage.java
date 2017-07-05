@@ -24,11 +24,11 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.*;
 
 
-public class DragAndDropMessage extends AjaxCommonTest {
+public class DragAndDropMessage extends UniversalCommonTest {
 
 	@SuppressWarnings("serial")
 	public DragAndDropMessage() {

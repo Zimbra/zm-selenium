@@ -22,12 +22,12 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.ContactGroupItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.Toaster;
 import com.zimbra.qa.selenium.projects.universal.ui.contacts.*;
 import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactGroupNew.Field;
 
-public class EditContactGroup extends AjaxCommonTest {
+public class EditContactGroup extends UniversalCommonTest {
 	public EditContactGroup() {
 		logger.info("New " + EditContactGroup.class.getCanonicalName());
 

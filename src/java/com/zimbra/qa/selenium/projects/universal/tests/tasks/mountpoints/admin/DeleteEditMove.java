@@ -30,9 +30,9 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 
-public class DeleteEditMove extends AjaxCommonTest {
+public class DeleteEditMove extends UniversalCommonTest {
 
 	@SuppressWarnings("serial")
 	public DeleteEditMove() {

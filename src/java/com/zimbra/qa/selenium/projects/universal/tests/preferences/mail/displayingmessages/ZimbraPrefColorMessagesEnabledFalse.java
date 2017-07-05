@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.projects.universal.core.*;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.*;
 
 
-public class ZimbraPrefColorMessagesEnabledFalse extends AjaxCommonTest {
+public class ZimbraPrefColorMessagesEnabledFalse extends UniversalCommonTest {
 
 	
 	

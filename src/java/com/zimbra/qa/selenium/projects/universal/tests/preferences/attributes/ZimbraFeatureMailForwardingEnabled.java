@@ -28,7 +28,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.
 
 
 
-public class ZimbraFeatureMailForwardingEnabled extends AjaxCommonTest {
+public class ZimbraFeatureMailForwardingEnabled extends UniversalCommonTest {
 	
 	public ZimbraFeatureMailForwardingEnabled() {
 		logger.info("New "+ ZimbraFeatureMailForwardingEnabled.class.getCanonicalName());

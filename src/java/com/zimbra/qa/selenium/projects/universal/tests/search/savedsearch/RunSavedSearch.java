@@ -23,11 +23,11 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 
 //TODO: add more in ContactItem.java
 
-public class RunSavedSearch extends AjaxCommonTest  {
+public class RunSavedSearch extends UniversalCommonTest  {
 
 	@SuppressWarnings("serial")
 	public RunSavedSearch() {

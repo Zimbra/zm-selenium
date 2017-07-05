@@ -16,7 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.universal.tests.tasks;
 
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +36,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.tasks.FormTaskNew;
 import com.zimbra.qa.selenium.projects.universal.ui.tasks.FormTaskNew.Field;
 import com.zimbra.qa.selenium.projects.universal.ui.tasks.PageTasks.Locators;
 
-public class CancelTask extends AjaxCommonTest {
+public class CancelTask extends UniversalCommonTest {
 	@SuppressWarnings("serial")
    public CancelTask() {
 		logger.info("New " + CancelTask.class.getCanonicalName());

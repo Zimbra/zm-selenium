@@ -25,9 +25,9 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 
-public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
+public class ZimbraHelpAdvancedURL extends UniversalCommonTest {
 
 	public ZimbraHelpAdvancedURL() {
 		logger.info("New " + ZimbraHelpAdvancedURL.class.getCanonicalName());		

@@ -21,12 +21,12 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.performance.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.PageLogin.Locators;
 
 
 
-public class ZmMailApp extends AjaxCommonTest {
+public class ZmMailApp extends UniversalCommonTest {
 	
 	public ZmMailApp() {
 		logger.info("New "+ ZmMailApp.class.getCanonicalName());

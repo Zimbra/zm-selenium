@@ -22,9 +22,9 @@ import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 
-public class GetMessage extends AjaxCommonTest {
+public class GetMessage extends UniversalCommonTest {
 	
 	public GetMessage() {
 		logger.info("New "+ GetMessage.class.getCanonicalName());

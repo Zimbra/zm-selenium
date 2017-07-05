@@ -22,11 +22,11 @@ import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
 
 
-public class ZimbraPrefIncludeTrashInSearchFalse extends AjaxCommonTest {
+public class ZimbraPrefIncludeTrashInSearchFalse extends UniversalCommonTest {
 
 	public ZimbraPrefIncludeTrashInSearchFalse() {
 		logger.info("New "+ ZimbraPrefIncludeTrashInSearchFalse.class.getCanonicalName());

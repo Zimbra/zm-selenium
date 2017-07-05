@@ -21,11 +21,11 @@ import com.zimbra.qa.selenium.framework.items.ContactGroupItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.contacts.DisplayContactGroup;
 
 
-public class ViewContactGroup extends AjaxCommonTest  {
+public class ViewContactGroup extends UniversalCommonTest  {
 	
 	public ViewContactGroup() {
 		logger.info("New "+ ViewContactGroup.class.getCanonicalName());

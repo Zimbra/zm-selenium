@@ -29,12 +29,12 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogShare;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogShareRevoke;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.DialogEditFolder;
 
-public class DeleteShare extends AjaxCommonTest {
+public class DeleteShare extends UniversalCommonTest {
 
 	@SuppressWarnings("serial")
 	public DeleteShare() {

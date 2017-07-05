@@ -26,9 +26,9 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.performance.PerfKey;
 import com.zimbra.qa.selenium.framework.util.performance.PerfMetrics;
 import com.zimbra.qa.selenium.framework.util.performance.PerfToken;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 
-public class ZmTasksItem_Task1 extends AjaxCommonTest{
+public class ZmTasksItem_Task1 extends UniversalCommonTest{
 
    public ZmTasksItem_Task1() {
       logger.info("New " + ZmTasksItem_Task1.class.getCanonicalName());

@@ -12,11 +12,11 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.SeparateWindowDisplayMail;
 
-public class EditAsNewSignedEncryptedMail extends AjaxCommonTest {
+public class EditAsNewSignedEncryptedMail extends UniversalCommonTest {
 
 	public EditAsNewSignedEncryptedMail() {
 		

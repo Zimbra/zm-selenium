@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.projects.universal.core.*;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.*;
 
 
-public class ZimbraPrefMailPollingIntervalAsMailArrives extends AjaxCommonTest {
+public class ZimbraPrefMailPollingIntervalAsMailArrives extends UniversalCommonTest {
 
 	public static final long AsMailArrives = 500;			// The value set by the client when choosing AsMailArrives
 	public static final long AsMailArrivesDelay = 7000;		// Give 7 seconds to show the mail

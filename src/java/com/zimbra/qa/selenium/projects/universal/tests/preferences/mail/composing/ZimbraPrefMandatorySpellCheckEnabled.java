@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Field;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Locators;
@@ -33,7 +33,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.PagePreferences;
 
 
-public class ZimbraPrefMandatorySpellCheckEnabled extends AjaxCommonTest {
+public class ZimbraPrefMandatorySpellCheckEnabled extends UniversalCommonTest {
 
 
 	public ZimbraPrefMandatorySpellCheckEnabled() {

@@ -24,13 +24,13 @@ import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
 
 
 
 
-public class RemoveTrustedEmail extends AjaxCommonTest {
+public class RemoveTrustedEmail extends UniversalCommonTest {
 
 	// For RemoveTrustedEmail_01
 	public String email1 = "email"+ ConfigProperties.getUniqueString() + "@zimbra.com";

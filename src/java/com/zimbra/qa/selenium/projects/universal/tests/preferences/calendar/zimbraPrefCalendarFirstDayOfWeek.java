@@ -24,11 +24,11 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
 
-public class zimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
+public class zimbraPrefCalendarFirstDayOfWeek extends UniversalCommonTest {
 
 	public zimbraPrefCalendarFirstDayOfWeek() {
 		logger.info("New " + zimbraPrefCalendarFirstDayOfWeek.class.getCanonicalName());

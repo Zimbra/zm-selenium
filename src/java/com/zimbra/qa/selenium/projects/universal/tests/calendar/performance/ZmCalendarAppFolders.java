@@ -22,11 +22,11 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.performance.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 
 
 
-public class ZmCalendarAppFolders extends AjaxCommonTest {
+public class ZmCalendarAppFolders extends UniversalCommonTest {
 
 	public ZmCalendarAppFolders() {
 		logger.info("New "+ ZmCalendarAppFolders.class.getCanonicalName());

@@ -22,7 +22,7 @@ package com.zimbra.qa.selenium.projects.universal.ui;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.contacts.PageContacts;
 import com.zimbra.qa.selenium.projects.universal.ui.contacts.TreeContacts;
 import com.zimbra.qa.selenium.projects.universal.ui.briefcase.PageBriefcase;
@@ -44,7 +44,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.tasks.*;
  * The <code>AppAjaxClient</code> contains all pages, folder trees,
  * dialog boxes, forms, menus for the Ajax client.
  * <p>
- * In {@link AjaxCommonTest}, there is one
+ * In {@link UniversalCommonTest}, there is one
  * AppAjaxClient object created per test case class (ensuring
  * class-level concurrency).  The test case methods can access
  * different application pages and trees, using the object

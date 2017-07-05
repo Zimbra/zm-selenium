@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
 
-public class EmptyTrashFolder extends AjaxCommonTest {
+public class EmptyTrashFolder extends UniversalCommonTest {
 
 	public EmptyTrashFolder() {
 		logger.info("New " + EmptyTrashFolder.class.getCanonicalName());

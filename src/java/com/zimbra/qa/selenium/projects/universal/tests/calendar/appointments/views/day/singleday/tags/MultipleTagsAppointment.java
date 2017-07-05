@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 
 @SuppressWarnings("unused")
-public class MultipleTagsAppointment extends AjaxCommonTest {
+public class MultipleTagsAppointment extends UniversalCommonTest {
 
 	public MultipleTagsAppointment() {
 		logger.info("New "+ MultipleTagsAppointment.class.getCanonicalName());

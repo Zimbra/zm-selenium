@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 import com.zimbra.qa.selenium.projects.universal.ui.*;
 
-public class PrintTask extends AjaxCommonTest {
+public class PrintTask extends UniversalCommonTest {
 
 	@SuppressWarnings("serial")
 	public PrintTask() {

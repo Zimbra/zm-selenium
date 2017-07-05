@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 
-public class MoveContactFromTrashToLocalFolder extends AjaxCommonTest  {
+public class MoveContactFromTrashToLocalFolder extends UniversalCommonTest  {
 			
 	public MoveContactFromTrashToLocalFolder() {
 		logger.info("New "+ MoveContactFromTrashToLocalFolder.class.getCanonicalName());

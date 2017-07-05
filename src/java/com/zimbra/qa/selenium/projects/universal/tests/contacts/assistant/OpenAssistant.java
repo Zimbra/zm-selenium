@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.universal.tests.contacts.assistant;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogAssistant;
 
-public class OpenAssistant extends AjaxCommonTest {
+public class OpenAssistant extends UniversalCommonTest {
 	
 	public OpenAssistant() {
 		logger.info("New "+ OpenAssistant.class.getCanonicalName());

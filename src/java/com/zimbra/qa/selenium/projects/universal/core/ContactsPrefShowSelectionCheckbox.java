@@ -18,7 +18,7 @@ package com.zimbra.qa.selenium.projects.universal.core;
 
 import java.util.HashMap;
 
-public class ContactsPrefShowSelectionCheckbox extends AjaxCommonTest {
+public class ContactsPrefShowSelectionCheckbox extends UniversalCommonTest {
 
 	public ContactsPrefShowSelectionCheckbox() {
 		

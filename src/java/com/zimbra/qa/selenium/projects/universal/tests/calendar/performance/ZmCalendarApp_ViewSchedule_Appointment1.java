@@ -25,10 +25,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.performance.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 
 
-public class ZmCalendarApp_ViewSchedule_Appointment1 extends AjaxCommonTest {
+public class ZmCalendarApp_ViewSchedule_Appointment1 extends UniversalCommonTest {
 
 	
 	public ZmCalendarApp_ViewSchedule_Appointment1() throws HarnessException {

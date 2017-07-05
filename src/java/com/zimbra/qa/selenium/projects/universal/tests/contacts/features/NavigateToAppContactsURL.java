@@ -24,9 +24,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 
-public class NavigateToAppContactsURL extends AjaxCommonTest {
+public class NavigateToAppContactsURL extends UniversalCommonTest {
 	public NavigateToAppContactsURL() {
 		logger.info("New " + NavigateToAppContactsURL.class.getCanonicalName());
 

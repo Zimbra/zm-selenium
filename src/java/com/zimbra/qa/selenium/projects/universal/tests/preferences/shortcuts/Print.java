@@ -19,11 +19,11 @@ package com.zimbra.qa.selenium.projects.universal.tests.preferences.shortcuts;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.SeparateWindow;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
 
-public class Print extends AjaxCommonTest {
+public class Print extends UniversalCommonTest {
 
 	public Print() {
 		super.startingPage = app.zPagePreferences;

@@ -21,9 +21,9 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 
-public class DragAndDropContact extends AjaxCommonTest  {
+public class DragAndDropContact extends UniversalCommonTest  {
 	
 	public DragAndDropContact() {
 		logger.info("New "+ DragAndDropContact.class.getCanonicalName());

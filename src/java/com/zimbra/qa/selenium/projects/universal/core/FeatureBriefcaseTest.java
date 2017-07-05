@@ -18,7 +18,7 @@ package com.zimbra.qa.selenium.projects.universal.core;
 
 import java.util.HashMap;
 
-public class FeatureBriefcaseTest extends AjaxCommonTest {
+public class FeatureBriefcaseTest extends UniversalCommonTest {
 
 	public FeatureBriefcaseTest() {
 		

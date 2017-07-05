@@ -30,10 +30,10 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
 
-public class ReplyMsgWithTwoThreeLineTextSignature extends AjaxCommonTest {
+public class ReplyMsgWithTwoThreeLineTextSignature extends UniversalCommonTest {
 
 	@SuppressWarnings("serial")
 	public ReplyMsgWithTwoThreeLineTextSignature() {

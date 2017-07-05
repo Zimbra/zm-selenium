@@ -27,9 +27,9 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 
-public class DragAndDropTaskFolder extends AjaxCommonTest {
+public class DragAndDropTaskFolder extends UniversalCommonTest {
 	@SuppressWarnings("serial")
 	public DragAndDropTaskFolder() {
 		logger.info("New " + DragAndDropTaskFolder.class.getCanonicalName());

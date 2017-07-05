@@ -28,7 +28,7 @@ import com.zimbra.qa.selenium.projects.universal.core.*;
 import com.zimbra.qa.selenium.projects.universal.ui.*;
 
 
-public class DragAndDropDialog extends AjaxCommonTest {
+public class DragAndDropDialog extends UniversalCommonTest {
 
 	public DragAndDropDialog() {
 		logger.info("New "+ DragAndDropDialog.class.getCanonicalName());

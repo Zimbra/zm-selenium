@@ -30,9 +30,9 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 
-public class DragAndDropSharedTask extends AjaxCommonTest {
+public class DragAndDropSharedTask extends UniversalCommonTest {
 
 	@SuppressWarnings("serial")
 	public DragAndDropSharedTask() {

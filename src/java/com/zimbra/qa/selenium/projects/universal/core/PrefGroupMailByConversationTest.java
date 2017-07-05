@@ -27,7 +27,7 @@ import java.util.HashMap;
  * @author Matt Rhoades
  *
  */
-public class PrefGroupMailByConversationTest extends AjaxCommonTest {
+public class PrefGroupMailByConversationTest extends UniversalCommonTest {
 
 	public PrefGroupMailByConversationTest() {
 		

@@ -21,12 +21,12 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxQuickCommandTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalQuickCommandTest;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
 
 
-public class DeleteQuickCommand extends AjaxQuickCommandTest {
+public class DeleteQuickCommand extends UniversalQuickCommandTest {
 
 	public DeleteQuickCommand() {
 		

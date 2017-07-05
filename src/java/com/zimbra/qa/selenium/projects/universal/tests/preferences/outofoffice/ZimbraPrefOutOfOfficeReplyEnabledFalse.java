@@ -27,12 +27,12 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.DialogOOOAlert;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
 
-public class ZimbraPrefOutOfOfficeReplyEnabledFalse extends AjaxCommonTest {
+public class ZimbraPrefOutOfOfficeReplyEnabledFalse extends UniversalCommonTest {
 
 	public static final String autoReplyMessage = "OOO" + ConfigProperties.getUniqueString();
 

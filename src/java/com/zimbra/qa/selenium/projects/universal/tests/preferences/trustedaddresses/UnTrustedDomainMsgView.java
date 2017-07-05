@@ -30,10 +30,10 @@ import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 //import com.zimbra.qa.selenium.projects.universal.ui.preferences.trustedaddresses.DisplayTrustedAddress;
 
-public class UnTrustedDomainMsgView extends AjaxCommonTest {
+public class UnTrustedDomainMsgView extends UniversalCommonTest {
 
 	@SuppressWarnings("serial")
 	public UnTrustedDomainMsgView() throws HarnessException {

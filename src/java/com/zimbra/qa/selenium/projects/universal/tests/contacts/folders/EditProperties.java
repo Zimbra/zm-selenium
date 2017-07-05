@@ -22,11 +22,11 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.contacts.DialogEditFolder;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.DialogEditFolder.FolderColor;
 
-public class EditProperties extends AjaxCommonTest {
+public class EditProperties extends UniversalCommonTest {
 
 	public EditProperties() {
 		logger.info("New " + EditProperties.class.getCanonicalName());

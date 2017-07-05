@@ -22,13 +22,13 @@ import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning.DialogWarningID;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
 
 
-public class ZimbraPrefCalendarReminderSMS extends AjaxCommonTest {
+public class ZimbraPrefCalendarReminderSMS extends UniversalCommonTest {
 
 	protected String sms = null;
 	protected String code = null;

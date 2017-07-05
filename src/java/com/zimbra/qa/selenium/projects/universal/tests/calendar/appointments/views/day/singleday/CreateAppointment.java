@@ -25,12 +25,12 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.AutocompleteEntry;
 import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew.Field;
 
-public class CreateAppointment extends AjaxCommonTest {
+public class CreateAppointment extends UniversalCommonTest {
 
 	public CreateAppointment() {
 		logger.info("New "+ CreateAppointment.class.getCanonicalName());

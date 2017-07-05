@@ -27,10 +27,10 @@ import com.zimbra.qa.selenium.framework.items.RecipientItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
 
-public class SaveDraft extends AjaxCommonTest {
+public class SaveDraft extends UniversalCommonTest {
 
 	public SaveDraft() {
 		

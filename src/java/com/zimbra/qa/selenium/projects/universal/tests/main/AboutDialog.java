@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 import com.zimbra.qa.selenium.projects.universal.ui.*;
 
-public class AboutDialog extends AjaxCommonTest {
+public class AboutDialog extends UniversalCommonTest {
 
 	public AboutDialog() {
 		logger.info("New "+ AboutDialog.class.getCanonicalName());

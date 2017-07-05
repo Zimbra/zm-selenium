@@ -31,7 +31,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.tasks.*;
 import com.zimbra.qa.selenium.projects.universal.ui.tasks.FormTaskNew.*;
 import com.zimbra.qa.selenium.projects.universal.ui.tasks.PageTasks.Locators;
 
-public class CreateTask extends AjaxCommonTest {
+public class CreateTask extends UniversalCommonTest {
 
 	@SuppressWarnings("serial")
 	public CreateTask() {

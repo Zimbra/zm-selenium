@@ -28,7 +28,7 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 
 
-public class ZmConv extends AjaxCommonTest {
+public class ZmConv extends UniversalCommonTest {
 
 	
 	@SuppressWarnings("serial")

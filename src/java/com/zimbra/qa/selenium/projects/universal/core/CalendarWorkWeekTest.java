@@ -26,7 +26,7 @@ import java.util.*;
  * @author Matt Rhoades
  *
  */
-public class CalendarWorkWeekTest extends AjaxCommonTest {
+public class CalendarWorkWeekTest extends UniversalCommonTest {
 
 	public static boolean organizerTest = false;
 	public static boolean allDayTest = false;

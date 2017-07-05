@@ -23,9 +23,9 @@ import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.ui.PageLogin.Locators;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 
-public class ZimbraFeatureTrustedDevicesEnabled extends AjaxCommonTest {
+public class ZimbraFeatureTrustedDevicesEnabled extends UniversalCommonTest {
 
 	public ZimbraFeatureTrustedDevicesEnabled() {
 		super.startingAccountPreferences = new HashMap<String, String>() {

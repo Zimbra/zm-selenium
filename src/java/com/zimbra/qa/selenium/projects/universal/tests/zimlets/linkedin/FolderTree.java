@@ -25,11 +25,11 @@ import com.zimbra.qa.selenium.framework.items.ZimletItem;
 import com.zimbra.qa.selenium.framework.items.ZimletItem.CoreZimletItem;
 import com.zimbra.qa.selenium.framework.items.ZimletItem.CoreZimletItem.CoreZimletName;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.TreeMail.FolderSection;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.TreeMail.FolderSectionAction;
 
-public class FolderTree extends AjaxCommonTest {
+public class FolderTree extends UniversalCommonTest {
 
 	public FolderTree() {
 		logger.info("New "+ FolderTree.class.getCanonicalName());

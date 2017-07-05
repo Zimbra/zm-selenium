@@ -22,12 +22,12 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.AutocompleteEntry;
 import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactDistributionListNew;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
 
-public class ModifyDLDisplayNameAndDescription extends AjaxCommonTest  {
+public class ModifyDLDisplayNameAndDescription extends UniversalCommonTest  {
 
 	public ModifyDLDisplayNameAndDescription() {
 		logger.info("New "+ ModifyDLDisplayNameAndDescription.class.getCanonicalName());

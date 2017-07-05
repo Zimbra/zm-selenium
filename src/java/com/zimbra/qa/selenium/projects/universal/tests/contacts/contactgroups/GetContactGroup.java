@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.contacts.PageContacts;
 
 /**
@@ -34,7 +34,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.contacts.PageContacts;
  * @author Matt Rhoades
  */
 
-public class GetContactGroup extends AjaxCommonTest {
+public class GetContactGroup extends UniversalCommonTest {
 
 	public GetContactGroup() {
 		logger.info("New " + GetContactGroup.class.getCanonicalName());

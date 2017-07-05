@@ -22,11 +22,11 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.PagePreferences.Locators;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
 
-public class DisablePersonaCreation extends AjaxCommonTest {
+public class DisablePersonaCreation extends UniversalCommonTest {
 
 	public DisablePersonaCreation() {
 		super.startingPage = app.zPagePreferences;

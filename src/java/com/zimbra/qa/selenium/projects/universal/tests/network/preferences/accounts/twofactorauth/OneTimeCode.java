@@ -22,9 +22,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 
-public class OneTimeCode extends AjaxCommonTest {
+public class OneTimeCode extends UniversalCommonTest {
 
 	public OneTimeCode() {
 		super.startingAccountPreferences = new HashMap<String, String>() {

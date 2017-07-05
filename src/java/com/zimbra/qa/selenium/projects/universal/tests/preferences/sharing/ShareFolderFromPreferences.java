@@ -21,11 +21,11 @@ package com.zimbra.qa.selenium.projects.universal.tests.preferences.sharing;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogShare.ShareRole;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
 
-public class ShareFolderFromPreferences extends AjaxCommonTest {
+public class ShareFolderFromPreferences extends UniversalCommonTest {
 	
 	public ShareFolderFromPreferences() {
 		

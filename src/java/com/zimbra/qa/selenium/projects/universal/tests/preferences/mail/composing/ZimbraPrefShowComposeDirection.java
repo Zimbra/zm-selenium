@@ -22,14 +22,14 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Field;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Locators;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.PagePreferences;
 
 
-public class ZimbraPrefShowComposeDirection extends AjaxCommonTest {
+public class ZimbraPrefShowComposeDirection extends UniversalCommonTest {
 
 
 	public ZimbraPrefShowComposeDirection() {

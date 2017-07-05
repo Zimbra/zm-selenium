@@ -23,14 +23,14 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.Toaster;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.signature.FormSignatureNew;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.signature.FormSignatureNew.Field;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.signature.PageSignature.Locators;
 
-public class EmptySignature extends AjaxCommonTest {
+public class EmptySignature extends UniversalCommonTest {
 	public EmptySignature() {
 		super.startingPage = app.zPagePreferences;
 		

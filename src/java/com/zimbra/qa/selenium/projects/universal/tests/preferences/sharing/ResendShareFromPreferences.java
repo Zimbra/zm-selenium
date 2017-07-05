@@ -4,10 +4,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
 
-public class ResendShareFromPreferences extends AjaxCommonTest {
+public class ResendShareFromPreferences extends UniversalCommonTest {
 
 	public ResendShareFromPreferences() {
 		super.startingPage = app.zPagePreferences;

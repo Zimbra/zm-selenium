@@ -22,9 +22,9 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 
-public class LoginWithCsrfTokenCheckDisabled extends AjaxCommonTest {
+public class LoginWithCsrfTokenCheckDisabled extends UniversalCommonTest {
 
 	public LoginWithCsrfTokenCheckDisabled() {
 		logger.info("New "+ LoginWithCsrfTokenCheckDisabled.class.getCanonicalName());

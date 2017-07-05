@@ -31,7 +31,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.DialogSelectContact;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.DialogSelectContact.Locators;
@@ -39,7 +39,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.signature.FormSignatureNew;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.signature.FormSignatureNew.Field;
 
-public class SignatureVcard extends AjaxCommonTest {
+public class SignatureVcard extends UniversalCommonTest {
 	public SignatureVcard() {
 		super.startingPage = app.zPagePreferences;
 	}

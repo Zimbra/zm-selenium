@@ -26,10 +26,10 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.*;
 
-public class DeleteSeries extends AjaxCommonTest {
+public class DeleteSeries extends UniversalCommonTest {
 
 	public DeleteSeries() {
 		logger.info("New "+ DeleteSeries.class.getCanonicalName());

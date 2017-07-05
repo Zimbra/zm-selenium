@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 import com.zimbra.qa.selenium.projects.universal.ui.*;
 
-public class ProductHelp extends AjaxCommonTest {
+public class ProductHelp extends UniversalCommonTest {
 
 	public ProductHelp() {
 		logger.info("New " + ProductHelp.class.getCanonicalName());

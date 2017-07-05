@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.mail.*;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail.*;
 
 
-public class GetMessage extends AjaxCommonTest {
+public class GetMessage extends UniversalCommonTest {
 
 	public static final class Emoticons {
 		public static final String HAPPY = ":)";

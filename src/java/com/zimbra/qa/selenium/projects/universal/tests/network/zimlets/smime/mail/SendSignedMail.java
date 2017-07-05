@@ -27,7 +27,7 @@ import com.zimbra.qa.selenium.framework.items.RecipientItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogError;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogError.DialogErrorID;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail;
@@ -37,7 +37,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.mail.SeparateWindowFormMailN
 import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.universal.ui.zimlet.DialogViewCertificate;
 
-public class SendSignedMail extends AjaxCommonTest {
+public class SendSignedMail extends UniversalCommonTest {
 
 	public SendSignedMail() {
 		

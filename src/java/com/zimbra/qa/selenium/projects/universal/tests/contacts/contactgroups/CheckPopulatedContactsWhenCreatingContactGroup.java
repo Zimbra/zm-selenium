@@ -22,13 +22,13 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.universal.ui.contacts.*;
 import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactGroupNew.Field;
 
-public class CheckPopulatedContactsWhenCreatingContactGroup extends AjaxCommonTest  {
+public class CheckPopulatedContactsWhenCreatingContactGroup extends UniversalCommonTest  {
 
 	public CheckPopulatedContactsWhenCreatingContactGroup() {
 		logger.info("New "+ CheckPopulatedContactsWhenCreatingContactGroup.class.getCanonicalName());

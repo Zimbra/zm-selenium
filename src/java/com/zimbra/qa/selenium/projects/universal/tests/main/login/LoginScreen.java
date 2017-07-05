@@ -25,12 +25,12 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.PageLogin;
 
 
 
-public class LoginScreen extends AjaxCommonTest {
+public class LoginScreen extends UniversalCommonTest {
 
 	public LoginScreen() {
 		logger.info("New "+ LoginScreen.class.getCanonicalName());

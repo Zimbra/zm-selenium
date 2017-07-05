@@ -25,10 +25,10 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.PageMail.Column;
 
-public class EditColumnView extends AjaxCommonTest {
+public class EditColumnView extends UniversalCommonTest {
 
 	public EditColumnView() {
 		logger.info("New "+ EditColumnView.class.getCanonicalName());

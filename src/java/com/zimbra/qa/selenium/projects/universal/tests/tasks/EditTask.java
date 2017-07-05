@@ -34,12 +34,12 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.tasks.DisplayTask;
 import com.zimbra.qa.selenium.projects.universal.ui.tasks.FormTaskNew;
 import com.zimbra.qa.selenium.projects.universal.ui.tasks.FormTaskNew.Field;
 
-public class EditTask extends AjaxCommonTest{
+public class EditTask extends UniversalCommonTest{
 
 	@SuppressWarnings("serial")
 	public EditTask() {

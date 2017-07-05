@@ -61,9 +61,9 @@ import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactDistributionListNew;
 import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactGroupNew;
 
-public class AjaxCommonTest {
+public class UniversalCommonTest {
 
-	protected static Logger logger = LogManager.getLogger(AjaxCommonTest.class);
+	protected static Logger logger = LogManager.getLogger(UniversalCommonTest.class);
 	protected AppAjaxClient app = null;
 
 	protected AbsTab startingPage = null;
@@ -77,8 +77,8 @@ public class AjaxCommonTest {
 	protected StafServicePROCESS staf = new StafServicePROCESS();
 	String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
 
-	protected AjaxCommonTest() {
-		logger.info("New " + AjaxCommonTest.class.getCanonicalName());
+	protected UniversalCommonTest() {
+		logger.info("New " + UniversalCommonTest.class.getCanonicalName());
 
 		app = new AppAjaxClient();
 
@@ -175,7 +175,7 @@ public class AjaxCommonTest {
 			String methodClass = testngMethod.getRealClass().getSimpleName();
 			if (methodClass.equals(method.getDeclaringClass().getSimpleName())
 					&& testngMethod.getMethodName().equals(method.getName())) {
-				synchronized (AjaxCommonTest.class) {
+				synchronized (UniversalCommonTest.class) {
 					logger.info("---------BeforeMethod-----------------------");
 					logger.info("Test       : " + methodClass + "." + testngMethod.getMethodName());
 					logger.info("Description: " + testngMethod.getDescription());

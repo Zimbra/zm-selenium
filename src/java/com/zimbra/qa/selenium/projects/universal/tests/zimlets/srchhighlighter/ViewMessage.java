@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.projects.universal.core.*;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.universal.ui.search.*;
 
-	public class ViewMessage extends AjaxCommonTest {
+	public class ViewMessage extends UniversalCommonTest {
 	
 	public ViewMessage() {
 		logger.info("New "+ ViewMessage.class.getCanonicalName());

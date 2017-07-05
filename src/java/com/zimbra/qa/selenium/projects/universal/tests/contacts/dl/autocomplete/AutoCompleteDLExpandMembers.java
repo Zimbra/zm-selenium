@@ -21,12 +21,12 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.AutocompleteEntry;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Field;
 
-public class AutoCompleteDLExpandMembers extends AjaxCommonTest  {
+public class AutoCompleteDLExpandMembers extends UniversalCommonTest  {
 
 	public AutoCompleteDLExpandMembers() {
 		logger.info("New "+ AutoCompleteDLExpandMembers.class.getCanonicalName());

@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.DialogEditFilter;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.DialogEditFilter.ConditionConstraint;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.DialogEditFilter.ConditionType;
@@ -32,7 +32,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.preferences.DialogEditFilter
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.PagePreferences;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
 
-public class CreateFilter extends AjaxCommonTest {
+public class CreateFilter extends UniversalCommonTest {
 
 	public CreateFilter() {
 		super.startingPage = app.zPagePreferences;

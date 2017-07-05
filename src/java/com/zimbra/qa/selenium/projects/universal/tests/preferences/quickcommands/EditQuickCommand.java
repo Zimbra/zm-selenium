@@ -23,12 +23,12 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxQuickCommandTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalQuickCommandTest;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.DialogEditQuickCommand;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
 
 
-public class EditQuickCommand extends AjaxQuickCommandTest {
+public class EditQuickCommand extends UniversalQuickCommandTest {
 
 	public EditQuickCommand() {
 		

@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 import com.zimbra.qa.selenium.projects.universal.ui.*;
 
-public class ShowOriginal extends AjaxCommonTest {
+public class ShowOriginal extends UniversalCommonTest {
 
 	@SuppressWarnings("serial")
 	public ShowOriginal() {

@@ -24,12 +24,12 @@ import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogTag;
 import com.zimbra.qa.selenium.projects.universal.ui.calendar.PageCalendar;
 
 @SuppressWarnings("unused")
-public class TagAppointment extends AjaxCommonTest {
+public class TagAppointment extends UniversalCommonTest {
 
 	public TagAppointment() {
 		logger.info("New "+ TagAppointment.class.getCanonicalName());
