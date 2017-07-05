@@ -44,6 +44,7 @@ public class PageManageAliases extends AbsTab {
 		// ** OverviewTreePanel -> Manage -> Aliases
 		public static final String MANAGE_ACCOUNTS_ICON="css=div[class=ImgManageAccounts]";
 		public static final String ALIASES="css=td[id^='zti__AppAdmin__Home__aliaLstHV']";
+		public static final String DISTRIBUTION_LISTS="css=td[id^='zti__AppAdmin__Home__dlLstHV']";
 		public static final String GEAR_ICON="css=div[class=ImgConfigure]";
 		public static final String NEW_MENU="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgAccountAlias']";
 		public static final String HOME="Home";
@@ -109,8 +110,11 @@ public class PageManageAliases extends AbsTab {
 		//SleepUtil.sleepMedium();
 		zClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
+		sIsElementPresent(Locators.DISTRIBUTION_LISTS);
+		sClickAt(Locators.DISTRIBUTION_LISTS,"");
+		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent(Locators.ALIASES);
-		zClickAt(Locators.ALIASES, "");
+		sClickAt(Locators.ALIASES, "");
 		zWaitForWorkInProgressDialogInVisible();
 		SleepUtil.sleepMedium();
 		
