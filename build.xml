@@ -17,6 +17,7 @@
 	<property name="network-private-data.dir" location="../zm-selenium/data/private"/>
 	<property name="network-ajax-tests.dir" location="../zm-selenium/src/java/com/zimbra/qa/selenium/projects/ajax/tests/network"/>
 	<property name="network-admin-tests.dir" location="../zm-selenium/src/java/com/zimbra/qa/selenium/projects/admin/tests/network"/>
+	<property name="network-universal-tests.dir" location="../zm-selenium/src/java/com/zimbra/qa/selenium/projects/universal/tests/network"/>
 	<property name="store-conf.dir" location="../zm-mailbox/store-conf"/>
 	<property name="web-client.dir" location="../zm-web-client"/>
 	<property name="ajax.dir" location="../zm-ajax"/>
@@ -59,6 +60,8 @@
 			<fileset dir="${src.java.dir}/com/zimbra/qa/selenium/projects/ajax/ui" includes="**/*.java"/>
 			<fileset dir="${src.java.dir}/com/zimbra/qa/selenium/projects/admin/core" includes="**/*.java"/>
 			<fileset dir="${src.java.dir}/com/zimbra/qa/selenium/projects/admin/ui" includes="**/*.java"/>
+			<fileset dir="${src.java.dir}/com/zimbra/qa/selenium/projects/universal/core" includes="**/*.java"/>
+			<fileset dir="${src.java.dir}/com/zimbra/qa/selenium/projects/universal/ui" includes="**/*.java"/>
 		</javadoc>
 	</target>
 
