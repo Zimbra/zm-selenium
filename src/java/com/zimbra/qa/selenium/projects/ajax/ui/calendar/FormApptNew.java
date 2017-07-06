@@ -1471,7 +1471,7 @@ public class FormApptNew extends AbsForm {
 		logger.info(myPageName() + " zAutocompleteSelectItem(" + entry + ")");
 
 		// Click on the address
-		this.sMouseDown(entry.getLocator() + " td + td");
+		this.sClick(entry.getLocator() + " td + td");
 		this.zWaitForBusyOverlay();
 
 	}
