@@ -40,65 +40,76 @@ public class InstallSelfSignedCertificate extends AdminCommonTest {
 	}
 
 	/**
-	 * Testcase : Install self-signed certificate
-	 * 1. Install self-signed certificate from GUI
-	 * 2. Verify certificate using SOAP.
+	 * Testcase : Install self-signed certificate 1. Install self-signed
+	 * certificate from GUI 2. Verify certificate using SOAP.
+	 * 
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Install self-signed certificate",
-			groups = { "smoke", "L1" })
+	@Test(description = "Install self-signed certificate", groups = { "smoke", "L1" })
 	public void InstallSelfSignedCertificate_01() throws HarnessException {
+		try {
+			String CountryName = "US";
+			String state = "Texas";
+			String city = "Frisco";
+			String OrganizationName = "Zimbra";
+			String OrganizationUnit = "Zimbra Collaboration Server";
+			CertificateItem cert = new CertificateItem();
+			cert.setCountryName(CountryName);
+			cert.setStateName(state);
+			cert.setCityName(city);
+			cert.setOrganizationName(OrganizationName);
+			cert.setOrganizationUnit(OrganizationUnit);
+			String issuer = "Zimbra Collaboration Server";
+			String hostname = ConfigProperties.getStringProperty("server.host");
 
-		String CountryName="US";
-		String state="Texas";
-		String city="Frisco";
-		String OrganizationName="Zimbra";
-		String OrganizationUnit="Zimbra Collaboration Server";
-		CertificateItem cert = new CertificateItem();
-		cert.setCountryName(CountryName);
-		cert.setStateName(state);
-		cert.setCityName(city);
-		cert.setOrganizationName(OrganizationName);
-		cert.setOrganizationUnit(OrganizationUnit);
-		String issuer = "Zimbra Collaboration Server";
-		String hostname = ConfigProperties.getStringProperty("server.host");
+			// Select server
+			app.zPageManageCertificates.zListItem(Action.A_LEFTCLICK, hostname);
 
-		// Select server
-		app.zPageManageCertificates.zListItem(Action.A_LEFTCLICK, hostname);
+			// Click on install certificate
+			WizardInstallCertificate wizard = (WizardInstallCertificate) app.zPageManageCertificates
+					.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_INSTALL_CERTIFICATE);
 
-		// Click on install certificate 
-		WizardInstallCertificate wizard= (WizardInstallCertificate)app.zPageManageCertificates.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_INSTALL_CERTIFICATE);
+			// Select self-signed certificate
+			wizard.setCertificateAction(Locators.INSTALL_SELF_SIGNED_CERTIFICATE);
 
-		// Select self-signed certificate
-		wizard.setCertificateAction(Locators.INSTALL_SELF_SIGNED_CERTIFICATE);
+			// Fill out the wizard
+			wizard.zCompleteWizard(cert);
 
-		// Fill out the wizard	
-		wizard.zCompleteWizard(cert);
+			// Wait for certificate installation
+			SleepUtil.sleepVeryLong();
+			SleepUtil.sleepVeryLong();
 
-		// Wait for certificate installation
-		SleepUtil.sleepVeryLong();
-		SleepUtil.sleepVeryLong();
+			// Restart zimbra services
+			staf.execute("zmmailboxdctl restart");
+			app.zPageMain.sRefresh();
+			
+			ZimbraAdminAccount.AdminConsoleAdmin().provision();
+			ZimbraAdminAccount.AdminConsoleAdmin().authenticate();
 
-		// Get server ID
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<GetServerRequest xmlns='urn:zimbraAdmin'>"
-						+	"<server by='name'>" + hostname + "</server>"
-						+		"</GetServerRequest>");
-		String id = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:server", "id");
+			// Get server ID
+			ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<GetServerRequest xmlns='urn:zimbraAdmin'>"
+					+ "<server by='name'>" + hostname + "</server>" + "</GetServerRequest>");
+			String id = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:server", "id");
 
-		// Verify certificate is installed correctly
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<GetCertRequest server='"+id+"' xmlns='urn:zimbraAdmin' type='mailboxd' option='self'>"
-						+		"</GetCertRequest>");
-		
-		// Verify Issuer
-		Element cert_issuer =  ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCertResponse/admin:cert/admin:issuer", 1); 
-		ZAssert.assertStringContains(cert_issuer.toString(), issuer, "Verify issuer is correct!");
+			// Verify certificate is installed correctly
+			ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<GetCertRequest server='" + id
+					+ "' xmlns='urn:zimbraAdmin' type='mailboxd' option='self'>" + "</GetCertRequest>");
 
-		// Verify Server
-		String cert_server = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:cert", "server");
-		ZAssert.assertStringContains(cert_server, hostname, "Verify server is correct!");
+			// Verify Issuer
+			Element cert_issuer = ZimbraAdminAccount.AdminConsoleAdmin()
+					.soapSelectNode("//admin:GetCertResponse/admin:cert/admin:issuer", 1);
+			ZAssert.assertStringContains(cert_issuer.toString(), issuer, "Verify issuer is correct!");
 
+			// Verify Server
+			String cert_server = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:cert", "server");
+			ZAssert.assertStringContains(cert_server, hostname, "Verify server is correct!");
+		}
+
+		finally {
+			staf.execute("zmcertmgr deploycrt comm /opt/zimbra/ssl/zimbra/commercial/commercial.crt /opt/zimbra/ssl/zimbra/commercial/commercial_ca.crt");
+			staf.execute("zmmailboxdctl restart");
+			SleepUtil.sleepVeryVeryLong();
+		}
 	}
 
 }
