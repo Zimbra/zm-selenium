@@ -393,6 +393,7 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		        }
 
 		        robot.keyPress(keyCodes[offset]);
+		        robot.delay(300);
 		        doType(keyCodes, offset + 1, length - 1);
 		        robot.keyRelease(keyCodes[offset]);
 		    }
