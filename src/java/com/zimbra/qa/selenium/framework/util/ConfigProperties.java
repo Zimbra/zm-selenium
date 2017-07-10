@@ -174,7 +174,7 @@ public class ConfigProperties {
 	}
 
 	public enum AppType {
-		AJAX, HTML, MOBILE, TOUCH, ADMIN,
+		AJAX, HTML, MOBILE, TOUCH, ADMIN, UNIVERSAL
 	}
 	
 	private static AppType appType = AppType.AJAX;
