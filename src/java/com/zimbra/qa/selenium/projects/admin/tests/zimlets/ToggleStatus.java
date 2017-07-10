@@ -43,9 +43,11 @@ public class ToggleStatus extends AdminCommonTest {
 			groups = { "smoke","L1" })
 	public void ToggleStatus_01() throws HarnessException {
 	
+		String zimletList ="css=div#zl__ZIMLET_MANAGE div[id$='__rows'] div[id^='zli__']";
 		String zimletName ="com_zimbra_webex";
 
 		// Click on Zimlets
+		app.zPageManageZimlets.zWaitForElementVisible(zimletList);
 		app.zPageManageZimlets.zListItem(Action.A_LEFTCLICK, zimletName);
 		
 		// Toggle zimlet status
