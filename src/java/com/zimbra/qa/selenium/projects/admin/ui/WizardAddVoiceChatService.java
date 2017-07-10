@@ -34,6 +34,7 @@ public class WizardAddVoiceChatService extends AbsWizard {
 		public static final String zdlg_TARGET_ACCOUNT_NAME = "css=input[id='zdlgv__NEW_ALIAS_targetName_display']";
 		
 		public static final String zdlg_OK = "css=td[id^='zdlg__NEW_ALIAS_button']:contains('OK')";
+		public static final String ChooseVendorTitle = "css=td[id$='_title']:contains('Choose Voice/Chat Vendor')";
 		public static final String Service_dropdown = "css=div[id$='_zimbraUCProvider_arrow_button']";
 		public static final String CISCO = "css=div[id$='zimbraUCProvider_choice_0']";
 		public static final String OK = "css=td[id$='_button2_title']:contains('OK')";
@@ -56,11 +57,13 @@ public class WizardAddVoiceChatService extends AbsWizard {
 
 		String displayName = serviceItem.getDisplayName();
 
-		sClickAt(Locators.Service_dropdown,"");
-		sClickAt(Locators.CISCO,"");
-		sClick(Locators.OK);
-		SleepUtil.sleepSmall();
-		
+		if (sIsVisible(Locators.ChooseVendorTitle)) {
+
+			sClickAt(Locators.Service_dropdown, "");
+			sClickAt(Locators.CISCO, "");
+			sClick(Locators.OK);
+			SleepUtil.sleepSmall();
+		}
 		sType(Locators.zdlg_DISPLAY_NAME, displayName);
 		SleepUtil.sleepSmall();
 		
