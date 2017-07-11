@@ -256,6 +256,7 @@
 		<delete dir="${network-private-data.dir}"/>
 		<delete dir="${network-ajax-tests.dir}"/>
 		<delete dir="${network-admin-tests.dir}"/>
+		<delete dir="${network-universal-tests.dir}"/>
 	</target>
 
 	<target name="Run-ExecuteHarnessMain" depends="jar" description="Run all tests per specified arguments">
