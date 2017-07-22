@@ -40,6 +40,7 @@ public class GetAppointment extends AjaxCommonTest {
 
 		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
+		super.startingAccountPreferences.put("zimbraPrefCalendarInitialView", "week");
 	}
 
 	@Test( description = "Verify the presence of appointment in Trash after deletion.",
@@ -47,7 +48,6 @@ public class GetAppointment extends AjaxCommonTest {
 	
 	public void GetAppointment_01() throws HarnessException {
 
-		// Create the appointment on the server
 		// Create the message data to be sent
 		String apptSubject = ConfigProperties.getUniqueString();
 		String location = "location" + ConfigProperties.getUniqueString();
@@ -55,9 +55,20 @@ public class GetAppointment extends AjaxCommonTest {
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-
+		ZDate startUTC = null;
+		ZDate endUTC  = null;
+		
+		// if current day of the week is Sunday, create an appointment on Monday so that it remains in the current week view even after time zone adjustment.
+		if(now.get(Calendar.DAY_OF_WEEK) == 1) {
+			
+			startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 12, 0, 0);
+			endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 14, 0, 0);
+			
+		} else {
+			
+			startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+			endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		}
 		// EST timezone string
 		String tz = ZTimeZone.TimeZoneEST.getID();
 

@@ -90,8 +90,7 @@ public class DialogViewCertificate extends AbsDialog {
 	public String zGetDisplayedText(String issuedToEmail) throws HarnessException {
 		logger.info(myPageName() + " Issued to email");
 
-		String locator = "css=div[class='CertificateDetailsWrapper'] table[class='CertificateDetails'] tbody tr[data-name='Email'] td[class='Value']" ;
-		
+		String locator = "//table[@class='CertificateDetails']/tbody/tr[@data-name='Email'][1]/td[@class='Value']";
 		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("Issued to email "+ locator +" is not present");
@@ -103,11 +102,11 @@ public class DialogViewCertificate extends AbsDialog {
 	public String zGetDisplayedTextIssuedToOrganization() throws HarnessException {
 		logger.info(myPageName() + " Issued to Organisation");
 
-		String locator = "css=div[class='CertificateDetailsWrapper'] table[class='CertificateDetails'] tbody tr[data-name='Organization(O)'] td[class='Value']" ;
+		String locator = "//table[@class='CertificateDetails']/tbody/tr[@data-name='Organization (O)'][1]/td[@class='Value']" ;
 		
 		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("Issued to email "+ locator +" is not present");
+			throw new HarnessException("Issued to organization "+ locator +" is not present");
 		}
 		
 		return(this.sGetText(locator));
@@ -115,11 +114,11 @@ public class DialogViewCertificate extends AbsDialog {
 	public String zGetDisplayedTextIssuedByOrganization() throws HarnessException {
 		logger.info(myPageName() + " Issued by Organisation");
 
-		String locator = "//table[@class='CertificateDetails']/tbody/tr[@data-name='Organization(O)'][2]/td[@class='Value']" ;
+		String locator = "//table[@class='CertificateDetails']/tbody/tr[@data-name='Organization (O)'][2]/td[@class='Value']" ;
 		
 		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("Issued to email "+ locator +" is not present");
+			throw new HarnessException("Issued by organization "+ locator +" is not present");
 		}
 		
 		return(this.sGetText(locator));
@@ -131,7 +130,7 @@ public class DialogViewCertificate extends AbsDialog {
 		
 		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("Issued to email "+ locator +" is not present");
+			throw new HarnessException("Issued by email "+ locator +" is not present");
 		}
 		
 		return(this.sGetText(locator));
@@ -143,7 +142,7 @@ public class DialogViewCertificate extends AbsDialog {
 		
 		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("Issued to email "+ locator +" is not present");
+			throw new HarnessException("Algorithm used "+ locator +" is not present");
 		}
 		
 		return(this.sGetText(locator));

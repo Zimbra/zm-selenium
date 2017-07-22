@@ -193,14 +193,10 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			throw new HarnessException("not implemented for field " + field);
 		}
 
-		this.sFocus(locator);
-		this.sClick(locator);
-		this.zWaitForBusyOverlay();
-
-		sTypeNewWindow(locator, value);
+		sType(locator, value);
 		
 		if (field == Field.To || field == Field.Cc || field == Field.Bcc) {
-			SleepUtil.sleepSmall();
+			SleepUtil.sleepMedium();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 			SleepUtil.sleepSmall();
 		}
