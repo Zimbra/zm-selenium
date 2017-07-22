@@ -59,7 +59,7 @@ public class GetAppointment extends AjaxCommonTest {
 		ZDate endUTC  = null;
 		
 		// if current day of the week is Sunday, create an appointment on Monday so that it remains in the current week view even after time zone adjustment.
-		if(now.get(Calendar.DAY_OF_WEEK) == 1) {
+		if ( now.get(Calendar.DAY_OF_WEEK) == 1 ) {
 			
 			startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 12, 0, 0);
 			endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 1, 14, 0, 0);
@@ -109,7 +109,7 @@ public class GetAppointment extends AjaxCommonTest {
 		// Enable trash
 		app.zPageCalendar.zCheckboxSet(Checkbox.C_TRASH, true);
 		
-		//Verify the presence of appointment in Trash
+		// Verify the presence of appointment in Trash
 		ZAssert.assertTrue(app.zPageCalendar.zIsAppointmentPresentInTrash(apptSubject), "Verify appointment is present in Trash!");
 	}
 
