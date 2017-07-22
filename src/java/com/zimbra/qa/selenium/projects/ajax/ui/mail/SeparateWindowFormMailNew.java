@@ -193,7 +193,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			throw new HarnessException("not implemented for field " + field);
 		}
 
-		sType(locator, value);
+		sTypeNewWindow(locator, value);
 		
 		if (field == Field.To || field == Field.Cc || field == Field.Bcc) {
 			SleepUtil.sleepMedium();
