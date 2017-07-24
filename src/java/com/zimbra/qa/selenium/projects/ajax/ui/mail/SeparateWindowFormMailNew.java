@@ -320,7 +320,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		this.sClick(locator);
+		this.sClickNewWindow(locator);
 		SleepUtil.sleepSmall();
 
 		return (page);

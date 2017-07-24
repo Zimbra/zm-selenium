@@ -120,6 +120,14 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			super.sType(locator, value);
 			SleepUtil.sleepSmall();
 		} 
+	
+	public void sClickNewWindow(String locator) throws HarnessException {
+		logger.info(myPageName() + " sClickInNewWindow(" + locator + ")");
+			
+			super.sSelectWindow(this.DialogWindowID);
+			super.sClick(locator);
+			SleepUtil.sleepSmall();
+		} 
 
 	public String sGetText(String locator) throws HarnessException {
 		logger.info(myPageName() + " sGetText(" + locator + ")");
