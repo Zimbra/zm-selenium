@@ -145,7 +145,7 @@ public class PageSearchResults extends AbsTab {
 				if (this.sGetText(locator).trim().equalsIgnoreCase(entity))
 				{
 					if (action == Action.A_LEFTCLICK) {
-						zClick(locator);
+						sClick(locator);
 						break;
 					} else if (action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);

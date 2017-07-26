@@ -157,12 +157,11 @@ public class DownloadsTab extends AdminCommonTest {
 
 		for (String locator : locators ) {
 			String href = app.zPageDownloads.sGetAttribute("xpath="+ locator +"@href");
-			String page = ConfigProperties.getBaseURL() + href;
 			
 			HttpURLConnection  connection = null;
 			try {
 				
-				URL url = new URL(page);
+				URL url = new URL(href);
 				int authResponse = app.zPageDownloads.getAuthResponse(url);
 
 		        // 200 and 400 are acceptable

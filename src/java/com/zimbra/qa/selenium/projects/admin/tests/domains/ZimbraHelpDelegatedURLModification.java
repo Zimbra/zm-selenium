@@ -33,7 +33,7 @@ public class ZimbraHelpDelegatedURLModification extends AdminCommonTest {
 		logger.info("New "+ ZimbraHelpDelegatedURLModification.class.getCanonicalName());
 	}
 
-	@Bugs(ids="101023")
+	@Bugs(ids="105789")
 	@Test( description = "Verify that zimbra delegated admin help page is opened as per the value set in attribute zimbraHelpDelegatedURL",
 			groups = { "functional", "L3" })
 

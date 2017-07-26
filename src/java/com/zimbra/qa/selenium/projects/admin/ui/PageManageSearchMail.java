@@ -177,7 +177,7 @@ public class PageManageSearchMail extends AbsTab {
 				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
 				{
 					if(action == Action.A_LEFTCLICK) {
-						zClick(locator);
+						sClick(locator);
 						break;
 					} else if(action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);
