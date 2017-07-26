@@ -22,6 +22,7 @@ package com.zimbra.qa.selenium.framework.core;
 import java.awt.*;
 import java.io.*;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.net.*;
 import java.util.*;
@@ -37,6 +38,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriverException;
 import org.testng.*;
+import org.testng.annotations.ITestAnnotation;
 import org.testng.xml.*;
 import com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
@@ -394,6 +396,8 @@ public class ExecuteHarnessMain {
 			testNG.addListener(new MethodListener(ExecuteHarnessMain.testoutputfoldername));
 			testNG.addListener(new ErrorDialogListener());
 			testNG.addListener(currentResultListener = new ResultListener(ExecuteHarnessMain.testoutputfoldername));
+			testNG.addListener(new AnnotationTransformer());
+			testNG.addListener(new TestListener());
 
 			try {
 				testNG.setOutputDirectory(ExecuteHarnessMain.testoutputfoldername + "/TestNG");
@@ -715,6 +719,65 @@ public class ExecuteHarnessMain {
 
 	}
 
+	public static class  RetryAnalyzer implements IRetryAnalyzer {
+		 
+		int counter = 0;
+		int retryLimit = 2;//Retry the test case when it goes fail on first time
+	 
+		@Override
+		public boolean retry(ITestResult result) {
+	 
+			if(counter < retryLimit)
+			{
+				counter++;
+				return true;
+			}
+			return false;
+		}
+	}
+	
+	protected class AnnotationTransformer implements IAnnotationTransformer {
+		 // Dynamically add retry class annotation to each test cases
+		@Override
+		public void transform(ITestAnnotation annotation, Class testClass, Constructor testConstructor, Method testMethod) {
+				annotation.setRetryAnalyzer(ExecuteHarnessMain.RetryAnalyzer.class);
+		}
+
+	
+	}
+	
+	// Listener is use to avoid conflict of count in the TestNG report 
+	protected class TestListener implements ITestListener {
+	    @Override
+		public void onFinish(ITestContext context) {
+			Set<ITestResult> failedTests = context.getFailedTests().getAllResults();
+			for (ITestResult temp : failedTests) {
+				ITestNGMethod method = temp.getMethod();
+				if (context.getFailedTests().getResults(method).size() > 1) {
+					failedTests.remove(temp);
+				} else {
+					if (context.getPassedTests().getResults(method).size() > 0) {
+						failedTests.remove(temp);
+					}
+				}
+			}
+		}
+	  
+	    public void onTestStart(ITestResult result) {   }
+	  
+	    public void onTestSuccess(ITestResult result) {   }
+	  
+	    public void onTestFailure(ITestResult result) {   }
+
+	    public void onTestSkipped(ITestResult result) {   }
+
+	    public void onTestFailedButWithinSuccessPercentage(ITestResult result) {   }
+
+	    public void onStart(ITestContext context) {   }
+	}  
+	
+	
+	
 	/**
 	 * A TestNG TestListener that tracks the pass/fail/skip counts
 	 * <p>
@@ -1011,7 +1074,11 @@ public class ExecuteHarnessMain {
 		@Override
 		public void onTestStart(ITestResult result) {
 			setRunningTestCase(result);
-			testsTotal++;
+			// Below will handle retry test cases behavior's conflict 
+			if(testsTotal==0)
+				testsTotal++;
+			if(testsTotal == testsFailed+testsPass+testsSkipped)
+				testsTotal++;
 		}
 
 		public static void captureScreen() {
