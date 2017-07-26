@@ -742,8 +742,6 @@ public class ExecuteHarnessMain {
 		public void transform(ITestAnnotation annotation, Class testClass, Constructor testConstructor, Method testMethod) {
 				annotation.setRetryAnalyzer(ExecuteHarnessMain.RetryAnalyzer.class);
 		}
-
-	
 	}
 	
 	// Listener is use to avoid conflict of count in the TestNG report 
