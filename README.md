@@ -11,6 +11,7 @@
     git clone https://github.com/Zimbra/zimbra-package-stub.git
     git clone https://github.com/Zimbra/zm-mailbox.git
     git clone https://github.com/Zimbra/zm-zcs.git
+    git clone https://github.com/Zimbra/zm-ajax.git
     git clone https://github.com/Zimbra/zm-web-client.git
     git clone https://github.com/Zimbra/zm-zimlets.git
     git clone https://github.com/Zimbra/zm-selenium.git
