@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
+import java.util.concurrent.Future;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.httpclient.Cookie;
@@ -39,6 +40,8 @@ import org.apache.commons.httpclient.methods.EntityEnclosingMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.params.HttpClientParams;
 import org.apache.commons.httpclient.params.HttpMethodParams;
+import org.apache.http.HttpResponse;
+import org.apache.http.concurrent.FutureCallback;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -1740,6 +1743,21 @@ public class ZimbraAccount {
 			// mDebugListener.receiveSoapMessage(env);
 
 			return raw ? env : extractBodyElement(env);
+		}
+
+		@Override
+		public Element invoke(Element arg0, boolean arg1, boolean arg2, String arg3, String arg4, String arg5,
+				NotificationFormat arg6, String arg7) throws IOException, HttpException, ServiceException {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Future<HttpResponse> invokeAsync(Element arg0, boolean arg1, boolean arg2, String arg3, String arg4,
+				String arg5, NotificationFormat arg6, String arg7, FutureCallback<HttpResponse> arg8)
+				throws IOException {
+			// TODO Auto-generated method stub
+			return null;
 		}
 
 	}
