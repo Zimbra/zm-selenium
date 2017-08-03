@@ -1187,7 +1187,7 @@ public class FormMailNew extends AbsForm {
 		logger.info(myPageName() + " zAutocompleteSelectItem(" + entry + ")");
 
 		// Click on the address
-		this.sMouseDown(entry.getLocator() + " td + td");
+		this.sClick(entry.getLocator() + " td + td");
 		this.zWaitForBusyOverlay();
 
 	}
@@ -1199,7 +1199,7 @@ public class FormMailNew extends AbsForm {
 		zAutocompleteMouseOverItem(entry);
 
 		// Click on the address
-		this.sMouseDown(entry.getLocator() + " div[id*='_acForgetText_']");
+		this.sClick(entry.getLocator() + " div[id*='_acForgetText_']");
 		this.zWaitForBusyOverlay();
 
 	}
