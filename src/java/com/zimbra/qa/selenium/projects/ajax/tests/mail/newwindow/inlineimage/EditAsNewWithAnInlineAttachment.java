@@ -78,16 +78,14 @@ public class EditAsNewWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 
 				// Choose Actions -> Launch in Window
 				window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
+				
 				window.zSetWindowTitle(windowTitle);
-				window.zWaitForActive();
-				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-
-				windowTitle = "Zimbra: Compose";
-				window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_EDIT_AS_NEW);
-				window.zSetWindowTitle(windowTitle);
-				window.zWaitForActive();
-				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+				ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
+				
+				// Select the window
 				window.sSelectWindow(windowTitle);
+				
+				window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_EDIT_AS_NEW);
 
 				// Type in body
 				String locator = "css=div[id^='zv__COMPOSE'] iframe[id$='_body_ifr']";
@@ -105,9 +103,6 @@ public class EditAsNewWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(windowTitle, 1),"Verify inline image is present in  compose window");
 
 				window.zToolbarPressButton(Button.B_SEND);
-				
-				windowTitle = "Zimbra: " + subject;
-				window.zSetWindowTitle(windowTitle);
 
 			} finally {
 				app.zPageMain.zCloseWindow(window, windowTitle, app);

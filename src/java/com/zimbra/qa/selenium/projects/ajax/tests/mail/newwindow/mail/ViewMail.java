@@ -69,9 +69,10 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
+			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			// Select the window
+			window.sSelectWindow(windowTitle);
 			
 			// Verify the To, From, Subject, Body
 			String actualOBO = window.zGetMailProperty(Field.OnBehalfOf);
@@ -118,9 +119,10 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
+			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			// Select the window
+			window.sSelectWindow(windowTitle);
 			
 			// Verify the To, From, Subject, Body
 			String actualReplyto = window.zGetMailProperty(Field.ReplyTo);
@@ -166,9 +168,10 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
+			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			// Select the window
+			window.sSelectWindow(windowTitle);
 			
 			// Verify the To, From, Subject, Body
 			String actualResentFrom = window.zGetMailProperty(Field.ResentFrom);
@@ -209,9 +212,10 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
+			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			// Select the window
+			window.sSelectWindow(windowTitle);
 			
 			String body = window.zGetMailProperty(Field.Body);
 

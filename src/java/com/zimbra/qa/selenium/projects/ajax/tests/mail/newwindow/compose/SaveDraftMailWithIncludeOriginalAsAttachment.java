@@ -73,13 +73,19 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle1);
-			window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			
+			// Select window
+			window.sSelectWindow(windowTitle1);
 
 			window.zToolbarPressButton(Button.B_REPLY);
+			
 			window.zSetWindowTitle(windowTitle2);
-
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			
+			// Select new Reply window
+			window.sSelectWindow(windowTitle2);
+			
 			window.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT);
 			window.zFillField(DisplayMail.Field.Body, body);
 
@@ -138,13 +144,17 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle1);
-			window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			
+			// Select window
+			window.sSelectWindow(windowTitle1);
 
 			window.zToolbarPressButton(Button.B_REPLY);
 			window.zSetWindowTitle(windowTitle2);
-
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			
+			// Select new Reply window
+			window.sSelectWindow(windowTitle2);
 			
 			window.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_FORMAT_AS_HTML_MULTI_WINDOW);
 			window.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT);

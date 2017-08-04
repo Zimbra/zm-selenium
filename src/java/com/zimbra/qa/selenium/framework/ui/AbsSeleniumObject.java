@@ -1452,8 +1452,8 @@ public abstract class AbsSeleniumObject {
 	}
 
 
-	public void sSelectWindow(String windowID) throws HarnessException {
-		switchTo(windowID);
+	public void sSelectWindow(String windowTitle) throws HarnessException {
+		switchTo(windowTitle);
 	}
 
 

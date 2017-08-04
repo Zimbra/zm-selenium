@@ -79,9 +79,10 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
+			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			// Select the window
+			window.sSelectWindow(windowTitle);
 			
 			window.zKeyboardShortcut(Shortcut.S_MAIL_MARKUNREAD);
 
@@ -138,9 +139,10 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
+			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			// Select the window
+			window.sSelectWindow(windowTitle);
 			
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_MARK_AS_UNREAD);
 
@@ -197,9 +199,10 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
+			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			// Select the window
+			window.sSelectWindow(windowTitle);
 			
 			// Verify that the icon is not disabled
 			window. zToolbarPressButton(Button.B_ACTIONS);

@@ -79,9 +79,10 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail) app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS,Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-
 			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
+			
+			// Select the window
+			window.sSelectWindow(windowTitle);
 
 			//Actin Menu --> Flag
 			window.zToolbarPressPulldown(Button.B_ACTIONS,Button.B_UNFLAG_MESSAGE);
@@ -154,12 +155,13 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail) app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS,Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-
 			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
+			
+			// Select the window
+			window.sSelectWindow(windowTitle);
 
 			// UnFlag the item
-			app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_MARKFLAG);
+			window.zKeyboardShortcut(Shortcut.S_MAIL_MARKFLAG);
 
 			SleepUtil.sleepMedium();
 

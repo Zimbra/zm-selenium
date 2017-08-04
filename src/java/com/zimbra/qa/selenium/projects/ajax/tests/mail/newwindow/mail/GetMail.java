@@ -76,9 +76,10 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
+			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			// Select the window
+			window.sSelectWindow(windowTitle);
 			
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
@@ -122,9 +123,10 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
+			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			// Select the window
+			window.sSelectWindow(windowTitle);
 			
 			ZAssert.assertEquals(window.zGetMailProperty(Field.Subject), subject, "Verify the subject matches");
 			ZAssert.assertNotNull(window.zGetMailProperty(Field.ReceivedTime), "Verify the time is displayed");
@@ -188,9 +190,10 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
+			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			// Select the window
+			window.sSelectWindow(windowTitle);
 			
 			// Verify the To, From, Subject, Body		
 			ZAssert.assertEquals(window.zGetMailProperty(Field.Subject), mail.dSubject, "Verify the subject matches");

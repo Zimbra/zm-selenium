@@ -92,16 +92,13 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 				window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 				window.zSetWindowTitle(windowTitle);
-				window.zWaitForActive();
-
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+				
+				// Select the window
+				window.sSelectWindow(windowTitle);
 
 				window.zToolbarPressButton(Button.B_REPLY);
 				
-				windowTitle = "Zimbra: Reply";
-				window.zSetWindowTitle(windowTitle);
-				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-
 				//Add an attachment
 				// Click Attach>>inline image
 				window.zPressButton(Button.O_ATTACH_DROPDOWN);
@@ -112,9 +109,6 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 
 				//click Send
 				window.zToolbarPressButton(Button.B_SEND);
-				
-				windowTitle = "Zimbra: " + subject;
-				window.zSetWindowTitle(windowTitle);
 				
 			} finally {
 				app.zPageMain.zCloseWindow(window, windowTitle, app);

@@ -70,13 +70,14 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-			
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			
+			// Select the window
+			window.sSelectWindow(windowTitle);
 			
 			// Click redirect
 			SeparateWindowDialogRedirect dialog = (SeparateWindowDialogRedirect)window.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_REDIRECT);
-			dialog.zFillField(SeparateWindowDialogRedirect.Field.To, ZimbraAccount.AccountB().EmailAddress);
+			dialog.zFillField(SeparateWindowDialogRedirect.Field.To, ZimbraAccount.AccountB().EmailAddress + ",");
 			dialog.zClickButton(Button.B_OK);
 
 		} finally {

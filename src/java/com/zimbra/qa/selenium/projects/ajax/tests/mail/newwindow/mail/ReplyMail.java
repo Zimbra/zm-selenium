@@ -65,21 +65,13 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-
+			
+			// Select Window
+			window.sSelectWindow(windowTitle);
+			
 			window.zToolbarPressButton(Button.B_REPLY);
-			
-			windowTitle = "Zimbra: Reply";
-			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			window.zToolbarPressButton(Button.B_SEND);		
-			
-			windowTitle = "Zimbra: " + subject;
-			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
 			window.zToolbarPressButton(Button.B_CLOSE);
 
 		} finally {
@@ -132,22 +124,13 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-
-			ZAssert.assertTrue(window.zIsActive(),
-					"Verify the window is active");
+			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			
+			// Select Window
+			window.sSelectWindow(windowTitle);
 
 			window.zKeyboardShortcut(Shortcut.S_MAIL_REPLY);
-			
-			windowTitle = "Zimbra: Reply";
-			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-			ZAssert.assertTrue(window.zIsActive(), "Verify the Reply window is active");
 			window.zToolbarPressButton(Button.B_SEND);
-			
-			windowTitle = "Zimbra: " + subject;
-			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
 			window.zToolbarPressButton(Button.B_CLOSE);
 
 		} finally {
@@ -202,24 +185,13 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-
-			ZAssert.assertTrue(window.zIsActive(),
-					"Verify the window is active");
-
-			// window.zToolbarPressButton(Button.B_REPLY);
+			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			
+			// Select Window
+			window.sSelectWindow(windowTitle);
 
 			window.zKeyboardShortcut(Shortcut.S_MAIL_REPLYAll);
-			
-			windowTitle = "Zimbra: Reply";
-			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-			ZAssert.assertTrue(window.zIsActive(), "Verify the Reply window is active");
 			window.zToolbarPressButton(Button.B_SEND);
-			
-			windowTitle = "Zimbra: " + subject;
-			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
 			window.zToolbarPressButton(Button.B_CLOSE);
 
 		} finally {

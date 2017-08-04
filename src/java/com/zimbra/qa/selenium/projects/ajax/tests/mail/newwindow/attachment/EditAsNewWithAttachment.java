@@ -69,14 +69,13 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 
 				// Choose Actions -> Launch in Window
 				window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-				window.zSetWindowTitle(subject);
-				window.zWaitForActive();
+				window.zSetWindowTitle(windowTitle);
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+				
+				// Select window
+				window.sSelectWindow(windowTitle);
 
 				window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_EDIT_AS_NEW);
-				window.zSetWindowTitle(windowTitle);
-				window.zWaitForActive();
-				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 				
 				// Type in body
 				String locator = "css=div[id^='zv__COMPOSE'] iframe[id$='_body_ifr']";

@@ -16,14 +16,22 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
 
-import java.util.*;
-import org.testng.annotations.*;
-import com.zimbra.qa.selenium.framework.items.*;
-import com.zimbra.qa.selenium.framework.items.FolderItem.*;
-import com.zimbra.qa.selenium.framework.ui.*;
-import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import java.util.HashMap;
+
+import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.items.FolderItem;
+import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
+import com.zimbra.qa.selenium.framework.items.TaskItem;
+import com.zimbra.qa.selenium.framework.ui.Action;
+import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.ui.Shortcut;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.SeparateWindowPrintPreview;
 
 public class PrintTask extends AjaxCommonTest {
 
@@ -77,20 +85,24 @@ public class PrintTask extends AjaxCommonTest {
 
 		try {
 
-			// Right click the item, select Show Original
+			// Right click the item, select print
 			window = (SeparateWindowPrintPreview)app.zPageTasks.zListItem(Action.A_RIGHTCLICK, Button.O_PRINT_MENU, subject);
-
-			window.zWaitForActive();
+			SleepUtil.sleepMedium();
+			
+			// Press esc from keyboard to discard the print preview dialog.
+			window.sKeyPressNative("27");
+			
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
-			// Press esc from keyboard
-			window.sKeyPressNative("27");
+			//Select the window
+			window.sSelectWindow(windowTitle);
 			
 			// Verify content in Print view.
 			String printContent = window.sGetBodyContent(windowTitle, "css=div[class='ZhCallListPrintView']");
 			ZAssert.assertStringContains(printContent, subject, "Verify subject in Print view");
 			ZAssert.assertStringContains(printContent, bodyText, "Verify content in Print view");
+			window.sSelectWindow(null);
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
@@ -140,17 +152,21 @@ public class PrintTask extends AjaxCommonTest {
 
 			// Press keyboard shortcut p
 			window = (SeparateWindowPrintPreview)app.zPageTasks.zKeyboardShortcut(Shortcut.S_PRINTTASK);
-			window.zWaitForActive();
+			SleepUtil.sleepMedium();
+			
+			// Press esc from keyboard to discard the print preview dialog.
+			window.sKeyPressNative("27");
+			
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
-			// Press esc from keyboard
-			window.sKeyPressNative("27");
-
+			//Select the window
+			window.sSelectWindow(windowTitle);
 			// Verify content in Print view.
 			String printContent = window.sGetBodyContent(windowTitle, "css=div[class='ZhCallListPrintView']");
 			ZAssert.assertStringContains(printContent, subject, "Verify subject in Print view");
 			ZAssert.assertStringContains(printContent, bodyText, "Verify content in Print view");
+			window.sSelectWindow(null);
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
@@ -232,18 +248,23 @@ public class PrintTask extends AjaxCommonTest {
 
 			// Pull down Print button and select Print Task folder.
 			window = (SeparateWindowPrintPreview)app.zPageTasks.zToolbarPressPulldown(Button.B_PRINT, Button.O_PRINT_TASKFOLDER);
-			window.zWaitForActive();
+			SleepUtil.sleepMedium();
+			
+			// Press esc from keyboard to discard the print preview dialog.
+			window.sKeyPressNative("27");
+			
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
-			// Press esc from keyboard
-			window.sKeyPressNative("27");
+			//Select the window
+			window.sSelectWindow(windowTitle);
 
 			// Verify subjects in Print view.
 			String printContent = window.sGetBodyContent(windowTitle, "css=div[class='ZhCallListPrintView']");
 			ZAssert.assertStringContains(printContent, subject1, "Verify subject in Print view");
 			ZAssert.assertStringContains(printContent, subject2, "Verify subject2 in Print view");
 			ZAssert.assertStringContains(printContent, subject3, "Verify subject2 in Print view");
+			window.sSelectWindow(null);
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);

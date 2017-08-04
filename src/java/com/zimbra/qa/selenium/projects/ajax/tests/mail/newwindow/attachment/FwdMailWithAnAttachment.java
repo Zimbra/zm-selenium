@@ -17,12 +17,19 @@
 
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachment;
 
-import java.awt.event.KeyEvent;
 import org.testng.SkipException;
 import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.items.*;
-import com.zimbra.qa.selenium.framework.ui.*;
-import com.zimbra.qa.selenium.framework.util.*;
+
+import com.zimbra.qa.selenium.framework.items.FolderItem;
+import com.zimbra.qa.selenium.framework.items.MailItem;
+import com.zimbra.qa.selenium.framework.ui.Action;
+import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.OperatingSystem;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
@@ -35,7 +42,7 @@ public class FwdMailWithAnAttachment extends PrefGroupMailByMessageTest {
 
 	@Test( description = "Forward a mail  with an attachment by pressing Forward button>>attach - in separate window",
 			groups = { "smoke", "L1" })
-	
+
 	public void FwdMailWithAnAttachment_01() throws HarnessException {
 
 		if (OperatingSystem.isWindows() == true) {
@@ -76,28 +83,15 @@ public class FwdMailWithAnAttachment extends PrefGroupMailByMessageTest {
 				window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 				window.zSetWindowTitle(windowTitle);
-				window.zWaitForActive();
-
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 
-				window.zToolbarPressButton(Button.B_FORWARD);
-				SleepUtil.sleepMedium();
-				windowTitle = "Zimbra: Forward";
+				// Select the window
+				window.sSelectWindow(windowTitle);
 				
-				window.zSetWindowTitle(windowTitle);
-				SleepUtil.sleepMedium();
-				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-
-				window.sSelectWindow(windowTitle);
+				window.zToolbarPressButton(Button.B_FORWARD);
 				String locator = FormMailNew.Locators.zToField;
-				window.sClick(locator);
-				window.sType(locator, ZimbraAccount.AccountB().EmailAddress);
-				window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+				window.sType(locator, ZimbraAccount.AccountB().EmailAddress+",");
 				SleepUtil.sleepSmall();
-				window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
-				SleepUtil.sleepSmall();
-
-				window.sSelectWindow(windowTitle);
 				
 				// Add an attachment
 				window.zPressButton(Button.B_ATTACH);
@@ -109,7 +103,7 @@ public class FwdMailWithAnAttachment extends PrefGroupMailByMessageTest {
 			} finally {
 				app.zPageMain.zCloseWindow(window, windowTitle, app);
 			}
-			
+
 			// Verify UI for attachment
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

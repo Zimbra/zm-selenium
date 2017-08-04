@@ -63,10 +63,9 @@ public class CancelAutoSaveDraft extends PrefGroupMailByMessageTest {
 
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-			SleepUtil.sleepLong();
-
-			//Select the window
+			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			
+			// Select window
 			window.sSelectWindow(windowTitle);
 			
 			//Go to draft and check for draft message

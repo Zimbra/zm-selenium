@@ -164,7 +164,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			if (frames == 0) {
 
 				// Text compose
-				sTypeNewWindow("css=textarea[class='ZmHtmlEditorTextArea']", value);
+				sType("css=textarea[class='ZmHtmlEditorTextArea']", value);
 				return;
 
 			} else if (frames >= 1) {
@@ -193,7 +193,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			throw new HarnessException("not implemented for field " + field);
 		}
 
-		sTypeNewWindow(locator, value);
+		sType(locator, value);
 		
 		if (field == Field.To || field == Field.Cc || field == Field.Bcc) {
 			SleepUtil.sleepMedium();
@@ -320,7 +320,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		this.sClickNewWindow(locator);
+		this.sClick(locator);
 		SleepUtil.sleepSmall();
 
 		return (page);

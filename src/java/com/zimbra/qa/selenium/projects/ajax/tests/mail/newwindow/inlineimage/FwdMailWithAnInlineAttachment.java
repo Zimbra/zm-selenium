@@ -1,30 +1,18 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.inlineimage;
 
-/*
- * ***** BEGIN LICENSE BLOCK *****
- * Zimbra Collaboration Suite Server
- * Copyright (C) 2016 Synacor, Inc.
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software Foundation,
- * version 2 of the License.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <https://www.gnu.org/licenses/>.
- * ***** END LICENSE BLOCK *****
- */
-
-import java.awt.event.KeyEvent;
-
 import org.testng.SkipException;
 import org.testng.annotations.Test;
 
-import com.zimbra.qa.selenium.framework.items.*;
-import com.zimbra.qa.selenium.framework.ui.*;
-import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.framework.items.FolderItem;
+import com.zimbra.qa.selenium.framework.items.MailItem;
+import com.zimbra.qa.selenium.framework.ui.Action;
+import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.OperatingSystem;
+import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
@@ -93,29 +81,16 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 				window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 				window.zSetWindowTitle(windowTitle);
-				window.zWaitForActive();
-
 				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-
+				
+				// Select the window
+				window.sSelectWindow(windowTitle);
+				
+				//Forward Mail
 				window.zToolbarPressButton(Button.B_FORWARD);
-
-				windowTitle = "Zimbra: Forward";
-				window.zSetWindowTitle(windowTitle);
-				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-
-
-				window.sSelectWindow(windowTitle);
 				String locator = FormMailNew.Locators.zToField;
-				window.sClick(locator);
-				window.sType(locator, ZimbraAccount.AccountB().EmailAddress);
-				window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-				SleepUtil.sleepSmall();
-				window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
-				SleepUtil.sleepSmall();
-
-				window.sSelectWindow(windowTitle);
-
-				//Add an attachment
+				window.sType(locator, ZimbraAccount.AccountB().EmailAddress + ",");
+				
 				// Click Attach>>inline image
 				window.zPressButton(Button.O_ATTACH_DROPDOWN);
 				window.zPressButton(Button.B_ATTACH_INLINE);
@@ -125,9 +100,6 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 
 				//click Send
 				window.zToolbarPressButton(Button.B_SEND);
-				
-				windowTitle = "Zimbra: " + subject;
-				window.zSetWindowTitle(windowTitle);
 				
 			} finally {
 				app.zPageMain.zCloseWindow(window, windowTitle, app);

@@ -71,9 +71,10 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
+			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			// Select the window
+			window.sSelectWindow(windowTitle);
 			
 			// Wait to read the message
 			SleepUtil.sleep(1000L * (delaySeconds + 5));
@@ -127,9 +128,10 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
+			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			// Select the window
+			window.sSelectWindow(windowTitle);
 			
 			window.zKeyboardShortcut(Shortcut.S_MAIL_MARKREAD);
 
@@ -179,9 +181,10 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
+			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
 			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			// Select the window
+			window.sSelectWindow(windowTitle);
 			
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_MARK_AS_READ);
 

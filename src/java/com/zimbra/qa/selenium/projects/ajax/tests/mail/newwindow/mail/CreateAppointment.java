@@ -74,15 +74,18 @@ public class CreateAppointment extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
+			
+			// Select the window
+			window.sSelectWindow(windowTitle);
 
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_CREATE_APPOINTMENT);
 			SleepUtil.sleepMedium();
-			app.zPageMail.zClickAt(DialogAddAttendees.Locators.zYesButton,"");
+			// Select the main window 
+			window.sSelectWindow(null);
+			app.zPageMail.sClick(DialogAddAttendees.Locators.zYesButton);
 			SleepUtil.sleepLong();
-			app.zPageMail.zClickAt("css=div[id^='ztb__APPT-'] td[id$='_SEND_INVITE_title']", "");
+			app.zPageMail.sClick("css=div[id^='ztb__APPT-'] td[id$='_SEND_INVITE_title']");
 			SleepUtil.sleepMedium();
 
 		} finally {

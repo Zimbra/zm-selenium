@@ -38,7 +38,7 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 	
 	public void OpenComposedMsgWithAnAttachmentInNewWindow_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		//if (OperatingSystem.isWindows() == true) {
 
 			// Create file item
 			final String fileName = "testtextfile.txt";
@@ -50,7 +50,7 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 
 			// Upload the file
 			app.zPageMail.zPressButton(Button.B_ATTACH);
-			zUpload(filePath);
+			//zUpload(filePath);
 			
 			SeparateWindowFormMailNew window = null;
 			String windowTitle = "Zimbra: Compose";
@@ -60,10 +60,9 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 				window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
 				window.zSetWindowTitle(windowTitle);
-				window.waitForComposeWindow();
-				ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
-
-				// Select the window
+				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+				
+				// Select window
 				window.sSelectWindow(windowTitle);
 				
 				// Verify Attachment should not disappeared  New compose window
@@ -73,8 +72,8 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 				app.zPageMain.zCloseWindow(window, windowTitle, app);
 			}
 
-		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
-		}
+//		} else {
+//			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+//		}
 	}
 }

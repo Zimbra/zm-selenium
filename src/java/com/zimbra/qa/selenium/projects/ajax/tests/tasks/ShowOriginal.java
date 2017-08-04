@@ -54,6 +54,7 @@ public class ShowOriginal extends AjaxCommonTest {
 
 		// Create a basic task
 		String subject = "task" + ConfigProperties.getUniqueString();
+		String windowUrl = "service/home/~/";
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" + "<m >" + "<inv>"
@@ -76,16 +77,22 @@ public class ShowOriginal extends AjaxCommonTest {
 		SeparateWindow window = (SeparateWindow) app.zPageTasks.zListItem(Action.A_RIGHTCLICK, Button.O_SHOW_ORIGINAL, subject);
 
 		try {
-			window.zSetWindowName();
-			window.zWaitForActive();
-			SleepUtil.sleepMedium(); 
-
+			window.zSetWindowTitle(windowUrl);
+			//window.zWaitForActive();
+			SleepUtil.sleepMedium();
+			
+			// Switch to new window
+			window.sSelectWindow(windowUrl);
+			
 			// Verify show original window content
 			String ShowOrigBody = window.sGetBodyText();
 			ZAssert.assertStringContains(ShowOrigBody, subject,"Verify subject in show original window");
+			
+			// Switch back to parent window
+			window.sSelectWindow(null);
 
 		} finally {
-			app.zPageMain.zCloseWindow(window, app);
+			app.zPageMain.zCloseWindow(window,windowUrl, app);
 
 		}
 

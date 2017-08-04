@@ -98,10 +98,9 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
 					window.zSetWindowTitle(windowTitle);
-					window.zWaitForWindow(windowTitle);
-					ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
-
-					// Select the window
+					ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+					
+					// Select window
 					window.sSelectWindow(windowTitle);
 
 					// Verify that the message is included as attachment in new window
@@ -206,10 +205,9 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
 					window.zSetWindowTitle(windowTitle);
-					window.zWaitForWindow(windowTitle);
-					ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
-
-					// Select the window
+					ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+					
+					// Select window
 					window.sSelectWindow(windowTitle);
 
 					// Verify that the attachment is present in new window as well.
@@ -301,10 +299,9 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
 					window.zSetWindowTitle(windowTitle);
-					window.zWaitForWindow(windowTitle);
-					ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
-
-					// Select the window
+					ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+					
+					// Select window
 					window.sSelectWindow(windowTitle);
 
 					// Verify that the attachment is present in new window as well.

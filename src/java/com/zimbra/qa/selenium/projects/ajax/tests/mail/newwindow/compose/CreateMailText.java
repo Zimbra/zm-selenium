@@ -53,8 +53,10 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			
+			// Select window
+			window.sSelectWindow(windowTitle);
 
 			// Fill out the form with the data
 			window.zFill(mail);
@@ -120,11 +122,10 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowFormMailNew) app.zPageMail.zKeyboardShortcut(shortcut);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-
-			window.waitForComposeWindow();
-
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			
+			// Select window
+			window.sSelectWindow(windowTitle);
 
 			// Fill out the form with the data
 			window.zFill(mail);
