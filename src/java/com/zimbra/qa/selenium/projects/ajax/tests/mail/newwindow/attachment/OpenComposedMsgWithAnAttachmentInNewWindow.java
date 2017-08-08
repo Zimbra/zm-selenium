@@ -22,7 +22,10 @@ import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.ui.Button;
-import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.OperatingSystem;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowFormMailNew;
@@ -38,7 +41,7 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 	
 	public void OpenComposedMsgWithAnAttachmentInNewWindow_01() throws HarnessException {
 
-		//if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true) {
 
 			// Create file item
 			final String fileName = "testtextfile.txt";
@@ -50,7 +53,7 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 
 			// Upload the file
 			app.zPageMail.zPressButton(Button.B_ATTACH);
-			//zUpload(filePath);
+			zUpload(filePath);
 			
 			SeparateWindowFormMailNew window = null;
 			String windowTitle = "Zimbra: Compose";
@@ -72,8 +75,8 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 				app.zPageMain.zCloseWindow(window, windowTitle, app);
 			}
 
-//		} else {
-//			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
-//		}
+		} else {
+			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+		}
 	}
 }
