@@ -158,7 +158,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 			} finally {
 				this.sSelectFrame("relative=top");
-				webDriver().switchTo().defaultContent();
 			}
 
 		} else {
@@ -512,7 +511,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 				this.sClickAt(optionLocator, "");
 				zWaitForBusyOverlay();
 				SleepUtil.sleepMedium();
-				page.zWaitForActive();
 
 				return (page);
 
@@ -530,10 +528,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		locators.add(optionLocator);
 		this.sClick(locators);
 		SleepUtil.sleepLong();
-
-		if (page != null) {
-			page.zWaitForActive();
-		}
 
 		return (page);
 
@@ -574,7 +568,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 					sFocus(locator);
 					sClick(locator);
-					// this.sType(locator, value);
 					zTypeCharacters(value);
 
 				} finally {
@@ -902,10 +895,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 
-		if (page != null) {
-			page.zWaitForActive();
-		}
-
 		if (doPostfixCheck) {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
@@ -1024,10 +1013,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 		this.sClick(optionLocator);
 		zWaitForBusyOverlay();
-
-		if (page != null) {
-			page.zWaitForActive();
-		}
 
 		if (doPostfixCheck) {
 			// Make sure the response is delivered before proceeding

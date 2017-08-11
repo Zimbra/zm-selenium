@@ -23,6 +23,7 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
 
 public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
@@ -60,7 +61,7 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
 			SeparateWindowDisplayMail window = null;
-			String windowTitle = "Zimbra: Compose";
+			String windowTitle = "Zimbra: " + subject;
 			
 			MailItem mail = new MailItem();
 			mail.dBodyHtml = " body"+ ConfigProperties.getUniqueString();
@@ -70,19 +71,12 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 				// Choose Actions -> Launch in Window
 				window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 				window.zSetWindowTitle(windowTitle);
-				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-				
-				// Select window
-				window.sSelectWindow(windowTitle);
+				ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 				window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_EDIT_AS_NEW);
 				
 				// Type in body
-				String locator = "css=div[id^='zv__COMPOSE'] iframe[id$='_body_ifr']";
-
-				window.sSelectFrame(locator);
-				window.sClick(locator);
-				window.zTypeCharacters(mail.dBodyHtml);
+				window.zFillField(Field.Body, mail.dBodyHtml);
 				
 				// Click Attach
 				window.zPressButton(Button.B_ATTACH);

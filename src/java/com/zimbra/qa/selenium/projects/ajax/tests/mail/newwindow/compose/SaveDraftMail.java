@@ -53,12 +53,10 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 			window.waitForComposeWindow();
-		
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-
+			
 			// Fill out the form with the data
 			window.zFillField(Field.Subject, subject);
 			
@@ -111,10 +109,9 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 			
-			// Select window
-			window.sSelectWindow(windowTitle);
+			window.waitForComposeWindow();
 
 			// Fill out the form with the data
 			window.zFillField(Field.Subject, subject);
@@ -122,7 +119,6 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 			// Type "esc" key
 			SeparateWindowDialog warning = (SeparateWindowDialog)window.zKeyboardShortcut(Shortcut.S_ESCAPE);
-			warning.zWaitForActive();
 			warning.zClickButton(Button.B_YES);
 
 		} finally {

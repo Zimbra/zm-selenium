@@ -48,10 +48,7 @@ public class CancelCompose extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			
-			// Select window
-			window.sSelectWindow(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 			
 			window.zToolbarPressButton(Button.B_CANCEL);
 			

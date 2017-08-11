@@ -65,10 +65,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			
-			// Select Window
-			window.sSelectWindow(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 			
 			window.zToolbarPressButton(Button.B_REPLY);
 			window.zToolbarPressButton(Button.B_SEND);		
@@ -124,10 +121,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			
-			// Select Window
-			window.sSelectWindow(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 			window.zKeyboardShortcut(Shortcut.S_MAIL_REPLY);
 			window.zToolbarPressButton(Button.B_SEND);
@@ -185,10 +179,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			
-			// Select Window
-			window.sSelectWindow(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 			window.zKeyboardShortcut(Shortcut.S_MAIL_REPLYAll);
 			window.zToolbarPressButton(Button.B_SEND);

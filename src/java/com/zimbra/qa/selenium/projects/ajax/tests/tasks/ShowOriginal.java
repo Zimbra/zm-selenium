@@ -78,18 +78,11 @@ public class ShowOriginal extends AjaxCommonTest {
 
 		try {
 			window.zSetWindowTitle(windowUrl);
-			//window.zWaitForActive();
-			SleepUtil.sleepMedium();
-			
-			// Switch to new window
-			window.sSelectWindow(windowUrl);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowUrl),"Verify the window is opened and switch to it");
 			
 			// Verify show original window content
 			String ShowOrigBody = window.sGetBodyText();
 			ZAssert.assertStringContains(ShowOrigBody, subject,"Verify subject in show original window");
-			
-			// Switch back to parent window
-			window.sSelectWindow(null);
 
 		} finally {
 			app.zPageMain.zCloseWindow(window,windowUrl, app);

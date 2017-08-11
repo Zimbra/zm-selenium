@@ -78,17 +78,11 @@ public class EditAsNew extends PrefGroupMailByMessageTest {
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
-			
-			// Select the window
-			window.sSelectWindow(windowTitle);			
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");			
 
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_EDIT_AS_NEW);
-			String locator = "css=div[id^='zv__COMPOSE'] iframe[id$='_body_ifr']";
-
-			window.sSelectFrame(locator);
+			SleepUtil.sleepMedium();
 			window.zFillField(Field.Body, mail.dBodyHtml);
-			SleepUtil.sleepSmall();
 			
 			window.zToolbarPressButton(Button.B_SEND);
 			window.zToolbarPressButton(Button.B_CLOSE);

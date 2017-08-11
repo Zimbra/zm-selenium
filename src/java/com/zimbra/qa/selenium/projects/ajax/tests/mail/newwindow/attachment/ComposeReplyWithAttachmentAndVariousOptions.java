@@ -98,10 +98,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
 					window.zSetWindowTitle(windowTitle);
-					ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-					
-					// Select window
-					window.sSelectWindow(windowTitle);
+					ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 					
 					// Verify that the message is included as attachment in new window
 					ZAssert.assertTrue(mailform.zHasAttachment(subject),"Original message is not present as attachment");
@@ -205,10 +202,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
 					window.zSetWindowTitle(windowTitle);
-					ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-					
-					// Select window
-					window.sSelectWindow(windowTitle);
+					ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 					// Verify that the attachment is present in new window as well.
 					ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present in new window!");
@@ -299,10 +293,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
 					window.zSetWindowTitle(windowTitle);
-					ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-					
-					// Select window
-					window.sSelectWindow(windowTitle);
+					ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 					// Verify that the attachment is present in new window as well.
 					ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present in new window!");

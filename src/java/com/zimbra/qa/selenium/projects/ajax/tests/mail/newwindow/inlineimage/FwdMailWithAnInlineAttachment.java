@@ -81,10 +81,7 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 				window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 				window.zSetWindowTitle(windowTitle);
-				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-				
-				// Select the window
-				window.sSelectWindow(windowTitle);
+				ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 				
 				//Forward Mail
 				window.zToolbarPressButton(Button.B_FORWARD);

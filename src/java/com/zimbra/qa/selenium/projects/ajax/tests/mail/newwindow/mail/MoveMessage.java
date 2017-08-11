@@ -99,10 +99,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
-			
-			// Select the window
-			window.sSelectWindow(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");			
 
 			// Click move
 			DialogCreateFolder dialog = (DialogCreateFolder) window.zToolbarPressPulldown(Button.B_MOVE, Button.O_NEW_FOLDER);
@@ -177,10 +174,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
-			
-			// Select the window
-			window.sSelectWindow(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 			// Click move -> subfolder
 			window.zToolbarPressPulldown(Button.B_MOVE, subfolder);
@@ -238,10 +232,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
-			
-			// Select the window
-			window.sSelectWindow(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 			// Click move -> subfolder
 			window.zToolbarPressPulldown(Button.B_MOVE, trash);

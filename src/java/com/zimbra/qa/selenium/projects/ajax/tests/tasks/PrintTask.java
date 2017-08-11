@@ -93,16 +93,12 @@ public class PrintTask extends AjaxCommonTest {
 			window.sKeyPressNative("27");
 			
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			
-			//Select the window
-			window.sSelectWindow(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 			
 			// Verify content in Print view.
 			String printContent = window.sGetBodyContent(windowTitle, "css=div[class='ZhCallListPrintView']");
 			ZAssert.assertStringContains(printContent, subject, "Verify subject in Print view");
 			ZAssert.assertStringContains(printContent, bodyText, "Verify content in Print view");
-			window.sSelectWindow(null);
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
@@ -158,15 +154,12 @@ public class PrintTask extends AjaxCommonTest {
 			window.sKeyPressNative("27");
 			
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 			
-			//Select the window
-			window.sSelectWindow(windowTitle);
 			// Verify content in Print view.
 			String printContent = window.sGetBodyContent(windowTitle, "css=div[class='ZhCallListPrintView']");
 			ZAssert.assertStringContains(printContent, subject, "Verify subject in Print view");
 			ZAssert.assertStringContains(printContent, bodyText, "Verify content in Print view");
-			window.sSelectWindow(null);
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
@@ -254,17 +247,13 @@ public class PrintTask extends AjaxCommonTest {
 			window.sKeyPressNative("27");
 			
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			
-			//Select the window
-			window.sSelectWindow(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 			// Verify subjects in Print view.
 			String printContent = window.sGetBodyContent(windowTitle, "css=div[class='ZhCallListPrintView']");
 			ZAssert.assertStringContains(printContent, subject1, "Verify subject in Print view");
 			ZAssert.assertStringContains(printContent, subject2, "Verify subject2 in Print view");
 			ZAssert.assertStringContains(printContent, subject3, "Verify subject2 in Print view");
-			window.sSelectWindow(null);
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);

@@ -67,10 +67,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-
-			// Select the window
-			window.sSelectWindow(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");			
 			
 			window.zToolbarPressButton(Button.B_FORWARD);
 			window.sType(FormMailNew.Locators.zToField, ZimbraAccount.AccountB().EmailAddress + ",");
@@ -124,10 +121,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-
-			// Select the window
-			window.sSelectWindow(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 			
 			window.zKeyboardShortcut(Shortcut.S_MAIL_FOWARD);
 			window.sType(FormMailNew.Locators.zToField, ZimbraAccount.AccountB().EmailAddress + ",");

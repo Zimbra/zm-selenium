@@ -105,10 +105,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 			SleepUtil.sleepVeryLong();
 			
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			
-			// Select window
-			window.zSelectWindow(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 			
 			// Click Accept > Don't Notify Organizer
 			window.zPressButton(Button.B_PROPOSE_NEW_TIME);

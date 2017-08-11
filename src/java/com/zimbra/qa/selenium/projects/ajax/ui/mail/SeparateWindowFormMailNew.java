@@ -53,7 +53,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 	public void zFill(MailItem mail) throws HarnessException {
 		logger.info(myPageName() + ".zFill(MailItem)");
 		logger.info(mail.prettyPrint());
-
+		
 		if (mail.dSubject != null) {
 			zFillField(Field.Subject, mail.dSubject);
 		}
@@ -156,6 +156,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			locator = container + " tr[id$='_subject_row'] input[id$='_subject_control']";
 
 		} else if (field == Field.Body) {
+			SleepUtil.sleepLongMedium();
 
 			int frames = sGetCssCountNewWindow("css=iframe");
 
@@ -170,10 +171,15 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			} else if (frames >= 1) {
 
 				// HTML compose
+				logger.info("SeparateWindowFormMailNew.zFillField: Html Compose");
+				SleepUtil.sleepMedium();
 				try {
 
-					locator = "css=iframe[id*=ifr]";
-					if (!sIsElementPresent(locator))
+					this.sSelectFrame("css=iframe[id$='_body_ifr']"); 
+
+					locator = "css=html body";
+
+					if (!this.sIsElementPresent(locator))
 						throw new HarnessException("Unable to locate compose body");
 
 					sClick(locator);
@@ -182,7 +188,6 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 				} finally {
 					this.sSelectFrame("relative=top");
 				}
-
 				return;
 
 			} else {
@@ -425,9 +430,6 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 	}
 
 	public boolean waitForComposeWindow() throws HarnessException {
-		String pageTitle = "Zimbra: Compose";
-		sWaitForPopUp(pageTitle, "30000");
-		sSelectWindow(pageTitle);
 		zWaitForElementPresent("css=textarea[id*='DWT'][class='DwtHtmlEditorTextArea']", "10000");
 		return true;
 	}

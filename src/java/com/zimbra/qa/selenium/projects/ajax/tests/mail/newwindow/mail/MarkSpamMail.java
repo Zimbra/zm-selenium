@@ -74,10 +74,7 @@ public class MarkSpamMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
-			
-			// Select the window
-			window.sSelectWindow(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");			
 		
 			window.zToolbarPressButton(Button.B_RESPORTSPAM);
 			
@@ -134,10 +131,7 @@ public class MarkSpamMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
-			
-			// Select the window
-			window.sSelectWindow(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 		
 			window.zKeyboardShortcut(Shortcut.S_MAIL_MARKSPAM);
 

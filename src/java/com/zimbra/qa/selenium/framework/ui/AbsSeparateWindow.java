@@ -16,16 +16,18 @@
  */
 package com.zimbra.qa.selenium.framework.ui;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
-import org.apache.log4j.*;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.*;
-import org.openqa.selenium.interactions.Action;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import com.zimbra.qa.selenium.framework.util.*;
+import org.openqa.selenium.WebElement;
+
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 /**
  * The <code>AbsSeparateWindow</code> class is a base class that all "separate
@@ -97,14 +99,14 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 	public String sGetBodyContent(String windowTitle, String locator) throws HarnessException {
 		logger.info(myPageName() + " sGetBodyContent()");
-		
+
 		String text;
 		WebElement we = null;
 		we = webDriver().findElement(By.cssSelector(locator.replace("css=", "")));
 		text = we.getText();
 		return (text);
 	}
-	
+
 	public int sGetCssCountNewWindow(String css) throws HarnessException {
 		logger.info(myPageName() + " sGetCssCount(" + css + ")");
 
@@ -123,7 +125,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 		return (count);
 	}
-	
+
 	public void sClick(List<String> locators) throws HarnessException {
 		logger.info(myPageName() + " sClick(" + Arrays.toString(locators.toArray()) + ")");
 
@@ -133,9 +135,9 @@ public abstract class AbsSeparateWindow extends AbsPage {
 	}
 	public void zTypeCharacters(String characters) throws HarnessException {
 		logger.info(myPageName() + " zTypeCharacters()");
-		
+
 		super.zKeyboard.zTypeCharacters(characters);
-		}
+	}
 
 	public void zCloseWindow() throws HarnessException {
 		logger.info(myPageName() + " zCloseWindow()");
@@ -143,17 +145,19 @@ public abstract class AbsSeparateWindow extends AbsPage {
 		try {
 
 			Set<String> windows = webDriver().getWindowHandles();
-			if(windows.size() == 1)
-				return;
-			String mainwindow = webDriver().getWindowHandle();
-
-			for (String handle : windows) {
-				webDriver().switchTo().window(handle);
-				if (!handle.equals(mainwindow)) {
-					webDriver().switchTo().window(handle).close();
+			if(windows.size() != 1) {
+				for (String winHandle : windows) {
+					WebDriver window = webDriver().switchTo().window(winHandle);
+					if (!window.getTitle().contentEquals("Zimbra: Inbox")
+							&& !window.getTitle().contentEquals("Zimbra: Contacts")
+							&& !window.getTitle().contentEquals("Zimbra: Calendar")
+							&& !window.getTitle().contentEquals("Zimbra: Tasks")
+							&& !window.getTitle().contentEquals("Zimbra: Briefcase")
+							&& !window.getTitle().contentEquals("Zimbra: Preferences")) {
+						webDriver().close();
+					}
 				}
 			}
-			webDriver().switchTo().window(mainwindow);
 
 		} finally {
 			super.zSelectWindow(MainWindowID);
@@ -168,110 +172,109 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			if ((this.DialogWindowID == null || this.DialogWindowID.equals("null")) && (this.DialogWindowTitle.equals("") || this.DialogWindowTitle.equals("null")) && title.equals("")) {
 				return;
 			}
+			Set<String> windows = webDriver().getWindowHandles();
+			if(windows.size() != 1 && (this.sGetTitle().equals(title) || this.sGetLocation().contains("/" + title + "?"))) {	
+				logger.info("Closing winodw: " + title);
 
-			try {
-				super.sSelectWindow(title);
-
-			} catch (WebDriverException e) {
-				logger.warn("In zCloseWindow(), unable to locate DialogWindowID. Assume already closed.", e);
-				return;
-			}
-
-			for (String winHandle : webDriver().getWindowHandles()) {
-				WebDriver window = webDriver().switchTo().window(winHandle);
-				if ((window.getTitle().contentEquals(title) || window.getCurrentUrl().contains("/" + title + "?")) && !window.getTitle().contentEquals("Zimbra: Inbox")
-						&& !window.getTitle().contentEquals("Zimbra: Contacts")
-						&& !window.getTitle().contentEquals("Zimbra: Calendar")
-						&& !window.getTitle().contentEquals("Zimbra: Tasks")
-						&& !window.getTitle().contentEquals("Zimbra: Briefcase")
-						&& !window.getTitle().contentEquals("Zimbra: Preferences")) {
-					webDriver().close();
-				}
-				if (title.equals("selenium_blank")) {
-					if (window.getTitle().equals("")) {
-						webDriver().close();
+				webDriver().close();
+			} else if(windows.size() != 1) {
+					for (String winHandle : windows) {
+						WebDriver window = webDriver().switchTo().window(winHandle);
+						if ((window.getTitle().contentEquals(title) || window.getCurrentUrl().contains("/" + title + "?")) && !window.getTitle().contentEquals("Zimbra: Inbox")
+								&& !window.getTitle().contentEquals("Zimbra: Contacts")
+								&& !window.getTitle().contentEquals("Zimbra: Calendar")
+								&& !window.getTitle().contentEquals("Zimbra: Tasks")
+								&& !window.getTitle().contentEquals("Zimbra: Briefcase")
+								&& !window.getTitle().contentEquals("Zimbra: Preferences")) {
+							webDriver().close();
+						}
+						if (title.equals("selenium_blank")) {
+							if (window.getTitle().equals("")) {
+								webDriver().close();
+							}
+						}
 					}
-				}
+				} else {
+					logger.info("Window is already closed: "+ title);
 			}
 
 		} finally {
-			super.zSelectWindow(MainWindowID);
+			super.sSelectWindow(MainWindowID);
 		}
 	}
-	
-	public void zSetWindowTitle(String title) throws HarnessException {
-		this.DialogWindowTitle = title;
-		this.DialogWindowID = title;
-	}
 
-	public void zSetWindowID(String id) throws HarnessException {
-		this.DialogWindowID = id;
-		this.DialogWindowTitle = id;
-	}
+		public void zSetWindowTitle(String title) throws HarnessException {
+			this.DialogWindowTitle = title;
+			this.DialogWindowID = title;
+		}
 
-	protected boolean zSetWindowIdByTitle(String title) throws HarnessException {
+		public void zSetWindowID(String id) throws HarnessException {
+			this.DialogWindowID = id;
+			this.DialogWindowTitle = id;
+		}
 
-		if (IsDebugging) {
+		protected boolean zSetWindowIdByTitle(String title) throws HarnessException {
 
-			// Helpful for debugging, log all the names, titles, names
-			for (String name : super.sGetAllWindowIds()) {
-				logger.info("Window ID: " + name);
-			}
+			if (IsDebugging) {
 
-			for (String name : super.sGetAllWindowNames()) {
-				logger.info("Window name: " + name);
+				// Helpful for debugging, log all the names, titles, names
+				for (String name : super.sGetAllWindowIds()) {
+					logger.info("Window ID: " + name);
+				}
+
+				for (String name : super.sGetAllWindowNames()) {
+					logger.info("Window name: " + name);
+				}
+
+				for (String t : super.sGetAllWindowTitles()) {
+					logger.info("Window title: " + t);
+				}
+
 			}
 
 			for (String t : super.sGetAllWindowTitles()) {
 				logger.info("Window title: " + t);
-			}
-
-		}
-
-		for (String t : super.sGetAllWindowTitles()) {
-			logger.info("Window title: " + t);
-			if (t.toLowerCase().contains(title.toLowerCase())) {
-				DialogWindowID = title;
-				return (true);
-			}
-		}
-
-		return (false);
-
-	}
-
-	public boolean zIsClosed(String windowName) throws HarnessException {
-		logger.info(myPageName() + " zIsClosed()");
-		return zWaitForWindowClosed(windowName);
-	}
-
-	public boolean zIsActive() throws HarnessException {
-		logger.info(myPageName() + " zIsActive()");
-
-		if (this.DialogWindowTitle == null)
-			throw new HarnessException("Window Title is null.  Use zSetWindowTitle() first.");
-
-		for(int i= 1; i < 5; i++ ) {
-			logger.info("Attempt " + i + ": Looking for window: " + DialogWindowTitle);
-
-			try {
-				for (String title : super.sGetAllWindowTitles()) {
-					logger.info("Window title: " + title);
-					if (title.toLowerCase().contains(DialogWindowTitle.toLowerCase())) {
-						DialogWindowID = title;
-						logger.info("zIsActive() = true ... title = " + DialogWindowID);
-						return (true);
-					}
+				if (t.toLowerCase().contains(title.toLowerCase())) {
+					DialogWindowID = title;
+					return (true);
 				}
-				SleepUtil.sleepMedium();
-			} catch(Exception ex) {
-				logger.error(ex);
 			}
+
+			return (false);
+
 		}
 
-		logger.info("zIsActive() = false");
-		return (false);
+		public boolean zIsClosed(String windowName) throws HarnessException {
+			logger.info(myPageName() + " zIsClosed()");
+			return zWaitForWindowClosed(windowName);
+		}
 
-	}
+		public boolean zIsActive() throws HarnessException {
+			logger.info(myPageName() + " zIsActive()");
+			if (this.DialogWindowTitle == null)
+				throw new HarnessException("Window Title is null.  Use zSetWindowTitle() first.");
+
+			for(int i= 1; i < 5; i++ ) {
+				logger.info("Attempt " + i + ": Looking for window: " + DialogWindowTitle);
+
+				try {
+					for (String title : super.sGetAllWindowTitles()) {
+						logger.info("Window title: " + title);
+						if (title.toLowerCase().contains(DialogWindowTitle.toLowerCase())) {
+							DialogWindowID = title;
+							logger.info("zIsActive() = true ... title = " + DialogWindowID);
+							return (true);
+						}
+					}
+					SleepUtil.sleepMedium();
+				} catch(Exception ex) {
+					logger.error(ex);
+				}
+			}
+
+			logger.info("zIsActive() = false");
+			return (false);
+
+		}
 
 } 

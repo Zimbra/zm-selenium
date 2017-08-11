@@ -62,10 +62,7 @@ PrefGroupMailByMessageTest {
 				window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
 				window.zSetWindowTitle(windowTitle);
-				ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
-				
-				// Select the window
-				window.sSelectWindow(windowTitle);
+				ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 				// Verify Inline Attachment should not disappeared  New compose window
 				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(windowTitle, 0),"Verify inline image is present in New compose window");

@@ -124,10 +124,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			
-			// Select window
-			window.zSelectWindow(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 			// Click Accept
 			window.zPressButton(Button.B_TENTATIVE);
@@ -227,10 +224,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			
-			// Select window
-			window.zSelectWindow(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 			// Click Decline
 			window.zPressButton(Button.B_TENTATIVE);
@@ -315,10 +309,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			
-			// Select window
-			window.zSelectWindow(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 			
 			// Click Decline > Notify Organizer
 			window.zPressButtonPulldown(Button.B_TENTATIVE, Button.O_TENTATIVE_NOTIFY_ORGANIZER);
@@ -441,10 +432,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			
-			// Select window
-			window.zSelectWindow(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 			// Click Decline > Don't Notify Organizer
 			window.zPressButtonPulldown(Button.B_TENTATIVE, Button.O_TENTATIVE_DONT_NOTIFY_ORGANIZER);
