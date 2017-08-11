@@ -893,8 +893,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			throw new HarnessException("locator is not present for button " + button + " : " + locator);
 
 		this.sClick(locator);
-		this.zWaitForBusyOverlay();
-
+		
 		if (doPostfixCheck) {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
