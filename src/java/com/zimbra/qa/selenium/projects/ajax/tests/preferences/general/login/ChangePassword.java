@@ -52,20 +52,24 @@ public class ChangePassword extends AjaxCommonTest {
 	public void ChangePassword_01() throws HarnessException {
 		
 		String password = "password"+ ConfigProperties.getUniqueString();
+		String windowTitle = "Change password";
 		
 		// Go to "General"
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.General);
 		
 		// Determine the status of the checkbox
-		SeparateWindowChangePassword dialog = (SeparateWindowChangePassword)app.zPagePreferences.zToolbarPressButton(Button.B_CHANGE_PASSWORD);
-		ZAssert.assertNotNull(dialog, "Verify the dialog was created");
+		SeparateWindowChangePassword window = (SeparateWindowChangePassword)app.zPagePreferences.zToolbarPressButton(Button.B_CHANGE_PASSWORD);
+		ZAssert.assertNotNull(window, "Verify the dialog was created");
 		
-		dialog.zSetOldPassword(app.zGetActiveAccount().Password);
-		dialog.zSetNewPassword(password);
-		dialog.zSetConfirmPassword(password);
+		window.zSetWindowTitle(windowTitle);
+		ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 		
-		dialog.zClickButton(Button.B_SAVE);
-		dialog.zCloseWindow();
+		window.zSetOldPassword(app.zGetActiveAccount().Password);
+		window.zSetNewPassword(password);
+		window.zSetConfirmPassword(password);
+		
+		window.zClickButton(Button.B_SAVE);
+		window.zCloseWindow();
 				
 		// Confirm that the new password is in use
 		// by getting a new token

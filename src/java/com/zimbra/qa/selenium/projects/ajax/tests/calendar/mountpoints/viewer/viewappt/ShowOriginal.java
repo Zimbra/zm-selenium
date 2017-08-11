@@ -40,6 +40,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 		String apptContent = ConfigProperties.getUniqueString();
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
+		String windowUrl = "service/home/~/";
 		
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
@@ -97,8 +98,8 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 		// Appointment show original
 		SeparateWindow window = (SeparateWindow)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK,Button.O_SHOW_ORIGINAL_MENU, apptSubject);
 		try {	
-			window.zSetWindowName();
-			window.zWaitForActive();
+			window.zSetWindowTitle(windowUrl);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowUrl),"Verify the window is opened and switch to it");
 			SleepUtil.sleepMedium();
 			
 			// Verify show original window content
@@ -110,7 +111,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 			ZAssert.assertStringContains(body, "ORGANIZER:mailto:" + ZimbraAccount.Account10().EmailAddress, "Verify organizer value in show original");
 			
 		} finally {
-			app.zPageMain.zCloseWindow(window, app);
+			app.zPageMain.zCloseWindow(window, windowUrl, app);
 		}
 		
 	}

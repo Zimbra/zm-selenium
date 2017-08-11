@@ -2134,6 +2134,9 @@ public abstract class AbsSeleniumObject {
 				for (String handle : handles) {
 					try {
 						windowName = webDriver().switchTo().window(handle).getTitle();
+						if(windowName.equals("")) {
+							windowName = "selenium_blank";
+						}
 						url = webDriver().getCurrentUrl();
 
 						if (windowName != null && (windowName.contentEquals(name) || url.contains("/" + name + "?"))) {
