@@ -38,6 +38,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 		
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptBody = ConfigProperties.getUniqueString();
+		String windowUrl = "service/home/~/";
 
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
@@ -67,7 +68,8 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 		SeparateWindow window = (SeparateWindow)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_SHOW_ORIGINAL_MENU, apptSubject);
 		
 		try {
-			window.zWaitForActive();
+			window.zSetWindowTitle(windowUrl);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowUrl),"Verify the window is opened and switch to it");
 			SleepUtil.sleepMedium();
 
 			String body = window.sGetBodyText();
@@ -78,7 +80,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 			ZAssert.assertStringContains(body, "ORGANIZER:mailto:" + ZimbraAccount.AccountA().EmailAddress,	"Verify organizer email address in show original");
 			
 		} finally {
-			app.zPageMain.zCloseWindow(window, app);
+			app.zPageMain.zCloseWindow(window, windowUrl, app);
 		}
 
 		

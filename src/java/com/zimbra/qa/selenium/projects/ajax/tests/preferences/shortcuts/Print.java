@@ -44,19 +44,16 @@ public class Print extends AjaxCommonTest {
 			throw new HarnessException("Print button does not exist");
 		}
 		
-		String windowTitle;
-		windowTitle = "selenium_blank";
+		String windowTitle = "selenium_blank";
 		SeparateWindow window = new SeparateWindow(app);
 		
 		try {
 				
 			// Click Print, which opens a separate window
-			window.zSetWindowTitle(windowTitle);
-			app.zTreePreferences.zClickAt(locator, "");
-			app.zTreePreferences.zWaitForBusyOverlay();
+			app.zTreePreferences.sClick(locator);
 
-			window.zWaitForActive();
-			ZAssert.assertTrue(window.zIsActive(), "Verify the print window is active");
+			window.zSetWindowTitle(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);

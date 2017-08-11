@@ -55,6 +55,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 		tz = ZTimeZone.TimeZoneEST.getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
+		String windowUrl = "service/home/~/";
 		
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
@@ -87,8 +88,8 @@ public class ShowOriginal extends CalendarWorkWeekTest {
         // Open appointment & click context menu 'Show Original' Option
         SeparateWindow window = (SeparateWindow)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK,Button.O_SHOW_ORIGINAL_MENU, apptSubject);
         try {
-        	window.zSetWindowName();
-			window.zWaitForActive();
+        	window.zSetWindowTitle(windowUrl);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowUrl),"Verify the window is opened and switch to it");
 			SleepUtil.sleepMedium();
 						
 			// Verify show original window content
@@ -101,7 +102,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 			ZAssert.assertStringContains(body, attendeeHeader,"Verify Attendee is present in Show original view");
 			
         } finally {
-			app.zPageMain.zCloseWindow(window, app);
+			app.zPageMain.zCloseWindow(window, windowUrl, app);
 		}
 	}
 }
