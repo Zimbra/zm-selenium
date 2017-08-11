@@ -86,7 +86,7 @@ public class CreateACopy extends CalendarWorkWeekTest {
         FormApptNew form = new FormApptNew(app);
         form.zFillField(Field.Subject, newSubject);
         form.zFillField(Field.Body, newContent);
-        form.zFillField(Field.Attendees, attendee2);
+        form.zFillField(Field.Attendees, attendee2+",");
         form.zSubmit();
 		
 		// Verify the new invitation appears in the attendee1's inbox
@@ -107,6 +107,7 @@ public class CreateACopy extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(organizer, app.zGetActiveAccount().EmailAddress, "Verify organizer for the copied appointment");
 
 		// Verify the new invitation appears in the attendee2's inbox
+		
 		ZimbraAccount.AccountB().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 			+		"<query>" + "subject:(" + newSubject + ")" + " " + "content:(" + newContent +")" + "</query>"
