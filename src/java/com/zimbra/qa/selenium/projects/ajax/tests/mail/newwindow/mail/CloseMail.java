@@ -59,9 +59,7 @@ public class CloseMail extends PrefGroupMailByMessageTest {
 					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 			window.zToolbarPressButton(Button.B_CLOSE);
 
@@ -100,9 +98,8 @@ public class CloseMail extends PrefGroupMailByMessageTest {
 					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
+			
 			window.zKeyboardShortcut(Shortcut.S_ESCAPE);
 
 			ZAssert.assertFalse(window.zIsActive(), "Verify the window is closed");

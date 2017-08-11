@@ -17,14 +17,26 @@
 
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.openqa.selenium.By;
-import com.zimbra.qa.selenium.framework.ui.*;
-import com.zimbra.qa.selenium.framework.util.*;
+
+import com.zimbra.qa.selenium.framework.items.FolderItem;
+import com.zimbra.qa.selenium.framework.ui.AbsApplication;
+import com.zimbra.qa.selenium.framework.ui.AbsPage;
+import com.zimbra.qa.selenium.framework.ui.AbsSeparateWindow;
+import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.ui.Shortcut;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning.DialogWarningID;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.SeparateWindowDialog;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 
 /**
  * Represents a "Launch in New Window" display of a message
@@ -43,6 +55,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		public static final String FormatAsPlainTextMenu = "css=div[id^='zm__COMPOSE'] div[id$='NEW_MESSAGE__FORMAT_TEXT'] tr[id^='POPUP_zmi__COMPOSE']";
 		public static final String zSaveDraftIconBtn = "css=[id^=zb__COMPOSE][id$=__SAVE_DRAFT_title]";
 		public static final String zCancelIconBtn = "css=[id^=zb__COMPOSE][id$=__CANCEL_title]";
+		public static final String zUntagBubble = "css=table[id='zv__MSG-1__MSG_headerElement'] tr[id$='_tagRow'] span[class='addrBubble TagBubble'] span[class='ImgBubbleDelete']";
 	}
 
 	public String ContainerLocator = "css=div[id='zv__MSG-1__MSG']";
@@ -145,7 +158,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 			} finally {
 				this.sSelectFrame("relative=top");
-				webDriver().switchTo().defaultContent();
 			}
 
 		} else {
@@ -211,8 +223,10 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		if (button == Button.B_CLOSE) {
 
 			locator = container + " div[id$='__CLOSE'] td[id$='_title']";
+			this.sClick(locator);
 			page = null;
-
+			return page;
+			
 		} else if (button == Button.B_DELETE) {
 
 			locator = container + " div[id$='__DELETE'] td[id$='_title']";
@@ -467,6 +481,43 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 				return page;
 			}
 
+		} else if (pulldown == Button.B_MOVE) {
+
+			if (option == Button.O_NEW_FOLDER) {
+
+				if (this.zIsVisiblePerPosition("css=div#ztb__MSG-1", 0, 0)) { // in case of new window
+					pulldownLocator = "css=div[id='ztb__MSG-1'] div[id$='__MOVE_MENU'] td[id$='_dropdown']";
+					optionLocator = "css=div[id='ZmMoveButton_MSG-1'] div[id$='NEWFOLDER'] td[id$='_title']";
+				} else if (this.zIsVisiblePerPosition("css=div#ztb__CLV-main", 0, 0)) {
+					pulldownLocator = "css=div[id='ztb__CLV-main'] div[id$='__MOVE_MENU'] td[id$='_dropdown']";
+					optionLocator = "css=div[id='ZmMoveButton_CLV-main'] div[id$='NEWFOLDER'] td[id$='_title']";
+				} else {
+					pulldownLocator = "css=div[id='ztb__TV-main'] div[id$='__MOVE_MENU'] td[id$='_dropdown']";
+					optionLocator = "css=div[id='ZmMoveButton_TV-main'] div[id$='NEWFOLDER'] td[id$='_title']";
+				} 
+				page = new DialogCreateFolder(this.MyApplication, ((AppAjaxClient) this.MyApplication).zPageMail);
+
+				if (!this.sIsElementPresent(pulldownLocator)) {
+					throw new HarnessException(pulldownLocator + " not present!");
+				}
+
+				this.sClickAt(pulldownLocator, "0,0");
+				zWaitForBusyOverlay();
+
+				if (!this.sIsElementPresent(optionLocator)) {
+					throw new HarnessException(optionLocator + " not present!");
+				}
+
+				this.sClickAt(optionLocator, "");
+				zWaitForBusyOverlay();
+				SleepUtil.sleepMedium();
+
+				return (page);
+
+			} else {
+				throw new HarnessException("no logic defined for B_MOVE and " + option);
+			}
+
 		} else {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 
@@ -476,12 +527,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		locators.add(pulldownLocator);
 		locators.add(optionLocator);
 		this.sClick(locators);
-		this.zWaitForBusyOverlay();
-		SleepUtil.sleepMedium();
-
-		if (page != null) {
-			page.zWaitForActive();
-		}
+		SleepUtil.sleepLong();
 
 		return (page);
 
@@ -522,7 +568,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 					sFocus(locator);
 					sClick(locator);
-					// this.sType(locator, value);
 					zTypeCharacters(value);
 
 				} finally {
@@ -581,6 +626,26 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 			pulldownLocator = container + " div[id$='__TAG_MENU'] td[id$='_dropdown']>div";
 			optionLocator = "css=div[id$='__TAG_MENU|MENU'] td[id$='_title']:contains(" + tagname + ")";
+			page = null;
+
+		} else if (button == Button.B_MOVE) {
+
+			if (!(dynamic instanceof FolderItem))
+				throw new HarnessException("if pulldown = " + Button.B_MOVE + ", then dynamic must be FolderItem");
+
+			FolderItem folder = (FolderItem) dynamic;
+
+			// Check if we are CLV or MV
+			if (this.zIsVisiblePerPosition("css=div#ztb__MSG-1", 0, 0)) { // in case of new window
+				pulldownLocator = "css=div[id='ztb__MSG-1'] div[id$='__MOVE_MENU'] td[id$='_dropdown']";
+				optionLocator = "css=td#zti__ZmFolderChooser_MailMSG-1__" + folder.getId() + "_textCell";
+			} else if (this.zIsVisiblePerPosition("css=div#ztb__CLV-main", 0, 0)) {
+				pulldownLocator = "css=td#zb__CLV-main__MOVE_MENU_dropdown>div";
+				optionLocator = "css=td#zti__ZmFolderChooser_MailCLV-main__" + folder.getId() + "_textCell";
+			} else {
+				pulldownLocator = "css=td#zb__TV-main__MOVE_MENU_dropdown>div";
+				optionLocator = "css=td#zti__ZmFolderChooser_MailTV-main__" + folder.getId() + "_textCell";
+			}
 			page = null;
 
 		} else {
@@ -828,12 +893,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			throw new HarnessException("locator is not present for button " + button + " : " + locator);
 
 		this.sClick(locator);
-		this.zWaitForBusyOverlay();
-
-		if (page != null) {
-			page.zWaitForActive();
-		}
-
+		
 		if (doPostfixCheck) {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
@@ -952,10 +1012,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 		this.sClick(optionLocator);
 		zWaitForBusyOverlay();
-
-		if (page != null) {
-			page.zWaitForActive();
-		}
 
 		if (doPostfixCheck) {
 			// Make sure the response is delivered before proceeding

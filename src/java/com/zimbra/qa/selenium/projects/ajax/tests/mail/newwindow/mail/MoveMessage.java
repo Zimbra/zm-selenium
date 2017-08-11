@@ -16,16 +16,21 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
 
-
-import org.testng.annotations.*;
-
-import com.zimbra.qa.selenium.framework.items.*;
+import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
-import com.zimbra.qa.selenium.framework.ui.*;
-import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.framework.items.MailItem;
+import com.zimbra.qa.selenium.framework.ui.Action;
+import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogMove;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
 
@@ -43,15 +48,12 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 					+ " was still active.  Cancelling ...");
 			dialog.zClickButton(Button.B_CANCEL);
 		}
-
 	}
-
+	
 	public MoveMessage() {
 		logger.info("New " + MoveMessage.class.getCanonicalName());
 
 	}
-
-
 
 	@Test( description = "Move a mail from New Window by using Move -> New folder",
 			groups = { "functional", "L2" })
@@ -97,12 +99,10 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");			
 
 			// Click move
-			DialogCreateFolder dialog = (DialogCreateFolder) app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, Button.O_NEW_FOLDER);
+			DialogCreateFolder dialog = (DialogCreateFolder) window.zToolbarPressPulldown(Button.B_MOVE, Button.O_NEW_FOLDER);
 			dialog.zEnterFolderName(foldername);
 			dialog.zClickButton(Button.B_OK);
 
@@ -174,12 +174,10 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 			// Click move -> subfolder
-			app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, subfolder);
+			window.zToolbarPressPulldown(Button.B_MOVE, subfolder);
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
@@ -234,12 +232,10 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 			// Click move -> subfolder
-			app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, trash);
+			window.zToolbarPressPulldown(Button.B_MOVE, trash);
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
@@ -256,7 +252,4 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(folderId, trash.getId(), "Verify the message was moved to the trash folder");
 
 	}
-
-
-
 }

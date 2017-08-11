@@ -112,9 +112,7 @@ public class DeclineShareFolder extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail) app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS,Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-
-			ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 			// Verify that the A/D buttons are displayed
 			ZAssert.assertTrue(window.zHasShareADButtons(),"Verify that the Accept/Decline share buttons are present");

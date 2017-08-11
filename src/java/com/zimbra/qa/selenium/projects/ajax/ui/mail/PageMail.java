@@ -376,8 +376,6 @@ public class PageMail extends AbsTab {
 			throws HarnessException {
 
 		try {
-			webDriver().switchTo().defaultContent();
-			sSelectWindow(windowTitle);
 			webDriver().switchTo().frame(iFrame);
 			WebElement we = webDriver().findElement(By.cssSelector("html div img"));
 
@@ -494,7 +492,7 @@ public class PageMail extends AbsTab {
 
 			locator = "css=div[id$='__NEW_MENU'] td[id$='__NEW_MENU_title']";
 			page = new SeparateWindowFormMailNew(this.MyApplication);
-			this.zClickAt(locator, "0,0");
+			this.sClick(locator);
 
 			return (page);
 

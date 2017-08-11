@@ -25,6 +25,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 
 public class EditAsNewWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 
@@ -78,23 +79,15 @@ public class EditAsNewWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 
 				// Choose Actions -> Launch in Window
 				window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
+				
 				window.zSetWindowTitle(windowTitle);
-				window.zWaitForActive();
-				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-
-				windowTitle = "Zimbra: Compose";
+				ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
+				
 				window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_EDIT_AS_NEW);
-				window.zSetWindowTitle(windowTitle);
-				window.zWaitForActive();
-				ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-				window.sSelectWindow(windowTitle);
 
 				// Type in body
-				String locator = "css=div[id^='zv__COMPOSE'] iframe[id$='_body_ifr']";
-
-				window.sSelectFrame(locator);
-				window.sClick(locator);
-				window.zTypeCharacters(mail.dBodyHtml);
+				window.zFillField(Field.Body, mail.dBodyHtml);
+				
 				SleepUtil.sleepSmall();			
 
 				// Click Attach>>inline image
@@ -105,9 +98,6 @@ public class EditAsNewWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(windowTitle, 1),"Verify inline image is present in  compose window");
 
 				window.zToolbarPressButton(Button.B_SEND);
-				
-				windowTitle = "Zimbra: " + subject;
-				window.zSetWindowTitle(windowTitle);
 
 			} finally {
 				app.zPageMain.zCloseWindow(window, windowTitle, app);

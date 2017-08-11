@@ -81,16 +81,10 @@ public class SeparateWindowDialogRedirect extends AbsDialogSeparateWindow {
 		// Make sure the button exists
 		if (!MyWindow.sIsElementPresent(locator))
 			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
-
-		MyWindow.sFocus(locator);
-		MyWindow.zClickAt(locator, "");
-		MyWindow.zWaitForBusyOverlay();
-
+		
 		// Enter text
 		MyWindow.sType(locator, value);
-
-		MyWindow.zWaitForBusyOverlay();
-
+		
 	}
 
 	public AbsPage zClickButton(Button button) throws HarnessException {

@@ -63,11 +63,7 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 
 					window.zSetWindowTitle(windowTitle);
-					window.zWaitForActive();
-
-					window.waitForComposeWindow();
-
-					ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+					ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 					// Fill out the form with the data
 					window.zFill(mail);

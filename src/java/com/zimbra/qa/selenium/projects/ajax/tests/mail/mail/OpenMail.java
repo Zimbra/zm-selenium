@@ -30,12 +30,6 @@ public class OpenMail extends PrefGroupMailByMessageTest {
 	
 	public OpenMail() {
 		logger.info("New "+ OpenMail.class.getCanonicalName());
-		
-		
-		
-
-
-
 	}
 	
 	@Test( description = "Double click a mail",

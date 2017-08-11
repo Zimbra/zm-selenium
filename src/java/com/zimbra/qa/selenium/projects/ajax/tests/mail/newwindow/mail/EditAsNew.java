@@ -26,6 +26,7 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
 
 
@@ -77,28 +78,13 @@ public class EditAsNew extends PrefGroupMailByMessageTest {
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");			
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");			
 
-			windowTitle = "Zimbra: Compose";
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_EDIT_AS_NEW);
-			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			SleepUtil.sleepMedium();
+			window.zFillField(Field.Body, mail.dBodyHtml);
 			
-			// Type in body
-			String locator = "css=div[id^='zv__COMPOSE'] iframe[id$='_body_ifr']";
-
-			window.sSelectFrame(locator);
-			window.sClick(locator);
-			window.zTypeCharacters(mail.dBodyHtml);
-
-			SleepUtil.sleepSmall();			
 			window.zToolbarPressButton(Button.B_SEND);
-			
-			windowTitle = "Zimbra: " + subject;
-			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
 			window.zToolbarPressButton(Button.B_CLOSE);
 
 		} finally {

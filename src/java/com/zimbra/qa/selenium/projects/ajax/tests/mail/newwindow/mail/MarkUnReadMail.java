@@ -32,13 +32,8 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 	
 	public MarkUnReadMail() {
 		logger.info("New "+ MarkUnReadMail.class.getCanonicalName());
-		
-
-	}
+		}
 	
-
-
-
 	@Test( description = "Mark a message as unread by clicking on it, then using 'mu' hotkeys",
 			groups = { "functional", "L2" })
 	public void MarkUnReadMail_01() throws HarnessException {
@@ -79,9 +74,7 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");			
 			
 			window.zKeyboardShortcut(Shortcut.S_MAIL_MARKUNREAD);
 
@@ -138,9 +131,7 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");			
 			
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_MARK_AS_UNREAD);
 
@@ -197,9 +188,7 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 			
 			// Verify that the icon is not disabled
 			window. zToolbarPressButton(Button.B_ACTIONS);

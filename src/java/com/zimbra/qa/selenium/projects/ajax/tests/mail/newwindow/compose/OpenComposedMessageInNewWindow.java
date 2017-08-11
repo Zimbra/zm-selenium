@@ -60,13 +60,9 @@ public class OpenComposedMessageInNewWindow extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-			window.waitForComposeWindow();			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-
-			// Select the window
-			window.sSelectWindow(windowTitle);					
-
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
+			
+			window.zWaitForElementPresent(Locators.zBubbleToField);
 			// Verify the data appearing in fields in New window
 			ZAssert.assertStringContains(
 					mailform.sGetText(Locators.zBubbleToField) + "@" + ConfigProperties.getStringProperty("testdomain"),

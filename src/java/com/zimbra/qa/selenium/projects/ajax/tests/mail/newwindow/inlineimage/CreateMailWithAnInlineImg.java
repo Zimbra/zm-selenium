@@ -56,7 +56,6 @@ public class CreateMailWithAnInlineImg extends PrefGroupMailByMessageTest {
 				final String fileName = "samplejpg.jpg";
 				final String filePath = ConfigProperties.getBaseDirectory()	+ "\\data\\public\\other\\" + fileName;
 				SeparateWindowFormMailNew window = null;
-				
 				String windowTitle = "Zimbra: Compose";
 
 				// Open the new mail form
@@ -65,8 +64,7 @@ public class CreateMailWithAnInlineImg extends PrefGroupMailByMessageTest {
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 
 					window.zSetWindowTitle(windowTitle);
-					window.zWaitForActive();
-					ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
+					ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 					// Fill out the form with the data
 					window.zFill(mail);
@@ -76,14 +74,11 @@ public class CreateMailWithAnInlineImg extends PrefGroupMailByMessageTest {
 					window.zPressButton(Button.B_ATTACH_INLINE);
 					zUploadInlineImageAttachment(filePath);
 					
-					//Verify inline image in compose window
+					// Verify inline image in compose window
 					ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(windowTitle, 0), "Verify inline image is present in compose window");
 
 					// Send the message
 					window.zToolbarPressButton(Button.B_SEND);
-					
-					windowTitle = "Zimbra: " + mail.dSubject;
-					window.zSetWindowTitle(windowTitle);
 					
 				} finally {
 					app.zPageMain.zCloseWindow(window, windowTitle, app);

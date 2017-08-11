@@ -28,53 +28,52 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
 public class MarkReadMail extends PrefGroupMailByMessageTest {
 
 	public int delaySeconds = 10;
-	
+
 	public MarkReadMail() {
 		logger.info("New "+ MarkReadMail.class.getCanonicalName());
-		
+
 		super.startingAccountPreferences.put("zimbraPrefMarkMsgRead", "" + delaySeconds);
 
 
 	}
-	
+
 	@Test( description = "Mark a message as read by opening in separate window on it then waiting",
 			groups = { "smoke", "L1" })
 	public void MarkReadMail_01() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		String subject = "subject"+ ConfigProperties.getUniqueString();
-		
+
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-					"<m>" +
+						"<m>" +
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
-					"</m>" +
+						"</m>" +
 				"</SendMsgRequest>");
-		
-		
+
+
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-				
+
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + subject;
-		
+
 		try {
-			
+
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-			
+
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");			
+
+
 			// Wait to read the message
 			SleepUtil.sleep(1000L * (delaySeconds + 5));
 
@@ -82,11 +81,10 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);			
 		}
 
-		
 		// Verify the message is marked read in the server (flags attribute should not contain (u)nread)
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertStringDoesNotContain(mail.getFlags(), "u", "Verify the message is marked read in the server");
-		
+
 	}
 
 
@@ -94,43 +92,41 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 	@Test( description = "Mark a message as read by clicking on it, then using 'mr' hotkeys",
 			groups = { "functional", "L2" })
 	public void MarkReadMail_03() throws HarnessException {
-		
+
 
 		// Create the message data to be sent
 		String subject = "subject"+ ConfigProperties.getUniqueString();
-		
+
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-					"<m>" +
+						"<m>" +
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
-					"</m>" +
+						"</m>" +
 				"</SendMsgRequest>");
-		
-		
+
+
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-				
+
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + subject;
-		
+
 		try {
-			
+
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-			
+
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");			
+
 			window.zKeyboardShortcut(Shortcut.S_MAIL_MARKREAD);
 
 		} finally {
@@ -141,48 +137,46 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 		// Verify the message is marked read in the server (flags attribute should not contain (u)nread)
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertStringDoesNotContain(mail.getFlags(), "u", "Verify the message is marked read in the server");
-		
+
 	}
 
 	@Test( description = "Mark a message as read by action menu -> mark read",
 			groups = { "functional", "L2" })
 	public void MarkReadMail_04() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-					"<m>" +
+						"<m>" +
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
 						"</mp>" +
-					"</m>" +
+						"</m>" +
 				"</SendMsgRequest>");
 
-		
+
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-				
+
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		
+
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + subject;
-		
+
 		try {
-			
+
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-			
+
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-			
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
+
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_MARK_AS_READ);
 
 		} finally {
@@ -195,7 +189,4 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringDoesNotContain(mail.getFlags(), "u", "Verify the message is marked read in the server");
 
 	}
-		
-
-
 }

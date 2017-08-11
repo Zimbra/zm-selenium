@@ -67,18 +67,11 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-
-			windowTitle = "Zimbra: Forward";
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");			
+			
 			window.zToolbarPressButton(Button.B_FORWARD);
-			window.zSetWindowTitle(windowTitle);
-
-			window.sType(FormMailNew.Locators.zToField, ZimbraAccount.AccountB().EmailAddress);
+			window.sType(FormMailNew.Locators.zToField, ZimbraAccount.AccountB().EmailAddress + ",");
 			window.zToolbarPressButton(Button.B_SEND);
-
-			windowTitle = "Zimbra: " + subject;
-			window.zSetWindowTitle(windowTitle);
 			window.zToolbarPressButton(Button.B_CLOSE);
 
 		} finally {
@@ -128,18 +121,11 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			window.zWaitForActive();
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
-
-			windowTitle = "Zimbra: Forward";
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
+			
 			window.zKeyboardShortcut(Shortcut.S_MAIL_FOWARD);
-			window.zSetWindowTitle(windowTitle);
-
-			window.sType(FormMailNew.Locators.zToField, ZimbraAccount.AccountB().EmailAddress);
+			window.sType(FormMailNew.Locators.zToField, ZimbraAccount.AccountB().EmailAddress + ",");
 			window.zToolbarPressButton(Button.B_SEND);
-
-			windowTitle = "Zimbra: " + subject;
-			window.zSetWindowTitle(windowTitle);
 			window.zToolbarPressButton(Button.B_CLOSE);
 
 		} finally {

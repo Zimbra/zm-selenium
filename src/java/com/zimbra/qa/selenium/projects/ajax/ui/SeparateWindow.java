@@ -87,8 +87,8 @@ public class SeparateWindow extends AbsSeparateWindow {
 		for (String handle: windows) {
 			webDriver().switchTo().window(handle);
 		    if (!handle.equals(mainwindow)) {
-		    	if (!webDriver().switchTo().window(handle).getTitle().equals("")) {
-			    	this.DialogWindowName = webDriver().switchTo().window(handle).getTitle();
+		    	if (!webDriver().getTitle().equals("")) {
+			    	this.DialogWindowName = webDriver().getTitle();
 					this.DialogWindowID = this.DialogWindowName;
 		    	} else {
 		    		this.DialogWindowName = "selenium_blank";
@@ -153,7 +153,7 @@ public class SeparateWindow extends AbsSeparateWindow {
 				name = "selenium_blank";
 			}
 			if ( name.equals(DialogWindowTitle) ) {
-				logger.info("zIsActive() = true ... title = "+ DialogWindowName);
+				logger.info("zIsActive() = true ... title = "+ DialogWindowTitle);
 				return (true);
 			}
 		}
