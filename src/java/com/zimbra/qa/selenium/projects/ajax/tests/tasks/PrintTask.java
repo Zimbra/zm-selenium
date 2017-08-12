@@ -16,6 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
 
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
 import org.testng.annotations.Test;
@@ -87,14 +88,14 @@ public class PrintTask extends AjaxCommonTest {
 
 			// Right click the item, select print
 			window = (SeparateWindowPrintPreview)app.zPageTasks.zListItem(Action.A_RIGHTCLICK, Button.O_PRINT_MENU, subject);
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepLong();
 			
 			// Press esc from keyboard to discard the print preview dialog.
-			window.sKeyPressNative("27");
+			window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ESCAPE);
 			
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+		
 			// Verify content in Print view.
 			String printContent = window.sGetBodyContent(windowTitle, "css=div[class='ZhCallListPrintView']");
 			ZAssert.assertStringContains(printContent, subject, "Verify subject in Print view");
@@ -148,10 +149,10 @@ public class PrintTask extends AjaxCommonTest {
 
 			// Press keyboard shortcut p
 			window = (SeparateWindowPrintPreview)app.zPageTasks.zKeyboardShortcut(Shortcut.S_PRINTTASK);
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepLong();
 			
 			// Press esc from keyboard to discard the print preview dialog.
-			window.sKeyPressNative("27");
+			window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ESCAPE);
 			
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
@@ -241,10 +242,10 @@ public class PrintTask extends AjaxCommonTest {
 
 			// Pull down Print button and select Print Task folder.
 			window = (SeparateWindowPrintPreview)app.zPageTasks.zToolbarPressPulldown(Button.B_PRINT, Button.O_PRINT_TASKFOLDER);
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepLong();
 			
 			// Press esc from keyboard to discard the print preview dialog.
-			window.sKeyPressNative("27");
+			window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ESCAPE);
 			
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
