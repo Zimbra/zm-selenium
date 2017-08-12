@@ -32,7 +32,8 @@ public class AddContactToEmailedContactNewWindow extends PrefGroupMailByMessageT
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
 		FolderItem emailedContacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.EmailedContacts);
-
+		String windowTitle = "Zimbra: Compose";
+		
 		ZimbraAccount receiver = new ZimbraAccount();
 		receiver.provision();
 		receiver.authenticate();
@@ -41,26 +42,28 @@ public class AddContactToEmailedContactNewWindow extends PrefGroupMailByMessageT
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(receiver));
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form
 		SeparateWindowFormMailNew window = null;
-		window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
-		window.zSetWindowTitle("Compose");
-		window.zWaitForActive();
-		window.waitForComposeWindow();
-		ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+		
+		try {
+			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 
-		// Fill out the form with the data
-		window.zFill(mail);
-		mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
-		window.sSelectWindow("Zimbra: Compose");
-		String locator = "css=iframe[id*=ifr]";
-		window.zWaitForElementPresent(locator, "5000");
-		window.sClickAt(locator,"");
-		window.zTypeFormattedText(locator, mail.dBodyHtml);
+			window.zSetWindowTitle(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
-		// Send the message
-		window.zToolbarPressButton(Button.B_SEND);
+			window.waitForComposeWindow();
+			
+			// Fill out the form with the data
+			window.zFill(mail);
+
+			// Send the message
+			window.zToolbarPressButton(Button.B_SEND);
+			
+		} finally {
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
+		}
 
 		// Soap verification
 		app.zGetActiveAccount().soapSend(
@@ -79,7 +82,7 @@ public class AddContactToEmailedContactNewWindow extends PrefGroupMailByMessageT
 		app.zPageContacts.zNavigateTo();
 		app.zTreeContacts.zClickAt("css=td[id='zti__main_Contacts__13_textCell']:contains('Emailed Contacts')", "");
 
-		ZAssert.assertFalse(app.zTreeContacts.sIsElementPresent("css=div[id^='zlif__CNS-main__']:contains('"+ receiver.DisplayName + "')"), "Verify that receiver contact is present in emailed contact list");
+		ZAssert.assertTrue(app.zTreeContacts.sIsElementPresent("css=div[id^='zlif__CNS-main__']:contains('"+ receiver.DisplayName + "')"), "Verify that receiver contact is present in emailed contact list");
 
 	}
 }

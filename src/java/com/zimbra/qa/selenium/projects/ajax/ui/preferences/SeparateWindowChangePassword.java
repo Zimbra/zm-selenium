@@ -21,9 +21,9 @@ package com.zimbra.qa.selenium.projects.ajax.ui.preferences;
 
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
-import com.zimbra.qa.selenium.framework.ui.AbsSeparateWindow;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.projects.ajax.ui.SeparateWindow;
 
 
 
@@ -33,7 +33,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
  * @author Matt Rhoades
  *
  */
-public class SeparateWindowChangePassword extends AbsSeparateWindow {
+public class SeparateWindowChangePassword extends SeparateWindow {
 
 	public static class Locators {
 

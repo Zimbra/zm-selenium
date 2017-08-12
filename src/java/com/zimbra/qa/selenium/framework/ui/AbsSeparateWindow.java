@@ -173,7 +173,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 				return;
 			}
 			Set<String> windows = webDriver().getWindowHandles();
-			if(windows.size() != 1 && (this.sGetTitle().equals(title) || this.sGetLocation().contains("/" + title + "?"))) {	
+			if(windows.size() != 1 && (sGetTitle().equals(title) || sGetLocation().contains("/" + title + "?"))) {	
 				logger.info("Closing winodw: " + title);
 
 				webDriver().close();
