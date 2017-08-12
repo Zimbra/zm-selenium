@@ -72,9 +72,9 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
-			window.zSetWindowTitle(subject);
-			window.zWaitForActive();
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			window.zSetWindowTitle(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
+			
 			window.zToolbarPressButton(Button.B_ARCHIVE);
 			
 		} finally {
@@ -125,10 +125,8 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 		try {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			
-			window.zSetWindowTitle(subject);
-			window.zWaitForActive();
-			
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+			window.zSetWindowTitle(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 			
 			String locator = "css=div[id^='ztb__MSG'] div[id*='ARCHIVE'] td[id$='_title']";
 			boolean present = window.sIsElementPresent(locator);
