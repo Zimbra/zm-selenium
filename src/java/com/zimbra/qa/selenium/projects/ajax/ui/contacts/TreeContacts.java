@@ -79,7 +79,7 @@ public class TreeContacts extends AbsTree {
 			throw new HarnessException("Unable to locator folder in tree " + locator);
 		}
 
-		sClickAt(locator, "");
+		sClick(locator);
 		zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
 

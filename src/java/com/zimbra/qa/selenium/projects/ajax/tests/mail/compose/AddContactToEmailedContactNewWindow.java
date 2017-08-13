@@ -52,8 +52,6 @@ public class AddContactToEmailedContactNewWindow extends PrefGroupMailByMessageT
 
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-
-			window.waitForComposeWindow();
 			
 			// Fill out the form with the data
 			window.zFill(mail);
@@ -80,9 +78,9 @@ public class AddContactToEmailedContactNewWindow extends PrefGroupMailByMessageT
 		// UI verification 
 		// Go to emailed contacts folder
 		app.zPageContacts.zNavigateTo();
-		app.zTreeContacts.zClickAt("css=td[id='zti__main_Contacts__13_textCell']:contains('Emailed Contacts')", "");
+		app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, emailedContacts);
 
-		ZAssert.assertTrue(app.zTreeContacts.sIsElementPresent("css=div[id^='zlif__CNS-main__']:contains('"+ receiver.DisplayName + "')"), "Verify that receiver contact is present in emailed contact list");
+		ZAssert.assertTrue(app.zPageContacts.sIsElementPresent("css=div[id^='zlif__CNS-main__'][id$='__fileas']:contains('"+ receiver.DisplayName + "')"), "Verify that receiver contact is present in emailed contact list");
 
 	}
 }
