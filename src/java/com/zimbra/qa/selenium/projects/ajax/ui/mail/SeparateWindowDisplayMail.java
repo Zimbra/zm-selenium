@@ -654,7 +654,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 		if (pulldownLocator != null) {
 			this.sClick(pulldownLocator);
-			SleepUtil.sleepVerySmall();
+			SleepUtil.sleepSmall();
 			if (optionLocator != null) {
 				this.sClick(optionLocator);
 			}
