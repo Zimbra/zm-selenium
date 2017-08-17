@@ -821,6 +821,7 @@ public class FormApptNew extends AbsForm {
 
 	}
 	
+	@SuppressWarnings("unused")
 	public void zFillField(Field field, String value) throws HarnessException {
 
 		tracer.trace("Set " + field + " to " + value);

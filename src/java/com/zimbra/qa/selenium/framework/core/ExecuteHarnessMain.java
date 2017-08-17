@@ -735,9 +735,11 @@ public class ExecuteHarnessMain {
 			return false;
 		}
 	}
-	
+
+	 // Dynamically add retry class annotation to each test cases
+	@SuppressWarnings("rawtypes")
 	protected class AnnotationTransformer implements IAnnotationTransformer {
-		 // Dynamically add retry class annotation to each test cases
+
 		@Override
 		public void transform(ITestAnnotation annotation, Class testClass, Constructor testConstructor, Method testMethod) {
 				annotation.setRetryAnalyzer(ExecuteHarnessMain.RetryAnalyzer.class);
