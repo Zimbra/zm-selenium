@@ -91,7 +91,7 @@ public class ExecuteHarnessMain {
 
 		System.setProperty("outputDirectory", path);
 
-		if (ConfigProperties.getStringProperty("coverage.enabled").equals(true)) {
+		if (ConfigProperties.getStringProperty("coverage.enabled").equals("true")) {
 			File coverage = new File(path + "/coverage");
 			if (!coverage.exists())
 				coverage.mkdirs();
@@ -299,7 +299,7 @@ public class ExecuteHarnessMain {
 
 		try {
 			String response;
-			if (ConfigProperties.getStringProperty("coverage.enabled").equals(true)) {
+			if (ConfigProperties.getStringProperty("coverage.enabled").equals("true")) {
 				response = executeCodeCoverage();
 			} else {
 				response = executeSelenium();

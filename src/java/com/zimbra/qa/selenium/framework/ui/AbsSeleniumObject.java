@@ -868,7 +868,7 @@ public abstract class AbsSeleniumObject {
 		logger.info("Refreshing UI");
 		webDriver().navigate().refresh();
 
-		if (ConfigProperties.getAppType().equals("AJAX")) {
+		if (ConfigProperties.getAppType().toString().equals("AJAX")) {
 			if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
 				zWaitTillElementPresent(PageMail.Locators.zMailZimletsPane);
 			} else {
