@@ -25,6 +25,11 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.net.*;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 import java.util.List;
 import java.util.jar.*;
@@ -63,6 +68,8 @@ public class ExecuteHarnessMain {
 	public static int testsPass = 0;
 	public static int testsFailed = 0;
 	public static int testsSkipped = 0;
+	public static int currentRunningTest = 1;
+
 	protected static AppAjaxClient app1 = null;
 	protected static AppAdminConsole app2 = null;
 	protected static AppTouchClient app3 = null;
@@ -643,6 +650,7 @@ public class ExecuteHarnessMain {
 		/**
 		 * Add a new FileAppender for each class before invocation
 		 */
+		@SuppressWarnings("resource")
 		@Override
 		public void beforeInvocation(IInvokedMethod method, ITestResult result) {
 
@@ -658,6 +666,28 @@ public class ExecuteHarnessMain {
 						Logger.addAppender(a);
 					}
 					logger.info("MethodListener: START: " + getTestCaseID(method.getTestMethod().getMethod()));
+					
+					String sCurrentRunningTestFileName = "current-running-tests.txt";
+                    String sCurrentRunningTestFolderPath = ExecuteHarnessMain.testoutputfoldername + "\\debug\\projects";
+                    String sCurrentRunningTestFilePath = sCurrentRunningTestFolderPath + "\\" + sCurrentRunningTestFileName;
+                    Path pCurrentRunningTestFilePath = Paths.get(sCurrentRunningTestFolderPath, sCurrentRunningTestFileName);
+                    File fCurrentRunningTestFile = new File(sCurrentRunningTestFilePath);
+
+                    if (fCurrentRunningTestFile.createNewFile()) {
+                           Files.write(pCurrentRunningTestFilePath, Arrays.asList(currentRunningTest++ + ". " + method.getTestMethod()), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+                    }
+
+                    Boolean found = false;
+                    final Scanner scanner = new Scanner(fCurrentRunningTestFile);
+                    while (scanner.hasNextLine()) {
+                           if (scanner.nextLine().contains(method.getTestMethod().toString())) {
+                                  found = true;
+                                  break;
+                           }
+                    }
+                    if (!found) {
+                           Files.write(pCurrentRunningTestFilePath, Arrays.asList(currentRunningTest++ + ". " + method.getTestMethod()), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+                    }
 
 					// Log the associated bugs
 					Bugs b = method.getTestMethod().getMethod().getAnnotation(Bugs.class);
