@@ -103,9 +103,9 @@ public class DisableExternalAccountCreation extends AjaxCommonTest {
 		// Add an external account
 		app.zPagePreferences.sClick(Locators.zAddExternalAccountButton);
 		
-		// Verify that only IMAP radio button is present
-		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zImapRadioButton), "IMAP option is not enabled!");
-		ZAssert.assertFalse(app.zPagePreferences.sIsElementPresent(Locators.zPop3RadioButton), "POP3 option is not disabled!");
+		// Verify that only IMAP Text is present
+		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zImapText), "IMAP option is not enabled!");
+		ZAssert.assertFalse(app.zPagePreferences.sIsElementPresent(Locators.zPop3Text), "POP3 option is not disabled!");
 		
 		// Verify that a new External account row has been added
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zExternalAccountRow1), "External account is not getting created!");

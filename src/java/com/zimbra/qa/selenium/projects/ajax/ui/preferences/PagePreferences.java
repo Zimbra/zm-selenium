@@ -118,6 +118,8 @@ public class PagePreferences extends AbsTab {
 		public static final String zPersonaRow1 = "css=div[id^='zlic__ACCT__new-persona'][id$='__na_name']:contains('New Persona')";
 		public static final String zPop3RadioButton = "css=input[id$='_input'][value='Pop']";
 		public static final String zImapRadioButton = "css=input[id$='_input'][value='Imap']";
+		public static final String zImapText="css=div#Prefs_Pages_ACCOUNTS_EXTERNAL td.ZOptionsField:contains('IMAP')";
+		public static final String zPop3Text="css=div#Prefs_Pages_ACCOUNTS_EXTERNAL td.ZOptionsField:contains('POP3')";
 		
 		// Import/Export
 		public static final String zBrowseFileButton = "css=input#ZmImportView_FILE";

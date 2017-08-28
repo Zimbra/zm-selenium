@@ -112,6 +112,9 @@ public class CreateShare extends CalendarWorkWeekTest {
 	@Test(description = "Share folder with viewer rights and add a multiline note to it", groups = { "functional", "L2" })
 	public void CreateShare_03() throws HarnessException {
 
+		app.zPageMain.sRefresh();
+		app.zPageCalendar.zNavigateTo();
+		
 		// Create a folder
 		String firstLine = "First Line " + ConfigProperties.getUniqueString();
 		String secondLine = "Second Line " + ConfigProperties.getUniqueString();
@@ -136,11 +139,7 @@ public class CreateShare extends CalendarWorkWeekTest {
 		// Add note to standard message, click OK
 		dialog.zSetEmailAddress(ZimbraAccount.Account9().EmailAddress);
 
-		dialog.zSetMessageType(ShareMessageType.AddNoteToStandardMsg, firstLine);
-		dialog.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-		dialog.zKeyboard.zTypeCharacters(secondLine);
-		dialog.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-		dialog.zKeyboard.zTypeCharacters(thirdLine);
+		dialog.zSetMessageType(ShareMessageType.AddNoteToStandardMsg, firstLine +"\n" + secondLine +"\n"+thirdLine);
 		dialog.zClickButton(Button.B_OK);
 
 		// Search for the mail in recepients inbox

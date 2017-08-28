@@ -124,6 +124,9 @@
 		public static final Button B_SENDCANCELLATION = new Button("B_SENDCANCELLATION");
 		public static final Button B_EDITMESSAGE = new Button("B_EDITMESSAGE");
 		public static final Button B_CANCEL_CONFIRMDELETE = new Button("B_CANCEL_CONFIRMDELETE");
+		
+		//Signature warning dialog buttons
+		public static final Button B_Signature_OK= new Button("B_Signature_Ok");
 
 		// Main Page buttons and pulldown options
 		public static final Button B_ACCOUNT = new Button("B_ACCOUNT");
@@ -504,6 +507,7 @@
 		public static final Button B_NEXT_PAGE = new Button("B_NEXT_PAGE");
 		public static final Button B_PREVIOUS_PAGE = new Button("B_PREVIOUS_PAGE");
 		public static final Button B_MONTH = new Button("B_MONTH");
+		public static final Button B_TODAY = new Button("B_TODAY");
 		public static final Button B_REPEAT_DROPDOWN_DISABLED = new Button("B_REPEAT_DROPDOWN_DISABLED");
 		public static final Button B_REPEAT_DESCRIPTION_DISABLED = new Button("B_REPEAT_DESCRIPTION_DISABLED");
 

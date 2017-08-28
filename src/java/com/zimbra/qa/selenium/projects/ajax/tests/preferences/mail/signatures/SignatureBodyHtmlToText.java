@@ -39,7 +39,7 @@ public class SignatureBodyHtmlToText extends AjaxCommonTest {
 	}
 
 	@Bugs(ids="98736")
-	@Test(description = "Verify that body content of signature is not lost when changed from HTML to text", groups = { "functional", "L3"  })
+	@Test(description = "Verify that body content of signature is not lost when changed from HTML to text", groups = { "functional", "L3" })
 	public void SignatureBodyHtmlToText_01() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();
@@ -60,7 +60,7 @@ public class SignatureBodyHtmlToText extends AjaxCommonTest {
 
 		// Select text format from drop down
 		DialogWarning dialog = (DialogWarning) signew.zSelectFormat("text");
-		dialog.zClickButton(Button.B_OK);
+		dialog.zClickButton(Button.B_Signature_OK);
 		SleepUtil.sleepMedium();
 
 		ZAssert.assertStringContains(signew.zGetSignatureBodyText(), sigBody, "Verify the text content signature body");
@@ -80,7 +80,9 @@ public class SignatureBodyHtmlToText extends AjaxCommonTest {
 		signew1.zFillField(Field.SignatureHtmlBody, sigBody1);
 
 		// Select text format from drop down
-		signew1.zSelectFormat("text");
+		DialogWarning dialog1 = (DialogWarning) signew1.zSelectFormat("text");
+		dialog1.zClickButton(Button.B_Signature_OK);
+		SleepUtil.sleepMedium();
 
 		ZAssert.assertStringContains(signew1.zGetSignatureBodyText(), sigBody1, "Verify the text content signature body");
 		
