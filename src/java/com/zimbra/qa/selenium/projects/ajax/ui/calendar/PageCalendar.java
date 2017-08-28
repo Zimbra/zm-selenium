@@ -2051,6 +2051,11 @@ public class PageCalendar extends AbsTab {
 			SleepUtil.sleepMedium();
 			page = new DialogWarningConflictingResources(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);			
 			return (page);
+			
+		}else if (button == Button.B_TODAY) {
+
+			locator = Locators.TodayButton;
+			page = null;
 
 		} else if (button == Button.B_MONTH) {
 

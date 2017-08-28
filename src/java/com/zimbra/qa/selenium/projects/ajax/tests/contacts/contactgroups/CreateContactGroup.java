@@ -253,7 +253,7 @@ public class CreateContactGroup extends AjaxCommonTest  {
 	
 	@Bugs(ids = "77968,70905,66623")
 	@Test( description="Create a new contact group from GAL search result", 
-		groups= { "smoke", "L0"  } )
+		groups= { "smoke", "L0" } )
 	
 	public void CreateContactGroupFromGALSearchResult_05() throws HarnessException{
 		
@@ -294,6 +294,8 @@ public class CreateContactGroup extends AjaxCommonTest  {
 		//Add the member to the group	 
 		newGroup.addDListMember(contactItem);
 
+		app.zPageContacts.zNavigateTo();
+		
 		//click "Contacts" folder
 		FolderItem folder= FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
 
