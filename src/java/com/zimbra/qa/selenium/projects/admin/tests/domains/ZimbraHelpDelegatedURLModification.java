@@ -39,7 +39,6 @@ public class ZimbraHelpDelegatedURLModification extends AdminCommonTest {
 
 	public void ZimbraHelpDelegatedURLModification_01() throws HarnessException {
 
-		String url = "/zimbraAdmin/help/admin/html/administration_console_help.htm";
 		String domainID = null;
 
 		try {
@@ -115,28 +114,9 @@ public class ZimbraHelpDelegatedURLModification extends AdminCommonTest {
 			ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 					"<ModifyDomainRequest xmlns='urn:zimbraAdmin'>"
 							+ "<id>" + domainID +"</id>"
-							+  "<a n='zimbraHelpAdminURL'>" + url + "</a>"
+							+  "<a n='zimbraHelpDelegatedURL'>" + "" + "</a>"
 							+  "<a n='zimbraVirtualHostname'>"+""+"</a>"
 							+	"</ModifyDomainRequest>");
-
-			// Restart zimbra services
-			/*staf.execute("zmmailboxdctl restart");
-			SleepUtil.sleepVeryLong();
-
-			for (int i=0; i<=10; i++) {
-				app.zPageMain.logout();
-				if (app.zPageLogin.sIsElementPresent("ZLoginUserName") == true || app.zPageLogin.sIsElementPresent("css=div.ImgNodeExpandedWhite") == true) {
-					break;
-				} else {
-					SleepUtil.sleepLong();
-					if (i == 5) {
-						staf.execute("zmmailboxdctl restart");
-						SleepUtil.sleepVeryLong();
-					}
-					continue;
-				}
-			}*/
-
 		}
 	}
 }
