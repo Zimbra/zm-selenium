@@ -24,11 +24,9 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
-
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-
 import com.ibm.staf.STAFException;
 import com.ibm.staf.STAFHandle;
 import com.ibm.staf.STAFResult;
@@ -45,7 +43,6 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
     static private Logger mLog = Logger.getLogger(StafIntegration.class);
 
 	// STAF Specifics
-//	private final String kVersion = "1.1.0";
     private static final int kDeviceInvalidSerialNumber = 4001;
     private String stafServiceName;
     private STAFHandle stafServiceHandle;
@@ -297,18 +294,28 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 				return (parseResult);
 			}
 
-	        // Execute!
+			String sumTestsResult, executeTestsResult;
+
+			// Sum
 			try {
-
-				String response = harness.execute();
-		        resultString.append(response);
-
+				sumTestsResult = harness.sumTestCounts();
 			} catch (FileNotFoundException e) {
-	        	return (new STAFResult(STAFResult.JavaError, getStackTrace(e)));
+				return (new STAFResult(STAFResult.JavaError, getStackTrace(e)));
 			} catch (IOException e) {
-	        	return (new STAFResult(STAFResult.JavaError, getStackTrace(e)));
+				return (new STAFResult(STAFResult.JavaError, getStackTrace(e)));
 			}
+			String[] splitSumTestsResult = sumTestsResult.split("Number of matching test cases: ");
+			ExecuteHarnessMain.totalTests = Integer.parseInt(splitSumTestsResult[1]);
 
+	        // Execute
+			try {
+				executeTestsResult = harness.execute();
+				resultString.append(executeTestsResult);
+			} catch (FileNotFoundException e) {
+				return (new STAFResult(STAFResult.JavaError, getStackTrace(e)));
+			} catch (IOException e) {
+				return (new STAFResult(STAFResult.JavaError, getStackTrace(e)));
+			}
 
 		} catch (HarnessException e) {
 			return (new STAFResult(STAFResult.JavaError, getStackTrace(e)));
