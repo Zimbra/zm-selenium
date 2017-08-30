@@ -14,9 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
+
 package com.zimbra.qa.selenium.framework.core;
 
 import java.awt.*;
@@ -30,6 +28,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.List;
 import java.util.jar.*;
@@ -56,6 +55,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.html.ui.AppHtmlClient;
 import com.zimbra.qa.selenium.projects.mobile.ui.AppMobileClient;
 import com.zimbra.qa.selenium.projects.touch.ui.AppTouchClient;
+import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 
 public class ExecuteHarnessMain {
 
@@ -69,12 +69,19 @@ public class ExecuteHarnessMain {
 	public static int testsFailed = 0;
 	public static int testsSkipped = 0;
 	public static int currentRunningTest = 1;
+	public static int totalTests = 0;
+
+	public static Date testStartTime;
+	public static Date testEndTime;
+	public static int testTotalSeconds;
+	public static String testTotalMinutes;
 
 	protected static AppAjaxClient app1 = null;
 	protected static AppAdminConsole app2 = null;
 	protected static AppTouchClient app3 = null;
 	protected static AppHtmlClient app4 = null;
 	protected static AppMobileClient app5 = null;
+	protected static AppUniversalClient app6 = null;
 	protected AbsTab startingPage = null;
 
 	public ExecuteHarnessMain() {
@@ -650,9 +657,7 @@ public class ExecuteHarnessMain {
 		/**
 		 * Add a new FileAppender for each class before invocation
 		 */
-		@SuppressWarnings("resource")
-		@Override
-		public void beforeInvocation(IInvokedMethod method, ITestResult result) {
+		@Override public void beforeInvocation(IInvokedMethod method, ITestResult result) {
 
 			if (method.isTestMethod()) {
 
@@ -665,29 +670,11 @@ public class ExecuteHarnessMain {
 						OpenQALogger.addAppender(a);
 						Logger.addAppender(a);
 					}
+
+					// Log start time
+					testStartTime = new Date();
+
 					logger.info("MethodListener: START: " + getTestCaseID(method.getTestMethod().getMethod()));
-					
-					String sCurrentRunningTestFileName = "current-running-tests.txt";
-                    String sCurrentRunningTestFolderPath = ExecuteHarnessMain.testoutputfoldername + "\\debug\\projects";
-                    String sCurrentRunningTestFilePath = sCurrentRunningTestFolderPath + "\\" + sCurrentRunningTestFileName;
-                    Path pCurrentRunningTestFilePath = Paths.get(sCurrentRunningTestFolderPath, sCurrentRunningTestFileName);
-                    File fCurrentRunningTestFile = new File(sCurrentRunningTestFilePath);
-
-                    if (fCurrentRunningTestFile.createNewFile()) {
-                           Files.write(pCurrentRunningTestFilePath, Arrays.asList(currentRunningTest++ + ". " + method.getTestMethod()), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-                    }
-
-                    Boolean found = false;
-                    final Scanner scanner = new Scanner(fCurrentRunningTestFile);
-                    while (scanner.hasNextLine()) {
-                           if (scanner.nextLine().contains(method.getTestMethod().toString())) {
-                                  found = true;
-                                  break;
-                           }
-                    }
-                    if (!found) {
-                           Files.write(pCurrentRunningTestFilePath, Arrays.asList(currentRunningTest++ + ". " + method.getTestMethod()), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-                    }
 
 					// Log the associated bugs
 					Bugs b = method.getTestMethod().getMethod().getAnnotation(Bugs.class);
@@ -744,21 +731,66 @@ public class ExecuteHarnessMain {
 					a.close();
 					a = null;
 				}
+
+				// Log end time
+				testEndTime = new Date();
+				testTotalSeconds = (int) ((testEndTime.getTime()-testStartTime.getTime())/1000);
+				testTotalMinutes = new DecimalFormat("##.##").format((float) Math.round(testTotalSeconds) / 60);
+
+				String sCurrentRunningTestFileName = "current-running-tests.txt";
+				String sCurrentRunningTestFolderPath = ExecuteHarnessMain.testoutputfoldername + "\\debug\\projects";
+				String sCurrentRunningTestFilePath = sCurrentRunningTestFolderPath + "\\" + sCurrentRunningTestFileName;
+				Path pCurrentRunningTestFilePath = Paths.get(sCurrentRunningTestFolderPath, sCurrentRunningTestFileName);
+				File fCurrentRunningTestFile = new File(sCurrentRunningTestFilePath);
+
+				try {
+					if (fCurrentRunningTestFile.createNewFile()) {
+						Files.write(pCurrentRunningTestFilePath,
+								Arrays.asList("# | Test | Start Time | End Time | Duration"), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+						Files.write(pCurrentRunningTestFilePath,
+								Arrays.asList(currentRunningTest++ + "/" + totalTests + " | " + method.getTestMethod() + " | " + testStartTime.toString().split(" ")[3] + " | "
+										+ testEndTime.toString().split(" ")[3] + " | " + testTotalMinutes), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+				Boolean found = false;
+				Scanner scanner = null;
+				try {
+					scanner = new Scanner(fCurrentRunningTestFile);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+				while (scanner.hasNextLine()) {
+					if (scanner.nextLine().contains(method.getTestMethod().toString())) {
+						found = true;
+						break;
+					}
+				}
+				if (!found) {
+					try {
+						Files.write(pCurrentRunningTestFilePath,
+								Arrays.asList(currentRunningTest++ + "/" + totalTests + " | " + method.getTestMethod() + " | " + testStartTime.toString().split(" ")[3] + " | "
+										+ testEndTime.toString().split(" ")[3] + " | " + testTotalMinutes), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
 			}
 		}
 
 	}
 
-	public static class  RetryAnalyzer implements IRetryAnalyzer {
-		 
+	public static class RetryAnalyzer implements IRetryAnalyzer {
+
 		int counter = 0;
-		int retryLimit = 2;//Retry the test case when it goes fail on first time
-	 
+		int retryLimit = 2; //Number of time retry the testcase when fails
+
 		@Override
 		public boolean retry(ITestResult result) {
-	 
-			if(counter < retryLimit)
-			{
+
+			if(counter < retryLimit) {
 				counter++;
 				return true;
 			}
@@ -775,8 +807,8 @@ public class ExecuteHarnessMain {
 				annotation.setRetryAnalyzer(ExecuteHarnessMain.RetryAnalyzer.class);
 		}
 	}
-	
-	// Listener is use to avoid conflict of count in the TestNG report 
+
+	// Listener is use to avoid conflict of count in the TestNG report
 	protected class TestListener implements ITestListener {
 	    @Override
 		public void onFinish(ITestContext context) {
@@ -792,11 +824,11 @@ public class ExecuteHarnessMain {
 				}
 			}
 		}
-	  
+
 	    public void onTestStart(ITestResult result) {   }
-	  
+
 	    public void onTestSuccess(ITestResult result) {   }
-	  
+
 	    public void onTestFailure(ITestResult result) {   }
 
 	    public void onTestSkipped(ITestResult result) {   }
@@ -804,10 +836,10 @@ public class ExecuteHarnessMain {
 	    public void onTestFailedButWithinSuccessPercentage(ITestResult result) {   }
 
 	    public void onStart(ITestContext context) {   }
-	}  
-	
-	
-	
+	}
+
+
+
 	/**
 	 * A TestNG TestListener that tracks the pass/fail/skip counts
 	 * <p>
@@ -887,7 +919,7 @@ public class ExecuteHarnessMain {
 			}
 
 			resultDirectory = testoutputfoldername.replaceAll("[^a-zA-Z0-9/._]", "/")
-					.replaceAll("C//opt/qa/dev/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/dev/", "")
+					.replaceAll("C//opt/qa/develop/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/develop/", "")
 					.replaceAll("C//opt/qa/master/ZimbraSelenium/test/output/", "").replaceAll("C//opt/qa/master/", "");
 
 			// Get selenium project
@@ -897,6 +929,8 @@ public class ExecuteHarnessMain {
 				seleniumProject = "admin";
 			} else if (testoutputfoldername.indexOf("TOUCH") > 0) {
 				seleniumProject = "touch";
+			} else if (testoutputfoldername.indexOf("UNIVERSAL") > 0) {
+				seleniumProject = "universal";
 			} else if (testoutputfoldername.indexOf("HTML") > 0) {
 				seleniumProject = "html";
 			} else if (testoutputfoldername.indexOf("MOBILE") > 0) {
@@ -943,6 +977,10 @@ public class ExecuteHarnessMain {
 				resultRootDirectory = testoutputfoldername.substring(0, resultRootDirectoryLocation - 1);
 			}
 			resultRootDirectoryLocation = testoutputfoldername.indexOf("TOUCH");
+			if (resultRootDirectoryLocation > 0) {
+				resultRootDirectory = testoutputfoldername.substring(0, resultRootDirectoryLocation - 1);
+			}
+			resultRootDirectoryLocation = testoutputfoldername.indexOf("UNIVERSAL");
 			if (resultRootDirectoryLocation > 0) {
 				resultRootDirectory = testoutputfoldername.substring(0, resultRootDirectoryLocation - 1);
 			}
@@ -1099,12 +1137,12 @@ public class ExecuteHarnessMain {
 		}
 
 		/**
-		 * Add total tests
+		 * Total tests
 		 */
 		@Override
 		public void onTestStart(ITestResult result) {
 			setRunningTestCase(result);
-			// Below will handle retry test cases behavior's conflict 
+			// Maintain retry testcases count
 			if(testsTotal==0)
 				testsTotal++;
 			if(testsTotal == testsFailed+testsPass+testsSkipped)
@@ -1276,9 +1314,11 @@ public class ExecuteHarnessMain {
 
 	public static void main(String[] args) {
 
+		String sumTestsResult = "No results";
+		String executeTestsResult = "No results";
+
 		BasicConfigurator.configure();
 
-		String result = "No results";
 		try {
 
 			// Set the working conditions
@@ -1289,9 +1329,16 @@ public class ExecuteHarnessMain {
 			ExecuteHarnessMain harness = new ExecuteHarnessMain();
 			if (harness.parseArgs(args)) {
 				if (DO_TEST_CASE_SUM) {
-					result = harness.sumTestCounts();
+					// Sum
+					executeTestsResult = harness.sumTestCounts();
 				} else {
-					result = harness.execute();
+					// Sum
+					sumTestsResult = harness.sumTestCounts();
+					String[] splitSumTestsResult = sumTestsResult.split("Number of matching test cases: ");
+					totalTests = Integer.parseInt(splitSumTestsResult[1]);
+
+					// Execute
+					executeTestsResult = harness.execute();
 				}
 			}
 
@@ -1301,8 +1348,8 @@ public class ExecuteHarnessMain {
 			DO_TEST_CASE_SUM = false;
 		}
 
-		logger.info(result);
-		System.out.println("*****\n" + result);
+		logger.info(executeTestsResult);
+		System.out.println("*****\n" + executeTestsResult);
 		System.exit(0);
 
 	}
