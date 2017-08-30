@@ -50,8 +50,6 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 
 		String domainID=ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetDomainResponse/admin:domain", "id").toString();
 
-		String url = "/zimbraAdmin/help/admin/html/administration_console_help.htm";
-
 		// Modify the domain and change the help URL
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<ModifyDomainRequest xmlns='urn:zimbraAdmin'>"
@@ -103,7 +101,7 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<ModifyDomainRequest xmlns='urn:zimbraAdmin'>"
 						+ "<id>" + domainID +"</id>"
-						+  "<a n='zimbraHelpAdminURL'>" + url + "</a>"
+						+  "<a n='zimbraHelpAdminURL'>" + "" + "</a>"
 						+	"</ModifyDomainRequest>");
 		// Check the URL
 		ZAssert.assertTrue(tempURL.contains("/zimbraAdmin/helpUrl/help/admin/adminhelp.html"),"Admin Help URL is not as set in zimbraHelpAdminURL");
