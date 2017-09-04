@@ -1022,17 +1022,19 @@ public class FormApptNew extends AbsForm {
 		} else {
 
 			this.sFocus(locator);
-			this.sClickAt(locator, "");
+			this.sClick(locator);
 
 			if (field == Field.StartDate || field == Field.EndDate || field == Field.StartTime
 					|| field == Field.EndTime) {
-				//this.zKeyboard.zSelectAll();
-				String clearField = "";
+				this.zKeyboard.zSelectAll();
+				/*String clearField = "";
 				for(char c : value.toCharArray()){
 					clearField += "\b";
 				}
-				this.sType(locator, clearField);
+				this.sType(locator, clearField);*/
+				//this.zKeyboard.zTypeCharacters(value);
 				this.sTypeDateTime(locator, value);
+
 
 			} else if (field == Field.Subject) {
 				this.sType(locator, value);
@@ -1057,6 +1059,8 @@ public class FormApptNew extends AbsForm {
 
 	@Override
 	public void zFill(IItem item) throws HarnessException {
+
+		
 		logger.info(myPageName() + ".zFill(ZimbraItem)");
 		logger.info(item.prettyPrint());
 
@@ -1102,7 +1106,8 @@ public class FormApptNew extends AbsForm {
 			sClickJavaScript(Locators.ShowEquipmentLink);
 			zFillField(Field.Equipment, appt.getEquipment());
 		}
-
+		
+		
 		// Start date-time
 		if (appt.getStartTime() != null) {
 			zFillField(Field.StartDate, appt.getStartTime());
@@ -1114,6 +1119,8 @@ public class FormApptNew extends AbsForm {
 			zFillField(Field.EndDate, appt.getEndTime());
 			zFillField(Field.EndTime, appt.getEndTime());
 		}
+
+		
 
 		// Calendar folder
 		if (appt.getFolder() != null) {
