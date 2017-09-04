@@ -471,7 +471,7 @@ public class ExecuteHarnessMain {
 			testsPass = 0;
 			testsFailed = 0;
 			testsSkipped = 0;
-			testsRetried=0;
+			testsRetried = 0;
 
 			currentResultListener = null;
 
@@ -786,21 +786,17 @@ public class ExecuteHarnessMain {
 	}
 
 	public static class RetryAnalyzer implements IRetryAnalyzer {
-
 		int counter = 0;
-		int retryLimit = 2; //Number of time retry the testcase when fails
+		int retryLimit = 2; //Number of time retries the testcase when it fails
 
 		@Override
 		public boolean retry(ITestResult result) {
-	 
 			String fullname = result.getMethod().getMethod().getDeclaringClass().getName() + "." + result.getMethod().getMethod().getName();
-		    RetriedTests.add(fullname);
-		    
-		    if (counter == 1) {
-		        testsRetried += 1;
-		    }
-		      
-			if(counter < retryLimit) {
+			RetriedTests.add(fullname);
+			if (counter == 1) {
+				testsRetried += 1;
+			}			  
+			if (counter < retryLimit) {
 				counter++;
 				return true;
 			}
@@ -887,11 +883,11 @@ public class ExecuteHarnessMain {
 				}
 			}
 			if (!ExecuteHarnessMain.RetriedTests.isEmpty()){
-		        sb.append("\n\nRetried tests:\n");
-		        for (String s : ExecuteHarnessMain.RetriedTests) {
-		          sb.append(s).append('\n');
-		        }
-		     }
+				sb.append("\n\nRetried tests:\n");
+				for (String s : ExecuteHarnessMain.RetriedTests) {
+					sb.append(s).append('\n');
+				}
+			}
 			return (sb.toString());
 		}
 
