@@ -240,7 +240,6 @@ public class ModifyInstanceModifySeries extends CalendarWorkWeekTest {
 		apptForm = new FormApptNew(app);	
 		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, "", Button.B_END_BY_DATE_RADIO_BUTTON, "01/01/2020");
 
-		DialogConfirmRemoveAllExceptions dialog = (DialogConfirmRemoveAllExceptions)apptForm.zToolbarPressButton(Button.B_SEND);
         SleepUtil.sleepMedium();
         
 		app.zGetActiveAccount().soapSend(
