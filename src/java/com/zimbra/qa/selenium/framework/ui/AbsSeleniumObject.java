@@ -1600,16 +1600,23 @@ public abstract class AbsSeleniumObject {
 		we.clear();
 	}
 
-	protected void clearDateTimeField(String locator) throws HarnessException{
+	protected void clearDateTimeField(String locator) throws HarnessException {
 		logger.info("clearDateTimeField(" + locator + ")");
 		WebElement we = getElement(locator);
-		we.click();
-		SleepUtil.sleepVerySmall();
-		we.sendKeys("\u0001");//for Ctrl+A
-		SleepUtil.sleepVerySmall();
-		we.sendKeys("\b");//for backspace
-	}
+		JavascriptExecutor js = (JavascriptExecutor)webDriver();
 
+		if (locator.contains("_startDate")) {
+			js.executeScript("document.querySelectorAll('[id$=_startDate]')[0].value=''");
+		}else if (locator.contains("_endDate")) {
+			js.executeScript("document.querySelectorAll('[id$=_endDate]')[0].value=''");
+		}else if (locator.contains("_startTime")) {
+			js.executeScript("document.querySelectorAll('[id$=_startTimeInput]')[0].value=''");
+		}else {
+			js.executeScript("document.querySelectorAll('[id$=_endTimeInput]')[0].value=''");
+		}
+		js.executeScript("arguments[0].click();", we);
+		SleepUtil.sleepVerySmall();
+	}
 
 	protected String executeScript(String script, Object... arg) {
 		logger.info("executeScript(" + script + ")");
