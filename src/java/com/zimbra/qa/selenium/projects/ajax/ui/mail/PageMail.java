@@ -64,6 +64,7 @@ public class PageMail extends AbsTab {
 	public static class Locators {
 
 		public static final String zMailZimletsPane = "ztih__main_Mail__ZIMLET_textCell";
+		public static final String zCalendarZimletsPane = "ztih__main_Calendar__ZIMLET_textCell";
 		public static final String zMailTagsPane = "ztih__main_Mail__TAG_textCell";
 		public static final String zInboxFolder = "zti__main_Mail__2_textCell";
 

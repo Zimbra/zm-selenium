@@ -32,6 +32,7 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail;
 
 import java.util.Calendar;
 
@@ -92,9 +93,9 @@ public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends Calend
 	    	      "</ModifyAccountRequest>");
 	    
 	    // Refresh UI
-		app.zPageMain.sRefresh();
-		app.zPageCalendar.zNavigateTo();
-	    
+		app.zPageMain.sRefreshPage();
+		app.zPageMain.zWaitTillElementPresent(PageMail.Locators.zCalendarZimletsPane);
+
 		// Compose appointment on shared mailbox
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
