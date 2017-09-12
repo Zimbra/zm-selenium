@@ -213,7 +213,7 @@ public class ModifyInstanceModifySeries extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.Body, modifiedSecondInstanceBody);
 		apptForm.zFill(appt);
         apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepMedium();
+        
 	
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
@@ -230,7 +230,7 @@ public class ModifyInstanceModifySeries extends CalendarWorkWeekTest {
 		apptForm.zFillField(Field.Body, modifiedSixthInstanceBody);
 		apptForm.zFill(appt);
         apptForm.zToolbarPressButton(Button.B_SEND);
-        SleepUtil.sleepMedium();
+        
 		
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 		openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
@@ -239,6 +239,7 @@ public class ModifyInstanceModifySeries extends CalendarWorkWeekTest {
 		
 		apptForm = new FormApptNew(app);	
 		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, "", Button.B_END_BY_DATE_RADIO_BUTTON, "01/01/2020");
+		apptForm.zToolbarPressButton(Button.B_SEND);
 
         SleepUtil.sleepMedium();
         

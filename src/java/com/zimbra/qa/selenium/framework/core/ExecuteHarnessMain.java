@@ -68,6 +68,7 @@ public class ExecuteHarnessMain {
 	public static int testsPass = 0;
 	public static int testsFailed = 0;
 	public static int testsSkipped = 0;
+	public static int testsRetried = 0;
 	public static int currentRunningTest = 1;
 	public static int totalTests = 0;
 
@@ -95,6 +96,7 @@ public class ExecuteHarnessMain {
 	public String excludefilter = null;
 	public static ArrayList<String> groups = new ArrayList<String>(Arrays.asList("always", "sanity"));
 	public ArrayList<String> excludeGroups = new ArrayList<String>(Arrays.asList("skip", "performance"));
+	public static HashSet<String> RetriedTests = new HashSet<String>();
 
 	private static final String OpenQABasePackage = "org.openqa";
 	public static final String SeleniumBasePackage = "com.zimbra.qa.selenium";
@@ -455,7 +457,7 @@ public class ExecuteHarnessMain {
 										.replace(".eng.zimbra.com", "").replace(".lab.zimbra.com", "")
 								+ ")" + " | " + "Total Tests: " + String.valueOf(testsTotal) + " (Passed: "
 								+ String.valueOf(testsPass) + ", Failed: " + String.valueOf(testsFailed) + ", Skipped: "
-								+ String.valueOf(testsSkipped) + ")",
+								+ String.valueOf(testsSkipped) + ", Retried: " + String.valueOf(testsRetried -testsFailed) + ")",
 						currentResultListener.getCustomResult(),
 						testoutputfoldername + "\\TestNG\\emailable-report.html",
 						testoutputfoldername + "\\TestNG\\index.html" });
@@ -469,6 +471,7 @@ public class ExecuteHarnessMain {
 			testsPass = 0;
 			testsFailed = 0;
 			testsSkipped = 0;
+			testsRetried = 0;
 
 			currentResultListener = null;
 
@@ -783,14 +786,17 @@ public class ExecuteHarnessMain {
 	}
 
 	public static class RetryAnalyzer implements IRetryAnalyzer {
-
 		int counter = 0;
-		int retryLimit = 2; //Number of time retry the testcase when fails
+		int retryLimit = 2; //Number of time retries the testcase when it fails
 
 		@Override
 		public boolean retry(ITestResult result) {
-
-			if(counter < retryLimit) {
+			String fullname = result.getMethod().getMethod().getDeclaringClass().getName() + "." + result.getMethod().getMethod().getName();
+			RetriedTests.add(fullname);
+			if (counter == 1) {
+				testsRetried += 1;
+			}			  
+			if (counter < retryLimit) {
 				counter++;
 				return true;
 			}
@@ -824,11 +830,11 @@ public class ExecuteHarnessMain {
 				}
 			}
 		}
-
+	  
 	    public void onTestStart(ITestResult result) {   }
-
+	  
 	    public void onTestSuccess(ITestResult result) {   }
-
+	  
 	    public void onTestFailure(ITestResult result) {   }
 
 	    public void onTestSkipped(ITestResult result) {   }
@@ -862,6 +868,8 @@ public class ExecuteHarnessMain {
 			sb.append("Total Passed:  ").append(testsPass).append('\n');
 			sb.append("Total Failed:  ").append(testsFailed).append('\n');
 			sb.append("Total Skipped: ").append(testsSkipped).append('\n');
+			sb.append("Total Retried: ").append(testsRetried - testsFailed).append('\n');
+
 			if (!failedTests.isEmpty()) {
 				sb.append("\n\nFailed tests:\n");
 				for (String s : failedTests) {
@@ -871,6 +879,12 @@ public class ExecuteHarnessMain {
 			if (!skippedTests.isEmpty()) {
 				sb.append("\n\nSkipped tests:\n");
 				for (String s : skippedTests) {
+					sb.append(s).append('\n');
+				}
+			}
+			if (!ExecuteHarnessMain.RetriedTests.isEmpty()){
+				sb.append("\n\nRetried tests:\n");
+				for (String s : ExecuteHarnessMain.RetriedTests) {
 					sb.append(s).append('\n');
 				}
 			}
@@ -1120,6 +1134,7 @@ public class ExecuteHarnessMain {
 					+ result.getMethod().getMethod().getName();
 			failedTests.add(fullname); // failedTests.add(fullname.replace("com.zimbra.qa.selenium.projects.",
 										// "main.projects."));
+			RetriedTests.remove(fullname);
 			getScreenCapture(result);
 		}
 
