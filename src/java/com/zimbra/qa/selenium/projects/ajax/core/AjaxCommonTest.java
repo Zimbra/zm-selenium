@@ -607,7 +607,12 @@ public class AjaxCommonTest {
 		StringSelection ss = new StringSelection(filePath);
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
 		SleepUtil.sleepMedium();
-
+		
+		try {
+			Runtime.getRuntime().exec(ConfigProperties.getBaseDirectory() + "\\autoIT\\BrowseWindowFocus.exe");
+		} catch (IOException e) {
+			logger.info("autoIT script is not found! " + e.toString());
+		}
 		// Imitate mouse events like ENTER, CTRL+C, CTRL+V
 		Robot robot;
 		try {
@@ -616,14 +621,14 @@ public class AjaxCommonTest {
 			robot.keyPress(KeyEvent.VK_V);
 			robot.keyRelease(KeyEvent.VK_V);
 			robot.keyRelease(KeyEvent.VK_CONTROL);
-
-			robot.delay(1000);
-			
-			robot.keyPress(KeyEvent.VK_ENTER);
-			robot.keyRelease(KeyEvent.VK_ENTER);
 			
 		} catch (AWTException e) {
 			e.printStackTrace();
+		}
+		try {
+			Runtime.getRuntime().exec(ConfigProperties.getBaseDirectory() + "\\autoIT\\ClickOpenButton.exe");
+		} catch (IOException e) {
+			logger.info("autoIT script is not found! " + e.toString());
 		}
 	}
 
