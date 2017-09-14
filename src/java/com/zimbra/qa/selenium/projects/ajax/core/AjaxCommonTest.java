@@ -610,7 +610,7 @@ public class AjaxCommonTest {
 		
 		// use autoIT scripts to focus file location text field in browse window dialog
 		try {
-			Runtime.getRuntime().exec(ConfigProperties.getBaseDirectory() + "\\conf\\windows\\autoit\\BrowseWindowFocus.exe");
+			Runtime.getRuntime().exec(ConfigProperties.getBaseDirectory() + "\\conf\\windows\\autoIT\\BrowseWindowFocus.exe");
 		} catch (IOException e) {
 			logger.info("autoIT script to focus file location field is not found! " + e.toString());
 		}
@@ -630,7 +630,7 @@ public class AjaxCommonTest {
 		
 		// use autoIT scripts to click open button in browse window dialog
 		try {
-			Runtime.getRuntime().exec(ConfigProperties.getBaseDirectory() + "\\conf\\windows\\autoit\\ClickOpenButton.exe");
+			Runtime.getRuntime().exec(ConfigProperties.getBaseDirectory() + "\\conf\\windows\\autoIT\\ClickOpenButton.exe");
 		} catch (IOException e) {
 			logger.info("autoIT script to click open button is not found! " + e.toString());
 		}
