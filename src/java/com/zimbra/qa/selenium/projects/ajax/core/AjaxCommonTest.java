@@ -608,11 +608,11 @@ public class AjaxCommonTest {
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
 		SleepUtil.sleepMedium();
 		
-		// use autoIT scripts to focus file location text field in browse window dialog
+		// use autoit scripts to focus file location text field in browse window dialog
 		try {
-			Runtime.getRuntime().exec(ConfigProperties.getBaseDirectory() + "\\conf\\windows\\autoIT\\BrowseWindowFocus.exe");
+			Runtime.getRuntime().exec(ConfigProperties.getBaseDirectory() + "\\conf\\windows\\autoit\\BrowseWindowFocus.exe");
 		} catch (IOException e) {
-			logger.info("autoIT script to focus file location field is not found! " + e.toString());
+			logger.info("autoit script to focus file location field is not found! " + e.toString());
 		}
 		
 		// Imitate mouse events like ENTER, CTRL+C, CTRL+V
@@ -628,11 +628,11 @@ public class AjaxCommonTest {
 			e.printStackTrace();
 		}
 		
-		// use autoIT scripts to click open button in browse window dialog
+		// use autoit scripts to click open button in browse window dialog
 		try {
-			Runtime.getRuntime().exec(ConfigProperties.getBaseDirectory() + "\\conf\\windows\\autoIT\\ClickOpenButton.exe");
+			Runtime.getRuntime().exec(ConfigProperties.getBaseDirectory() + "\\conf\\windows\\autoit\\ClickOpenButton.exe");
 		} catch (IOException e) {
-			logger.info("autoIT script to click open button is not found! " + e.toString());
+			logger.info("autoit script to click open button is not found! " + e.toString());
 		}
 	}
 
