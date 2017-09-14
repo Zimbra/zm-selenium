@@ -129,13 +129,14 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 
 		// Verify UI for attachment
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the email");
+		
+		ZAssert.assertFalse(app.zPageMail.zVerifyExternalImageInfoBarExists(subject), "Verify External Image information bar is not displayed");
 		ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline attachment exists in the email");
 
 		//-- Verification
 
 		// From the receiving end, verify the message details
-		MailItem received = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
+		MailItem received = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:\""+subject+"\"");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
 
 		app.zGetActiveAccount().soapSend(
@@ -143,14 +144,11 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 				+		"<m id='"+ received.getId() +"'/>"
 				+	"</GetMsgRequest>");
 
-		String getFilename = app.zGetActiveAccount().soapSelectValue("//mail:mp[@cd='inline']", "filename");
+		String getFilename = app.zGetActiveAccount().soapSelectValue("//mail:mp[@ct='image/gif']", "filename");
 		ZAssert.assertEquals(getFilename, fileName, "Verify existing attachment exists in the forwarded mail");
 
-		getFilename = app.zGetActiveAccount().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
-		ZAssert.assertEquals(getFilename, fileName, "Verify attachment exists in the forwarded mail");
-
 		Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
-		ZAssert.assertEquals(nodes.length, 2, "Verify attachment exist in the forwarded mail");
+		ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the forwarded mail");
 		
 	}
 
