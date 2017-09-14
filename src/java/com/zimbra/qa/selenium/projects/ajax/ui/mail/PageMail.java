@@ -400,8 +400,7 @@ public class PageMail extends AbsTab {
 			webDriver().switchTo().defaultContent();
 			webDriver().switchTo().frame(0);
 			we = webDriver().findElement(By.cssSelector("html div img"));
-			if (we.getAttribute("pnsrc").startsWith("cid")
-					&& we.getAttribute("src").contains("/service/home/~/?auth=co")) {
+			if(we.getAttribute("src").contains("/service/home/~/?auth=co")) {
 				return true;
 			} else {
 				return false;
@@ -2312,6 +2311,10 @@ public class PageMail extends AbsTab {
 		}
 		return sIsElementPresent(locatorPrefix + "[id$='" + column.value +"']");
 		
+	}
+	
+	public boolean zVerifyExternalImageInfoBarExists(String subject) throws HarnessException {		
+		return sIsElementPresent("css=div[aria-label='"+subject+"'] span:contains('External images are not displayed.')");
 	}
 
 }
