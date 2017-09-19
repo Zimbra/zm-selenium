@@ -623,7 +623,7 @@ public class AjaxCommonTest {
 			robot.keyPress(KeyEvent.VK_V);
 			robot.keyRelease(KeyEvent.VK_V);
 			robot.keyRelease(KeyEvent.VK_CONTROL);
-			SleepUtil.sleepSmall();
+			SleepUtil.sleepMedium();
 			
 		} catch (AWTException e) {
 			e.printStackTrace();
