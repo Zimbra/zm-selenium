@@ -486,6 +486,13 @@ public class AjaxCommonTest {
 			}
 
 		}
+		
+		if(testResult.getStatus() == ITestResult.FAILURE){
+			ZimbraAccount currentAccount = app.zGetActiveAccount();
+			if (currentAccount != null && currentAccount.accountIsDirty && currentAccount == ZimbraAccount.AccountZWC()) {
+				ZimbraAccount.ResetAccountZWC();
+			}
+		}
 
 		logger.info("AfterMethod: finish");
 	}
