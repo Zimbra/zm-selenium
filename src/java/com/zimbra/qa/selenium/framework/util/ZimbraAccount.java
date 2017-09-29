@@ -111,11 +111,27 @@ public class ZimbraAccount {
 		EmailAddress = email;
 
 		if (password == null) {
-			// password = ConfigProperties.getStringProperty("adminPwd",
-			// "test123");
+			// password = ConfigProperties.getStringProperty("adminPwd", "test123");
 			password = "test123";
 		}
 		Password = password;
+	}
+	
+	public String zGetAccountStoreHost() {
+		String ZimbraMailHost;
+		
+		try {
+			ZimbraAdminAccount.GlobalAdmin().soapSend("<GetAccountRequest xmlns='urn:zimbraAdmin'>" + "<account by='name'>"
+					+ this.EmailAddress + "</account>" + "</GetAccountRequest>");
+		} catch (HarnessException e) {
+			e.printStackTrace();
+		}
+		
+		ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("//admin:GetAccountResponse");
+		ZimbraMailHost = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:account/admin:a[@n='zimbraMailHost']", null);
+		logger.info("Zimbra mail host for account " + this.EmailAddress + ": " + ZimbraMailHost);
+		
+		return (ZimbraMailHost);
 	}
 
 	/**
