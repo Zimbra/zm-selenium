@@ -60,7 +60,7 @@ public class HoverOverAttachment extends PrefGroupMailByMessageTest {
 
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + path;
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 
 

@@ -83,10 +83,10 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
-        if ( ConfigProperties.getStringProperty("server.host") != ConfigProperties.getStringProperty("store.host") ) {
-        	app.zPageCalendar.sOpen("https://" + ConfigProperties.getStringProperty("store.host") + "/home/" + ZimbraAccount.Account1().EmailAddress + "/Calendar/" + foldername + ".html");
+        if ( ConfigProperties.getStringProperty("server.host").equals(ConfigProperties.getStringProperty("mta.host")) ) {
+        	app.zPageCalendar.sOpen("https://" + ConfigProperties.getStringProperty("server.host") + ":8443/home/" + ZimbraAccount.Account1().EmailAddress + "/Calendar/" + foldername + ".html");
 		} else {
-			app.zPageCalendar.sOpen("https://" + ConfigProperties.getStringProperty("server.host") + ":8443/home/" + ZimbraAccount.Account1().EmailAddress + "/Calendar/" + foldername + ".html");
+			app.zPageCalendar.sOpen("https://" + ZimbraAccount.Account1().zGetAccountStoreHost() + "/home/" + ZimbraAccount.Account1().EmailAddress + "/Calendar/" + foldername + ".html");
 		}
         
         ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent("css=div[class^='ZhCalMonthAppt']:contains('" + apptSubject + "')"), "Appointment is visible");

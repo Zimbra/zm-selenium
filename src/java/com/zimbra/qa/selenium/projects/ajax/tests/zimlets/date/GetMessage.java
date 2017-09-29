@@ -130,7 +130,7 @@ public class GetMessage extends AjaxCommonTest {
 		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/date01/en_us_valid_dates.txt";
 		
 		// Inject the example message
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -167,7 +167,7 @@ public class GetMessage extends AjaxCommonTest {
 		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/date01/en_us_invalid_dates.txt";
 		
 		// Inject the example message
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

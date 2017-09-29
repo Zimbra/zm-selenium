@@ -57,7 +57,7 @@ public class ViewMailAsText extends UniversalCommonTest {
 		final String subject = "subject13214016725788";
 		final String content = "The Ming Dynasty";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -78,7 +78,7 @@ public class ViewMailAsText extends UniversalCommonTest {
 		final String subject = "subject13214016672655";
 		final String content = "Bold";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 
 		
@@ -103,7 +103,7 @@ public class ViewMailAsText extends UniversalCommonTest {
 		final String subject = "subject13214016621403";
 		final String content = "The Ming Dynasty";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 
 		

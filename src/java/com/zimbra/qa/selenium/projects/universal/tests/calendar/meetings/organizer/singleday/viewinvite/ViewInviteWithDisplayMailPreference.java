@@ -139,7 +139,7 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 		String multilineTextContent = "BoldString<br />ItalicString<br />Underline String<br />Red Color text<br />Green Background<br /><br />Number list below :<br /><br /><br />1. point one<br />2. point two<br />3. point three";
 		
 		if (!app.zPageMail.zVerifyMailExists(subject)) {
-			LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(filename));
+			LmtpInject.injectFile(app.zGetActiveAccount(), new File(filename));
 			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		}
 				
@@ -266,7 +266,7 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 		final String multilineTextContent = "line 1<br />line two<br /><br /><br />line 3"; 
 		
 		if (!app.zPageMail.zVerifyMailExists(subject)) {
-			LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		} 
 		// Select the message so that it shows in the reading pane

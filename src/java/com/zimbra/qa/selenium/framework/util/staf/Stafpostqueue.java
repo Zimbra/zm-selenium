@@ -28,15 +28,15 @@ public class Stafpostqueue extends StafServicePROCESS {
 	private static final String MailQueueIsEmpty = "Mail queue is empty";
 	private static final String MailQueueIsUnavailable = "mail system is down"; // 	postqueue: fatal: Queue report unavailable - mail system is down
 
-	
-	
+
+
 	/**
 	 * Wait for messages for the current test account to be delivered
 	 * @throws HarnessException
 	 */
 	@SuppressWarnings("rawtypes")
 	public void waitForPostqueue() throws HarnessException {
-		
+
 		// Start: Dev env hack
 		if ( "false".equalsIgnoreCase(ConfigProperties.getStringProperty("staf", "true")) ) {
 			logger.info("In dev environment, waiting for message to be delivered ...");
@@ -45,10 +45,10 @@ public class Stafpostqueue extends StafServicePROCESS {
 			return;
 		}
 		// End: Dev env hack
-		
+
 		String command = "postqueue -p";
 		String emailaddress = ClientSessionFactory.session().currentUserName().toLowerCase().trim();
-		
+
 		// emailaddress could be null or blank
 		// if so, set it to @domain.com
 		if ( (emailaddress == null) || (emailaddress.equals("")) ) {
@@ -59,38 +59,38 @@ public class Stafpostqueue extends StafServicePROCESS {
 		int max = Integer.parseInt(ConfigProperties.getStringProperty("postqueue.sleep.max.msec"));
 		int interval = Integer.parseInt(ConfigProperties.getStringProperty("postqueue.sleep.interval.msec"));
 		for (int i = 0; i < max; i += interval) {
-			
+
 			// Check the server queue if it is empty
 			if (execute(command)) {
-				
+
 				logger.debug("looking for "+ emailaddress +" in "+ this.StafResponse);
 
 				if ( this.StafResponse.contains(MailQueueIsEmpty)) {
 					// Queue is empty
 					return;
 				}
-				
+
 				if (!this.StafResponse.contains(emailaddress)) {
 					// Queue does not contain any messages for the test account
 					return;
 				}
-				
+
 				if ( this.StafResponse.contains(MailQueueIsUnavailable)) {
 					throw new HarnessException("Unable to check message queue.  MTA is down.  "+ this.StafResponse);
 				}
-				
+
 			}
 
 			// Wait a bit for the message to be delivered
-			SleepUtil.sleep(interval);			
+			SleepUtil.sleep(interval);
 
 		}
 
-			
+
 		logger.warn("Item never delivered, deleting from the queue");
 
 		// Get only the postqueue output from the STAF result object
-     	STAFMarshallingContext mc = STAFMarshallingContext.unmarshall(this.StafResult.result);        	
+     	STAFMarshallingContext mc = STAFMarshallingContext.unmarshall(this.StafResult.result);
      	Map resultMap = (Map)mc.getRootObject();
     	List returnedFileList = (List)resultMap.get("fileList");
     	Map stdoutMap = (Map)returnedFileList.get(0);
@@ -124,10 +124,10 @@ public class Stafpostqueue extends StafServicePROCESS {
     	// Determine each queue ID
     	// ID's are 10 hex digits
     	//
-    	
+
     	// Keep a table of strings to entries, i.e.
     	// key = 48E6016757B
-    	// value = 48E6016757B     1164 Thu Jun 30 11:21:46  enus1231@server\n(connect to ... 
+    	// value = 48E6016757B     1164 Thu Jun 30 11:21:46  enus1231@server\n(connect to ...
     	//
     	Hashtable<String, String> idTable = new Hashtable<String, String>();
 
@@ -135,7 +135,7 @@ public class Stafpostqueue extends StafServicePROCESS {
     	// Pattern patter = Pattern.compile("\\b[0-9A-F]{10}\\b");
     	Pattern pattern = Pattern.compile("^[0-9A-F]+\\b", Pattern.MULTILINE);
     	Matcher matcher = pattern.matcher(output);
-    	
+
     	while (matcher.find()) {
     		logger.debug("matched: "+ matcher.group() +" at "+ matcher.start() + " to "+ matcher.end());
 
@@ -151,15 +151,15 @@ public class Stafpostqueue extends StafServicePROCESS {
     			int finish = next.start();
     			value = value.substring(0, finish);
     		}
-    		
+
     		// Add this ID and element to the table
     		idTable.put(id, value);
     		logger.debug("matched: "+ id + " value "+ value);
     	}
 
 		// Separate all the current queue IDS associated with the test account
-		ArrayList<String> qid = new ArrayList<String>(); 
-		
+		ArrayList<String> qid = new ArrayList<String>();
+
 		for (Map.Entry<String, String> entry : idTable.entrySet()) {
 			if ( entry.getValue().contains(emailaddress) )
 				qid.add(entry.getKey());
@@ -167,24 +167,24 @@ public class Stafpostqueue extends StafServicePROCESS {
 
 		// Delete each ID one by one
 		deletePostqueueItems(qid);
-		
+
 		throw new HarnessException("Message(s) never delivered from queue.  IDs: "+ qid.toString());
-			
+
 	}
 
 	public void deletePostqueueItems(ArrayList<String> ids)
 			throws HarnessException {
-		
+
 		// STAF <SERVER> PROCESS START COMMAND
 		// /opt/zimbra/postfix/sbin/postsuper PARMS -d <queue_id> RETURNSTDOUT
 		// /opt/zimbra/common/sbin/postsuper PARMS -d <queue_id> RETURNSTDOUT
 		// RETURNSTDERR WAIT 60000
-		
+
 		for (String id : ids)
 			this.deletePostqueueItem(id);
-		
+
 	}
-	
+
 	private void deletePostqueueItem(String id) throws HarnessException {
 
 		// STAF <SERVER> PROCESS START COMMAND

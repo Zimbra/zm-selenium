@@ -45,7 +45,7 @@ public class ReplyingMessageDoesntCreateDraft extends PrefGroupMailByMessageTest
 		String subject = "subject13690880312762";
 
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug67686";
-		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
+		LmtpInject.injectFile(ZimbraAccount.AccountZWC(), new File(MimeFolder));
 
 		//-- GUI
 		

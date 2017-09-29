@@ -23,6 +23,7 @@ import com.ibm.staf.STAFHandle;
 import com.ibm.staf.STAFMarshallingContext;
 import com.ibm.staf.STAFResult;
 import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 /**
  * A wrapper class to create STAF classes from
@@ -73,6 +74,19 @@ public class StafAbstract {
 	}
 
 	/**
+	 * Get the STAF command being used
+	 * @return
+	 */
+	public String getStafCommand(String Server) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("STAF ");
+		sb.append(Server + " ");
+		sb.append(StafService + " ");
+		sb.append(StafParms + " ");
+		return (sb.toString());
+	}
+
+	/**
 	 * After using execute(), get the STAF response
 	 * @return
 	 */
@@ -89,71 +103,49 @@ public class StafAbstract {
 
 		STAFHandle handle = null;
 
-		try
-		{
-
+		try {
 			handle = new STAFHandle(StafAbstract.class.getName());
 
-	        try
-	        {
+	        try {
+
 	        	if (StafParms.indexOf("postqueue") >=0 ) {
 	    			if (StafServer.indexOf(".lab.zimbra.com") >=0 ) {
 	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-10, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".mta.host", ConfigProperties.getStringProperty("mta.host")));
 	    			} else if (StafServer.indexOf(".eng.zimbra.com") >=0 ) {
 	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-7, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".mta.host", ConfigProperties.getStringProperty("mta.host")));
 	    			}
+	    			return runSTAFCommand(StafServer,handle);
+
 	        	} else if (StafParms.indexOf("zmmemcachedctl") >=0 ) {
 	    			if (StafServer.indexOf(".lab.zimbra.com") >=0 ) {
 	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-10, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host", ConfigProperties.getStringProperty("server.host")));
 	    			} else if (StafServer.indexOf(".eng.zimbra.com") >=0 ) {
 	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-7, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host", ConfigProperties.getStringProperty("server.host")));
 	    			}
+	    			return runSTAFCommand(StafServer,handle);
+
 	    		} else if (StafParms.indexOf("zmmailbox") >=0 || StafParms.indexOf("zmtlsctl") >=0 || StafParms.indexOf("zm") >=0 || StafParms.indexOf("zmprov") >=0 || StafParms.indexOf("SYSTEM") >=0) {
-	    			if (StafServer.indexOf(".lab.zimbra.com") >=0 ) {
-	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-10, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".store.host", ConfigProperties.getStringProperty("store.host")));
-	    			} else if (StafParms.indexOf(".eng.zimbra.com") >=0 ) {
-	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-7, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".store.host", ConfigProperties.getStringProperty("store.host")));
+
+	    			Boolean storeCommandResponse = true;
+	    			String StoreServer = null;
+
+	    			for (int i=0; i<AjaxCommonTest.mailboxStores.size(); i++) {
+	    				if (StafServer.indexOf(".lab.zimbra.com") >=0 ) {
+	    					StoreServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-10, StafServer.indexOf(".com")+4), AjaxCommonTest.mailboxStores.get(i));
+		    			} else if (StafServer.indexOf(".eng.zimbra.com") >=0 ) {
+		    				StoreServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-7, StafServer.indexOf(".com")+4), AjaxCommonTest.mailboxStores.get(i));
+		    			}
+
+	    				storeCommandResponse = runSTAFCommand (StoreServer, handle);
+	    				if (!storeCommandResponse) {
+	    					storeCommandResponse = false;
+	    					break;
+	    				}
 	    			}
+	    			return storeCommandResponse;
 	    		}
 
-	        	logger.info("STAF Command: " + getStafCommand());
-
-	            StafResult = handle.submit2(StafServer, StafService, StafParms);
-
-	            if (StafResult == null)
-	            	throw new HarnessException("StafResult was null");
-
-            	logger.info("STAF Response Code: "+ StafResult.rc);
-
-            	if ( StafResult.rc == STAFResult.AccessDenied ) {
-            		// Common error in WDC.  Log a helper message.
-            		logger.error("On the server, use: staf local trust set machine *.eng.vmware.com level 5");
-            	}
-
-            	if ( StafResult.rc != STAFResult.Ok ) {
-            		throw new HarnessException("Invalid STAF response code ("+ StafResult.rc +"): "+ StafResult.result);
-            	}
-
-	            if ( (StafResult.result != null) && (!StafResult.result.trim().equals("")) ) {
-
-	            	logger.debug(StafResult.result);
-
-	            	if ( STAFMarshallingContext.isMarshalledData(StafResult.result) )
-	            	{
-	            		STAFMarshallingContext mc = STAFMarshallingContext.unmarshall(StafResult.result);
-
-	            		// Get the entire response
-	            		StafResponse = STAFMarshallingContext.formatObject(mc);
-
-	            	}
-	            	else
-	            	{
-	            		StafResponse = StafResult.result;
-	            	}
-
-	            }
-
-	            return (StafResult.rc == STAFResult.Ok);
+	        	return false;
 
 			} finally {
 
@@ -161,16 +153,50 @@ public class StafAbstract {
 
 				if (handle != null )
 					handle.unRegister();
-
 			}
 
-		}
-		catch (STAFException e)
-		{
+		} catch (STAFException e) {
         	throw new HarnessException("Error registering or unregistering with STAF, RC: " + e.rc, e);
 		}
+	}
 
+	private boolean runSTAFCommand(String StafServer, STAFHandle handle) throws HarnessException {
 
+		logger.info("STAF Command: " + getStafCommand(StafServer));
+
+        StafResult = handle.submit2(StafServer, StafService, StafParms);
+
+        if (StafResult == null)
+        	throw new HarnessException("StafResult was null");
+
+    	logger.info("STAF Response Code: "+ StafResult.rc);
+
+    	if ( StafResult.rc == STAFResult.AccessDenied ) {
+    		// Common error in WDC.  Log a helper message.
+    		logger.error("On the server, use: staf local trust set machine *.eng.vmware.com level 5");
+    	}
+
+    	if ( StafResult.rc != STAFResult.Ok ) {
+    		throw new HarnessException("Invalid STAF response code ("+ StafResult.rc +"): "+ StafResult.result);
+    	}
+
+        if ( (StafResult.result != null) && (!StafResult.result.trim().equals("")) ) {
+
+        	logger.debug(StafResult.result);
+
+        	if ( STAFMarshallingContext.isMarshalledData(StafResult.result) ) {
+        		STAFMarshallingContext mc = STAFMarshallingContext.unmarshall(StafResult.result);
+
+        		// Get the entire response
+        		StafResponse = STAFMarshallingContext.formatObject(mc);
+
+        	} else {
+        		StafResponse = StafResult.result;
+        	}
+
+        }
+
+        return (StafResult.rc == STAFResult.Ok);
 
 	}
 }

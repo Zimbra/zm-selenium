@@ -88,14 +88,13 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		
 		// Create the data source
 		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
-		String datasourceHost = ConfigProperties.getStringProperty("store.host");
 		String datasourcePopPort = ConfigProperties.getStringProperty("server.pop.port");
 		String datasourcePopType = ConfigProperties.getStringProperty("server.pop.type");
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
 			+		"<pop3 name='"+ datasourcename +"' l='"+ folder.getId() +"' isEnabled='true' "
-			+			"port='"+ datasourcePopPort +"' host='"+ datasourceHost +"' connectionType='"+ datasourcePopType +"' leaveOnServer='true' "
+			+			"port='"+ datasourcePopPort +"' host='"+ app.zGetActiveAccount().zGetAccountStoreHost() +"' connectionType='"+ datasourcePopType +"' leaveOnServer='true' "
 			+			"username='"+ external.EmailAddress +"' password='"+ external.Password +"' "
 			+			"useAddressForForwardReply='true' replyToDisplay='Bar Foo' replyToAddress='"+ app.zGetActiveAccount().EmailAddress +"' "
 			+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
@@ -197,14 +196,13 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		
 		// Create the data source
 		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
-		String datasourceHost = ConfigProperties.getStringProperty("store.host");
 		String datasourcePopPort = ConfigProperties.getStringProperty("server.pop.port");
 		String datasourcePopType = ConfigProperties.getStringProperty("server.pop.type");
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
 			+		"<pop3 name='"+ datasourcename +"' l='"+ folder.getId() +"' isEnabled='true' "
-			+			"port='"+ datasourcePopPort +"' host='"+ datasourceHost +"' connectionType='"+ datasourcePopType +"' leaveOnServer='true' "
+			+			"port='"+ datasourcePopPort +"' host='"+ app.zGetActiveAccount().zGetAccountStoreHost() +"' connectionType='"+ datasourcePopType +"' leaveOnServer='true' "
 			+			"username='"+ external.EmailAddress +"' password='"+ external.Password +"' "
 			+			"useAddressForForwardReply='true' replyToDisplay='Bar Foo' replyToAddress='"+ app.zGetActiveAccount().EmailAddress +"' "
 			+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
@@ -318,14 +316,13 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		
 		// Create the data source
 		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
-		String datasourceHost = ConfigProperties.getStringProperty("store.host");
 		String datasourcePopPort = ConfigProperties.getStringProperty("server.pop.port");
 		String datasourcePopType = ConfigProperties.getStringProperty("server.pop.type");
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
 			+		"<pop3 name='"+ datasourcename +"' l='"+ folder.getId() +"' isEnabled='true' "
-			+			"port='"+ datasourcePopPort +"' host='"+ datasourceHost +"' connectionType='"+ datasourcePopType +"' leaveOnServer='true' "
+			+			"port='"+ datasourcePopPort +"' host='"+ app.zGetActiveAccount().zGetAccountStoreHost() +"' connectionType='"+ datasourcePopType +"' leaveOnServer='true' "
 			+			"username='"+ external.EmailAddress +"' password='"+ external.Password +"' "
 			+			"useAddressForForwardReply='true' replyToDisplay='Bar Foo' replyToAddress='"+ app.zGetActiveAccount().EmailAddress +"' "
 			+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"

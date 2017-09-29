@@ -73,7 +73,7 @@ public class TrustedDomainMsgView extends AjaxCommonTest {
 				"Verify doamin is present /Pref/TrustedAddr");
 
 		// Inject the external image message(s)
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFolder));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder));
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(),subject);
 

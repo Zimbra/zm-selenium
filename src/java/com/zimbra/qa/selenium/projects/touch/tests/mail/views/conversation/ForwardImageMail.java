@@ -39,7 +39,7 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 		
 		String subject = "inline image testing";		
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email13/inline image.txt";
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(MimeFolder));
 		
 		// Select the mail from inbox
 		app.zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);
@@ -66,7 +66,7 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 		String modifiedContent = "modified body" + ConfigProperties.getUniqueString();
 		
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email13/inline image.txt";
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(MimeFolder));
 		
 		// Select the mail from inbox
 		app.zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);
@@ -108,7 +108,7 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 		
 		String subject = "external image testing";		
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email13/external image.txt";
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(MimeFolder));
 		
 		// Select the mail from inbox
 		app.zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);
@@ -136,7 +136,7 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 		String modifiedContent = "modified body" + ConfigProperties.getUniqueString();
 		
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email13/external image.txt";
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(MimeFolder));
 		
 		// Select the mail from inbox
 		app.zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);

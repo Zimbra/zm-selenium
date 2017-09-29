@@ -60,7 +60,7 @@ public class CheckFromHeaderInConversationView extends AjaxCommonTest {
 		String to = "ljk20k00k1je";
 
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug16213";
-		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
+		LmtpInject.injectFile(ZimbraAccount.AccountZWC(), new File(MimeFolder));
 
 		// Click on folder in the tree
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);

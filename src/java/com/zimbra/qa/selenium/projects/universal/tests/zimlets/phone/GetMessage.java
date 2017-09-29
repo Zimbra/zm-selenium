@@ -138,7 +138,7 @@ public class GetMessage extends UniversalCommonTest {
 		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email01/en_us_valid_phone.txt";
 		
 		// Inject the example message
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -191,7 +191,7 @@ public class GetMessage extends UniversalCommonTest {
 		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email01/en_us_invalid_phone.txt";
 		
 		// Inject the example message
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

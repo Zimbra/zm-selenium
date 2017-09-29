@@ -62,17 +62,18 @@ import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactDistributionL
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactGroupNew;
 
 public class AjaxCommonTest {
-
-	protected static Logger logger = LogManager.getLogger(AjaxCommonTest.class);
+	
 	protected AppAjaxClient app = null;
-
 	protected AbsTab startingPage = null;
+	public static ArrayList<String> mailboxStores=null;
+	
 	protected Map<String, String> startingAccountPreferences = null;
 	protected Map<String, String> startingUserPreferences = null;
 	protected Map<String, String> startingUserZimletPreferences = null;
 
-	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	WebElement we = null;
+	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
+	protected static Logger logger = LogManager.getLogger(AjaxCommonTest.class);
 	
 	protected StafServicePROCESS staf = new StafServicePROCESS();
 	String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
@@ -94,6 +95,9 @@ public class AjaxCommonTest {
 		if (ConfigProperties.getStringProperty("staf").equals("true")) {
 			
 			try {
+				// Get all mailbox stores
+				mailboxStores = CommandLine.getAllMailboxStoreServers();
+				
 				// Grant createDistList right to domain
 				logger.info("Grant createDistList right to domain");
 				staf.execute("zmprov grr domain " + ConfigProperties.getStringProperty("testdomain") + " dom "
@@ -104,7 +108,7 @@ public class AjaxCommonTest {
 				staf.execute("zmprov mcf zimbraSmimeOCSPEnabled FALSE");
 				
 			} catch(Exception e) {
-				logger.error("Unable to grant createDistList right and can't disable zimbraSmimeOCSPEnabled for S/MIME", e);
+				logger.error("Unable to get mailbox stores, grant createDistList right or can't disable zimbraSmimeOCSPEnabled for S/MIME", e);
 			}
 		}
 	}

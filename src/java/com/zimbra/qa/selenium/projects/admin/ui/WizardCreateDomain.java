@@ -23,7 +23,6 @@ import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.AbsWizard;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
 
 
@@ -67,9 +66,7 @@ public class WizardCreateDomain extends AbsWizard {
 		clickNext(AbsWizard.Locators.DOMAIN_DIALOG);
 		//sClickAt(Locators.ADD_A_GAL_ACCOUNT_BUTTON,"");
 		sClick(Locators.MAIL_SERVER_DROPDOWN);
-		sClickAt(Locators.MAIL_SERVER_DROPDOWN_TABLE+" div:contains('"+
-					ConfigProperties.getStringProperty("store.host")+
-					"')", "");
+		sClickAt(Locators.MAIL_SERVER_DROPDOWN_TABLE + " div:contains('" + "')", ""); //FIX-ME
 		clickFinish(AbsWizard.Locators.DOMAIN_DIALOG);
 
 		return (domain);

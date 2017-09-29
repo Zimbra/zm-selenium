@@ -48,7 +48,7 @@ public class CheckErrorAfterRemovingAttachement extends PrefGroupMailByMessageTe
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		// Inject the message
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Verification for attachment
 		account.soapSend(

@@ -74,7 +74,7 @@ public class SendMailWithSpecialCharacter extends PrefGroupMailByMessageTest {
 		String subject = "13680547408344 & 13680547408345";
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug82073/mime1.txt";
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		//-- GUI
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

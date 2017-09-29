@@ -65,9 +65,6 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCommonTest {
 				}
 			}
 
-			staf.execute("zmcontrol status");
-			SleepUtil.sleepMedium();
-
 			// Login
 			app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
 

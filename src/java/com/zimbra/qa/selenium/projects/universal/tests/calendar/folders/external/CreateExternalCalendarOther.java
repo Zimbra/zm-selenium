@@ -61,7 +61,7 @@ public class CreateExternalCalendarOther extends UniversalCommonTest {
 		// Fill out the external calendar
 		dialog.zSetSourceEmailAddress(icalAccount.EmailAddress);
 		dialog.zSetSourcePassword(icalAccount.Password);
-		dialog.zSetSourceServer(icalAccount.ZimbraMailHost);
+		dialog.zSetSourceServer(icalAccount.zGetAccountStoreHost());
 		dialog.zClickButton(Button.B_NEXT);
 		
 		DialogCreateCalendarFolder dailog2 = new DialogCreateCalendarFolder(app, ((AppUniversalClient) app).zPageCalendar);

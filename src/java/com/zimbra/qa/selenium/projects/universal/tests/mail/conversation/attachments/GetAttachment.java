@@ -45,7 +45,7 @@ public class GetAttachment extends PrefGroupMailByConversationTest {
 		final String subject = "subject151615738";
 		final String attachmentname = "file.txt";
 		
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 
 		
@@ -85,7 +85,7 @@ public class GetAttachment extends PrefGroupMailByConversationTest {
 		final String attachmentname2 = "file02.txt";
 		final String attachmentname3 = "file03.txt";
 		
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 
 		

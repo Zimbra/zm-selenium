@@ -39,7 +39,7 @@ public class OpenAttachmentFromEMLAttachedInMessage extends PrefGroupMailByMessa
 		final String subject = "Print2PDF Error";
 		final String subjecteml = "File conversion #27331";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

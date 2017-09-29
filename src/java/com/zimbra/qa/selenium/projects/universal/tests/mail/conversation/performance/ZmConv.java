@@ -54,7 +54,7 @@ public class ZmConv extends UniversalCommonTest {
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/conversation02";
 		String subject = "Conversation13155016716714";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
 
 
 		

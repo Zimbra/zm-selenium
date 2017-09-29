@@ -51,7 +51,7 @@ public class ForwardMailWithInlineImageAttachment extends PrefGroupMailByMessage
 				final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
 				FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 
-				LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+				LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 				MailItem original = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ mimeSubject +")");
 				ZAssert.assertNotNull(original, "Verify the message is received correctly");

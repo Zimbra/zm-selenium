@@ -41,7 +41,7 @@ public class GetMessage extends AjaxCommonTest {
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email07/mime.txt";
 		final String subject = "subject135232705018411";
 		
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

@@ -44,7 +44,7 @@ public class CheckXSSAfterSelectingMail extends PrefGroupMailByMessageTest {
 		final String mimeFile = ConfigProperties.getBaseDirectory()	+ "/data/public/mime/XSS.txt";
 		final String subject = "test xss";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

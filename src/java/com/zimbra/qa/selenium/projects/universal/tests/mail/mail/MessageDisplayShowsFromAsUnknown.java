@@ -57,7 +57,7 @@ public class MessageDisplayShowsFromAsUnknown extends UniversalCommonTest {
 		String from = "Unknown";
 
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug16213";
-		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
+		LmtpInject.injectFile(ZimbraAccount.AccountZWC(), new File(MimeFolder));
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

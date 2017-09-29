@@ -44,7 +44,7 @@ public class AttachmentIcons extends PrefGroupMailByMessageTest {
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
 		final String subject = "subject151615738";
 		
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 
 		
@@ -79,7 +79,7 @@ public class AttachmentIcons extends PrefGroupMailByMessageTest {
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime03.txt";
 		final String subject = "subject13330659993903";
 		
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 
 		

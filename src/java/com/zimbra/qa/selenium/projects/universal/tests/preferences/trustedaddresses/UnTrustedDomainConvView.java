@@ -70,7 +70,7 @@ public class UnTrustedDomainConvView extends UniversalCommonTest {
 				+ "/data/public/mime/ExternalImg.txt";
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);
 		// Inject the external image message(s)
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFolder));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder));
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(),subject);
 		

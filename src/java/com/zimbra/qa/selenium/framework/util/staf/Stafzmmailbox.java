@@ -24,22 +24,22 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
  *
  */
 public class Stafzmmailbox extends StafServicePROCESS {
-		
+
 	public Stafzmmailbox() {
 		super();
-		
+
 		logger.info("new "+ Stafzmmailbox.class.getCanonicalName());
 		StafService = "PROCESS";
-		
+
 	}
-	
+
 	public boolean execute(String command) throws HarnessException {
 		setCommand(command);
 		return (super.execute());
 	}
-	
+
 	protected String setCommand(String command) {
-		
+
 		// Make sure the full path is specified
 		if ( command.trim().startsWith("zmmailbox") ) {
 			command = "/opt/zimbra/bin/" + command;
@@ -51,5 +51,5 @@ public class Stafzmmailbox extends StafServicePROCESS {
 		StafParms = String.format("START SHELL COMMAND \"su - zimbra -c '%s'\" RETURNSTDOUT RETURNSTDERR WAIT %d", command, this.getTimeout());
 		return (getStafCommand());
 	}
-	
+
 }

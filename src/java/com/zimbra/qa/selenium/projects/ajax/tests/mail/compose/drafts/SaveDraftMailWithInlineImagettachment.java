@@ -133,7 +133,7 @@ public class SaveDraftMailWithInlineImagettachment extends PrefGroupMailByMessag
 				FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 				FolderItem drafts = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Drafts);
 
-				LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+				LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 				// Refresh current view
 				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(mimeSubject), "Verify message displayed in current view");

@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import com.jcraft.jsch.Channel;
@@ -53,7 +54,7 @@ class StreamGobbler extends Thread
          BufferedReader br = new BufferedReader(isr);
          String line = null;
          while ( (line = br.readLine()) != null) {
-            this.output.append(line).append("\n");   
+            this.output.append(line).append("\n");
             logger.info(line);
          }
        } catch (IOException ioe) {
@@ -134,7 +135,7 @@ public class CommandLine {
     * @return (String) output from the console
     * @throws IOException
     * @throws InterruptedException
-    * @throws HarnessException 
+    * @throws HarnessException
     */
    public static String cmdExecWithOutput(String command)
    throws IOException, InterruptedException, HarnessException {
@@ -148,7 +149,7 @@ public class CommandLine {
 	 * @return (String) output from the console
 	 * @throws IOException
 	 * @throws InterruptedException
-    * @throws HarnessException 
+    * @throws HarnessException
 	 */
 	public static String cmdExecWithOutput(String command, String[] params)
 	throws IOException, InterruptedException, HarnessException {
@@ -165,7 +166,7 @@ public class CommandLine {
     * @return (String) output from the console
     * @throws IOException
     * @throws InterruptedException
-    * @throws HarnessException 
+    * @throws HarnessException
     */
 	public static String cmdExecWithOutput(String [] command, String[] params)
 	throws IOException, InterruptedException, HarnessException {
@@ -218,48 +219,91 @@ public class CommandLine {
 	}
 
 	 public static String cmdExecOnServer(String email, String secret) {
-	        String host = ConfigProperties.getStringProperty("store.host");
-	        String user = "root";
-	        String password = "zimbra";
-	        String command1 = "su - zimbra -c 'zmtotp -a " + email + " -s " + secret + "'";
-	        String totp = "0";
-	        try {
-	             
-	            java.util.Properties config = new java.util.Properties(); 
-	            config.put("StrictHostKeyChecking", "no");
-	            JSch jsch = new JSch();
-	            Session session=jsch.getSession(user, host, 22);
-	            session.setPassword(password);
-	            session.setConfig(config);
-	            session.connect();
-	            System.out.println("Connected");
-	            System.out.println(command1);
-	             
-	            Channel channel=session.openChannel("exec");
-	            ((ChannelExec)channel).setCommand(command1);
-	            channel.setInputStream(null);
-	            ((ChannelExec)channel).setErrStream(System.err);
-	             
-	            InputStream in=channel.getInputStream();
-	            channel.connect();
-	            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-	            StringBuilder out = new StringBuilder();
-	            String line;
-	            while ((line = reader.readLine()) != null) {
-	                out.append(line);
-	            }
-	            System.out.println(out.toString());
+        String host = ZimbraAccount.AccountZWC().zGetAccountStoreHost();
+        String user = "root";
+        String password = "zimbra";
+        String command1 = "su - zimbra -c 'zmtotp -a " + email + " -s " + secret + "'";
+        String totp = "0";
+        try {
 
-	            totp=out.toString();
-	            totp = totp.replaceAll("\\D+","");	            
-	            channel.disconnect();
-	            session.disconnect();
-	            System.out.println(totp);
-	            
-	        } catch(Exception e) {
-	            e.printStackTrace();
-	        }
-	    	
-	 return (totp);
+            java.util.Properties config = new java.util.Properties();
+            config.put("StrictHostKeyChecking", "no");
+            JSch jsch = new JSch();
+            Session session=jsch.getSession(user, host, 22);
+            session.setPassword(password);
+            session.setConfig(config);
+            session.connect();
+            System.out.println("Connected");
+            System.out.println(command1);
+
+            Channel channel=session.openChannel("exec");
+            ((ChannelExec)channel).setCommand(command1);
+            channel.setInputStream(null);
+            ((ChannelExec)channel).setErrStream(System.err);
+
+            InputStream in=channel.getInputStream();
+            channel.connect();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            StringBuilder out = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                out.append(line);
+            }
+            System.out.println(out.toString());
+
+            totp=out.toString();
+            totp = totp.replaceAll("\\D+","");
+            channel.disconnect();
+            session.disconnect();
+            System.out.println(totp);
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return (totp);
+	 }
+
+	 public static ArrayList<String> getAllMailboxStoreServers() {
+        String host = ZimbraAccount.AccountZWC().zGetAccountStoreHost();
+        String user = "root";
+        String password = "zimbra";
+        String command1 = "su - zimbra -c 'zmprov -l gas mailbox'";
+        ArrayList<String> out=null;
+        try {
+
+            java.util.Properties config = new java.util.Properties();
+            config.put("StrictHostKeyChecking", "no");
+            JSch jsch = new JSch();
+            Session session=jsch.getSession(user, host, 22);
+            session.setPassword(password);
+            session.setConfig(config);
+            session.connect();
+            System.out.println("Connected");
+            System.out.println(command1);
+
+            Channel channel=session.openChannel("exec");
+            ((ChannelExec)channel).setCommand(command1);
+            channel.setInputStream(null);
+            ((ChannelExec)channel).setErrStream(System.err);
+
+            InputStream in=channel.getInputStream();
+            channel.connect();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+             out = new ArrayList<String>();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                out.add(line);
+            }
+            System.out.println(out.toString());
+
+            channel.disconnect();
+            session.disconnect();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return (out);
 	 }
 }

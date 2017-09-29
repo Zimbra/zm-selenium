@@ -51,7 +51,7 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 				FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 				final String mimeAttachmentName = "samplejpg.jpg";
 
-				LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+				LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 				MailItem original = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ mimeSubject +")");
 				ZAssert.assertNotNull(original, "Verify the message is received correctly");

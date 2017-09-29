@@ -52,7 +52,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 		ZimbraAccount account = app.zGetActiveAccount();
 		
 		// Inject the message
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Double check that there is an attachment
 		account.soapSend(
@@ -137,7 +137,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 		ZimbraAccount account = app.zGetActiveAccount();
 		
 		// Inject the message
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Double check that there is an attachment
 		account.soapSend(
@@ -215,7 +215,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 		ZimbraAccount account = app.zGetActiveAccount();
 		
 		// Inject the message
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Double check that there is an attachment
 		account.soapSend(
@@ -301,7 +301,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 		ZimbraAccount account = app.zGetActiveAccount();
 		
 		// Inject the message
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Double check that there is an attachment
 		account.soapSend(
@@ -378,7 +378,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		// Inject the message
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Double check that there is an attachment
 		account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='message'>" + "<query>subject:(" + subject

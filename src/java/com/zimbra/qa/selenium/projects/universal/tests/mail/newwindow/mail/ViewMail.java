@@ -47,7 +47,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String from = "from12996131112962@example.com";
 		final String sender = "sender12996131112962@example.com";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFolder + "/mime_wSender.txt"));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder + "/mime_wSender.txt"));
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -96,7 +96,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String from = "from13016959916873@example.com";
 		final String replyto = "replyto13016959916873@example.com";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFolder + "/mime_wReplyTo.txt"));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder + "/mime_wReplyTo.txt"));
 		
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -145,7 +145,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String from = "from13011239916873@example.com";
 		final String resentfrom = "resentfrom13016943216873@example.com";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFolder + "/mime_wResentFrom.txt"));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder + "/mime_wResentFrom.txt"));
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -192,7 +192,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String subject = "bug72233";
 		final String htmlcontent = "html1328844621404";
 		
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 		
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

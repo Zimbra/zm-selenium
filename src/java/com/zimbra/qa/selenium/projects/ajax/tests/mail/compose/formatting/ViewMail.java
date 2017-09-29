@@ -41,7 +41,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Excel_Data_Formatting_Mime.txt";
 		final String subject = "Test Excel Data Formatting";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

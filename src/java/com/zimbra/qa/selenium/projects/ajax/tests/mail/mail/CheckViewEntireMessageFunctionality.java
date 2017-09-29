@@ -42,7 +42,7 @@ public class CheckViewEntireMessageFunctionality extends PrefGroupMailByMessageT
 		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/viewEntireMessage_Bug39246.txt";
 		
 		// Inject the example message
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
 
 		// Get Mail
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

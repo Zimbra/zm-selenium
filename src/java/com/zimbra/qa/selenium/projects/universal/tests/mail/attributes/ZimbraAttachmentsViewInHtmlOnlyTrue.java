@@ -48,7 +48,7 @@ public class ZimbraAttachmentsViewInHtmlOnlyTrue extends PrefGroupMailByMessageT
 		final String subject = "subject151615738";
 		final String attachmentname = "file.txt";
 		
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 		
 		
 		//-- GUI

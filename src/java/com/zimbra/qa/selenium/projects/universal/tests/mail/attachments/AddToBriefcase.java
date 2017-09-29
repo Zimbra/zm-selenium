@@ -55,7 +55,7 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 		FolderItem folder = FolderItem.importFromSOAP(account, FolderItem.SystemFolder.Briefcase);
 		
 		// Inject the message
-		LmtpInject.injectFile(account.EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(account, new File(mimeFile));
 
 		// Double check that there is an attachment
 		account.soapSend(
@@ -122,7 +122,7 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
  		FolderItem folder = FolderItem.importFromSOAP(account, FolderItem.SystemFolder.Briefcase);
 	 		
  		// Inject the message
- 		LmtpInject.injectFile(account.EmailAddress, new File(mimeFile));
+ 		LmtpInject.injectFile(account, new File(mimeFile));
 
  		// Double check that there is an attachment
  		account.soapSend(

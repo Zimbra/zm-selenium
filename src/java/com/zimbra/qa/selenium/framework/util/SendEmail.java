@@ -28,15 +28,13 @@ public class SendEmail {
    public static void main(String [] args) {
       
 	  // Sender's email ID needs to be mentioned
-	  // String from = ConfigProperties.getConfigProperties().getString("emailFrom");
-	  String from = "pnq-tms@zimbra.com";
+	  String from = ConfigProperties.getConfigProperties().getString("emailFrom");
 	      
 	  // Recipient's email ID needs to be mentioned.
-      // String to = ConfigProperties.getConfigProperties().getString("emailTo");
-	  String to = "jsojitra@zimbra.com";
+      String to = ConfigProperties.getConfigProperties().getString("emailTo");
 
       // Assuming you are sending email from localhost
-      String host = "mail.zimbra.com";
+      String host = "email.corp.synacor.com";
 
       // Get system properties
       Properties properties = System.getProperties();

@@ -24,9 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.activation.MimetypesFileTypeMap;
-
 import org.apache.commons.httpclient.Cookie;
 import org.apache.commons.httpclient.Credentials;
 import org.apache.commons.httpclient.Header;
@@ -47,7 +45,6 @@ import org.apache.commons.httpclient.methods.multipart.StringPart;
 import org.apache.commons.httpclient.params.HttpConnectionParams;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-
 
 /**
  * The <code>RestUtil</code> utility provides the ability to interact with the
@@ -121,7 +118,6 @@ public class RestUtil {
 			host = null;
 			authToken = null;
 		} else {
-		//	host = account.ZimbraMailHost;
 			host = ConfigProperties.getStringProperty("server.host", null);
 			authToken = account.MyAuthToken;			
 		}

@@ -50,7 +50,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String sender = "sender12996131112962@example.com";
 
 		if ( !injected ) {
-			LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFolder));
+			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder));
 			injected = true;
 		}
 
@@ -86,7 +86,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String replyto = "replyto13016959916873@example.com";
 
 		if ( !injected ) {
-			LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFolder));
+			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder));
 			injected = true;
 		}
 		
@@ -124,7 +124,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String resentfrom = "resentfrom13016943216873@example.com";
 
 		if ( !injected ) {
-			LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFolder));
+			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder));
 			injected = true;
 		}
 		
@@ -158,7 +158,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String from = "from13160123168433@testdomain.com";
 		final String to = "to3163210168433@testdomain.com";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject +")");
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -185,7 +185,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String subject = "subject13197565510464";
 		final String subjectText = "<u><i> subject13197565510464 </i></u>";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
 		
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject +")");
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -215,7 +215,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		String subject = "subject13188948451403";
 		String content = "Welcome to the NetWorker Listserv list";
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65933";
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(MimeFolder));
 		
 		// Refresh the inbox
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -238,7 +238,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		String subject = "subject13189485723753";
 		String content = "Enrico Medici";
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65623";
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(MimeFolder));
 
 		// Refresh the inbox
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -261,7 +261,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		String subject = "subject13189993282183";
 		String content = "Incident Title";
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65079";
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(MimeFolder));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(MimeFolder));
 
 		// Refresh the inbox
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -283,7 +283,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String subject = "subject13214016725788";
 		final String content = "The Ming Dynasty";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -305,7 +305,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String subject = "subject13214016672655";
 		final String content = "Bold";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -327,7 +327,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String subject = "subject13214016621403";
 		final String content = "Bold";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -350,7 +350,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String subject = "subject13218526621403";
 		final String content = "The message has no text content.";
 		
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -379,7 +379,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String subject = "subject13217218621403";
 		final String content = "content1328844621403";
 		
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -405,7 +405,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		// final String textcontent = "text1328844621404";
 		final String htmlcontent = "html1328844621404";
 		
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -429,7 +429,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/externalImage01/externalimage01.txt";
 		final String subject = "externalimage01";		
 		
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -452,7 +452,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		final String subject = "Very large message";
 		final String testString = "Entire message is displayed";
 		
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

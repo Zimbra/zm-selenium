@@ -49,7 +49,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		final String fontFamilySizeContent ="<br /><div><span style=\"font-size: 14pt;\"><span style=\"font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif;\">Number list below</span>:</span></div>";
 		final String numberedListContent ="<ol><li>point one</li><li>point two</li><li>point three</li></ol>";
 		
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -97,7 +97,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		final String multiLineTextContent = "BoldString <br />ItalicString <br />Underline text <br />Red color text <br />Green background <br /><br />Number list below : <br /><br /><br />    1. point one <br />    2. point two <br />    3. point three"; 
 		
 		if (!app.zPageMail.zVerifyMailExists(subject)) {
-			LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		} 
 		// Select the message so that it shows in the reading pane
@@ -144,7 +144,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		final String subject = "subject13214016777777";
 		final String multilineTextContent = "line 1<br />line 2<br />line 3<br /><br />line 4";
 				
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -196,7 +196,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		
 		// if mail already exist from previous testcases than don't inject 
 		if (!app.zPageMail.zVerifyMailExists(subject)) {
-			LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		} 
 		// Select the message so that it shows in the reading pane

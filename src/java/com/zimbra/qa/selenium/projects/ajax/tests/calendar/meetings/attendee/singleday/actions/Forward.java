@@ -218,7 +218,7 @@ public class Forward extends CalendarWorkWeekTest {
 		final String apptSubject = "Schedule for Generic Training";
 		final String apptContent = "<div>";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 		
 		// Verify mail exists
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
@@ -264,7 +264,7 @@ public class Forward extends CalendarWorkWeekTest {
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug106342/bug106342.txt";
 		final String apptSubject = "Group photo with Steve";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 		
 		// Verify mail exists
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");

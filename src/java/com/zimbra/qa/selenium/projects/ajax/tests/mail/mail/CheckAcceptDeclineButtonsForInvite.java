@@ -45,7 +45,7 @@ public class CheckAcceptDeclineButtonsForInvite extends PrefGroupMailByMessageTe
 		String subject = "all-hands";
 
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug21013";
-		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(MimeFolder));
+		LmtpInject.injectFile(ZimbraAccount.AccountZWC(), new File(MimeFolder));
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

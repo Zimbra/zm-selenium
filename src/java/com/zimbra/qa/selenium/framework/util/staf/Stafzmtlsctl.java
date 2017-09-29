@@ -52,17 +52,17 @@ public class Stafzmtlsctl extends StafServicePROCESS {
       }
 
       logger.info("Expected server access: " + setting);
-      
+
       if (!mode.equals(setting)) {
          logger.debug("Set the server access mode to " + setting);
          execute("zmtlsctl " + setting);
          //execute("zmconfigdctl reload");
          SleepUtil.sleep(60000);
          stafServicePROCESS.execute("zmmailboxdctl restart");
-         
+
          // Hardcoded 20 seconds sleep is required here, if this still doesn't work, then
-         // we have to do the most robust way, wait for HTTP GET to return status 200 
-         SleepUtil.sleep(20000);         
+         // we have to do the most robust way, wait for HTTP GET to return status 200
+         SleepUtil.sleep(20000);
       } else {
          logger.info("Current and expected server access modes are the same already");
       }

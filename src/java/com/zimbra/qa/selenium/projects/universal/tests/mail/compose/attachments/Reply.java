@@ -51,7 +51,7 @@ public class Reply extends PrefGroupMailByMessageTest {
 		// Send a message to Account A, so that it can be forwarded (with attachment)
 		// to the test account
 		//
-		LmtpInject.injectFile(ZimbraAccount.AccountA().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(ZimbraAccount.AccountA(), new File(mimeFile));
 
 		MailItem original = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mimeSubject +")");
 		ZAssert.assertNotNull(original, "Verify the message is received correctly");

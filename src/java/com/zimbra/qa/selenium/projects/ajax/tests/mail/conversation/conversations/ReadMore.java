@@ -45,7 +45,7 @@ public class ReadMore extends PrefGroupMailByConversationTest {
 		final String subject = "ReadMore13674340693103";
 
 		final String mimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email11";
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFolder));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder));
 
 
 		

@@ -70,7 +70,7 @@ public class ZmMailApp extends AjaxCommonTest {
 	public void ZmMailApp_02() throws HarnessException {
 		
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
-		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(mime));
+		LmtpInject.injectFile(ZimbraAccount.AccountZWC(), new File(mime));
 
 		// Fill out the login page
 		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZWC().EmailAddress);
@@ -94,7 +94,7 @@ public class ZmMailApp extends AjaxCommonTest {
 	public void ZmMailApp_03() throws HarnessException {
 		
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email03";
-		LmtpInject.injectFile(ZimbraAccount.AccountZWC().EmailAddress, new File(mime));
+		LmtpInject.injectFile(ZimbraAccount.AccountZWC(), new File(mime));
 
 		// Fill out the login page
 		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZWC().EmailAddress);

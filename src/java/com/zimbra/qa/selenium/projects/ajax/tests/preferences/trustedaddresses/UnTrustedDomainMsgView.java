@@ -69,7 +69,7 @@ public class UnTrustedDomainMsgView extends AjaxCommonTest {
 				+ "/data/public/mime/ExternalImg.txt";
 
 		// Inject the external image message(s)
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFolder));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder));
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(),subject);
 		

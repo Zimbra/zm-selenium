@@ -46,7 +46,7 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 		final String subject = "subject151615738";
 		final String attachmentname = "file.txt";
 		
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -78,7 +78,7 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 		final String attachmentname2 = "file02.txt";
 		final String attachmentname3 = "file03.txt";
 		
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -122,7 +122,7 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 		final String subject = "FW: Christian cartoons [SEC=UNCLASSIFIED]";
 		final String fileName = "image001.gif";
 		
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

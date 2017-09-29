@@ -121,7 +121,7 @@ public class SendAs extends PrefGroupMailByMessageTest {
 		final String mimeAttachmentName = "screenshot.JPG";
 
 		// Send the message to the test account
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		//-- GUI
 

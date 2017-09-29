@@ -89,14 +89,13 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		
 		// Create the data source
 		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
-		String datasourceHost = ConfigProperties.getStringProperty("store.host");
 		String datasourceImapPort = ConfigProperties.getStringProperty("server.imap.port");
 		String datasourceImapType = ConfigProperties.getStringProperty("server.imap.type");
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
 			+		"<imap name='"+ datasourcename +"' l='"+ folder.getId() +"' isEnabled='true' "
-			+			"port='"+ datasourceImapPort +"' host='"+ datasourceHost +"' connectionType='"+ datasourceImapType +"' leaveOnServer='true' "
+			+			"port='"+ datasourceImapPort +"' host='"+ app.zGetActiveAccount().zGetAccountStoreHost() +"' connectionType='"+ datasourceImapType +"' leaveOnServer='true' "
 			+			"username='"+ external.EmailAddress +"' password='"+ external.Password +"' "
 			+			"useAddressForForwardReply='true' replyToDisplay='Bar Foo' replyToAddress='"+ app.zGetActiveAccount().EmailAddress +"' "
 			+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
@@ -226,14 +225,13 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		
 		// Create the data source
 		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
-		String datasourceHost = ConfigProperties.getStringProperty("store.host");
 		String datasourceImapPort = ConfigProperties.getStringProperty("server.imap.port");
 		String datasourceImapType = ConfigProperties.getStringProperty("server.imap.type");
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
 			+		"<imap name='"+ datasourcename +"' l='"+ folder.getId() +"' isEnabled='true' "
-			+			"port='"+ datasourceImapPort +"' host='"+ datasourceHost +"' connectionType='"+ datasourceImapType +"' leaveOnServer='true' "
+			+			"port='"+ datasourceImapPort +"' host='"+ app.zGetActiveAccount().zGetAccountStoreHost() +"' connectionType='"+ datasourceImapType +"' leaveOnServer='true' "
 			+			"username='"+ external.EmailAddress +"' password='"+ external.Password +"' "
 			+			"useAddressForForwardReply='true' replyToDisplay='Bar Foo' replyToAddress='"+ app.zGetActiveAccount().EmailAddress +"' "
 			+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
@@ -376,14 +374,13 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		
 		// Create the data source
 		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
-		String datasourceHost = ConfigProperties.getStringProperty("store.host");
 		String datasourceImapPort = ConfigProperties.getStringProperty("server.imap.port");
 		String datasourceImapType = ConfigProperties.getStringProperty("server.imap.type");
 		
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
 			+		"<imap name='"+ datasourcename +"' l='"+ folder.getId() +"' isEnabled='true' "
-			+			"port='"+ datasourceImapPort +"' host='"+ datasourceHost +"' connectionType='"+ datasourceImapType +"' leaveOnServer='true' "
+			+			"port='"+ datasourceImapPort +"' host='"+ app.zGetActiveAccount().zGetAccountStoreHost() +"' connectionType='"+ datasourceImapType +"' leaveOnServer='true' "
 			+			"username='"+ external.EmailAddress +"' password='"+ external.Password +"' "
 			+			"useAddressForForwardReply='true' replyToDisplay='Bar Foo' replyToAddress='"+ app.zGetActiveAccount().EmailAddress +"' "
 			+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"

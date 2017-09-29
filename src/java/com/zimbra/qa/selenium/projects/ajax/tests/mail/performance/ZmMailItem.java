@@ -55,7 +55,7 @@ public class ZmMailItem extends AjaxCommonTest {
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
 		String subject = "Subject13155016716713";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
 		
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -79,7 +79,7 @@ public class ZmMailItem extends AjaxCommonTest {
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
 		String subject = "Subject13155016716713";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
 
 
 		
@@ -102,7 +102,7 @@ public class ZmMailItem extends AjaxCommonTest {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
 		final String subject = "subject151615738";
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -123,7 +123,7 @@ public class ZmMailItem extends AjaxCommonTest {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime02.txt";
 		final String subject = "subject151111738";
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 		
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

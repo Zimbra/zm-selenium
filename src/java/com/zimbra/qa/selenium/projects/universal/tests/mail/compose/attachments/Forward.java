@@ -48,7 +48,7 @@ public class Forward extends PrefGroupMailByMessageTest {
 		final String mimeAttachmentName = "screenshot.JPG";
 
 		// Send the message to the test account
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

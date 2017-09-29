@@ -55,7 +55,7 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
 		String subject = "Subject13155016716713";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
 		
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -79,7 +79,7 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/largeconversation_mime.txt";
 		String subject = "RESOLVED BUGS";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
 		
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -101,7 +101,7 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/Invite_Message.txt";
 		String subject = "Test Edit Reply";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -124,7 +124,7 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/inviteMessageWith7MBAttachment.txt";
 		String subject = "Invite Message with 7 MB attachment";
 
-		LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mime));
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

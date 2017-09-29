@@ -53,7 +53,7 @@ public class ForwardMailWithAttachment extends PrefGroupMailByMessageTest {
 				FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 
 				// Send the message to the test account
-				LmtpInject.injectFile(app.zGetActiveAccount().EmailAddress, new File(mimeFile));
+				LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 				// Refresh current view
 				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
