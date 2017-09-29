@@ -34,10 +34,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
 import org.apache.commons.lang.WordUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -63,6 +63,7 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
+import com.zimbra.qa.selenium.framework.util.CommandLine;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
@@ -72,16 +73,17 @@ import com.zimbra.qa.selenium.projects.admin.ui.AppAdminConsole;
 
 public class AdminCommonTest {
 
-	protected static Logger logger = LogManager.getLogger(AdminCommonTest.class);
-	protected final ZimbraAdminAccount gAdmin = ZimbraAdminAccount.AdminConsoleAdmin();
 	protected AppAdminConsole app = null;
-
 	protected AbsTab startingPage = null;
+	public static ArrayList<String> mailboxStores=null;
+	
+	protected final ZimbraAdminAccount gAdmin = ZimbraAdminAccount.AdminConsoleAdmin();
 	protected ZimbraAdminAccount startingAccount = null;
 
-	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	WebElement we = null;
-
+	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
+	protected static Logger logger = LogManager.getLogger(AdminCommonTest.class);
+	
 	protected StafServicePROCESS staf = new StafServicePROCESS();
 	String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
 
@@ -92,6 +94,23 @@ public class AdminCommonTest {
 
 		startingPage = app.zPageMain;
 		startingAccount = gAdmin;
+	}
+	
+	public void commonTestZimbraConfiguration() throws HarnessException {
+		
+		logger.info("-------------- Pre-configuration and required setup --------------");
+
+		if (ConfigProperties.getStringProperty("staf").equals("true")) {
+			
+			try {
+				// Get all mailbox stores
+				mailboxStores = CommandLine.getAllMailboxStoreServers();
+				logger.info("Mailbox stores (especially for multi-node setup): " + mailboxStores);
+								
+			} catch(Exception e) {
+				logger.error("Unable to get mailbox stores", e);
+			}
+		}
 	}
 
 	@BeforeSuite(groups = { "always" })
@@ -135,6 +154,8 @@ public class AdminCommonTest {
 					}
 				}
 			}
+			logger.info("App is ready!");
+			commonTestZimbraConfiguration();
 
 		} catch (WebDriverException e) {
 			logger.error("Unable to open admin app. Is a valid certificate installed?", e);

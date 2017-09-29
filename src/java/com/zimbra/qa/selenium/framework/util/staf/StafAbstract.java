@@ -116,15 +116,7 @@ public class StafAbstract {
 	    			}
 	    			return runSTAFCommand(StafServer,handle);
 
-	        	} else if (StafParms.indexOf("zmmemcachedctl") >=0 ) {
-	    			if (StafServer.indexOf(".lab.zimbra.com") >=0 ) {
-	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-10, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host", ConfigProperties.getStringProperty("server.host")));
-	    			} else if (StafServer.indexOf(".eng.zimbra.com") >=0 ) {
-	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-7, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host", ConfigProperties.getStringProperty("server.host")));
-	    			}
-	    			return runSTAFCommand(StafServer,handle);
-
-	    		} else if (StafParms.indexOf("zmmailbox") >=0 || StafParms.indexOf("zmtlsctl") >=0 || StafParms.indexOf("zm") >=0 || StafParms.indexOf("zmprov") >=0 || StafParms.indexOf("SYSTEM") >=0) {
+	    		} else if (StafParms.indexOf("zmmailbox") >=0 || StafParms.indexOf("zmtlsctl") >=0 || StafParms.indexOf("zmprov") >=0) {
 
 	    			Boolean storeCommandResponse = true;
 	    			String StoreServer = null;
@@ -143,9 +135,16 @@ public class StafAbstract {
 	    				}
 	    			}
 	    			return storeCommandResponse;
+	    			
+	    		} else {
+	    			if (StafServer.indexOf(".lab.zimbra.com") >=0 ) {
+	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-10, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host", ConfigProperties.getStringProperty("server.host")));
+	    			} else if (StafServer.indexOf(".eng.zimbra.com") >=0 ) {
+	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-7, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host", ConfigProperties.getStringProperty("server.host")));
+	    			}
+	    			return runSTAFCommand(StafServer,handle);
+	    			
 	    		}
-
-	        	return false;
 
 			} finally {
 

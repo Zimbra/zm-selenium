@@ -97,18 +97,19 @@ public class AjaxCommonTest {
 			try {
 				// Get all mailbox stores
 				mailboxStores = CommandLine.getAllMailboxStoreServers();
+				logger.info("Mailbox stores (especially for multi-node setup): " + mailboxStores);
 				
 				// Grant createDistList right to domain
-				logger.info("Grant createDistList right to domain");
+				logger.info("Grant createDistList right to domain using STAF");
 				staf.execute("zmprov grr domain " + ConfigProperties.getStringProperty("testdomain") + " dom "
 						+ ConfigProperties.getStringProperty("testdomain") + " createDistList");
 				
 				// Disable zimbraSmimeOCSPEnabled attribute for S/MIME
-				logger.info("Disable zimbraSmimeOCSPEnabled attribute for S/MIME");
+				logger.info("Disable zimbraSmimeOCSPEnabled attribute for S/MIME using STAF");
 				staf.execute("zmprov mcf zimbraSmimeOCSPEnabled FALSE");
 				
 			} catch(Exception e) {
-				logger.error("Unable to get mailbox stores, grant createDistList right or can't disable zimbraSmimeOCSPEnabled for S/MIME", e);
+				logger.error("Unable to get mailbox stores, grant createDistList right or can't disable zimbraSmimeOCSPEnabled for S/MIME using STAF", e);
 			}
 		}
 	}
