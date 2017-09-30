@@ -58,7 +58,6 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
@@ -75,7 +74,9 @@ public class AdminCommonTest {
 
 	protected AppAdminConsole app = null;
 	protected AbsTab startingPage = null;
-	public static ArrayList<String> mailboxStores=null;
+	public static ArrayList<String> storeServers = null;
+	public static ArrayList<String> zimbraServers = null;
+	public static int totalZimbraServers;
 	
 	protected final ZimbraAdminAccount gAdmin = ZimbraAdminAccount.AdminConsoleAdmin();
 	protected ZimbraAdminAccount startingAccount = null;
@@ -103,12 +104,18 @@ public class AdminCommonTest {
 		if (ConfigProperties.getStringProperty("staf").equals("true")) {
 			
 			try {
-				// Get all mailbox stores
-				mailboxStores = CommandLine.getAllMailboxStoreServers();
-				logger.info("Mailbox stores (especially for multi-node setup): " + mailboxStores);
-								
+				// Get all store servers
+				storeServers = CommandLine.runCommandOnZimbraServer("zmprov -l gas mailbox");
+				logger.info("Store servers (especially for multi-node environment): " + storeServers);
+				
+				// Get total zimbra servers
+				for (String noOfZimbraServers : CommandLine.runCommandOnZimbraServer("zmprov -l gas | wc -l")) {
+					totalZimbraServers = Integer.parseInt(noOfZimbraServers);
+				}
+				logger.info("No. of zimbra servers (especially for multi-node environment): " + totalZimbraServers);
+												
 			} catch(Exception e) {
-				logger.error("Unable to get mailbox stores", e);
+				logger.error("Unable to get mailbox stores using CLI utility", e);
 			}
 		}
 	}

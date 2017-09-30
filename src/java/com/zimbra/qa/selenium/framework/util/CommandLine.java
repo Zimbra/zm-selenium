@@ -264,11 +264,11 @@ public class CommandLine {
         return (totp);
 	 }
 
-	 public static ArrayList<String> getAllMailboxStoreServers() {
+	 public static ArrayList<String> runCommandOnZimbraServer(String zimbraCommand) {
         String host = ZimbraAccount.AccountZWC().zGetAccountStoreHost();
         String user = "root";
         String password = "zimbra";
-        String command1 = "su - zimbra -c 'zmprov -l gas mailbox'";
+        String command1 = "su - zimbra -c '" + zimbraCommand + "'";
         ArrayList<String> out=null;
         try {
 
@@ -290,7 +290,7 @@ public class CommandLine {
             InputStream in=channel.getInputStream();
             channel.connect();
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-             out = new ArrayList<String>();
+            out = new ArrayList<String>();
             String line;
             while ((line = reader.readLine()) != null) {
                 out.add(line);

@@ -16,6 +16,17 @@
  */
 package com.zimbra.qa.selenium.framework.util.staf;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import com.ibm.staf.STAFException;
@@ -42,6 +53,8 @@ public class StafAbstract {
 	protected STAFResult StafResult = null;
 	protected String StafResponse = null;
 
+	protected static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy-hhmmss");
+	protected static String currentDateTime = simpleDateFormat.format(new Date());
 
 	public StafAbstract() {
 		logger.info("new "+ StafAbstract.class.getCanonicalName());
@@ -106,49 +119,127 @@ public class StafAbstract {
 		try {
 			handle = new STAFHandle(StafAbstract.class.getName());
 
+			String sStafLogFileName = "STAF_" + currentDateTime + ".log";
+			String sStafLogFileFolderPath = "C:\\opt\\qa\\";
+			String sStafLogFilePath = sStafLogFileFolderPath + "\\" + sStafLogFileName;
+			Path pStafLogFilePath = Paths.get(sStafLogFileFolderPath, sStafLogFileName);
+			File fStafLogFile = new File(sStafLogFilePath);
+			List<String> lines = null;
+
+			// Create STAF log folder and file
+			File fStafLogFileFolder = new File(sStafLogFileFolderPath);
+			if (!fStafLogFileFolder.exists()) {
+				fStafLogFileFolder.mkdirs();
+			}
+
+			try {
+				if (fStafLogFile.createNewFile()) {
+					logger.info("Creating STAF log file: " + sStafLogFileName);
+				}
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+
 	        try {
 
-	        	if (StafParms.indexOf("postqueue") >=0 ) {
-	    			if (StafServer.indexOf(".lab.zimbra.com") >=0 ) {
-	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-10, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".mta.host", ConfigProperties.getStringProperty("mta.host")));
-	    			} else if (StafServer.indexOf(".eng.zimbra.com") >=0 ) {
-	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-7, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".mta.host", ConfigProperties.getStringProperty("mta.host")));
-	    			}
-	    			return runSTAFCommand(StafServer,handle);
+	        	if (AjaxCommonTest.totalZimbraServers < 1) {
 
-	    		} else if (StafParms.indexOf("zmmailbox") >=0 || StafParms.indexOf("zmtlsctl") >=0 || StafParms.indexOf("zmprov") >=0) {
+	        		// Single Node Server
 
-	    			Boolean storeCommandResponse = true;
-	    			String StoreServer = null;
+	        		if (StafParms.indexOf("postqueue") >=0 || StafParms.indexOf("zmmailbox") >=0 || StafParms.indexOf("zmtlsctl") >=0 || StafParms.indexOf("zmprov") >=0 || StafParms.indexOf(" zm") >=0) {
 
-	    			for (int i=0; i<AjaxCommonTest.mailboxStores.size(); i++) {
-	    				if (StafServer.indexOf(".lab.zimbra.com") >=0 ) {
-	    					StoreServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-10, StafServer.indexOf(".com")+4), AjaxCommonTest.mailboxStores.get(i));
-		    			} else if (StafServer.indexOf(".eng.zimbra.com") >=0 ) {
-		    				StoreServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-7, StafServer.indexOf(".com")+4), AjaxCommonTest.mailboxStores.get(i));
-		    			}
+						StafServer = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host", ConfigProperties.getStringProperty("server.host"));
 
-	    				storeCommandResponse = runSTAFCommand (StoreServer, handle);
-	    				if (!storeCommandResponse) {
-	    					storeCommandResponse = false;
-	    					break;
-	    				}
-	    			}
-	    			return storeCommandResponse;
-	    			
-	    		} else {
-	    			if (StafServer.indexOf(".lab.zimbra.com") >=0 ) {
-	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-10, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host", ConfigProperties.getStringProperty("server.host")));
-	    			} else if (StafServer.indexOf(".eng.zimbra.com") >=0 ) {
-	    				StafServer = StafServer.replace(StafServer.substring(StafServer.indexOf(".")-7, StafServer.indexOf(".com")+4), ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host", ConfigProperties.getStringProperty("server.host")));
-	    			}
-	    			return runSTAFCommand(StafServer,handle);
-	    			
-	    		}
+						lines = Arrays.asList("Executing STAF Command: " + StafParms + " on Single Node server (" + StafServer + ")\n");
+						try {
+							Files.write(pStafLogFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+
+						return runSTAFCommand(StafServer, handle);
+
+					} else {
+
+						// Localhost
+
+						lines = Arrays.asList("Executing STAF Command: " + StafParms + " on localhost (" + StafServer + ")\n");
+						try {
+							Files.write(pStafLogFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						return runSTAFCommand(StafServer, handle);
+					}
+
+	        	} else {
+	        		
+	        		// Multi Node Server
+
+	        		if (StafParms.indexOf("postqueue") >=0 ) {
+
+	        			// MTA hosts
+	        			
+						StafServer = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".mta.host", ConfigProperties.getStringProperty("mta.host"));
+
+						lines = Arrays.asList("Executing STAF Command: " + StafParms + " on MTA Host (" + StafServer + ")\n");
+						try {
+							Files.write(pStafLogFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						return runSTAFCommand(StafServer, handle);
+
+					} else if (StafParms.indexOf("zmmailbox") >=0 || StafParms.indexOf("zmtlsctl") >=0 || StafParms.indexOf("zmprov") >=0 || StafParms.indexOf(" zm") >=0) {
+
+						// Store hosts
+
+						Boolean storeCommandResponse = true;
+						String storeServer = null;
+
+						for (int i=0; i<AjaxCommonTest.storeServers.size(); i++) {
+
+							storeServer = AjaxCommonTest.storeServers.get(i);
+
+							lines = Arrays.asList("Executing STAF Command: " + StafParms + " on Store Host (" + storeServer + ")\n");
+							try {
+								Files.write(pStafLogFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+
+							storeCommandResponse = runSTAFCommand (storeServer, handle);
+							if (!storeCommandResponse) {
+								storeCommandResponse = false;
+								break;
+							}
+						}
+						return storeCommandResponse;
+
+					} else {
+
+						// Localhost
+
+						lines = Arrays.asList("Executing STAF Command: " + StafParms + " on localhost (" + StafServer + ")\n");
+						try {
+							Files.write(pStafLogFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						return runSTAFCommand(StafServer, handle);
+					}
+	        	}
 
 			} finally {
 
 				logger.info("STAF Response: " + StafResponse);
+
+				lines = Arrays.asList("STAT Command: " +  StafParms + " Response: " + StafResponse + "\n\n");
+				try {
+					Files.write(pStafLogFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 
 				if (handle != null )
 					handle.unRegister();
@@ -158,6 +249,7 @@ public class StafAbstract {
         	throw new HarnessException("Error registering or unregistering with STAF, RC: " + e.rc, e);
 		}
 	}
+
 
 	private boolean runSTAFCommand(String StafServer, STAFHandle handle) throws HarnessException {
 
@@ -172,7 +264,7 @@ public class StafAbstract {
 
     	if ( StafResult.rc == STAFResult.AccessDenied ) {
     		// Common error in WDC.  Log a helper message.
-    		logger.error("On the server, use: staf local trust set machine *.eng.vmware.com level 5");
+    		logger.error("On the server, use: staf local trust set machine *.eng.zimbra.com level 5");
     	}
 
     	if ( StafResult.rc != STAFResult.Ok ) {

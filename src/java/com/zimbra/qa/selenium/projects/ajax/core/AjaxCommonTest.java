@@ -65,8 +65,10 @@ public class AjaxCommonTest {
 	
 	protected AppAjaxClient app = null;
 	protected AbsTab startingPage = null;
-	public static ArrayList<String> mailboxStores=null;
-	
+	public static ArrayList<String> storeServers = null;
+	public static ArrayList<String> zimbraServers = null;
+	public static int totalZimbraServers;
+
 	protected Map<String, String> startingAccountPreferences = null;
 	protected Map<String, String> startingUserPreferences = null;
 	protected Map<String, String> startingUserZimletPreferences = null;
@@ -95,9 +97,15 @@ public class AjaxCommonTest {
 		if (ConfigProperties.getStringProperty("staf").equals("true")) {
 			
 			try {
-				// Get all mailbox stores
-				mailboxStores = CommandLine.getAllMailboxStoreServers();
-				logger.info("Mailbox stores (especially for multi-node setup): " + mailboxStores);
+				// Get all store servers
+				storeServers = CommandLine.runCommandOnZimbraServer("zmprov -l gas mailbox");
+				logger.info("Store servers (especially for multi-node environment): " + storeServers);
+				
+				// Get total zimbra servers
+				for (String noOfZimbraServers : CommandLine.runCommandOnZimbraServer("zmprov -l gas | wc -l")) {
+					totalZimbraServers = Integer.parseInt(noOfZimbraServers);
+				}
+				logger.info("No. of zimbra servers (especially for multi-node environment): " + totalZimbraServers);
 				
 				// Grant createDistList right to domain
 				logger.info("Grant createDistList right to domain using STAF");
@@ -109,7 +117,7 @@ public class AjaxCommonTest {
 				staf.execute("zmprov mcf zimbraSmimeOCSPEnabled FALSE");
 				
 			} catch(Exception e) {
-				logger.error("Unable to get mailbox stores, grant createDistList right or can't disable zimbraSmimeOCSPEnabled for S/MIME using STAF", e);
+				logger.error("Unable to get mailbox stores, grant createDistList right or disable zimbraSmimeOCSPEnabled using STAF/CLI utility", e);
 			}
 		}
 	}
