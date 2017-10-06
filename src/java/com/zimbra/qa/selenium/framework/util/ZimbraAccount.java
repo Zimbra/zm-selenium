@@ -398,7 +398,7 @@ public class ZimbraAccount {
 			if ( ConfigProperties.getStringProperty("server.host").startsWith("pnq-") ) {
 				put("zimbraPrefTimeZoneId", "Asia/Kolkata");
 				
-			} else if ( ConfigProperties.getStringProperty("server.host").startsWith("zqa-") ) {				
+			} else {				
 				put("zimbraPrefTimeZoneId", "America/Chicago");
 			}
 
