@@ -395,15 +395,17 @@ public class ZimbraAccount {
 	@SuppressWarnings("serial")
 	private static final Map<String, String> accountAttrs = new HashMap<String, String>() {
 		{
-
-			put("zimbraPrefLocale", ConfigProperties.getStringProperty("locale"));
-			put("zimbraPrefTimeZoneId",
-					ConfigProperties.getStringProperty("zimbraPrefTimeZoneId", "America/Los_Angeles"));
+			if ( ConfigProperties.getStringProperty("server.host").startsWith("pnq-") ) {
+				put("zimbraPrefTimeZoneId", "Asia/Kolkata");
+				
+			} else if ( ConfigProperties.getStringProperty("server.host").startsWith("zqa-") ) {				
+				put("zimbraPrefTimeZoneId", "America/Chicago");
+			}
 
 			// The following settings are specific to the test harness and
 			// deviate from the default settings to work around
 			// Test harness issues/limitations
-
+			put("zimbraPrefLocale", ConfigProperties.getStringProperty("locale"));
 			put("zimbraPrefClientType", "advanced");
 			put("zimbraFeatureTouchClientEnabled", "TRUE");
 			put("zimbraPrefAutoAddAddressEnabled", "FALSE");
