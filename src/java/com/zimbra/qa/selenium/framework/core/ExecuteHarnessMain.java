@@ -437,14 +437,14 @@ public class ExecuteHarnessMain {
 
 			SleepMetrics.report();
 
-			if (!ConfigProperties.getStringProperty(ConfigProperties.getStringProperty("emailTo")).contains("pnq-automation@synacor.com")) {
+			if (!ConfigProperties.getStringProperty("emailTo").contains("pnq-automation@synacor.com")) {
 
 				String project = classfilter.toString().replace("com.zimbra.qa.selenium.", "").replace("projects.", "");
 				project = project.substring(0, 1).toUpperCase() + project.substring(1);
 				String[] projectSplit = project.split(".tests.");
 
-				String suite = groups.toString().replace("always, ", "").replace("[", "").replace("]", "").trim();
-				if (suite.equals("sanity,smoke,functional") || suite.equals("sanity, smoke, functional")) {
+				String suite = groups.toString().replace("always, ", "").replace("[", "").replace("]", "").replace(" ", "").trim();
+				if (suite.equals("sanity,smoke,functional") || suite.equals("L0,L1,L2,L3")) {
 					suite = "Full";
 				}
 				suite = suite.substring(0, 1).toUpperCase() + suite.substring(1).replace(".tests", "");
