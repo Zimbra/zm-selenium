@@ -901,7 +901,7 @@ public class ExecuteHarnessMain {
 
 			String machineName, resultDirectory = null, seleniumProject = null, resultRootDirectory = null,
 					labScriptFile, labResultURL;
-			String bugReports = "c:/opt/qa/BugReports/bugReports.jar";
+			String bugReportsJar = "c:/opt/qa/BugReports/BugReports.jar";
 
 			machineName = getLocalMachineName().replace(".corp.telligent.com", "").replace(".lab.zimbra.com", "").replace(".eng.zimbra.com", "");
 			emailBody.append("Selenium Automation Report: ")
@@ -1002,7 +1002,7 @@ public class ExecuteHarnessMain {
 			}
 
 			StafExecute staf = new StafExecute("SERVICE",
-					"ADD SERVICE BUGZILLA LIBRARY JSTAF EXECUTE " + bugReports);
+					"ADD SERVICE BUGZILLA LIBRARY JSTAF EXECUTE " + bugReportsJar);
 			staf.execute();
 
 			staf = new StafExecute("BUGZILLA",
