@@ -1402,7 +1402,7 @@ public class ExecuteHarnessMain {
 			String universalUITheme = "clarity";
 
 			Boolean themeFound = false;
-			for (String serverUniversalUITheme : CommandLineUtility.runCommandOnZimbraServer("ls /opt/zimbra/jetty/webapps/zimbra/skins")) {
+			for (String serverUniversalUITheme : CommandLineUtility.runCommandOnZimbraServer("ls /opt/zimbra/jetty/webapps/zimbra/skins | grep -i " + universalUITheme)) {
 				if (serverUniversalUITheme.contains(universalUITheme)) {
 					themeFound = true;
 					break ;
