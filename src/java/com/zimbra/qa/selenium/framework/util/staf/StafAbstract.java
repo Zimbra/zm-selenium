@@ -26,15 +26,14 @@ import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import com.ibm.staf.STAFException;
 import com.ibm.staf.STAFHandle;
 import com.ibm.staf.STAFMarshallingContext;
 import com.ibm.staf.STAFResult;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 /**
  * A wrapper class to create STAF classes from
@@ -124,7 +123,6 @@ public class StafAbstract {
 			String sStafLogFilePath = sStafLogFileFolderPath + "\\" + sStafLogFileName;
 			Path pStafLogFilePath = Paths.get(sStafLogFileFolderPath, sStafLogFileName);
 			File fStafLogFile = new File(sStafLogFilePath);
-			List<String> lines = null;
 
 			// Create STAF log folder and file
 			File fStafLogFileFolder = new File(sStafLogFileFolderPath);
@@ -142,7 +140,7 @@ public class StafAbstract {
 
 	        try {
 
-	        	if (AjaxCommonTest.totalZimbraServers < 1) {
+	        	if (ExecuteHarnessMain.totalZimbraServers < 1) {
 
 	        		// Single Node Server
 
@@ -150,9 +148,9 @@ public class StafAbstract {
 
 						StafServer = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host", ConfigProperties.getStringProperty("server.host"));
 
-						lines = Arrays.asList("Executing STAF Command: " + StafParms + " on Single Node server (" + StafServer + ")\n");
 						try {
-							Files.write(pStafLogFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+							Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on Single Node server (" + StafServer + ")\n"), 
+									Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
@@ -163,9 +161,9 @@ public class StafAbstract {
 
 						// Localhost
 
-						lines = Arrays.asList("Executing STAF Command: " + StafParms + " on localhost (" + StafServer + ")\n");
 						try {
-							Files.write(pStafLogFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+							Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on localhost (" + StafServer + ")\n"), 
+									Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
@@ -182,9 +180,9 @@ public class StafAbstract {
 	        			
 						StafServer = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".mta.host", ConfigProperties.getStringProperty("mta.host"));
 
-						lines = Arrays.asList("Executing STAF Command: " + StafParms + " on MTA Host (" + StafServer + ")\n");
 						try {
-							Files.write(pStafLogFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+							Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on MTA Host (" + StafServer + ")\n"), 
+									Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
@@ -197,13 +195,13 @@ public class StafAbstract {
 						Boolean storeCommandResponse = true;
 						String storeServer = null;
 
-						for (int i=0; i<AjaxCommonTest.storeServers.size(); i++) {
+						for (int i=0; i<ExecuteHarnessMain.storeServers.size(); i++) {
 
-							storeServer = AjaxCommonTest.storeServers.get(i);
+							storeServer = ExecuteHarnessMain.storeServers.get(i);
 
-							lines = Arrays.asList("Executing STAF Command: " + StafParms + " on Store Host (" + storeServer + ")\n");
 							try {
-								Files.write(pStafLogFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+								Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on Store Host (" + storeServer + ")\n"), 
+										Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 							} catch (IOException e) {
 								e.printStackTrace();
 							}
@@ -220,9 +218,9 @@ public class StafAbstract {
 
 						// Localhost
 
-						lines = Arrays.asList("Executing STAF Command: " + StafParms + " on localhost (" + StafServer + ")\n");
 						try {
-							Files.write(pStafLogFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+							Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on localhost (" + StafServer + ")\n"), 
+									Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
@@ -234,9 +232,9 @@ public class StafAbstract {
 
 				logger.info("STAF Response: " + StafResponse);
 
-				lines = Arrays.asList("STAT Command: " +  StafParms + " Response: " + StafResponse + "\n\n");
 				try {
-					Files.write(pStafLogFilePath, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					Files.write(pStafLogFilePath, Arrays.asList("STAT Command: " +  StafParms + " Response: " + StafResponse + "\n\n"), 
+							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

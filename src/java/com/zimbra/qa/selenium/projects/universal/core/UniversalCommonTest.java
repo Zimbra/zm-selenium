@@ -63,16 +63,16 @@ import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactGroupNew
 
 public class UniversalCommonTest {
 
-	protected static Logger logger = LogManager.getLogger(UniversalCommonTest.class);
 	protected AppUniversalClient app = null;
-
-	protected AbsTab startingPage = null;
+	protected AbsTab startingPage = null;	
+	
 	protected Map<String, String> startingAccountPreferences = null;
 	protected Map<String, String> startingUserPreferences = null;
 	protected Map<String, String> startingUserZimletPreferences = null;
 
-	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	WebElement we = null;
+	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
+	protected static Logger logger = LogManager.getLogger(UniversalCommonTest.class);
 	
 	protected StafServicePROCESS staf = new StafServicePROCESS();
 	String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
@@ -85,28 +85,6 @@ public class UniversalCommonTest {
 		startingPage = app.zPageMain;
 		startingAccountPreferences = new HashMap<String, String>();
 		startingUserZimletPreferences = new HashMap<String, String>();
-	}
-
-	public void commonTestZimbraConfiguration() throws HarnessException {
-		
-		logger.info("-------------- Pre-configuration and required setup --------------");
-
-		if (ConfigProperties.getStringProperty("staf").equals("true")) {
-			
-			try {
-				// Grant createDistList right to domain
-				logger.info("Grant createDistList right to domain");
-				staf.execute("zmprov grr domain " + ConfigProperties.getStringProperty("testdomain") + " dom "
-						+ ConfigProperties.getStringProperty("testdomain") + " createDistList");
-				
-				// Disable zimbraSmimeOCSPEnabled attribute for S/MIME
-				logger.info("Disable zimbraSmimeOCSPEnabled attribute for S/MIME");
-				staf.execute("zmprov mcf zimbraSmimeOCSPEnabled FALSE");
-				
-			} catch(Exception e) {
-				logger.error("Unable to grant createDistList right and can't disable zimbraSmimeOCSPEnabled for S/MIME", e);
-			}
-		}
 	}
 
 	@BeforeSuite(groups = { "always" })
@@ -142,7 +120,6 @@ public class UniversalCommonTest {
 				}
 			}
 			logger.info("App is ready!");
-			commonTestZimbraConfiguration();
 
 		} catch (WebDriverException e) {
 			logger.error("Unable to open ajax app. Is a valid certificate installed?", e);

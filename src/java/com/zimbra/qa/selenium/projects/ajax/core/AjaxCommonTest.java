@@ -65,9 +65,6 @@ public class AjaxCommonTest {
 	
 	protected AppAjaxClient app = null;
 	protected AbsTab startingPage = null;
-	public static ArrayList<String> storeServers = null;
-	public static ArrayList<String> zimbraServers = null;
-	public static int totalZimbraServers;
 
 	protected Map<String, String> startingAccountPreferences = null;
 	protected Map<String, String> startingUserPreferences = null;
@@ -88,38 +85,6 @@ public class AjaxCommonTest {
 		startingPage = app.zPageMain;
 		startingAccountPreferences = new HashMap<String, String>();
 		startingUserZimletPreferences = new HashMap<String, String>();
-	}
-
-	public void commonTestZimbraConfiguration() throws HarnessException {
-		
-		logger.info("-------------- Pre-configuration and required setup --------------");
-
-		if (ConfigProperties.getStringProperty("staf").equals("true")) {
-			
-			try {
-				// Get all store servers
-				storeServers = CommandLine.runCommandOnZimbraServer("zmprov -l gas mailbox");
-				logger.info("Store servers (especially for multi-node environment): " + storeServers);
-				
-				// Get total zimbra servers
-				for (String noOfZimbraServers : CommandLine.runCommandOnZimbraServer("zmprov -l gas | wc -l")) {
-					totalZimbraServers = Integer.parseInt(noOfZimbraServers);
-				}
-				logger.info("No. of zimbra servers (especially for multi-node environment): " + totalZimbraServers);
-				
-				// Grant createDistList right to domain
-				logger.info("Grant createDistList right to domain using STAF");
-				staf.execute("zmprov grr domain " + ConfigProperties.getStringProperty("testdomain") + " dom "
-						+ ConfigProperties.getStringProperty("testdomain") + " createDistList");
-				
-				// Disable zimbraSmimeOCSPEnabled attribute for S/MIME
-				logger.info("Disable zimbraSmimeOCSPEnabled attribute for S/MIME using STAF");
-				staf.execute("zmprov mcf zimbraSmimeOCSPEnabled FALSE");
-				
-			} catch(Exception e) {
-				logger.error("Unable to get mailbox stores, grant createDistList right or disable zimbraSmimeOCSPEnabled using STAF/CLI utility", e);
-			}
-		}
 	}
 
 	@BeforeSuite(groups = { "always" })
@@ -155,7 +120,6 @@ public class AjaxCommonTest {
 				}
 			}
 			logger.info("App is ready!");
-			commonTestZimbraConfiguration();
 
 		} catch (WebDriverException e) {
 			logger.error("Unable to open ajax app. Is a valid certificate installed?", e);

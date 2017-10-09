@@ -124,13 +124,13 @@ public class PageMain extends AbsTab {
 				SeleniumBrowser = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".browser",	ConfigProperties.getStringProperty("browser"));
 
 				if (SeleniumBrowser.contains("iexplore")) {
-				    CommandLine.CmdExec("taskkill /f /t /im iexplore.exe");
+				    CommandLineUtility.CmdExec("taskkill /f /t /im iexplore.exe");
 				} else if (SeleniumBrowser.contains("firefox")) {
-					CommandLine.CmdExec("taskkill /f /t /im firefox.exe");
+					CommandLineUtility.CmdExec("taskkill /f /t /im firefox.exe");
 				} else if (SeleniumBrowser.contains("safariproxy")) {
-				    CommandLine.CmdExec("taskkill /f /t /im safari.exe");
+				    CommandLineUtility.CmdExec("taskkill /f /t /im safari.exe");
 				} else if (SeleniumBrowser.contains("chrome")) {
-					CommandLine.CmdExec("taskkill /f /t /im chrome.exe");
+					CommandLineUtility.CmdExec("taskkill /f /t /im chrome.exe");
 				}
 
 			} catch (IOException e) {

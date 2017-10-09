@@ -232,7 +232,7 @@ public class GeneralUtility {
     * @throws HarnessException 
     */
    public static boolean findWindowsRunningTask(String taskName) throws IOException, InterruptedException, HarnessException {
-      String output = CommandLine.cmdExecWithOutput("TASKLIST /FI \"IMAGENAME EQ " + taskName + "\"");
+      String output = CommandLineUtility.cmdExecWithOutput("TASKLIST /FI \"IMAGENAME EQ " + taskName + "\"");
       logger.debug("output: " + output);
       if (output.contains(taskName)) {
          return true;

@@ -34,7 +34,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -62,7 +61,6 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
-import com.zimbra.qa.selenium.framework.util.CommandLine;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
@@ -74,9 +72,6 @@ public class AdminCommonTest {
 
 	protected AppAdminConsole app = null;
 	protected AbsTab startingPage = null;
-	public static ArrayList<String> storeServers = null;
-	public static ArrayList<String> zimbraServers = null;
-	public static int totalZimbraServers;
 	
 	protected final ZimbraAdminAccount gAdmin = ZimbraAdminAccount.AdminConsoleAdmin();
 	protected ZimbraAdminAccount startingAccount = null;
@@ -97,29 +92,6 @@ public class AdminCommonTest {
 		startingAccount = gAdmin;
 	}
 	
-	public void commonTestZimbraConfiguration() throws HarnessException {
-		
-		logger.info("-------------- Pre-configuration and required setup --------------");
-
-		if (ConfigProperties.getStringProperty("staf").equals("true")) {
-			
-			try {
-				// Get all store servers
-				storeServers = CommandLine.runCommandOnZimbraServer("zmprov -l gas mailbox");
-				logger.info("Store servers (especially for multi-node environment): " + storeServers);
-				
-				// Get total zimbra servers
-				for (String noOfZimbraServers : CommandLine.runCommandOnZimbraServer("zmprov -l gas | wc -l")) {
-					totalZimbraServers = Integer.parseInt(noOfZimbraServers);
-				}
-				logger.info("No. of zimbra servers (especially for multi-node environment): " + totalZimbraServers);
-												
-			} catch(Exception e) {
-				logger.error("Unable to get mailbox stores using CLI utility", e);
-			}
-		}
-	}
-
 	@BeforeSuite(groups = { "always" })
 	public void commonTestBeforeSuite() throws HarnessException {
 
@@ -162,7 +134,6 @@ public class AdminCommonTest {
 				}
 			}
 			logger.info("App is ready!");
-			commonTestZimbraConfiguration();
 
 		} catch (WebDriverException e) {
 			logger.error("Unable to open admin app. Is a valid certificate installed?", e);

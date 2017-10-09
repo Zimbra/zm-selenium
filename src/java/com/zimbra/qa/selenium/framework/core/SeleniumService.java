@@ -23,7 +23,7 @@ import java.net.URI;
 import java.util.Date;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import com.zimbra.qa.selenium.framework.util.CommandLine;
+import com.zimbra.qa.selenium.framework.util.CommandLineUtility;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.OperatingSystem;
 import com.zimbra.qa.selenium.framework.util.SleepMetrics;
@@ -123,15 +123,15 @@ public class SeleniumService {
 
 		try {
 			if (SeleniumBrowser.contains("iexplore")) {
-			    CommandLine.CmdExec("taskkill /f /t /im iexplore.exe");
+			    CommandLineUtility.CmdExec("taskkill /f /t /im iexplore.exe");
 			} else if (SeleniumBrowser.contains("firefox")) {
-				CommandLine.CmdExec("taskkill /f /t /im firefox.exe");
-				CommandLine.CmdExec("taskkill /f /t /im geckodriver.exe");
+				CommandLineUtility.CmdExec("taskkill /f /t /im firefox.exe");
+				CommandLineUtility.CmdExec("taskkill /f /t /im geckodriver.exe");
 			} else if (SeleniumBrowser.contains("safari")) {
-			    CommandLine.CmdExec("taskkill /f /t /im safari.exe");
+			    CommandLineUtility.CmdExec("taskkill /f /t /im safari.exe");
 			} else if (SeleniumBrowser.contains("chrome")) {
-				CommandLine.CmdExec("taskkill /f /t /im chrome.exe");
-				CommandLine.CmdExec("taskkill /f /t /im chromedriver.exe");
+				CommandLineUtility.CmdExec("taskkill /f /t /im chrome.exe");
+				CommandLineUtility.CmdExec("taskkill /f /t /im chromedriver.exe");
 			}
 
 		} catch (IOException e) {
@@ -151,11 +151,11 @@ public class SeleniumService {
 
 		try {
 			if (SeleniumBrowser.contains("firefox")) {
-				CommandLine.CmdExec("killall firefox");
-				CommandLine.CmdExec("killall geckodriver");
+				CommandLineUtility.CmdExec("killall firefox");
+				CommandLineUtility.CmdExec("killall geckodriver");
 			} else if (SeleniumBrowser.contains("chrome")) {
-				CommandLine.CmdExec("killall googlechrome");
-				CommandLine.CmdExec("killall chromedriver");
+				CommandLineUtility.CmdExec("killall googlechrome");
+				CommandLineUtility.CmdExec("killall chromedriver");
 			}
 
 		} catch (IOException e) {
@@ -174,13 +174,13 @@ public class SeleniumService {
 
 		try {
 			if (SeleniumBrowser.contains("firefox")) {
-				CommandLine.CmdExec("pkill -f firefox");
-				CommandLine.CmdExec("pkill -f geckodriver");
+				CommandLineUtility.CmdExec("pkill -f firefox");
+				CommandLineUtility.CmdExec("pkill -f geckodriver");
 			} else if (SeleniumBrowser.contains("chrome")) {
-				CommandLine.CmdExec("pkill -f googlechrome");
-				CommandLine.CmdExec("pkill -f chromedriver");
+				CommandLineUtility.CmdExec("pkill -f googlechrome");
+				CommandLineUtility.CmdExec("pkill -f chromedriver");
 			} else if (SeleniumBrowser.contains("safari")) {
-				CommandLine.CmdExec("pkill -f safari");
+				CommandLineUtility.CmdExec("pkill -f safari");
 			}
 
 		} catch (IOException e) {
@@ -210,7 +210,7 @@ public class SeleniumService {
 
 	private volatile static SeleniumService Instance;
 
-	private SeleniumService() {
+	public SeleniumService() {
 		logger.info("New SeleniumService object");
 
 		String modeProp = ConfigProperties.getStringProperty("seleniumMode", "local").toLowerCase();

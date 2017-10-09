@@ -63,8 +63,8 @@ class StreamGobbler extends Thread
     }
 }
 
-public class CommandLine {
-	private static Logger logger = LogManager.getLogger(CommandLine.class);
+public class CommandLineUtility {
+	private static Logger logger = LogManager.getLogger(CommandLineUtility.class);
 
 	/**
 	 * Execute Command line with no STDIN parameter and return the execution status
