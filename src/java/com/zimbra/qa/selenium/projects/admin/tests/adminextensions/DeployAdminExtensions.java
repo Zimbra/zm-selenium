@@ -17,6 +17,8 @@
 package com.zimbra.qa.selenium.projects.admin.tests.adminextensions;
 
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FileItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -43,6 +45,7 @@ public class DeployAdminExtensions extends AdminCommonTest {
 	 * 3. Verify extension is listed under admin extensions
 	 * @throws HarnessException
 	 */
+	@Bugs(ids="ZCS-1059")
 	@Test(	description = "Deploy admin extension",
 			groups = { "smoke", "L1" })
 
