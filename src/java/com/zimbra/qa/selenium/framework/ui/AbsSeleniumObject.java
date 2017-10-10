@@ -940,11 +940,13 @@ public abstract class AbsSeleniumObject {
 				String elementLocator = locator.substring(0, locator.lastIndexOf('@'));
 				if (elementLocator.length() > 1) {
 					try {
-						if (elementLocator.endsWith(")")) {
-							elementLocator = elementLocator.substring(0, elementLocator.length()-1);
-						}
-						if (elementLocator.startsWith("xpath=(")) {
-							elementLocator = elementLocator.substring(7,elementLocator.length());
+						if (!elementLocator.startsWith("css=")) {
+							if (elementLocator.endsWith(")")) {
+								elementLocator = elementLocator.substring(0, elementLocator.length()-1);
+							}
+							if (elementLocator.startsWith("xpath=(")) {
+								elementLocator = elementLocator.substring(7, elementLocator.length());
+							}
 						}
 						WebElement we = getElement(elementLocator);
 						attrs = we.getAttribute(locator.substring(locator.lastIndexOf('@')+1));
