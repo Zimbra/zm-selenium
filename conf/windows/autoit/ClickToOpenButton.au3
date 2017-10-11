@@ -5,6 +5,6 @@ Func ClickToOpenButton()
 	Local $activeWindowTitle = WinGetTitle("[ACTIVE]")
 
 	; Click Open button
-	ControlClick($sText, "", "Button1")
+	ControlClick($activeWindowTitle, "", "Button1")
 	
 EndFunc
