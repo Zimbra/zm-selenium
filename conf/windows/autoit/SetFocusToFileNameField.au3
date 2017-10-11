@@ -5,6 +5,6 @@ Func SetFocusToFileNameField()
 	Local $activeWindowTitle = WinGetTitle("[ACTIVE]")
 
 	; Focus to file name field
-	ControlFocus($activeWindowTitle,"","Edit1")
+	ControlFocus($activeWindowTitle, "" ,"Edit1")
 	
 EndFunc
