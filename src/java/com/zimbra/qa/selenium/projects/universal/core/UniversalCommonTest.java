@@ -486,102 +486,36 @@ public class UniversalCommonTest {
 	}
 
 	public void zUpload(String filePath) throws HarnessException {
-
-		// File name
-		String fileName = filePath.substring(filePath.lastIndexOf('\\') + 1);
-
-		// Upload file
-		SleepUtil.sleepLong();
 		zUploadFile(filePath);
 		// app.zPageMail.zKeyboardTypeStringUpload(filePath);
-		SleepUtil.sleepLongMedium();
-
-		// File locator
-		String fileLocator = null;
-		Boolean isMailApp = app.zPageMail.zIsVisiblePerPosition("div[id^='ztb__COMPOSE']", 0, 0);
-		Boolean isCalendarApp = app.zPageMail.zIsVisiblePerPosition("div[id^='ztb__APPT']", 0, 0);
-		Boolean isTasksApp = app.zPageMail.zIsVisiblePerPosition("div[id^='ztb__TKE']", 0, 0);
-		Boolean isBriefcaseApp = app.zPageMail.zIsVisiblePerPosition("div[class='ZmUploadDialog']", 0, 0);
-		Boolean isPreferencesApp = app.zPageMail.zIsVisiblePerPosition("div[id='ztb__PREF']", 0, 0);
-
-		if (isMailApp == true) {
-			fileLocator = "css=a[id^='COMPOSE']:contains(" + fileName + ")";
-		} else if (isCalendarApp == true || isTasksApp == true) {
-			we = webDriver.findElement(By.name("__calAttUpload__"));
-		} else if (isBriefcaseApp == true) {
-			we = webDriver.findElement(By.name("uploadFile"));
-		} else if (isPreferencesApp == true) {
-			we = webDriver.findElement(By.name("file"));
-		}
-
-		Boolean isFileSelected = false;
-		for (int i = 1; i <= 1; i++) {
-			if (isMailApp == true) {
-				isFileSelected = app.zPageMail.zIsVisiblePerPosition(fileLocator, 0, 0);
-			} else {
-				isFileSelected = we.getAttribute("value").contains(fileName);
-			}
-			if (isFileSelected == true) {
-				break;
-			} else {
-				SleepUtil.sleepMedium();
-				zUploadFile(filePath);
-				SleepUtil.sleepLongMedium();
-			}
-		}
 	}
 
 	public void zUpload(String filePath, SeparateWindowFormMailNew window) throws HarnessException {
-
-		// File name
-		String fileName = filePath.substring(filePath.lastIndexOf('\\') + 1);
-
-		// Upload file
-		SleepUtil.sleepLong();
 		zUploadFile(filePath);
-		SleepUtil.sleepLongMedium();
-
-		Boolean isFileSelected = false;
-		for (int i = 1; i <= 1; i++) {
-			isFileSelected = window.zIsVisiblePerPosition("css=a[id^='COMPOSE']:contains(" + fileName + ")", 0, 0);
-			if (isFileSelected == true) {
-				break;
-			} else {
-				SleepUtil.sleepMedium();
-				zUploadFile(filePath);
-				SleepUtil.sleepLongMedium();
-			}
-		}
 	}
 
 	public void zUpload(String filePath, SeparateWindowDisplayMail window) throws HarnessException {
-
-		// File name
-		String fileName = filePath.substring(filePath.lastIndexOf('\\') + 1);
-
-		// Upload file
-		SleepUtil.sleepLong();
 		zUploadFile(filePath);
-		SleepUtil.sleepLongMedium();
-
-		Boolean isFileSelected = false;
-		for (int i = 1; i <= 1; i++) {
-			isFileSelected = window.zIsVisiblePerPosition("css=a[id^='COMPOSE']:contains(" + fileName + ")", 0, 0);
-			if (isFileSelected == true) {
-				break;
-			} else {
-				SleepUtil.sleepMedium();
-				zUploadFile(filePath);
-				SleepUtil.sleepLongMedium();
-			}
-		}
+	}
+	
+	public void zUploadInlineImageAttachment(String filePath) throws HarnessException {
+		zUploadFile(filePath);
 	}
 
 	public void zUploadFile(String filePath) throws HarnessException {
 
 		// Put path to your image in a clipboard
+		SleepUtil.sleepSmall();
 		StringSelection ss = new StringSelection(filePath);
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
+		SleepUtil.sleepLong();
+
+		// AutoIt script to set focus to file name field in browse window dialog
+		try {
+			Runtime.getRuntime().exec(ConfigProperties.getBaseDirectory() + "\\conf\\windows\\autoit\\SetFocusToFileNameField.exe");
+		} catch (IOException e) {
+			logger.info("Couldn't execute or set focus to file name field using AutoIt script: " + e.toString());
+		}
 		SleepUtil.sleepMedium();
 
 		// Imitate mouse events like ENTER, CTRL+C, CTRL+V
@@ -592,20 +526,18 @@ public class UniversalCommonTest {
 			robot.keyPress(KeyEvent.VK_V);
 			robot.keyRelease(KeyEvent.VK_V);
 			robot.keyRelease(KeyEvent.VK_CONTROL);
-
-			robot.delay(1000);
-
-			robot.keyPress(KeyEvent.VK_ENTER);
-			robot.keyRelease(KeyEvent.VK_ENTER);
+			SleepUtil.sleepMedium();
 
 		} catch (AWTException e) {
 			e.printStackTrace();
 		}
-	}
 
-	public void zUploadInlineImageAttachment(String filePath) throws HarnessException {
-		SleepUtil.sleepLong();
-		zUploadFile(filePath);
+		// AutoIt script to click to open button to attach file
+		try {
+			Runtime.getRuntime().exec(ConfigProperties.getBaseDirectory() + "\\conf\\windows\\autoit\\ClickToOpenButton.exe");
+		} catch (IOException e) {
+			logger.info("AutoIt script to click to open button to attach file: " + e.toString());
+		}
 		SleepUtil.sleepLongMedium();
 	}
 
