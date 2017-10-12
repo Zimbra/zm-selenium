@@ -49,7 +49,6 @@ import org.openqa.selenium.logging.Logs;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactNew;
@@ -64,8 +63,8 @@ import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactGroupNew
 public class UniversalCommonTest {
 
 	protected AppUniversalClient app = null;
-	protected AbsTab startingPage = null;	
-	
+	protected AbsTab startingPage = null;
+
 	protected Map<String, String> startingAccountPreferences = null;
 	protected Map<String, String> startingUserPreferences = null;
 	protected Map<String, String> startingUserZimletPreferences = null;
@@ -73,7 +72,7 @@ public class UniversalCommonTest {
 	WebElement we = null;
 	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	protected static Logger logger = LogManager.getLogger(UniversalCommonTest.class);
-	
+
 	protected StafServicePROCESS staf = new StafServicePROCESS();
 	String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
 
@@ -91,11 +90,11 @@ public class UniversalCommonTest {
 	public void commonTestBeforeSuite() throws HarnessException, IOException, InterruptedException, SAXException {
 
 		logger.info("BeforeSuite: start");
-		ZimbraAccount.ResetAccountZWC();
+		ZimbraAccount.ResetAccountZUC();
 
 		try {
 
-			ConfigProperties.setAppType(ConfigProperties.AppType.AJAX);
+			ConfigProperties.setAppType(ConfigProperties.AppType.UNIVERSAL);
 
 			// Dynamic wait for App to be ready
 			int maxRetry = 5;
@@ -110,7 +109,7 @@ public class UniversalCommonTest {
 
 				} catch (WebDriverException e) {
 					if (retry == maxRetry) {
-						logger.error("Unable to open ajax app. Is a valid certificate installed?", e);
+						logger.error("Unable to open universal app. Is a valid certificate installed?", e);
 						throw e;
 					} else {
 						logger.info("App is still not ready...", e);
@@ -122,7 +121,7 @@ public class UniversalCommonTest {
 			logger.info("App is ready!");
 
 		} catch (WebDriverException e) {
-			logger.error("Unable to open ajax app. Is a valid certificate installed?", e);
+			logger.error("Unable to open universal app. Is a valid certificate installed?", e);
 
 		} catch (Exception e) {
 			logger.warn(e);
@@ -169,17 +168,17 @@ public class UniversalCommonTest {
 
 			// If the current test accounts preferences match, then the account
 			// can be used
-			if (!ZimbraAccount.AccountZWC().compareAccountPreferences(startingAccountPreferences)) {
+			if (!ZimbraAccount.AccountZUC().compareAccountPreferences(startingAccountPreferences)) {
 
 				logger.info("BeforeMethod: startingAccountPreferences do not match active account");
 
 				// Reset the account
-				ZimbraAccount.ResetAccountZWC();
+				ZimbraAccount.ResetAccountZUC();
 
 				// Create a new account
 				// Set the preferences accordingly
-				ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
-				ZimbraAccount.AccountZWC().modifyUserZimletPreferences(startingUserZimletPreferences);
+				ZimbraAccount.AccountZUC().modifyAccountPreferences(startingAccountPreferences);
+				ZimbraAccount.AccountZUC().modifyUserZimletPreferences(startingUserZimletPreferences);
 			}
 
 		}
@@ -191,20 +190,20 @@ public class UniversalCommonTest {
 
 			// If the current test accounts preferences match, then the account
 			// can be used
-			if (!ZimbraAccount.AccountZWC().compareUserZimletPreferences(startingUserZimletPreferences)) {
+			if (!ZimbraAccount.AccountZUC().compareUserZimletPreferences(startingUserZimletPreferences)) {
 
 				logger.info("BeforeMethod: startingAccountZimletPreferences do not match active account");
-				ZimbraAccount.ResetAccountZWC();
-				ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
-				ZimbraAccount.AccountZWC().modifyUserZimletPreferences(startingUserZimletPreferences);
+				ZimbraAccount.ResetAccountZUC();
+				ZimbraAccount.AccountZUC().modifyAccountPreferences(startingAccountPreferences);
+				ZimbraAccount.AccountZUC().modifyUserZimletPreferences(startingUserZimletPreferences);
 			}
 
-			ZimbraAccount.AccountZWC().modifyUserZimletPreferences(startingUserZimletPreferences);
+			ZimbraAccount.AccountZUC().modifyUserZimletPreferences(startingUserZimletPreferences);
 		}
 
-		// If AccountZWC is not currently logged in, then login now
-		if (!ZimbraAccount.AccountZWC().equals(app.zGetActiveAccount())) {
-			logger.info("BeforeMethod: AccountZWC is not currently logged in");
+		// If AccountZUC is not currently logged in, then login now
+		if (!ZimbraAccount.AccountZUC().equals(app.zGetActiveAccount())) {
+			logger.info("BeforeMethod: AccountZUC is not currently logged in");
 
 			if (app.zPageMain.zIsActive())
 				try {
@@ -285,8 +284,8 @@ public class UniversalCommonTest {
 		logger.info("AfterClass: start");
 
 		ZimbraAccount currentAccount = app.zGetActiveAccount();
-		if (currentAccount != null && currentAccount.accountIsDirty && currentAccount == ZimbraAccount.AccountZWC()) {
-			ZimbraAccount.ResetAccountZWC();
+		if (currentAccount != null && currentAccount.accountIsDirty && currentAccount == ZimbraAccount.AccountZUC()) {
+			ZimbraAccount.ResetAccountZUC();
 		}
 
 		logger.info("AfterClass: finish");
@@ -433,7 +432,7 @@ public class UniversalCommonTest {
 							"<link rel='icon' href='" + ConfigProperties.getStringProperty("webPortal")
 									+ "/portal/web/wp-content/themes/iconic-one/images/favicon.ico' type='image/x-icon'/>",
 							"<title>JavaScript Error Report</title>", "</head>", "<body>",
-							"<h2 style='font-family:calibri; font-size:26px;'>Ajax JavaScript Errors Report Generated by Selenium</h2>",
+							"<h2 style='font-family:calibri; font-size:26px;'>Universal JavaScript Errors Report Generated by Selenium</h2>",
 							"<table style='font-family:calibri; font-size:15px;' border='1'>",
 							"<tr><th>Application</th><th>Selenium testcase</th><th>Javascript error</th><th>**Screenshot path</th><th>Bug Summary</th></tr>");
 					Files.write(pJavaScriptErrorsHtmlFilePath, lines, Charset.forName("UTF-8"),
@@ -469,7 +468,7 @@ public class UniversalCommonTest {
 
 	@AfterMethod(groups = { "performance" })
 	public void performanceTestAfterMethod() {
-		ZimbraAccount.ResetAccountZWC();
+		ZimbraAccount.ResetAccountZUC();
 	}
 
 	@DataProvider(name = "DataProviderSupportedCharsets")
@@ -516,7 +515,7 @@ public class UniversalCommonTest {
 		}
 
 		Boolean isFileSelected = false;
-		for (int i = 1; i <= 3; i++) {
+		for (int i = 1; i <= 1; i++) {
 			if (isMailApp == true) {
 				isFileSelected = app.zPageMail.zIsVisiblePerPosition(fileLocator, 0, 0);
 			} else {
@@ -543,7 +542,7 @@ public class UniversalCommonTest {
 		SleepUtil.sleepLongMedium();
 
 		Boolean isFileSelected = false;
-		for (int i = 1; i <= 3; i++) {
+		for (int i = 1; i <= 1; i++) {
 			isFileSelected = window.zIsVisiblePerPosition("css=a[id^='COMPOSE']:contains(" + fileName + ")", 0, 0);
 			if (isFileSelected == true) {
 				break;
@@ -566,7 +565,7 @@ public class UniversalCommonTest {
 		SleepUtil.sleepLongMedium();
 
 		Boolean isFileSelected = false;
-		for (int i = 1; i <= 3; i++) {
+		for (int i = 1; i <= 1; i++) {
 			isFileSelected = window.zIsVisiblePerPosition("css=a[id^='COMPOSE']:contains(" + fileName + ")", 0, 0);
 			if (isFileSelected == true) {
 				break;
@@ -595,10 +594,10 @@ public class UniversalCommonTest {
 			robot.keyRelease(KeyEvent.VK_CONTROL);
 
 			robot.delay(1000);
-			
+
 			robot.keyPress(KeyEvent.VK_ENTER);
 			robot.keyRelease(KeyEvent.VK_ENTER);
-			
+
 		} catch (AWTException e) {
 			e.printStackTrace();
 		}
@@ -701,21 +700,10 @@ public class UniversalCommonTest {
 
 	public void zFreshLogin() {
 
-		ZimbraAccount.ResetAccountZWC();
+		ZimbraAccount.ResetAccountZUC();
 
 		try {
-			if (ConfigProperties.getAppType() == AppType.AJAX) {
-				ConfigProperties.setAppType(ConfigProperties.AppType.AJAX);
-			} else if (ConfigProperties.getAppType() == AppType.ADMIN) {
-				ConfigProperties.setAppType(ConfigProperties.AppType.ADMIN);
-			} else if (ConfigProperties.getAppType() == AppType.TOUCH) {
-				ConfigProperties.setAppType(ConfigProperties.AppType.TOUCH);
-			} else if (ConfigProperties.getAppType() == AppType.HTML) {
-				ConfigProperties.setAppType(ConfigProperties.AppType.HTML);
-			} else if (ConfigProperties.getAppType() == AppType.MOBILE) {
-				ConfigProperties.setAppType(ConfigProperties.AppType.MOBILE);
-			}
-
+			ConfigProperties.setAppType(ConfigProperties.AppType.UNIVERSAL);
 			webDriver.navigate().to(ConfigProperties.getLogoutURL());
 
 		} catch (WebDriverException e) {
@@ -724,14 +712,11 @@ public class UniversalCommonTest {
 		}
 
 		try {
-
 			((AppUniversalClient) app).zPageLogin.sOpen(ConfigProperties.getLogoutURL());
-			if (ConfigProperties.getAppType() == AppType.AJAX) {
-				if (ZimbraAccount.AccountZWC() != null) {
-					((AppUniversalClient) app).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
-				} else {
-					((AppUniversalClient) app).zPageLogin.zLogin(ZimbraAccount.Account10());
-				}
+			if (ZimbraAccount.AccountZUC() != null) {
+				((AppUniversalClient) app).zPageLogin.zLogin(ZimbraAccount.AccountZUC());
+			} else {
+				((AppUniversalClient) app).zPageLogin.zLogin(ZimbraAccount.Account10());
 			}
 
 		} catch (HarnessException e) {

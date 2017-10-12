@@ -62,7 +62,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactDistributionL
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactGroupNew;
 
 public class AjaxCommonTest {
-	
+
 	protected AppAjaxClient app = null;
 	protected AbsTab startingPage = null;
 
@@ -73,7 +73,7 @@ public class AjaxCommonTest {
 	WebElement we = null;
 	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	protected static Logger logger = LogManager.getLogger(AjaxCommonTest.class);
-	
+
 	protected StafServicePROCESS staf = new StafServicePROCESS();
 	String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
 
@@ -463,7 +463,7 @@ public class AjaxCommonTest {
 			}
 
 		}
-		
+
 		if(testResult.getStatus() == ITestResult.FAILURE){
 			ZimbraAccount currentAccount = app.zGetActiveAccount();
 			if (currentAccount != null && currentAccount.accountIsDirty && currentAccount == ZimbraAccount.AccountZWC()) {
@@ -523,7 +523,7 @@ public class AjaxCommonTest {
 		}
 
 		Boolean isFileSelected = false;
-		for (int i = 1; i <= 3; i++) {
+		for (int i = 1; i <= 1; i++) {
 			if (isMailApp == true) {
 				isFileSelected = app.zPageMail.zIsVisiblePerPosition(fileLocator, 0, 0);
 			} else {
@@ -550,7 +550,7 @@ public class AjaxCommonTest {
 		SleepUtil.sleepLongMedium();
 
 		Boolean isFileSelected = false;
-		for (int i = 1; i <= 3; i++) {
+		for (int i = 1; i <= 1; i++) {
 			isFileSelected = window.zIsVisiblePerPosition("css=a[id^='COMPOSE']:contains(" + fileName + ")", 0, 0);
 			if (isFileSelected == true) {
 				break;
@@ -573,7 +573,7 @@ public class AjaxCommonTest {
 		SleepUtil.sleepLongMedium();
 
 		Boolean isFileSelected = false;
-		for (int i = 1; i <= 3; i++) {
+		for (int i = 1; i <= 1; i++) {
 			isFileSelected = window.zIsVisiblePerPosition("css=a[id^='COMPOSE']:contains(" + fileName + ")", 0, 0);
 			if (isFileSelected == true) {
 				break;
@@ -591,14 +591,14 @@ public class AjaxCommonTest {
 		StringSelection ss = new StringSelection(filePath);
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
 		SleepUtil.sleepMedium();
-		
+
 		// use autoit scripts to focus file location text field in browse window dialog
 		try {
 			Runtime.getRuntime().exec(ConfigProperties.getBaseDirectory() + "\\conf\\windows\\autoit\\SetFocusToFileNameField.exe");
 		} catch (IOException e) {
 			logger.info("autoit script to focus file location field is not found! " + e.toString());
 		}
-		
+
 		// Imitate mouse events like ENTER, CTRL+C, CTRL+V
 		Robot robot;
 		try {
@@ -608,11 +608,11 @@ public class AjaxCommonTest {
 			robot.keyRelease(KeyEvent.VK_V);
 			robot.keyRelease(KeyEvent.VK_CONTROL);
 			SleepUtil.sleepMedium();
-			
+
 		} catch (AWTException e) {
 			e.printStackTrace();
 		}
-		
+
 		// use autoit scripts to click open button in browse window dialog
 		try {
 			Runtime.getRuntime().exec(ConfigProperties.getBaseDirectory() + "\\conf\\windows\\autoit\\ClickToOpenButton.exe");

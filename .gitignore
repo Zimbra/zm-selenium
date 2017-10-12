@@ -4,7 +4,9 @@ data/private
 src/java/com/zimbra/qa/selenium/projects/ajax/tests/network
 src/java/com/zimbra/qa/selenium/projects/admin/tests/network
 src/java/com/zimbra/qa/selenium/projects/universal/tests/network
-conf/windows
+conf/windows/msedge
+conf/windows/firefox
+conf/windows/googlechrome
 conf/mac
 conf/linux
 BugReports

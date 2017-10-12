@@ -21,7 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import com.zimbra.qa.selenium.framework.core.SeleniumService;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -39,8 +38,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.AutocompleteEntry.Icon;
  * <p>
  *
  * @author Matt Rhoades
- * @see http
- *      ://wiki.zimbra.com/wiki/Testing:_Selenium:_ZimbraSelenium_Overview#Mail_Page
+ * @see http://wiki.zimbra.com/wiki/Testing:_Selenium:_ZimbraSelenium_Overview#Mail_Page
  */
 public class FormApptNew extends AbsForm {
 
@@ -839,28 +837,48 @@ public class FormApptNew extends AbsForm {
 			return;
 
 		} else if (field == Field.To) {
-
-			locator = "css=input[id='APPT_COMPOSE_1_to_control_input']";
+			
+			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+				locator = "css=textarea[id$='_to_control_input']";
+			} else {
+				locator = "css=input[id$='_to_control_input']";
+			}
 
 			// attendees
 		} else if (field == Field.Attendees) {
 
-			locator = "css=input[id$='_person_input']";
+			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+				locator = "css=textarea[id$='_person_input']";
+			} else {
+				locator = "css=input[id$='_person_input']";
+			}
 
 			// optional
 		} else if (field == Field.Optional) {
 
-			locator = "css=input[id$='_optional_input']";
+			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+				locator = "css=textarea[id$='_optional_input']";
+			} else {
+				locator = "css=input[id$='_optional_input']";
+			}
 
 			// location
 		} else if (field == Field.Location) {
 
-			locator = "css=input[id$='_location_input']";
+			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+				locator = "css=textarea[id$='_location_input']";
+			} else {
+				locator = "css=input[id$='_location_input']";
+			}
 
 			// equipment
 		} else if (field == Field.Equipment) {
 
-			locator = "css=input[id$='_resourcesData_input']";
+			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+				locator = "css=textarea[id$='_resourcesData_input']";
+			} else {
+				locator = "css=input[id$='_resourcesData_input']";
+			}
 
 			// start date
 		} else if (field == Field.StartDate) {
@@ -911,99 +929,55 @@ public class FormApptNew extends AbsForm {
 
 			int frames = this.sGetCssCount("css=iframe");
 			logger.info("Body: # of frames: " + frames);
-			String browser = SeleniumService.getInstance().getSeleniumBrowser();
 
-			if (browser.contains("iexplore")) {
-				if (frames == 1) {
+			if (this.sIsElementPresent("css=textarea[class='ZmHtmlEditorTextArea']") && (frames == 0)) {
 
-					// Text compose
-					locator = "css=textarea[id*=_content]";
+				locator = "css=textarea[class='ZmHtmlEditorTextArea']";
 
-					if (!this.sIsElementPresent(locator))
-						throw new HarnessException("Unable to locate compose body");
-					this.sClickAt(locator, "");
-					this.clearField(locator);
-					this.sClickAt(locator, "");
-					this.zWaitForBusyOverlay();
-					this.sType(locator, value);
+				this.sFocus(locator);
+				this.sClick(locator);
+				this.zWaitForBusyOverlay();
+				this.sType(locator, value);
 
-					return;
-
-				} else if (frames == 2) {
-
-					locator = "css=iframe[id$='ZmHtmlEditor1_body_ifr']";
-					if (!this.sIsElementPresent(locator))
-						throw new HarnessException("Unable to locate compose body");
-
-					this.sFocus(locator);
-					this.zClickAt(locator, "10,10");
-
-					// zTypeFormattedText(locator, value);
-					this.sType(locator, value);
-					this.zWaitForBusyOverlay();
-
-					return;
-
-				}
-
-			} else {
-
-				if (this.sIsElementPresent("css=textarea[class='ZmHtmlEditorTextArea']") && (frames == 0)) {
-
-					locator = "css=textarea[class='ZmHtmlEditorTextArea']";
-
-					this.sFocus(locator);
-					this.sClick(locator);
-					this.zWaitForBusyOverlay();
-					this.sType(locator, value);
-
-					return;
-				}
-
-				if (frames >= 1) {
-
-					// HTML compose
-					try {
-
-						if (this.sIsElementPresent(
-								"css=textarea[class='ZmHtmlEditorTextArea'][style*='display: block;']")) {
-							locator = "css=textarea[class='ZmHtmlEditorTextArea']";
-							this.sFocus(locator);
-							this.sClick(locator);
-							this.sType(locator, value);
-
-						} else if (this.sIsElementPresent("css=iframe[id$='ZmHtmlEditor1_body_ifr']")) {
-							locator = "css=body[id='tinymce']";
-							this.sSelectFrame(
-									"css=div[class='ZmApptComposeView'] div[id$='_notes'] iframe[id$='_body_ifr']"); // iframe
-																														// index
-																														// is
-																														// 0
-																														// based
-							this.zClickAt(locator, "10,10");
-							this.sFocus(locator);
-							this.sType(locator, value);
-							// this.zKeyboard.zTypeCharacters(value);
-
-						} else {
-							throw new HarnessException("Unable to locate compose body");
-						}
-
-					} finally {
-						this.sSelectFrame("relative=top");
-					}
-
-					this.zWaitForBusyOverlay();
-
-					return;
-
-				} else {
-					throw new HarnessException("Compose //iframe count was " + frames);
-				}
+				return;
 			}
 
-		} else {
-			throw new HarnessException("not implemented for field " + field);
+			if (frames >= 1) {
+
+				// HTML compose
+				try {
+
+					if (this.sIsElementPresent(
+							"css=textarea[class='ZmHtmlEditorTextArea'][style*='display: block;']")) {
+						locator = "css=textarea[class='ZmHtmlEditorTextArea']";
+						this.sFocus(locator);
+						this.sClick(locator);
+						this.sType(locator, value);
+
+					} else if (this.sIsElementPresent("css=iframe[id$='ZmHtmlEditor1_body_ifr']")) {
+						locator = "css=body[id='tinymce']";
+						this.sSelectFrame(
+								"css=div[class='ZmApptComposeView'] div[id$='_notes'] iframe[id$='_body_ifr']");
+						this.zClickAt(locator, "10,10");
+						this.sFocus(locator);
+						this.sType(locator, value);
+						// this.zKeyboard.zTypeCharacters(value);
+
+					} else {
+						throw new HarnessException("Unable to locate compose body");
+					}
+
+				} finally {
+					this.sSelectFrame("relative=top");
+				}
+
+				this.zWaitForBusyOverlay();
+
+				return;
+
+			} else {
+				throw new HarnessException("Compose //iframe count was " + frames);
+			}
 		}
 
 		if (locator == null) {

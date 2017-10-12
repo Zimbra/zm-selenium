@@ -30,6 +30,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsForm;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
@@ -75,9 +76,9 @@ public class FormMailNew extends AbsForm {
 		public static final String zIncludeHeadersReply = "css=div[id$='_REPLY__INCLUDE_HEADERS'] td[id$='_REPLY__INCLUDE_HEADERS_title']";
 		public static final String zIncludeHeadersForward = "css=div[id$='_FORWARD_ATT__INCLUDE_HEADERS'] td[id$='_FORWARD_ATT__INCLUDE_HEADERS_title']";
 
-		public static final String zToField = "css=div>input[id^='zv__COMPOSE'][id$='_to_control']";
-		public static final String zCcField = "css=[id^=zv__COMPOSE][id$=_cc_control]";
-		public static final String zBccField = "css=[id^=zv__COMPOSE][id$=_bcc_control]";
+		public static final String zToField = "css=input[id^='zv__COMPOSE'][id$='_to_control']";
+		public static final String zCcField = "css=input[id^=zv__COMPOSE][id$=_cc_control]";
+		public static final String zBccField = "css=input[id^=zv__COMPOSE][id$=_bcc_control]";
 		public static final String zSubjectField = "css=div[id^=zv__COMPOSE] input[id$=_subject_control]";
 		public static final String zAttachmentField = "css=div[id$=_attachments_div]";
 		public static final String zAttachmentImage = "css=div[id$=_attachments_div] div[class='ImgAttachment']";
@@ -646,7 +647,11 @@ public class FormMailNew extends AbsForm {
 
 		} else if (field == Field.To) {
 
-			locator = Locators.zToField;
+			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+				locator = "css=textarea[id$='_to_control']";
+			} else {
+				locator = Locators.zToField;
+			}
 
 			if (!this.sIsElementPresent(locator))
 				throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
@@ -666,7 +671,11 @@ public class FormMailNew extends AbsForm {
 
 		} else if (field == Field.Cc) {
 
-			locator = Locators.zCcField;
+			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+				locator = "css=textarea[id$='_cc_control']";
+			} else {
+				locator = Locators.zCcField;
+			}
 
 			if (!this.sIsElementPresent(locator))
 				throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
@@ -685,7 +694,11 @@ public class FormMailNew extends AbsForm {
 
 		} else if (field == Field.Bcc) {
 
-			locator = Locators.zBccField;
+			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+				locator = "css=textarea[id$='_bcc_control']";
+			} else {
+				locator = Locators.zBccField;
+			}
 
 			if (!zBccIsActive()) {
 				this.zToolbarPressButton(Button.B_SHOWBCC);
@@ -765,7 +778,7 @@ public class FormMailNew extends AbsForm {
 			logger.debug("Body: # of frames: " + frames);
 			String browser = SeleniumService.getInstance().getSeleniumBrowser();
 
-			if (browser.equalsIgnoreCase("iexplore")) {
+			if (browser.equalsIgnoreCase("msedge")) {
 				if (frames == 1) {
 					// //
 					// Text compose
