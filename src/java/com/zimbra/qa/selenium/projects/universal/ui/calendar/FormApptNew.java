@@ -913,7 +913,7 @@ public class FormApptNew extends AbsForm {
 			logger.info("Body: # of frames: " + frames);
 			String browser = SeleniumService.getInstance().getSeleniumBrowser();
 
-			if (browser.contains("iexplore")) {
+			if (browser.contains("msedge")) {
 				if (frames == 1) {
 
 					// Text compose

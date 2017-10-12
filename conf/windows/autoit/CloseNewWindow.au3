@@ -1,0 +1,1 @@
+WinClose ("Close - New Window");

@@ -143,11 +143,7 @@ public class ZimbraAccount {
 		this.MyClientAuthToken = null;
 	}
 
-	/**
-	 * Get the user account logged into ZWC being tested
-	 *
-	 * @return the ZimbraAccount object representing the test account
-	 */
+	// Ajax client
 	public static synchronized ZimbraAccount AccountZWC() {
 		if (_AccountZWC == null) {
 			_AccountZWC = new ZimbraAccount();
@@ -156,19 +152,13 @@ public class ZimbraAccount {
 		}
 		return (_AccountZWC);
 	}
-
 	public static synchronized void ResetAccountZWC() {
 		logger.warn("AccountZWC is being reset");
 		_AccountZWC = null;
 	}
-
 	private static ZimbraAccount _AccountZWC = null;
 
-	/**
-	 * Get the user account logged into HTML being tested
-	 *
-	 * @return the ZimbraAccount object representing the test account
-	 */
+	// HTML client
 	public static synchronized ZimbraAccount AccountHTML() {
 		if (_AccountHTML == null) {
 			_AccountHTML = new ZimbraAccount();
@@ -177,14 +167,13 @@ public class ZimbraAccount {
 		}
 		return (_AccountHTML);
 	}
-
 	public static synchronized void ResetAccountHTML() {
 		logger.warn("AccountHTML is being reset");
 		_AccountHTML = null;
 	}
-
 	private static ZimbraAccount _AccountHTML = null;
 
+	// Mobile client
 	public static synchronized ZimbraAccount AccountZMC() {
 		if (_AccountZMC == null) {
 			_AccountZMC = new ZimbraAccount();
@@ -193,13 +182,12 @@ public class ZimbraAccount {
 		}
 		return (_AccountZMC);
 	}
-
 	public static synchronized void ResetAccountZMC() {
 		_AccountZMC = null;
 	}
-
 	private static ZimbraAccount _AccountZMC = null;
 
+	// Touch client
 	public static synchronized ZimbraAccount AccountZTC() {
 		if (_AccountZTC == null) {
 			_AccountZTC = new ZimbraAccount();
@@ -208,13 +196,26 @@ public class ZimbraAccount {
 		}
 		return (_AccountZTC);
 	}
-
 	public static synchronized void ResetAccountZTC() {
 		logger.warn("AccountZTC is being reset");
 		_AccountZTC = null;
 	}
-
 	private static ZimbraAccount _AccountZTC = null;
+
+	// Universal client
+	public static synchronized ZimbraAccount AccountZUC() {
+		if (_AccountZUC == null) {
+			_AccountZUC = new ZimbraAccount();
+			_AccountZUC.provision();
+			_AccountZUC.authenticate();
+		}
+		return (_AccountZUC);
+	}
+	public static synchronized void ResetAccountZUC() {
+		logger.warn("AccountZUC is being reset");
+		_AccountZUC = null;
+	}
+	private static ZimbraAccount _AccountZUC = null;
 
 	/**
 	 * Get a general use account for interacting with the test account
@@ -385,10 +386,11 @@ public class ZimbraAccount {
 		ZimbraAccount._Account8 = null;
 		ZimbraAccount._Account9 = null;
 		ZimbraAccount._Account10 = null;
+		ZimbraAccount._AccountZWC = null;
 		ZimbraAccount._AccountHTML = null;
 		ZimbraAccount._AccountZMC = null;
-		ZimbraAccount._AccountZWC = null;
 		ZimbraAccount._AccountZTC = null;
+		ZimbraAccount._AccountZUC = null;
 	}
 
 	// Set the default account settings
@@ -397,8 +399,8 @@ public class ZimbraAccount {
 		{
 			if ( ConfigProperties.getStringProperty("server.host").startsWith("pnq-") ) {
 				put("zimbraPrefTimeZoneId", "Asia/Kolkata");
-				
-			} else {				
+
+			} else {
 				put("zimbraPrefTimeZoneId", "America/Chicago");
 			}
 

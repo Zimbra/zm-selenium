@@ -16,16 +16,19 @@
  */
 package com.zimbra.qa.selenium.framework.ui;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
@@ -166,40 +169,71 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 	public void zCloseWindow(String title) throws HarnessException {
 		logger.info(myPageName() + " zCloseWindow(" + title + ")");
-
-		try {
-
-			if ((this.DialogWindowID == null || this.DialogWindowID.equals("null")) && (this.DialogWindowTitle.equals("") || this.DialogWindowTitle.equals("null")) && title.equals("")) {
-				return;
+		
+		String windowTitle;
+		Boolean windowFound = false;		
+		String setNewWindowTitle = "Close - New Window";
+		
+		for (String winHandle : webDriver().getWindowHandles()) {
+			windowTitle = webDriver().switchTo().window(winHandle).getTitle();			
+			if (windowTitle.equals(title)) {
+				windowFound = true;
+				break;
 			}
-			Set<String> windows = webDriver().getWindowHandles();
-			if(windows.size() != 1 && (sGetTitle().equals(title) || sGetLocation().contains("/" + title + "?"))) {	
-				logger.info("Closing winodw: " + title);
+		}
+		
+		if (ConfigProperties.getStringProperty("browser").contains("msedge") && windowFound.equals(true)) {
+			
+			// Use AutoIt script to close the new window
+			try {
+				WebElement we = null;
+				((JavascriptExecutor)ClientSessionFactory.session().webDriver()).executeScript("document.title = '" + setNewWindowTitle + "'", we);
+				super.sSelectWindow(MainWindowID);
+				Runtime.getRuntime().exec(ConfigProperties.getBaseDirectory() + "\\conf\\windows\\autoit\\CloseNewWindow.exe");
+			} catch (IOException e) {
+				logger.info("Couldn't execute AutoIt script to close new window " + e.toString());
+			}
+			
+		} else if (!ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
-				webDriver().close();
-			} else if(windows.size() != 1) {
-					for (String winHandle : windows) {
-						WebDriver window = webDriver().switchTo().window(winHandle);
-						if ((window.getTitle().contentEquals(title) || window.getCurrentUrl().contains("/" + title + "?")) && !window.getTitle().contentEquals("Zimbra: Inbox")
-								&& !window.getTitle().contentEquals("Zimbra: Contacts")
-								&& !window.getTitle().contentEquals("Zimbra: Calendar")
-								&& !window.getTitle().contentEquals("Zimbra: Tasks")
-								&& !window.getTitle().contentEquals("Zimbra: Briefcase")
-								&& !window.getTitle().contentEquals("Zimbra: Preferences")) {
-							webDriver().close();
-						}
-						if (title.equals("selenium_blank")) {
-							if (window.getTitle().equals("")) {
+			try {
+	
+				if ((this.DialogWindowID == null || this.DialogWindowID.equals("null")) && (this.DialogWindowTitle.equals("") || this.DialogWindowTitle.equals("null")) && title.equals("")) {
+					return;
+					
+				} else {
+					Set<String> windows = webDriver().getWindowHandles();
+					if (windows.size() != 1 && (sGetTitle().equals(title) || sGetLocation().contains("/" + title + "?"))) {	
+						logger.info("Closing winodw: " + title);	
+						webDriver().close();
+						
+					} else if (windows.size() != 1) {
+						for (String winHandle : windows) {
+							WebDriver window = webDriver().switchTo().window(winHandle);
+							if ((window.getTitle().contentEquals(title) || window.getCurrentUrl().contains("/" + title + "?")) 
+									&& !window.getTitle().contentEquals("Zimbra: Inbox")
+									&& !window.getTitle().contentEquals("Zimbra: Contacts")
+									&& !window.getTitle().contentEquals("Zimbra: Calendar")
+									&& !window.getTitle().contentEquals("Zimbra: Tasks")
+									&& !window.getTitle().contentEquals("Zimbra: Briefcase")
+									&& !window.getTitle().contentEquals("Zimbra: Preferences")) {
 								webDriver().close();
 							}
+							if (title.equals("selenium_blank")) {
+								if (window.getTitle().equals("")) {
+									webDriver().close();
+								}
+							}
 						}
+					} else {
+						logger.info("Window is already closed: " + title);
 					}
-				} else {
-					logger.info("Window is already closed: "+ title);
+				}
+	
+			} finally {
+				super.sSelectWindow(MainWindowID);
 			}
-
-		} finally {
-			super.sSelectWindow(MainWindowID);
+			
 		}
 	}
 

@@ -19,16 +19,15 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-
 import com.zimbra.qa.selenium.framework.items.ConversationItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -40,6 +39,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsTooltip;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.Shortcut;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
@@ -2151,17 +2151,52 @@ public class PageMail extends AbsTab {
 			}
 
 		} else if (button == Button.B_ATTACH) {
-			if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_title']")) {
-				locator = "css=td[id='zb__COMPOSE-2___attachments_btn_title']";
+			
+			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+				if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_title']")) {
+					locator = "css=td[id='zb__COMPOSE-2___attachments_btn_title']";
+				} else {
+					locator = "css=td[id='zb__COMPOSE-1___attachments_btn_title']";
+				}
+				this.sClick(locator);
+				SleepUtil.sleepSmall();
+				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+				SleepUtil.sleepLong();
+				return page;
+				
 			} else {
-				locator = "css=td[id='zb__COMPOSE-1___attachments_btn_title']";
+				if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_title']")) {
+					locator = "css=td[id='zb__COMPOSE-2___attachments_btn_title']";
+				} else {
+					locator = "css=td[id='zb__COMPOSE-1___attachments_btn_title']";
+				}
 			}
 
 		} else if (button == Button.B_MY_COMPUTER) {
-			locator = "css=div[class='DwtMenu'] td[id$='_title']:contains('My Computer')";
+			
+			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+				SleepUtil.sleepLong();
+				return page;
+				
+			} else {
+				locator = "css=div[class='DwtMenu'] td[id$='_title']:contains('My Computer')";
+			}
 
 		} else if (button == Button.B_ATTACH_INLINE) {
-			locator = "css=div[class='DwtMenu'] td[id$='_title']:contains('Attach Inline')";
+			
+			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+				SleepUtil.sleepSmall();
+				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+				SleepUtil.sleepLong();
+				return page;
+				
+			} else {
+				locator = "css=div[class='DwtMenu'] td[id$='_title']:contains('Attach Inline')";
+			}
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);

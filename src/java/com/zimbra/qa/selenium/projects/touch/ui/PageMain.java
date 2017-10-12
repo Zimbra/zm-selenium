@@ -123,14 +123,17 @@ public class PageMain extends AbsTab {
 				String SeleniumBrowser;
 				SeleniumBrowser = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".browser",	ConfigProperties.getStringProperty("browser"));
 
-				if (SeleniumBrowser.contains("iexplore")) {
-				    CommandLineUtility.CmdExec("taskkill /f /t /im iexplore.exe");
+				if (SeleniumBrowser.contains("msedge")) {
+				    CommandLineUtility.CmdExec("taskkill /f /t /im MicrosoftEdge.exe");
+				    CommandLineUtility.CmdExec("taskkill /f /t /im MicrosoftWebDriver.exe");
 				} else if (SeleniumBrowser.contains("firefox")) {
 					CommandLineUtility.CmdExec("taskkill /f /t /im firefox.exe");
-				} else if (SeleniumBrowser.contains("safariproxy")) {
-				    CommandLineUtility.CmdExec("taskkill /f /t /im safari.exe");
+					CommandLineUtility.CmdExec("taskkill /f /t /im geckodriver.exe");
 				} else if (SeleniumBrowser.contains("chrome")) {
 					CommandLineUtility.CmdExec("taskkill /f /t /im chrome.exe");
+					CommandLineUtility.CmdExec("taskkill /f /t /im chromedriver.exe");
+				} else if (SeleniumBrowser.contains("safari")) {
+				    CommandLineUtility.CmdExec("taskkill /f /t /im safari.exe");
 				}
 
 			} catch (IOException e) {
@@ -177,7 +180,7 @@ public class PageMain extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		
+
 		//
 		String locator = null;
 		AbsPage page = null;
@@ -231,7 +234,7 @@ public class PageMain extends AbsTab {
 			throw new HarnessException("Option cannot be null!");
 
 
-		
+
 		String pulldownLocator = null;
 		String optionLocator = null;
 		AbsPage page = null;
@@ -262,7 +265,7 @@ public class PageMain extends AbsTab {
 					optionLocator = "css=div[id^='POPUP'] div[id='about'] td[id$='_title']";
 					//page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, this.MyApplication, this);
 
-					
+
 
 			} else {
 
@@ -354,14 +357,14 @@ public class PageMain extends AbsTab {
 
 			page = new FormMailNew(this.MyApplication);
 
-			
+
 
 		} else if ( uri.getQuery().get("view").equals("msg") ) {
 
 			// page = new DisplayMail(this.MyApplication);
 			throw new HarnessException("implement me!");
 
-			
+
 
 		} else {
 

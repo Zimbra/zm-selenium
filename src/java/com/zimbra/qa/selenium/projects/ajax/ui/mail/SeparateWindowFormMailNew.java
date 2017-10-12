@@ -27,6 +27,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsSeparateWindow;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.Shortcut;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
@@ -137,15 +138,27 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 		if (field == Field.To) {
 
-			locator = container + " tr[id$='_to_row'] input[id$='_to_control']";
+			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+				locator = "css=textarea[id$='_to_control']";
+			} else {
+				locator = container + " tr[id$='_to_row'] input[id$='_to_control']";
+			}
 
 		} else if (field == Field.Cc) {
 
-			locator = container + " tr[id$='_cc_row'] input[id$='_cc_control']";
+			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+				locator = "css=textarea[id$='_cc_control']";
+			} else {
+				locator = container + " tr[id$='_cc_row'] input[id$='_cc_control']";
+			}
 
 		} else if (field == Field.Bcc) {
 
-			locator = container + " tr[id$='_bcc_row'] input[id$='_bcc_control']";
+			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+				locator = "css=textarea[id$='_bcc_control']";
+			} else {
+				locator = container + " tr[id$='_bcc_row'] input[id$='_bcc_control']";
+			}
 
 			if (!zBccIsActive()) {
 				this.zToolbarPressButton(Button.B_SHOWBCC);
@@ -299,7 +312,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 		String locator = null;
 		AbsPage page = null;
 
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 
 		if (button == Button.O_ATTACH_DROPDOWN) {
 			if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_dropdown']")) {
@@ -309,17 +322,52 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			}
 
 		} else if (button == Button.B_ATTACH) {
-			if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_title']")) {
-				locator = "css=td[id='zb__COMPOSE-2___attachments_btn_title']";
+			
+			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+				if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_title']")) {
+					locator = "css=td[id='zb__COMPOSE-2___attachments_btn_title']";
+				} else {
+					locator = "css=td[id='zb__COMPOSE-1___attachments_btn_title']";
+				}
+				this.sClick(locator);
+				SleepUtil.sleepSmall();
+				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+				SleepUtil.sleepLong();
+				return page;
+				
 			} else {
-				locator = "css=td[id='zb__COMPOSE-1___attachments_btn_title']";
+				if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_title']")) {
+					locator = "css=td[id='zb__COMPOSE-2___attachments_btn_title']";
+				} else {
+					locator = "css=td[id='zb__COMPOSE-1___attachments_btn_title']";
+				}
 			}
 
 		} else if (button == Button.B_MY_COMPUTER) {
-			locator = "css=div[class='DwtMenu']  td[id$='_title']:contains('My Computer')";
+			
+			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+				SleepUtil.sleepLong();
+				return page;
+				
+			} else {
+				locator = "css=div[class='DwtMenu'] td[id$='_title']:contains('My Computer')";
+			}
 
 		} else if (button == Button.B_ATTACH_INLINE) {
-			locator = "css=div[class='DwtMenu']  td[id$='_title']:contains('Attach Inline')";
+			
+			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+				SleepUtil.sleepSmall();
+				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+				SleepUtil.sleepLong();
+				return page;
+				
+			} else {
+				locator = "css=div[class='DwtMenu'] td[id$='_title']:contains('Attach Inline')";
+			}
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);

@@ -765,7 +765,7 @@ public class FormMailNew extends AbsForm {
 			logger.debug("Body: # of frames: " + frames);
 			String browser = SeleniumService.getInstance().getSeleniumBrowser();
 
-			if (browser.equalsIgnoreCase("iexplore")) {
+			if (browser.equalsIgnoreCase("msedge")) {
 				if (frames == 1) {
 					// //
 					// Text compose

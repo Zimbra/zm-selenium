@@ -103,7 +103,7 @@ public class PageLogin extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if ( zIsActive() ) {
-			
+
 			return;
 
 		} else if ( !zIsVisiblePerPosition(Locators.zBtnLogin, 10, 10) ) {
@@ -112,14 +112,17 @@ public class PageLogin extends AbsTab {
 				String SeleniumBrowser;
 				SeleniumBrowser = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".browser",	ConfigProperties.getStringProperty("browser"));
 
-				if (SeleniumBrowser.contains("iexplore")) {
-				    CommandLineUtility.CmdExec("taskkill /f /t /im iexplore.exe");
+				if (SeleniumBrowser.contains("msedge")) {
+				    CommandLineUtility.CmdExec("taskkill /f /t /im MicrosoftEdge.exe");
+				    CommandLineUtility.CmdExec("taskkill /f /t /im MicrosoftWebDriver.exe");
 				} else if (SeleniumBrowser.contains("firefox")) {
 					CommandLineUtility.CmdExec("taskkill /f /t /im firefox.exe");
-				} else if (SeleniumBrowser.contains("safariproxy")) {
-				    CommandLineUtility.CmdExec("taskkill /f /t /im safari.exe");
+					CommandLineUtility.CmdExec("taskkill /f /t /im geckodriver.exe");
 				} else if (SeleniumBrowser.contains("chrome")) {
 					CommandLineUtility.CmdExec("taskkill /f /t /im chrome.exe");
+					CommandLineUtility.CmdExec("taskkill /f /t /im chromedriver.exe");
+				} else if (SeleniumBrowser.contains("safari")) {
+				    CommandLineUtility.CmdExec("taskkill /f /t /im safari.exe");
 				}
 
 			} catch (IOException e) {

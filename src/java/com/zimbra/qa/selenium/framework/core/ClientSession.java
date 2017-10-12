@@ -37,7 +37,9 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
@@ -81,27 +83,61 @@ public class ClientSession {
 
 		if (webDriver == null) {
 
-			URL driverZipURL = null;
+			URL driverURL = null, driverZipURL = null;
 			File driverBinary = null;
-			String driverFile = null, driverZipFile = null, driverVersion = null, driverDirectory = null;
+			String driverFilePath = null, driverZipFile = null, driverFile = null, driverVersion = null, driverDirectory = null;
 
 			LoggingPreferences logs = new LoggingPreferences();
 	        logs.enable(LogType.BROWSER, Level.SEVERE);
 	        logs.enable(LogType.DRIVER, Level.SEVERE);
 	        logs.enable(LogType.PERFORMANCE, Level.SEVERE);
 
-	        if (ConfigProperties.getCalculatedBrowser().contains("firefox")) {
+	        if (ConfigProperties.getCalculatedBrowser().contains("msedge")) {
+
+	        	driverVersion = ConfigProperties.getStringProperty("msEdgeDriverURL").split("#")[1];
+	        	driverDirectory = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/" + ConfigProperties.getCalculatedBrowser() + "/" + driverVersion;
+
+	        	switch (OperatingSystem.getOSType()) {
+
+	        		// Note: Running Selenium tests on MS Edge is not fully supported
+	        		case WINDOWS10: default:
+	        			driverFile = "MicrosoftWebDriver.exe";
+	        			driverFilePath = driverDirectory + "/" + driverFile;
+						try {
+							driverURL = new URL(ConfigProperties.getStringProperty("msEdgeDriverURL").split("#")[0]);
+							driverBinary = new File(driverFilePath);
+						} catch (MalformedURLException e1) {
+							e1.printStackTrace();
+						}
+						break;
+				}
+
+	        	try {
+					if (!driverBinary.exists() && !driverBinary.isFile()) {
+						setupDir(driverDirectory);
+						downloadFile(driverBinary, driverURL, driverDirectory, driverFile);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+				DesiredCapabilities capabilities = DesiredCapabilities.edge();
+				System.setProperty("webdriver.edge.driver", driverFilePath);
+				capabilities.setCapability(CapabilityType.LOGGING_PREFS, logs);
+				webDriver = new EdgeDriver(capabilities);
+
+	        } else if (ConfigProperties.getCalculatedBrowser().contains("firefox")) {
 
 	        	driverVersion = ConfigProperties.getStringProperty("geckoDriverURL").split("/")[7];
 	        	driverDirectory = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/" + ConfigProperties.getCalculatedBrowser() + "/" + driverVersion;
 
 				switch (OperatingSystem.getOSType()) {
 
-					// Note: Running Selenium tests on firefox are not fully supported (see https://bugzilla.mozilla.org/show_bug.cgi?id=1303234).
+					// Note: Running Selenium tests on firefox is not fully supported (see https://bugzilla.mozilla.org/show_bug.cgi?id=1303234).
 					case WINDOWS: default:
 						driverZipFile = "geckodriver-" + driverVersion + "-win64.zip";
-						driverFile = driverDirectory + "/geckodriver.exe";
-						driverBinary = new File(driverFile);
+						driverFilePath = driverDirectory + "/geckodriver.exe";
+						driverBinary = new File(driverFilePath);
 						try {
 							driverZipURL = new URL(ConfigProperties.getStringProperty("geckoDriverURL") + "/" + driverZipFile);
 						} catch (MalformedURLException e1) {
@@ -111,8 +147,8 @@ public class ClientSession {
 
 					case MAC:
 						driverZipFile = "geckodriver-" + driverVersion + "-macos.tar.gz";
-						driverFile = driverDirectory + "/geckodriver";
-						driverBinary = new File(driverFile);
+						driverFilePath = driverDirectory + "/geckodriver";
+						driverBinary = new File(driverFilePath);
 						try {
 							driverZipURL = new URL(ConfigProperties.getStringProperty("geckoDriverURL") + "/" + driverZipFile);
 						} catch (MalformedURLException e1) {
@@ -122,8 +158,8 @@ public class ClientSession {
 
 					case LINUX:
 						driverZipFile = "geckodriver-" + driverVersion + "-linux64.tar.gz";
-						driverFile = driverDirectory + "/geckodriver";
-						driverBinary = new File(driverFile);
+						driverFilePath = driverDirectory + "/geckodriver";
+						driverBinary = new File(driverFilePath);
 						try {
 							driverZipURL = new URL(ConfigProperties.getStringProperty("geckoDriverURL") + "/" + driverZipFile);
 						} catch (MalformedURLException e1) {
@@ -149,10 +185,10 @@ public class ClientSession {
 				FirefoxProfile profile = new FirefoxProfile();
 				profile.setPreference("extensions.firebug.showFirstRunPage", false);
 
-				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-				System.setProperty("webdriver.gecko.driver", driverFile);
-				capabilities.setCapability(CapabilityType.LOGGING_PREFS, logs);
-				webDriver = new FirefoxDriver(capabilities);
+				FirefoxOptions options = new FirefoxOptions();
+				System.setProperty("webdriver.gecko.driver", driverFilePath);
+				options.setCapability(CapabilityType.LOGGING_PREFS, logs);
+				webDriver = new FirefoxDriver(options);
 				webDriver.manage().window().maximize();
 
 			} else {
@@ -164,8 +200,8 @@ public class ClientSession {
 
 					case WINDOWS: default:
 						driverZipFile = "chromedriver_win32.zip";
-						driverFile = driverDirectory + "/chromedriver.exe";
-						driverBinary = new File(driverFile);
+						driverFilePath = driverDirectory + "/chromedriver.exe";
+						driverBinary = new File(driverFilePath);
 						try {
 							driverZipURL = new URL(ConfigProperties.getStringProperty("chromeDriverURL") + "/" + driverZipFile);
 						} catch (MalformedURLException e1) {
@@ -175,8 +211,8 @@ public class ClientSession {
 
 					case MAC:
 						driverZipFile = "chromedriver_mac64.zip";
-						driverFile = driverDirectory + "/chromedriver";
-						driverBinary = new File(driverFile);
+						driverFilePath = driverDirectory + "/chromedriver";
+						driverBinary = new File(driverFilePath);
 						try {
 							driverZipURL = new URL(ConfigProperties.getStringProperty("chromeDriverURL") + "/" + driverZipFile);
 						} catch (MalformedURLException e1) {
@@ -186,8 +222,8 @@ public class ClientSession {
 
 					case LINUX:
 						driverZipFile = "chromedriver_linux64.zip";
-						driverFile = driverDirectory + "/chromedriver";
-						driverBinary = new File(driverFile);
+						driverFilePath = driverDirectory + "/chromedriver";
+						driverBinary = new File(driverFilePath);
 						try {
 							driverZipURL = new URL(ConfigProperties.getStringProperty("chromeDriverURL") + "/" + driverZipFile);
 						} catch (MalformedURLException e1) {
@@ -220,14 +256,15 @@ public class ClientSession {
 				options.addArguments("disable-infobars");
 				options.addArguments("start-maximized");
 
-		        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-		        System.setProperty("webdriver.chrome.driver", driverFile);
-		        capabilities.setCapability("chrome.switches", Arrays.asList("--disable-extensions"));
-		        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-		        capabilities.setCapability(CapabilityType.LOGGING_PREFS, logs);
-		        webDriver = new ChromeDriver(capabilities);
+		        System.setProperty("webdriver.chrome.driver", driverFilePath);
+		        options.setCapability("chrome.switches", Arrays.asList("--disable-extensions"));
+		        options.setCapability(ChromeOptions.CAPABILITY, options);
+		        options.setCapability(CapabilityType.LOGGING_PREFS, logs);
+		        webDriver = new ChromeDriver(options);
+		        webDriver.manage().window().maximize();
 			}
 		}
+
 		return webDriver;
 	}
 
@@ -239,7 +276,7 @@ public class ClientSession {
 	public void downloadFile(File driverBinary, URL driverZipURL, String driverDirectory, String driverZipFile) throws IOException {
 
 		System.out.println("Downloading driver from " + driverZipURL + " ...");
-		System.out.println("\t & putting driver at " + driverDirectory + "/" + driverZipFile + " ...");
+		System.out.println("\t & putting driver at " + driverDirectory);
 
 		ReadableByteChannel rbc = null;
 		try {
