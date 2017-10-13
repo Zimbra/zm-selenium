@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.universal.tests.mail.compose.drafts;
+package com.zimbra.qa.selenium.projects.universal.tests.mail.compose.drafts.attachments;
 
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -42,7 +42,7 @@ public class SaveDraftMailWithInlineImagettachment extends PrefGroupMailByMessag
 
 	public void SaveDraftAndSendMailWithInlineImageAttachment_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
 			try {
 	
@@ -111,7 +111,7 @@ public class SaveDraftMailWithInlineImagettachment extends PrefGroupMailByMessag
 			}
 			
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
 
@@ -121,7 +121,7 @@ public class SaveDraftMailWithInlineImagettachment extends PrefGroupMailByMessag
 
 	public void OpenExistingSavedDraftAndSendMailWithInlineImageAttachment_02() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
 			try {
 
@@ -213,7 +213,7 @@ public class SaveDraftMailWithInlineImagettachment extends PrefGroupMailByMessag
 			}
 
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
 

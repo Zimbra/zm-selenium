@@ -15,7 +15,7 @@
  * ***** END LICENSE BLOCK *****
  */
 
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachment;
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachments;
 
 import org.testng.SkipException;
 import org.testng.annotations.Test;
@@ -38,7 +38,7 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 	
 	public void EditAsNewWithAttachment_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
 			String subject = "subject"+ ConfigProperties.getUniqueString();
 			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
@@ -115,7 +115,7 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 			ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName),"Verify attachment exists in the email");
 
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 
 	}

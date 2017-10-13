@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachment;
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachments;
 
 import java.awt.event.KeyEvent;
 import org.testng.SkipException;
@@ -34,10 +34,10 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowFormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Locators;
 
-public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMailByMessageTest {
+public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailByMessageTest {
 
-	public ComposeReplyMailWithAttachmentAndVariousOptions() {
-		logger.info("New "+ ComposeReplyMailWithAttachmentAndVariousOptions.class.getCanonicalName());
+	public ComposeReplyWithAttachmentAndVariousOptions() {
+		logger.info("New "+ ComposeReplyWithAttachmentAndVariousOptions.class.getCanonicalName());
 	}
 
 	@Bugs(ids = "103903, 106583")
@@ -46,7 +46,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 
 	public void ComposeReplyWithAttachmentAndVariousOptions_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -103,8 +103,8 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 					// Verify that the message is included as attachment in new window
 					ZAssert.assertTrue(mailform.zHasAttachment(subject),"Original message is not present as attachment");
 
-					window.zPressButton(Button.O_ATTACH_DROPDOWN);
-					window.zPressButton(Button.B_MY_COMPUTER);
+					app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
+					app.zPageMail.zPressButton(Button.B_MY_COMPUTER);
 					zUploadFile(filePath);
 					
 					SleepUtil.sleepSmall();
@@ -118,6 +118,13 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 
 				} finally {
 					app.zPageMain.zCloseWindow(window, windowTitle, app);
+					
+					// This is just for bug 106583
+					if (window != null) {
+						window.zCloseWindow(fileName);
+						window = null;
+					}
+					app.zPageMail.zSelectWindow(null);
 				}
 
 			} finally {
@@ -127,7 +134,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 			}
 
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
 
@@ -138,7 +145,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 
 	public void ComposeReplyWithAttachmentAndVariousOptions_02() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -211,7 +218,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 			}
 
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
 
@@ -221,7 +228,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 
 	public void ComposeReplyWithAttachmentAndVariousOptions_03() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -302,7 +309,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 			}
 			
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
 	

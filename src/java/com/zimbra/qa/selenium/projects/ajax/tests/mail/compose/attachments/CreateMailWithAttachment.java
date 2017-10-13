@@ -39,7 +39,7 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 
 	public void CreateMailWithAttachment_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
 			try {
 
@@ -105,7 +105,7 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 			}
 
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
 

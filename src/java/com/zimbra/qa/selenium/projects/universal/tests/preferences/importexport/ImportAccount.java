@@ -49,7 +49,7 @@ public class ImportAccount extends UniversalCommonTest {
 
 	public void ImportAccount_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
 			//-- File to import
 			final String fileName = "account.tgz";
@@ -133,7 +133,7 @@ public class ImportAccount extends UniversalCommonTest {
 			ZAssert.assertTrue(app.zPageBriefcase.isPresentInListView(docName), "Verify that document in briefcase is displayed");
 
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 
 	}

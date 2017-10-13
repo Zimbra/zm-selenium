@@ -38,7 +38,7 @@ public class EditAsNewWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 	
 	public void EditAsNewWithAnInlineAttachment_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
 			String subject = "subject"+ ConfigProperties.getUniqueString();
 			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
@@ -149,7 +149,7 @@ public class EditAsNewWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(),"Verify inline attachment exists in the email");
 
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 
 	}

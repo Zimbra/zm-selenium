@@ -15,7 +15,7 @@
  * ***** END LICENSE BLOCK *****
  */
 
-package com.zimbra.qa.selenium.projects.universal.tests.mail.newwindow.attachment;
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachments;
 
 import java.awt.event.KeyEvent;
 import org.testng.SkipException;
@@ -25,8 +25,8 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.SeparateWindowFormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowFormMailNew;
 
 public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 
@@ -40,7 +40,7 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 	
 	public void CreateMailWithAttachment_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
 			try {
 
@@ -63,11 +63,7 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
 
 					window.zSetWindowTitle(windowTitle);
-					window.zWaitForActive();
-
-					window.waitForComposeWindow();
-
-					ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+					ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 					// Fill out the form with the data
 					window.zFill(mail);
@@ -129,7 +125,7 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 			}
 
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 
 	}

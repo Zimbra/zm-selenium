@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.universal.tests.calendar.meetings.organizer.singleday.create;
+package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.create.attachments;
 
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
@@ -27,8 +27,8 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 
 public class CreateMeetingWithAttachment extends CalendarWorkWeekTest {
 
@@ -43,7 +43,7 @@ public class CreateMeetingWithAttachment extends CalendarWorkWeekTest {
 			
 	public void CreateMeetingWithAttachment_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 	
 			try {
 			
@@ -124,7 +124,7 @@ public class CreateMeetingWithAttachment extends CalendarWorkWeekTest {
 			}
 
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
 }

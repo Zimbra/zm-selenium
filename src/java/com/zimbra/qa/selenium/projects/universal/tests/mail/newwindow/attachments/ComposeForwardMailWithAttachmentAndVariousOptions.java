@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachment;
+package com.zimbra.qa.selenium.projects.universal.tests.mail.newwindow.attachments;
 
 import java.awt.event.KeyEvent;
 import org.testng.SkipException;
@@ -29,10 +29,10 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowFormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Locators;
+import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.ui.mail.SeparateWindowFormMailNew;
+import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Locators;
 
 public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroupMailByMessageTest {
 
@@ -46,7 +46,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 
 	public void ComposeForwardMailWithAttachmentAndVariousOptions_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -98,13 +98,17 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
 					window.zSetWindowTitle(windowTitle);
-					ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
+					window.zWaitForWindow(windowTitle);
+					ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
+
+					// Select the window
+					window.sSelectWindow(windowTitle);
 
 					// Verify that the message is included as attachment in new window
 					ZAssert.assertTrue(mailform.zHasAttachment(subject),"Original message is not present as attachment");
 
-					window.zPressButton(Button.O_ATTACH_DROPDOWN);
-					window.zPressButton(Button.B_MY_COMPUTER);
+					app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
+					app.zPageMail.zPressButton(Button.B_MY_COMPUTER);
 					zUploadFile(filePath);
 
 					SleepUtil.sleepSmall();
@@ -118,6 +122,13 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 
 				} finally {
 					app.zPageMain.zCloseWindow(window, windowTitle, app);
+					
+					// This is just for bug 106583
+					if (window != null) {
+						window.zCloseWindow(fileName);
+						window = null;
+					}
+					app.zPageMail.zSelectWindow(null);
 				}
 
 			} finally {
@@ -127,7 +138,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 			}
 
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
 
@@ -138,7 +149,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 
 	public void ComposeForwardMailWithAttachmentAndVariousOptions_02() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -195,7 +206,11 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
 					window.zSetWindowTitle(windowTitle);
-					ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
+					window.zWaitForWindow(windowTitle);
+					ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
+
+					// Select the window
+					window.sSelectWindow(windowTitle);
 
 					// Verify that the attachment is present in new window as well.
 					ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present in new window!");
@@ -211,7 +226,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 			}
 
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
 
@@ -221,7 +236,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 
 	public void ComposeForwardMailWithAttachmentAndVariousOptions_03() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -286,7 +301,11 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
 					window.zSetWindowTitle(windowTitle);
-					ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
+					window.zWaitForWindow(windowTitle);
+					ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
+
+					// Select the window
+					window.sSelectWindow(windowTitle);
 
 					// Verify that the attachment is present in new window as well.
 					ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present in new window!");
@@ -302,7 +321,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 			}
 
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
 	

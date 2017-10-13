@@ -1,4 +1,4 @@
-package com.zimbra.qa.selenium.projects.universal.tests.mail.newwindow.attachment;
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachments;
 
 /*
  * ***** BEGIN LICENSE BLOCK *****
@@ -20,12 +20,14 @@ package com.zimbra.qa.selenium.projects.universal.tests.mail.newwindow.attachmen
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Button;
-import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.SeparateWindowFormMailNew;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.OperatingSystem;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowFormMailNew;
 
 public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByMessageTest {
 
@@ -38,7 +40,7 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 	
 	public void OpenComposedMsgWithAnAttachmentInNewWindow_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
 			// Create file item
 			final String fileName = "testtextfile.txt";
@@ -60,11 +62,7 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 				window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
 				window.zSetWindowTitle(windowTitle);
-				window.waitForComposeWindow();
-				ZAssert.assertTrue(window.zIsActive(),"Verify the window is active");
-
-				// Select the window
-				window.sSelectWindow(windowTitle);
+				ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 				
 				// Verify Attachment should not disappeared  New compose window
 				Assert.assertTrue(window.zIsVisiblePerPosition("css=a[id^='COMPOSE']:contains(" + fileName + ")", 0, 0),"vcf attachment link present");
@@ -74,7 +72,7 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 			}
 
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
 }

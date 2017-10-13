@@ -29,7 +29,7 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 	
 	public void FwdMailWithAnInlineAttachment_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
 			String subject = "subject"+ ConfigProperties.getUniqueString();
 			String bodyText = "text" + ConfigProperties.getUniqueString();
@@ -116,7 +116,7 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 			ZAssert.assertStringContains(received.dSubject, "Fwd: " + subject, "Verify forward subject field is correct");
 
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
 

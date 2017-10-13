@@ -34,10 +34,10 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Locators;
 
-public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailByMessageTest {
+public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMailByMessageTest {
 
-	public ComposeReplyWithAttachmentAndVariousOptions() {
-		logger.info("New "+ ComposeReplyWithAttachmentAndVariousOptions.class.getCanonicalName());
+	public ComposeReplyMailWithAttachmentAndVariousOptions() {
+		logger.info("New "+ ComposeReplyMailWithAttachmentAndVariousOptions.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
@@ -47,7 +47,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 
 	public void ComposeReplyWithAttachmentAndVariousOptions_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -126,7 +126,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 			}
 			
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
 
@@ -137,7 +137,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 
 	public void ComposeReplyWithAttachmentAndVariousOptions_02() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -203,7 +203,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 			}
 			
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
 
@@ -213,7 +213,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 
 	public void ComposeReplyWithAttachmentAndVariousOptions_03() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
 
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -286,7 +286,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailBy
 			}
 
 		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS, skipping this test...");
+			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
 }
