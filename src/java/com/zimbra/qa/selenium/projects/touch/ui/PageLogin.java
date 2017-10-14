@@ -112,7 +112,7 @@ public class PageLogin extends AbsTab {
 				String SeleniumBrowser;
 				SeleniumBrowser = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".browser",	ConfigProperties.getStringProperty("browser"));
 
-				if (SeleniumBrowser.contains("msedge")) {
+				if (SeleniumBrowser.contains("edge")) {
 				    CommandLineUtility.CmdExec("taskkill /f /t /im MicrosoftEdge.exe");
 				    CommandLineUtility.CmdExec("taskkill /f /t /im MicrosoftWebDriver.exe");
 				} else if (SeleniumBrowser.contains("firefox")) {

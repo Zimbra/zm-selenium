@@ -41,7 +41,7 @@ public class SaveDraftMailWithAttachment extends PrefGroupMailByMessageTest {
 
 	public void SaveDraftMailWithAttachment_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
 
 			try {
 
@@ -118,7 +118,7 @@ public class SaveDraftMailWithAttachment extends PrefGroupMailByMessageTest {
 
 	public void OpenExistingSavedDraftMailWithAttachment_02() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
 
 			try {
 

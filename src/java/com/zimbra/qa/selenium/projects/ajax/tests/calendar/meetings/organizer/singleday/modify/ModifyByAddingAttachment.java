@@ -42,7 +42,7 @@ public class ModifyByAddingAttachment extends CalendarWorkWeekTest {
 
 	public void ModifyByAddingAttachment_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
 
 			try {
 				// Create a meeting

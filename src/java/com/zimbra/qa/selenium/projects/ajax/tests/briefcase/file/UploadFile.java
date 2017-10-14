@@ -80,7 +80,7 @@ public class UploadFile extends FeatureBriefcaseTest {
 	
 	public void UploadFile_02() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
 
 			try {
 

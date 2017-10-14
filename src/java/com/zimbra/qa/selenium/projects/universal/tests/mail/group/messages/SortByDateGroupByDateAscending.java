@@ -55,7 +55,7 @@ public class SortByDateGroupByDateAscending extends PrefGroupMailByMessageTest {
 	
 	public void SortByDateGroupByDateAscending_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
 
 			// File (export of an Inbox which contained mail of different past dates) to import. 
 			// The is required so that mails can be grouped by date and issue can be reproduced.

@@ -49,7 +49,7 @@ public class ImportAccount extends UniversalCommonTest {
 
 	public void ImportAccount_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
 
 			//-- File to import
 			final String fileName = "account.tgz";

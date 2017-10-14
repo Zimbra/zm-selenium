@@ -838,7 +838,7 @@ public class FormApptNew extends AbsForm {
 
 		} else if (field == Field.To) {
 			
-			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				locator = "css=textarea[id$='_to_control_input']";
 			} else {
 				locator = "css=input[id$='_to_control_input']";
@@ -847,7 +847,7 @@ public class FormApptNew extends AbsForm {
 			// attendees
 		} else if (field == Field.Attendees) {
 
-			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				locator = "css=textarea[id$='_person_input']";
 			} else {
 				locator = "css=input[id$='_person_input']";
@@ -856,7 +856,7 @@ public class FormApptNew extends AbsForm {
 			// optional
 		} else if (field == Field.Optional) {
 
-			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				locator = "css=textarea[id$='_optional_input']";
 			} else {
 				locator = "css=input[id$='_optional_input']";
@@ -865,7 +865,7 @@ public class FormApptNew extends AbsForm {
 			// location
 		} else if (field == Field.Location) {
 
-			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				locator = "css=textarea[id$='_location_input']";
 			} else {
 				locator = "css=input[id$='_location_input']";
@@ -874,7 +874,7 @@ public class FormApptNew extends AbsForm {
 			// equipment
 		} else if (field == Field.Equipment) {
 
-			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				locator = "css=textarea[id$='_resourcesData_input']";
 			} else {
 				locator = "css=input[id$='_resourcesData_input']";

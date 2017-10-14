@@ -118,7 +118,7 @@ public class ExecuteHarnessMain {
 		}
 
 		// Append the app, browser, locale
-		path += "/" + ConfigProperties.getAppType() + "/" + ConfigProperties.getCalculatedBrowser() + "/"
+		path += "/" + ConfigProperties.getAppType() + "/" + ConfigProperties.getStringProperty("browser") + "/"
 				+ ConfigProperties.getStringProperty("locale");
 
 		// Make sure the path exists
@@ -332,7 +332,7 @@ public class ExecuteHarnessMain {
 		// calculate how long the tests took
 		long duration = finish.getTime() - start.getTime();
 		result.append("Duration: ").append(duration / 1000).append(" seconds\n");
-		result.append("Browser: ").append(ConfigProperties.getCalculatedBrowser()).append('\n');
+		result.append("Browser: ").append(ConfigProperties.getStringProperty("browser")).append('\n');
 
 		return (result.toString());
 	}

@@ -322,7 +322,7 @@ public class PerfDatabase {
 	protected int getBrowserID() throws HarnessException {
 		getBrowserTable();
 		
-		String browser = ConfigProperties.getCalculatedBrowser();
+		String browser = ConfigProperties.getStringProperty("browser");
 
 		if (!browserTable.containsKey(browser)) {
 			insertBrowser(browser);

@@ -647,7 +647,7 @@ public class FormMailNew extends AbsForm {
 
 		} else if (field == Field.To) {
 
-			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				locator = "css=textarea[id$='_to_control']";
 			} else {
 				locator = Locators.zToField;
@@ -671,7 +671,7 @@ public class FormMailNew extends AbsForm {
 
 		} else if (field == Field.Cc) {
 
-			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				locator = "css=textarea[id$='_cc_control']";
 			} else {
 				locator = Locators.zCcField;
@@ -694,7 +694,7 @@ public class FormMailNew extends AbsForm {
 
 		} else if (field == Field.Bcc) {
 
-			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				locator = "css=textarea[id$='_bcc_control']";
 			} else {
 				locator = Locators.zBccField;
@@ -778,7 +778,7 @@ public class FormMailNew extends AbsForm {
 			logger.debug("Body: # of frames: " + frames);
 			String browser = SeleniumService.getInstance().getSeleniumBrowser();
 
-			if (browser.equalsIgnoreCase("msedge")) {
+			if (browser.equalsIgnoreCase("edge")) {
 				if (frames == 1) {
 					// //
 					// Text compose

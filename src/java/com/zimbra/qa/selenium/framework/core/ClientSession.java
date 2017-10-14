@@ -92,19 +92,18 @@ public class ClientSession {
 	        logs.enable(LogType.DRIVER, Level.SEVERE);
 	        logs.enable(LogType.PERFORMANCE, Level.SEVERE);
 
-	        if (ConfigProperties.getCalculatedBrowser().contains("msedge")) {
+	        if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 
-	        	driverVersion = ConfigProperties.getStringProperty("msEdgeDriverURL").split("#")[1];
-	        	driverDirectory = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/" + ConfigProperties.getCalculatedBrowser() + "/" + driverVersion;
+	        	driverVersion = ConfigProperties.getStringProperty("edgeDriverURL").split("#")[1];
+	        	driverDirectory = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/" + ConfigProperties.getStringProperty("browser") + "/" + driverVersion;
 
 	        	switch (OperatingSystem.getOSType()) {
 
-	        		// Note: Running Selenium tests on MS Edge is not fully supported
 	        		case WINDOWS10: default:
 	        			driverFile = "MicrosoftWebDriver.exe";
 	        			driverFilePath = driverDirectory + "/" + driverFile;
 						try {
-							driverURL = new URL(ConfigProperties.getStringProperty("msEdgeDriverURL").split("#")[0]);
+							driverURL = new URL(ConfigProperties.getStringProperty("edgeDriverURL").split("#")[0]);
 							driverBinary = new File(driverFilePath);
 						} catch (MalformedURLException e1) {
 							e1.printStackTrace();
@@ -126,14 +125,13 @@ public class ClientSession {
 				capabilities.setCapability(CapabilityType.LOGGING_PREFS, logs);
 				webDriver = new EdgeDriver(capabilities);
 
-	        } else if (ConfigProperties.getCalculatedBrowser().contains("firefox")) {
+	        } else if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
 
 	        	driverVersion = ConfigProperties.getStringProperty("geckoDriverURL").split("/")[7];
-	        	driverDirectory = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/" + ConfigProperties.getCalculatedBrowser() + "/" + driverVersion;
+	        	driverDirectory = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/" + ConfigProperties.getStringProperty("browser") + "/" + driverVersion;
 
 				switch (OperatingSystem.getOSType()) {
 
-					// Note: Running Selenium tests on firefox is not fully supported (see https://bugzilla.mozilla.org/show_bug.cgi?id=1303234).
 					case WINDOWS: default:
 						driverZipFile = "geckodriver-" + driverVersion + "-win64.zip";
 						driverFilePath = driverDirectory + "/geckodriver.exe";
@@ -194,7 +192,7 @@ public class ClientSession {
 			} else {
 
 				driverVersion = ConfigProperties.getStringProperty("chromeDriverURL").split("/")[3];
-				driverDirectory = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/" + ConfigProperties.getCalculatedBrowser() + "/" + driverVersion;
+				driverDirectory = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/" + ConfigProperties.getStringProperty("browser") + "/" + driverVersion;
 
 				switch (OperatingSystem.getOSType()) {
 

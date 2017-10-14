@@ -42,7 +42,7 @@ public class SaveDraftMailWithInlineImagettachment extends PrefGroupMailByMessag
 
 	public void SaveDraftAndSendMailWithInlineImageAttachment_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
 
 			try {
 	
@@ -121,7 +121,7 @@ public class SaveDraftMailWithInlineImagettachment extends PrefGroupMailByMessag
 
 	public void OpenExistingSavedDraftAndSendMailWithInlineImageAttachment_02() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
 
 			try {
 

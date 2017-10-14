@@ -2152,7 +2152,7 @@ public class PageMail extends AbsTab {
 
 		} else if (button == Button.B_ATTACH) {
 			
-			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_title']")) {
 					locator = "css=td[id='zb__COMPOSE-2___attachments_btn_title']";
 				} else {
@@ -2174,7 +2174,7 @@ public class PageMail extends AbsTab {
 
 		} else if (button == Button.B_MY_COMPUTER) {
 			
-			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 				SleepUtil.sleepLong();
@@ -2186,7 +2186,7 @@ public class PageMail extends AbsTab {
 
 		} else if (button == Button.B_ATTACH_INLINE) {
 			
-			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 				SleepUtil.sleepSmall();
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);

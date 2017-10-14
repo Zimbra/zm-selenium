@@ -182,7 +182,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			}
 		}
 		
-		if (ConfigProperties.getStringProperty("browser").contains("msedge") && windowFound.equals(true)) {
+		if (ConfigProperties.getStringProperty("browser").contains("edge") && windowFound.equals(true)) {
 			
 			// Use AutoIt script to close the new window
 			try {
@@ -194,7 +194,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 				logger.info("Couldn't execute AutoIt script to close new window " + e.toString());
 			}
 			
-		} else if (!ConfigProperties.getStringProperty("browser").contains("msedge")) {
+		} else if (!ConfigProperties.getStringProperty("browser").contains("edge")) {
 
 			try {
 	

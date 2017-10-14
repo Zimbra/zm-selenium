@@ -41,7 +41,7 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 	
 	public void FwdMailWithAnInlineAttachment_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
 
 			String subject = "subject"+ ConfigProperties.getUniqueString();
 			String bodyText = "text" + ConfigProperties.getUniqueString();

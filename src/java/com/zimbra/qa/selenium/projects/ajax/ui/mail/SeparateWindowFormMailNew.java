@@ -138,7 +138,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 		if (field == Field.To) {
 
-			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				locator = "css=textarea[id$='_to_control']";
 			} else {
 				locator = container + " tr[id$='_to_row'] input[id$='_to_control']";
@@ -146,7 +146,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 		} else if (field == Field.Cc) {
 
-			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				locator = "css=textarea[id$='_cc_control']";
 			} else {
 				locator = container + " tr[id$='_cc_row'] input[id$='_cc_control']";
@@ -154,7 +154,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 		} else if (field == Field.Bcc) {
 
-			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				locator = "css=textarea[id$='_bcc_control']";
 			} else {
 				locator = container + " tr[id$='_bcc_row'] input[id$='_bcc_control']";
@@ -323,7 +323,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 		} else if (button == Button.B_ATTACH) {
 			
-			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_title']")) {
 					locator = "css=td[id='zb__COMPOSE-2___attachments_btn_title']";
 				} else {
@@ -345,7 +345,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 		} else if (button == Button.B_MY_COMPUTER) {
 			
-			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 				SleepUtil.sleepLong();
@@ -357,7 +357,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 		} else if (button == Button.B_ATTACH_INLINE) {
 			
-			if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 				SleepUtil.sleepSmall();
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);

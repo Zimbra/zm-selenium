@@ -37,7 +37,7 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 	
 	public void EditAsNewWithAttachment_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
 
 			String subject = "subject"+ ConfigProperties.getUniqueString();
 			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);

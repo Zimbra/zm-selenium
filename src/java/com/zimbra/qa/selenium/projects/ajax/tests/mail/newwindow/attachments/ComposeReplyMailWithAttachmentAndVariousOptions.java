@@ -46,7 +46,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 
 	public void ComposeReplyWithAttachmentAndVariousOptions_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
 
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -138,7 +138,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 
 	public void ComposeReplyWithAttachmentAndVariousOptions_02() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
 
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -221,7 +221,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 
 	public void ComposeReplyWithAttachmentAndVariousOptions_03() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("msedge")) {
+		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
 
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
