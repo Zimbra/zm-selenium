@@ -102,6 +102,7 @@ public class PrintTask extends AjaxCommonTest {
 			ZAssert.assertStringContains(printContent, bodyText, "Verify content in Print view");
 
 		} finally {
+			window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ESCAPE);		// to close the print preview dialog in case it is still open
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 	}
@@ -163,6 +164,7 @@ public class PrintTask extends AjaxCommonTest {
 			ZAssert.assertStringContains(printContent, bodyText, "Verify content in Print view");
 
 		} finally {
+			window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ESCAPE);
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 	}
@@ -257,6 +259,7 @@ public class PrintTask extends AjaxCommonTest {
 			ZAssert.assertStringContains(printContent, subject3, "Verify subject2 in Print view");
 
 		} finally {
+			window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ESCAPE);
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
