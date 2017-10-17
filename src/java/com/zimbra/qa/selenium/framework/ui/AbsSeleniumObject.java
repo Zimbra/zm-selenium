@@ -2148,7 +2148,7 @@ public abstract class AbsSeleniumObject {
 						}
 						url = webDriver().getCurrentUrl();
 
-						if (windowName != null && (windowName.contentEquals(name) || url.contains("/" + name + "?"))) {
+						if (windowName != null && (windowName.equals(name) || url.contains("/" + name + "?")) && !(url.contains("//print/"))) { // Checking of "//print/" in URL is to avoid selection of print preview dialog in chrome  
 							found = true;
 							logger.info("Found window: " + windowName);
 							break;
