@@ -47,7 +47,7 @@ public class OwnerAccountClosed extends UniversalCommonTest {
 	}
 	
 	
-	@Test( description = "Login to the Ajax Client - with a mountpoint to a closed account",
+	@Test( description = "Login to the Universal Client - with a mountpoint to a closed account",
 			groups = { "functional", "L3"})
 	public void OwnerAccountClosed01() throws HarnessException {
 		

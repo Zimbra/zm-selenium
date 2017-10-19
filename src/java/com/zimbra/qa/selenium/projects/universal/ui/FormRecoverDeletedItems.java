@@ -29,7 +29,6 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
  * <p>
  * 
  * @author Matt Rhoades
- * @see http://wiki.zimbra.com/wiki/File:ZimbraSeleniumScreenshotAjaxMail7.JPG
  * 
  */
 public class FormRecoverDeletedItems extends AbsForm {

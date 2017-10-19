@@ -40,7 +40,7 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 	/**
 	 * Objective: View an Gmail folder - IMAP
 	 * 
-	 * 1. Login to ajax
+	 * 1. Login to universal
 	 * 2. Create a folder
 	 * 3. Add external account as Gmail
 	 * 4. Right click on the folder -> Get external mail

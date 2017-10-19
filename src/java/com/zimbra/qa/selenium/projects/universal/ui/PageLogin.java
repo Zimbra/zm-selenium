@@ -55,7 +55,7 @@ public class PageLogin extends AbsTab {
 		String locator = null;
 
 		switch (appType) {
-		case AJAX:
+		case UNIVERSAL:
 			locator = Locators.zBtnLogin;
 			break;
 		default:

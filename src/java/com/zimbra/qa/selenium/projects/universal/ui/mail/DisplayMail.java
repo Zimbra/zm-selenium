@@ -31,7 +31,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
 
 /**
  * The <code>DisplayMail<code> object defines a read-only view of a message in
- * the Zimbra Ajax client.
+ * the Zimbra Universal client.
  * <p>
  * This class can be used to extract data from the message, such as To, From,
  * Subject, Received Date, message body. Additionally, it can be used to click

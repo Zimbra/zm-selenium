@@ -39,7 +39,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 	 * 
 	 * 1. Create an account on the server
 	 * 2. Put a message in the inbox
-	 * 3. Login to ajax
+	 * 3. Login to universal
 	 * 4. Create a folder
 	 * 5. Add a data source to the account from step 1, associate with the folder in step 4
 	 * 6. Right click on the folder -> Get external mail
@@ -147,7 +147,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 	 * 
 	 * 1. Create an account on the server
 	 * 2. Put a message in the inbox
-	 * 3. Login to ajax
+	 * 3. Login to universal
 	 * 4. Create a folder
 	 * 5. Add a data source to the account from step 1, associate with the folder in step 4
 	 * 6. Select the folder (http://bugzilla.zimbra.com/show_bug.cgi?id=66528#c5)

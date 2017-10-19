@@ -37,7 +37,7 @@ public class ZmMailApp extends UniversalCommonTest {
 		
 	}
 	
-	@Test( description = "Measure the time to load the ajax client",
+	@Test( description = "Measure the time to load the universal client",
 			groups = { "performance", "L4"})
 	public void ZmMailApp01() throws HarnessException {
 		
@@ -47,7 +47,7 @@ public class ZmMailApp extends UniversalCommonTest {
 		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZCS().EmailAddress);
 		app.zPageLogin.zSetLoginPassword(ZimbraAccount.AccountZCS().Password);
 
-		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailApp, "Login to the ajax client (mail app)");
+		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailApp, "Login to the universal client (mail app)");
 
 		// Click the Login button
 		app.zPageLogin.sClick(Locators.zBtnLogin);

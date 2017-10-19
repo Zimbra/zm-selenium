@@ -33,7 +33,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.AutocompleteEntry.Icon;
 
 /**
  * The <code>FormApptNew<code> object defines a compose new appointment view in
- * the Zimbra Ajax client.
+ * the Zimbra Universal client.
  * <p>
  * This class can be used to compose a new appointment.
  * <p>

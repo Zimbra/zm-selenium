@@ -21,7 +21,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 
 /**
  * The <code>PreviewDocument<code> object defines a read-only view of a document
- * in the Zimbra Ajax client.
+ * in the Zimbra Universal client.
  * <p>
  * This class can be used to extract data from the document, such as Name,
  * message body. 

@@ -47,7 +47,7 @@ public class ShareRevoked extends UniversalCommonTest {
 	}
 	
 	
-	@Test( description = "Login to the Ajax Client - with a mountpoint to a revoked share",
+	@Test( description = "Login to the Universal Client - with a mountpoint to a revoked share",
 			groups = { "functional", "L3"})
 	public void ShareRevoked01() throws HarnessException {
 		
