@@ -50,8 +50,8 @@ public class EditHtmlSignature extends UniversalCommonTest {
 	 */
 	@BeforeMethod(groups = { "always" })
 	public void CreateHtmlSignature() throws HarnessException {
-		ZimbraAccount.AccountZWC().authenticate();
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS().authenticate();
+		ZimbraAccount.AccountZCS()
 				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + this.sigName
 						+ "'>" + "<content type='text/html'>" + this.contentHTML + "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");

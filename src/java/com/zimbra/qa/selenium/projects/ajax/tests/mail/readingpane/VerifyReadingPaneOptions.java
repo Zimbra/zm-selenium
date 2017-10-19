@@ -56,7 +56,7 @@ public class VerifyReadingPaneOptions extends PrefGroupMailByConversationTest {
 		String subject = "subject"+ ConfigProperties.getUniqueString();
 		
 		// Send a message to the account(self)
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 						"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
 						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
@@ -68,7 +68,7 @@ public class VerifyReadingPaneOptions extends PrefGroupMailByConversationTest {
 						"</SendMsgRequest>");
 
 		// Get the mail item for the new message
-		MailItem mail = MailItem.importFromSOAP(ZimbraAccount.AccountZWC(),"in:inbox subject:(" + subject + ")");
+		MailItem mail = MailItem.importFromSOAP(ZimbraAccount.AccountZCS(),"in:inbox subject:(" + subject + ")");
 
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

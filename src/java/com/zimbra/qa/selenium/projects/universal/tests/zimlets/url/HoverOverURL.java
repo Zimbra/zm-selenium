@@ -51,7 +51,7 @@ public class HoverOverURL extends UniversalCommonTest {
 		String server = "synacor";
 		String body = "http://www." + server + ".com";
 		
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -90,7 +90,7 @@ public class HoverOverURL extends UniversalCommonTest {
 		String server = "synacor";
 		String body = "http://www." + server + ".com";
 		
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +

@@ -40,8 +40,8 @@ public class CheckExpandCollaseFolders extends PrefGroupMailByMessageTest {
 		logger.info("bug57468AfterClass: start");
 		
 		// Since we collapsed the folder tree, it may cause problems for other tests
-		// Rest the ZWC user
-		ZimbraAccount.ResetAccountZWC();
+		// Rest the ZCS user
+		ZimbraAccount.ResetAccountZCS();
 		
 		logger.info("bug57468AfterClass: finish");
 	}

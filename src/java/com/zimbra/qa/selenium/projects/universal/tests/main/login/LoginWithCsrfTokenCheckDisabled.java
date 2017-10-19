@@ -69,7 +69,7 @@ public class LoginWithCsrfTokenCheckDisabled extends UniversalCommonTest {
 			SleepUtil.sleepMedium();
 
 			// Login
-			app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+			app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 
 			// Verify main page becomes active
 			ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");

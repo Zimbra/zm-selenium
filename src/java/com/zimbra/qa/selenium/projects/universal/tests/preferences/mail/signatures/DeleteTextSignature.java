@@ -48,8 +48,8 @@ public class DeleteTextSignature extends UniversalCommonTest {
 	 */
 	@BeforeMethod(groups = { "always" })
 	public void CreateSignature() throws HarnessException {
-		ZimbraAccount.AccountZWC().authenticate();
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS().authenticate();
+		ZimbraAccount.AccountZCS()
 				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + this.sigName
 						+ "' >" + "<content type='text/plain'>" + this.sigBody + "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");

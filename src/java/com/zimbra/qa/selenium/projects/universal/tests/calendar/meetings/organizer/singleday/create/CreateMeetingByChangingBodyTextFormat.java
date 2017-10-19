@@ -43,7 +43,7 @@ public class CreateMeetingByChangingBodyTextFormat extends CalendarWorkWeekTest 
     	
 		// Set mail Compose preference to Text format
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
-		ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
+		ZimbraAccount.AccountZCS().modifyAccountPreferences(startingAccountPreferences);
 		
 		// Refresh UI
 		app.zPageMain.sRefresh();
@@ -88,7 +88,7 @@ public class CreateMeetingByChangingBodyTextFormat extends CalendarWorkWeekTest 
     	
 		// Set mail Compose preference to Text format
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
-		ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
+		ZimbraAccount.AccountZCS().modifyAccountPreferences(startingAccountPreferences);
 		
 		// Refresh UI
 		app.zPageMain.sRefresh();
@@ -134,7 +134,7 @@ public class CreateMeetingByChangingBodyTextFormat extends CalendarWorkWeekTest 
     	
 		// Set mail Compose preference to Text format
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
-		ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
+		ZimbraAccount.AccountZCS().modifyAccountPreferences(startingAccountPreferences);
 		
 		// Refresh UI
 		app.zPageMain.sRefresh();

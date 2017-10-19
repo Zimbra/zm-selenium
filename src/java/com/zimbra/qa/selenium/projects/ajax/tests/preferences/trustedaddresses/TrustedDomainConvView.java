@@ -71,7 +71,7 @@ public class TrustedDomainConvView extends AjaxCommonTest {
 				+ "/data/public/mime/ExternalImg.txt";
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);
 		//Verify domain through soap- GetPrefsRequest
-		String PrefMailTrustedAddr = ZimbraAccount.AccountZWC().getPreference(
+		String PrefMailTrustedAddr = ZimbraAccount.AccountZCS().getPreference(
 				"zimbraPrefMailTrustedSenderList");
 		ZAssert.assertTrue(PrefMailTrustedAddr.equals("testdoamin.com"),
 				"Verify doamin is present /Pref/TrustedAddr");

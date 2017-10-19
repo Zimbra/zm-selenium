@@ -53,7 +53,7 @@ public class GetMessage extends UniversalCommonTest {
 		String phonenumber = "1-877-486-9273";
 		String body = "text " + System.getProperty("line.separator") + phonenumber + System.getProperty("line.separator") + "text"+ ConfigProperties.getUniqueString() + System.getProperty("line.separator") ;
 		
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -95,7 +95,7 @@ public class GetMessage extends UniversalCommonTest {
 		String phonenumber2 = "1-877-555-9273";
 		String body = "phone1: " + phonenumber1 + " phone2: "+ phonenumber2;
 		
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -240,7 +240,7 @@ public class GetMessage extends UniversalCommonTest {
 		String phonenumber = "1-877-486-9273";
 		String subject = "subject " + phonenumber;
 		
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -280,7 +280,7 @@ public class GetMessage extends UniversalCommonTest {
 		String phonenumber = "16504755345";
 		String body = "text " + System.getProperty("line.separator") + phonenumber + System.getProperty("line.separator") + "text"+ ConfigProperties.getUniqueString() + System.getProperty("line.separator") ;
 		
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +

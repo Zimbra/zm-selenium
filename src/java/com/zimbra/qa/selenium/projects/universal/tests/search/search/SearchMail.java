@@ -55,7 +55,7 @@ public class SearchMail extends PrefGroupMailByMessageTest {
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +

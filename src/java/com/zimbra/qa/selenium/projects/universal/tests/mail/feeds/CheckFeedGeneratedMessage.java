@@ -44,7 +44,7 @@ public class CheckFeedGeneratedMessage extends PrefGroupMailByMessageTest {
 		String bodytext = "Barbara's suggestion:";
 	
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug52121";
-		LmtpInject.injectFile(ZimbraAccount.AccountZWC(), new File(MimeFolder));
+		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
 				
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

@@ -47,8 +47,8 @@ public class ComposeMsgWithTextSignature extends AjaxCommonTest {
 
 	@BeforeMethod(groups = { "always" })
 	public void CreateSignature() throws HarnessException {
-		ZimbraAccount.AccountZWC().authenticate();
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS().authenticate();
+		ZimbraAccount.AccountZCS()
 				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + this.sigName
 						+ "' >" + "<content type='text/plain'>" + this.sigBody + "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
@@ -76,7 +76,7 @@ public class ComposeMsgWithTextSignature extends AjaxCommonTest {
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
-		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountZWC()));
+		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountZCS()));
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
 		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
 
@@ -93,13 +93,13 @@ public class ComposeMsgWithTextSignature extends AjaxCommonTest {
 		// Send the message
 		mailform.zSubmit();
 
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountZWC(),
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountZCS(),
 				"in:inbox subject:(" + mail.dSubject + ")");
 
 		// Verify TO, Subject, Body, Signature
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress,
 				"Verify the from field is correct");
-		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountZWC().EmailAddress,
+		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountZCS().EmailAddress,
 				"Verify the to field is correct");
 		ZAssert.assertEquals(received.dSubject, mail.dSubject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(received.dBodyText, mail.dBodyText, "Verify the body content is correct");

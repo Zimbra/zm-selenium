@@ -52,7 +52,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.search.*;
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String term = "search" + ConfigProperties.getUniqueString();
 		
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +

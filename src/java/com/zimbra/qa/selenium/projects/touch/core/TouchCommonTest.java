@@ -65,7 +65,7 @@ public class TouchCommonTest {
 	public void commonTestBeforeSuite()
 	throws HarnessException, IOException, InterruptedException, SAXException {
 		logger.info("commonTestBeforeSuite: start");
-		ZimbraAccount.ResetAccountZTC();
+		ZimbraAccount.ResetAccountZCS();
 
 		try
 		{
@@ -169,25 +169,25 @@ public class TouchCommonTest {
 			logger.debug("commonTestBeforeMethod: startingAccountPreferences are defined");
 
 			// If the current test accounts preferences match, then the account can be used
-			if ( !ZimbraAccount.AccountZTC().compareAccountPreferences(startingAccountPreferences) ) {
+			if ( !ZimbraAccount.AccountZCS().compareAccountPreferences(startingAccountPreferences) ) {
 
 				logger.debug("commonTestBeforeMethod: startingAccountPreferences do not match active account");
 
 				// Reset the account
-				ZimbraAccount.ResetAccountZTC();
+				ZimbraAccount.ResetAccountZCS();
 
 				// Create a new account
 				// Set the preferences accordingly
-				ZimbraAccount.AccountZTC().modifyAccountPreferences(startingAccountPreferences);
-				ZimbraAccount.AccountZTC().modifyUserZimletPreferences(startingUserZimletPreferences);
+				ZimbraAccount.AccountZCS().modifyAccountPreferences(startingAccountPreferences);
+				ZimbraAccount.AccountZCS().modifyUserZimletPreferences(startingUserZimletPreferences);
 
 			}
 
 		}
 
-		// If AccountZTC is not currently logged in, then login now
-		if ( !ZimbraAccount.AccountZTC().equals(app.zGetActiveAccount()) ) {
-			logger.debug("commonTestBeforeMethod: AccountZTC is not currently logged in");
+		// If AccountZCS is not currently logged in, then login now
+		if ( !ZimbraAccount.AccountZCS().equals(app.zGetActiveAccount()) ) {
+			logger.debug("commonTestBeforeMethod: AccountZCS is not currently logged in");
 
 			if ( app.zPageMain.zIsActive() )
 				try {
@@ -240,9 +240,9 @@ public class TouchCommonTest {
 		// preferences has to be reset to default, all core zimlets are enabled
 		ZimbraAccount currentAccount = app.zGetActiveAccount();
 		if (currentAccount != null && currentAccount.accountIsDirty &&
-				currentAccount == ZimbraAccount.AccountZTC()) {
+				currentAccount == ZimbraAccount.AccountZCS()) {
 			// Reset the account
-			ZimbraAccount.ResetAccountZTC();
+			ZimbraAccount.ResetAccountZCS();
 
 		}
 
@@ -300,7 +300,7 @@ public class TouchCommonTest {
 
        // Resetting the account to flush after each performance test method,
        // so that the next test is running with new account
-       ZimbraAccount.ResetAccountZTC();
+       ZimbraAccount.ResetAccountZCS();
 
     }
 

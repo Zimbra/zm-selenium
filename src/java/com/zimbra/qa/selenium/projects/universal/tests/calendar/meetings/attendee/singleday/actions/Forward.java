@@ -205,12 +205,12 @@ public class Forward extends CalendarWorkWeekTest {
 	public void ForwardMeeting_03() throws HarnessException {
 		
 		app.zPageMain.zLogout();
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
 			+		"<pref name='zimbraPrefComposeFormat'>"+ "text" +"</pref>"
 			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "FALSE" +"</pref>"
 			+	"</ModifyPrefsRequest>");
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 		
 		String attendee2 = ZimbraAccount.Account2().EmailAddress;
 		
@@ -252,12 +252,12 @@ public class Forward extends CalendarWorkWeekTest {
 	public void ForwardMeeting_04() throws HarnessException {
 		
 		app.zPageMain.zLogout();
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
 			+		"<pref name='zimbraPrefComposeFormat'>"+ "text" +"</pref>"
 			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "FALSE" +"</pref>"
 			+	"</ModifyPrefsRequest>");
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 		
 		String attendee2 = ZimbraAccount.Account3().EmailAddress;
 		

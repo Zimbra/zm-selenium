@@ -53,16 +53,16 @@ public class ZmMailAppFolders extends AjaxCommonTest {
 	public void ZmMailAppFolder_01() throws HarnessException {
 
 		// Create a folder
-		FolderItem root = FolderItem.importFromSOAP(ZimbraAccount.AccountZWC(), FolderItem.SystemFolder.UserRoot);
-		ZimbraAccount.AccountZWC().soapSend(
+		FolderItem root = FolderItem.importFromSOAP(ZimbraAccount.AccountZCS(), FolderItem.SystemFolder.UserRoot);
+		ZimbraAccount.AccountZCS().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 	                	"<folder name='folder"+ ConfigProperties.getUniqueString() + "' view='message' l='"+ root.getId() +"'/>" +
 	                "</CreateFolderRequest>");
 
 
 		// Fill out the login page
-		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZWC().EmailAddress);
-		app.zPageLogin.zSetLoginPassword(ZimbraAccount.AccountZWC().Password);
+		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZCS().EmailAddress);
+		app.zPageLogin.zSetLoginPassword(ZimbraAccount.AccountZCS().Password);
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailAppOverviewPanel, "Load the mail app, message view, 1 folder");
 
@@ -82,9 +82,9 @@ public class ZmMailAppFolders extends AjaxCommonTest {
 	public void ZmMailAppFolder_02() throws HarnessException {
 
 		// Create 100 folders
-		FolderItem root = FolderItem.importFromSOAP(ZimbraAccount.AccountZWC(), FolderItem.SystemFolder.UserRoot);
+		FolderItem root = FolderItem.importFromSOAP(ZimbraAccount.AccountZCS(), FolderItem.SystemFolder.UserRoot);
 		for (int i = 0; i < 100; i++) {
-			ZimbraAccount.AccountZWC().soapSend(
+			ZimbraAccount.AccountZCS().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 							"<folder name='folder"+ ConfigProperties.getUniqueString() + "' view='message' l='"+ root.getId() +"'/>" +
 					"</CreateFolderRequest>");
@@ -92,8 +92,8 @@ public class ZmMailAppFolders extends AjaxCommonTest {
 
 
 		// Fill out the login page
-		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZWC().EmailAddress);
-		app.zPageLogin.zSetLoginPassword(ZimbraAccount.AccountZWC().Password);
+		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZCS().EmailAddress);
+		app.zPageLogin.zSetLoginPassword(ZimbraAccount.AccountZCS().Password);
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailAppOverviewPanel, "Load the mail app, message view, 100 folders");
 

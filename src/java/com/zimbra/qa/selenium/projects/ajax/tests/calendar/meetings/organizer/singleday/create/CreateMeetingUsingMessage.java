@@ -41,12 +41,12 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 	public void CreateMeetingUsingMessage_01() throws HarnessException {
 
 		app.zPageMain.zLogout();
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
 			+		"<pref name='zimbraPrefComposeFormat'>"+ "text" +"</pref>"
 			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "TRUE" +"</pref>"
 			+	"</ModifyPrefsRequest>");
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email10/mimeHtmlOnly1.txt";
 		final String subject = "1 html mail";
@@ -102,12 +102,12 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 	public void CreateMeetingUsingMessage_02() throws HarnessException {
 
 		app.zPageMain.zLogout();
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
 			+		"<pref name='zimbraPrefComposeFormat'>"+ "text" +"</pref>"
 			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "FALSE" +"</pref>"
 			+	"</ModifyPrefsRequest>");
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email10/mimeHtmlOnly2.txt";
 		final String subject = "2 html mail";
@@ -161,12 +161,12 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 	public void CreateMeetingUsingMessage_03() throws HarnessException {
 
 		app.zPageMain.zLogout();
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
 			+		"<pref name='zimbraPrefComposeFormat'>"+ "text" +"</pref>"
 			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "FALSE" +"</pref>"
 			+	"</ModifyPrefsRequest>");
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email10/mimeTextOnly1.txt";
 		final String subject = "1 plain mail";
@@ -221,12 +221,12 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 	public void CreateMeetingUsingMessage_04() throws HarnessException {
 
 		app.zPageMain.zLogout();
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
 			+		"<pref name='zimbraPrefComposeFormat'>"+ "text" +"</pref>"
 			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "TRUE" +"</pref>"
 			+	"</ModifyPrefsRequest>");
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email10/mimeTextOnly2.txt";
 		final String subject = "2 plain mail";
@@ -281,12 +281,12 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 	public void CreateMeetingUsingMessage_05() throws HarnessException {
 
 		app.zPageMain.zLogout();
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
 			+		"<pref name='zimbraPrefComposeFormat'>"+ "html" +"</pref>"
 			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "FALSE" +"</pref>"
 			+	"</ModifyPrefsRequest>");
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email10/mimeHtmlOnly3.txt";
 		final String subject = "3 html mail";
@@ -340,12 +340,12 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 	public void CreateMeetingUsingMessage_06() throws HarnessException {
 
 		app.zPageMain.zLogout();
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
 			+		"<pref name='zimbraPrefComposeFormat'>"+ "html" +"</pref>"
 			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "FALSE" +"</pref>"
 			+	"</ModifyPrefsRequest>");
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email10/mimeHtmlOnly4.txt";
 		final String subject = "4 html mail";
@@ -399,12 +399,12 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 	public void CreateMeetingUsingMessage_07() throws HarnessException {
 
 		app.zPageMain.zLogout();
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
 			+		"<pref name='zimbraPrefComposeFormat'>"+ "html" +"</pref>"
 			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "TRUE" +"</pref>"
 			+	"</ModifyPrefsRequest>");
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email10/mimeTextOnly3.txt";
 		final String subject = "3 plain mail";
@@ -459,12 +459,12 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 	public void CreateMeetingUsingMessage_08() throws HarnessException {
 
 		app.zPageMain.zLogout();
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
 			+		"<pref name='zimbraPrefComposeFormat'>"+ "html" +"</pref>"
 			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "FALSE" +"</pref>"
 			+	"</ModifyPrefsRequest>");
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email10/mimeTextOnly4.txt";
 		final String subject = "4 plain mail";
@@ -520,12 +520,12 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 	public void CreateMeetingUsingMessage_09() throws HarnessException {
 
 		app.zPageMain.zLogout();
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
 			+		"<pref name='zimbraPrefComposeFormat'>"+ "html" +"</pref>"
 			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "TRUE" +"</pref>"
 			+	"</ModifyPrefsRequest>");
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00/mime.txt";
 		final String subject = "ZCS 8 triage";

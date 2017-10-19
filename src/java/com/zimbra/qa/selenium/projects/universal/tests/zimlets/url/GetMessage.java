@@ -52,7 +52,7 @@ public class GetMessage extends UniversalCommonTest {
 		String url = "http://www.zimbra.com";
 		String body = "text " + System.getProperty("line.separator") + url + System.getProperty("line.separator") + "text"+ ConfigProperties.getUniqueString() + System.getProperty("line.separator") ;
 		
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -94,7 +94,7 @@ public class GetMessage extends UniversalCommonTest {
 		String url2 = "http://www.google.com";
 		String body = "url1: " + url1 + " url2: "+ url2;
 		
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -204,7 +204,7 @@ public class GetMessage extends UniversalCommonTest {
 		String url = "http://www.zimbra.com";
 		String subject = "subject " + url;
 		
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -245,7 +245,7 @@ public class GetMessage extends UniversalCommonTest {
 		String body = "text &lt;" + url + "&gt; text "+ ConfigProperties.getUniqueString();
 				
 		
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +

@@ -89,7 +89,7 @@ public class ViewInviteWithSchedulePolicyofLocation extends CalendarWorkWeekTest
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(locationLocator), "Location header present");
 		
 		String organizer = "css=table[id='zv__TV__TV-main_MSG_hdrTable'] span[class='addrBubble']";
-		ZAssert.assertEquals(app.zPageMail.sGetText(organizer).trim(), ZimbraAccount.AccountZWC().EmailAddress, "Verify the From matches the 'Sender:' header");
+		ZAssert.assertEquals(app.zPageMail.sGetText(organizer).trim(), ZimbraAccount.AccountZCS().EmailAddress, "Verify the From matches the 'Sender:' header");
 
 		//Accept the invite
 		display.zPressButton(Button.B_ACCEPT);
@@ -168,7 +168,7 @@ public class ViewInviteWithSchedulePolicyofLocation extends CalendarWorkWeekTest
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(locationLocator), "Location header present");
 		
 		String organizer = "css=table[id='zv__TV__TV-main_MSG_hdrTable'] span[class='addrBubble']";
-		ZAssert.assertEquals(app.zPageMail.sGetText(organizer).trim(), ZimbraAccount.AccountZWC().EmailAddress, "Verify the From matches the 'Sender:' header");
+		ZAssert.assertEquals(app.zPageMail.sGetText(organizer).trim(), ZimbraAccount.AccountZCS().EmailAddress, "Verify the From matches the 'Sender:' header");
 
 	}
 
@@ -225,7 +225,7 @@ public class ViewInviteWithSchedulePolicyofLocation extends CalendarWorkWeekTest
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(locationLocator), "Location header present");
 		
 		String organizer = "css=table[id='zv__TV__TV-main_MSG_hdrTable'] span[class='addrBubble']";
-		ZAssert.assertEquals(app.zPageMail.sGetText(organizer).trim(), ZimbraAccount.AccountZWC().EmailAddress, "Verify the From matches the 'Sender:' header");
+		ZAssert.assertEquals(app.zPageMail.sGetText(organizer).trim(), ZimbraAccount.AccountZCS().EmailAddress, "Verify the From matches the 'Sender:' header");
 		
 		display.zPressButton(Button.B_ACCEPT);
 		SleepUtil.sleepMedium();

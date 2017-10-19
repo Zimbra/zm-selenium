@@ -38,7 +38,7 @@ public class DeleteFolder extends PrefGroupMailByMessageTest {
 	
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
