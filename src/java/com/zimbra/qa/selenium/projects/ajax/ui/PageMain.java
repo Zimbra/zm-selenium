@@ -145,7 +145,7 @@ public class PageMain extends AbsTab {
 			((AppAjaxClient) MyApplication).zPageLogin.zNavigateTo();
 		}
 		
-		((AppAjaxClient) MyApplication).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		((AppAjaxClient) MyApplication).zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 	}
 
 	public void zLogout() throws HarnessException {

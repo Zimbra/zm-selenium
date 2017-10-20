@@ -79,7 +79,7 @@ public class ZimbraAccount {
 	protected String MyAuthToken = null;
 	protected String MyClientAuthToken = null;
 	public final static String clientAccountName = "local@host.local";
-
+	
 	// Account Attributes
 	// These attributes are set per each test class
 	protected Map<String, String> startingAccountPreferences = new HashMap<String, String>();
@@ -143,85 +143,22 @@ public class ZimbraAccount {
 		this.MyClientAuthToken = null;
 	}
 
-	// Ajax client
-	public static synchronized ZimbraAccount AccountZWC() {
-		if (_AccountZWC == null) {
-			_AccountZWC = new ZimbraAccount();
-			_AccountZWC.provision();
-			_AccountZWC.authenticate();
+	// ZCS account
+	public static synchronized ZimbraAccount AccountZCS() {
+		if (_AccountZCS == null) {
+			_AccountZCS = new ZimbraAccount();
+			_AccountZCS.provision();
+			_AccountZCS.authenticate();
 		}
-		return (_AccountZWC);
+		return (_AccountZCS);
 	}
-	public static synchronized void ResetAccountZWC() {
-		logger.warn("AccountZWC is being reset");
-		_AccountZWC = null;
+	public static synchronized void ResetAccountZCS() {
+		logger.warn("AccountZCS is being reset");
+		_AccountZCS = null;
 	}
-	private static ZimbraAccount _AccountZWC = null;
+	private static ZimbraAccount _AccountZCS = null;
 
-	// HTML client
-	public static synchronized ZimbraAccount AccountHTML() {
-		if (_AccountHTML == null) {
-			_AccountHTML = new ZimbraAccount();
-			_AccountHTML.provision();
-			_AccountHTML.authenticate();
-		}
-		return (_AccountHTML);
-	}
-	public static synchronized void ResetAccountHTML() {
-		logger.warn("AccountHTML is being reset");
-		_AccountHTML = null;
-	}
-	private static ZimbraAccount _AccountHTML = null;
-
-	// Mobile client
-	public static synchronized ZimbraAccount AccountZMC() {
-		if (_AccountZMC == null) {
-			_AccountZMC = new ZimbraAccount();
-			_AccountZMC.provision();
-			_AccountZMC.authenticate();
-		}
-		return (_AccountZMC);
-	}
-	public static synchronized void ResetAccountZMC() {
-		_AccountZMC = null;
-	}
-	private static ZimbraAccount _AccountZMC = null;
-
-	// Touch client
-	public static synchronized ZimbraAccount AccountZTC() {
-		if (_AccountZTC == null) {
-			_AccountZTC = new ZimbraAccount();
-			_AccountZTC.provision();
-			_AccountZTC.authenticate();
-		}
-		return (_AccountZTC);
-	}
-	public static synchronized void ResetAccountZTC() {
-		logger.warn("AccountZTC is being reset");
-		_AccountZTC = null;
-	}
-	private static ZimbraAccount _AccountZTC = null;
-
-	// Universal client
-	public static synchronized ZimbraAccount AccountZUC() {
-		if (_AccountZUC == null) {
-			_AccountZUC = new ZimbraAccount();
-			_AccountZUC.provision();
-			_AccountZUC.authenticate();
-		}
-		return (_AccountZUC);
-	}
-	public static synchronized void ResetAccountZUC() {
-		logger.warn("AccountZUC is being reset");
-		_AccountZUC = null;
-	}
-	private static ZimbraAccount _AccountZUC = null;
-
-	/**
-	 * Get a general use account for interacting with the test account
-	 *
-	 * @return a general use ZimbraAccount
-	 */
+	// Test accounts
 	public static synchronized ZimbraAccount AccountA() {
 		if (_AccountA == null) {
 			_AccountA = new ZimbraAccount();
@@ -373,6 +310,7 @@ public class ZimbraAccount {
 	 * will have references to server1.
 	 */
 	public static void reset() {
+		ZimbraAccount._AccountZCS = null;
 		ZimbraAccount._AccountA = null;
 		ZimbraAccount._AccountB = null;
 		ZimbraAccount._AccountC = null;
@@ -386,11 +324,6 @@ public class ZimbraAccount {
 		ZimbraAccount._Account8 = null;
 		ZimbraAccount._Account9 = null;
 		ZimbraAccount._Account10 = null;
-		ZimbraAccount._AccountZWC = null;
-		ZimbraAccount._AccountHTML = null;
-		ZimbraAccount._AccountZMC = null;
-		ZimbraAccount._AccountZTC = null;
-		ZimbraAccount._AccountZUC = null;
 	}
 
 	// Set the default account settings
@@ -732,7 +665,6 @@ public class ZimbraAccount {
 				throw new HarnessException("Unable to modify preference " + soapLastResponse());
 
 		} catch (HarnessException e) {
-			// TODO: I would prefer to throw HarnessException here
 			logger.error("Unable to modify preference", e);
 		}
 
@@ -887,17 +819,12 @@ public class ZimbraAccount {
 			ExecuteHarnessMain.tracer.warn("Unable to parse " + request);
 		}
 
-		// TODO: need to watch for certain SOAP requests, such
-		// as ModifyPrefsRequest, which could trigger a client reload
-		//
-
 		return (soapClient.sendSOAP(request));
 	}
 
 	/**
 	 * Match an xpath or regex from the last SOAP response if xpath == null,
-	 * then use the root element - TODO: not yet supported if attr == null,
-	 * value is element text. if attr != null, value is attr value if regex ==
+	 * then use the root element value is element text. if attr != null, value is attr value if regex ==
 	 * null, return true if xpath matches. If regex != null, a regex to match
 	 * against the value
 	 *
@@ -907,8 +834,6 @@ public class ZimbraAccount {
 	 * @return
 	 */
 	public boolean soapMatch(String xpath, String attr, String regex) {
-
-		// TODO: support xpath == null
 
 		// Find all nodes that match the expath
 		Element[] elements = soapClient.selectNodes(xpath);
@@ -1372,49 +1297,37 @@ public class ZimbraAccount {
 
 		protected boolean setURI(Element request) throws HarnessException {
 
-			// TODO: need to get URI settings from config.properties
-
-			String scheme = ConfigProperties.getStringProperty("server.scheme", "http");
+			String scheme = ConfigProperties.getStringProperty("server.scheme");
 			String userInfo = null;
-			// String host = ConfigProperties.getStringProperty("server.host",
-			// "zqa-062.lab.zimbra.com");
-			String host = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host",
-					ConfigProperties.getStringProperty("server.host"));
-			String p = ConfigProperties.getStringProperty("server.port", "80");
-			int port = Integer.parseInt(p);
+			String host = ConfigProperties.getStringProperty("server.host");
 			String path = "/";
 			String query = null;
 			String fragment = null;
+			int port = ExecuteHarnessMain.serverPort;
 
 			String namespace = getNamespace(request);
 			logger.debug("namespace: " + namespace);
 
 			if (namespace.equals("urn:zimbraAdmin")) {
-
 				// https://server.com:7071/service/admin/soap/
 				scheme = "https";
 				path = "/service/admin/soap/";
-				port = Integer
-						.parseInt(ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".admin.port",
-								ConfigProperties.getStringProperty("admin.port")));
+				port = ExecuteHarnessMain.adminPort;
 
 			} else if (namespace.equals("urn:zimbraAccount")) {
-
 				// http://server.com:80/service/soap/
 				path = "/service/soap/";
 
 			} else if (namespace.equals("urn:zimbraMail")) {
-
 				// http://server.com:80/service/soap/
 				path = "/service/soap/";
 
 			} else if (namespace.equals("urn:zimbra")) {
-
 				// http://server.com:80/service/soap/
 				path = "/service/soap/";
 
 			} else {
-				throw new HarnessException("Unsupported qname: " + namespace + ".  Need to implement setURI for it.");
+				throw new HarnessException("Unsupported qname: " + namespace + ". Need to implement setURI for it.");
 			}
 
 			try {
@@ -1422,7 +1335,7 @@ public class ZimbraAccount {
 				logger.debug("scheme: " + scheme);
 				logger.debug("userInfo: " + userInfo);
 				logger.debug("Host: " + host);
-				logger.debug("Port: " + port);
+				logger.debug("Port: " + ExecuteHarnessMain.adminPort);
 				logger.debug("Path: " + path);
 				logger.debug("Query: " + query);
 				logger.debug("Fragment: " + fragment);
@@ -1683,7 +1596,7 @@ public class ZimbraAccount {
 						initialState.addCookie(authCookie);
 						mClient.setState(initialState);
 					} catch (URISyntaxException e) {
-						// TODO: how to handle this?
+						System.err.println("A exception occurred " + e.getMessage());
 					}
 
 				}
@@ -1750,7 +1663,6 @@ public class ZimbraAccount {
 		@Override
 		public Element invoke(Element arg0, boolean arg1, boolean arg2, String arg3, String arg4, String arg5,
 				NotificationFormat arg6, String arg7) throws IOException, HttpException, ServiceException {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
@@ -1758,16 +1670,11 @@ public class ZimbraAccount {
 		public Future<HttpResponse> invokeAsync(Element arg0, boolean arg1, boolean arg2, String arg3, String arg4,
 				String arg5, NotificationFormat arg6, String arg7, FutureCallback<HttpResponse> arg8)
 				throws IOException {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
 	}
 
-	/**
-	 * @param args
-	 * @throws HarnessException
-	 */
 	public static void main(String[] args) throws HarnessException {
 
 		// String domain =

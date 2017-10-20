@@ -93,6 +93,9 @@ public class ExecuteHarnessMain {
 
 	// Zimbra server details
 	public static int totalZimbraServers = 0;
+	public static int totalZimbraProxyServers = 0;
+	public static int adminPort = 0;
+	public static int serverPort = 0;
 	public static ArrayList<String> storeServers = null;
 
 	// Harness log
@@ -106,7 +109,7 @@ public class ExecuteHarnessMain {
 	public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy-hhmmss");
 	public static String currentDateTime = simpleDateFormat.format(new Date());
 
-	public void setTestOutputFolderName(String path) {
+	public static void setTestOutputFolderName(String path) {
 
 		System.setProperty("outputDirectory", path);
 
@@ -311,6 +314,9 @@ public class ExecuteHarnessMain {
 	public String execute() throws HarnessException, FileNotFoundException, IOException {
 		logger.info("Execute ...");
 
+		// Zimbra Pre-configuration and required setup
+		ExecuteHarnessMain.zimbraPreConfiguration(ConfigProperties.getAppType().toString().toLowerCase());
+
 		Date start = new Date();
 		Date finish;
 
@@ -390,9 +396,6 @@ public class ExecuteHarnessMain {
 		logger.info("Execute tests ...");
 
 		try {
-			// Zimbra Pre-configuration and required setup
-			zimbraPreConfiguration(ConfigProperties.getAppType().toString().toLowerCase());
-
 			// Build the class list
 			classes = getClassesFromJar(new File(jarfilename),
 					(classfilter == null ? null : Pattern.compile(classfilter)), excludefilter);
@@ -1194,7 +1197,7 @@ public class ExecuteHarnessMain {
 
 	}
 
-	private boolean parseArgs(String arguments[]) throws ParseException, HarnessException {
+	private boolean parseArgs(String arguments[]) throws ParseException, HarnessException, IOException {
 
 		// Build option list
 		Options options = new Options();
@@ -1283,9 +1286,9 @@ public class ExecuteHarnessMain {
 
 			// 'o' check should be after 'p' check to avoid code redundancy
 			if (cmd.hasOption('o')) {
-				this.setTestOutputFolderName(cmd.getOptionValue('o'));
+				ExecuteHarnessMain.setTestOutputFolderName(cmd.getOptionValue('o'));
 			} else {
-				this.setTestOutputFolderName(ConfigProperties.getStringProperty("testOutputDirectory") + "/"
+				ExecuteHarnessMain.setTestOutputFolderName(ConfigProperties.getStringProperty("testOutputDirectory") + "/"
 						+ ConfigProperties.zimbraGetVersionString());
 			}
 
@@ -1333,114 +1336,146 @@ public class ExecuteHarnessMain {
 
 		SeleniumService seleniumService = new SeleniumService();
 
-		// Harness log
-		sHarnessLogFileName = "harness.log";
-		sHarnessLogFileFolderPath = ExecuteHarnessMain.testoutputfoldername + "\\debug\\projects";
-		sHarnessLogFilePath = sHarnessLogFileFolderPath + "\\" + sHarnessLogFileName;
-		pHarnessLogFilePath = Paths.get(sHarnessLogFileFolderPath, sHarnessLogFileName);
-		fHarnessLogFile = new File(sHarnessLogFilePath);
+		if (totalZimbraProxyServers == 0 || totalZimbraServers == 0 || storeServers.equals(null)) {
 
-		// Create harness log folder and file
-		fHarnessLogFileFolder = new File(sHarnessLogFileFolderPath);
-		if (!fHarnessLogFileFolder.exists()) {
-			fHarnessLogFileFolder.mkdirs();
-		}
+			// Get proxy server
+			for (String noOfZimbraProxyServers : CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas proxy | wc -l")) {
+				totalZimbraProxyServers = Integer.parseInt(noOfZimbraProxyServers);
+				if (totalZimbraProxyServers >=1) {
+					adminPort = 9071;
+				} else {
+					adminPort = 7071;
+				}
+				if (ConfigProperties.getStringProperty("server.scheme").equals("https")) {
+					serverPort = 443;
+				} else {
+					serverPort = 80;
+				}
+			}
+			if (totalZimbraProxyServers == 0) {
+				seleniumService.stopSeleniumExecution();
+				System.exit(0);
+			}
 
-		try {
+			// Set testout folder
+			setTestOutputFolderName(ConfigProperties.getStringProperty("testOutputDirectory") + "/"
+					+ ConfigProperties.zimbraGetVersionString());
+
+			// Harness log
+			sHarnessLogFileName = "harness.log";
+			sHarnessLogFileFolderPath = ExecuteHarnessMain.testoutputfoldername + "\\debug\\projects";
+			sHarnessLogFilePath = sHarnessLogFileFolderPath + "\\" + sHarnessLogFileName;
+			pHarnessLogFilePath = Paths.get(sHarnessLogFileFolderPath, sHarnessLogFileName);
+			fHarnessLogFile = new File(sHarnessLogFilePath);
+
+			// Create harness log folder and file
+			fHarnessLogFileFolder = new File(sHarnessLogFileFolderPath);
+			if (!fHarnessLogFileFolder.exists()) {
+				fHarnessLogFileFolder.mkdirs();
+			}
 			if (fHarnessLogFile.createNewFile()) {
 				logger.info("Creating harness log file: " + sHarnessLogFileName);
 			}
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
 
-		logInfo = "-------------- Zimbra pre-configuration and required setup for " + project + " project --------------";
-		logger.info(logInfo);
-		Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-
-		// Get all zimbra servers
-		logger.info("Get all zimbra servers");
-		for (String noOfZimbraServers : CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas | wc -l")) {
-			totalZimbraServers = Integer.parseInt(noOfZimbraServers);
-		}
-
-		// Get all store servers
-		logger.info("Get all store servers");
-		storeServers = CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas mailbox");
-
-		if (totalZimbraServers == 0 || storeServers.isEmpty()) {
-			seleniumService.stopSeleniumExecution();
-			logInfo = "Couldn't get total zimbra servers (" + totalZimbraServers + ") or store servers (" + storeServers + ") using CLI commands";
-			logger.info(logInfo);
-			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-			System.exit(0);
-		} else {
-			logInfo = "No. of zimbra server(s): " + totalZimbraServers;
+			logInfo = "-------------- Zimbra pre-configuration and required setup for " + project + " project --------------";
 			logger.info(logInfo);
 			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 
-			logInfo = "Store server(s): " + storeServers;
-			logger.info(logInfo);
-			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-		}
-
-		// Grant createDistList right to domain
-		logInfo = "Grant createDistList right to domain using STAF";
-		logger.info(logInfo);
-		Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-		CommandLineUtility.runCommandOnZimbraServer("zmprov grr domain " + ConfigProperties.getStringProperty("testdomain")
-						+ " dom " + ConfigProperties.getStringProperty("testdomain") + " createDistList");
-
-		// Disable zimbraSmimeOCSPEnabled attribute for S/MIME
-		logInfo = "Disable zimbraSmimeOCSPEnabled attribute for S/MIME using STAF";
-		logger.info(logInfo);
-		Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-		CommandLineUtility.runCommandOnZimbraServer("zmprov mcf zimbraSmimeOCSPEnabled FALSE");
-
-		// Universal UI project settings
-		if (project.contains("universal")) {
-			String universalUITheme = "clarity";
-
-			Boolean themeFound = false;
-			for (String serverUniversalUITheme : CommandLineUtility.runCommandOnZimbraServer("ls /opt/zimbra/jetty/webapps/zimbra/skins | grep -i " + universalUITheme)) {
-				if (serverUniversalUITheme.contains(universalUITheme)) {
-					themeFound = true;
-					break ;
-				}
+			// Get all zimbra servers
+			logger.info("Get all zimbra servers...");
+			for (String noOfZimbraServers : CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas | wc -l")) {
+				totalZimbraServers = Integer.parseInt(noOfZimbraServers);
+				logInfo = "No. of zimbra server(s): " + totalZimbraServers;
+				logger.info(logInfo);
+				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 			}
-			if (!themeFound.equals(true)) {
+			if (totalZimbraServers == 0) {
 				seleniumService.stopSeleniumExecution();
-				logInfo = "Couldn't find or set " + universalUITheme + " theme for Univeral UI project";
+				logInfo = "Couldn't get total zimbra servers (" + totalZimbraServers + ") using CLI command";
 				logger.info(logInfo);
 				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				System.exit(0);
-			} else {
-				logInfo = universalUITheme + " theme set for Univeral UI project";
-				logger.info(logInfo);
-				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 			}
 
-			// Modify COS to always use Clarity theme for Universal UI
-			logInfo = "Modify COS to always use Clarity theme for Universal UI";
+			// Get all proxy servers
+			logInfo = "No. of proxy server(s): " + totalZimbraProxyServers;
 			logger.info(logInfo);
 			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-			CommandLineUtility.runCommandOnZimbraServer("zmprov mc default zimbraPrefSkin " + universalUITheme);
+			Files.write(pHarnessLogFilePath, Arrays.asList("Admin port: " + adminPort + ", Client port: " + serverPort),
+					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 
-			// Get modified COS value for check theme value for Universal UI
-			logger.info("Get modified COS value for check theme value for Universal UI");
-			for (String serverUniversalUITheme : CommandLineUtility.runCommandOnZimbraServer("zmprov gc default | grep zimbraPrefSkin")) {
-				if (!serverUniversalUITheme.split(": ")[1].trim().equals(universalUITheme)) {
+			// Get all store servers
+			logger.info("Get all store servers...");
+			storeServers = CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas mailbox");
+			logInfo = "Store server(s): " + storeServers;
+			logger.info(logInfo);
+			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			if (storeServers.equals(null) || storeServers.isEmpty()) {
+				seleniumService.stopSeleniumExecution();
+				logInfo = "Couldn't get store servers (" + storeServers + ") using CLI command";
+				logger.info(logInfo);
+				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				System.exit(0);
+			}
+
+			// Grant createDistList right to domain
+			logInfo = "Grant createDistList right to domain using CLI utility";
+			logger.info(logInfo);
+			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			CommandLineUtility.runCommandOnZimbraServer("zmprov grr domain " + ConfigProperties.getStringProperty("testdomain")
+							+ " dom " + ConfigProperties.getStringProperty("testdomain") + " createDistList");
+
+			// Disable zimbraSmimeOCSPEnabled attribute for S/MIME
+			logInfo = "Disable zimbraSmimeOCSPEnabled attribute for S/MIME using CLI utility";
+			logger.info(logInfo);
+			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			CommandLineUtility.runCommandOnZimbraServer("zmprov mcf zimbraSmimeOCSPEnabled FALSE");
+
+			// Universal UI project settings
+			if (project.contains("universal")) {
+				String universalUITheme = "clarity";
+
+				Boolean themeFound = false;
+				for (String serverUniversalUITheme : CommandLineUtility.runCommandOnZimbraServer("ls /opt/zimbra/jetty/webapps/zimbra/skins | grep -i " + universalUITheme)) {
+					if (serverUniversalUITheme.contains(universalUITheme)) {
+						themeFound = true;
+						break ;
+					}
+				}
+				if (!themeFound.equals(true)) {
 					seleniumService.stopSeleniumExecution();
-					logInfo = "Couldn't set " + universalUITheme + " theme for Univeral UI project";
+					logInfo = "Couldn't find or set " + universalUITheme + " theme for Univeral UI project";
 					logger.info(logInfo);
 					Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					System.exit(0);
+				} else {
+					logInfo = universalUITheme + " theme set for Univeral UI project";
+					logger.info(logInfo);
+					Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				}
+
+				// Modify COS to always use Clarity theme for Universal UI
+				logInfo = "Modify COS to always use Clarity theme for Universal UI";
+				logger.info(logInfo);
+				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				CommandLineUtility.runCommandOnZimbraServer("zmprov mc default zimbraPrefSkin " + universalUITheme);
+
+				// Get modified COS value for check theme value for Universal UI
+				logger.info("Get modified COS value for check theme value for Universal UI");
+				for (String serverUniversalUITheme : CommandLineUtility.runCommandOnZimbraServer("zmprov gc default | grep zimbraPrefSkin")) {
+					if (!serverUniversalUITheme.split(": ")[1].trim().equals(universalUITheme)) {
+						seleniumService.stopSeleniumExecution();
+						logInfo = "Couldn't set " + universalUITheme + " theme for Univeral UI project";
+						logger.info(logInfo);
+						Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+						System.exit(0);
+					}
 				}
 			}
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws HarnessException, IOException {
 
 		String sumTestsResult = "No results";
 		String executeTestsResult = "No results";
@@ -1452,6 +1487,9 @@ public class ExecuteHarnessMain {
 			// Set the working conditions
 			ConfigProperties.setBaseDirectory("");
 			ConfigProperties.setConfigProperties("conf/config.properties");
+
+			// Zimbra Pre-configuration and required setup
+			zimbraPreConfiguration(ConfigProperties.getAppType().toString().toLowerCase());
 
 			// Create the harness object and execute it
 			ExecuteHarnessMain harness = new ExecuteHarnessMain();

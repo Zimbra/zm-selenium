@@ -66,7 +66,7 @@ public class RestUtil {
 	protected String scheme = null;
 	protected String userInfo = null;
 	protected String host = null;
-	protected int port = 80;
+	protected int port = 0;
 	protected String path = null;
 	protected Map<String, String> QueryMap = new HashMap<String, String>();
 	protected String fragment = null;
@@ -102,9 +102,12 @@ public class RestUtil {
 	public RestUtil() {
 		logger.info("new RestUtil()");
 		
-		scheme = ConfigProperties.getStringProperty("server.scheme", "http");
-		String p = ConfigProperties.getStringProperty("server.port", "80");
-		port = Integer.parseInt(p);
+		scheme = ConfigProperties.getStringProperty("server.scheme");
+		if (scheme.equals("https")) {
+			port = 443;
+		} else {
+			port = 80;
+		}		
 		path = "service/home/~/";
 	}
 	

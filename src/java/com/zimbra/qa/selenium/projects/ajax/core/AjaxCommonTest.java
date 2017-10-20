@@ -91,7 +91,7 @@ public class AjaxCommonTest {
 	public void commonTestBeforeSuite() throws HarnessException, IOException, InterruptedException, SAXException {
 
 		logger.info("BeforeSuite: start");
-		ZimbraAccount.ResetAccountZWC();
+		ZimbraAccount.ResetAccountZCS();
 
 		try {
 
@@ -169,17 +169,17 @@ public class AjaxCommonTest {
 
 			// If the current test accounts preferences match, then the account
 			// can be used
-			if (!ZimbraAccount.AccountZWC().compareAccountPreferences(startingAccountPreferences)) {
+			if (!ZimbraAccount.AccountZCS().compareAccountPreferences(startingAccountPreferences)) {
 
 				logger.info("BeforeMethod: startingAccountPreferences do not match active account");
 
 				// Reset the account
-				ZimbraAccount.ResetAccountZWC();
+				ZimbraAccount.ResetAccountZCS();
 
 				// Create a new account
 				// Set the preferences accordingly
-				ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
-				ZimbraAccount.AccountZWC().modifyUserZimletPreferences(startingUserZimletPreferences);
+				ZimbraAccount.AccountZCS().modifyAccountPreferences(startingAccountPreferences);
+				ZimbraAccount.AccountZCS().modifyUserZimletPreferences(startingUserZimletPreferences);
 			}
 
 		}
@@ -191,20 +191,20 @@ public class AjaxCommonTest {
 
 			// If the current test accounts preferences match, then the account
 			// can be used
-			if (!ZimbraAccount.AccountZWC().compareUserZimletPreferences(startingUserZimletPreferences)) {
+			if (!ZimbraAccount.AccountZCS().compareUserZimletPreferences(startingUserZimletPreferences)) {
 
 				logger.info("BeforeMethod: startingAccountZimletPreferences do not match active account");
-				ZimbraAccount.ResetAccountZWC();
-				ZimbraAccount.AccountZWC().modifyAccountPreferences(startingAccountPreferences);
-				ZimbraAccount.AccountZWC().modifyUserZimletPreferences(startingUserZimletPreferences);
+				ZimbraAccount.ResetAccountZCS();
+				ZimbraAccount.AccountZCS().modifyAccountPreferences(startingAccountPreferences);
+				ZimbraAccount.AccountZCS().modifyUserZimletPreferences(startingUserZimletPreferences);
 			}
 
-			ZimbraAccount.AccountZWC().modifyUserZimletPreferences(startingUserZimletPreferences);
+			ZimbraAccount.AccountZCS().modifyUserZimletPreferences(startingUserZimletPreferences);
 		}
 
-		// If AccountZWC is not currently logged in, then login now
-		if (!ZimbraAccount.AccountZWC().equals(app.zGetActiveAccount())) {
-			logger.info("BeforeMethod: AccountZWC is not currently logged in");
+		// If AccountZCS is not currently logged in, then login now
+		if (!ZimbraAccount.AccountZCS().equals(app.zGetActiveAccount())) {
+			logger.info("BeforeMethod: AccountZCS is not currently logged in");
 
 			if (app.zPageMain.zIsActive())
 				try {
@@ -285,8 +285,8 @@ public class AjaxCommonTest {
 		logger.info("AfterClass: start");
 
 		ZimbraAccount currentAccount = app.zGetActiveAccount();
-		if (currentAccount != null && currentAccount.accountIsDirty && currentAccount == ZimbraAccount.AccountZWC()) {
-			ZimbraAccount.ResetAccountZWC();
+		if (currentAccount != null && currentAccount.accountIsDirty && currentAccount == ZimbraAccount.AccountZCS()) {
+			ZimbraAccount.ResetAccountZCS();
 		}
 
 		logger.info("AfterClass: finish");
@@ -466,8 +466,8 @@ public class AjaxCommonTest {
 
 		if(testResult.getStatus() == ITestResult.FAILURE){
 			ZimbraAccount currentAccount = app.zGetActiveAccount();
-			if (currentAccount != null && currentAccount.accountIsDirty && currentAccount == ZimbraAccount.AccountZWC()) {
-				ZimbraAccount.ResetAccountZWC();
+			if (currentAccount != null && currentAccount.accountIsDirty && currentAccount == ZimbraAccount.AccountZCS()) {
+				ZimbraAccount.ResetAccountZCS();
 			}
 		}
 
@@ -476,7 +476,7 @@ public class AjaxCommonTest {
 
 	@AfterMethod(groups = { "performance" })
 	public void performanceTestAfterMethod() {
-		ZimbraAccount.ResetAccountZWC();
+		ZimbraAccount.ResetAccountZCS();
 	}
 
 	@DataProvider(name = "DataProviderSupportedCharsets")
@@ -640,7 +640,7 @@ public class AjaxCommonTest {
 
 	public void zFreshLogin() {
 
-		ZimbraAccount.ResetAccountZWC();
+		ZimbraAccount.ResetAccountZCS();
 
 		try {
 			if (ConfigProperties.getAppType() == AppType.AJAX) {
@@ -666,8 +666,8 @@ public class AjaxCommonTest {
 
 			((AppAjaxClient) app).zPageLogin.sOpen(ConfigProperties.getLogoutURL());
 			if (ConfigProperties.getAppType() == AppType.AJAX) {
-				if (ZimbraAccount.AccountZWC() != null) {
-					((AppAjaxClient) app).zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+				if (ZimbraAccount.AccountZCS() != null) {
+					((AppAjaxClient) app).zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 				} else {
 					((AppAjaxClient) app).zPageLogin.zLogin(ZimbraAccount.Account10());
 				}

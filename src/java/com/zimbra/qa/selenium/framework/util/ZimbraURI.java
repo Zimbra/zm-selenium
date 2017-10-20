@@ -21,17 +21,15 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 import com.zimbra.qa.selenium.framework.util.performance.PerfMetrics;
 
 public class ZimbraURI {
 	private static final Logger logger = LogManager.getLogger(ZimbraURI.class);
-	
 	private URI myURI = null;
 	
 	public ZimbraURI() {
@@ -224,11 +222,9 @@ public class ZimbraURI {
 
 	public static URI getBaseURI() {
 		
-		String scheme = ConfigProperties.getStringProperty("server.scheme", "http");
-		String userinfo = null;
-		//String host = ConfigProperties.getStringProperty("server.host", "localhost");
-		String host = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host",	ConfigProperties.getStringProperty("server.host"));
-		String port = ConfigProperties.getStringProperty("server.port", "7070");
+		String scheme = ConfigProperties.getStringProperty("server.scheme");
+		String userInfo = null;
+		String host = ConfigProperties.getStringProperty("server.host");
 		
 		String path = null;
 		Map<String, String> queryMap = new HashMap<String, String>();
@@ -242,38 +238,35 @@ public class ZimbraURI {
 			queryMap.putAll(PerfMetrics.getInstance().getQueryMap());
 		}
 		
-
-		if ( ConfigProperties.getAppType() == AppType.AJAX ) {
-
-		}
-
-		if ( ConfigProperties.getAppType() == AppType.HTML ) {
-			path ="/h/";
-		}
-
-		if ( ConfigProperties.getAppType() == AppType.MOBILE ) {
-			path ="/m/";
-		}
-		
-		if ( ConfigProperties.getAppType() == AppType.TOUCH ) {
+		if ( ConfigProperties.getAppType() == AppType.AJAX 
+				|| ConfigProperties.getAppType() == AppType.UNIVERSAL 
+				|| ConfigProperties.getAppType() == AppType.TOUCH ) {
 			path = "";
 		}
 
+		if ( ConfigProperties.getAppType() == AppType.HTML ) {
+			path = "/h/";
+		}
+
+		if ( ConfigProperties.getAppType() == AppType.MOBILE ) {
+			path = "/m/";
+		}
+		
 		if ( ConfigProperties.getAppType() == AppType.ADMIN ) {
 			scheme = "https";
 			//path = "/zimbraAdmin/";
 			path = "";
-			port = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".admin.port",	ConfigProperties.getStringProperty("admin.port"));
 		}
 
-		String query = buildQueryFromMap(queryMap);
-		
+		String query = buildQueryFromMap(queryMap);		
 		try {
 			URI uri;
 			if ( ConfigProperties.getAppType() == AppType.TOUCH ) {
-				uri = new URI(scheme, userinfo, host, Integer.parseInt(port), path, "client=touch", fragment);
+				uri = new URI(scheme, userInfo, host, ExecuteHarnessMain.serverPort, path, "client=touch", fragment);
+			} else if ( ConfigProperties.getAppType() == AppType.ADMIN ) {
+				uri = new URI(scheme, userInfo, host, ExecuteHarnessMain.adminPort, path, query, fragment);
 			} else {
-				uri = new URI(scheme, userinfo, host, Integer.parseInt(port), path, query, fragment);
+				uri = new URI(scheme, userInfo, host, ExecuteHarnessMain.serverPort, path, query, fragment);
 			}
 			logger.info("Base uri: "+ uri.toString());
 			return (uri);
@@ -343,13 +336,17 @@ public class ZimbraURI {
 	
 	private static URI defaultURI() {
 		
-		String scheme = ConfigProperties.getStringProperty("server.scheme", "http");
-		// String host = ConfigProperties.getStringProperty("server.host", "localhost");
-		String host = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host",	ConfigProperties.getStringProperty("server.host"));
-		String port = ConfigProperties.getStringProperty("server.port", "7070");
-
+		String scheme = ConfigProperties.getStringProperty("server.scheme");
+		String host = ConfigProperties.getStringProperty("server.host");
+		int port = 0;
+		if (scheme.equals("https")) {
+			port = 443;
+		} else {
+			port = 80;
+		}
+		
 		try {
-			return (new URI(scheme, null, host, Integer.parseInt(port), null, null, null));
+			return (new URI(scheme, null, host, port, null, null, null));
 		} catch (URISyntaxException e) {
 			logger.error("Unable to generate default URL", e);
 			return (null);

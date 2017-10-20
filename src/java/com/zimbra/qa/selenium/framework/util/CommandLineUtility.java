@@ -219,10 +219,10 @@ public class CommandLineUtility {
 	}
 
 	 public static String cmdExecOnServer(String email, String secret) {
-        String host = ZimbraAccount.AccountZWC().zGetAccountStoreHost();
+        String host = ZimbraAccount.AccountZCS().zGetAccountStoreHost();
         String user = "root";
         String password = "zimbra";
-        String command1 = "su - zimbra -c 'zmtotp -a " + email + " -s " + secret + "'";
+        String command = "su - zimbra -c 'zmtotp -a " + email + " -s " + secret + "'";
         String totp = "0";
         try {
 
@@ -234,10 +234,10 @@ public class CommandLineUtility {
             session.setConfig(config);
             session.connect();
             System.out.println("Connected");
-            System.out.println(command1);
+            System.out.println(command);
 
             Channel channel=session.openChannel("exec");
-            ((ChannelExec)channel).setCommand(command1);
+            ((ChannelExec)channel).setCommand(command);
             channel.setInputStream(null);
             ((ChannelExec)channel).setErrStream(System.err);
 
@@ -265,10 +265,10 @@ public class CommandLineUtility {
 	 }
 
 	 public static ArrayList<String> runCommandOnZimbraServer(String zimbraCommand) {
-        String host = ZimbraAccount.AccountZWC().zGetAccountStoreHost();
+        String host = ConfigProperties.getStringProperty("server.host");
         String user = "root";
         String password = "zimbra";
-        String command1 = "su - zimbra -c '" + zimbraCommand + "'";
+        String command = "su - zimbra -c '" + zimbraCommand + "'";
         ArrayList<String> out=null;
         try {
 
@@ -280,10 +280,10 @@ public class CommandLineUtility {
             session.setConfig(config);
             session.connect();
             System.out.println("Connected");
-            System.out.println(command1);
+            System.out.println(command);
 
             Channel channel=session.openChannel("exec");
-            ((ChannelExec)channel).setCommand(command1);
+            ((ChannelExec)channel).setCommand(command);
             channel.setInputStream(null);
             ((ChannelExec)channel).setErrStream(System.err);
 
