@@ -178,7 +178,7 @@ public class ContactContextMenu extends AjaxCommonTest {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String lastName = "lastname " + ConfigProperties.getUniqueString();
 
-		// Send the message from AccountB to the ZWC user
+		// Send the message from AccountB to the ZCS user
 		ZimbraAccount.AccountB()
 				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
 						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
@@ -218,7 +218,7 @@ public class ContactContextMenu extends AjaxCommonTest {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String lastName = "lastname " + ConfigProperties.getUniqueString();
 
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA()
 				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
 						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"

@@ -39,10 +39,10 @@ import com.zimbra.qa.selenium.projects.universal.ui.social.PageSocial;
 import com.zimbra.qa.selenium.projects.universal.ui.tasks.*;
 
 /**
- * The <code>AppUniversalClient</code> class defines the Zimbra Ajax client.
+ * The <code>AppUniversalClient</code> class defines the Zimbra Universal client.
  * <p>
  * The <code>AppUniversalClient</code> contains all pages, folder trees,
- * dialog boxes, forms, menus for the Ajax client.
+ * dialog boxes, forms, menus for the Universal client.
  * <p>
  * In {@link UniversalCommonTest}, there is one
  * AppUniversalClient object created per test case class (ensuring
@@ -201,7 +201,7 @@ public class AppUniversalClient extends AbsApplication {
 	 */
 	@Override
 	public String myApplicationName() {
-		return ("Ajax Client");
+		return ("Universal Client");
 	}
 
 	/* (non-Javadoc)

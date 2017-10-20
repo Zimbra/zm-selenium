@@ -90,7 +90,7 @@ public class UniversalCommonTest {
 	public void commonTestBeforeSuite() throws HarnessException, IOException, InterruptedException, SAXException {
 
 		logger.info("BeforeSuite: start");
-		ZimbraAccount.ResetAccountZUC();
+		ZimbraAccount.ResetAccountZCS();
 
 		try {
 
@@ -168,17 +168,17 @@ public class UniversalCommonTest {
 
 			// If the current test accounts preferences match, then the account
 			// can be used
-			if (!ZimbraAccount.AccountZUC().compareAccountPreferences(startingAccountPreferences)) {
+			if (!ZimbraAccount.AccountZCS().compareAccountPreferences(startingAccountPreferences)) {
 
 				logger.info("BeforeMethod: startingAccountPreferences do not match active account");
 
 				// Reset the account
-				ZimbraAccount.ResetAccountZUC();
+				ZimbraAccount.ResetAccountZCS();
 
 				// Create a new account
 				// Set the preferences accordingly
-				ZimbraAccount.AccountZUC().modifyAccountPreferences(startingAccountPreferences);
-				ZimbraAccount.AccountZUC().modifyUserZimletPreferences(startingUserZimletPreferences);
+				ZimbraAccount.AccountZCS().modifyAccountPreferences(startingAccountPreferences);
+				ZimbraAccount.AccountZCS().modifyUserZimletPreferences(startingUserZimletPreferences);
 			}
 
 		}
@@ -190,20 +190,20 @@ public class UniversalCommonTest {
 
 			// If the current test accounts preferences match, then the account
 			// can be used
-			if (!ZimbraAccount.AccountZUC().compareUserZimletPreferences(startingUserZimletPreferences)) {
+			if (!ZimbraAccount.AccountZCS().compareUserZimletPreferences(startingUserZimletPreferences)) {
 
 				logger.info("BeforeMethod: startingAccountZimletPreferences do not match active account");
-				ZimbraAccount.ResetAccountZUC();
-				ZimbraAccount.AccountZUC().modifyAccountPreferences(startingAccountPreferences);
-				ZimbraAccount.AccountZUC().modifyUserZimletPreferences(startingUserZimletPreferences);
+				ZimbraAccount.ResetAccountZCS();
+				ZimbraAccount.AccountZCS().modifyAccountPreferences(startingAccountPreferences);
+				ZimbraAccount.AccountZCS().modifyUserZimletPreferences(startingUserZimletPreferences);
 			}
 
-			ZimbraAccount.AccountZUC().modifyUserZimletPreferences(startingUserZimletPreferences);
+			ZimbraAccount.AccountZCS().modifyUserZimletPreferences(startingUserZimletPreferences);
 		}
 
-		// If AccountZUC is not currently logged in, then login now
-		if (!ZimbraAccount.AccountZUC().equals(app.zGetActiveAccount())) {
-			logger.info("BeforeMethod: AccountZUC is not currently logged in");
+		// If AccountZCS is not currently logged in, then login now
+		if (!ZimbraAccount.AccountZCS().equals(app.zGetActiveAccount())) {
+			logger.info("BeforeMethod: AccountZCS is not currently logged in");
 
 			if (app.zPageMain.zIsActive())
 				try {
@@ -284,8 +284,8 @@ public class UniversalCommonTest {
 		logger.info("AfterClass: start");
 
 		ZimbraAccount currentAccount = app.zGetActiveAccount();
-		if (currentAccount != null && currentAccount.accountIsDirty && currentAccount == ZimbraAccount.AccountZUC()) {
-			ZimbraAccount.ResetAccountZUC();
+		if (currentAccount != null && currentAccount.accountIsDirty && currentAccount == ZimbraAccount.AccountZCS()) {
+			ZimbraAccount.ResetAccountZCS();
 		}
 
 		logger.info("AfterClass: finish");
@@ -468,7 +468,7 @@ public class UniversalCommonTest {
 
 	@AfterMethod(groups = { "performance" })
 	public void performanceTestAfterMethod() {
-		ZimbraAccount.ResetAccountZUC();
+		ZimbraAccount.ResetAccountZCS();
 	}
 
 	@DataProvider(name = "DataProviderSupportedCharsets")
@@ -632,7 +632,7 @@ public class UniversalCommonTest {
 
 	public void zFreshLogin() {
 
-		ZimbraAccount.ResetAccountZUC();
+		ZimbraAccount.ResetAccountZCS();
 
 		try {
 			ConfigProperties.setAppType(ConfigProperties.AppType.UNIVERSAL);
@@ -645,8 +645,8 @@ public class UniversalCommonTest {
 
 		try {
 			((AppUniversalClient) app).zPageLogin.sOpen(ConfigProperties.getLogoutURL());
-			if (ZimbraAccount.AccountZUC() != null) {
-				((AppUniversalClient) app).zPageLogin.zLogin(ZimbraAccount.AccountZUC());
+			if (ZimbraAccount.AccountZCS() != null) {
+				((AppUniversalClient) app).zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 			} else {
 				((AppUniversalClient) app).zPageLogin.zLogin(ZimbraAccount.Account10());
 			}

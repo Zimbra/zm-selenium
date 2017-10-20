@@ -36,7 +36,7 @@ public class CheckFeedGeneratedMessage extends PrefGroupMailByMessageTest {
 
 	@Bugs( ids = "52121")
 	
-	@Test( description = "Verify bug 52121:  feed-generated messages do not render in AJAX client ", groups = { "functional", "L2" })
+	@Test( description = "Verify bug 52121:  feed-generated messages do not render in UNIVERSAL client ", groups = { "functional", "L2" })
 	
 	public void CheckFeedGeneratedMessage_01() throws HarnessException {
 		
@@ -44,7 +44,7 @@ public class CheckFeedGeneratedMessage extends PrefGroupMailByMessageTest {
 		String bodytext = "Barbara's suggestion:";
 	
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug52121";
-		LmtpInject.injectFile(ZimbraAccount.AccountZWC(), new File(MimeFolder));
+		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
 				
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

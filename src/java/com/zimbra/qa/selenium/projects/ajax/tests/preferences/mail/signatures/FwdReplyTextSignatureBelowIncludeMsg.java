@@ -49,7 +49,7 @@ public class FwdReplyTextSignatureBelowIncludeMsg extends AjaxCommonTest {
 
 	@BeforeMethod(groups = { "always" })
 	public void CreateSignature() throws HarnessException {
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS()
 				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + this.sigName
 						+ "' >" + "<content type='text/plain'>" + this.sigBody + "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
@@ -80,7 +80,7 @@ public class FwdReplyTextSignatureBelowIncludeMsg extends AjaxCommonTest {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Send a message to the account(self)
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS()
 				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
 						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
 						+ "<mp ct='text/plain'>" + "<content>content" + ConfigProperties.getUniqueString()
@@ -127,7 +127,7 @@ public class FwdReplyTextSignatureBelowIncludeMsg extends AjaxCommonTest {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Send a message to the account(self)
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS()
 				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
 						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
 						+ "<mp ct='text/plain'>" + "<content>content" + ConfigProperties.getUniqueString()
@@ -172,7 +172,7 @@ public class FwdReplyTextSignatureBelowIncludeMsg extends AjaxCommonTest {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Send a message to the account(self)
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS()
 				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
 						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
 						+ "<mp ct='text/plain'>" + "<content>content" + ConfigProperties.getUniqueString()

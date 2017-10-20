@@ -50,7 +50,7 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 	public void CreateSignature() throws HarnessException {
 		logger.info("CreateSignature: start");
 
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS()
 				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + this.sigName
 						+ "' >" + "<content type='text/plain'>" + this.sigBody + "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
@@ -81,7 +81,7 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Send a message to the account(self)
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS()
 				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
 						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
 						+ "<mp ct='text/plain'>" + "<content>content" + ConfigProperties.getUniqueString()
@@ -128,7 +128,7 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Send a message to the account(self)
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS()
 				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
 						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
 						+ "<mp ct='text/plain'>" + "<content>content" + ConfigProperties.getUniqueString()
@@ -174,7 +174,7 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Send a message to the account(self)
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS()
 				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
 						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
 						+ "<mp ct='text/plain'>" + "<content>content" + ConfigProperties.getUniqueString()

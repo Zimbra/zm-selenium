@@ -47,7 +47,7 @@ public class ZimbraFeatureMailForwardingEnabled extends UniversalCommonTest {
 			groups = { "functional", "L2" })
 	public void zimbraFeatureMailForwardingEnabled_01() throws HarnessException {
 		// Login
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 		// Go to preferences - mail
 		app.zPagePreferences.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
@@ -68,7 +68,7 @@ public class ZimbraFeatureMailForwardingEnabled extends UniversalCommonTest {
 			groups = { "functional", "L2" })
 	public void zimbraFeatureMailForwardingEnabled_02() throws HarnessException {
 		// Login
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 		// Go to preferences - mail
 		app.zPagePreferences.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);

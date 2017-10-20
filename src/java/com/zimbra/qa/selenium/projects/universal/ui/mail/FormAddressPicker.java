@@ -32,7 +32,6 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
  * <p>
  * 
  * @author Matt Rhoades
- * @see http://wiki.zimbra.com/wiki/File:ZimbraSeleniumScreenshotAjaxMail6.JPG
  * 
  */
 public class FormAddressPicker extends AbsForm {

@@ -37,7 +37,7 @@ public class TagContact extends ContactsPrefShowSelectionCheckbox {
 	@BeforeClass(groups = { "always" })
 	public void TagContactBeforeClass() throws HarnessException {
 		logger.info("TagContactBeforeClass: start");
-		ZimbraAccount.ResetAccountZWC();
+		ZimbraAccount.ResetAccountZCS();
 		logger.info("TagContactBeforeClass: finish");
 	}
 

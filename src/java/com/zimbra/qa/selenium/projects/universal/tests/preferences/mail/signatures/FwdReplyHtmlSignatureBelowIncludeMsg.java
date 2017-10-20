@@ -52,7 +52,7 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends UniversalCommonTest {
 
 	@BeforeMethod(groups = { "always" })
 	public void CreateSignature() throws HarnessException {
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS()
 				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + this.sigName
 						+ "' >" + "<content type='text/html'>'" + this.contentHTMLSig + "'</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
@@ -88,7 +88,7 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends UniversalCommonTest {
 				.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
 
 		// Send a message to the account
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS()
 				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
 						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
 						+ "<mp ct='multipart/alternative'>" + "<mp ct='text/plain'>" + "<content>" + bodyText
@@ -137,7 +137,7 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends UniversalCommonTest {
 				.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
 
 		// Send a message to the account
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS()
 				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
 						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
 						+ "<mp ct='multipart/alternative'>" + "<mp ct='text/plain'>" + "<content>" + bodyText
@@ -188,7 +188,7 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends UniversalCommonTest {
 				.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
 
 		// Send a message to the account
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS()
 				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
 						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
 						+ "<mp ct='multipart/alternative'>" + "<mp ct='text/plain'>" + "<content>" + bodyText

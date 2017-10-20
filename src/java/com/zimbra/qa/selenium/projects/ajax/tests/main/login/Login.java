@@ -36,7 +36,7 @@ public class Login extends AjaxCommonTest {
 	public void Login01() throws HarnessException {
 		
 		// Login
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 		
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
@@ -69,7 +69,7 @@ public class Login extends AjaxCommonTest {
 		ZimbraAccount.AccountA().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
 				+		"<action id='"+ folder.getId() +"' op='grant'>"
-				+			"<grant d='"+ ZimbraAccount.AccountZWC().EmailAddress +"' gt='usr' perm='r'/>"
+				+			"<grant d='"+ ZimbraAccount.AccountZCS().EmailAddress +"' gt='usr' perm='r'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
 		
@@ -102,16 +102,16 @@ public class Login extends AjaxCommonTest {
 					+	"</MsgActionRequest>");
 		
 		// Mount it
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"
 				+	"</CreateMountpointRequest>");
 		
-		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(ZimbraAccount.AccountZWC(), mountpointname);
+		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(ZimbraAccount.AccountZCS(), mountpointname);
 		ZAssert.assertNotNull(mountpoint, "Verify active account's mountpoint is created");
 		
 		// Login
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 		
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
@@ -151,7 +151,7 @@ public class Login extends AjaxCommonTest {
 		account.soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
 				+		"<action id='"+ folder.getId() +"' op='grant'>"
-				+			"<grant d='"+ ZimbraAccount.AccountZWC().EmailAddress +"' gt='usr' perm='r'/>"
+				+			"<grant d='"+ ZimbraAccount.AccountZCS().EmailAddress +"' gt='usr' perm='r'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
 		
@@ -178,12 +178,12 @@ public class Login extends AjaxCommonTest {
 
 		
 		// Mount it
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ account.ZimbraId +"'/>"
 				+	"</CreateMountpointRequest>");
 		
-		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(ZimbraAccount.AccountZWC(), mountpointname);
+		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(ZimbraAccount.AccountZCS(), mountpointname);
 		ZAssert.assertNotNull(mountpoint, "Verify active account's mountpoint is created");
 		
 		// Delete other account
@@ -194,7 +194,7 @@ public class Login extends AjaxCommonTest {
 		
 		
 		// Login
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 		
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
@@ -249,7 +249,7 @@ public class Login extends AjaxCommonTest {
 			app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
 			
 			// Login
-			app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());		
+			app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());		
 			
 			// Verify main page becomes active
 			ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");

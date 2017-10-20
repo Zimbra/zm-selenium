@@ -54,7 +54,7 @@ public class GetMessage extends AjaxCommonTest {
 		String date = "12/25/2014";
 		String body = "text " + date + " text";
 		
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -92,7 +92,7 @@ public class GetMessage extends AjaxCommonTest {
 		String date2 = "1/1/2015";
 		String body = "date1: " + date1 + " date2: "+ date2;
 		
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -196,7 +196,7 @@ public class GetMessage extends AjaxCommonTest {
 		String date = "12/25/2016";
 		String subject = "subject " + date;
 		
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 			"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 				"<m>" +
@@ -271,7 +271,7 @@ format7.rule = now week={weekord},{dayname}
 		}
 		String subject = "subject " + ConfigProperties.getUniqueString();
 
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +

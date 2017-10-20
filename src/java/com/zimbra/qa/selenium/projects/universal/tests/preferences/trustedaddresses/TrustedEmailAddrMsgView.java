@@ -66,7 +66,7 @@ public class TrustedEmailAddrMsgView extends UniversalCommonTest {
 		+ "/data/public/mime/ExternalImg.txt";
 
 		// Verify Email id through soap GetPrefsRequest
-		String PrefMailTrustedAddr = ZimbraAccount.AccountZWC().getPreference(
+		String PrefMailTrustedAddr = ZimbraAccount.AccountZCS().getPreference(
 				"zimbraPrefMailTrustedSenderList");
 		ZAssert.assertTrue(PrefMailTrustedAddr
 				.equals("admintest@testdoamin.com"),

@@ -256,12 +256,12 @@ public class Forward extends CalendarWorkWeekTest {
 	public void ForwardMeeting_04() throws HarnessException {
 		
 		app.zPageMain.zLogout();
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
 			+		"<pref name='zimbraPrefComposeFormat'>"+ "html" +"</pref>"
 			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "TRUE" +"</pref>"
 			+	"</ModifyPrefsRequest>");
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 		app.zPageCalendar.zNavigateTo();
 		String attendee2 = ZimbraAccount.Account2().EmailAddress;
 		// Create appointment data

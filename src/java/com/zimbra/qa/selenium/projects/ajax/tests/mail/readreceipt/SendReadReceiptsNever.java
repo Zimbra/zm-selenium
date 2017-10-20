@@ -48,7 +48,7 @@ public class SendReadReceiptsNever extends PrefGroupMailByMessageTest {
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		sender.soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>"
 				+		"<m>"

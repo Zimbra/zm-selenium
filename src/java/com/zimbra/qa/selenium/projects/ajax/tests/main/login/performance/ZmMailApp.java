@@ -44,8 +44,8 @@ public class ZmMailApp extends AjaxCommonTest {
 		
 		app.zPageLogin.zNavigateTo();
 
-		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZWC().EmailAddress);
-		app.zPageLogin.zSetLoginPassword(ZimbraAccount.AccountZWC().Password);
+		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZCS().EmailAddress);
+		app.zPageLogin.zSetLoginPassword(ZimbraAccount.AccountZCS().Password);
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailApp, "Login to the ajax client (mail app)");
 

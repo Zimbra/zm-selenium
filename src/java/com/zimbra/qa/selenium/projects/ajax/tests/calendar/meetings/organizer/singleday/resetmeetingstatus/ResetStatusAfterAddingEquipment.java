@@ -77,7 +77,7 @@ public class ResetStatusAfterAddingEquipment extends CalendarWorkWeekTest {
 		app.zPageCalendar.zNavigateTo();
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);		
 		app.zPageMain.zLogout();			
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 		
         // Add Equipment and re-send the appointment
 		app.zPageCalendar.zNavigateTo();

@@ -11,7 +11,7 @@ public class DisableTagFromAdmin extends PrefGroupMailByMessageTest {
 		logger.info("New "+ CreateTag.class.getCanonicalName());		
 	}
 	
-	@Test( description = "Bug # 80892 - Disable tag from admin and check in AJAX client",groups = { "functional", "L2" })
+	@Test( description = "Bug # 80892 - Disable tag from admin and check in UNIVERSAL client",groups = { "functional", "L2" })
 	public void DisableTagFromAdmin_01() throws HarnessException {	
 		
 		ZimbraAdminAccount.GlobalAdmin().soapSend(

@@ -1137,11 +1137,11 @@ public class PageCalendar extends AbsTab {
 					SleepUtil.sleepMedium();
 				}
 
-				if (com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.actions.Open.organizerTest == false ||
-						com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.viewappt.Close.organizerTest == false ||
-						com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.actions.Open.organizerTest == false ||
-						com.zimbra.qa.selenium.projects.ajax.tests.calendar.mountpoints.viewer.viewappt.VerifyDisabledUI.organizerTest == false ||
-						com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.create.CreateMeetingWithDL.organizerTest == false) {
+				if (com.zimbra.qa.selenium.projects.universal.tests.calendar.meetings.attendee.singleday.actions.Open.organizerTest == false ||
+						com.zimbra.qa.selenium.projects.universal.tests.calendar.meetings.attendee.singleday.viewappt.Close.organizerTest == false ||
+						com.zimbra.qa.selenium.projects.universal.tests.calendar.meetings.attendee.singleday.actions.Open.organizerTest == false ||
+						com.zimbra.qa.selenium.projects.universal.tests.calendar.mountpoints.viewer.viewappt.VerifyDisabledUI.organizerTest == false ||
+						com.zimbra.qa.selenium.projects.universal.tests.calendar.meetings.organizer.singleday.create.CreateMeetingWithDL.organizerTest == false) {
 					page = null;
 				} else {
 					page = new FormApptNew(this.MyApplication);
@@ -1348,8 +1348,8 @@ public class PageCalendar extends AbsTab {
 					this.zWaitForBusyOverlay();
 				}
 
-				if (com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.actions.CreateACopy.organizerTest == false ||
-						com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.viewappt.CreateACopy.organizerTest == false) {
+				if (com.zimbra.qa.selenium.projects.universal.tests.calendar.meetings.attendee.singleday.actions.CreateACopy.organizerTest == false ||
+						com.zimbra.qa.selenium.projects.universal.tests.calendar.meetings.attendee.singleday.viewappt.CreateACopy.organizerTest == false) {
 					page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 				} else {
 					page = null;

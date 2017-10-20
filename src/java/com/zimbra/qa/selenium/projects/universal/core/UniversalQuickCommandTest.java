@@ -69,22 +69,22 @@ public class UniversalQuickCommandTest extends UniversalCommonTest {
 		
 		// Create a tag
 		String tagname = "tag" + ConfigProperties.getUniqueString();
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 					"<CreateTagRequest xmlns='urn:zimbraMail'>"
 				+		"<tag name='"+ tagname +"' color='1' />"
 				+	"</CreateTagRequest>");
 
-		TagItem tag = TagItem.importFromSOAP(ZimbraAccount.AccountZWC(), tagname);
+		TagItem tag = TagItem.importFromSOAP(ZimbraAccount.AccountZCS(), tagname);
 		ZAssert.assertNotNull(tag, "Verify the tag was created");
 
 		// Create a subfolder
 		String foldername = "folder" + ConfigProperties.getUniqueString();
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='"+ foldername +"' l='1' view='message'/>"
 				+	"</CreateFolderRequest>");
 
-		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountZWC(), foldername);
+		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountZCS(), foldername);
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
 
 		// Create the list of actions
@@ -122,22 +122,22 @@ public class UniversalQuickCommandTest extends UniversalCommonTest {
 		
 		// Create a tag
 		String tagname = "tag" + ConfigProperties.getUniqueString();
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 					"<CreateTagRequest xmlns='urn:zimbraMail'>"
 				+		"<tag name='"+ tagname +"' color='1' />"
 				+	"</CreateTagRequest>");
 
-		TagItem tag = TagItem.importFromSOAP(ZimbraAccount.AccountZWC(), tagname);
+		TagItem tag = TagItem.importFromSOAP(ZimbraAccount.AccountZCS(), tagname);
 		ZAssert.assertNotNull(tag, "Verify the tag was created");
 
 		// Create a subfolder
 		String foldername = "folder" + ConfigProperties.getUniqueString();
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='"+ foldername +"' l='1' view='contact'/>"
 				+	"</CreateFolderRequest>");
 
-		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountZWC(), foldername);
+		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountZCS(), foldername);
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
 
 		// Create the list of actions
@@ -174,22 +174,22 @@ public class UniversalQuickCommandTest extends UniversalCommonTest {
 		
 		// Create a tag
 		String tagname = "tag" + ConfigProperties.getUniqueString();
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 					"<CreateTagRequest xmlns='urn:zimbraMail'>"
 				+		"<tag name='"+ tagname +"' color='1' />"
 				+	"</CreateTagRequest>");
 
-		TagItem tag = TagItem.importFromSOAP(ZimbraAccount.AccountZWC(), tagname);
+		TagItem tag = TagItem.importFromSOAP(ZimbraAccount.AccountZCS(), tagname);
 		ZAssert.assertNotNull(tag, "Verify the tag was created");
 
 		// Create a subfolder
 		String foldername = "folder" + ConfigProperties.getUniqueString();
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='"+ foldername +"' l='1' view='appointment'/>"
 				+	"</CreateFolderRequest>");
 
-		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountZWC(), foldername);
+		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountZCS(), foldername);
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
 
 		// Create the list of actions
@@ -221,7 +221,7 @@ public class UniversalQuickCommandTest extends UniversalCommonTest {
 		
 
 		// Create a quick command in the user preferences
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
 				+		"<pref name='zimbraPrefQuickCommand'>"+ this.getQuickCommand01().toString() +"</pref>"
 				+		"<pref name='zimbraPrefQuickCommand'>"+ this.getQuickCommand02().toString() +"</pref>"

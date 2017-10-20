@@ -52,8 +52,8 @@ public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
 	@BeforeMethod(groups = { "always" })
 	public void CreateSignature() throws HarnessException {
 		System.out.println(this.sigName);
-		ZimbraAccount.AccountZWC().authenticate();
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS().authenticate();
+		ZimbraAccount.AccountZCS()
 				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + this.sigName
 						+ "' >" + "<content type='text/html'>'" + this.contentHTML + "'</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
@@ -80,7 +80,7 @@ public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
-		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountZWC()));
+		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountZCS()));
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
 		mail.dBodyHtml = "bodybold" + ConfigProperties.getUniqueString() + "body";
 
@@ -97,19 +97,19 @@ public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
 		// Send the message
 		mailform.zSubmit();
 
-		ZimbraAccount.AccountZWC().soapSend("<SearchRequest xmlns='urn:zimbraMail' types='message'>"
+		ZimbraAccount.AccountZCS().soapSend("<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 				+ "<query>in:inbox subject:(" + mail.dSubject + ")</query>" + "</SearchRequest>");
 
-		String id = ZimbraAccount.AccountZWC().soapSelectValue("//mail:SearchResponse/mail:m", "id");
+		String id = ZimbraAccount.AccountZCS().soapSelectValue("//mail:SearchResponse/mail:m", "id");
 
-		ZimbraAccount.AccountZWC().soapSend(
+		ZimbraAccount.AccountZCS().soapSend(
 				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + id + "' html='1'/>" + "</GetMsgRequest>");
-		Element getMsgResponse = ZimbraAccount.AccountZWC().soapSelectNode("//mail:GetMsgResponse", 1);
+		Element getMsgResponse = ZimbraAccount.AccountZCS().soapSelectNode("//mail:GetMsgResponse", 1);
 		MailItem received = MailItem.importFromSOAP(getMsgResponse);
 
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress,
 				"Verify the from field is correct");
-		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountZWC().EmailAddress,
+		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountZCS().EmailAddress,
 				"Verify the to field is correct");
 		ZAssert.assertEquals(received.dSubject, mail.dSubject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(received.dBodyHtml.toLowerCase(),

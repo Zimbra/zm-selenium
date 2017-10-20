@@ -30,13 +30,13 @@ public class BasicLogin extends UniversalCommonTest {
 		super.startingPage = app.zPageLogin;
 	}
 	
-	@Test( description = "Login to the Ajax Client",
+	@Test( description = "Login to the Universal Client",
 			groups = { "sanity", "L0"})
 	
 	public void BasicLogin01() throws HarnessException {
 		
 		// Login
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 		
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");

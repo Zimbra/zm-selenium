@@ -49,8 +49,8 @@ public class ZmMailApp extends AjaxCommonTest {
 	public void ZmMailApp_01() throws HarnessException {
 		
 		// Fill out the login page
-		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZWC().EmailAddress);
-		app.zPageLogin.zSetLoginPassword(ZimbraAccount.AccountZWC().Password);
+		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZCS().EmailAddress);
+		app.zPageLogin.zSetLoginPassword(ZimbraAccount.AccountZCS().Password);
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailApp, "Load the mail app, conversation view, initial load");
 
@@ -70,11 +70,11 @@ public class ZmMailApp extends AjaxCommonTest {
 	public void ZmMailApp_02() throws HarnessException {
 		
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
-		LmtpInject.injectFile(ZimbraAccount.AccountZWC(), new File(mime));
+		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(mime));
 
 		// Fill out the login page
-		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZWC().EmailAddress);
-		app.zPageLogin.zSetLoginPassword(ZimbraAccount.AccountZWC().Password);
+		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZCS().EmailAddress);
+		app.zPageLogin.zSetLoginPassword(ZimbraAccount.AccountZCS().Password);
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailApp, "Load the mail app, conversation view, 1 conversations");
 
@@ -94,11 +94,11 @@ public class ZmMailApp extends AjaxCommonTest {
 	public void ZmMailApp_03() throws HarnessException {
 		
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email03";
-		LmtpInject.injectFile(ZimbraAccount.AccountZWC(), new File(mime));
+		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(mime));
 
 		// Fill out the login page
-		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZWC().EmailAddress);
-		app.zPageLogin.zSetLoginPassword(ZimbraAccount.AccountZWC().Password);
+		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZCS().EmailAddress);
+		app.zPageLogin.zSetLoginPassword(ZimbraAccount.AccountZCS().Password);
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailApp, "Load the mail app, conversation view, 100 conversations");
 

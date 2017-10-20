@@ -187,7 +187,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	public void AddToCalendar_NewWindow_03() throws HarnessException {
 		
 		// Login
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZWC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 		
 		// -- Data Setup
 		String subject = "new window invite ics attachment";
@@ -199,7 +199,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email08/mime06.txt";
 		
 		// Inject the message
-		LmtpInject.injectFile(ZimbraAccount.AccountZWC(), new File(mimeFile));
+		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(mimeFile));
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		SleepUtil.sleepMedium();
 
@@ -239,7 +239,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 			}
 			
 			// Make sure the folder was created on the server
-			FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountZWC(),foldername);
+			FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountZCS(),foldername);
 			dialog.zChooseCalendarFolder(folder.getId());
 			dialog.zClickButton(Button.B_OK);
 			SleepUtil.sleepLong(); //sometime client takes longer time to add the appointment
@@ -254,13 +254,13 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 			+		"<query>"+ "in:" + foldername + " " + apptSubject +"</query>"
 			+	"</SearchRequest>");
 		
-		String organizerInvId = ZimbraAccount.AccountZWC().soapSelectValue("//mail:appt", "invId");
+		String organizerInvId = ZimbraAccount.AccountZCS().soapSelectValue("//mail:appt", "invId");
 		
 		// Get the appointment details
 		app.zGetActiveAccount().soapSend(
 					"<GetAppointmentRequest xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
 		
-		String apptName = ZimbraAccount.AccountZWC().soapSelectValue("//mail:comp", "name");
+		String apptName = ZimbraAccount.AccountZCS().soapSelectValue("//mail:comp", "name");
 		ZAssert.assertEquals(apptName, apptSubject, "Verify correct appointment returned'");
 	
 	}

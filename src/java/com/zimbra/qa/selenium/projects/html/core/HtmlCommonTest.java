@@ -142,13 +142,13 @@ public class HtmlCommonTest {
 			}
 			ZimbraAdminAccount.GlobalAdmin().soapSend(
 					"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
-					+		"<id>"+ ZimbraAccount.AccountHTML().ZimbraId +"</id>"
+					+		"<id>"+ ZimbraAccount.AccountZCS().ZimbraId +"</id>"
 					+		settings.toString()
 					+	"</ModifyAccountRequest>");
 
 
 			// Set the flag so the account is reset for the next test
-			ZimbraAccount.AccountHTML().accountIsDirty = true;
+			ZimbraAccount.AccountZCS().accountIsDirty = true;
 		}
 
 		// If test account zimlet preferences are defined, then make sure the test account
@@ -156,21 +156,21 @@ public class HtmlCommonTest {
 		//
 		if ( (startingAccountZimletPreferences != null) && (!startingAccountZimletPreferences.isEmpty()) ) {
 			logger.debug("commonTestBeforeMethod: startingAccountPreferences are defined");
-			ZimbraAccount.AccountHTML().modifyUserZimletPreferences(startingAccountZimletPreferences);
+			ZimbraAccount.AccountZCS().modifyUserZimletPreferences(startingAccountZimletPreferences);
 		}
 
-		// If AccountHTML is not currently logged in, then login now
-		if ( !ZimbraAccount.AccountHTML().equals(app.zGetActiveAccount()) ) {
-			logger.debug("commonTestBeforeMethod: AccountHTML is not currently logged in");
+		// If AccountZCS is not currently logged in, then login now
+		if ( !ZimbraAccount.AccountZCS().equals(app.zGetActiveAccount()) ) {
+			logger.debug("commonTestBeforeMethod: AccountZCS is not currently logged in");
 
 			if ( app.zPageMain.zIsActive() )
 				app.zPageMain.zLogout();
 
-			app.zPageLogin.zLogin(ZimbraAccount.AccountHTML());
+			app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 
 			// Confirm
-			if ( !ZimbraAccount.AccountHTML().equals(app.zGetActiveAccount())) {
-				throw new HarnessException("Unable to authenticate as "+ ZimbraAccount.AccountHTML().EmailAddress);
+			if ( !ZimbraAccount.AccountZCS().equals(app.zGetActiveAccount())) {
+				throw new HarnessException("Unable to authenticate as "+ ZimbraAccount.AccountZCS().EmailAddress);
 			}
 
 		}
@@ -211,9 +211,9 @@ public class HtmlCommonTest {
 		ZimbraAccount currentAccount = app.zGetActiveAccount();
 		if (currentAccount != null 
 				&& currentAccount.accountIsDirty 
-				&& currentAccount == ZimbraAccount.AccountHTML()) {
+				&& currentAccount == ZimbraAccount.AccountZCS()) {
 
-			ZimbraAccount.ResetAccountHTML();
+			ZimbraAccount.ResetAccountZCS();
 
 		}
 

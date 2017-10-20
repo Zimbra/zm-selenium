@@ -50,8 +50,8 @@ public class ForwardMsgWithTextSignature extends UniversalCommonTest {
 
 	@BeforeMethod(groups = { "always" })
 	public void CreateSignature() throws HarnessException {
-		ZimbraAccount.AccountZWC().authenticate();
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS().authenticate();
+		ZimbraAccount.AccountZCS()
 				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + this.sigName
 						+ "' >" + "<content type='text/plain'>" + this.sigBody + "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
@@ -81,14 +81,14 @@ public class ForwardMsgWithTextSignature extends UniversalCommonTest {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Send a message to the account(self)
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS()
 				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
 						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
 						+ "<mp ct='text/plain'>" + "<content>content" + ConfigProperties.getUniqueString() + "\n\n"
 						+ signature.dBodyText + "\n</content>" + "</mp>" + "</m>" + "</SendMsgRequest>");
 
 		// Get the mail item for the new message
-		MailItem mail = MailItem.importFromSOAP(ZimbraAccount.AccountZWC(), "in:inbox subject:(" + subject + ")");
+		MailItem mail = MailItem.importFromSOAP(ZimbraAccount.AccountZCS(), "in:inbox subject:(" + subject + ")");
 
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

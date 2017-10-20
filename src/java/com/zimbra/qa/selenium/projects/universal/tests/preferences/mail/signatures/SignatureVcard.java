@@ -99,7 +99,7 @@ public class SignatureVcard extends UniversalCommonTest {
 		MailItem mail = new MailItem();
 
 		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
-		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountZWC()));
+		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountZCS()));
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
 		mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
 

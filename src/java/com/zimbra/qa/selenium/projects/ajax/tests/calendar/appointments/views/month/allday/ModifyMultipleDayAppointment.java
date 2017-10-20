@@ -172,6 +172,6 @@ public class ModifyMultipleDayAppointment extends CalendarWorkWeekTest {
 		//Verify that multi-day appointments are displayed correctly in month view 
 		boolean displayed = app.zPageCalendar.zVerifyMultidayAllDayAppointmentInMonthView(now, noOfDays, subject);
 		ZAssert.assertTrue(displayed, "Multi-day all-day appointments are not created and displayed correctly in month view");
-		ZimbraAccount.ResetAccountZWC();
+		ZimbraAccount.ResetAccountZCS();
 	}
 }

@@ -53,8 +53,8 @@ public class ForwardMsgWithHtmlSignature extends AjaxCommonTest {
 
 	@BeforeMethod(groups = { "always" })
 	public void CreateSignature() throws HarnessException {
-		ZimbraAccount.AccountZWC().authenticate();
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS().authenticate();
+		ZimbraAccount.AccountZCS()
 				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + this.sigName
 						+ "' >" + "<content type='text/html'>'" + this.contentHTMLSig + "'</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
@@ -91,7 +91,7 @@ public class ForwardMsgWithHtmlSignature extends AjaxCommonTest {
 				.escapeXml("<html>" + "<head></head>" + "<body>" + signature.dBodyHtmlText + "</body>" + "</html>");
 
 		// Send a message to the account with html signature
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS()
 				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
 						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
 						+ "<mp ct='multipart/alternative'>" + "<mp ct='text/plain'>" + "<content>" + bodyText
@@ -99,7 +99,7 @@ public class ForwardMsgWithHtmlSignature extends AjaxCommonTest {
 						+ "\n</content>" + "</mp>" + "</mp>" + "</m>" + "</SendMsgRequest>");
 
 		// Get the mail item for the new message
-		MailItem mail = MailItem.importFromSOAP(ZimbraAccount.AccountZWC(), "in:inbox subject:(" + subject + ")");
+		MailItem mail = MailItem.importFromSOAP(ZimbraAccount.AccountZCS(), "in:inbox subject:(" + subject + ")");
 
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

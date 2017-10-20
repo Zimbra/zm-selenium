@@ -39,7 +39,7 @@ public class BasicLogin extends TouchCommonTest {
 	public void BasicLogin01() throws HarnessException {
 		
 		// Login
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZTC());
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 		
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");

@@ -83,7 +83,7 @@ public class ViewInviteWithSchedulePolicyofEquipment extends CalendarWorkWeekTes
 		ZAssert.assertStringContains(display.zGetMailProperty(Field.Body), apptContent, "Verify the text content");
 		
 		// Verify the attendee and organizer header		
-		String organizer = "css=table[id='zv__TV__TV-main_MSG_hdrTable'] span[class='addrBubble']:contains('" + ZimbraAccount.AccountZWC().EmailAddress + "')";		
+		String organizer = "css=table[id='zv__TV__TV-main_MSG_hdrTable'] span[class='addrBubble']:contains('" + ZimbraAccount.AccountZCS().EmailAddress + "')";		
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(organizer), "Organizer is present");
 
 	//	String attendee = "css=table[id='zv__TV__TV-main_MSG_hdrTable'] span[class='addrBubble']:contains('" + ZimbraAccount.Account3().EmailAddress + "')";		
@@ -161,7 +161,7 @@ public class ViewInviteWithSchedulePolicyofEquipment extends CalendarWorkWeekTes
 		ZAssert.assertStringContains(display.zGetMailProperty(Field.Body), apptContent, "Verify the text content");
 		
 		// Verify the attendee and organizer header		
-		String organizer = "css=table[id='zv__TV__TV-main_MSG_hdrTable'] span[class='addrBubble']:contains('" + ZimbraAccount.AccountZWC().EmailAddress + "')";		
+		String organizer = "css=table[id='zv__TV__TV-main_MSG_hdrTable'] span[class='addrBubble']:contains('" + ZimbraAccount.AccountZCS().EmailAddress + "')";		
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(organizer), "Organizer is present");
 
 	//	String attendee = "css=table[id='zv__TV__TV-main_MSG_hdrTable'] span[class='addrBubble']:contains('" + ZimbraAccount.Account3().EmailAddress + "')";		
@@ -218,7 +218,7 @@ public class ViewInviteWithSchedulePolicyofEquipment extends CalendarWorkWeekTes
 		ZAssert.assertStringContains(display.zGetMailProperty(Field.Body), apptContent, "Verify the text content");
 		
 		// Verify the attendee and organizer header		
-		String organizer = "css=table[id='zv__TV__TV-main_MSG_hdrTable'] span[class='addrBubble']:contains('" + ZimbraAccount.AccountZWC().EmailAddress + "')";		
+		String organizer = "css=table[id='zv__TV__TV-main_MSG_hdrTable'] span[class='addrBubble']:contains('" + ZimbraAccount.AccountZCS().EmailAddress + "')";		
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(organizer), "Organizer is present");
 
 		//String attendee = "css=table[id='zv__TV__TV-main_MSG_hdrTable'] span[class='addrBubble']:contains('" + ZimbraAccount.Account3().EmailAddress + "')";		

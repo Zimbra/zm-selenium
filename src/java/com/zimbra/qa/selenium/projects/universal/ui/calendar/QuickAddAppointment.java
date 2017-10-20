@@ -293,8 +293,8 @@ public class QuickAddAppointment extends AbsTab {
 		if (appt.getStartTime() != null) {
 			zFillField(Field.StartDate, appt.getStartTime());
 
-			if (com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.quickadd.CreateAllDayAppointment.allDayTest == false
-					|| com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.allday.minicalendar.CreateAllDayMeeting.allDayTest == false) {
+			if (com.zimbra.qa.selenium.projects.universal.tests.calendar.appointments.quickadd.CreateAllDayAppointment.allDayTest == false
+					|| com.zimbra.qa.selenium.projects.universal.tests.calendar.meetings.organizer.allday.minicalendar.CreateAllDayMeeting.allDayTest == false) {
 				zFillField(Field.StartTime, appt.getStartTime());
 			}
 		}
@@ -303,8 +303,8 @@ public class QuickAddAppointment extends AbsTab {
 		if (appt.getEndTime() != null) {
 			zFillField(Field.EndDate, appt.getEndTime());
 
-			if (com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.quickadd.CreateAllDayAppointment.allDayTest == false
-					|| com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.allday.minicalendar.CreateAllDayMeeting.allDayTest == false) {
+			if (com.zimbra.qa.selenium.projects.universal.tests.calendar.appointments.quickadd.CreateAllDayAppointment.allDayTest == false
+					|| com.zimbra.qa.selenium.projects.universal.tests.calendar.meetings.organizer.allday.minicalendar.CreateAllDayMeeting.allDayTest == false) {
 				zFillField(Field.EndTime, appt.getEndTime());
 			}
 		}

@@ -40,7 +40,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
 
 /**
  * The <code>FormMailNew<code> object defines a compose new message view in the
- * Zimbra Ajax client.
+ * Zimbra Universal client.
  * <p>
  * This class can be used to compose a new message.
  * <p>

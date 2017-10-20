@@ -55,7 +55,7 @@ public class GetMessage extends UniversalCommonTest {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String body = "text " + Emoticons.HAPPY + " text";
 		
-		// Send the message from AccountA to the ZWC user
+		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 			"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 				"<m>" +

@@ -73,7 +73,7 @@ public class ReplyMsgWithTwoThreeLineTextSignature extends AjaxCommonTest {
 						+ "<content type='text/plain'>" + sigBody + "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
 
-		String SignatureId = ZimbraAccount.AccountZWC().soapSelectValue("//acct:CreateSignatureResponse/acct:signature",
+		String SignatureId = ZimbraAccount.AccountZCS().soapSelectValue("//acct:CreateSignatureResponse/acct:signature",
 				"id");
 
 		app.zGetActiveAccount()
@@ -81,13 +81,13 @@ public class ReplyMsgWithTwoThreeLineTextSignature extends AjaxCommonTest {
 						+ "<content type='text/plain'>" + sigBody1 + "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
 
-		String SignatureId1 = ZimbraAccount.AccountZWC()
+		String SignatureId1 = ZimbraAccount.AccountZCS()
 				.soapSelectValue("//acct:CreateSignatureResponse/acct:signature", "id");
 
 		app.zGetActiveAccount()
 				.soapSend("<GetIdentitiesRequest xmlns='urn:zimbraAccount'>" + "</GetIdentitiesRequest>");
 
-		String IdentityId = ZimbraAccount.AccountZWC().soapSelectValue("//acct:GetIdentitiesResponse/acct:identity",
+		String IdentityId = ZimbraAccount.AccountZCS().soapSelectValue("//acct:GetIdentitiesResponse/acct:identity",
 				"id");
 
 		app.zGetActiveAccount()
@@ -107,14 +107,14 @@ public class ReplyMsgWithTwoThreeLineTextSignature extends AjaxCommonTest {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Send a message to the account(self)
-		ZimbraAccount.AccountZWC()
+		ZimbraAccount.AccountZCS()
 				.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='"
 						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<su>" + subject + "</su>"
 						+ "<mp ct='text/plain'>" + "<content>content" + ConfigProperties.getUniqueString() + "\n\n"
 						+ signature.dBodyText + "\n</content>" + "</mp>" + "</m>" + "</SendMsgRequest>");
 
 		// Get the mail item for the new message
-		MailItem mail = MailItem.importFromSOAP(ZimbraAccount.AccountZWC(), "in:inbox subject:(" + subject + ")");
+		MailItem mail = MailItem.importFromSOAP(ZimbraAccount.AccountZCS(), "in:inbox subject:(" + subject + ")");
 
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -136,20 +136,20 @@ public class ReplyMsgWithTwoThreeLineTextSignature extends AjaxCommonTest {
 		// Send the message
 		mailform.zSubmit();
 
-		ZimbraAccount.AccountZWC().soapSend("<SearchRequest xmlns='urn:zimbraMail' types='message'>"
+		ZimbraAccount.AccountZCS().soapSend("<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 				+ "<query>in:inbox subject:(" + mail.dSubject + ")</query>" + "</SearchRequest>");
 
-		String id = ZimbraAccount.AccountZWC().soapSelectValue("//mail:SearchResponse/mail:m", "id");
-		ZimbraAccount.AccountZWC()
+		String id = ZimbraAccount.AccountZCS().soapSelectValue("//mail:SearchResponse/mail:m", "id");
+		ZimbraAccount.AccountZCS()
 				.soapSend("<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + id + "' />" + "</GetMsgRequest>");
-		Element getMsgResponse = ZimbraAccount.AccountZWC().soapSelectNode("//mail:GetMsgResponse", 1);
+		Element getMsgResponse = ZimbraAccount.AccountZCS().soapSelectNode("//mail:GetMsgResponse", 1);
 		MailItem received = MailItem.importFromSOAP(getMsgResponse);
 
 		// Verify TO, Subject, Text Body,Text Signature for replied msg
 		ZAssert.assertStringContains(received.dSubject, "Re", "Verify the subject field contains the 'Fwd' prefix");
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress,
 				"Verify the from field is correct");
-		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountZWC().EmailAddress,
+		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountZCS().EmailAddress,
 				"Verify the to field is correct");
 		ZAssert.assertStringContains(received.dBodyText, mail.dBodyText, "Verify the body content is correct");
 		ZAssert.assertStringContains(received.dBodyText, sigBody, "Verify the signature is correct");

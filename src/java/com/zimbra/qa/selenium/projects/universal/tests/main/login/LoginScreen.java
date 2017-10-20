@@ -41,7 +41,7 @@ public class LoginScreen extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Verify the label text on the ajax client login screen",
+	@Test( description = "Verify the label text on the universal client login screen",
 			groups = { "smoke", "L0"})
 	public void LoginScreen01() throws HarnessException {
 		

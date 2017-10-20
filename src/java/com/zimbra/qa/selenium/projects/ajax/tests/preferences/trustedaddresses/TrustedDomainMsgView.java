@@ -67,7 +67,7 @@ public class TrustedDomainMsgView extends AjaxCommonTest {
 				+ "/data/public/mime/ExternalImg.txt";
 
 		//Verify domain through soap- GetPrefsRequest
-		String PrefMailTrustedAddr = ZimbraAccount.AccountZWC().getPreference(
+		String PrefMailTrustedAddr = ZimbraAccount.AccountZCS().getPreference(
 				"zimbraPrefMailTrustedSenderList");
 		ZAssert.assertTrue(PrefMailTrustedAddr.equals("testdoamin.com"),
 				"Verify doamin is present /Pref/TrustedAddr");

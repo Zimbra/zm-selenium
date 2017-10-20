@@ -47,7 +47,7 @@ public class ReplyToMsgWithSignatureContainingImage extends AjaxCommonTest {
 
 	@BeforeMethod(groups = { "always" })
 	public void CreateSignature() throws HarnessException {
-		ZimbraAccount account = ZimbraAccount.AccountZWC();
+		ZimbraAccount account = ZimbraAccount.AccountZCS();
 		account.authenticate();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,

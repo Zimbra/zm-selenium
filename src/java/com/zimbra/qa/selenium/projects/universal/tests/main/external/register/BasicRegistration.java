@@ -42,18 +42,18 @@ public class BasicRegistration extends UniversalCommonTest {
 			ZimbraExternalAccount external = new ZimbraExternalAccount();
 			external.setEmailAddress("external" + ConfigProperties.getUniqueString() + "@example.com");
 			
-			FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountZWC(), FolderItem.SystemFolder.Inbox);
+			FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountZCS(), FolderItem.SystemFolder.Inbox);
 			String foldername = "folder" + ConfigProperties.getUniqueString();
 	
 			// Create a subfolder in Inbox
-			ZimbraAccount.AccountZWC().soapSend(
+			ZimbraAccount.AccountZCS().soapSend(
 						"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 					+		"<folder name='" + foldername +"' l='" + inbox.getId() +"' view='message'/>"
 					+	"</CreateFolderRequest>");
-			String folderid = ZimbraAccount.AccountZWC().soapSelectValue("//mail:folder", "id");
+			String folderid = ZimbraAccount.AccountZCS().soapSelectValue("//mail:folder", "id");
 	
 			// Share the subfolder
-			ZimbraAccount.AccountZWC().soapSend(
+			ZimbraAccount.AccountZCS().soapSend(
 						"<FolderActionRequest xmlns='urn:zimbraMail'>"
 					+		"<action id='"+ folderid +"' op='grant'>"
 					+			"<grant d='"+ external.EmailAddress +"' inh='1' gt='guest' pw='' perm='r'/>"
@@ -61,7 +61,7 @@ public class BasicRegistration extends UniversalCommonTest {
 					+	"</FolderActionRequest>");
 	
 			// Send the notification
-			ZimbraAccount.AccountZWC().soapSend(
+			ZimbraAccount.AccountZCS().soapSend(
 						"<SendShareNotificationRequest xmlns='urn:zimbraMail'>"
 					+		"<item id='"+ folderid +"'/>"
 					+		"<e a='"+ external.EmailAddress +"'/>"
@@ -70,19 +70,19 @@ public class BasicRegistration extends UniversalCommonTest {
 	
 	
 			// Parse the URL From the sent message
-			ZimbraAccount.AccountZWC().soapSend(
+			ZimbraAccount.AccountZCS().soapSend(
 						"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 					+		"<query>in:sent "+ external.EmailAddress +"</query>"
 					+	"</SearchRequest>");
-			String messageid = ZimbraAccount.AccountZWC().soapSelectValue("//mail:m", "id");
+			String messageid = ZimbraAccount.AccountZCS().soapSelectValue("//mail:m", "id");
 			
-			ZimbraAccount.AccountZWC().soapSend(
+			ZimbraAccount.AccountZCS().soapSend(
 						"<GetMsgRequest xmlns='urn:zimbraMail'>"
 					+		"<m id='"+ messageid +"' html='1'/>"
 					+	"</GetMsgRequest>");
 			
 			// Based on the content of the sent message, the URL's can be determined
-			Element response = ZimbraAccount.AccountZWC().soapSelectNode("//mail:GetMsgResponse", 1);
+			Element response = ZimbraAccount.AccountZCS().soapSelectNode("//mail:GetMsgResponse", 1);
 			external.setURL(response);
 			
 			

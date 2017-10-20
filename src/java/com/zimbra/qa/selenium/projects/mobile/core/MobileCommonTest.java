@@ -59,7 +59,7 @@ public class MobileCommonTest {
 		app = new AppMobileClient();
 		
 		startingPage = app.zPageMain;
-		startingAccount = ZimbraAccount.AccountZMC();
+		startingAccount = ZimbraAccount.AccountZCS();
 		
 		app.zPageLogin.DefaultLoginAccount = startingAccount;
 		
@@ -79,7 +79,7 @@ public class MobileCommonTest {
 
 
       	// Make sure there is a new default account
-		ZimbraAccount.ResetAccountZMC();
+		ZimbraAccount.ResetAccountZCS();
 				
 		// Set the app type
 		ConfigProperties.setAppType(ConfigProperties.AppType.MOBILE);
