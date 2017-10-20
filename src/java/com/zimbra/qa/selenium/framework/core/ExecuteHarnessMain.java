@@ -1337,11 +1337,15 @@ public class ExecuteHarnessMain {
 		SeleniumService seleniumService = new SeleniumService();
 
 		if (totalZimbraProxyServers == 0 || totalZimbraServers == 0 || storeServers.equals(null)) {
+			
+			for (String noOfZimbraServers : CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas | wc -l")) {
+				totalZimbraServers = Integer.parseInt(noOfZimbraServers);
+			}
 
 			// Get proxy server
 			for (String noOfZimbraProxyServers : CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas proxy | wc -l")) {
 				totalZimbraProxyServers = Integer.parseInt(noOfZimbraProxyServers);
-				if (totalZimbraProxyServers >=1) {
+				if (totalZimbraProxyServers >=1 && totalZimbraServers >=2 ) {
 					adminPort = 9071;
 				} else {
 					adminPort = 7071;
@@ -1382,13 +1386,10 @@ public class ExecuteHarnessMain {
 			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 
 			// Get all zimbra servers
-			logger.info("Get all zimbra servers...");
-			for (String noOfZimbraServers : CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas | wc -l")) {
-				totalZimbraServers = Integer.parseInt(noOfZimbraServers);
-				logInfo = "No. of zimbra server(s): " + totalZimbraServers;
-				logger.info(logInfo);
-				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-			}
+			logInfo = "No. of zimbra server(s): " + totalZimbraServers;
+			logger.info(logInfo);
+			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			
 			if (totalZimbraServers == 0) {
 				seleniumService.stopSeleniumExecution();
 				logInfo = "Couldn't get total zimbra servers (" + totalZimbraServers + ") using CLI command";
