@@ -109,7 +109,7 @@ public class ExecuteHarnessMain {
 	public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy-hhmmss");
 	public static String currentDateTime = simpleDateFormat.format(new Date());
 
-	public static void setTestOutputFolderName(String path) {
+	public void setTestOutputFolderName(String path) {
 
 		System.setProperty("outputDirectory", path);
 
@@ -1286,9 +1286,9 @@ public class ExecuteHarnessMain {
 
 			// 'o' check should be after 'p' check to avoid code redundancy
 			if (cmd.hasOption('o')) {
-				ExecuteHarnessMain.setTestOutputFolderName(cmd.getOptionValue('o'));
+				setTestOutputFolderName(cmd.getOptionValue('o'));
 			} else {
-				ExecuteHarnessMain.setTestOutputFolderName(ConfigProperties.getStringProperty("testOutputDirectory") + "/"
+				setTestOutputFolderName(ConfigProperties.getStringProperty("testOutputDirectory") + "/"
 						+ ConfigProperties.zimbraGetVersionString());
 			}
 
@@ -1337,7 +1337,7 @@ public class ExecuteHarnessMain {
 		SeleniumService seleniumService = new SeleniumService();
 
 		if (totalZimbraProxyServers == 0 || totalZimbraServers == 0 || storeServers.equals(null)) {
-			
+
 			for (String noOfZimbraServers : CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas | wc -l")) {
 				totalZimbraServers = Integer.parseInt(noOfZimbraServers);
 			}
@@ -1361,13 +1361,11 @@ public class ExecuteHarnessMain {
 				System.exit(0);
 			}
 
-			// Set testout folder
-			setTestOutputFolderName(ConfigProperties.getStringProperty("testOutputDirectory") + "/"
-					+ ConfigProperties.zimbraGetVersionString());
-
 			// Harness log
-			sHarnessLogFileName = "harness.log";
-			sHarnessLogFileFolderPath = ExecuteHarnessMain.testoutputfoldername + "\\debug\\projects";
+			sHarnessLogFileName = "harness.txt";
+			sHarnessLogFileFolderPath = ConfigProperties.getStringProperty("testOutputDirectory") + "/"
+					+ ConfigProperties.zimbraGetVersionString() + "/" + ConfigProperties.getAppType() + "/"
+					+ ConfigProperties.getStringProperty("browser") + "/" + ConfigProperties.getStringProperty("locale") + "\\debug\\projects";
 			sHarnessLogFilePath = sHarnessLogFileFolderPath + "\\" + sHarnessLogFileName;
 			pHarnessLogFilePath = Paths.get(sHarnessLogFileFolderPath, sHarnessLogFileName);
 			fHarnessLogFile = new File(sHarnessLogFilePath);
@@ -1389,7 +1387,7 @@ public class ExecuteHarnessMain {
 			logInfo = "No. of zimbra server(s): " + totalZimbraServers;
 			logger.info(logInfo);
 			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-			
+
 			if (totalZimbraServers == 0) {
 				seleniumService.stopSeleniumExecution();
 				logInfo = "Couldn't get total zimbra servers (" + totalZimbraServers + ") using CLI command";
