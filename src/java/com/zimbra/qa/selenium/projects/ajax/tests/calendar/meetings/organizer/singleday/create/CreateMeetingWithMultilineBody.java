@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.create;
+package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.create;
 
 import java.awt.event.KeyEvent;
 import org.testng.annotations.Test;
@@ -26,17 +26,17 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators;
 
-public class CreateMeeting extends AjaxCommonTest {
+public class CreateMeetingWithMultilineBody extends AjaxCommonTest {
 
-	public CreateMeeting() {
-		logger.info("New "+ CreateMeeting.class.getCanonicalName());
-		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
+	public CreateMeetingWithMultilineBody() {
+		logger.info("New "+ CreateMeetingWithMultilineBody.class.getCanonicalName());
+		super.startingPage = app.zPageCalendar;
 	}
 	
 	@Test( description = "Send a meeting invite by entering multiline body content with HTML compose preferences", 
 			groups = { "sanity", "L0" })
 	
-	public void CreateMeetingWithHTMLComposePreference_01() throws HarnessException {
+	public void CreateMeetingWithMultilineHtmlBody_01() throws HarnessException {
 				
 		// Create the message data to be sent
 		final String attendees = ZimbraAccount.AccountC().EmailAddress;
@@ -111,10 +111,8 @@ public class CreateMeeting extends AjaxCommonTest {
 	@Test( description = "Send a meeting invite by entering multiline body content with Plain text compose preferences", 
 			groups = { "sanity", "L0" })
 	
-	public void CreateMeetingWithPlainTextComposePreference_02() throws HarnessException {
-
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
+	public void CreateMeetingWithMultilinePlainTextBody_02() throws HarnessException {
+				
 		// Create the message data to be sent
 		final String attendees = ZimbraAccount.AccountC().EmailAddress;
 		final String dSubject = "subject" + ConfigProperties.getUniqueString();

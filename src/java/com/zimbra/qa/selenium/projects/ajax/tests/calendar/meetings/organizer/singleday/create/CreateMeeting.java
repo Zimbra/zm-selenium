@@ -67,7 +67,7 @@ public class CreateMeeting extends CalendarWorkWeekTest {
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         app.zPageMail.zNavigateTo();
 
-		// Go to drafts
+		// Go to sent folder
 		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
 
