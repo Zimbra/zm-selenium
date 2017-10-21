@@ -34,11 +34,11 @@ public class PageLogin extends AbsTab {
 		public static final String zInputCode = "css=input[id='totpcode']";
 		public static final String zInputRemember = "css=input[id='remember']";
 		public static final String zTrustThisComputer = "css=input[id='trustedDevice']";
-		
+
 		// Displayed text
 		public static final String zDisplayedusername = "css=form[name='loginForm'] label[for='username']";
 		public static final String zDisplayedcopyright = "css=div[class='copyright']";
-		
+
 		// Toolbar links
 		public static final String zLogoutLink = "css=[id='skin_container_logoff']>a";
 
@@ -62,7 +62,7 @@ public class PageLogin extends AbsTab {
 			throw new HarnessException("Please add a support for appType: " + appType);
 		}
 
-		// Look for the login button. 
+		// Look for the login button.
 		boolean present = sIsElementPresent(locator);
 		if ( !present ) {
 			logger.debug("isActive() present = "+ present);
@@ -110,15 +110,15 @@ public class PageLogin extends AbsTab {
 		zNavigateTo();
 
 		Date start = new Date();
-		
+
 		try {
-			
+
 			zSetLoginName(account.EmailAddress);
 			zSetLoginPassword(account.Password);
 			sClick(Locators.zBtnLogin);
 			SleepUtil.sleepLong();
 			zWaitForBusyOverlay();
-			
+
 			// 1st login retry (sometime account creation remains fast and entire execution stuck due to non-existence of the account)
 			if (zIsVisiblePerPosition(Locators.zBtnLogin, 0, 0) == true || zIsVisiblePerPosition("css=div[id='ZLoginErrorPanel'] td:contains('The username or password is incorrect')", 0, 0) == true) {
 				logger.error("1st login failed or account not created successfully, retried using " + account.EmailAddress);
@@ -131,16 +131,16 @@ public class PageLogin extends AbsTab {
 				sClick(Locators.zBtnLogin);
 				SleepUtil.sleepLong();
 				zWaitForBusyOverlay();
-				
+
 			} else {
 				logger.info("1st login retry - successfully logged in using " + account.EmailAddress);
 			}
-			
+
 			((AppUniversalClient)MyApplication).zPageMain.zWaitForActive(100000);
 			((AppUniversalClient)MyApplication).zSetActiveAcount(account);
 
 		} finally {
-			
+
 			SleepMetrics.RecordProcessing((new Throwable()).getStackTrace(), start, new Date());
 
 		}
@@ -150,27 +150,27 @@ public class PageLogin extends AbsTab {
 		logger.debug("login(ZimbraAccount account)" + account.EmailAddress);
 
 		tracer.trace("Login to the "+ MyApplication.myApplicationName() +" using user/password "+ account.EmailAddress +"/"+ account.Password);
-			
-		zNavigateTo();			
+
+		zNavigateTo();
 		zSetLoginName(account.EmailAddress);
 		zSetLoginPassword(account.Password);
-		
+
 		// Click the Login button
 		sClickAt(Locators.zBtnLogin, "");
-		
+
 		SleepUtil.sleepLong();
-		
+
 		AbsPage page = null;
 		page = new Dialog2FactorAuthEnable(MyApplication, ((AppUniversalClient) MyApplication).zPageLogin);
 		if ( page.zIsActive() ) {
 			return (page);
 		}
-		
+
 		return(null);
-		
+
 	}
 
-	
+
 	public void zLogin(ZimbraAccount account, String totp, boolean trustThisComputer) throws HarnessException {
 		logger.debug("login(ZimbraAccount account)" + account.EmailAddress);
 
@@ -179,30 +179,30 @@ public class PageLogin extends AbsTab {
 		zNavigateTo();
 
 		Date start = new Date();
-		
+
 		try {
-			
+
 			zSetLoginName(account.EmailAddress);
 			zSetLoginPassword(account.Password);
-			
+
 			// Click the Login button
 			sClickAt(Locators.zBtnLogin, "");
 			SleepUtil.sleepMedium();
 			zSetLoginTOTPCode(totp);
-			
+
 			if ( trustThisComputer == true) {
 				zMarkTrustThisComputer();
 			}
-			
+
 			sClickAt(Locators.zBtnLogin, "");
-		
+
 			((AppUniversalClient)MyApplication).zPageMain.zWaitForActive(180000);
 
 			((AppUniversalClient)MyApplication).zSetActiveAcount(account);
 
 
 		} finally {
-			
+
 			SleepMetrics.RecordProcessing((new Throwable()).getStackTrace(), start, new Date());
 
 		}
@@ -224,6 +224,7 @@ public class PageLogin extends AbsTab {
 		}
 		clearField(locator);
 		sType(locator, name);
+		SleepUtil.sleepSmall();
 	}
 
 	/**
@@ -241,6 +242,7 @@ public class PageLogin extends AbsTab {
 		}
 		clearField(locator);
 		sType(locator, password);
+		SleepUtil.sleepSmall();
 	}
 
 	public void zSetLoginTOTPCode(String totpCode) throws HarnessException {
@@ -253,19 +255,21 @@ public class PageLogin extends AbsTab {
 		}
 		clearField(locator);
 		sType(locator, totpCode);
+		SleepUtil.sleepSmall();
 	}
 
 	public void zMarkTrustThisComputer() throws HarnessException {
 		tracer.trace("Click on Trust this computer");
 		SleepUtil.sleepSmall();
 		this.sClick(Locators.zTrustThisComputer);
+		SleepUtil.sleepSmall();
 	}
-	
+
 	public Boolean zVerifyTrustThisComputer() throws HarnessException {
 		return sIsElementPresent(Locators.zTrustThisComputer);
 	}
 
-	
+
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		throw new HarnessException("Login page does not have a Toolbar");

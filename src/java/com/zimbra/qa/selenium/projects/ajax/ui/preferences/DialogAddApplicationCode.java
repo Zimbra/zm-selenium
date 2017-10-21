@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.ui.preferences;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -16,16 +14,12 @@ package com.zimbra.qa.selenium.projects.ajax.ui.preferences;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
+package com.zimbra.qa.selenium.projects.ajax.ui.preferences;
+
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
-/**
- * Represents a "Add Document Version Notes" dialog box
- * <p>
- */
 public class DialogAddApplicationCode extends AbsDialog {
 
 	public static class Locators {
@@ -87,6 +81,7 @@ public class DialogAddApplicationCode extends AbsDialog {
 					+ locator + " not present!");
 		}
 		this.zClickAt(locator, "0,0");
+		SleepUtil.sleepLong();
 
 		return (null);
 	}
@@ -95,9 +90,9 @@ public class DialogAddApplicationCode extends AbsDialog {
 
 		if (application == null)
 			throw new HarnessException("application must not be null");
-		
+
 		String locator = Locators.zApplicationName;
-		
+
 		if (!this.zWaitForElementPresent(locator, "10000"))
 			throw new HarnessException("unable to find body field " + locator);
 
@@ -105,20 +100,21 @@ public class DialogAddApplicationCode extends AbsDialog {
 		this.zClickAt(locator, "0,0");
 		this.sFocus(locator);
 		this.zKeyboard.zTypeCharacters(application);
+		SleepUtil.sleepSmall();
 	}
 
-	
+
 	@Override
 	public String zGetDisplayedText(String passcode) throws HarnessException {
 		logger.info(myPageName() + " zGetSecretKey");
 
 		String locator = "css=td[class='WindowInnerContainer'] div[id$='_app_passcode'] span[id$='_app_passcode_value']" ;
-		
+
 		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("Secret key "+ locator +" is not present");
 		}
-		
+
 		return(this.sGetText(locator));
 	}
 
