@@ -22,7 +22,7 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
 
 public class ViewAppointment extends CalendarWorkWeekTest {
 
