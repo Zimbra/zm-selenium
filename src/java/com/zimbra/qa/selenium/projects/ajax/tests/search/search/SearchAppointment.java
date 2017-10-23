@@ -41,7 +41,7 @@ public class SearchAppointment extends CalendarWorkWeekTest {
 			groups = { "functional","L2" })
 	
 	public void SearchAppointment_01() throws HarnessException {
-		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
+		ZDate startDate = new ZDate(this.calendarWeekDayUTC.get(Calendar.YEAR), this.calendarWeekDayUTC.get(Calendar.MONTH) + 1, this.calendarWeekDayUTC.get(Calendar.DAY_OF_MONTH), this.calendarWeekDayUTC.get(Calendar.HOUR_OF_DAY), 0, 0);
 		
 		// Create a meeting
 		String subject = "appointment" + ConfigProperties.getUniqueString();
@@ -86,7 +86,7 @@ public class SearchAppointment extends CalendarWorkWeekTest {
 			groups = { "functional","L2" })
 	
 	public void SearchAppointment_02() throws HarnessException {
-		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
+		ZDate startDate = new ZDate(this.calendarWeekDayUTC.get(Calendar.YEAR), this.calendarWeekDayUTC.get(Calendar.MONTH) + 1, this.calendarWeekDayUTC.get(Calendar.DAY_OF_MONTH), this.calendarWeekDayUTC.get(Calendar.HOUR_OF_DAY), 0, 0);
 		
 		// Create a meeting
 		String subject = "appointment" + ConfigProperties.getUniqueString();

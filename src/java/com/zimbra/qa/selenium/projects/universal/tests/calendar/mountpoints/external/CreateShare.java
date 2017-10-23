@@ -23,12 +23,12 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogShare;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogShare.ShareMessageType;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogShare.ShareWith;
 
-public class CreateShare extends UniversalCommonTest {
+public class CreateShare extends CalendarWorkWeekTest {
 
 	public CreateShare() {
 		logger.info("New " + CreateShare.class.getCanonicalName());

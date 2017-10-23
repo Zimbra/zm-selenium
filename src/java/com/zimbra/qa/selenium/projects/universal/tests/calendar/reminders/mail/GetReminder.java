@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
 
-public class GetReminder extends UniversalCommonTest {
+public class GetReminder extends CalendarWorkWeekTest {
 
 	public GetReminder() {
 		logger.info("New "+ GetReminder.class.getCanonicalName());
@@ -48,7 +48,7 @@ public class GetReminder extends UniversalCommonTest {
 		String apptSubject = ConfigProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone
-		Calendar now = Calendar.getInstance();
+		Calendar now = this.calendarWeekDayUTC;
 		ZDate startLocal = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), now.get(Calendar.HOUR_OF_DAY) + 1, 0, 0);
 		ZDate finishLocal   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), now.get(Calendar.HOUR_OF_DAY) + 2, 0, 0);
 		

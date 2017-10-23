@@ -21,12 +21,7 @@ import java.util.TimeZone;
 public class ZTimeZone {
 
 	public static final TimeZone TimeZoneUTC = TimeZone.getTimeZone("UTC");
-	public static final TimeZone TimeZoneHST = TimeZone.getTimeZone("Pacific/Honolulu");
-	public static final TimeZone TimeZoneAKST = TimeZone.getTimeZone("America/Juneau");
-	public static final TimeZone TimeZonePST = TimeZone.getTimeZone("America/Los_Angeles");
-	public static final TimeZone TimeZoneMST = TimeZone.getTimeZone("America/Denver");
 	public static final TimeZone TimeZoneCST = TimeZone.getTimeZone("America/Chicago");
-	public static final TimeZone TimeZoneEST = TimeZone.getTimeZone("America/New_York");
 	public static final TimeZone TimeZoneIndia = TimeZone.getTimeZone("Asia/Kolkata");
 
 	/**
@@ -50,5 +45,12 @@ public class ZTimeZone {
 		throw new HarnessException("Unable to determine the TimeZone from the string: "+ timezone);
 	}
 	
+	public static TimeZone getLocalTimeZone() throws HarnessException {
+	       if ( ConfigProperties.getStringProperty("server.host").startsWith("pnq-") ) {
+	              return (TimeZone.getTimeZone(TimeZoneIndia.getID()));
 
+	       } else {
+	              return (TimeZone.getTimeZone(TimeZoneCST.getID()));
+	       }
+	}
 }

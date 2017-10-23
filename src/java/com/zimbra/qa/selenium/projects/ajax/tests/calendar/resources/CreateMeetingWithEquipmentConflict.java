@@ -45,7 +45,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
 		
 		String tz, apptSubject1,apptSubject2, apptAttendeeEmail;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
 		String apptEquipment = equipment.EmailAddress;
 		
@@ -118,7 +118,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
 		
 		String tz, apptSubject1,apptSubject2, apptAttendeeEmail;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
 		String apptEquipment = equipment.EmailAddress;
 		
@@ -194,7 +194,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
 		
 		String tz, apptSubject1,apptSubject2, apptAttendeeEmail;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
 		String apptEquipment = equipment.EmailAddress;
 		
@@ -269,7 +269,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
 		
 		String tz, apptSubject1,apptSubject2, apptAttendeeEmail;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
 		String apptEquipment = equipment.EmailAddress;
 		

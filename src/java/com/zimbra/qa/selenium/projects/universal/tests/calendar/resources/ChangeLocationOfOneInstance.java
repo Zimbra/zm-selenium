@@ -42,7 +42,7 @@ public class ChangeLocationOfOneInstance extends CalendarWorkWeekTest {
 		// Create a meeting
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee = ZimbraAccount.AccountA().EmailAddress;
 		String apptLocation = location.EmailAddress;

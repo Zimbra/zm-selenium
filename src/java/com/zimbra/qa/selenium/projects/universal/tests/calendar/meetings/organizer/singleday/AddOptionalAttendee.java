@@ -48,7 +48,7 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 		// Create a meeting
 		AppointmentItem appt = new AppointmentItem();
 			
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptOptionalAttendee = ZimbraAccount.AccountA().EmailAddress;
 		

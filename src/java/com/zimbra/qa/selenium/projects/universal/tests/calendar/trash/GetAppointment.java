@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.universal.tests.calendar.trash;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.Checkbox;
@@ -29,17 +27,17 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
 
-public class GetAppointment extends UniversalCommonTest {
-
+public class GetAppointment extends CalendarWorkWeekTest {
 
 	public GetAppointment() {
 		logger.info("New "+ GetAppointment.class.getCanonicalName());
 
 		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
+		super.startingAccountPreferences.put("zimbraPrefCalendarInitialView", "week");
 	}
 
 	@Test( description = "Verify the presence of appointment in Trash after deletion.",
@@ -47,19 +45,24 @@ public class GetAppointment extends UniversalCommonTest {
 	
 	public void GetAppointment_01() throws HarnessException {
 
-		// Create the appointment on the server
 		// Create the message data to be sent
 		String apptSubject = ConfigProperties.getUniqueString();
 		String location = "location" + ConfigProperties.getUniqueString();
 		String content = "content" + ConfigProperties.getUniqueString();
 
 		// Absolute dates in UTC zone
-		Calendar now = Calendar.getInstance();
+		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-
-		// EST timezone string
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		ZDate endUTC  = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		
+		// If current day of the week is Sunday, create an appointment on Monday so that it remains in the current week view even after time zone adjustment.
+		if ( now.get(Calendar.DAY_OF_WEEK) == 1 ) {
+			startUTC.addDays(1);
+			endUTC.addDays(1);
+		}	
+		
+		// Get local timezone value
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 
 		// Create an appointment
 		app.zGetActiveAccount().soapSend(
@@ -98,7 +101,7 @@ public class GetAppointment extends UniversalCommonTest {
 		// Enable trash
 		app.zPageCalendar.zCheckboxSet(Checkbox.C_TRASH, true);
 		
-		//Verify the presence of appointment in Trash
+		// Verify the presence of appointment in Trash
 		ZAssert.assertTrue(app.zPageCalendar.zIsAppointmentPresentInTrash(apptSubject), "Verify appointment is present in Trash!");
 	}
 

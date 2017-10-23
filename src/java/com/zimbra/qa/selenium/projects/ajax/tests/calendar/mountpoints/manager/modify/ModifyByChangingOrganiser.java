@@ -76,7 +76,7 @@ public class ModifyByChangingOrganiser extends CalendarWorkWeekTest {
 
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		SleepUtil.sleepMedium();
-		Calendar today = Calendar.getInstance();
+		Calendar today = this.calendarWeekDayUTC;
 
 		// Import Calendar.ics 
 		String filename = ConfigProperties.getBaseDirectory() + "/data/public/ics/calendar06/Calendar.ics";

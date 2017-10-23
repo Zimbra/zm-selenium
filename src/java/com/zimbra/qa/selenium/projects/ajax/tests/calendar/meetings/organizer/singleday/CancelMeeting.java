@@ -45,7 +45,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = "app" + ConfigProperties.getUniqueString();
 		apptBody = "body" + ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
@@ -119,7 +119,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
@@ -185,7 +185,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = "appt" + ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
@@ -244,7 +244,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
@@ -310,7 +310,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 		
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1, modifyApptBody;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = "appt" + ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;

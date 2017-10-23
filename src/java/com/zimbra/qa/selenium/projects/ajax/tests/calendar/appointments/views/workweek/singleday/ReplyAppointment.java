@@ -46,7 +46,7 @@ public class ReplyAppointment extends CalendarWorkWeekTest {
 		
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
 		

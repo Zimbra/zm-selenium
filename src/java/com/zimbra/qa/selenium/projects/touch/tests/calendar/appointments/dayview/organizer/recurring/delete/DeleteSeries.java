@@ -47,7 +47,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		
 		// Appointment data
 		String tz, apptSubject, apptContent, apptAttendee1;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptContent = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;

@@ -48,7 +48,7 @@ public class PermanentDeleteInstance extends CalendarWorkWeekTest {
 		
 		// Appointment data
 		String tz, apptSubject, apptBody, apptAttendee1;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = "subject" + ConfigProperties.getUniqueString();
 		apptBody = "body" + ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;

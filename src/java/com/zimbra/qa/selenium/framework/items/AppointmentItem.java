@@ -747,8 +747,7 @@ public class AppointmentItem implements IItem {
 		// If location is null, don't specify the loc attribute
 		String loc = (location == null ? "" : "loc='"+ location + "'");
 
-		// TODO: determine the timezone
-		String timezoneString = ZTimeZone.TimeZoneEST.getID();
+		String timezoneString = ZTimeZone.getLocalTimeZone().getID();
 
 
 		// Convert the calendar to a ZDate

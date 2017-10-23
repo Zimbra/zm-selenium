@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.trash;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -31,10 +29,9 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 
-public class MoveAppointment extends AjaxCommonTest {
-
+public class MoveAppointment extends CalendarWorkWeekTest {
 
 	public MoveAppointment() {
 		logger.info("New "+ MoveAppointment.class.getCanonicalName());
@@ -49,18 +46,17 @@ public class MoveAppointment extends AjaxCommonTest {
 	public void MoveAppointment_01() throws HarnessException {
 
 		// Create the appointment on the server
-		// Create the message data to be sent
 		String apptSubject = ConfigProperties.getUniqueString();
 		String location = "location" + ConfigProperties.getUniqueString();
 		String content = "content" + ConfigProperties.getUniqueString();
 
 		// Absolute dates in UTC zone
-		Calendar now = Calendar.getInstance();
+		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 
-		// EST timezone string
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		// Get local timezone value
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 
 		FolderItem Calendar = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Calendar);
 
@@ -98,10 +94,10 @@ public class MoveAppointment extends AjaxCommonTest {
 		// Enable trash
 		app.zPageCalendar.zCheckboxSet(Checkbox.C_TRASH, true);
 
-		//Verify the presence of appointment in Trash
+		// Verify the presence of appointment in Trash
 		ZAssert.assertTrue(app.zPageCalendar.zIsAppointmentPresentInTrash(apptSubject), "Verify appointment is present in Trash!");
 
-		//select the appointment
+		// Select the appointment
 		app.zPageCalendar.zListItemTrashView(Action.A_LEFTCLICK, apptSubject);
 
 		// Move appointment using toolbar move menu
@@ -110,7 +106,7 @@ public class MoveAppointment extends AjaxCommonTest {
 		// Verify meeting disappears from the view
 		ZAssert.assertTrue(app.zPageCalendar.zIsAppointmentExists(apptSubject), "Verify appointment is present in  organizer's calendar view");
 
-		//Verify the presence of appointment in Trash
+		// Verify the presence of appointment in Trash
 		ZAssert.assertFalse(app.zPageCalendar.zIsAppointmentPresentInTrash(apptSubject), "Verify appointment is not present in Trash!");
 
 	}

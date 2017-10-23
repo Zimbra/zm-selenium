@@ -46,7 +46,7 @@ public class DragAndDropMeeting extends CalendarWorkWeekTest {
 	public void DragAndDropMeeting_01() throws HarnessException {
 		
 		// Creating a meeting
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String attendee1 = ZimbraAccount.AccountA().EmailAddress;
 		

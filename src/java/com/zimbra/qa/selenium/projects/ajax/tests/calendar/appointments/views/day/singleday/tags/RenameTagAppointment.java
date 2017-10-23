@@ -50,7 +50,7 @@ public class RenameTagAppointment extends AjaxCommonTest {
 		// Create objects
 		String tz, apptSubject, apptBody, tag1, renameTag1, tagID, renameTagID;
 		TagItem tag;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		tag1 = ConfigProperties.getUniqueString();
 		renameTag1 = ConfigProperties.getUniqueString();
 		apptSubject = ConfigProperties.getUniqueString();

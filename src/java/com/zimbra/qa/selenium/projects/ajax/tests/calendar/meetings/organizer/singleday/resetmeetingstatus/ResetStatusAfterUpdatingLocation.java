@@ -41,7 +41,7 @@ public class ResetStatusAfterUpdatingLocation extends CalendarWorkWeekTest {
 	public void ResetStatusAfterUpdatingLocation_01() throws HarnessException {
 		
 		// Create a meeting			
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee = ZimbraAccount.Account1().EmailAddress;
 		ZimbraResource location1 = new ZimbraResource(ZimbraResource.Type.LOCATION);

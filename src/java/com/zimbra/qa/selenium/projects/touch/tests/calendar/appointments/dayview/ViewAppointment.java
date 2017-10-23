@@ -41,7 +41,7 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 		
 		// Creating objects for appointment data
 		String tz, apptSubject, apptContent, apptAttendee1, apptLocation;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		
 		apptSubject = ConfigProperties.getUniqueString();

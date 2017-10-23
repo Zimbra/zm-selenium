@@ -53,7 +53,7 @@ public class CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask extends Calen
 
 		// Creating object for appointment data
 		String tz, apptSubject, apptBody;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
 		

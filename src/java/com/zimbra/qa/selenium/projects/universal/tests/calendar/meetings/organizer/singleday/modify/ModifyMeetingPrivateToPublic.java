@@ -43,7 +43,7 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
 	public void ModifyMeetingPrivateToPublic_01() throws HarnessException {
 
 		// Creating object for meeting data
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		AppointmentItem appt = new AppointmentItem();
@@ -101,7 +101,7 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
 	public void ModifyMeetingPublicToPrivate_02() throws HarnessException {
 
 		// Creating object for meeting data
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		AppointmentItem appt = new AppointmentItem();

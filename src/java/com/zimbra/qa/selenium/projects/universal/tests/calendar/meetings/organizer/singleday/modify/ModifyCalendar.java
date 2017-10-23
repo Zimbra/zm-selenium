@@ -42,7 +42,7 @@ public class ModifyCalendar extends CalendarWorkWeekTest {
 
 		// Create data
 		String tz, apptSubject, apptBody, apptAttendee, apptCalendar;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee = ZimbraAccount.AccountA().EmailAddress;

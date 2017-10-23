@@ -48,7 +48,7 @@ public class RecurringDaily extends CalendarWorkWeekTest {
 		// ------------------------ Test data ------------------------------------
 
 		Calendar now = this.calendarWeekDayUTC;
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
 		String apptSubject = ConfigProperties.getUniqueString();

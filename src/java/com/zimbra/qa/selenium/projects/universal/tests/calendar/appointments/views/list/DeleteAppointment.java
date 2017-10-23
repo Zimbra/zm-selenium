@@ -36,10 +36,10 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.universal.ui.calendar.*;
 
-public class DeleteAppointment extends UniversalCommonTest {
+public class DeleteAppointment extends CalendarWorkWeekTest {
 
 	public DeleteAppointment() {
 		logger.info("New "+ DeleteAppointment.class.getCanonicalName());
@@ -73,12 +73,12 @@ public class DeleteAppointment extends UniversalCommonTest {
 
 
 		// Absolute dates in UTC zone
-		Calendar now = Calendar.getInstance();
+		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 3, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 4, 0, 0);
 
-		// EST timezone string
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		// Get local timezone value
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 
 		// Create an appointment
 		app.zGetActiveAccount().soapSend(
@@ -163,12 +163,12 @@ public class DeleteAppointment extends UniversalCommonTest {
 
 
 		// Absolute dates in UTC zone
-		Calendar now = Calendar.getInstance();
+		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 4, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 5, 0, 0);
 
-		// EST timezone string
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		// Get local timezone value
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 
 		// Create an appointment
 		app.zGetActiveAccount().soapSend(
@@ -255,12 +255,12 @@ public class DeleteAppointment extends UniversalCommonTest {
 
 
 		// Absolute dates in UTC zone
-		Calendar now = Calendar.getInstance();
+		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 5, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 6, 0, 0);
 
-		// EST timezone string
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		// Get local timezone value
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 
 		// Create an appointment
 		app.zGetActiveAccount().soapSend(
@@ -338,12 +338,12 @@ public class DeleteAppointment extends UniversalCommonTest {
 
 
 		// Absolute dates in UTC zone
-		Calendar now = Calendar.getInstance();
+		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 6, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 7, 0, 0);
 
-		// EST timezone string
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		// Get local timezone value
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 
 		// Create an appointment
 		app.zGetActiveAccount().soapSend(
@@ -417,10 +417,10 @@ public class DeleteAppointment extends UniversalCommonTest {
 
 		// Create three appointments on the server
 		String subject1 = ConfigProperties.getUniqueString();
-		Calendar now = Calendar.getInstance();
+		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 7, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 
 		// Create an appointment
 		app.zGetActiveAccount().soapSend(
@@ -584,12 +584,12 @@ public class DeleteAppointment extends UniversalCommonTest {
 
 
 		// Absolute dates in UTC zone
-		Calendar now = Calendar.getInstance();
+		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 
-		// EST timezone string
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		// Get local timezone value
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 
 		// Create an appointment
 		app.zGetActiveAccount().soapSend(
@@ -665,12 +665,12 @@ public class DeleteAppointment extends UniversalCommonTest {
 
 
 		// Absolute dates in UTC zone
-		Calendar now = Calendar.getInstance();
+		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 
-		// EST timezone string
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		// Get local timezone value
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 
 		// Create an appointment
 		app.zGetActiveAccount().soapSend(
@@ -737,10 +737,10 @@ public class DeleteAppointment extends UniversalCommonTest {
 
 		// Create three appointments on the server
 		String subject1 = ConfigProperties.getUniqueString();
-		Calendar now = Calendar.getInstance();
+		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 
 		// Create an appointment
 		app.zGetActiveAccount().soapSend(

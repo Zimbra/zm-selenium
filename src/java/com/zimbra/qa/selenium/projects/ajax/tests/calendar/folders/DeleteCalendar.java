@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 
 
-public class DeleteCalendar extends AjaxCommonTest {
+public class DeleteCalendar extends CalendarWorkWeekTest {
 
 	public DeleteCalendar() {
 		logger.info("New "+ DeleteCalendar.class.getCanonicalName());

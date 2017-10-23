@@ -49,7 +49,7 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = "appt" + ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
@@ -106,7 +106,7 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 
 		// Creating object for meeting data
 		String tz, apptSubject, apptAttendee1,apptAttendee2;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = "appt" + ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		apptAttendee2 = ZimbraAccount.AccountB().EmailAddress;

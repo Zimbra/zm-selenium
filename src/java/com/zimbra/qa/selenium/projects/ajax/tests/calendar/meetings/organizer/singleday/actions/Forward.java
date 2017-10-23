@@ -42,7 +42,7 @@ public class Forward extends CalendarWorkWeekTest {
 	public void ForwardMeeting_01() throws HarnessException {
 				
 		// Creating a meeting
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String attendee1 = ZimbraAccount.AccountA().EmailAddress;
 		String attendee2 = ZimbraAccount.AccountB().EmailAddress;
@@ -104,7 +104,7 @@ public class Forward extends CalendarWorkWeekTest {
 	public void ForwardMeeting_02() throws HarnessException {
 				
 		// Creating a meeting
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptBody = ConfigProperties.getUniqueString();
 		String ForwardContent = ConfigProperties.getUniqueString();
@@ -189,7 +189,7 @@ public class Forward extends CalendarWorkWeekTest {
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		
 		String tz, apptSubject, apptAttendeeEmail;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		
 		apptSubject = "app" + ConfigProperties.getUniqueString();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;

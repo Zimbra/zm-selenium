@@ -38,7 +38,7 @@ public class ModifyBySelectAttendees extends CalendarWorkWeekTest {
 	public void ModifyBySelectAttendees_01() throws HarnessException {
 		
 		// Create a meeting
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		String apptAttendee2 = ZimbraAccount.AccountB().EmailAddress;		

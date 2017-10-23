@@ -50,7 +50,7 @@ public class Open extends CalendarWorkWeekTest {
 		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
 		
 		String tz, apptSubject, apptBody, apptAttendee, apptOptional, apptLocation, apptEquipment;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee = ZimbraAccount.Account1().EmailAddress;

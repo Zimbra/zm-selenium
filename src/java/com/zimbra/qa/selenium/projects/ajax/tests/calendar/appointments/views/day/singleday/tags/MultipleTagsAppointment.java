@@ -49,7 +49,7 @@ public class MultipleTagsAppointment extends AjaxCommonTest {
 		// Create objects
 		String tz, apptSubject, apptBody, tag1, tag2, tagID1, tagID2;
 		TagItem getTag1, getTag2;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		tag1 = ConfigProperties.getUniqueString();
 		tag2 = ConfigProperties.getUniqueString();
 		apptSubject = ConfigProperties.getUniqueString();

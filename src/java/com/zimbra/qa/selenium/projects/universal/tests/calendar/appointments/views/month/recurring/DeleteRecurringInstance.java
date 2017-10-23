@@ -51,7 +51,7 @@ public class DeleteRecurringInstance extends CalendarWorkWeekTest {
 
 		// Appointment data
 		String tz, apptSubject, apptBody;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = "subject" + ConfigProperties.getUniqueString();
 		apptBody = "body" + ConfigProperties.getUniqueString();
 
