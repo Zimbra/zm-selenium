@@ -14,21 +14,16 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.universal.ui.mail;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-
 import com.zimbra.qa.selenium.framework.items.ConversationItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -40,6 +35,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsTooltip;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.Shortcut;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
@@ -151,7 +147,7 @@ public class PageMail extends AbsTab {
 		// Reading pane separator bar locators
 		public static final String zBottomReadingPaneSeparatorBar = "css=div[class='AppSash-vert'][style*='display: block']";
 		public static final String zRightReadingPaneSeparatorBar = "css=div[class='AppSash-horiz'][style*='display: block']";
-		
+
 		//Column view headers
 		public static final String zConversationViewHeaderSubject = "css=td[id='zlhl__CLV-main__su']";
 		public static final String zMessageViewHeaderSubject = "css=td[id='zlhl__TV-main__su']";
@@ -162,9 +158,9 @@ public class PageMail extends AbsTab {
 			public static String stringToReplace = "<ITEM_NAME>";
 		}
 	}
-	
+
 	public enum Column {
-		
+
 		Flag("fg"),
 		Priority("pr"),
 		Tag("tg"),
@@ -175,7 +171,7 @@ public class PageMail extends AbsTab {
 		Folder("fo"),
 		Size("sz"),
 		Received("dt");
-		
+
 		private final String value;
 		private Column(final String value) {
 			this.value = value;
@@ -321,7 +317,7 @@ public class PageMail extends AbsTab {
 				final Actions builder = new Actions(webDriver());
 				builder.moveToElement(we).build().perform();
 
-			} else if (locator.contains("url")) {
+			} else if (locator.contains("url") && ConfigProperties.getStringProperty("browser").contains("firefox")) {
 
 				this.sClickAt(locator, "");
 				SleepUtil.sleepSmall();
@@ -428,7 +424,7 @@ public class PageMail extends AbsTab {
 			webDriver().switchTo().defaultContent();
 		}
 	}
-	
+
 	public boolean zVerifyContentPresentInDisplayMail(String locator, String content) throws HarnessException {
 		try {
 			webDriver().switchTo().defaultContent();
@@ -444,7 +440,7 @@ public class PageMail extends AbsTab {
 			webDriver().switchTo().defaultContent();
 		}
 	}
-	
+
 	public boolean zVerifyContentPresentInComposedBody(String locator, String content) throws HarnessException {
 		try {
 			webDriver().switchTo().defaultContent();
@@ -795,7 +791,7 @@ public class PageMail extends AbsTab {
 			locator = "css=td[id$=VIEW_MENU_dropdown]>div[class='ImgSelectPullDownArrow']";
 			this.zClick(locator);
 			this.zWaitForBusyOverlay();
-			
+
 			// mouseOver on GroupBy
 			locator = "css=td[id$=GROUP_BY_1_dropdown]>div[class='ImgCascade']";
 			this.sMouseOver(locator);
@@ -2254,20 +2250,20 @@ public class PageMail extends AbsTab {
 		return (page);
 
 	}
-	
+
 	public void zEditColumnView(Action action, Column column) throws HarnessException {
-		
+
 		logger.info(myPageName() + " zEditColumnView (" + action + ") " + column);
 		tracer.trace("Right-Click Column Header Subject"  );
-		
+
 		if (action == null)
 			throw new HarnessException("action cannot be null");
 		if (column == null)
 			throw new HarnessException("columnName cannot be null");
-		
+
 		String locator = null;
 		String prefix = null;
-		
+
 		if (zGetPropMailView() == PageMailView.BY_MESSAGE) {
 			locator = Locators.zMessageViewHeaderSubject;
 			prefix = "zmi__TV-main_header__";
@@ -2276,9 +2272,9 @@ public class PageMail extends AbsTab {
 			prefix = "zmi__CLV-main_header__";
 		}
 		zRightClick(locator);
-		
+
 		if(action == Action.A_UNCHECKBOX) {
-			
+
 			if(sIsElementPresent("//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name()  +"')]/parent::tr//div[@class='ImgMenuCheck']")) {
 				if(!(sIsVisible("//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name()  +"')]"))) {
 					zRightClick(locator);
@@ -2287,7 +2283,7 @@ public class PageMail extends AbsTab {
 				elements.get(elements.size()-1).click();
 			}
 		} else if(action == Action.A_CHECKBOX) {
-			
+
 			if(sIsElementPresent("//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name()  +"')]/parent::tr//div[@class='ImgBlank_9']")) {
 				if(!(sIsVisible("//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name()  +"')]"))) {
 					zRightClick(locator);
@@ -2300,19 +2296,19 @@ public class PageMail extends AbsTab {
 		}
 	}
 	public boolean zVerifyColumnPresent(Column column) throws HarnessException {
-		
+
 		logger.info(myPageName() + " zVerifyColumnPresent (" + column.name() + ") ");
 		tracer.trace("Check the presence of Column: " + column.name());
-		
+
 		String locatorPrefix = null;
-		
+
 		if (zGetPropMailView() == PageMailView.BY_MESSAGE) {
 			locatorPrefix = "css=td[id^='zlh__TV-main__']";
 		} else {
 			locatorPrefix = "css=td[id^='zlh__CLV-main__']";
 		}
 		return sIsElementPresent(locatorPrefix + "[id$='" + column.value +"']");
-		
+
 	}
 
 }

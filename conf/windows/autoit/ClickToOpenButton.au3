@@ -1,10 +1,27 @@
+; Click to Open button in File Explorer dialog
+
+#include <AutoItConstants.au3>
+#include <MsgBoxConstants.au3>
+
 ClickToOpenButton()
+
 Func ClickToOpenButton()
+   Local $windowHandle;
+   Local $windowTitle;
+   Local $openButton = "Button1";
+   Local $openButtonHandle;
+   Local $openButtonPosition;
 
-	; Get the window title of the most recent active window.
-	Local $activeWindowTitle = WinGetTitle("[ACTIVE]")
+   If WinExists("File Upload") Then
+	  $windowTitle = "File Upload";
+   Else
+	  $windowTitle = "Open";
+   EndIf
 
-	; Click Open button
-	ControlClick($activeWindowTitle, "" , "Button1")
-	
+   WinActivate($windowTitle);
+   ControlClick($windowTitle, "", $openButton);
+
+   ; $openButtonHandle = ControlGetHandle($windowTitle, "", $openButton);
+   ; $openButtonPosition = WinGetPos($openButtonHandle);
+   ; MouseClick($MOUSE_CLICK_PRIMARY, $openButtonPosition[0]+20, $openButtonPosition[1]+10, 2);
 EndFunc

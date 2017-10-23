@@ -41,7 +41,6 @@ import org.openqa.selenium.*;
 import org.testng.*;
 import org.testng.annotations.*;
 import org.xml.sax.SAXException;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
@@ -497,7 +496,7 @@ public class UniversalCommonTest {
 	public void zUpload(String filePath, SeparateWindowDisplayMail window) throws HarnessException {
 		zUploadFile(filePath);
 	}
-	
+
 	public void zUploadInlineImageAttachment(String filePath) throws HarnessException {
 		zUploadFile(filePath);
 	}
@@ -537,8 +536,48 @@ public class UniversalCommonTest {
 			Runtime.getRuntime().exec(ConfigProperties.getBaseDirectory() + "\\conf\\windows\\autoit\\ClickToOpenButton.exe");
 		} catch (IOException e) {
 			logger.info("AutoIt script to click to open button to attach file: " + e.toString());
+			SleepUtil.sleepLongMedium();
 		}
-		SleepUtil.sleepLongMedium();
+
+		// File name
+		String fileName = filePath.substring(filePath.lastIndexOf('\\') + 1);
+
+		// File locator
+		String fileLocator = null;
+		Boolean isMailApp = false, isCalendarApp = false, isTasksApp = false, isBriefcaseApp = false, isPreferencesApp = false;
+
+		isMailApp = app.zPageMain.zIsVisiblePerPosition("div[id^='ztb__COMPOSE']", 0, 0);
+		if (isMailApp != true) {
+			isCalendarApp = app.zPageMain.zIsVisiblePerPosition("div[id^='ztb__APPT']", 0, 0);
+			isTasksApp = app.zPageMain.zIsVisiblePerPosition("div[id^='ztb__TKE']", 0, 0);
+			isBriefcaseApp = app.zPageMain.zIsVisiblePerPosition("div[class='ZmUploadDialog']", 0, 0);
+			isPreferencesApp = app.zPageMain.zIsVisiblePerPosition("div[id='ztb__PREF']", 0, 0);
+		}
+
+		if (isMailApp == true) {
+			fileLocator = "css=a[id^='COMPOSE']:contains(" + fileName + ")";
+		} else if (isCalendarApp == true || isTasksApp == true) {
+			we = webDriver.findElement(By.name("__calAttUpload__"));
+		} else if (isBriefcaseApp == true) {
+			we = webDriver.findElement(By.name("uploadFile"));
+		} else if (isPreferencesApp == true) {
+			we = webDriver.findElement(By.name("file"));
+		}
+
+		Boolean isFileAttached = false;
+		for (int i = 1; i <= 3; i++) {
+			if (isMailApp == true) {
+				isFileAttached = app.zPageMain.zIsVisiblePerPosition(fileLocator, 0, 0);
+			} else {
+				isFileAttached = we.getAttribute("value").contains(fileName);
+			}
+			if (isFileAttached == true) {
+				break;
+			} else {
+				SleepUtil.sleepSmall();
+				zUploadFile(filePath);
+			}
+		}
 	}
 
 	public AbsPage zToolbarPressPulldown(Button button, Button option) throws HarnessException {

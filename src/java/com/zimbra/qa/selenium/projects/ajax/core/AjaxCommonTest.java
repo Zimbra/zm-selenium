@@ -505,7 +505,7 @@ public class AjaxCommonTest {
 	public void zUpload(String filePath, SeparateWindowDisplayMail window) throws HarnessException {
 		zUploadFile(filePath);
 	}
-	
+
 	public void zUploadInlineImageAttachment(String filePath) throws HarnessException {
 		zUploadFile(filePath);
 	}
@@ -513,10 +513,10 @@ public class AjaxCommonTest {
 	public void zUploadFile(String filePath) throws HarnessException {
 
 		// Put path to your image in a clipboard
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 		StringSelection ss = new StringSelection(filePath);
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
-		SleepUtil.sleepLong();
+		SleepUtil.sleepMedium();
 
 		// AutoIt script to set focus to file name field in browse window dialog
 		try {
@@ -524,7 +524,7 @@ public class AjaxCommonTest {
 		} catch (IOException e) {
 			logger.info("Couldn't execute or set focus to file name field using AutoIt script: " + e.toString());
 		}
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepSmall();
 
 		// Imitate mouse events like ENTER, CTRL+C, CTRL+V
 		Robot robot;
@@ -543,10 +543,50 @@ public class AjaxCommonTest {
 		// AutoIt script to click to open button to attach file
 		try {
 			Runtime.getRuntime().exec(ConfigProperties.getBaseDirectory() + "\\conf\\windows\\autoit\\ClickToOpenButton.exe");
+			SleepUtil.sleepLongMedium();
 		} catch (IOException e) {
 			logger.info("AutoIt script to click to open button to attach file: " + e.toString());
 		}
-		SleepUtil.sleepLongMedium();
+
+		// File name
+		String fileName = filePath.substring(filePath.lastIndexOf('\\') + 1);
+
+		// File locator
+		String fileLocator = null;
+		Boolean isMailApp = false, isCalendarApp = false, isTasksApp = false, isBriefcaseApp = false, isPreferencesApp = false;
+
+		isMailApp = app.zPageMain.zIsVisiblePerPosition("div[id^='ztb__COMPOSE']", 0, 0);
+		if (isMailApp != true) {
+			isCalendarApp = app.zPageMain.zIsVisiblePerPosition("div[id^='ztb__APPT']", 0, 0);
+			isTasksApp = app.zPageMain.zIsVisiblePerPosition("div[id^='ztb__TKE']", 0, 0);
+			isBriefcaseApp = app.zPageMain.zIsVisiblePerPosition("div[class='ZmUploadDialog']", 0, 0);
+			isPreferencesApp = app.zPageMain.zIsVisiblePerPosition("div[id='ztb__PREF']", 0, 0);
+		}
+
+		if (isMailApp == true) {
+			fileLocator = "css=a[id^='COMPOSE']:contains(" + fileName + ")";
+		} else if (isCalendarApp == true || isTasksApp == true) {
+			we = webDriver.findElement(By.name("__calAttUpload__"));
+		} else if (isBriefcaseApp == true) {
+			we = webDriver.findElement(By.name("uploadFile"));
+		} else if (isPreferencesApp == true) {
+			we = webDriver.findElement(By.name("file"));
+		}
+
+		Boolean isFileAttached = false;
+		for (int i = 1; i <= 3; i++) {
+			if (isMailApp == true) {
+				isFileAttached = app.zPageMain.zIsVisiblePerPosition(fileLocator, 0, 0);
+			} else {
+				isFileAttached = we.getAttribute("value").contains(fileName);
+			}
+			if (isFileAttached == true) {
+				break;
+			} else {
+				SleepUtil.sleepSmall();
+				zUploadFile(filePath);
+			}
+		}
 	}
 
 	public AbsPage zToolbarPressPulldown(Button button, Button option) throws HarnessException {
