@@ -3,8 +3,8 @@
 SetFocusToFileNameField()
 
 Func SetFocusToFileNameField()
-   Global $windowTitle;
-   Global $windowField = "Edit1";
+   Local $windowTitle;
+   Local $windowField = "Edit1";
 
    If WinExists("File Upload") Then
 	  $windowTitle = "File Upload";

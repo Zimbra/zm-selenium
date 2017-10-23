@@ -6,11 +6,8 @@
 ClickToOpenButton()
 
 Func ClickToOpenButton()
-   Local $windowHandle;
    Local $windowTitle;
    Local $openButton = "Button1";
-   Local $openButtonHandle;
-   Local $openButtonPosition;
 
    If WinExists("File Upload") Then
 	  $windowTitle = "File Upload";
@@ -18,9 +15,10 @@ Func ClickToOpenButton()
 	  $windowTitle = "Open";
    EndIf
 
-   WinActivate($windowTitle);
    ControlClick($windowTitle, "", $openButton);
 
+   ; Local $openButtonHandle;
+   ; Local $openButtonPosition;
    ; $openButtonHandle = ControlGetHandle($windowTitle, "", $openButton);
    ; $openButtonPosition = WinGetPos($openButtonHandle);
    ; MouseClick($MOUSE_CLICK_PRIMARY, $openButtonPosition[0]+20, $openButtonPosition[1]+10, 2);

@@ -29,10 +29,10 @@ import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest
 import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Field;
 
-public class SaveDraftMailWithInlineImagettachment extends PrefGroupMailByMessageTest {
+public class SaveDraftMailWithInlineImageAttachment extends PrefGroupMailByMessageTest {
 
-	public SaveDraftMailWithInlineImagettachment() {
-		logger.info("New "+ SaveDraftMailWithInlineImagettachment.class.getCanonicalName());
+	public SaveDraftMailWithInlineImageAttachment() {
+		logger.info("New "+ SaveDraftMailWithInlineImageAttachment.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 		super.startingAccountPreferences.put("zimbraPrefForwardReplyInOriginalFormat", "FALSE");
 	}
