@@ -51,7 +51,7 @@ public class CloseModifiedAppointment extends CalendarWorkWeekTest {
         apptAttendee2 = ZimbraAccount.AccountB().EmailAddress;
 		
         // Absolute dates in UTC zone
-        tz = ZTimeZone.TimeZoneEST.getID();
+        tz = ZTimeZone.getLocalTimeZone().getID();
 		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
@@ -113,7 +113,7 @@ public class CloseModifiedAppointment extends CalendarWorkWeekTest {
 		// Creating object for appointment data
 		AppointmentItem appt = new AppointmentItem();
 		String tz, apptSubject, editApptSubject, apptAttendee1,apptAttendee2;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		
 		apptSubject = ConfigProperties.getUniqueString();
 		editApptSubject = ConfigProperties.getUniqueString();
@@ -184,7 +184,7 @@ public class CloseModifiedAppointment extends CalendarWorkWeekTest {
 		// Creating object for appointment data
 		AppointmentItem appt = new AppointmentItem();
 		String tz, apptSubject, apptAttendee1,apptAttendee2,editApptSubject;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		
 		apptSubject = ConfigProperties.getUniqueString();
 		editApptSubject = ConfigProperties.getUniqueString();

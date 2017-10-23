@@ -27,11 +27,11 @@ import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogAssistant;
 
 
-public class CreateAppointment extends UniversalCommonTest {
+public class CreateAppointment extends CalendarWorkWeekTest {
 	
 	public CreateAppointment() {
 		logger.info("New "+ CreateAppointment.class.getCanonicalName());
@@ -47,9 +47,9 @@ public class CreateAppointment extends UniversalCommonTest {
 			groups = { "deprecated", "L4" })
 	public void CreateAppointment_01() throws HarnessException {
 
-		Calendar start = Calendar.getInstance();
+		Calendar start = this.calendarWeekDayUTC;
 		start.add(Calendar.DATE, -7);
-		Calendar finish = Calendar.getInstance();
+		Calendar finish = this.calendarWeekDayUTC;
 		finish.add(Calendar.DATE, +7);
 		
 		
@@ -87,9 +87,9 @@ public class CreateAppointment extends UniversalCommonTest {
 			groups = { "deprecated", "L4" })
 	public void CreateAppointment_02() throws HarnessException {
 
-		Calendar start = Calendar.getInstance();
+		Calendar start = this.calendarWeekDayUTC;
 		start.add(Calendar.DATE, -7);
-		Calendar finish = Calendar.getInstance();
+		Calendar finish = this.calendarWeekDayUTC;
 		finish.add(Calendar.DATE, +7);
 		
 		

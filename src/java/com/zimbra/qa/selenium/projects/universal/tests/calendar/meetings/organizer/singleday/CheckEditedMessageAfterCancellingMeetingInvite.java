@@ -45,7 +45,7 @@ public class CheckEditedMessageAfterCancellingMeetingInvite extends CalendarWork
 		
 		// Create objects
 		String tz, apptSubject, apptBody, apptAttendee1, editApptBody;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
 		editApptBody = ConfigProperties.getUniqueString() + " " + ConfigProperties.getUniqueString();

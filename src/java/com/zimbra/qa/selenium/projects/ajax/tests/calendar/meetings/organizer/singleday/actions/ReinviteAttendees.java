@@ -39,7 +39,7 @@ public class ReinviteAttendees extends CalendarWorkWeekTest {
 	public void ReinviteAttendees_01() throws HarnessException {
 		
 		// Creating a meeting
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		
 		// Absolute dates in UTC zone

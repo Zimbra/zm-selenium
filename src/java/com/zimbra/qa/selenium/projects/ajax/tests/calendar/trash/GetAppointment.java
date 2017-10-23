@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.trash;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.Checkbox;
@@ -29,11 +27,10 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
-public class GetAppointment extends AjaxCommonTest {
-
+public class GetAppointment extends CalendarWorkWeekTest {
 
 	public GetAppointment() {
 		logger.info("New "+ GetAppointment.class.getCanonicalName());
@@ -54,18 +51,18 @@ public class GetAppointment extends AjaxCommonTest {
 		String content = "content" + ConfigProperties.getUniqueString();
 
 		// Absolute dates in UTC zone
-		Calendar now = Calendar.getInstance();
+		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC  = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		
-		// Considering the EST time zone, if current day of the week is Sunday, create an appointment on Monday so that it remains in the current week view even after time zone adjustment.
+		// If current day of the week is Sunday, create an appointment on Monday so that it remains in the current week view even after time zone adjustment.
 		if ( now.get(Calendar.DAY_OF_WEEK) == 1 ) {
 			startUTC.addDays(1);
 			endUTC.addDays(1);
 		}	
 		
-		// EST timezone string
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		// Get local timezone value
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 
 		// Create an appointment
 		app.zGetActiveAccount().soapSend(

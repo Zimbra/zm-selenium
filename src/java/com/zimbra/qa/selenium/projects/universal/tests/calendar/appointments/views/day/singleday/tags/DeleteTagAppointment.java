@@ -55,7 +55,7 @@ public class DeleteTagAppointment extends UniversalCommonTest {
 		// Create objects
 		String tz, apptSubject, apptBody, tag1, renameTag1, tagID;
 		TagItem tag;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		tag1 = ConfigProperties.getUniqueString();
 		renameTag1 = ConfigProperties.getUniqueString();
 		apptSubject = ConfigProperties.getUniqueString();
@@ -95,7 +95,7 @@ public class DeleteTagAppointment extends UniversalCommonTest {
 		// Create objects
 		String tz, apptSubject, apptBody, tag1, renameTag1, tagID;
 		TagItem tag;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		tag1 = ConfigProperties.getUniqueString();
 		renameTag1 = ConfigProperties.getUniqueString();
 		apptSubject = ConfigProperties.getUniqueString();
@@ -134,7 +134,7 @@ public class DeleteTagAppointment extends UniversalCommonTest {
 		// Create objects
 		String tz, apptSubject, apptBody, tag1, renameTag1, tagID;
 		TagItem tag;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		tag1 = ConfigProperties.getUniqueString();
 		renameTag1 = ConfigProperties.getUniqueString();
 		apptSubject = ConfigProperties.getUniqueString();

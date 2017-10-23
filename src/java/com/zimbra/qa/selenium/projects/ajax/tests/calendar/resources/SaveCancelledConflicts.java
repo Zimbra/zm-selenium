@@ -59,12 +59,12 @@ public class SaveCancelledConflicts extends CalendarWorkWeekTest {
 		String apptSubject2 = ConfigProperties.getUniqueString();
 			
 		// Absolute dates in UTC zone
-		Calendar now = Calendar.getInstance();
+		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
 
-		// EST timezone string
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		// Get local timezone value
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +

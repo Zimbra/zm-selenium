@@ -53,7 +53,7 @@ public class DeleteInstance extends AjaxCommonTest {
 		
 		// Appointment data
 		String tz, apptSubject, apptBody;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = "body" + ConfigProperties.getUniqueString();
 		
@@ -132,7 +132,7 @@ public class DeleteInstance extends AjaxCommonTest {
 		
 		// Appointment data
 		String tz, apptSubject, apptBody;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = "body" + ConfigProperties.getUniqueString();
 		
@@ -219,7 +219,7 @@ public class DeleteInstance extends AjaxCommonTest {
 		
 		// Appointment data
 		String tz, apptSubject, apptBody;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = "body" + ConfigProperties.getUniqueString();
 		

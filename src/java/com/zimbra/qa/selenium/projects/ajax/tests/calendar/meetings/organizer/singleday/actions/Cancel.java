@@ -45,7 +45,7 @@ public class Cancel extends CalendarWorkWeekTest {
 		
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
@@ -108,7 +108,7 @@ public class Cancel extends CalendarWorkWeekTest {
 	public void CancelMeeting_02() throws HarnessException {
 		
 		String tz, apptSubject, apptBody, apptAttendee1, fromAddress;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;

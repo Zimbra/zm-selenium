@@ -43,7 +43,7 @@ public class DailyRecurringNoEndDate extends CalendarWorkWeekTest {
 		
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject, apptAttendee, apptContent, apptLocation;
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		

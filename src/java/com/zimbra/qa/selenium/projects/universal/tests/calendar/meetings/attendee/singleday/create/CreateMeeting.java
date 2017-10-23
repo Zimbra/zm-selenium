@@ -20,13 +20,13 @@ import java.awt.event.KeyEvent;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew.Field;
 import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew.Locators;
 
-public class CreateMeeting extends UniversalCommonTest {
+public class CreateMeeting extends CalendarWorkWeekTest {
 
 	public CreateMeeting() {
 		logger.info("New "+ CreateMeeting.class.getCanonicalName());

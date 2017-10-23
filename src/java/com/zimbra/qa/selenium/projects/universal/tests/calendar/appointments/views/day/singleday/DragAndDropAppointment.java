@@ -62,7 +62,7 @@ public class DragAndDropAppointment extends UniversalCommonTest {
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
 		// Creating objects for appointment data
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptBody = ConfigProperties.getUniqueString();
 		
@@ -115,7 +115,7 @@ public class DragAndDropAppointment extends UniversalCommonTest {
 		// 4. Verify appointment1 happens at appointment2 time
 		
 		// Creating objects for appointment data
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptBody = ConfigProperties.getUniqueString();
 		

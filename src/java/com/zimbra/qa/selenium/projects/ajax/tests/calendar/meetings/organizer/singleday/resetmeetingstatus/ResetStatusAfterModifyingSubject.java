@@ -41,7 +41,7 @@ public class ResetStatusAfterModifyingSubject extends CalendarWorkWeekTest {
 	public void ResetStatusAfterModifyingSubject_01() throws HarnessException {
 		
 		// Create a meeting			
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String modifiedSubject = ConfigProperties.getUniqueString();
 		String apptAttendee1 = ZimbraAccount.Account1().EmailAddress;

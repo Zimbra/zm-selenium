@@ -73,7 +73,7 @@ public class ZimbraCalResLocationDisplayName extends CalendarWorkWeekTest {
 		app.zPageMain.sRefresh();
 		app.zPageCalendar.zNavigateTo();
 		
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee = ZimbraAccount.AccountA().EmailAddress;
 		

@@ -47,7 +47,7 @@ public class SaveModifiedAppointment extends CalendarWorkWeekTest {
 		
 		// Create appointment data 
 		String tz, apptSubject, apptAttendee1,apptAttendee2;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
         apptAttendee2 = ZimbraAccount.AccountB().EmailAddress;
@@ -114,7 +114,7 @@ public class SaveModifiedAppointment extends CalendarWorkWeekTest {
 		// Creating object for appointment data
 		AppointmentItem appt = new AppointmentItem();
 		String tz, apptSubject, editApptSubject, apptAttendee1,apptAttendee2;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		editApptSubject = ConfigProperties.getUniqueString();
         apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
@@ -189,7 +189,7 @@ public class SaveModifiedAppointment extends CalendarWorkWeekTest {
 		// Creating object for appointment data
 		AppointmentItem appt = new AppointmentItem();
 		String tz, apptSubject, apptAttendee1,apptAttendee2,editApptSubject;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		
 		apptSubject = ConfigProperties.getUniqueString();
 		editApptSubject = ConfigProperties.getUniqueString();

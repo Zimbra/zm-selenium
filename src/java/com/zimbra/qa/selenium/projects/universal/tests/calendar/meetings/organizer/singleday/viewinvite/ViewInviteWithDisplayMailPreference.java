@@ -67,7 +67,7 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 		Calendar now = calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		
 		// Send the message from AccountB to the current login user
 				ZimbraAccount.AccountB().soapSend(
@@ -193,7 +193,7 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 		Calendar now = calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		
 		// Send the message from AccountB to the current login user
 		ZimbraAccount.AccountB().soapSend(

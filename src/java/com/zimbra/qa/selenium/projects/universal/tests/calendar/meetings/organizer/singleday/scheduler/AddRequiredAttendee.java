@@ -47,7 +47,7 @@ public class AddRequiredAttendee extends CalendarWorkWeekTest {
 	public void AddRequiredAttendee_01(String name, int keyEvent) throws HarnessException {
 		
 		// Create a meeting
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee = ZimbraAccount.AccountA().EmailAddress;
 		

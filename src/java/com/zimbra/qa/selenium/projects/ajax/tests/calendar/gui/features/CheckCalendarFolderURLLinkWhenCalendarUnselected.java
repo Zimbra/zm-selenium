@@ -48,7 +48,7 @@ public class CheckCalendarFolderURLLinkWhenCalendarUnselected extends CalendarWo
 		
 		// Creating object for appointment data
 		String tz, apptSubject, apptBody, apptAttendee;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee = ZimbraAccount.AccountA().EmailAddress;

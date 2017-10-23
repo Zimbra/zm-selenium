@@ -49,7 +49,7 @@ public class AddEquipment extends CalendarWorkWeekTest {
 		// Create a meeting
 		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
 			
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptEquipment = equipment.EmailAddress;
 		

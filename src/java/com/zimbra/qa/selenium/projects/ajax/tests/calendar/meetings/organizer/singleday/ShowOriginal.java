@@ -52,7 +52,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 	public void ShowOriginal_01() throws HarnessException {
 
 		String tz, apptSubject, apptBody;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
 		String windowUrl = "service/home/~/";

@@ -48,7 +48,7 @@ public class ModifyAppointment extends CalendarWorkWeekTest {
 		// Creating object for appointment data
 		AppointmentItem appt = new AppointmentItem();
 		String tz, apptSubject, apptBody, editApptSubject, editApptBody;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
 		editApptSubject = ConfigProperties.getUniqueString();

@@ -999,6 +999,7 @@ public class FormApptNew extends AbsForm {
 
 			if (field == Field.StartDate || field == Field.EndDate || field == Field.StartTime
 					|| field == Field.EndTime) {
+				this.sMouseDownAt(locator, "");
 				this.zKeyboard.zSelectAll();
 				/*String clearField = "";
 				for(char c : value.toCharArray()){

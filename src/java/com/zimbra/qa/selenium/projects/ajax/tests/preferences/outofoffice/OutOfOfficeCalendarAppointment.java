@@ -25,11 +25,11 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Field;
 
-public class OutOfOfficeCalendarAppointment extends AjaxCommonTest {
+public class OutOfOfficeCalendarAppointment extends CalendarWorkWeekTest {
 
 	public OutOfOfficeCalendarAppointment() {
 		logger.info("New " + OutOfOfficeCalendarAppointment.class.getCanonicalName());
@@ -45,7 +45,7 @@ public class OutOfOfficeCalendarAppointment extends AjaxCommonTest {
 
 		// Appointment data
 		String apptSubject = "Out of Office";
-		Calendar now = Calendar.getInstance();
+		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 4, 14, 0, 0);
 		

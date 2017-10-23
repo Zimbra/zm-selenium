@@ -43,7 +43,7 @@ public class ModifyBySubjectBodyAndAttendees extends CalendarWorkWeekTest {
 		organizerTest = true;
 		
 		String tz, apptSubject, apptBody, apptAttendee1, modifiedApptSubject, modifiedApptBody, apptAttendee2;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;

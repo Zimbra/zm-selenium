@@ -44,7 +44,7 @@ public class ModifyCalendarFolder extends CalendarWorkWeekTest {
 		
 		// Creating objects for appointment data
 		String tz, apptSubject, apptContent, apptCalendar;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptContent = ConfigProperties.getUniqueString();
 		apptCalendar = ConfigProperties.getUniqueString();

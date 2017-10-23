@@ -91,12 +91,7 @@ public class SendLater extends PrefGroupMailByMessageTest {
 		
 		// Create the message data to be sent
 		GregorianCalendar calendar = new GregorianCalendar(2020, 11, 25, 12, 0, 0);// Use below code once bug (zcs-700) get fixed  	
-		/*
-		 * 
-		Calendar now = Calendar.getInstance();
-		GregorianCalendar calendar = new GregorianCalendar(now.get(Calendar.YEAR) + 1, now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		*/
-		
+				
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form

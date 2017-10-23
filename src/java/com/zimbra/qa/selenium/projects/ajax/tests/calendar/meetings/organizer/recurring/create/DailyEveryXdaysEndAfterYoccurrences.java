@@ -41,7 +41,7 @@ public class DailyEveryXdaysEndAfterYoccurrences extends CalendarWorkWeekTest {
 		
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject, apptAttendee, apptContent, apptLocation;
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		
@@ -52,8 +52,8 @@ public class DailyEveryXdaysEndAfterYoccurrences extends CalendarWorkWeekTest {
 		
 		// Absolute dates in UTC zone
 		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee);

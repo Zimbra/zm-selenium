@@ -51,7 +51,7 @@ public class Decline extends CalendarWorkWeekTest {
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 
-		String tz = ZTimeZone.TimeZoneIndia.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 
 
 		// --------------- Creating invitation (organizer) ----------------------------
@@ -160,7 +160,7 @@ public class Decline extends CalendarWorkWeekTest {
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
 
-		String tz = ZTimeZone.TimeZoneIndia.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 
 
 		// --------------- Creating invitation (organizer) ----------------------------

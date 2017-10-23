@@ -44,7 +44,7 @@ public class ResourceConflictWhenOOO extends CalendarWorkWeekTest {
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 
 		String tz, apptSubject1,apptSubject2 , apptAttendeeEmail2 , apptAttendeeEmail3 ;
-		tz = ZTimeZone.TimeZoneEST.getID();
+		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject1 = "app" + ConfigProperties.getUniqueString();
 		apptAttendeeEmail2 = ZimbraAccount.AccountB().EmailAddress;
 		apptAttendeeEmail3 = ZimbraAccount.AccountC().EmailAddress;

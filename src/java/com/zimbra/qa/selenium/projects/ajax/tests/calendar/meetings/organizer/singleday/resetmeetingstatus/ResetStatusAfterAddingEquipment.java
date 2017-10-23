@@ -39,7 +39,7 @@ public class ResetStatusAfterAddingEquipment extends CalendarWorkWeekTest {
 	public void ResetStatusAfterAddingEquipment_01() throws HarnessException {
 		
 		// Create a meeting			
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee = ZimbraAccount.Account1().EmailAddress;
 		ZimbraResource Equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);

@@ -41,7 +41,7 @@ public class CheckForwardingMeetingDoesntSendInvite extends CalendarWorkWeekTest
 		// Creating a meeting
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String attendee1 = ZimbraAccount.AccountA().EmailAddress;
 		String attendee2 = ZimbraAccount.AccountB().EmailAddress;

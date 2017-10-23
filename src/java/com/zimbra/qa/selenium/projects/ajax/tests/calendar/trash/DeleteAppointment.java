@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.trash;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.Checkbox;
@@ -29,11 +27,10 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
-public class DeleteAppointment extends AjaxCommonTest {
-
+public class DeleteAppointment extends CalendarWorkWeekTest {
 
 	public DeleteAppointment() {
 		logger.info("New "+ DeleteAppointment.class.getCanonicalName());
@@ -54,12 +51,12 @@ public class DeleteAppointment extends AjaxCommonTest {
 		String content = "content" + ConfigProperties.getUniqueString();
 
 		// Absolute dates in UTC zone
-		Calendar now = Calendar.getInstance();
+		Calendar now = this.calendarWeekDayUTC;
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 
-		// EST timezone string
-		String tz = ZTimeZone.TimeZoneEST.getID();
+		// Get local timezone value
+		String tz = ZTimeZone.getLocalTimeZone().getID();
 
 		// Create an appointment
 		app.zGetActiveAccount().soapSend(
@@ -95,10 +92,10 @@ public class DeleteAppointment extends AjaxCommonTest {
 		// Enable trash
 		app.zPageCalendar.zCheckboxSet(Checkbox.C_TRASH, true);
 
-		//Verify the presence of appointment in Trash
+		// Verify the presence of appointment in Trash
 		ZAssert.assertTrue(app.zPageCalendar.zIsAppointmentPresentInTrash(apptSubject), "Verify appointment is present in Trash!");
 
-		//select the appointment
+		// Select the appointment
 		app.zPageCalendar.zListItemTrashView(Action.A_LEFTCLICK, apptSubject);
 
 		// Press Delete toolbar button
@@ -110,7 +107,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		// Verify meeting disappears from the view
 		ZAssert.assertFalse(app.zPageCalendar.zIsAppointmentExists(apptSubject), "Verify appointment is not present in  organizer's calendar view");
 
-		//Verify the presence of appointment in Trash
+		// Verify the presence of appointment in Trash
 		ZAssert.assertFalse(app.zPageCalendar.zIsAppointmentPresentInTrash(apptSubject), "Verify appointment is not present in Trash!");
 
 	}
