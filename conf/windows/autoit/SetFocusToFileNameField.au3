@@ -3,6 +3,7 @@
 SetFocusToFileNameField()
 
 Func SetFocusToFileNameField()
+   Local $windowHandle;
    Local $windowTitle;
    Local $windowField = "Edit1";
 
@@ -12,5 +13,8 @@ Func SetFocusToFileNameField()
 	  $windowTitle = "Open";
    EndIf
 
+   $windowHandle = WinWait($windowTitle, "");
+   If Not WinActive($windowHandle) Then WinActivate($windowHandle);
+   ControlSetText($windowHandle, "", "Edit1", "");
    ControlFocus($windowTitle, "", $windowField);
 EndFunc

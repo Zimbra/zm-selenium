@@ -6,6 +6,7 @@
 ClickToOpenButton()
 
 Func ClickToOpenButton()
+   Local $windowHandle;
    Local $windowTitle;
    Local $openButton = "Button1";
 
@@ -15,7 +16,9 @@ Func ClickToOpenButton()
 	  $windowTitle = "Open";
    EndIf
 
-   ControlClick($windowTitle, "", $openButton);
+   $windowHandle = WinWait($windowTitle, "");
+   If Not WinActive($windowHandle) Then WinActivate($windowHandle);
+   ControlClick($windowHandle, "", $openButton);
 
    ; Local $openButtonHandle;
    ; Local $openButtonPosition;

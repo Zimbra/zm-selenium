@@ -113,6 +113,7 @@ public class SeleniumService {
 		stopBrowsersWindows();
 		stopBrowsersLinux();
 		stopBrowsersMac();
+		stopExternalUtilities();
 	}
 
 	private void stopBrowsersWindows() throws HarnessException {
@@ -189,6 +190,25 @@ public class SeleniumService {
 		} catch (InterruptedException e) {
 			throw new HarnessException("Unable to kill browsers", e);
 		}
+	}
+	
+	private void stopExternalUtilities() throws HarnessException {
+
+		// Only run for windows
+		if ( !OperatingSystem.isWindows() )
+			return;
+
+		try {
+			CommandLineUtility.CmdExec("taskkill /f /t /im ClickToOpenButton.exe");
+			CommandLineUtility.CmdExec("taskkill /f /t /im CloseFileExplorerWindow.exe");
+			CommandLineUtility.CmdExec("taskkill /f /t /im CloseNewWindow.exe");
+			CommandLineUtility.CmdExec("taskkill /f /t /im SetFocusToFileNameField.exe");
+		} catch (IOException e) {
+			throw new HarnessException("Unable to kill external utilities", e);
+		} catch (InterruptedException e) {
+			throw new HarnessException("Unable to kill external utilities", e);
+		}
+
 	}
 
 	private SeleniumMode mode;
