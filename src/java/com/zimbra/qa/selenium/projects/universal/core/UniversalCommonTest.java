@@ -546,39 +546,49 @@ public class UniversalCommonTest {
 					logger.info("Couldn't click to open button to attach file using AutoIt script: " + e.toString());
 				}
 
-				// File locator
-				String fileLocator = null;
-				Boolean isMailApp = false, isCalendarApp = false, isTasksApp = false, isBriefcaseApp = false, isPreferencesApp = false;
+				// Check for S/MIME certificate password dialog
+				if (!app.zPageMain.sIsVisible("id=CertificatePasswordDialog")) {
 
-				isMailApp = app.zPageMain.zIsVisiblePerPosition("div[id^='ztb__COMPOSE']", 0, 0);
-				if (isMailApp != true) {
-					isCalendarApp = app.zPageMain.zIsVisiblePerPosition("div[id^='ztb__APPT']", 0, 0);
-					isTasksApp = app.zPageMain.zIsVisiblePerPosition("div[id^='ztb__TKE']", 0, 0);
-					isBriefcaseApp = app.zPageMain.zIsVisiblePerPosition("div[class='ZmUploadDialog']", 0, 0);
-					isPreferencesApp = app.zPageMain.zIsVisiblePerPosition("div[id='ztb__PREF']", 0, 0);
-				}
+					// File locator
+					String fileLocator = null;
+					Boolean isMailApp = false, isContactsApp = false, isCalendarApp = false, isTasksApp = false, isBriefcaseApp = false, isPreferencesApp = false;
 
-				// Get attached file locator
-				if (isMailApp == true) {
-					fileLocator = "css=a[id^='COMPOSE']:contains(" + fileName + ")";
-				} else if (isCalendarApp == true || isTasksApp == true) {
-					we = webDriver.findElement(By.name("__calAttUpload__"));
-				} else if (isBriefcaseApp == true) {
-					we = webDriver.findElement(By.name("uploadFile"));
-				} else if (isPreferencesApp == true) {
-					we = webDriver.findElement(By.name("file"));
-				}
+					isMailApp = app.zPageMain.zIsVisiblePerPosition("div[id^='ztb__COMPOSE']", 0, 0);
+					if (isMailApp != true) {
+						isContactsApp = app.zPageMain.zIsVisiblePerPosition("span[id$='certificateBubble']", 0, 0);
+						isCalendarApp = app.zPageMain.zIsVisiblePerPosition("div[id^='ztb__APPT']", 0, 0);
+						isTasksApp = app.zPageMain.zIsVisiblePerPosition("div[id^='ztb__TKE']", 0, 0);
+						isBriefcaseApp = app.zPageMain.zIsVisiblePerPosition("div[class='ZmUploadDialog']", 0, 0);
+						isPreferencesApp = app.zPageMain.zIsVisiblePerPosition("div[id='ztb__PREF']", 0, 0);
+					}
 
-				if (isMailApp == true) {
-					isFileAttached = app.zPageMain.zIsVisiblePerPosition(fileLocator, 0, 0);
+					// Get attached file locator
+					if (isMailApp == true) {
+						fileLocator = "css=a[id^='COMPOSE']:contains(" + fileName + ")";
+					} else if (isContactsApp == true) {
+						fileLocator = "css=span[id$='certificateBubble']:contains(" + fileName + ")";
+					} else if (isCalendarApp == true || isTasksApp == true) {
+						we = webDriver.findElement(By.name("__calAttUpload__"));
+					} else if (isBriefcaseApp == true) {
+						we = webDriver.findElement(By.name("uploadFile"));
+					} else if (isPreferencesApp == true) {
+						we = webDriver.findElement(By.name("file"));
+					}
+
+					if (isMailApp == true || isContactsApp == true) {
+						isFileAttached = app.zPageMain.zIsVisiblePerPosition(fileLocator, 0, 0);
+					} else {
+						isFileAttached = we.getAttribute("value").contains(fileName);
+					}
+
+					if (isFileAttached == true) {
+						break;
+					} else {
+						SleepUtil.sleepSmall();
+					}
+
 				} else {
-					isFileAttached = we.getAttribute("value").contains(fileName);
-				}
-
-				if (isFileAttached == true) {
 					break;
-				} else {
-					SleepUtil.sleepSmall();
 				}
 			}
 
@@ -598,7 +608,7 @@ public class UniversalCommonTest {
 
 	public AbsPage zToolbarPressPulldown(Button button, Button option) throws HarnessException {
 
-		logger.info("Click to zNewDropdownOptions(" + option + ")");
+		logger.info("Click to zToolbarPressPulldown(" + option + ")");
 
 		if (option == null)
 			throw new HarnessException("Button cannot be null!");
