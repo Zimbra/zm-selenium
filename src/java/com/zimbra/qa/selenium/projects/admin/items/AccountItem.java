@@ -90,6 +90,23 @@ public class AccountItem implements IItem {
 		return (sb.toString());
 	}
 
+	public String zGetAccountStoreHost() {
+		String ZimbraMailHost;
+
+		try {
+			ZimbraAdminAccount.GlobalAdmin().soapSend("<GetAccountRequest xmlns='urn:zimbraAdmin'>" + "<account by='name'>"
+					+ this.getEmailAddress() + "</account>" + "</GetAccountRequest>");
+		} catch (HarnessException e) {
+			e.printStackTrace();
+		}
+
+		ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("//admin:GetAccountResponse");
+		ZimbraMailHost = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:account/admin:a[@n='zimbraMailHost']", null);
+		logger.info("Zimbra mail host for account " + this.getEmailAddress() + ": " + ZimbraMailHost);
+
+		return (ZimbraMailHost);
+	}
+
 	@Override
 	public String getName() {
 		return (getEmailAddress());

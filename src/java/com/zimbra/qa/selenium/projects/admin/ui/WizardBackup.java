@@ -33,7 +33,7 @@ import com.zimbra.qa.selenium.projects.admin.items.BackupItem;
 public class WizardBackup extends AbsWizard {
 
 	public static class Locators {		
-		public static final String NEXT_BUTTON="css=td[id$='_button12_title']";
+		public static final String NEXT_BUTTON="css=td[id$='_button12_title']:contains('Next')";
 		public static final String BACKUP_BUTTON="css=td[id$='_button12_title']:contains('Backup')";
 		public static final String FINISH_BUTTON="css=td[id$='_button13_title']:contains('Finish')";
 		public static final String BACKUP_METHOD_FULL="css=div[id='zdlgv__UNDEFINE_method_choice_0']";
@@ -41,7 +41,7 @@ public class WizardBackup extends AbsWizard {
 		public static final String EMAIL="css=input[id$='zdlgv__UNDEFINE_query']";
 		public static final String SEARCH_BUTTON="css=td[id$='_dwt_button___container'] div:contains('Search')";
 		public static final String ADD="css=td[id$='dwt_button_3___container'] div:contains('Add')";
-		public static final String BACKUP_ALL="css=input[id$='_backupAll']";
+		public static final String BACKUP_ALL="css=div[class='DwtDialog']:not([aria-hidden='true']) input[id$='_backupAll']";
 		public static final String PULL_DOWN="css=div[id='zdlgv__UNDEFINE_method_arrow_button']";
 	}
 
