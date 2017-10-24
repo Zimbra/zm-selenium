@@ -14,18 +14,14 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders.accounts;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.DialogErrorID;
 import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.PageMailView;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.TreeMail.Locators;
@@ -34,27 +30,28 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 
 	public GetGmailImap() {
 		logger.info("New "+ GetGmailImap.class.getCanonicalName());
-
 	}
 
 	/**
 	 * Objective: View an Gmail folder - IMAP
-	 * 
+	 *
 	 * 1. Login to ajax
 	 * 2. Create a folder
 	 * 3. Add external account as Gmail
 	 * 4. Right click on the folder -> Get external mail
 	 * 5. Verify the message from step 2 appears
-	 * 
+	 *
 	 * @throws HarnessException
 	 */
+
 	@Test( description = "View an external Gmail - IMAP",
 			groups = { "smoke", "L1" })
+
 	public void GetExternalGmailIMAP_01() throws HarnessException {
 
 		// Create the external data source on the same server
 		String external = "testzimbra123@gmail.com";
-		String Password="zimbra@123";		
+		String Password="zimbra@123";
 		String subject = "Your account settings in one place at My Account" ;
 
 		// Create the folder to put the data source
@@ -83,30 +80,7 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 					+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
 					+	"</CreateDataSourceRequest>");
 
-		// Need to logout/login to get the new folder
-		ZimbraAccount active = app.zGetActiveAccount();
-		if ( app.zPageMain.zIsActive() )
-			app.zPageMain.zLogout();
-		app.zPageLogin.zLogin(active);
-		startingPage.zNavigateTo();
-
-		/* TODO: ... debugging to be removed */
-		AbsDialog errorDialog = app.zPageMain.zGetErrorDialog(DialogErrorID.Zimbra);
-		int i = 0;
-		do {
-			if ( errorDialog.zIsActive() ) {
-				break; 
-			}
-			SleepUtil.sleep(SleepUtil.SleepGranularity);
-			i++;
-		} while (i < 5);		
-
-		if ( (errorDialog != null) && (errorDialog.zIsActive()) ) {
-			// Dismiss the dialog and carry on
-			errorDialog.zClickButton(Button.B_OK);
-		}
-
-		// Click on the folder and select Sync
+		app.zPageMain.sRefresh();
 
 		// If the datasource has never been synced, then an empty title bar appears
 		app.zTreeMail.zRightClickAt("css=div[id='zov__main_Mail'] td[id$='_textCell']:contains("+ foldername +")", "");
@@ -130,13 +104,9 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 		app.zGetActiveAccount().soapSend("<GetFolderRequest xmlns='urn:zimbraMail'/>");
 		String externalInbox = app.zGetActiveAccount().soapSelectValue("//mail:folder[@name='"+ foldername +"']//mail:folder[@name='Inbox']", "id");
 
-		/* TODO: ... debugging to be removed */
-		String locator = "css=td[id='zti__main_Mail__" + externalInbox +"_textCell']";
-		app.zPageMail.zWaitForElementPresent(locator);
+		// Click on the Inbox
+		app.zTreeMail.zClickAt("css=td[id='zti__main_Mail__" + externalInbox +"_textCell']", "");
 
-		// Click on the INBOX
-		app.zTreeMail.zClickAt(locator, "");
-		/* TODO: ... debugging to be removed */
 		String listLocator = null;
 		String rowLocator = null;
 		if (app.zPageMail.zGetPropMailView() == PageMailView.BY_MESSAGE) {
@@ -164,6 +134,6 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the external folder");
-	}	
+	}
 
 }

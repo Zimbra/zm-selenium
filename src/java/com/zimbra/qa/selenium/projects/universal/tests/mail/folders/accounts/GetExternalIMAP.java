@@ -17,15 +17,12 @@
 package com.zimbra.qa.selenium.projects.universal.tests.mail.folders.accounts;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogError.DialogErrorID;
 import com.zimbra.qa.selenium.projects.universal.ui.Toaster;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.PageMail.PageMailView;
 import com.zimbra.qa.selenium.projects.universal.ui.mail.TreeMail.Locators;
@@ -35,10 +32,10 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 	public GetExternalIMAP() {
 		logger.info("New "+ GetExternalIMAP.class.getCanonicalName());
 	}
-	
+
 	/**
 	 * Objective: View an external folder - POP
-	 * 
+	 *
 	 * 1. Create an account on the server
 	 * 2. Put a message in the inbox
 	 * 3. Login to universal
@@ -46,18 +43,20 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 	 * 5. Add a data source to the account from step 1, associate with the folder in step 4
 	 * 6. Right click on the folder -> Get external mail
 	 * 7. Verify the message from step 2 appears
-	 * 
+	 *
 	 * @throws HarnessException
 	 */
+
 	@Test( description = "View an external folder - IMAP",
 			groups = { "smoke", "L1" })
+
 	public void GetExternalIMAP_01() throws HarnessException {
-		
+
 		// Create the external data source on the same server
 		ZimbraAccount external = new ZimbraAccount();
 		external.provision();
 		external.authenticate();
-		
+
 		// Add a message to the inbox
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -78,7 +77,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 
 		// Create the folder to put the data source
 		String foldername = "external" + ConfigProperties.getUniqueString();
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
                 	"<folder name='"+ foldername +"' l='1'/>" +
@@ -86,12 +85,12 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
-		
+
 		// Create the data source
 		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
 		String datasourceImapPort = ConfigProperties.getStringProperty("server.imap.port");
 		String datasourceImapType = ConfigProperties.getStringProperty("server.imap.type");
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
 			+		"<imap name='"+ datasourcename +"' l='"+ folder.getId() +"' isEnabled='true' "
@@ -100,38 +99,15 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 			+			"useAddressForForwardReply='true' replyToDisplay='Bar Foo' replyToAddress='"+ app.zGetActiveAccount().EmailAddress +"' "
 			+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
 			+	"</CreateDataSourceRequest>");
-		
-		// Need to logout/login to get the new folder
-		ZimbraAccount active = app.zGetActiveAccount();
-		if ( app.zPageMain.zIsActive() )
-			app.zPageMain.zLogout();
-		app.zPageLogin.zLogin(active);
-		startingPage.zNavigateTo();
-		
-		/* TODO: ... debugging to be removed */
-		AbsDialog errorDialog = app.zPageMain.zGetErrorDialog(DialogErrorID.Zimbra);
-		int i = 0;
-		do {
-			if ( errorDialog.zIsActive() ) {
-				break; 
-			}
-			SleepUtil.sleep(SleepUtil.SleepGranularity);
-			i++;
-		} while (i < 5);		
-		
-		if ( (errorDialog != null) && (errorDialog.zIsActive()) ) {
-		    // Dismiss the dialog and carry on
-		    errorDialog.zClickButton(Button.B_OK);
-		}
 
-		// Click on the folder and select Sync
-		
+		app.zPageMain.sRefresh();
+
 		// If the datasource has never been synced, then an empty title bar appears
 		app.zTreeMail.zRightClickAt("css=div[id='zov__main_Mail'] td[id$='_textCell']:contains("+ foldername +")", "");
 		app.zTreeMail.zWaitForBusyOverlay();
 		app.zTreeMail.zClickAt(Locators.ContextMenuTVFoldersCSS + " div[id^='SYNC'] td[id$='_title']", "");
 		app.zTreeMail.zWaitForBusyOverlay();
-		
+
 		// Sync is asynchronous, so we have to wait for the toaster
 		Toaster toaster = app.zPageMain.zGetToaster();
 		toaster.zWaitForActive();
@@ -148,13 +124,11 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		app.zGetActiveAccount().soapSend("<GetFolderRequest xmlns='urn:zimbraMail'/>");
 		String externalInbox = app.zGetActiveAccount().soapSelectValue("//mail:folder[@name='"+ foldername +"']//mail:folder[@name='INBOX']", "id");
 
-		/* TODO: ... debugging to be removed */
 		String locator = "css=td[id='zti__main_Mail__" + externalInbox +"_textCell']";
 		app.zPageMail.zWaitForElementPresent(locator);
-		
-		// Click on the INBOX
+
+		// Click on the Inbox
 		app.zTreeMail.zClickAt(locator, "");
-		/* TODO: ... debugging to be removed */
 		String listLocator = null;
 		String rowLocator = null;
 		if (app.zPageMail.zGetPropMailView() == PageMailView.BY_MESSAGE) {
@@ -167,7 +141,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 
 		// Make sure the list exists
 		app.zPageMail.zWaitForElementPresent(listLocator+ " " + rowLocator);
-	
+
 		// Get the messages
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(messages, "Verify the message list exists");
@@ -182,18 +156,19 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the external folder");
-	}	
+	}
 
 
 	@Test( description = "IMAP: get updates from the external account - 'refresh' button",
 			groups = { "functional", "L2" })
+
 	public void GetExternalIMAP_02() throws HarnessException {
-		
+
 		// Create the external data source on the same server
 		ZimbraAccount external = new ZimbraAccount();
 		external.provision();
 		external.authenticate();
-		
+
 		// Add a message to the inbox
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -214,7 +189,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 
 		// Create the folder to put the data source
 		String foldername = "external" + ConfigProperties.getUniqueString();
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
                 	"<folder name='"+ foldername +"' l='1'/>" +
@@ -222,12 +197,12 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
-		
+
 		// Create the data source
 		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
 		String datasourceImapPort = ConfigProperties.getStringProperty("server.imap.port");
 		String datasourceImapType = ConfigProperties.getStringProperty("server.imap.type");
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
 			+		"<imap name='"+ datasourcename +"' l='"+ folder.getId() +"' isEnabled='true' "
@@ -237,31 +212,8 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 			+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
 			+	"</CreateDataSourceRequest>");
 
-		// Need to logout/login to get the new folder
-		ZimbraAccount active = app.zGetActiveAccount();
-		if ( app.zPageMain.zIsActive() )
-			app.zPageMain.zLogout();
-		app.zPageLogin.zLogin(active);
-		startingPage.zNavigateTo();
-		
-		/* TODO: ... debugging to be removed */
-		AbsDialog errorDialog = app.zPageMain.zGetErrorDialog(DialogErrorID.Zimbra);
-		int i = 0;
-		do {
-			if ( errorDialog.zIsActive() ) {
-				break; 
-			}
-			SleepUtil.sleep(SleepUtil.SleepGranularity);
-			i++;
-		} while (i < 5);		
-		
-		if ( (errorDialog != null) && (errorDialog.zIsActive()) ) {
-		    // Dismiss the dialog and carry on
-		    errorDialog.zClickButton(Button.B_OK);
-		}
-		
-		// Click on the folder and select Sync
-		
+		app.zPageMain.sRefresh();
+
 		// If the datasource has never been synced, then an empty title bar appears
 		app.zTreeMail.zRightClickAt("css=div[id='zov__main_Mail'] td[id$='_textCell']:contains("+ foldername +")", "");
 		app.zTreeMail.zWaitForBusyOverlay();
@@ -278,15 +230,15 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeMail.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();
-		
+
 		// See: https://bugzilla.zimbra.com/show_bug.cgi?id=66447
 		// Get the folder from the server
 		app.zGetActiveAccount().soapSend("<GetFolderRequest xmlns='urn:zimbraMail'/>");
 		String externalInbox = app.zGetActiveAccount().soapSelectValue("//mail:folder[@name='"+ foldername +"']//mail:folder[@name='INBOX']", "id");
 
-		// Click on the INBOX
+		// Click on the Inbox
 		app.zTreeMail.zClickAt("css=td[id='zti__main_Mail__" + externalInbox +"_textCell']", "");
-		
+
 		// Add another message
 		String subject2 = "subject" + ConfigProperties.getUniqueString();
 		external.soapSend(
@@ -305,7 +257,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 			+	"</AddMsgRequest>");
 
 		SleepUtil.sleepMedium();
-		
+
 		// Sync is asynchronous, so we have to wait for the toaster
 		toaster = app.zPageMain.zGetToaster();
 		toaster.zWaitForActive();
@@ -331,18 +283,19 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the external folder");
-	}	
+	}
 
-	
+
 	@Test( description = "IMAP: get updates from the external account - right click -> sync",
 			groups = { "functional", "L2" })
+
 	public void GetExternalIMAP_03() throws HarnessException {
-		
+
 		// Create the external data source on the same server
 		ZimbraAccount external = new ZimbraAccount();
 		external.provision();
 		external.authenticate();
-		
+
 		// Add a message to the inbox
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -363,7 +316,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 
 		// Create the folder to put the data source
 		String foldername = "external" + ConfigProperties.getUniqueString();
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
                 	"<folder name='"+ foldername +"' l='1'/>" +
@@ -371,12 +324,12 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
-		
+
 		// Create the data source
 		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
 		String datasourceImapPort = ConfigProperties.getStringProperty("server.imap.port");
 		String datasourceImapType = ConfigProperties.getStringProperty("server.imap.type");
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
 			+		"<imap name='"+ datasourcename +"' l='"+ folder.getId() +"' isEnabled='true' "
@@ -386,15 +339,8 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 			+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
 			+	"</CreateDataSourceRequest>");
 
-		// Need to logout/login to get the new folder
-		ZimbraAccount active = app.zGetActiveAccount();
-		if ( app.zPageMain.zIsActive() )
-			app.zPageMain.zLogout();
-		app.zPageLogin.zLogin(active);
-		startingPage.zNavigateTo();
-		
-		// Click on the folder and select Sync
-		
+		app.zPageMain.sRefresh();
+
 		// If the datasource has never been synced, then an empty title bar appears
 		app.zTreeMail.zRightClickAt("css=div[id='zov__main_Mail'] td[id$='_textCell']:contains("+ foldername +")", "");
 		app.zTreeMail.zWaitForBusyOverlay();
@@ -411,15 +357,15 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeMail.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();
-				
+
 		// See: https://bugzilla.zimbra.com/show_bug.cgi?id=66447
 		// Get the folder from the server
 		app.zGetActiveAccount().soapSend("<GetFolderRequest xmlns='urn:zimbraMail'/>");
 		String externalInbox = app.zGetActiveAccount().soapSelectValue("//mail:folder[@name='"+ foldername +"']//mail:folder[@name='INBOX']", "id");
 
-		// Click on the INBOX
+		// Click on the Inbox
 		app.zTreeMail.zClickAt("css=td[id='zti__main_Mail__" + externalInbox +"_textCell']", "");
-		
+
 		// Add another message
 		String subject2 = "subject" + ConfigProperties.getUniqueString();
 		external.soapSend(
@@ -447,7 +393,7 @@ public class GetExternalIMAP extends PrefGroupMailByMessageTest {
 		toaster = app.zPageMain.zGetToaster();
 		toaster.zWaitForActive();
 		SleepUtil.sleepVeryLong();
-		
+
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeMail.zWaitForBusyOverlay();
 

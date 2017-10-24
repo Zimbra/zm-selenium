@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.universal.tests.mail.folders.accounts;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -31,12 +29,11 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 
 	public GetExternalPOP() {
 		logger.info("New "+ GetExternalPOP.class.getCanonicalName());
-		
 	}
-	
+
 	/**
 	 * Objective: View an external folder - POP
-	 * 
+	 *
 	 * 1. Create an account on the server
 	 * 2. Put a message in the inbox
 	 * 3. Login to universal
@@ -44,19 +41,20 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 	 * 5. Add a data source to the account from step 1, associate with the folder in step 4
 	 * 6. Right click on the folder -> Get external mail
 	 * 7. Verify the message from step 2 appears
-	 * 
+	 *
 	 * @throws HarnessException
 	 */
+
 	@Test( description = "View an external folder - POP",
 			groups = { "smoke", "L1" })
+
 	public void GetExternalPOP_01() throws HarnessException {
-		
-		
+
 		// Create the external data source on the same server
 		ZimbraAccount external = new ZimbraAccount();
 		external.provision();
 		external.authenticate();
-		
+
 		// Add a message to the inbox
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -77,7 +75,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 
 		// Create the folder to put the data source
 		String foldername = "external" + ConfigProperties.getUniqueString();
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
                 	"<folder name='"+ foldername +"' l='1'/>" +
@@ -85,12 +83,12 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
-		
+
 		// Create the data source
 		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
 		String datasourcePopPort = ConfigProperties.getStringProperty("server.pop.port");
 		String datasourcePopType = ConfigProperties.getStringProperty("server.pop.type");
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
 			+		"<pop3 name='"+ datasourcename +"' l='"+ folder.getId() +"' isEnabled='true' "
@@ -99,14 +97,9 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 			+			"useAddressForForwardReply='true' replyToDisplay='Bar Foo' replyToAddress='"+ app.zGetActiveAccount().EmailAddress +"' "
 			+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
 			+	"</CreateDataSourceRequest>");
-		
-		// Need to logout/login to get the new folder
-		ZimbraAccount active = app.zGetActiveAccount();
-		if ( app.zPageMain.zIsActive() )
-			app.zPageMain.zLogout();
-		app.zPageLogin.zLogin(active);
-		startingPage.zNavigateTo();
-		
+
+		app.zPageMain.sRefresh();
+
 		// Click on the folder and select Sync
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_GET_EXTERNAL, folder);
 
@@ -120,10 +113,10 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeMail.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();
-		
+
 		// Click on the folder, and verify the message appears
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, folder);
-		
+
 		// Get the messages
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(messages, "Verify the message list exists");
@@ -138,13 +131,13 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the external folder");
-		
-	}	
+
+	}
 
 
 	/**
 	 * Objective: View an external folder - POP
-	 * 
+	 *
 	 * 1. Create an account on the server
 	 * 2. Put a message in the inbox
 	 * 3. Login to universal
@@ -153,18 +146,20 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 	 * 6. Select the folder (http://bugzilla.zimbra.com/show_bug.cgi?id=66528#c5)
 	 * 7. Click "Refresh"
 	 * 7. Verify the message from step 2 appears
-	 * 
+	 *
 	 * @throws HarnessException
 	 */
+
 	@Test( description = "POP: get updates from the external account - 'refresh' button",
 			groups = { "functional", "L2" })
+
 	public void GetExternalPOP_02() throws HarnessException {
-		
+
 		// Create the external data source on the same server
 		ZimbraAccount external = new ZimbraAccount();
 		external.provision();
 		external.authenticate();
-		
+
 		// Add a message to the inbox
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -185,7 +180,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 
 		// Create the folder to put the data source
 		String foldername = "external" + ConfigProperties.getUniqueString();
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
                 	"<folder name='"+ foldername +"' l='1'/>" +
@@ -193,12 +188,12 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
-		
+
 		// Create the data source
 		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
 		String datasourcePopPort = ConfigProperties.getStringProperty("server.pop.port");
 		String datasourcePopType = ConfigProperties.getStringProperty("server.pop.type");
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
 			+		"<pop3 name='"+ datasourcename +"' l='"+ folder.getId() +"' isEnabled='true' "
@@ -207,14 +202,9 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 			+			"useAddressForForwardReply='true' replyToDisplay='Bar Foo' replyToAddress='"+ app.zGetActiveAccount().EmailAddress +"' "
 			+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
 			+	"</CreateDataSourceRequest>");
-		
-		// Need to logout/login to get the new folder
-		ZimbraAccount active = app.zGetActiveAccount();
-		if ( app.zPageMain.zIsActive() )
-			app.zPageMain.zLogout();
-		app.zPageLogin.zLogin(active);
-		startingPage.zNavigateTo();
-		
+
+		app.zPageMain.sRefresh();
+
 		// Click on the folder and select Sync
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_GET_EXTERNAL, folder);
 
@@ -228,7 +218,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeMail.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();
-		
+
 		// Add another message
 		String subject2 = "subject" + ConfigProperties.getUniqueString();
 		external.soapSend(
@@ -248,7 +238,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, folder);
 
-		// Click REFRESH
+		// Click to Refresh
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Sync is asynchronous, so we have to wait for the toaster
@@ -257,7 +247,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 
 		// Click on the folder, and verify the message appears
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, folder);
-		
+
 		// Get the messages
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(messages, "Verify the message list exists");
@@ -272,19 +262,20 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the external folder");
-		
-	}	
+
+	}
 
 
 	@Test( description = "POP: get updates from the external account - right click -> sync",
 			groups = { "functional", "L2" })
+
 	public void GetExternalPOP_03() throws HarnessException {
-		
+
 		// Create the external data source on the same server
 		ZimbraAccount external = new ZimbraAccount();
 		external.provision();
 		external.authenticate();
-		
+
 		// Add a message to the inbox
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -305,7 +296,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 
 		// Create the folder to put the data source
 		String foldername = "external" + ConfigProperties.getUniqueString();
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
                 	"<folder name='"+ foldername +"' l='1'/>" +
@@ -313,12 +304,12 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
-		
+
 		// Create the data source
 		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
 		String datasourcePopPort = ConfigProperties.getStringProperty("server.pop.port");
 		String datasourcePopType = ConfigProperties.getStringProperty("server.pop.type");
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
 			+		"<pop3 name='"+ datasourcename +"' l='"+ folder.getId() +"' isEnabled='true' "
@@ -327,14 +318,9 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 			+			"useAddressForForwardReply='true' replyToDisplay='Bar Foo' replyToAddress='"+ app.zGetActiveAccount().EmailAddress +"' "
 			+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
 			+	"</CreateDataSourceRequest>");
-		
-		// Need to logout/login to get the new folder
-		ZimbraAccount active = app.zGetActiveAccount();
-		if ( app.zPageMain.zIsActive() )
-			app.zPageMain.zLogout();
-		app.zPageLogin.zLogin(active);
-		startingPage.zNavigateTo();
-		
+
+		app.zPageMain.sRefresh();
+
 		// Click on the folder and select Sync
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_GET_EXTERNAL, folder);
 
@@ -348,7 +334,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeMail.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();
-		
+
 		// Add another message
 		String subject2 = "subject" + ConfigProperties.getUniqueString();
 		external.soapSend(
@@ -375,7 +361,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 
 		// Click on the folder, and verify the message appears
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, folder);
-		
+
 		// Get the messages
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(messages, "Verify the message list exists");
@@ -391,6 +377,6 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the external folder");
 
-	}	
+	}
 
 }

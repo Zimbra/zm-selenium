@@ -551,7 +551,7 @@ public class UniversalCommonTest {
 
 					// File locator
 					String fileLocator = null;
-					Boolean isMailApp = false, isContactsApp = false, isCalendarApp = false, isTasksApp = false, isBriefcaseApp = false, isPreferencesApp = false;
+					Boolean isMailApp = false, isContactsApp = false, isCalendarApp = false, isTasksApp = false, isBriefcaseApp = false, isPreferencesApp = false, isSmimeZimlet = false;
 
 					isMailApp = app.zPageMain.zIsVisiblePerPosition("div[id^='ztb__COMPOSE']", 0, 0);
 					if (isMailApp != true) {
@@ -560,6 +560,7 @@ public class UniversalCommonTest {
 						isTasksApp = app.zPageMain.zIsVisiblePerPosition("div[id^='ztb__TKE']", 0, 0);
 						isBriefcaseApp = app.zPageMain.zIsVisiblePerPosition("div[class='ZmUploadDialog']", 0, 0);
 						isPreferencesApp = app.zPageMain.zIsVisiblePerPosition("div[id='ztb__PREF']", 0, 0);
+						isSmimeZimlet = app.zPageMain.zIsVisiblePerPosition("td[class='ZmSecureMailCertificateRow']", 0, 0);
 					}
 
 					// Get attached file locator
@@ -571,11 +572,13 @@ public class UniversalCommonTest {
 						we = webDriver.findElement(By.name("__calAttUpload__"));
 					} else if (isBriefcaseApp == true) {
 						we = webDriver.findElement(By.name("uploadFile"));
+					} else if (isSmimeZimlet == true) {
+						fileLocator = "css=td[class='ZmSecureMailCertificateRow'] td[id$='_title']:contains(" + ConfigProperties.getStringProperty("testdomain") + ")";
 					} else if (isPreferencesApp == true) {
 						we = webDriver.findElement(By.name("file"));
 					}
 
-					if (isMailApp == true || isContactsApp == true) {
+					if (isMailApp == true || isContactsApp == true || isSmimeZimlet == true) {
 						isFileAttached = app.zPageMain.zIsVisiblePerPosition(fileLocator, 0, 0);
 					} else {
 						isFileAttached = we.getAttribute("value").contains(fileName);
