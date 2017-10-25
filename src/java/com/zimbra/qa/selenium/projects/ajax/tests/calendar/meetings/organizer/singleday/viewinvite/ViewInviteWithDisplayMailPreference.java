@@ -51,8 +51,8 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 	)
 	public void ViewHTMLInviteWithHTMLPreference_01() throws HarnessException {
 		
-		String fontfamilyData="";
-		if(ConfigProperties.getStringProperty("browser").contains("firefox")) {
+		String fontfamilyData = "";
+		if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
 			fontfamilyData = "<div><span style=\"font-family: &quot;comic sans ms&quot;,&quot;comic sans&quot;,sans-serif; font-size: 14pt;\">Number list below :</span>&nbsp;</div>";
 		} else {
 			fontfamilyData = "<div><span style=\"font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif; font-size: 14pt;\">Number list below :</span> </div>";
@@ -120,7 +120,7 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 	public void ViewHTMLInviteWithPlainTextPreference_02() throws HarnessException {
 		
 		String multilineTextData = "";
-		if(ConfigProperties.getStringProperty("browser").contains("firefox")) {
+		if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
 			multilineTextData = "BoldString<br>ItalicString<br>Underline String<br>Red Color text<br>Green Background<br><br>Number list below :<br><br><br>1. point one<br>2. point two<br>3. point three";
 		} else {
 			multilineTextData = "BoldString<br />ItalicString<br />Underline String<br />Red Color text<br />Green Background<br /><br />Number list below :<br /><br /><br />1. point one<br />2. point two<br />3. point three";
@@ -170,7 +170,7 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 	public void ViewPlainTextInviteWithHTMLPreference_03() throws HarnessException {
 		
 		String verificationData = "";
-		if(ConfigProperties.getStringProperty("browser").contains("firefox")){
+		if (ConfigProperties.getStringProperty("browser").contains("firefox")){
 			verificationData = "line 1<br>line two<br><br><br>line 3";
 		} else {
 			verificationData = "line 1<br />line two<br /><br /><br />line 3";
@@ -251,7 +251,7 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 	public void ViewPlainTextInviteWithPlainTextPreference_04() throws HarnessException {
 		
 		String multilineTextData = "";
-		if(ConfigProperties.getStringProperty("browser").contains("firefox")) {
+		if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
 			multilineTextData = "line 1<br>line two<br><br><br>line 3"; 
 		} else {
 			multilineTextData = "line 1<br />line two<br /><br /><br />line 3"; 
