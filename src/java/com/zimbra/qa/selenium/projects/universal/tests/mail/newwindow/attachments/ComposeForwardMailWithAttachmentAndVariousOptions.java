@@ -109,7 +109,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 
 					app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
 					app.zPageMail.zPressButton(Button.B_MY_COMPUTER);
-					zUploadFile(filePath);
+					zUpload(filePath);
 
 					SleepUtil.sleepSmall();
 					// Include the original message in the body and not as attachment
