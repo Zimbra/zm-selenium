@@ -39,12 +39,11 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 	
 	public void DisplayHTMLMailWithHTMLPref_01() throws HarnessException {
 		
-		String fontFamilyData="";
+		String fontFamilyData = "";
 	 	if(ConfigProperties.getStringProperty("browser").contains("firefox")){
-	 	 	 fontFamilyData="<div><span style=\"font-size: 14pt;\"><span style=\"font-family: &quot;comic sans ms&quot;,&quot;comic sans&quot;,sans-serif;\">Number list below</span>:</span></div>";
-	 	}
-	 	else{
-	 	 	 fontFamilyData="<div><span style=\"font-size: 14pt;\"><span style=\"font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif;\">Number list below</span>:</span></div>";
+	 	 	 fontFamilyData = "<div><span style=\"font-size: 14pt;\"><span style=\"font-family: &quot;comic sans ms&quot;,&quot;comic sans&quot;,sans-serif;\">Number list below</span>:</span></div>";
+	 	}else{
+	 	 	 fontFamilyData = "<div><span style=\"font-size: 14pt;\"><span style=\"font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif;\">Number list below</span>:</span></div>";
 	 	}
 	 	 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email19/multilineHTMLcontent.txt";
@@ -79,12 +78,11 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 	
 	public void DisplayHTMLMailWithTextPref_02() throws HarnessException {
 		
-		String multilineTextData="";
+		String multilineTextData = "";
 		if(ConfigProperties.getStringProperty("browser").contains("firefox")){
-			multilineTextData="BoldString <br>ItalicString <br>Underline text <br>Red color text <br>Green background <br><br>Number list below : <br><br><br>    1. point one <br>    2. point two <br>    3. point three";
-		}
-		else{
-			multilineTextData="BoldString <br />ItalicString <br />Underline text <br />Red color text <br />Green background <br /><br />Number list below : <br /><br /><br />    1. point one <br />    2. point two <br />    3. point three";
+			multilineTextData = "BoldString <br>ItalicString <br>Underline text <br>Red color text <br>Green background <br><br>Number list below : <br><br><br>    1. point one <br>    2. point two <br>    3. point three";
+		}else{
+			multilineTextData = "BoldString <br />ItalicString <br />Underline text <br />Red color text <br />Green background <br /><br />Number list below : <br /><br /><br />    1. point one <br />    2. point two <br />    3. point three";
 		}
 	 	 
 		//Navigate to preference -> Mail and set display mail pref to Text and verify
@@ -127,12 +125,11 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 	
 	public void DisplayTextMailWithHTMLPref_03() throws HarnessException {
 		
-		String multilineTextData="";
+		String multilineTextData = "";
 		if(ConfigProperties.getStringProperty("browser").contains("firefox")){
-			multilineTextData="line 1<br>line 2<br>line 3<br><br>line 4";
-	 	 }
-	 	 else{
-	 		multilineTextData="line 1<br />line 2<br />line 3<br /><br />line 4";
+			multilineTextData = "line 1<br>line 2<br>line 3<br><br>line 4";
+	 	 }else{
+	 		multilineTextData = "line 1<br />line 2<br />line 3<br /><br />line 4";
 	 	 }
 		app.zGetActiveAccount().soapSend(
 				"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
@@ -183,12 +180,11 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 	
 	public void DisplayTextMailWithTextPref_04() throws HarnessException {
 		
-		String multilineTextData="";
+		String multilineTextData = "";
 	 	 if(ConfigProperties.getStringProperty("browser").contains("firefox")){
-	 	 	 multilineTextData="line 1<br>line 2<br>line 3<br><br>line 4"; 
-	 	 }
-	 	 else{
-	 	 	 multilineTextData="line 1<br />line 2<br />line 3<br /><br />line 4"; 
+	 	 	 multilineTextData = "line 1<br>line 2<br>line 3<br><br>line 4"; 
+	 	 }else{
+	 	 	 multilineTextData = "line 1<br />line 2<br />line 3<br /><br />line 4"; 
 	 	 }
 	 	 
 		app.zGetActiveAccount().soapSend(
