@@ -999,8 +999,7 @@ public class FormApptNew extends AbsForm {
 
 			if (field == Field.StartDate || field == Field.EndDate || field == Field.StartTime
 					|| field == Field.EndTime) {
-
-				if(ConfigProperties.getStringProperty("browser").contains("chrome")) {
+				if (ConfigProperties.getStringProperty("browser").contains("chrome")) {
 					this.sMouseDownAt(locator, "");
 				}
 				
