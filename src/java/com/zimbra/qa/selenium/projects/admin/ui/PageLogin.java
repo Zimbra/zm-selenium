@@ -132,7 +132,7 @@ public class PageLogin extends AbsTab {
 		// sWaitForPageToLoad();
 		((AppAdminConsole)MyApplication).zPageMain.zWaitForActive();
 
-		((AppAdminConsole)MyApplication).zSetActiveAcount(account);
+		((AppAdminConsole)MyApplication).zSetActiveAccount(account);
 
 		SleepUtil.sleep(10000);
 	}

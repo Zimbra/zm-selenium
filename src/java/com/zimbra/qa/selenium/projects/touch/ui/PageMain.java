@@ -115,7 +115,7 @@ public class PageMain extends AbsTab {
 			}
 
 			((AppTouchClient)MyApplication).zPageLogin.zWaitForActive();
-			((AppTouchClient)MyApplication).zSetActiveAcount(null);
+			((AppTouchClient)MyApplication).zSetActiveAccount(null);
 
 		} else {
 
@@ -162,7 +162,7 @@ public class PageMain extends AbsTab {
 
 			((AppTouchClient)MyApplication).zPageLogin.zNavigateTo();
 			((AppTouchClient)MyApplication).zPageLogin.zWaitForActive();
-			((AppTouchClient)MyApplication).zSetActiveAcount(null);
+			((AppTouchClient)MyApplication).zSetActiveAccount(null);
 
 		}
 

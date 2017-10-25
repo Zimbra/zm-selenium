@@ -119,8 +119,8 @@ public class AppHtmlClient extends AbsApplication {
 	 * @see projects.admin.ui.AbsApplication#myApplicationName()
 	 */
 	@Override
-	protected ZimbraAccount zSetActiveAcount(ZimbraAccount account) throws HarnessException {
-		return (super.zSetActiveAcount(account));
+	protected ZimbraAccount zSetActiveAccount(ZimbraAccount account) throws HarnessException {
+		return (super.zSetActiveAccount(account));
 	}
 
 }

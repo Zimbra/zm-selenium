@@ -137,7 +137,7 @@ public class PageLogin extends AbsTab {
 			}
 
 			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(100000);
-			((AppAjaxClient)MyApplication).zSetActiveAcount(account);
+			((AppAjaxClient)MyApplication).zSetActiveAccount(account);
 
 		} finally {
 
@@ -198,7 +198,7 @@ public class PageLogin extends AbsTab {
 
 			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(180000);
 
-			((AppAjaxClient)MyApplication).zSetActiveAcount(account);
+			((AppAjaxClient)MyApplication).zSetActiveAccount(account);
 
 
 		} finally {

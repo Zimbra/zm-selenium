@@ -134,7 +134,7 @@ public class PageMain extends AbsTab {
 
 		((AppMobileClient)MyApplication).zPageLogin.zWaitForActive();
 
-		((AppMobileClient)MyApplication).zSetActiveAcount(null);
+		((AppMobileClient)MyApplication).zSetActiveAccount(null);
 
 	}
 

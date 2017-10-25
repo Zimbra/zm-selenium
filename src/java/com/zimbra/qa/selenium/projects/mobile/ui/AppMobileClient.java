@@ -82,8 +82,8 @@ public class AppMobileClient extends AbsApplication {
 		return ("Mobile Client");
 	}
 
-	protected ZimbraAccount zSetActiveAcount(ZimbraAccount account) throws HarnessException {
-		return (super.zSetActiveAcount(account));
+	protected ZimbraAccount zSetActiveAccount(ZimbraAccount account) throws HarnessException {
+		return (super.zSetActiveAccount(account));
 	}
 
 }

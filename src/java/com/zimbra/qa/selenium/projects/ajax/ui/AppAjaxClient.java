@@ -208,8 +208,8 @@ public class AppAjaxClient extends AbsApplication {
 	 * @see projects.admin.ui.AbsApplication#myApplicationName()
 	 */
 	@Override
-	public ZimbraAccount zSetActiveAcount(ZimbraAccount account) throws HarnessException {
-		return (super.zSetActiveAcount(account));
+	public ZimbraAccount zSetActiveAccount(ZimbraAccount account) throws HarnessException {
+		return (super.zSetActiveAccount(account));
 	}
 
 }

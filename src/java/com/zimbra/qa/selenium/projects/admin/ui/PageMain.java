@@ -157,7 +157,7 @@ public class PageMain extends AbsTab {
 
 		((AppAdminConsole)MyApplication).zPageLogin.zWaitForActive();
 
-		((AppAdminConsole)MyApplication).zSetActiveAcount(null);
+		((AppAdminConsole)MyApplication).zSetActiveAccount(null);
 
 	}
 

@@ -108,7 +108,7 @@ public class PageExternalRegistration extends PageLogin {
 		// Wait for the app to load
 		sWaitForPageToLoad();
 		((AppAjaxClient)MyApplication).zPageExternalMain.zWaitForActive();
-		((AppAjaxClient)MyApplication).zSetActiveAcount(account);
+		((AppAjaxClient)MyApplication).zSetActiveAccount(account);
 	}
 	
 	/**

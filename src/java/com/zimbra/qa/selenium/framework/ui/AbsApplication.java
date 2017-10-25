@@ -120,7 +120,7 @@ public abstract class AbsApplication {
 	 * <p>
 	 * @return the authenticated account
 	 */
-	protected ZimbraAccount zSetActiveAcount(ZimbraAccount account) throws HarnessException {
+	protected ZimbraAccount zSetActiveAccount(ZimbraAccount account) throws HarnessException {
 		
 		// Check if we are setting the active account to nobody
 		if ( account == null ) {

@@ -219,7 +219,7 @@ public class PageLogin extends AbsTab {
 
 			((AppTouchClient)MyApplication).zPageMain.zWaitForActive(180000);
 
-			((AppTouchClient)MyApplication).zSetActiveAcount(account);
+			((AppTouchClient)MyApplication).zSetActiveAccount(account);
 
 
 		} finally {

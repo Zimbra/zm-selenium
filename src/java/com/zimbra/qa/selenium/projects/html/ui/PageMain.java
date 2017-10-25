@@ -135,7 +135,7 @@ public class PageMain extends AbsTab {
 		sWaitForPageToLoad();
 		((AppHtmlClient)MyApplication).zPageLogin.zWaitForActive();
 
-		((AppHtmlClient)MyApplication).zSetActiveAcount(null);
+		((AppHtmlClient)MyApplication).zSetActiveAccount(null);
 
 		// TODO: maybe handle this in the pulldown of PageLogin.zLogin() ?
 		// Force the html client to load

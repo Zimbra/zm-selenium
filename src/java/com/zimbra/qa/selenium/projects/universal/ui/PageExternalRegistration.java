@@ -108,7 +108,7 @@ public class PageExternalRegistration extends PageLogin {
 		// Wait for the app to load
 		sWaitForPageToLoad();
 		((AppUniversalClient)MyApplication).zPageExternalMain.zWaitForActive();
-		((AppUniversalClient)MyApplication).zSetActiveAcount(account);
+		((AppUniversalClient)MyApplication).zSetActiveAccount(account);
 	}
 	
 	/**

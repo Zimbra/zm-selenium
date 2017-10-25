@@ -163,7 +163,7 @@ public class PageMain extends AbsTab {
 		this.zWaitForBusyOverlay();
 
 		((AppUniversalClient) MyApplication).zPageLogin.zWaitForActive();
-		((AppUniversalClient) MyApplication).zSetActiveAcount(null);
+		((AppUniversalClient) MyApplication).zSetActiveAccount(null);
 	}
 
 	@Override

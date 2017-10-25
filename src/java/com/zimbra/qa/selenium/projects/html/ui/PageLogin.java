@@ -115,7 +115,7 @@ public class PageLogin extends AbsTab {
 		sWaitForPageToLoad();
 		((AppHtmlClient)MyApplication).zPageMain.zWaitForActive();
 
-		((AppHtmlClient)MyApplication).zSetActiveAcount(account);
+		((AppHtmlClient)MyApplication).zSetActiveAccount(account);
 
 		// TODO: maybe handle this in the pulldown options?
 		// Force the html client to load
