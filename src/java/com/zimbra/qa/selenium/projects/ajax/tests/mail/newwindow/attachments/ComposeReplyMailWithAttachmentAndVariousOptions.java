@@ -105,7 +105,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 
 					window.zPressButton(Button.O_ATTACH_DROPDOWN);
 					window.zPressButton(Button.B_MY_COMPUTER);
-					zUploadFile(filePath);
+					zUpload(filePath);
 					
 					SleepUtil.sleepSmall();
 					// Include the original message in the body and not as attachment

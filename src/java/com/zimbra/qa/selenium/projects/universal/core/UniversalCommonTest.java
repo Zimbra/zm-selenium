@@ -485,23 +485,23 @@ public class UniversalCommonTest {
 	}
 
 	public void zUpload(String filePath) throws HarnessException {
-		zUploadFile(filePath);
+		zUploadFile(filePath, "file");
 		// app.zPageMail.zKeyboardTypeStringUpload(filePath);
 	}
 
 	public void zUpload(String filePath, SeparateWindowFormMailNew window) throws HarnessException {
-		zUploadFile(filePath);
+		zUploadFile(filePath, "file");
 	}
 
 	public void zUpload(String filePath, SeparateWindowDisplayMail window) throws HarnessException {
-		zUploadFile(filePath);
+		zUploadFile(filePath, "file");
 	}
 
 	public void zUploadInlineImageAttachment(String filePath) throws HarnessException {
-		zUploadFile(filePath);
+		zUploadFile(filePath, "inline");
 	}
 
-	public void zUploadFile(String filePath) throws HarnessException {
+	public void zUploadFile(String filePath, String attachmentType) throws HarnessException {
 
 		Boolean isFileAttached = false;
 		String fileName = filePath.substring(filePath.lastIndexOf('\\') + 1);
@@ -547,7 +547,7 @@ public class UniversalCommonTest {
 				}
 
 				// Check for S/MIME certificate password dialog
-				if (!app.zPageMain.sIsVisible("id=CertificatePasswordDialog")) {
+				if (!app.zPageMain.sIsVisible("id=CertificatePasswordDialog") && attachmentType.equals("file")) {
 
 					// File locator
 					String fileLocator = null;
@@ -585,9 +585,39 @@ public class UniversalCommonTest {
 					}
 
 					if (isFileAttached == true) {
+						logger.info("File " + fileName + " attached fine");
 						break;
 					} else {
+						logger.info("Couldn't attach " + fileName + " file in #" + i + " attempt");
 						SleepUtil.sleepSmall();
+					}
+
+				} else if (attachmentType.equals("inline")) {
+					try {
+						WebElement we = null;
+						WebDriver webDriver = ClientSessionFactory.session().webDriver();
+
+						webDriver.switchTo().defaultContent();
+						webDriver.switchTo().frame("ZmHtmlEditor1_body_ifr");
+						we = webDriver.findElement(By.cssSelector("body#tinymce img"));
+
+						if (we.getAttribute("src").contains("/service/home/~/?auth=co")
+								&& we.getAttribute("data-mce-src").startsWith("cid:")
+								&& we.getAttribute("data-mce-src").endsWith("@zimbra")
+								&& we.getAttribute("dfsrc").startsWith("cid:") && we.getAttribute("dfsrc").endsWith("@zimbra")) {
+							isFileAttached = true;
+						}
+
+						if (isFileAttached == true) {
+							logger.info("File " + fileName + " inline attached fine");
+							break;
+						} else {
+							logger.info("Couldn't inline attach " + fileName + " file in #" + i + " attempt");
+							SleepUtil.sleepSmall();
+						}
+
+					} finally {
+						webDriver.switchTo().defaultContent();
 					}
 
 				} else {
@@ -596,8 +626,6 @@ public class UniversalCommonTest {
 			}
 
 		} finally {
-
-			logger.info("File " + fileName + " attached status: " + isFileAttached);
 
 			// AutoIt script to close the file explorer window (if any)
 			try {
