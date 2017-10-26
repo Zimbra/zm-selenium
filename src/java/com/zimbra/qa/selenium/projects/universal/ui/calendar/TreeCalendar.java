@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
 package com.zimbra.qa.selenium.projects.universal.ui.calendar;
 
 import java.util.ArrayList;
@@ -47,7 +44,7 @@ public class TreeCalendar extends AbsTree {
 		public static final String MainDivID = "zov__main_Calendar";
 		public static final String CreateNewFolderIconCSS = "css=div[id='" + MainDivID
 				+ "'] table[id='ztih__main_Calendar__CALENDAR_table'] td[id$='_title']";
-		public static final String ztih__main_Calendar__ZIMLETCSS = "css=div[id='ztih__main_Calendar__ZIMLET']";
+		public static final String CalendarZimletPane = "css=div[id='ztih__main_Calendar__ZIMLET']";
 		public static final String RenameTagMenu = "css=div[id='RENAME_TAG'] td[id='RENAME_TAG_title']";
 		public static final String DeleteTagMenu = "css=div[id='DELETE_WITHOUT_SHORTCUT'] td[id='DELETE_WITHOUT_SHORTCUT_title']";
 
@@ -63,7 +60,7 @@ public class TreeCalendar extends AbsTree {
 		if ((action == null) || (option == null) || (folder == null)) {
 			throw new HarnessException("Must define an action, option, and addressbook");
 		}
-		
+
 		SleepUtil.sleepMedium();
 
 		tracer.trace("processing " + folder.getName());
@@ -372,7 +369,7 @@ public class TreeCalendar extends AbsTree {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * com.zimbra.qa.selenium.framework.ui.AbsTree#zPressButton(com.zimbra.qa.
 	 * selenium.framework.ui.Button)
@@ -465,7 +462,7 @@ public class TreeCalendar extends AbsTree {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see framework.ui.AbsTree#zTreeItem(framework.ui.Action,
 	 * framework.items.FolderItem)
 	 */
@@ -492,6 +489,10 @@ public class TreeCalendar extends AbsTree {
 	public void zMarkOnOffCalendarFolder(String folderName) throws HarnessException {
 
 		tracer.trace("Click on folder " + folderName);
+
+		// Need to provide work around due to zimbra tooltip overlaps to calendar folders in tree view
+		this.sClickAt(Locators.CalendarZimletPane, "");
+		SleepUtil.sleepVerySmall();
 
 		FolderItem folderID = FolderItem.importFromSOAP(MyApplication.zGetActiveAccount(), folderName);
 		this.sClickAt("css=div[id='zti__main_Calendar__" + folderID.getId() + "_checkbox']", "");
@@ -561,7 +562,7 @@ public class TreeCalendar extends AbsTree {
 
 	/**
 	 * Used for recursively building the tree list for Mail Folders
-	 * 
+	 *
 	 * @param css
 	 * @return
 	 * @throws HarnessException
@@ -613,7 +614,7 @@ public class TreeCalendar extends AbsTree {
 
 	/**
 	 * Used for recursively building the tree list for Saved Search Folders
-	 * 
+	 *
 	 * @param top
 	 * @return
 	 * @throws HarnessException
@@ -720,7 +721,7 @@ public class TreeCalendar extends AbsTree {
 	/**
 	 * Apply an expand/collpase to the Folders, Searches, Tags and Zimlets
 	 * sections
-	 * 
+	 *
 	 * @param a
 	 * @param section
 	 * @throws HarnessException
@@ -731,7 +732,7 @@ public class TreeCalendar extends AbsTree {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see framework.ui.AbsTree#myPageName()
 	 */
 	@Override
@@ -749,7 +750,7 @@ public class TreeCalendar extends AbsTree {
 
 		// Zimlets seem to be loaded last
 		// So, wait for the zimlet div to load
-		String locator = Locators.ztih__main_Calendar__ZIMLETCSS;
+		String locator = Locators.CalendarZimletPane;
 
 		boolean loaded = this.sIsElementPresent(locator);
 		if (!loaded)
