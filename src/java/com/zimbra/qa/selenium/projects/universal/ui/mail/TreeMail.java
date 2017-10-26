@@ -455,7 +455,7 @@ public class TreeMail extends AbsTree {
 				return (page);
 			}
 
-			this.sMouseDown(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
 
@@ -470,7 +470,7 @@ public class TreeMail extends AbsTree {
 				return (page);
 			}
 
-			this.sMouseDown(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
 
