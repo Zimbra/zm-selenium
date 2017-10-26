@@ -58,7 +58,7 @@ public class StafAbstract {
 	public StafAbstract() {
 		logger.info("new "+ StafAbstract.class.getCanonicalName());
 
-		StafServer = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host", ConfigProperties.getStringProperty("server.host"));
+		StafServer = ConfigProperties.getStringProperty("server.host");
 		StafService = "PING";
 		StafParms = "PING";
 
@@ -140,16 +140,16 @@ public class StafAbstract {
 
 	        try {
 
-	        	if (ExecuteHarnessMain.totalZimbraServers < 1) {
+	        	if (ExecuteHarnessMain.totalZimbraServers == 1) {
 
 	        		// Single Node Server
 
-	        		if (StafParms.indexOf("postqueue") >=0 || StafParms.indexOf("zmmailbox") >=0 || StafParms.indexOf("zmtlsctl") >=0 || StafParms.indexOf("zmprov") >=0 || StafParms.indexOf(" zm") >=0) {
+	        		if (StafParms.contains("postqueue") || StafParms.contains("zmmailbox") || StafParms.contains("zmtlsctl") || StafParms.contains("zmprov") || StafParms.contains(" zm")) {
 
-						StafServer = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host", ConfigProperties.getStringProperty("server.host"));
+						StafServer = ConfigProperties.getStringProperty("server.host");
 
 						try {
-							Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on Single Node server (" + StafServer + ")\n"), 
+							Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on Single Node server (" + StafServer + ")\n"),
 									Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -162,7 +162,7 @@ public class StafAbstract {
 						// Localhost
 
 						try {
-							Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on localhost (" + StafServer + ")\n"), 
+							Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on localhost (" + StafServer + ")\n"),
 									Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -171,24 +171,36 @@ public class StafAbstract {
 					}
 
 	        	} else {
-	        		
+
 	        		// Multi Node Server
 
-	        		if (StafParms.indexOf("postqueue") >=0 ) {
+	        		if (StafParms.contains("postqueue")) {
 
 	        			// MTA hosts
-	        			
-						StafServer = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".mta.host", ConfigProperties.getStringProperty("mta.host"));
 
-						try {
-							Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on MTA Host (" + StafServer + ")\n"), 
-									Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-						} catch (IOException e) {
-							e.printStackTrace();
+	        			Boolean mtaCommandResponse = true;
+						String mtaServer = null;
+
+						for (int i=0; i<ExecuteHarnessMain.mtaServers.size(); i++) {
+
+							mtaServer = ExecuteHarnessMain.mtaServers.get(i);
+
+							try {
+								Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on MTA Host (" + mtaServer + ")\n"),
+										Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+
+							mtaCommandResponse = runSTAFCommand (mtaServer, handle);
+							if (StafResponse.contains("Mail queue is empty")) {
+								logger.info("STAF Response: " + StafResponse);
+								break;
+							}
 						}
-						return runSTAFCommand(StafServer, handle);
+						return mtaCommandResponse;
 
-					} else if (StafParms.indexOf("zmmailbox") >=0 || StafParms.indexOf("zmtlsctl") >=0 || StafParms.indexOf("zmprov") >=0 || StafParms.indexOf(" zm") >=0) {
+					} else if (StafParms.contains("zmmailbox") || StafParms.contains("zmtlsctl") || StafParms.contains("zmprov") || StafParms.contains(" zm")) {
 
 						// Store hosts
 
@@ -200,7 +212,7 @@ public class StafAbstract {
 							storeServer = ExecuteHarnessMain.storeServers.get(i);
 
 							try {
-								Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on Store Host (" + storeServer + ")\n"), 
+								Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on Store Host (" + storeServer + ")\n"),
 										Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 							} catch (IOException e) {
 								e.printStackTrace();
@@ -219,7 +231,7 @@ public class StafAbstract {
 						// Localhost
 
 						try {
-							Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on localhost (" + StafServer + ")\n"), 
+							Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on localhost (" + StafServer + ")\n"),
 									Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -230,10 +242,8 @@ public class StafAbstract {
 
 			} finally {
 
-				logger.info("STAF Response: " + StafResponse);
-
 				try {
-					Files.write(pStafLogFilePath, Arrays.asList("STAT Command: " +  StafParms + " Response: " + StafResponse + "\n\n"), 
+					Files.write(pStafLogFilePath, Arrays.asList("STAT Command: " +  StafParms + " Response: " + StafResponse + "\n\n"),
 							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -261,7 +271,6 @@ public class StafAbstract {
     	logger.info("STAF Response Code: "+ StafResult.rc);
 
     	if ( StafResult.rc == STAFResult.AccessDenied ) {
-    		// Common error in WDC.  Log a helper message.
     		logger.error("On the server, use: staf local trust set machine *.eng.zimbra.com level 5");
     	}
 
@@ -284,6 +293,8 @@ public class StafAbstract {
         	}
 
         }
+
+        logger.info("STAF Response: " + StafResponse);
 
         return (StafResult.rc == STAFResult.Ok);
 

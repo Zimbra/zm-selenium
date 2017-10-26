@@ -14,7 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.framework.core;
 
 import java.awt.*;
@@ -94,9 +93,11 @@ public class ExecuteHarnessMain {
 	// Zimbra server details
 	public static int totalZimbraServers = 0;
 	public static int totalZimbraProxyServers = 0;
+	public static int totalZimbraMtaServers = 0;
 	public static int adminPort = 0;
 	public static int serverPort = 0;
 	public static ArrayList<String> storeServers = null;
+	public static ArrayList<String> mtaServers = null;
 
 	// Harness log
 	public static String logInfo;
@@ -1336,27 +1337,34 @@ public class ExecuteHarnessMain {
 
 		SeleniumService seleniumService = new SeleniumService();
 
-		if (totalZimbraProxyServers == 0 || totalZimbraServers == 0 || storeServers.equals(null)) {
+		if (totalZimbraServers == 0) {
 
 			for (String noOfZimbraServers : CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas | wc -l")) {
 				totalZimbraServers = Integer.parseInt(noOfZimbraServers);
 			}
 
-			// Get proxy server
-			for (String noOfZimbraProxyServers : CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas proxy | wc -l")) {
-				totalZimbraProxyServers = Integer.parseInt(noOfZimbraProxyServers);
-				if (totalZimbraProxyServers >=1 && totalZimbraServers >=2 ) {
-					adminPort = 9071;
-				} else {
-					adminPort = 7071;
+			// Get admin port
+			if (totalZimbraServers >= 2) {
+				for (String noOfZimbraProxyServers : CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas proxy | wc -l")) {
+					totalZimbraProxyServers = Integer.parseInt(noOfZimbraProxyServers);
+					if (totalZimbraProxyServers >=1) {
+						adminPort = 9071;
+					} else {
+						adminPort = 7071;
+					}
 				}
-				if (ConfigProperties.getStringProperty("server.scheme").equals("https")) {
-					serverPort = 443;
-				} else {
-					serverPort = 80;
-				}
+			} else {
+				adminPort = 7071;
 			}
-			if (totalZimbraProxyServers == 0) {
+
+			// Get server port
+			if (ConfigProperties.getStringProperty("server.scheme").equals("https")) {
+				serverPort = 443;
+			} else {
+				serverPort = 80;
+			}
+
+			if (totalZimbraServers == 0) {
 				seleniumService.stopSeleniumExecution();
 				System.exit(0);
 			}
@@ -1383,38 +1391,55 @@ public class ExecuteHarnessMain {
 			logger.info(logInfo);
 			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 
-			// Get all zimbra servers
-			logInfo = "No. of zimbra server(s): " + totalZimbraServers;
-			logger.info(logInfo);
-			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-
-			if (totalZimbraServers == 0) {
-				seleniumService.stopSeleniumExecution();
-				logInfo = "Couldn't get total zimbra servers (" + totalZimbraServers + ") using CLI command";
+			// Multi node settings
+			if (totalZimbraServers >= 2) {
+				// Get all zimbra servers
+				logInfo = "No. of zimbra server(s): " + totalZimbraServers;
 				logger.info(logInfo);
 				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				System.exit(0);
-			}
 
-			// Get all proxy servers
-			logInfo = "No. of proxy server(s): " + totalZimbraProxyServers;
-			logger.info(logInfo);
-			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-			Files.write(pHarnessLogFilePath, Arrays.asList("Admin port: " + adminPort + ", Client port: " + serverPort),
-					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				if (totalZimbraServers == 0) {
+					seleniumService.stopSeleniumExecution();
+					logInfo = "Couldn't get total zimbra servers (" + totalZimbraServers + ") using CLI command";
+					logger.info(logInfo);
+					Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					System.exit(0);
+				}
 
-			// Get all store servers
-			logger.info("Get all store servers...");
-			storeServers = CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas mailbox");
-			logInfo = "Store server(s): " + storeServers;
-			logger.info(logInfo);
-			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-			if (storeServers.equals(null) || storeServers.isEmpty()) {
-				seleniumService.stopSeleniumExecution();
-				logInfo = "Couldn't get store servers (" + storeServers + ") using CLI command";
+				// Get all proxy servers
+				logInfo = "No. of proxy server(s): " + totalZimbraProxyServers;
 				logger.info(logInfo);
 				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				System.exit(0);
+				Files.write(pHarnessLogFilePath, Arrays.asList("Admin port: " + adminPort + ", Client port: " + serverPort),
+						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+
+				// Get all store servers
+				logger.info("Get all store servers...");
+				storeServers = CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas mailbox");
+				logInfo = "Store server(s): " + storeServers;
+				logger.info(logInfo);
+				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				if (storeServers.equals(null) || storeServers.isEmpty()) {
+					seleniumService.stopSeleniumExecution();
+					logInfo = "Couldn't get store servers (" + storeServers + ") using CLI command";
+					logger.info(logInfo);
+					Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					System.exit(0);
+				}
+
+				// Get all mta servers
+				logger.info("Get all mta servers...");
+				mtaServers = CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas mta");
+				logInfo = "MTA server(s): " + mtaServers;
+				logger.info(logInfo);
+				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				if (mtaServers.equals(null) || mtaServers.isEmpty()) {
+					seleniumService.stopSeleniumExecution();
+					logInfo = "Couldn't get mta servers (" + mtaServers + ") using CLI command";
+					logger.info(logInfo);
+					Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					System.exit(0);
+				}
 			}
 
 			// Grant createDistList right to domain

@@ -1677,10 +1677,8 @@ public class ZimbraAccount {
 
 	public static void main(String[] args) throws HarnessException {
 
-		// String domain =
 		// ConfigProperties.getStringProperty("server.host","zqa-062.eng.zimbra.com");
-		String domain = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host",
-				ConfigProperties.getStringProperty("server.host"));
+		String domain = ConfigProperties.getStringProperty("server.host");
 
 		// Configure log4j using the basic configuration
 		BasicConfigurator.configure();
