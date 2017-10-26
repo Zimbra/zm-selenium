@@ -454,7 +454,8 @@ public class TreeMail extends AbsTree {
 				logger.warn("Trying to expand a folder that probably has no subfolders or is already expanded");
 				return (page);
 			}
-			this.sClick(locator);
+			
+			this.sClickAt(locator,"");
 			this.zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
 
@@ -469,7 +470,7 @@ public class TreeMail extends AbsTree {
 				return (page);
 			}
 
-			this.sClick(locator);
+			this.sClickAt(locator,"");
 			this.zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
 
