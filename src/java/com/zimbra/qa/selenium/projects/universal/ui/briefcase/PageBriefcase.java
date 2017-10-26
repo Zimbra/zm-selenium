@@ -1520,7 +1520,7 @@ public class PageBriefcase extends AbsTab {
 
 		if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
 
-			String[] pdfElements = { "//div[@id='pageContainer1']//div[contains(text(), '" + fileContent + "')]",
+			String[] pdfElements = { "//div[@id='viewerContainer']//div[contains(text(), '" + fileContent + "')]",
 					"//div[@id='toolbarViewerMiddle']//button[@id='zoomIn']",
 					"//div[@id='toolbarViewerLeft']//button[@id='previous']",
 					"//div[@id='toolbarViewerRight']//button[@id='print']" };
