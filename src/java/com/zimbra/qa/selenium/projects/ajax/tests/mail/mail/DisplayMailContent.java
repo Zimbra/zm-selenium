@@ -39,14 +39,20 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 	
 	public void DisplayHTMLMailWithHTMLPref_01() throws HarnessException {
 		
+		String fontFamilyData = "";
+	 	if(ConfigProperties.getStringProperty("browser").contains("firefox")){
+	 	 	 fontFamilyData = "<div><span style=\"font-size: 14pt;\"><span style=\"font-family: &quot;comic sans ms&quot;,&quot;comic sans&quot;,sans-serif;\">Number list below</span>:</span></div>";
+	 	}else{
+	 	 	 fontFamilyData = "<div><span style=\"font-size: 14pt;\"><span style=\"font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif;\">Number list below</span>:</span></div>";
+	 	}
+	 	 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email19/multilineHTMLcontent.txt";
 		final String subject = "subject13214016725788";
 		final String boldContent = "<div><strong>BoldString</strong></div>";
 		final String italicContent = "<div><em>ItalicString</em></div>";
-		final String underlineContent ="<div>     <span style=\"text-decoration: underline;\">Underline text</span></div>";
+		final String underlineContent ="<span style=\"text-decoration: underline;\">Underline text</span>";
 		final String colorFontContent ="<span style=\"color: rgb(255, 0, 0);\">Red color text</span></div>";
 		final String colorBackgroundContent ="<span style=\"background-color: rgb(51, 153, 102);\">Green background</span></div>";
-		final String fontFamilySizeContent ="<br /><div><span style=\"font-size: 14pt;\"><span style=\"font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif;\">Number list below</span>:</span></div>";
 		final String numberedListContent ="<ol><li>point one</li><li>point two</li><li>point three</li></ol>";
 		
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
@@ -63,7 +69,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), underlineContent, "Verify underline text content");
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), colorFontContent, "Verify colored body text content");
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), colorBackgroundContent, "Verify color background text content");
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), fontFamilySizeContent, "Verify font family and size of text content");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), fontFamilyData, "Verify font family and size of text content");
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), numberedListContent, "Verify numbered list text content");
 	}
 
@@ -72,6 +78,13 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 	
 	public void DisplayHTMLMailWithTextPref_02() throws HarnessException {
 		
+		String multilineTextData = "";
+		if(ConfigProperties.getStringProperty("browser").contains("firefox")){
+			multilineTextData = "BoldString <br>ItalicString <br>Underline text <br>Red color text <br>Green background <br><br>Number list below : <br><br><br>    1. point one <br>    2. point two <br>    3. point three";
+		}else{
+			multilineTextData = "BoldString <br />ItalicString <br />Underline text <br />Red color text <br />Green background <br /><br />Number list below : <br /><br /><br />    1. point one <br />    2. point two <br />    3. point three";
+		}
+	 	 
 		//Navigate to preference -> Mail and set display mail pref to Text and verify
 		app.zPagePreferences.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);	
@@ -94,7 +107,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email19/multilineHTMLcontent.txt";
 		final String subject = "subject13214016725788";
-		final String multiLineTextContent = "BoldString <br />ItalicString <br />Underline text <br />Red color text <br />Green background <br /><br />Number list below : <br /><br /><br />    1. point one <br />    2. point two <br />    3. point three"; 
+
 		
 		if (!app.zPageMail.zVerifyMailExists(subject)) {
 			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
@@ -104,7 +117,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		// Verify body content
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multiLineTextContent, "Verify plain text content");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multilineTextData, "Verify plain text content");
 	}
 	
 	@Test( description = "Verify multiline body mail(plain text content) displayed properly when display mail pref set to HTML",
@@ -112,6 +125,12 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 	
 	public void DisplayTextMailWithHTMLPref_03() throws HarnessException {
 		
+		String multilineTextData = "";
+		if(ConfigProperties.getStringProperty("browser").contains("firefox")){
+			multilineTextData = "line 1<br>line 2<br>line 3<br><br>line 4";
+	 	 }else{
+	 		multilineTextData = "line 1<br />line 2<br />line 3<br /><br />line 4";
+	 	 }
 		app.zGetActiveAccount().soapSend(
 				"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
 		+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
@@ -142,7 +161,6 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email19/multilineTextcontent.txt";
 		final String subject = "subject13214016777777";
-		final String multilineTextContent = "line 1<br />line 2<br />line 3<br /><br />line 4";
 				
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
@@ -153,7 +171,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 						
 		// Verify the Body
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multilineTextContent, "Verify plain text content");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multilineTextData, "Verify plain text content");
 				
 	}
 		
@@ -162,6 +180,13 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 	
 	public void DisplayTextMailWithTextPref_04() throws HarnessException {
 		
+		String multilineTextData = "";
+	 	 if(ConfigProperties.getStringProperty("browser").contains("firefox")){
+	 	 	 multilineTextData = "line 1<br>line 2<br>line 3<br><br>line 4"; 
+	 	 }else{
+	 	 	 multilineTextData = "line 1<br />line 2<br />line 3<br /><br />line 4"; 
+	 	 }
+	 	 
 		app.zGetActiveAccount().soapSend(
 				"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
 		+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
@@ -191,8 +216,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		}
 				
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email19/multilineTextcontent.txt";
-		final String subject = "subject13214016777777";
-		final String multilineTextContent = "line 1<br />line 2<br />line 3<br /><br />line 4"; 
+		final String subject = "subject13214016777777"; 
 		
 		// if mail already exist from previous testcases than don't inject 
 		if (!app.zPageMail.zVerifyMailExists(subject)) {
@@ -203,7 +227,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		// Verify body content
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multilineTextContent, "Verify plain text content");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multilineTextData, "Verify plain text content");
 	}
 	
 }
