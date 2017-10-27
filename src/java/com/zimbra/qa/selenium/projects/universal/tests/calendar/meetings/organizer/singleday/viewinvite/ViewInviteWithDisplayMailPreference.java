@@ -51,11 +51,11 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 	)
 	public void ViewHTMLInviteWithHTMLPreference_01() throws HarnessException {
 		
-		String fontFamilyData = "";
+		String multiLineHtmlContent = null;
 		if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
-			fontFamilyData = "<div><span style=\"font-family: &quot;comic sans ms&quot;,&quot;comic sans&quot;,sans-serif; font-size: 14pt;\">Number list below :</span>&nbsp;</div>";
+			multiLineHtmlContent = "<div><span style=\"font-family: &quot;comic sans ms&quot;,&quot;comic sans&quot;,sans-serif; font-size: 14pt;\">Number list below :";
 		} else {
-			fontFamilyData = "<div><span style=\"font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif; font-size: 14pt;\">Number list below :</span> </div>";
+			multiLineHtmlContent = "<div><span style=\"font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif; font-size: 14pt;\">Number list below :";
 		}
 		
 		// Import appointment using text mime
@@ -109,7 +109,7 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), underlineContent, "Verify underline text content");
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), colorFontContent, "Verify colored body text content");
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), colorBackgroundContent, "Verify color background text content");
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), fontFamilyData, "Verify font family and size of text content");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multiLineHtmlContent, "Verify font family and size of text content");
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), numberedListContent, "Verify numbered list text content");
 	}
 	
@@ -118,11 +118,11 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 	
 	public void ViewHTMLInviteWithPlainTextPreference_02() throws HarnessException {
 		
-		String multilineTextData = "";
+		String multiLinePlainTextData = null;
 		if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
-			multilineTextData = "BoldString<br>ItalicString<br>Underline String<br>Red Color text<br>Green Background<br><br>Number list below :<br><br><br>1. point one<br>2. point two<br>3. point three";
+			multiLinePlainTextData = "BoldString<br>ItalicString<br>Underline String<br>Red Color text<br>Green Background<br><br>Number list below :<br><br><br>1. point one<br>2. point two<br>3. point three";
 		} else {
-			multilineTextData = "BoldString<br />ItalicString<br />Underline String<br />Red Color text<br />Green Background<br /><br />Number list below :<br /><br /><br />1. point one<br />2. point two<br />3. point three";
+			multiLinePlainTextData = "BoldString<br />ItalicString<br />Underline String<br />Red Color text<br />Green Background<br /><br />Number list below :<br /><br /><br />1. point one<br />2. point two<br />3. point three";
 		}
 		
 		// Work around for getting correct body locator
@@ -159,7 +159,7 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 				
 		// Verify body content
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multilineTextData, "Verify plain text content");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multiLinePlainTextData, "Verify plain text content");
 	}
 	
 	@Test( description = "View invite with display mail preference as HTML and verify body multiline plain text content ",
@@ -167,11 +167,11 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 	
 	public void ViewPlainTextInviteWithHTMLPreference_03() throws HarnessException {
 		
-		String verificationData = "";
+		String multiLinePlainTextData = null;
 		if (ConfigProperties.getStringProperty("browser").contains("firefox")){
-			verificationData = "line 1<br>line two<br><br><br>line 3";
+			multiLinePlainTextData = "line 1<br>line two<br><br><br>line 3";
 		} else {
-			verificationData = "line 1<br />line two<br /><br /><br />line 3";
+			multiLinePlainTextData = "line 1<br />line two<br /><br /><br />line 3";
 		}
 		
 		app.zGetActiveAccount().soapSend(
@@ -239,7 +239,7 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		// Verify body content
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), verificationData, "Verify plain text content");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multiLinePlainTextData, "Verify plain text content");
 		
 	}
 	
@@ -247,11 +247,11 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 			groups = { "sanity", "L0" })
 	public void ViewPlainTextInviteWithPlainTextPreference_04() throws HarnessException {
 		
-		String multilineTextData = "";
+		String multiLinePlainTextData = null;
 		if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
-			multilineTextData = "line 1<br>line two<br><br><br>line 3"; 
+			multiLinePlainTextData = "line 1<br>line two<br><br><br>line 3"; 
 		} else {
-			multilineTextData = "line 1<br />line two<br /><br /><br />line 3"; 
+			multiLinePlainTextData = "line 1<br />line two<br /><br /><br />line 3"; 
 		}
 		
 		// Work around for getting correct body locator
@@ -287,7 +287,7 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 		}
 				
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email20/CalendarPlainTextBody.txt";
-		final String subject = "multiline plain text body"; 
+		final String subject = "multiline plain text body";
 		
 		if (!app.zPageMail.zVerifyMailExists(subject)) {
 			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
@@ -297,7 +297,7 @@ public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
 		// Verify body content
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multilineTextData, "Verify plain text content");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multiLinePlainTextData, "Verify plain text content");
 	}
 	
 }
