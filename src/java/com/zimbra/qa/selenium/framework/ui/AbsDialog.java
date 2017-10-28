@@ -14,17 +14,12 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
 package com.zimbra.qa.selenium.framework.ui;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-
 
 /**
  * A <code>AbsDialog</code> object represents a "popup dialog", 

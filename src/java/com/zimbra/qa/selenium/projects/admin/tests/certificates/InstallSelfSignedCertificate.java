@@ -20,7 +20,6 @@ import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -34,25 +33,28 @@ public class InstallSelfSignedCertificate extends AdminCommonTest {
 
 	public InstallSelfSignedCertificate() {
 		logger.info("New " + InstallSelfSignedCertificate.class.getCanonicalName());
-
-		// All tests start at the "Alias" page
 		super.startingPage = app.zPageManageCertificates;
 	}
 
+
 	/**
-	 * Testcase : Install self-signed certificate 1. Install self-signed
-	 * certificate from GUI 2. Verify certificate using SOAP.
-	 * 
-	 * @throws HarnessException
+	 * Testcase : Install self-signed certificate
+	 * 1. Install self-signed certificate from GUI
+	 * 2. Verify certificate using SOAP.
 	 */
-	@Test(description = "Install self-signed certificate", groups = { "smoke", "L1" })
+
+	@Test(description = "Install self-signed certificate", priority=5,
+			groups = { "smoke", "L1" })
+
 	public void InstallSelfSignedCertificate_01() throws HarnessException {
+
 		try {
 			String CountryName = "US";
 			String state = "Texas";
 			String city = "Frisco";
 			String OrganizationName = "Zimbra";
 			String OrganizationUnit = "Zimbra Collaboration Server";
+
 			CertificateItem cert = new CertificateItem();
 			cert.setCountryName(CountryName);
 			cert.setStateName(state);
@@ -60,7 +62,7 @@ public class InstallSelfSignedCertificate extends AdminCommonTest {
 			cert.setOrganizationName(OrganizationName);
 			cert.setOrganizationUnit(OrganizationUnit);
 			String issuer = "Zimbra Collaboration Server";
-			String hostname = ConfigProperties.getStringProperty("server.host");
+			String hostname = app.zGetActiveAccount().zGetAccountStoreHost();
 
 			// Select server
 			app.zPageManageCertificates.zListItem(Action.A_LEFTCLICK, hostname);
@@ -76,13 +78,12 @@ public class InstallSelfSignedCertificate extends AdminCommonTest {
 			wizard.zCompleteWizard(cert);
 
 			// Wait for certificate installation
-			SleepUtil.sleepVeryLong();
-			SleepUtil.sleepVeryLong();
+			SleepUtil.sleepVeryVeryLong();
 
 			// Restart zimbra services
 			staf.execute("zmmailboxdctl restart");
 			app.zPageMain.sRefresh();
-			
+
 			ZimbraAdminAccount.AdminConsoleAdmin().provision();
 			ZimbraAdminAccount.AdminConsoleAdmin().authenticate();
 
@@ -111,5 +112,4 @@ public class InstallSelfSignedCertificate extends AdminCommonTest {
 			SleepUtil.sleepVeryVeryLong();
 		}
 	}
-
 }

@@ -16,8 +16,6 @@
  */
 package com.zimbra.qa.selenium.framework.ui;
 
-
-
 /**
  * The <code>Action</code> class defines constants that represent
  * general actions in the client apps.

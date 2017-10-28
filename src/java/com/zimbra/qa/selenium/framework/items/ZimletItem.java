@@ -14,18 +14,12 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
 package com.zimbra.qa.selenium.framework.items;
 
 import java.util.Locale;
-
 import org.apache.log4j.*;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-
 
 /**
  * @author Matt Rhoades

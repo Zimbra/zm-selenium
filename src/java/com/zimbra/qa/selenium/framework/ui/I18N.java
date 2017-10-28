@@ -17,12 +17,9 @@
 package com.zimbra.qa.selenium.framework.ui;
 
 import java.util.*;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-
 
 /**
  * A class that contains Zimbra translations
@@ -180,9 +177,6 @@ public class I18N {
 		return (values.get(0));
 		
 	}
-	
-	
-	
 
     /**
      * Rebuild bundles to include all bundles from bundlename, using the currentLocale
@@ -249,6 +243,4 @@ public class I18N {
             return new Locale(language, country, variant);
         }
     }
-
-
 }

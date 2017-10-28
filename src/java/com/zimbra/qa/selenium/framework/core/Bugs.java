@@ -21,7 +21,6 @@ import java.lang.annotation.Target;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-
 /**
  * An annotation to correlate test methods with Bug IDs
  * @author Matt Rhoades

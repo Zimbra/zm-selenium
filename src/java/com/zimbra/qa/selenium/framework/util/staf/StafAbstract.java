@@ -23,9 +23,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import com.ibm.staf.STAFException;
@@ -36,7 +34,7 @@ import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.util.*;
 
 /**
- * A wrapper class to create STAF classes from
+ * A wrapper class to create STAF classes
  * @author Matt Rhoades
  *
  */
@@ -52,8 +50,13 @@ public class StafAbstract {
 	protected STAFResult StafResult = null;
 	protected String StafResponse = null;
 
-	protected static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy-hhmmss");
-	protected static String currentDateTime = simpleDateFormat.format(new Date());
+	// STAF log
+	public String sHarnessLogFileName = "STAF.log";
+	public String sHarnessLogFileFolderPath;
+	public String sHarnessLogFilePath;
+	public Path pHarnessLogFilePath;
+	public File fHarnessLogFile;
+	public File fHarnessLogFileFolder;
 
 	public StafAbstract() {
 		logger.info("new "+ StafAbstract.class.getCanonicalName());
@@ -62,6 +65,21 @@ public class StafAbstract {
 		StafService = "PING";
 		StafParms = "PING";
 
+		// Harness log
+		sHarnessLogFileFolderPath = "C:\\";
+		sHarnessLogFilePath = sHarnessLogFileFolderPath + "\\" + sHarnessLogFileName;
+		pHarnessLogFilePath = Paths.get(sHarnessLogFileFolderPath, sHarnessLogFileName);
+		fHarnessLogFile = new File(sHarnessLogFilePath);
+		fHarnessLogFileFolder = new File(sHarnessLogFileFolderPath);
+		if (!fHarnessLogFileFolder.exists()) {
+			fHarnessLogFileFolder.mkdirs();
+		}
+		try {
+			fHarnessLogFile.delete();
+			fHarnessLogFile.createNewFile();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 	public STAFResult getSTAFResult() {
@@ -74,7 +92,6 @@ public class StafAbstract {
 
 	/**
 	 * Get the STAF command being used
-	 * @return
 	 */
 	public String getStafCommand() {
 		StringBuilder sb = new StringBuilder();
@@ -87,7 +104,6 @@ public class StafAbstract {
 
 	/**
 	 * Get the STAF command being used
-	 * @return
 	 */
 	public String getStafCommand(String Server) {
 		StringBuilder sb = new StringBuilder();
@@ -100,16 +116,13 @@ public class StafAbstract {
 
 	/**
 	 * After using execute(), get the STAF response
-	 * @return
 	 */
 	public String getStafResponse() {
 		return (StafResponse);
 	}
 
 	/**
-	 * Execute the STAF request
-	 * @return
-	 * @throws HarnessException
+	 * Execute the STAF command
 	 */
 	public boolean execute() throws HarnessException {
 
@@ -118,83 +131,37 @@ public class StafAbstract {
 		try {
 			handle = new STAFHandle(StafAbstract.class.getName());
 
-			String sStafLogFileName = "STAF_" + currentDateTime + ".log";
-			String sStafLogFileFolderPath = "C:\\opt\\qa\\";
-			String sStafLogFilePath = sStafLogFileFolderPath + "\\" + sStafLogFileName;
-			Path pStafLogFilePath = Paths.get(sStafLogFileFolderPath, sStafLogFileName);
-			File fStafLogFile = new File(sStafLogFilePath);
-
-			// Create STAF log folder and file
-			File fStafLogFileFolder = new File(sStafLogFileFolderPath);
-			if (!fStafLogFileFolder.exists()) {
-				fStafLogFileFolder.mkdirs();
-			}
-
-			try {
-				if (fStafLogFile.createNewFile()) {
-					logger.info("Creating STAF log file: " + sStafLogFileName);
-				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-
 	        try {
+
+	        	// Single Node Server
 
 	        	if (ExecuteHarnessMain.totalZimbraServers == 1) {
 
-	        		// Single Node Server
-
+	        		// Server host
 	        		if (StafParms.contains("postqueue") || StafParms.contains("zmmailbox") || StafParms.contains("zmtlsctl") || StafParms.contains("zmprov") || StafParms.contains(" zm")) {
-
 						StafServer = ConfigProperties.getStringProperty("server.host");
-
-						try {
-							Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on Single Node server (" + StafServer + ")\n"),
-									Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-
 						return runSTAFCommand(StafServer, handle);
 
+					// Localhost
 					} else {
-
-						// Localhost
-
-						try {
-							Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on localhost (" + StafServer + ")\n"),
-									Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
 						return runSTAFCommand(StafServer, handle);
 					}
 
-	        	} else {
 
-	        		// Multi Node Server
+	        	// Multi Node Server
+
+	        	} else {
 
 	        		if (StafParms.contains("postqueue")) {
 
 	        			// MTA hosts
-
 	        			Boolean mtaCommandResponse = true;
 						String mtaServer = null;
 
 						for (int i=0; i<ExecuteHarnessMain.mtaServers.size(); i++) {
-
 							mtaServer = ExecuteHarnessMain.mtaServers.get(i);
-
-							try {
-								Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on MTA Host (" + mtaServer + ")\n"),
-										Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
-
 							mtaCommandResponse = runSTAFCommand (mtaServer, handle);
 							if (StafResponse.contains("Mail queue is empty")) {
-								logger.info("STAF Response: " + StafResponse);
 								break;
 							}
 						}
@@ -203,21 +170,12 @@ public class StafAbstract {
 					} else if (StafParms.contains("zmmailbox") || StafParms.contains("zmtlsctl") || StafParms.contains("zmprov") || StafParms.contains(" zm")) {
 
 						// Store hosts
-
 						Boolean storeCommandResponse = true;
 						String storeServer = null;
 
 						for (int i=0; i<ExecuteHarnessMain.storeServers.size(); i++) {
 
 							storeServer = ExecuteHarnessMain.storeServers.get(i);
-
-							try {
-								Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on Store Host (" + storeServer + ")\n"),
-										Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
-
 							storeCommandResponse = runSTAFCommand (storeServer, handle);
 							if (!storeCommandResponse) {
 								storeCommandResponse = false;
@@ -229,26 +187,11 @@ public class StafAbstract {
 					} else {
 
 						// Localhost
-
-						try {
-							Files.write(pStafLogFilePath, Arrays.asList("Executing STAF Command: " + StafParms + " on localhost (" + StafServer + ")\n"),
-									Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
 						return runSTAFCommand(StafServer, handle);
 					}
 	        	}
 
 			} finally {
-
-				try {
-					Files.write(pStafLogFilePath, Arrays.asList("STAT Command: " +  StafParms + " Response: " + StafResponse + "\n\n"),
-							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-
 				if (handle != null )
 					handle.unRegister();
 			}
@@ -258,10 +201,19 @@ public class StafAbstract {
 		}
 	}
 
-
+	/**
+	 * Execute the STAF command and add output into harness log file
+	 */
 	private boolean runSTAFCommand(String StafServer, STAFHandle handle) throws HarnessException {
 
 		logger.info("STAF Command: " + getStafCommand(StafServer));
+
+		try {
+			Files.write(pHarnessLogFilePath, Arrays.asList("STAF Command: " + getStafCommand(StafServer) + "\n"),
+					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
         StafResult = handle.submit2(StafServer, StafService, StafParms);
 
@@ -270,16 +222,15 @@ public class StafAbstract {
 
     	logger.info("STAF Response Code: "+ StafResult.rc);
 
-    	if ( StafResult.rc == STAFResult.AccessDenied ) {
+    	if (StafResult.rc == STAFResult.AccessDenied) {
     		logger.error("On the server, use: staf local trust set machine *.eng.zimbra.com level 5");
     	}
 
-    	if ( StafResult.rc != STAFResult.Ok ) {
+    	if (StafResult.rc != STAFResult.Ok) {
     		throw new HarnessException("Invalid STAF response code ("+ StafResult.rc +"): "+ StafResult.result);
     	}
 
-        if ( (StafResult.result != null) && (!StafResult.result.trim().equals("")) ) {
-
+        if (StafResult.result != null && !StafResult.result.trim().equals("")) {
         	logger.debug(StafResult.result);
 
         	if ( STAFMarshallingContext.isMarshalledData(StafResult.result) ) {
@@ -291,10 +242,21 @@ public class StafAbstract {
         	} else {
         		StafResponse = StafResult.result;
         	}
-
         }
 
-        logger.info("STAF Response: " + StafResponse);
+        try {
+        	if (StafResult.rc == STAFResult.Ok) {
+        		logger.info("STAF Response (success): " + StafResponse);
+				Files.write(pHarnessLogFilePath, Arrays.asList("STAF Response (success): " + StafResponse + "\n"),
+						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+        	} else {
+        		logger.info("STAF Response (failed): " + StafResponse);
+        		Files.write(pHarnessLogFilePath, Arrays.asList("STAF Response: (failed): " + StafResponse + "\n"),
+						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+        	}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
         return (StafResult.rc == STAFResult.Ok);
 

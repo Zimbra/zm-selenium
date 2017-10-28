@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.ui.zimlet;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -16,16 +14,12 @@ package com.zimbra.qa.selenium.projects.ajax.ui.zimlet;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
+package com.zimbra.qa.selenium.projects.ajax.ui.zimlet;
+
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
-/**
- * Represents a "Add Document Version Notes" dialog box
- * <p>
- */
 public class DialogViewCertificate extends AbsDialog {
 
 	public static class Locators {
@@ -82,6 +76,7 @@ public class DialogViewCertificate extends AbsDialog {
 					+ locator + " not present!");
 		}
 		this.zClickAt(locator, "0,0");
+		SleepUtil.sleepMedium();
 
 		return (null);
 	}
@@ -93,7 +88,7 @@ public class DialogViewCertificate extends AbsDialog {
 		String locator = "//table[@class='CertificateDetails']/tbody/tr[@data-name='Email'][1]/td[@class='Value']";
 		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("Issued to email "+ locator +" is not present");
+			throw new HarnessException("Issued to email " + locator + " is not present");
 		}
 		
 		return(this.sGetText(locator));
@@ -106,11 +101,12 @@ public class DialogViewCertificate extends AbsDialog {
 		
 		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("Issued to organization "+ locator +" is not present");
+			throw new HarnessException("Issued to organization " + locator + " is not present");
 		}
 		
 		return(this.sGetText(locator));
 	}
+	
 	public String zGetDisplayedTextIssuedByOrganization() throws HarnessException {
 		logger.info(myPageName() + " Issued by Organisation");
 
@@ -118,11 +114,12 @@ public class DialogViewCertificate extends AbsDialog {
 		
 		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("Issued by organization "+ locator +" is not present");
+			throw new HarnessException("Issued by organization " + locator + " is not present");
 		}
 		
 		return(this.sGetText(locator));
 	}
+	
 	public String zGetDisplayedTextIssuedByEmail() throws HarnessException {
 		logger.info(myPageName() + " Issued by email");
 
@@ -130,11 +127,12 @@ public class DialogViewCertificate extends AbsDialog {
 		
 		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("Issued by email "+ locator +" is not present");
+			throw new HarnessException("Issued by email " + locator + " is not present");
 		}
 		
 		return(this.sGetText(locator));
 	}
+	
 	public String zGetDisplayedTextAlgorithm() throws HarnessException {
 		logger.info(myPageName() + " Algorithm");
 
@@ -142,10 +140,9 @@ public class DialogViewCertificate extends AbsDialog {
 		
 		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("Algorithm used "+ locator +" is not present");
+			throw new HarnessException("Algorithm used " + locator + " is not present");
 		}
 		
 		return(this.sGetText(locator));
 	}
-
 }

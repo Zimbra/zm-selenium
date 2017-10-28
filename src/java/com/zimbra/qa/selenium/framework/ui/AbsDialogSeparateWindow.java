@@ -14,14 +14,10 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
+
 package com.zimbra.qa.selenium.framework.ui;
 
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-
-
 
 /**
  * A <code>AbsDialogSeparateWindow</code> object represents a "popup dialog", 

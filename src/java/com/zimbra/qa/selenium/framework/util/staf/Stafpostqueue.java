@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.framework.util.staf;
 
 import java.util.*;
 import java.util.regex.*;
-
 import com.ibm.staf.STAFMarshallingContext;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.util.*;

@@ -141,8 +141,6 @@ public class PageManageLicense extends AbsTab {
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-
-
 		String pulldownLocator = null;
 		String optionLocator = null;
 		AbsPage page = null;
@@ -156,14 +154,12 @@ public class PageManageLicense extends AbsTab {
 				page = new WizardUpdateLicense(this);
 
 
-			}else if (option == Button.B_ACTIVATE_LICENSE) {
+			} else if (option == Button.B_ACTIVATE_LICENSE) {
 
 				optionLocator = Locators.ACTIVATE_LICENSE; 
 				page = new DialogForActivateLicense(this.MyApplication,null);
 
-			}	
-
-			else {
+			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
 
@@ -183,9 +179,6 @@ public class PageManageLicense extends AbsTab {
 			this.zClickAt(pulldownLocator,"");
 			SleepUtil.sleepMedium();
 
-			// If the app is busy, wait for it to become active
-			//zWaitForBusyOverlay();
-
 			if (optionLocator != null) {
 
 				// Make sure the locator exists
@@ -194,13 +187,11 @@ public class PageManageLicense extends AbsTab {
 				}
 
 				this.zClickAt(optionLocator,"");
-				SleepUtil.sleepSmall();
-
-				// If the app is busy, wait for it to become active
-				//zWaitForBusyOverlay();
 			}
 
 		}
+		
+		SleepUtil.sleepMedium();
 
 		// Return the specified page, or null if not set
 		return (page);

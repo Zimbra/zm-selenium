@@ -17,6 +17,11 @@
 package com.zimbra.qa.selenium.staf;
 
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,14 +43,21 @@ import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 
-
 public class StafIntegration implements STAFServiceInterfaceLevel30 {
-    static private Logger mLog = Logger.getLogger(StafIntegration.class);
+    public static Logger mLog = Logger.getLogger(StafIntegration.class);
 
 	// STAF Specifics
     private static final int kDeviceInvalidSerialNumber = 4001;
     private String stafServiceName;
     private STAFHandle stafServiceHandle;
+
+    // STAF log
+	public static String sHarnessLogFileName = "harness.log";
+	public static String sHarnessLogFileFolderPath;
+	public static String sHarnessLogFilePath;
+	public static Path pHarnessLogFilePath;
+	public static File fHarnessLogFile;
+	public static File fHarnessLogFileFolder;
 
     // SERVICE Specifics
     private static class Parsers {
@@ -72,7 +84,6 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
     	public static final String optionQuery= "query";
         public static final String optionHelp = "help";
         public static final String optionHalt = "halt";
-
     }
 
     private static final String defaultLog4jProperties = "/tmp/log4j.properties";
@@ -121,22 +132,21 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
         String valueURL = request.optionValue(Arguments.argDesktopURL);
         String valueLog = request.optionValue(Arguments.argLog);
 
-        mLog.info("valueServer="+ valueServer);
-        mLog.info("valueRoot="+ valueRoot);
-        mLog.info("valueJarfile="+ valueJarfile);
-        mLog.info("valuePattern="+ valuePattern);
-        mLog.info("valueConfig="+ valueConfig);
-        mLog.info("valueConfigHost="+ valueConfigHost);
-        mLog.info("valueURL="+ valueURL);
-        mLog.info("valueLog="+ valueLog);
+        mLog.info("valueServer = " + valueServer);
+        mLog.info("valueRoot = " + valueRoot);
+        mLog.info("valueJarfile = " + valueJarfile);
+        mLog.info("valuePattern = " + valuePattern);
+        mLog.info("valueConfig = " + valueConfig);
+        mLog.info("valueConfigHost = " + valueConfigHost);
+        mLog.info("valueURL = " + valueURL);
+        mLog.info("valueLog = " + valueLog);
 
         // Since multiple GROUP arguments can be specified, process each one
         ArrayList<String> valueGroup = new ArrayList<String>();
         for (int i = 1; i <= request.optionTimes(Arguments.argGroup); i++) {
         	String g = request.optionValue(Arguments.argGroup, i);
         	valueGroup.add(g);
-            mLog.info("valueGroup="+ g);
-
+            mLog.info("valueGroup = " + g);
         }
         if ( valueGroup.isEmpty() ) {
         	// If no groups were specified, default to sanity
@@ -176,7 +186,6 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
     		} catch (IOException e) {
             	return (new STAFResult(STAFResult.JavaError, getStackTrace(e)));
     		}
-
 
         } else {
 
@@ -252,7 +261,6 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 
 		// Done!
 		return (new STAFResult(STAFResult.Ok));
-
 	}
 
 	private STAFResult handleExecute(RequestInfo info) {
@@ -261,7 +269,6 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 
     	// Check whether Trust level is sufficient for this command.
         if (info.trustLevel < 4) {
-
         	return new STAFResult(STAFResult.AccessDenied,
                 "Trust level 4 required for "+ Arguments.optionExecute +" request.\n" +
                 "The requesting machine's trust level: " +  info.trustLevel);
@@ -269,16 +276,15 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 
         // Make sure the request is valid
         STAFCommandParseResult parsedRequest = Parsers.stafParserExecute.parse(info.request);
-        if (parsedRequest.rc != STAFResult.Ok)
-        {
+        if (parsedRequest.rc != STAFResult.Ok) {
             return new STAFResult(STAFResult.InvalidRequestString, parsedRequest.errorBuffer);
         }
-
 
         if (serviceIsRunning) {
         	return (new STAFResult(STAFResult.Ok, "already running"));
         }
 
+        String sumTestsResult, executeTestsResult = null;
         StringBuilder resultString = new StringBuilder();
 
 		try {
@@ -294,9 +300,23 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 				return (parseResult);
 			}
 
-			String sumTestsResult, executeTestsResult;
+			// Harness log
+			sHarnessLogFileFolderPath = ExecuteHarnessMain.testoutputfoldername + "\\debug\\projects";
+			sHarnessLogFilePath = sHarnessLogFileFolderPath + "\\" + sHarnessLogFileName;
+			pHarnessLogFilePath = Paths.get(sHarnessLogFileFolderPath, sHarnessLogFileName);
+			fHarnessLogFile = new File(sHarnessLogFilePath);
+			fHarnessLogFileFolder = new File(sHarnessLogFileFolderPath);
+			if (!fHarnessLogFileFolder.exists()) {
+				fHarnessLogFileFolder.mkdirs();
+			}
+			try {
+				fHarnessLogFile.delete();
+				fHarnessLogFile.createNewFile();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 
-			// Sum
+			// Count testcases
 			try {
 				sumTestsResult = harness.sumTestCounts();
 			} catch (FileNotFoundException e) {
@@ -321,6 +341,13 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 			return (new STAFResult(STAFResult.JavaError, getStackTrace(e)));
 		} finally {
 			serviceIsRunning = false;
+
+			try {
+				Files.write(pHarnessLogFilePath, Arrays.asList("\n\n" + resultString),
+						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return (new STAFResult(STAFResult.Ok, resultString.toString()));
@@ -365,13 +392,11 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
         mLog.info("STAF: handleExecute ...");
 
     	// Check whether Trust level is sufficient for this command.
-        if (info.trustLevel < 2)
-        {
+        if (info.trustLevel < 2) {
 
         	return new STAFResult(STAFResult.AccessDenied,
                 "Trust level 2 required for "+ Arguments.optionQuery +" request.\n" +
                 "The requesting machine's trust level: " +  info.trustLevel);
-
         }
 
         String status = "Not running";
@@ -381,7 +406,6 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
         }
 
         return (new STAFResult(STAFResult.Ok, status));
-
 	}
 
 	private STAFResult handleHalt(RequestInfo info) {
@@ -389,7 +413,6 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 	}
 
 	private STAFResult handleHelp() {
-
 
         mLog.info("StafTestStaf: handleHelp ...");
 
@@ -433,7 +456,6 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 //		} catch (MissingResourceException e) {
 //			mLog.error("unable to load resource bundle", e);
 //		}
-
 	}
 
 	public STAFResult init(InitInfo info) {
@@ -483,9 +505,7 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
         Parsers.stafParserHalt = new STAFCommandParser();
         Parsers.stafParserHalt.addOption(Arguments.optionHalt, 1, STAFCommandParser.VALUENOTALLOWED);
 
-
         createBundles(info.serviceJar.getName());
-
 
         // Register Help Data
         registerHelpData(
@@ -493,15 +513,11 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
             "Invalid serial number",
             "A non-numeric value was specified for serial number");
 
-
-
 		// Now, do the Selenium specific setup ...
         BasicConfigurator.configure();
 
-
 		// Now, the service is ready ...
 		mLog.info("STAF Selenium: Ready ...");
-
 
         return (new STAFResult(STAFResult.Ok));
 	}
@@ -509,29 +525,22 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 	public STAFResult term() {
         mLog.info("StafIntegration: term ...");
 
-
-        try
-        {
+        try {
             // Un-register Help Data
             unregisterHelpData(kDeviceInvalidSerialNumber);
 
             // Un-register the service handle
             stafServiceHandle.unRegister();
 
-        }
-        catch (STAFException ex)
-        {
+        } catch (STAFException ex) {
             return (new STAFResult(STAFResult.STAFRegistrationError));
         }
 
         return (new STAFResult(STAFResult.Ok));
-
-
 	}
 
     // Register error codes for the STAX Service with the HELP service
-    private void registerHelpData(int errorNumber, String info, String description)
-    {
+    private void registerHelpData(int errorNumber, String info, String description) {
         stafServiceHandle.submit2("local", "HELP",
                          "REGISTER SERVICE " + stafServiceName +
                          " ERROR " + errorNumber +
@@ -540,8 +549,7 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
     }
 
     // Un-register error codes for the STAX Service with the HELP service
-    private void unregisterHelpData(int errorNumber)
-    {
+    private void unregisterHelpData(int errorNumber) {
     	stafServiceHandle.submit2("local", "HELP",
                          "UNREGISTER SERVICE " + stafServiceName +
                          " ERROR " + errorNumber);

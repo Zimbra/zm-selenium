@@ -29,10 +29,8 @@ import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.zip.GZIPInputStream;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-
 import com.zimbra.common.util.tar.TarEntry;
 import com.zimbra.common.util.tar.TarInputStream;
 

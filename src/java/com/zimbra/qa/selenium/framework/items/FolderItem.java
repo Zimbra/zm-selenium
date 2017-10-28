@@ -14,11 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
 package com.zimbra.qa.selenium.framework.items;
-
 
 import java.util.ArrayList;
 import java.util.List;

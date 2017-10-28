@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.ui.zimlet;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -16,16 +14,12 @@ package com.zimbra.qa.selenium.projects.ajax.ui.zimlet;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
+package com.zimbra.qa.selenium.projects.ajax.ui.zimlet;
+
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
-/**
- * Represents a "Add Document Version Notes" dialog box
- * <p>
- */
 public class DialogPasswordRequired extends AbsDialog {
 
 	public static class Locators {
@@ -82,6 +76,7 @@ public class DialogPasswordRequired extends AbsDialog {
 					+ locator + " not present!");
 		}
 		this.zClickAt(locator, "0,0");
+		SleepUtil.sleepMedium();
 
 		return (null);
 	}
@@ -100,6 +95,7 @@ public class DialogPasswordRequired extends AbsDialog {
 		this.zClickAt(locator, "0,0");
 		this.sFocus(locator);
 		this.zKeyboard.zTypeCharacters(password);
+		SleepUtil.sleepSmall();
 	}
 	
 	@Override
