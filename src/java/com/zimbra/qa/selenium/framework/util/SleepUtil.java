@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.framework.util;
 
 import java.util.Date;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 

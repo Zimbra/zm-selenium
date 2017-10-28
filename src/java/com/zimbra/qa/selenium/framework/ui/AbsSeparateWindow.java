@@ -26,7 +26,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -90,7 +89,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 		super.sSelectWindow(this.DialogWindowID);
 		super.sType(locator, value);
 		SleepUtil.sleepSmall();
-	} 
+	}
 
 	public void sClickNewWindow(String locator) throws HarnessException {
 		logger.info(myPageName() + " sClickInNewWindow(" + locator + ")");
@@ -98,7 +97,7 @@ public abstract class AbsSeparateWindow extends AbsPage {
 		super.sSelectWindow(this.DialogWindowID);
 		super.sClick(locator);
 		SleepUtil.sleepSmall();
-	} 
+	}
 
 	public String sGetBodyContent(String windowTitle, String locator) throws HarnessException {
 		logger.info(myPageName() + " sGetBodyContent()");
@@ -169,21 +168,21 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 	public void zCloseWindow(String title) throws HarnessException {
 		logger.info(myPageName() + " zCloseWindow(" + title + ")");
-		
+
 		String windowTitle;
-		Boolean windowFound = false;		
+		Boolean windowFound = false;
 		String setNewWindowTitle = "Close - New Window";
-		
+
 		for (String winHandle : webDriver().getWindowHandles()) {
-			windowTitle = webDriver().switchTo().window(winHandle).getTitle();			
+			windowTitle = webDriver().switchTo().window(winHandle).getTitle();
 			if (windowTitle.equals(title)) {
 				windowFound = true;
 				break;
 			}
 		}
-		
+
 		if (ConfigProperties.getStringProperty("browser").contains("edge") && windowFound.equals(true)) {
-			
+
 			// Use AutoIt script to close the new window
 			try {
 				WebElement we = null;
@@ -193,24 +192,24 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			} catch (IOException e) {
 				logger.info("Couldn't execute AutoIt script to close new window " + e.toString());
 			}
-			
+
 		} else if (!ConfigProperties.getStringProperty("browser").contains("edge")) {
 
 			try {
-	
+
 				if ((this.DialogWindowID == null || this.DialogWindowID.equals("null")) && (this.DialogWindowTitle.equals("") || this.DialogWindowTitle.equals("null")) && title.equals("")) {
 					return;
-					
+
 				} else {
 					Set<String> windows = webDriver().getWindowHandles();
-					if (windows.size() != 1 && (sGetTitle().equals(title) || sGetLocation().contains("/" + title + "?"))) {	
-						logger.info("Closing winodw: " + title);	
+					if (windows.size() != 1 && (sGetTitle().equals(title) || sGetLocation().contains("/" + title + "?"))) {
+						logger.info("Closing winodw: " + title);
 						webDriver().close();
-						
+
 					} else if (windows.size() != 1) {
 						for (String winHandle : windows) {
 							WebDriver window = webDriver().switchTo().window(winHandle);
-							if ((window.getTitle().contentEquals(title) || window.getCurrentUrl().contains("/" + title + "?")) 
+							if ((window.getTitle().contentEquals(title) || window.getCurrentUrl().contains("/" + title + "?"))
 									&& !window.getTitle().contentEquals("Zimbra: Inbox")
 									&& !window.getTitle().contentEquals("Zimbra: Contacts")
 									&& !window.getTitle().contentEquals("Zimbra: Calendar")
@@ -229,11 +228,11 @@ public abstract class AbsSeparateWindow extends AbsPage {
 						logger.info("Window is already closed: " + title);
 					}
 				}
-	
+
 			} finally {
 				super.sSelectWindow(MainWindowID);
 			}
-			
+
 		}
 	}
 
@@ -310,5 +309,4 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			return (false);
 
 		}
-
-} 
+}

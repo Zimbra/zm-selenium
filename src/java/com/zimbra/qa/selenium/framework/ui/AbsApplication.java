@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.framework.ui;
 
 import java.util.*;
-
 import org.apache.log4j.*;
-
 import com.zimbra.qa.selenium.framework.util.*;
 
 /**

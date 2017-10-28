@@ -18,13 +18,7 @@ package com.zimbra.qa.selenium.framework.util;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-
 import com.zimbra.common.soap.Element;
-
-
-
-
-
 
 public class ZimbraDomain {
 	private static Logger logger = LogManager.getLogger(ZimbraDomain.class);
@@ -36,9 +30,6 @@ public class ZimbraDomain {
 	// GAL Sync account information
 	protected String DomainGalSyncAccountID = null;
 	protected String DomainGalSyncDatasourceID = null;
-	
-	
-	
 	
 	/**
 	 * 

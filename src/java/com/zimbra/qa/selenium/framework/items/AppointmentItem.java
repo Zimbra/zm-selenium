@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.framework.items;
 
 import java.util.*;
-
 import org.apache.log4j.*;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.util.*;
 

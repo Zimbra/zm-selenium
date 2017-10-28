@@ -16,8 +16,6 @@
  */
 package com.zimbra.qa.selenium.framework.ui;
 
-
-
 /**
  * The <code>Shortcut</code> class defines constants that represent
  * keyboard shortcuts.
@@ -39,6 +37,7 @@ package com.zimbra.qa.selenium.framework.ui;
  * @author Matt Rhoades
  *
  */
+
 public class Shortcut {
 
 	// General shortcuts
@@ -147,5 +146,4 @@ public class Shortcut {
 			return false;
 		return true;
 	}
-
 }

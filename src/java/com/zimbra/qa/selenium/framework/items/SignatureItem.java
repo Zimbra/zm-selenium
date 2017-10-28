@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.framework.items;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
@@ -35,14 +34,6 @@ public class SignatureItem implements IItem {
 	 */
 	protected String dName;
 
-	// //
-	// FINISH: SOAP Data
-	// //
-
-	// //
-	// START: GUI Data
-	// //
-
 	/**
 	 * The icon image for this tag
 	 */
@@ -54,10 +45,6 @@ public class SignatureItem implements IItem {
 	public String gName;
 	public String dBodyText;
 	public String dBodyHtmlText;
-
-	// //
-	// FINISH: GUI Data
-	// //
 
 	/**
 	 * Create a mail item

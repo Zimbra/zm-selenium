@@ -18,10 +18,8 @@ package com.zimbra.qa.selenium.framework.util;
 
 import java.io.IOException;
 import java.util.regex.*;
-
 import org.apache.log4j.*;
 import org.htmlcleaner.*;
-
 
 /**
  * An object representing an HTML document

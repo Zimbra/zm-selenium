@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.framework.ui;
 
 import java.awt.event.KeyEvent;
-
 import com.zimbra.qa.selenium.framework.util.*;
-
 
 /**
  * An abstraction of the toaster message that occurs in the Ajax client
@@ -29,17 +27,11 @@ import com.zimbra.qa.selenium.framework.util.*;
 public abstract class AbsToaster extends AbsSeleniumObject {
 
 	public static class Locators {
-
 		public static final String ToastDivContainerCSS = "css=div[id='z_toast']";
 		public static final String idVisibleLocator = "z_toast";
-
 		public static final String ToastTextLocatorCSS   = ToastDivContainerCSS + " div[id='z_toast_text']";
-
 		public static final String ToastUndoLocatorCSS = ToastDivContainerCSS + " a.undo";
-
-
 	}
-
 
 	protected AbsApplication MyApplication = null;
 	public AbsToaster(AbsApplication application) {

@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.framework.ui;
 
 import org.apache.log4j.*;
-
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
 /**

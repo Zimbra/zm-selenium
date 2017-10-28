@@ -21,7 +21,6 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import org.apache.log4j.*;
 import org.openqa.selenium.interactions.Actions;
-
 import com.zimbra.qa.selenium.framework.util.*;
 
 /**

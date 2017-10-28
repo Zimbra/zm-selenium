@@ -17,11 +17,8 @@
 package com.zimbra.qa.selenium.framework.items;
 
 import java.util.*;
-
 import net.sf.json.*;
-
 import org.apache.log4j.*;
-
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
 /**

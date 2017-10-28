@@ -14,13 +14,10 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
+
 package com.zimbra.qa.selenium.framework.items;
 
 import org.apache.log4j.*;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.util.*;
 

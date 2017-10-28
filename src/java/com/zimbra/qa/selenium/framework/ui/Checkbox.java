@@ -16,9 +16,6 @@
 	 */
 	package com.zimbra.qa.selenium.framework.ui;
 
-
-
-
 	/**
 	 * The <code>Checkbox</code> class defines constants that represent
 	 * general CheckBoxs in the client apps.

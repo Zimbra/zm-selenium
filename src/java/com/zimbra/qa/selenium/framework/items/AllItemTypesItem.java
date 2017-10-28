@@ -16,10 +16,8 @@
  */
 package com.zimbra.qa.selenium.framework.items;
 
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 

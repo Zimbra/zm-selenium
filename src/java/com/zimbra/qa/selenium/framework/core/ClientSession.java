@@ -52,7 +52,6 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.OperatingSystem;
 import java.util.zip.GZIPInputStream;
 
-
 /**
  * A <code>ClientSession</code> object contains all session information for the
  * test methods.
@@ -114,7 +113,7 @@ public class ClientSession {
 	        	try {
 					if (!driverBinary.exists() && !driverBinary.isFile()) {
 						setupDir(driverDirectory);
-						downloadFile(driverBinary, driverURL, driverDirectory, driverFile);
+						downloadFile(driverURL, driverDirectory, driverFile);
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -169,7 +168,7 @@ public class ClientSession {
 				try {
 					if (!driverBinary.exists() && !driverBinary.isFile()) {
 						setupDir(driverDirectory);
-						downloadFile(driverBinary, driverZipURL, driverDirectory, driverZipFile);
+						downloadFile(driverZipURL, driverDirectory, driverZipFile);
 						if (driverZipFile.contains("tar")) {
 							untarFile(driverDirectory + "/" + driverZipFile, driverDirectory);
 						} else {
@@ -233,7 +232,7 @@ public class ClientSession {
 				try {
 					if (!driverBinary.exists() && !driverBinary.isFile()) {
 						setupDir(driverDirectory);
-						downloadFile(driverBinary, driverZipURL, driverDirectory, driverZipFile);
+						downloadFile(driverZipURL, driverDirectory, driverZipFile);
 						if (driverZipFile.contains("tar")) {
 							untarFile(driverDirectory + "/" + driverZipFile, driverDirectory);
 						} else {
@@ -271,7 +270,7 @@ public class ClientSession {
         driverOSDirectory.mkdirs();
 	}
 
-	public void downloadFile(File driverBinary, URL driverZipURL, String driverDirectory, String driverZipFile) throws IOException {
+	public void downloadFile(URL driverZipURL, String driverDirectory, String driverZipFile) throws IOException {
 
 		System.out.println("Downloading driver from " + driverZipURL + " ...");
 		System.out.println("\t & putting driver at " + driverDirectory);

@@ -50,6 +50,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 import com.zimbra.qa.selenium.framework.util.performance.PerfMetrics;
 import com.zimbra.qa.selenium.framework.util.staf.*;
+import com.zimbra.qa.selenium.staf.StafIntegration;
 
 public class ExecuteHarnessMain {
 
@@ -101,12 +102,11 @@ public class ExecuteHarnessMain {
 
 	// Harness log
 	public static String logInfo;
-	public static String sHarnessLogFileName;
-	public static String sHarnessLogFileFolderPath;
-	public static String sHarnessLogFilePath;
+	public static String sHarnessLogFileName = StafIntegration.sHarnessLogFileName;
+	public static String sHarnessLogFileFolderPath, sHarnessLogFilePath;
 	public static Path pHarnessLogFilePath;
-	public static File fHarnessLogFile;
-	public static File fHarnessLogFileFolder;
+	public static File fTestOutputDirectory, fHarnessLogFile, fHarnessLogFileFolder;
+
 	public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy-hhmmss");
 	public static String currentDateTime = simpleDateFormat.format(new Date());
 
@@ -380,7 +380,7 @@ public class ExecuteHarnessMain {
 		String localhost = getLocalMachineName();
 
 		StafServiceFS staf = new StafServiceFS(remotehost);
-		staf.execute(" COPY FILE " + fromfile + " TOFILE " + tofile + " TOMACHINE " + localhost);
+		staf.execute("COPY FILE " + fromfile + " TOFILE " + tofile + " TOMACHINE " + localhost);
 
 	}
 
@@ -745,21 +745,29 @@ public class ExecuteHarnessMain {
 				testEndTime = new Date();
 				testTotalSeconds = (int) ((testEndTime.getTime()-testStartTime.getTime())/1000);
 				testTotalMinutes = new DecimalFormat("##.##").format((float) Math.round(testTotalSeconds) / 60);
+				
+				sHarnessLogFileFolderPath = testoutputfoldername + "\\debug\\projects";
+				sHarnessLogFilePath = sHarnessLogFileFolderPath + "\\" + sHarnessLogFileName;
+				pHarnessLogFilePath = Paths.get(sHarnessLogFileFolderPath, sHarnessLogFileName);
+				fHarnessLogFile = new File(sHarnessLogFilePath);
+				fHarnessLogFileFolder = new File(sHarnessLogFileFolderPath);
 
-				String sCurrentRunningTestFileName = "current-running-tests.txt";
-				String sCurrentRunningTestFolderPath = ExecuteHarnessMain.testoutputfoldername + "\\debug\\projects";
-				String sCurrentRunningTestFilePath = sCurrentRunningTestFolderPath + "\\" + sCurrentRunningTestFileName;
-				Path pCurrentRunningTestFilePath = Paths.get(sCurrentRunningTestFolderPath, sCurrentRunningTestFileName);
-				File fCurrentRunningTestFile = new File(sCurrentRunningTestFilePath);
+				try {					
+					if (currentRunningTest == 1) {
+						Files.write(pHarnessLogFilePath,
+								Arrays.asList("\n\n# | Test | Start Time | End Time | Duration"), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					}
+					
+					byte[] bytes = Files.readAllBytes(Paths.get(sHarnessLogFilePath));
+					String harnessLogFile = new String(bytes);
 
-				try {
-					if (fCurrentRunningTestFile.createNewFile()) {
-						Files.write(pCurrentRunningTestFilePath,
-								Arrays.asList("# | Test | Start Time | End Time | Duration"), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-						Files.write(pCurrentRunningTestFilePath,
+					// Check for duplication entry if test retried
+					if (harnessLogFile.indexOf(method.getTestMethod().toString()) >= 0) {
+						Files.write(pHarnessLogFilePath,
 								Arrays.asList(currentRunningTest++ + "/" + totalTests + " | " + method.getTestMethod() + " | " + testStartTime.toString().split(" ")[3] + " | "
 										+ testEndTime.toString().split(" ")[3] + " | " + testTotalMinutes), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					}
+
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -767,7 +775,7 @@ public class ExecuteHarnessMain {
 				Boolean found = false;
 				Scanner scanner = null;
 				try {
-					scanner = new Scanner(fCurrentRunningTestFile);
+					scanner = new Scanner(fHarnessLogFile);
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
@@ -779,7 +787,7 @@ public class ExecuteHarnessMain {
 				}
 				if (!found) {
 					try {
-						Files.write(pCurrentRunningTestFilePath,
+						Files.write(pHarnessLogFilePath,
 								Arrays.asList(currentRunningTest++ + "/" + totalTests + " | " + method.getTestMethod() + " | " + testStartTime.toString().split(" ")[3] + " | "
 										+ testEndTime.toString().split(" ")[3] + " | " + testTotalMinutes), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					} catch (IOException e) {
@@ -1339,12 +1347,21 @@ public class ExecuteHarnessMain {
 
 		if (totalZimbraServers == 0) {
 
+			logInfo = "-------------- Zimbra pre-configuration and required setup for " + project + " project --------------\n";
+			logger.info(logInfo);
+
+			// Get total zimbra servers
+			logger.info("Getting total zimbra servers...");
 			for (String noOfZimbraServers : CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas | wc -l")) {
 				totalZimbraServers = Integer.parseInt(noOfZimbraServers);
+			}
+			if (totalZimbraServers == 0) {
+				seleniumService.stopSeleniumExecution();
 			}
 
 			// Get admin port
 			if (totalZimbraServers >= 2) {
+				logger.info("Getting proxy servers...");
 				for (String noOfZimbraProxyServers : CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas proxy | wc -l")) {
 					totalZimbraProxyServers = Integer.parseInt(noOfZimbraProxyServers);
 					if (totalZimbraProxyServers >=1) {
@@ -1364,48 +1381,34 @@ public class ExecuteHarnessMain {
 				serverPort = 80;
 			}
 
-			if (totalZimbraServers == 0) {
-				seleniumService.stopSeleniumExecution();
-				System.exit(0);
-			}
-
-			// Harness log
-			sHarnessLogFileName = "harness.txt";
-			sHarnessLogFileFolderPath = ConfigProperties.getStringProperty("testOutputDirectory") + "/"
+			fTestOutputDirectory = new File(ConfigProperties.getStringProperty("testOutputDirectory"));
+			sHarnessLogFileFolderPath = fTestOutputDirectory.getAbsolutePath() + "/"
 					+ ConfigProperties.zimbraGetVersionString() + "/" + ConfigProperties.getAppType() + "/"
-					+ ConfigProperties.getStringProperty("browser") + "/" + ConfigProperties.getStringProperty("locale") + "\\debug\\projects";
+					+ ConfigProperties.getStringProperty("browser") + "/" + ConfigProperties.getStringProperty("locale") + "/debug/projects";
 			sHarnessLogFilePath = sHarnessLogFileFolderPath + "\\" + sHarnessLogFileName;
 			pHarnessLogFilePath = Paths.get(sHarnessLogFileFolderPath, sHarnessLogFileName);
 			fHarnessLogFile = new File(sHarnessLogFilePath);
+			fHarnessLogFileFolder = new File(sHarnessLogFileFolderPath);
 
 			// Create harness log folder and file
-			fHarnessLogFileFolder = new File(sHarnessLogFileFolderPath);
-			if (!fHarnessLogFileFolder.exists()) {
-				fHarnessLogFileFolder.mkdirs();
-			}
-			if (fHarnessLogFile.createNewFile()) {
-				logger.info("Creating harness log file: " + sHarnessLogFileName);
-			}
+			fHarnessLogFileFolder.mkdirs();
+			fHarnessLogFile.delete();
+			fHarnessLogFile.createNewFile();
 
-			logInfo = "-------------- Zimbra pre-configuration and required setup for " + project + " project --------------";
+			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+
+			// Get all zimbra servers
+			logInfo = "No. of zimbra server(s): " + totalZimbraServers;
+			logger.info(logInfo);
+			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+
+			// Port details
+			logInfo = "Server admin port: " + adminPort + ", server port: " + serverPort;
 			logger.info(logInfo);
 			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 
 			// Multi node settings
 			if (totalZimbraServers >= 2) {
-				// Get all zimbra servers
-				logInfo = "No. of zimbra server(s): " + totalZimbraServers;
-				logger.info(logInfo);
-				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-
-				if (totalZimbraServers == 0) {
-					seleniumService.stopSeleniumExecution();
-					logInfo = "Couldn't get total zimbra servers (" + totalZimbraServers + ") using CLI command";
-					logger.info(logInfo);
-					Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-					System.exit(0);
-				}
-
 				// Get all proxy servers
 				logInfo = "No. of proxy server(s): " + totalZimbraProxyServers;
 				logger.info(logInfo);
@@ -1442,21 +1445,39 @@ public class ExecuteHarnessMain {
 				}
 			}
 
-			// Grant createDistList right to domain
-			logInfo = "Grant createDistList right to domain using CLI utility";
-			logger.info(logInfo);
-			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-			CommandLineUtility.runCommandOnZimbraServer("zmprov grr domain " + ConfigProperties.getStringProperty("testdomain")
-							+ " dom " + ConfigProperties.getStringProperty("testdomain") + " createDistList");
+			// Admin project settings
+			if (project.contains("admin")) {
 
-			// Disable zimbraSmimeOCSPEnabled attribute for S/MIME
-			logInfo = "Disable zimbraSmimeOCSPEnabled attribute for S/MIME using CLI utility";
-			logger.info(logInfo);
-			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-			CommandLineUtility.runCommandOnZimbraServer("zmprov mcf zimbraSmimeOCSPEnabled FALSE");
+				// Setup license directory
+				String serverMachinelicenseFile = "/tmp/regular.xml";
+				String licenseDirPath = ConfigProperties.getBaseDirectory() + "/data/private/license";
+				File licenseDir = new File(licenseDirPath);
+				if (!licenseDir.exists()) {
+					Files.write(pHarnessLogFilePath, Arrays.asList("Creating licence directory " + licenseDirPath), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					licenseDir.mkdirs();
+				}
 
-			// Universal UI project settings
-			if (project.contains("universal")) {
+				StafServiceFS staf = new StafServiceFS(ConfigProperties.getStringProperty("server.host"));
+				staf.execute("COPY FILE " + serverMachinelicenseFile + " TODIRECTORY " + licenseDir + " TOMACHINE " + getLocalMachineName());
+
+			// Ajax project settings
+			} else if (project.contains("ajax")) {
+
+				// Grant createDistList right to domain
+				logInfo = "Grant createDistList right to domain using CLI utility";
+				logger.info(logInfo);
+				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				CommandLineUtility.runCommandOnZimbraServer("zmprov grr domain " + ConfigProperties.getStringProperty("testdomain")
+								+ " dom " + ConfigProperties.getStringProperty("testdomain") + " createDistList");
+
+				// Disable zimbraSmimeOCSPEnabled attribute for S/MIME
+				logInfo = "Disable zimbraSmimeOCSPEnabled attribute for S/MIME using CLI utility";
+				logger.info(logInfo);
+				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				CommandLineUtility.runCommandOnZimbraServer("zmprov mcf zimbraSmimeOCSPEnabled FALSE");
+
+			// Universal project settings
+			} else if (project.contains("universal")) {
 				String universalUITheme = "clarity";
 
 				Boolean themeFound = false;
@@ -1501,6 +1522,7 @@ public class ExecuteHarnessMain {
 
 	public static void main(String[] args) throws HarnessException, IOException {
 
+		String project = args[3].split("\\.")[5];
 		String sumTestsResult = "No results";
 		String executeTestsResult = "No results";
 
@@ -1511,6 +1533,13 @@ public class ExecuteHarnessMain {
 			// Set the working conditions
 			ConfigProperties.setBaseDirectory("");
 			ConfigProperties.setConfigProperties("conf/config.properties");
+
+			for (AppType appType : AppType.values()) {
+	        	if (project.contains(appType.toString().toLowerCase()) ) {
+	        		ConfigProperties.setAppType(appType);
+	            	break;
+	        	}
+	        }
 
 			// Zimbra Pre-configuration and required setup
 			zimbraPreConfiguration(ConfigProperties.getAppType().toString().toLowerCase());
@@ -1540,6 +1569,14 @@ public class ExecuteHarnessMain {
 
 		logger.info(executeTestsResult);
 		System.out.println("*****\n" + executeTestsResult);
+		
+		try {
+			Files.write(pHarnessLogFilePath, Arrays.asList("\n\n" + executeTestsResult),
+					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		System.exit(0);
 
 	}

@@ -34,16 +34,16 @@ import com.zimbra.qa.selenium.framework.util.*;
  * majority of the GUI interaction, without having to access Selenium methods or
  * locators directly.
  * <p>
- * 
+ *
  * @author Matt Rhoades
- * 
+ *
  */
 public abstract class AbsTab extends AbsPage {
 	protected static Logger logger = LogManager.getLogger(AbsTab.class);
 
 	/**
 	 * Create this page object that exists in the specified application
-	 * 
+	 *
 	 * @param application
 	 */
 	public AbsTab(AbsApplication application) {
@@ -54,20 +54,20 @@ public abstract class AbsTab extends AbsPage {
 
 	/**
 	 * Navigate to this page
-	 * 
+	 *
 	 * @throws HarnessException
 	 */
 	public abstract void zNavigateTo() throws HarnessException;
-	
+
 	public abstract boolean zIsActive() throws HarnessException;
 
 	/**
 	 * Take action on list items
-	 * 
+	 *
 	 * (mainly applies to mail, contacts, tasks) For mail, item identifier is
 	 * the subject. For contacts, item identifier is the email. For tasks, item
 	 * identifier is the summary.
-	 * 
+	 *
 	 * @param action
 	 *            See Actions class
 	 * @param item
@@ -94,7 +94,7 @@ public abstract class AbsTab extends AbsPage {
 
 	/**
 	 * Click on a button
-	 * 
+	 *
 	 * @param button
 	 *            the button to press
 	 * @return Returns the resulting Page, Wizard, etc. or null
@@ -105,7 +105,7 @@ public abstract class AbsTab extends AbsPage {
 
 	/**
 	 * Click on a pulldown with the specified option in the pulldown
-	 * 
+	 *
 	 * @param pulldown
 	 * @param option
 	 * @return Returns the resulting Page, Wizard, etc. or null
@@ -116,7 +116,7 @@ public abstract class AbsTab extends AbsPage {
 
 	/**
 	 * Use the keyboard to enter the specified keyboard shortcut
-	 * 
+	 *
 	 * @param shortcut
 	 * @return Returns the resulting Page, Wizard, etc. or null
 	 * @throws HarnessException
@@ -129,7 +129,7 @@ public abstract class AbsTab extends AbsPage {
 
 	/**
 	 * Use the keyboard to enter the specified keyboard key event
-	 * 
+	 *
 	 * @param keyEvent
 	 *            see java.awt.event.KeyEvent
 	 * @return Returns the resulting Page, Wizard, etc. or null
@@ -145,7 +145,7 @@ public abstract class AbsTab extends AbsPage {
 
 	/**
 	 * Use the keyboard to enter the specified string
-	 * 
+	 *
 	 * @param keys
 	 * @return
 	 * @throws HarnessException
@@ -155,7 +155,7 @@ public abstract class AbsTab extends AbsPage {
 		this.zKeyboard.zTypeCharacters(keys);
 		return (page);
 	}
-	
+
 	public AbsPage zKeyboardTypeStringUpload(String keys) throws HarnessException {
 		AbsPage page = null;
 		try {
@@ -170,7 +170,7 @@ public abstract class AbsTab extends AbsPage {
 
 	/**
 	 * Getting tagItem
-	 * 
+	 *
 	 * @param account
 	 *            Account from which, tagItem will be retrieved
 	 * @param tagName
@@ -192,7 +192,7 @@ public abstract class AbsTab extends AbsPage {
 
 	/**
 	 * Focus on a window based on browser title
-	 * 
+	 *
 	 * @param title
 	 *            The browser title to focus
 	 */
@@ -207,7 +207,7 @@ public abstract class AbsTab extends AbsPage {
 	/**
 	 * Close a window based on browser title (and return focus on the main
 	 * window)
-	 * 
+	 *
 	 * @param title
 	 *            The browser title to close
 	 */
@@ -234,7 +234,7 @@ public abstract class AbsTab extends AbsPage {
 			this.zSelectWindow("null");
 		}
 	}
-	
+
 	public void zSeparateWindowClose() throws HarnessException {
 
 		try {
@@ -245,7 +245,7 @@ public abstract class AbsTab extends AbsPage {
 			if (titles.size()>1) {
 			for (int a=1;a<=titles.size();a++) {
 				logger.info("Found " + a );
-				
+
 					winId=""+a;
 					this.sSelectWindow(winId);; // Select the window
 					this.sClose(); // Close the window
@@ -259,6 +259,6 @@ public abstract class AbsTab extends AbsPage {
 			this.zSelectWindow("null");
 
 		}
-		
+
 	}
 }
