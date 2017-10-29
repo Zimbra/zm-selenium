@@ -745,19 +745,19 @@ public class ExecuteHarnessMain {
 				testEndTime = new Date();
 				testTotalSeconds = (int) ((testEndTime.getTime()-testStartTime.getTime())/1000);
 				testTotalMinutes = new DecimalFormat("##.##").format((float) Math.round(testTotalSeconds) / 60);
-				
+
 				sHarnessLogFileFolderPath = testoutputfoldername + "\\debug\\projects";
 				sHarnessLogFilePath = sHarnessLogFileFolderPath + "\\" + sHarnessLogFileName;
 				pHarnessLogFilePath = Paths.get(sHarnessLogFileFolderPath, sHarnessLogFileName);
 				fHarnessLogFile = new File(sHarnessLogFilePath);
 				fHarnessLogFileFolder = new File(sHarnessLogFileFolderPath);
 
-				try {					
+				try {
 					if (currentRunningTest == 1) {
 						Files.write(pHarnessLogFilePath,
 								Arrays.asList("\n\n# | Test | Start Time | End Time | Duration"), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					}
-					
+
 					byte[] bytes = Files.readAllBytes(Paths.get(sHarnessLogFilePath));
 					String harnessLogFile = new String(bytes);
 
@@ -1392,8 +1392,9 @@ public class ExecuteHarnessMain {
 
 			// Create harness log folder and file
 			fHarnessLogFileFolder.mkdirs();
-			fHarnessLogFile.delete();
-			fHarnessLogFile.createNewFile();
+			if (!fHarnessLogFile.exists()) {
+				fHarnessLogFile.createNewFile();
+			}
 
 			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 
@@ -1569,14 +1570,14 @@ public class ExecuteHarnessMain {
 
 		logger.info(executeTestsResult);
 		System.out.println("*****\n" + executeTestsResult);
-		
+
 		try {
 			Files.write(pHarnessLogFilePath, Arrays.asList("\n\n" + executeTestsResult),
 					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		System.exit(0);
 
 	}

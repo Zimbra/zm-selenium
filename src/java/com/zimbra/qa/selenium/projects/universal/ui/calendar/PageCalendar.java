@@ -1344,8 +1344,8 @@ public class PageCalendar extends AbsTab {
 
 				if ( optionLocator != null ) {
 					this.zClickAt(optionLocator, "");
-					SleepUtil.sleepSmall();
 					this.zWaitForBusyOverlay();
+					SleepUtil.sleepSmall();
 				}
 
 				if (com.zimbra.qa.selenium.projects.universal.tests.calendar.meetings.attendee.singleday.actions.CreateACopy.organizerTest == false ||
@@ -2829,7 +2829,7 @@ public class PageCalendar extends AbsTab {
 		if ( this.zIsVisiblePerPosition(Locators.CalendarViewListCSS, 0, 0) ) {
 			return (zListGetAppointmentsListView());											// LIST
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewSearchListCSS, 0, 0) ) {
-			return (zSearchListGetAppointmentsListView());
+			return (zSearchListGetAppointmentsListView());										// SEARCH
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewDayCSS, 0, 0) ) {
 			return (zListGetAppointmentsGeneral(Locators.CalendarViewDayItemCSS));				// DAY
 		} else if ( this.zIsVisiblePerPosition(Locators.CalendarViewWeekCSS, 0, 0) ) {

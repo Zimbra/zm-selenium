@@ -35,6 +35,8 @@ public class Close extends CalendarWorkWeekTest {
 			
 	public void Close_01() throws HarnessException {
 		
+		organizerTest = false;
+		
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptContent = ConfigProperties.getUniqueString();
 		String foldername = "folder" + ConfigProperties.getUniqueString();
