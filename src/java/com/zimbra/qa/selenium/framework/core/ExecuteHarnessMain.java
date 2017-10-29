@@ -1523,7 +1523,6 @@ public class ExecuteHarnessMain {
 
 	public static void main(String[] args) throws HarnessException, IOException {
 
-		String project = args[3].split("\\.")[5];
 		String sumTestsResult = "No results";
 		String executeTestsResult = "No results";
 
@@ -1536,7 +1535,7 @@ public class ExecuteHarnessMain {
 			ConfigProperties.setConfigProperties("conf/config.properties");
 
 			for (AppType appType : AppType.values()) {
-	        	if (project.contains(appType.toString().toLowerCase()) ) {
+				if (args[3].contains(appType.toString().toLowerCase()) ) {
 	        		ConfigProperties.setAppType(appType);
 	            	break;
 	        	}
