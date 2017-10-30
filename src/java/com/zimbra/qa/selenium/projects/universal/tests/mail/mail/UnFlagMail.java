@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.universal.tests.mail.mail;
 
-import java.util.*;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -30,7 +29,10 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 		logger.info("New " + UnFlagMail.class.getCanonicalName());
 	}
 
-	@Test(description = "Un-Flag a mail by clicking flagged icon", groups = { "smoke", "L1" })
+
+	@Test(description = "Un-Flag a mail by clicking flagged icon",
+			groups = { "smoke", "L1" })
+
 	public void UnFlagMail_01() throws HarnessException {
 
 		// Create the message data to be sent
@@ -63,10 +65,12 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 		// Make sure the server shows "un-flagged"
 		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject + ")");
 		ZAssert.assertStringDoesNotContain(mail.getFlags(), "f", "Verify the message is not flagged in the server");
-
 	}
 
-	@Test(description = "Un-Flag a mail by using shortcut 'mf'", groups = { "functional", "L2" })
+
+	@Test(description = "Un-Flag a mail by using shortcut 'mf'",
+			groups = { "functional", "L2" })
+
 	public void UnFlagMail_02() throws HarnessException {
 
 		// Create the message data to be sent
@@ -100,5 +104,4 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject + ")");
 		ZAssert.assertStringDoesNotContain(mail.getFlags(), "f", "Verify the message is not flagged in the server");
 	}
-
 }

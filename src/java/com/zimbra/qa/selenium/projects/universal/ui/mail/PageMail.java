@@ -2295,7 +2295,7 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("Action " + action.toString() + " is not applicable for Edition columns on Page mail");
 		}
 	}
-	
+
 	public boolean zVerifyColumnPresent(Column column) throws HarnessException {
 
 		logger.info(myPageName() + " zVerifyColumnPresent (" + column.name() + ") ");
@@ -2311,15 +2311,15 @@ public class PageMail extends AbsTab {
 		return sIsElementPresent(locatorPrefix + "[id$='" + column.value +"']");
 
 	}
-	
+
 	public boolean zVerifyExternalImageInfoBarExists(String subject) throws HarnessException {
 		return sIsElementPresent("css=div[aria-label='"+subject+"'] span:contains('External images are not displayed.')");
 	}
-	
+
 	public String zGetMessageProperty (String subject, String property) throws HarnessException {
 
 		String viewLocator, listLocator, rowLocator, itemlocator;
-		
+
 		if (zGetPropMailView() == PageMailView.BY_MESSAGE) {
 			viewLocator = "__TV-main__";
 			listLocator = "css=ul[id='zl" + viewLocator + "rows']";
@@ -2338,17 +2338,17 @@ public class PageMail extends AbsTab {
 
 			if (listSubject.contains(subject)) {
 				String messageID = this.sGetAttribute(itemlocator + " span[id^='zlif" + viewLocator + "']@id");
-								
+
 				if (property.contains("flag")) {
 					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id").replace("__fr", "__fg");
 					Boolean isMessageFlagged = this.sIsVisible(itemlocator + "div[id='" + messageID + "'] div[class='ImgFlagRed']");
 					return isMessageFlagged.toString();
-					
+
 				} else if (property.contains("attachment")) {
 					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id").replace("__fr", "__at");
 					Boolean isMessageContainsAttachment = this.sIsVisible(itemlocator + "div[id='" + messageID + "'] div[class='ImgAttachment']");
 					return isMessageContainsAttachment.toString();
-					
+
 				} else if (property.contains("tag")) {
 					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id").replace("__fr", "__tg");
 					Boolean isMessageTagged = this.sIsVisible(itemlocator + "div[id='" + messageID + "'] img[src^='data:image/png;base64']");
