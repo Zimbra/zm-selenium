@@ -2349,4 +2349,49 @@ public class PageMail extends AbsTab {
 		return sIsElementPresent("css=div[aria-label='"+subject+"'] span:contains('External images are not displayed.')");
 	}
 
+	public String zGetMessageProperty (String subject, String property) throws HarnessException {
+
+		String viewLocator, listLocator, rowLocator, itemlocator;
+
+		if (zGetPropMailView() == PageMailView.BY_MESSAGE) {
+			viewLocator = "__TV-main__";
+			listLocator = "css=ul[id='zl" + viewLocator + "rows']";
+			rowLocator = "li[id^='zli" + viewLocator + "']";
+		} else {
+			viewLocator = "__CLV-main__";
+			listLocator = "css=ul[id='zl" + viewLocator + "rows']";
+			rowLocator = "li[id^='zli" + viewLocator + "']";
+		}
+
+		int count = this.sGetCssCount(listLocator + " " + rowLocator);
+
+		for (int i = 1; i <= count; i++) {
+			itemlocator = listLocator + " li:nth-of-type(" + i + ") ";
+			String listSubject = this.sGetText(itemlocator + " [id$='__su']").trim();
+
+			if (listSubject.contains(subject)) {
+				String messageID = this.sGetAttribute(itemlocator + " span[id^='zlif" + viewLocator + "']@id");
+
+				if (property.contains("flag")) {
+					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id").replace("__fr", "__fg");
+					Boolean isMessageFlagged = this.sIsVisible(itemlocator + "div[id='" + messageID + "'] div[class='ImgFlagRed']");
+					return isMessageFlagged.toString();
+
+				} else if (property.contains("attachment")) {
+					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id").replace("__fr", "__at");
+					Boolean isMessageContainsAttachment = this.sIsVisible(itemlocator + "div[id='" + messageID + "'] div[class='ImgAttachment']");
+					return isMessageContainsAttachment.toString();
+
+				} else if (property.contains("tag")) {
+					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id").replace("__fr", "__tg");
+					Boolean isMessageTagged = this.sIsVisible(itemlocator + "div[id='" + messageID + "'] img[src^='data:image/png;base64']");
+					return isMessageTagged.toString();
+
+				} else {
+					break;
+				}
+			}
+		}
+		return null;
+	}
 }
