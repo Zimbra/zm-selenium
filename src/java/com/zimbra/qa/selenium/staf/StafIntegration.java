@@ -306,11 +306,8 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 			pHarnessLogFilePath = Paths.get(sHarnessLogFileFolderPath, sHarnessLogFileName);
 			fHarnessLogFile = new File(sHarnessLogFilePath);
 			fHarnessLogFileFolder = new File(sHarnessLogFileFolderPath);
-			if (!fHarnessLogFileFolder.exists()) {
-				fHarnessLogFileFolder.mkdirs();
-			}
+			fHarnessLogFileFolder.mkdirs();
 			try {
-				fHarnessLogFile.delete();
 				fHarnessLogFile.createNewFile();
 			} catch (IOException e1) {
 				e1.printStackTrace();

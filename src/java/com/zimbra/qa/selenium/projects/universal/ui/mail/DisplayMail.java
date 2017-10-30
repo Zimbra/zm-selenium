@@ -134,7 +134,6 @@ public class DisplayMail extends AbsDisplay {
 
 		AbsPage page = this;
 		String locator = null;
-		boolean doPostfixCheck = false;
 
 		if (button == Button.B_REMOVE_ALL) {
 
@@ -194,127 +193,106 @@ public class DisplayMail extends AbsDisplay {
 
 			locator = Locators.AcceptButton;
 			page = null;
-			doPostfixCheck = true;
 
 		} else if (button == Button.O_ACCEPT_NOTIFY_ORGANIZER) {
 
 			locator = Locators.AcceptNotifyOrganizerMenu;
 			page = null;
-			doPostfixCheck = true;
 
 		} else if (button == Button.O_ACCEPT_EDIT_REPLY) {
 
 			locator = Locators.AcceptEditReplyMenu;
 			page = null;
-			doPostfixCheck = true;
 
 		} else if (button == Button.O_ACCEPT_DONT_NOTIFY_ORGANIZER) {
 
 			locator = Locators.AcceptDontNotifyOrganizerMenu;
 			page = null;
-			doPostfixCheck = true;
 
 		} else if (button == Button.B_TENTATIVE) {
 
 			locator = Locators.TentativeButton;
 			page = null;
-			doPostfixCheck = true;
 
 		} else if (button == Button.O_TENTATIVE_NOTIFY_ORGANIZER) {
 
 			locator = Locators.TentativeNotifyOrganizerMenu;
 			page = null;
-			doPostfixCheck = true;
 
 		} else if (button == Button.O_TENTATIVE_EDIT_REPLY) {
 
 			locator = Locators.TentativeEditReplyMenu;
 			page = null;
-			doPostfixCheck = true;
 
 		} else if (button == Button.O_TENTATIVE_DONT_NOTIFY_ORGANIZER) {
 
 			locator = Locators.TentativeDontNotifyOrganizerMenu;
 			page = null;
-			doPostfixCheck = true;
 
 		} else if (button == Button.B_DECLINE) {
 
 			locator = Locators.DeclineButton;
 			page = null;
-			doPostfixCheck = true;
 
 		} else if (button == Button.O_DECLINE_NOTIFY_ORGANIZER) {
 
 			locator = Locators.DeclineNotifyOrganizerMenu;
 			page = null;
-			doPostfixCheck = true;
 
 		} else if (button == Button.O_DECLINE_EDIT_REPLY) {
 
 			locator = Locators.DeclineEditReplyMenu;
 			page = null;
-			doPostfixCheck = true;
 
 		} else if (button == Button.O_DECLINE_DONT_NOTIFY_ORGANIZER) {
 
 			locator = Locators.DeclineDontNotifyOrganizerMenu;
 			page = null;
-			doPostfixCheck = true;
 
 		} else if (button == Button.B_PROPOSE_NEW_TIME) {
 
 			locator = Locators.ProposeNewTimeButton;
 			page = new FormApptNew(this.MyApplication);
-			doPostfixCheck = true;
 
 		} else if (button == Button.B_ACCEPT_PROPOSE_NEW_TIME) {
 
 			locator = Locators.AcceptProposeNewTimeButton;
 			page = new FormApptNew(this.MyApplication);
-			doPostfixCheck = true;
 
 		} else if (button == Button.B_DECLINE_PROPOSE_NEW_TIME) {
 
 			locator = Locators.DeclineProposeNewTimeButton;
 			page = new FormMailNew(this.MyApplication);
-			doPostfixCheck = true;
 
 		} else if (button == Button.B_ACCEPT_SHARE) {
 
 			locator = this.ContainerLocator + " td[id$='__Shr__SHARE_ACCEPT_title']";
 			page = new DialogShareAccept(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
-			doPostfixCheck = true;
 
 		} else if (button == Button.B_DECLINE_SHARE) {
 
 			locator = this.ContainerLocator + " td[id$='__Shr__SHARE_DECLINE_title']";
 			page = new DialogShareDecline(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
-			doPostfixCheck = true;
 
 		} else if (button == Button.B_FORWARD) {
 
 			locator = Locators.zForwardButton;
 			page = null;
-			doPostfixCheck = true;
 
 		} else if (button == Button.B_REPLY) {
 
 			locator = Locators.zReplyButton;
 			page = null;
-			doPostfixCheck = true;
 
 		} else if (button == Button.B_REPLYALL) {
 
 			locator = Locators.zReplyAllButton;
 			page = null;
-			doPostfixCheck = true;
 
 		} else if (button == Button.B_DELETE) {
 
 			locator = Locators.zDeleteButton;
 			page = null;
-			doPostfixCheck = true;
 
 		} else {
 			throw new HarnessException("no implementation for button: " + button);
@@ -326,18 +304,11 @@ public class DisplayMail extends AbsDisplay {
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("locator is not present for button " + button + " : " + locator);
 
-		this.zClickAt(locator, "");
-		this.zWaitForBusyOverlay();
-		SleepUtil.sleepMedium();
+		this.sClick(locator);
+		SleepUtil.sleepLong();
 
-		if (page != null) {
-			page.zWaitForActive();
-		}
-
-		if (doPostfixCheck) {
-			Stafpostqueue sp = new Stafpostqueue();
-			sp.waitForPostqueue();
-		}
+		Stafpostqueue sp = new Stafpostqueue();
+		sp.waitForPostqueue();
 
 		return (page);
 	}

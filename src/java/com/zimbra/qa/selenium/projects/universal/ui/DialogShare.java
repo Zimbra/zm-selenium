@@ -37,8 +37,8 @@ public class DialogShare extends AbsDialog {
 	public static class Locators {
 		public static final String zDialogShareId = "ShareDialog";
 		public static final String zButtonsId = "ShareDialog_buttons";
-		public static final String note = "css=div[id='ZmShareReply'] textarea";
-		public static final String Message = "css=td[id='ZmShareReplySelect_select_container']";
+		public static final String zShareMessageNote = "css=div[id='ZmShareReply'] textarea";
+		public static final String zShareMessageDropDown = "css=td[id='ZmShareReplySelect_select_container']";
 		public static final String zAddNoteToStandardMessage = "//td[contains(@id,'_title') and contains(text(),'Add note to standard message')]";
 		public static final String zDoNotSendMailAboutThisShare = "//td[contains(@id,'_title') and contains(text(),'Do not send mail about this share')]";
 
@@ -184,20 +184,20 @@ public class DialogShare extends AbsDialog {
 
 		if (type == ShareMessageType.AddNoteToStandardMsg) {
 
-			zClickAt(Locators.Message, "");
+			zClickAt(Locators.zShareMessageDropDown, "");
 			zClick(Locators.zAddNoteToStandardMessage);
-			this.sFocus(Locators.note);
-			this.zClick(Locators.note);
+			this.sFocus(Locators.zShareMessageNote);
+			this.zClick(Locators.zShareMessageNote);
 			this.zWaitForBusyOverlay();
 
 			// this.zKeyboard.zTypeCharacters(message);
-			this.sType(Locators.note, message);
+			this.sType(Locators.zShareMessageNote, message);
 			SleepUtil.sleepSmall();
 
 		}
 
 		else if (type == ShareMessageType.DoNotSendMsg) {
-			zClickAt(Locators.Message, "");
+			zClickAt(Locators.zShareMessageDropDown, "");
 			zClick(Locators.zDoNotSendMailAboutThisShare);
 		}
 	}
@@ -220,7 +220,7 @@ public class DialogShare extends AbsDialog {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		this.zClick(locator);
+		this.sClickAt(locator, "");
 		zWaitForBusyOverlay();
 
 		if (button == Button.B_OK) {

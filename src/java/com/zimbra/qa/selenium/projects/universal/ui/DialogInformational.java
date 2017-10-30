@@ -97,9 +97,9 @@ public class DialogInformational extends AbsDialog {
 		}
 
 		// Click it
-		sClickAt(locator,"0,0");
-		SleepUtil.sleepSmall();
+		sClickAt(locator, "");
 		zWaitForBusyOverlay();
+		SleepUtil.sleepMedium();
 		
 		if (button == Button.B_OK) {
 			Stafpostqueue sp = new Stafpostqueue();
