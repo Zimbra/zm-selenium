@@ -67,24 +67,8 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 		// Flag the item
 		app.zPageMail.zListItem(Action.A_MAIL_FLAG, mail.dSubject);
 
-		// Get the item from the list
-		List<MailItem> messages = app.zPageMail.zListGetMessages();
-		ZAssert.assertNotNull(messages, "Verify the message list exists");
-
-		MailItem listmail = null;
-		for (MailItem m : messages) {
-			logger.info("Subject: looking for "+ mail.dSubject +" found: "+ m.gSubject);
-			if ( mail.dSubject.equals(m.gSubject) ) {
-				listmail = m;
-				break;
-			}
-		}
-
-		
-
 		// Make sure the GUI shows "flagged"
-		ZAssert.assertNotNull(listmail, "Verify the message is in the list");
-		ZAssert.assertTrue(listmail.gIsFlagged, "Verify the message is flagged in the list");
+		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "flag"), "true", "Verify the message is shown as flagged in the UI");
 		
 		// Make sure the server shows "flagged"
 		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
@@ -124,24 +108,8 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 		// Flag the item
 		app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_MARKFLAG);
 		
-		// Get the item from the list
-		List<MailItem> messages = app.zPageMail.zListGetMessages();
-		ZAssert.assertNotNull(messages, "Verify the message list exists");
-
-		MailItem listmail = null;
-		for (MailItem m : messages) {
-			logger.info("Subject: looking for "+ mail.dSubject +" found: "+ m.gSubject);
-			if ( mail.dSubject.equals(m.gSubject) ) {
-				listmail = m;
-				break;
-			}
-		}
-
-		
-		
 		// Make sure the GUI shows "flagged"
-		ZAssert.assertNotNull(listmail, "Verify the message is in the list");
-		ZAssert.assertTrue(listmail.gIsFlagged, "Verify the message is flagged in the list");
+		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "flag"), "true", "Verify the message is shown as flagged in the UI");
 		
 		// Make sure the server shows "flagged"
 		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");

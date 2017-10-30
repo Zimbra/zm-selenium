@@ -57,24 +57,10 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 		// Flag the item
 		app.zPageMail.zListItem(Action.A_MAIL_UNFLAG, mail.dSubject);
 
-		// Get the item from the list
-		List<MailItem> messages = app.zPageMail.zListGetMessages();
-		ZAssert.assertNotNull(messages, "Verify the message list exists");
+		// Make sure the GUI shows "un-flagged"
+		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "flag"), "false", "Verify the message is shown as un-flagged in the UI");
 
-		MailItem listmail = null;
-		for (MailItem m : messages) {
-			logger.info("Subject: looking for " + mail.dSubject + " found: " + m.gSubject);
-			if (mail.dSubject.equals(m.gSubject)) {
-				listmail = m;
-				break;
-			}
-		}
-
-		// Make sure the GUI shows "flagged"
-		ZAssert.assertNotNull(listmail, "Verify the message is in the list");
-		ZAssert.assertFalse(listmail.gIsFlagged, "Verify the message is flagged in the list");
-
-		// Make sure the server shows "flagged"
+		// Make sure the server shows "un-flagged"
 		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject + ")");
 		ZAssert.assertStringDoesNotContain(mail.getFlags(), "f", "Verify the message is not flagged in the server");
 
@@ -107,24 +93,10 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 		// Flag the item
 		app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_MARKFLAG);
 
-		// Get the item from the list
-		List<MailItem> messages = app.zPageMail.zListGetMessages();
-		ZAssert.assertNotNull(messages, "Verify the message list exists");
+		// Make sure the GUI shows "un-flagged"
+		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "flag"), "false", "Verify the message is shown as un-flagged in the UI");
 
-		MailItem listmail = null;
-		for (MailItem m : messages) {
-			logger.info("Subject: looking for " + mail.dSubject + " found: " + m.gSubject);
-			if (mail.dSubject.equals(m.gSubject)) {
-				listmail = m;
-				break;
-			}
-		}
-
-		// Make sure the GUI shows "flagged"
-		ZAssert.assertNotNull(listmail, "Verify the message is in the list");
-		ZAssert.assertFalse(listmail.gIsFlagged, "Verify the message is flagged in the list");
-
-		// Make sure the server shows "flagged"
+		// Make sure the server shows "un-flagged"
 		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject + ")");
 		ZAssert.assertStringDoesNotContain(mail.getFlags(), "f", "Verify the message is not flagged in the server");
 	}
