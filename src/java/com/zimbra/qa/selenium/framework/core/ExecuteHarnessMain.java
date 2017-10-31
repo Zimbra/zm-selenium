@@ -1445,6 +1445,11 @@ public class ExecuteHarnessMain {
 					System.exit(0);
 				}
 			}
+			// Single node settings
+			else {
+				storeServers = new ArrayList<String>();
+				storeServers.add(ConfigProperties.getStringProperty("server.host"));
+			}
 
 			// Admin project settings
 			if (project.contains("admin")) {
