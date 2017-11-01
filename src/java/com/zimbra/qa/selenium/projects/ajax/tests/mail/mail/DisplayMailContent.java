@@ -80,7 +80,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		
 		String multilineTextData = "";
 		if(ConfigProperties.getStringProperty("browser").contains("firefox")){
-			multilineTextData = "BoldString <br>ItalicString <br>Underline text <br>Red color text <br>Green background <br><br>Number list below : <br><br><br>    1. point one <br>    2. point two <br>    3. point three";
+			multilineTextData = "BoldString <br>ItalicString <br>Underline text <br>Red color text <br>Green background <br><br>Number list below : <br><br><br>&nbsp;&nbsp; &nbsp;1. point one <br>&nbsp;&nbsp; &nbsp;2. point two <br>&nbsp;&nbsp; &nbsp;3. point three";
 		}else{
 			multilineTextData = "BoldString <br />ItalicString <br />Underline text <br />Red color text <br />Green background <br /><br />Number list below : <br /><br /><br />    1. point one <br />    2. point two <br />    3. point three";
 		}

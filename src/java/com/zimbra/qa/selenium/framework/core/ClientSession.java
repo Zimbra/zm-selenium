@@ -186,7 +186,6 @@ public class ClientSession {
 				System.setProperty("webdriver.gecko.driver", driverFilePath);
 				options.setCapability(CapabilityType.LOGGING_PREFS, logs);
 				webDriver = new FirefoxDriver(options);
-				webDriver.manage().window().maximize();
 
 			} else {
 
